@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:background="#ffffff"
+              android:orientation="vertical"
+   >
+    
+    <!-- <TextView
+        android:id="@+id/txtLabel"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="16dp"
+        android:text="Home View"/>
+    
+    <ImageView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLabel"
+        android:src="@drawable/ic_home"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/> -->
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="#E06F38"
+            android:orientation="horizontal" >
+
+            <!-- android:background="@drawable/header_comment" -->
+
+            <TextView
+                android:id="@+id/txtBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:drawableLeft="@drawable/right_arrow" />
+
+            <TextView
+                android:id="@+id/txtCityBargasht"
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.01"
+                android:gravity="right|center_vertical"
+                android:padding="6dip"
+                android:text=" استانبول "
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/inputSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="8dp"
+               
+                android:drawableLeft="@drawable/ic_fligh" />
+
+            <TextView
+                android:id="@+id/txtCityRaft"
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.01"
+                android:gravity="left|center_vertical"
+                android:padding="6dip"
+                android:text=" استانبول "
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#E06F38"
+    android:orientation="horizontal" >
+
+            <!-- android:background="@drawable/header_comment" -->
+
+            <TextView
+                android:id="@+id/txtDateOnvan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:padding="6dip"
+                android:text=" چهارشنبه 28 اسفند-دوشنبه 5 فروردین "
+                android:textColor="#ffffff"
+                android:textSize="13dp" />
+
+        </LinearLayout>
+
+<!-- <SlidingDrawer
+    android:id="@+id/bottom"
+    android:layout_width="282dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="right"
+    android:layout_marginTop="200dp"
+    android:content="@+id/content"
+    android:handle="@+id/handle"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Handle" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="275dp"
+        android:layout_height="574dp"
+        android:background="#c0bbbb"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="30dp"
+            android:text="Right to Left"
+            android:textSize="25dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Jelly Bean"
+            android:textSize="17dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Ice Cream Sandwich"
+            android:textSize="17dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="HoneyComb"
+            android:textSize="17dp" />
+    </LinearLayout>
+</SlidingDrawer> -->
+
+        <LinearLayout
+            android:id="@+id/fronttop"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shadowbox"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:orientation="horizontal" >
+
+	   <!--  <ImageView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="center_vertical"
+	        
+	        /> -->
+
+	    <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="3dip"
+            android:layout_weight="0.83"
+            android:gravity="right"
+            android:orientation="vertical" >
+
+		    <TextView
+		        android:id="@+id/lblCityMaghsadRaft"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="4dp"
+		        android:gravity="right"
+		        android:text="فیلتر کردن"
+		        android:textColor="#486b6b"
+		        android:textSize="13dip" />
+
+	         <TextView
+	             android:id="@+id/lblDateMaghsadRaft"
+	             android:layout_width="201dp"
+	             android:layout_height="wrap_content"
+	             android:gravity="right"
+	             android:text="قیمت, ایرلاین ,..."
+	             android:textColor="#486b6b"
+	              android:textSize="13dip" />
+	         
+	    </LinearLayout>
+	     <TextView 
+	        android:id="@+id/txtFilter"
+	        android:layout_width="22dp"
+            android:layout_height="22dp"
+	        android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"  
+	        android:text=""
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+	        android:gravity="center"
+	        android:background="@drawable/ff"    
+	        />
+
+	     <LinearLayout
+	         android:id="@+id/linearLayout2"
+	         android:layout_width="50dip"
+	         android:layout_height="match_parent"
+	         android:layout_above="@+id/linearLayout1"
+	         android:layout_gravity="right"
+	         android:layout_marginRight="3dip"
+	         android:layout_weight="0.68"
+	         android:gravity="right"
+	         android:orientation="vertical" >
+
+		    <TextView
+		        android:id="@+id/lblCityMabdaRaft"
+		        android:layout_width="127dp"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="4dp"
+		        android:gravity="right"
+		        android:text="مرتب سازی"
+		        android:textColor="#486b6b"
+		        android:textSize="13dip" />
+
+	         <TextView
+	             android:id="@+id/lblDateMabdaRaft"
+	             android:layout_width="match_parent"
+	             android:layout_height="wrap_content"
+	             android:gravity="right"
+	             android:text="قیمت"
+	             android:textColor="#486b6b"
+	             android:textSize="13dip" />
+	         
+	    </LinearLayout>  
+
+	    <TextView
+	        android:id="@+id/lblProductrow"
+	        android:layout_width="22dp"
+	        android:layout_height="22dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginBottom="8dp"
+	        android:layout_marginLeft="8dp"
+	        android:layout_marginRight="18dp"
+	        android:layout_marginTop="2dp"
+	        android:background="@drawable/filter_icon"
+	        android:gravity="center"
+	        android:text=""
+	        android:textColor="#FFFFFF"
+	        android:textSize="12sp" />
+	      
+    </LinearLayout>
+  <LinearLayout
+      android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp"
+         android:background="#ffffff" >
+
+           <!-- <com.fortysevendeg.swipelistview.SwipeListView
+               android:id="@+id/listCustomers"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:divider="@color/color_strokk"
+               android:dividerHeight="1dp"
+               swipe:swipeBackView="@+id/back"
+               swipe:swipeCloseAllItemsWhenMoveList="true"
+               swipe:swipeDrawableChecked="@drawable/choice_selected"
+               swipe:swipeDrawableUnchecked="@drawable/choice_unselected"
+               swipe:swipeFrontView="@+id/front"
+               swipe:swipeMode="both" /> -->
+               <ListView
+                android:id="@+id/lvHoteResult"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:cacheColorHint="#00000000"/>
+
+        
+    </LinearLayout>
+
+</LinearLayout>

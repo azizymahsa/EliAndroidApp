@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:swipe="http://schemas.android.com/apk/res-auto"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:background="#ffffff"
+              android:orientation="vertical"
+   >
+    
+    <!-- <TextView
+        android:id="@+id/txtLabel"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="16dp"
+        android:text="Home View"/>
+    
+    <ImageView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLabel"
+        android:src="@drawable/ic_home"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/> -->
+ 
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="#927fff"
+            android:orientation="horizontal" >
+
+            <!-- android:background="@drawable/header_comment" -->
+
+            <TextView
+                android:id="@+id/txtCityBargasht"
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.02"
+                android:gravity="right|center_vertical"
+                android:padding="6dip"
+                android:text=" تهران "
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/inputSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="8dp"
+               
+                android:drawableLeft="@drawable/ic_fligh" />
+
+            <TextView
+                android:id="@+id/txtCityRaft"
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="0.01"
+                android:gravity="left|center_vertical"
+                android:padding="6dip"
+                android:text=" استانبول "
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="8dp"
+                android:drawableLeft="@drawable/right_arrow_back" />
+
+        </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#927fff"
+    android:orientation="horizontal" >
+
+            <!-- android:background="@drawable/header_comment" -->
+
+            <TextView
+                android:id="@+id/txtDateOnvan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:padding="6dip"
+                android:text=" چهارشنبه 28 اسفند-دوشنبه 5 فروردین "
+                android:textColor="#ffffff"
+                android:textSize="9sp" />
+
+        </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:layout_marginTop="1dp"
+      android:background="#ffffff"
+      android:orientation="horizontal"
+      android:padding="10dp" >
+
+           <!-- <com.fortysevendeg.swipelistview.SwipeListView
+               android:id="@+id/listCustomers"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:divider="@color/color_strokk"
+               android:dividerHeight="1dp"
+               swipe:swipeBackView="@+id/back"
+               swipe:swipeCloseAllItemsWhenMoveList="true"
+               swipe:swipeDrawableChecked="@drawable/choice_selected"
+               swipe:swipeDrawableUnchecked="@drawable/choice_unselected"
+               swipe:swipeFrontView="@+id/front"
+               swipe:swipeMode="both" /> -->
+               <ExpandableListView
+                android:id="@+id/lvExp"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:cacheColorHint="#00000000"/>
+
+        
+    </LinearLayout>
+
+
+</LinearLayout>
+<LinearLayout
+    android:id="@+id/footer"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:gravity="center"
+    android:layout_centerHorizontal="true"
+    android:background="#ffffff"
+    android:layout_alignParentBottom="true" >
+
+	    <Button
+	        android:id="@+id/txtRuzeBad"
+	        android:layout_width="50dp"
+	        android:layout_height="15dp"
+	        android:layout_gravity="center"
+	        android:layout_marginLeft="8dp"
+	        android:layout_marginRight="8dp"
+	        android:background="#fff"
+	        android:drawableLeft="@drawable/left_arrow_larg"
+	        android:text="روز بعد"
+	        android:textColor="#486b6b"
+	        android:textSize="9dip" />
+
+      <Button
+          android:id="@+id/txtRuzeGhabl"
+          android:layout_width="50dp"
+          android:layout_height="15dp"
+          android:layout_marginRight="4dp"
+          android:background="#fff"
+          android:drawableRight="@drawable/right_arrow_larg"
+          android:text="روز قبل"
+          android:textColor="#486b6b"
+          android:textSize="9dip" />
+
+	   <!--  <TextView
+	        android:id="@+id/flesh_ruze_ghabl"
+	        android:layout_width="4dp"
+	        android:layout_height="8dp"
+	        android:layout_gravity="center"
+	        android:layout_marginLeft="8dp"
+	        android:background="@drawable/right_arrow_larg"
+	        android:text=" " /> -->
+
+	    <TextView
+	        android:id="@+id/lblCityMaghsadRaft"
+	        android:layout_width="51dp"
+	        android:layout_height="24dp"
+	        android:layout_marginTop="4dp"
+	        android:gravity="right"
+	        android:text="فیلتر کردن"
+	        android:textColor="#486b6b"
+	        android:textSize="9dip" />
+
+	     <TextView
+	         android:id="@+id/txtFilter"
+	         android:layout_width="20dp"
+	         android:layout_height="20dp"
+	         android:layout_alignParentRight="true"
+	         android:layout_marginBottom="8dp"
+	         android:layout_marginLeft="8dp"
+	         android:layout_marginRight="8dp"
+	         android:layout_marginTop="4dp"
+	         android:background="@drawable/ff"
+	         android:gravity="center"
+	         android:text=""
+	         android:textColor="#FFFFFF"
+	         android:textSize="12sp" />
+	    
+		    <TextView
+		        android:id="@+id/lblCityMabdaRaft"
+		        android:layout_width="62dp"
+		        android:layout_height="28dp"
+		        android:layout_gravity="center_vertical"
+		        android:layout_marginTop="4dp"
+		        android:gravity="right"
+		        android:text="مرتب سازی"
+		        android:textColor="#486b6b"
+		        android:textSize="9dip" />
+	   
+	    <TextView
+	        android:id="@+id/lblMoratabSazi"
+	        android:layout_width="20dp"
+	        android:layout_height="20dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginBottom="8dp"
+	        android:layout_marginLeft="8dp"
+	        android:layout_marginRight="8dp"
+	        android:layout_marginTop="4dp"
+	        android:background="@drawable/filter_icon"
+	        android:gravity="center"
+	        android:text=""
+	        android:textColor="#FFFFFF"
+	        android:textSize="12sp" />
+	   
+   </LinearLayout>
+<!-- <TextView
+    android:id="@+id/textView1"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:gravity="center"
+    android:layout_centerHorizontal="true"
+    android:layout_alignParentBottom="true"
+    android:text="Footer" /> -->
+</RelativeLayout>

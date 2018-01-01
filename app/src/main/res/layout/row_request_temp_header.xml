@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.38"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/check"
+                android:layout_width="19dp"
+                android:layout_height="15dp" >
+
+                <ImageView
+                    android:id="@+id/checkIcon"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tick"
+                    android:visibility="invisible" />
+
+ <!--  android:text="انتخاب" -->
+
+                <TextView
+                    android:id="@+id/checkText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/Text_Row"
+                    android:textSize="@dimen/text_row" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_strok" /> -->
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".9"
+            android:gravity="center"
+            android:text="مبلغ"
+            android:textColor="@color/Text_Row"
+            android:textSize="@dimen/text_row" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_strok" />
+
+        <TextView
+            android:id="@+id/customer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="مشتری"
+            android:textColor="@color/Text_Row"
+            android:textSize="@dimen/text_row" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_strok" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="تاریخ"
+            android:textColor="@color/Text_Row"
+            android:textSize="@dimen/text_row" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_strok" />
+
+        <TextView
+            android:id="@+id/row"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:text="ردیف"
+            android:textColor="@color/Text_Row"
+            android:textSize="@dimen/text_row" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/items_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>

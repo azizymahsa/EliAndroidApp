@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clickable="true"
+    android:id="@+id/row" >
+
+        
+    <!-- <LinearLayout
+        style="@style/MyListFrontContentRe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" > -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="183dp"
+            android:layout_margin="1dp"
+            android:background="@drawable/shadowbox"
+            android:orientation="vertical" >
+	    
+         <LinearLayout
+             android:id="@+id/fronttop"
+             android:layout_width="match_parent"
+             android:layout_height="80dp"
+             android:layout_marginLeft="12dp"
+             android:layout_marginRight="12dp"
+             android:background="#ffffff"
+             android:gravity="center"
+             android:minHeight="40dp"
+             android:orientation="horizontal" >
+
+	   <!--  <ImageView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="center_vertical"
+	        
+	        /> -->
+
+	        <TextView
+	            android:id="@+id/lblPrice"
+	            android:layout_width="32dp"
+	            android:layout_height="match_parent"
+	            android:layout_above="@+id/txt_gheymat"
+	            android:layout_marginBottom="1dp"
+	            android:layout_marginLeft="2dp"
+	            android:layout_marginRight="2dp"
+	            android:layout_marginTop="1dp"
+	            android:layout_toRightOf="@+id/txt_emp_dob"
+	            android:layout_weight="0.35"
+	            android:background="#ffffff"
+	            android:gravity="center"
+	            android:text="10,100,000"
+	            android:textColor="#000000"
+	            android:textSize="19sp"
+	            android:textStyle="bold" />
+
+	    <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="3dip"
+            android:layout_weight="0.83"
+            android:gravity="right"
+            android:orientation="vertical" >
+
+	       
+		    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/lblCityMaghsadRaft"
+		        android:textColor="#000"
+		        android:gravity="right"
+		        android:textSize="15dip"
+		        android:text="تهران"
+		        />
+
+	         <TextView
+	             android:id="@+id/lblDateMaghsadRaft"
+	             android:layout_width="201dp"
+	             android:layout_height="wrap_content"
+	             android:gravity="right"
+	             android:text="11:50 AM"
+	             android:textColor="#486b6b"
+	              android:textSize="12dip" />
+	         
+	    </LinearLayout>
+	     
+	     <LinearLayout
+	         android:id="@+id/linearLayout2"
+	         android:layout_width="50dip"
+	         android:layout_height="match_parent"
+	         android:layout_above="@+id/linearLayout1"
+	         android:layout_gravity="right"
+	         android:layout_marginRight="3dip"
+	         android:layout_weight="0.26"
+	         android:gravity="right"
+	         android:orientation="vertical" >
+
+		    <TextView
+		        android:id="@+id/lblCityMabdaRaft"
+		        android:layout_width="127dp"
+		        android:layout_height="wrap_content"
+		        android:gravity="right"
+		        android:text="استانبول"
+		        android:textColor="#000"
+		        android:textSize="19dip" />
+
+	         <TextView
+	             android:id="@+id/lblDateMabdaRaft"
+	             android:layout_width="match_parent"
+	             android:layout_height="wrap_content"
+	             android:gravity="right"
+	             android:text="11:50AM "
+	             android:textColor="#486b6b"
+	             android:textSize="12dip" />
+	         
+	    </LinearLayout>  
+	    <TextView 
+	        android:id="@+id/lblProductrow"
+	        android:layout_width="33dp"
+            android:layout_height="33dp"
+	        android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"  
+	        android:text="id"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+	        android:gravity="center"
+	        android:background="@drawable/flight_icon"    
+	        />
+	      
+    </LinearLayout>
+  <!--   ////////////////////////////front bottom///////////////////////////////////// -->
+
+  <LinearLayout
+      android:id="@+id/frontbottom"
+      style="@style/MyListFrontContentRe"
+      android:layout_width="match_parent"
+      android:layout_height="80dp"
+      android:layout_marginLeft="12dp"
+      android:layout_marginRight="12dp"
+      android:background="#ffffff"
+      android:gravity="center"
+      android:minHeight="40dp"
+      android:orientation="horizontal"
+      android:tag="front" >
+
+	    <LinearLayout
+            android:id="@+id/linearLayout1w"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="3dip"
+            android:layout_weight="0.83"
+            android:gravity="right"
+            android:orientation="vertical" >
+
+	       
+		    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/lblCityMaghsadBargasht"
+		        android:textColor="#000"
+		        android:gravity="right"
+		        android:textSize="19dip"
+		        android:text="تهران"
+		        />
+	         <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/lblDateMaghsadBargasht"
+		        android:gravity="right"
+		        android:text="11:50 AM"
+		        android:textColor="#486b6b"
+           		  android:textSize="12dip"
+		        />
+	         
+	    </LinearLayout>
+
+	     <LinearLayout
+	         android:id="@+id/linearLayout2w"
+	         android:layout_width="wrap_content"
+	         android:layout_height="match_parent"
+	         android:layout_above="@+id/linearLayout1"
+	         android:layout_gravity="right"
+	         android:layout_marginRight="3dip"
+	         android:layout_weight="0.12"
+	         android:gravity="right"
+	         android:orientation="vertical" >
+	       
+		    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/lblCityMabdaBargasht"
+		        android:textColor="#000"
+		        android:gravity="right"
+		        android:textSize="19dip"
+		        android:text="استانبول"
+		        />
+
+	         <TextView
+	             android:id="@+id/lblDateMabdaBargasht"
+	             android:layout_width="match_parent"
+	             android:layout_height="wrap_content"
+	             android:gravity="right"
+	             android:text=" 11:50 AM "
+	             android:textColor="#486b6b"
+	             android:textSize="12dip" />
+	         
+	    </LinearLayout>  
+
+	    <TextView
+	        android:id="@+id/lblProductroww"
+	        android:layout_width="33dp"
+	        android:layout_height="33dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginBottom="8dp"
+	        android:layout_marginLeft="8dp"
+	        android:layout_marginRight="4dp"
+	        android:layout_marginTop="2dp"
+	        android:background="@drawable/flight_icon"
+	        android:gravity="center"
+	        android:text="id"
+	        android:textColor="#FFFFFF"
+	        android:textSize="12sp" />
+	      
+    </LinearLayout>
+     </LinearLayout>
+</FrameLayout>    

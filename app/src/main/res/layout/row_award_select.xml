@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp" 
+         android:background="@drawable/tab_box_black">
+
+        <TextView
+            android:id="@+id/Gamount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/Gcredit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/GAward"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="18dp" 
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/GAwardR"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="19.45"
+            android:gravity="center|center"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:background="#fff" />
+
+    </LinearLayout>
+
+</LinearLayout>

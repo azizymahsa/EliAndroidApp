@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+     android:layout_above="@+id/footerg" >
+
+     <LinearLayout
+         android:layout_width="fill_parent"
+         android:layout_height="100dp"
+         android:layout_alignParentBottom="true"
+         android:orientation="horizontal" 
+         android:visibility="gone">
+        	    	
+        	  <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical" >
+
+		        	    	  <Button
+		        	    	      android:id="@+id/request_yektarafe"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_margin="1dp"
+		        	    	      android:background="#000080"
+		        	    	      android:gravity="center"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:shadowDx="-2"
+		        	    	      android:shadowDy="-2"
+		        	    	      android:text="پرواز یک طرفه    "
+		        	    	      android:textColor="#ffffff"
+		        	    	      android:textStyle="bold" />
+
+		        	    	
+        	    </LinearLayout>
+        	      <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical"
+			        	 >
+			        	
+		        	    	  <Button
+		        	    	      android:id="@+id/request_dotarafe"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_margin="1dp"
+		        	    	      android:layout_marginBottom="2dp"
+		        	    	      android:background="#000080"
+		        	    	      android:gravity="center"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:shadowDx="-2"
+		        	    	      android:shadowDy="-2"
+		        	    	      android:text="پرواز دوطرفه"
+		        	    	      android:textColor="#FF8C00"
+		        	    	      android:textStyle="bold" />
+
+		       
+        	    </LinearLayout>
+  </LinearLayout>
+<!-- ////////////////////////////////////////layoutParvaz az be////////////////////////////////////////////////////// -->
+  <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="30dp"
+      android:layout_alignParentBottom="true"
+      android:gravity="center"
+      android:orientation="horizontal" >
+        	    	
+        	  <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical" >
+
+
+		        	    	  <Button
+		        	    	      android:id="@+id/parvaz_be"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_alignParentBottom="true"
+		        	    	      
+		        	    	      android:layout_marginRight="2dp"
+		        	    	      android:background="#000000"
+		        	    	      android:gravity="right|center_vertical"
+		        	    	     
+		        	    	      android:shadowColor="#cccccc"
+		        	    	     android:text="پرواز به:     "
+		        	    	      android:textColor="#D3D3D3"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="اطلاعات مالی" -->
+					 
+        	    </LinearLayout>
+        	      <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical"
+			        	 >
+			        	<RelativeLayout android:layout_width="fill_parent"
+			        	    android:layout_height="match_parent"
+			        	    android:layout_gravity="center_vertical|center_horizontal" >
+	        	    	  
+		        	    	  <Button
+		        	    	      android:id="@+id/parvaz_az"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_margin="0dp"
+		        	    	      android:layout_marginLeft="2dp"
+		        	    	      android:layout_marginTop="1dp"
+		        	    	      android:background="#000000"
+		        	    	      android:gravity="center|right"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:shadowDx="-2"
+		        	    	      android:shadowDy="-2"
+		        	    	      android:text="پرواز از:"
+		        	    	      android:textColor="#D3D3D3"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="پیش نمایش" -->
+
+					 <TextView
+					     android:id="@+id/iii"
+					     android:layout_width="-100dip"
+					     android:layout_height="30dip"
+					     android:layout_gravity="center_vertical"
+					     android:layout_marginTop="12dip"
+					     android:background="@drawable/icon_noti"
+					     android:clickable="true"
+					     android:gravity="center_vertical|center_horizontal"
+					     android:text="245"
+					     android:textColor="#fff"
+					     android:textSize="10sp"
+					     android:visibility="gone" />
+		        	    	  
+		        	    </RelativeLayout>
+        	    </LinearLayout>
+  </LinearLayout>
+<!-- ////////////////////////////////////layout name parvaz//////////////////////////////////////////////// -->
+<LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="140dp"
+      android:layout_alignParentBottom="true"
+      android:gravity="center"
+      android:orientation="horizontal" >
+        	    	
+        	  <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical" >
+
+		        	    	  <Button
+		        	    	      android:id="@+id/parvaz_be_name"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	     
+		        	    	      android:layout_marginRight="2dp"
+		        	    	      android:background="#000000"
+		        	    	      android:gravity="center"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:textSize="24dp"
+		        	    	      android:text="تهران"
+		        	    	      android:textColor="#ffffff"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="اطلاعات مالی" -->
+					
+		        	    	  
+		        	   
+        	    </LinearLayout>
+        	      <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical"
+			        	 >
+			        	
+		        	    	  <Button
+		        	    	      android:id="@+id/parvaz_az_name"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_margin="0dp"
+		        	    	      android:layout_marginLeft="2dp"
+		        	    	      android:background="#000000"
+		        	    	      android:gravity="center"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:shadowDx="-2"
+		        	    	      android:shadowDy="-2"
+		        	    	      android:text="استانبول"
+		        	    	      android:textSize="24dp"
+		        	    	      android:textColor="#ffffff"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="پیش نمایش" -->
+					
+		        	   
+        	    </LinearLayout>
+  </LinearLayout>
+<!-- ///////////////////////////////////////layout tarikh az be////////////////////////////////////////// -->
+
+  <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="30dp"
+      android:layout_alignParentBottom="true"
+      android:gravity="center"
+      android:orientation="horizontal" >
+        	    	
+        	  <LinearLayout
+        	      android:layout_width="0dip"
+        	      android:layout_height="match_parent"
+        	      android:layout_weight="0.25"
+        	      android:orientation="vertical" >
+			        	
+		        	    	  <Button
+		        	    	      android:id="@+id/tarikh_be"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_alignParentBottom="true"
+		        	    	      android:layout_marginRight="1dp"
+		        	    	      android:background="#F8F8FF"
+		        	    	      android:gravity="right"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:text="تاریخ برگشت "
+		        	    	      android:textColor="#808080"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="اطلاعات مالی" -->
+					 
+        	    </LinearLayout>
+        	      <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical"
+			        	 >
+			        	
+	        	    	  
+		        	    	  <Button
+		        	    	      android:id="@+id/tarikh_az"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_margin="0dp"
+		        	    	      android:layout_marginLeft="2dp"
+		        	    	      android:layout_marginTop="1dp"
+		        	    	      android:background="#F8F8FF"
+		        	    	      android:gravity="right"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:shadowDx="-2"
+		        	    	      android:shadowDy="-2"
+		        	    	      android:text="تاریخ رفت"
+		        	    	      android:textColor="#808080"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="پیش نمایش" -->
+					
+		        	    
+        	    </LinearLayout>
+  </LinearLayout>
+<!-- ////////////////////////////////////layout picker tarikh//////////////////////////////////////////////// -->
+<LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="140dp"
+      android:layout_alignParentBottom="true"
+      android:gravity="center"
+      android:orientation="horizontal" >
+        	    	
+        	  <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical" >
+
+		        	    	  <Button
+		        	    	      android:id="@+id/tarikh_be_picker"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	     
+		        	    	      android:layout_marginRight="2dp"
+		        	    	       android:background="#F8F8FF"
+		        	    	      android:gravity="center"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      
+		        	    	      android:text="december 11 2017"
+		        	    	      android:textColor="#000000"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="اطلاعات مالی" -->
+					
+		        	    	  
+		        	   
+        	    </LinearLayout>
+        	      <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical"
+			        	 >
+			        	
+		        	    	  <Button
+		        	    	      android:id="@+id/tarikh_az_picker"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_margin="0dp"
+		        	    	      android:layout_marginLeft="2dp"
+		        	    	      android:background="#F8F8FF"
+		        	    	      android:gravity="center"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:shadowDx="-2"
+		        	    	      android:shadowDy="-2"
+		        	    	      android:text="10 decembre 2017"
+		        	    	      android:textColor="#000000"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="پیش نمایش" -->
+					
+		        	   
+        	    </LinearLayout>
+        	    
+  </LinearLayout>
+  <!-- ///////////////////////////////////layout bozorgsal kodak//////////////////////////////////////// -->
+  <!-- ///////////////////////////////////////layout tarikh az be////////////////////////////////////////// -->
+
+  <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="30dp"
+      android:layout_alignParentBottom="true"
+      android:gravity="center"
+      android:orientation="horizontal" >
+        	    	
+        	  <LinearLayout
+        	      android:layout_width="0dip"
+        	      android:layout_height="match_parent"
+        	      android:layout_marginTop="2dp"
+        	      android:layout_weight="0.25"
+        	      android:orientation="vertical" >
+			        	
+		        	    	  <Button
+		        	    	      android:id="@+id/person_k"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_alignParentBottom="true"
+		        	    	      android:layout_marginRight="1dp"
+		        	    	      android:background="#F8F8FF"
+		        	    	      android:gravity="right"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:text="کودک  "
+		        	    	      android:textColor="#808080"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="اطلاعات مالی" -->
+					 
+        	    </LinearLayout>
+        	      <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical"
+			        	android:layout_marginTop="2dp"
+			        	 >
+			        	
+		        	    	  <Button
+		        	    	      android:id="@+id/person_b"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_margin="0dp"
+		        	    	      android:layout_marginLeft="2dp"
+		        	    	      android:layout_marginTop="2dp"
+		        	    	      android:background="#F8F8FF"
+		        	    	      android:gravity="right"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:shadowDx="-2"
+		        	    	      android:shadowDy="-2"
+		        	    	      android:text="بزرگسال +12 "
+		        	    	      android:textColor="#808080"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="پیش نمایش" -->
+					
+		        	    
+        	    </LinearLayout>
+  </LinearLayout>
+<!-- ////////////////////////////////////layout count peeson//////////////////////////////////////////////// -->
+<LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="140dp"
+      android:layout_alignParentBottom="true"
+      android:gravity="center"
+      android:orientation="horizontal" >
+        	    	
+        	  <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical" >
+
+		        	    	  <Button
+		        	    	      android:id="@+id/count_person_k"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	     
+		        	    	      android:layout_marginRight="2dp"
+		        	    	       android:background="#F8F8FF"
+		        	    	      android:gravity="center"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      
+		        	    	      android:text="0"
+		        	    	      android:textColor="#000000"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="اطلاعات مالی" -->
+					
+		        	    	  
+		        	   
+        	    </LinearLayout>
+        	      <LinearLayout        	         
+			        	android:layout_width="0dip"
+			        	android:layout_weight="0.25"
+			        	android:layout_height="match_parent"
+			        	android:orientation="vertical"
+			        	 >
+			        	
+		        	    	  <Button
+		        	    	      android:id="@+id/count_person_b"
+		        	    	      android:layout_width="fill_parent"
+		        	    	      android:layout_height="match_parent"
+		        	    	      android:layout_margin="0dp"
+		        	    	      android:layout_marginLeft="2dp"
+		        	    	       android:background="#F8F8FF"
+		        	    	      android:gravity="center"
+		        	    	      android:shadowColor="#cccccc"
+		        	    	      android:shadowDx="-2"
+		        	    	      android:shadowDy="-2"
+		        	    	      android:text="2"
+		        	    	      android:textColor="#000000"
+		        	    	      android:textStyle="bold" />
+
+		        	    	   <!-- android:text="پیش نمایش" -->
+					
+		        	   
+        	    </LinearLayout>
+  </LinearLayout>
+  <!-- ////////////////////////////////////////Layout select bisness///////////////////////////////////////////////////////// -->
+   <LinearLayout        	         
+			 	  android:layout_width="fill_parent"
+				      android:layout_height="140dp"
+				      android:layout_alignParentBottom="true"
+				      android:gravity="center"
+				      android:orientation="horizontal" >
+			        	
+		        	    	  <Button
+		        	    	      android:id="@+id/ferst"
+		        	    	      android:layout_width="123dp"
+		        	    	      android:layout_height="wrap_content"
+		        	    	      android:background="@drawable/transparentt"
+		        	    	      android:drawableTop="@drawable/profile"
+		        	    	      android:gravity="center"
+		        	    	      android:text="فرست"
+		        	    	      android:textColor="#808080" />
+
+		        	    	    <Button
+		        	    	        android:id="@+id/akonomi"
+		        	    	        android:layout_width="238dp"
+		        	    	        android:layout_height="wrap_content"
+		        	    	        android:background="@drawable/transparentt"
+		        	    	        android:drawableTop="@drawable/profile"
+		        	    	        android:gravity="center"
+		        	    	        android:text="آکونومی"
+		        	    	        android:textColor="#808080" />
+
+		        	    	     <Button
+		        	    	         android:id="@+id/bussnes"
+		        	    	         android:layout_width="146dp"
+		        	    	         android:layout_height="wrap_content"
+		        	    	         android:background="@drawable/transparentt"
+		        	    	         android:drawableTop="@drawable/profile"
+		        	    	         android:gravity="center"
+		        	    	         android:text="بیزینس"
+		        	    	         android:textColor="#808080" />
+		        	    
+        	    </LinearLayout>
+        	     <!-- ////////////////////////////////////////Layout  search///////////////////////////////////////////////////////// -->
+
+        	     <LinearLayout
+        	             android:layout_width="fill_parent"
+        	             android:layout_height="115dp"
+        	             android:layout_alignParentBottom="true"
+        	             android:gravity="center"
+        	             android:orientation="horizontal" >
+			        	
+		        	    	  <Button
+		        	    	      android:id="@+id/search_parvaz"
+		        	    	      android:layout_width="180dp"
+		        	    	      android:layout_height="wrap_content"
+		        	    	      android:gravity="center"
+		        	    	      android:text="جستجوی پرواز"
+		        	    	      android:textColor="#ffffff"
+		        	    	       android:background="@drawable/mybutton"
+		        	    	     />
+
+		        	    	   
+		        	    
+        	    </LinearLayout>   
+        	     <!-- ////////////////////////////////////////Layout  bottom///////////////////////////////////////////////////////// -->
+
+        	        <!--  <LinearLayout
+        	             android:layout_width="fill_parent"
+        	             android:layout_height="140dp"
+        	             android:layout_alignParentBottom="true"
+        	             android:layout_margin="0dp"
+        	             android:background="#FF8C00"
+        	             android:gravity="center"
+        	             android:orientation="horizontal" > -->
+
+			        	 <LinearLayout
+			        	     android:id="@+id/footer"
+			        	     android:layout_width="fill_parent"
+			        	     android:layout_height="match_parent"
+			        	     android:layout_alignParentBottom="true"
+			        	     android:background="#FF8C00"
+			        	     android:orientation="horizontal"
+			        	     android:weightSum="5" >
+
+		        	    	  <Button
+		        	    	      android:id="@+id/ic_bime"
+		        	    	      android:layout_weight="1"
+		        	    	      android:layout_width="match_parent"
+		        	    	      android:layout_height="wrap_content"
+		        	    	      android:background="@drawable/transparentt"
+		        	    	      android:drawableTop="@drawable/bime"
+		        	    	      android:gravity="center"
+		        	    	      android:text="بیمه"
+		        	    	      android:textColor="#ffffff" />
+
+		        	    	    <Button
+		        	    	        android:id="@+id/ic_tour"
+		        	    	         android:layout_weight="1"
+		        	    	        android:layout_width="match_parent"
+		        	    	        android:layout_height="wrap_content"
+		        	    	        android:background="@drawable/transparentt"
+		        	    	        android:drawableTop="@drawable/tour"
+		        	    	        android:gravity="center"
+		        	    	        android:text="تور"
+		        	    	         android:textColor="#ffffff" />
+
+		        	    	     <Button
+		        	    	         android:id="@+id/ic_package"
+		        	    	          android:layout_weight="1"
+		        	    	         android:layout_width="match_parent"
+		        	    	         android:layout_height="wrap_content"
+		        	    	         android:background="@drawable/transparentt"
+		        	    	         android:drawableTop="@drawable/ic_package"
+		        	    	         android:gravity="center"
+		        	    	         android:text="پکیج"
+		        	    	          android:textColor="#ffffff" />
+		        	    	       <Button
+		        	    	         android:id="@+id/ic_hotel"
+		        	    	          android:layout_weight="1"
+		        	    	        android:layout_width="match_parent"
+		        	    	         android:layout_height="wrap_content"
+		        	    	         android:background="@drawable/transparentt"
+		        	    	         android:drawableTop="@drawable/hotel"
+		        	    	         android:gravity="center"
+		        	    	         android:text="هتل"
+		        	    	         android:textColor="#ffffff" />
+		        	    	       <Button
+		        	    	         android:id="@+id/ic_parvaz"
+		        	    	          android:layout_weight="1"
+		        	    	         android:layout_width="match_parent"
+		        	    	         android:layout_height="wrap_content"
+		        	    	         android:background="@drawable/transparentt"
+		        	    	         android:drawableTop="@drawable/plane"
+		        	    	         android:gravity="center"
+		        	    	         android:text="پرواز"
+		        	    	         android:textColor="#ffffff" />
+		        	    	   
+		        	    
+        	    </LinearLayout>   
+</LinearLayout>
+
+
+   

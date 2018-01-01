@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="list_item_title">#fff</color>
+    <!-- menu side color-->
+    <color name="list_background">#ffffff</color>
+    <color name="list_background_pressed">#992416</color>
+    <color name="list_divider">#737373</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+
+    <color name="TextColor">#0622ae</color>
+    <color name="MenuTextColor">#fff</color>
+    <color name="Text_Row">#000</color>
+    <color name="color_strok">#ffff00</color>
+    <color name="color_strokk">#000000</color>
+    <color name="color_strok_item_javayez">#6e92c6</color>
+    <color name="color_strok_javayez">#006600</color>
+    <color name="color_strok_select">#405acd</color>
+    <color name="color_strok_select_javayez_forje">#7ca1d4</color>
+    <color name="list_selection">#FF8C00</color>
+    <color name="drawer_scrim">#7D000000</color>
+    <color name="drawer_shadow">#96000000</color>
+    <color name="yellow">#FFF587</color>
+    <color name="SpinnerColor">#aab6f5</color>
+    <color name="pressed_color">#4d90fe</color>
+    <color name="default_color">#ffffff</color>
+
+    <color name="titlebackgroundcolor">#3232CD</color>
+    <color name="titletextcolor">#FFFF00</color>
+</resources>

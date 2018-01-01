@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:layout_marginTop="5px"
+    android:background="@drawable/list_selector"
+    >
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2px"
+        android:layout_marginBottom="2px"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:contentDescription="@string/desc_list_item_icon"
+        android:src="@drawable/ic_home" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5px"
+        android:layout_toRightOf="@id/icon"
+        android:gravity="right|center"
+        android:paddingRight="8dp"
+        android:textColor="#000000"
+        android:shadowColor="#FF8C00" 
+		android:shadowDx="1"
+		android:shadowDy="1" 
+		android:shadowRadius="0.6"
+        android:text="gggg"
+      
+         />
+    <!--  <TextView android:textColor="#43b9f6"
+ android:layout_width="wrap_content"
+ android:text="Engraved Shadow"
+ android:layout_height="wrap_content" 
+ android:padding="2dp"
+ android:shadowColor="@color/yellow" 
+ android:shadowDx="1"
+ android:shadowDy="1" 
+ android:shadowRadius="0.6" /> -->
+    <!-- <TextView android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/counter_bg"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:visibility="gone"
+        android:textColor="@color/counter_text_color"/> -->
+
+</RelativeLayout>
