@@ -1,5 +1,6 @@
 package com.reserv.myapplicationeli.views.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
+import com.reserv.myapplicationeli.views.fragments.HotelActivity;
 import com.reserv.myapplicationeli.views.ui.PlanFragment;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -80,6 +82,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(this, "btnFlight", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnHotel:
+                Intent intent6=new Intent(this,HotelActivity.class);
+               // Bundle bundle6 = getIntent().getExtras();
+               /* if(bundle6 != null ){
+                    intent6.putExtra("Value-Maghsad-City",  bundle6.getString("Value-Maghsad-City"));
+                    intent6.putExtra("Value-Maghsad-Airport", bundle6.getString("Value-Maghsad-Airport"));
+                    intent6.putExtra("Value-Maghsad-Airport-Code", bundle6.getString("Value-Maghsad-Airport-Code"));/*//*
+                }*/
+
+                startActivityForResult(intent6, 2);
                 Toast.makeText(this, "btnHotel", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnPackage:
