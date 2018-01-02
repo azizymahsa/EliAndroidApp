@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+
 /**
  * Created by Reza.nejati on 1/2/2018.
  */
