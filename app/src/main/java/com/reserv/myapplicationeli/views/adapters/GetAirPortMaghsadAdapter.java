@@ -13,10 +13,11 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.reserv.myapplicationeli.GlobalApplication;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.Country;
-import com.reserv.myapplicationeli.slidingmenu.ui.GetAirportMaghsadActivity;
-import com.reserv.myapplicationeli.slidingmenu.ui.PlanFragment;
+import com.reserv.myapplicationeli.views.ui.GetAirportMaghsadActivity;
+import com.reserv.myapplicationeli.views.ui.PlanFragment;
 
 
 public class GetAirPortMaghsadAdapter extends BaseAdapter {

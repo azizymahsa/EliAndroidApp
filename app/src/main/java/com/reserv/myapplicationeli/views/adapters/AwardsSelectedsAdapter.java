@@ -12,7 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.slidingmenu.tools.AwardSelectedItem;
+import com.reserv.myapplicationeli.tools.AwardSelectedItem;
 import com.reserv.myapplicationeli.tools.Utility;
 
 

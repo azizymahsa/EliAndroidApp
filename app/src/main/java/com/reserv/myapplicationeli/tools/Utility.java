@@ -31,6 +31,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.reserv.myapplicationeli.GlobalApplication;
+
 
 public class Utility extends Activity {
 
@@ -262,12 +264,12 @@ public class Utility extends Activity {
 		return String.format(Locale.US, "%02d:%02d:%02d", hour, minute, second);
 	}
 
-	public static String getSimSerialNumber(Context mContext) {
-		TelephonyManager mTelephonyMgr;
-		mTelephonyMgr = (TelephonyManager) mContext
-				.getSystemService(Context.TELEPHONY_SERVICE);
-		return mTelephonyMgr.getSimSerialNumber();
-	}
+//	public static String getSimSerialNumber(Context mContext) {
+//		TelephonyManager mTelephonyMgr;
+//		mTelephonyMgr = (TelephonyManager) mContext
+//				.getSystemService(Context.TELEPHONY_SERVICE);
+//		return mTelephonyMgr.getSimSerialNumber();
+//	}
 
 	public static boolean isConnectionReachable(Context context) {
 		InetAddress in;

@@ -16,8 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.slidingmenu.ui.GetAirportMaghsadActivity;
-import com.reserv.myapplicationeli.slidingmenu.ui.PlanFragment;
+
 
 import android.os.Handler;
 import android.content.Context;

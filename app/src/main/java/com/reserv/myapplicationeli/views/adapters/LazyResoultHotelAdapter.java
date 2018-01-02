@@ -11,8 +11,7 @@ import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.lazyloading.ImageLoader;
-import com.reserv.myapplicationeli.slidingmenu.ui.GetAirportMaghsadActivity;
-import com.reserv.myapplicationeli.slidingmenu.ui.PlanFragment;
+
 
 public class LazyResoultHotelAdapter extends BaseAdapter {
     

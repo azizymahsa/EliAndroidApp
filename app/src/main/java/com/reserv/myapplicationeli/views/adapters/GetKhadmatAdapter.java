@@ -16,11 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.reserv.myapplicationeli.GlobalApplication;
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.slidingmenu.ui.GetAirportMaghsadActivity;
-import com.reserv.myapplicationeli.slidingmenu.ui.PassengerActivity;
-import com.reserv.myapplicationeli.slidingmenu.ui.PlanFragment;
-import com.reserv.myapplicationeli.slidingmenu.ui.PurchaseFlightResult;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
+import com.reserv.myapplicationeli.views.ui.PurchaseFlightResult;
+
 
 public class GetKhadmatAdapter extends BaseAdapter {
 	private Context context;

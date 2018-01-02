@@ -13,9 +13,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.reserv.myapplicationeli.GlobalApplication;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.Country;
-import com.reserv.myapplicationeli.slidingmenu.ui.PlanFragment;
+
 
 
 public class GetAirPortMabdaAdapter extends BaseAdapter {
@@ -125,7 +126,7 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 					@Override
 					public void onClick(View v) {
 					
-						Intent i4 = new Intent(context,PlanFragment.class);
+						Intent i4 = new Intent(context, com.reserv.myapplicationeli.views.ui.PlanFragment.class);
 						
 						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 						
@@ -157,7 +158,7 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 					@Override
 					public void onClick(View v) {
 					
-						Intent i4 = new Intent(context,PlanFragment.class);
+						Intent i4 = new Intent(context, com.reserv.myapplicationeli.views.ui.PlanFragment.class);
 						
 						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 						i4.putExtra("Value-Mabda-City",current.getCityName());//current.getCityName()

@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 
+
 public abstract class IDMAdapter extends BaseAdapter {
 	protected CursorManager cursor;
 

@@ -1,5 +1,6 @@
 package com.reserv.myapplicationeli.tools;
 
+import com.reserv.myapplicationeli.GlobalApplication;
 import com.reserv.myapplicationeli.tools.db.local.Config_Table;
 
 import java.io.FileOutputStream;

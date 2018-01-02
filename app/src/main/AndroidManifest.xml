@@ -31,48 +31,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".views.ui.PlanFragment">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.PlanFragment"
+            android:name="com.reserv.myapplicationeli.views.ui.SearchParvazActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.SearchParvazActivity"
+            android:name="com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.GetAirportMabdaActivity"
+            android:name="com.reserv.myapplicationeli.views.ui.GetAirportMaghsadActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.GetAirportMaghsadActivity"
+            android:name="com.reserv.myapplicationeli.views.ui.SelectHotelActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
+        </activity>
+     
+        <activity
+            android:name="com.reserv.myapplicationeli.views.ui.PassengerActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.SelectHotelActivity"
+            android:name="com.reserv.myapplicationeli.views.ui.CountrycodeActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.PlanFragment"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.PassengerActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.CountrycodeActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.NationalitycodeActivity"
+            android:name="com.reserv.myapplicationeli.views.ui.NationalitycodeActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
