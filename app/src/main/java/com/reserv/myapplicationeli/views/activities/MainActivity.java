@@ -6,7 +6,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
@@ -18,6 +20,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle;
+    private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +42,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         drawerLayout = findViewById(R.id.drawerLayout);
         tvTitle = findViewById(R.id.tvTitle);
 
+        btnFlight = findViewById(R.id.btnFlight);
+        btnHotel = findViewById(R.id.btnHotel);
+        btnPackage = findViewById(R.id.btnPackage);
+        btnTour = findViewById(R.id.btnTour);
+        btnInsurance = findViewById(R.id.btnInsurance);
+
         btnMenu.setCustomTextFont("fonts/icomoon.ttf");
         tvTitle.setText(getString(R.string.searchFlight));
         btnMenu.setText(getString(R.string.icon_menu));
 
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
+        btnHotel.setOnClickListener(this);
+        btnPackage.setOnClickListener(this);
+        btnTour.setOnClickListener(this);
+        btnInsurance.setOnClickListener(this);
 
     }
 
@@ -62,7 +75,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btnMenu:
                 drawerLayout.openDrawer(Gravity.RIGHT);
-
+                break;
+            case R.id.btnFlight:
+                Toast.makeText(this, "btnFlight", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnHotel:
+                Toast.makeText(this, "btnHotel", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnPackage:
+                Toast.makeText(this, "btnPackage", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnTour:
+                Toast.makeText(this, "btnTour", Toast.LENGTH_SHORT).show();
+                break;
+                case R.id.btnInsurance:
+                Toast.makeText(this, "btnInsurance", Toast.LENGTH_SHORT).show();
                 break;
         }
 
