@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.reserv.myapplicationeli.GlobalApplication;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 
 
@@ -54,7 +53,7 @@ public class HotelCountRoomAdapter extends BaseAdapter {
 
 	public HotelCountRoomAdapter(Activity context2, List<ModelRowCountRoom> data2) {
 		this.context=context2;
-		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
+		myInflater = LayoutInflater.from(context2);
 		this.data = data2;
 		notifyDataSetChanged();
 	}

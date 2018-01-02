@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli;
+package com.reserv.myapplicationeli.base;
 
 
 
@@ -12,8 +12,8 @@ import android.os.Environment;
 import android.telephony.TelephonyManager;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.slidingmenu.font.CustomViewWithTypefaceSupport;
-import com.reserv.myapplicationeli.slidingmenu.font.TextField;
+import com.reserv.myapplicationeli.views.ui.font.CustomViewWithTypefaceSupport;
+import com.reserv.myapplicationeli.views.ui.font.TextField;
 import com.reserv.myapplicationeli.views.activities.IDM_Activity;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;

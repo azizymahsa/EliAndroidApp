@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.slidingmenu.base;
+package com.reserv.myapplicationeli.base;
 
 import android.app.Activity;
 import android.content.Context;

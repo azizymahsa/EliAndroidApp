@@ -31,7 +31,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.reserv.myapplicationeli.GlobalApplication;
+import com.reserv.myapplicationeli.base.GlobalApplication;
 
 
 public class Utility extends Activity {

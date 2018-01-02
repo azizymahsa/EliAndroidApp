@@ -3,27 +3,27 @@ package com.reserv.myapplicationeli.views.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
-import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
-import com.reserv.myapplicationeli.views.activities.GetHotelCityActivity;
-import com.reserv.myapplicationeli.views.activities.GetHotelRoomCountActivity;
+import com.reserv.myapplicationeli.views.activities.hotel.GetHotelCityActivity;
+import com.reserv.myapplicationeli.views.activities.hotel.GetHotelRoomCountActivity;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.ui.SelectHotelActivity;
 
 
-public class HotelActivity extends BaseActivity implements OnClickListener {
+public class HotelActivity extends Fragment implements OnClickListener {
 	public HotelActivity() {
 	}
 	public static Button searchHotel,btnPlusB,btnMinesB,btnPlusK,btnMinesK,btnPlusN,btnMinesN,btn_add_room;
@@ -32,39 +32,40 @@ public class HotelActivity extends BaseActivity implements OnClickListener {
 	public ListView listRoomItem;
 	HotelCountRoomAdapter mAdapter;
 	public List<ModelRowCountRoom> data;
+	private View rootView;
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_hotel);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+		rootView = inflater.inflate(R.layout.activity_hotel, container, false);
 
 	//	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
 		
 
 		
-		listRoomItem = (ListView)findViewById(R.id.listRoomItem);
+		listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 		  
-		lblRoomCount= (TextView) findViewById(R.id.lblRoomCount);
+		lblRoomCount= (TextView) rootView.findViewById(R.id.lblRoomCount);
 		lblRoomCount.setOnClickListener(this);
-		txtRoomCount= (TextView) findViewById(R.id.txtRoomCount);
+		txtRoomCount= (TextView) rootView.findViewById(R.id.txtRoomCount);
 		txtRoomCount.setOnClickListener(this);
 		
-		btn_add_room= (Button) findViewById(R.id.btn_add_room);
+		btn_add_room= (Button) rootView.findViewById(R.id.btn_add_room);
 		btn_add_room.setOnClickListener(this);
 		 
-		txtTitle= (TextView) findViewById(R.id.txtTitle);
-		txtCity= (TextView) findViewById(R.id.txtCity);
+		txtTitle= (TextView) rootView.findViewById(R.id.txtTitle);
+		txtCity= (TextView) rootView.findViewById(R.id.txtCity);
 		
-		lbl_city_english= (TextView) findViewById(R.id.lbl_city_english);
+		lbl_city_english= (TextView) rootView.findViewById(R.id.lbl_city_english);
 
 	    
 	    txtCity.setOnClickListener(this);
 	    lbl_city_english.setOnClickListener(this);
 	   
-	    searchHotel= (Button) findViewById(R.id.searchHotel);
+	    searchHotel= (Button) rootView.findViewById(R.id.searchHotel);
 	    searchHotel.setOnClickListener(this);
         
 	    
-	    Bundle bundle = getIntent().getExtras();
+	    Bundle bundle = getActivity().getIntent().getExtras();
   		if(bundle != null){
   	        if(bundle.getString("Value-Hotel-City-Fa")!= null)
   	        {
@@ -87,10 +88,11 @@ public class HotelActivity extends BaseActivity implements OnClickListener {
          data.add(model);
 	   // }
 	    
-        mAdapter = new HotelCountRoomAdapter(HotelActivity.this, data);
+        mAdapter = new HotelCountRoomAdapter(getActivity(), data);
       //mAdapter.setAdapter(mAdapter);
         mAdapter.setData(data);
         listRoomItem.setAdapter(mAdapter);
+        return rootView;
 	}//end oncreat
 	 public boolean isInRange(int a, int b, int c) {
 	        return b > a ? c >= a && c <= b : c >= b && c <= a;
@@ -100,8 +102,8 @@ public class HotelActivity extends BaseActivity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.lblRoomCount:
-			Intent intent2=new Intent(this,GetHotelRoomCountActivity.class);
-			Bundle bundle2 = getIntent().getExtras();
+			Intent intent2=new Intent(getActivity(),GetHotelRoomCountActivity.class);
+			Bundle bundle2 = getActivity().getIntent().getExtras();
       		if(bundle2 != null ){
       			intent2.putExtra("Value-Maghsad-City",  bundle2.getString("Value-Maghsad-City"));
 				intent2.putExtra("Value-Maghsad-Airport", bundle2.getString("Value-Maghsad-Airport"));
@@ -111,8 +113,8 @@ public class HotelActivity extends BaseActivity implements OnClickListener {
             startActivityForResult(intent2, 2);
 			break;
 		case R.id.txtRoomCount:
-			Intent intent4=new Intent(this,GetHotelRoomCountActivity.class);
-			Bundle bundle4 = getIntent().getExtras();
+			Intent intent4=new Intent(getActivity(),GetHotelRoomCountActivity.class);
+			Bundle bundle4 = getActivity().getIntent().getExtras();
       		if(bundle4 != null ){
       			intent4.putExtra("Value-Maghsad-City",  bundle4.getString("Value-Maghsad-City"));
 				intent4.putExtra("Value-Maghsad-Airport", bundle4.getString("Value-Maghsad-Airport"));
@@ -122,7 +124,7 @@ public class HotelActivity extends BaseActivity implements OnClickListener {
             startActivityForResult(intent4, 2);
 			break;
 		case R.id.txtCity:
-			Intent intent5=new Intent(this,GetHotelCityActivity.class);
+			Intent intent5=new Intent(getActivity(),GetHotelCityActivity.class);
 			startActivityForResult(intent5,1);
 			break;
 		case R.id.btn_add_room:
@@ -134,8 +136,8 @@ public class HotelActivity extends BaseActivity implements OnClickListener {
 		case R.id.searchHotel:
 			
 			
-			Intent intent6=new Intent(this,SelectHotelActivity.class);
-			Bundle bundle6 = getIntent().getExtras();
+			Intent intent6=new Intent(getActivity(),SelectHotelActivity.class);
+			Bundle bundle6 = getActivity().getIntent().getExtras();
       		if(bundle6 != null ){
       			intent6.putExtra("Value-Maghsad-City",  bundle6.getString("Value-Maghsad-City"));
 				intent6.putExtra("Value-Maghsad-Airport", bundle6.getString("Value-Maghsad-Airport"));

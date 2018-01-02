@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 
-import com.reserv.myapplicationeli.GlobalApplication;
+import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.tools.ExceptionHandler;
 import com.reserv.myapplicationeli.tools.Utility;

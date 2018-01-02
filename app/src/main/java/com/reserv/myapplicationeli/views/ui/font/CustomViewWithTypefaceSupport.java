@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.slidingmenu.font;
+package com.reserv.myapplicationeli.views.ui.font;
 
 import android.annotation.TargetApi;
 import android.content.Context;

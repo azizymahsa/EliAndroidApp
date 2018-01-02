@@ -11,10 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.reserv.myapplicationeli.GlobalApplication;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.models.model.HotelCity;
 import com.reserv.myapplicationeli.views.fragments.HotelActivity;
 

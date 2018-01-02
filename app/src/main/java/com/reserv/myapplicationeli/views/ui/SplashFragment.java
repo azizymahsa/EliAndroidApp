@@ -21,6 +21,7 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.db.local.Config_Table;
 import com.reserv.myapplicationeli.views.activities.IDM_Activity;
+import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 
 
 public class SplashFragment extends IDM_Activity

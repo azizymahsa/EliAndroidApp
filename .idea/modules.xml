@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://E:\MobileApp\Eligasht-Android\MyApplicationEli\EligashtAndroidApp.iml" filepath="E:\MobileApp\Eligasht-Android\MyApplicationEli\EligashtAndroidApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MyApplicationEli.iml" filepath="$PROJECT_DIR$/MyApplicationEli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EligashtAndroidApp.iml" filepath="$PROJECT_DIR$/EligashtAndroidApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

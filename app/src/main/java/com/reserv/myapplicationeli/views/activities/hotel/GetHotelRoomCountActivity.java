@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.activities;
+package com.reserv.myapplicationeli.views.activities.hotel;
 
 import java.util.ArrayList;
 import java.util.List;

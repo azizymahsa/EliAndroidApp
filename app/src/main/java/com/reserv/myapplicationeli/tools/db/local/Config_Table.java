@@ -1,6 +1,6 @@
 package com.reserv.myapplicationeli.tools.db.local;
 
-import com.reserv.myapplicationeli.GlobalApplication;
+import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.tools.db.main.MainLocalDB;
 

@@ -26,7 +26,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -49,8 +48,9 @@ import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.Country;
-import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
+import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.Flight;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegment;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegmentFalse;

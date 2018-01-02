@@ -1,0 +1,91 @@
+package com.reserv.myapplicationeli.base;
+
+import com.reserv.myapplicationeli.conf.APIConf;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+/**
+ * Reza Nejati <nejati@mvit.ir>
+ */
+
+
+public abstract class BaseAPI {
+    private final String TAG = "__" +this.getClass().getSimpleName().toUpperCase().toString();
+
+    protected Retrofit retrofit;
+    protected Call call;
+    // The result / whether is success or failed TODO: put it in try catch if response failed
+    /**
+     * Class constructor
+     */
+    public BaseAPI(){
+        buildUri();
+    }
+
+
+    /**
+     * To build URI
+     * @return Retrofit object
+     */
+    protected Retrofit buildUri(){
+        onBuildUri();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(APIConf.CORE_REST_API_URI)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(new OkHttpClient.Builder()
+                        .readTimeout(10, TimeUnit.SECONDS)
+                        .connectTimeout(10, TimeUnit.SECONDS)
+                        .writeTimeout(10, TimeUnit.SECONDS)
+                        .build())
+                .build();
+
+
+
+        return retrofit;
+    }
+    private OkHttpClient getRequestHeader() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .build();
+
+        return okHttpClient;
+    }
+
+    /**
+     * On build URI
+     */
+    protected abstract void onBuildUri();
+
+    /**
+     * Execute request
+     */
+    protected abstract void execute();
+
+    /**
+     * On Before Execute
+     */
+    protected abstract void onBeforeExecute();
+
+    /**
+     * On After Execute
+     */
+    protected abstract void onAfterExecute();
+
+    /**
+     * send request to server
+     */
+    protected void send(){
+        onBeforeExecute();
+        execute();
+        onAfterExecute();
+
+    }
+}

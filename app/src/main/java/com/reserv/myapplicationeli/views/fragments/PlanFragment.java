@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.ui;
+package com.reserv.myapplicationeli.views.fragments;
 
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
@@ -6,13 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,7 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
+import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
+import com.reserv.myapplicationeli.views.ui.GetAirportMaghsadActivity;
+import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 public class PlanFragment extends Fragment implements OnClickListener {
     public PlanFragment() {

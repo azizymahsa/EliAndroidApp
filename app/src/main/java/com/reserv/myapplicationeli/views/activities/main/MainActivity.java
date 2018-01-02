@@ -1,20 +1,20 @@
-package com.reserv.myapplicationeli.views.activities;
+package com.reserv.myapplicationeli.views.activities.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
+import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelActivity;
-import com.reserv.myapplicationeli.views.ui.PlanFragment;
+import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -22,13 +22,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle;
-    private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance;
+    private RelativeLayout btnFlight, btnHotel, btnPackage, btnTour, btnInsurance;
+    private FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
         initViews();
+        manager = getSupportFragmentManager();
+
+        manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         PlanFragment workerStateFragment = new PlanFragment();
         getSupportFragmentManager()
@@ -66,8 +70,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (drawerLayout.isDrawerVisible(Gravity.RIGHT)){
-            drawerLayout.closeDrawer(Gravity.LEFT);
+        if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
+            drawerLayout.closeDrawer(Gravity.RIGHT);
+
 
         }
     }
@@ -79,28 +84,37 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.btnFlight:
-                Toast.makeText(this, "btnFlight", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.btnHotel:
-                Intent intent6=new Intent(this,HotelActivity.class);
-               // Bundle bundle6 = getIntent().getExtras();
-               /* if(bundle6 != null ){
-                    intent6.putExtra("Value-Maghsad-City",  bundle6.getString("Value-Maghsad-City"));
-                    intent6.putExtra("Value-Maghsad-Airport", bundle6.getString("Value-Maghsad-Airport"));
-                    intent6.putExtra("Value-Maghsad-Airport-Code", bundle6.getString("Value-Maghsad-Airport-Code"));/*//*
-                }*/
+                tvTitle.setText("جستجو هتل");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        drawerLayout.closeDrawer(Gravity.RIGHT);
 
-                startActivityForResult(intent6, 2);
-                Toast.makeText(this, "btnHotel", Toast.LENGTH_SHORT).show();
+                    }
+                }, 500);
+
+                manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                HotelActivity workerStateFragment = new HotelActivity();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, workerStateFragment)
+                        .commit();
                 break;
             case R.id.btnPackage:
-                Toast.makeText(this, "btnPackage", Toast.LENGTH_SHORT).show();
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+
                 break;
             case R.id.btnTour:
-                Toast.makeText(this, "btnTour", Toast.LENGTH_SHORT).show();
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+
                 break;
-                case R.id.btnInsurance:
-                Toast.makeText(this, "btnInsurance", Toast.LENGTH_SHORT).show();
+
+            case R.id.btnInsurance:
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+
                 break;
         }
 
