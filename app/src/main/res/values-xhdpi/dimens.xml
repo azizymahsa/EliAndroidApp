@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- values-xhdpi            4.7”   1280x720 xhdpi
+values-xhdpi            4.65”  720x1280 xhdpi -->
+
+    <dimen name="circle_60dp">60dp</dimen>
+
+</resources>

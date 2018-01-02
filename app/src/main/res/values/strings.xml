@@ -89,7 +89,13 @@
         - برای فعال سازی سیم کارت شما باید شارژ پولی جهت ارسال sms فعال سازی را داشته باشد. در صورتی که پیغام "ارسال پیامک فعال سازی با خطا مواجه شده است" و یا "پیام شما به سرور نرسیده لطفا میزان شارژ خود را بررسی نمایید."\n
         - اینترنت شما باید فعال باشد. در صورت خطای مربوط به اتصال به سرور و یا خطای نامعلوم لطفا وضعیت اتصال خود را از طریق باز کردن سایت در browser بررسی نمایید.\n
         - در صورتی که فعال سازی با خطا مواجه شد برای پیگیری، متن خطای نمایش داده شده را عینا به پشتیبانی سیستم اطلاع دهید.</string>
-    <string name="icon_menu">&#xe91a;</string>
+    <string name="icon_menu">&#xe901;</string>
+    <string name="icon_airplane">&#xe9af;</string>
+    <string name="icon_briefcase">&#xe902;</string>
+    <string name="icon_bed">&#xe900;</string>
+    <string name="icon_umbrella">&#xe903;</string>
+    <string name="icon_globe">&#xf0b6;</string>
+
     <string name="searchFlight">جستجوی پرواز</string>
 
     <string-array name="requestStates">

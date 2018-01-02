@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- //values-hdpi             4.0” 480x800 hdpi
+    //  values-hdpi             3.7” 480x854 hdpi-->
+
+
+    <dimen name="circle_60dp">60dp</dimen>
+
+</resources>

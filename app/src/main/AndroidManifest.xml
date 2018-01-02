@@ -24,7 +24,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".slidingmenu.base.MyApplication"
+        android:name=".slidingmenu.system.GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -45,7 +45,7 @@
         <activity
             android:name=".slidingmenu.ui.SearchParvazActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
+          ></activity>
         <activity
             android:name=".slidingmenu.ui.GetAirportMabdaActivity"
             android:label="@string/app_name"

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--7.0”  tablet 1024x600 mdpi-->
+
+
+    <dimen name="circle_60dp">100dp</dimen>
+
+</resources>

@@ -23,9 +23,6 @@ public class RMainActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_rmain);
         initViews();
 
@@ -47,15 +44,23 @@ public class RMainActivity extends BaseActivity implements View.OnClickListener 
         tvTitle.setText(getString(R.string.searchFlight));
         btnMenu.setText(getString(R.string.icon_menu));
 
-        //onclick===================================================================================
+        //onClick===================================================================================
         btnMenu.setOnClickListener(this);
 
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (drawerLayout.isDrawerVisible(Gravity.RIGHT)){
+            drawerLayout.closeDrawer(Gravity.LEFT);
+
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.btnMenu:
                 drawerLayout.openDrawer(Gravity.RIGHT);
 

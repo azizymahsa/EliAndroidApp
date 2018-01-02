@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 3.2” 320x480 mdpi-->
+
+
+    <dimen name="circle_60dp">60dp</dimen>
+
+</resources>

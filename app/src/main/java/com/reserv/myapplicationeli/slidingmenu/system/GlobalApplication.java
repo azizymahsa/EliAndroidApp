@@ -12,6 +12,10 @@ import android.os.Environment;
 import android.telephony.TelephonyManager;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.slidingmenu.font.CustomViewWithTypefaceSupport;
+import com.reserv.myapplicationeli.slidingmenu.font.TextField;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 public class GlobalApplication extends Application {
@@ -24,7 +28,18 @@ public class GlobalApplication extends Application {
 		globalTypeFace = Typeface.createFromAsset(context.getAssets(),
 				"fonts/mitra.ttf");
 	}
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+				.setDefaultFontPath("fonts/irsans.ttf")
+				.setFontAttrId(R.attr.fontPath)
+				.addCustomViewWithSetTypeface(CustomViewWithTypefaceSupport.class)
+				.addCustomStyle(TextField.class, R.attr.textFieldStyle)
+				.build()
+		);
 
+	}
 	public String getMyOperator(Context aContext) {
 		TelephonyManager mTelephonyMgr;
 		mTelephonyMgr = (TelephonyManager) aContext.getSystemService(Context.TELEPHONY_SERVICE);

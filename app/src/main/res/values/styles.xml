@@ -69,4 +69,6 @@
 
 
     </style>
+    <style name="IconFonts" parent="android:TextAppearance">
+        <item name="fontPath">fonts/icomoon.ttf</item></style>
 </resources>

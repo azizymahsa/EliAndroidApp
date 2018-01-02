@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <!--values-ldpi             3.4” 240x432 ldpi
+    values-ldpi             3.3” 240x400 ldpi
+    values-ldpi             2.7” 240x320 ldpi-->
+
+
+ <dimen name="circle_60dp">60dp</dimen>
+
+</resources>
