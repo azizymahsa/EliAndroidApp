@@ -31,4 +31,9 @@
 
     <color name="titlebackgroundcolor">#3232CD</color>
     <color name="titletextcolor">#FFFF00</color>
+    <color name="focusColor">#96000000</color>
+
+
+
+
 </resources>

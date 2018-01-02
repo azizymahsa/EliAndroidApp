@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
     <style name="MyListBackContent">
         <item name="android:layout_width">fill_parent</item>
@@ -49,5 +51,22 @@
     </style>
     <style name="StyledDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@drawable/flight_loading_background</item>
+
+    </style>
+
+
+    <style name="fancy_toolbar">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="fb_radius">100dp</item>
+        <item name="fb_textColor">@android:color/white</item>
+        <item name="fb_textSize">40dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="fb_defaultColor">@android:color/transparent</item>
+        <item name="fb_focusColor">@color/focusColor</item>
+        <item name="fb_text">&#xe912;</item>
+        <item name="android:layout_margin">5dp</item>
+
+
     </style>
 </resources>

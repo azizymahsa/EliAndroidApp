@@ -1,7 +1,6 @@
 <resources>
 
 
-
     <!--  <string name="app_name">Slider Menu</string> -->
 
     <string name="hello_world">Hello world!</string>
@@ -12,14 +11,14 @@
     <string name="option_mojudi">بروزرسانی موجودی :\n 1394/11/10 </string>
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
-        <item >خرید های من</item>
-        <item >لیست هتل</item>
-        <item >شارژ اعتبار</item>
-        <item >مدیریت مالی</item>
-        <item >استرداد بلیط</item>
-        <item >قوانین و مقررات</item>
-        <item >تماس با ما </item>
-        <item >خروج از حساب کاربری</item>
+        <item>خرید های من</item>
+        <item>لیست هتل</item>
+        <item>شارژ اعتبار</item>
+        <item>مدیریت مالی</item>
+        <item>استرداد بلیط</item>
+        <item>قوانین و مقررات</item>
+        <item>تماس با ما </item>
+        <item>خروج از حساب کاربری</item>
         <!--  <item >راهنما</item>
          <item >امنیت</item>
          <item >پروفایل</item>
@@ -90,6 +89,8 @@
         - برای فعال سازی سیم کارت شما باید شارژ پولی جهت ارسال sms فعال سازی را داشته باشد. در صورتی که پیغام "ارسال پیامک فعال سازی با خطا مواجه شده است" و یا "پیام شما به سرور نرسیده لطفا میزان شارژ خود را بررسی نمایید."\n
         - اینترنت شما باید فعال باشد. در صورت خطای مربوط به اتصال به سرور و یا خطای نامعلوم لطفا وضعیت اتصال خود را از طریق باز کردن سایت در browser بررسی نمایید.\n
         - در صورتی که فعال سازی با خطا مواجه شد برای پیگیری، متن خطای نمایش داده شده را عینا به پشتیبانی سیستم اطلاع دهید.</string>
+    <string name="icon_menu">&#xe91a;</string>
+    <string name="searchFlight">جستجوی پرواز</string>
 
     <string-array name="requestStates">
         <item>درخواست ارسال نشده است</item>
@@ -172,303 +173,303 @@
         <item>جزایر کوکوس</item>
         <item>کلمبیا</item>
 
-        <item >کومور</item>
+        <item>کومور</item>
         <item>کنگو</item>
         <item> کنگو، دمکراتیک جمهوری</item>
         <item> جزایر کوک</item>
 
-        <item >کاستاریکا</item>
+        <item>کاستاریکا</item>
         <item>ساحل عاج ( ساحل عاج )</item>
         <item> کرواسی</item>
         <item> کوبا</item>
 
-        <item >قبرس</item>
+        <item>قبرس</item>
         <item>جمهوری چک</item>
         <item> دانمارک</item>
         <item> جیبوتی</item>
 
-        <item >دومینیکایی</item>
-        <item >جمهوری دومینیکن</item>
-        <item >تیمور شرق</item>
-        <item >اکوادور</item><!-- 68 -->
+        <item>دومینیکایی</item>
+        <item>جمهوری دومینیکن</item>
+        <item>تیمور شرق</item>
+        <item>اکوادور</item><!-- 68 -->
 
-        <item >مصر</item>
-        <item >سالوادور</item>
-        <item >گینه استوایی</item>
-        <item >اریتره</item>
+        <item>مصر</item>
+        <item>سالوادور</item>
+        <item>گینه استوایی</item>
+        <item>اریتره</item>
 
-        <item >استونی</item>
-        <item >اتیوپی</item>
-        <item >جزایر فالکلند ( مالویناس )</item>
-        <item >جزایر فارو</item>76
+        <item>استونی</item>
+        <item>اتیوپی</item>
+        <item>جزایر فالکلند ( مالویناس )</item>
+        <item>جزایر فارو</item>76
 
-        <item >جزایر فارو</item>
-        <item >جزایر فیجی</item>
-        <item >فنلاند</item>
-        <item >فرانسه</item>
+        <item>جزایر فارو</item>
+        <item>جزایر فیجی</item>
+        <item>فنلاند</item>
+        <item>فرانسه</item>
 
-        <item >فرانسه، متروپولیتن</item>
-        <item >گویان فرانسو</item>
-        <item >پلینزی فرانسه</item>
-        <item >سرزمین های جنوبی فرانسه</item>
+        <item>فرانسه، متروپولیتن</item>
+        <item>گویان فرانسو</item>
+        <item>پلینزی فرانسه</item>
+        <item>سرزمین های جنوبی فرانسه</item>
 
-        <item >گابن</item>
-        <item >گامبیا</item>
-        <item >گرجستان</item>
-        <item >آلمان</item>
+        <item>گابن</item>
+        <item>گامبیا</item>
+        <item>گرجستان</item>
+        <item>آلمان</item>
 
-        <item >غنا</item>
-        <item >جبل الطارق</item>
-        <item >یونان</item>
-        <item >گرینلند</item>
+        <item>غنا</item>
+        <item>جبل الطارق</item>
+        <item>یونان</item>
+        <item>گرینلند</item>
 
-        <item >گرانادا</item>
-        <item >جزیره گوادلوپ</item>
-        <item >گوام</item>
-        <item >گواتمالا</item>
+        <item>گرانادا</item>
+        <item>جزیره گوادلوپ</item>
+        <item>گوام</item>
+        <item>گواتمالا</item>
 
-        <item >گورنسی</item>
-        <item >گینه</item>
-        <item >گینه بیسائو</item>
-        <item >گویان</item>
+        <item>گورنسی</item>
+        <item>گینه</item>
+        <item>گینه بیسائو</item>
+        <item>گویان</item>
 
-        <item >هائیتی</item>
-        <item >هرد و جزایر مک دونالد</item>
-        <item >هندوراس</item>
-        <item >هنگ کنگ S.A.R.</item>
+        <item>هائیتی</item>
+        <item>هرد و جزایر مک دونالد</item>
+        <item>هندوراس</item>
+        <item>هنگ کنگ S.A.R.</item>
 
-        <item >مجارستان</item>
-        <item >ایسلند</item>
-        <item >هندوستان</item>
-        <item >اندونزی</item>
+        <item>مجارستان</item>
+        <item>ایسلند</item>
+        <item>هندوستان</item>
+        <item>اندونزی</item>
 
-        <item >عراق</item>
-        <item >جزیره من</item>
-        <item >ایرلند</item>
-        <item >ایتالیا</item>
+        <item>عراق</item>
+        <item>جزیره من</item>
+        <item>ایرلند</item>
+        <item>ایتالیا</item>
 
-        <item >جامائیکا</item>
-        <item >ژاپن</item>
-        <item >جرسی</item>
-        <item >اردن</item>
+        <item>جامائیکا</item>
+        <item>ژاپن</item>
+        <item>جرسی</item>
+        <item>اردن</item>
 
-        <item >قزاقستان</item>
-        <item >کنیا</item>
-        <item >کیریباتی</item>
-        <item >کره</item>
+        <item>قزاقستان</item>
+        <item>کنیا</item>
+        <item>کیریباتی</item>
+        <item>کره</item>
 
-        <item >کره شمالی</item>
-        <item >کویت</item>
-        <item >قرقیزستان</item>
-        <item >لائوس</item>
+        <item>کره شمالی</item>
+        <item>کویت</item>
+        <item>قرقیزستان</item>
+        <item>لائوس</item>
 
-        <item >لتونی</item>
-        <item >لبنان</item>
-        <item >لسوتو</item>
-        <item >لیبریا</item>
+        <item>لتونی</item>
+        <item>لبنان</item>
+        <item>لسوتو</item>
+        <item>لیبریا</item>
 
-        <item >لیبی</item>
-        <item >لیختن اشتاین</item>
-        <item >لیتوانی</item>
-        <item >لوکزامبورگ</item>
+        <item>لیبی</item>
+        <item>لیختن اشتاین</item>
+        <item>لیتوانی</item>
+        <item>لوکزامبورگ</item>
 
-        <item >ماکائو S.A.R.</item>
-        <item >مقدونیه</item>
-        <item >جزیره مالاگازی</item>
-        <item >مالاوی</item>
+        <item>ماکائو S.A.R.</item>
+        <item>مقدونیه</item>
+        <item>جزیره مالاگازی</item>
+        <item>مالاوی</item>
 
-        <item >مالزی</item>
-        <item >مالدیو</item>
-        <item >مالی</item>
-        <item >مالت</item>
+        <item>مالزی</item>
+        <item>مالدیو</item>
+        <item>مالی</item>
+        <item>مالت</item>
 
-        <item >جزایر مارشال</item>
-        <item >مارتینیک</item>
-        <item >موریتانی</item>
-        <item >موریس</item>
+        <item>جزایر مارشال</item>
+        <item>مارتینیک</item>
+        <item>موریتانی</item>
+        <item>موریس</item>
 
-        <item >مایوت</item>
-        <item >مکزیک</item>
-        <item >میکرونزی</item>
-        <item >مولداوی</item>
+        <item>مایوت</item>
+        <item>مکزیک</item>
+        <item>میکرونزی</item>
+        <item>مولداوی</item>
 
-        <item >موناکو</item>
-        <item >مغولستان</item>
-        <item >مونته نگرو</item>
-        <item >مونتسرات</item>
+        <item>موناکو</item>
+        <item>مغولستان</item>
+        <item>مونته نگرو</item>
+        <item>مونتسرات</item>
 
-        <item >مراکش</item>
-        <item >موزامبیک</item>
-        <item >میانمار</item>
-        <item >نامیبیا</item>
+        <item>مراکش</item>
+        <item>موزامبیک</item>
+        <item>میانمار</item>
+        <item>نامیبیا</item>
 
-        <item >نائورو</item>
-        <item >نپال</item>
-        <item >هلند</item>
-        <item >آنتیل هلند</item>
+        <item>نائورو</item>
+        <item>نپال</item>
+        <item>هلند</item>
+        <item>آنتیل هلند</item>
 
-        <item >کالدونیای جدید</item>
-        <item >نیوزیلند</item>
-        <item >نیکاراگوئه</item>
-        <item >نیجر</item>
+        <item>کالدونیای جدید</item>
+        <item>نیوزیلند</item>
+        <item>نیکاراگوئه</item>
+        <item>نیجر</item>
 
-        <item >نیجریه</item>
-        <item >نیوئه</item>
-        <item >جزیره نورفولک</item>
-        <item >جزایر ماریانای شمالی</item>
+        <item>نیجریه</item>
+        <item>نیوئه</item>
+        <item>جزیره نورفولک</item>
+        <item>جزایر ماریانای شمالی</item>
 
-        <item >نروژ</item>
-        <item >عمان</item>
-        <item >پاکستان</item>
-        <item >پالائو</item>
+        <item>نروژ</item>
+        <item>عمان</item>
+        <item>پاکستان</item>
+        <item>پالائو</item>
 
-        <item >فلسطین</item>
-        <item >پاناما</item>
-        <item >پاپوآ گینه جدید</item>
-        <item >پاراگوئه</item>
+        <item>فلسطین</item>
+        <item>پاناما</item>
+        <item>پاپوآ گینه جدید</item>
+        <item>پاراگوئه</item>
 
-        <item >پرو</item>
-        <item >فیلیپین</item>
-        <item >جزیره پیتکرن</item>
-        <item >لهستان</item>
+        <item>پرو</item>
+        <item>فیلیپین</item>
+        <item>جزیره پیتکرن</item>
+        <item>لهستان</item>
 
-        <item >پرتغال</item>
-        <item >پورتوریکو</item>
-        <item >قطر</item>
-        <item >ریونیون</item>
+        <item>پرتغال</item>
+        <item>پورتوریکو</item>
+        <item>قطر</item>
+        <item>ریونیون</item>
 
-        <item >رومانی</item>
-        <item >روسیه</item>
-        <item >رواندا</item>
-        <item >جزیره سنت هلن </item>
+        <item>رومانی</item>
+        <item>روسیه</item>
+        <item>رواندا</item>
+        <item>جزیره سنت هلن </item>
 
-        <item >سنت کیتس و نویس</item>
-        <item >سنت لوسیا</item>
-        <item >سنت پیر و میکلون</item>
-        <item >سنت وینسنت و گرنادین</item>
+        <item>سنت کیتس و نویس</item>
+        <item>سنت لوسیا</item>
+        <item>سنت پیر و میکلون</item>
+        <item>سنت وینسنت و گرنادین</item>
 
-        <item >ساموآ</item>
-        <item >سان مارینو</item>
-        <item >سائوتومه و پرنسیپ</item>
-        <item >عربستان سعودی</item>
+        <item>ساموآ</item>
+        <item>سان مارینو</item>
+        <item>سائوتومه و پرنسیپ</item>
+        <item>عربستان سعودی</item>
 
-        <item >سنگال</item>
-        <item >صربستان</item>
-        <item >سیشل</item>
-        <item >سیرالئون</item>
+        <item>سنگال</item>
+        <item>صربستان</item>
+        <item>سیشل</item>
+        <item>سیرالئون</item>
 
-        <item >سنگاپور</item>
-        <item >سنت مارتن</item>
-        <item >اسلواکی</item>
-        <item >اسلوونی</item>
+        <item>سنگاپور</item>
+        <item>سنت مارتن</item>
+        <item>اسلواکی</item>
+        <item>اسلوونی</item>
 
-        <item >جزایر سلیمان</item>
-        <item >سومالی</item>
-        <item >آفریقای جنوبی</item>
-        <item >جورجیای جنوبی و جزایر ساندویچ جنوبی</item>
+        <item>جزایر سلیمان</item>
+        <item>سومالی</item>
+        <item>آفریقای جنوبی</item>
+        <item>جورجیای جنوبی و جزایر ساندویچ جنوبی</item>
 
-        <item >اسپانیا</item>
-        <item >سری لانکا</item>
-        <item >سودان</item>
-        <item >سورینام</item>
+        <item>اسپانیا</item>
+        <item>سری لانکا</item>
+        <item>سودان</item>
+        <item>سورینام</item>
 
-        <item >سوالبارد و ماین</item>
-        <item >سوازیلند</item>
-        <item >سوئد</item>
-        <item >سویس</item>
+        <item>سوالبارد و ماین</item>
+        <item>سوازیلند</item>
+        <item>سوئد</item>
+        <item>سویس</item>
 
-        <item >سوریه</item>
-        <item >تایوان</item>
-        <item >تاجیکستان</item>
-        <item >تانزانیا</item>
+        <item>سوریه</item>
+        <item>تایوان</item>
+        <item>تاجیکستان</item>
+        <item>تانزانیا</item>
 
-        <item >تایلند</item>
-        <item >تیمور شرق</item>
-        <item >توگو</item>
-        <item >توکلائو</item>
+        <item>تایلند</item>
+        <item>تیمور شرق</item>
+        <item>توگو</item>
+        <item>توکلائو</item>
 
-        <item >تونگا</item>
-        <item >ترینیداد و توباگو</item>
-        <item >تونس</item>
-        <item >ترکیه</item>
+        <item>تونگا</item>
+        <item>ترینیداد و توباگو</item>
+        <item>تونس</item>
+        <item>ترکیه</item>
 
-        <item >ترکمنستان</item>
-        <item >جزایر ترکس و کیاکوس</item>
-        <item >تووالو</item>
-        <item >اوگاندا</item>
+        <item>ترکمنستان</item>
+        <item>جزایر ترکس و کیاکوس</item>
+        <item>تووالو</item>
+        <item>اوگاندا</item>
 
-        <item >اوکراین</item>
-        <item >امارات متحده عربی</item>
-        <item >انگلستان</item>
-        <item >ایالات متحده</item>
+        <item>اوکراین</item>
+        <item>امارات متحده عربی</item>
+        <item>انگلستان</item>
+        <item>ایالات متحده</item>
 
-        <item >ایالات متحده جزایر کوچک حاشیهای</item>
-        <item >اروگوئه</item>
-        <item >ازبکستان</item>
-        <item >وانواتو</item>
+        <item>ایالات متحده جزایر کوچک حاشیهای</item>
+        <item>اروگوئه</item>
+        <item>ازبکستان</item>
+        <item>وانواتو</item>
 
-        <item >دولت شهر واتیکان ( مقدس )</item>
-        <item >ونزوئلا</item>
-        <item >ویتنام</item>
-        <item >جزایر ویرجین ( ایالات متحده )</item>
+        <item>دولت شهر واتیکان ( مقدس )</item>
+        <item>ونزوئلا</item>
+        <item>ویتنام</item>
+        <item>جزایر ویرجین ( ایالات متحده )</item>
 
-        <item >جزایر ویرجین ( بریتانیا )</item>
-        <item >والیس و فوتونا</item>
-        <item >صحرای غربی</item>
-        <item >یمن</item>
+        <item>جزایر ویرجین ( بریتانیا )</item>
+        <item>والیس و فوتونا</item>
+        <item>صحرای غربی</item>
+        <item>یمن</item>
 
-        <item >زامبیا</item>
-        <item >زیمبابوه</item>
-        <item >آلاند جزایر</item>
-        <item >آنتیگوآ</item>
+        <item>زامبیا</item>
+        <item>زیمبابوه</item>
+        <item>آلاند جزایر</item>
+        <item>آنتیگوآ</item>
 
-        <item >بونیر، سینت یوستیشس و صبا</item>
-        <item >بوسنی</item>
-        <item >کارائیب</item>
-        <item >جمهوری کنگو</item>
+        <item>بونیر، سینت یوستیشس و صبا</item>
+        <item>بوسنی</item>
+        <item>کارائیب</item>
+        <item>جمهوری کنگو</item>
 
-        <item >ساحل عاج</item>
-        <item >کریمه</item>
-        <item >کرواسی</item>
-        <item >کوراسائو</item>
+        <item>ساحل عاج</item>
+        <item>کریمه</item>
+        <item>کرواسی</item>
+        <item>کوراسائو</item>
 
-        <item >جمهوری دموکراتیک کنگو</item>
-        <item >فرودگاه دوبی</item>
-        <item >جزایر فالکلند ( مالویناس )</item>
-        <item >فیجی</item>
+        <item>جمهوری دموکراتیک کنگو</item>
+        <item>فرودگاه دوبی</item>
+        <item>جزایر فالکلند ( مالویناس )</item>
+        <item>فیجی</item>
 
-        <item >گامبیا</item>
-        <item >گرانادا</item>
-        <item >HAWAII</item>
-        <item >جزیره هرد و جزایر مک دونالد</item>
+        <item>گامبیا</item>
+        <item>گرانادا</item>
+        <item>HAWAII</item>
+        <item>جزیره هرد و جزایر مک دونالد</item>
 
-        <item >هنگ کنگ</item>
-        <item >ماکائو</item>
-        <item >میانمار</item>
-        <item >کره شمالی</item>
+        <item>هنگ کنگ</item>
+        <item>ماکائو</item>
+        <item>میانمار</item>
+        <item>کره شمالی</item>
 
-        <item >فلسطین</item>
-        <item >جمهوری ایرلند</item>
-        <item >پالائو</item>
-        <item >سنت بارتلمی</item>
+        <item>فلسطین</item>
+        <item>جمهوری ایرلند</item>
+        <item>پالائو</item>
+        <item>سنت بارتلمی</item>
 
-        <item >سنت مارتین</item>
-        <item >سنت مارتن ( بخش هلندی)</item>
-        <item >جورجیای جنوبی و ساندویچ جنوبی ISL</item>
-        <item > کره جنوبی</item>
+        <item>سنت مارتین</item>
+        <item>سنت مارتن ( بخش هلندی)</item>
+        <item>جورجیای جنوبی و ساندویچ جنوبی ISL</item>
+        <item> کره جنوبی</item>
 
-        <item >سودان جنوبی </item>
-        <item >ST LUCIA</item>
-        <item >سوالبارد و یان ماینی</item>
-        <item > تاسمانی</item>
+        <item>سودان جنوبی </item>
+        <item>ST LUCIA</item>
+        <item>سوالبارد و یان ماینی</item>
+        <item> تاسمانی</item>
 
-        <item > تیمور شرقی</item>
-        <item >توکلائو جزایر</item>
-        <item >ترکهای / کیکو</item>
-        <item > ایالات متحده آمریکا</item>
+        <item> تیمور شرقی</item>
+        <item>توکلائو جزایر</item>
+        <item>ترکهای / کیکو</item>
+        <item> ایالات متحده آمریکا</item>
 
-        <item > ایالات متحده جزایر ویرجین</item>
-        <item >WEST BANK</item>
+        <item> ایالات متحده جزایر ویرجین</item>
+        <item>WEST BANK</item>
 
     </string-array>
 

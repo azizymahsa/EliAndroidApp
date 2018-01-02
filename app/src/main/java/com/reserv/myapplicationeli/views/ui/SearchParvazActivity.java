@@ -49,6 +49,7 @@ import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.Country;
+import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.Flight;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegment;
@@ -57,8 +58,14 @@ import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegmentTrue;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.PriceField;
 
 
-public class SearchParvazActivity extends Activity  implements Header.onSearchTextChangedListener, OnItemClickListener ,OnClickListener,OnItemSelectedListener{
-	//onSearchTextChangedListener, OnClickListener, OnItemClickListener,FiltersChangedListener,OnItemSelectedListener 
+
+
+
+
+
+
+public class SearchParvazActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnItemClickListener ,OnClickListener,OnItemSelectedListener{
+	//onSearchTextChangedListener, OnClickListener, OnItemClickListener,FiltersChangedListener,OnItemSelectedListener
 	public TextView txtBack,txtCityRaft,txtCityBargasht;
 	public List<ParentItemExpandingPlan> dataExpandingList;
 	private ExpandableListAdapter listAdapterExpanding;
