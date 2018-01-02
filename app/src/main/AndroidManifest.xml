@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.reserv.myapplicationeli"
-
     android:versionCode="21"
     android:versionName="2.3.5">
 
@@ -22,16 +21,17 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".slidingmenu.base.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".slidingmenu.base.RMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,50 +39,41 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.PlanFragment"
+            android:name=".slidingmenu.ui.PlanFragment"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.SearchParvazActivity"
+            android:name=".slidingmenu.ui.SearchParvazActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.GetAirportMabdaActivity"
+            android:name=".slidingmenu.ui.GetAirportMabdaActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.GetAirportMaghsadActivity"
+            android:name=".slidingmenu.ui.GetAirportMaghsadActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.SelectHotelActivity"
+            android:name=".slidingmenu.ui.SelectHotelActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.PlanFragment"
+            android:name=".slidingmenu.ui.PlanFragment"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.PassengerActivity"
+            android:name=".slidingmenu.ui.PassengerActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.CountrycodeActivity"
+            android:name=".slidingmenu.ui.CountrycodeActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
         <activity
-            android:name="com.reserv.myapplicationeli.slidingmenu.ui.NationalitycodeActivity"
+            android:name=".slidingmenu.ui.NationalitycodeActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></activity>
 
     </application>
 

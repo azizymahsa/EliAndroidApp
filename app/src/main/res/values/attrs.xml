@@ -1,0 +1,5 @@
+<resources>
+    <attr name="textFieldStyle" format="reference"/>
+    <attr name="fontPathCalligraphyConfig" format="string"/>
+
+</resources>
