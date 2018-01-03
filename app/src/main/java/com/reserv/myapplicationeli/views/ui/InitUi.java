@@ -17,6 +17,8 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class InitUi {
     public static void Toolbar(Activity activity,boolean isMainActivity,int color){
+        Toolbar toolbar = activity.findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(activity.getColor(color));
 
         FancyButton btnBack=activity.findViewById(R.id.btnBack);
         FancyButton btnMenu=activity.findViewById(R.id.btnMenu);

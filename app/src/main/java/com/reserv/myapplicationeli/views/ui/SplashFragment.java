@@ -21,9 +21,7 @@ import com.reserv.myapplicationeli.R;
 
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.tools.Utility;
-import com.reserv.myapplicationeli.tools.db.local.Config_Table;
-import com.reserv.myapplicationeli.views.activities.IDM_Activity;
-import com.reserv.myapplicationeli.views.activities.MainActivity;
+import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 
 
 public class SplashFragment extends BaseActivity

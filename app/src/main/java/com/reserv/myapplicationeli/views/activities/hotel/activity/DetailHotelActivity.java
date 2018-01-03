@@ -9,6 +9,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
@@ -26,7 +27,11 @@ public class DetailHotelActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
-        InitUi.Toolbar(this, false, R.color.color_hotel_dark);
+        InitUi.Toolbar(this, false, R.color.color_hotel);
+        Window window = getWindow();
+        window.setStatusBarColor(getColor(R.color.color_hotel_dark));
+
+
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText("چهارشنبه، 28 اسفند-جمعه 30 اسفند");
 

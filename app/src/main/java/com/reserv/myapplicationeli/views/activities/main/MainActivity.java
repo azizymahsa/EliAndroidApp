@@ -1,8 +1,10 @@
-package com.reserv.myapplicationeli.views.activities;
+package com.reserv.myapplicationeli.views.activities.main;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -17,6 +19,7 @@ import com.reserv.myapplicationeli.R;
 
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelActivity;
+import com.reserv.myapplicationeli.views.fragments.PackageFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
@@ -29,14 +32,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView tvTitle;
     private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance;
     public static String GET_FRAGMENT = null;
+    private FragmentManager manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
+        manager = getSupportFragmentManager();
         Window window = getWindow();
 
         window.setStatusBarColor(getColor(R.color.flight_status));
-
         InitUi.Toolbar(this,true, R.color.TRANSPARENT);
         initViews();
 
@@ -95,7 +99,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btnHotel:
                 break;
             case R.id.btnPackage:
-                Toast.makeText(this, "btnPackage", Toast.LENGTH_SHORT).show();
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+                tvTitle.setText(getString(R.string.search_package));
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        drawerLayout.closeDrawer(Gravity.RIGHT);
+
+                    }
+                }, 500);
+
+                manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                PackageFragment packageFragment = new PackageFragment();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container,packageFragment )
+                        .commit();
                 break;
             case R.id.btnTour:
                 Toast.makeText(this, "btnTour", Toast.LENGTH_SHORT).show();

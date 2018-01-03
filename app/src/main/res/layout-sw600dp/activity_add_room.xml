@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical"
+    tools:context="com.reserv.myapplicationeli.views.activities.AddRoomActivity">
+
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
+        <ImageView
+            android:id="@+id/btnBack"
+            style="@style/fancy_toolbar"
+            android:layout_gravity="right"
+            android:padding="14sp"
+            android:src="@drawable/right_arrow_back" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="اطلاعات اتاق"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12sp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_purple"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btn_add"
+                android:layout_width="25sp"
+                android:layout_height="25sp"
+                app:srcCompat="@drawable/ic_add_black_24dp"
+                android:padding="3sp"
+                android:tint="@color/colorPrimaryDark"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark" />
+
+            <ImageView
+                android:id="@+id/btn_remove"
+                android:layout_width="25sp"
+                android:layout_height="25sp"
+                android:padding="3sp"
+                app:srcCompat="@drawable/ic_remove_black_24dp"
+                android:tint="@color/colorPrimaryDark"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:padding="12sp"
+            android:text="اتاق"
+            android:textColor="@color/TextColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="12sp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/blue_button"
+            android:text="@string/accept"
+            android:textColor="#FFFFFF"
+            android:textSize="11dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,13 +1,13 @@
-package com.reserv.myapplicationeli.views.fragments;
+package com.reserv.myapplicationeli.views.fragments.pack;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
 
@@ -20,11 +20,11 @@ public class PackageFragment extends Fragment implements View.OnClickListener{
 
 
     public ViewGroup view;
-    public LinearLayout layout_room;
+    public ViewGroup layout_room;
     private final int ADD_ROOM_REQUEST = 100;
 
-    public static PackageFragment instance() {
-        PackageFragment fragment = new PackageFragment();
+    public static com.reserv.myapplicationeli.views.fragments.PackageFragment instance() {
+        com.reserv.myapplicationeli.views.fragments.PackageFragment fragment = new com.reserv.myapplicationeli.views.fragments.PackageFragment();
 
         return fragment;
     }
@@ -69,7 +69,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener{
 
     private void initViews() {
 
-        layout_room = view.findViewById(R.id.layout_room);
+        layout_room = (ViewGroup) view.findViewById(R.id.layout_room);
 
         layout_room.setOnClickListener(this);
     }

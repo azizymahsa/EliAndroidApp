@@ -38,6 +38,7 @@
     <color name="blue">#4690ee</color>
     <color name="TRANSPARENT">#00ffffff</color>
     <color name="flight_status">#8581b4</color>
+    <color name="white">#fff</color>
 
 
 </resources>

@@ -295,6 +295,7 @@
                 </android.support.v7.widget.CardView>
 
                 <TextView
+                    android:id="@+id/tvSelectHotel"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -305,6 +306,89 @@
                     android:text="انتخاب هتل"
                     android:textColor="#000000"
                     android:textStyle="bold"/>
+
+
+
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/llSelectHotel"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="3dp"
+                    card_view:cardElevation="3dp"
+                    android:layout_below="@+id/tvSelectHotel">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:text="1 X STANDARD ROOM"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#000000"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp">
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="100"
+                                android:textSize="14dp"
+                                android:text="1 X STANDARD ROOM"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="100"
+                                android:textSize="14dp"
+                                android:text="10,450,000 IRR"
+                                android:gravity="right"/>
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp">
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="100"
+                                android:textSize="14dp"
+                                android:text="1 X STANDARD ROOM"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="100"
+                                android:textSize="14dp"
+                                android:text="10,450,000 IRR"
+                                android:gravity="right"/>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
 
             </RelativeLayout>
 

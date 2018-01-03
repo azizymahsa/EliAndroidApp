@@ -11,5 +11,6 @@
 	<dimen name="text_request_size">16dp</dimen>
 	
 	<dimen name="raiting_min_height">25dp</dimen>
+    <dimen name="toolbar_height">55sp</dimen>
 <dimen name="raiting_min_width">25dp</dimen>
 </resources>
