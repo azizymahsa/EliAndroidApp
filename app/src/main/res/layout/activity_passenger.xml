@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   android:layout_width="match_parent"
-   android:layout_height="match_parent"
-   android:background="#fff"
-   android:orientation="vertical" > -->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff" >
 
-    <!--  <TextView  android:textColor="#000000"
-        android:id="@+id/txtLabel"
-         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="16dp"
-        android:text="Home View"/>
-
-    <ImageView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtLabel"
-        android:src="@drawable/ic_home"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/> -->
 
     <ScrollView
 
@@ -78,9 +60,9 @@
                 android:layout_height="40dp"
                 android:layout_margin="1dp"
                 android:layout_weight="1.57"
-                android:background="@drawable/top_box_passenger"
-                android:orientation="vertical" >
 
+                android:orientation="vertical" >
+                <!-- android:background="@drawable/top_box_passenger"-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="28dp"
@@ -423,6 +405,7 @@
                     android:background="@drawable/btngravity_big"
                     android:text="تایید و گام بعدی->"
                     android:textColor="#FFFFFF"
+                    android:onClick="goButtonClicked"
                     android:textSize="11dp" />
             </LinearLayout>
 

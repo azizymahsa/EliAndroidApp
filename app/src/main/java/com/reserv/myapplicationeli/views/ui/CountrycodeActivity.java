@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.views.adapters.CountryListArrayAdapter;
 
 public class CountrycodeActivity extends ListActivity {
 
@@ -26,7 +27,7 @@ public class CountrycodeActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         populateCountryList();
-        ArrayAdapter<Country> adapter = new com.reserv.myapplicationeli.views.ui.CountryListArrayAdapter(this, countryList);
+        ArrayAdapter<Country> adapter = new CountryListArrayAdapter(this, countryList);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

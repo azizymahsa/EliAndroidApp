@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -50,6 +51,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
@@ -86,14 +88,15 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 	private EditText searchtxt;
 	public TextView txt_shomare_factor;
 	private String Gensiyat;
-
+    Activity activity;
 	public int countB=SearchParvazActivity.COUNT_B;
 	public int countK=SearchParvazActivity.COUNT_K;
 	public int countN=SearchParvazActivity.COUNT_N;
 	public int sum=countB+countK+countN;
 
 
-	@Override
+	@SuppressLint("WrongViewCast")
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_passenger);
@@ -123,7 +126,10 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 		txtTitle.setOnClickListener(this);
 		txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
 		txtTitleCountM.setOnClickListener(this);
-		// btn_next_partnerInfo=(Button)findViewById(R.id.btn_next_partnerInfo);
+
+		btn_next_partnerInfo=(Button)findViewById(R.id.btn_next_partnerInfo);
+		btn_next_partnerInfo.setOnClickListener(this);
+
 		btn_nextm=(Button)findViewById(R.id.btn_nextm);
 		btn_nextm.setOnClickListener(this);
 
@@ -135,7 +141,7 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 			/* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
 			 btnAddsabad.setOnClickListener(this);*/
 
-		btn_saler= (Button)findViewById(R.id.btn_next_partnerInfo);
+		btn_saler= (Button)findViewById(R.id.btn_saler);
 		btn_mosaferan=(Button)findViewById(R.id.btn_mosaferan);
 		btn_khadamat=(Button)findViewById(R.id.btn_khadamat);
 		btn_pish_factor=(Button)findViewById(R.id.btn_pish_factor);
@@ -504,7 +510,7 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 		private ListView listAirPort;
 
 		@Override
-		protected void onPreExecute() {
+		protected void onPreExecute(){
 			super.onPreExecute();
 
 			//this method will be running on UI thread
@@ -669,8 +675,11 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 				linear_pish_factor.setVisibility(View.GONE);
 				linear_list_khadamat.setVisibility(View.VISIBLE);
 
+                ((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
+                ((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
+                txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
 
-				mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data);
+				mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data,PassengerActivity.this);
 				//mAdapter.setAdapter(mAdapter);
 				mAdapter.setData(data);
 				listKhadamat.setAdapter(mAdapter);
@@ -707,7 +716,7 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 			headerJson.put("BookingReferenceID", GUID);///ID.toString()
 
 			//mosaferan
-			PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table();
+			PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
 			CursorManager cursorM=items_Table.getAllMosafer();
 			if(cursorM != null){
 				for (int i = 0; i < cursorM.getCount(); i++) {
@@ -743,7 +752,7 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 			}
 
 			////kharidar
-			PassengerPartnerInfo_Table partnerInfo_Table=new PassengerPartnerInfo_Table();
+			PassengerPartnerInfo_Table partnerInfo_Table=new PassengerPartnerInfo_Table(PassengerActivity.this);
 			CursorManager cursorManager=partnerInfo_Table.getPartner();
 			cursorManager.moveToPosition(0);
 			detailsPartner.put("RqPartner_Address", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
@@ -878,16 +887,16 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 					txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
 					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
-					Intent intent = new Intent(this,PlanFragment.class);
-					//i2.putExtra("CUSTOMER_ID", (int) customerID);
-					startActivity(intent);
+                    finish();
 				}
 				break;
 			case R.id.btn_next_partnerInfo:
 
 				try{
 					//jadvale mosafer khali beshe
-					PassengerMosaferItems_Table db = new PassengerMosaferItems_Table();
+
+					PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerActivity.this);
+                 //   db.openDB();
 					db.dropTable();
 					////////////////////////Validate
 			/*		 String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
@@ -951,7 +960,7 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 						Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
 					}else{
 						//insert partner
-						PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table();
+						PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerActivity.this);
 
 						partnerInfo_Table.dropTable();
 						partnerInfo_Table.openDB();
@@ -1080,7 +1089,7 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 				if(flagMosafer.contains("F")){
 					Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
 				}else{
-					PassengerMosaferItems_Table db = new PassengerMosaferItems_Table();
+					PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerActivity.this);
 
 					//db.dropTable();
 					db.openDB();
@@ -1104,9 +1113,7 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 					System.out.println("APICALL:"+"sum:"+sum);
 					System.out.println("insert:");
 					new AsyncFetch().execute();
-					((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-					((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
-					txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+
 				}
 				break;
 
@@ -1124,41 +1131,7 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 			case R.id.txtmeliyatm:
 				final Intent intent4 = new Intent(this, NationalitycodeActivity.class);
 				startActivityForResult(intent4, 1);
-				/*AlertDialog.Builder builderSingle = new AlertDialog.Builder(PassengerActivity.this);
-				builderSingle.setIcon(R.drawable.gifticon);
-				builderSingle.setTitle("Select One Name:-");
 
-				final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(PassengerActivity.this, android.R.layout.select_dialog_singlechoice);
-				arrayAdapter.add("Hardik");
-				arrayAdapter.add("Archit");
-				arrayAdapter.add("Jignesh");
-				arrayAdapter.add("Umang");
-				arrayAdapter.add("Gatti");
-
-				builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-				            @Override
-				            public void onClick(DialogInterface dialog, int which) {
-				                dialog.dismiss();
-				            }
-				        });
-
-				builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-				            @Override
-				            public void onClick(DialogInterface dialog, int which) {
-				                String strName = arrayAdapter.getItem(which);
-				                AlertDialog.Builder builderInner = new AlertDialog.Builder(PassengerActivity.this);
-				                builderInner.setMessage(strName);
-				                builderInner.setTitle("Your Selected Item is");
-				                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-				                            @Override
-				                            public void onClick(DialogInterface dialog,int which) {
-				                                dialog.dismiss();
-				                            }
-				                        });
-				                builderInner.show();
-				            }
-				        });
-				builderSingle.show();*/
 				break;
 			case R.id.txtmahale_eghamat:
 				final Intent intent3 = new Intent(this, CountrycodeActivity.class);
@@ -1276,9 +1249,11 @@ public class PassengerActivity extends Activity implements Header.onSearchTextCh
 			txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
 			((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
 		}else if(linear_saler.getVisibility() == View.VISIBLE) {
-			Intent intent = new Intent(this,PlanFragment.class);
+			/*Intent intent = new Intent(this,PlanFragment.class);
 			//i2.putExtra("CUSTOMER_ID", (int) customerID);
-			startActivity(intent);
+			startActivity(intent);*/
+           //PassengerActivity.this.finish();
+            finish();
 		}
 	}
 	@Override

@@ -39,7 +39,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.Country;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMaghsadAdapter;
@@ -57,6 +57,8 @@ public class GetAirportMaghsadActivity extends Activity implements Header.onSear
 		
 		 GetAirPortMaghsadAdapter mAdapter;
 		private EditText searchtxt;
+
+	Activity activity;
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
@@ -268,17 +270,17 @@ public class GetAirportMaghsadActivity extends Activity implements Header.onSear
 	                String Value_Mabda_Airport="";
 	                String Value_Mabda_Airport_Code="";
 	                ////
-	                Bundle bundle2 = getIntent().getExtras();
-					if(bundle2 != null ){
+
+					if(Prefs.getString("Value-Mabda-City", "") != null ){
 					
-						Value_Mabda_City=  bundle2.getString("Value-Mabda-City");
-		      			Value_Mabda_Airport= bundle2.getString("Value-Mabda-Airport");
-		      			Value_Mabda_Airport_Code= bundle2.getString("Value-Mabda-Airport-Code");
+						Value_Mabda_City=  Prefs.getString("Value-Mabda-City", "");//Prefs.getString("Value-Maghsad-City", "");
+		      			Value_Mabda_Airport= Prefs.getString("Value-Mabda-Airport", "");
+		      			Value_Mabda_Airport_Code= Prefs.getString("Value-Mabda-Airport-Code", "");
 		      		}
 	                
 	                
 	                listAirPort = (ListView)findViewById(R.id.listAirPort);
-	                mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data,Value_Mabda_City,Value_Mabda_Airport,Value_Mabda_Airport_Code);
+	                mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data,Value_Mabda_City,Value_Mabda_Airport,Value_Mabda_Airport_Code,GetAirportMaghsadActivity.this);
 	                //mAdapter.setAdapter(mAdapter);
 	                mAdapter.setData(data);
 	                listAirPort.setAdapter(mAdapter);

@@ -5,6 +5,7 @@ import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.tools.db.main.MainLocalDB;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -41,8 +42,8 @@ public class PassengerPartnerInfo_Table extends MainLocalDB {
 		}
 	};
 
-	public PassengerPartnerInfo_Table() {
-		super(GlobalApplication.getActivity());
+	public PassengerPartnerInfo_Table(Activity activity) {
+		super(activity);
 	}
 /*
 	public CursorManager getDatas() {

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
@@ -7,7 +18,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="350dp"
+        android:layout_height="310dp"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="#fff"
         android:gravity="left">
@@ -16,7 +27,7 @@
             android:id="@+id/front"
             style="@style/MyListFrontContentRe"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="260dp"
             android:background="@drawable/banafsh_jahan"
             android:gravity="center"
             android:minHeight="40dp"
@@ -44,9 +55,9 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="230dp"
                 android:layout_marginRight="15dip"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="0.09"
                 android:gravity="right"
                 android:orientation="vertical">
@@ -139,11 +150,11 @@
             <TextView
                 android:id="@+id/txtOption"
                 android:layout_width="35dp"
-                android:layout_height="206dp"
+                android:layout_height="190dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/icswitch_big"
                 android:gravity="center"
                 android:text=""
@@ -185,38 +196,6 @@
             android:textColor="#808080"
             android:textSize="12sp"
             android:visibility="visible" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8.66"
-                android:text=""
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_weight="6.47"
-                android:gravity="left"
-                android:text="جستجوی پرواز"
-                android:textColor="#ffffff"
-                android:textSize="14dp"
-                android:textStyle="bold" />
-
-
-
-
-        </LinearLayout>
 
     </RelativeLayout>
 
@@ -544,3 +523,6 @@
     </LinearLayout>
 
 </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

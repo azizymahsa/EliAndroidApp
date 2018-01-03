@@ -7,10 +7,12 @@ import java.util.ArrayList;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Typeface;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.ui.font.CustomViewWithTypefaceSupport;
 import com.reserv.myapplicationeli.views.ui.font.TextField;
@@ -38,7 +40,16 @@ public class GlobalApplication extends Application {
 				.addCustomViewWithSetTypeface(CustomViewWithTypefaceSupport.class)
 				.addCustomStyle(TextField.class, R.attr.textFieldStyle)
 				.build()
-		);}
+		);
+
+		new Prefs.Builder()
+				.setContext(this)
+				.setMode(ContextWrapper.MODE_PRIVATE)
+				.setPrefsName(getPackageName())
+				.setUseDefaultSharedPreference(true)
+				.build();
+
+	}
 	public String getMyOperator(Context aContext) {
 		TelephonyManager mTelephonyMgr;
 		mTelephonyMgr = (TelephonyManager) aContext.getSystemService(Context.TELEPHONY_SERVICE);

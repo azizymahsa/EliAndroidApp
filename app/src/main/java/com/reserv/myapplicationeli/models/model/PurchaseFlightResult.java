@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.ui;
+package com.reserv.myapplicationeli.models.model;
 
 public class PurchaseFlightResult {
 	private String CityEn;

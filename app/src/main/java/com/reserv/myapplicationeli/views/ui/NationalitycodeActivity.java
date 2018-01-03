@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.views.adapters.NationalityListArrayAdapter;
 
 public class NationalitycodeActivity extends ListActivity {
 

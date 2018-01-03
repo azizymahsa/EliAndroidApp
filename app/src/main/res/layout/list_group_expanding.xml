@@ -217,7 +217,7 @@
                     android:gravity="right"
                     android:text="رفت به استانبول"
                     android:textColor="#000"
-                    android:textSize="12dip" />
+                    android:textSize="@dimen/_12dp" />
 
                 <TextView
                     android:id="@+id/lblAirline"
@@ -238,7 +238,7 @@
                     android:gravity="right"
                     android:text="برگشت به تهران"
                     android:textColor="#000"
-                    android:textSize="12dip" />
+                    android:textSize="@dimen/_12dp" />
             </LinearLayout>
 
             <ImageView

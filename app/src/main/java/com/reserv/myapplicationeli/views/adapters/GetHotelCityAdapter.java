@@ -31,9 +31,9 @@ public class GetHotelCityAdapter extends BaseAdapter {
 	public String value_Maghsad_Airport;
 	public String value_Maghsad_Airport_Code;
 
-	public GetHotelCityAdapter() {
+	/*public GetHotelCityAdapter() {
 		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
-	}
+	}*/
 	 // create constructor to innitilize context and data sent from MainActivity
     public GetHotelCityAdapter(Context context, List<HotelCity> data){
         this.context=context;
@@ -45,7 +45,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
     }
 	public GetHotelCityAdapter(Activity activity){
 		this.context=activity;
-		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
+		myInflater = LayoutInflater.from(activity);
 	}
 
 	public void setData(List<HotelCity> data) {
@@ -106,7 +106,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
 					
 						Intent i4 = new Intent(context,HotelActivity.class);
 						
-						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+						//i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 						
 						i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());//current.getCityName()
 						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
@@ -128,7 +128,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
 					
 						Intent i4 = new Intent(context,HotelActivity.class);
 						
-						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+						//i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 						i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());//current.getCityName()
 						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
 						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());

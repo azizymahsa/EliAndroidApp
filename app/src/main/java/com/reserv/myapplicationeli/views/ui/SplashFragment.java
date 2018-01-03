@@ -18,16 +18,17 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.db.local.Config_Table;
 import com.reserv.myapplicationeli.views.activities.IDM_Activity;
-import com.reserv.myapplicationeli.views.fragments.PlanFragment;
+import com.reserv.myapplicationeli.views.activities.MainActivity;
 
 
-public class SplashFragment extends IDM_Activity
+public class SplashFragment extends BaseActivity
 {
 	//sequence png
-	private static final int FRAME_DELAY = 100; // in ms
+	private static final int FRAME_DELAY = 110; // in ms
 
 	private ArrayList<Bitmap> mBitmaps;
 	private final AtomicInteger mBitmapIndex = new AtomicInteger();
@@ -123,14 +124,14 @@ public class SplashFragment extends IDM_Activity
 	// ===================== LOAD MAIN PAGE ====================================
 	// =========================================================================
 	private void loadMainPage() {
-		final Config_Table config = new Config_Table();
+	//	final Config_Table config = new Config_Table();
 
 
 		findViewById(R.id.mainPassLayout).setVisibility(View.GONE);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				Intent mainIntent = new Intent(SplashFragment.this,PlanFragment.class);
+				Intent mainIntent = new Intent(SplashFragment.this,MainActivity.class);
 				SplashFragment.this.startActivity(mainIntent);
 				SplashFragment.this.finish();
 			}
@@ -184,7 +185,4 @@ public class SplashFragment extends IDM_Activity
 
 
 
-	@Override
-	protected void buildAlertMessageNoGps() {
-	}
 }

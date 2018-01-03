@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.ui;
+package com.reserv.myapplicationeli.views.adapters;
 
 import java.util.List;
 
@@ -11,10 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.views.ui.CountrycodeActivity;
 
-public class NationalityListArrayAdapter extends ArrayAdapter<NationalitycodeActivity.Country> {
+public class CountryListArrayAdapter extends ArrayAdapter<CountrycodeActivity.Country> {
 
-    private final List<NationalitycodeActivity.Country> list;
+    private final List<CountrycodeActivity.Country> list;
     private final Activity context;
 
     static class ViewHolder {
@@ -22,7 +23,7 @@ public class NationalityListArrayAdapter extends ArrayAdapter<NationalitycodeAct
         protected ImageView flag;
     }
 
-    public NationalityListArrayAdapter(Activity context, List<NationalitycodeActivity.Country> list) {
+    public CountryListArrayAdapter(Activity context, List<CountrycodeActivity.Country> list) {
         super(context, R.layout.activity_countrycode_row, list);
         this.context = context;
         this.list = list;

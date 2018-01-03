@@ -13,6 +13,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 import com.reserv.myapplicationeli.views.ui.GetAirportMaghsadActivity;
@@ -136,32 +140,22 @@ public class PlanFragment extends Fragment implements OnClickListener {
 
 
         //set value bundle
-        Bundle bundle = getActivity().getIntent().getExtras();
-        if (bundle != null) {
-            if (bundle.getString("Value-Mabda-Airport") != null) {
-                      /*i4.putExtra("Value-Mabda-City",current.getCityName());
-					i4.putExtra("Value-Mabda-Airport",current.getAirportName());*/
-                tvStart.setText("" + bundle.getString("Value-Mabda-City"));
-                lbl_forudgah_mabda.setText("" + bundle.getString("Value-Mabda-Airport"));
-            }
+        //get
+        if(Prefs.getString("Value-Mabda-City", "") != null || Prefs.getString("Value-Mabda-City", "") != "") {
+            tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
+            lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
         }
-        //	Bundle bundle = getActivity().getIntent().getExtras();
-        if (bundle != null) {
-            if (bundle.getString("Value-Maghsad-Airport") != null) {
-      	      /*	i4.putExtra("Value-Maghsad-City",current.getCityName());
-				i4.putExtra("Value-Maghsad-Airport",current.getAirportName());*/
-                tvEnd.setText("" + bundle.getString("Value-Maghsad-City"));
-                lbl_forudgah_maghsad.setText("" + bundle.getString("Value-Maghsad-Airport"));
-            }
-        }
-        //return rootView;
+
+        if(Prefs.getString("Value-Maghsad-Airport", "") != null || Prefs.getString("Value-Maghsad-Airport", "") != "") {
+            lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
+            tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
+        }//return rootView;
 
 
         return rootView;
     }//end oncreat
 
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
+    public static class DatePickerFragment extends android.support.v4.app.DialogFragment implements DatePickerDialog.OnDateSetListener {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -219,6 +213,20 @@ public class PlanFragment extends Fragment implements OnClickListener {
             }
         }
     }//endDatepicker
+    @Override
+    public void onResume() {
+        Log.e("DEBUG", "onResume of PlanFragment");
+        super.onResume();
+        if(Prefs.getString("Value-Mabda-City", "") != null || Prefs.getString("Value-Mabda-City", "") != "") {
+            tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
+            lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
+        }
+
+        if(Prefs.getString("Value-Maghsad-Airport", "") != null || Prefs.getString("Value-Maghsad-Airport", "") != "") {
+            lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
+            tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
+        }//return rootView;
+    }
 
     public boolean isInRange(int a, int b, int c) {
         return b > a ? c >= a && c <= b : c >= b && c <= a;
@@ -229,14 +237,19 @@ public class PlanFragment extends Fragment implements OnClickListener {
         // TODO Auto-generated method stub
         switch (v.getId()) {
             case R.id.tarikh_be_picker:
-                DialogFragment newFragment = new DatePickerFragment();
-             //   newFragment.show(getFragmentManager(), "datePicker");
+                android.support.v4.app.DialogFragment newFragment = new DatePickerFragment();
+                FragmentManager fm2 = getActivity().getSupportFragmentManager();
+                // DatePickerFragment dialog = new DatePickerFragment();
+                newFragment.show(fm2,"");
                 flag = false;
 
                 break;
             case R.id.tarikh_az_picker:
-                DialogFragment newFragment2 = new DatePickerFragment();
-                //newFragment2.show(getFragmentManager(), "datePicker");
+                android.support.v4.app.DialogFragment  newFragment2 = new DatePickerFragment();
+
+               FragmentManager fm = getActivity().getSupportFragmentManager();
+               // DatePickerFragment dialog = new DatePickerFragment();
+                newFragment2.show(fm,"");
                 flag = true;
                 break;
 
@@ -326,11 +339,11 @@ public class PlanFragment extends Fragment implements OnClickListener {
             case R.id.tvEnd:
 
                 Intent i3 = new Intent(getActivity(), GetAirportMaghsadActivity.class);
-                Bundle bundle = getActivity().getIntent().getExtras();
-                if (bundle != null) {
-                    i3.putExtra("Value-Mabda-City", bundle.getString("Value-Mabda-City"));
-                    i3.putExtra("Value-Mabda-Airport", bundle.getString("Value-Mabda-Airport"));
-                    i3.putExtra("Value-Mabda-Airport-Code", bundle.getString("Value-Mabda-Airport-Code"));//*THR
+               // Bundle bundle = getActivity().getIntent().getExtras();
+                if (Prefs.getString("Value-Mabda-City","") != null || Prefs.getString("Value-Mabda-City","") != "") {
+                    i3.putExtra("Value-Mabda-City", Prefs.getString("Value-Mabda-City",""));
+                    i3.putExtra("Value-Mabda-Airport", Prefs.getString("Value-Mabda-Airport",""));
+                    i3.putExtra("Value-Mabda-Airport-Code",  Prefs.getString("Value-Mabda-Airport-Code",""));//*THR
                 }
 
                 startActivityForResult(i3, 2);
@@ -339,11 +352,11 @@ public class PlanFragment extends Fragment implements OnClickListener {
 
 
                 Intent intent = new Intent(getActivity(), GetAirportMabdaActivity.class);
-                Bundle bundle2 = getActivity().getIntent().getExtras();
-                if (bundle2 != null) {
-                    intent.putExtra("Value-Maghsad-City", bundle2.getString("Value-Maghsad-City"));
-                    intent.putExtra("Value-Maghsad-Airport", bundle2.getString("Value-Maghsad-Airport"));
-                    intent.putExtra("Value-Maghsad-Airport-Code", bundle2.getString("Value-Maghsad-Airport-Code"));//*
+               // Bundle bundle2 = getActivity().getIntent().getExtras();
+                if (Prefs.getString("Value-Maghsad-City","") != null || Prefs.getString("Value-Maghsad-City","") != "") {
+                    intent.putExtra("Value-Maghsad-City", Prefs.getString("Value-Maghsad-City",""));
+                    intent.putExtra("Value-Maghsad-Airport",Prefs.getString("Value-Maghsad-Airport",""));
+                    intent.putExtra("Value-Maghsad-Airport-Code", Prefs.getString("Value-Maghsad-Airport-Code",""));//*
                 }
 
                 startActivityForResult(intent, 2);
@@ -399,21 +412,21 @@ public class PlanFragment extends Fragment implements OnClickListener {
 
                 Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
                 //Intent intent1 = new Intent(this,LoadingParvazTwoActivity.class);
-                Bundle bundleS = getActivity().getIntent().getExtras();
-                if (bundleS != null) {
-                    if (bundleS.getString("Value-Mabda-Airport-Code") != null) {
-                        intent1.putExtra("Value-Mabda-City", bundleS.getString("Value-Mabda-City"));
-                        intent1.putExtra("Value-Mabda-Airport", bundleS.getString("Value-Mabda-Airport"));
-                        intent1.putExtra("Value-Mabda-Airport-Code", bundleS.getString("Value-Mabda-Airport-Code"));//*THR
+             //   Bundle bundleS = getActivity().getIntent().getExtras();
+                if (Prefs.getString("Value-Mabda-City","") != null) {
+                    if (Prefs.getString("Value-Mabda-Airport-Code","") != null) {
+                        intent1.putExtra("Value-Mabda-City", Prefs.getString("Value-Mabda-City",""));
+                        intent1.putExtra("Value-Mabda-Airport", Prefs.getString("Value-Mabda-Airport",""));
+                        intent1.putExtra("Value-Mabda-Airport-Code", Prefs.getString("Value-Mabda-Airport-Code",""));//*THR
                     } else {
                         intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
                         intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
                         intent1.putExtra("Value-Mabda-Airport-Code", "THR");//*THR
                     }
-                    if (bundleS.getString("Value-Maghsad-Airport-Code") != null) {
-                        intent1.putExtra("Value-Maghsad-City", bundleS.getString("Value-Maghsad-City"));
-                        intent1.putExtra("Value-Maghsad-Airport", bundleS.getString("Value-Maghsad-Airport"));
-                        intent1.putExtra("Value-Maghsad-Airport-Code", bundleS.getString("Value-Maghsad-Airport-Code"));//*
+                    if (Prefs.getString("Value-Maghsad-Airport-Code","") != null) {
+                        intent1.putExtra("Value-Maghsad-City", Prefs.getString("Value-Maghsad-City",""));
+                        intent1.putExtra("Value-Maghsad-Airport", Prefs.getString("Value-Maghsad-Airport",""));
+                        intent1.putExtra("Value-Maghsad-Airport-Code",  Prefs.getString("Value-Maghsad-Airport-Code",""));//*
 
                     } else {
                         intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());

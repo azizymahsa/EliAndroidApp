@@ -4,5 +4,6 @@
 
 
     <dimen name="circle_60dp">100dp</dimen>
+    <dimen name="_12dp">18dp</dimen>
 
 </resources>

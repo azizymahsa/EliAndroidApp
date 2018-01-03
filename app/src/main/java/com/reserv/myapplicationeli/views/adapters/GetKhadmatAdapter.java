@@ -16,10 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
-import com.reserv.myapplicationeli.views.ui.PurchaseFlightResult;
+import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
 
 
 public class GetKhadmatAdapter extends BaseAdapter {
@@ -34,24 +33,24 @@ public class GetKhadmatAdapter extends BaseAdapter {
 	public String value_Maghsad_City;
 	public String value_Maghsad_Airport;
 	public String value_Maghsad_Airport_Code;
+public Activity activity;
 
-	public GetKhadmatAdapter() {
-		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
-	}
 	// create constructor to innitilize context and data sent from MainActivity
-	public GetKhadmatAdapter(Context context, List<PurchaseFlightResult> data){
+	public GetKhadmatAdapter(Context context, List<PurchaseFlightResult> data,Activity activity){
 		this.context=context;
+		this.activity=activity;
 		inflater= LayoutInflater.from(context);
 		this.data=data;
-		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
+		myInflater = LayoutInflater.from(activity);
         
        /* this.value_Maghsad_City=value_Maghsad_City;
         this.value_Maghsad_Airport=value_Maghsad_Airport;
         this.value_Maghsad_Airport_Code=value_Maghsad_Airport_Code;*/
 	}
 	public GetKhadmatAdapter(Activity activity){
-		this.context=activity;
-		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
+		//this.context=activity;
+		this.activity=activity;
+		myInflater = LayoutInflater.from(activity);
 	}
 
 	public void setData(List<PurchaseFlightResult> data) {

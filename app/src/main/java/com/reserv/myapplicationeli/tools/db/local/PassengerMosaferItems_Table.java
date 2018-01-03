@@ -5,8 +5,10 @@ import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.tools.db.main.MainLocalDB;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AppCompatActivity;
 
 public class PassengerMosaferItems_Table extends MainLocalDB {
 
@@ -36,8 +38,8 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 		}
 	};
 
-	public PassengerMosaferItems_Table() {
-		super(GlobalApplication.getActivity());
+	public PassengerMosaferItems_Table(Activity activity) {
+		super(activity);
 	}
 /*
 	public CursorManager getDatas() {

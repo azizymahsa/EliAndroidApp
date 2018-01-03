@@ -13,16 +13,17 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.reserv.myapplicationeli.base.GlobalApplication;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.reserv.myapplicationeli.GlobalApplication;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.Country;
 import com.reserv.myapplicationeli.views.ui.GetAirportMaghsadActivity;
-import com.reserv.myapplicationeli.views.fragments.PlanFragment;
+import com.reserv.myapplicationeli.views.ui.PlanFragment;
 
 
 public class GetAirPortMaghsadAdapter extends BaseAdapter {
 	private Context context;
-	private GetAirportMaghsadActivity activity;
+
 	private LayoutInflater myInflater;
 	//public CursorManager cursor;
 	public int customerId;
@@ -33,15 +34,17 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 	public String value_Mabda_City;
 	public String value_Mabda_Airport;
 	public String value_Mabda_Airport_Code;
+	Activity activity;
 	public GetAirPortMaghsadAdapter() {
-		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
+		//myInflater = LayoutInflater.from(GlobalApplication.getActivity());
 	}
 	 // create constructor to innitilize context and data sent from MainActivity
-    public GetAirPortMaghsadAdapter(Context context, List<Country> data, String value_Mabda_City, String value_Mabda_Airport, String value_Mabda_Airport_Code){
-        this.context=context;
+    public GetAirPortMaghsadAdapter(Context context, List<Country> data, String value_Mabda_City, String value_Mabda_Airport, String value_Mabda_Airport_Code,Activity activity){
+		this.activity=activity;
+		this.context=context;
         inflater= LayoutInflater.from(context);
         this.data=data;
-        myInflater = LayoutInflater.from(GlobalApplication.getActivity());
+        myInflater = LayoutInflater.from(context);
         
         this.value_Mabda_City=value_Mabda_City;
         this.value_Mabda_Airport=value_Mabda_Airport;
@@ -126,11 +129,7 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 					
 					@Override
 					public void onClick(View v) {
-						// int cat_ID        =  (Integer) v.getTag();
-						//cursor.moveToPosition(position);
-						/*NoRequestDialog NRDialog = new NoRequestDialog(context);
-						NRDialog.setCustomer(cat_ID);
-						NRDialog.show();*/
+					/*
 						Intent i4 = new Intent(context,PlanFragment.class);
 						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 						i4.putExtra("Value-Maghsad-City",current.getCityName());//current.getCityName()
@@ -143,7 +142,21 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 						
 						context.startActivity(i4);
 						//finish();
-						Toast.makeText(v.getContext(),current.getCityName()+" "+current.getAirportName(),Toast.LENGTH_SHORT).show();
+						Toast.makeText(v.getContext(),current.getCityName()+" "+current.getAirportName(),Toast.LENGTH_SHORT).show();*/
+						Prefs.putString("Value-Maghsad-City",current.getCityName());
+						Prefs.putString("Value-Maghsad-Airport",current.getAirportName());
+						Prefs.putString("Value-Maghsad-Airport-Code",current.getAirportCode());
+
+						Prefs.putString("Value-Mabda-City",value_Mabda_City);
+						Prefs.putString("Value-Mabda-Airport",value_Mabda_Airport);
+						Prefs.putString("Value-Mabda-Airport-Code",value_Mabda_Airport_Code);
+
+						//get
+						//Prefs.getString("Value-Mabda-Airport","");
+
+
+
+						activity.finish();
 					}
 				});
 		holder.AirportName.setTag(current.getCityName());
@@ -151,19 +164,29 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 					
 					@Override
 					public void onClick(View v) {
-						// int cat_ID        =  (Integer) v.getTag();
-						//cursor.moveToPosition(position);
-						/*NoRequestDialog NRDialog = new NoRequestDialog(context);
-						NRDialog.setCustomer(cat_ID);
-						NRDialog.show();*/
-						Intent i4 = new Intent(context,PlanFragment.class);
+
+						/*Intent i4 = new Intent(context,PlanFragment.class);
 						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 						i4.putExtra("Value-Maghsad-City",current.getCityName());//current.getCityName()
 						i4.putExtra("Value-Maghsad-Airport",current.getAirportName());
 						i4.putExtra("Value-Maghsad-Airport-Code",current.getAirportCode());
 						context.startActivity(i4);
 						//finish();
-						Toast.makeText(v.getContext(),current.getCityName()+" "+current.getAirportName(),Toast.LENGTH_SHORT).show();
+						Toast.makeText(v.getContext(),current.getCityName()+" "+current.getAirportName(),Toast.LENGTH_SHORT).show();*/
+						Prefs.putString("Value-Maghsad-City",current.getCityName());
+						Prefs.putString("Value-Maghsad-Airport",current.getAirportName());
+						Prefs.putString("Value-Maghsad-Airport-Code",current.getAirportCode());
+
+						Prefs.putString("Value-Mabda-City",value_Mabda_City);
+						Prefs.putString("Value-Mabda-Airport",value_Mabda_Airport);
+						Prefs.putString("Value-Mabda-Airport-Code",value_Mabda_Airport_Code);
+
+						//get
+						//Prefs.getString("Value-Mabda-Airport","");
+
+
+
+						activity.finish();
 					}
 				});
 		return convertView;

@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.ui;
+package com.reserv.myapplicationeli.views.adapters;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
+import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -131,7 +133,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				
 					Intent i4 = new Intent(_context,PassengerActivity.class);
 					
-					i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					//i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 					i4.putExtra("Flight_GUID",item.flGUID+"");//current.getCityName()
 					/*i4.putExtra("Value-Mabda-Airport",current.getAirportName());
 					i4.putExtra("Value-Mabda-Airport-Code",current.getAirportCode());*/

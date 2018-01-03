@@ -38,6 +38,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.Country;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMabdaAdapter;
@@ -228,7 +229,7 @@ public class GetAirportMabdaActivity extends Activity implements Header.onSearch
 					  
 		              // Getting JSON Array node
 				  JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
-		              JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
+		          JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
 	            	//////////////////////////////
 	              //  JSONArray jArray = new JSONArray(result);
 
@@ -250,16 +251,15 @@ public class GetAirportMabdaActivity extends Activity implements Header.onSearch
 	                String Value_Maghsad_Airport="";
 	                String Value_Maghsad_Airport_Code="";
 	                ////
-	                Bundle bundle2 = getIntent().getExtras();
-					if(bundle2 != null ){
-		      			 Value_Maghsad_City=  bundle2.getString("Value-Maghsad-City");
-		      			 Value_Maghsad_Airport= bundle2.getString("Value-Maghsad-Airport");
-		      			 Value_Maghsad_Airport_Code= bundle2.getString("Value-Maghsad-Airport-Code");
-		      		}
+	                if( Prefs.getString("Value-Maghsad-City", "") != null) {
+						Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
+						Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
+						Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
+					}
 	                
 	                ////
 	                listAirPort = (ListView)findViewById(R.id.listAirPort);
-	                  mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data,Value_Maghsad_City,Value_Maghsad_Airport,Value_Maghsad_Airport_Code);
+	                  mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data,Value_Maghsad_City,Value_Maghsad_Airport,Value_Maghsad_Airport_Code,GetAirportMabdaActivity.this);
 	                //mAdapter.setAdapter(mAdapter);
 	                mAdapter.setData(data);
 	                listAirPort.setAdapter(mAdapter);

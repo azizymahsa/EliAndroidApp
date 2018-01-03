@@ -2,5 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--10.1” tablet 1280x800 mdpi-->
     <dimen name="circle_60dp">100dp</dimen>
+    <dimen name="_12dp">18dp</dimen>
 
 </resources>
