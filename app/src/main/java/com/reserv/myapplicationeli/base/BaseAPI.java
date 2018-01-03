@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Reza Nejati <nejati@mvit.ir>
+ * Reza Nejati <reza.n.j.t.i@gmail.com>
  */
 
 

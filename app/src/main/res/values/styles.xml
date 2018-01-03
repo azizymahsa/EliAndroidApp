@@ -71,4 +71,6 @@
     </style>
     <style name="IconFonts" parent="android:TextAppearance">
         <item name="fontPath">fonts/icomoon.ttf</item></style>
+    <style name="IconFonts2" parent="android:TextAppearance">
+        <item name="fontPath">fonts/wifi.ttf</item></style>
 </resources>

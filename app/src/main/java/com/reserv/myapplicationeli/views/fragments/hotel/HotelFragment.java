@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.fragments;
+package com.reserv.myapplicationeli.views.fragments.hotel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 
 
-public class HotelActivity extends Fragment implements OnClickListener {
-	public HotelActivity() {
+public class HotelFragment extends Fragment implements OnClickListener {
+	public HotelFragment() {
 	}
 	public static Button searchHotel,btnPlusB,btnMinesB,btnPlusK,btnMinesK,btnPlusN,btnMinesN,btn_add_room;
 	public TextView txtCity,lbl_city_english,txtTitle,txtCountB,txtCountK,txtCountN,lblRoomCount,txtRoomCount;

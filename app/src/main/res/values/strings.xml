@@ -95,6 +95,14 @@
     <string name="icon_bed">&#xe900;</string>
     <string name="icon_umbrella">&#xe903;</string>
     <string name="icon_globe">&#xf0b6;</string>
+    <string name="icon_arrow">&#xea40;</string>
+    <string name="icon_location">&#xe904;</string>
+    <string name="icon_salon">&#xf205;</string>
+    <string name="icon_restaurant">&#xf1fb;</string>
+    <string name="icon_tv">&#xf24b;</string>
+    <string name="icon_wifi">&#xf25e;</string>
+    <string name="icon_conditioning">&#xf10d;</string>
+    <string name="icon_drink">&#xf17e;</string>
 
     <string name="searchFlight">جستجوی پرواز</string>
 

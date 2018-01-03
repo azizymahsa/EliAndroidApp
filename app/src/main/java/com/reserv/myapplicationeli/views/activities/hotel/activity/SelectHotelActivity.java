@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.ui;
+package com.reserv.myapplicationeli.views.activities.hotel.activity;
 
 import android.app.Activity;
 import android.app.Fragment;

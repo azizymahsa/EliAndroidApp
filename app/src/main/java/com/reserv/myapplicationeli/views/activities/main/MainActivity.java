@@ -1,7 +1,9 @@
 package com.reserv.myapplicationeli.views.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelActivity;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
+import com.reserv.myapplicationeli.views.ui.InitUi;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -30,6 +33,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
+        Window window = getWindow();
+
+        window.setStatusBarColor(getColor(R.color.flight_status));
+
+        InitUi.Toolbar(this,true, R.color.TRANSPARENT);
         initViews();
 
         PlanFragment workerStateFragment = new PlanFragment();
@@ -52,9 +60,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnTour = findViewById(R.id.btnTour);
         btnInsurance = findViewById(R.id.btnInsurance);
 
-        btnMenu.setCustomTextFont("fonts/icomoon.ttf");
+
         tvTitle.setText(getString(R.string.searchFlight));
-        btnMenu.setText(getString(R.string.icon_menu));
+
 
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
@@ -85,9 +93,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(this, "btnFlight", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnHotel:
-                Intent intent6=new Intent(this,HotelActivity.class);
-                startActivityForResult(intent6, 2);
-                Toast.makeText(this, "btnHotel", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnPackage:
                 Toast.makeText(this, "btnPackage", Toast.LENGTH_SHORT).show();

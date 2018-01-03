@@ -2,19 +2,21 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/transparent"/>
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"/>
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/btnMenu"
         style="@style/fancy_toolbar"
         android:layout_gravity="right"
         fancy:fb_textSize="25dp"
+        android:visibility="gone"
 
 
         />
@@ -29,5 +31,16 @@
         android:text="صفحه اصلی"
         android:textColor="@android:color/white"
         android:textSize="15dp" />
+
+
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnBack"
+        style="@style/fancy_toolbar"
+        android:layout_gravity="left"
+        fancy:fb_textSize="20dp"
+        android:visibility="gone"/>
+
 
 </FrameLayout>
