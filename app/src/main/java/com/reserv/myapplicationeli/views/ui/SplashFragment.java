@@ -18,7 +18,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
+
+import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.db.local.Config_Table;
 import com.reserv.myapplicationeli.views.activities.IDM_Activity;

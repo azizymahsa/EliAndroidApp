@@ -12,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.slidingmenu.base.BaseActivity;
+
+import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelActivity;
-import com.reserv.myapplicationeli.views.ui.PlanFragment;
+import com.reserv.myapplicationeli.views.fragments.PlanFragment;
+
 
 import mehdi.sakout.fancybuttons.FancyButton;
 

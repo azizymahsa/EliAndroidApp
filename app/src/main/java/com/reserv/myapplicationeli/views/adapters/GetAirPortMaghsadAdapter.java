@@ -14,11 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
-import com.reserv.myapplicationeli.GlobalApplication;
+
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.Country;
-import com.reserv.myapplicationeli.views.ui.GetAirportMaghsadActivity;
-import com.reserv.myapplicationeli.views.ui.PlanFragment;
+
 
 
 public class GetAirPortMaghsadAdapter extends BaseAdapter {
@@ -52,7 +51,7 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
     }
 	public GetAirPortMaghsadAdapter(Activity activity){
 		this.context=activity;
-		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
+		myInflater = LayoutInflater.from(activity);
 	}
 
 	public void setData(List<Country> data) {
