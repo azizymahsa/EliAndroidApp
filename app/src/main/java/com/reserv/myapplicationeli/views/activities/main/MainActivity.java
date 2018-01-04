@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +22,7 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelActivity;
 import com.reserv.myapplicationeli.views.fragments.PackageFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
+import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 
@@ -41,7 +43,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Window window = getWindow();
 
         window.setStatusBarColor(getColor(R.color.flight_status));
-        InitUi.Toolbar(this,true, R.color.TRANSPARENT);
+        InitUi.Toolbar(this,true, R.color.TRANSPARENT,"صفحه اصلی");
         initViews();
 
         PlanFragment workerStateFragment = new PlanFragment();
@@ -94,35 +96,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.btnFlight:
-                Toast.makeText(this, "btnFlight", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnHotel:
+                addFragment(getString(R.string.search_hotel),new HotelFragment());
+
                 break;
             case R.id.btnPackage:
-                drawerLayout.closeDrawer(Gravity.RIGHT);
-                tvTitle.setText(getString(R.string.search_package));
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        drawerLayout.closeDrawer(Gravity.RIGHT);
-
-                    }
-                }, 500);
-
-                manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                PackageFragment packageFragment = new PackageFragment();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container,packageFragment )
-                        .commit();
+                addFragment(getString(R.string.search_package),new PackageFragment());
                 break;
             case R.id.btnTour:
-                Toast.makeText(this, "btnTour", Toast.LENGTH_SHORT).show();
                 break;
                 case R.id.btnInsurance:
-                Toast.makeText(this, "btnInsurance", Toast.LENGTH_SHORT).show();
                 break;
         }
+
+    }
+    public void addFragment(String title, Fragment fragment){
+        tvTitle.setText(title);
+        manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,fragment )
+                .commit();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               drawerLayout.closeDrawer(Gravity.RIGHT);
+
+            }
+        }, 500);
 
     }
 }

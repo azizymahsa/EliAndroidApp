@@ -27,7 +27,7 @@ public class DetailHotelActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
-        InitUi.Toolbar(this, false, R.color.color_hotel);
+        InitUi.Toolbar(this, false, R.color.color_hotel,"جزئیات هتل");
         Window window = getWindow();
         window.setStatusBarColor(getColor(R.color.color_hotel_dark));
 

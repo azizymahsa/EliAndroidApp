@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.models.model.Country;
+import com.reserv.myapplicationeli.models.Country;
 
 
 public class GetAirPortMabdaAdapter extends BaseAdapter {

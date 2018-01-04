@@ -39,7 +39,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
         this.context=context;
         inflater= LayoutInflater.from(context);
         this.data=data;
-        myInflater = LayoutInflater.from(GlobalApplication.getActivity());
+        myInflater = LayoutInflater.from(context);
         
       
     }
@@ -114,7 +114,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
 					
 					
 						
-						context.startActivity(i4);
+						//context.startActivity(i4);
 						
 						
 

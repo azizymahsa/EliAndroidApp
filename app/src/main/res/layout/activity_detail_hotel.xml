@@ -9,9 +9,7 @@
     android:layout_height="match_parent"
     tools:context="com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <include
             android:id="@+id/toolbarLayout"
@@ -116,11 +114,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:text="Piyerloti Caddesi, Cephaneci sokak no:14, Fatih, 34126 Istanbul, Turkey"
-                                android:textColor="#606060"
+                                android:textColor="@color/textColorR"
                                 android:gravity="left"
                                 android:layout_marginLeft="5dp"
                                 android:textSize="14dp"
-                                android:textAppearance="@style/IconFonts"/>
+                              />
 
                         </LinearLayout>
                         <com.ogaclejapan.smarttablayout.SmartTabLayout
@@ -397,6 +395,5 @@
         </ScrollView>
 
 
-    </RelativeLayout>
 
 </RelativeLayout>

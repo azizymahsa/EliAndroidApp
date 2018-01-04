@@ -104,9 +104,11 @@
     <string name="icon_conditioning">&#xf10d;</string>
     <string name="icon_drink">&#xf17e;</string>
     <string name="icon_info">&#xe906;</string>
+    <string name="icon_pin">&#xe907;</string>
 
     <string name="searchFlight">جستجوی پرواز</string>
     <string name="search_package">جستجوی پکیج</string>
+    <string name="search_hotel">جستجو هتل</string>
 
     <string-array name="requestStates">
         <item>درخواست ارسال نشده است</item>

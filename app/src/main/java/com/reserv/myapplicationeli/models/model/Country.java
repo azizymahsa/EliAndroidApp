@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.models.model;
+package com.reserv.myapplicationeli.models;
 
 public class Country {//AirportCode //AirportName//CityName ":
 private String AirportCode;

@@ -38,12 +38,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.HotelCity;
 import com.reserv.myapplicationeli.views.adapters.GetHotelCityAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 
 
-public class GetHotelCityActivity extends Activity implements Header.onSearchTextChangedListener,OnClickListener{
+public class GetHotelCityActivity extends BaseActivity implements Header.onSearchTextChangedListener,OnClickListener{
 	   public static final int CONNECTION_TIMEOUT = 10000;
 	    public static final int READ_TIMEOUT = 15000;
 		Handler handler;
