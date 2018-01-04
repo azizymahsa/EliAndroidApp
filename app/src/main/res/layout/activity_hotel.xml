@@ -616,18 +616,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="21dp"
-                android:layout_marginRight="21dp"
-                android:layout_marginTop="2dp"
+             android:layout_margin="25dp"
                 android:background="@drawable/btngravity_big"
                 android:text="جستجو هتل"
                 android:textColor="#FFFFFF"
-                android:textSize="14dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:shadowColor="@color/drawer_shadow"
                 android:shadowDx="2"
                 android:shadowDy="2"
-                android:shadowRadius="2"/>
+                android:shadowRadius="2"
+                />
 
         </LinearLayout>
 
