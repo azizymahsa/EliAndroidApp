@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelCityActivity;
@@ -25,57 +28,60 @@ import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelAc
 public class HotelFragment extends Fragment implements OnClickListener {
 	public HotelFragment() {
 	}
-	public static Button searchHotel,btnPlusB,btnMinesB,btnPlusK,btnMinesK,btnPlusN,btnMinesN,btn_add_room;
+	public static Button searchHotel,btnPlusB,btnMinesB,btnPlusK,btnMinesK,btnPlusN,btnMinesN;
 	public TextView txtCity,lbl_city_english,txtTitle,txtCountB,txtCountK,txtCountN,lblRoomCount,txtRoomCount;
 	public static int countNafar=1;
+	LinearLayout btn_add_room;
 	public ListView listRoomItem;
 	HotelCountRoomAdapter mAdapter;
 	public List<ModelRowCountRoom> data;
 	private View rootView;
+	RelativeLayout citySearch;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		rootView = inflater.inflate(R.layout.activity_hotel, container, false);
+		rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
 
 	//	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
 		
 
 		
-		listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
+		//listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 		  
 		lblRoomCount= (TextView) rootView.findViewById(R.id.lblRoomCount);
 		lblRoomCount.setOnClickListener(this);
 		txtRoomCount= (TextView) rootView.findViewById(R.id.txtRoomCount);
 		txtRoomCount.setOnClickListener(this);
 		
-		btn_add_room= (Button) rootView.findViewById(R.id.btn_add_room);
+		btn_add_room= (LinearLayout) rootView.findViewById(R.id.btn_add_room);
 		btn_add_room.setOnClickListener(this);
 		 
 		txtTitle= (TextView) rootView.findViewById(R.id.txtTitle);
-		txtCity= (TextView) rootView.findViewById(R.id.txtCity);
+		citySearch= (RelativeLayout) rootView.findViewById(R.id.citySearch);
 		
 		lbl_city_english= (TextView) rootView.findViewById(R.id.lbl_city_english);
+		txtCity= (TextView) rootView.findViewById(R.id.txtCity);
 
 	    
-	    txtCity.setOnClickListener(this);
+	    citySearch.setOnClickListener(this);
 	    lbl_city_english.setOnClickListener(this);
 	   
 	    searchHotel= (Button) rootView.findViewById(R.id.searchHotel);
 	    searchHotel.setOnClickListener(this);
         
 	    
-	    Bundle bundle = getActivity().getIntent().getExtras();
+	   /* Bundle bundle = getActivity().getIntent().getExtras();
   		if(bundle != null){
   	        if(bundle.getString("Value-Hotel-City-Fa")!= null)
   	        {
-  	        	txtCity.setText(""+bundle.getString("Value-Hotel-City-Fa")) ;
+  	        	citySearch.setText(""+bundle.getString("Value-Hotel-City-Fa")) ;
   	        	lbl_city_english.setText(""+bundle.getString("Value-Hotel-City-En")) ;
   	        }
           }
 	    /////////
 
 		//i4.putExtra("Value-Hotel-City-Code",current.getCityCode());
-	
+	*/
 	    
 	     data=new ArrayList<ModelRowCountRoom>();
 	   // for(int i=0;i<2;i++){
@@ -90,10 +96,32 @@ public class HotelFragment extends Fragment implements OnClickListener {
         mAdapter = new HotelCountRoomAdapter(getActivity(), data);
       //mAdapter.setAdapter(mAdapter);
         mAdapter.setData(data);
-        listRoomItem.setAdapter(mAdapter);
+     //   listRoomItem.setAdapter(mAdapter);
         return rootView;
 	}//end oncreat
-	 public boolean isInRange(int a, int b, int c) {
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		if(!Prefs.getString("Value-Hotel-City-Fa","").equals(""))
+		{
+			txtCity.setText(Prefs.getString("Value-Hotel-City-Fa",""));
+			lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En","")) ;
+
+		}
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+
+		Prefs.putString("Value-Hotel-City-Fa","");
+		Prefs.putString("Value-Hotel-City-En","");
+		Prefs.putString("Value-Hotel-City-Code","");
+	}
+
+	public boolean isInRange(int a, int b, int c) {
 	        return b > a ? c >= a && c <= b : c >= b && c <= a;
 	 }
 	@Override
@@ -122,7 +150,7 @@ public class HotelFragment extends Fragment implements OnClickListener {
 			
             startActivityForResult(intent4, 2);
 			break;
-		case R.id.txtCity:
+		case R.id.citySearch:
 			Intent intent5=new Intent(getActivity(),GetHotelCityActivity.class);
 			startActivityForResult(intent5,1);
 			break;
@@ -133,8 +161,6 @@ public class HotelFragment extends Fragment implements OnClickListener {
 		  // editTextView.setText("");
 		   break;
 		case R.id.searchHotel:
-			
-			
 			Intent intent6=new Intent(getActivity(),SelectHotelActivity.class);
 			Bundle bundle6 = getActivity().getIntent().getExtras();
       		if(bundle6 != null ){

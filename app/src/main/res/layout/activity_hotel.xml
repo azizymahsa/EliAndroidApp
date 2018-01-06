@@ -1,639 +1,635 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff" >
-
-
-       <ScrollView
-        
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-<LinearLayout 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff" >
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="216dp"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:background="#fff"
-        android:gravity="left" >
-
-        <LinearLayout
-            android:id="@+id/front"
-            style="@style/MyListFrontContentRe"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@drawable/banafsh_jahan"
-            android:gravity="center"
-            android:minHeight="40dp"
-            android:orientation="horizontal"
-            android:tag="front" >
-
-          
-            <TextView
-                android:id="@+id/lblProductAvailable"
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/txt_gheymat"
-                android:layout_marginBottom="1dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:layout_marginTop="1dp"
-                android:layout_toRightOf="@+id/txt_emp_dob"
-                android:layout_weight="0.03"
-                android:background="@drawable/rectangle"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="15dip"
-                android:layout_marginTop="35dp"
-                android:layout_weight="0.09"
-                android:gravity="right"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:id="@+id/linearLayout_mabda"
-                    android:layout_width="wrap_content"
-                    android:layout_height="101dp"
-                    android:layout_above="@+id/linearLayout1"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="3dip"
-                    android:layout_marginTop="1dp"
-                    android:gravity="right"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/lblProductID"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="2dp"
-                        android:gravity="right"
-                        android:text="سفر به : "
-                        android:textColor="#ffffff"
-                        android:textSize="15dip" />
-
-                    <TextView
-                        android:id="@+id/txtCity"
-                        android:layout_width="506dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="right"
-                        android:text=" استانبول "
-                        android:textColor="#fff"
-                        android:textSize="24dip"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/lbl_city_english"
-                        android:layout_width="501dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="Istanbul,Turkey "
-                        android:textColor="#fff"
-                        android:textSize="14dip" />
-                </LinearLayout>
-                <!-- /////////////////////////////////linear layout maghsad////////////////////////////////////////////// -->
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txtOption"
-                android:layout_width="28dp"
-                android:layout_height="128dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/hotel_circle_icon"
-                android:gravity="center"
-                android:text=""
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
-
-        </LinearLayout>
+    android:background="#ffffff">
 
 
-    </RelativeLayout>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="103dp"
-        android:layout_marginTop="10dp"
-        android:background="#fff"
-        android:orientation="vertical"
-        android:visibility="visible" >
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="86dp"
-            android:layout_marginBottom="1dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/shadowbox_big"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <LinearLayout
-                    android:id="@+id/linear_picker_title"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-					android:visibility="visible">
-
-                    <Button
-                        android:id="@+id/tarikh_be"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginRight="15dp"
-                        android:background="#fff"
-                        android:gravity="right"
-                        android:shadowColor="#cccccc"
-                        android:text="تاریخ برگشت "
-                        android:textColor="#808080"
-                        android:textSize="11dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:id="@+id/tarikh_az"
-                        android:layout_width="fill_parent"
-                        android:layout_height="24dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginTop="1dp"
-                        android:background="#fff"
-                        android:gravity="right"
-                        android:shadowColor="#cccccc"
-                        android:shadowDx="-2"
-                        android:shadowDy="-2"
-                        android:text="تاریخ رفت"
-                        android:textColor="#808080"
-                        android:textSize="11dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </LinearLayout>
-            <!-- ////////////////////////////////////layout picker tarikh//////////////////////////////////////////////// -->
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="58dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="1dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <LinearLayout
-                    android:id="@+id/linear_picker"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical" 
- 
-                    android:visibility="visible">
-
-                    <Button
-                        android:id="@+id/tarikh_be_picker"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="14dp"
-                        android:layout_marginRight="2dp"
-                        android:background="#fff"
-                        android:drawableRight="@drawable/calendaricon"
-                        android:gravity="center"
-                        android:shadowColor="#cccccc"
-                        android:text="december 11 2017"
-                        android:textColor="#000000"
-                        android:textSize="11dp"
-                        android:textStyle="bold" />
-
-                    <!-- android:text="اطلاعات مالی" -->
-
-                </LinearLayout>
-
-                <LinearLayout
-                   android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:id="@+id/tarikh_az_picker"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="18dp"
-                        android:layout_marginLeft="2dp"
-                        android:background="#fff"
-                        android:drawableRight="@drawable/calendaricon"
-                        android:gravity="center"
-                        android:shadowColor="#cccccc"
-                        android:shadowDx="-2"
-                        android:shadowDy="-2"
-                        android:text="10 decembre 2017"
-                        android:textColor="#000000"
-                        android:textSize="11dp"
-                        android:textStyle="bold" />
-
-                    <!-- android:text="پیش نمایش" -->
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-       <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        
-        android:background="#fff"
-        android:orientation="vertical" >
- <LinearLayout
-            android:id="@+id/linear_list_hotel"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="1dp"
-            android:background="#ffffff"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:visibility="gone" >
-
-            <ListView
-                android:id="@+id/listRoomItem"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:isScrollContainer="false"
-                android:listSelector="@drawable/list_selector"
-                android:visibility="visible" />
-   </LinearLayout>
-  <LinearLayout
-      android:id="@+id/linearPickerHotel"
-      android:layout_width="match_parent"
-      android:layout_height="129dp"
-      android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:background="@drawable/shadowbox_big"
-      android:orientation="horizontal" 
-      android:visibility="gone">
-
-      <LinearLayout
-          android:layout_width="190dp"
-          android:layout_height="141dp"
-          android:layout_marginLeft="10dp"
-          android:layout_marginRight="1dp"
-          android:layout_weight="0.85"
-          android:orientation="vertical" >
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="5dp"
-              android:layout_marginLeft="14dp"
-              android:layout_marginRight="14dp" >
-
-              <Button
-                  android:id="@+id/btnMinesB"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_marginBottom="1dp"
-                  android:layout_marginLeft="22dp"
-                  android:layout_marginRight="20dp"
-                  android:layout_marginTop="1dp"
-                  android:background="@drawable/background_strock"
-                  android:text="-"
-                  android:textColor="#000000" />
-
-              <TextView
-                  android:id="@+id/txtCountB"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_gravity="top"
-                  android:text="1"
-                  android:textColor="#000000" />
-
-              <Button
-                  android:id="@+id/btnPlusB"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_margin="1dp"
-                  android:background="@drawable/background_strock"
-                  android:text="+"
-                  android:textColor="#000000" />
-
-              <TextView
-                  android:id="@+id/txtBO"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="1dp"
-                  android:gravity="right"
-                  android:text="بزرگسال"
-                  android:textColor="#000000"
-                  android:textSize="11dp" />
-          </LinearLayout>
-          <!-- ///////////////koodak////////////////// -->
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="5dp"
-              android:layout_marginLeft="14dp"
-              android:layout_marginRight="14dp" >
-
-              <Button
-                  android:id="@+id/btnMinesK"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_marginBottom="1dp"
-                  android:layout_marginLeft="22dp"
-                  android:layout_marginRight="20dp"
-                  android:layout_marginTop="1dp"
-                  android:background="@drawable/background_strock"
-                  android:text="-"
-                  android:textColor="#000000" />
-
-              <TextView
-                  android:id="@+id/txtCountK"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_gravity="top"
-                  android:text="0"
-                  android:textColor="#000000" />
-
-              <Button
-                  android:id="@+id/btnPlusK"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_margin="1dp"
-                  android:background="@drawable/background_strock"
-                  android:text="+"
-                  android:textColor="#000000" />
-
-              <TextView
-                  android:id="@+id/txtKO"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="1dp"
-                  android:gravity="right"
-                  android:text="کودک"
-                  android:textColor="#000000"
-                  android:textSize="11dp" />
-          </LinearLayout>
-          <!-- //////////////////////nozad/////////////////////// -->
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="14dp"
-              android:layout_marginLeft="14dp"
-              android:layout_marginRight="14dp" >
-
-              <Button
-                  android:id="@+id/btnMinesN"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_marginBottom="1dp"
-                  android:layout_marginLeft="22dp"
-                  android:layout_marginRight="20dp"
-                  android:layout_marginTop="1dp"
-                  android:background="@drawable/background_strock"
-                  android:text="-"
-                  android:textColor="#000000" />
-
-              <TextView
-                  android:id="@+id/txtCountN"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_gravity="top"
-                  android:text="0"
-                  android:textColor="#000000" />
-
-              <Button
-                  android:id="@+id/btnPlusN"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_margin="1dp"
-                  android:background="@drawable/background_strock"
-                  android:text="+"
-                  android:textColor="#000000" />
-
-              <TextView
-                  android:id="@+id/txtNO"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="1dp"
-                  android:gravity="right"
-                  android:text="نوزاد"
-                  android:textColor="#000000"
-                  android:textSize="11dp" />
-          </LinearLayout>
-      </LinearLayout>
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:layout_marginRight="10dp"
-          android:layout_marginTop="30dp"
-          android:orientation="vertical" >
-
-          <TextView
-              android:id="@+id/textView1"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="5dp"
-              android:text="1 اتاق"
-              android:textColor="#808080"
-              android:textSize="11dp"
-              android:textStyle="bold" />
-
-          <TextView
-              android:id="@+id/textView3"
-              android:layout_width="40dp"
-              android:layout_height="30dp"
-              android:background="@drawable/bed_icon"
-              android:text="" />
-
-      </LinearLayout>
-  </LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="right"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/shadowbox_big"
-        android:weightSum="4" >
-
-       
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_weight="2"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.71"
-        android:gravity="center"
-        android:text="کودک" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2.12"
-        android:gravity="center"
-        android:text="0" />
-
-</LinearLayout>
-
-<View
-    android:layout_width="1dp"
-    android:layout_height="fill_parent"
-    android:layout_marginBottom="1dp"
-    android:layout_marginTop="1dp"
-    android:background="#a6a6a6" />
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_weight="2"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.80"
-        android:gravity="center"
-        android:text="بزرگسال" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.86"
-        android:text="1"
-        android:gravity="center" />
-
-</LinearLayout>
-
-<View
-    android:layout_width="1dp"
-    android:layout_height="fill_parent"
-    android:layout_marginBottom="1dp"
-    android:layout_marginTop="1dp"
-    android:background="#a6a6a6" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical" >
+            android:background="#ffffff"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/lblRoomCount"
-                android:layout_width="79dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="اتاق" />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="216dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="#fff"
+                android:gravity="left">
 
-            <TextView
-                android:id="@+id/txtRoomCount"
+                <LinearLayout
+                    android:id="@+id/front"
+                    style="@style/MyListFrontContentRe"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@drawable/banafsh_jahan"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:orientation="horizontal"
+                    android:tag="front">
+
+
+                    <TextView
+                        android:id="@+id/lblProductAvailable"
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:layout_above="@+id/txt_gheymat"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_toRightOf="@+id/txt_emp_dob"
+                        android:layout_weight="0.03"
+                        android:background="@drawable/rectangle"
+                        android:gravity="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="15dip"
+                        android:layout_marginTop="35dp"
+                        android:layout_weight="0.09"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout_mabda"
+                            android:layout_width="wrap_content"
+                            android:layout_height="101dp"
+                            android:layout_above="@+id/linearLayout1"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="3dip"
+                            android:layout_marginTop="1dp"
+                            android:gravity="right"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblProductID"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginRight="2dp"
+                                android:gravity="right"
+                                android:text="سفر به : "
+                                android:textColor="#ffffff"
+                                android:textSize="15dip" />
+
+                            <TextView
+                                android:id="@+id/txtCity"
+                                android:layout_width="506dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="right"
+                                android:text=" استانبول "
+                                android:textColor="#fff"
+                                android:textSize="24dip"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/lbl_city_english"
+                                android:layout_width="501dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="Istanbul,Turkey "
+                                android:textColor="#fff"
+                                android:textSize="14dip" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtOption"
+                        android:layout_width="28dp"
+                        android:layout_height="128dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="32dp"
+                        android:background="@drawable/hotel_circle_icon"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="103dp"
+                android:layout_marginTop="10dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="86dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/shadowbox_big"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/linear_picker_title"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.25"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <Button
+                                android:id="@+id/tarikh_be"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginRight="15dp"
+                                android:background="#fff"
+                                android:gravity="right"
+                                android:shadowColor="#cccccc"
+                                android:text="تاریخ برگشت "
+                                android:textColor="#808080"
+                                android:textSize="11dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.25"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/tarikh_az"
+                                android:layout_width="fill_parent"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="4dp"
+                                android:layout_marginTop="1dp"
+                                android:background="#fff"
+                                android:gravity="right"
+                                android:shadowColor="#cccccc"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:text="تاریخ رفت"
+                                android:textColor="#808080"
+                                android:textSize="11dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- ////////////////////////////////////layout picker tarikh//////////////////////////////////////////////// -->
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="58dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="1dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/linear_picker"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.25"
+                            android:orientation="vertical"
+
+                            android:visibility="visible">
+
+                            <Button
+                                android:id="@+id/tarikh_be_picker"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="14dp"
+                                android:layout_marginRight="2dp"
+                                android:background="#fff"
+                                android:drawableRight="@drawable/calendaricon"
+                                android:gravity="center"
+                                android:shadowColor="#cccccc"
+                                android:text="december 11 2017"
+                                android:textColor="#000000"
+                                android:textSize="11dp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.25"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/tarikh_az_picker"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="18dp"
+                                android:layout_marginLeft="2dp"
+                                android:background="#fff"
+                                android:drawableRight="@drawable/calendaricon"
+                                android:gravity="center"
+                                android:shadowColor="#cccccc"
+
+                                android:text="10 decembre 2017"
+                                android:textColor="#000000"
+                                android:textSize="11dp"
+                                android:textStyle="bold" />
+
+                            <!-- android:text="پیش نمایش" -->
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.86"
-                android:text="1" 
-                android:gravity="center"/>
+
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linear_list_hotel"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="1dp"
+                    android:background="#ffffff"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:visibility="gone">
+
+                    <ListView
+                        android:id="@+id/listRoomItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:isScrollContainer="false"
+                        android:listSelector="@drawable/list_selector"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearPickerHotel"
+                    android:layout_width="match_parent"
+                    android:layout_height="129dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/shadowbox_big"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="190dp"
+                        android:layout_height="141dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="0.85"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="14dp"
+                            android:layout_marginRight="14dp">
+
+                            <Button
+                                android:id="@+id/btnMinesB"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginLeft="22dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="1dp"
+                                android:background="@drawable/background_strock"
+                                android:text="-"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:id="@+id/txtCountB"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="top"
+                                android:text="1"
+                                android:textColor="#000000" />
+
+                            <Button
+                                android:id="@+id/btnPlusB"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="1dp"
+                                android:background="@drawable/background_strock"
+                                android:text="+"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:id="@+id/txtBO"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:gravity="right"
+                                android:text="بزرگسال"
+                                android:textColor="#000000"
+                                android:textSize="11dp" />
+                        </LinearLayout>
+                        <!-- ///////////////koodak////////////////// -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="14dp"
+                            android:layout_marginRight="14dp">
+
+                            <Button
+                                android:id="@+id/btnMinesK"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginLeft="22dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="1dp"
+                                android:background="@drawable/background_strock"
+                                android:text="-"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:id="@+id/txtCountK"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="top"
+                                android:text="0"
+                                android:textColor="#000000" />
+
+                            <Button
+                                android:id="@+id/btnPlusK"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="1dp"
+                                android:background="@drawable/background_strock"
+                                android:text="+"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:id="@+id/txtKO"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:gravity="right"
+                                android:text="کودک"
+                                android:textColor="#000000"
+                                android:textSize="11dp" />
+                        </LinearLayout>
+                        <!-- //////////////////////nozad/////////////////////// -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="14dp"
+                            android:layout_marginLeft="14dp"
+                            android:layout_marginRight="14dp">
+
+                            <Button
+                                android:id="@+id/btnMinesN"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginLeft="22dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="1dp"
+                                android:background="@drawable/background_strock"
+                                android:text="-"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:id="@+id/txtCountN"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="top"
+                                android:text="0"
+                                android:textColor="#000000" />
+
+                            <Button
+                                android:id="@+id/btnPlusN"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="1dp"
+                                android:background="@drawable/background_strock"
+                                android:text="+"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:id="@+id/txtNO"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:gravity="right"
+                                android:text="نوزاد"
+                                android:textColor="#000000"
+                                android:textSize="11dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="30dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="1 اتاق"
+                            android:textColor="#808080"
+                            android:textSize="11dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/bed_icon"
+                            android:text="" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/shadowbox_big"
+                        android:weightSum="4">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.71"
+                                android:gravity="center"
+                                android:text="کودک" />
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.12"
+                                android:gravity="center"
+                                android:text="0" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="fill_parent"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:background="#a6a6a6" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.80"
+                                android:gravity="center"
+                                android:text="بزرگسال" />
+
+                            <TextView
+                                android:id="@+id/textView9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.86"
+                                android:gravity="center"
+                                android:text="1" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="fill_parent"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:background="#a6a6a6" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lblRoomCount"
+                                android:layout_width="79dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="اتاق" />
+
+                            <TextView
+                                android:id="@+id/txtRoomCount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.86"
+                                android:gravity="center"
+                                android:text="1" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_add_room"
+                        android:layout_width="fill_parent"
+                        android:layout_height="32dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/background_strock_blue_dark"
+                        android:drawableRight="@drawable/hotel_padding_drawable"
+                        android:gravity="center"
+                        android:paddingLeft="90dp"
+                        android:shadowColor="#cccccc"
+
+                        android:shadowDx="-2"
+                        android:shadowDy="-2"
+                        android:text="اضافه کردن اتاق "
+                        android:textColor="#000099"
+                        android:textSize="14dp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/searchHotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="25dp"
+                        android:background="@drawable/btngravity_big"
+                        android:shadowColor="@color/drawer_shadow"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="2"
+                        android:text="جستجو هتل"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_add_room"
-        android:layout_width="fill_parent"
-        android:layout_height="32dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/background_strock_blue_dark"
-        android:shadowColor="#cccccc"
-        android:shadowDx="-2"
-        android:shadowDy="-2"
-        android:text="اضافه کردن اتاق "
-       
-        android:drawableRight="@drawable/hotel_padding_drawable"
-        android:textColor="#000099"
-        android:textSize="14dp"
-        android:paddingLeft="90dp"
-        android:gravity="center"
-        android:visibility="gone" />
-
-</LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/searchHotel"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-             android:layout_margin="25dp"
-                android:background="@drawable/btngravity_big"
-                android:text="جستجو هتل"
-                android:textColor="#FFFFFF"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:shadowColor="@color/drawer_shadow"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="2"
-                />
-
-        </LinearLayout>
-
-      
-
-    </LinearLayout>
-
-</LinearLayout>
-</ScrollView>
+    </ScrollView>
 </RelativeLayout>

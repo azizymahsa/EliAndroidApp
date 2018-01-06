@@ -73,4 +73,6 @@
         <item name="fontPath">fonts/icomoon.ttf</item></style>
     <style name="IconFonts2" parent="android:TextAppearance">
         <item name="fontPath">fonts/wifi.ttf</item></style>
+    <style name="IrsansBold" parent="android:TextAppearance">
+        <item name="fontPath">fonts/iran_sans_bold.ttf</item></style>
 </resources>

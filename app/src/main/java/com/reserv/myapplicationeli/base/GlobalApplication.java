@@ -35,7 +35,7 @@ public class GlobalApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-				.setDefaultFontPath("fonts/irsans.ttf")
+				.setDefaultFontPath("fonts/iran_sans_normal.ttf")
 				.setFontAttrId(R.attr.fontPath)
 				.addCustomViewWithSetTypeface(CustomViewWithTypefaceSupport.class)
 				.addCustomStyle(TextField.class, R.attr.textFieldStyle)

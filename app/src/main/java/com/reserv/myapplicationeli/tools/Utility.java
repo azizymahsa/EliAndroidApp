@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -411,5 +412,20 @@ public class Utility extends Activity {
 					(char) (48 + i));
 		}
 		return recieveDate;
+	}
+	public static String priceFormat(String price){
+		DecimalFormat df = new DecimalFormat("#,###");
+		return df.format(Double.valueOf(price));
+	}
+
+
+	public static void disableEnableControls(boolean enable, ViewGroup vg) {
+		for (int i = 0; i < vg.getChildCount(); i++) {
+			View child = vg.getChildAt(i);
+			child.setEnabled(enable);
+			if (child instanceof ViewGroup) {
+				disableEnableControls(enable, (ViewGroup) child);
+			}
+		}
 	}
 }

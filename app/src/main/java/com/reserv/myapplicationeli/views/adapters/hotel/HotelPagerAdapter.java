@@ -24,7 +24,7 @@ public class HotelPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0: // Fragment # 0 - This will show FirstFragment
-                return MapFragment.newInstance(0, "خدمات");
+                return MapFragment.newInstance(0, "نقشه هتل");
             case 1: // Fragment # 0 - This will show FirstFragment different title
                 return MapFragment.newInstance(1, "امکانات");
             case 2: // Fragment # 1 - This will show SecondFragment
@@ -42,7 +42,7 @@ public class HotelPagerAdapter extends FragmentPagerAdapter {
         switch (position)
         {
             case 0:
-                title="خدمات";
+                title="نقشه هتل";
             break;
             case 1:
                 title="امکانات";

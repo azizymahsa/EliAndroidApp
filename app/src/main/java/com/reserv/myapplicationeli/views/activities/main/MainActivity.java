@@ -1,25 +1,21 @@
 package com.reserv.myapplicationeli.views.activities.main;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
 
 import com.reserv.myapplicationeli.base.BaseActivity;
-import com.reserv.myapplicationeli.views.fragments.HotelActivity;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 import com.reserv.myapplicationeli.views.fragments.PackageFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
@@ -107,6 +103,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btnTour:
                 break;
                 case R.id.btnInsurance:
+                    startActivity(new Intent(this, DetailHotelActivity.class));
                 break;
         }
 

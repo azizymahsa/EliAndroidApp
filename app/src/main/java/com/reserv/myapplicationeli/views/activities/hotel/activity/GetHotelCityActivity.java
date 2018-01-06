@@ -248,7 +248,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 	                
 	                ////
 	                listAirPort = (ListView)findViewById(R.id.listCityHotel);
-	                  mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data);
+	                  mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this,GetHotelCityActivity.this, data);
 	                //mAdapter.setAdapter(mAdapter);
 	                mAdapter.setData(data);
 	                listAirPort.setAdapter(mAdapter);

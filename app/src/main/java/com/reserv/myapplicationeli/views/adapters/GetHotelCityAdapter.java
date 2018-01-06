@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.models.model.HotelCity;
-import com.reserv.myapplicationeli.views.fragments.HotelActivity;
 
 
 public class GetHotelCityAdapter extends BaseAdapter {
@@ -30,13 +29,15 @@ public class GetHotelCityAdapter extends BaseAdapter {
 	public String value_Maghsad_City;
 	public String value_Maghsad_Airport;
 	public String value_Maghsad_Airport_Code;
+	Activity activity;
 
 	/*public GetHotelCityAdapter() {
 		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
 	}*/
 	 // create constructor to innitilize context and data sent from MainActivity
-    public GetHotelCityAdapter(Context context, List<HotelCity> data){
+    public GetHotelCityAdapter(Activity activity,Context context, List<HotelCity> data){
         this.context=context;
+        this.activity=activity;
         inflater= LayoutInflater.from(context);
         this.data=data;
         myInflater = LayoutInflater.from(context);
@@ -104,17 +105,17 @@ public class GetHotelCityAdapter extends BaseAdapter {
 					@Override
 					public void onClick(View v) {
 					
-						Intent i4 = new Intent(context,HotelActivity.class);
+				//		Intent i4 = new Intent(context,HotelActivity.class);
 						
 						//i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 						
-						i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());//current.getCityName()
+					/*	i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());//current.getCityName()
 						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
 						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());
 					
 					
-						
-						//context.startActivity(i4);
+						activity.finish();
+						//context.startActivity(i4);*/
 						
 						
 
@@ -126,15 +127,19 @@ public class GetHotelCityAdapter extends BaseAdapter {
 					@Override
 					public void onClick(View v) {
 					
-						Intent i4 = new Intent(context,HotelActivity.class);
+			/*			Intent i4 = new Intent(context,HotelActivity.class);
 						
-						//i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-						i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());//current.getCityName()
+						i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());
 						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
-						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());
-					
-						context.startActivity(i4);
-						
+						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());*/
+
+
+						Prefs.putString("Value-Hotel-City-Fa",current.getCityNameFa());
+						Prefs.putString("Value-Hotel-City-En",current.getCityNameEn());
+						Prefs.putString("Value-Hotel-City-Code",current.getCityCode());
+
+						activity.finish();
+
 						
 
 					}

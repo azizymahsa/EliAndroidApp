@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/rlRoot">
 
     <include
         android:id="@+id/toolbarLayout"
@@ -28,6 +29,13 @@
         android:layout_below="@+id/toolbarLayout"
         android:divider="@null"
         android:dividerHeight="0dp"/>
+
+
+    <include
+        layout="@layout/loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       />
 
 
 </RelativeLayout>
