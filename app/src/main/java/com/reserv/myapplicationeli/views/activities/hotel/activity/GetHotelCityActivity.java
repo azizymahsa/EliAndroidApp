@@ -114,11 +114,11 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 	        protected void onPreExecute() {
 	            super.onPreExecute();
 
-	            //this method will be running on UI thread
+	          /*  //this method will be running on UI thread
 	            pdLoading.setMessage("\tLoading...");
 	            pdLoading.setCancelable(false);
 	            pdLoading.show();
-
+*/
 	        }
 
 	        @Override
@@ -216,7 +216,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 
 	            //this method will be running on UI thread
 
-	            pdLoading.dismiss();
+	       //     pdLoading.dismiss();
 	            List<HotelCity> data=new ArrayList<HotelCity>();
 
 	            pdLoading.dismiss();

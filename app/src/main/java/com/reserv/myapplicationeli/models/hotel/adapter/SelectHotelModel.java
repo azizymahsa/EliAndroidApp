@@ -13,9 +13,10 @@ public class SelectHotelModel {
     private String imageUrl;
     private String location;
     int oldPrice;
+    int star;
 
 
-    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice) {
+    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -24,6 +25,7 @@ public class SelectHotelModel {
         this.imageUrl = imageUrl;
         this.location = location;
         this.oldPrice = oldPrice;
+        this.star = star;
     }
 
     public String getName() {
@@ -88,5 +90,13 @@ public class SelectHotelModel {
 
     public void setOldPrice(int oldPrice) {
         this.oldPrice = oldPrice;
+    }
+
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
     }
 }

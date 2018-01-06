@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.views.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -30,12 +31,12 @@ public class InitUi {
         FancyButton btnMenu=activity.findViewById(R.id.btnMenu);
 
 
-        toolbar.setBackgroundColor(activity.getColor(color));
+        toolbar.setBackgroundColor(ContextCompat.getColor(activity,color));
         tvTitle.setText(title);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnMenu.setCustomTextFont("fonts/icomoon.ttf");
         btnMenu.setText(activity.getString(R.string.icon_menu));
-        btnBack.setText(activity.getString(R.string.icon_arrow));
+        btnBack.setText(activity.getString(R.string.search_back_right));
 
 
 
@@ -45,7 +46,6 @@ public class InitUi {
         }else{
 
             btnMenu.setVisibility(View.GONE);
-            btnBack.setVisibility(View.VISIBLE);
         }
 
 

@@ -3,6 +3,7 @@ package com.reserv.myapplicationeli.views.adapters.hotel;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-       String imageUri = "https://cdn.elicdn.com/" + selectHotelModelArrayList.get(position).getImageUrl();
+        String imageUri = "https://cdn.elicdn.com/" + selectHotelModelArrayList.get(position).getImageUrl();
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 // this will make circle, pass the width of image
                 .displayer(new RoundedBitmapDisplayer(3))
@@ -87,38 +88,35 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 .build();
 
 
-       imageLoader.displayImage(imageUri, holder.ivHotelPic, options, new ImageLoadingListener() {
-           @Override
-           public void onLoadingStarted(String imageUri, View view) {
-           //    holder.ivHotelPic.setVisibility(View.GONE);
-           }
+        imageLoader.displayImage(imageUri, holder.ivHotelPic, options, new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String imageUri, View view) {
+                //    holder.ivHotelPic.setVisibility(View.GONE);
+            }
 
-           @Override
-           public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-            //   holder.ivHotelPic.setVisibility(View.VISIBLE);
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                //   holder.ivHotelPic.setVisibility(View.VISIBLE);
 
-           }
+            }
 
-           @Override
-           public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-             //  holder.ivHotelPic.setVisibility(View.VISIBLE);
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                //  holder.ivHotelPic.setVisibility(View.VISIBLE);
 
-           }
+            }
 
-           @Override
-           public void onLoadingCancelled(String imageUri, View view) {
-               holder.ivHotelPic.setVisibility(View.VISIBLE);
+            @Override
+            public void onLoadingCancelled(String imageUri, View view) {
+                holder.ivHotelPic.setVisibility(View.VISIBLE);
 
-           }
-       });
+            }
+        });
         holder.name.setText(selectHotelModelArrayList.get(position).getName());
-        holder.location.setText(selectHotelModelArrayList.get(position).getLocation()+" "+selectHotelModelArrayList.get(position).getName());
+        holder.location.setText(selectHotelModelArrayList.get(position).getLocation() + " " + selectHotelModelArrayList.get(position).getName());
         holder.title.setText(selectHotelModelArrayList.get(position).getTitle());
         holder.board.setText(selectHotelModelArrayList.get(position).getBoard());
         holder.tvPrice.setText(Utility.priceFormat(selectHotelModelArrayList.get(position).getPrice()));
-
-
-
 
 
         if ((selectHotelModelArrayList.get(position).getOldPrice() > 0) && (selectHotelModelArrayList.get(position).getOldPrice() > Integer.valueOf(
@@ -126,26 +124,48 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 selectHotelModelArrayList.get(position).getPrice()))) {
             holder.tvOff.setVisibility(View.VISIBLE);
 
-           //
 
-
-            //self.percent = (oldPrice - price) / oldPrice * 100
             int p1 = selectHotelModelArrayList.get(position).getOldPrice() - Integer.valueOf(selectHotelModelArrayList.get(position).getPrice());
             int p2 = p1 * 100;
             int p3 = p2 / selectHotelModelArrayList.get(position).getOldPrice();
-            holder.tvOff.setText(p3+"%\nتخفیف");
+            holder.tvOff.setText(p3 + "%\nتخفیف");
+
+
         }
+        switch (selectHotelModelArrayList.get(position).getStar()) {
 
+            case 1:
+                //todo change this
+                holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable._1star));
 
+                break;
+            case 2:
+                holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable._2star));
 
+                break;
+            case 3:
+                holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable._3star));
+
+                break;
+            case 4:
+                holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable._4star));
+
+                break;
+
+            case 5:
+                holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable._5star));
+
+                break;
+
+        }
 
 
         return convertView;
     }
 
     public class ViewHolder {
-        TextView name,location,title,board,tvPrice,tvOff;
-        ImageView ivHotelPic,ivRate;
+        TextView name, location, title, board, tvPrice, tvOff;
+        ImageView ivHotelPic, ivRate;
 
 
     }

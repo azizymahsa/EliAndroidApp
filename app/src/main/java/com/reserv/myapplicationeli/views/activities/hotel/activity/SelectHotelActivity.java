@@ -48,9 +48,8 @@ public class SelectHotelActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
-        InitUi.Toolbar(this, false, R.color.color_hotel, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
+        InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
-        window.setStatusBarColor(getColor(R.color.color_hotel_dark));
         list = findViewById(R.id.lvHoteResult);
         adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this);
         list.setAdapter(adapter);
@@ -99,7 +98,7 @@ public class SelectHotelActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String result) {
             new InitUi().Loading(rlLoading,rlRoot,false);
-            window.setStatusBarColor(getColor(R.color.color_hotel_dark));
+            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
 
 
             try {
@@ -107,7 +106,8 @@ public class SelectHotelActivity extends BaseActivity {
                 for (Hotels hotels : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels) {
 
                     selectHotelModelArrayList.add(new SelectHotelModel(hotels.Name, hotels.City, hotels.Availability.RoomLists.get(i).Title,
-                            hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location, hotels.Availability.RoomLists.get(i).OldPrice));
+                            hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location,
+                            hotels.Availability.RoomLists.get(i).OldPrice,hotels.StarRating));
                     //   i++;
 
                 }

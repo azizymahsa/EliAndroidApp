@@ -10,17 +10,28 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@android:color/transparent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right">
 
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/btnMenu"
-        style="@style/fancy_toolbar"
-        android:layout_gravity="right"
-        fancy:fb_textSize="25dp"
-        android:visibility="gone"
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnMenu"
+            style="@style/fancy_toolbar"
+            android:layout_gravity="right"
+            fancy:fb_textSize="25dp"
 
 
-        />
+            />
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnBack"
+            style="@style/fancy_toolbar"
+            android:layout_gravity="left"
+            fancy:fb_textSize="20dp"
+            />
 
+    </LinearLayout>
 
 
     <TextView
@@ -35,12 +46,7 @@
 
 
 
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/btnBack"
-        style="@style/fancy_toolbar"
-        android:layout_gravity="left"
-        fancy:fb_textSize="20dp"
-        android:visibility="gone"/>
+
 
 
 </FrameLayout>

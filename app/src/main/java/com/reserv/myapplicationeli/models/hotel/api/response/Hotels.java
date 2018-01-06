@@ -10,15 +10,16 @@ public class Hotels {
     public final String City;
     public final String Location;
     public final String MainImage;
+    public final int StarRating;
 
 
-    public Hotels(com.reserv.myapplicationeli.models.hotel.api.response.Availability availability,
-                  String name, String city, String location, String mainImage) {
+    public Hotels(com.reserv.myapplicationeli.models.hotel.api.response.Availability availability, String name, String city, String location, String mainImage, int starRating) {
         Availability = availability;
         Name = name;
         City = city;
         Location = location;
         MainImage = mainImage;
+        StarRating = starRating;
     }
 }
 
