@@ -1,5 +1,6 @@
 package com.reserv.myapplicationeli.views.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -24,6 +25,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 
 public class InitUi {
+    @SuppressLint("NewApi")
     public static void Toolbar(final Activity activity, boolean isMainActivity, int color, String title){
         Toolbar toolbar = activity.findViewById(R.id.toolbar);
         TextView tvTitle = activity.findViewById(R.id.tvTitle);

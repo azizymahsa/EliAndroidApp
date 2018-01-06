@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
+import com.reserv.myapplicationeli.views.activities.pack.SearchActivity;
 
 
 /**
@@ -23,9 +24,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener{
     public ViewGroup layout_room;
     private final int ADD_ROOM_REQUEST = 100;
 
-    public static com.reserv.myapplicationeli.views.fragments.PackageFragment instance() {
-        com.reserv.myapplicationeli.views.fragments.PackageFragment fragment = new com.reserv.myapplicationeli.views.fragments.PackageFragment();
-
+    public static PackageFragment instance() {
+        PackageFragment fragment = new PackageFragment();
         return fragment;
     }
     @Override
@@ -76,6 +76,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener{
 
     private void initParam() {}
 
+    private void showDialog(){}
+
 
     @Override
     public void onClick(View v) {
@@ -83,6 +85,10 @@ public class PackageFragment extends Fragment implements View.OnClickListener{
             case R.id.layout_room:
                 Intent intent = new Intent(getActivity(), AddRoomActivity.class);
                 startActivityForResult(intent,ADD_ROOM_REQUEST);
+                break;
+            case R.id.searchPackage:
+                Intent intentS = new Intent(getActivity(), SearchActivity.class);
+                startActivityForResult(intentS,ADD_ROOM_REQUEST);
                 break;
         }
     }

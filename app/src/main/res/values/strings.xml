@@ -105,14 +105,19 @@
     <string name="icon_drink">&#xf17e;</string>
     <string name="icon_info">&#xe906;</string>
     <string name="icon_pin">&#xe907;</string>
-    <string name="icon_calander">&#xe908;</string>
-    <string name="icon_search">&#xe909;</string>
 
     <string name="searchFlight">جستجوی پرواز</string>
     <string name="search_package">جستجوی پکیج</string>
     <string name="search_hotel">جستجو هتل</string>
+
+
+
+
+    <string name="icon_calander">&#xe908;</string>
+    <string name="icon_search">&#xe909;</string>
     <string name="search_back_right">&#xea3c;</string>
 
+    <string name="no_results_found">نتیجه ای یافت نشد !</string>
     <string-array name="requestStates">
         <item>درخواست ارسال نشده است</item>
         <item>برای سرور ارسال شده است</item>

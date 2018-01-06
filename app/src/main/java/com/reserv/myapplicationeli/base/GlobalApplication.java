@@ -10,9 +10,11 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Typeface;
 import android.os.Environment;
+import android.os.Handler;
 import android.telephony.TelephonyManager;
 
 import com.pixplicity.easyprefs.library.Prefs;
+
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.ui.font.CustomViewWithTypefaceSupport;
 import com.reserv.myapplicationeli.views.ui.font.TextField;
@@ -26,6 +28,9 @@ public class GlobalApplication extends Application {
 	private static IDM_Activity activity;
 	private static Context context;
 	public static ArrayList<IDM_Activity> activityStack = new ArrayList<IDM_Activity>();
+	private static GlobalApplication mInstance;
+	public static volatile Context applicationContext;
+	public static volatile Handler applicationHandler;
 
 	public static void setGlobalTypeFace(Context context) {
 		globalTypeFace = Typeface.createFromAsset(context.getAssets(),
@@ -34,6 +39,9 @@ public class GlobalApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		mInstance = this;
+		applicationContext = getApplicationContext();
+		applicationHandler = new Handler(applicationContext.getMainLooper());
 		CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
 				.setDefaultFontPath("fonts/iran_sans_normal.ttf")
 				.setFontAttrId(R.attr.fontPath)

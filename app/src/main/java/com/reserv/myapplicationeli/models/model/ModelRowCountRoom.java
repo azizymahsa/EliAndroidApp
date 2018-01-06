@@ -1,9 +1,32 @@
 package com.reserv.myapplicationeli.models.model;
 
+import com.reserv.myapplicationeli.models.model.pack.ChildModel;
+import com.reserv.myapplicationeli.tools.ValidationTools;
+
+import java.util.ArrayList;
+
 public class ModelRowCountRoom {
 	private int CountB;
 	private int CountK;
 	private int CountN;
+	private ArrayList<ChildModel> childModels;
+
+	public void addChildModel(ChildModel childModel) {
+		if(ValidationTools.isEmptyOrNull(childModels)){
+			childModels = new ArrayList<>();
+		}
+		childModels.add(childModel);
+	}
+
+	public ArrayList<ChildModel> getChildModels() {
+		if(ValidationTools.isEmptyOrNull(childModels)){
+			childModels = new ArrayList<>();
+		}
+		return childModels;
+	}
+
+
+
 	public int getCountB() {
 		return CountB;
 	}

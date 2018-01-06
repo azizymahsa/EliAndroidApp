@@ -80,7 +80,8 @@
                         android:text="تاریخ برگشت "
                         android:textColor="#808080"
                         android:textSize="11dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_marginTop="3dp"/>
 
                     <Button
                         android:id="@+id/tarikh_be_picker"
@@ -111,8 +112,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginTop="1dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="3dp"
                         android:gravity="right"
                         android:shadowDx="-2"
                         android:shadowDy="-2"
@@ -165,7 +166,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="center"
                         android:text="کودک"
                         android:textColor="#808080"
                         android:textSize="12dp"
@@ -198,7 +199,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="center"
                         android:text="بزرگسال"
                         android:textColor="#808080"
                         android:textSize="12dp"
@@ -233,7 +234,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="center"
                         android:text="اتاق"
                         android:textColor="#808080"
                         android:textSize="12dp"

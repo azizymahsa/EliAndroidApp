@@ -61,6 +61,9 @@
         <activity
             android:name="HotelActvi"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.pack.AddRoomActivity"
+            android:screenOrientation="portrait" />
 
 
     </application>
