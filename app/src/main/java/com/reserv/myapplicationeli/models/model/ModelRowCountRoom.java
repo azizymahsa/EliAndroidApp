@@ -6,8 +6,11 @@ import com.reserv.myapplicationeli.tools.ValidationTools;
 import java.util.ArrayList;
 
 public class ModelRowCountRoom {
+	//vasata
 	private int CountB;
+	//bozorg
 	private int CountK;
+	//kochik
 	private int CountN;
 	private ArrayList<ChildModel> childModels;
 

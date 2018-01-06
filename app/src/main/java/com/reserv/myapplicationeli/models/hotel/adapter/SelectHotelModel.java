@@ -12,11 +12,13 @@ public class SelectHotelModel {
     private String price;
     private String imageUrl;
     private String location;
+
     int oldPrice;
     int star;
+    private int eHotelId;
+    private String ResultUniqID;
 
-
-    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star) {
+    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -26,6 +28,8 @@ public class SelectHotelModel {
         this.location = location;
         this.oldPrice = oldPrice;
         this.star = star;
+        this.eHotelId = eHotelId;
+        ResultUniqID = resultUniqID;
     }
 
     public String getName() {
@@ -98,5 +102,21 @@ public class SelectHotelModel {
 
     public void setStar(int star) {
         this.star = star;
+    }
+
+    public int geteHotelId() {
+        return eHotelId;
+    }
+
+    public void seteHotelId(int eHotelId) {
+        this.eHotelId = eHotelId;
+    }
+
+    public String getResultUniqID() {
+        return ResultUniqID;
+    }
+
+    public void setResultUniqID(String resultUniqID) {
+        ResultUniqID = resultUniqID;
     }
 }

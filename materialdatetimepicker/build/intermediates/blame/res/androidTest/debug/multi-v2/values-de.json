@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-de\\values-de.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-de\\values-de.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,187,248,367,480,607,728,857,955,1049,1145,1235",
+                        "endColumns": "81,60,118,112,126,120,128,97,93,95,89,98",
+                        "endOffsets": "182,243,362,475,602,723,852,950,1044,1140,1230,1329"
+                    }
+                }
+            ]
+        }
+    ]
+}

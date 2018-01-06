@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-gl-rES\\values-gl-rES.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-gl-rES\\values-gl-rES.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,186,247,355,470,601,725,860,956,1050,1148,1239",
+                        "endColumns": "80,60,107,114,130,123,134,95,93,97,90,100",
+                        "endOffsets": "181,242,350,465,596,720,855,951,1045,1143,1234,1335"
+                    }
+                }
+            ]
+        }
+    ]
+}

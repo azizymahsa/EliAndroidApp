@@ -6,13 +6,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.models.model.pack.ChildAgeRange;
+import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 import com.reserv.myapplicationeli.contracts.InfoRoomsContract;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
@@ -20,8 +24,10 @@ import com.reserv.myapplicationeli.presenters.RoomPresenter;
 import com.reserv.myapplicationeli.views.adapters.pack.RoomAdapter;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
+import java.util.ArrayList;
 
-public class AddRoomActivity extends BaseActivity implements View.OnClickListener,InfoRoomsContract.View {
+
+public class AddRoomActivity extends BaseActivity implements View.OnClickListener, InfoRoomsContract.View {
 
     public SimpleRecycleView rcl_room;
     public ImageView btn_add;
@@ -29,13 +35,14 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     public TextView count_room;
     public RoomAdapter roomAdapter;
     public RoomPresenter roomPresenter;
+    private Button btn_confirm;
 
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_room);
-        InitUi.Toolbar(this, false, R.color.add_room_color,"اطلاعات اتاق");
+        InitUi.Toolbar(this, false, R.color.add_room_color, "اطلاعات اتاق");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(getColor(R.color.add_room_color_dark));
@@ -53,6 +60,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void initViews() {
         count_room = (TextView) findViewById(R.id.count_room);
+        btn_confirm = (Button) findViewById(R.id.btn_confirm);
         btn_add = (ImageView) findViewById(R.id.btn_add);
         btn_remove = (ImageView) findViewById(R.id.btn_remove);
         rcl_room = (SimpleRecycleView) findViewById(R.id.rcl_room);
@@ -62,6 +70,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
 
         btn_add.setOnClickListener(this);
         btn_remove.setOnClickListener(this);
+        btn_confirm.setOnClickListener(this);
     }
 
     @Override
@@ -87,29 +96,32 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void notifyDataSetChange() {
-        if(roomAdapter != null){
+        if (roomAdapter != null) {
             roomAdapter.notifyDataSetChanged();
         }
     }
 
+
+
+
     @Override
     public void notifyItemInserted(int layoutPosition) {
-        if(roomAdapter != null){
+        if (roomAdapter != null) {
             roomAdapter.notifyItemInserted(layoutPosition);
         }
     }
 
     @Override
     public void notifyItemRemoved(int layoutPosition) {
-        if(roomAdapter != null){
+        if (roomAdapter != null) {
             roomAdapter.notifyItemRemoved(layoutPosition);
         }
     }
 
     @Override
     public void notifyItemRangeChanged(int positionStart, int itemCount) {
-        if(roomAdapter != null){
-            roomAdapter.notifyItemRangeChanged(positionStart,itemCount);
+        if (roomAdapter != null) {
+            roomAdapter.notifyItemRangeChanged(positionStart, itemCount);
         }
     }
 
@@ -119,18 +131,21 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     }
 
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnBack:
                 onBackPressed();
-               break;
+                break;
             case R.id.btn_add:
                 roomPresenter.addRooms();
                 break;
             case R.id.btn_remove:
                 roomPresenter.removeRooms();
+                break;
+                case R.id.btn_confirm:
+                    int adl=0;
+
                 break;
         }
     }

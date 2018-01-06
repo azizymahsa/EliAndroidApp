@@ -4,14 +4,10 @@ import android.support.annotation.RawRes;
 import android.util.Log;
 
 import com.reserv.myapplicationeli.base.BaseAPI;
-import com.reserv.myapplicationeli.models.hotel.api.call.HotelAvailRequestModel;
-import com.reserv.myapplicationeli.models.hotel.api.response.HotelAvailModelResponse;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelAvailModelResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 

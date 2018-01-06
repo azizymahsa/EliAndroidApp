@@ -5,28 +5,26 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.hotelAvail.HotelAvailApi;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectHotelModel;
-import com.reserv.myapplicationeli.models.hotel.api.call.HotelAvailRequestModel;
-import com.reserv.myapplicationeli.models.hotel.api.call.Identity;
-import com.reserv.myapplicationeli.models.hotel.api.call.Request;
-import com.reserv.myapplicationeli.models.hotel.api.call.Rooms;
-import com.reserv.myapplicationeli.models.hotel.api.response.HotelAvailModelResponse;
-import com.reserv.myapplicationeli.models.hotel.api.response.HotelAvailResult;
-import com.reserv.myapplicationeli.models.hotel.api.response.Hotels;
-import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Request;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Rooms;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelAvailModelResponse;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelAvailResult;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Hotels;
 import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
-import com.reserv.myapplicationeli.views.lazyloading.ImageLoader;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import java.util.ArrayList;
@@ -43,6 +41,10 @@ public class SelectHotelActivity extends BaseActivity {
     private List<Rooms> rooms = new ArrayList<>();
     RelativeLayout rlLoading,rlRoot;
     Window window;
+    private DatePickerDialog datePickerDialog;
+    private DatePickerDialog returnDatePicker;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,18 +62,25 @@ public class SelectHotelActivity extends BaseActivity {
         rlRoot=findViewById(R.id.rlRoot);
         new GetHotelAsync().execute();
 
+        Log.e("raft", getIntent().getExtras().getString("CheckIn"));
+        Log.e("bargasht", getIntent().getExtras().getString("CheckOut"));
+        Log.e("cod", 	Prefs.getString("Value-Hotel-City-Code","") );
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(SelectHotelActivity.this,DetailHotelActivity.class));
+                Intent i = new Intent(SelectHotelActivity.this,DetailHotelActivity.class);
+                i.putExtra("HotelId",selectHotelModelArrayList.get(position).geteHotelId());
+                i.putExtra("ResultUniqID",selectHotelModelArrayList.get(position).getResultUniqID());
+                startActivity(i);
             }
         });
 
 
 
 
-
     }
+
 
 
     private class GetHotelAsync extends AsyncTask<String, Void, String> {
@@ -87,7 +96,7 @@ public class SelectHotelActivity extends BaseActivity {
         protected String doInBackground(String... params) {
             try {
                 availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        "2018-02-02", "2018-02-10", "c24452", "DXB", rooms, "2,0,0,0,0,0")));
+                        getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code",""), "DXB", rooms, "2,0,0,0,0,0")));
 
             } catch (Exception e) {
 
@@ -107,7 +116,7 @@ public class SelectHotelActivity extends BaseActivity {
 
                     selectHotelModelArrayList.add(new SelectHotelModel(hotels.Name, hotels.City, hotels.Availability.RoomLists.get(i).Title,
                             hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location,
-                            hotels.Availability.RoomLists.get(i).OldPrice,hotels.StarRating));
+                            hotels.Availability.RoomLists.get(i).OldPrice,hotels.StarRating, hotels.Availability.RoomLists.get(i).EHotelId,availApi.hotelAvailModelResponse.HotelAvailResult.ResultUniqID));
                     //   i++;
 
                 }

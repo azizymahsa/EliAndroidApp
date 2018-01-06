@@ -36,6 +36,9 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
     }
 
 
+
+
+
     @Override
     public void addRooms() {
         if (ValidationTools.isEmptyOrNull(getRooms())) {
@@ -120,6 +123,8 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
             }
         });
 
+
+
         holder.btn_ch_pluse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,6 +140,8 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
 
             }
         });
+
+
         holder.btn_ch_mines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
