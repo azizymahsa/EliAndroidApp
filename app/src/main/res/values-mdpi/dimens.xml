@@ -6,6 +6,10 @@
 
     <dimen name="circle_60dp">60dp</dimen>
     <dimen name="_12dp">10dp</dimen>
+
     <dimen name="_25dp">25dp</dimen>
+
+    <dimen name="_11dp">11dip</dimen>
+
 
 </resources>

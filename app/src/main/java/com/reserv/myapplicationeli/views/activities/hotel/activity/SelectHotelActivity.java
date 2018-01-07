@@ -5,33 +5,30 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.google.gson.Gson;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.hotelAvail.HotelAvailApi;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectHotelModel;
+
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Request;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Rooms;
-import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelAvailModelResponse;
-import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelAvailResult;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Hotels;
 import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
+import com.reserv.myapplicationeli.views.lazyloading.ImageLoader;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 
 
 public class SelectHotelActivity extends BaseActivity {
@@ -44,20 +41,15 @@ public class SelectHotelActivity extends BaseActivity {
     private List<Rooms> rooms = new ArrayList<>();
     RelativeLayout rlLoading,rlRoot;
     Window window;
-    private DatePickerDialog datePickerDialog;
-    private DatePickerDialog returnDatePicker;
-    LinearLayout llBottom;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
-        InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
+        InitUi.Toolbar(this, false, R.color.color_hotel, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
+        window.setStatusBarColor(getColor(R.color.color_hotel_dark));
         list = findViewById(R.id.lvHoteResult);
-        llBottom = findViewById(R.id.llBottom);
         adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this);
         list.setAdapter(adapter);
         rooms.add(new Rooms(2, 0));
@@ -65,56 +57,15 @@ public class SelectHotelActivity extends BaseActivity {
 
         rlLoading=findViewById(R.id.rlLoading);
         rlRoot=findViewById(R.id.rlRoot);
-        new GetHotelAsync().execute();
-
-        Log.e("raft", getIntent().getExtras().getString("CheckIn"));
-        Log.e("bargasht", getIntent().getExtras().getString("CheckOut"));
-        Log.e("cod", 	Prefs.getString("Value-Hotel-City-Code","") );
+     //   new GetHotelAsync().execute();
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(SelectHotelActivity.this,DetailHotelActivity.class);
-                i.putExtra("HotelId",selectHotelModelArrayList.get(position).geteHotelId());
-                i.putExtra("ResultUniqID",selectHotelModelArrayList.get(position).getResultUniqID());
-                startActivity(i);
+                startActivity(new Intent(SelectHotelActivity.this,DetailHotelActivity.class));
             }
         });
 
-
-        llBottom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // Toast.makeText(SelectHotelActivity.this, "---", Toast.LENGTH_SHORT).show();
-                Iterator<SelectHotelModel> it = selectHotelModelArrayList.iterator();
-                while (it.hasNext()) {
-                    if (it.next().isBestSell()) {
-                        it.remove();
-                    }
-                }
-
-
-
-
-
-
-
-
-             /*   Iterable<SelectHotelModel> filtered = Iterables.filter(selectHotelModelArrayList, new Predicate<SelectHotelModel>() {
-                    public boolean apply(String element) {
-                        return true of false based on criteria
-                    }
-                });*/
-
-
-
-
-
-
-
-                adapter.notifyDataSetChanged();
-            }
-        });
 
 
 
@@ -122,13 +73,13 @@ public class SelectHotelActivity extends BaseActivity {
     }
 
 
-
+/*
     private class GetHotelAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
             window.setStatusBarColor(getColor(R.color.blue2));
 
-            new InitUi().Loading(rlLoading,rlRoot,true);
+            new InitUi().Loading(SelectHotelActivity.this,rlLoading,rlRoot,true,R.drawable.hotel_loading);
 
         }
 
@@ -136,7 +87,7 @@ public class SelectHotelActivity extends BaseActivity {
         protected String doInBackground(String... params) {
             try {
                 availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code",""), "DXB", rooms, "2,0,0,0,0,0","fa-IR")));
+                        "2018-02-02", "2018-02-10", "c24452", "DXB", rooms, "2,0,0,0,0,0")));
 
             } catch (Exception e) {
 
@@ -146,17 +97,18 @@ public class SelectHotelActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            new InitUi().Loading(rlLoading,rlRoot,false);
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+            new InitUi().Loading(SelectHotelActivity.this,rlLoading,rlRoot,false,R.drawable.hotel_loading);
+            window.setStatusBarColor(getColor(R.color.color_hotel_dark));
 
 
             try {
                 int i = 0;
                 for (Hotels hotels : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels) {
 
-                    selectHotelModelArrayList.add(new SelectHotelModel(hotels.Name, hotels.City, hotels.Availability.RoomLists.get(i).Title,
-                            hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location,
-                            hotels.Availability.RoomLists.get(i).OldPrice,hotels.StarRating, hotels.Availability.RoomLists.get(i).EHotelId,availApi.hotelAvailModelResponse.HotelAvailResult.ResultUniqID,hotels.BestSell));
+                */
+/*    selectHotelModelArrayList.add(new SelectHotelModel(hotels.Name, hotels.City, hotels.Availability.RoomLists.get(i).Title,
+                            hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location, hotels.Availability.RoomLists.get(i).OldPrice));*//*
+
                     //   i++;
 
                 }
@@ -170,5 +122,6 @@ public class SelectHotelActivity extends BaseActivity {
         }
 
     }
+*/
 
 }

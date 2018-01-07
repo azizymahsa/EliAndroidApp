@@ -11,6 +11,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +33,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -43,13 +46,16 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 
 import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.adapters.ExpandableListAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
@@ -77,7 +83,7 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 	public static int COUNT_B;
 	public static int COUNT_K;
 	public static int COUNT_N;
-
+	RelativeLayout rlLoading,rlRoot;
 	// HashMap<String,HashMap<String,HeaderExpandingPlan>> listDataHeaderExpanding;
 	List<String> listDataHeaderExpanding;
 	HashMap<String, HashMap<String,ItemExpandingPlan>> listDataChildExpanding;
@@ -94,6 +100,16 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_parvaz);
+
+		Bundle bundle = this.getIntent().getExtras();
+		if (bundle != null) {
+			if (bundle.getBoolean("BACK_HOME") == true) {
+				finish();
+			}
+		}
+		rlLoading=findViewById(R.id.rlLoading);
+		rlRoot=findViewById(R.id.rlRoot);
+
 		new AsyncFetch().execute();
 		txtBack = (TextView) findViewById(R.id.txtBack);
 		txtBack.setOnClickListener(this);
@@ -196,10 +212,18 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 		});
 
 
+
+
+
+
+
+
+
 	}//end oncreat
 	private class AsyncFetch extends AsyncTask<String, String, String> {
-		ProgressDialog pdLoading = new ProgressDialog(SearchParvazActivity.this,R.style.StyledDialog);
+		//ProgressDialog pdLoading = new ProgressDialog(SearchParvazActivity.this,R.style.StyledDialog);
 		//ProgressDialog pdLoading = new ProgressDialog(SearchParvazActivity.this);
+
 
 		HttpURLConnection conn;
 		URL url = null;
@@ -207,12 +231,10 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 		@Override
 		protected void onPreExecute() {
-			super.onPreExecute();
+			//	super.onPreExecute();
 
-			//this method will be running on UI thread
-			//pdLoading.setMessage("\tLoading...");
-			pdLoading.setCancelable(false);
-			pdLoading.show();
+			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot,true,R.drawable.loading_parvaz_search);
+
 
 		}
 
@@ -289,6 +311,8 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				HttpResponse res = client.execute(post);
 				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 
+			/*	JSONObject jsonObj = new JSONObject("Error");
+				JSONObject GetAirportsResult = jsonObj.getJSONObject("SearchFlightsResult");*/
 
 				return (retSrc);
 
@@ -298,6 +322,8 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				e.printStackTrace();
 				return e.toString();
 			} finally {
+
+
 				conn.disconnect();
 			}
 
@@ -306,13 +332,14 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 		@Override
 		protected void onPostExecute(String result) {
+			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot,false,R.drawable.loading_parvaz_search);//dismiss
 
 			//this method will be running on UI thread
 
-			pdLoading.dismiss();
+			//	pdLoading.dismiss();
 			List<Country> data=new ArrayList<Country>();
 
-			pdLoading.dismiss();
+			//pdLoading.dismiss();
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(result);
@@ -707,6 +734,8 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				manJson.put("AdlCount",Integer.parseInt(adlCount));
 				manJson.put("ChdCount",Integer.parseInt(chdCount));
 				manJson.put("InfCount",Integer.parseInt(infCount));//{"DepartureAirportcode":"THR","ArrivalAirportcode":"IST","DepartureDate":"2017-12-28","ArrivalDate":"2017-12-31","OneWay":"2","CabinClassCode":"Y","AdlCount":1,"ChdCount":0,"InfCount":0}
+				manJson.put("Culture","fa-IR");
+
 				manJson.put("identity",identityJson);
 				jsone.put("request",manJson);
 				//jsone.put("request",jsoneIde);
@@ -727,6 +756,8 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				manJson.put("AdlCount",1);
 				manJson.put("ChdCount",0);
 				manJson.put("InfCount",0);
+				manJson.put("Culture","fa-IR");
+
 				//Global
 				COUNT_B=1;
 				COUNT_K=0;
@@ -796,13 +827,23 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 							,SegmentList.get(0).getCabinClassNameFa()
 							,flightsList.get(i).getRemainSeats()
-							,flightsList.get(i).isIsCharter());
+							,flightsList.get(i).isIsCharter()
+							,SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
 
 
 					//  listDataHeaderExpanding.add(header);
 					//  HeaderExpandingPlan header=new HeaderExpandingPlan(ArrivalCityNameFaR, DepartureCityNameFaR, ArrivalCityNameFaB, DepartureCityNameFaB)
-					parentItem.Header.add(header);
 
+
+
+
+					parentItem.Header.add(header);
+					Collections.sort(parentItem.Header, new Comparator<HeaderExpandingPlan>() {
+						@Override
+						public int compare(HeaderExpandingPlan o1, HeaderExpandingPlan o2) {
+							return o1.ArrivalCityNameEnR.compareToIgnoreCase(o2.ArrivalCityNameEnR);
+						}
+					});
 
 
 					//fore Detail item
@@ -836,7 +877,15 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 					}
 
+
+
+
+
+
 					dataExpandingList.add(parentItem);
+
+
+
 					//	listDataChildExpanding.put(header, detail);
 				}
 			}catch (Exception e) {
@@ -860,8 +909,11 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 		//public String Header;
 		public ArrayList<HeaderExpandingPlan> Header;
 		public List<ItemExpandingPlan> Items;
+
+
 	}
 	public class HeaderExpandingPlan {
+		public String ArrivalCityNameEnR;
 		public String ArrivalCityNameFaR;
 		public String  FlightArrivalTimeR;
 
@@ -893,7 +945,7 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 								   long AdlCost
 				,String flGUID,String AirlineNameFa
 				,String AirlineCode
-				,String CabinClassNameFa,int RemainSeats,boolean IsCharter){
+				,String CabinClassNameFa,int RemainSeats,boolean IsCharter ,String ArrivalCityNameEnR){
 			this.ArrivalCityNameFaR = ArrivalCityNameFaR;
 			this.FlightArrivalTimeR=FlightArrivalTimeR;
 
@@ -915,6 +967,18 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 			this.CabinClassNameFa=CabinClassNameFa;
 			this.RemainSeats=RemainSeats;
 			this.IsCharter=IsCharter;
+
+			this.ArrivalCityNameEnR=ArrivalCityNameEnR;
+
+		}
+
+
+		public String getArrivalCityNameFaR() {
+			return ArrivalCityNameFaR;
+		}
+
+		public void setArrivalCityNameFaR(String arrivalCityNameFaR) {
+			ArrivalCityNameFaR = arrivalCityNameFaR;
 		}
 	}
 
@@ -992,10 +1056,10 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 			case R.id.txtBack:
-				Intent intent = new Intent(this,PlanFragment.class);
+				/*Intent intent = new Intent(this,PlanFragment.class);
 				//i2.putExtra("CUSTOMER_ID", (int) customerID);
-				startActivity(intent);
-
+				startActivity(intent);*/
+				finish();
 				break;
 			case R.id.lblMoratabSazi:
 
@@ -1062,8 +1126,7 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 						///
 						callApiDateNext();
 					}else{
-						Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز!!!",
-								Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز!!!",Toast.LENGTH_SHORT).show();
 					}
 
 
@@ -1098,7 +1161,15 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 		// TODO Auto-generated method stub
 
 	}
-
+	@Override
+	public void onResume() {
+		Log.e("DEBUG", "onResume of SearchParvazActivity");
+		super.onResume();
+		if(Prefs.getBoolean("BACK_HOME",true)){
+			this.finish();
+		}
+		Prefs.putBoolean("BACK_HOME",false);
+	}
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub

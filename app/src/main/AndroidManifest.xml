@@ -62,14 +62,18 @@
         <activity
             android:name=".views.activities.pack.AddRoomActivity"
             android:screenOrientation="portrait" />
-
-
-
-
-
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBQfxMuyfzRRl-iQTF-m9K6Snl3nq3dIio" />
+        <activity
+            android:name=".views.ui.SearchParvazActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.ui.GetAirportMabdaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.ui.GetAirportMaghsadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.ui.PassengerActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

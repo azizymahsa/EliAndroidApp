@@ -259,8 +259,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         protected void onPreExecute() {
 
-            window.setStatusBarColor(getColor(R.color.blue2));
-            new InitUi().Loading(rlLoading, rlRoot, true);
+         //   window.setStatusBarColor(getColor(R.color.blue2));
+         //   new InitUi().Loading(rlLoading, rlRoot, true);
             Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
             Log.e("test2", getIntent().getExtras().getString("ResultUniqID"));
 
@@ -286,8 +286,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected void onPostExecute(String result) {
             //  new InitUi().Loading(rlLoading,rlRoot,false);
 
-            new InitUi().Loading(rlLoading, rlRoot, false);
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+          //  new InitUi().Loading(rlLoading, rlRoot, false);
+          //  window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
           //  try {
                 int i = 0;
                 for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {
@@ -316,8 +316,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         protected void onPreExecute() {
 
-            window.setStatusBarColor(getColor(R.color.blue2));
-            new InitUi().Loading(rlLoading, rlRoot, true);
+          window.setStatusBarColor(getColor(R.color.blue2));
+            new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
 
 
         }
@@ -340,9 +340,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected void onPostExecute(String result) {
             //  new InitUi().Loading(rlLoading,rlRoot,false);
-
-            new InitUi().Loading(rlLoading, rlRoot, false);
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+            new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
+         //   window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
             try {
                 int i = 0;
                 Toast.makeText(DetailHotelActivity.this, getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.SourcePrice, Toast.LENGTH_SHORT).show();

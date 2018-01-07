@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      xmlns:swipe="http://schemas.android.com/apk/res-auto"
 	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:id="@+id/rlRoot"
 	android:orientation="vertical">
 <LinearLayout
     android:layout_width="match_parent"
@@ -205,7 +206,8 @@
 	         android:text=""
 	         android:textColor="#FFFFFF"
 	         android:textSize="12sp" />
-	    
+
+	    
 		    <TextView
 		        android:id="@+id/lblCityMabdaRaft"
 		        android:layout_width="62dp"
@@ -233,12 +235,22 @@
 	        android:textSize="12sp" />
 	   
    </LinearLayout>
-<!-- <TextView
-    android:id="@+id/textView1"
-    android:layout_width="fill_parent"
-    android:layout_height="40dp"
-    android:gravity="center"
-    android:layout_centerHorizontal="true"
-    android:layout_alignParentBottom="true"
-    android:text="Footer" /> -->
+
+
+
+
+	<include
+	layout="@layout/loading_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	/>
+
+	<!-- <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="Footer" /> -->
 </RelativeLayout>

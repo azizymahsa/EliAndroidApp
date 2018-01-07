@@ -1,14 +1,13 @@
 package com.reserv.myapplicationeli.views.ui;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,7 +24,6 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 
 public class InitUi {
-    @SuppressLint("NewApi")
     public static void Toolbar(final Activity activity, boolean isMainActivity, int color, String title){
         Toolbar toolbar = activity.findViewById(R.id.toolbar);
         TextView tvTitle = activity.findViewById(R.id.tvTitle);
@@ -33,12 +31,12 @@ public class InitUi {
         FancyButton btnMenu=activity.findViewById(R.id.btnMenu);
 
 
-        toolbar.setBackgroundColor(ContextCompat.getColor(activity,color));
+        toolbar.setBackgroundColor(activity.getColor(color));
         tvTitle.setText(title);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnMenu.setCustomTextFont("fonts/icomoon.ttf");
         btnMenu.setText(activity.getString(R.string.icon_menu));
-        btnBack.setText(activity.getString(R.string.search_back_right));
+        btnBack.setText(activity.getString(R.string.icon_arrow));
 
 
 
@@ -48,6 +46,7 @@ public class InitUi {
         }else{
 
             btnMenu.setVisibility(View.GONE);
+            btnBack.setVisibility(View.VISIBLE);
         }
 
 
@@ -63,20 +62,22 @@ public class InitUi {
 
 
     }
-    public  void Loading(final RelativeLayout rlLoading, final RelativeLayout root, boolean start ) {
+    public  void Loading(Activity activity,final RelativeLayout rlLoading, final RelativeLayout root, boolean start,int image ) {
+       ImageView ivImage=activity.findViewById(R.id.ivImage);
+        ivImage.setImageDrawable(ContextCompat.getDrawable(activity,image));
+
+
+
         if (start) {
             if (rlLoading.getVisibility() != View.VISIBLE) {
                 rlLoading.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(100)
-                        .playOn(rlLoading);
+                YoYo.with(Techniques.FadeIn) .duration(100).playOn(rlLoading);
                 Utility.disableEnableControls(false, root);
             }
         } else {
             if (rlLoading.getVisibility() == View.VISIBLE) {
 
-                YoYo.with(Techniques.FadeOut)
-                        .duration(600).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+                YoYo.with(Techniques.FadeOut).duration(600).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(android.animation.Animator animation) {
 
@@ -95,7 +96,7 @@ public class InitUi {
                     }
 
                     @Override
-                    public void onAnimationRepeat(android.animation.Animator animation) {
+                    public void onAnimationRepeat(android.animation.Animator animation){
 
                     }
 

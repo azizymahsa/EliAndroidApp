@@ -82,8 +82,8 @@ public class SelectRoomsFragment extends Fragment{
 
         protected void onPreExecute() {
 
-            window.setStatusBarColor(getActivity().getColor(R.color.blue2));
-            new InitUi().Loading(rlLoading,rlRoot,true);
+          //  window.setStatusBarColor(getActivity().getColor(R.color.blue2));
+           // new InitUi().Loading(rlLoading,rlRoot,true);
         }
 
         @Override
@@ -100,8 +100,8 @@ public class SelectRoomsFragment extends Fragment{
 
         @Override
         protected void onPostExecute(String result) {
-            new InitUi().Loading(rlLoading,rlRoot,false);
-            window.setStatusBarColor(getActivity().getColor(R.color.colorPrimaryDark));
+          //  new InitUi().Loading(rlLoading,rlRoot,false);
+          //  window.setStatusBarColor(getActivity().getColor(R.color.colorPrimaryDark));
             try {
                 int i = 0;
                 for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {

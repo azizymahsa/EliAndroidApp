@@ -6,6 +6,5 @@ values-sw480dp          5.1”  480x800 mdpi -->
 
     <dimen name="circle_60dp">100dp</dimen>
     <dimen name="_12dp">14dp</dimen>
-    <dimen name="_25dp">25dp</dimen>
 
 </resources>
