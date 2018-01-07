@@ -17,8 +17,10 @@ public class SelectHotelModel {
     int star;
     private int eHotelId;
     private String ResultUniqID;
+    boolean bestSell;
 
-    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID) {
+    public SelectHotelModel(String name, String city, String title, String board, String price,
+                            String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -30,6 +32,7 @@ public class SelectHotelModel {
         this.star = star;
         this.eHotelId = eHotelId;
         ResultUniqID = resultUniqID;
+        this.bestSell = bestSell;
     }
 
     public String getName() {
@@ -118,5 +121,13 @@ public class SelectHotelModel {
 
     public void setResultUniqID(String resultUniqID) {
         ResultUniqID = resultUniqID;
+    }
+
+    public boolean isBestSell() {
+        return bestSell;
+    }
+
+    public void setBestSell(boolean bestSell) {
+        this.bestSell = bestSell;
     }
 }

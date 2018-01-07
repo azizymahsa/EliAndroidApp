@@ -9,12 +9,16 @@ public class RoomsModel {
     public String title;
     public String desc;
     public String price;
+    public String offerId;
+    public String hotelId;
 
-    public RoomsModel(String board, String title, String desc, String price) {
+    public RoomsModel(String board, String title, String desc, String price, String offerId, String hotelId) {
         this.board = board;
         this.title = title;
         this.desc = desc;
         this.price = price;
+        this.offerId = offerId;
+        this.hotelId = hotelId;
     }
 
     public String getBoard() {
@@ -47,5 +51,21 @@ public class RoomsModel {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(String offerId) {
+        this.offerId = offerId;
+    }
+
+    public String getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
     }
 }

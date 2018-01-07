@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -28,7 +29,9 @@ import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 
 public class SelectHotelActivity extends BaseActivity {
@@ -43,6 +46,7 @@ public class SelectHotelActivity extends BaseActivity {
     Window window;
     private DatePickerDialog datePickerDialog;
     private DatePickerDialog returnDatePicker;
+    LinearLayout llBottom;
 
 
 
@@ -53,6 +57,7 @@ public class SelectHotelActivity extends BaseActivity {
         InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
         list = findViewById(R.id.lvHoteResult);
+        llBottom = findViewById(R.id.llBottom);
         adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this);
         list.setAdapter(adapter);
         rooms.add(new Rooms(2, 0));
@@ -77,6 +82,41 @@ public class SelectHotelActivity extends BaseActivity {
         });
 
 
+        llBottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // Toast.makeText(SelectHotelActivity.this, "---", Toast.LENGTH_SHORT).show();
+                Iterator<SelectHotelModel> it = selectHotelModelArrayList.iterator();
+                while (it.hasNext()) {
+                    if (it.next().isBestSell()) {
+                        it.remove();
+                    }
+                }
+
+
+
+
+
+
+
+
+             /*   Iterable<SelectHotelModel> filtered = Iterables.filter(selectHotelModelArrayList, new Predicate<SelectHotelModel>() {
+                    public boolean apply(String element) {
+                        return true of false based on criteria
+                    }
+                });*/
+
+
+
+
+
+
+
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
 
 
     }
@@ -96,7 +136,7 @@ public class SelectHotelActivity extends BaseActivity {
         protected String doInBackground(String... params) {
             try {
                 availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code",""), "DXB", rooms, "2,0,0,0,0,0")));
+                        getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code",""), "DXB", rooms, "2,0,0,0,0,0","fa-IR")));
 
             } catch (Exception e) {
 
@@ -116,7 +156,7 @@ public class SelectHotelActivity extends BaseActivity {
 
                     selectHotelModelArrayList.add(new SelectHotelModel(hotels.Name, hotels.City, hotels.Availability.RoomLists.get(i).Title,
                             hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location,
-                            hotels.Availability.RoomLists.get(i).OldPrice,hotels.StarRating, hotels.Availability.RoomLists.get(i).EHotelId,availApi.hotelAvailModelResponse.HotelAvailResult.ResultUniqID));
+                            hotels.Availability.RoomLists.get(i).OldPrice,hotels.StarRating, hotels.Availability.RoomLists.get(i).EHotelId,availApi.hotelAvailModelResponse.HotelAvailResult.ResultUniqID,hotels.BestSell));
                     //   i++;
 
                 }

@@ -76,21 +76,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-hi_values-hi.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-hi\\values-hi.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,186,247,352,472,584,700,816,907,994,1083,1169",
-                        "endColumns": "80,60,104,119,111,115,115,90,86,88,85,99",
-                        "endOffsets": "181,242,347,467,579,695,811,902,989,1078,1164,1264"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-hr_values-hr.arsc.flat",
             "map": [
                 {
@@ -106,16 +91,16 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-cs_values-cs.arsc.flat",
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-hi_values-hi.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-cs\\values-cs.xml",
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-hi\\values-hi.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,187,248,361,473,583,709,821,915,1005,1097,1184",
-                        "endColumns": "81,60,112,111,109,125,111,93,89,91,86,98",
-                        "endOffsets": "182,243,356,468,578,704,816,910,1000,1092,1179,1278"
+                        "startOffsets": "105,186,247,352,472,584,700,816,907,994,1083,1169",
+                        "endColumns": "80,60,104,119,111,115,115,90,86,88,85,99",
+                        "endOffsets": "181,242,347,467,579,695,811,902,989,1078,1164,1264"
                     }
                 }
             ]
@@ -131,6 +116,21 @@
                         "startOffsets": "105,184,252,362,475,592,714,832,933,1030,1130,1223",
                         "endColumns": "78,67,109,112,116,121,117,100,96,99,92,99",
                         "endOffsets": "179,247,357,470,587,709,827,928,1025,1125,1218,1318"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-cs_values-cs.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (2)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-cs\\values-cs.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,187,248,361,473,583,709,821,915,1005,1097,1184",
+                        "endColumns": "81,60,112,111,109,125,111,93,89,91,86,98",
+                        "endOffsets": "182,243,356,468,578,704,816,910,1000,1092,1179,1278"
                     }
                 }
             ]

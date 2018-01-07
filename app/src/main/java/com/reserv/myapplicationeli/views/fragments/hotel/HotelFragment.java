@@ -27,13 +27,14 @@ import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.DatePickerDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.FilterHotel;
 
 
 public class HotelFragment extends Fragment implements OnClickListener {
 	public HotelFragment() {
 	}
 	public static Button searchHotel,btnPlusB,btnMinesB,btnPlusK,btnMinesK,btnPlusN,btnMinesN;
-	public TextView txtCity,lbl_city_english,txtTitle,txtCountB,txtCountK,txtCountN,lblRoomCount,txtRoomCount;
+	public TextView txtCity,lbl_city_english,txtTitle,tarikh_be,txtCountK,txtCountN,lblRoomCount,txtRoomCount;
 	public static int countNafar=1;
 	LinearLayout btn_add_room,llRoom;
 	public ListView listRoomItem;
@@ -55,6 +56,7 @@ public class HotelFragment extends Fragment implements OnClickListener {
 		//listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 		  
 		lblRoomCount= (TextView) rootView.findViewById(R.id.lblRoomCount);
+		tarikh_be= (TextView) rootView.findViewById(R.id.tarikh_be);
 		lblRoomCount.setOnClickListener(this);
 		txtRoomCount= (TextView) rootView.findViewById(R.id.txtRoomCount);
 		tvRaft= (TextView) rootView.findViewById(R.id.tvRaft);
@@ -184,6 +186,11 @@ public class HotelFragment extends Fragment implements OnClickListener {
 	case R.id.llRoom:
 		Intent room = new Intent(getActivity(), AddRoomActivity.class);
 		startActivity(room);
+
+				break;
+				case R.id.tarikh_be:
+					new FilterHotel(getActivity());
+
 
 				break;
 

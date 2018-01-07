@@ -128,7 +128,14 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
             int p1 = selectHotelModelArrayList.get(position).getOldPrice() - Integer.valueOf(selectHotelModelArrayList.get(position).getPrice());
             int p2 = p1 * 100;
             int p3 = p2 / selectHotelModelArrayList.get(position).getOldPrice();
-            holder.tvOff.setText(p3 + "%\nتخفیف");
+            if (p3!=0){
+                holder.tvOff.setVisibility(View.VISIBLE);
+                holder.tvOff.setText(p3 + "%\nتخفیف");
+
+            }else{
+                holder.tvOff.setVisibility(View.GONE);
+
+            }
 
 
         }

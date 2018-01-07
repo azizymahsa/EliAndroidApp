@@ -6,12 +6,16 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.reserv.myapplicationeli.views.activities.hotel.viewPagerFragmnets.MapFragment;
 import com.reserv.myapplicationeli.views.activities.hotel.viewPagerFragmnets.SelectRoomsFragment;
+import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsModel;
+
+import java.util.ArrayList;
 
 /**
  * Created by Reza.nejati on 1/3/2018.
  */
 
 public class HotelPagerAdapter extends FragmentPagerAdapter {
+    ArrayList<RoomsModel> roomsModels;
     public HotelPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -27,9 +31,9 @@ public class HotelPagerAdapter extends FragmentPagerAdapter {
             case 0: // Fragment # 0 - This will show FirstFragment
                 return MapFragment.newInstance(0, "نقشه هتل");
             case 1: // Fragment # 0 - This will show FirstFragment different title
-                return SelectRoomsFragment.newInstance(1, "امکانات");
+                return SelectRoomsFragment.newInstance(1 ,"امکانات",roomsModels);
             case 2: // Fragment # 1 - This will show SecondFragment
-                return SelectRoomsFragment.newInstance(2, "انتخاب و رزرو اتاق");
+                return SelectRoomsFragment.newInstance(2, "انتخاب و رزرو اتاق",roomsModels);
 
             default:
                 return null;

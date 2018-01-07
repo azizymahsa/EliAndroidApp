@@ -47,31 +47,31 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="100"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:text="فقط اتاق"
                     android:textStyle="bold"
                     android:gravity="left"
                     android:textColor="#000000"
                     />
                 <TextView
-                    android:id="@+id/tvPrice"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="100"
+                    android:textSize="14dp"
+                    android:text="ریال"
+                    android:gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/green"
+                    android:textAppearance="@style/IrsansBold"/>
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textSize="14dp"
                     android:text="10,450,000"
                     android:gravity="right"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#000000"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14dp"
-                    android:text="IRR"
-                    android:gravity="right"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/green"
-                    android:textAppearance="@style/IrsansBold"/>
+
 
 
             </LinearLayout>

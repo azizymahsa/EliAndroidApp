@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center">
+<!--    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:gravity="right">
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="فیلتر"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:gravity="center|right"
+            android:layout_margin="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/IconFonts"
+            android:textColor="@android:color/white"
+            android:text="@string/icon_filter"
+            android:textSize="25dp"
+            android:gravity="center|right"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16dp"
+            android:text="تخفیف ویژه"
+            android:gravity="center"/>
+        <cn.refactor.library.SmoothCheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            app:color_checked="#447eeb" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16dp"
+            android:text="تخفیف ویژه"
+            android:gravity="center"/>
+        <cn.refactor.library.SmoothCheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            app:color_checked="#447eeb"
+            android:layout_gravity=""/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16dp"
+            android:text="تخفیف ویژه"
+            android:gravity="center"/>
+        <cn.refactor.library.SmoothCheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            app:color_checked="#447eeb" />
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16dp"
+            android:text="تخفیف ویژه"
+            android:gravity="center"/>
+        <cn.refactor.library.SmoothCheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            app:color_checked="#447eeb" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16dp"
+            android:text="تخفیف ویژه"
+            android:gravity="center"/>
+        <cn.refactor.library.SmoothCheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            app:color_checked="#447eeb"
+            android:layout_gravity=""/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16dp"
+            android:text="تخفیف ویژه"
+            android:gravity="center"/>
+        <cn.refactor.library.SmoothCheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            app:color_checked="#447eeb" />
+
+
+
+    </LinearLayout>-->
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnOk"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:elevation="4dp"
+        android:paddingBottom="1dp"
+        fancy:fb_defaultColor="@color/colorAccent"
+        fancy:fb_focusColor="@color/app_base_color"
+        fancy:fb_radius="0dp"
+        fancy:fb_text="اعمال فبلتر!"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_textSize="18dp" />
+
+
+
+</LinearLayout>

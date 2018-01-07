@@ -16,8 +16,10 @@ public class Request {
     public final String EDepart;
     public final List<Rooms> Rooms;
     public final String RoomsString;
+    public final String Culture;
 
-    public Request(String echoToken,Identity identity, String checkinString, String checkoutString, String depart, String EDepart, List<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Rooms> rooms, String roomsString) {
+    public Request(String echoToken, Identity identity, String checkinString, String checkoutString,
+                   String depart, String EDepart, List<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Rooms> rooms, String roomsString, String culture) {
         EchoToken = echoToken;
         this.identity = identity;
         CheckinString = checkinString;
@@ -26,5 +28,6 @@ public class Request {
         this.EDepart = EDepart;
         Rooms = rooms;
         RoomsString = roomsString;
+        Culture = culture;
     }
 }

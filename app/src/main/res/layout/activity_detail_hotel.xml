@@ -37,12 +37,19 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/ivHotelPic"
+                <FrameLayout
+                    android:id="@+id/hListView2"
+
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/test" />
+                    android:paddingTop="10dip">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/intro_view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
                 <android.support.v7.widget.CardView
                     android:id="@+id/cvHotel"
                     android:layout_width="wrap_content"
@@ -54,7 +61,7 @@
                     card_view:cardBackgroundColor="#ffffff"
                     card_view:cardCornerRadius="3dp"
                     card_view:cardElevation="3dp"
-                    android:layout_below="@+id/ivHotelPic"
+                    android:layout_below="@+id/hListView2"
 
                     >
                     <LinearLayout
@@ -124,39 +131,82 @@
                               />
 
                         </LinearLayout>
-                        <com.ogaclejapan.smarttablayout.SmartTabLayout
-                            android:layout_below="@+id/cvHotel"
-                            android:id="@+id/viewpagertab"
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="50dp"
+                           android:orientation="horizontal"
+                           android:layout_marginTop="10dp">
 
-                            app:stl_indicatorAlwaysInCenter="false"
-                            app:stl_indicatorWithoutPadding="false"
-                            app:stl_indicatorInFront="false"
-                            app:stl_indicatorInterpolation="linear"
-                            app:stl_indicatorGravity="bottom"
-                            app:stl_indicatorColor="#40C4FF"
-                            app:stl_indicatorThickness="4dp"
-                            app:stl_indicatorWidth="auto"
-                            app:stl_indicatorCornerRadius="2dp"
-                            app:stl_overlineColor="#4D000000"
-                            app:stl_overlineThickness="0dp"
-                            app:stl_underlineColor="#4D000000"
-                            app:stl_underlineThickness="0dp"
-                            app:stl_dividerColor="#00ffffff"
-                            app:stl_dividerThickness="0dp"
-                            app:stl_defaultTabBackground="?attr/selectableItemBackground"
-                            app:stl_defaultTabTextAllCaps="false"
-                            app:stl_defaultTabTextColor="#FC000000"
-                            app:stl_defaultTabTextSize="12sp"
-                            app:stl_defaultTabTextHorizontalPadding="10dp"
-                            app:stl_defaultTabTextMinWidth="0dp"
-                            app:stl_distributeEvenly="true"
-                            app:stl_clickable="true"
-                            app:stl_titleOffset="55dp"
-                            app:stl_drawDecorationAfterTab="false"
-
-                            />
+                           <LinearLayout
+                               android:id="@+id/llMapClick"
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight="100"
+                               android:orientation="vertical">
+                               <TextView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"
+                                   android:layout_weight="100"
+                                   android:text="نقشه"
+                                   android:gravity="center"
+                                   android:textSize="12dp"
+                                   android:textAppearance="@style/IrsansBold"/>
+                               <View
+                                   android:id="@+id/vMap"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="2dp"
+                                   android:background="@color/blue"
+                                   android:layout_marginLeft="5dp"
+                                   android:layout_marginRight="5dp"
+                                   android:visibility="invisible"/>
+                           </LinearLayout>
+                           <LinearLayout
+                               android:id="@+id/llEmakanatClick"
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight="100"
+                               android:orientation="vertical">
+                               <TextView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"
+                                   android:layout_weight="100"
+                                   android:text="امکانات"
+                                   android:gravity="center"
+                                   android:textSize="12dp"
+                                   android:textAppearance="@style/IrsansBold"/>
+                               <View
+                                   android:id="@+id/vEmakanat"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="2dp"
+                                   android:background="@color/blue"
+                                   android:layout_marginLeft="5dp"
+                                   android:layout_marginRight="5dp"
+                                   android:visibility="invisible"/>
+                           </LinearLayout>
+                           <LinearLayout
+                               android:id="@+id/llRezervClick"
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_weight="100"
+                               android:orientation="vertical">
+                               <TextView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"
+                                   android:layout_weight="100"
+                                   android:text="انتخاب و رزرو اتاق"
+                                   android:gravity="center"
+                                   android:textSize="12dp"
+                                   android:textAppearance="@style/IrsansBold"/>
+                               <View
+                                   android:id="@+id/vRezerv"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="2dp"
+                                   android:background="@color/blue"
+                                   android:layout_marginLeft="5dp"
+                                   android:layout_marginRight="5dp"
+                                   />
+                           </LinearLayout>
+                       </LinearLayout>
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
@@ -164,7 +214,7 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/cvViewPager"
                     android:layout_width="wrap_content"
-                    android:layout_height="300dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="7dp"
@@ -173,160 +223,56 @@
                     card_view:cardCornerRadius="3dp"
                     card_view:cardElevation="1dp"
                     android:layout_below="@+id/cvHotel"
-
-
-                    >
-
-
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/vpPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-
-                </android.support.v7.widget.CardView>
-
-                <TextView
-                    android:id="@+id/tvHotelOptions"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/cvViewPager"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:textSize="16dp"
-                    android:text="امکانات هتل"
-                    android:textColor="#000000"
-                    android:textAppearance="@style/IrsansBold"
-                    />
-
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/llHotelOptions"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginRight="7dp"
-                    card_view:cardBackgroundColor="#ffffff"
-                    card_view:cardCornerRadius="3dp"
-                    card_view:cardElevation="3dp"
-                    android:layout_below="@+id/tvHotelOptions"
+                    android:layout_marginBottom="10dp"
 
 
                     >
                     <LinearLayout
-
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                     >
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:text="@string/icon_wifi"
-                            android:textAppearance="@style/IconFonts2"
-                            android:textSize="18dp"
-                            android:background="@drawable/circle_textview"
-                            android:gravity="center"
-                            android:layout_margin="5dp"/>
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:text="@string/icon_salon"
-                            android:textAppearance="@style/IconFonts2"
-                            android:textSize="18dp"
-                            android:background="@drawable/circle_textview"
-                            android:gravity="center"
-                            android:layout_margin="5dp"/>
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:text="@string/icon_conditioning"
-                            android:textAppearance="@style/IconFonts2"
-                            android:textSize="18dp"
-                            android:background="@drawable/circle_textview"
-                            android:gravity="center"
-                            android:layout_margin="5dp"/>
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:text="@string/icon_restaurant"
-                            android:textAppearance="@style/IconFonts2"
-                            android:textSize="18dp"
-                            android:background="@drawable/circle_textview"
-                            android:gravity="center"
-                            android:layout_margin="5dp"/>
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:text="@string/icon_tv"
-                            android:textAppearance="@style/IconFonts2"
-                            android:textSize="18dp"
-                            android:background="@drawable/circle_textview"
-                            android:gravity="center"
-                            android:layout_margin="5dp"/>
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:text="@string/icon_drink"
-                            android:textAppearance="@style/IconFonts2"
-                            android:textSize="18dp"
-                            android:background="@drawable/circle_textview"
-                            android:gravity="center"
-                            android:layout_margin="5dp"/>
-
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:text="+2"
-                            android:textSize="14dp"
-                            android:background="@drawable/circle_textview_blue"
-                            android:gravity="center"
-                            android:layout_margin="5dp"
-                            android:textColor="@android:color/white"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
 
 
+                        <FrameLayout
+                            android:id="@+id/flMap"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            >
+
+                            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:name="com.google.android.gms.maps.SupportMapFragment"
+                                android:id="@+id/map"
+                                android:layout_width="match_parent"
+                                android:layout_height="250dp" />
+
+                        </FrameLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/llEmakanat"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
+
                 </android.support.v7.widget.CardView>
 
-                <TextView
-                    android:id="@+id/tvSelectHotel"
 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/llHotelOptions"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:textSize="16dp"
-                    android:text="انتخاب اتاق"
-                    android:textColor="#000000"
-                    android:textAppearance="@style/IrsansBold"
-                    />
-                <ListView
+
+
+                <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                    android:layout_below="@+id/cvHotel"
+
                     android:id="@+id/lvRooms"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:divider="@null"
                     android:dividerHeight="0dp"
-                    android:layout_below="@+id/tvSelectHotel"
                     />
-
-
-
-
-
-
-
-
             </RelativeLayout>
-
 
 
         </ScrollView>
@@ -335,6 +281,7 @@
         layout="@layout/loading_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
 
         />
 

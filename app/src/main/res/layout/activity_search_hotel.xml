@@ -29,12 +29,52 @@
         android:layout_below="@+id/toolbarLayout"
         android:divider="@null"
         android:dividerHeight="0dp"/>
+    <View
+        android:layout_above="@+id/llBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@drawable/shadow3"/>
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/hotel_detail_background"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/textColorR"
+            android:gravity="center"
+            android:text="فیلتر کردن"
+            android:layout_marginLeft="5dp"
+            android:textSize="14dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/icon_filter"
+            android:textAppearance="@style/IconFonts"
+            android:gravity="center"
+            android:textSize="26dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/textColorR" />
+
+
+
+
+
+    </LinearLayout>
 
 
     <include
         layout="@layout/loading_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
 
        />
 

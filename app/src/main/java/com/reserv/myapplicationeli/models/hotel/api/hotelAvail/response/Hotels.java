@@ -11,15 +11,18 @@ public class Hotels {
     public final String Location;
     public final String MainImage;
     public final int StarRating;
+    public final boolean BestSell;
 
 
-    public Hotels(Availability availability, String name, String city, String location, String mainImage, int starRating) {
+    public Hotels(com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Availability availability,
+                  String name, String city, String location, String mainImage, int starRating, boolean bestSell) {
         Availability = availability;
         Name = name;
         City = city;
         Location = location;
         MainImage = mainImage;
         StarRating = starRating;
+        BestSell = bestSell;
     }
 }
 
