@@ -42,10 +42,10 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_room);
-        InitUi.Toolbar(this, false, R.color.add_room_color, "اطلاعات اتاق");
+        InitUi.Toolbar(this, false, R.color.app_base_color, "اطلاعات اتاق");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.add_room_color_dark));
+            window.setStatusBarColor(getColor(R.color.colorPrimary));
         }
         initViews();
         roomPresenter = new RoomPresenter(this);

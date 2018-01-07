@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
@@ -146,13 +147,32 @@ public class HotelFragment extends Fragment implements OnClickListener {
 			break;
 
 		case R.id.searchHotel:
-			Intent intent=new Intent(getActivity(),SelectHotelActivity.class);
+			boolean ok=true;
 
-			intent.putExtra("CheckIn",datePickerDialogRaft.getDate() );
-			intent.putExtra("CheckOut",datePickerDialogBargasht.getDate());
+			if (tvRaft.getText().toString().equals("انتخاب کنید")&&tvBargasht.getText().toString().equals("انتخاب کنید")){
+				Toast.makeText(getActivity(), "تاریخ رفت و برگشت را انتخاب کنید", Toast.LENGTH_SHORT).show();
+				ok=false;
+			}else {
+				if (tvRaft.getText().toString().equals("انتخاب کنید")) {
+					Toast.makeText(getActivity(), "تاریخ رفت ", Toast.LENGTH_SHORT).show();
+					ok = false;
+				}
+				if (tvBargasht.getText().toString().equals("انتخاب کنید")) {
+					Toast.makeText(getActivity(), "تاریخ رفت ", Toast.LENGTH_SHORT).show();
+					ok = false;
+				}
+			}
 
-			
-            startActivity(intent);
+			if (ok){
+				Intent intent=new Intent(getActivity(),SelectHotelActivity.class);
+
+				intent.putExtra("CheckIn",datePickerDialogRaft.getDate() );
+				intent.putExtra("CheckOut",datePickerDialogBargasht.getDate());
+
+
+				startActivity(intent);
+			}
+
 		break;
 			case R.id.tvRaft:
 				datePickerDialogRaft =new DatePickerDialog(getActivity(),tvRaft,"تاریخ رفت");

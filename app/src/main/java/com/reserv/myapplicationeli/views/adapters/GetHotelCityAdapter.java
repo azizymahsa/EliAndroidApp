@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pixplicity.easyprefs.library.Prefs;
@@ -87,7 +88,8 @@ public class GetHotelCityAdapter extends BaseAdapter {
 
 			holder.AirportName = (TextView) convertView.findViewById(R.id.text1);
 			holder.CityName = (TextView) convertView.findViewById(R.id.text2);
-			
+			holder.llLayout = (LinearLayout) convertView.findViewById(R.id.llLayout);
+
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
 			convertView.setTag(holder);
 		} else {
@@ -134,22 +136,33 @@ public class GetHotelCityAdapter extends BaseAdapter {
 						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());*/
 
 
-						Prefs.putString("Value-Hotel-City-Fa",current.getCityNameFa());
-						Prefs.putString("Value-Hotel-City-En",current.getCityNameEn());
-						Prefs.putString("Value-Hotel-City-Code",current.getCityCode());
-
-						activity.finish();
 
 						
 
 					}
 				});
+
+		holder.llLayout.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Prefs.putString("Value-Hotel-City-Fa",current.getCityNameFa());
+				Prefs.putString("Value-Hotel-City-En",current.getCityNameEn());
+				Prefs.putString("Value-Hotel-City-Code",current.getCityCode());
+
+				activity.finish();
+
+			}
+		});
+
+
+
 		return convertView;
 		}
 
 	static class ViewHolder {
 		TextView AirportName;
 		TextView CityName;
+		LinearLayout llLayout;
 		
 		
 	}

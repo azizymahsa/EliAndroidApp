@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,9 +49,11 @@ public class DetailHotelActivity extends BaseActivity {
     private HotelPagerAdapter hotelPagerAdapter;
     ListView lvRooms;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
+    RelativeLayout rlLoading,rlRoot;
 
     RoomsAdapter roomsAdapter;
     GetRoomsList getRoomsList;
+    Window window;
 
 
     @Override
@@ -58,8 +61,10 @@ public class DetailHotelActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
         InitUi.Toolbar(this, false, R.color.flight_status,"جزئیات هتل");
-        Window window = getWindow();
-        window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+         window = getWindow();
+        //window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+        rlLoading=findViewById(R.id.rlLoading);
+        rlRoot=findViewById(R.id.rlRoot);
 
 
         tvTitle = findViewById(R.id.tvTitle);
@@ -87,6 +92,9 @@ public class DetailHotelActivity extends BaseActivity {
     private class GetRoomsAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
+
+            window.setStatusBarColor(getColor(R.color.blue2));
+            new InitUi().Loading(rlLoading,rlRoot,true);
             Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
             Log.e("test2", getIntent().getExtras().getString("ResultUniqID"));
 
@@ -109,7 +117,8 @@ public class DetailHotelActivity extends BaseActivity {
         protected void onPostExecute(String result) {
           //  new InitUi().Loading(rlLoading,rlRoot,false);
 
-
+            new InitUi().Loading(rlLoading,rlRoot,false);
+            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
             try {
                 int i = 0;
                 for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {

@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.views.ui.dialog;
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,7 @@ public class DatePickerDialog {
             @Override
             public void onClick(View v) {
                 textView.setText(persianDatePicker.getDate()+ "");
+                textView.setTextColor(ContextCompat.getColor(activity,R.color.textColorR));
 
 
 
@@ -78,7 +80,7 @@ public class DatePickerDialog {
                 int day =Integer.valueOf(parts[2]) ;
 
 
-                Date d= PersianCalendarUtils.ShamsiToMilady(year,month, day);//Tue Nov 29 11:21:15 GMT+03:30 2016
+                Date d= PersianCalendarUtils.ShamsiToMilady(year,month, day);//
                 SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
                 String formatted = format1.format(d.getTime());
 

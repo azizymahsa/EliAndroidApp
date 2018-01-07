@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.reserv.myapplicationeli.views.activities.hotel.viewPagerFragmnets.MapFragment;
+import com.reserv.myapplicationeli.views.activities.hotel.viewPagerFragmnets.SelectRoomsFragment;
 
 /**
  * Created by Reza.nejati on 1/3/2018.
@@ -26,9 +27,9 @@ public class HotelPagerAdapter extends FragmentPagerAdapter {
             case 0: // Fragment # 0 - This will show FirstFragment
                 return MapFragment.newInstance(0, "نقشه هتل");
             case 1: // Fragment # 0 - This will show FirstFragment different title
-                return MapFragment.newInstance(1, "امکانات");
+                return SelectRoomsFragment.newInstance(1, "امکانات");
             case 2: // Fragment # 1 - This will show SecondFragment
-                return MapFragment.newInstance(2, "انتخاب و رزرو اتاق");
+                return SelectRoomsFragment.newInstance(2, "انتخاب و رزرو اتاق");
 
             default:
                 return null;

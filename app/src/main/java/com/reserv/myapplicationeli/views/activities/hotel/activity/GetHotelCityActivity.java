@@ -63,7 +63,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 			
 			//searchtxt = (EditText) findViewById(R.id.searchtxt);
 		    //Make call to AsyncTask
-	        new AsyncFetch().execute();
+	      //  new AsyncFetch().execute();
 	        
 	    	searchtxt = (EditText) findViewById(R.id.searchtxt);
 			searchtxt.addTextChangedListener(
@@ -86,7 +86,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 	                                            @Override
 	                                            public void run() {
 	                                            	String d = s.toString().trim(); 
-	                                            	if(d.length()>2){
+	                                            	if(d.length()>1){
 	                                            		
 	                                            	 GetHotelCityActivity.searchText = d.toLowerCase();
 	                                            	 new AsyncFetch().execute();
