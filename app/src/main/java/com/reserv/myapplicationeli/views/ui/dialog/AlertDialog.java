@@ -1,0 +1,57 @@
+package com.reserv.myapplicationeli.views.ui.dialog;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+
+import com.reserv.myapplicationeli.R;
+
+import cn.refactor.library.SmoothCheckBox;
+import mehdi.sakout.fancybuttons.FancyButton;
+
+/**
+ * Created by Reza.nejati on 1/8/2018.
+ */
+
+public class AlertDialog implements View.OnClickListener {
+    android.app.AlertDialog dialog;
+    View dialogView;
+    LayoutInflater inflater;
+    android.app.AlertDialog.Builder builder;
+    Context activity;
+    FancyButton btnOk, btnCancel;
+    FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
+    SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1, hotel, boutique, apartment, resort;
+
+
+    public AlertDialog(final Context activity) {
+        this.activity = activity;
+        builder = new android.app.AlertDialog.Builder(activity);
+        inflater = LayoutInflater.from(activity);
+        dialogView = inflater.inflate(R.layout.alert_dialog, null);
+        builder.setView(dialogView);
+        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
+
+        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setOnClickListener(this);
+        dialog = builder.create();
+        dialog.setCancelable(true);
+        dialog.show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnOk:
+
+                dialog.cancel();
+
+
+                break;
+
+        }
+    }
+
+
+}
+

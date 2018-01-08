@@ -106,7 +106,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public int countB=SearchParvazActivity.COUNT_B;
 	public int countK=SearchParvazActivity.COUNT_K;
 	public int countN=SearchParvazActivity.COUNT_N;
-	public int sum=countB+countK+countN;
+	//public int sum=countB+countK+countN;
+	public int sum=1;
 
 
 	@SuppressLint("WrongViewCast")
@@ -115,6 +116,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_passenger);
 		Log.e("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
+		Log.e("FlightGuID", getIntent().getExtras().getString("FlightGuID"));
 
 
 
@@ -563,7 +565,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				// Enter URL address where your json file resides
 				// Even you can make call to php file which returns json data
-				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Flight/FlightService.svc/PurchaseFlight");
+				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
 
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
@@ -613,7 +615,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				HttpPost post = new HttpPost();
-				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Flight/FlightService.svc/PurchaseFlight");
+				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
 				post.setHeader("Content-Type", "application/json; charset=UTF-8");
 				post.setHeader("Accept", "application/json; charset=UTF-8");
 
@@ -815,9 +817,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			headerJson.put("Culture", "fa-IR");
 			headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
-			//headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
-			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
-			headerJson.put("Checkout", getIntent().getExtras().get("Checkin"));
+			headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
+/*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
+			headerJson.put("Checkout", getIntent().getExtras().get("Checkin"));*/
+			headerJson.put("Checkin", "2018/01/08");
+			headerJson.put("Checkout", "2018/01/12");
 
 
 

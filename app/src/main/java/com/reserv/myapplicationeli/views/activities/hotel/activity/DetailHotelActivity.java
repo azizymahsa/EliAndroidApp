@@ -357,13 +357,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
        try {
                 int i = 0;
-                Toast.makeText(DetailHotelActivity.this, getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(DetailHotelActivity.this, getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(DetailHotelActivity.this, PassengerActivity.class);
            intent.putExtra("HotelOfferId",getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
-           intent.putExtra("Checkin","11111111111111");
-           intent.putExtra("Checkout","111111111");
+         intent.putExtra("FlightGuID",getIntent().getExtras().getString("ResultUniqID"));
+           //intent.putExtra("Checkout","111111111");
 
-           startActivity(new Intent(DetailHotelActivity.this, PassengerActivity.class));
+           startActivity(intent);
            finish();
 
 
