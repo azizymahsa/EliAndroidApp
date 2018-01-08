@@ -8,10 +8,12 @@ public class HoldSelectedRoomResult {
     public final String Board;
     public final String EHotelId;
     public final String SourcePrice;
+    public final String OfferId;
 
-    public HoldSelectedRoomResult(String board, String EHotelId, String sourcePrice) {
+    public HoldSelectedRoomResult(String board, String EHotelId, String sourcePrice, String offerId) {
         Board = board;
         this.EHotelId = EHotelId;
         SourcePrice = sourcePrice;
+        OfferId = offerId;
     }
 }

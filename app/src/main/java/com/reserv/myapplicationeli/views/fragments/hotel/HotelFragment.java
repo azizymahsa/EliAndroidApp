@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -22,12 +21,10 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelCityActivity;
-import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelRoomCountActivity;
 import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.DatePickerDialog;
-import com.reserv.myapplicationeli.views.ui.dialog.FilterHotel;
 
 
 public class HotelFragment extends Fragment implements OnClickListener {
@@ -58,6 +55,7 @@ public class HotelFragment extends Fragment implements OnClickListener {
 		lblRoomCount= (TextView) rootView.findViewById(R.id.lblRoomCount);
 		tarikh_be= (TextView) rootView.findViewById(R.id.tarikh_be);
 		lblRoomCount.setOnClickListener(this);
+		tarikh_be.setOnClickListener(this);
 		txtRoomCount= (TextView) rootView.findViewById(R.id.txtRoomCount);
 		tvRaft= (TextView) rootView.findViewById(R.id.tvRaft);
 		tvBargasht= (TextView) rootView.findViewById(R.id.tvBargasht);
@@ -70,7 +68,7 @@ public class HotelFragment extends Fragment implements OnClickListener {
 		btn_add_room.setOnClickListener(this);
 		llRoom.setOnClickListener(this);
 
-		txtTitle= (TextView) rootView.findViewById(R.id.txtTitle);
+		//txtTitle= (TextView) rootView.findViewById(R.id.txtTitle);
 		citySearch= (RelativeLayout) rootView.findViewById(R.id.citySearch);
 		
 		lbl_city_english= (TextView) rootView.findViewById(R.id.lbl_city_english);
@@ -189,7 +187,7 @@ public class HotelFragment extends Fragment implements OnClickListener {
 
 				break;
 				case R.id.tarikh_be:
-					new FilterHotel(getActivity());
+				//	new FilterHotelDialog(getActivity());
 
 
 				break;

@@ -8,7 +8,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-     //   testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //   testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
     }
@@ -33,6 +33,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':materialdatetimepicker')
     compile project(':persianmaterialdatetimepicker')
+    compile project(':library')
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
@@ -48,7 +49,7 @@ dependencies {
     //compile 'com.google.android.gms:play-services:9.0.0'
     // compile 'com.google.android.gms:play-services:9.0.0'
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
-   // compile 'com.android.support:multidex:1.0.0'
+    // compile 'com.android.support:multidex:1.0.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     // compile 'com.jakewharton:butterknife:8.8.1'
@@ -73,6 +74,8 @@ dependencies {
     implementation files('src/main/java/libs/achartengine-1.1.0.jar')
 
     implementation files('src/main/java/libs/commons-net-3.2-ftp.jar')
+    implementation files('src/main/java/libs/signpost-commonshttp4-1.2.1.1.jar')
+    implementation files('src/main/java/libs/signpost-core-1.2.1.1.jar')
     implementation 'com.github.samanzamani.persiandate:PersianDate:0.1'
 
 }

@@ -124,23 +124,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
 					}
 				});
 		holder.CityName.setTag(current.getCityNameFa());
-		holder.CityName.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-					
-			/*			Intent i4 = new Intent(context,HotelActivity.class);
-						
-						i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());
-						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
-						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());*/
 
-
-
-						
-
-					}
-				});
 
 		holder.llLayout.setOnClickListener(new View.OnClickListener() {
 			@Override

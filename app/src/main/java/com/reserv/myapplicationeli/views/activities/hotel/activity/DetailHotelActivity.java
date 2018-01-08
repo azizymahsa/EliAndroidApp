@@ -5,6 +5,7 @@ package com.reserv.myapplicationeli.views.activities.hotel.activity;
  */
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -53,6 +54,7 @@ import com.reserv.myapplicationeli.views.adapters.hotel.HotelPagerAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsModel;
 import com.reserv.myapplicationeli.views.ui.InitUi;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,7 +131,20 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 offerIds=roomsModels.get(position).getOfferId();
                 eHotelId=roomsModels.get(position).getHotelId();
-                new GetHoldRoomAsync().execute();
+                Log.e("testdddd1",  getIntent().getExtras().getString("ResultUniqID") );
+
+                Log.e("offerIds",  offerIds);
+                Log.e("eHotelId",  eHotelId);
+                Log.e("eHotelId",  eHotelId);
+                Log.e("eHotelId",  roomsModels.get(position).getOfferId());
+                Gson gson = new Gson();
+                String json = gson.toJson(new HoldSelectedRoomRequest (new
+                        com.reserv.myapplicationeli.models.hotel.api
+                                .holdSelectedRoom.call.RoomRequest(new Identity("123qwe!@#QWE",
+                        "EligashtMlb", "Mobile"),"fa-IR", eHotelId
+                        ,offerIds, getIntent().getExtras().getString("ResultUniqID"))));
+                Log.e("jsonnnnn", json);
+              new GetHoldRoomAsync().execute();
             }
         });
 
@@ -288,7 +303,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
             new InitUi().Loading(rlLoading, rlRoot, false);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
-          //  try {
+            try {
                 int i = 0;
                 for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {
                     Log.e("testtest", roomList.Description);
@@ -298,15 +313,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 }
                 roomsAdapter.notifyDataSetChanged();
-                View header = getLayoutInflater().inflate(R.layout.headers, null);
-                View footer = getLayoutInflater().inflate(R.layout.headers, null);
-                lvRooms.addHeaderView(header);
-                lvRooms.addFooterView(footer);
-            //    setListViewHeightBasedOnChildren(lvRooms);
-         /*   } catch (Exception e) {
+
+            //  setListViewHeightBasedOnChildren(lvRooms);
+            } catch (Exception e) {
                 Toast.makeText(DetailHotelActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
                 finish();
-            }*/
+            }
 
 
         }
@@ -343,12 +355,21 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
             new InitUi().Loading(rlLoading, rlRoot, false);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
-            try {
+       try {
                 int i = 0;
-                Toast.makeText(DetailHotelActivity.this, getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.SourcePrice, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailHotelActivity.this, getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DetailHotelActivity.this, PassengerActivity.class);
+           intent.putExtra("HotelOfferId",getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
+           intent.putExtra("Checkin","11111111111111");
+           intent.putExtra("Checkout","111111111");
+
+           startActivity(new Intent(DetailHotelActivity.this, PassengerActivity.class));
+           finish();
 
 
-            } catch (Exception e) {
+
+
+       } catch (Exception e) {
                 Toast.makeText(DetailHotelActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
                 finish();
             }

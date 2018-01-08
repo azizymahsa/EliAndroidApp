@@ -18,9 +18,13 @@ public class SelectHotelModel {
     private int eHotelId;
     private String ResultUniqID;
     boolean bestSell;
+    boolean isOff;
+    String off;
+    String TypeText;
 
     public SelectHotelModel(String name, String city, String title, String board, String price,
-                            String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell) {
+                            String imageUrl, String location, int oldPrice, int star, int eHotelId,
+                            String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -33,6 +37,9 @@ public class SelectHotelModel {
         this.eHotelId = eHotelId;
         ResultUniqID = resultUniqID;
         this.bestSell = bestSell;
+        this.isOff = isOff;
+        this.off = off;
+        TypeText = typeText;
     }
 
     public String getName() {
@@ -129,5 +136,29 @@ public class SelectHotelModel {
 
     public void setBestSell(boolean bestSell) {
         this.bestSell = bestSell;
+    }
+
+    public boolean isOff() {
+        return isOff;
+    }
+
+    public void setOff(boolean off) {
+        isOff = off;
+    }
+
+    public String getOff() {
+        return off;
+    }
+
+    public void setOff(String off) {
+        this.off = off;
+    }
+
+    public String getTypeText() {
+        return TypeText;
+    }
+
+    public void setTypeText(String typeText) {
+        TypeText = typeText;
     }
 }
