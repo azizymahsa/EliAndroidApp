@@ -117,6 +117,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		setContentView(R.layout.activity_passenger);
 		Log.e("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
 		Log.e("FlightGuID", getIntent().getExtras().getString("FlightGuID"));
+		Log.e("CheckOut",  getIntent().getExtras().getString("CheckOut"));
+		Log.e("CheckIn",  getIntent().getExtras().getString("CheckIn"));
 
 
 
@@ -664,7 +666,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				// JSONObject jsonObj = new JSONObject(retSrc);
 
 				// Getting JSON Array node
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightResult");//Error
+				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightHotelResult");//Error
 
 				 /* JSONObject GetError = jsonObj.getJSONObject("Error");
 				  Toast.makeText(PassengerActivity.this,  Get, Toast.LENGTH_LONG).show();*/
@@ -797,7 +799,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				}
-				headerJson.put("passList", detailJsonArray);
+				headerJson.put("PassList", detailJsonArray);
 			}
 
 			////kharidar
@@ -813,15 +815,15 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
 			detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
 
-			headerJson.put("partnerInfo", detailsPartner);
+			headerJson.put("PartnerList", detailsPartner);
 
 			headerJson.put("Culture", "fa-IR");
 			headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
 			headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
 /*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
 			headerJson.put("Checkout", getIntent().getExtras().get("Checkin"));*/
-			headerJson.put("Checkin", "2018/01/08");
-			headerJson.put("Checkout", "2018/01/12");
+			headerJson.put("Checkin", getIntent().getExtras().getString("CheckIn"));
+			headerJson.put("Checkout", getIntent().getExtras().getString("CheckOut"));
 
 
 
@@ -1072,7 +1074,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			case R.id.btn_nextm:
 				String Gender= Gensiyat;
 				 String Nationality=txtmahale_eghamat.getText().toString();// "IR";
-				 String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
+				 String Nationality_ID= txtmeliyatm.getText().toString();
 				 String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 				 String RqPassenger_Birthdate= txttavalodm.getText().toString();
 				 String RqPassenger_Email= "mohebbi@eligasht.com";

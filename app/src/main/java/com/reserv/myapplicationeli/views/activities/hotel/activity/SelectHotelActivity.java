@@ -10,13 +10,16 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.hotelAvail.HotelAvailApi;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectHotelModel;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
@@ -30,13 +33,17 @@ import com.reserv.myapplicationeli.views.ui.dialog.FilterHotelDialog;
 import java.util.ArrayList;
 import java.util.List;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 
-public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListener, View.OnClickListener {
+
+public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListener, View.OnClickListener ,FilterHotelDialog.FilterHotelDialogListenerArray{
 
 
     private ListView list;
     private LazyResoultHotelAdapter adapter;
     private ArrayList<SelectHotelModel> selectHotelModelArrayList = new ArrayList<>();
+    private ArrayList<SelectHotelModel> selectHotelModelArrayListFilter = new ArrayList<>();
+    private ArrayList<FilterModel> filterModels = new ArrayList<>();
     private ArrayList<SelectHotelModel> selectHotelModelArrayListBestSeler = new ArrayList<>();
     private ArrayList<SelectHotelModel> selectHotelModelArrayLisOff = new ArrayList<>();
     private ArrayList<SelectHotelModel> selectHotelModelArray1star = new ArrayList<>();
@@ -51,7 +58,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private HotelAvailApi availApi;
     private List<Rooms> rooms = new ArrayList<>();
     RelativeLayout rlLoading, rlRoot;
+    TextView tvAlert;
     Window window;
+    RelativeLayout elNotFound;
     private DatePickerDialog datePickerDialog;
     private DatePickerDialog returnDatePicker;
     LinearLayout llBottom;
@@ -69,6 +78,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     boolean Apartment = false;
     boolean Boutique = false;
     boolean Hotel = false;
+    FancyButton btnOk;
+    //TextView tvAlert;
 
 
     @Override
@@ -79,6 +90,12 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         window = getWindow();
         list = findViewById(R.id.lvHoteResult);
         llBottom = findViewById(R.id.llBottom);
+        tvAlert = findViewById(R.id.tvAlert);
+        elNotFound = findViewById(R.id.elNotFound);
+        btnOk = findViewById(R.id.btnOk);
+
+
+
         llBottom.setOnClickListener(this);
         adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this);
         list.setAdapter(adapter);
@@ -87,19 +104,33 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
+        Gson gson=new Gson();
+       String data= gson.toJson(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
+                getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, "1,0,0,0,0,0", "fa-IR")));
         new GetHotelAsync().execute();
+        Log.e("jjjjjjjjjjjjj", data);
 
         Log.e("raft", getIntent().getExtras().getString("CheckIn"));
         Log.e("bargasht", getIntent().getExtras().getString("CheckOut"));
         Log.e("cod", Prefs.getString("Value-Hotel-City-Code", ""));
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(SelectHotelActivity.this, DetailHotelActivity.class);
                 i.putExtra("HotelId", selectHotelModelArrayList.get(position).geteHotelId());
                 i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
+                i.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
+                i.putExtra("CheckOut",getIntent().getExtras().getString("CheckOut"));
+
                 startActivity(i);
+            }
+        });
+        btnOk.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
             }
         });
 
@@ -108,7 +139,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
     @Override
     public void onReturnValue(int type) {
-        switch (type) {
+       /* switch (type) {
             case 1:
                 besetSeler = true;
                 bestOff = false;
@@ -218,7 +249,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 filter_Hotel();
                 break;
 
-        }
+        }*/
 
 
     }
@@ -410,11 +441,198 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.llBottom:
-                new FilterHotelDialog(SelectHotelActivity.this, this, besetSeler, bestOff, remove);
+                new FilterHotelDialog(SelectHotelActivity.this, this, filterModels,this);
 
 
                 break;
         }
+    }
+
+    @Override
+    public void onReturnValue(ArrayList<FilterModel> type) {
+        this.filterModels=type;
+        selectHotelModelArrayListFilter.clear();
+        adapter = new LazyResoultHotelAdapter(selectHotelModelArrayListFilter, SelectHotelActivity.this, SelectHotelActivity.this);
+        list.setAdapter(adapter);
+
+        for (FilterModel filterModel : filterModels) {
+            if (filterModel.isStar1()) {
+                for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                    if (selectHotelModel.getStar() == 1) {
+                        selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                    }
+
+                }
+
+            }
+            if (filterModel.isStar2()) {
+                for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                    if (selectHotelModel.getStar() == 2) {
+                        selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                    }
+
+                }
+
+
+            }
+            if (filterModel.isStar3()) {
+                for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                    if (selectHotelModel.getStar() == 3) {
+                        selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                    }
+
+                }
+
+
+            }
+            if (filterModel.isStar4()) {
+                for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                    if (selectHotelModel.getStar() == 4) {
+                        selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                    }
+
+                }
+
+
+            }
+            if (filterModel.isStar5()) {
+                for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                    if (selectHotelModel.getStar() == 5) {
+                        selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                    }
+
+                }
+
+
+            }
+
+
+            if (filterModel.isBestSeler()) {
+                for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                    if (selectHotelModel.isBestSell()) {
+                        selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                    }
+
+                }
+
+
+                if (filterModel.isBestOff()) {
+                    for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                        if (selectHotelModel.isOff()) {
+                            selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                    selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                    selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                    selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                        }
+
+                    }
+
+
+                    if (filterModel.isApartment()) {
+                        for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                            if (selectHotelModel.getTypeText().equals("Apartment")) {
+                                selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                        selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                        selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                        selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                            }
+
+                        }
+
+
+                    }
+                    if (filterModel.isBoutique()) {
+                        for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                            if (selectHotelModel.getTypeText().equals("Boutique")) {
+                                selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                        selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                        selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                        selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                            }
+
+                        }
+
+
+                    }
+                    if (filterModel.isHotel()) {
+                        for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                            if (selectHotelModel.getTypeText().equals("Hotel")) {
+                                selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                        selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                        selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                        selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                            }
+
+                        }
+
+
+                    }
+
+
+                    if (filterModel.isResort()) {
+                        for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                            if (selectHotelModel.getTypeText().equals("Resort")) {
+                                selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                        selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                        selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                        selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText()));
+
+                            }
+
+                        }
+
+
+                    }
+
+                }
+            }
+
+
+            adapter.notifyDataSetChanged();
+
+
+        }
+
+
     }
 
 
@@ -431,7 +649,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         protected String doInBackground(String... params) {
             try {
                 availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, "2,0,0,0,0,0", "fa-IR")));
+                        getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, "1,0,0,0,0,0", "fa-IR")));
 
             } catch (Exception e) {
 
@@ -446,6 +664,11 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
             try {
+                if (availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels.isEmpty()){
+                    elNotFound.setVisibility(View.VISIBLE);
+                    tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
+                    list.setVisibility(View.GONE);
+                }
                 int i = 0;
                 for (Hotels hotels : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels) {
                     String off = "";
@@ -483,8 +706,11 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 }
                 adapter.notifyDataSetChanged();
             } catch (Exception e) {
-                Toast.makeText(SelectHotelActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
-                finish();
+               // Toast.makeText(SelectHotelActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show()
+list.setVisibility(View.GONE);
+              elNotFound.setVisibility(View.VISIBLE);
+               tvAlert.setText("خطا در برقراری ارتباط");
+              //  finish();
             }
 
 

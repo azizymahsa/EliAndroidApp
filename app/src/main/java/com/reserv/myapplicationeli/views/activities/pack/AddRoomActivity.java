@@ -2,6 +2,7 @@ package com.reserv.myapplicationeli.views.activities.pack;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.pack.ChildAgeRange;
@@ -49,6 +52,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
         }
         initViews();
         roomPresenter = new RoomPresenter(this);
+        Log.i("eli", "roomPresenter.getRooms().get(0).getChildModels().get(0).getChildAgeRange().getValue()");
         showRooms();
     }
 
@@ -102,8 +106,6 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     }
 
 
-
-
     @Override
     public void notifyItemInserted(int layoutPosition) {
         if (roomAdapter != null) {
@@ -143,9 +145,14 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
             case R.id.btn_remove:
                 roomPresenter.removeRooms();
                 break;
-                case R.id.btn_confirm:
-                    int adl=0;
+            case R.id.btn_confirm:
+                Gson gson = new GsonBuilder().create();
+                Intent intent = new Intent();
+                intent.putExtra("Rooms",gson.toJson(roomPresenter.getRooms()));
 
+               // Log.e("test", gson.toJson(roomPresenter.getRooms()));
+                setResult(RESULT_OK,intent);
+                finish();
                 break;
         }
     }

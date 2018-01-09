@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.PersianDatePicker;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
@@ -31,11 +32,11 @@ public class DatePickerDialog {
     TextView tvDateConfirm, tvDateCansel;
     Activity activity;
     TextView tvTitle;
-    String date;
+    String date,date1;
 
 
     public String getDate() {
-        return date;
+        return date1;
     }
 
     public DatePickerDialog(final Activity activity, final TextView textView, String title) {
@@ -85,12 +86,24 @@ public class DatePickerDialog {
                 String formatted = format1.format(d.getTime());
 
                 String[] dateGrg=formatted.split("/");
-                int yearS = Integer.valueOf(dateGrg[0]);
-                int monthS = Integer.valueOf(dateGrg[1]);
-                int dayS =Integer.valueOf(dateGrg[2]) ;
+                int monthS = Integer.valueOf(dateGrg[0]);
+                int dayS = Integer.valueOf(dateGrg[1]);
+                int yearS =Integer.valueOf(dateGrg[2]) ;
 
-                date=yearS+"-"+monthS+"-"+dayS;
+                Log.e("yearS", yearS+"");
+                Log.e("monthS", monthS+"");
+                Log.e("dayS", dayS+"");
+
+
+
+
+//todo change This
+
+                date=yearS+"-"+"0"+monthS+"-"+dayS;
+                date1=yearS+"/"+"0"+monthS+"/"+dayS;
                 Log.e("testttiiiiii", persianDatePicker.getDisplayDate()+"");
+                Log.e("tesetes", date);
+                Log.e("tesetes", date1);
 
                 dialog.cancel();
             }

@@ -34,18 +34,14 @@ dependencies {
     compile project(':materialdatetimepicker')
     compile project(':persianmaterialdatetimepicker')
     compile project(':library')
-
     implementation 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support:cardview-v7:26.1.0'
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.google.android.gms:play-services:9.4.0'
-
-
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-
     //compile 'com.google.android.gms:play-services:9.0.0'
     // compile 'com.google.android.gms:play-services:9.0.0'
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
@@ -62,7 +58,6 @@ dependencies {
     compile 'com.wang.avi:library:2.1.3'
     compile 'com.daimajia.easing:library:2.0@aar'
     compile 'com.daimajia.androidanimations:library:2.3@aar'
-
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
@@ -72,12 +67,11 @@ dependencies {
     implementation files('src/main/java/libs/org.apache.commons.io.jar')
     implementation files('src/main/java/libs/library.jar')
     implementation files('src/main/java/libs/achartengine-1.1.0.jar')
-
     implementation files('src/main/java/libs/commons-net-3.2-ftp.jar')
     implementation files('src/main/java/libs/signpost-commonshttp4-1.2.1.1.jar')
     implementation files('src/main/java/libs/signpost-core-1.2.1.1.jar')
     implementation 'com.github.samanzamani.persiandate:PersianDate:0.1'
-
+    implementation files('src/main/java/libs/barbecue-1.5-beta1.jar')
 }
 apply plugin: 'com.google.gms.google-services'
 

@@ -1,11 +1,16 @@
 package com.reserv.myapplicationeli.views.ui.dialog;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
+
+import java.util.ArrayList;
 
 import cn.refactor.library.SmoothCheckBox;
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -22,15 +27,32 @@ public class FilterHotelDialog implements View.OnClickListener {
     Context activity;
     FancyButton btnOk, btnCancel;
     FilterHotelDialogListener filterHotelDialogListener;
+    FilterHotelDialogListenerArray filterHotelDialogListenerArray;
     SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1, hotel, boutique, apartment, resort;
+    ArrayList<FilterModel> filter;
+    boolean star1_;
+    boolean star2_;
+    boolean star3_;
+    boolean star4_;
+    boolean star5_;
+    boolean bestSeler_;
+    boolean bestOff_;
+    boolean resort_;
+    boolean boutique_;
+    boolean apartment_;
+    boolean hotel_;
 
-
-    public FilterHotelDialog(final Context activity, FilterHotelDialogListener filterHotelDialogListener, boolean seler, boolean off, boolean remove) {
+    public FilterHotelDialog(final Context activity, FilterHotelDialogListener filterHotelDialogListener, ArrayList<FilterModel> filter, FilterHotelDialogListenerArray filterHotelDialogListenerArray) {
         this.activity = activity;
+        this.filter = filter;
         this.filterHotelDialogListener = filterHotelDialogListener;
+        this.filterHotelDialogListenerArray = filterHotelDialogListenerArray;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.filter_dialog, null);
+      filter.add(new FilterModel(false, false, false, false, false, false, false, false, false, false, false));
+
+
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
         bestSeler = (SmoothCheckBox) dialogView.findViewById(R.id.bestSeler);
@@ -49,25 +71,120 @@ public class FilterHotelDialog implements View.OnClickListener {
         resort = (SmoothCheckBox) dialogView.findViewById(R.id.resort);
 
 
-        if (seler) {
-            bestSeler.setChecked(true);
-
-
-        }
-        if (off) {
-            bestOff.setChecked(true);
-
-        }
-        if (remove) {
-            Remove.setChecked(true);
-
-        }
-
-
         btnOk.setCustomTextFont("irsans.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
+
+
+        for (FilterModel filterModel : filter) {
+            if (filterModel.isStar1()) {
+                star1.isChecked();
+                star1_ = true;
+
+            }else {
+                star1_ = false;
+
+            }
+
+
+
+            if (filterModel.isStar2()) {
+                star2.isChecked();
+                star2_ = true;
+
+            } else {
+                star2_ = false;
+
+            }
+
+
+            if (filterModel.isStar3()) {
+                star3.isChecked();
+                star3_ = true;
+
+
+            }else {
+                star3_ = false;
+
+
+            }
+
+
+            if (filterModel.isStar4()) {
+                star4.isChecked();
+                star4_ = true;
+
+
+            }else {
+                star4_ = false;
+
+            }
+            if (filterModel.isStar5()) {
+                star5.isChecked();
+                star5_ = true;
+
+
+            }else{star5_=false;}
+            if (filterModel.isBestOff()) {
+                bestOff.isChecked();
+                bestOff_ = true;
+
+
+            }else {
+                bestOff_ = false;
+            }
+            if (filterModel.isBestSeler()) {
+                bestSeler.isChecked();
+                bestSeler_ = true;
+
+
+            }else
+            {bestSeler_=false;}
+
+
+
+
+
+            if (filterModel.isResort()) {
+                resort.isChecked();
+                resort_ = true;
+
+
+            } else {
+                resort_ = false;
+            }
+
+            if (filterModel.isHotel()){
+                hotel.isChecked();
+                hotel_ = true;
+
+            }else {
+
+                hotel_ = false;
+            }
+
+            if (filterModel.isBoutique()) {
+                boutique.isChecked();
+                boutique_ = true;
+
+
+            }
+            else {
+                boutique_ = false;
+            }
+
+
+            if (filterModel.isApartment()) {
+                apartment.isChecked();
+                apartment_ = true;
+
+
+            } else {
+                apartment_ = false;
+            }
+
+        }
         dialog.show();
     }
 
@@ -78,48 +195,58 @@ public class FilterHotelDialog implements View.OnClickListener {
                 // activity.startActivity(new Intent(activity, ProfileActivity.class));
 
 
-                if (bestSeler.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(1);
-                }
-                if (bestOff.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(2);
-                }
-                if (Remove.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(3);
-                }
-
                 if (star1.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(4);
+                    star1_ = true;
+
+
                 }
                 if (star2.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(5);
+                    star2_ = true;
+
                 }
                 if (star3.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(6);
+                    star3_ = true;
+
+
                 }
+
                 if (star4.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(7);
+                    star4_ = true;
                 }
+
                 if (star5.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(8);
+                    star5_ = true;
+
 
                 }
-                if (resort.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(9);
-
+                if (bestSeler.isChecked()) {
+                    bestSeler_ = true;
                 }
-                if (boutique.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(10);
 
+                if (bestOff.isChecked()) {
+                    bestOff_ = true;
+                }
+
+
+                if (bestOff.isChecked()) {
+                    bestOff_ = true;
                 }
                 if (apartment.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(11);
-
+                    apartment_ = true;
+                }
+                if (resort.isChecked()) {
+                    resort_ = true;
                 }
                 if (hotel.isChecked()) {
-                    filterHotelDialogListener.onReturnValue(12);
-
+                    hotel_ = true;
                 }
+                if (boutique.isChecked()) {
+                    boutique_ = true;
+                }
+
+                filter.set(0, new FilterModel(star1_, star2_, star3_, star4_, star5_, bestSeler_, bestOff_, resort_, boutique_, apartment_, hotel_));
+
+                filterHotelDialogListenerArray.onReturnValue(filter);
 
 
                 dialog.cancel();
@@ -132,6 +259,10 @@ public class FilterHotelDialog implements View.OnClickListener {
 
     public interface FilterHotelDialogListener {
         public void onReturnValue(int type);
+    }
+
+    public interface FilterHotelDialogListenerArray {
+        public void onReturnValue(ArrayList<FilterModel> type);
     }
 
 }

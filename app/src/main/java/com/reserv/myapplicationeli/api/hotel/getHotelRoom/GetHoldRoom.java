@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.api.hotel.getHotelDetail;
+package com.reserv.myapplicationeli.api.hotel.getHotelRoom;
 
 import android.support.annotation.RawRes;
 import android.util.Log;
@@ -6,7 +6,6 @@ import android.util.Log;
 import com.reserv.myapplicationeli.base.BaseAPI;
 import com.reserv.myapplicationeli.models.hotel.api.holdSelectedRoom.call.HoldSelectedRoomRequest;
 import com.reserv.myapplicationeli.models.hotel.api.holdSelectedRoom.response.HoldSelectRoomResponse;
-import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelAvailModelResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

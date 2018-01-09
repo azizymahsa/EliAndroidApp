@@ -47,9 +47,11 @@ public class ViewPagerAttention {
 
 
 
-    public ViewPagerAttention(final Activity activity,ArrayList<ImageModel> imageModels,int layout,int indiactor ) {
+    public ViewPagerAttention(final Activity activity,ArrayList<ImageModel> imageModels,int layout ) {
         this.activity = activity;
         this.layout = layout;
+
+
         this.indiactor = indiactor;
         this.imageModels = imageModels;
         viewPager = (ViewPager) activity.findViewById(layout);
@@ -105,10 +107,8 @@ public class ViewPagerAttention {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             View view = View.inflate(container.getContext(), R.layout.list_image_item, null);
-            ImageView image = (ImageView) view.findViewById(R.id.image);
-            TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-            TextView tvPrice = (TextView) view.findViewById(R.id.tvPrice);
-            LinearLayout lvProduct = (LinearLayout) view.findViewById(R.id.ivImage);
+            ImageView image = (ImageView) view.findViewById(R.id.ivImage);
+
             container.addView(view, 0);
 //            image.setImageResource(images[position]);
 

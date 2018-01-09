@@ -3,6 +3,7 @@ package com.reserv.myapplicationeli.views.ui.dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
 
@@ -15,6 +16,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class AlertDialog implements View.OnClickListener {
     android.app.AlertDialog dialog;
+    TextView tvAlert;
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
@@ -24,13 +26,15 @@ public class AlertDialog implements View.OnClickListener {
     SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1, hotel, boutique, apartment, resort;
 
 
-    public AlertDialog(final Context activity) {
+    public AlertDialog(final Context activity,String text) {
         this.activity = activity;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog, null);
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
+        tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
+        tvAlert.setText(text);
 
         btnOk.setCustomTextFont("irsans.ttf");
         btnOk.setOnClickListener(this);

@@ -678,7 +678,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
-                        android:text=" " />
+                        android:text="" />
                 </LinearLayout>
                 <!-- expire pasport -->
 
@@ -781,7 +781,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
-                        android:text="iranian" />
+                        android:text="IR" />
                 </LinearLayout>
                 <!-- mahale eghamat -->
 
@@ -922,10 +922,10 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp" >
 
-                    <TextView
-                        android:id="@+id/textView4"
+                    <ImageView
+                        android:id="@+id/ivImage"
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="200dp"
                         android:text="|||||||||||||||||" />
 
                     <TextView
