@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/ImageHotelItem">
+
+    <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+        android:id="@+id/rcl_hotels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+    </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="7sp"
+        android:background="@color/hotel_detail_background"
+        card_view:cardBackgroundColor="#ffffff"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:padding="8dp" >
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="10dp"
+                android:layout_height="11dp"
+                android:layout_gravity="right"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/pin_icon_for_items"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="0.02"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/fronttop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:orientation="horizontal" >
+
+                    <!--
+                     <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+
+                    />
+                    -->
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutSevom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="3dip"
+                        android:gravity="right"
+                        android:orientation="vertical" >
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/txt_system"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginLeft="1dp"-->
+                                <!--android:background="@drawable/background_strock_green"-->
+                                <!--android:gravity="center"-->
+                                <!--android:text="سیستمی"-->
+                                <!--android:textColor="#486b6b"-->
+                                <!--android:textSize="12dip"-->
+                                <!--android:padding="2dp"-->
+                                <!--/>-->
+
+
+                            <TextView
+                                android:id="@+id/txt_economi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:background="#29aae3"
+                                android:gravity="center"
+                                android:text="اکونومی"
+                                android:textColor="#fff"
+                                android:textSize="12dip"
+                                android:padding="3dp"
+                                />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txt_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+
+                            android:layout_marginTop="28dp"
+                            android:gravity="center"
+                            android:text="فقط 4 نفر"
+                            android:textColor="#486b6b"
+                            android:textSize="10dip"
+                            android:visibility="visible" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout1"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="3dip"
+                        android:layout_weight="0.69"
+                        android:gravity="right"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/txt_depart_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="11:50 Am"
+                            android:textColor="#003399"
+                            android:textSize="14dip" />
+
+                        <TextView
+                            android:id="@+id/time_back"
+                            android:layout_width="201dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:gravity="right"
+                            android:text="11:50 AM"
+                            android:textColor="#486b6b"
+                            android:textSize="12dip"
+                            android:visibility="invisible" />
+
+                        <TextView
+                            android:id="@+id/txt_return_time"
+                            android:layout_width="201dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="11:50 AM"
+                            android:textColor="#003399"
+                            android:textSize="14dip"
+                            android:layout_marginTop="3dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="50dip"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/linearLayout1"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="3dip"
+                        android:layout_weight="0.45"
+                        android:gravity="right"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/txt_depart_air"
+                            android:layout_width="127dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="رفت به استانبول"
+                            android:textColor="#000"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/txt_airline"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="right"
+                            android:text="ترکیش "
+                            android:textColor="#003399"
+                            android:textSize="12dip"
+                            android:textAppearance="@style/IrsansBold"/>
+
+                        <TextView
+                            android:id="@+id/txt_return_air"
+                            android:layout_width="127dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="right"
+                            android:text="برگشت به تهران"
+                            android:textColor="#000"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/img_airLine"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="1dp"
+
+                        android:adjustViewBounds="true"
+                        android:layout_marginBottom="3dp"
+                        android:scaleType="fitCenter" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+                android:id="@+id/rcl_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
+
+            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:layout_margin="5sp">
+
+                <Button
+                    android:id="@+id/btnSearchPackage"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/btngravity_big"
+                    android:text="@string/reserve_package"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+
+
+</LinearLayout>

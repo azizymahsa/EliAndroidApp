@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/tools">
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvHotel"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:layout_gravity="center"
+        android:layout_margin="7dp"
+        android:background="@color/hotel_detail_background"
+        card_view:cardBackgroundColor="#ffffff"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="2dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200sp">
+
+
+
+
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/avi"
+                style="@style/AVLoadingIndicatorView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                app:indicatorColor="@color/color_hotel"
+                app:indicatorName="BallSpinFadeLoaderIndicator" />
+
+
+            <ImageView
+                android:id="@+id/ivBigImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:transitionName="tumb" />
+
+            <LinearLayout
+                android:id="@+id/RelativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="top"
+                android:background="@drawable/shadow2"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/Layout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5sp">
+
+                    <TextView
+                        android:id="@+id/txt_hotel_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:padding="5sp"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+
+                    <com.reserv.myapplicationeli.views.components.SimpleRatingBar
+                        android:id="@+id/rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+                        android:scaleType="fitEnd"
+                        app:srb_borderColor="@color/add_room_color"
+                        app:srb_fillColor="@color/cardview_dark_background"
+                        app:srb_isIndicator="true"
+                        app:srb_numberOfStars="5"
+                        app:srb_stepSize="1"
+                        app:srb_rating="5"
+                        app:srb_starSize="13sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linearLayout1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20sp"
+                            android:layout_height="20sp"
+                            android:padding="3sp"
+                            android:tint="@color/white"
+                            app:srcCompat="@drawable/ic_location_on_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/txt_location_full_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left|center"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+
+                            />
+                        <TextView
+                            android:id="@+id/txt_city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="right|center"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/shadow_down">
+
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:padding="5sp"
+                    android:text="از 18 دی تا 22 دی"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>
