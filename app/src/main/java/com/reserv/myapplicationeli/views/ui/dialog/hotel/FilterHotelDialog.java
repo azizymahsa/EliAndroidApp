@@ -52,7 +52,6 @@ public class FilterHotelDialog implements View.OnClickListener {
         dialogView = inflater.inflate(R.layout.filter_dialog, null);
       filter.add(new FilterModel(false, false, false, false, false, false, false, false, false, false, false));
 
-
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
         bestSeler = (SmoothCheckBox) dialogView.findViewById(R.id.bestSeler);
@@ -64,18 +63,15 @@ public class FilterHotelDialog implements View.OnClickListener {
         star4 = (SmoothCheckBox) dialogView.findViewById(R.id.star4);
         star5 = (SmoothCheckBox) dialogView.findViewById(R.id.star5);
 
-
         hotel = (SmoothCheckBox) dialogView.findViewById(R.id.hotel);
         boutique = (SmoothCheckBox) dialogView.findViewById(R.id.boutique);
         apartment = (SmoothCheckBox) dialogView.findViewById(R.id.apartment);
         resort = (SmoothCheckBox) dialogView.findViewById(R.id.resort);
 
-
         btnOk.setCustomTextFont("irsans.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
-
 
         for (FilterModel filterModel : filter) {
             if (filterModel.isStar1()) {
@@ -99,7 +95,7 @@ public class FilterHotelDialog implements View.OnClickListener {
             }
 
 
-            if (filterModel.isStar3()) {
+            if (filterModel.isStar3()){
                 star3.isChecked();
                 star3_ = true;
 
