@@ -25,7 +25,9 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
 import com.reserv.myapplicationeli.models.model.SearchParvazModelExp;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.adapters.ExpandableListAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.Flight;
@@ -34,7 +36,10 @@ import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegmentFalse;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegmentTrue;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.PriceField;
 import com.reserv.myapplicationeli.views.ui.dialog.flight.FilterFlightDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.flight.FilterFlightDialogNew;
+import com.reserv.myapplicationeli.views.ui.dialog.flight.FilterModelّFlight;
 import com.reserv.myapplicationeli.views.ui.dialog.flight.SortFlightDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelDialog;
 
 
 import org.apache.http.HttpResponse;
@@ -66,7 +71,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class SearchParvazActivity extends BaseActivity implements SortFlightDialog.SortFlightDialogListener,FilterFlightDialog.FilterFlightDialogListener,Header.onSearchTextChangedListener, OnItemClickListener ,OnClickListener,OnItemSelectedListener{
+public class SearchParvazActivity extends BaseActivity implements SortFlightDialog.SortFlightDialogListener,FilterFlightDialogNew.FilterFlightDialogListenerNew,Header.onSearchTextChangedListener, OnItemClickListener ,OnClickListener,OnItemSelectedListener{
 	//onSearchTextChangedListener, OnClickListener, OnItemClickListener,FiltersChangedListener,OnItemSelectedListener
 	//sort
 	boolean besetSeler = false;
@@ -90,6 +95,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
 	List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
 	List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+
+	private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
 
 	public TextView txtBack,txtCityRaft,txtCityBargasht;
 	public List<ParentItemExpandingPlan> dataExpandingList;
@@ -245,7 +252,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	}//end oncreat
 
 	@Override
-	public void onReturnValueFilterFlight(int type) {
+	public void onReturnValueFlightNew(int type) {
 
 		switch (type) {
 			case 1:
@@ -448,6 +455,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			break;
 		}
 	}
+
 
 
 
@@ -2112,7 +2120,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				finish();
 				break;
 			case R.id.txtFilter:
-				new FilterFlightDialog(SearchParvazActivity.this, this, bnoStop, boneStop,btwoStopMore,beconomiF,bbusinessF, bferstF, remove);
+				//new FilterFlightDialogNew(SearchParvazActivity.this, this, filterModels,this);
+				//new FilterHotelDialog(SelectHotelActivity.this, this, filterModels,this);
 				//new FilterFlightDialog(SearchParvazActivity.this, this, bnoStop, boneStop,btwoStopMore, remove);
 				break;
 
