@@ -55,7 +55,10 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="5sp">
+                    android:paddingTop="5sp"
+                    android:paddingLeft="5sp"
+                    android:paddingRight="5sp"
+                    >
 
                     <TextView
                         android:id="@+id/txt_hotel_name"
@@ -63,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center|left"
-                        android:padding="5sp"
+
                         android:maxLines="1"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
@@ -93,7 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/linearLayout1"
                     android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="5sp">
 
 
                     <LinearLayout
@@ -116,7 +120,6 @@
                             android:gravity="left|center"
                             android:textColor="@color/white"
                             android:textSize="10dp"
-
                             />
                         <TextView
                             android:id="@+id/txt_city"

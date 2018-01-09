@@ -23,7 +23,8 @@
                 android:text="اتاق استاندارد با تخت یکنفره"
                 android:layout_gravity="center"
                 android:textColor="@color/blue"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textSize="12dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,7 +52,7 @@
                         android:layout_gravity="center"
                         android:textColor="@color/color_hotel"
                         android:text="31,850000"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:gravity="center"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -60,7 +61,7 @@
                         android:text="ریال"
                         android:textColor="@color/green"
                         android:gravity="center"
-                        android:textSize="16sp"/>
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -87,7 +88,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="بزرگسال"
-                            android:padding="6sp"/>
+                            android:padding="4sp"
+                            android:textSize="12dp"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -106,7 +108,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="کودک"
-                            android:padding="6sp"/>
+                            android:padding="4sp"
+                            android:textSize="12dp"/>
 
                     </LinearLayout>
 
@@ -127,7 +130,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="نوزاد"
-                            android:padding="6sp"/>
+                            android:padding="4sp"
+                            android:textSize="12dp"/>
 
                     </LinearLayout>
 

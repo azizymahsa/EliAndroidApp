@@ -31,7 +31,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
         this.mView = mView;
         rooms = new ArrayList<>();
         ModelRowCountRoom room = new ModelRowCountRoom();
-        room.setCountB(0);
+        room.setCountB(1);
         room.setCountK(0);
         rooms.add(room);
     }

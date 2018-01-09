@@ -46,6 +46,19 @@
             android:layout_marginLeft="25sp">
 
             <ImageView
+                android:id="@+id/btn_remove"
+                android:layout_width="50sp"
+                android:layout_height="30sp"
+                android:padding="3sp"
+                app:srcCompat="@drawable/ic_remove_black_24dp"
+                android:tint="@color/colorPrimaryDark"/>
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark" />
+            <ImageView
                 android:id="@+id/btn_add"
                 android:layout_width="50sp"
                 android:layout_height="30sp"
@@ -53,18 +66,8 @@
                 android:padding="3sp"
                 android:tint="@color/colorPrimaryDark"/>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDark" />
 
-            <ImageView
-                android:id="@+id/btn_remove"
-                android:layout_width="50sp"
-                android:layout_height="30sp"
-                android:padding="3sp"
-                app:srcCompat="@drawable/ic_remove_black_24dp"
-                android:tint="@color/colorPrimaryDark"/>
+
 
         </LinearLayout>
         <TextView

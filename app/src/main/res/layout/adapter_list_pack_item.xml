@@ -65,71 +65,66 @@
                     android:minHeight="40dp"
                     android:orientation="horizontal" >
 
-                    <!--
-                     <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
 
-                    />
-                    -->
+
 
                     <LinearLayout
                         android:id="@+id/linearLayoutSevom"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="right"
                         android:layout_marginRight="3dip"
                         android:gravity="right"
                         android:orientation="vertical" >
 
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-
-                            <!--<TextView-->
-                                <!--android:id="@+id/txt_system"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_marginLeft="1dp"-->
-                                <!--android:background="@drawable/background_strock_green"-->
-                                <!--android:gravity="center"-->
-                                <!--android:text="سیستمی"-->
-                                <!--android:textColor="#486b6b"-->
-                                <!--android:textSize="12dip"-->
-                                <!--android:padding="2dp"-->
-                                <!--/>-->
-
-
-                            <TextView
-                                android:id="@+id/txt_economi"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:background="#29aae3"
-                                android:gravity="center"
-                                android:text="اکونومی"
-                                android:textColor="#fff"
-                                android:textSize="12dip"
-                                android:padding="3dp"
-                                />
-                        </LinearLayout>
-
                         <TextView
-                            android:id="@+id/txt_count"
-                            android:layout_width="match_parent"
+                            android:id="@+id/txt_economi"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
 
-                            android:layout_marginTop="28dp"
-                            android:gravity="center"
-                            android:text="فقط 4 نفر"
-                            android:textColor="#486b6b"
-                            android:textSize="10dip"
-                            android:visibility="visible" />
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="20dp"
+                            android:background="#29aae3"
+                            android:padding="3dp"
+                            android:text="اکونومی"
+                            android:textColor="#fff"
+                            android:textSize="12dip" />
+                        <!--<TextView-->
+                            <!--android:id="@+id/txt_count"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center"-->
 
+                            <!--android:layout_marginTop="28dp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:text="فقط 4 نفر"-->
+                            <!--android:textColor="#486b6b"-->
+                            <!--android:textSize="10dip"-->
+                            <!--android:visibility="visible" />-->
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp">
+                        <TextView
+                            android:id="@+id/date_go"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1396/10/19"
+                            android:textSize="10sp"
+                            android:layout_marginTop="3dp"/>
+                        <TextView
+                            android:id="@+id/date_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1396/10/20"
+                            android:layout_marginTop="41dp"
+                            android:textSize="10sp"/>
 
                     </LinearLayout>
 
@@ -150,7 +145,7 @@
                             android:gravity="right"
                             android:text="11:50 Am"
                             android:textColor="#003399"
-                            android:textSize="14dip" />
+                            android:textSize="12dip" />
 
                         <TextView
                             android:id="@+id/time_back"
@@ -171,8 +166,8 @@
                             android:gravity="right"
                             android:text="11:50 AM"
                             android:textColor="#003399"
-                            android:textSize="14dip"
-                            android:layout_marginTop="3dp"/>
+                            android:textSize="12dip"
+                            android:layout_marginTop="10dp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -193,7 +188,7 @@
                             android:gravity="right"
                             android:text="رفت به استانبول"
                             android:textColor="#000"
-                            android:textSize="12dp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/txt_airline"
@@ -215,7 +210,7 @@
                             android:gravity="right"
                             android:text="برگشت به تهران"
                             android:textColor="#000"
-                            android:textSize="12dp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <ImageView
@@ -251,7 +246,7 @@
                 android:layout_margin="5sp">
 
                 <Button
-                    android:id="@+id/btnSearchPackage"
+                    android:id="@+id/packageBooking"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
                     android:layout_gravity="center"

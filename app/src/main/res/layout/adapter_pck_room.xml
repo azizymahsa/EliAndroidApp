@@ -59,7 +59,8 @@
                             android:layout_gravity="top"
                             android:gravity="center"
                             android:textColor="@color/pack_room_text"
-                            android:textAppearance="@style/IrsansBold"/>
+                            android:textAppearance="@style/IrsansBold"
+                            android:text="1"/>
 
                         <Button
                             android:id="@+id/btnPlusAdt"

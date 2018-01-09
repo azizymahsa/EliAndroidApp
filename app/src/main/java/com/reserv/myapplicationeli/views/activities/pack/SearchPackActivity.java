@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.views.activities.pack;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,7 +21,6 @@ import com.reserv.myapplicationeli.models.model.pack.SearchXPackageResult;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageListReq;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.response.PackageListRes;
-import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.adapters.pack.PRowXferAdapter;
 import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 import com.reserv.myapplicationeli.views.ui.InitUi;
@@ -31,13 +31,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.reserv.myapplicationeli.base.GlobalApplication.getActivity;
 import static com.reserv.myapplicationeli.base.GlobalApplication.getContext;
 
 /**
  * Created by elham.bonyani on 1/6/2018.
  */
 
-public class SearchPackActivity extends BaseActivity implements View.OnClickListener {
+public class SearchPackActivity extends BaseActivity implements View.OnClickListener,PRowXferAdapter.ListenerSearchPackAdapter {
 
     public SimpleRecycleView rcl_package;
     public PRowXferAdapter pRowXferAdapter;
@@ -154,6 +155,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
         }
     }
 
@@ -170,7 +172,21 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     }
 
     private void showList() {
-        pRowXferAdapter = new PRowXferAdapter(this, pRowXfers);
+        pRowXferAdapter = new PRowXferAdapter(this, pRowXfers).setListener(this);
         rcl_package.showList(pRowXferAdapter);
+    }
+
+    @Override
+    public void onClickPackageBookingItem(PRowXfer pack) {
+        if (getActivity() == null) {
+            return;
+        }
+
+        Intent intent = new Intent(this, PassengerPackActivity.class);
+        startActivity(intent);
+
+
+
+
     }
 }

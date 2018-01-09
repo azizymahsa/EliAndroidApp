@@ -4,6 +4,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,9 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
     public TextView txt_economi;
     public TextView txt_airline;
     public ImageView img_airLine;
+    public Button btn_package_booking;
+    public TextView date_depart;
+    public TextView date_arrive;
 
 
     public PRowXferRowHolder(View itemView) {
@@ -40,10 +44,12 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
         this.txt_return_time = itemView.findViewById(R.id.txt_return_time);
         this.txt_depart_air = itemView.findViewById(R.id.txt_depart_air);
         this.txt_depart_time = itemView.findViewById(R.id.txt_depart_time);
-        this.txt_count = itemView.findViewById(R.id.txt_count);
         this.txt_economi = itemView.findViewById(R.id.txt_economi);
         this.txt_airline = itemView.findViewById(R.id.txt_airline);
         this.img_airLine = itemView.findViewById(R.id.img_airLine);
+        this.btn_package_booking = itemView.findViewById(R.id.packageBooking);
+        this.date_depart = itemView.findViewById(R.id.date_go);
+        this.date_arrive = itemView.findViewById(R.id.date_back);
 
         rcl_hotels.hideLoading();
         rcl_price.hideLoading();
