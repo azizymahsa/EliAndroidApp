@@ -1,8 +1,5 @@
 package com.reserv.myapplicationeli.views.adapters;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -16,6 +13,9 @@ import android.widget.TextView;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HotelCountRoomAdapter extends BaseAdapter {

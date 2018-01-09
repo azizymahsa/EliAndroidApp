@@ -1,7 +1,5 @@
 package com.reserv.myapplicationeli.views.adapters;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +10,8 @@ import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.ui.NationalitycodeActivity;
+
+import java.util.List;
 
 public class NationalityListArrayAdapter extends ArrayAdapter<NationalitycodeActivity.Country> {
 

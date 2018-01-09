@@ -1,21 +1,19 @@
 package com.reserv.myapplicationeli.views.adapters;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.HotelCity;
+
+import java.util.List;
 
 
 public class GetHotelCityAdapter extends BaseAdapter {
@@ -88,8 +86,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
 
 			holder.AirportName = (TextView) convertView.findViewById(R.id.text1);
 			holder.CityName = (TextView) convertView.findViewById(R.id.text2);
-			holder.llLayout = (LinearLayout) convertView.findViewById(R.id.llLayout);
-
+			
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
 			convertView.setTag(holder);
 		} else {
@@ -124,29 +121,34 @@ public class GetHotelCityAdapter extends BaseAdapter {
 					}
 				});
 		holder.CityName.setTag(current.getCityNameFa());
+		holder.CityName.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+					
+			/*			Intent i4 = new Intent(context,HotelActivity.class);
+						
+						i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());
+						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
+						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());*/
 
 
-		holder.llLayout.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Prefs.putString("Value-Hotel-City-Fa",current.getCityNameFa());
-				Prefs.putString("Value-Hotel-City-En",current.getCityNameEn());
-				Prefs.putString("Value-Hotel-City-Code",current.getCityCode());
+						Prefs.putString("Value-Hotel-City-Fa",current.getCityNameFa());
+						Prefs.putString("Value-Hotel-City-En",current.getCityNameEn());
+						Prefs.putString("Value-Hotel-City-Code",current.getCityCode());
 
-				activity.finish();
+						activity.finish();
 
-			}
-		});
+						
 
-
-
+					}
+				});
 		return convertView;
 		}
 
 	static class ViewHolder {
 		TextView AirportName;
 		TextView CityName;
-		LinearLayout llLayout;
 		
 		
 	}

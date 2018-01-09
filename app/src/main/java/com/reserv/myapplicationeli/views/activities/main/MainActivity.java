@@ -96,6 +96,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.btnFlight:
+                addFragment(getString(R.string.search_package),new PlanFragment());
+
                 break;
             case R.id.btnHotel:
                 addFragment(getString(R.string.search_hotel),new HotelFragment());

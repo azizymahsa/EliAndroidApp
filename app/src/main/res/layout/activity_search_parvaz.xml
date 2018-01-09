@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      xmlns:swipe="http://schemas.android.com/apk/res-auto"
 	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:id="@+id/rlRoot"
 	android:orientation="vertical">
 <LinearLayout
     android:layout_width="match_parent"
@@ -109,12 +110,14 @@
         </LinearLayout>
 
   <LinearLayout
+	  android:id="@+id/linear_expand"
       android:layout_width="match_parent"
       android:layout_height="fill_parent"
       android:layout_marginTop="1dp"
       android:background="#ffffff"
       android:orientation="horizontal"
-      android:padding="10dp" >
+      android:padding="10dp"
+	  android:visibility="visible">
 
            <!-- <com.fortysevendeg.swipelistview.SwipeListView
                android:id="@+id/listCustomers"
@@ -136,8 +139,40 @@
 
         
     </LinearLayout>
+	<LinearLayout
+		android:id="@+id/linear_no_result"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#ffffff"
+		android:orientation="vertical"
+		android:visibility="gone">
+	<TextView
+		android:id="@+id/txtNoResult"
+		android:layout_width="match_parent"
+		android:layout_height="104dp"
+		android:gravity="center"
+		android:textColor="#927fff"
+		android:textSize="14dp"
+		android:textStyle="bold"
+		android:text="نتیجه ای برای جستجوی شما یافت نشد" />
 
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="199dp"
+		android:src="@drawable/no_result_icon" />
 
+	<Button
+		android:id="@+id/btn_no_Result"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="بازگشت به صفحه قبل"
+		android:textColor="#fff"
+		android:textSize="14dp"
+		android:textStyle="bold"
+		android:layout_marginTop="@dimen/_25dp"
+		android:background="@drawable/btn_plan_select"/>
+
+	</LinearLayout>
 </LinearLayout>
 <LinearLayout
     android:id="@+id/footer"
@@ -205,7 +240,8 @@
 	         android:text=""
 	         android:textColor="#FFFFFF"
 	         android:textSize="12sp" />
-	    
+
+	    
 		    <TextView
 		        android:id="@+id/lblCityMabdaRaft"
 		        android:layout_width="62dp"
@@ -233,12 +269,22 @@
 	        android:textSize="12sp" />
 	   
    </LinearLayout>
-<!-- <TextView
-    android:id="@+id/textView1"
-    android:layout_width="fill_parent"
-    android:layout_height="40dp"
-    android:gravity="center"
-    android:layout_centerHorizontal="true"
-    android:layout_alignParentBottom="true"
-    android:text="Footer" /> -->
+
+
+
+
+	<include
+	layout="@layout/loading_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:visibility="gone"/>
+
+	<!-- <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="Footer" /> -->
 </RelativeLayout>

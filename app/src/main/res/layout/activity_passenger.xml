@@ -46,7 +46,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
-         />
+            android:background="@drawable/e_logo"/>
 
 
     </FrameLayout>
@@ -93,7 +93,7 @@
                         android:layout_marginLeft="7dp"
                         android:background="@drawable/factor_passenger_off"
                         android:gravity="right|center_vertical"
-                        android:text=" "
+                        android:text=""
                         android:textColor="#808080"
                         android:textSize="10dp" />
 
@@ -360,7 +360,7 @@
                         android:gravity="right|center_vertical"
                         android:inputType="number"
                         android:paddingRight="10dp"
-                        android:text=" " />
+                        android:text="" />
                 </LinearLayout>
                 <!-- emeli -->
 
@@ -540,7 +540,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
-                        android:text=" " />
+                        android:text="" />
                 </LinearLayout>
 
                 <!-- family name -->
@@ -586,7 +586,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
-                        android:text=" " />
+                        android:text="" />
                 </LinearLayout>
                 <!-- mobile -->
 
@@ -632,7 +632,7 @@
                         android:gravity="right|center_vertical"
                         android:inputType="date"
                         android:paddingRight="10dp"
-                        android:text=" " />
+                        android:text="" />
                 </LinearLayout>
 
                 <!-- shomare pasport -->
@@ -723,7 +723,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
-                        android:text=" " />
+                        android:text="" />
                 </LinearLayout>
 
                 <TextView
@@ -781,7 +781,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
-                        android:text="IR" />
+                        android:text="iranian" />
                 </LinearLayout>
                 <!-- mahale eghamat -->
 
@@ -922,10 +922,10 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp" >
 
-                    <ImageView
-                        android:id="@+id/ivImage"
+                    <TextView
+                        android:id="@+id/textView4"
                         android:layout_width="100dp"
-                        android:layout_height="200dp"
+                        android:layout_height="wrap_content"
                         android:text="|||||||||||||||||" />
 
                     <TextView

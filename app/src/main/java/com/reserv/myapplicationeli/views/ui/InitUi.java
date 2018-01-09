@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -63,20 +64,22 @@ public class InitUi {
 
 
     }
-    public  void Loading(final RelativeLayout rlLoading, final RelativeLayout root, boolean start ) {
+    public  void Loading(Activity activity,final RelativeLayout rlLoading, final RelativeLayout root, boolean start,int image ) {
+        ImageView ivImage=activity.findViewById(R.id.ivImage);
+        ivImage.setImageDrawable(ContextCompat.getDrawable(activity,image));
+
+
+
         if (start) {
             if (rlLoading.getVisibility() != View.VISIBLE) {
                 rlLoading.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(100)
-                        .playOn(rlLoading);
+                YoYo.with(Techniques.FadeIn) .duration(100).playOn(rlLoading);
                 Utility.disableEnableControls(false, root);
             }
         } else {
             if (rlLoading.getVisibility() == View.VISIBLE) {
 
-                YoYo.with(Techniques.FadeOut)
-                        .duration(600).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+                YoYo.with(Techniques.FadeOut).duration(600).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(android.animation.Animator animation) {
 
@@ -95,7 +98,7 @@ public class InitUi {
                     }
 
                     @Override
-                    public void onAnimationRepeat(android.animation.Animator animation) {
+                    public void onAnimationRepeat(android.animation.Animator animation){
 
                     }
 

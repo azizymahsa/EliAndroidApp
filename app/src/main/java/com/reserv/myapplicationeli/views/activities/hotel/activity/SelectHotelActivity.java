@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
@@ -28,7 +27,7 @@ import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Rooms;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Hotels;
 import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
 import com.reserv.myapplicationeli.views.ui.InitUi;
-import com.reserv.myapplicationeli.views.ui.dialog.FilterHotelDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -641,7 +640,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         protected void onPreExecute() {
             window.setStatusBarColor(getColor(R.color.blue2));
 
-            new InitUi().Loading(rlLoading, rlRoot, true);
+            new InitUi().Loading(SelectHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
 
         }
 
@@ -659,7 +658,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
         @Override
         protected void onPostExecute(String result) {
-            new InitUi().Loading(rlLoading, rlRoot, false);
+            new InitUi().Loading(SelectHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
 
 

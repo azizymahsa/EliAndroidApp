@@ -1,19 +1,41 @@
 package com.reserv.myapplicationeli.views.ui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import android.app.Fragment;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Button;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ExpandableListView.OnGroupClickListener;
+import android.widget.ExpandableListView.OnGroupCollapseListener;
+import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.pixplicity.easyprefs.library.Prefs;
+import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.models.model.SearchParvazModelExp;
+import com.reserv.myapplicationeli.views.adapters.ExpandableListAdapter;
+import com.reserv.myapplicationeli.views.components.Header;
+import com.reserv.myapplicationeli.views.ui.OBGParvaz.Flight;
+import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegment;
+import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegmentFalse;
+import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegmentTrue;
+import com.reserv.myapplicationeli.views.ui.OBGParvaz.PriceField;
+import com.reserv.myapplicationeli.views.ui.dialog.flight.FilterFlightDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.flight.SortFlightDialog;
+
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -26,58 +48,59 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Fragment;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Button;
-import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.base.BaseActivity;
-
-import com.reserv.myapplicationeli.models.Country;
-import com.reserv.myapplicationeli.views.adapters.ExpandableListAdapter;
-import com.reserv.myapplicationeli.views.components.Header;
-import com.reserv.myapplicationeli.views.fragments.PlanFragment;
-import com.reserv.myapplicationeli.views.ui.OBGParvaz.Flight;
-import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegment;
-import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegmentFalse;
-import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegmentTrue;
-import com.reserv.myapplicationeli.views.ui.OBGParvaz.PriceField;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 
-
-
-
-
-
-
-public class SearchParvazActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnItemClickListener ,OnClickListener,OnItemSelectedListener{
+public class SearchParvazActivity extends BaseActivity implements SortFlightDialog.SortFlightDialogListener,FilterFlightDialog.FilterFlightDialogListener,Header.onSearchTextChangedListener, OnItemClickListener ,OnClickListener,OnItemSelectedListener{
 	//onSearchTextChangedListener, OnClickListener, OnItemClickListener,FiltersChangedListener,OnItemSelectedListener
+	//sort
+	boolean besetSeler = false;
+	boolean bestOff = false;
+
+	//filter
+	boolean bnoStop = false;
+	boolean boneStop = false;
+	boolean btwoStopMore=false;
+
+	boolean beconomiF = false;
+	boolean bbusinessF = false;
+	boolean bferstF=false;
+
+	boolean remove = false;
+	private ArrayList<ParentItemExpandingPlan> selectHotelModelArrayListBestSeler = new ArrayList<>();
+
+	List<Flight> flightsList =new ArrayList<Flight>();
+	List<FlightSegmentTrue> SegmentListtrueAkhari =new ArrayList<FlightSegmentTrue>();
+	List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+	List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+	List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+	List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+
 	public TextView txtBack,txtCityRaft,txtCityBargasht;
 	public List<ParentItemExpandingPlan> dataExpandingList;
 	private ExpandableListAdapter listAdapterExpanding;
 	public ExpandableListView expListViewExpanding;
-	public TextView lblMoratabSazi;
-	public Button txtRuzeBad,txtRuzeGhabl;
+	public TextView lblMoratabSazi,txtFilter;
+	public Button txtRuzeBad,txtRuzeGhabl,btn_no_Result;
 	public static int COUNT_B;
 	public static int COUNT_K;
 	public static int COUNT_N;
-
+	RelativeLayout rlLoading,rlRoot;
 	// HashMap<String,HashMap<String,HeaderExpandingPlan>> listDataHeaderExpanding;
 	List<String> listDataHeaderExpanding;
 	HashMap<String, HashMap<String,ItemExpandingPlan>> listDataChildExpanding;
@@ -94,12 +117,28 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_parvaz);
+
+		Bundle bundle = this.getIntent().getExtras();
+		if (bundle != null) {
+			if (bundle.getBoolean("BACK_HOME") == true) {
+				finish();
+			}
+		}
+		rlLoading=findViewById(R.id.rlLoading);
+		rlRoot=findViewById(R.id.rlRoot);
+
 		new AsyncFetch().execute();
 		txtBack = (TextView) findViewById(R.id.txtBack);
 		txtBack.setOnClickListener(this);
 
+		txtFilter=(TextView)findViewById(R.id.txtFilter);
+		txtFilter.setOnClickListener(this);
+
 		txtRuzeBad = (Button) findViewById(R.id.txtRuzeBad);
 		txtRuzeBad.setOnClickListener(this);
+
+		btn_no_Result = (Button) findViewById(R.id.btn_no_Result);
+		btn_no_Result.setOnClickListener(this);
 
 		txtRuzeGhabl = (Button) findViewById(R.id.txtRuzeGhabl);
 		txtRuzeGhabl.setOnClickListener(this);
@@ -140,7 +179,7 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 		expListViewExpanding = (ExpandableListView) findViewById(R.id.lvExp);
 
 		// preparing list data
-		expandingListData(null);
+		expandingListData();
 
 
 		listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
@@ -196,10 +235,226 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 		});
 
 
+
+
+
+
+
+
+
 	}//end oncreat
+
+	@Override
+	public void onReturnValueFilterFlight(int type) {
+
+		switch (type) {
+			case 1:
+
+				bnoStop = true;
+				boneStop = false;
+
+				bbusinessF = false;
+				beconomiF = false;
+				bferstF=false;
+
+				remove = false;
+
+				filternoStopData();
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+				break;
+			case 2:
+				bnoStop = false;
+				boneStop = true;
+
+				bbusinessF = false;
+				beconomiF = false;
+				bferstF=false;
+
+				remove = false;
+				filterOneStopData();
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+
+				break;
+			case 3:
+				bnoStop = false;
+				boneStop = false;
+				btwoStopMore=true;
+
+				bbusinessF = false;
+				beconomiF = false;
+				bferstF=false;
+
+				remove = false;
+				fitertwoStopMore();
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+			break;
+			case 4:
+				bnoStop = false;
+				boneStop = false;
+				btwoStopMore=false;
+
+				bbusinessF = false;
+				beconomiF = false;
+				bferstF=false;
+
+				remove = true;
+				expandingListData();//kolesh miyad
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+				break;
+			case 5:
+				bnoStop = false;
+				boneStop = false;
+				btwoStopMore=false;
+				bbusinessF = false;
+				beconomiF = true;
+				bferstF=false;
+				remove = false;
+				economyListData();//kolesh miyad
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+				break;
+			case 6:
+				bnoStop = false;
+				boneStop = false;
+				btwoStopMore=false;
+				bbusinessF = true;
+				beconomiF = false;
+				bferstF=false;
+				remove = false;
+				bisnesListData();//kolesh miyad
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+				break;
+			case 7:
+				bnoStop = false;
+				boneStop = false;
+				btwoStopMore=false;
+				bbusinessF = false;
+				beconomiF = false;
+				bferstF=true;
+				remove = false;
+				ferstClassListData();//
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+				break;
+			case 8:
+				bnoStop = true;
+				boneStop = true;
+				btwoStopMore=true;
+
+				bbusinessF = false;
+				beconomiF = false;
+				bferstF=false;
+
+				remove = false;
+				expandingListData();//kolesh miyad
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+				break;
+			case 9:
+				bnoStop = true;
+				boneStop = true;
+				btwoStopMore=false;
+
+				bbusinessF = false;
+				beconomiF = false;
+				bferstF=false;
+
+				remove = false;
+				filternoAndOneStopData();//kolesh miyad
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+				break;
+			case 10:
+				bnoStop = false;
+				boneStop = true;
+				btwoStopMore=true;
+
+				bbusinessF = false;
+				beconomiF = false;
+				bferstF=false;
+
+				remove = false;
+				fiterONeAndtwoStopMore();//kolesh miyad
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+				break;
+		}
+	}
+
+	@Override
+	public void onReturnValueSort(int type) {
+		switch (type) {
+			case 1:
+				besetSeler = true;
+				bestOff = false;
+				Collections.sort(dataExpandingList, new Comparator<ParentItemExpandingPlan>() {
+					@Override
+					public int compare(SearchParvazActivity.ParentItemExpandingPlan o1, SearchParvazActivity.ParentItemExpandingPlan o2) {
+						//return o1.Header.AirlineNameEa.compareToIgnoreCase(o2.Header.AirlineNameEa);
+						return Double.compare(o2.Header.AdlCost, o1.Header.AdlCost);
+					}
+				});
+				//////////////////////////////////////
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+
+				// setting list adapter
+				expListViewExpanding.setAdapter(listAdapterExpanding);
+				listAdapterExpanding.notifyDataSetChanged();
+			break;
+			case 2:
+				besetSeler = false;//bestCoust
+				bestOff = true;//lowCoust
+				Collections.sort(dataExpandingList, new Comparator<ParentItemExpandingPlan>() {
+					@Override
+					public int compare(SearchParvazActivity.ParentItemExpandingPlan o1, SearchParvazActivity.ParentItemExpandingPlan o2) {
+						//return o1.Header.AirlineNameEa.compareToIgnoreCase(o2.Header.AirlineNameEa);
+						return Double.compare(o1.Header.AdlCost, o2.Header.AdlCost);
+					}
+				});
+				//////////////////////////////////////
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
+
+
+						// setting list adapter
+						expListViewExpanding.setAdapter(listAdapterExpanding);
+						listAdapterExpanding.notifyDataSetChanged();
+
+			break;
+		}
+	}
+
+
+
 	private class AsyncFetch extends AsyncTask<String, String, String> {
-		ProgressDialog pdLoading = new ProgressDialog(SearchParvazActivity.this,R.style.StyledDialog);
+		//ProgressDialog pdLoading = new ProgressDialog(SearchParvazActivity.this,R.style.StyledDialog);
 		//ProgressDialog pdLoading = new ProgressDialog(SearchParvazActivity.this);
+
 
 		HttpURLConnection conn;
 		URL url = null;
@@ -207,12 +462,9 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 		@Override
 		protected void onPreExecute() {
-			super.onPreExecute();
 
-			//this method will be running on UI thread
-			//pdLoading.setMessage("\tLoading...");
-			pdLoading.setCancelable(false);
-			pdLoading.show();
+			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot,true, R.drawable.loading_parvaz_search);
+
 
 		}
 
@@ -289,6 +541,8 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				HttpResponse res = client.execute(post);
 				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 
+			/*	JSONObject jsonObj = new JSONObject("Error");
+				JSONObject GetAirportsResult = jsonObj.getJSONObject("SearchFlightsResult");*/
 
 				return (retSrc);
 
@@ -298,6 +552,8 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				e.printStackTrace();
 				return e.toString();
 			} finally {
+
+
 				conn.disconnect();
 			}
 
@@ -306,20 +562,16 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 		@Override
 		protected void onPostExecute(String result) {
+			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot,false, R.drawable.loading_parvaz_search);//dismiss
 
-			//this method will be running on UI thread
 
-			pdLoading.dismiss();
 			List<Country> data=new ArrayList<Country>();
 
-			pdLoading.dismiss();
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(result);
 
-				// JSONObject jsonObj = new JSONObject(retSrc);
 
-				// Getting JSON Array node
 				JSONObject GetAirportsResult = jsonObj.getJSONObject("SearchFlightsResult");
 
 
@@ -329,7 +581,7 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				JSONArray jArray = GetAirportsResult.getJSONArray("Flights");//
 
 
-				List<com.reserv.myapplicationeli.views.ui.OBGParvaz.Flight> flightsList =new ArrayList<com.reserv.myapplicationeli.views.ui.OBGParvaz.Flight>();
+
 				//Flights
 				for(int i=0;i<jArray.length();i++){
 					JSONObject jPricedItinerary = jArray.getJSONObject(i);//
@@ -577,7 +829,7 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				}	  ///////////Parvaz
 				//Add to list expanding :
 
-				showDataExpanding(flightsList);
+				showDataExpanding();
 
              /*   listAirPort = (ListView)findViewById(R.id.listAirPort);
                 mAdapter = new GetAirPortMabdaAdapter(SearchParvazActivity.this, data);
@@ -592,9 +844,11 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 		}
 
-		private void showDataExpanding(List<Flight> flightsList) {
+		private void showDataExpanding() {
 			// preparing list data
-			expandingListData(flightsList);
+			expandingListData();
+
+
 
 			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this,dataExpandingList);
 
@@ -611,8 +865,7 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 					expListViewExpanding.setOnGroupClickListener(new OnGroupClickListener() {
 
 						@Override
-						public boolean onGroupClick(ExpandableListView parent, View v,
-													int groupPosition, long id) {
+						public boolean onGroupClick(ExpandableListView parent, View v,int groupPosition, long id) {
 							// Toast.makeText(getApplicationContext(),
 							// "Group Clicked " + listDataHeader.get(groupPosition),
 							// Toast.LENGTH_SHORT).show();
@@ -626,7 +879,7 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 						@Override
 						public void onGroupExpand(int groupPosition) {
 							//	Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
-							Toast.makeText(SearchParvazActivity.this, " Expanded",Toast.LENGTH_SHORT).show();
+							//Toast.makeText(SearchParvazActivity.this, " Expanded",Toast.LENGTH_SHORT).show();
 						}
 					});
 
@@ -707,6 +960,8 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				manJson.put("AdlCount",Integer.parseInt(adlCount));
 				manJson.put("ChdCount",Integer.parseInt(chdCount));
 				manJson.put("InfCount",Integer.parseInt(infCount));//{"DepartureAirportcode":"THR","ArrivalAirportcode":"IST","DepartureDate":"2017-12-28","ArrivalDate":"2017-12-31","OneWay":"2","CabinClassCode":"Y","AdlCount":1,"ChdCount":0,"InfCount":0}
+				manJson.put("Culture","fa-IR");
+
 				manJson.put("identity",identityJson);
 				jsone.put("request",manJson);
 				//jsone.put("request",jsoneIde);
@@ -727,6 +982,8 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				manJson.put("AdlCount",1);
 				manJson.put("ChdCount",0);
 				manJson.put("InfCount",0);
+				manJson.put("Culture","fa-IR");
+
 				//Global
 				COUNT_B=1;
 				COUNT_K=0;
@@ -746,12 +1003,339 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 		return jsone.toString();
 	}
-
-	private void expandingListData(List<Flight> flightsList) {
+	private void ferstClassListData() {
 		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
 		listDataChildExpanding = new HashMap<String, HashMap<String,ItemExpandingPlan>>();
 		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+		ArrayList<SearchParvazModelExp> searchParvazModelExps =new ArrayList<SearchParvazModelExp>();
+		ArrayList<SearchParvazModelExp>searchParvazModelExps1= new ArrayList<>();
 
+		if(flightsList != null){
+			LinearLayout linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+			linear_expand.setVisibility(View.VISIBLE);
+			LinearLayout linear_no_result= (LinearLayout) findViewById(R.id.linear_no_result);
+			linear_no_result.setVisibility(View.GONE);
+			try{
+				System.out.println("flightsList.size():"+flightsList.size());
+				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+				for (int i = 0; i <flightsList.size(); i++ ) {
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
+					System.out.println("HEADER I=" + i);
+
+					//List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+					SegmentList = flightsList.get(i).getSegmentList();
+
+					//List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+					SegmentListtrueAvali = flightsList.get(i).getSegmentListTrue();
+
+					SegmentListtrueAkhari = flightsList.get(i).getSegmentListTrue();
+
+
+					//List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAvali = flightsList.get(i).getSegmentListFalse();
+					//List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAkhari = flightsList.get(i).getSegmentListFalse();
+
+					if(SegmentList.get(0).getCabinClassNameFa().contains("فرست")){
+						//header
+
+						ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+						HeaderExpandingPlan header = new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(), SegmentListtrueAvali.get(0).getFlightTime(),
+								SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getArrivalCityNameFa(), SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getFlightTime(),
+
+								SegmentListFalseAvali.get(0).getDepartureCityNameFa(), SegmentListFalseAvali.get(0).getFlightArrivalTime(),
+								SegmentListFalseAkhari.get(SegmentListFalseAkhari.size() - 1).getArrivalCityNameFa(), SegmentListFalseAkhari.get(0).getFlightTime(),
+
+								flightsList.get(i).getAdlCost().getAmount(),
+								flightsList.get(i).getFlightGUID()
+								, SegmentList.get(0).getAirlineNameFa()
+								, SegmentList.get(0).getAirlineCode()
+
+								, SegmentList.get(0).getCabinClassNameFa()
+								, flightsList.get(i).getRemainSeats()
+								, flightsList.get(i).isIsCharter()
+								, SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+						//parentItem.Header.add(header);
+						parentItem.setHeader(header);
+
+
+						//fore Detail item
+						for (int j = 0; j < SegmentList.size(); j++) {
+							System.out.println("Detail j=" + j);
+
+							//////////
+							ItemExpandingPlan item = new ItemExpandingPlan();
+							//Item
+							item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
+							item.FlightTimeR = SegmentList.get(j).getFlightTime();
+
+							item.ArrivalAirportNameFaR = SegmentList.get(j).getArrivalAirportNameFa();
+							item.FlightArrivalTimeR = SegmentList.get(j).getFlightArrivalTime();
+
+							item.AirlineNameFaR = SegmentList.get(j).getAirlineNameFa();
+							item.FlightNumberR = SegmentList.get(j).getFlightNumber();
+							item.AirlineCode = SegmentList.get(j).getAirlineCode();
+
+							item.flGUID = flightsList.get(i).getFlightGUID();
+
+
+							item.AdlBaseFare = flightsList.get(i).getAdlBaseFare().getAmount();
+							item.Taxes = flightsList.get(i).getTaxes().getAmount();
+							item.TotalFare = flightsList.get(i).getTotalFare().getAmount();
+
+							item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
+							item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
+							parentItem.Items.add(item);
+
+						}
+						dataExpandingList.add(parentItem);
+					}//endif
+				}
+			}catch (Exception e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+		}
+		if(flightsList.size()==0){
+			LinearLayout linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+			linear_expand.setVisibility(View.GONE);
+			LinearLayout linear_no_result= (LinearLayout) findViewById(R.id.linear_no_result);
+			linear_no_result.setVisibility(View.VISIBLE);
+		}
+
+
+
+	}//end fersclas
+	private void bisnesListData() {
+		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+		listDataChildExpanding = new HashMap<String, HashMap<String,ItemExpandingPlan>>();
+		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+		ArrayList<SearchParvazModelExp> searchParvazModelExps =new ArrayList<SearchParvazModelExp>();
+		ArrayList<SearchParvazModelExp>searchParvazModelExps1= new ArrayList<>();
+
+		if(flightsList != null){
+			LinearLayout linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+			linear_expand.setVisibility(View.VISIBLE);
+			LinearLayout linear_no_result= (LinearLayout) findViewById(R.id.linear_no_result);
+			linear_no_result.setVisibility(View.GONE);
+			try{
+				System.out.println("flightsList.size():"+flightsList.size());
+				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+				for (int i = 0; i <flightsList.size(); i++ ) {
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
+					System.out.println("HEADER I=" + i);
+
+					//List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+					SegmentList = flightsList.get(i).getSegmentList();
+
+					//List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+					SegmentListtrueAvali = flightsList.get(i).getSegmentListTrue();
+
+					SegmentListtrueAkhari = flightsList.get(i).getSegmentListTrue();
+
+
+					//List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAvali = flightsList.get(i).getSegmentListFalse();
+					//List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAkhari = flightsList.get(i).getSegmentListFalse();
+
+					if(SegmentList.get(0).getCabinClassNameFa().contains("بیزنس")){
+						//header
+
+						ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+						HeaderExpandingPlan header = new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(), SegmentListtrueAvali.get(0).getFlightTime(),
+								SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getArrivalCityNameFa(), SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getFlightTime(),
+
+								SegmentListFalseAvali.get(0).getDepartureCityNameFa(), SegmentListFalseAvali.get(0).getFlightArrivalTime(),
+								SegmentListFalseAkhari.get(SegmentListFalseAkhari.size() - 1).getArrivalCityNameFa(), SegmentListFalseAkhari.get(0).getFlightTime(),
+
+								flightsList.get(i).getAdlCost().getAmount(),
+								flightsList.get(i).getFlightGUID()
+								, SegmentList.get(0).getAirlineNameFa()
+								, SegmentList.get(0).getAirlineCode()
+
+								, SegmentList.get(0).getCabinClassNameFa()
+								, flightsList.get(i).getRemainSeats()
+								, flightsList.get(i).isIsCharter()
+								, SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+						//parentItem.Header.add(header);
+						parentItem.setHeader(header);
+
+
+						//fore Detail item
+						for (int j = 0; j < SegmentList.size(); j++) {
+							System.out.println("Detail j=" + j);
+
+							//////////
+							ItemExpandingPlan item = new ItemExpandingPlan();
+							//Item
+							item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
+							item.FlightTimeR = SegmentList.get(j).getFlightTime();
+
+							item.ArrivalAirportNameFaR = SegmentList.get(j).getArrivalAirportNameFa();
+							item.FlightArrivalTimeR = SegmentList.get(j).getFlightArrivalTime();
+
+							item.AirlineNameFaR = SegmentList.get(j).getAirlineNameFa();
+							item.FlightNumberR = SegmentList.get(j).getFlightNumber();
+							item.AirlineCode = SegmentList.get(j).getAirlineCode();
+
+							item.flGUID = flightsList.get(i).getFlightGUID();
+
+
+							item.AdlBaseFare = flightsList.get(i).getAdlBaseFare().getAmount();
+							item.Taxes = flightsList.get(i).getTaxes().getAmount();
+							item.TotalFare = flightsList.get(i).getTotalFare().getAmount();
+
+							item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
+							item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
+							parentItem.Items.add(item);
+
+						}
+						dataExpandingList.add(parentItem);
+					}//endif
+				}
+			}catch (Exception e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+		}
+		if(flightsList.size()==0){
+			LinearLayout linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+			linear_expand.setVisibility(View.GONE);
+			LinearLayout linear_no_result= (LinearLayout) findViewById(R.id.linear_no_result);
+			linear_no_result.setVisibility(View.VISIBLE);
+		}
+
+
+
+	}//end bisnes
+	private void economyListData() {
+		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+		listDataChildExpanding = new HashMap<String, HashMap<String,ItemExpandingPlan>>();
+		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+		ArrayList<SearchParvazModelExp> searchParvazModelExps =new ArrayList<SearchParvazModelExp>();
+		ArrayList<SearchParvazModelExp>searchParvazModelExps1= new ArrayList<>();
+
+		if(flightsList != null){
+			LinearLayout linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+			linear_expand.setVisibility(View.VISIBLE);
+			LinearLayout linear_no_result= (LinearLayout) findViewById(R.id.linear_no_result);
+			linear_no_result.setVisibility(View.GONE);
+			try{
+				System.out.println("flightsList.size():"+flightsList.size());
+				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+				for (int i = 0; i <flightsList.size(); i++ ) {
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
+					System.out.println("HEADER I=" + i);
+
+					//List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+					SegmentList = flightsList.get(i).getSegmentList();
+
+					//List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+					SegmentListtrueAvali = flightsList.get(i).getSegmentListTrue();
+
+					SegmentListtrueAkhari = flightsList.get(i).getSegmentListTrue();
+
+
+					//List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAvali = flightsList.get(i).getSegmentListFalse();
+					//List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAkhari = flightsList.get(i).getSegmentListFalse();
+
+					if(SegmentList.get(0).getCabinClassNameFa().contains("اکونومی")){
+					//header
+
+					ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+					HeaderExpandingPlan header = new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(), SegmentListtrueAvali.get(0).getFlightTime(),
+							SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getArrivalCityNameFa(), SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getFlightTime(),
+
+							SegmentListFalseAvali.get(0).getDepartureCityNameFa(), SegmentListFalseAvali.get(0).getFlightArrivalTime(),
+							SegmentListFalseAkhari.get(SegmentListFalseAkhari.size() - 1).getArrivalCityNameFa(), SegmentListFalseAkhari.get(0).getFlightTime(),
+
+							flightsList.get(i).getAdlCost().getAmount(),
+							flightsList.get(i).getFlightGUID()
+							, SegmentList.get(0).getAirlineNameFa()
+							, SegmentList.get(0).getAirlineCode()
+
+							, SegmentList.get(0).getCabinClassNameFa()
+							, flightsList.get(i).getRemainSeats()
+							, flightsList.get(i).isIsCharter()
+							, SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+					//parentItem.Header.add(header);
+					parentItem.setHeader(header);
+
+
+					//fore Detail item
+					for (int j = 0; j < SegmentList.size(); j++) {
+						System.out.println("Detail j=" + j);
+
+						//////////
+						ItemExpandingPlan item = new ItemExpandingPlan();
+						//Item
+						item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
+						item.FlightTimeR = SegmentList.get(j).getFlightTime();
+
+						item.ArrivalAirportNameFaR = SegmentList.get(j).getArrivalAirportNameFa();
+						item.FlightArrivalTimeR = SegmentList.get(j).getFlightArrivalTime();
+
+						item.AirlineNameFaR = SegmentList.get(j).getAirlineNameFa();
+						item.FlightNumberR = SegmentList.get(j).getFlightNumber();
+						item.AirlineCode = SegmentList.get(j).getAirlineCode();
+
+						item.flGUID = flightsList.get(i).getFlightGUID();
+
+
+						item.AdlBaseFare = flightsList.get(i).getAdlBaseFare().getAmount();
+						item.Taxes = flightsList.get(i).getTaxes().getAmount();
+						item.TotalFare = flightsList.get(i).getTotalFare().getAmount();
+
+						item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
+						item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
+						parentItem.Items.add(item);
+
+					}
+					dataExpandingList.add(parentItem);
+				}//endif
+				}
+			}catch (Exception e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+		}
+		if(flightsList.size()==0){
+			LinearLayout linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+			linear_expand.setVisibility(View.GONE);
+			LinearLayout linear_no_result= (LinearLayout) findViewById(R.id.linear_no_result);
+			linear_no_result.setVisibility(View.VISIBLE);
+		}
+
+
+
+	}//end economy
+	private void filternoAndOneStopData() {
+		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+		listDataChildExpanding = new HashMap<String, HashMap<String,ItemExpandingPlan>>();
+		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+		ArrayList<SearchParvazModelExp> searchParvazModelExps =new ArrayList<SearchParvazModelExp>();
+		ArrayList<SearchParvazModelExp>searchParvazModelExps1= new ArrayList<>();
 
 		if(flightsList != null){
 
@@ -759,29 +1343,129 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 				System.out.println("flightsList.size():"+flightsList.size());
 				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
 				for (int i = 0; i <flightsList.size(); i++ ) {
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
+
+
+
+					//List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+					SegmentList=flightsList.get(i).getSegmentList();
+
+					//List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+					SegmentListtrueAvali=flightsList.get(i).getSegmentListTrue();
+
+					SegmentListtrueAkhari=flightsList.get(i).getSegmentListTrue();
+
+
+					//List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAvali=flightsList.get(i).getSegmentListFalse();
+					//List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAkhari=flightsList.get(i).getSegmentListFalse();
+
+					if(SegmentListtrueAkhari.size()==1 && SegmentListtrueAkhari.size()== 2 ){//no one
+						System.out.println("HEADER I="+i);
+						//header
+						ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+						HeaderExpandingPlan header=new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(),SegmentListtrueAvali.get(0).getFlightTime(),
+								SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getArrivalCityNameFa(),SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getFlightTime(),
+
+								SegmentListFalseAvali.get(0).getDepartureCityNameFa(),SegmentListFalseAvali.get(0).getFlightArrivalTime(),
+								SegmentListFalseAkhari.get(SegmentListFalseAkhari.size()-1).getArrivalCityNameFa(),SegmentListFalseAkhari.get(0).getFlightTime(),
+
+								flightsList.get(i).getAdlCost().getAmount(),
+								flightsList.get(i).getFlightGUID()
+								,SegmentList.get(0).getAirlineNameFa()
+								,SegmentList.get(0).getAirlineCode()
+
+								,SegmentList.get(0).getCabinClassNameFa()
+								,flightsList.get(i).getRemainSeats()
+								,flightsList.get(i).isIsCharter()
+								,SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+						//parentItem.Header.add(header);
+						parentItem.setHeader(header);
+
+
+						//fore Detail item
+						for (int j = 0; j < SegmentList.size(); j++) {
+							System.out.println("Detail j="+j);
+
+							//////////
+							ItemExpandingPlan item = new ItemExpandingPlan();
+							//Item
+							item.DepartureAirportNameFaR=SegmentList.get(j).getDepartureAirportNameFa();
+							item.FlightTimeR=SegmentList.get(j).getFlightTime();
+
+							item.ArrivalAirportNameFaR=SegmentList.get(j).getArrivalAirportNameFa();
+							item.FlightArrivalTimeR=SegmentList.get(j).getFlightArrivalTime();
+
+							item.AirlineNameFaR=SegmentList.get(j).getAirlineNameFa();
+							item.FlightNumberR=SegmentList.get(j).getFlightNumber();
+							item.AirlineCode=SegmentList.get(j).getAirlineCode();
+
+							item.flGUID=flightsList.get(i).getFlightGUID();
+
+
+							item.AdlBaseFare=flightsList.get(i).getAdlBaseFare().getAmount();
+							item.Taxes=flightsList.get(i).getTaxes().getAmount();
+							item.TotalFare=flightsList.get(i).getTotalFare().getAmount();
+
+							item.DepartureCityNameFa=SegmentList.get(j).getDepartureCityNameFa();
+							item.ArrivalCityNameFa=SegmentList.get(j).getArrivalCityNameFa();
+							parentItem.Items.add(item);
+
+						}
+						dataExpandingList.add(parentItem);
+					}
+				}
+			}catch (Exception e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+		}
+
+
+
+	}//end no and one
+	private void expandingListData() {
+		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+		listDataChildExpanding = new HashMap<String, HashMap<String,ItemExpandingPlan>>();
+		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+		ArrayList<SearchParvazModelExp> searchParvazModelExps =new ArrayList<SearchParvazModelExp>();
+		ArrayList<SearchParvazModelExp>searchParvazModelExps1= new ArrayList<>();
+
+		if(flightsList != null){
+
+			try{
+				System.out.println("flightsList.size():"+flightsList.size());
+				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+				for (int i = 0; i <flightsList.size(); i++ ) {
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
 
 					System.out.println("HEADER I="+i);
 
-					List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+					//List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
 					SegmentList=flightsList.get(i).getSegmentList();
 
-					List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+					//List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
 					SegmentListtrueAvali=flightsList.get(i).getSegmentListTrue();
-					List<FlightSegmentTrue> SegmentListtrueAkhari =new ArrayList<FlightSegmentTrue>();
+
 					SegmentListtrueAkhari=flightsList.get(i).getSegmentListTrue();
 
-					List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+
+					//List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
 					SegmentListFalseAvali=flightsList.get(i).getSegmentListFalse();
-					List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+					//List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
 					SegmentListFalseAkhari=flightsList.get(i).getSegmentListFalse();
-					//new HeaderExpandingPlan(ArrivalCityNameFaR, FlightArrivalTimeR,
-					//DepartureCityNameFaR, FlightTimeR,
 
-					//ArrivalCityNameFaB, FlightArrivalTimeB,
-					//DepartureCityNameFaB, FlightTimeB, AdlCost,
-
-					//flGUID, AirlineNameFa, AirlineCode, CabinClassNameFa, RemainSeats, IsCharter)
 					//header
+
 					ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
 					HeaderExpandingPlan header=new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(),SegmentListtrueAvali.get(0).getFlightTime(),
 							SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getArrivalCityNameFa(),SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getFlightTime(),
@@ -796,21 +1480,19 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 							,SegmentList.get(0).getCabinClassNameFa()
 							,flightsList.get(i).getRemainSeats()
-							,flightsList.get(i).isIsCharter());
+							,flightsList.get(i).isIsCharter()
+							,SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
 
 
-					//  listDataHeaderExpanding.add(header);
-					//  HeaderExpandingPlan header=new HeaderExpandingPlan(ArrivalCityNameFaR, DepartureCityNameFaR, ArrivalCityNameFaB, DepartureCityNameFaB)
-					parentItem.Header.add(header);
-
+					//parentItem.Header.add(header);
+					parentItem.setHeader(header);
 
 
 					//fore Detail item
 					for (int j = 0; j < SegmentList.size(); j++) {
 						System.out.println("Detail j="+j);
-						//raft
-						//if(SegmentList.get(j).isIsDepartureSegment()) {
-						// Adding child data
+
+						//////////
 						ItemExpandingPlan item = new ItemExpandingPlan();
 						//Item
 						item.DepartureAirportNameFaR=SegmentList.get(j).getDepartureAirportNameFa();
@@ -835,9 +1517,8 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 						parentItem.Items.add(item);
 
 					}
-
 					dataExpandingList.add(parentItem);
-					//	listDataChildExpanding.put(header, detail);
+
 				}
 			}catch (Exception e) {
 
@@ -849,19 +1530,436 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 
 
 
-	}
+
+	}//end expanding listdata
+	private void fiterONeAndtwoStopMore() {
+		listDataChildExpanding = new HashMap<String, HashMap<String,ItemExpandingPlan>>();
+		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+		ArrayList<SearchParvazModelExp> searchParvazModelExps =new ArrayList<SearchParvazModelExp>();
+		ArrayList<SearchParvazModelExp>searchParvazModelExps1= new ArrayList<>();
+
+		if(flightsList != null){
+
+			try{
+				System.out.println("flightsList.size():"+flightsList.size());
+				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+				for (int i = 0; i <flightsList.size(); i++ ) {
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
+
+
+
+					//List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+					SegmentList=flightsList.get(i).getSegmentList();
+
+					//List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+					SegmentListtrueAvali=flightsList.get(i).getSegmentListTrue();
+
+					SegmentListtrueAkhari=flightsList.get(i).getSegmentListTrue();
+
+
+					//List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAvali=flightsList.get(i).getSegmentListFalse();
+					//List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAkhari=flightsList.get(i).getSegmentListFalse();
+
+					if(SegmentListtrueAkhari.size()>=2){//more two tavaghof and one
+						System.out.println("HEADER I="+i);
+						//header
+						ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+						HeaderExpandingPlan header=new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(),SegmentListtrueAvali.get(0).getFlightTime(),
+								SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getArrivalCityNameFa(),SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getFlightTime(),
+
+								SegmentListFalseAvali.get(0).getDepartureCityNameFa(),SegmentListFalseAvali.get(0).getFlightArrivalTime(),
+								SegmentListFalseAkhari.get(SegmentListFalseAkhari.size()-1).getArrivalCityNameFa(),SegmentListFalseAkhari.get(0).getFlightTime(),
+
+								flightsList.get(i).getAdlCost().getAmount(),
+								flightsList.get(i).getFlightGUID()
+								,SegmentList.get(0).getAirlineNameFa()
+								,SegmentList.get(0).getAirlineCode()
+
+								,SegmentList.get(0).getCabinClassNameFa()
+								,flightsList.get(i).getRemainSeats()
+								,flightsList.get(i).isIsCharter()
+								,SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+						//parentItem.Header.add(header);
+						parentItem.setHeader(header);
+
+
+						//fore Detail item
+						for (int j = 0; j < SegmentList.size(); j++) {
+							System.out.println("Detail j="+j);
+
+							//////////
+							ItemExpandingPlan item = new ItemExpandingPlan();
+							//Item
+							item.DepartureAirportNameFaR=SegmentList.get(j).getDepartureAirportNameFa();
+							item.FlightTimeR=SegmentList.get(j).getFlightTime();
+
+							item.ArrivalAirportNameFaR=SegmentList.get(j).getArrivalAirportNameFa();
+							item.FlightArrivalTimeR=SegmentList.get(j).getFlightArrivalTime();
+
+							item.AirlineNameFaR=SegmentList.get(j).getAirlineNameFa();
+							item.FlightNumberR=SegmentList.get(j).getFlightNumber();
+							item.AirlineCode=SegmentList.get(j).getAirlineCode();
+
+							item.flGUID=flightsList.get(i).getFlightGUID();
+
+
+							item.AdlBaseFare=flightsList.get(i).getAdlBaseFare().getAmount();
+							item.Taxes=flightsList.get(i).getTaxes().getAmount();
+							item.TotalFare=flightsList.get(i).getTotalFare().getAmount();
+
+							item.DepartureCityNameFa=SegmentList.get(j).getDepartureCityNameFa();
+							item.ArrivalCityNameFa=SegmentList.get(j).getArrivalCityNameFa();
+							parentItem.Items.add(item);
+
+						}
+						dataExpandingList.add(parentItem);
+					}
+				}
+			}catch (Exception e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+		}
+
+	}//fiterONeAndtwoStopMore
+	private void fitertwoStopMore() {
+		listDataChildExpanding = new HashMap<String, HashMap<String,ItemExpandingPlan>>();
+		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+		ArrayList<SearchParvazModelExp> searchParvazModelExps =new ArrayList<SearchParvazModelExp>();
+		ArrayList<SearchParvazModelExp>searchParvazModelExps1= new ArrayList<>();
+
+		if(flightsList != null){
+
+			try{
+				System.out.println("flightsList.size():"+flightsList.size());
+				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+				for (int i = 0; i <flightsList.size(); i++ ) {
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
+
+
+
+					//List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+					SegmentList=flightsList.get(i).getSegmentList();
+
+					//List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+					SegmentListtrueAvali=flightsList.get(i).getSegmentListTrue();
+
+					SegmentListtrueAkhari=flightsList.get(i).getSegmentListTrue();
+
+
+					//List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAvali=flightsList.get(i).getSegmentListFalse();
+					//List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAkhari=flightsList.get(i).getSegmentListFalse();
+
+					if(SegmentListtrueAkhari.size()>3){//more two tavaghof
+						System.out.println("HEADER I="+i);
+						//header
+						ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+						HeaderExpandingPlan header=new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(),SegmentListtrueAvali.get(0).getFlightTime(),
+								SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getArrivalCityNameFa(),SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getFlightTime(),
+
+								SegmentListFalseAvali.get(0).getDepartureCityNameFa(),SegmentListFalseAvali.get(0).getFlightArrivalTime(),
+								SegmentListFalseAkhari.get(SegmentListFalseAkhari.size()-1).getArrivalCityNameFa(),SegmentListFalseAkhari.get(0).getFlightTime(),
+
+								flightsList.get(i).getAdlCost().getAmount(),
+								flightsList.get(i).getFlightGUID()
+								,SegmentList.get(0).getAirlineNameFa()
+								,SegmentList.get(0).getAirlineCode()
+
+								,SegmentList.get(0).getCabinClassNameFa()
+								,flightsList.get(i).getRemainSeats()
+								,flightsList.get(i).isIsCharter()
+								,SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+						//parentItem.Header.add(header);
+						parentItem.setHeader(header);
+
+
+						//fore Detail item
+						for (int j = 0; j < SegmentList.size(); j++) {
+							System.out.println("Detail j="+j);
+
+							//////////
+							ItemExpandingPlan item = new ItemExpandingPlan();
+							//Item
+							item.DepartureAirportNameFaR=SegmentList.get(j).getDepartureAirportNameFa();
+							item.FlightTimeR=SegmentList.get(j).getFlightTime();
+
+							item.ArrivalAirportNameFaR=SegmentList.get(j).getArrivalAirportNameFa();
+							item.FlightArrivalTimeR=SegmentList.get(j).getFlightArrivalTime();
+
+							item.AirlineNameFaR=SegmentList.get(j).getAirlineNameFa();
+							item.FlightNumberR=SegmentList.get(j).getFlightNumber();
+							item.AirlineCode=SegmentList.get(j).getAirlineCode();
+
+							item.flGUID=flightsList.get(i).getFlightGUID();
+
+
+							item.AdlBaseFare=flightsList.get(i).getAdlBaseFare().getAmount();
+							item.Taxes=flightsList.get(i).getTaxes().getAmount();
+							item.TotalFare=flightsList.get(i).getTotalFare().getAmount();
+
+							item.DepartureCityNameFa=SegmentList.get(j).getDepartureCityNameFa();
+							item.ArrivalCityNameFa=SegmentList.get(j).getArrivalCityNameFa();
+							parentItem.Items.add(item);
+
+						}
+						dataExpandingList.add(parentItem);
+					}
+				}
+			}catch (Exception e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+		}
+
+	}//endfitertwoStopMore
+	private void filterOneStopData() {
+		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+		listDataChildExpanding = new HashMap<String, HashMap<String,ItemExpandingPlan>>();
+		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+		ArrayList<SearchParvazModelExp> searchParvazModelExps =new ArrayList<SearchParvazModelExp>();
+		ArrayList<SearchParvazModelExp>searchParvazModelExps1= new ArrayList<>();
+
+		if(flightsList != null){
+
+			try{
+				System.out.println("flightsList.size():"+flightsList.size());
+				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+				for (int i = 0; i <flightsList.size(); i++ ) {
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
+
+
+
+					//List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+					SegmentList=flightsList.get(i).getSegmentList();
+
+					//List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+					SegmentListtrueAvali=flightsList.get(i).getSegmentListTrue();
+
+					SegmentListtrueAkhari=flightsList.get(i).getSegmentListTrue();
+
+
+					//List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAvali=flightsList.get(i).getSegmentListFalse();
+					//List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAkhari=flightsList.get(i).getSegmentListFalse();
+
+					if(SegmentListtrueAkhari.size()==2){//yek tavaghof
+						System.out.println("HEADER I="+i);
+						//header
+						ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+						HeaderExpandingPlan header=new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(),SegmentListtrueAvali.get(0).getFlightTime(),
+								SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getArrivalCityNameFa(),SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getFlightTime(),
+
+								SegmentListFalseAvali.get(0).getDepartureCityNameFa(),SegmentListFalseAvali.get(0).getFlightArrivalTime(),
+								SegmentListFalseAkhari.get(SegmentListFalseAkhari.size()-1).getArrivalCityNameFa(),SegmentListFalseAkhari.get(0).getFlightTime(),
+
+								flightsList.get(i).getAdlCost().getAmount(),
+								flightsList.get(i).getFlightGUID()
+								,SegmentList.get(0).getAirlineNameFa()
+								,SegmentList.get(0).getAirlineCode()
+
+								,SegmentList.get(0).getCabinClassNameFa()
+								,flightsList.get(i).getRemainSeats()
+								,flightsList.get(i).isIsCharter()
+								,SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+						//parentItem.Header.add(header);
+						parentItem.setHeader(header);
+
+
+						//fore Detail item
+						for (int j = 0; j < SegmentList.size(); j++) {
+							System.out.println("Detail j="+j);
+
+							//////////
+							ItemExpandingPlan item = new ItemExpandingPlan();
+							//Item
+							item.DepartureAirportNameFaR=SegmentList.get(j).getDepartureAirportNameFa();
+							item.FlightTimeR=SegmentList.get(j).getFlightTime();
+
+							item.ArrivalAirportNameFaR=SegmentList.get(j).getArrivalAirportNameFa();
+							item.FlightArrivalTimeR=SegmentList.get(j).getFlightArrivalTime();
+
+							item.AirlineNameFaR=SegmentList.get(j).getAirlineNameFa();
+							item.FlightNumberR=SegmentList.get(j).getFlightNumber();
+							item.AirlineCode=SegmentList.get(j).getAirlineCode();
+
+							item.flGUID=flightsList.get(i).getFlightGUID();
+
+
+							item.AdlBaseFare=flightsList.get(i).getAdlBaseFare().getAmount();
+							item.Taxes=flightsList.get(i).getTaxes().getAmount();
+							item.TotalFare=flightsList.get(i).getTotalFare().getAmount();
+
+							item.DepartureCityNameFa=SegmentList.get(j).getDepartureCityNameFa();
+							item.ArrivalCityNameFa=SegmentList.get(j).getArrivalCityNameFa();
+							parentItem.Items.add(item);
+
+						}
+						dataExpandingList.add(parentItem);
+					}
+				}
+			}catch (Exception e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+		}
+
+	}//filterOneStop
+	private void filternoStopData() {
+		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+		listDataChildExpanding = new HashMap<String, HashMap<String,ItemExpandingPlan>>();
+		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+		ArrayList<SearchParvazModelExp> searchParvazModelExps =new ArrayList<SearchParvazModelExp>();
+		ArrayList<SearchParvazModelExp>searchParvazModelExps1= new ArrayList<>();
+
+		if(flightsList != null){
+
+			try{
+				System.out.println("flightsList.size():"+flightsList.size());
+				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+				for (int i = 0; i <flightsList.size(); i++ ) {
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
+
+
+
+					//List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+					SegmentList=flightsList.get(i).getSegmentList();
+
+					//List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+					SegmentListtrueAvali=flightsList.get(i).getSegmentListTrue();
+
+					SegmentListtrueAkhari=flightsList.get(i).getSegmentListTrue();
+
+
+					//List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAvali=flightsList.get(i).getSegmentListFalse();
+					//List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+					SegmentListFalseAkhari=flightsList.get(i).getSegmentListFalse();
+
+					if(SegmentListtrueAkhari.size()==1){//bedune tavaghof
+						System.out.println("HEADER I="+i);
+					//header
+					ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+					HeaderExpandingPlan header=new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(),SegmentListtrueAvali.get(0).getFlightTime(),
+							SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getArrivalCityNameFa(),SegmentListtrueAkhari.get(SegmentListtrueAkhari.size()-1).getFlightTime(),
+
+							SegmentListFalseAvali.get(0).getDepartureCityNameFa(),SegmentListFalseAvali.get(0).getFlightArrivalTime(),
+							SegmentListFalseAkhari.get(SegmentListFalseAkhari.size()-1).getArrivalCityNameFa(),SegmentListFalseAkhari.get(0).getFlightTime(),
+
+							flightsList.get(i).getAdlCost().getAmount(),
+							flightsList.get(i).getFlightGUID()
+							,SegmentList.get(0).getAirlineNameFa()
+							,SegmentList.get(0).getAirlineCode()
+
+							,SegmentList.get(0).getCabinClassNameFa()
+							,flightsList.get(i).getRemainSeats()
+							,flightsList.get(i).isIsCharter()
+							,SegmentList.get(0).getAirlineNameEn());//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+					//parentItem.Header.add(header);
+					parentItem.setHeader(header);
+
+
+					//fore Detail item
+					for (int j = 0; j < SegmentList.size(); j++) {
+						System.out.println("Detail j="+j);
+
+						//////////
+						ItemExpandingPlan item = new ItemExpandingPlan();
+						//Item
+						item.DepartureAirportNameFaR=SegmentList.get(j).getDepartureAirportNameFa();
+						item.FlightTimeR=SegmentList.get(j).getFlightTime();
+
+						item.ArrivalAirportNameFaR=SegmentList.get(j).getArrivalAirportNameFa();
+						item.FlightArrivalTimeR=SegmentList.get(j).getFlightArrivalTime();
+
+						item.AirlineNameFaR=SegmentList.get(j).getAirlineNameFa();
+						item.FlightNumberR=SegmentList.get(j).getFlightNumber();
+						item.AirlineCode=SegmentList.get(j).getAirlineCode();
+
+						item.flGUID=flightsList.get(i).getFlightGUID();
+
+
+						item.AdlBaseFare=flightsList.get(i).getAdlBaseFare().getAmount();
+						item.Taxes=flightsList.get(i).getTaxes().getAmount();
+						item.TotalFare=flightsList.get(i).getTotalFare().getAmount();
+
+						item.DepartureCityNameFa=SegmentList.get(j).getDepartureCityNameFa();
+						item.ArrivalCityNameFa=SegmentList.get(j).getArrivalCityNameFa();
+						parentItem.Items.add(item);
+
+					}
+					dataExpandingList.add(parentItem);
+					}
+				}
+			}catch (Exception e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+		}
+
+
+
+	}//end Filternostop
 	public class ParentItemExpandingPlan{
 
 		public ParentItemExpandingPlan(String header){
 			//Header = header;
-			Header = new ArrayList<HeaderExpandingPlan>();
+			Header =new HeaderExpandingPlan();
 			Items = new ArrayList<ItemExpandingPlan>();
 		}
 		//public String Header;
-		public ArrayList<HeaderExpandingPlan> Header;
+
+		public HeaderExpandingPlan getHeader() {
+			return Header;
+		}
+
+		public void setHeader(HeaderExpandingPlan header) {
+			Header = header;
+		}
+
+		public List<ItemExpandingPlan> getItems() {
+			return Items;
+		}
+
+		public void setItems(List<ItemExpandingPlan> items) {
+			Items = items;
+		}
+
+		public HeaderExpandingPlan Header;
 		public List<ItemExpandingPlan> Items;
+
+
 	}
 	public class HeaderExpandingPlan {
+		public String AirlineNameEa;
 		public String ArrivalCityNameFaR;
 		public String  FlightArrivalTimeR;
 
@@ -893,7 +1991,7 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 								   long AdlCost
 				,String flGUID,String AirlineNameFa
 				,String AirlineCode
-				,String CabinClassNameFa,int RemainSeats,boolean IsCharter){
+				,String CabinClassNameFa,int RemainSeats,boolean IsCharter ,String AirlineNameEa){
 			this.ArrivalCityNameFaR = ArrivalCityNameFaR;
 			this.FlightArrivalTimeR=FlightArrivalTimeR;
 
@@ -915,6 +2013,22 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 			this.CabinClassNameFa=CabinClassNameFa;
 			this.RemainSeats=RemainSeats;
 			this.IsCharter=IsCharter;
+
+			this.AirlineNameEa=AirlineNameEa;
+
+		}
+
+		public HeaderExpandingPlan() {
+
+		}
+
+
+		public String getArrivalCityNameFaR() {
+			return ArrivalCityNameFaR;
+		}
+
+		public void setArrivalCityNameFaR(String arrivalCityNameFaR) {
+			ArrivalCityNameFaR = arrivalCityNameFaR;
 		}
 	}
 
@@ -992,86 +2106,94 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 			case R.id.txtBack:
-				Intent intent = new Intent(this,PlanFragment.class);
+				/*Intent intent = new Intent(this,PlanFragment.class);
 				//i2.putExtra("CUSTOMER_ID", (int) customerID);
-				startActivity(intent);
-
+				startActivity(intent);*/
+				finish();
 				break;
-			case R.id.lblMoratabSazi:
-
-				break;
-			case R.id.txtRuzeBad:
-
-				//"2017-12-24"
-				try {
-
-					String str_date=Ddate;//"11-June-07";
-					DateFormat formatter ;
-					Date date ;
-					formatter = new SimpleDateFormat("yyyy-MM-dd");
-					date = (Date)formatter.parse(str_date);
-					Calendar cal=Calendar.getInstance();
-					cal.setTime(date);
-					cal.add(Calendar.DATE, 1);
-					System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
-
-
-
-					Date dateRaft = (Date)formatter.parse(Ddate);
-					Date dateBargasht = (Date)formatter.parse(Adate);
-					if(dateBargasht.after(dateRaft)){
-						///
-						///
-						SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
-						txtDateOnvan.setText(AdateF+"  -  "+dfm.format(cal.getTime()));
-						///
-						Ddate=formatter.format(cal.getTime());
-						callApiDateNext();
-					}else{
-						Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد!!!",
-								Toast.LENGTH_SHORT).show();
-					}
-
-				} catch (java.text.ParseException e){
-					System.out.println("Exception :"+e);
-				}
-
+			case R.id.txtFilter:
+				new FilterFlightDialog(SearchParvazActivity.this, this, bnoStop, boneStop,btwoStopMore,beconomiF,bbusinessF, bferstF, remove);
+				//new FilterFlightDialog(SearchParvazActivity.this, this, bnoStop, boneStop,btwoStopMore, remove);
 				break;
 
-			case R.id.txtRuzeGhabl:
+			case R.id.lblMoratabSazi://sort
+				// custom dialog
+				new SortFlightDialog(SearchParvazActivity.this, this, besetSeler, bestOff, remove);
 
-				//"2017-12-24"
-				try {
+			break;
+						case R.id.txtRuzeBad:
 
-					String str_date=Ddate;//"11-June-07";
-					DateFormat formatter ;
-					Date date ;
-					formatter = new SimpleDateFormat("yyyy-MM-dd");
-					date = (Date)formatter.parse(str_date);
-					Calendar cal= Calendar.getInstance();
-					cal.setTime(date);
-					cal.add(Calendar.DATE, -1);
-					System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
-					//shart kamtar az emruz
-					if (System.currentTimeMillis() <= date.getTime()) {
-						Ddate=formatter.format(cal.getTime());
+						//"2017-12-24"
+						try {
 
-						///onvan
-						SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
-						txtDateOnvan.setText(AdateF+"  -  "+dfm.format(cal.getTime()));
-						///
-						callApiDateNext();
-					}else{
-						Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز!!!",
-								Toast.LENGTH_SHORT).show();
-					}
+							String str_date=Ddate;//"11-June-07";
+							DateFormat formatter ;
+							Date date ;
+							formatter = new SimpleDateFormat("yyyy-MM-dd");
+							date = (Date)formatter.parse(str_date);
+							Calendar cal=Calendar.getInstance();
+							cal.setTime(date);
+							cal.add(Calendar.DATE, 1);
+							System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
 
 
 
+							Date dateRaft = (Date)formatter.parse(Ddate);
+							Date dateBargasht = (Date)formatter.parse(Adate);
+							if(dateBargasht.after(dateRaft)){
+								///
+								///
+								SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
+								txtDateOnvan.setText(AdateF+"  -  "+dfm.format(cal.getTime()));
+								///
+								Ddate=formatter.format(cal.getTime());
+								callApiDateNext();
+							}else{
+								Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد!!!",
+										Toast.LENGTH_SHORT).show();
+							}
 
-				} catch (java.text.ParseException e){
-					System.out.println("Exception :"+e);
-				}
+						} catch (java.text.ParseException e){
+							System.out.println("Exception :"+e);
+						}
+
+						break;
+			case R.id.btn_no_Result:
+				finish();
+				break;
+						case R.id.txtRuzeGhabl:
+
+						//"2017-12-24"
+						try {
+
+							String str_date=Ddate;//"11-June-07";
+							DateFormat formatter ;
+							Date date ;
+							formatter = new SimpleDateFormat("yyyy-MM-dd");
+							date = (Date)formatter.parse(str_date);
+							Calendar cal= Calendar.getInstance();
+							cal.setTime(date);
+							cal.add(Calendar.DATE, -1);
+							System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
+							//shart kamtar az emruz
+							if (System.currentTimeMillis() <= date.getTime()) {
+								Ddate=formatter.format(cal.getTime());
+
+								///onvan
+								SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
+								txtDateOnvan.setText(AdateF+"  -  "+dfm.format(cal.getTime()));
+								///
+								callApiDateNext();
+							}else{
+								Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز!!!",Toast.LENGTH_SHORT).show();
+							}
+
+
+
+
+						} catch (java.text.ParseException e){
+							System.out.println("Exception :"+e);
+						}
 
 
 
@@ -1081,27 +2203,35 @@ public class SearchParvazActivity extends BaseActivity implements Header.onSearc
 			//Add one day to current date time
 			 call.add(Calendar.DATE, 1);*/
 
-				break;
+						break;
+
+					}
+				}
+
+		private void callApiDateNext() {
+
+			new AsyncFetch().execute();
+
+		}
+
+		@Override
+		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+		long arg3) {
+			// TODO Auto-generated method stub
+
+		}
+		@Override
+		public void onResume() {
+			Log.e("DEBUG", "onResume of SearchParvazActivity");
+			super.onResume();
+			if(Prefs.getBoolean("BACK_HOME",true)){
+				this.finish();
+			}
+			Prefs.putBoolean("BACK_HOME",false);
+		}
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+			// TODO Auto-generated method stub
 
 		}
 	}
-
-	private void callApiDateNext() {
-
-		new AsyncFetch().execute();
-
-	}
-
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-							   long arg3) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-
-	}
-}

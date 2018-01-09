@@ -1,32 +1,19 @@
 package com.reserv.myapplicationeli.views.adapters;
 
-import java.util.List;
-
 import android.app.Activity;
-
-
-import android.app.FragmentManager;
 import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.Intent;
-import android.os.Bundle;
-
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.Country;
+
+import java.util.List;
 
 
 public class GetAirPortMabdaAdapter extends BaseAdapter {
@@ -45,7 +32,7 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 	Activity activity;
 
 	 // create constructor to innitilize context and data sent from MainActivity
-    public GetAirPortMabdaAdapter(Context context, List<Country> data, String value_Maghsad_City, String value_Maghsad_Airport, String value_Maghsad_Airport_Code,Activity activity){
+    public GetAirPortMabdaAdapter(Context context, List<Country> data, String value_Maghsad_City, String value_Maghsad_Airport, String value_Maghsad_Airport_Code, Activity activity){
     	this.activity=activity;
         this.context=context;
         inflater= LayoutInflater.from(context);

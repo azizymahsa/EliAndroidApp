@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.ui.dialog;
+package com.reserv.myapplicationeli.views.ui.dialog.hotel;
 
 import android.app.Activity;
 import android.support.v4.content.ContextCompat;

@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.ui.dialog;
+package com.reserv.myapplicationeli.views.ui.dialog.hotel;
 
 import android.content.ClipData;
 import android.content.Context;

@@ -6,7 +6,6 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,18 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
-import com.reserv.myapplicationeli.models.model.PackageListReq;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelCityActivity;
 import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
-import com.reserv.myapplicationeli.views.ui.dialog.AlertDialog;
-import com.reserv.myapplicationeli.views.ui.dialog.DatePickerDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialog;
 
 
 public class HotelFragment extends Fragment implements OnClickListener {

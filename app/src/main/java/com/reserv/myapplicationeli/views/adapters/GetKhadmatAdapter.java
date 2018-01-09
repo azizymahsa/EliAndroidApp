@@ -1,8 +1,5 @@
 package com.reserv.myapplicationeli.views.adapters;
 
-import java.text.NumberFormat;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -15,10 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
+
+import java.text.NumberFormat;
+import java.util.List;
 
 
 public class GetKhadmatAdapter extends BaseAdapter {
@@ -36,7 +36,7 @@ public class GetKhadmatAdapter extends BaseAdapter {
 public Activity activity;
 
 	// create constructor to innitilize context and data sent from MainActivity
-	public GetKhadmatAdapter(Context context, List<PurchaseFlightResult> data,Activity activity){
+	public GetKhadmatAdapter(Context context, List<PurchaseFlightResult> data, Activity activity){
 		this.context=context;
 		this.activity=activity;
 		inflater= LayoutInflater.from(context);
@@ -138,6 +138,15 @@ public Activity activity;
 				//show icon to the right of text
 				//	holder.btnAddsabad.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
 				//PassengerActivity.GET_PRICE_KHADAMAT=PassengerActivity.GET_PRICE_KHADAMAT+current.getServiceTotalPrice();
+				//
+				String s= Prefs.getString("Select_ID_khadamat", "");
+				if(s.length()>1)
+				s=s+"|"+current.getSelectID();
+				else
+					s=current.getSelectID();//avalin bar
+
+				Prefs.putString("Select_ID_khadamat",s);
+
 				Toast.makeText(v.getContext(),current.getServiceID()+" "+current.getServiceTotalPrice(),Toast.LENGTH_SHORT).show();
 				if(!buttonText.contains("اضافه"))
 					PassengerActivity.updateTotalInfos(current.getServiceTotalPrice());
@@ -146,47 +155,7 @@ public Activity activity;
 				holder.btnAddsabad.setText("اضافه شد");
 			}
 		});
-		/*holder.AirportName.setTag(current.getCurrency_ID());
-		holder.AirportName.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-					
-						Intent i4 = new Intent(context,PlanFragment.class);
-						
-						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-						
-						i4.putExtra("Value-Mabda-City",current.getCurrency_ID());//current.getCityName()
-						i4.putExtra("Value-Mabda-Airport",current.getCurrency_ID());
-						i4.putExtra("Value-Mabda-Airport-Code",current.getCurrency_ID());
-					
-						i4.putExtra("Value-Maghsad-City",value_Maghsad_City);//current.getCityName()
-						i4.putExtra("Value-Maghsad-Airport",value_Maghsad_Airport);
-						i4.putExtra("Value-Maghsad-Airport-Code",value_Maghsad_Airport_Code);
-						context.startActivity(i4);
-						
-						
 
-						Toast.makeText(v.getContext(),current.getCurrency_ID()+" "+current.getCurrency_ID(),Toast.LENGTH_SHORT).show();
-					}
-				});
-		holder.CityName.setTag(current.getCurrency_ID());
-		holder.CityName.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-					
-						Intent i4 = new Intent(context,PlanFragment.class);
-						
-						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-						i4.putExtra("Value-Mabda-City",current.getCurrency_ID());//current.getCityName()
-						i4.putExtra("Value-Mabda-Airport",current.getCurrency_ID());
-						i4.putExtra("Value-Mabda-Airport-Code",current.getCurrency_ID());
-						context.startActivity(i4);
-						
-						Toast.makeText(v.getContext(),current.getCurrency_ID()+" "+current.getCurrency_ID(),Toast.LENGTH_SHORT).show();
-					}
-				});*/
 		return convertView;
 	}
 

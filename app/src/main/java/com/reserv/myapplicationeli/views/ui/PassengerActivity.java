@@ -38,7 +38,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
@@ -102,25 +101,18 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public ImageView txt_hom;
 
 	private String Gensiyat;
-    Activity activity;
+	Activity activity;
 	public int countB=SearchParvazActivity.COUNT_B;
 	public int countK=SearchParvazActivity.COUNT_K;
 	public int countN=SearchParvazActivity.COUNT_N;
-	//public int sum=countB+countK+countN;
-	public int sum=1;
+	public int sum=countB+countK+countN;
 
 
 	@SuppressLint("WrongViewCast")
-    @Override
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_passenger);
-		Log.e("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
-		Log.e("FlightGuID", getIntent().getExtras().getString("FlightGuID"));
-		Log.e("CheckOut",  getIntent().getExtras().getString("CheckOut"));
-		Log.e("CheckIn",  getIntent().getExtras().getString("CheckIn"));
-
-
 
 		btnBack = (FancyButton) findViewById(R.id.btnBack);
 		btnBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -189,11 +181,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		linearMeliyat= (LinearLayout) findViewById(R.id.linearMeliyat);
 
 		txtnameP= (EditText)findViewById(R.id.txtnameP);
-	//	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
+		//	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
 		txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
 
 		txtfamilyP= (EditText)findViewById(R.id.txtfamilyP);
-	//	txtfamilyP.setHint("لطفا نام خانوادگی را فارسی وارد کنید");
+		//	txtfamilyP.setHint("لطفا نام خانوادگی را فارسی وارد کنید");
 		txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
 		txtmobileP= (EditText)findViewById(R.id.txtmobileP);
 		txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
@@ -213,7 +205,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
 
 		listKhadamat = (ListView)findViewById(R.id.listKhadamat);
-		 myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
+		myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
 
 
 
@@ -235,7 +227,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		// Creating adapter for spinner
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
-		// Drop down layout style - list view with radio button
+		// Drop down dialog_custom style - list view with radio button
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		// attaching data adapter to spinner
@@ -567,7 +559,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				// Enter URL address where your json file resides
 				// Even you can make call to php file which returns json data
-				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
+				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Flight/FlightService.svc/PurchaseFlight");
 
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
@@ -610,14 +602,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				String data =OrderToJson();
-				Log.e("passssss", data );
 
 
 				HttpClient client = new DefaultHttpClient();
 
 
 				HttpPost post = new HttpPost();
-				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
+				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Flight/FlightService.svc/PurchaseFlight");
 				post.setHeader("Content-Type", "application/json; charset=UTF-8");
 				post.setHeader("Accept", "application/json; charset=UTF-8");
 
@@ -666,7 +657,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				// JSONObject jsonObj = new JSONObject(retSrc);
 
 				// Getting JSON Array node
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightHotelResult");//Error
+				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightResult");//Error
 
 				 /* JSONObject GetError = jsonObj.getJSONObject("Error");
 				  Toast.makeText(PassengerActivity.this,  Get, Toast.LENGTH_LONG).show();*/
@@ -726,9 +717,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 				});
 
-                ((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-                ((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
-                txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
+				((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
+				txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
 
 				mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data,PassengerActivity.this);
 				//mAdapter.setAdapter(mAdapter);
@@ -799,7 +790,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				}
-				headerJson.put("PassList", detailJsonArray);
+				headerJson.put("passList", detailJsonArray);
 			}
 
 			////kharidar
@@ -815,18 +806,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
 			detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
 
-			headerJson.put("PartnerList", detailsPartner);
+			headerJson.put("partnerInfo", detailsPartner);
 
 			headerJson.put("Culture", "fa-IR");
-			headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
-			headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
-/*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
-			headerJson.put("Checkout", getIntent().getExtras().get("Checkin"));*/
-			headerJson.put("Checkin", getIntent().getExtras().getString("CheckIn"));
-			headerJson.put("Checkout", getIntent().getExtras().getString("CheckOut"));
-
-
-
 
 			identityJson.put("Password", "123qwe!@#QWE");
 			identityJson.put("TermianlId", "Mobile");
@@ -961,7 +943,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
 					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
-                    finish();
+					finish();
 				}
 				break;
 			case R.id.btn_next_partnerInfo:
@@ -970,17 +952,17 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					//jadvale mosafer khali beshe
 
 					PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerActivity.this);
-                 //   db.openDB();
+					//   db.openDB();
 					db.dropTable();
 					////////////////////////Validate
-					 String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-					 String RqPartner_Email= txtemeliP.getText().toString();
-					 String RqPartner_FirstNameFa= txtnameP.getText().toString();
-					 String RqPartner_Gender= Gensiyat;
-					 String RqPartner_LastNameFa= txtfamilyP.getText().toString();
-					 String RqPartner_Mobile= txtmobileP.getText().toString();
-					 String RqPartner_NationalCode= txtkodemeliP.getText().toString();
-					 String RqPartner_Tel= "21587632";
+					String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+					String RqPartner_Email= txtemeliP.getText().toString();
+					String RqPartner_FirstNameFa= txtnameP.getText().toString();
+					String RqPartner_Gender= Gensiyat;
+					String RqPartner_LastNameFa= txtfamilyP.getText().toString();
+					String RqPartner_Mobile= txtmobileP.getText().toString();
+					String RqPartner_NationalCode= txtkodemeliP.getText().toString();
+					String RqPartner_Tel= "21587632";
 
 					/*String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 					String RqPartner_Email= "mohebbi@eligasht.com";
@@ -1073,20 +1055,20 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				break;
 			case R.id.btn_nextm:
 				String Gender= Gensiyat;
-				 String Nationality=txtmahale_eghamat.getText().toString();// "IR";
-				 String Nationality_ID= txtmeliyatm.getText().toString();
-				 String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-				 String RqPassenger_Birthdate= txttavalodm.getText().toString();
-				 String RqPassenger_Email= "mohebbi@eligasht.com";
-				 String RqPassenger_FirstNameEn= txtnamem.getText().toString();
-				 String RqPassenger_FirstNameFa= "مریم";
-				 String RqPassenger_LastNameEn=txtfamilym.getText().toString();
-				 String RqPassenger_LastNameFa= "محبی";
-				 String RqPassenger_Mobile= "0235588456";
-				 String RqPassenger_NationalCode= "0062532148";//codemeli
-				 String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
-				 String RqPassenger_PassNo=txtnumber_passport.getText().toString();
-				 String RqPassenger_Tel= "25548632";
+				String Nationality=txtmahale_eghamat.getText().toString();// "IR";
+				String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
+				String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+				String RqPassenger_Birthdate= txttavalodm.getText().toString();
+				String RqPassenger_Email= "mohebbi@eligasht.com";
+				String RqPassenger_FirstNameEn= txtnamem.getText().toString();
+				String RqPassenger_FirstNameFa= "مریم";
+				String RqPassenger_LastNameEn=txtfamilym.getText().toString();
+				String RqPassenger_LastNameFa= "محبی";
+				String RqPassenger_Mobile= "0235588456";
+				String RqPassenger_NationalCode= "0062532148";//codemeli
+				String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
+				String RqPassenger_PassNo=txtnumber_passport.getText().toString();
+				String RqPassenger_Tel= "25548632";
 
 				/*String Gender= "Female";
 				String Nationality= "IR";
@@ -1268,7 +1250,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						return true;
 					}
 				});
-			//	myScrollView.setVisibility(View.GONE);
+				//	myScrollView.setVisibility(View.GONE);
 
 				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
 				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
@@ -1415,8 +1397,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			/*Intent intent = new Intent(this,PlanFragment.class);
 			//i2.putExtra("CUSTOMER_ID", (int) customerID);
 			startActivity(intent);*/
-           //PassengerActivity.this.finish();
-            finish();
+			//PassengerActivity.this.finish();
+			finish();
 		}
 	}
 	@Override
@@ -1437,7 +1419,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		else
 			Gensiyat="Man";
 		// Showing selected spinner item
-		Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+		//Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 
 	}
 	@Override
@@ -1543,7 +1525,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				case R.id.txtemeliP:
 					String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 					if (text.matches(emailPattern) && text.length() > 0){
-					//if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
+						//if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
 						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#00cc00"));
 
 					}else{

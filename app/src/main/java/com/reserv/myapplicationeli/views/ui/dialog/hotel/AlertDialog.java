@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.ui.dialog;
+package com.reserv.myapplicationeli.views.ui.dialog.hotel;
 
 import android.content.Context;
 import android.view.LayoutInflater;

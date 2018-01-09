@@ -83,7 +83,7 @@ public class SelectRoomsFragment extends Fragment{
         protected void onPreExecute() {
 
             window.setStatusBarColor(getActivity().getColor(R.color.blue2));
-            new InitUi().Loading(rlLoading,rlRoot,true);
+            new InitUi().Loading(getActivity(),rlLoading, rlRoot, true,R.drawable.hotel_loading);
         }
 
         @Override
@@ -100,7 +100,7 @@ public class SelectRoomsFragment extends Fragment{
 
         @Override
         protected void onPostExecute(String result) {
-            new InitUi().Loading(rlLoading,rlRoot,false);
+            new InitUi().Loading(getActivity(),rlLoading, rlRoot, false,R.drawable.hotel_loading);
             window.setStatusBarColor(getActivity().getColor(R.color.colorPrimaryDark));
             try {
                 int i = 0;

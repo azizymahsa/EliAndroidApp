@@ -1,8 +1,5 @@
 package com.reserv.myapplicationeli.views.adapters;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -14,6 +11,9 @@ import android.widget.TextView;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.tools.AwardSelectedItem;
 import com.reserv.myapplicationeli.tools.Utility;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 
 public class AwardsSelectedsAdapter extends BaseAdapter {
