@@ -18,7 +18,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="310dp"
+        android:layout_height="291dp"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="#fff"
         android:gravity="left">
@@ -55,7 +55,7 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="230dp"
+                android:layout_height="208dp"
                 android:layout_marginRight="15dip"
                 android:layout_marginTop="10dp"
                 android:layout_weight="0.09"
@@ -69,7 +69,7 @@
                     android:layout_above="@+id/linearLayout1"
                     android:layout_gravity="right"
                     android:layout_marginRight="3dip"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="right"
                     android:orientation="vertical">
 
@@ -91,7 +91,8 @@
                         android:text=" تهران "
                         android:textColor="#fff"
                         android:textSize="20dip"
-                        android:textStyle="bold" />
+                        android:textAppearance="@style/IrsansBold"
+                         />
 
                     <TextView
                         android:id="@+id/lbl_forudgah_mabda"
@@ -111,7 +112,7 @@
                     android:layout_above="@+id/linearLayout1"
                     android:layout_gravity="right"
                     android:layout_marginRight="3dip"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="1dp"
                     android:layout_weight="0.02"
                     android:gravity="right"
                     android:orientation="vertical">
@@ -134,7 +135,7 @@
                         android:text=" استانبول "
                         android:textColor="#fff"
                         android:textSize="20dip"
-                        android:textStyle="bold" />
+                       android:textAppearance="@style/IrsansBold" />
 
                     <TextView
                         android:id="@+id/lbl_forudgah_maghsad"
@@ -143,7 +144,7 @@
                         android:gravity="right"
                         android:text="(فرودگاه بین المللی آتاتورک) "
                         android:textColor="#fff"
-                        android:textSize="11dip" />
+                        android:textSize="@dimen/_11dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -169,7 +170,7 @@
             android:layout_height="50dip"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="21dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="0.03"
             android:background="@drawable/purple_button_larg"
@@ -186,7 +187,7 @@
             android:layout_height="50dip"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginBottom="21dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="15dp"
             android:layout_weight="0.03"
             android:background="@drawable/raft_big"
@@ -201,12 +202,147 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="103dp"
+        android:layout_height="110dp"
 
         android:background="#fff"
         android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvDate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="100"
+            android:background="@color/hotel_detail_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tarikh_be"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="65dp"
+                        android:layout_weight="100"
+                        android:background="#fff"
+                        android:gravity="right"
+                        android:text="تاریخ برگشت "
+                        android:textColor="#808080"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tarikh_az"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="100"
+                        android:background="#fff"
+                        android:gravity="right"
+                        android:text="تاریخ رفت"
+                        android:textColor="#808080"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linear_picker"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="100"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tarikh_be_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center"
+                            android:text="10 december"
+                            android:textColor="@color/textColorRDark"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:text="@string/icon_calander"
+                            android:textAppearance="@style/IconFonts"
+                            android:textColor="@color/textColorRDark"
+                            android:textSize="25dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="100"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tarikh_az_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center"
+                            android:text="10 december"
+                            android:textColor="@color/textColorRDark"
+                            android:textSize="14dp"
+
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:text="@string/icon_calander"
+                            android:textAppearance="@style/IconFonts"
+                            android:textColor="@color/textColorRDark"
+                            android:textSize="25dp" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+        <!-- <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="86dp"
             android:layout_marginBottom="1dp"
@@ -253,7 +389,7 @@
 
                     <Button
                         android:id="@+id/tarikh_az"
-                        android:layout_width="fill_parent"
+                        android:layout_width="140dp"
                         android:layout_height="24dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="4dp"
@@ -270,7 +406,7 @@
 
                 </LinearLayout>
             </LinearLayout>
-            <!-- ////////////////////////////////////layout picker tarikh//////////////////////////////////////////////// -->
+            &lt;!&ndash; ////////////////////////////////////layout picker tarikh//////////////////////////////////////////////// &ndash;&gt;
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -304,7 +440,7 @@
                         android:textSize="11dp"
                         android:textStyle="bold" />
 
-                    <!-- android:text="اطلاعات مالی" -->
+                    &lt;!&ndash; android:text="اطلاعات مالی" &ndash;&gt;
 
                 </LinearLayout>
 
@@ -331,11 +467,11 @@
                         android:textSize="11dp"
                         android:textStyle="bold" />
 
-                    <!-- android:text="پیش نمایش" -->
+                    &lt;!&ndash; android:text="پیش نمایش" &ndash;&gt;
 
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
 
     <LinearLayout
@@ -345,20 +481,36 @@
         android:background="#fff"
         android:orientation="vertical">
 
-        <LinearLayout
+      <!--  <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="141dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/shadowbox_big"
-            android:orientation="vertical">
+            android:orientation="vertical">-->
+        <android.support.v7.widget.CardView
 
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_weight="100"
+            android:background="@color/hotel_detail_background">
+           <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
+
+           android:orientation="vertical">
             <LinearLayout
+                android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
                 android:layout_marginLeft="14dp"
-                android:layout_marginRight="14dp">
+                android:layout_marginRight="10dp">
 
                 <Button
                     android:id="@+id/btnMinesB"
@@ -397,7 +549,7 @@
                     android:gravity="right"
                     android:text="بزرگسال"
                     android:textColor="#000000"
-                    android:textSize="11dp" />
+                    android:textSize="@dimen/_11dp" />
 
             </LinearLayout>
             <!-- ///////////////koodak////////////////// -->
@@ -407,7 +559,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
                 android:layout_marginLeft="14dp"
-                android:layout_marginRight="14dp">
+                android:layout_marginRight="10dp">
 
                 <Button
                     android:id="@+id/btnMinesK"
@@ -446,7 +598,7 @@
                     android:gravity="right"
                     android:text="کودک"
                     android:textColor="#000000"
-                    android:textSize="11dp" />
+                    android:textSize="@dimen/_11dp" />
 
             </LinearLayout>
             <!-- //////////////////////nozad/////////////////////// -->
@@ -454,9 +606,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="14dp"
+                android:layout_marginBottom="1dp"
                 android:layout_marginLeft="14dp"
-                android:layout_marginRight="14dp">
+                android:layout_marginRight="10dp">
 
                 <Button
                     android:id="@+id/btnMinesN"
@@ -495,10 +647,11 @@
                     android:gravity="right"
                     android:text="نوزاد"
                     android:textColor="#000000"
-                    android:textSize="11dp" />
+                    android:textSize="@dimen/_11dp" />
 
             </LinearLayout>
-        </LinearLayout>
+           </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -510,8 +663,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="21dp"
-                android:layout_marginRight="21dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/btngravity_big"
                 android:text="جستجو پرواز"
@@ -525,4 +678,7 @@
 </LinearLayout>
 
     </ScrollView>
+
+
+
 </RelativeLayout>

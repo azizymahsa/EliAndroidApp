@@ -6,6 +6,5 @@ values-xhdpi            4.65”  720x1280 xhdpi -->
 
     <dimen name="circle_60dp">60dp</dimen>
     <dimen name="_12dp">10dp</dimen>
-    <dimen name="_25dp">25dp</dimen>
 
 </resources>
