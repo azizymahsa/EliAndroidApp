@@ -1,25 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (3)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ro\\values-ro.xml",
+            "outputFile": "C:\\Users\\elham.bonyani\\Desktop\\bb\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ro\\values-ro.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (3)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-ro\\values-ro.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,189,250,352,469,579,698,813,910,1002,1099,1189",
-                        "endColumns": "83,60,101,116,109,118,114,96,91,96,89,99",
-                        "endOffsets": "184,245,347,464,574,693,808,905,997,1094,1184,1284"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\nnn\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ro\\values-ro.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\mahsa.azizi\\Desktop\\nnn\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-ro\\values-ro.xml",
+                    "source": "C:\\Users\\elham.bonyani\\Desktop\\bb\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-ro\\values-ro.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",

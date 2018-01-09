@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -13,18 +12,18 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
-import com.reserv.myapplicationeli.models.model.pack.ChildAgeRange;
-import com.reserv.myapplicationeli.models.model.pack.ChildModel;
-import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 import com.reserv.myapplicationeli.contracts.InfoRoomsContract;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.presenters.RoomPresenter;
+import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.views.adapters.pack.RoomAdapter;
+import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import java.util.ArrayList;
@@ -146,11 +145,13 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
                 roomPresenter.removeRooms();
                 break;
             case R.id.btn_confirm:
+                if(!isValidCountPassenegr(roomPresenter.getRooms())){
+                    Toast.makeText(this, "تعداد نباید بیشتر از ۹ نفر باشد .", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Gson gson = new GsonBuilder().create();
                 Intent intent = new Intent();
                 intent.putExtra("Rooms",gson.toJson(roomPresenter.getRooms()));
-
-               // Log.e("test", gson.toJson(roomPresenter.getRooms()));
                 setResult(RESULT_OK,intent);
                 finish();
                 break;
@@ -160,5 +161,20 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    private boolean isValidCountPassenegr(ArrayList<ModelRowCountRoom> rooms){
+        if(ValidationTools.isEmptyOrNull(rooms)){
+            return false;
+        }
+        int sum = 0;
+        for(ModelRowCountRoom room : rooms){
+            sum = sum + room.getCountB() + room.getCountK();
+        }
+
+        if(sum > 9){
+            return false;
+        }
+        return true;
     }
 }

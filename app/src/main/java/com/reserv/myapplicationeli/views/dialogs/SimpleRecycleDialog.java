@@ -11,9 +11,6 @@ import android.widget.TextView;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 
 /**
  * Created by elham on 1/5/2018.
@@ -31,7 +28,7 @@ public class SimpleRecycleDialog implements View.OnClickListener{
     private TextView txtTitle;
 
     public interface ListenerSimpleRecyclerDialog{
-        void OnClickConfirmItem(String input,AlertDialog alertDialog);
+        void OnClickConfirmItem(String input, AlertDialog alertDialog);
     }
 
     public SimpleRecycleDialog(Context context) {

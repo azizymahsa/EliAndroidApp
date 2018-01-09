@@ -1,228 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    
-
-    <com.reserv.myapplicationeli.views.components.SimpleRecycleView
-        android:id="@+id/rcl_img_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#f5f5f5">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:orientation="vertical"
-        android:padding="8dp" >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include
+            android:id="@+id/toolbarLayout"
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:background="@color/colorPrimary" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/TextView01"
-                android:layout_width="8dp"
-                android:layout_height="10dp"
-                android:layout_gravity="right"
-                android:layout_marginBottom="1dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginTop="1dp"
-                android:background="@drawable/pin_icon_for_items"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_weight="0.02"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:id="@+id/fronttop"
+            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+                android:id="@+id/rcl_package"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:background="#ffffff"
-                android:gravity="center"
-                android:minHeight="40dp"
-                android:orientation="horizontal" >
+                android:layout_marginBottom="44sp">
 
-                <!--
-                 <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
+            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
 
-                />
-                -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/shadow"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="44sp"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44sp"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                android:orientation="horizontal">
                 <LinearLayout
-                    android:id="@+id/linearLayoutSevom"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
                     android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="3dip"
-                    android:gravity="right"
-                    android:orientation="vertical" >
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-
-                        <TextView
-                            android:id="@+id/txt_economi"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="1dp"
-                            android:background="#29aae3"
-                            android:gravity="center"
-                            android:text="اکونومی"
-                            android:textColor="#fff"
-                            android:textSize="10dip" />
-                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:srcCompat="@drawable/left_arrow_larg"
+                        android:tint="#5f5e5e"
+                        android:padding="3sp"/>
 
                     <TextView
-                        android:id="@+id/text_count"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:textSize="10sp"
+                        android:textColor="#5f5e5e"
+                        android:text="روز بعد"/>
+                </LinearLayout>
 
-                        android:layout_marginTop="30dp"
-                        android:gravity="center"
-                        android:text="فقط 4 نفر"
-                        android:textColor="#486b6b"
-                        android:textSize="10dip"
-                        android:visibility="visible" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="#5f5e5e"
+                        android:text="روز قبل"/>
+
+                    <ImageView
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:srcCompat="@drawable/right_arrow_larg"
+                        android:tint="#5f5e5e"
+                        android:padding="3sp"/>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayout1"
-                    android:layout_width="0dip"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
                     android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="3dip"
-                    android:layout_weight="0.69"
-                    android:gravity="right"
-                    android:orientation="vertical" >
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <TextView
-                        android:id="@+id/lblFlightArrivalTimeR"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="11:50 Am"
-                        android:textColor="#003399"
-                        android:textSize="14dip" />
+                        android:textSize="10sp"
+                        android:textColor="#5f5e5e"
+                        android:text="فیلتر کردن"/>
 
-                    <TextView
-                        android:id="@+id/fghfgh"
-                        android:layout_width="201dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginTop="4dp"
-                        android:gravity="right"
-                        android:text="11:50 AM"
-                        android:textColor="#486b6b"
-                        android:textSize="12dip"
-                        android:visibility="invisible" />
+                    <ImageView
+                        android:layout_width="25sp"
+                        android:layout_height="25sp"
+                        app:srcCompat="@drawable/ff"
+                        android:tint="#5f5e5e"
+                        android:padding="3sp"/>
 
-                    <TextView
-                        android:id="@+id/lblFlightArrivalTimeB"
-                        android:layout_width="201dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="11:50 AM"
-                        android:textColor="#003399"
-                        android:textSize="14dip" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayout2"
-                    android:layout_width="50dip"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/linearLayout1"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="3dip"
-                    android:layout_weight="0.45"
-                    android:gravity="right"
-                    android:orientation="vertical" >
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <TextView
-                        android:id="@+id/lblArrivalCityNameFaR"
-                        android:layout_width="127dp"
+                        android:id="@+id/sort"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="رفت به استانبول"
-                        android:textColor="#000"
-                        android:textSize="@dimen/_12dp" />
+                        android:textSize="10sp"
+                        android:textColor="#5f5e5e"
+                        android:text="مرتب سازی"/>
 
-                    <TextView
-                        android:id="@+id/lblAirline"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginTop="4dp"
-                        android:gravity="right"
-                        android:text="ترکیش "
-                        android:textColor="#003399"
-                        android:textSize="14dip" />
+                    <ImageView
+                        android:layout_width="25sp"
+                        android:layout_height="25sp"
+                        app:srcCompat="@drawable/filter_icon"
+                        android:tint="#5f5e5e"
+                        android:padding="3sp"/>
 
-                    <TextView
-                        android:id="@+id/lblArrivalCityNameFaB"
-                        android:layout_width="127dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:gravity="right"
-                        android:text="برگشت به تهران"
-                        android:textColor="#000"
-                        android:textSize="@dimen/_12dp" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/lblProductrow"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="1dp"
-                    android:layout_marginTop="2dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop" />
+
 
             </LinearLayout>
-            <!-- ////////////////////////////front bottom///////////////////////////////////// -->
-        </LinearLayout>
+
+        </FrameLayout>
 
     </LinearLayout>
 
-
-    <com.reserv.myapplicationeli.views.components.SimpleRecycleView
-        android:id="@+id/rcl_info_search"
+    <include
+        layout="@layout/loading_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:visibility="gone"
 
-    </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+        />
 
-
-
-
-</LinearLayout>
+</RelativeLayout>

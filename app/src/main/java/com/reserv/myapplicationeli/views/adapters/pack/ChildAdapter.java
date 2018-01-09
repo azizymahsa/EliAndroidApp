@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.pack.ChildAgeRange;

@@ -87,6 +87,13 @@
         <activity
             android:name=".views.ui.NationalitycodeActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.pack.SearchPackActivity"
+            android:screenOrientation="portrait" />
+
+
+
+
     </application>
 
 </manifest>

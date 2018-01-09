@@ -1,25 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\nnn\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-h330dp-v13\\values-h330dp-v13.xml",
+            "outputFile": "C:\\Users\\elham.bonyani\\Desktop\\bb\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-h330dp-v13\\values-h330dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\mahsa.azizi\\Desktop\\nnn\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-h330dp-v13\\values-h330dp-v13.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,126",
-                        "endColumns": "70,57",
-                        "endOffsets": "121,179"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (3)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-h330dp-v13\\values-h330dp-v13.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (3)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-h330dp-v13\\values-h330dp-v13.xml",
+                    "source": "C:\\Users\\elham.bonyani\\Desktop\\bb\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-h330dp-v13\\values-h330dp-v13.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

@@ -11,8 +11,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.base.GlobalApplication;
 
 public class PieChart extends View {
 	public int width = 100, height = 100;

@@ -1,25 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\nnn\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-te-rIN\\values-te-rIN.xml",
+            "outputFile": "C:\\Users\\elham.bonyani\\Desktop\\bb\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-te-rIN\\values-te-rIN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\mahsa.azizi\\Desktop\\nnn\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-te-rIN\\values-te-rIN.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,191,252,361,479,590,713,829,930,1023,1121,1219",
-                        "endColumns": "85,60,108,117,110,122,115,100,92,97,97,101",
-                        "endOffsets": "186,247,356,474,585,708,824,925,1018,1116,1214,1316"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (3)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-te-rIN\\values-te-rIN.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (3)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-te-rIN\\values-te-rIN.xml",
+                    "source": "C:\\Users\\elham.bonyani\\Desktop\\bb\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-te-rIN\\values-te-rIN.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",

@@ -1,7 +1,5 @@
 package com.reserv.myapplicationeli.views.components;
 
-import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.tools.Utility;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +10,9 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.tools.Utility;
 
 public class Header extends LinearLayout implements OnClickListener,
 		TextWatcher {

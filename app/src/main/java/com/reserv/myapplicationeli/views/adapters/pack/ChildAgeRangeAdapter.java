@@ -36,7 +36,7 @@ public class ChildAgeRangeAdapter extends ArrayAdapter<ChildAgeRange> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View row = View.inflate(mContext,R.layout.spinner_item_top, null);
+        View row = View.inflate(mContext, R.layout.spinner_item_top, null);
         TextView txtTopSpinner=(TextView)row.findViewById(R.id.txtTopSpinner);
         txtTopSpinner.setText(mValues.get(position).toString());
         return row;

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.contracts.InfoRoomsContract;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
