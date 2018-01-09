@@ -37,10 +37,10 @@ public class PlanFragment extends Fragment implements OnClickListener {
     }
 
     public static boolean flag;
-    public static TextView tarikh_az_picker;
-    public static TextView tarikh_be_picker;
-    public TextView txtCountB, tvStart, tvEnd, txtCountK, txtCountN, txtOption, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be;
-    public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN, btntwo, btnOne, searchPlan;
+    public static Button tarikh_az_picker;
+    public static Button tarikh_be_picker;
+    public TextView txtCountB, tvStart, tvEnd, txtCountK, txtCountN, txtOption, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3;
+    public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN, btntwo, btnOne, searchPlan, tarikh_az, tarikh_be;
     private LinearLayout linear_picker_title, linear_picker;
     public int flagOneTwo = 2;
     private static String picker_be = "2017-12-29";
@@ -63,13 +63,13 @@ public class PlanFragment extends Fragment implements OnClickListener {
         //	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
 
 
-        tarikh_az_picker = (TextView) rootView.findViewById(R.id.tarikh_az_picker);
-        tarikh_be_picker = (TextView) rootView.findViewById(R.id.tarikh_be_picker);
+        tarikh_az_picker = (Button) rootView.findViewById(R.id.tarikh_az_picker);
+        tarikh_be_picker = (Button) rootView.findViewById(R.id.tarikh_be_picker);
     /*tarikh_az_picker.setTypeface(face);
     tarikh_be_picker.setTypeface(face);*/
 
-        tarikh_az = (TextView) rootView.findViewById(R.id.tarikh_az);
-        tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
+        tarikh_az = (Button) rootView.findViewById(R.id.tarikh_az);
+        tarikh_be = (Button) rootView.findViewById(R.id.tarikh_be);
 
 
         btnPlusB = (Button) rootView.findViewById(R.id.btnPlusB);
@@ -141,12 +141,12 @@ public class PlanFragment extends Fragment implements OnClickListener {
 
         //set value bundle
         //get
-        if(Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "") .length()>1) {
+        if(Prefs.getString("Value-Mabda-City", "") != null || Prefs.getString("Value-Mabda-City", "") != "") {
             tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
             lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
         }
 
-        if(Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "") .length()>1) {
+        if(Prefs.getString("Value-Maghsad-Airport", "") != null || Prefs.getString("Value-Maghsad-Airport", "") != "") {
             lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
             tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
         }//return rootView;
@@ -217,12 +217,12 @@ public class PlanFragment extends Fragment implements OnClickListener {
     public void onResume() {
         Log.e("DEBUG", "onResume of PlanFragment");
         super.onResume();
-        if(Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "") .length()>1) {
+        if(Prefs.getString("Value-Mabda-City", "") != null || Prefs.getString("Value-Mabda-City", "") != "") {
             tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
             lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
         }
 
-        if(Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "") .length()>1) {
+        if(Prefs.getString("Value-Maghsad-Airport", "") != null || Prefs.getString("Value-Maghsad-Airport", "") != "") {
             lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
             tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
         }//return rootView;
@@ -353,7 +353,7 @@ public class PlanFragment extends Fragment implements OnClickListener {
 
                 Intent intent = new Intent(getActivity(), GetAirportMabdaActivity.class);
                // Bundle bundle2 = getActivity().getIntent().getExtras();
-                if (Prefs.getString("Value-Maghsad-City","") != null && Prefs.getString("Value-Maghsad-City","") .length()>1) {
+                if (Prefs.getString("Value-Maghsad-City","") != null || Prefs.getString("Value-Maghsad-City","") != "") {
                     intent.putExtra("Value-Maghsad-City", Prefs.getString("Value-Maghsad-City",""));
                     intent.putExtra("Value-Maghsad-Airport",Prefs.getString("Value-Maghsad-Airport",""));
                     intent.putExtra("Value-Maghsad-Airport-Code", Prefs.getString("Value-Maghsad-Airport-Code",""));//*
@@ -385,10 +385,10 @@ public class PlanFragment extends Fragment implements OnClickListener {
                 ((Button) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
                 ((Button) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
 
-              //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
+                linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
                 linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
 
-                tarikh_be.setVisibility(View.VISIBLE);
+                linear_picker_title.setVisibility(View.VISIBLE);
                 linear_picker.setVisibility(View.VISIBLE);
                 //v.setBackgroundResource(R.drawable.btnwhite);
 			/*((Button)rootView.findViewById(R.id.btnAward)).setBackgroundDrawable(R.drawable.background_back);
@@ -402,10 +402,10 @@ public class PlanFragment extends Fragment implements OnClickListener {
                 ((Button) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));
                 ((Button) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
 
-                //linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
+                linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
                 linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
 
-                tarikh_be.setVisibility(View.INVISIBLE);
+                linear_picker_title.setVisibility(View.INVISIBLE);
                 linear_picker.setVisibility(View.INVISIBLE);
                 break;
             case R.id.searchPlan:
