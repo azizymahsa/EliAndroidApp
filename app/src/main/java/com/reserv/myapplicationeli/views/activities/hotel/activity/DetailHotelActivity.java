@@ -147,10 +147,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 eHotelId = roomsModels.get(position).getHotelId();
                 Log.e("testdddd1", getIntent().getExtras().getString("ResultUniqID"));
 
-                Log.e("offerIds", offerIds);
-                Log.e("eHotelId", eHotelId);
-                Log.e("eHotelId", eHotelId);
-                Log.e("eHotelId", roomsModels.get(position).getOfferId());
                 Gson gson = new Gson();
                 String json = gson.toJson(new HoldSelectedRoomRequest(new
                         com.reserv.myapplicationeli.models.hotel.api
@@ -413,6 +409,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
        try {
              tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
              tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
+           Log.e("test", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
              LatLng location=new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
                      Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
 

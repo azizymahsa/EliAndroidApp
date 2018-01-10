@@ -22,7 +22,7 @@ public class AlertDialog implements View.OnClickListener {
     android.app.AlertDialog.Builder builder;
     Context activity;
     FancyButton btnOk, btnCancel;
-    FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
+   // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
     SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1, hotel, boutique, apartment, resort;
 
 

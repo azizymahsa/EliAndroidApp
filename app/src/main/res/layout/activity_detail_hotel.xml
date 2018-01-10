@@ -78,7 +78,6 @@
                             android:layout_below="@+id/ivHotelPic"
                             android:layout_marginTop="10dp"
                             android:textSize="18dp"
-                            android:text="هتل شرایتون گراند استانبول"
                             android:textColor="#000000"
                             android:textStyle="bold"
                             android:textAppearance="@style/IrsansBold"
@@ -94,7 +93,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_below="@+id/ivHotelPic"
                                 android:layout_marginTop="5dp"
-                                android:text="استانبول، ترکیه"
                                 android:textColor="#606060"
                                 android:textSize="14dp"
                                 android:gravity="center|right"
@@ -263,13 +261,38 @@
                 </android.support.v7.widget.CardView>
 
 
-                <LinearLayout
+
+                <android.support.v7.widget.CardView
                     android:layout_below="@+id/cvHotel"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="3dp"
+                    card_view:cardElevation="1dp"
+                    android:layout_marginBottom="10dp"
+
+
+                    >
+
+
+                    <LinearLayout
 
                     android:id="@+id/llDynamic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"/>
+                    android:orientation="vertical"
+                    android:visibility="gone"/>
+                </android.support.v7.widget.CardView>
+
+
+
+
+
                 <com.reserv.myapplicationeli.views.ui.NonScrollGridView
                     android:layout_below="@+id/cvHotel"
                     android:numColumns="2"
@@ -279,6 +302,7 @@
                     android:layout_height="match_parent"
                     android:divider="@null"
                     android:dividerHeight="0dp"
+                    android:visibility="gone"
                     />
                 <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
                     android:layout_below="@+id/cvHotel"

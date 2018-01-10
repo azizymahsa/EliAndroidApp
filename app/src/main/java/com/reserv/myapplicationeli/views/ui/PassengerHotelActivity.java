@@ -105,8 +105,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 	public int countK=SearchParvazActivity.COUNT_K;
 	public int countN=SearchParvazActivity.COUNT_N;
 	//public int sum=countB+countK+countN;
-	public int sum=1;
-
+	public int sum;
+	int count;
 
 	@SuppressLint("WrongViewCast")
     @Override
@@ -117,6 +117,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 		Log.e("FlightGuID", getIntent().getExtras().getString("FlightGuID"));
 		Log.e("CheckOut",  getIntent().getExtras().getString("CheckOut"));
 		Log.e("CheckIn",  getIntent().getExtras().getString("CheckIn"));
+		Log.e("sumtest",Prefs.getInt("SumPass",0)+"");
 
 
 
@@ -244,6 +245,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
 		// new AsyncFetch().execute();
+		count=Prefs.getInt("SumPass",0);
 
 	}//end oncreate
 	//AsyncFetchGetPreFactorDetails
@@ -1167,12 +1169,13 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 					db.openDB();
 
 					int counter=1;
-					if(sum>0){
+					Log.e("summmm",count+"");
+					if(count>0){
 						db.insertData(Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 						txtTitleCountM.setText("اطلاعات مسافر"+counter);
 						counter++;
-						sum--;
-						System.out.println("insert:"+"sum:"+sum);
+						count--;
+						System.out.println("insert:"+"sum:"+count);
 					}
 					db.closeDB();
 					//insert mosafer
@@ -1181,8 +1184,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
 				//call api saler
-				if(sum==0){
-					System.out.println("APICALL:"+"sum:"+sum);
+				if(count==0){
+					System.out.println("APICALL:"+"sum:"+count);
 					System.out.println("insert:");
 					new AsyncFetch().execute();
 

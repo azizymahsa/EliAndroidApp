@@ -9,11 +9,14 @@ import android.widget.TextView;
 
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.PersianDatePicker;
+import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarConstants;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.security.auth.login.LoginException;
@@ -23,7 +26,7 @@ import saman.zamani.persiandate.PersianDate;
 import static android.content.ContentValues.TAG;
 
 
-public class DatePickerDialog {
+public class DatePickerDialogPrivate {
     android.app.AlertDialog dialog;
     View dialogView;
     LayoutInflater inflater;
@@ -39,7 +42,7 @@ public class DatePickerDialog {
         return date1;
     }
 
-    public DatePickerDialog(final Activity activity, final TextView textView, String title) {
+    public DatePickerDialogPrivate(final Activity activity, final TextView textView, String title) {
         this.activity = activity;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
@@ -82,17 +85,20 @@ public class DatePickerDialog {
 
 
                 Date d= PersianCalendarUtils.ShamsiToMilady(year,month, day);//
+
+
+
+
+
                 SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
                 String formatted = format1.format(d.getTime());
+
 
                 String[] dateGrg=formatted.split("/");
                 int monthS = Integer.valueOf(dateGrg[0]);
                 int dayS = Integer.valueOf(dateGrg[1]);
                 int yearS =Integer.valueOf(dateGrg[2]) ;
 
-                Log.e("yearS", yearS+"");
-                Log.e("monthS", monthS+"");
-                Log.e("dayS", dayS+"");
 
 
 
@@ -104,6 +110,7 @@ public class DatePickerDialog {
                 Log.e("testttiiiiii", persianDatePicker.getDisplayDate()+"");
                 Log.e("tesetes", date);
                 Log.e("tesetes", date1);
+                Log.e("testint", toJulianDate(d)+"");
 
                 dialog.cancel();
             }
@@ -114,5 +121,20 @@ public class DatePickerDialog {
                 dialog.cancel();
             }
         });
+    }
+
+    public static Integer toJulianDate(Date pDate) {
+        if (pDate == null) {
+            return null;
+        }
+        Calendar lCal = Calendar.getInstance();
+        lCal.setTime(pDate);
+        int lYear = lCal.get(Calendar.YEAR);
+        int lMonth = lCal.get(Calendar.MONTH) + 1;
+        int lDay = lCal.get(Calendar.DATE);
+        int a = (14 - lMonth) / 12;
+        int y = lYear + 4800 - a;
+        int m = lMonth + 12 * a - 3;
+        return lDay + (153 * m + 2) / 5 + 365 * y + y / 4 - y / 100 + y / 400 - 32045;
     }
 }

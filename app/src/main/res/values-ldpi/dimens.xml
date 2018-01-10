@@ -8,5 +8,13 @@
  <dimen name="circle_60dp">60dp</dimen>
     <dimen name="_12dp">10dp</dimen>
     <dimen name="_25dp">25dp</dimen>
+    <dimen name="_10dp_margin">10dp</dimen>
+    <dimen name="toolbar_title_16dp">16dp</dimen>
+    <dimen name="toolbar_desc_12dp">12dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="toolbar_height_80dp">70dp</dimen>
+    <dimen name="toolbar_bottom_width_50dp">50dp</dimen>
+    <dimen name="text_size_12dp">12dp</dimen>
+   <dimen name="icon_size_25dp">25dp</dimen>
 
 </resources>

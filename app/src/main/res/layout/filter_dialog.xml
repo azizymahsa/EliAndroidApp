@@ -57,8 +57,8 @@
                 android:gravity="center"/>
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/bestOff"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -77,8 +77,8 @@
                 android:gravity="center"/>
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/bestSeler"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -122,8 +122,8 @@
                 android:gravity="center"/>
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/star2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -142,8 +142,8 @@
                 android:gravity="center"/>
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/star1"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -170,8 +170,8 @@
                 android:gravity="center"/>
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/star4"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -189,8 +189,8 @@
                 android:gravity="center"/>
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/star3"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -216,8 +216,8 @@
             android:gravity="center"/>
         <cn.refactor.library.SmoothCheckBox
             android:id="@+id/star5"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="5dp"
             app:color_checked="#447eeb" />
     </LinearLayout>
@@ -260,8 +260,8 @@
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/resort"
 
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -281,8 +281,8 @@
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/boutique"
 
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -310,8 +310,8 @@
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/apartment"
 
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -329,8 +329,8 @@
                 android:gravity="center"/>
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/hotel"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>
@@ -370,8 +370,8 @@
                 android:gravity="center"/>
             <cn.refactor.library.SmoothCheckBox
                 android:id="@+id/Remove"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_margin="5dp"
                 app:color_checked="#447eeb" />
         </LinearLayout>

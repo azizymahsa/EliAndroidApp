@@ -53,5 +53,6 @@
     <color name="add_room_btn_confirm">#FF408FF7</color>
     <color name="pack_room_background">#FFFDFDFD</color>
     <color name="pack_room_text">#707070</color>
+    <color name="black1">#2e2e2e</color>
 
 </resources>

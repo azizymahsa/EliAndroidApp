@@ -3,6 +3,7 @@ package com.reserv.myapplicationeli.views.fragments.pack;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
 import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
 import com.reserv.myapplicationeli.views.adapters.pack.CitySpinnerAdapter;
-import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener {
     public Button btn_depart_date;
     private final int ADD_ROOM_REQUEST = 100;
     private ClientService service;
-    DatePickerDialog datePickerDialogDepart, datePickerDialogReturn;
+    DatePickerDialogPrivate datePickerDialogPrivateDepart, datePickerDialogPrivateReturn;
     private Gson gson;
     private ArrayList<ModelRowCountRoom> roomsSelected;
     private TextView txt_count_adult;
@@ -211,9 +212,10 @@ public class PackageFragment extends Fragment implements View.OnClickListener {
                 }
 
                 Intent _intent = new Intent(getActivity(), SearchPackActivity.class);
-                _intent.putExtra("DepartureFrom",datePickerDialogDepart.getDate());
-                _intent.putExtra("DepartureTo",datePickerDialogDepart.getDate());
+                _intent.putExtra("DepartureFrom", datePickerDialogPrivateDepart.getDate());
+                _intent.putExtra("DepartureTo", datePickerDialogPrivateDepart.getDate());
                 _intent.putExtra("RoomList",getRoomList(roomsSelected));
+                Log.e("roooms",  getRoomList(roomsSelected)+"");
                 _intent.putExtra("Culture","fa-IR");
                 _intent.putExtra("Country",String.valueOf(hotelCity.getCityID()));
                 _intent.putExtra("CityName",String.valueOf(ValidationTools.isEmptyOrNull(hotelCity.getCityNameFa())?hotelCity.getCityNameEn():hotelCity.getCityNameFa()));
@@ -221,11 +223,11 @@ public class PackageFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.btn_depart_date:
-                datePickerDialogDepart = new DatePickerDialog(getActivity(), btn_depart_date, "تاریخ رفت");
+                datePickerDialogPrivateDepart = new DatePickerDialogPrivate(getActivity(), btn_depart_date, "تاریخ رفت");
                 break;
 
             case R.id.btn_return_date:
-                datePickerDialogReturn = new DatePickerDialog(getActivity(), btn_return_date, "تاریخ برگشت");
+                datePickerDialogPrivateReturn = new DatePickerDialogPrivate(getActivity(), btn_return_date, "تاریخ برگشت");
                 break;
         }
     }

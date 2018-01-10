@@ -44,7 +44,6 @@
             android:background="@drawable/background_purple"
             android:orientation="horizontal"
             android:layout_marginLeft="25sp">
-
             <ImageView
                 android:id="@+id/btn_remove"
                 android:layout_width="50sp"

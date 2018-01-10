@@ -94,7 +94,7 @@
                         android:background="@drawable/factor_passenger_off"
                         android:gravity="right|center_vertical"
                         android:text=""
-                        android:textColor="#808080"
+                        android:textColor="@color/textColorR"
                         android:textSize="10dp" />
 
                     <Button
@@ -104,7 +104,7 @@
                         android:background="@drawable/khadamat_passenger_off"
                         android:gravity="right|center_vertical"
                         android:text="  "
-                        android:textColor="#808080"
+                        android:textColor="@color/textColorR"
                         android:textSize="10dp" />
 
                     <Button
@@ -114,7 +114,7 @@
                         android:background="@drawable/mosaferan_passenger_off"
                         android:gravity="right|center_vertical"
                         android:text="  "
-                        android:textColor="#808080"
+                        android:textColor="@color/textColorR"
                         android:textSize="10dp" />
 
                     <Button
@@ -152,7 +152,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal" >
-
+                        <Spinner
+                            android:id="@+id/spinner1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
                         <TextView
                             android:layout_width="257dp"
                             android:layout_height="wrap_content"
@@ -168,13 +171,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="2dp"
                             android:text="جنسیت"
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
+
                     </LinearLayout>
 
-                    <Spinner
-                        android:id="@+id/spinner1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -206,7 +207,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="نام"
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <EditText
@@ -220,7 +221,7 @@
 
                         android:paddingRight="10dp"
                         android:text=""
-                        android:textColorHint="#ff0000" />
+                        android:textColorHint="#ba0f0f" />
                 </LinearLayout>
 
                 <!-- family name -->
@@ -253,7 +254,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="نام خانوادگی"
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <EditText
@@ -300,7 +301,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="موبایل "
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <EditText
@@ -346,7 +347,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="کدملی "
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <EditText
@@ -392,7 +393,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="ایمیل "
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <EditText
@@ -490,7 +491,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="2dp"
                             android:text="جنسیت"
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <Spinner
@@ -527,7 +528,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="نام"
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <EditText
@@ -573,7 +574,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="نام خانوادگی"
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <EditText
@@ -618,7 +619,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="تاریخ تولد "
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <TextView
@@ -665,7 +666,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="شماره پاسپورت   "
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <EditText
@@ -710,7 +711,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="انقضاء پاسپورت   "
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <TextView
@@ -768,7 +769,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="ملیت "
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <TextView
@@ -815,7 +816,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text=" محل اقامت "
-                            android:textColor="#808080" />
+                            android:textColor="@color/textColorR" />
                     </LinearLayout>
 
                     <TextView

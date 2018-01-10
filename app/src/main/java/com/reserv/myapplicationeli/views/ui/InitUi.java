@@ -3,6 +3,7 @@ package com.reserv.myapplicationeli.views.ui;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.nineoldandroids.animation.Animator;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -32,6 +34,8 @@ public class InitUi {
         TextView tvTitle = activity.findViewById(R.id.tvTitle);
         FancyButton btnBack=activity.findViewById(R.id.btnBack);
         FancyButton btnMenu=activity.findViewById(R.id.btnMenu);
+        FancyButton btnHome=activity.findViewById(R.id.btnHome);
+        RelativeLayout llHome=activity.findViewById(R.id.llHome);
 
 
         toolbar.setBackgroundColor(ContextCompat.getColor(activity,color));
@@ -46,9 +50,12 @@ public class InitUi {
         if(isMainActivity){
             btnMenu.setVisibility(View.VISIBLE);
             btnBack.setVisibility(View.GONE);
+            llHome.setVisibility(View.GONE);
         }else{
 
             btnMenu.setVisibility(View.GONE);
+            llHome.setVisibility(View.VISIBLE);
+
         }
 
 
@@ -59,7 +66,16 @@ public class InitUi {
             }
         });
 
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
+                activity.startActivity(intent);
+                activity.finish();
+            }
+        });
 
 
 

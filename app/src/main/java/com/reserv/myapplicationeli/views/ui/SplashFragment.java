@@ -59,6 +59,7 @@ public class SplashFragment extends BaseActivity {
                 R.drawable.comp1_00030,
                 R.drawable.comp1_00031,
                 R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
                 R.drawable.comp1_00031};
 
         handler = new Handler();

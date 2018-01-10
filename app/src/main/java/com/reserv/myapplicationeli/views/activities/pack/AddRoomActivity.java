@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.contracts.InfoRoomsContract;
@@ -152,7 +153,9 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
                 Gson gson = new GsonBuilder().create();
                 Intent intent = new Intent();
                 intent.putExtra("Rooms",gson.toJson(roomPresenter.getRooms()));
-                setResult(RESULT_OK,intent);
+                Prefs.putString("Rooms",gson.toJson(roomPresenter.getRooms()));
+//                startActivity(intent);
+              setResult(RESULT_OK,intent);
                 finish();
                 break;
         }
