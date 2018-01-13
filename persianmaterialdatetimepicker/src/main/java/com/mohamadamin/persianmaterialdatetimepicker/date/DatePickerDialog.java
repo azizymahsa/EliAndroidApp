@@ -126,7 +126,7 @@ public class DatePickerDialog extends DialogFragment implements
     private String mSelectYear;
     private TextView mHintView;
     private OnCalendarChangedListener mOnCalendarChangeListener;
-    private String title;
+     String title;
 
     /**
      * The callback used to indicate the user is done filling in the date.
@@ -260,6 +260,7 @@ public class DatePickerDialog extends DialogFragment implements
         outState.putSerializable(KEY_HIGHLIGHTED_DAYS, highlightedDays);
         outState.putSerializable(KEY_SELECTABLE_DAYS, selectableDays);
         outState.putBoolean(KEY_THEME_DARK, mThemeDark);
+
     }
 
     @Override

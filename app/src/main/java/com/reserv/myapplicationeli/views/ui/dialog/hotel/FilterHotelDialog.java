@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
@@ -29,6 +30,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
     FilterHotelDialogListenerArray filterHotelDialogListenerArray;
     SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1, hotel, boutique, apartment, resort;
     ArrayList<FilterModel> filter;
+    EditText searchtxt;
     boolean star1_;
     boolean star2_;
     boolean star3_;
@@ -53,6 +55,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
+        searchtxt = (EditText) dialogView.findViewById(R.id.searchtxt);
         bestSeler = (SmoothCheckBox) dialogView.findViewById(R.id.bestSeler);
         bestOff = (SmoothCheckBox) dialogView.findViewById(R.id.bestOff);
         Remove = (SmoothCheckBox) dialogView.findViewById(R.id.Remove);
@@ -66,6 +69,19 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         boutique = (SmoothCheckBox) dialogView.findViewById(R.id.boutique);
         apartment = (SmoothCheckBox) dialogView.findViewById(R.id.apartment);
         resort = (SmoothCheckBox) dialogView.findViewById(R.id.resort);
+        Remove.setOnCheckedChangeListener(this);
+        star1.setOnCheckedChangeListener(this);
+        star2.setOnCheckedChangeListener(this);
+        star3.setOnCheckedChangeListener(this);
+        star4.setOnCheckedChangeListener(this);
+        star5.setOnCheckedChangeListener(this);
+        hotel.setOnCheckedChangeListener(this);
+        boutique.setOnCheckedChangeListener(this);
+        apartment.setOnCheckedChangeListener(this);
+        resort.setOnCheckedChangeListener(this);
+        bestOff.setOnCheckedChangeListener(this);
+        bestSeler.setOnCheckedChangeListener(this);
+
 
         btnOk.setCustomTextFont("irsans.ttf");
         btnOk.setOnClickListener(this);
@@ -218,7 +234,6 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
             }
         }
-        Remove.setOnCheckedChangeListener(this);
 
 
         dialog.show();
@@ -344,7 +359,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
 
 
-                filterHotelDialogListenerArray.onReturnValue(filter);
+                filterHotelDialogListenerArray.onReturnValue(filter,searchtxt.getText().toString());
 
 
                 dialog.cancel();
@@ -380,62 +395,62 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
             case R.id.bestSeler:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
                 }
                 break;
             case R.id.bestOff:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
 
                 }
                 break;
             case R.id.star2:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
 
                 }
                 break;
             case R.id.star3:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
 
                 }
                 break;
             case R.id.star4:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
 
                 }
                 break;
             case R.id.star5:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
 
                 }
                 break;
             case R.id.hotel:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
 
                 }
                 break;
             case R.id.boutique:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
 
                 }
                 break;
 
             case R.id.apartment:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
 
                 }
                 break;
 
             case R.id.resort:
                 if (isChecked) {
-                    apartment.setChecked(false);
+                    Remove.setChecked(false);
 
                 }
                 break;
@@ -447,7 +462,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
 
     public interface FilterHotelDialogListenerArray {
-        public void onReturnValue(ArrayList<FilterModel> type);
+        public void onReturnValue(ArrayList<FilterModel> type,String search);
     }
 
 }

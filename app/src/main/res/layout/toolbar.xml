@@ -4,21 +4,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbarLayout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/toolbar_height_70dp">
+    android:layout_height="60dp">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height_70dp"
+        android:layout_height="60dp"
         android:background="@color/flight_status"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height_70dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="right">
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
-            android:layout_width="@dimen/toolbar_bottom_width_50dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
@@ -32,7 +32,7 @@
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnMenu"
             android:layout_width="@dimen/toolbar_bottom_width_50dp"
-            android:layout_height="@dimen/toolbar_bottom_width_50dp"
+            android:layout_height="60dp"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="6dp"
@@ -46,12 +46,12 @@
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height_70dp"
+        android:layout_height="60dp"
         android:layout_gravity="center">
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/toolbar_bottom_width_50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:text="صفحه اصلی"
             android:textColor="@android:color/white"
@@ -79,14 +79,14 @@
     <RelativeLayout
         android:id="@+id/llHome"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/toolbar_height_70dp"
+        android:layout_height="60dp"
         android:layout_gravity="left"
         android:visibility="gone">
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnHome"
-            android:layout_width="50dp"
-            android:layout_height="@dimen/toolbar_height_70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
 
@@ -96,7 +96,7 @@
             fancy:fb_textSize="25dp" />
 
         <ImageView
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="@dimen/toolbar_height_70dp"
             android:padding="10dp"
             android:src="@drawable/e_logo"

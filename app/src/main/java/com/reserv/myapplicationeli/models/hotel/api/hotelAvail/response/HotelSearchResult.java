@@ -8,11 +8,15 @@ import java.util.List;
 
 public class HotelSearchResult {
     public final List<Hotels> Hotels;
+    public final List<HotelTypes> HotelTypes;
     public final int MaxPrice;
     public final int MinPrice;
 
-    public HotelSearchResult(List<Hotels> hotels, int maxPrice, int minPrice) {
+    public HotelSearchResult(List<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Hotels> hotels
+            , List<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelTypes> hotelTypes,
+                             int maxPrice, int minPrice) {
         Hotels = hotels;
+        HotelTypes = hotelTypes;
         MaxPrice = maxPrice;
         MinPrice = minPrice;
     }

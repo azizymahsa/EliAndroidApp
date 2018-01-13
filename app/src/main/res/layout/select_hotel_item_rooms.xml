@@ -95,6 +95,7 @@
                     android:text="غیر قابل استرداد و غیر قابل تغییر"
                     android:textColor="#c61a1f"
                     android:gravity="left"
+                    android:maxLines="1"
 
                     />
                 <RelativeLayout

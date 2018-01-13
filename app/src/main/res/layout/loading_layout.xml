@@ -12,19 +12,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/hotel_loading"
         android:scaleType="fitXY"/>
-    <com.wang.avi.AVLoadingIndicatorView
 
-        android:id="@+id/avi"
-        style="@style/AVLoadingIndicatorView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:visibility="visible"
-        app:indicatorColor="@color/white"
-        app:indicatorName="BallSpinFadeLoaderIndicator"
-        android:layout_below="@+id/tv"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        />
     <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
@@ -34,5 +22,12 @@
         android:textColor="@color/white"
         android:gravity="center"
         android:layout_marginTop="20dp"/>
-
+    <ImageView
+        android:id="@+id/ivLoading"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/small_02"
+        />
 </RelativeLayout>

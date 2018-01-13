@@ -25,6 +25,7 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.ImageViewActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.ImageModel;
 
 import java.util.ArrayList;
@@ -151,7 +152,14 @@ public class ViewPagerAttention {
 
 
 
-
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent =new Intent(activity, ImageViewActivity.class);
+                    intent.putExtra("pic",imageModels.get(position).getImage());
+                    activity.startActivity(intent);
+                }
+            });
 
 
 

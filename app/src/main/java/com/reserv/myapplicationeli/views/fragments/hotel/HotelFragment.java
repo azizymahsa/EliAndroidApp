@@ -138,6 +138,11 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
         month = persianCalendarDatePicker.getPersianMonth();
         year_ = persianCalendarDatePicker.getPersianYear();
         day = persianCalendarDatePicker.getPersianDay();
+
+
+
+
+
         datePickerDialog = DatePickerDialog.newInstance(
                 this,
                 persianCalendarDatePicker.getPersianYear(),
@@ -146,6 +151,8 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
         );
 
         datePickerDialog.setMinDate(persianCalendarDatePicker);
+
+
         datePickerDialog2 = DatePickerDialog.newInstance(
                 this,
                 persianCalendarDatePicker.getPersianYear(),
@@ -153,12 +160,15 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
                 persianCalendarDatePicker.getPersianDay()
         );
         datePickerDialog2.setMinDate(persianCalendarDatePicker);
+
+
         raft=date_server(  persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
         bargasht=date_server(  persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
+
 
         return rootView;
 
@@ -257,16 +267,18 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
 
                 break;
             case R.id.tvRaft:
-
+                datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+                    @Override
+                    public void onCalendarChanged(boolean isGregorian) {
+                    }
+                });
 
                 datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
                 break;
             case R.id.tvBargasht:
-                PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-                persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
-                datePickerDialog2.initialize(this, year_, month, day);
-                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+                datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
+
                 datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
 
 
@@ -379,7 +391,6 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
 
 
 
-
         }
 
 
@@ -391,6 +402,10 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
             tvRaft.setText(persianCalendar.getPersianLongDate());
             tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft=date_server(year,monthOfYear,dayOfMonth);
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
+            datePickerDialog2.initialize(this, year_, month, day);
+            datePickerDialog2.setMinDate(persianCalendarDatePicker2);
 
 
         }

@@ -11,10 +11,10 @@ import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 
 public class SplashFragment extends BaseActivity {
 
-    private Runnable runnable;
+    private Runnable runnable,runnable2;
+    private Handler handler,handler2;
+    private ImageView ivSplash,ivLoading;
 
-    private ImageView ivSplash;
-    private Handler handler;
 
     private enum DOWNLOAD_TYPE {
         NONE, MAP, SOFTWARE
@@ -26,6 +26,7 @@ public class SplashFragment extends BaseActivity {
         setContentView(R.layout.fragment_splash);
         super.onCreate(savedInstanceState);
         ivSplash = findViewById(R.id.ivSplash);
+        ivLoading = findViewById(R.id.ivLoading);
         final int[] imageArray = new int[]{R.drawable.comp1_00000,
                 R.drawable.comp1_00001,
                 R.drawable.comp1_00002,
@@ -60,7 +61,9 @@ public class SplashFragment extends BaseActivity {
                 R.drawable.comp1_00031,
                 R.drawable.comp1_00031,
                 R.drawable.comp1_00031,
-                R.drawable.comp1_00031};
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,};
 
         handler = new Handler();
         runnable = new Runnable() {
@@ -73,7 +76,7 @@ public class SplashFragment extends BaseActivity {
                     i = 0;
 
                 }
-                if (i == 33) {
+                if (i == 36) {
                     finish();
                     startActivity(new Intent(SplashFragment.this, MainActivity.class));
                     finish();
@@ -81,15 +84,64 @@ public class SplashFragment extends BaseActivity {
                 handler.postDelayed(this, 30);  //for interval...
             }
         };
-        handler.postDelayed(runnable, 500); //for initial delay..
+        handler.postDelayed(runnable, 700); //for initial delay..
+
+        final int[] imageArray2 = new int[]{
+                R.drawable.small_01,
+                R.drawable.small_02,
+                R.drawable.small_03,
+                R.drawable.small_04,
+                R.drawable.small_05,
+                R.drawable.small_06,
+                R.drawable.small_07,
+                R.drawable.small_08,
+                R.drawable.small_09,
+                R.drawable.small_10,
+                R.drawable.small_11,
+                R.drawable.small_12,
+                R.drawable.small_13,
+                R.drawable.small_14,
+                R.drawable.small_15,
+                R.drawable.small_16,
+                R.drawable.small_17,
+                R.drawable.small_18,
+                R.drawable.small_19,
+                R.drawable.small_20,
+                R.drawable.small_21,
+                R.drawable.small_22,
+                R.drawable.small_23,
+                R.drawable.small_24};
+
+
+
+        handler2 = new Handler();
+        runnable2 = new Runnable() {
+            int i = 0;
+
+            public void run() {
+                ivLoading.setImageResource(imageArray2[i]);
+                i++;
+                if (i > imageArray2.length - 1) {
+                    i = 0;
+
+                }
+
+                handler2.postDelayed(this, 50);  //for interval...
+            }
+        };
+        handler2.postDelayed(runnable2, 100); //for initial delay..
+
+
 
 
     }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacks(runnable);
+        handler2.removeCallbacks(runnable2);
 
     }
 

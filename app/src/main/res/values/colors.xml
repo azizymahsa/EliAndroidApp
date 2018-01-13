@@ -54,5 +54,6 @@
     <color name="pack_room_background">#FFFDFDFD</color>
     <color name="pack_room_text">#707070</color>
     <color name="black1">#2e2e2e</color>
+    <color name="red">#d61616</color>
 
 </resources>

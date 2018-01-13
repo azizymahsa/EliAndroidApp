@@ -107,6 +107,9 @@
     <string name="icon_info">&#xe906;</string>
     <string name="icon_pin">&#xe907;</string>
     <string name="icon_filter">&#xe90c;</string>
+    <string name="icon_sort">&#xf160;</string>
+    <string name="icon_arrow_left">&#xe314;</string>
+    <string name="icon_arrow_right">&#xe315;</string>
 
     <string name="searchFlight">جستجوی پرواز</string>
     <string name="search_package">جستجوی پکیج</string>
