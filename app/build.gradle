@@ -79,7 +79,6 @@ dependencies {
     compile 'com.github.crosswall:Android-Coverflow:release-v1.0.4'
 
 
-
 }
 apply plugin: 'com.google.gms.google-services'
 

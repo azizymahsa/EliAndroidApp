@@ -48,7 +48,27 @@
                         android:id="@+id/intro_view_pager"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
+                    <com.wang.avi.AVLoadingIndicatorView
+
+                        android:id="@+id/avi1"
+                        style="@style/AVLoadingIndicatorView"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:visibility="visible"
+                        app:indicatorColor="@color/app_base_color"
+                        app:indicatorName="BallSpinFadeLoaderIndicator"
+                        android:layout_below="@+id/tv"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+
+                        />
+
+
+
+
                 </FrameLayout>
+
+
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cvHotel"
@@ -64,6 +84,8 @@
                     android:layout_below="@+id/hListView2"
 
                     >
+
+
                     <LinearLayout
                         android:id="@+id/llHotelName"
                         android:layout_width="match_parent"
@@ -209,6 +231,29 @@
                        </LinearLayout>
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/llLoading"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center">
+
+                        <com.wang.avi.AVLoadingIndicatorView
+
+                            android:id="@+id/avi2"
+                            style="@style/AVLoadingIndicatorView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:visibility="visible"
+                            app:indicatorColor="@color/app_base_color"
+                            app:indicatorName="BallSpinFadeLoaderIndicator"
+                            android:layout_below="@+id/tv"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+
+                            />
+
+                    </LinearLayout>
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
@@ -292,7 +337,6 @@
 
 
 
-
                 <com.reserv.myapplicationeli.views.ui.NonScrollGridView
                     android:layout_below="@+id/cvHotel"
                     android:numColumns="2"
@@ -313,6 +357,7 @@
                     android:divider="@null"
                     android:dividerHeight="0dp"
                     />
+
             </RelativeLayout>
 
 

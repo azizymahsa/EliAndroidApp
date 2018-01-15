@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
@@ -28,6 +29,7 @@ import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class AddRoomActivity extends BaseActivity implements View.OnClickListener, InfoRoomsContract.View {
@@ -39,7 +41,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     public RoomAdapter roomAdapter;
     public RoomPresenter roomPresenter;
     private Button btn_confirm;
-
+    ArrayList<ModelRowCountRoom> roomArrayList;
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,17 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
         initViews();
         roomPresenter = new RoomPresenter(this);
         Log.i("eli", "roomPresenter.getRooms().get(0).getChildModels().get(0).getChildAgeRange().getValue()");
+
+
+
+        Bundle bundle = getIntent().getExtras();
+        Gson gson =new GsonBuilder().create();
+        if ( bundle != null ){
+            roomArrayList = gson.fromJson(bundle.getString("roomList"), new TypeToken<List<ModelRowCountRoom>>() {
+            }.getType());
+        }
+        roomPresenter.setRooms(roomArrayList);
+
         showRooms();
     }
 

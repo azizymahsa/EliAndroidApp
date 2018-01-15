@@ -47,9 +47,7 @@ public class FilterFlightDialog implements View.OnClickListener {
        /* star4 = (SmoothCheckBox) dialogView.findViewById(R.id.ferstF);
         star5 = (SmoothCheckBox) dialogView.findViewById(R.id.star5);*/
 
-        hotel = (SmoothCheckBox) dialogView.findViewById(R.id.hotel);
         boutique = (SmoothCheckBox) dialogView.findViewById(R.id.boutique);
-        apartment = (SmoothCheckBox) dialogView.findViewById(R.id.apartment);
         resort = (SmoothCheckBox) dialogView.findViewById(R.id.resort);
         txtTavaghof=(TextView)dialogView.findViewById(R.id.txtTavaghof);
 

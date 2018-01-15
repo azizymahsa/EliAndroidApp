@@ -58,6 +58,7 @@ import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.NonScrollGridView;
 import com.reserv.myapplicationeli.views.ui.PassengerHotelActivity;
 import com.reserv.myapplicationeli.views.ui.ViewPagerAttention;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -89,9 +90,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     TextView tvHotelName,tvCityName,tvAdress;
     ImageView ivImage;
     HotelProprtiesAdapter hotelProprtiesAdapter ;
-    LinearLayout llDynamic;
-    private Runnable runnable,runnable2;
-    private Handler handler,handler2;
+    LinearLayout llDynamic,llLoading;
+    AVLoadingIndicatorView avi1;
+
     ImageView ivLoading;
 
     @Override
@@ -115,7 +116,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        handler2.removeCallbacks(runnable2);
 
     }
 
@@ -133,6 +133,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvCityName = findViewById(R.id.tvCityName);
         gvEmakanat = findViewById(R.id.gvEmakanat);
         llDynamic = findViewById(R.id.llDynamic);
+        llLoading = findViewById(R.id.llLoading);
+        avi1 = findViewById(R.id.avi1);
         llEmakanatClick.setOnClickListener(this);
         llMapClick.setOnClickListener(this);
         llRezervClick.setOnClickListener(this);
@@ -171,72 +173,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         hotelProprtiesAdapter = new HotelProprtiesAdapter(hotelProprtiesModels,this);
         gvEmakanat.setAdapter(hotelProprtiesAdapter);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        final int[] imageArray2 = new int[]{
-                R.drawable.small_01,
-                R.drawable.small_02,
-                R.drawable.small_03,
-                R.drawable.small_04,
-                R.drawable.small_05,
-                R.drawable.small_06,
-                R.drawable.small_07,
-                R.drawable.small_08,
-                R.drawable.small_09,
-                R.drawable.small_10,
-                R.drawable.small_11,
-                R.drawable.small_12,
-                R.drawable.small_13,
-                R.drawable.small_14,
-                R.drawable.small_15,
-                R.drawable.small_16,
-                R.drawable.small_17,
-                R.drawable.small_18,
-                R.drawable.small_19,
-                R.drawable.small_20,
-                R.drawable.small_21,
-                R.drawable.small_22,
-                R.drawable.small_23,
-                R.drawable.small_24};
-
-
-
-        handler2 = new Handler();
-        runnable2 = new Runnable() {
-            int i = 0;
-
-            public void run() {
-                ivLoading.setImageResource(imageArray2[i]);
-                i++;
-                if (i > imageArray2.length - 1) {
-                    i = 0;
-
-                }
-
-                handler2.postDelayed(this, 50);  //for interval...
-            }
-        };
-        handler2.postDelayed(runnable2, 100); //for initial delay..
-
-
-
-
 
 
 
@@ -322,22 +258,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
         map = googleMap;
-        //init Map for MyLocation - Default Camera - Default views----------------------------------
-        //  map.setMyLocationEnabled(true);
-
         map.getUiSettings().setScrollGesturesEnabled(false);
 
-
-        //  View locationButton = ((View) mapView.findViewById(1).getParent()).findViewById(2);
-        //  RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
-        //  rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
-        //  rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-        // rlp.setMargins(0, 0, 30, 210);
-      /*  map.setTrafficEnabled(true);
-        map.setOnMapClickListener(this);
-        map.setOnCameraIdleListener(this);
-        map.setOnCameraMoveListener(this);
-        */
 
 
     }
@@ -348,7 +270,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected void onPreExecute() {
 
             window.setStatusBarColor(getColor(R.color.blue2));
-            new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
+         ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
             Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
             Log.e("test2", getIntent().getExtras().getString("ResultUniqID"));
 
@@ -389,6 +311,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 //  setListViewHeightBasedOnChildren(lvRooms);
             } catch (Exception e) {
+                avi1.setVisibility(View.GONE);
+                llLoading.setVisibility(View.GONE);
                 Toast.makeText(DetailHotelActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -403,7 +327,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected void onPreExecute() {
 
             window.setStatusBarColor(getColor(R.color.blue2));
-            new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
+       //     new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
 
 
         }
@@ -427,7 +351,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected void onPostExecute(String result) {
             //  new InitUi().Loading(rlLoading,rlRoot,false);
 
-            new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
+          //  new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
             try {
                 int i = 0;
@@ -475,8 +399,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         @Override
         protected void onPostExecute(String result) {
-
-            new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
+            avi1.setVisibility(View.GONE);
+            llLoading.setVisibility(View.GONE);
+            //new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
             ImageLoader imageLoader = ImageLoader.getInstance();
             ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(DetailHotelActivity.this));
@@ -487,6 +412,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
          /*   new InitUi().Loading(rlLoading, rlRoot, false);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));*/
        try {
+
              tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
              tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
            Log.e("test", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
@@ -541,6 +467,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             } catch (Exception e) {
                 Toast.makeText(DetailHotelActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
                 finish();
+           avi1.setVisibility(View.GONE);
+           llLoading.setVisibility(View.GONE);
             }
 
         }

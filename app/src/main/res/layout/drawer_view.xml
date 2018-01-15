@@ -177,6 +177,40 @@
             />
 
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#FFA9A6D0"/>
+    <RelativeLayout
+        android:id="@+id/btnHotelFlight"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="هتل و پرواز"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            android:layout_toLeftOf="@+id/tv"
+            android:layout_marginRight="10dp"
+            />
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAppearance="@style/IconFonts"
+            android:text="@string/icon_globe"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            />
+
+    </RelativeLayout>
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"

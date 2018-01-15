@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -73,11 +76,16 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
             holder.board = (TextView) convertView.findViewById(R.id.board);
             holder.tvPrice = (TextView) convertView.findViewById(R.id.tvPrice);
             holder.tvOff = (TextView) convertView.findViewById(R.id.tvOff);
+            holder.cvHotel = (CardView) convertView.findViewById(R.id.cvHotel);
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+
+       Animation scaleUp = AnimationUtils.loadAnimation(activity, R.anim.anim_list);
+        holder.cvHotel.startAnimation(scaleUp);
+
         String imageUri = "https://cdn.elicdn.com" + selectHotelModelArrayList.get(position).getImageUrl();
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 // this will make circle, pass the width of image
@@ -148,6 +156,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
     public class ViewHolder {
         TextView name, location, title, board, tvPrice, tvOff;
         ImageView ivHotelPic, ivRate;
+        CardView cvHotel;
 
 
     }

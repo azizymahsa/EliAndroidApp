@@ -1,5 +1,9 @@
 package com.reserv.myapplicationeli.models.hotel.adapter;
 
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities;
+
+import java.util.ArrayList;
+
 /**
  * Created by Reza.nejati on 1/4/2018.
  */
@@ -21,10 +25,10 @@ public class SelectHotelModel {
     boolean isOff;
     String off;
     String TypeText;
+    ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> Facilities;
+    int diff;
 
-    public SelectHotelModel(String name, String city, String title, String board, String price,
-                            String imageUrl, String location, int oldPrice, int star, int eHotelId,
-                            String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText) {
+    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -40,6 +44,8 @@ public class SelectHotelModel {
         this.isOff = isOff;
         this.off = off;
         TypeText = typeText;
+        Facilities = facilities;
+        this.diff = diff;
     }
 
     public String getName() {
@@ -160,5 +166,21 @@ public class SelectHotelModel {
 
     public void setTypeText(String typeText) {
         TypeText = typeText;
+    }
+
+    public ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> getFacilities() {
+        return Facilities;
+    }
+
+    public void setFacilities(ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities) {
+        Facilities = facilities;
+    }
+
+    public int getDiff() {
+        return diff;
+    }
+
+    public void setDiff(int diff) {
+        this.diff = diff;
     }
 }

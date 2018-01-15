@@ -12,14 +12,9 @@ public class FilterModel {
     boolean star5;
     boolean bestSeler;
     boolean bestOff;
-    boolean resort;
-    boolean boutique;
-    boolean apartment;
-    boolean hotel;
     boolean remove;
 
-    public FilterModel(boolean star1, boolean star2, boolean star3, boolean star4, boolean star5,
-                       boolean bestSeler, boolean bestOff, boolean resort, boolean boutique, boolean apartment, boolean hotel, boolean remove) {
+    public FilterModel(boolean star1, boolean star2, boolean star3, boolean star4, boolean star5, boolean bestSeler, boolean bestOff, boolean remove) {
         this.star1 = star1;
         this.star2 = star2;
         this.star3 = star3;
@@ -27,10 +22,6 @@ public class FilterModel {
         this.star5 = star5;
         this.bestSeler = bestSeler;
         this.bestOff = bestOff;
-        this.resort = resort;
-        this.boutique = boutique;
-        this.apartment = apartment;
-        this.hotel = hotel;
         this.remove = remove;
     }
 
@@ -88,38 +79,6 @@ public class FilterModel {
 
     public void setBestOff(boolean bestOff) {
         this.bestOff = bestOff;
-    }
-
-    public boolean isResort() {
-        return resort;
-    }
-
-    public void setResort(boolean resort) {
-        this.resort = resort;
-    }
-
-    public boolean isBoutique() {
-        return boutique;
-    }
-
-    public void setBoutique(boolean boutique) {
-        this.boutique = boutique;
-    }
-
-    public boolean isApartment() {
-        return apartment;
-    }
-
-    public void setApartment(boolean apartment) {
-        this.apartment = apartment;
-    }
-
-    public boolean isHotel() {
-        return hotel;
-    }
-
-    public void setHotel(boolean hotel) {
-        this.hotel = hotel;
     }
 
     public boolean isRemove() {

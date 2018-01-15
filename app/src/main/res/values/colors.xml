@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FF938EC5</color>
     <color name="colorPrimaryDark">#706b9f</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#928DC5</color>
 
     <color name="list_item_title">#fff</color>
     <!-- menu side color-->
@@ -41,6 +41,8 @@
     <color name="app_base_color">#928DC5</color>
     <color name="white">#fff</color>
     <color name="textColorR">#131313</color>
+    <color name="text_bottom_bar">#aaaaaa</color>
+    <color name="text_color">#aaaaaa</color>
     <color name="textColorRDark">#1e1e1e</color>
     <color name="green">#49b98c</color>
     <color name="blue2">#B19CF9</color>
@@ -55,5 +57,7 @@
     <color name="pack_room_text">#707070</color>
     <color name="black1">#2e2e2e</color>
     <color name="red">#d61616</color>
+    <color name="background_color_flight_button">#29aae3</color>
+    <color name="text_color_2">#737585</color>
 
 </resources>

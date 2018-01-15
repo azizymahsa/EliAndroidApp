@@ -192,11 +192,10 @@
                         android:id="@+id/tvRial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="false"
                         android:gravity="left|center"
                         android:text="ریال"
                         android:textColor="@color/green"
-                        android:textSize="12dp"
+                        android:textSize="17dp"
                         android:textAppearance="@style/IrsansBold"
 
 
@@ -206,7 +205,6 @@
                         android:id="@+id/tvPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="false"
                         android:layout_marginLeft="5dp"
                         android:gravity="left|center"
                         android:textColor="#000000"

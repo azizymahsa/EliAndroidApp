@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
     <attr format="boolean" name="mdtp_theme_dark">false</attr>
-    <color name="gmdtp_accent_color">#009688</color>
-    <color name="gmdtp_accent_color_dark">#00796b</color>
+    <color name="gmdtp_accent_color">#928DC5</color>
+    <color name="gmdtp_accent_color_dark">#928DC5</color>
     <color name="gmdtp_white">#ffffff</color>
     <color name="mdtp_accent_color_focused">#76ffffff</color>
     <color name="mdtp_ampm_text_color">@color/mdtp_numbers_text_color</color>
     <color name="mdtp_background_color">@color/gmdtp_white</color>
-    <color name="mdtp_button_color">@color/gmdtp_accent_color</color>
+    <color name="mdtp_button_color">#928DC5</color>
     <color name="mdtp_button_selected">#33969696</color>
-    <color name="mdtp_calendar_header">@color/gmdtp_accent_color_dark</color>
+    <color name="mdtp_calendar_header">#928DC5</color>
     <color name="mdtp_calendar_selected_date_text">#ffd1d2d4</color>
     <color name="mdtp_circle_background">@color/mdtp_background_color</color>
     <color name="mdtp_circle_background_dark_theme">#525252</color>
@@ -35,7 +35,7 @@
     <color name="mdtp_line_dark">#808080</color>
     <color name="mdtp_neutral_pressed">#33999999</color>
     <color name="mdtp_numbers_text_color">#ff212121</color>
-    <color name="mdtp_red">@color/gmdtp_accent_color</color>
+    <color name="mdtp_red">#928DC5</color>
     <color name="mdtp_red_focused">@color/gmdtp_accent_color_dark</color>
     <color name="mdtp_transparent_black">#7f000000</color>
     <dimen name="gmdtp_ampm_label_size">16dp</dimen>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvHotel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="7dp"
+        android:background="@color/hotel_detail_background"
+        card_view:cardBackgroundColor="#ffffff"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/RelativeLayoutHotel"
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+
+                <com.wang.avi.AVLoadingIndicatorView
+
+                    android:id="@+id/avi"
+                    style="@style/AVLoadingIndicatorView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:visibility="visible"
+                    app:indicatorColor="@color/app_base_color"
+                    app:indicatorName="BallSpinFadeLoaderIndicator"
+                    android:layout_centerInParent="true"/>
+                <ImageView
+                    android:id="@+id/ivHotelPic"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="fitXY"
+
+                    />
+                <TextView
+                    android:id="@+id/tvOff"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/off"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="20dp"
+                    android:text="35%  تخفیف"
+                    android:gravity="center"
+                    android:textSize="14dp"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="@color/white"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/RelativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/shadow2"
+
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/linearLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:gravity="center|left"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:layout_alignParentLeft="true"
+                        android:maxLines="3"/>
+
+                    <ImageView
+                        android:id="@+id/ivRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="16dp"
+                        android:layout_alignParentRight="true"
+                        android:scaleType="fitEnd"
+                        android:layout_marginRight="5dp"
+                        />
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linearLayout1"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/icon_location2"
+                        android:textAppearance="@style/IconFonts"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="left|center"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+
+                        />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RelativeLayoutHotel"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+               >
+
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="false"
+                        android:gravity="center"
+                        android:text="1 X STANDARD ROOM"
+                        android:textColor="@color/textColorR"
+                        android:textSize="12dp"
+
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center|top"
+                        android:text="@string/icon_pin"
+                        android:textAppearance="@style/IconFonts"
+                        android:textColor="#aaaaaa"
+                        android:textSize="20dp"
+                        />
+
+
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/board"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="false"
+                    android:layout_toRightOf="@+id/title"
+                    android:gravity="left|center"
+                    android:textColor="@color/green"
+                    android:textSize="12dp"
+                    android:layout_marginLeft="5dp"
+                    android:visibility="gone"
+
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvRial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center"
+                        android:text="ریال"
+                        android:textColor="@color/green"
+                        android:textSize="17dp"
+                        android:textAppearance="@style/IrsansBold"
+                        android:layout_toLeftOf="@+id/tvPrice"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="left|center"
+                        android:textColor="#000000"
+                        android:textSize="17dp"
+                        android:textAppearance="@style/IrsansBold"
+                        android:layout_centerInParent="true"
+
+                        />
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#59333333"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/shadow"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <ImageView
+                        android:id="@+id/ivLogo"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/logo_turkish"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentRight="true"/>
+                    <TextView
+                        android:id="@+id/tvRaft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="رفت به استانبول"
+                        android:textSize="12dp"
+                        android:layout_toLeftOf="@+id/ivLogo"
+                        android:textColor="#6e6d6d"
+                        android:layout_marginRight="10dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvAirLines"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="رفت به استانبول"
+                        android:textSize="16dp"
+                        android:layout_toLeftOf="@+id/ivLogo"
+                        android:textColor="#351f8e"
+                        android:layout_centerVertical="true"
+                        android:layout_below="@+id/tvRaft"
+                        android:layout_marginTop="20dp"
+                        android:textAppearance="@style/IrsansBold"
+                        android:layout_marginRight="10dp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvBargasht"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="برگشت به تهران"
+                        android:textSize="12dp"
+                        android:layout_toLeftOf="@+id/ivLogo"
+                        android:textColor="#6e6d6d"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/tvAirLines"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/tvTimeRaft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11:50"
+                        android:textSize="16dp"
+                        android:layout_toLeftOf="@+id/tvRaft"
+                        android:textColor="#351f8e"
+                        android:textAppearance="@style/IrsansBold"
+                        android:layout_marginRight="40dp"
+
+                        />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11:50"
+                        android:textSize="16dp"
+                        android:layout_toLeftOf="@+id/tvBargasht"
+                        android:textColor="#351f8e"
+                        android:layout_below="@+id/tvAirLines"
+                        android:textAppearance="@style/IrsansBold"
+                        android:layout_marginRight="40dp"
+
+                        />
+                    <TextView
+                        android:id="@+id/tvEco"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="اکونومی"
+                        android:textSize="10dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@color/background_color_flight_button"
+                        android:gravity="center"
+                        android:paddingBottom="1dp"
+                        android:paddingLeft="1dp"
+                        android:textColor="#fff"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="فقط 6 نفر"
+                        android:textSize="12dp"
+                        android:textColor="#292929"
+                        android:textAppearance="@style/IrsansBold"
+
+                        android:layout_toLeftOf="@+id/ivLogo"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/tvAirLines"
+                        android:gravity="left"
+                        />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

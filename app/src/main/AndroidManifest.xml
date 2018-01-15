@@ -87,7 +87,8 @@
         <activity
             android:name=".views.activities.pack.SearchPackActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.hotel.activity.ImageViewActivity"></activity>
+        <activity android:name=".views.activities.hotel.activity.ImageViewActivity" />
+        <activity android:name=".views.activities.hotel.activity.SelectHotelFlightActivity"></activity>
     </application>
 
 </manifest>

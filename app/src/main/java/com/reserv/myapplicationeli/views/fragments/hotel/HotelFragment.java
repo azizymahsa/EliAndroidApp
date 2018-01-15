@@ -1,7 +1,9 @@
 package com.reserv.myapplicationeli.views.fragments.hotel;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +48,8 @@ import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate
 import static android.app.Activity.RESULT_OK;
 
 
-public class HotelFragment extends Fragment implements OnClickListener, TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+public class HotelFragment extends Fragment implements OnClickListener,
+        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult;
@@ -70,7 +73,8 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
     int year_Min;
     int dayMin;
     String raft, bargasht;
-
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
 
 
     @Override
@@ -86,7 +90,7 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
 
         lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
         tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
-        lblRoomCount.setOnClickListener(this);
+        //  lblRoomCount.setOnClickListener(this);
         tarikh_be.setOnClickListener(this);
         txtRoomCount = (TextView) rootView.findViewById(R.id.txtRoomCount);
         tvRaft = (TextView) rootView.findViewById(R.id.tvRaft);
@@ -131,17 +135,27 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
         mAdapter.setData(data);
         //   listRoomItem.setAdapter(mAdapter);
 
-
+//==================================================================================================
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
+        Date currentTime = Calendar.getInstance().getTime();
+ //=================================================================================================
+
+
+
+
         tvBargasht.setText(persianCalendarDatePicker.getPersianLongDate());
         tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
         month = persianCalendarDatePicker.getPersianMonth();
         year_ = persianCalendarDatePicker.getPersianYear();
         day = persianCalendarDatePicker.getPersianDay();
 
+        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogGregorian1.setOnDateSetListener(this);
+        datePickerDialogGregorian2.setOnDateSetListener(this);
 
-
-
+        datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
 
         datePickerDialog = DatePickerDialog.newInstance(
                 this,
@@ -162,12 +176,53 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
         datePickerDialog2.setMinDate(persianCalendarDatePicker);
 
 
-        raft=date_server(  persianCalendarDatePicker.getPersianYear(),
+        raft = date_server(persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
-        bargasht=date_server(  persianCalendarDatePicker.getPersianYear(),
+        bargasht = date_server(persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
+
+
+        //=====================================================================================================
+
+
+        datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+            }
+        });
+
+
+        datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+
+
+            }
+        });
+
+
+//=====================================================================================================
+
+        datePickerDialog2.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
+            }
+        });
+
+
+        datePickerDialogGregorian2.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+
+
+            }
+        });
 
 
         return rootView;
@@ -243,35 +298,30 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
                     }
                 }
 */
-               // if (ok) {
-                    try {
-                        Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
+                // if (ok) {
+                try {
+                    Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
 
-                        intent.putExtra("CheckIn", raft);
-                        intent.putExtra("CheckOut",bargasht);
-                        intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
-                        intent.putExtra("CheckInFa",tvRaft.getText().toString());
-                        intent.putExtra("Rooms", getRoomList(roomsSelected));
-                        intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
-                        intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
-                        Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-                     Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString())+1+"" );
+                    intent.putExtra("CheckIn", raft);
+                    intent.putExtra("CheckOut", bargasht);
+                    intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
+                    intent.putExtra("CheckInFa", tvRaft.getText().toString());
+                    intent.putExtra("Rooms", getRoomList(roomsSelected));
+                    intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
+                    intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
+                    Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
+                    Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
 
 
-
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
-                    }
-             //   }
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
+                }
+                //   }
 
                 break;
             case R.id.tvRaft:
-                datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
-                    @Override
-                    public void onCalendarChanged(boolean isGregorian) {
-                    }
-                });
+
 
                 datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
@@ -285,6 +335,8 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
                 break;
             case R.id.llRoom:
                 Intent room = new Intent(getActivity(), AddRoomActivity.class);
+
+                room.putExtra("roomList", Prefs.getString("Rooms", "dd"));
                 startActivity(room);
 
                 break;
@@ -384,11 +436,10 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
         persianCalendar.set(year, month, day);
 
 
-        Log.e("salam",date_server(year_, month, day));
+        Log.e("salam", date_server(year_, month, day));
         if (view.getTag().equals("DatepickerdialogBargasht")) {
             tvBargasht.setText(persianCalendar.getPersianLongDate());
-            bargasht=date_server(year,monthOfYear,dayOfMonth);
-
+            bargasht = date_server(year, monthOfYear, dayOfMonth);
 
 
         }
@@ -401,7 +452,7 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
             dayMin = dayOfMonth;
             tvRaft.setText(persianCalendar.getPersianLongDate());
             tvBargasht.setText(persianCalendar.getPersianLongDate());
-            raft=date_server(year,monthOfYear,dayOfMonth);
+            raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
             datePickerDialog2.initialize(this, year_, month, day);
@@ -422,7 +473,41 @@ public class HotelFragment extends Fragment implements OnClickListener, TimePick
         int yearS = Integer.valueOf(dateGrg[2]);
 
 
+        return yearS + "/" + monthS + "/" + dayS;
+    }
 
-        return yearS+"/"+"0"+monthS+"/"+dayS;
+    //Gregorian==============================================Gregorian=============================Gregorian
+
+    @Override
+    public void onTimeSet(com.wdullaer.materialdatetimepicker.time.RadialPickerLayout view, int hourOfDay, int minute, int second) {
+
+    }
+
+    @Override
+    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+        PersianCalendar persianCalendar = new PersianCalendar();
+        persianCalendar.set(year, month, day);
+
+        if (view.getTag().equals("DatePickerDialogGregorianRaft")){
+        //  datePickerDialogGregorian2.setMinDate(persianCalendar.toGregorianCalendar());
+
+
+        }
+
+        if (view.getTag().equals("DatePickerDialogGregorianBargasht")){
+            String str_dat = year + "/" + monthOfYear + "/" + dayOfMonth;
+
+
+        }
+
+
+
+        //  Date date;
+        //   DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        //  date = (Date) formatter.parse(str_dat);
+        // Calendar cal = Calendar.getInstance();
+        //   cal.setTime(date);
+        // cal.add(Calendar.DATE, -1);
+
     }
 }

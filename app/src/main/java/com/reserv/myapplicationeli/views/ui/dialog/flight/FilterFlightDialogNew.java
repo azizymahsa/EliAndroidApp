@@ -63,10 +63,7 @@ public class FilterFlightDialogNew implements View.OnClickListener {
         star4 = (SmoothCheckBox) dialogView.findViewById(R.id.star4);
         star5 = (SmoothCheckBox) dialogView.findViewById(R.id.star5);
 
-        hotel = (SmoothCheckBox) dialogView.findViewById(R.id.hotel);
-        boutique = (SmoothCheckBox) dialogView.findViewById(R.id.boutique);
-        apartment = (SmoothCheckBox) dialogView.findViewById(R.id.apartment);
-        resort = (SmoothCheckBox) dialogView.findViewById(R.id.resort);
+
 
         btnOk.setCustomTextFont("irsans.ttf");
         btnOk.setOnClickListener(this);

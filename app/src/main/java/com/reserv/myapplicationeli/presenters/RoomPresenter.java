@@ -26,14 +26,22 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
     private final InfoRoomsContract.View mView;
     private ArrayList<ModelRowCountRoom> rooms;
 
-
     public RoomPresenter(InfoRoomsContract.View mView) {
         this.mView = mView;
-        rooms = new ArrayList<>();
-        ModelRowCountRoom room = new ModelRowCountRoom();
-        room.setCountB(1);
-        room.setCountK(0);
-        rooms.add(room);
+
+    }
+
+    public void setRooms(ArrayList<ModelRowCountRoom> roomsList){
+        if (roomsList == null){
+            rooms = new ArrayList<>();
+            ModelRowCountRoom room = new ModelRowCountRoom();
+            room.setCountB(1);
+            room.setCountK(0);
+            rooms.add(room);
+        }else {
+            rooms = roomsList;
+        }
+
     }
 
 

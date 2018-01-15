@@ -20,6 +20,7 @@ import com.reserv.myapplicationeli.R;
 
 import com.reserv.myapplicationeli.base.BaseActivity;
 
+import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
 import com.reserv.myapplicationeli.views.fragments.pack.PackageFragment;
@@ -32,7 +33,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle;
-    private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance;
+    private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance,btnHotelFlight;
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
     @Override
@@ -65,6 +66,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnPackage = findViewById(R.id.btnPackage);
         btnTour = findViewById(R.id.btnTour);
         btnInsurance = findViewById(R.id.btnInsurance);
+        btnHotelFlight = findViewById(R.id.btnHotelFlight);
 
 
         tvTitle.setText(getString(R.string.searchFlight));
@@ -76,6 +78,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnPackage.setOnClickListener(this);
         btnTour.setOnClickListener(this);
         btnInsurance.setOnClickListener(this);
+        btnHotelFlight.setOnClickListener(this);
 
     }
 
@@ -110,6 +113,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
                 case R.id.btnInsurance:
                 break;
+                case R.id.btnHotelFlight:
+                    addFragment("هتل و پرواز",new HotelFlightFragment());
+
+                    break;
         }
 
     }
