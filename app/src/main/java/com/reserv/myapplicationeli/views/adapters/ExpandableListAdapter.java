@@ -132,7 +132,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 					i4.putExtra("Value-Mabda-Airport-Code",current.getAirportCode());*/
 				_context.startActivity(i4);
 				System.out.println("item.flGUID:"+item.flGUID);
-			//	Toast.makeText(v.getContext(),"fffff"+childPosition+"GUID:"+item.flGUID,Toast.LENGTH_SHORT).show();
+				//	Toast.makeText(v.getContext(),"fffff"+childPosition+"GUID:"+item.flGUID,Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -204,8 +204,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		TextView txttedad = (TextView) convertView.findViewById(R.id.txttedad);
 
 		///
-		lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
-		lblFlightArrivalTimeB.setText(item2.FlightTimeB+"");
+		if(item2.DepartureCityNameFaB.length() <= 2){//yek tarafe
+			lblArrivalCityNameFaB.setVisibility(View.GONE);
+			lblFlightArrivalTimeB.setVisibility(View.GONE);
+		}else{//2tarafe
+			lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
+			lblFlightArrivalTimeB.setText(item2.FlightTimeB+"");}
 
 
 		//

@@ -1,290 +1,435 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:swipe="http://schemas.android.com/apk/res-auto"
-	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	xmlns:swipe="http://schemas.android.com/apk/res-auto"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	xmlns:fancy="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/rlRoot"
 	android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   android:background="#ffffff"
-              android:orientation="vertical"
-   >
-    
-    <!-- <TextView
-        android:id="@+id/txtLabel"
-         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="16dp"
-        android:text="Home View"/>
-    
-    <ImageView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtLabel"
-        android:src="@drawable/ic_home"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/> -->
- 
-        <LinearLayout
-            android:id="@+id/linear"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:background="#927fff"
-            android:orientation="horizontal" >
-
-            <!-- android:background="@drawable/header_comment" -->
-
-            <TextView
-                android:id="@+id/txtCityBargasht"
-                android:layout_width="wrap_content"
-                android:layout_height="52dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="0.02"
-                android:gravity="right|center_vertical"
-                android:padding="6dip"
-                android:text=" تهران "
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/inputSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="8dp"
-               
-                android:drawableLeft="@drawable/ic_fligh" />
-
-            <TextView
-                android:id="@+id/txtCityRaft"
-                android:layout_width="wrap_content"
-                android:layout_height="52dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="8dp"
-                android:layout_weight="0.01"
-                android:gravity="left|center_vertical"
-                android:padding="6dip"
-                android:text=" استانبول "
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/txtBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="8dp"
-                android:drawableLeft="@drawable/right_arrow_back" />
-
-        </LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#927fff"
-    android:orientation="horizontal" >
-
-            <!-- android:background="@drawable/header_comment" -->
-
-            <TextView
-                android:id="@+id/txtDateOnvan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:gravity="center"
-                android:padding="6dip"
-                android:text=" چهارشنبه 28 اسفند-دوشنبه 5 فروردین "
-                android:textColor="#ffffff"
-                android:textSize="9sp" />
-
-        </LinearLayout>
-
-  <LinearLayout
-	  android:id="@+id/linear_expand"
-      android:layout_width="match_parent"
-      android:layout_height="fill_parent"
-      android:layout_marginTop="1dp"
-      android:background="#ffffff"
-      android:orientation="horizontal"
-      android:padding="10dp"
-	  android:visibility="visible">
-
-           <!-- <com.fortysevendeg.swipelistview.SwipeListView
-               android:id="@+id/listCustomers"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:divider="@color/color_strokk"
-               android:dividerHeight="1dp"
-               swipe:swipeBackView="@+id/back"
-               swipe:swipeCloseAllItemsWhenMoveList="true"
-               swipe:swipeDrawableChecked="@drawable/choice_selected"
-               swipe:swipeDrawableUnchecked="@drawable/choice_unselected"
-               swipe:swipeFrontView="@+id/front"
-               swipe:swipeMode="both" /> -->
-               <ExpandableListView
-                android:id="@+id/lvExp"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:cacheColorHint="#00000000"/>
-
-        
-    </LinearLayout>
 	<LinearLayout
-		android:id="@+id/linear_no_result"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="#ffffff"
 		android:orientation="vertical"
-		android:visibility="gone">
-	<TextView
-		android:id="@+id/txtNoResult"
-		android:layout_width="match_parent"
-		android:layout_height="104dp"
-		android:gravity="center"
-		android:textColor="#927fff"
-		android:textSize="14dp"
-		android:textStyle="bold"
-		android:text="نتیجه ای برای جستجوی شما یافت نشد" />
+		>
 
-	<ImageView
-		android:layout_width="match_parent"
-		android:layout_height="199dp"
-		android:src="@drawable/no_result_icon" />
 
-	<Button
-		android:id="@+id/btn_no_Result"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="بازگشت به صفحه قبل"
-		android:textColor="#fff"
-		android:textSize="14dp"
-		android:textStyle="bold"
-		android:layout_marginTop="@dimen/_25dp"
-		android:background="@drawable/btn_plan_select"/>
+
+		<FrameLayout
+
+			xmlns:fancy="http://schemas.android.com/apk/res-auto"
+			android:id="@+id/toolbarLayout"
+			android:layout_width="match_parent"
+			android:layout_height="60dp"
+			>
+
+			<android.support.v7.widget.Toolbar
+				android:id="@+id/toolbar"
+				android:layout_width="match_parent"
+				android:layout_height="60dp"
+				android:background="#9d80ff"/>
+
+
+			<!--<mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/txtBack"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="@color/focusColor"
+                fancy:fb_radius="6dp"
+                fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
+                android:gravity="right"
+                />-->
+			<mehdi.sakout.fancybuttons.FancyButton
+				android:id="@+id/txtBack"
+				style="@style/fancy_toolbar"
+				android:layout_gravity="right"
+				fancy:fb_textSize="20dp"
+				android:visibility="visible"/>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_gravity="center">
+
+				<mehdi.sakout.fancybuttons.FancyButton
+					android:id="@+id/txtCityRaft"
+					android:layout_width="wrap_content"
+					android:layout_height="40dp"
+					android:layout_centerHorizontal="true"
+
+					android:layout_gravity="center"
+					android:layout_marginTop="2dp"
+					android:text="tvTitle"
+					android:visibility="visible"
+					fancy:fb_defaultColor="@android:color/transparent"
+					fancy:fb_focusColor="@color/focusColor"
+					fancy:fb_radius="6dp"
+					fancy:fb_text="تهرااان "
+					fancy:fb_textColor="#FFFFFF"
+					fancy:fb_textSize="15dp" />
+				<TextView
+					android:id="@+id/txtCityBargasht"
+					android:layout_width="100dp"
+					android:layout_height="wrap_content"
+					android:gravity="center"
+					android:textColor="@android:color/white"
+					android:textSize="@dimen/_12dp"
+					android:layout_centerHorizontal="true"
+					android:layout_marginRight="2dp"
+					android:layout_below="@+id/txtCityRaft"
+					android:text="tvCount"
+					android:layout_marginTop="2dp"
+					android:visibility="gone"/>
+
+
+				<TextView
+					android:id="@+id/txtDateOnvan"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true"
+					android:layout_centerHorizontal="true"
+					android:layout_gravity="center"
+					android:text="asdasd"
+					android:layout_marginTop="2dp"
+					android:textColor="@android:color/white"
+					android:textSize="@dimen/_12dp" />
+
+				<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_alignParentStart="true"
+					android:layout_alignParentTop="true"
+					android:gravity="left">
+
+					<mehdi.sakout.fancybuttons.FancyButton
+						android:id="@+id/btnHome"
+						android:layout_width="50dp"
+						android:layout_height="match_parent"
+						android:layout_gravity="right"
+						android:gravity="right"
+						fancy:fb_defaultColor="@android:color/transparent"
+						fancy:fb_focusColor="@color/focusColor"
+
+						fancy:fb_radius="6dp"
+						fancy:fb_text=" "
+						fancy:fb_textColor="#FFFFFF"
+						fancy:fb_textSize="25dp" />
+
+					<ImageView
+						android:layout_width="50dp"
+						android:layout_height="match_parent"
+						android:padding="10dp"
+						android:src="@drawable/e_logo"
+						android:visibility="gone"/>
+
+
+				</RelativeLayout>
+			</RelativeLayout>
+
+
+
+
+
+
+		</FrameLayout>
+
+
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				android:orientation="vertical"
+				android:layout_weight="100">
+				<LinearLayout
+					android:id="@+id/linear_expand"
+					android:layout_below="@+id/toolbarLayout"
+
+					android:layout_width="match_parent"
+					android:layout_height="fill_parent"
+					android:layout_marginTop="1dp"
+					android:background="#ffffff"
+					android:orientation="horizontal"
+
+					android:padding="10dp"
+					android:visibility="visible">
+
+					<!-- <com.fortysevendeg.swipelistview.SwipeListView
+                        android:id="@+id/listCustomers"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="@color/color_strokk"
+                        android:dividerHeight="1dp"
+                        swipe:swipeBackView="@+id/back"
+                        swipe:swipeCloseAllItemsWhenMoveList="true"
+                        swipe:swipeDrawableChecked="@drawable/choice_selected"
+                        swipe:swipeDrawableUnchecked="@drawable/choice_unselected"
+                        swipe:swipeFrontView="@+id/front"
+                        swipe:swipeMode="both" /> -->
+					<ExpandableListView
+						android:id="@+id/lvExp"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:cacheColorHint="#00000000" />
+
+
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/linear_no_result"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="#ffffff"
+					android:orientation="vertical"
+					android:visibility="gone">
+					<TextView
+						android:id="@+id/txtNoResult"
+						android:layout_width="match_parent"
+						android:layout_height="104dp"
+						android:gravity="center"
+						android:textColor="#927fff"
+						android:textSize="14dp"
+						android:textStyle="bold"
+						android:text="نتیجه ای برای جستجوی شما یافت نشد" />
+
+					<ImageView
+						android:layout_width="match_parent"
+						android:layout_height="199dp"
+						android:src="@drawable/no_result_icon" />
+
+					<Button
+						android:id="@+id/btn_no_Result"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="بازگشت به صفحه قبل"
+						android:textColor="#fff"
+						android:textSize="14dp"
+						android:textStyle="bold"
+						android:layout_marginTop="@dimen/_25dp"
+						android:background="@drawable/btn_plan_select"/>
+
+				</LinearLayout>
+
+
+			</LinearLayout>
+			<View
+				android:id="@+id/view"
+				android:layout_below="@+id/toolbarLayout"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="@drawable/shadow"/>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				android:layout_weight="8"
+				android:background="@color/hotel_detail_background"
+				android:orientation="horizontal"
+				android:gravity="center"
+				>
+
+				<LinearLayout
+
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_weight="140"
+					android:gravity="center"
+					android:orientation="horizontal">
+					<RelativeLayout
+						android:layout_width="0dp"
+						android:layout_weight="100"
+						android:layout_height="wrap_content">
+
+
+
+						<mehdi.sakout.fancybuttons.FancyButton
+							android:id="@+id/btnNextDays"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							fancy:fb_defaultColor="@android:color/transparent"
+							fancy:fb_focusColor="@color/focusColor"
+							fancy:fb_radius="6dp"
+							fancy:fb_textColor="#FFFFFF"
+
+							android:layout_gravity="right"
+							fancy:fb_textSize="25dp"
+							fancy:fb_text=" "
+							android:gravity="right"
+							/>
+
+
+
+						<TextView
+							android:id="@+id/tvNextDay"
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:text="@string/icon_arrow_left"
+							android:textAppearance="@style/IconFonts"
+							android:gravity="center"
+							android:textSize="26dp"
+							android:layout_marginLeft="5dp"
+							android:textColor="#aaaaaa" />
+						<TextView
+							android:layout_toRightOf="@+id/tvNextDay"
+							android:id="@+id/txtRuzeGhabl"
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:textColor="#aaaaaa"
+							android:gravity="center"
+							android:text="روز قبل"
+							android:textSize="14dp"
+							/>
+
+
+
+
+
+					</RelativeLayout>
+					<RelativeLayout
+						android:layout_width="0dp"
+						android:layout_weight="100"
+						android:layout_height="wrap_content">
+
+						<mehdi.sakout.fancybuttons.FancyButton
+							android:id="@+id/btnLastDays"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							fancy:fb_defaultColor="@android:color/transparent"
+							fancy:fb_focusColor="@color/focusColor"
+							fancy:fb_radius="6dp"
+							fancy:fb_textColor="#FFFFFF"
+
+							android:layout_gravity="right"
+							fancy:fb_textSize="25dp"
+							fancy:fb_text=" "
+							android:gravity="right"
+							/>
+
+						<TextView
+							android:id="@+id/txtRuzeBad"
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:textColor="#aaaaaa"
+							android:gravity="center"
+							android:text="روز بعد"
+							android:layout_marginLeft="5dp"
+							android:textSize="14dp"
+							/>
+						<TextView
+
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:text="@string/icon_arrow_right"
+							android:textAppearance="@style/IconFonts"
+							android:gravity="center"
+							android:textSize="26dp"
+							android:textColor="#aaaaaa"
+							android:layout_toRightOf="@+id/txtRuzeBad"/>
+
+
+					</RelativeLayout>
+
+
+
+
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:id="@+id/llBottom"
+
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_weight="100"
+					android:gravity="center">
+					<TextView
+						android:id="@+id/txtFilter"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:textColor="#aaaaaa"
+						android:gravity="center"
+						android:text="فیلتر کردن"
+						android:layout_marginLeft="5dp"
+						android:textSize="14dp"
+						/>
+					<TextView
+						android:id="@+id/iconFilter"
+
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:text="@string/icon_filter"
+						android:textAppearance="@style/IconFonts"
+						android:gravity="center"
+						android:textSize="26dp"
+						android:layout_marginLeft="5dp"
+						android:textColor="#aaaaaa" />
+				</LinearLayout>
+
+				<View
+					android:layout_width="1dp"
+					android:layout_height="match_parent"/>
+
+
+
+
+				<LinearLayout
+					android:id="@+id/llSort"
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_weight="100"
+					android:orientation="horizontal"
+					android:gravity="center">
+
+					<TextView
+						android:id="@+id/lblMoratabSazi"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:textColor="#aaaaaa"
+						android:gravity="center"
+						android:text="مرتب کردن"
+						android:layout_marginLeft="5dp"
+						android:textSize="14dp"
+						/>
+					<TextView
+						android:id="@+id/tvSortIcon"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:text="@string/icon_sort"
+						android:textAppearance="@style/IconFonts"
+						android:gravity="center"
+						android:textSize="26dp"
+						android:layout_marginLeft="5dp"
+						android:textColor="#aaaaaa" />
+
+				</LinearLayout>
+
+
+			</LinearLayout>
+
+
+
+
+
+
+		</LinearLayout>
 
 	</LinearLayout>
-</LinearLayout>
-<LinearLayout
-    android:id="@+id/footer"
-    android:layout_width="fill_parent"
-    android:layout_height="40dp"
-    android:gravity="center"
-    android:layout_centerHorizontal="true"
-    android:background="#ffffff"
-    android:layout_alignParentBottom="true" >
-
-	    <Button
-	        android:id="@+id/txtRuzeBad"
-	        android:layout_width="50dp"
-	        android:layout_height="15dp"
-	        android:layout_gravity="center"
-	        android:layout_marginLeft="8dp"
-	        android:layout_marginRight="8dp"
-	        android:background="#fff"
-	        android:drawableLeft="@drawable/left_arrow_larg"
-	        android:text="روز بعد"
-	        android:textColor="#486b6b"
-	        android:textSize="9dip" />
-
-      <Button
-          android:id="@+id/txtRuzeGhabl"
-          android:layout_width="50dp"
-          android:layout_height="15dp"
-          android:layout_marginRight="4dp"
-          android:background="#fff"
-          android:drawableRight="@drawable/right_arrow_larg"
-          android:text="روز قبل"
-          android:textColor="#486b6b"
-          android:textSize="9dip" />
-
-	   <!--  <TextView
-	        android:id="@+id/flesh_ruze_ghabl"
-	        android:layout_width="4dp"
-	        android:layout_height="8dp"
-	        android:layout_gravity="center"
-	        android:layout_marginLeft="8dp"
-	        android:background="@drawable/right_arrow_larg"
-	        android:text=" " /> -->
-
-	    <TextView
-	        android:id="@+id/lblCityMaghsadRaft"
-	        android:layout_width="51dp"
-	        android:layout_height="24dp"
-	        android:layout_marginTop="4dp"
-	        android:gravity="right"
-	        android:text="فیلتر کردن"
-	        android:textColor="#486b6b"
-	        android:textSize="9dip" />
-
-	     <TextView
-	         android:id="@+id/txtFilter"
-	         android:layout_width="20dp"
-	         android:layout_height="20dp"
-	         android:layout_alignParentRight="true"
-	         android:layout_marginBottom="8dp"
-	         android:layout_marginLeft="8dp"
-	         android:layout_marginRight="8dp"
-	         android:layout_marginTop="4dp"
-	         android:background="@drawable/ff"
-	         android:gravity="center"
-	         android:text=""
-	         android:textColor="#FFFFFF"
-	         android:textSize="12sp" />
-
-	    
-		    <TextView
-		        android:id="@+id/lblCityMabdaRaft"
-		        android:layout_width="62dp"
-		        android:layout_height="28dp"
-		        android:layout_gravity="center_vertical"
-		        android:layout_marginTop="4dp"
-		        android:gravity="right"
-		        android:text="مرتب سازی"
-		        android:textColor="#486b6b"
-		        android:textSize="9dip" />
-	   
-	    <TextView
-	        android:id="@+id/lblMoratabSazi"
-	        android:layout_width="20dp"
-	        android:layout_height="20dp"
-	        android:layout_alignParentRight="true"
-	        android:layout_marginBottom="8dp"
-	        android:layout_marginLeft="8dp"
-	        android:layout_marginRight="8dp"
-	        android:layout_marginTop="4dp"
-	        android:background="@drawable/filter_icon"
-	        android:gravity="center"
-	        android:text=""
-	        android:textColor="#FFFFFF"
-	        android:textSize="12sp" />
-	   
-   </LinearLayout>
-
 
 
 
 	<include
-	layout="@layout/loading_layout"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:visibility="gone"/>
+		layout="@layout/loading_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:visibility="gone"/>
 
-	<!-- <TextView
-        android:id="@+id/textView1"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:text="Footer" /> -->
 </RelativeLayout>

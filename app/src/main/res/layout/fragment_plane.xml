@@ -282,9 +282,9 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="10dp"
                                     android:gravity="center"
-                                    android:text="10 december"
+                                    android:text="انتخاب کنید"
                                     android:textColor="@color/textColorRDark"
-                                    android:textSize="14dp" />
+                                    android:textSize="12dp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -315,9 +315,9 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="10dp"
                                     android:gravity="center"
-                                    android:text="10 december"
+                                    android:text="انتخاب کنید"
                                     android:textColor="@color/textColorRDark"
-                                    android:textSize="14dp"
+                                    android:textSize="12dp"
 
                                     />
 

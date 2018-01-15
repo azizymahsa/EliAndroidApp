@@ -112,7 +112,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="1dp"
-                        android:background="@color/background_color_flight_button"
+                        android:background="#29aae3"
                         android:gravity="center"
                         android:text="اکونومی"
                         android:textColor="#fff"

@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -26,13 +25,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
+import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 import com.reserv.myapplicationeli.views.ui.GetAirportMaghsadActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialog;
 
-public class PlanFragment extends Fragment implements OnClickListener {
+public class PlanFragment extends Fragment implements OnClickListener ,TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     public PlanFragment() {
     }
 
@@ -51,7 +57,16 @@ public class PlanFragment extends Fragment implements OnClickListener {
     public static int picker_az_month;
     public static int picker_az_day;
     private View rootView;
+    com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
+    com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
 
+    int month;
+    int year_;
+    int day;
+    int monthMin;
+    int year_Min;
+    int dayMin;
+    String raft, bargasht;
 
     public static int countNafar = 1;
 
@@ -121,22 +136,44 @@ public class PlanFragment extends Fragment implements OnClickListener {
         btnOne.setOnClickListener(this);
 
         searchPlan.setOnClickListener(this);
+///Calender nejati\
+        PersianCalendar persianCalendarDatePicker = new PersianCalendar();
+        tarikh_az_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+        picker_az_format=persianCalendarDatePicker.getPersianLongDate();
+        tarikh_be_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+        picker_be_format=persianCalendarDatePicker.getPersianLongDate();
+        month = persianCalendarDatePicker.getPersianMonth();//9
+        year_ = persianCalendarDatePicker.getPersianYear();//1396
+        day = persianCalendarDatePicker.getPersianDay();//24
 
-        /////////
-        Calendar c = Calendar.getInstance();//MMMM
 
-        SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
-        picker_az_format = dfm.format(c.getTime());
-        picker_be_format = dfm.format(c.getTime());
 
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//"2018-01-29"
-        picker_az = df.format(c.getTime());
-        picker_be = df.format(c.getTime());
-        System.out.println("picker_az:" + picker_az + "Picker_az_format" + picker_az_format);
 
-        tarikh_az_picker.setText(picker_az_format);
-        tarikh_be_picker.setText(picker_be_format);
-        //////
+
+
+        datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
+                this,
+                persianCalendarDatePicker.getPersianYear(),
+                persianCalendarDatePicker.getPersianMonth(),
+                persianCalendarDatePicker.getPersianDay()
+        );
+
+        datePickerDialog.setMinDate(persianCalendarDatePicker);
+
+
+        datePickerDialog2 = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
+                this,
+                persianCalendarDatePicker.getPersianYear(),
+                persianCalendarDatePicker.getPersianMonth(),
+                persianCalendarDatePicker.getPersianDay()
+        );
+        datePickerDialog2.setMinDate(persianCalendarDatePicker);
+        raft=date_server(  persianCalendarDatePicker.getPersianYear(),
+                persianCalendarDatePicker.getPersianMonth(),
+                persianCalendarDatePicker.getPersianDay());
+        bargasht=date_server(  persianCalendarDatePicker.getPersianYear(),
+                persianCalendarDatePicker.getPersianMonth(),
+                persianCalendarDatePicker.getPersianDay());
 
 
         //set value bundle
@@ -155,64 +192,6 @@ public class PlanFragment extends Fragment implements OnClickListener {
         return rootView;
     }//end oncreat
 
-    public static class DatePickerFragment extends android.support.v4.app.DialogFragment implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            DatePickerDialog dialog = null;
-            if (flag) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-                dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-            } else {
-                int year = picker_az_year;
-                int month = picker_az_month;
-                int day = picker_az_day;
-                dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date mDate;
-                try {
-                    mDate = sdf.parse(year + "-" + month + "-" + day);
-
-                    long timeInMilliseconds = mDate.getTime();
-                    System.out.println("Date in milli :: " + timeInMilliseconds);
-
-                    dialog.getDatePicker().setMinDate(timeInMilliseconds);
-                } catch (ParseException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-            //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-            return dialog;
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            //tarikh_be_picker.setText(year+ month + day+"");
-
-
-            month = month + 1;
-            if (flag) {
-                tarikh_az_picker.setText(day + " " + new DateFormatSymbols().getMonths()[month - 1] + " " + year);
-                picker_az = year + "-" + (month) + "-" + day;//"2018-01-29"
-                picker_az_format = day + " " + new DateFormatSymbols().getMonths()[month - 1] + " " + year;
-
-                picker_az_year = year;
-                picker_az_month = month - 1;
-                picker_az_day = day;
-
-
-            } else {
-                tarikh_be_picker.setText(day + " " + new DateFormatSymbols().getMonths()[month - 1] + " " + year);
-                picker_be = year + "-" + (month) + "-" + day;//"2018-01-29"
-                picker_be_format = day + " " + new DateFormatSymbols().getMonths()[month - 1] + " " + year;
-            }
-        }
-    }//endDatepicker
     @Override
     public void onResume() {
         Log.e("DEBUG", "onResume of PlanFragment");
@@ -228,6 +207,15 @@ public class PlanFragment extends Fragment implements OnClickListener {
         }//return rootView;
     }
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        Prefs.putString("Value-Flight-City-Fa", "");
+        Prefs.putString("Value-Flight-City-En", "");
+        Prefs.putString("Value-Flight-City-Code", "");
+    }
     public boolean isInRange(int a, int b, int c) {
         return b > a ? c >= a && c <= b : c >= b && c <= a;
     }
@@ -236,22 +224,7 @@ public class PlanFragment extends Fragment implements OnClickListener {
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
-            case R.id.tarikh_be_picker:
-                android.support.v4.app.DialogFragment newFragment = new DatePickerFragment();
-                FragmentManager fm2 = getActivity().getSupportFragmentManager();
-                // DatePickerFragment dialog = new DatePickerFragment();
-                newFragment.show(fm2,"");
-                flag = false;
 
-                break;
-            case R.id.tarikh_az_picker:
-                android.support.v4.app.DialogFragment  newFragment2 = new DatePickerFragment();
-
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                // DatePickerFragment dialog = new DatePickerFragment();
-                newFragment2.show(fm,"");
-                flag = true;
-                break;
 
             case R.id.btnPlusB:
                 countNafar = Integer.parseInt(txtCountB.getText().toString()) + Integer.parseInt(txtCountK.getText().toString()) + Integer.parseInt(txtCountN.getText().toString());
@@ -408,71 +381,175 @@ public class PlanFragment extends Fragment implements OnClickListener {
                 tarikh_be.setVisibility(View.INVISIBLE);
                 linear_picker.setVisibility(View.INVISIBLE);
                 break;
-            case R.id.searchPlan:
+            case R.id.tarikh_be_picker:
+                datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
-                Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
-                //Intent intent1 = new Intent(this,LoadingParvazTwoActivity.class);
-                //   Bundle bundleS = getActivity().getIntent().getExtras();
-                if (Prefs.getString("Value-Mabda-City","") != null) {
-                    if (Prefs.getString("Value-Mabda-Airport-Code","") != null) {
-                        intent1.putExtra("Value-Mabda-City", Prefs.getString("Value-Mabda-City",""));
-                        intent1.putExtra("Value-Mabda-Airport", Prefs.getString("Value-Mabda-Airport",""));
-                        intent1.putExtra("Value-Mabda-Airport-Code", Prefs.getString("Value-Mabda-Airport-Code",""));//*THR
-                    } else {
+                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+                break;
+            case R.id.tarikh_az_picker:
+                datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+                    @Override
+                    public void onCalendarChanged(boolean isGregorian) {
+                    }
+                });
+
+                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+
+                break;
+            case R.id.searchPlan:
+                boolean ok = true;
+
+                try {
+               /*     Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
+
+                  *//*  intent.putExtra("CheckIn", raft);
+                    intent.putExtra("CheckOut",bargasht);
+                    intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
+                    intent.putExtra("CheckInFa",tvRaft.getText().toString());*//*
+                    intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
+                    intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
+                    intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
+                    intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
+
+
+
+
+                    startActivity(intent1);*/
+
+
+                    Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
+
+                    if (Prefs.getString("Value-Mabda-City","") != null) {
+                        if (Prefs.getString("Value-Mabda-Airport-Code","") != null) {
+                            intent1.putExtra("Value-Mabda-City", Prefs.getString("Value-Mabda-City",""));
+                            intent1.putExtra("Value-Mabda-Airport", Prefs.getString("Value-Mabda-Airport",""));
+                            intent1.putExtra("Value-Mabda-Airport-Code", Prefs.getString("Value-Mabda-Airport-Code",""));//*THR
+                        } else {
+                            intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
+                            intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
+                            intent1.putExtra("Value-Mabda-Airport-Code", "THR");//*THR
+                        }
+                        if (Prefs.getString("Value-Maghsad-Airport-Code","") != null) {
+                            intent1.putExtra("Value-Maghsad-City", Prefs.getString("Value-Maghsad-City",""));
+                            intent1.putExtra("Value-Maghsad-Airport", Prefs.getString("Value-Maghsad-Airport",""));
+                            intent1.putExtra("Value-Maghsad-Airport-Code",  Prefs.getString("Value-Maghsad-Airport-Code",""));//*
+
+                        } else {
+                            intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());
+                            intent1.putExtra("Value-Maghsad-Airport", lbl_forudgah_maghsad.getText().toString());
+                            intent1.putExtra("Value-Maghsad-Airport-Code", "IST");//*
+                        }
+                        intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
+                        intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());
+
+                        intent1.putExtra("Value-Flag-Two", Integer.toString(flagOneTwo));
+                        intent1.putExtra("Value-AdlCount", txtCountB.getText().toString());
+                        intent1.putExtra("Value-ChdCount", txtCountK.getText().toString());
+                        intent1.putExtra("Value-InfCount", txtCountN.getText().toString());
+
+                   /* intent1.putExtra("Value-DepartureDate", picker_az);//2017-11-24
+                    intent1.putExtra("Value-ArrivalDate", picker_be);//2017-11-29
+
+                    intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
+                    intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29*/
+                        intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
+                        intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
+                        intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
+                        intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
+
+                    } else {//default
                         intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
                         intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
                         intent1.putExtra("Value-Mabda-Airport-Code", "THR");//*THR
-                    }
-                    if (Prefs.getString("Value-Maghsad-Airport-Code","") != null) {
-                        intent1.putExtra("Value-Maghsad-City", Prefs.getString("Value-Maghsad-City",""));
-                        intent1.putExtra("Value-Maghsad-Airport", Prefs.getString("Value-Maghsad-Airport",""));
-                        intent1.putExtra("Value-Maghsad-Airport-Code",  Prefs.getString("Value-Maghsad-Airport-Code",""));//*
 
-                    } else {
                         intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());
                         intent1.putExtra("Value-Maghsad-Airport", lbl_forudgah_maghsad.getText().toString());
                         intent1.putExtra("Value-Maghsad-Airport-Code", "IST");//*
+
+                        intent1.putExtra("Value-Flag-Two", Integer.toString(flagOneTwo));
+                        intent1.putExtra("Value-AdlCount", txtCountB.getText().toString());
+                        intent1.putExtra("Value-ChdCount", txtCountK.getText().toString());
+                        intent1.putExtra("Value-InfCount", txtCountN.getText().toString());
+
+                        intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
+                        intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
+
+                        intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
+                        intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
                     }
-                    intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
-                    intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());
 
-                    intent1.putExtra("Value-Flag-Two", Integer.toString(flagOneTwo));
-                    intent1.putExtra("Value-AdlCount", txtCountB.getText().toString());
-                    intent1.putExtra("Value-ChdCount", txtCountK.getText().toString());
-                    intent1.putExtra("Value-InfCount", txtCountN.getText().toString());
-
-                    intent1.putExtra("Value-DepartureDate", picker_az);//2017-11-24
-                    intent1.putExtra("Value-ArrivalDate", picker_be);//2017-11-29
-
-                    intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-11-24
-                    intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-11-29
-
-
-                } else {//default
-                    intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
-                    intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
-                    intent1.putExtra("Value-Mabda-Airport-Code", "THR");//*THR
-
-                    intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());
-                    intent1.putExtra("Value-Maghsad-Airport", lbl_forudgah_maghsad.getText().toString());
-                    intent1.putExtra("Value-Maghsad-Airport-Code", "IST");//*
-
-                    intent1.putExtra("Value-Flag-Two", Integer.toString(flagOneTwo));
-                    intent1.putExtra("Value-AdlCount", txtCountB.getText().toString());
-                    intent1.putExtra("Value-ChdCount", txtCountK.getText().toString());
-                    intent1.putExtra("Value-InfCount", txtCountN.getText().toString());
-
-                    intent1.putExtra("Value-DepartureDate", picker_az);//2017-11-24
-                    intent1.putExtra("Value-ArrivalDate", picker_be);//2017-11-29
-
-                    intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-11-24
-                    intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-11-29
+                    startActivity(intent1);
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
                 }
-
-                startActivity(intent1);
-
                 break;
 
         }
+    }
+    public  String date_server(int y, int m, int d) {//1396  9 25
+        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);//Mon Jan 15 12:38:00 GMT+03:30 2018
+
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");//01/15/2018
+        String formatted = format1.format(date.getTime());
+        String[] dateGrg = formatted.split("/");
+        int monthS = Integer.valueOf(dateGrg[0]);//1
+        long dayS = Long.valueOf(dateGrg[1]);//15
+        int yearS = Integer.valueOf(dateGrg[2]);//2018
+
+
+
+        return yearS+"-"+"0"+monthS+"-"+dayS;
+    }
+
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+        year_ = year;
+        month = monthOfYear;
+        day = dayOfMonth;
+        PersianCalendar persianCalendar = new PersianCalendar();
+        persianCalendar.set(year, month, day);
+
+
+        Log.e("salam",date_server(year_, month, day));
+        if (view.getTag().equals("DatepickerdialogBargasht")) {
+            tarikh_be_picker.setText(persianCalendar.getPersianLongDate());
+
+            bargasht=date_server(year,monthOfYear,dayOfMonth);
+
+
+            picker_be_format=persianCalendar.getPersianLongDate();
+
+        }
+
+
+        if (view.getTag().equals("DatepickerdialogRaft")) {
+
+            year_Min = year;
+            monthMin = monthOfYear;
+            dayMin = dayOfMonth;
+            tarikh_az_picker.setText(persianCalendar.getPersianLongDate());
+            picker_az=date_server(year,monthOfYear,dayOfMonth);//bayad in bashe
+            picker_az_format=persianCalendar.getPersianLongDate();
+
+            tarikh_be_picker.setText(persianCalendar.getPersianLongDate());
+            picker_be=date_server(year,monthOfYear,dayOfMonth);//bayad en bashe
+            picker_be_format=persianCalendar.getPersianLongDate();
+
+            raft=date_server(year,monthOfYear,dayOfMonth);
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
+            datePickerDialog2.initialize(this, year_, month, day);
+            datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+
+
+        }
+    }
+
+
+    @Override
+    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
+
     }
 }

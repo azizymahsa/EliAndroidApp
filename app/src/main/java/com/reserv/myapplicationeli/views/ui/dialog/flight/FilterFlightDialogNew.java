@@ -3,10 +3,13 @@ package com.reserv.myapplicationeli.views.ui.dialog.flight;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
-
+import com.reserv.myapplicationeli.models.model.ModelCheckBox;
+import com.reserv.myapplicationeli.views.adapters.hotel.FilterAdapter;
 
 import java.util.ArrayList;
 
@@ -17,248 +20,346 @@ import mehdi.sakout.fancybuttons.FancyButton;
  * Created by Reza.nejati on 1/7/2018.
  */
 
-public class FilterFlightDialogNew implements View.OnClickListener {
+public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheckBox.OnCheckedChangeListener{
     android.app.AlertDialog dialog;
+
+    public ArrayList<ModelCheckBox> arrayTrue=new ArrayList<>();
+    private ArrayList<ModelCheckBox> modelCheckBoxes = new ArrayList<>();
+
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
     Context activity;
     FancyButton btnOk, btnCancel;
-    FilterFlightDialogListenerNew filterFlightDialogListenerNew;
+    SmoothCheckBox noStop, oneStop,twoStopMore,economiF, businessF, ferstF;
+    TextView txtTavaghof;
+    // FilterFlightDialogListenerNew filterFlightDialogListenerNew;
     FilterFlightDialogListenerArray filterFlightDialogListenerArray;
-    SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1, hotel, boutique, apartment, resort;
+    SmoothCheckBox remove, hotel, boutique, apartment, resort;
     ArrayList<FilterModelّFlight> filter;
-    boolean star1_;
-    boolean star2_;
-    boolean star3_;
-    boolean star4_;
-    boolean star5_;
-    boolean bestSeler_;
-    boolean bestOff_;
-    boolean resort_;
-    boolean boutique_;
-    boolean apartment_;
-    boolean hotel_;
+    boolean noStop_;
+    boolean twoStopMore_;
+    boolean oneStop_;
 
-   // public FilterFlightDialogNew(final Context activity, FilterFlightDialogListenerNew filterFlightDialogListener, ArrayList<FilterModelّFlight> filterModels, FilterFlightDialogListenerArray searchParvazActivity) {
-   // }
-    public FilterFlightDialogNew(final Context activity, FilterFlightDialogListenerNew filterFlightDialogListener, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray) {
+    boolean economiF_;
+    boolean businessF_;
+    boolean ferstF_;
+
+    boolean remove_;
+
+    ListView lv;
+     FilterAdapter adapter;
+    public ArrayList<ModelCheckBox> modelItems=new ArrayList<>();
+
+
+    public FilterFlightDialogNew(final Context activity, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray, ArrayList<ModelCheckBox> filterAirlines) {
         this.activity = activity;
         this.filter = filter;
-        this.filterFlightDialogListenerNew = filterFlightDialogListener;
+        this.modelCheckBoxes = filterAirlines;
+        // this.filterFlightDialogListenerNew = filterFlightDialogListener;
         this.filterFlightDialogListenerArray = filterFlightDialogListenerArray;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
-        dialogView = inflater.inflate(R.layout.filter_dialog, null);
-   //   filter.add(new FilterModelّFlight(false, false, false, false, false, false, false, false, false, false, false));
+        dialogView = inflater.inflate(R.layout.filter_flight_dialog, null);
+        //  filter.add(new FilterModelّFlight(false, false, false, false, false, false, false));
 
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
-        bestSeler = (SmoothCheckBox) dialogView.findViewById(R.id.bestSeler);
-        bestOff = (SmoothCheckBox) dialogView.findViewById(R.id.bestOff);
-        Remove = (SmoothCheckBox) dialogView.findViewById(R.id.Remove);
-        star1 = (SmoothCheckBox) dialogView.findViewById(R.id.star1);
-        star2 = (SmoothCheckBox) dialogView.findViewById(R.id.star2);
-        star3 = (SmoothCheckBox) dialogView.findViewById(R.id.star3);
-        star4 = (SmoothCheckBox) dialogView.findViewById(R.id.star4);
-        star5 = (SmoothCheckBox) dialogView.findViewById(R.id.star5);
+
+        noStop = (SmoothCheckBox) dialogView.findViewById(R.id.noStop);
+        oneStop = (SmoothCheckBox) dialogView.findViewById(R.id.oneStop);
+        twoStopMore = (SmoothCheckBox) dialogView.findViewById(R.id.twoStopMore);
+
+        remove = (SmoothCheckBox) dialogView.findViewById(R.id.Remove);
+
+        economiF = (SmoothCheckBox) dialogView.findViewById(R.id.economiF);
+        businessF = (SmoothCheckBox) dialogView.findViewById(R.id.businessF);
+        ferstF = (SmoothCheckBox) dialogView.findViewById(R.id.ferstF);
 
 
+        boutique = (SmoothCheckBox) dialogView.findViewById(R.id.boutique);
+        resort = (SmoothCheckBox) dialogView.findViewById(R.id.resort);
+        txtTavaghof = (TextView) dialogView.findViewById(R.id.txtTavaghof);
+
+
+        lv = (ListView)  dialogView.findViewById(R.id.listView1);
+       /* modelItems = new ModelCheckBox[5];
+        modelItems[0] = new ModelCheckBox("pizza", 0);
+        modelItems[1] = new ModelCheckBox("burger", 1);
+        modelItems[2] = new ModelCheckBox("olives", 1);
+        modelItems[3] = new ModelCheckBox("orange", 0);
+        modelItems[4] = new ModelCheckBox("tomato", 1);*/
+        //modelItems = new ModelCheckBox[filterAirlines.size()];
+
+        noStop.setOnCheckedChangeListener(this);
+        oneStop.setOnCheckedChangeListener(this);
+        twoStopMore.setOnCheckedChangeListener(this);
+        economiF.setOnCheckedChangeListener(this);
+        businessF.setOnCheckedChangeListener(this);
+        ferstF.setOnCheckedChangeListener(this);
+        remove.setOnCheckedChangeListener(this);
+
+
+
+
+
+
+          adapter = new FilterAdapter(activity,modelCheckBoxes);
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (modelCheckBoxes.get(position).isCheck()){
+
+
+                    modelCheckBoxes.set(position,new ModelCheckBox(modelCheckBoxes.get(position).getName(),false));
+
+                }else{
+                    modelCheckBoxes.set(position,new ModelCheckBox(modelCheckBoxes.get(position).getName(),true));
+
+                }
+                adapter.notifyDataSetChanged();
+
+            }
+        });
 
         btnOk.setCustomTextFont("irsans.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
 
-       /* for (FilterModelّFlight filterModel : filter) {
-            if (filterModel.isStar1()) {
-                star1.isChecked();
-                star1_ = true;
-
-            }else {
-                star1_ = false;
-
-            }
-
-
-
-            if (filterModel.isStar2()) {
-                star2.isChecked();
-                star2_ = true;
+        ////
+      /*  CitySpinnerAdapter citySpinnerAdapter = new CitySpinnerAdapter(this, android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
+        spn_cities.setAdapter(citySpinnerAdapter);*/
+        ////////
+        for (FilterModelّFlight filterModel : filter) {
+            if (filterModel.isNoStop()) {
+                noStop.setChecked(true);
+                noStop_ = true;
 
             } else {
-                star2_ = false;
+                noStop_ = false;
+                noStop.setChecked(false);
+            }
+            if (filterModel.isOneStop()) {
+                oneStop.setChecked(true);
+                oneStop_ = true;
 
+            } else {
+                oneStop_ = false;
+                oneStop.setChecked(false);
+            }
+            if (filterModel.isTwoStopMore()) {
+                twoStopMore.setChecked(true);
+                twoStopMore_ = true;
+
+            } else {
+                twoStopMore_ = false;
+                twoStopMore.setChecked(false);
             }
 
+            if (filterModel.isEconomiF()) {
+                economiF.setChecked(true);
+                economiF_ = true;
 
-            if (filterModel.isStar3()){
-                star3.isChecked();
-                star3_ = true;
+            } else {
+                economiF_ = false;
+                economiF.setChecked(false);
+            }//
+            if (filterModel.isBusinessF()) {
+                businessF.setChecked(true);
+                businessF_ = true;
 
-
-            }else {
-                star3_ = false;
-
-
-            }
-
-
-            if (filterModel.isStar4()) {
-                star4.isChecked();
-                star4_ = true;
-
-
-            }else {
-                star4_ = false;
+            } else {
+                businessF_ = false;
+                businessF.setChecked(false);
 
             }
-            if (filterModel.isStar5()) {
-                star5.isChecked();
-                star5_ = true;
+            if (filterModel.isFerstF()) {
+                ferstF.setChecked(true);
+                ferstF_ = true;
 
-
-            }else{star5_=false;}
-            if (filterModel.isBestOff()) {
-                bestOff.isChecked();
-                bestOff_ = true;
-
-
-            }else {
-                bestOff_ = false;
+            } else {
+                ferstF_ = false;
+                ferstF.setChecked(false);
             }
-            if (filterModel.isBestSeler()) {
-                bestSeler.isChecked();
-                bestSeler_ = true;
-
-
-            }else
-            {bestSeler_=false;}
-
-
-
-
-
-            if (filterModel.isResort()) {
-                resort.isChecked();
-                resort_ = true;
+            //========
+            if (filterModel.isRemove()) {
+               remove.setChecked(true);
+                remove_ = true;
 
 
             } else {
-                resort_ = false;
-            }
-
-            if (filterModel.isHotel()){
-                hotel.isChecked();
-                hotel_ = true;
-
-            }else {
-
-                hotel_ = false;
-            }
-
-            if (filterModel.isBoutique()) {
-                boutique.isChecked();
-                boutique_ = true;
-
+                remove.setChecked(false);
+                remove_ = false;
 
             }
-            else {
-                boutique_ = false;
-            }
-
-
-            if (filterModel.isApartment()) {
-                apartment.isChecked();
-                apartment_ = true;
-
-
-            } else {
-                apartment_ = false;
-            }
-
-        }*/
+        }//end for
         dialog.show();
     }
 
 
-
     @Override
-    public void onClick(View v) {
+    public void onClick (View v){
         switch (v.getId()) {
             case R.id.btnOk:
                 // activity.startActivity(new Intent(activity, ProfileActivity.class));
+                // arrayTrue
+
+                if (noStop.isChecked()) {
+                    noStop_ = true;
 
 
-                if (star1.isChecked()) {
-                    star1_ = true;
-
-
-                }
-                if (star2.isChecked()) {
-                    star2_ = true;
-
-                }
-                if (star3.isChecked()) {
-                    star3_ = true;
+                } else{
+                    noStop_ = false;
 
 
                 }
+                if (oneStop.isChecked()) {
+                    oneStop_ = true;
 
-                if (star4.isChecked()) {
-                    star4_ = true;
+                }else{
+                    oneStop_=false;
                 }
-
-                if (star5.isChecked()) {
-                    star5_ = true;
-
-
-                }
-                if (bestSeler.isChecked()) {
-                    bestSeler_ = true;
-                }
-
-                if (bestOff.isChecked()) {
-                    bestOff_ = true;
-                }
+                if (twoStopMore.isChecked()) {
+                    twoStopMore_ = true;
 
 
-                if (bestOff.isChecked()) {
-                    bestOff_ = true;
-                }
-                if (apartment.isChecked()) {
-                    apartment_ = true;
-                }
-                if (resort.isChecked()) {
-                    resort_ = true;
-                }
-                if (hotel.isChecked()) {
-                    hotel_ = true;
-                }
-                if (boutique.isChecked()) {
-                    boutique_ = true;
+                }else{
+                    twoStopMore_=false;
                 }
 
-              //  filter.set(0, new FilterModelّFlight(star1_, star2_, star3_, star4_, star5_, bestSeler_, bestOff_, resort_, boutique_, apartment_, hotel_));
-               // filter.set(0, new FilterModelّFlight());
+                if (economiF.isChecked()) {
+                    economiF_ = true;
+                }else{
+                    economiF_=false;
+                }
 
-                filterFlightDialogListenerArray.onReturnValueFlightNew(filter);
+                if (businessF.isChecked()) {
+                    businessF_ = true;
+
+
+                }else{
+                    businessF_=false;
+                }
+                if (ferstF.isChecked()) {
+                    ferstF_ = true;
+                }else{
+                    ferstF_=false;
+                }
+                //========
+                if (remove.isChecked()) {
+                    if (filter.isEmpty()) {
+                        filter.add(new FilterModelّFlight(false,false,false,remove_,false,false,false));
+                    } else {
+                        filter.set(0, new FilterModelّFlight(false,false,false,true,false,false,false));
+                    }
+                } else {
+
+                    if (filter.isEmpty()) {
+                        filter.add(new FilterModelّFlight(noStop_,oneStop_,twoStopMore_,false,economiF_,businessF_,ferstF_));
+
+                    } else {
+                        filter.set(0, new FilterModelّFlight(noStop_,oneStop_,twoStopMore_,false,economiF_,businessF_,ferstF_));
+
+                    }
+                }
+
+
+
+                //  }
+
+
+                filterFlightDialogListenerArray.onReturnValueFlightNew(filter,modelCheckBoxes);
 
 
                 dialog.cancel();
-
 
                 break;
 
         }
     }
 
-    public interface FilterFlightDialogListenerNew {
-        public void onReturnValueFlightNew(int type);
+    @Override
+    public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+        switch (checkBox.getId()) {
+
+
+
+            case R.id.Remove:
+                if (isChecked) {
+
+                    noStop.setChecked(false);
+                    oneStop.setChecked(false);
+                    twoStopMore.setChecked(false);
+                    ferstF.setChecked(false);
+                    businessF.setChecked(false);
+                    economiF.setChecked(false);
+                    //star1.setChecked(false);
+                    for (int i =0;i<modelCheckBoxes.size();i++){
+
+                        modelCheckBoxes.set(i,new ModelCheckBox(modelCheckBoxes.get(i).getName(),false));
+
+                    }
+                    adapter.notifyDataSetChanged();
+
+
+                }
+                break;
+                case R.id.noStop:
+                if (isChecked) {
+                    remove.setChecked(false);
+
+
+
+                }
+                break;
+                case R.id.oneStop:
+                if (isChecked) {
+
+                    remove.setChecked(false);
+
+
+                }
+                break;
+                case R.id.twoStopMore:
+                if (isChecked) {
+                    remove.setChecked(false);
+
+
+
+                }
+                break;
+            case R.id.economiF:
+                if (isChecked) {
+
+                    remove.setChecked(false);
+
+
+                }
+                break;
+            case R.id.businessF:
+                if (isChecked) {
+                    remove.setChecked(false);
+
+
+
+                }
+                break;
+            case R.id.ferstF:
+                if (isChecked) {
+
+                    remove.setChecked(false);
+
+
+                }
+                break;
+        }
     }
 
+
     public interface FilterFlightDialogListenerArray {
-        public void onReturnValueFlightNew(ArrayList<FilterModelّFlight> type);
+        public void onReturnValueFlightNew(ArrayList<FilterModelّFlight> type, ArrayList<ModelCheckBox> arrayTrue);
     }
 
 }

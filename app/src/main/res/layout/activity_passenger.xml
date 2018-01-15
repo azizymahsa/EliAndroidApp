@@ -51,10 +51,61 @@
 
     </FrameLayout>
 
+    <LinearLayout
+        android:id="@+id/llLayout"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_marginTop="5dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_below="@+id/toolbar_container">
 
+        <Button
+            android:id="@+id/btn_pish_factor"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/factor_passenger_off"
+            android:gravity="right|center_vertical"
+            android:text=""
+            android:textColor="#808080"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/btn_khadamat"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/khadamat_passenger_off"
+            android:gravity="right|center_vertical"
+            android:text="  "
+            android:textColor="#808080"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/btn_mosaferan"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mosaferan_passenger_off"
+            android:gravity="right|center_vertical"
+            android:text="  "
+            android:textColor="#808080"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/btn_saler"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/saler_passenger"
+            android:gravity="right|center_vertical"
+            android:text=""
+            android:textColor="#33ccff"
+            android:textSize="10dp" />
+    </LinearLayout>
 
     <ScrollView
-        android:layout_below="@+id/toolbar_container"
+        android:layout_below="@+id/llLayout"
         android:id="@+id/layout_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -78,56 +129,7 @@
                 android:background="@drawable/top_box_passenger"
                 android:orientation="vertical" >
                 <!-- android:background="@drawable/top_box_passenger"-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="28dp"
-                    android:layout_margin="1dp"
-                    android:background="#fff"
-                    android:orientation="horizontal"
-                    android:weightSum="4" >
 
-                    <Button
-                        android:id="@+id/btn_pish_factor"
-                        android:layout_width="105dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:background="@drawable/factor_passenger_off"
-                        android:gravity="right|center_vertical"
-                        android:text=""
-                        android:textColor="@color/textColorR"
-                        android:textSize="10dp" />
-
-                    <Button
-                        android:id="@+id/btn_khadamat"
-                        android:layout_width="105dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/khadamat_passenger_off"
-                        android:gravity="right|center_vertical"
-                        android:text="  "
-                        android:textColor="@color/textColorR"
-                        android:textSize="10dp" />
-
-                    <Button
-                        android:id="@+id/btn_mosaferan"
-                        android:layout_width="105dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/mosaferan_passenger_off"
-                        android:gravity="right|center_vertical"
-                        android:text="  "
-                        android:textColor="@color/textColorR"
-                        android:textSize="10dp" />
-
-                    <Button
-                        android:id="@+id/btn_saler"
-                        android:layout_width="28dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/saler_passenger"
-                        android:gravity="right|center_vertical"
-                        android:text=""
-                        android:textColor="#33ccff"
-                        android:textSize="10dp" />
-                </LinearLayout>
             </LinearLayout>
             <!-- /////////////linear kharidar//////////// -->
 
@@ -152,10 +154,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal" >
-                        <Spinner
-                            android:id="@+id/spinner1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+
                         <TextView
                             android:layout_width="257dp"
                             android:layout_height="wrap_content"
@@ -169,28 +168,32 @@
                             android:id="@+id/txtjensiat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="2dp"
+                            android:layout_marginRight="10dp"
                             android:text="جنسیت"
-                            android:textColor="@color/textColorR" />
-
+                            android:textColor="#808080" />
                     </LinearLayout>
 
-
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="0.05"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="257dp"
@@ -207,7 +210,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="نام"
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <EditText
@@ -215,21 +218,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="30dp"
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
-
                         android:paddingRight="10dp"
+                        android:paddingTop="5dp"
                         android:text=""
-                        android:textColorHint="#ba0f0f" />
+                        android:singleLine="true"
+                        android:textColorHint="#ff0000" />
                 </LinearLayout>
 
                 <!-- family name -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:orientation="vertical" >
 
                     <LinearLayout
@@ -254,7 +261,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="نام خانوادگی"
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <EditText
@@ -266,16 +273,19 @@
                         android:layout_weight="0.62"
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
-
+                        android:paddingTop="5dp"
                         android:paddingRight="10dp"
                         android:text=""
+                        android:singleLine="true"
                         android:textColorHint="#ff0000" />
                 </LinearLayout>
                 <!-- mobile -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical" >
 
@@ -301,7 +311,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="موبایل "
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <EditText
@@ -315,15 +325,19 @@
                         android:gravity="right|center_vertical"
                         android:inputType="number"
                         android:paddingRight="10dp"
+                        android:paddingTop="5dp"
+                        android:singleLine="true"
                         android:text="" />
                 </LinearLayout>
                 <!-- code meli -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -347,13 +361,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="کدملی "
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <EditText
                         android:id="@+id/txtkodemeliP"
                         android:layout_width="match_parent"
-                        android:layout_height="65dp"
+                        android:layout_height="70dp"
                         android:layout_margin="4dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="0.62"
@@ -361,14 +375,18 @@
                         android:gravity="right|center_vertical"
                         android:inputType="number"
                         android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:paddingTop="5dp"
                         android:text="" />
                 </LinearLayout>
                 <!-- emeli -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:orientation="vertical" >
 
                     <LinearLayout
@@ -393,7 +411,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="ایمیل "
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <EditText
@@ -407,6 +425,8 @@
                         android:gravity="right|center_vertical"
                         android:inputType="textEmailAddress"
                         android:paddingRight="10dp"
+                        android:paddingTop="5dp"
+                        android:singleLine="true"
                         android:text="" />
                 </LinearLayout>
 
@@ -415,9 +435,10 @@
                     android:layout_width="110dp"
                     android:layout_height="32dp"
                     android:layout_gravity="left"
-                    android:layout_marginLeft="21dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="21dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:background="@drawable/btngravity_big"
                     android:text="تایید و گام بعدی->"
                     android:textColor="#FFFFFF"
@@ -491,7 +512,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="2dp"
                             android:text="جنسیت"
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <Spinner
@@ -502,7 +523,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical" >
 
@@ -528,7 +551,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="نام"
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <EditText
@@ -541,6 +564,11 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
+                        android:paddingTop="5dp"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:imeOptions="actionNext"
+                        android:nextFocusDown="@+id/txtfamilym"
                         android:text="" />
                 </LinearLayout>
 
@@ -548,7 +576,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical" >
 
@@ -574,7 +604,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="نام خانوادگی"
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <EditText
@@ -587,60 +617,22 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
+                        android:paddingTop="5dp"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:nextFocusDown="@+id/txtnumber_passport"
+                        android:imeOptions="actionNext"
                         android:text="" />
                 </LinearLayout>
-                <!-- mobile -->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lbltavalodm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="تاریخ تولد "
-                            android:textColor="@color/textColorR" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/txttavalodm"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:inputType="date"
-                        android:paddingRight="10dp"
-                        android:text="" />
-                </LinearLayout>
 
                 <!-- shomare pasport -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical" >
 
@@ -666,7 +658,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="شماره پاسپورت   "
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <EditText
@@ -679,13 +671,67 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
+                        android:paddingTop="5dp"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:text="" />
+                </LinearLayout>
+                <!-- mobile -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="257dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1.43"
+                            android:gravity="right"
+                            android:text="*"
+                            android:textColor="#ff0000" />
+
+                        <TextView
+                            android:id="@+id/lbltavalodm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:text="تاریخ تولد "
+                            android:textColor="#808080" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txttavalodm"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_margin="4dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="0.62"
+                        android:background="@drawable/background_strock_white"
+                        android:gravity="right|center_vertical"
+                        android:inputType="date"
+                        android:paddingRight="10dp"
+                        android:paddingTop="5dp"
                         android:text="" />
                 </LinearLayout>
                 <!-- expire pasport -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical" >
 
@@ -711,7 +757,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="انقضاء پاسپورت   "
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <TextView
@@ -742,7 +788,9 @@
                 <LinearLayout
                     android:id="@+id/linearMeliyat"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical"
                     android:visibility="gone" >
@@ -769,7 +817,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text="ملیت "
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <TextView
@@ -782,6 +830,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
+                        android:paddingTop="5dp"
                         android:text="iranian" />
                 </LinearLayout>
                 <!-- mahale eghamat -->
@@ -789,7 +838,9 @@
                 <LinearLayout
                     android:id="@+id/linearMahaleeghamat"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical"
                     android:visibility="gone" >
@@ -816,7 +867,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="4dp"
                             android:text=" محل اقامت "
-                            android:textColor="@color/textColorR" />
+                            android:textColor="#808080" />
                     </LinearLayout>
 
                     <TextView
@@ -840,6 +891,7 @@
                     android:layout_marginLeft="21dp"
                     android:layout_marginRight="21dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:background="@drawable/btngravity_big"
                     android:text="تایید و گام بعدی->"
                     android:textColor="#FFFFFF"
@@ -862,6 +914,7 @@
                     android:layout_height="350dp"
                     android:isScrollContainer="false"
                     android:listSelector="@drawable/list_selector"
+                    android:nestedScrollingEnabled="true"
                     android:visibility="visible" />
 
                 <LinearLayout

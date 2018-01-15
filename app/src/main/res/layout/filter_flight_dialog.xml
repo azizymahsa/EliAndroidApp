@@ -39,13 +39,14 @@
 
     <TextView
         android:id="@+id/txtTavaghof"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="توقف "
         android:textAppearance="@style/IrsansBold"
-        android:textSize="14dp" />
+        android:textSize="14dp"
+        android:padding="5dp"
+        android:background="#ededed"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -128,13 +129,15 @@
         android:layout_height="1dp"
         android:background="#000000"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14dp"
         android:text="کلاس پروازی"
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
-        android:layout_marginTop="10dp"/>
+        android:padding="5dp"
+        android:background="#ededed"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -222,8 +225,10 @@
         android:text="ساعت حرکت"
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:visibility="gone"/>
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -276,13 +281,14 @@
         android:layout_height="1dp"
         android:background="#000000"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14dp"
         android:text="ایرلاین "
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
-        android:layout_marginTop="10dp"/>
+        android:padding="5dp"
+        android:background="#ededed"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -308,10 +314,6 @@
 
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#000000"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -323,21 +325,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="100"
-            android:layout_marginBottom="@dimen/_12dp"
-            android:gravity="center">
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            >
 
 
-            <Spinner
-                android:id="@+id/spinnerFlight"
+
+
+            <ListView
+                android:id="@+id/listView1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="123dp"
+
+                android:layout_marginTop="2dp"/>
+
         </LinearLayout>
-
-
-
-
-
-
 
 
     </LinearLayout>
