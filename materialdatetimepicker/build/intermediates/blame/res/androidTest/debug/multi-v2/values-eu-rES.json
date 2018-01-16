@@ -1,21 +1,6 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\final\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-eu-rES\\values-eu-rES.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\reza.nejati\\Desktop\\final\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-eu-rES\\values-eu-rES.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,139,221,295,426,541,666,787,917,1019,1110,1205,1294",
-                        "endColumns": "33,81,73,130,114,124,120,129,101,90,94,88,102",
-                        "endOffsets": "134,216,290,421,536,661,782,912,1014,1105,1200,1289,1392"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\final\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-eu-rES\\values-eu-rES.xml",
             "map": [
                 {

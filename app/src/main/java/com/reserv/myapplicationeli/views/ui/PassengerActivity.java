@@ -64,6 +64,7 @@ import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
+import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
@@ -374,7 +375,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 			} catch (JSONException e) {
-				Toast.makeText(PassengerActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+				Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
 			}
 
 
@@ -530,7 +531,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 			} catch (JSONException e) {
-				Toast.makeText(PassengerActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+				Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
 			}
 
 
@@ -631,7 +632,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 
 
-				return (retSrc);
+				return retSrc;
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -660,46 +661,50 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				// Getting JSON Array node
 				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightResult");//Error
+				JSONObject GetError = GetAirportsResult.getJSONObject("Error");
+				if (GetError != null) {
 
-				 /* JSONObject GetError = jsonObj.getJSONObject("Error");
-				  Toast.makeText(PassengerActivity.this,  Get, Toast.LENGTH_LONG).show();*/
 
-				JSONArray jArray = GetAirportsResult.getJSONArray("Services");
-				JSONObject jsonResult= GetAirportsResult.getJSONObject("TmpReserveResult");
+						Toast.makeText(PassengerActivity.this, "لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز", Toast.LENGTH_LONG).show();
+				}else{
+
+
+					JSONArray jArray = GetAirportsResult.getJSONArray("Services");
+				JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
 
 				Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
 				//////////////////////////////
 				//  JSONArray jArray = new JSONArray(result);
 
 				// Extract data from json and store into ArrayList as class objects
-				for(int i=0;i<jArray.length();i++){
+				for (int i = 0; i < jArray.length(); i++) {
 					JSONObject json_data = jArray.getJSONObject(i);
 
 					PurchaseFlightResult fishData = new PurchaseFlightResult();
-					fishData.setCityEn(json_data.getString("CityEn")) ;
-					fishData.setCityFa(json_data.getString("CityFa")) ;
-					fishData.setCurrency_ID(json_data.getString("Currency_ID")) ;
+					fishData.setCityEn(json_data.getString("CityEn"));
+					fishData.setCityFa(json_data.getString("CityFa"));
+					fishData.setCurrency_ID(json_data.getString("Currency_ID"));
 
-					fishData.setHasFlight(json_data.getString("HasFlight")) ;
-					fishData.setHasHotel(json_data.getString("HasHotel")) ;
-					fishData.setLoadDB(json_data.getString("LoadDB")) ;
+					fishData.setHasFlight(json_data.getString("HasFlight"));
+					fishData.setHasHotel(json_data.getString("HasHotel"));
+					fishData.setLoadDB(json_data.getString("LoadDB"));
 
-					fishData.setServiceAdlPrice(json_data.getString("ServiceAdlPrice")) ;
-					fishData.setServiceChdPrice(json_data.getString("ServiceChdPrice")) ;
-					fishData.setServiceDescEn(json_data.getString("ServiceDescEn")) ;
+					fishData.setServiceAdlPrice(json_data.getString("ServiceAdlPrice"));
+					fishData.setServiceChdPrice(json_data.getString("ServiceChdPrice"));
+					fishData.setServiceDescEn(json_data.getString("ServiceDescEn"));
 
-					fishData.setServiceDescFa(json_data.getString("ServiceDescFa")) ;
-					fishData.setServiceID(json_data.getString("ServiceID")) ;
-					fishData.setServiceImgURL(json_data.getString("ServiceImgURL")) ;
+					fishData.setServiceDescFa(json_data.getString("ServiceDescFa"));
+					fishData.setServiceID(json_data.getString("ServiceID"));
+					fishData.setServiceImgURL(json_data.getString("ServiceImgURL"));
 
-					fishData.setServiceInfPrice(json_data.getString("ServiceInfPrice")) ;
-					fishData.setServiceNameEn(json_data.getString("ServiceNameEn")) ;
-					fishData.setServiceNameFa(json_data.getString("ServiceNameFa")) ;
+					fishData.setServiceInfPrice(json_data.getString("ServiceInfPrice"));
+					fishData.setServiceNameEn(json_data.getString("ServiceNameEn"));
+					fishData.setServiceNameFa(json_data.getString("ServiceNameFa"));
 
 
-					fishData.setServiceTypeEn(json_data.getString("ServiceTypeEn")) ;
-					fishData.setServiceTypeFa(json_data.getString("ServiceTypeFa")) ;
-					fishData.setServiceTypeID(json_data.getString("ServiceTypeID")) ;
+					fishData.setServiceTypeEn(json_data.getString("ServiceTypeEn"));
+					fishData.setServiceTypeFa(json_data.getString("ServiceTypeFa"));
+					fishData.setServiceTypeID(json_data.getString("ServiceTypeID"));
 
 					fishData.setServiceTotalPrice(json_data.getLong("ServiceTotalPrice"));
 					fishData.setSelectID(json_data.getString("SelectID"));
@@ -719,17 +724,17 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 				});
 */
-				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-				((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
+				((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
+				((Button) findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
 				txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
 
-				mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data,PassengerActivity.this);
+				mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this);
 				//mAdapter.setAdapter(mAdapter);
 				mAdapter.setData(data);
 				listKhadamat.setAdapter(mAdapter);
-
+			}
 			} catch (JSONException e) {
-				Toast.makeText(PassengerActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+				Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
 			}
 
 		}//end on pos excute

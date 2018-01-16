@@ -16,6 +16,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
 
     <application
         android:name=".base.GlobalApplication"
@@ -27,7 +29,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".views.ui.SplashFragment"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -89,6 +92,9 @@
             android:screenOrientation="portrait" />
         <activity android:name=".views.activities.hotel.activity.ImageViewActivity" />
         <activity android:name=".views.activities.hotel.activity.SelectHotelFlightActivity"></activity>
+        <activity android:name="com.reserv.myapplicationeli.views.activities.AboutActivity"></activity>
+        <activity android:name="com.reserv.myapplicationeli.views.activities.ContactUsActivity" ></activity>
+        <activity android:name="com.reserv.myapplicationeli.views.activities.ConditionActivity" ></activity>
     </application>
 
 </manifest>

@@ -223,8 +223,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
         if (serviceOK()) {
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map);
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
 
         } else {

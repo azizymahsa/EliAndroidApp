@@ -1,21 +1,6 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\final\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-km-rKH\\values-km-rKH.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\reza.nejati\\Desktop\\final\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-km-rKH\\values-km-rKH.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,189,250,360,472,584,704,818,910,997,1086,1173",
-                        "endColumns": "83,60,109,111,111,119,113,91,86,88,86,98",
-                        "endOffsets": "184,245,355,467,579,699,813,905,992,1081,1168,1267"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\final\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-km-rKH\\values-km-rKH.xml",
             "map": [
                 {

@@ -83,4 +83,6 @@
         <item name="fontPath">fonts/wifi.ttf</item></style>
     <style name="IrsansBold" parent="android:TextAppearance">
         <item name="fontPath">fonts/iran_sans_bold.ttf</item></style>
+    <style name="IconFonts3" parent="android:TextAppearance">
+        <item name="fontPath">fonts/fontello_plane.ttf</item></style>
 </resources>

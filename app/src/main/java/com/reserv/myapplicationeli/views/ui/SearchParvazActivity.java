@@ -33,6 +33,7 @@ import com.reserv.myapplicationeli.models.model.ModelCheckBox;
 import com.reserv.myapplicationeli.models.model.SearchParvazModelExp;
 import com.reserv.myapplicationeli.models.model.SolarCalendar;
 import com.reserv.myapplicationeli.tools.datetools.JalaliCalendar;
+import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.adapters.ExpandableListAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
@@ -191,8 +192,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			String maghsadf = extras.getString("Value-Maghsad-City");
 			String mabdaf = extras.getString("Value-Mabda-City");
 
-			txtCityRaft.setCustomTextFont("fonts/icomoon.ttf");
-			txtCityRaft.setText(mabdaf +" "+ getString(R.string.icon_airplane)+" "+maghsadf);//sdfsdf
+			txtCityRaft.setCustomTextFont("fonts/fontello_plane.ttf");
+			txtCityRaft.setText(mabdaf +"  "+ getString(R.string.icon_plane)+"  "+maghsadf);//sdfsdf
 			txtCityBargasht.setText(maghsadf + "");
 
 			DdateF = extras.getString("Value-DepartureDate-format");
@@ -1230,7 +1231,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 				getAirLine();
 			} catch (JSONException e) {
-				Toast.makeText(SearchParvazActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+				Toast.makeText(SearchParvazActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
 			}
 
 		}

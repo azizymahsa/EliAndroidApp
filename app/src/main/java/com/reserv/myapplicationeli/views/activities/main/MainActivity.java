@@ -20,11 +20,15 @@ import com.reserv.myapplicationeli.R;
 
 import com.reserv.myapplicationeli.base.BaseActivity;
 
+import com.reserv.myapplicationeli.views.activities.AboutActivity;
+import com.reserv.myapplicationeli.views.activities.ConditionActivity;
+import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
 import com.reserv.myapplicationeli.views.fragments.pack.PackageFragment;
 import com.reserv.myapplicationeli.views.ui.InitUi;
+import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -33,7 +37,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle;
-    private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance,btnHotelFlight;
+    private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance,btnHotelFlight,btnAbout,btnContactUs,btn_condition;
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
     @Override
@@ -67,7 +71,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnTour = findViewById(R.id.btnTour);
         btnInsurance = findViewById(R.id.btnInsurance);
         btnHotelFlight = findViewById(R.id.btnHotelFlight);
-
+        btnAbout = findViewById(R.id.btnAbout);
+        btnContactUs= findViewById(R.id.btnContactUs);
+        btn_condition= findViewById(R.id.btn_condition);
 
         tvTitle.setText(getString(R.string.searchFlight));
 
@@ -79,7 +85,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnTour.setOnClickListener(this);
         btnInsurance.setOnClickListener(this);
         btnHotelFlight.setOnClickListener(this);
-
+        btnAbout.setOnClickListener(this);
+        btnContactUs.setOnClickListener(this);
+        btn_condition.setOnClickListener(this);
     }
 
     @Override
@@ -99,7 +107,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.btnFlight:
-                addFragment(getString(R.string.search_package),new PlanFragment());
+                addFragment(getString(R.string.searchFlight),new PlanFragment());
 
                 break;
             case R.id.btnHotel:
@@ -117,6 +125,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     addFragment("هتل و پرواز",new HotelFlightFragment());
 
                     break;
+            case R.id.btnAbout:
+               //addFragment(" درباره ما ",new HotelFlightFragment());
+               // Intent myIntent = new Intent(MainActivity.this, AboutActivity.class);
+               // myIntent.putExtra("key", value); //Optional parameters
+               Intent intent1 = new Intent(this, AboutActivity.class);
+               startActivity(intent1);
+                break;
+            case R.id.btnContactUs:
+                Intent intent2 = new Intent(this, ContactUsActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.btn_condition:
+                Intent intent3 = new Intent(this, ConditionActivity.class);
+                startActivity(intent3);
+                break;
         }
 
     }

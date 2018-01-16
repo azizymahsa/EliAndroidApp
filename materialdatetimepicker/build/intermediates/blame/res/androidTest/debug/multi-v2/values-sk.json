@@ -14,21 +14,6 @@
                     }
                 }
             ]
-        },
-        {
-            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\final\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-sk\\values-sk.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\reza.nejati\\Desktop\\final\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-sk\\values-sk.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,187,248,356,471,580,711,822,917,1008,1101,1188",
-                        "endColumns": "81,60,107,114,108,130,110,94,90,92,86,99",
-                        "endOffsets": "182,243,351,466,575,706,817,912,1003,1096,1183,1283"
-                    }
-                }
-            ]
         }
     ]
 }

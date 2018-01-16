@@ -58,11 +58,12 @@
 				<mehdi.sakout.fancybuttons.FancyButton
 					android:id="@+id/txtCityRaft"
 					android:layout_width="wrap_content"
-					android:layout_height="40dp"
+					android:layout_height="50dp"
 					android:layout_centerHorizontal="true"
 
 					android:layout_gravity="center"
 					android:layout_marginTop="2dp"
+					android:layout_marginBottom="2dp"
 					android:text="tvTitle"
 					android:visibility="visible"
 					fancy:fb_defaultColor="@android:color/transparent"
@@ -70,7 +71,7 @@
 					fancy:fb_radius="6dp"
 					fancy:fb_text="تهرااان "
 					fancy:fb_textColor="#FFFFFF"
-					fancy:fb_textSize="15dp" />
+					fancy:fb_textSize="17dp" />
 				<TextView
 					android:id="@+id/txtCityBargasht"
 					android:layout_width="100dp"
@@ -209,13 +210,15 @@
 					<Button
 						android:id="@+id/btn_no_Result"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
+						android:layout_height="40dp"
 						android:text="بازگشت به صفحه قبل"
 						android:textColor="#fff"
 						android:textSize="14dp"
 						android:textStyle="bold"
 						android:layout_marginTop="@dimen/_25dp"
-						android:background="@drawable/btn_plan_select"/>
+						android:layout_marginLeft="@dimen/_12dp"
+						android:layout_marginRight="@dimen/_12dp"
+						android:background="@drawable/btngravity_big"/>
 
 				</LinearLayout>
 

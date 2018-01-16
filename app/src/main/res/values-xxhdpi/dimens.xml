@@ -16,5 +16,8 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="toolbar_bottom_width_50dp">50dp</dimen>
     <dimen name="text_size_12dp">12dp</dimen>
     <dimen name="icon_size_25dp">25dp</dimen>
+    <dimen name="text_size">18dp</dimen>
+    <dimen name="_aboutdp">12dp</dimen>
+    <dimen name="_14dp">14dp</dimen>
 
 </resources>
