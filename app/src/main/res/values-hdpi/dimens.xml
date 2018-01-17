@@ -20,4 +20,38 @@
     <dimen name="_aboutdp">12dp</dimen>
     <dimen name="_14dp">14dp</dimen>
 
+
+    <dimen name="_200dp">200dp</dimen>
+    <dimen name="_10dp_marging">10dp</dimen>
+    <dimen name="_12dp_marginTop">12dp</dimen>
+    <dimen name="_14dp_txtSize">14dp</dimen>
+    <dimen name="_2dp_padding">2dp</dimen>
+    <dimen name="_2dp_margin">2dp</dimen>
+    <dimen name="_18dp_margin">18dp</dimen>
+    <dimen name="_4dp_margin">4dp</dimen>
+    <dimen name="_15dp_margin">15dp</dimen>
+    <dimen name="_14dp_padding">14dp</dimen>
+    <dimen name="_5sp_padding">5dp</dimen>
+    <dimen name="_10dp_padding">10dp</dimen>
+    <dimen name="_1dp_width">1dp</dimen>
+    <dimen name="_1dp_margin">1dp</dimen>
+    <dimen name="_5dp_padding">5dp</dimen>
+    <dimen name="_5dp_margin">5dp</dimen>
+    <dimen name="_10dp_textSize">10dp</dimen>
+    <dimen name="_60dp_hight">60dp</dimen>
+    <dimen name="_50dp_width">50dp</dimen>
+    <dimen name="_6dp_radius">6dp</dimen>
+    <dimen name="_25dp_txtSize">25dp</dimen>
+    <dimen name="_12dp_txtSize">12dp</dimen>
+    <dimen name="_44dp_margin">44dp</dimen>
+    <dimen name="_1dp_height">1dp</dimen>
+    <dimen name="_44dp_height">44dp</dimen>
+    <dimen name="_20dp_width">20dp</dimen>
+    <dimen name="_20dp_height">20dp</dimen>
+    <dimen name="_3dp_padding">3dp</dimen>
+    <dimen name="_25dp_width">25dp</dimen>
+    <dimen name="_25dp_height">25dp</dimen>
+    <dimen name="_16dp_txtSize">16dp</dimen>
+    <dimen name="text_message">14dp</dimen>
+
 </resources>

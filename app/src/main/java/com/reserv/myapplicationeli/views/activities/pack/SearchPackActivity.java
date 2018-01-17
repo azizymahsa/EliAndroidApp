@@ -9,49 +9,65 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.retro.ClientService;
 import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+import com.reserv.myapplicationeli.models.model.pack.LstAvailableDate;
 import com.reserv.myapplicationeli.models.model.pack.PRowXfer;
 import com.reserv.myapplicationeli.models.model.pack.SearchXPackageResult;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageListReq;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.response.PackageListRes;
+import com.reserv.myapplicationeli.tools.ValidationTools;
+import com.reserv.myapplicationeli.tools.datetools.DateUtil;
+import com.reserv.myapplicationeli.views.adapters.pack.LstAvailableDateAdapter;
 import com.reserv.myapplicationeli.views.adapters.pack.PRowXferAdapter;
 import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
+import com.reserv.myapplicationeli.views.dialogs.SortDialogPackage;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.reserv.myapplicationeli.base.GlobalApplication.getActivity;
-import static com.reserv.myapplicationeli.base.GlobalApplication.getContext;
 
 /**
  * Created by elham.bonyani on 1/6/2018.
  */
 
-public class SearchPackActivity extends BaseActivity implements View.OnClickListener,PRowXferAdapter.ListenerSearchPackAdapter {
+public class SearchPackActivity extends BaseActivity implements View.OnClickListener,PRowXferAdapter.ListenerSearchPackAdapter,SortDialogPackage.SortHotelDialogListener {
 
     public SimpleRecycleView rcl_package;
+    public SimpleRecycleView rcl_available_date;
     public PRowXferAdapter pRowXferAdapter;
     private ClientService service;
     private ArrayList<PRowXfer> pRowXfers;
-    private ViewGroup rlLoading;
-    private ViewGroup rlRoot;
+    private RelativeLayout rlLoading;
+    private RelativeLayout rlRoot;
     private String departureFrom;
     private String departureTo;
     private String country;
     private String culture;
     private String roomList;
     private String cityName;
+    private TextView toolbar_title;
+    private TextView toolbar_date;
+    private FancyButton btnBack;
+    private ViewGroup layout_sort;
+    private FancyButton btn_next_day;
+    private FancyButton btn_previous_day;
 
 
     @SuppressLint("NewApi")
@@ -62,7 +78,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.add_room_color_dark));
+            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
         }
         initViews();
         initParam();
@@ -85,14 +101,17 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
 
         }
-//        String date= DateUtil.getShortStringDate(departureFrom,"yyyy-MM-dd",true)+"-"+DateUtil.getShortStringDate(departureTo,"yyyy-MM-dd",true);
-        String city= cityName + " تور";
-        InitUi.Toolbar(this, false, R.color.add_room_color, cityName  );
+
+
+
+        //    InitUi.Toolbar(this, false, R.color.add_room_color, " تور " + cityName + "\n" + date );
 
     }
 
     private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture) {
-
+        String date= DateUtil.getShortStringDate(departureFrom,"yyyy-MM-dd",true)+" - "+DateUtil.getShortStringDate(departureTo,"yyyy-MM-dd",true);
+        toolbar_title.setText( " تور " + cityName );
+        toolbar_date.setText(date);
         showLoading();
         PackageListReq packageListReq = new PackageListReq();
 
@@ -115,13 +134,13 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     rcl_package.showText();
                 }
                 SearchXPackageResult searchXPackageResult = response.body().getSearchXPackageResult();
-                if (searchXPackageResult == null) {
+                if (searchXPackageResult == null || ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
                     rcl_package.showText();
+                    if(response.body().getSearchXPackageResult().getError()!= null){
+                        Toast.makeText(SearchPackActivity.this, response.body().getSearchXPackageResult().getError().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                    return;
                 }
-               /* if(response.body().getSearchXPackageResult().getError()!= null){
-                    Log.i("elham","error : " + response.body().getSearchXPackageResult().getError().toString());
-                   // return;
-                }*/
                 if (searchXPackageResult.getPRowXfers() != null) {
                     pRowXfers = searchXPackageResult.getPRowXfers();
                     showList();
@@ -145,48 +164,169 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     }
 
     private void initViews() {
+
+        toolbar_title = findViewById(R.id.tvTitle);
+        toolbar_date = findViewById(R.id.tvDate);
+        btnBack = findViewById(R.id.btnBack);btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnBack.setText(getString(R.string.search_back_right));
+        layout_sort = findViewById(R.id.llSort);
+        btn_previous_day = findViewById(R.id.btnLastDays);
+        btn_next_day = findViewById(R.id.btnNextDays);
+
+
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
+        rcl_available_date = (SimpleRecycleView) findViewById(R.id.rcl_available_date);
         rcl_package = (SimpleRecycleView) findViewById(R.id.rcl_package);
-        rcl_package.setLayoutManager(new LinearLayoutManager(getContext()));
+        rcl_package.setLayoutManager(new LinearLayoutManager(this));
+        rcl_available_date.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rcl_available_date.hideLoading();
+        rcl_available_date.setVisibility(View.GONE);
+
+        btnBack.setOnClickListener(this);
+        layout_sort.setOnClickListener(this);
+        btn_previous_day.setOnClickListener(this);
+        btn_next_day.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btnBack :
+                onBackPressed();
+                break;
+            case R.id.llSort :
+                if(ValidationTools.isEmptyOrNull(pRowXfers) ){
+                    Toast.makeText(this, "موردی یافت نشد .", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(pRowXfers.size() == 1){
+                    Toast.makeText(this, "فقط یه مورد جهت نمایش وجود دارد .", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                SortDialogPackage dialogPackage = new SortDialogPackage(this,this);
+                break;
 
+            case R.id.btnNextDays :
+                if(DateUtil.getMiliSecondGregorianDateTime(departureFrom,"yyyy-MM-dd") + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo,"yyyy-MM-dd")){
+                    Toast.makeText(this, "تاریخ رفت نمی تواند بعد از تاریخ برگشت باشد .", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                long milis = DateUtil.getMiliSecondGregorianDateTime(departureFrom,"yyyy-MM-dd") + 86400000;
+                departureFrom = DateUtil.getDateTime(String.valueOf(milis),"yyyy-MM-dd");
+                getPackages(country,departureFrom,departureTo,roomList,culture);
+                break;
+            case R.id.btnLastDays :
+                if(DateUtil.getMiliSecondGregorianDateTime(departureFrom,"yyyy-MM-dd") - 86400000 < System.currentTimeMillis()){
+                    Toast.makeText(this, "تاریخ رفت نمی تواند قبل از امروز باشد .", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                long _milis = DateUtil.getMiliSecondGregorianDateTime(departureFrom,"yyyy-MM-dd") - 86400000;
+                departureFrom = DateUtil.getDateTime(String.valueOf(_milis),"yyyy-MM-dd");
+                getPackages(country,departureFrom,departureTo,roomList,culture);
+
+                break;
         }
     }
 
 
     public void showLoading() {
-    //    new InitUi().Loading(this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
+        new InitUi().Loading(SearchPackActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
         rcl_package.showLoading();
     }
 
 
     public void hideLoading() {
-    //    new InitUi().Loading(rlLoading, rlRoot, false);
+        new InitUi().Loading(SearchPackActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
         rcl_package.hideLoading();
     }
 
     private void showList() {
         pRowXferAdapter = new PRowXferAdapter(this, pRowXfers).setListener(this);
         rcl_package.showList(pRowXferAdapter);
+
+        ArrayList<LstAvailableDate> lstAvailableDates = new ArrayList<>();
+        for(PRowXfer pRowXfer : pRowXfers){
+            if(!ValidationTools.isEmptyOrNull(pRowXfer.getLstAvailableDates())){
+                lstAvailableDates.addAll(pRowXfer.getLstAvailableDates());
+            }
+        }
+
+        if(ValidationTools.isEmptyOrNull(lstAvailableDates)){
+            return;
+        }
+        LstAvailableDateAdapter lstAvailableDateAdapter = new LstAvailableDateAdapter(this,lstAvailableDates).setListener(new LstAvailableDateAdapter.ListenerLstAvailableDateAdapter() {
+            @Override
+            public void onClickLstAvailableDateItem(LstAvailableDate lstAvailableDate) {
+                long milis = DateUtil.getMiliSecondFromJSONDate(lstAvailableDate.getDepartDate());
+                departureFrom = DateUtil.getDateTime(String.valueOf(milis),"yyyy-MM-dd");
+                getPackages(country,departureFrom,departureTo,roomList,culture);
+            }
+        });
+
+        rcl_available_date.showList(lstAvailableDateAdapter);
+        rcl_available_date.setVisibility(View.VISIBLE);
+        rcl_available_date.getRecyclerView().scrollToPosition(getIndexSelectedItem(lstAvailableDates));
+    }
+
+    private int getIndexSelectedItem(ArrayList<LstAvailableDate> lstAvailableDates) {
+        if(ValidationTools.isEmptyOrNull(lstAvailableDates)){
+            return 0;
+        }
+
+        for (int i = 0 ; i < lstAvailableDates.size() ; i++){
+            if(lstAvailableDates.get(i).getIsSelected()){
+                return i;
+            }
+        }
+
+        return 0;
     }
 
     @Override
     public void onClickPackageBookingItem(PRowXfer pack) {
-        if (getActivity() == null) {
-            return;
-        }
-
-        Intent intent = new Intent(this, PassengerPackActivity.class);
+        Intent intent = new Intent(this, PassengerPackageActivity.class);
+        Prefs.putString("Rooms",roomList);
+        Prefs.putString("PackRow_ID",pRowXfers.get(0).getPackRowID().toString());
+        Prefs.putString("PackXfer_IDs",pRowXfers.get(0).getXFerIDs() );
+        Prefs.putString("Flt_IDs",pRowXfers.get(0).getFltIDs() );
+        Prefs.putString("PackRoomType_ID",pRowXfers.get(0).getLstProwPrices().get(0).getPackRowRoomTypeID().toString());
+        Prefs.putString("Room_No",pRowXfers.get(0).getLstProwPrices().get(0).getRoomNo().toString());
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onReturnValue(int type) {
+        switch ( type ) {
+            case 1:
+                Collections.sort(pRowXfers, new Comparator< PRowXfer >() {
+                    @Override public int compare(PRowXfer p1, PRowXfer p2) {
+                        return Integer.valueOf(p2.getLstProwPrices().get(0).getSumPrice())- Integer.valueOf(p1.getLstProwPrices().get(0).getSumPrice()); // Ascending
+                    }
+                });
+                pRowXferAdapter.notifyDataSetChanged();
+
+                break;
+            case 2 :
+                Collections.sort(pRowXfers, new Comparator< PRowXfer >() {
+                    @Override public int compare(PRowXfer p1, PRowXfer p2) {
+                        return Integer.valueOf(p1.getLstProwPrices().get(0).getSumPrice())- Integer.valueOf(p2.getLstProwPrices().get(0).getSumPrice()); // Ascending
+                    }
+                });
+                pRowXferAdapter.notifyDataSetChanged();
+
+                break;
 
 
 
+        }
 
     }
 }

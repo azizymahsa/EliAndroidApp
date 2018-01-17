@@ -1,43 +1,60 @@
-package com.reserv.myapplicationeli.models;
+package com.reserv.myapplicationeli.models.model;
 
-public class Country {//AirportCode //AirportName//CityName ":
-private String AirportCode;
-private String AirportName;
-private String CityName;
+public class Country {
 
 
-private String ParentId ;
+	private String CountryCode;
+	private int CountryID;
+	private boolean CountryIsDefault;
+	private String CountryNameEn;
+	private String CountryNameFa;
+	private boolean HasInsurance;
 
-private String AirportID ;
+	public String getCountryCode() {
+		return CountryCode;
+	}
 
-public String getCityName() {
-	return CityName;
-}
-public void setCityName(String cityName) {
-	CityName = cityName;
-}
-public String getAirportName() {
-	return AirportName;
-}
-public void setAirportName(String airportName) {
-	AirportName = airportName;
-}
-public String getAirportCode() {
-	return AirportCode;
-}
-public void setAirportCode(String airportCode) {
-	AirportCode = airportCode;
-}
-public String getParentId() {
-	return ParentId;
-}
-public void setParentId(String parentId) {
-	ParentId = parentId;
-}
-public String getAirportID() {
-	return AirportID;
-}
-public void setAirportID(String airportID) {
-	AirportID = airportID;
-}
+	public void setCountryCode(String countryCode) {
+		CountryCode = countryCode;
+	}
+
+	public int getCountryID() {
+		return CountryID;
+	}
+
+	public void setCountryID(int countryID) {
+		CountryID = countryID;
+	}
+
+	public boolean isCountryIsDefault() {
+		return CountryIsDefault;
+	}
+
+	public void setCountryIsDefault(boolean countryIsDefault) {
+		CountryIsDefault = countryIsDefault;
+	}
+
+	public String getCountryNameEn() {
+		return CountryNameEn;
+	}
+
+	public void setCountryNameEn(String countryNameEn) {
+		CountryNameEn = countryNameEn;
+	}
+
+	public String getCountryNameFa() {
+		return CountryNameFa;
+	}
+
+	public void setCountryNameFa(String countryNameFa) {
+		CountryNameFa = countryNameFa;
+	}
+
+	public boolean isHasInsurance() {
+		return HasInsurance;
+	}
+
+	public void setHasInsurance(boolean hasInsurance) {
+		HasInsurance = hasInsurance;
+	}
 }

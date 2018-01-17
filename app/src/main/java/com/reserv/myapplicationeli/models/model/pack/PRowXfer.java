@@ -3,6 +3,8 @@ package com.reserv.myapplicationeli.models.model.pack;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.reserv.myapplicationeli.views.adapters.pack.LstProwHotelAdapter;
+import com.reserv.myapplicationeli.views.adapters.pack.LstProwPriceAdapter;
 
 import java.util.ArrayList;
 
@@ -10,7 +12,7 @@ public class PRowXfer {
 
     @SerializedName("FltIDs")
     @Expose
-    private String fltIDs;
+    private String FltIDs;
     @SerializedName("LstAvailableDates")
     @Expose
     private ArrayList<LstAvailableDate> lstAvailableDates = null;
@@ -45,12 +47,33 @@ public class PRowXfer {
     @Expose
     private XferList xferList;
 
+
+    transient private LstProwPriceAdapter lstProwPriceAdapter;
+
+    transient private LstProwHotelAdapter lstProwHotelAdapter;
+
+    public LstProwPriceAdapter getLstProwPriceAdapter() {
+        return lstProwPriceAdapter;
+    }
+
+    public void setLstProwPriceAdapter(LstProwPriceAdapter lstProwPriceAdapter) {
+        this.lstProwPriceAdapter = lstProwPriceAdapter;
+    }
+
+    public LstProwHotelAdapter getLstProwHotelAdapter() {
+        return lstProwHotelAdapter;
+    }
+
+    public void setLstProwHotelAdapter(LstProwHotelAdapter lstProwHotelAdapter) {
+        this.lstProwHotelAdapter = lstProwHotelAdapter;
+    }
+
     public String getFltIDs() {
-        return fltIDs;
+        return FltIDs;
     }
 
     public void setFltIDs(String fltIDs) {
-        this.fltIDs = fltIDs;
+        this.FltIDs = fltIDs;
     }
 
     public ArrayList<LstAvailableDate> getLstAvailableDates() {

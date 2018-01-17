@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <LinearLayout
+        android:id="@+id/card_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:orientation="vertical"
+        android:background="@drawable/background_strock_gray"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.8"
+                    android:layout_height="141dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="12sp"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp">
+
+                        <Button
+                            android:id="@+id/btnMinesAdt"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:background="@drawable/background_strock"
+                            android:text="-"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/pack_room_text" />
+
+                        <TextView
+                            android:id="@+id/txtCountAdt"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="top"
+                            android:gravity="center"
+                            android:textColor="@color/pack_room_text"
+                            android:textAppearance="@style/IrsansBold"
+                            android:text="1"/>
+
+                        <Button
+                            android:id="@+id/btnPlusAdt"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="1dp"
+                            android:background="@drawable/background_strock"
+                            android:text="+"
+                            android:textColor="@color/pack_room_text"
+                            android:textAppearance="@style/IrsansBold"/>
+
+                        <TextView
+                            android:id="@+id/txtBO"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="1dp"
+                            android:gravity="right"
+                            android:text="بزرگسال"
+                            android:textColor="@color/pack_room_text"
+                            android:textSize="16dp"
+                            android:textAppearance="@style/IrsansBold"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginTop="8dp">
+
+                        <Button
+                            android:id="@+id/btnMinesCh"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:background="@drawable/background_strock"
+                            android:text="-"
+                            android:textColor="@color/pack_room_text"
+                            android:textAppearance="@style/IrsansBold"/>
+
+                        <TextView
+                            android:id="@+id/txtCountCh"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="top"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/pack_room_text"
+                            android:textAppearance="@style/IrsansBold" />
+
+                        <Button
+                            android:id="@+id/btnPlusCh"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="1dp"
+                            android:background="@drawable/background_strock"
+                            android:text="+"
+                            android:textColor="@color/pack_room_text"
+                            android:textAppearance="@style/IrsansBold"/>
+
+                        <TextView
+                            android:id="@+id/txtch"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="1dp"
+                            android:gravity="right"
+                            android:text="کودک"
+                            android:textColor="@color/pack_room_text"
+                            android:textSize="16dp"
+                            android:textAppearance="@style/IrsansBold"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/room_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="اتاق اول"
+                        android:textColor="@color/pack_room_text"
+                        android:textAppearance="@style/IrsansBold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2sp"
+                        android:textAppearance="@style/IconFonts"
+                        android:text="@string/icon_bed"
+                        android:textSize="30dp"
+                        android:textColor="@color/pack_room_text"
+                       />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+                android:id="@+id/rcl_child"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

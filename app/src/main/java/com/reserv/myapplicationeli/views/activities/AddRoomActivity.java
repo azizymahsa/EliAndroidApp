@@ -1,4 +1,4 @@
-package com.reserv.myapplicationeli.views.activities.pack;
+package com.reserv.myapplicationeli.views.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.contracts.InfoRoomsContract;
@@ -41,7 +39,8 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     public RoomAdapter roomAdapter;
     public RoomPresenter roomPresenter;
     private Button btn_confirm;
-    ArrayList<ModelRowCountRoom> roomArrayList;
+    private ArrayList<ModelRowCountRoom> roomArrayList;
+
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +53,6 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
         }
         initViews();
         roomPresenter = new RoomPresenter(this);
-        Log.i("eli", "roomPresenter.getRooms().get(0).getChildModels().get(0).getChildAgeRange().getValue()");
-
-
-
         Bundle bundle = getIntent().getExtras();
         Gson gson =new GsonBuilder().create();
         if ( bundle != null ){
@@ -65,7 +60,6 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
             }.getType());
         }
         roomPresenter.setRooms(roomArrayList);
-
         showRooms();
     }
 
@@ -166,9 +160,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
                 Gson gson = new GsonBuilder().create();
                 Intent intent = new Intent();
                 intent.putExtra("Rooms",gson.toJson(roomPresenter.getRooms()));
-                Prefs.putString("Rooms",gson.toJson(roomPresenter.getRooms()));
-//                startActivity(intent);
-              setResult(RESULT_OK,intent);
+                setResult(RESULT_OK,intent);
                 finish();
                 break;
         }

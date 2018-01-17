@@ -136,6 +136,7 @@
     <string name="icon_sort">&#xf160;</string>
     <string name="icon_arrow_left">&#xe314;</string>
     <string name="icon_arrow_right">&#xe315;</string>
+    <string name="icon_user">&#xf2c0;</string>
 
     <string name="searchFlight">جستجوی پرواز</string>
     <string name="search_package">جستجوی پکیج</string>
@@ -146,6 +147,10 @@
     <string name="icon_search">&#xe909;</string>
     <string name="search_back_right">&#xea3c;</string>
     <string name="icon_plane">&#xe8090;</string>
+
+
+    <string name="btn_insurance">جستجوی بیمه</string>
+
 
     <string name="no_results_found">نتیجه ای یافت نشد !</string>
     <string-array name="requestStates">

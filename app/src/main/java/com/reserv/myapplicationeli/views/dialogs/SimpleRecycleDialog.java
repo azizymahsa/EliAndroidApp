@@ -13,7 +13,7 @@ import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 
 
 /**
- * Created by elham on 1/5/2018.
+ * Created by elham.bonyani on 1/5/2018.
  */
 
 public class SimpleRecycleDialog implements View.OnClickListener{

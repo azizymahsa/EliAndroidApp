@@ -85,4 +85,8 @@
         <item name="fontPath">fonts/iran_sans_bold.ttf</item></style>
     <style name="IconFonts3" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello_plane.ttf</item></style>
+
+
+    <style name="IconUser" parent="android:TextAppearance">
+        <item name="fontPath">fonts/user.ttf</item></style>
 </resources>

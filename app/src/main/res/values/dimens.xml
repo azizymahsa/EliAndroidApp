@@ -11,8 +11,9 @@
 	<dimen name="text_request_size">16dp</dimen>
     <dimen name="text_title">15sp</dimen>
 	
-	<dimen name="raiting_min_height">25dp</dimen>
-    <dimen name="toolbar_height">55sp</dimen>
-<dimen name="raiting_min_width">25dp</dimen>
-    <dimen name="text_message">13sp</dimen>
+
+    <dimen name="_24dp_textSize">24dp</dimen>
+    <dimen name="_16dp_txtSize">16sp</dimen>
+    <dimen name="_50dp_width">50dp</dimen>
+    <dimen name="_6dp_radius">6dp</dimen>
 </resources>

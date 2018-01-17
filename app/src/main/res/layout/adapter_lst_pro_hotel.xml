@@ -7,7 +7,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cvHotel"
         android:layout_width="match_parent"
-        android:layout_height="200sp"
+        android:layout_height="@dimen/_200dp"
         android:layout_gravity="center"
         android:layout_margin="7dp"
         android:background="@color/hotel_detail_background"
@@ -17,7 +17,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200sp">
+            android:layout_height="@dimen/_200dp">
 
 
 
@@ -71,20 +71,14 @@
                         android:textColor="@color/white"
                         android:textSize="12dp" />
 
-                    <com.reserv.myapplicationeli.views.components.SimpleRatingBar
+                    <ImageView
                         android:id="@+id/rating"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="16dp"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="5dp"
                         android:scaleType="fitEnd"
-                        app:srb_borderColor="@color/add_room_color"
-                        app:srb_fillColor="@color/cardview_dark_background"
-                        app:srb_isIndicator="true"
-                        app:srb_numberOfStars="5"
-                        app:srb_stepSize="1"
-                        app:srb_rating="5"
-                        app:srb_starSize="13sp" />
+                        android:layout_marginRight="5dp"
+                        />
 
 
                 </LinearLayout>
@@ -152,7 +146,7 @@
                     android:padding="5sp"
                     android:text="از 18 دی تا 22 دی"
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="10dp" />
 
             </FrameLayout>
 

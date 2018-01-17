@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.views.components.SimpleRatingBar;
 import com.wang.avi.AVLoadingIndicatorView;
 
 /**
@@ -19,7 +18,7 @@ public class LstProwHotelRowHolder extends RecyclerView.ViewHolder {
     public TextView txt_hotel_name;
     public TextView txt_date;
     public TextView txt_location_full_name;
-    public SimpleRatingBar rating;
+    public ImageView rating;
     public AVLoadingIndicatorView avi;
     public TextView txt_city_name;
 
@@ -30,7 +29,7 @@ public class LstProwHotelRowHolder extends RecyclerView.ViewHolder {
         this.txt_hotel_name = (TextView) view.findViewById(R.id.txt_hotel_name);
         this.txt_date = (TextView) view.findViewById(R.id.txt_date);
         this.txt_location_full_name = (TextView) view.findViewById(R.id.txt_location_full_name);
-        this.rating = (SimpleRatingBar) view.findViewById(R.id.rating);
+        this.rating = (ImageView) view.findViewById(R.id.rating);
         this.txt_city_name = view.findViewById(R.id.txt_city);
     }
 }

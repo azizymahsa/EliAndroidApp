@@ -26,6 +26,7 @@ import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
+import com.reserv.myapplicationeli.views.fragments.insurance.InsuranceFragment;
 import com.reserv.myapplicationeli.views.fragments.pack.PackageFragment;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
@@ -120,7 +121,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btnTour:
                 break;
                 case R.id.btnInsurance:
-                break;
+                    addFragment(getString(R.string.btn_insurance),new InsuranceFragment());
+
+                    break;
                 case R.id.btnHotelFlight:
                     addFragment("هتل و پرواز",new HotelFlightFragment());
 

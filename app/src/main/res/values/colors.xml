@@ -60,4 +60,23 @@
     <color name="background_color_flight_button">#29aae3</color>
     <color name="text_color_2">#737585</color>
 
+
+
+
+
+
+
+
+
+    <color name="mdtp_accent_color">#FF938EC5</color>
+    <color name="mdtp_accent_color_dark">#706b9f</color>
+
+
+    <color name="banafsh_color">#9697c8</color>
+
+
+    <color name="dark_blue">#2E3192</color>
+
+    
+
 </resources>

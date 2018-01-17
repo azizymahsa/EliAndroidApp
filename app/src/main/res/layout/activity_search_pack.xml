@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,140 +9,333 @@
     android:background="#f5f5f5">
 
     <LinearLayout
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <FrameLayout
+            xmlns:fancy="http://schemas.android.com/apk/res-auto"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60dp_hight">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60dp_hight"
+                android:background="@color/flight_status"/>
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnBack"
+                android:layout_width="@dimen/_50dp_width"
+                android:layout_height="match_parent"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="@color/focusColor"
+                fancy:fb_radius="@dimen/_6dp_radius"
+                fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
+                fancy:fb_textSize="@dimen/_25dp_txtSize"
+                fancy:fb_text=" "
+                android:gravity="right"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_16dp_txtSize"
+                    android:textAppearance="@style/IrsansBold"
+                    android:layout_centerHorizontal="true"
+                    android:text="rfsfsdf"
+
+                    android:layout_marginTop="@dimen/_10dp_margin"
+                    />
+
+
+                <TextView
+                    android:layout_below="@+id/tvTitle"
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12dp_txtSize"
+                    android:text="rfsfsdf"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="left">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnHome"
+                        android:layout_width="@dimen/_50dp_width"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="@color/focusColor"
+
+                        fancy:fb_radius="@dimen/_6dp_radius"
+                        fancy:fb_text=" "
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="@dimen/_25dp_txtSize" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_50dp_width"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_10dp_padding"
+                        android:src="@drawable/e_logo" />
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            android:id="@+id/rcl_available_date"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:layoutDirection="rtl"
+            android:background="@color/gray_light"
+            android:visibility="visible"
+            android:layout_marginTop="@dimen/_4dp_margin">
+
+        </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="#c1c0c0"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/toolbarLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/toolbarLayout"
-            layout="@layout/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary" />
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="100">
+
+
 
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
                 android:id="@+id/rcl_package"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="44sp">
+                android:layout_height="match_parent">
 
             </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/shadow"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="44sp"/>
+
+
+
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:background="@color/hotel_detail_background"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="44sp"
-                android:layout_gravity="bottom"
-                android:background="@color/white"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="140"
+                android:gravity="center"
                 android:orientation="horizontal">
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_weight="100"
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:srcCompat="@drawable/left_arrow_larg"
-                        android:tint="#5f5e5e"
-                        android:padding="3sp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="#5f5e5e"
-                        android:text="روز بعد"/>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnNextDays"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="@color/focusColor"
+                        fancy:fb_radius="6dp"
+                        fancy:fb_textColor="#FFFFFF"
+
+                        android:layout_gravity="right"
+                        fancy:fb_textSize="25dp"
+                        fancy:fb_text=" "
+                        android:gravity="right"
+                        />
 
 
 
                     <TextView
+                        android:id="@+id/tvNextDay"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="#5f5e5e"
-                        android:text="روز قبل"/>
+                        android:layout_height="match_parent"
+                        android:text="@string/icon_arrow_left"
+                        android:textAppearance="@style/IconFonts"
+                        android:gravity="center"
+                        android:textSize="26dp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/text_bottom_bar" />
+                    <TextView
+                        android:layout_toRightOf="@+id/tvNextDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/text_bottom_bar"
+                        android:gravity="center"
+                        android:text="روز بعد"
+                        android:textSize="14dp"
+                        />
 
-                    <ImageView
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:srcCompat="@drawable/right_arrow_larg"
-                        android:tint="#5f5e5e"
-                        android:padding="3sp"/>
 
-                </LinearLayout>
 
-                <LinearLayout
+
+
+                </RelativeLayout>
+                <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_weight="100"
+                    android:layout_height="wrap_content">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnLastDays"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="@color/focusColor"
+                        fancy:fb_radius="6dp"
+                        fancy:fb_textColor="#FFFFFF"
+
+                        android:layout_gravity="right"
+                        fancy:fb_textSize="25dp"
+                        fancy:fb_text=" "
+                        android:gravity="right"
+                        />
 
                     <TextView
+                        android:id="@+id/tvLastDays"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="#5f5e5e"
-                        android:text="فیلتر کردن"/>
-
-                    <ImageView
-                        android:layout_width="25sp"
-                        android:layout_height="25sp"
-                        app:srcCompat="@drawable/ff"
-                        android:tint="#5f5e5e"
-                        android:padding="3sp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
+                        android:layout_height="match_parent"
+                        android:textColor="@color/text_bottom_bar"
+                        android:gravity="center"
+                        android:text="روز قبل"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="14dp"
+                        />
                     <TextView
-                        android:id="@+id/sort"
+
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="#5f5e5e"
-                        android:text="مرتب سازی"/>
+                        android:layout_height="match_parent"
+                        android:text="@string/icon_arrow_right"
+                        android:textAppearance="@style/IconFonts"
+                        android:gravity="center"
+                        android:textSize="26dp"
+                        android:textColor="@color/text_bottom_bar"
+                        android:layout_toRightOf="@+id/tvLastDays"/>
 
-                    <ImageView
-                        android:layout_width="25sp"
-                        android:layout_height="25sp"
-                        app:srcCompat="@drawable/filter_icon"
-                        android:tint="#5f5e5e"
-                        android:padding="3sp"/>
 
-                </LinearLayout>
+                </RelativeLayout>
+
+
 
 
 
             </LinearLayout>
 
-        </FrameLayout>
+            <LinearLayout
+                android:id="@+id/llBottom"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tvFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/text_bottom_bar"
+                    android:gravity="center"
+                    android:text="فیلتر کردن"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14dp"
+                    />
+                <TextView
+                    android:id="@+id/tvFilterIcon"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/icon_filter"
+                    android:textAppearance="@style/IconFonts"
+                    android:gravity="center"
+                    android:textSize="26dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/text_bottom_bar" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/llSort"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvSort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/text_bottom_bar"
+                    android:gravity="center"
+                    android:text="مرتب کردن"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14dp"
+                    />
+                <TextView
+                    android:id="@+id/tvSortIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/icon_sort"
+                    android:textAppearance="@style/IconFonts"
+                    android:gravity="center"
+                    android:textSize="26dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/text_bottom_bar" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

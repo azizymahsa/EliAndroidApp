@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        app:srcCompat="@drawable/login_page_picture"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.42"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:orientation="horizontal"
+            >
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="match_parent"
+                android:text="ایمیل"
+                android:gravity="right|bottom"
+                android:paddingBottom="10dp"
+                android:textColor="@color/dark_blue"
+                android:background="@null"
+                android:textSize="15dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="match_parent"
+                android:textAppearance="@style/IconFonts"
+                android:text="@string/icon_calander"
+                android:gravity="center|bottom|left"
+                android:textSize="@dimen/_24dp_textSize"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_blue"
+            android:layout_marginRight="45dp"
+            android:layout_marginLeft="45dp"
+           />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:orientation="horizontal">
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="match_parent"
+                android:text="کلمه عبور"
+                android:gravity="right|bottom"
+                android:paddingBottom="10dp"
+                android:textColor="@color/dark_blue"
+                android:background="@null"
+               android:textSize="15dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="match_parent"
+                android:textAppearance="@style/IconFonts"
+                android:text="@string/icon_calander"
+                android:gravity="center|bottom|left"
+                android:textSize="@dimen/_24dp_textSize"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"/>
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginLeft="45dp"
+            android:background="@color/dark_blue"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="match_parent"
+                android:textAppearance="@style/IconFonts"
+                android:text="@string/icon_calander"
+                android:gravity="right|center"
+                android:textSize="@dimen/_24dp_textSize"
+                android:paddingRight="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="فراموشی کلمه عبور"
+                android:gravity="right|center"
+                android:layout_marginRight="40dp"
+                android:textColor="@color/dark_blue"
+                android:textSize="15dp"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.07"
+        android:background="@drawable/btngravity_big"
+        android:gravity="right">
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/logIn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+             android:elevation="4dp"
+            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_focusColor="#96000000"
+            fancy:fb_radius="0dp"
+            fancy:fb_text="ورود"
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textSize="15dp"
+            />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:elevation="4dp"
+            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_focusColor="#96000000"
+            fancy:fb_radius="0dp"
+            fancy:fb_text=" ثبت نام"
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textSize="15dp"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+   
+
+
+
+</LinearLayout>

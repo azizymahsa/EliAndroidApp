@@ -11,7 +11,6 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.tools.Utility;
 
 
-
 public class IDM_Dialog extends Dialog implements
 		View.OnClickListener {
 	Button accept, cancel, extra;

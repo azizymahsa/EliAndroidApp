@@ -60,9 +60,7 @@
         <activity
             android:name=".views.activities.hotel.activity.DetailHotelActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".views.activities.pack.AddRoomActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".views.ui.PassengerHotelActivity"
             android:screenOrientation="portrait" />
@@ -95,6 +93,26 @@
         <activity android:name="com.reserv.myapplicationeli.views.activities.AboutActivity"></activity>
         <activity android:name="com.reserv.myapplicationeli.views.activities.ContactUsActivity" ></activity>
         <activity android:name="com.reserv.myapplicationeli.views.activities.ConditionActivity" ></activity>
+
+
+        <activity
+            android:name=".views.activities.pack.DetailHotelActivityForPack"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.pack.PassengerPackageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.insurance.AddPassengerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.insurance.SearchInsuranceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.insurance.PassengerInsuranceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.AddRoomActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

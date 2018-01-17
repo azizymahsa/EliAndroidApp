@@ -30,8 +30,8 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
     public TextView txt_airline;
     public ImageView img_airLine;
     public Button btn_package_booking;
-    public TextView date_depart;
-    public TextView date_arrive;
+   // public TextView date_depart;
+   // public TextView date_arrive;
 
 
     public PRowXferRowHolder(View itemView) {
@@ -48,8 +48,8 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
         this.txt_airline = itemView.findViewById(R.id.txt_airline);
         this.img_airLine = itemView.findViewById(R.id.img_airLine);
         this.btn_package_booking = itemView.findViewById(R.id.packageBooking);
-        this.date_depart = itemView.findViewById(R.id.date_go);
-        this.date_arrive = itemView.findViewById(R.id.date_back);
+        //this.date_depart = itemView.findViewById(R.id.date_go);
+        //this.date_arrive = itemView.findViewById(R.id.date_back);
 
         rcl_hotels.hideLoading();
         rcl_price.hideLoading();

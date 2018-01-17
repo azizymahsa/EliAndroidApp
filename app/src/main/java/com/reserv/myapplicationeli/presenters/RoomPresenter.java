@@ -26,6 +26,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
     private final InfoRoomsContract.View mView;
     private ArrayList<ModelRowCountRoom> rooms;
 
+
     public RoomPresenter(InfoRoomsContract.View mView) {
         this.mView = mView;
 
@@ -59,7 +60,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
         }
 
         ModelRowCountRoom room = new ModelRowCountRoom();
-        room.setCountB(0);
+        room.setCountB(1);
         room.setCountK(0);
         rooms.add(room);
         mView.notifyDataSetChange();
@@ -114,7 +115,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
         holder.btn_adt_mines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(room.getCountB() < 1){
+                if(room.getCountB() <= 1){
                     return;
                 }
                 room.setCountB(room.getCountB() - 1);

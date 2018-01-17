@@ -18,13 +18,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10sp"
-                android:maxLines="1"
                 android:background="@color/hotel_detail_background"
                 android:text="اتاق استاندارد با تخت یکنفره"
                 android:layout_gravity="center"
                 android:textColor="@color/blue"
-                android:gravity="center"
-                android:textSize="12dp"/>
+                android:textSize="12sp"
+                android:gravity="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,36 +38,51 @@
                     android:paddingBottom="20sp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <RadioButton
-                        android:id="@+id/radio_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+
+                    <com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox
+                        android:id="@+id/chk_prow_price"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:layout_marginBottom="12sp"
                         android:layout_gravity="center"
+                        app:color_unchecked_stroke="#818181"
+                        app:color_checked="@color/green"
                         android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/total_price"
-                        android:layout_width="wrap_content"
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textColor="@color/color_hotel"
-                        android:text="31,850000"
-                        android:textSize="15sp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="ریال"
-                        android:textColor="@color/green"
-                        android:gravity="center"
-                        android:textSize="12sp"/>
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="ریال"
+                            android:layout_marginRight="10sp"
+                            android:textColor="@color/green"
+                            android:gravity="center"
+                            android:textSize="16sp"/>
+                        <TextView
+                            android:id="@+id/total_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+
+                            android:textColor="@color/color_hotel"
+                            android:text="31,850000"
+                            android:textSize="20sp"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/layout_info_person_price"
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center">
                     <LinearLayout
@@ -81,15 +95,15 @@
                             android:layout_weight="0.6"
                             android:layout_height="wrap_content"
                             android:gravity="right"/>
+
                         <TextView
                             android:id="@+id/text_adault"
                             android:layout_width="0dp"
-                            android:layout_weight="0.4"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
                             android:gravity="right"
-                            android:text="بزرگسال"
-                            android:padding="4sp"
-                            android:textSize="12dp"/>
+                            android:padding="6sp"
+                            android:text="بزرگسال" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -108,8 +122,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="کودک"
-                            android:padding="4sp"
-                            android:textSize="12dp"/>
+                            android:padding="6sp"/>
 
                     </LinearLayout>
 
@@ -130,8 +143,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="نوزاد"
-                            android:padding="4sp"
-                            android:textSize="12dp"/>
+                            android:padding="6sp"/>
 
                     </LinearLayout>
 
