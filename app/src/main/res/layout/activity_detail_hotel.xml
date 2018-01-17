@@ -331,13 +331,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="gone"/>
+                        android:visibility="gone"
+
+                 />
                 </android.support.v7.widget.CardView>
 
 
 
 
-                <com.reserv.myapplicationeli.views.ui.NonScrollGridView
+                <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
                     android:layout_below="@+id/cvHotel"
                     android:numColumns="2"
 

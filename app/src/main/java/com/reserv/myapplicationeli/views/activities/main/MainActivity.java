@@ -143,6 +143,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Intent intent3 = new Intent(this, ConditionActivity.class);
                 startActivity(intent3);
                 break;
+
         }
 
     }

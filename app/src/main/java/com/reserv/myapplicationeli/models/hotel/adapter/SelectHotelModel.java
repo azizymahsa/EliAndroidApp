@@ -1,7 +1,5 @@
 package com.reserv.myapplicationeli.models.hotel.adapter;
 
-import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities;
-
 import java.util.ArrayList;
 
 /**

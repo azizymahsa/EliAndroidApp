@@ -5,9 +5,9 @@ package com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response;
  */
 
 public class HotelAvailModelResponse {
-   public final HotelAvailResult HotelAvailResult;
+   public final com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelAvailResult HotelAvailResult;
 
-    public HotelAvailModelResponse(HotelAvailResult hotelAvailResult) {
+    public HotelAvailModelResponse(com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelAvailResult hotelAvailResult) {
         HotelAvailResult = hotelAvailResult;
     }
 }

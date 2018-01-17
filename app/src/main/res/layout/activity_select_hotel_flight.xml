@@ -154,6 +154,111 @@
             android:gravity="center"
             >
 
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="140"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="100"
+                    android:layout_height="wrap_content">
+
+
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnNextDays"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="@color/focusColor"
+                        fancy:fb_radius="6dp"
+                        fancy:fb_textColor="#FFFFFF"
+
+                        android:layout_gravity="right"
+                        fancy:fb_textSize="25dp"
+                        fancy:fb_text=" "
+                        android:gravity="right"
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/tvNextDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/icon_arrow_left"
+                        android:textAppearance="@style/IconFonts"
+                        android:gravity="center"
+                        android:textSize="26dp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/text_bottom_bar" />
+                    <TextView
+                        android:layout_toRightOf="@+id/tvNextDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/text_bottom_bar"
+                        android:gravity="center"
+                        android:text="روز بعد"
+                        android:textSize="14dp"
+                        />
+
+
+
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="100"
+                    android:layout_height="wrap_content">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnLastDays"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="@color/focusColor"
+                        fancy:fb_radius="6dp"
+                        fancy:fb_textColor="#FFFFFF"
+
+                        android:layout_gravity="right"
+                        fancy:fb_textSize="25dp"
+                        fancy:fb_text=" "
+                        android:gravity="right"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvLastDays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/text_bottom_bar"
+                        android:gravity="center"
+                        android:text="روز قبل"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="14dp"
+                        />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/icon_arrow_right"
+                        android:textAppearance="@style/IconFonts"
+                        android:gravity="center"
+                        android:textSize="26dp"
+                        android:textColor="@color/text_bottom_bar"
+                        android:layout_toRightOf="@+id/tvLastDays"/>
+
+
+                </RelativeLayout>
+
+
+
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llBottom"

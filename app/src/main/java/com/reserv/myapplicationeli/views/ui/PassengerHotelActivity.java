@@ -1,29 +1,5 @@
 package com.reserv.myapplicationeli.views.ui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -66,6 +42,30 @@ import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class PassengerHotelActivity extends BaseActivity implements Header.onSearchTextChangedListener,OnClickListener,OnItemSelectedListener{
@@ -101,9 +101,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 	private String Gensiyat;
     Activity activity;
-	public int countB=SearchParvazActivity.COUNT_B;
-	public int countK=SearchParvazActivity.COUNT_K;
-	public int countN=SearchParvazActivity.COUNT_N;
+	public int countB= SearchParvazActivity.COUNT_B;
+	public int countK= SearchParvazActivity.COUNT_K;
+	public int countN= SearchParvazActivity.COUNT_N;
 	//public int sum=countB+countK+countN;
 	public int sum;
 	int count;
@@ -817,7 +817,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 			headerJson.put("PartnerList", detailsPartner);
 
-			headerJson.put("Culture", "fa-IR");
+			headerJson.put("Culture", "fa-ir");
 			headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
 			headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
 /*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
@@ -850,7 +850,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
 		try {
-			manJson.put("Culture", "fa-IR");
+			manJson.put("Culture", "fa-ir");
 
 			manJson.put("invoiceNo", "782863");//perches service
 
@@ -886,7 +886,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
 		try {
-			manJson.put("Culture", "fa-IR");
+			manJson.put("Culture", "fa-ir");
 
 			manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
 			manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));
@@ -1073,7 +1073,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 				break;
 			case R.id.btn_nextm:
 				String Gender= Gensiyat;
-				 String Nationality=txtmahale_eghamat.getText().toString();// "IR";
+				 String Nationality=txtmahale_eghamat.getText().toString();// "ir";
 				 String Nationality_ID= txtmeliyatm.getText().toString();
 				 String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 				 String RqPassenger_Birthdate= txttavalodm.getText().toString();
@@ -1089,7 +1089,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 				 String RqPassenger_Tel= "25548632";
 
 				/*String Gender= "Female";
-				String Nationality= "IR";
+				String Nationality= "ir";
 				String Nationality_ID= "iran";
 				String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 				String RqPassenger_Birthdate= "1997/12/23";

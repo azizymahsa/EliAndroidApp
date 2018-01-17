@@ -4,8 +4,6 @@ import android.support.annotation.RawRes;
 import android.util.Log;
 
 import com.reserv.myapplicationeli.base.BaseAPI;
-import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
-import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelAvailModelResponse;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.GetRoomsHotelRequest;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.response.GetRoomsListResponse;
 

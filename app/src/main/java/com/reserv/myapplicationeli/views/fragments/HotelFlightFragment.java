@@ -1,6 +1,5 @@
 package com.reserv.myapplicationeli.views.fragments;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,11 +26,10 @@ import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.reserv.myapplicationeli.views.activities.AddRoomActivity;
-import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelCityActivity;
-import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelFlightActivity;
+import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
+import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
 import java.text.SimpleDateFormat;
@@ -47,7 +45,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
-    public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult;
+    public TextView txtCity, lbl_city_english, tvMabda, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult,tvMabdaEn;
     public static int countNafar = 1;
     LinearLayout btn_add_room, llRoom;
     public ListView listRoomItem;
@@ -68,6 +66,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     int year_Min;
     int dayMin;
     String raft, bargasht;
+    LinearLayout linearLayout_mabda,linearLayout_maghsad;
 
 
 
@@ -84,9 +83,13 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
         lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
         tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
+        tvMabda = (TextView) rootView.findViewById(R.id.tvMabda);
+        tvMabdaEn = (TextView) rootView.findViewById(R.id.tvMabdaEn);
+        linearLayout_mabda = (LinearLayout) rootView.findViewById(R.id.linearLayout_mabda);
         //  lblRoomCount.setOnClickListener(this);
         tarikh_be.setOnClickListener(this);
         txtRoomCount = (TextView) rootView.findViewById(R.id.txtRoomCount);
+        linearLayout_maghsad = (LinearLayout) rootView.findViewById(R.id.linearLayout_maghsad);
         tvRaft = (TextView) rootView.findViewById(R.id.tvRaft);
         tvBargasht = (TextView) rootView.findViewById(R.id.tvBargasht);
         tvAdult = (TextView) rootView.findViewById(R.id.tvAdult);
@@ -94,11 +97,13 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         txtRoomCount.setOnClickListener(this);
         tvRaft.setOnClickListener(this);
         tvBargasht.setOnClickListener(this);
+        linearLayout_maghsad.setOnClickListener(this);
 
         btn_add_room = (LinearLayout) rootView.findViewById(R.id.btn_add_room);
         llRoom = (LinearLayout) rootView.findViewById(R.id.llRoom);
         btn_add_room.setOnClickListener(this);
         llRoom.setOnClickListener(this);
+        linearLayout_mabda.setOnClickListener(this);
 
         //txtTitle= (TextView) rootView.findViewById(R.id.txtTitle);
         citySearch = (RelativeLayout) rootView.findViewById(R.id.citySearch);
@@ -192,11 +197,10 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         } catch (Exception e) {
         }
 
-        if (!Prefs.getString("Value-Hotel-City-Fa", "").equals("")) {
-            txtCity.setText(Prefs.getString("Value-Hotel-City-Fa", ""));
-            lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En", ""));
-
-        }
+        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", ""));
+        lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En-HF-Raft", ""));
+        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", ""));
+        tvMabdaEn.setText(Prefs.getString("Value-Hotel-City-En-HF-Source", ""));
     }
 
     @Override
@@ -217,38 +221,23 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         // TODO Auto-generated method stub
         switch (v.getId()) {
 
-            case R.id.citySearch:
-                Intent intent5 = new Intent(getActivity(), GetHotelCityActivity.class);
-                startActivityForResult(intent5, 1);
+            case R.id.linearLayout_mabda:
+                //	new FilterHotelDialog(getActivity());
+                Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
+                intent2.putExtra("type",1);;
+                startActivity(intent2);
                 break;
 
             case R.id.searchHotel:
                 boolean ok = true;
 
-         /*       if (tvRaft.getText().toString().equals("انتخاب کنید") && tvBargasht.getText().toString().equals("انتخاب کنید")) {
-                    ok = false;
-                    new AlertDialog(getActivity(), "تاریخ رفت و برگشت را انتخاب کنید");
-                } else {
-                    if (tvRaft.getText().toString().equals("انتخاب کنید")) {
-                        ok = false;
-                        new AlertDialog(getActivity(), "تاریخ رفت ");
-
-                    }
-                    if (tvBargasht.getText().toString().equals("انتخاب کنید")) {
-                        new AlertDialog(getActivity(), "تاریخ برگشت را انتخاب کنید");
-
-                        ok = false;
-                    }
-                }
-*/
-                // if (ok) {
                 try {
                     Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);
 
-                    intent.putExtra("CheckIn", raft);
-                    intent.putExtra("CheckOut",bargasht);
-                    intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
-                    intent.putExtra("CheckInFa",tvRaft.getText().toString());
+                    intent.putExtra("CheckInHF", raft);
+                    intent.putExtra("CheckOutHF",bargasht);
+                    intent.putExtra("CheckOutFaHF", tvBargasht.getText().toString());
+                    intent.putExtra("CheckInFaHF",tvRaft.getText().toString());
                     intent.putExtra("Rooms", getRoomList(roomsSelected));
                     intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                     intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
@@ -288,9 +277,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 startActivity(room);
 
                 break;
-            case R.id.tarikh_be:
+            case R.id.linearLayout_maghsad:
                 //	new FilterHotelDialog(getActivity());
-
+                Intent intent = new Intent(getActivity(), GetAirportHotelActivity.class);
+                intent.putExtra("type",2);;
+                startActivity(intent);
 
                 break;
 

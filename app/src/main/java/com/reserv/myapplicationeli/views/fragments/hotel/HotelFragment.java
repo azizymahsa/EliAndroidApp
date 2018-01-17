@@ -1,14 +1,6 @@
 package com.reserv.myapplicationeli.views.fragments.hotel;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,7 +14,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.DialogFragment;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,18 +28,20 @@ import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.reserv.myapplicationeli.views.activities.AddRoomActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelCityActivity;
-import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
-import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialog;
+import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
+import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
-import static android.app.Activity.RESULT_OK;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 public class HotelFragment extends Fragment implements OnClickListener,
-        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener{
 
     public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult;
@@ -136,7 +129,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 //==================================================================================================
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
-        Date currentTime = Calendar.getInstance().getTime();
+      //  Date currentTime = Calendar.getInstance().getTime();
  //=================================================================================================
 
 
@@ -150,8 +143,29 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
         datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
-        datePickerDialogGregorian1.setOnDateSetListener(this);
-        datePickerDialogGregorian2.setOnDateSetListener(this);
+        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+
+
+
+                PersianCalendar persianCalendar = new PersianCalendar();
+
+                monthOfYear = persianCalendar.getPersianMonth();
+                year = persianCalendar.getPersianYear();
+                dayOfMonth = persianCalendar.getPersianDay();
+                Log.e("m", monthOfYear+"");
+                Log.e("y", year+"" );
+                Log.e("d", dayOfMonth+"");
+                datePickerDialogGregorian2.setMinDate(persianCalendar.toGregorianCalendar());
+
+
+
+            }
+        });
+       // datePickerDialogGregorian2.setOnDateSetListener(this);
+      //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);
 
         datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
         datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
@@ -274,8 +288,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
         switch (v.getId()) {
 
             case R.id.citySearch:
-                Intent intent5 = new Intent(getActivity(), GetHotelCityActivity.class);
-                startActivityForResult(intent5, 1);
+                Intent intent2 = new Intent(getActivity(), GetHotelCityActivity.class);
+                intent2.putExtra("type",0);;
+                startActivity(intent2);
                 break;
 
             case R.id.searchHotel:
@@ -477,36 +492,5 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     //Gregorian==============================================Gregorian=============================Gregorian
 
-    @Override
-    public void onTimeSet(com.wdullaer.materialdatetimepicker.time.RadialPickerLayout view, int hourOfDay, int minute, int second) {
 
-    }
-
-    @Override
-    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-        PersianCalendar persianCalendar = new PersianCalendar();
-        persianCalendar.set(year, month, day);
-
-        if (view.getTag().equals("DatePickerDialogGregorianRaft")){
-        //  datePickerDialogGregorian2.setMinDate(persianCalendar.toGregorianCalendar());
-
-
-        }
-
-        if (view.getTag().equals("DatePickerDialogGregorianBargasht")){
-            String str_dat = year + "/" + monthOfYear + "/" + dayOfMonth;
-
-
-        }
-
-
-
-        //  Date date;
-        //   DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        //  date = (Date) formatter.parse(str_dat);
-        // Calendar cal = Calendar.getInstance();
-        //   cal.setTime(date);
-        // cal.add(Calendar.DATE, -1);
-
-    }
 }

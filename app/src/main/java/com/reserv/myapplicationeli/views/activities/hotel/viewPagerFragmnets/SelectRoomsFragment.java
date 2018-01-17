@@ -12,15 +12,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.room.GetRoomsList;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.GetRoomsHotelRequest;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.IdentityRooms;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.RoomRequest;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.response.RoomList;
-import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
-import com.reserv.myapplicationeli.views.adapters.hotel.HotelPagerAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsModel;
 import com.reserv.myapplicationeli.views.ui.InitUi;
@@ -39,7 +36,7 @@ public class SelectRoomsFragment extends Fragment{
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
 
     GetRoomsList getRoomsList;
-    public static SelectRoomsFragment newInstance(int page, String title,ArrayList<RoomsModel> roomsModels) {
+    public static SelectRoomsFragment newInstance(int page, String title, ArrayList<RoomsModel> roomsModels) {
         SelectRoomsFragment fragmentFirst = new SelectRoomsFragment();
         Bundle args = new Bundle();
         args.putInt("someInt", page);
@@ -83,14 +80,14 @@ public class SelectRoomsFragment extends Fragment{
         protected void onPreExecute() {
 
             window.setStatusBarColor(getActivity().getColor(R.color.blue2));
-            new InitUi().Loading(getActivity(),rlLoading, rlRoot, true,R.drawable.hotel_loading);
+            new InitUi().Loading(getActivity(),rlLoading, rlRoot, true, R.drawable.hotel_loading);
         }
 
         @Override
         protected String doInBackground(String... params) {
             try {
                 getRoomsList = new GetRoomsList(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("123qwe!@#QWE",
-                        "EligashtMlb","Mobile"),"",String.valueOf(getActivity().getIntent().getExtras().getInt("HotelId")),"","",getActivity().getIntent().getExtras().getString("ResultUniqID"),"fa-IR")));
+                        "EligashtMlb","Mobile"),"",String.valueOf(getActivity().getIntent().getExtras().getInt("HotelId")),"","",getActivity().getIntent().getExtras().getString("ResultUniqID"),"fa-ir")));
 
             } catch (Exception e) {
 
@@ -100,7 +97,7 @@ public class SelectRoomsFragment extends Fragment{
 
         @Override
         protected void onPostExecute(String result) {
-            new InitUi().Loading(getActivity(),rlLoading, rlRoot, false,R.drawable.hotel_loading);
+            new InitUi().Loading(getActivity(),rlLoading, rlRoot, false, R.drawable.hotel_loading);
             window.setStatusBarColor(getActivity().getColor(R.color.colorPrimaryDark));
             try {
                 int i = 0;

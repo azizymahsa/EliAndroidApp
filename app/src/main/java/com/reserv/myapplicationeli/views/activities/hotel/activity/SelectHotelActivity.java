@@ -3,7 +3,6 @@ package com.reserv.myapplicationeli.views.activities.hotel.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
@@ -33,14 +31,9 @@ import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Rooms;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelTypes;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Hotels;
-import com.reserv.myapplicationeli.models.model.pack.SearchXPackageResult;
-import com.reserv.myapplicationeli.models.model.pack.call.PackageListReq;
-import com.reserv.myapplicationeli.models.model.pack.call.PackageRequestModel;
-import com.reserv.myapplicationeli.models.model.pack.response.PackageListRes;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.datetools.SolarCalendar;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
-import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelDialog;
@@ -51,21 +44,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener {
@@ -125,9 +110,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         tvDate = findViewById(R.id.tvDate);
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
-        btnHome.setOnClickListener(this);
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
+        btnHome.setOnClickListener(this);
+
 
 
         llBottom.setOnClickListener(this);
@@ -1188,13 +1174,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         protected String doInBackground(String... params) {
             try {
                 availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR")));
+                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-ir","")));
 
 
                 Gson gson = new Gson();
 
                 Log.e("test", gson.toJson(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR"))));
+                        getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-ir",""))));
             } catch (Exception e) {
 
             }

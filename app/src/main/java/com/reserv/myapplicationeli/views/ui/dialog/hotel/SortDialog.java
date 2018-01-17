@@ -6,11 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
 
-import java.util.ArrayList;
-
-import cn.refactor.library.SmoothCheckBox;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**

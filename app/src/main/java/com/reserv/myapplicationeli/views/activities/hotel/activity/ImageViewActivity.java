@@ -1,19 +1,15 @@
 package com.reserv.myapplicationeli.views.activities.hotel.activity;
 
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.views.ui.InitUi;
-
-import me.crosswall.lib.coverflow.CoverFlow;
 
 public class ImageViewActivity extends BaseActivity {
     PhotoView photoView;

@@ -7,23 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
-import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.PersianDatePicker;
-import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarConstants;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import javax.security.auth.login.LoginException;
-
-import saman.zamani.persiandate.PersianDate;
-
-import static android.content.ContentValues.TAG;
 
 
 public class DatePickerDialogPrivate {
@@ -68,7 +58,7 @@ public class DatePickerDialogPrivate {
             @Override
             public void onClick(View v) {
                 textView.setText(persianDatePicker.getDate()+ "");
-                textView.setTextColor(ContextCompat.getColor(activity,R.color.textColorR));
+                textView.setTextColor(ContextCompat.getColor(activity, R.color.textColorR));
 
 
 

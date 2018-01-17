@@ -20,6 +20,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.hotel.FilterPriceModel;
+import com.reserv.myapplicationeli.models.hotel.adapter.SelectFlightHotelModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectHotelModel;
 import com.reserv.myapplicationeli.tools.Utility;
 
@@ -32,14 +33,14 @@ import cn.refactor.library.SmoothCheckBox;
  */
 
 public class FlightHotelAdapter extends BaseAdapter {
-    private ArrayList<SelectHotelModel> selectHotelModelArrayList = new ArrayList<>();
+    private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
     private LayoutInflater inflater;
     private ViewHolder holder;
     ImageLoader imageLoader;
     Context context;
     Activity activity;
 
-    public FlightHotelAdapter(ArrayList<SelectHotelModel> selectHotelModelArrayList, Context context, Activity activity) {
+    public FlightHotelAdapter(ArrayList<SelectFlightHotelModel> selectHotelModelArrayList, Context context, Activity activity) {
         this.activity = activity;
         this.selectHotelModelArrayList = selectHotelModelArrayList;
         this.context = context;
@@ -72,6 +73,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.ivHotelPic = (ImageView) convertView.findViewById(R.id.ivHotelPic);
             holder.ivRate = (ImageView) convertView.findViewById(R.id.ivRate);
+            holder.ivLogo = (ImageView) convertView.findViewById(R.id.ivLogo);
             holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.location = (TextView) convertView.findViewById(R.id.location);
             holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -79,6 +81,13 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvPrice = (TextView) convertView.findViewById(R.id.tvPrice);
             holder.tvOff = (TextView) convertView.findViewById(R.id.tvOff);
             holder.cvHotel = (CardView) convertView.findViewById(R.id.cvHotel);
+            holder.tvRaft = (TextView) convertView.findViewById(R.id.tvRaft);
+            holder.tvBargasht = (TextView) convertView.findViewById(R.id.tvBargasht);
+            holder.tvBargashtTime = (TextView) convertView.findViewById(R.id.tvBargashtTime);
+            holder.tvRaftTime = (TextView) convertView.findViewById(R.id.tvRaftTime);
+            holder.tvBargashtTimeWait = (TextView) convertView.findViewById(R.id.tvBargashtTimeWait);
+            holder.tvRaftTimeWait = (TextView) convertView.findViewById(R.id.tvRaftTimeWait);
+            holder.tvAirLines = (TextView) convertView.findViewById(R.id.tvAirLines);
 
             convertView.setTag(holder);
         } else {
@@ -99,7 +108,7 @@ public class FlightHotelAdapter extends BaseAdapter {
                 .build();
 
 
-        imageLoader.displayImage(imageUri, holder.ivHotelPic, options,null);
+        imageLoader.displayImage(imageUri, holder.ivHotelPic, options, null);
 
      /*   AQuery aQuery=new AQuery(v);
         aQuery.id(holder.imgPhoto).image(item.getImageUrl().toString());
@@ -112,7 +121,169 @@ public class FlightHotelAdapter extends BaseAdapter {
         holder.tvPrice.setText(Utility.priceFormat(selectHotelModelArrayList.get(position).getPrice()));
 
 
-        if (selectHotelModelArrayList.get(position).isOff()){
+        holder.tvRaft.setText(selectHotelModelArrayList.get(position).getArrRout());
+        holder.tvBargasht.setText(selectHotelModelArrayList.get(position).getDepRout());
+
+        String waitRaft;
+        String waitBargasht;
+
+
+        String[] strings = selectHotelModelArrayList.get(position).getDepRout().split("→");
+        switch (strings.length) {
+            case 0:
+                waitRaft="بدون توقف";
+                break;
+            case 1:
+                waitRaft="بدون توقف";
+
+                break;
+            case 2:
+                waitRaft="بدون توقف";
+
+                break;
+            case 3:
+                waitRaft="یک توقف";
+
+                break;
+            case 4:
+                waitRaft="دو توقف";
+
+                break;
+            case 5:
+                waitRaft="سه توقف";
+
+                break;
+            case 6:
+                waitRaft="چهار توقف";
+
+                break;
+            default:
+                waitRaft="";
+
+                break;
+        }
+
+
+        String[] strings2 = selectHotelModelArrayList.get(position).getArrRout().split("→");
+        switch (strings2.length) {
+            case 0:
+                waitBargasht="بدون توقف";
+                break;
+            case 1:
+                waitBargasht="بدون توقف";
+
+                break;
+            case 2:
+                waitBargasht="بدون توقف";
+
+                break;
+            case 3:
+                waitBargasht="یک توقف";
+
+                break;
+            case 4:
+                waitBargasht="دو توقف";
+
+                break;
+            case 5:
+                waitBargasht="سه توقف";
+
+                break;
+            case 6:
+                waitBargasht="چهار توقف";
+
+                break;
+            default:
+                waitBargasht="";
+
+                break;
+        }
+        holder.tvRaftTime.setText(waitRaft);
+        holder.tvBargashtTime.setText(waitBargasht);
+
+
+
+
+        holder.tvRaftTime.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightArrivalTime+"-"+selectHotelModelArrayList.get(position).getFlights().get(0).FlightTime);
+        holder.tvBargashtTime.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime+"-"+selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime);
+
+
+
+        holder.tvRaftTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationH+"ساعت "+selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationM+"دقیقه");
+        holder.tvBargashtTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationH+"ساعت "+selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationM+"دقیقه");
+
+
+        holder.tvAirLines.setText(selectHotelModelArrayList.get(position).getFlights().get(0).AirlineNameFa);
+
+
+
+        String s=selectHotelModelArrayList.get(position).getFlights().get(0).AirlineCode.toLowerCase();
+        if(s.toLowerCase().contains("ir")){
+            holder.ivLogo.setImageResource(R.drawable.ir);}
+
+        if(s.toLowerCase().contains("A3")){
+            holder.ivLogo.setImageResource(R.drawable.a);}
+
+        if(s.toLowerCase().contains("AF")){
+            holder.ivLogo.setImageResource(R.drawable.af);}
+
+        if(s.toLowerCase().contains("AZ")){
+            holder.ivLogo.setImageResource(R.drawable.az);}
+
+        if(s.toLowerCase().contains("EK")){
+            holder.ivLogo.setImageResource(R.drawable.ek);}
+
+        if(s.toLowerCase().contains("EY")){
+            holder.ivLogo.setImageResource(R.drawable.ey);}
+
+        if(s.toLowerCase().contains("FZ")){
+            holder.ivLogo.setImageResource(R.drawable.fz);}
+
+        if(s.toLowerCase().contains("G9")){
+            holder.ivLogo.setImageResource(R.drawable.g);}
+
+        if(s.toLowerCase().contains("j2")){
+            holder.ivLogo.setImageResource(R.drawable.j);}
+
+        if(s.toLowerCase().contains("ji")){
+            holder.ivLogo.setImageResource(R.drawable.ji);}
+
+        if(s.toLowerCase().contains("kk")){
+            holder.ivLogo.setImageResource(R.drawable.kk);}
+
+        if(s.toLowerCase().contains("kl")){
+            holder.ivLogo.setImageResource(R.drawable.kl);}
+
+        if(s.toLowerCase().contains("lh")){
+            holder.ivLogo.setImageResource(R.drawable.lh);}
+
+        if(s.toLowerCase().contains("pc")){
+            holder.ivLogo.setImageResource(R.drawable.pc);}
+
+        if(s.toLowerCase().contains("qr")){
+            holder.ivLogo.setImageResource(R.drawable.qr);}
+
+        if(s.toLowerCase().contains("su")){
+            holder.ivLogo.setImageResource(R.drawable.su);}
+
+        if(s.toLowerCase().contains("tg")){
+            holder.ivLogo.setImageResource(R.drawable.tg);}
+
+        if(s.toLowerCase().contains("tk")){
+            holder.ivLogo.setImageResource(R.drawable.tk);}
+
+        if(s.toLowerCase().contains("w5")){
+            holder.ivLogo.setImageResource(R.drawable.w);}
+
+        if(s.toLowerCase().contains("wy")){
+            holder.ivLogo.setImageResource(R.drawable.wy);}
+
+
+
+
+
+
+        if (selectHotelModelArrayList.get(position).isOff()) {
             holder.tvOff.setVisibility(View.VISIBLE);
             holder.tvOff.setText(selectHotelModelArrayList.get(position).getOff());
 
@@ -120,8 +291,6 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvOff.setVisibility(View.GONE);
 
         }
-
-
 
 
         switch (selectHotelModelArrayList.get(position).getStar()) {
@@ -156,8 +325,8 @@ public class FlightHotelAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView name, location, title, board, tvPrice, tvOff;
-        ImageView ivHotelPic, ivRate;
+        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime,tvRaftTimeWait,tvBargashtTimeWait,tvAirLines;
+        ImageView ivHotelPic, ivRate,ivLogo;
         CardView cvHotel;
 
 

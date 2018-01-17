@@ -1,30 +1,5 @@
 package com.reserv.myapplicationeli.views.activities.hotel.activity;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,6 +17,30 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.HotelCity;
 import com.reserv.myapplicationeli.views.adapters.GetHotelCityAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class GetHotelCityActivity extends BaseActivity implements Header.onSearchTextChangedListener,OnClickListener{
@@ -248,7 +247,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 	                
 	                ////
 	                listAirPort = (ListView)findViewById(R.id.listCityHotel);
-	                  mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this,GetHotelCityActivity.this, data);
+	                  mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this,GetHotelCityActivity.this, data,getIntent().getExtras().getInt("type"));
 	                //mAdapter.setAdapter(mAdapter);
 	                mAdapter.setData(data);
 	                listAirPort.setAdapter(mAdapter);

@@ -5,7 +5,7 @@ package com.reserv.myapplicationeli.models.hotel.api.holdSelectedRoom.response;
  */
 
 public class HoldSelectRoomResponse {
-    public final HoldSelectedRoomResult HoldSelectedRoomResult;
+    public final com.reserv.myapplicationeli.models.hotel.api.holdSelectedRoom.response.HoldSelectedRoomResult HoldSelectedRoomResult;
 
     public HoldSelectRoomResponse(com.reserv.myapplicationeli.models.hotel.api.holdSelectedRoom.response.HoldSelectedRoomResult holdSelectedRoomResult) {
         HoldSelectedRoomResult = holdSelectedRoomResult;

@@ -30,20 +30,22 @@ public class GetHotelCityAdapter extends BaseAdapter {
 	public String value_Maghsad_Airport;
 	public String value_Maghsad_Airport_Code;
 	Activity activity;
+	int type;
 
 	/*public GetHotelCityAdapter() {
 		myInflater = LayoutInflater.from(GlobalApplication.getActivity());
 	}*/
-	 // create constructor to innitilize context and data sent from MainActivity
-    public GetHotelCityAdapter(Activity activity,Context context, List<HotelCity> data){
-        this.context=context;
-        this.activity=activity;
-        inflater= LayoutInflater.from(context);
-        this.data=data;
-        myInflater = LayoutInflater.from(context);
-        
-      
-    }
+	// create constructor to innitilize context and data sent from MainActivity
+	public GetHotelCityAdapter(Activity activity,Context context, List<HotelCity> data,int type){
+		this.context=context;
+		this.activity=activity;
+		this.type=type;
+		inflater= LayoutInflater.from(context);
+		this.data=data;
+		myInflater = LayoutInflater.from(context);
+
+
+	}
 	public GetHotelCityAdapter(Activity activity){
 		this.context=activity;
 		myInflater = LayoutInflater.from(activity);
@@ -57,7 +59,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
 		this.data = data;
 		notifyDataSetChanged();
 	}
-	
+
 	@Override
 	public int getCount() {
 		return data == null ? 0 : data.size();
@@ -71,15 +73,15 @@ public class GetHotelCityAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-	
-	long s =position+1;
+
+		long s =position+1;
 		//return data.getLong(Customers_Table.Columns.CUSTOMER_ID.value());
 		return s;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final ViewHolder holder;
-		
+
 		if (convertView == null) {
 			Log.e("POSITION", "" + position);
 			convertView = myInflater.inflate(R.layout.row_airport, null);
@@ -97,63 +99,68 @@ public class GetHotelCityAdapter extends BaseAdapter {
 		//cursor.moveToPosition(position);
 		final HotelCity current=data.get(position);
 		holder.AirportName.setText(current.getCityNameFa()+ "");
-		
+
 		holder.CityName.setText(current.getCityNameEn());
-		
+
 		holder.AirportName.setTag(current.getCityNameFa());
 		holder.AirportName.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-					
+
+			@Override
+			public void onClick(View v) {
+
 				//		Intent i4 = new Intent(context,HotelActivity.class);
-						
-						//i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-						
+
+				//i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
 					/*	i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());//current.getCityName()
 						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
 						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());
-					
-					
+
+
 						activity.finish();
 						//context.startActivity(i4);*/
-						
-						
 
-					}
-				});
+
+
+			}
+		});
 		holder.CityName.setTag(current.getCityNameFa());
 		holder.llLayout.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-					
+
+			@Override
+			public void onClick(View v) {
+
 			/*			Intent i4 = new Intent(context,HotelActivity.class);
-						
+
 						i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());
 						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
 						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());*/
 
+				if (type==0){
+					Prefs.putString("Value-Hotel-City-Fa",current.getCityNameFa());
+					Prefs.putString("Value-Hotel-City-En",current.getCityNameEn());
+					Prefs.putString("Value-Hotel-City-Code",current.getCityCode());
+				}
 
-						Prefs.putString("Value-Hotel-City-Fa",current.getCityNameFa());
-						Prefs.putString("Value-Hotel-City-En",current.getCityNameEn());
-						Prefs.putString("Value-Hotel-City-Code",current.getCityCode());
 
-						activity.finish();
 
-						
 
-					}
-				});
+
+				activity.finish();
+
+
+
+			}
+		});
 		return convertView;
-		}
+	}
 
 	static class ViewHolder {
 		TextView AirportName;
 		TextView CityName;
 		LinearLayout llLayout;
-		
-		
+
+
 	}
 
 

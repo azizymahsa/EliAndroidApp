@@ -113,6 +113,8 @@
         <activity
             android:name=".views.activities.AddRoomActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity"/>
     </application>
 
 </manifest>

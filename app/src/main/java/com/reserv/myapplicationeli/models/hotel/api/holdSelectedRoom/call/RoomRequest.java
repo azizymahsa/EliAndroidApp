@@ -1,9 +1,6 @@
 package com.reserv.myapplicationeli.models.hotel.api.holdSelectedRoom.call;
 
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
-import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Rooms;
-
-import java.util.List;
 
 /**
  * Created by Reza.nejati on 1/7/2018.

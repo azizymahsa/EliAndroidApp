@@ -5,9 +5,9 @@ package com.reserv.myapplicationeli.models.hotel.api.rooms.response;
  */
 
 public class GetRoomsListResponse {
-  public final GetRoomsListResult GetRoomsListResult;
+  public final com.reserv.myapplicationeli.models.hotel.api.rooms.response.GetRoomsListResult GetRoomsListResult;
 
-    public GetRoomsListResponse(GetRoomsListResult getRoomsListResult) {
+    public GetRoomsListResponse(com.reserv.myapplicationeli.models.hotel.api.rooms.response.GetRoomsListResult getRoomsListResult) {
         GetRoomsListResult = getRoomsListResult;
     }
 }

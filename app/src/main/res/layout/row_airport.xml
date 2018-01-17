@@ -8,54 +8,62 @@
     android:background="#ffffff"
     android:id="@+id/llLayout"
     android:gravity="center">
+
   <LinearLayout
+      android:id="@+id/llContentLayout"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      android:gravity="center">
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="fish name"
-        android:textColor="#000000"
-        android:layout_marginRight="10dp"
-        android:textAppearance="@style/IrsansBold"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/icon_location2"
-        android:textAppearance="@style/IconFonts"
-        android:textColor="@color/app_base_color"
-        android:textSize="20dp" />
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+      <TextView
+          android:id="@+id/text1"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="fish name"
+          android:textColor="#000000"
+          android:layout_marginRight="10dp"
+          android:textAppearance="@style/IrsansBold"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:text="@string/icon_location2"
+          android:textAppearance="@style/IconFonts"
+          android:textColor="@color/app_base_color"
+          android:textSize="20dp" />
 
 
 
-  </LinearLayout>
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      android:gravity="center">
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="fish name"
-        android:textColor="#000000"   />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/icon_location2"
-        android:textAppearance="@style/IconFonts"
-        android:textColor="@color/app_base_color"
-        android:textSize="20dp"
-        android:visibility="invisible"
-   />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+      <TextView
+          android:id="@+id/text2"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="fish name"
+          android:textColor="#000000"   />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:text="@string/icon_location2"
+          android:textAppearance="@style/IconFonts"
+          android:textColor="@color/app_base_color"
+          android:textSize="20dp"
+          android:visibility="invisible"
+          />
 
 
+
+    </LinearLayout>
 
   </LinearLayout>
 

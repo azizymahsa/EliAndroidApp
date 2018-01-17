@@ -247,12 +247,22 @@
                         android:id="@+id/ivLogo"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/logo_turkish"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
                         android:layout_alignParentRight="true"/>
                     <TextView
                         android:id="@+id/tvRaft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="رفت به استانبول"
+                        android:textSize="12dp"
+                        android:layout_toLeftOf="@+id/ivLogo"
+                        android:textColor="#6e6d6d"
+                        android:layout_marginRight="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/tvRaftTimeWait"
+                        android:layout_below="@+id/tvRaft"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="رفت به استانبول"
@@ -275,6 +285,7 @@
                         android:layout_marginTop="20dp"
                         android:textAppearance="@style/IrsansBold"
                         android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
 
                         />
 
@@ -289,10 +300,22 @@
                         android:layout_marginRight="10dp"
                         android:layout_below="@+id/tvAirLines"
                         />
+                    <TextView
+                        android:id="@+id/tvBargashtTimeWait"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="برگشت به تهران"
+                        android:textSize="12dp"
+                        android:layout_toLeftOf="@+id/ivLogo"
+                        android:textColor="#6e6d6d"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/tvBargasht"
+                        />
 
 
                     <TextView
-                        android:id="@+id/tvTimeRaft"
+                        android:id="@+id/tvRaftTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="11:50"
@@ -306,6 +329,8 @@
 
 
                     <TextView
+                        android:id="@+id/tvBargashtTime"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="11:50"
@@ -329,20 +354,9 @@
                         android:paddingBottom="1dp"
                         android:paddingLeft="1dp"
                         android:textColor="#fff"
+                        android:visibility="gone"
                         />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="فقط 6 نفر"
-                        android:textSize="12dp"
-                        android:textColor="#292929"
-                        android:textAppearance="@style/IrsansBold"
 
-                        android:layout_toLeftOf="@+id/ivLogo"
-                        android:layout_marginRight="10dp"
-                        android:layout_below="@+id/tvAirLines"
-                        android:gravity="left"
-                        />
                 </RelativeLayout>
 
             </LinearLayout>

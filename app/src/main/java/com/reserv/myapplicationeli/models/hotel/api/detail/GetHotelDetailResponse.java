@@ -5,7 +5,7 @@ package com.reserv.myapplicationeli.models.hotel.api.detail;
  */
 
 public class GetHotelDetailResponse {
-    public final GetHotelDetailResult GetHotelDetailResult;
+    public final com.reserv.myapplicationeli.models.hotel.api.detail.GetHotelDetailResult GetHotelDetailResult;
 
     public GetHotelDetailResponse(com.reserv.myapplicationeli.models.hotel.api.detail.GetHotelDetailResult getHotelDetailResult) {
         GetHotelDetailResult = getHotelDetailResult;

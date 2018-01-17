@@ -1,8 +1,5 @@
 package com.reserv.myapplicationeli.views.activities.hotel.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -17,6 +14,9 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class GetHotelRoomCountActivity extends Activity implements Header.onSearchTextChangedListener,OnClickListener{
@@ -65,7 +65,7 @@ public class GetHotelRoomCountActivity extends Activity implements Header.onSear
 		public void onClick(View v) {
 			switch (v.getId()) {
 				case R.id.btn_add_room:
-					ModelRowCountRoom md = new ModelRowCountRoom();  
+					ModelRowCountRoom md = new ModelRowCountRoom();
 				   data.add(md);  
 				   mAdapter.notifyDataSetChanged();  
 				 

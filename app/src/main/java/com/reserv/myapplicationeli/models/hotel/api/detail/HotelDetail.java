@@ -1,9 +1,5 @@
 package com.reserv.myapplicationeli.models.hotel.api.detail;
 
-import android.widget.ListView;
-
-import com.reserv.myapplicationeli.models.hotel.api.detail.call.HotelProprties;
-
 import java.util.List;
 
 /**

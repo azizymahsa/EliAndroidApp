@@ -1,14 +1,10 @@
 package com.reserv.myapplicationeli.views.ui.dialog.hotel;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.hotel.FilterPriceModel;
@@ -446,7 +442,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
     public interface FilterHotelDialogListenerArray {
         public void onReturnValue(ArrayList<FilterModel> type, String search,
                                   ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
-                                  ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,ArrayList<FilterPriceModel> filterHotelPriceModel);
+                                  ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, ArrayList<FilterPriceModel> filterHotelPriceModel);
     }
 
 }
