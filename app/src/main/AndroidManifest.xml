@@ -115,6 +115,17 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity"/>
+
+        <activity
+            android:name=".views.activities.login.LogInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.login.RegisterLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.login.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

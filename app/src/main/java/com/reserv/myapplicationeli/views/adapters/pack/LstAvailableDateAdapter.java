@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Created by elham.bonyani on 1/6/2018.
  */
 
-public class LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableDateRowHolder> {
+public class          LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableDateRowHolder> {
 
     private Context context;
     private ArrayList<LstAvailableDate> feedItemList;

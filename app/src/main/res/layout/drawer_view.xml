@@ -10,6 +10,41 @@
     android:src="@drawable/banafsh_jahan"
     android:padding="5dp"/>
 
+    <RelativeLayout
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="ورود"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            android:layout_toLeftOf="@+id/tvLogin"
+            android:layout_marginRight="10dp"
+            />
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAppearance="@style/IconFonts"
+            android:text="@string/icon_airplane"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#FFA9A6D0"/>
+
 
         <RelativeLayout
             android:id="@+id/btnFlight"
@@ -18,9 +53,9 @@
             android:layout_weight="50"
             >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
                 android:text="پرواز"
                 android:textColor="@android:color/white"
                 android:textSize="18dp"

@@ -1,20 +1,16 @@
 package com.reserv.myapplicationeli.views.activities.main;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
 
@@ -23,13 +19,13 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.views.activities.AboutActivity;
 import com.reserv.myapplicationeli.views.activities.ConditionActivity;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
+import com.reserv.myapplicationeli.views.activities.login.LogInActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
 import com.reserv.myapplicationeli.views.fragments.insurance.InsuranceFragment;
 import com.reserv.myapplicationeli.views.fragments.pack.PackageFragment;
 import com.reserv.myapplicationeli.views.ui.InitUi;
-import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -38,7 +34,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle;
-    private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance,btnHotelFlight,btnAbout,btnContactUs,btn_condition;
+    private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance,btnHotelFlight,btnAbout,btnContactUs,btn_condition ,btnLogin;
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
     @Override
@@ -75,6 +71,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnAbout = findViewById(R.id.btnAbout);
         btnContactUs= findViewById(R.id.btnContactUs);
         btn_condition= findViewById(R.id.btn_condition);
+        btnLogin = findViewById(R.id.btnLogin);
 
         tvTitle.setText(getString(R.string.searchFlight));
 
@@ -89,6 +86,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnAbout.setOnClickListener(this);
         btnContactUs.setOnClickListener(this);
         btn_condition.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
     }
 
     @Override
@@ -143,6 +141,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Intent intent3 = new Intent(this, ConditionActivity.class);
                 startActivity(intent3);
                 break;
+            case R.id.btnLogin:
+                Intent intent = new Intent(this,LogInActivity.class);
+                startActivity(intent);
+                break;
+
 
         }
 

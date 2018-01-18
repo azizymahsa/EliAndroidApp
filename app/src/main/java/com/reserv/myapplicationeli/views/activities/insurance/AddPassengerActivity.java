@@ -42,7 +42,7 @@ public class AddPassengerActivity extends BaseActivity implements
         View.OnClickListener,
         PassengerContract.View,
         TimePickerDialog.OnTimeSetListener,
-        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener{
+        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     public SimpleRecycleView rcl_add_passenger;
     public ImageView btn_add;
@@ -103,17 +103,13 @@ public class AddPassengerActivity extends BaseActivity implements
         int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
 
-
         datePickerDialogBirthDay = DatePickerDialog.newInstance(
                 this,
-                currentYear - 100,
+                currentYear - 66,
                 0,
                 1
         );
-        PersianCalendar persianCalendarDatePicker = new PersianCalendar();
-        persianCalendarDatePicker.setPersianDate(currentYear,currentMonth ,currentDay);
-        datePickerDialogBirthDay.setMaxDate(persianCalendarDatePicker);
-
+        datePickerDialogBirthDay.setYearRange(1330, currentYear);
 
         btn_add.setOnClickListener(this);
         btn_remove.setOnClickListener(this);
@@ -165,7 +161,7 @@ public class AddPassengerActivity extends BaseActivity implements
     @Override
     public void notifyItemRangeChanged(int positionStart, int itemCount) {
         if (passengerAdapter != null) {
-            passengerAdapter.notifyItemRangeChanged(positionStart,itemCount);
+            passengerAdapter.notifyItemRangeChanged(positionStart, itemCount);
         }
     }
 
@@ -189,25 +185,25 @@ public class AddPassengerActivity extends BaseActivity implements
                 passengerPresenter.removePassengers();
                 break;
             case R.id.btn_confirm:
-                if(!isValidPassengers(passengerPresenter.getPassengers())){
+                if (!isValidPassengers(passengerPresenter.getPassengers())) {
                     Toast.makeText(this, "لطفا تاریخ تولد مسافران را وارد نمایید .", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Gson gson = new GsonBuilder().create();
                 Intent intent = new Intent();
-                intent.putExtra("BirthDateList",gson.toJson(passengerPresenter.getPassengers()));
-                setResult(RESULT_OK,intent);
+                intent.putExtra("BirthDateList", gson.toJson(passengerPresenter.getPassengers()));
+                setResult(RESULT_OK, intent);
                 finish();
                 break;
         }
     }
 
     private boolean isValidPassengers(ArrayList<BirthDateList> passengers) {
-        if(ValidationTools.isEmptyOrNull(passengers)){
+        if (ValidationTools.isEmptyOrNull(passengers)) {
             return false;
         }
-        for(BirthDateList passenger : passengers){
-            if(ValidationTools.isEmptyOrNull(passenger.getBirthDate())){
+        for (BirthDateList passenger : passengers) {
+            if (ValidationTools.isEmptyOrNull(passenger.getBirthDate())) {
                 return false;
             }
         }
@@ -221,12 +217,10 @@ public class AddPassengerActivity extends BaseActivity implements
     }
 
 
-
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
 
     }
-
 
 
 
@@ -243,7 +237,7 @@ public class AddPassengerActivity extends BaseActivity implements
 
         if (view.getTag().equals("BirthDay")) {
 
-            passengerPresenter.setBirthday(currentPassenger,currentDateTime);
+            passengerPresenter.setBirthday(currentPassenger, currentDateTime);
             datePickerDialogBirthDay.initialize(this, year_, month, day);
 
         }

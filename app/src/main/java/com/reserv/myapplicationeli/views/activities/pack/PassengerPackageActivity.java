@@ -103,16 +103,16 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 	public ImageView txt_hom;
 
 	private String Gensiyat;
-    Activity activity;
-	public int countB= SearchParvazActivity.COUNT_B;
-	public int countK= SearchParvazActivity.COUNT_K;
-	public int countN= SearchParvazActivity.COUNT_N;
+	Activity activity;
+	public int countB=SearchParvazActivity.COUNT_B;
+	public int countK=SearchParvazActivity.COUNT_K;
+	public int countN=SearchParvazActivity.COUNT_N;
 	//public int sum=countB+countK+countN;
 	public int sum=1;
 
 
 	@SuppressLint("WrongViewCast")
-    @Override
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_passenger_pack);
@@ -190,11 +190,11 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 		linearMeliyat= (LinearLayout) findViewById(R.id.linearMeliyat);
 
 		txtnameP= (EditText)findViewById(R.id.txtnameP);
-	//	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
+		//	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
 		txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
 
 		txtfamilyP= (EditText)findViewById(R.id.txtfamilyP);
-	//	txtfamilyP.setHint("لطفا نام خانوادگی را فارسی وارد کنید");
+		//	txtfamilyP.setHint("لطفا نام خانوادگی را فارسی وارد کنید");
 		txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
 		txtmobileP= (EditText)findViewById(R.id.txtmobileP);
 		txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
@@ -214,7 +214,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 		linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
 
 		listKhadamat = (ListView)findViewById(R.id.listKhadamat);
-		 myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
+		myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
 
 
 
@@ -672,7 +672,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				 /* JSONObject GetError = jsonObj.getJSONObject("Error");
 				  Toast.makeText(PassengerHotelActivity.this,  Get, Toast.LENGTH_LONG).show();*/
 
-			//	JSONArray jArray = GetAirportsResult.getJSONArray("Services");
+				//	JSONArray jArray = GetAirportsResult.getJSONArray("Services");
 				JSONObject jsonResult= GetAirportsResult.getJSONObject("TmpReserveResult");
 
 				Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
@@ -729,7 +729,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 //                ((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
 //                ((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
-                txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+				txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
 
 				mAdapter = new GetKhadmatAdapter(PassengerPackageActivity.this, data,PassengerPackageActivity.this);
 				//mAdapter.setAdapter(mAdapter);
@@ -790,8 +790,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 					detailsJson.put("Nationality", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 					detailsJson.put("Nationality_ID",cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 					detailsJson.put("Nationality_ID",cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-					detailsJson.put("PackRoomType_ID",Prefs.getString("PackRoomType_ID","12"));
-					detailsJson.put("Room_No",Prefs.getString("Room_No","12"));
+					detailsJson.put("PackRoomType_ID",Prefs.getInt("PackRoomType_ID",12));
+					detailsJson.put("Room_No",Prefs.getInt("Room_No",12));
 
 
 					detailsJson.put("RqPassenger_Address", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
@@ -983,7 +983,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 					txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
 					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
-                    finish();
+					finish();
 				}
 				break;
 			case R.id.btn_next_partnerInfo:
@@ -992,17 +992,17 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 					//jadvale mosafer khali beshe
 
 					PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerPackageActivity.this);
-                 //   db.openDB();
+					//   db.openDB();
 					db.dropTable();
 					////////////////////////Validate
-					 String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-					 String RqPartner_Email= txtemeliP.getText().toString();
-					 String RqPartner_FirstNameFa= txtnameP.getText().toString();
-					 String RqPartner_Gender= Gensiyat;
-					 String RqPartner_LastNameFa= txtfamilyP.getText().toString();
-					 String RqPartner_Mobile= txtmobileP.getText().toString();
-					 String RqPartner_NationalCode= txtkodemeliP.getText().toString();
-					 String RqPartner_Tel= "21587632";
+					String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+					String RqPartner_Email= txtemeliP.getText().toString();
+					String RqPartner_FirstNameFa= txtnameP.getText().toString();
+					String RqPartner_Gender= Gensiyat;
+					String RqPartner_LastNameFa= txtfamilyP.getText().toString();
+					String RqPartner_Mobile= txtmobileP.getText().toString();
+					String RqPartner_NationalCode= txtkodemeliP.getText().toString();
+					String RqPartner_Tel= "21587632";
 
 					/*String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 					String RqPartner_Email= "mohebbi@eligasht.com";
@@ -1095,20 +1095,20 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				break;
 			case R.id.btn_nextm:
 				String Gender= Gensiyat;
-				 String Nationality=txtmahale_eghamat.getText().toString();// "IR";
-				 String Nationality_ID= txtmeliyatm.getText().toString();
-				 String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-				 String RqPassenger_Birthdate= txttavalodm.getText().toString();
-				 String RqPassenger_Email= "mohebbi@eligasht.com";
-				 String RqPassenger_FirstNameEn= txtnamem.getText().toString();
-				 String RqPassenger_FirstNameFa= "مریم";
-				 String RqPassenger_LastNameEn=txtfamilym.getText().toString();
-				 String RqPassenger_LastNameFa= "محبی";
-				 String RqPassenger_Mobile= "0235588456";
-				 String RqPassenger_NationalCode= "0062532148";//codemeli
-				 String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
-				 String RqPassenger_PassNo=txtnumber_passport.getText().toString();
-				 String RqPassenger_Tel= "25548632";
+				String Nationality=txtmahale_eghamat.getText().toString();// "IR";
+				String Nationality_ID= txtmeliyatm.getText().toString();
+				String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+				String RqPassenger_Birthdate= txttavalodm.getText().toString();
+				String RqPassenger_Email= "mohebbi@eligasht.com";
+				String RqPassenger_FirstNameEn= txtnamem.getText().toString();
+				String RqPassenger_FirstNameFa= "مریم";
+				String RqPassenger_LastNameEn=txtfamilym.getText().toString();
+				String RqPassenger_LastNameFa= "محبی";
+				String RqPassenger_Mobile= "0235588456";
+				String RqPassenger_NationalCode= "0062532148";//codemeli
+				String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
+				String RqPassenger_PassNo=txtnumber_passport.getText().toString();
+				String RqPassenger_Tel= "25548632";
 
 				/*String Gender= "Female";
 				String Nationality= "IR";
@@ -1437,8 +1437,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 			/*Intent intent = new Intent(this,PlanFragment.class);
 			//i2.putExtra("CUSTOMER_ID", (int) customerID);
 			startActivity(intent);*/
-           //PassengerHotelActivity.this.finish();
-            finish();
+			//PassengerHotelActivity.this.finish();
+			finish();
 		}
 	}
 	@Override
@@ -1565,7 +1565,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				case R.id.txtemeliP:
 					String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 					if (text.matches(emailPattern) && text.length() > 0){
-					//if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
+						//if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
 						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#00cc00"));
 
 					}else{

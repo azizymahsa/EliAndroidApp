@@ -28,6 +28,7 @@
     <color name="SpinnerColor">#aab6f5</color>
     <color name="pressed_color">#4d90fe</color>
     <color name="default_color">#ffffff</color>
+    <color name="light_blue">#0071BC</color>
 
     <color name="titlebackgroundcolor">#3232CD</color>
     <color name="titletextcolor">#FFFF00</color>

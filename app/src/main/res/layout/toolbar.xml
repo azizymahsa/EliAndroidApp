@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/flight_status"/>
+        android:background="@color/TRANSPARENT"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -96,6 +96,7 @@
             fancy:fb_textSize="25dp" />
 
         <ImageView
+            android:id="@+id/e_logo"
             android:layout_width="60dp"
             android:layout_height="@dimen/toolbar_height_70dp"
             android:padding="10dp"

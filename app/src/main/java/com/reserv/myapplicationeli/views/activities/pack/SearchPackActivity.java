@@ -292,8 +292,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         Prefs.putString("PackRow_ID",pRowXfers.get(0).getPackRowID().toString());
         Prefs.putString("PackXfer_IDs",pRowXfers.get(0).getXFerIDs() );
         Prefs.putString("Flt_IDs",pRowXfers.get(0).getFltIDs() );
-        Prefs.putString("PackRoomType_ID",pRowXfers.get(0).getLstProwPrices().get(0).getPackRowRoomTypeID().toString());
-        Prefs.putString("Room_No",pRowXfers.get(0).getLstProwPrices().get(0).getRoomNo().toString());
+        Prefs.putInt("PackRoomType_ID",pRowXfers.get(0).getLstProwPrices().get(0).getPackRowRoomTypeID());
+        Prefs.putInt("Room_No",pRowXfers.get(0).getLstProwPrices().get(0).getRoomNo());
         startActivity(intent);
     }
 

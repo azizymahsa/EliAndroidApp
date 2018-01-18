@@ -89,4 +89,6 @@
 
     <style name="IconUser" parent="android:TextAppearance">
         <item name="fontPath">fonts/user.ttf</item></style>
+    <style name="User_pass_login" parent="android:TextAppearance">
+        <item name="fontPath">fonts/user_pass_login.ttf</item></style>
 </resources>

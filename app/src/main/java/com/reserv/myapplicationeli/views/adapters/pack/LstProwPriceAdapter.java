@@ -1,9 +1,11 @@
 package com.reserv.myapplicationeli.views.adapters.pack;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
@@ -38,7 +40,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
             childPrice = itemView.findViewById(R.id.price_child);
             infantPrice = itemView.findViewById(R.id.price_infant);
             totalPrice = itemView.findViewById(R.id.total_price);
-            total_price = itemView.findViewById(R.id.total_price);
+            //    total_price = itemView.findViewById(R.id.total_price);
             txt_hr_room_list = itemView.findViewById(R.id.txt_hr_room_list);
             chk_prow_price = itemView.findViewById(R.id.chk_prow_price);
         }
@@ -61,7 +63,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
     @Override
     public ItemViewHolder onCreateItemViewHolder(ViewGroup parent, int itemUserType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.adapter_lst_prow_price1, parent, false);
+        View v = inflater.inflate(R.layout.adapter_lst_prow_price, parent, false);
         return new ItemViewHolder(v);
     }
 
@@ -117,7 +119,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
 
         try{
             int adlCount = ((LstProwPrice) feedItemList.get(sectionIndex).getList().get(0)).getAdlCount();
-            String title = " پیشنهاد " + getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + " برای " + adlCount + " نفر بزرگسال ";
+            String title = " اتاق " + getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + "پیشنهاد برای " + adlCount + " نفر بزرگسال ";
             holder.txt_title_header.setText(title);
         }catch (Exception e){
             e.printStackTrace();

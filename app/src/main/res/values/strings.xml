@@ -137,6 +137,9 @@
     <string name="icon_arrow_left">&#xe314;</string>
     <string name="icon_arrow_right">&#xe315;</string>
     <string name="icon_user">&#xf2c0;</string>
+    <string name="icon_user_login">&#xe8091;</string>
+    <string name="icon_pass_login">&#xe80a1;</string>
+    <string name="icon_forget_login">&#xe8031;</string>
 
     <string name="searchFlight">جستجوی پرواز</string>
     <string name="search_package">جستجوی پکیج</string>
