@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--10.1” tablet 1280x800 mdpi-->
     <dimen name="circle_60dp">100dp</dimen>
-    <dimen name="_12dp">18dp</dimen>
+    <dimen name="_12dp">15dp</dimen>
     <dimen name="_25dp">25dp</dimen>
     <dimen name="_10dp_margin">10dp</dimen>
     <dimen name="toolbar_title_16dp">16dp</dimen>
@@ -14,6 +14,14 @@
     <dimen name="icon_size_25dp">25dp</dimen>
     <dimen name="text_size">20dp</dimen>
     <dimen name="_aboutdp">17dp</dimen>
-    <dimen name="_14dp">14dp</dimen>
+    <dimen name="_14dp">19dp</dimen>
+    <dimen name="_260">760dp</dimen>
+    <dimen name="_20dp">35dp</dimen>
+    <dimen name="_11dp">20dp</dimen>
+    <dimen name="_50dp">70dip</dimen>
+    <dimen name="_135">250dp</dimen>
+    <dimen name="_10dp">50dp</dimen>
+    <dimen name="_32dp">50dp</dimen>
+    <dimen name="_27dp">50dp</dimen>
 
 </resources>

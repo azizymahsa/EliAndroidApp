@@ -116,7 +116,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
 
 	public TextView  txtCityBargasht;
-	public FancyButton txtBack,txtCityRaft;
+	public FancyButton txtBack,txtCityRaft,btnHome;
 
 	public List<ParentItemExpandingPlan> dataExpandingList;
 	public List<ParentItemExpandingPlan> dataExpandingListFilter = new ArrayList<>();
@@ -166,6 +166,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		txtBack.setCustomTextFont("fonts/icomoon.ttf");
 		txtBack.setText(getString(R.string.search_back_right));
 
+		btnHome = (FancyButton) findViewById(R.id.btnHome);
+		btnHome.setOnClickListener(this);
+		/*btnHome.setCustomTextFont("fonts/icomoon.ttf");
+		btnHome.setText(getString(R.string.search_back_right));
+		*/
 		txtFilter = (TextView) findViewById(R.id.txtFilter);
 		txtFilter.setOnClickListener(this);
 
@@ -2151,6 +2156,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				/*Intent intent = new Intent(this,PlanFragment.class);
 				//i2.putExtra("CUSTOMER_ID", (int) customerID);
 				startActivity(intent);*/
+				finish();
+				break;
+			case R.id.btnHome:
 				finish();
 				break;
 			case R.id.txtFilter:

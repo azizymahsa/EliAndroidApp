@@ -85,17 +85,11 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v){
         switch (v.getId()) {
-            /*case R.id.llBottom:
-              //  new FilterHotelDialog(AboutActivity.this, filterModels, this, filterHotelTypeModel, filterHotelFacilitiesModels, filterHotelPriceModels);
 
-
-                break;*/
             case R.id.btnBack:
-				/*Intent intent = new Intent(this,PlanFragment.class);
-				//i2.putExtra("CUSTOMER_ID", (int) customerID);
-				startActivity(intent);*/
+
                 finish();
                 break;
         }

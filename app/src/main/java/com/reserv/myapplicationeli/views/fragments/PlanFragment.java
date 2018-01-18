@@ -21,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,8 +46,8 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     public static boolean flag;
     public static TextView tarikh_az_picker;
     public static TextView tarikh_be_picker;
-    public TextView txtCountB, tvStart, tvEnd, txtCountK, txtCountN, txtOption, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be;
-    public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN, btntwo, btnOne, searchPlan;
+    public TextView txtCountB, tvStart, tvEnd, txtCountK, txtCountN, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne;
+    public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN, searchPlan;
     private LinearLayout linear_picker_title, linear_picker;
     public int flagOneTwo = 2;
     private static String picker_be = "2017-12-29";
@@ -59,7 +60,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     private View rootView;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
-
+    ImageView txtOption;
     int month;
     int year_;
     int day;
@@ -74,8 +75,6 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_plane, container, false);
-
-        //	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
 
 
         tarikh_az_picker = (TextView) rootView.findViewById(R.id.tarikh_az_picker);
@@ -96,8 +95,8 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
         btnPlusN = (Button) rootView.findViewById(R.id.btnPlusN);
         btnMinesN = (Button) rootView.findViewById(R.id.btnMinesN);
 
-        btntwo = (Button) rootView.findViewById(R.id.btntwo);
-        btnOne = (Button) rootView.findViewById(R.id.btnOne);
+        btntwo = (TextView) rootView.findViewById(R.id.btntwo);
+        btnOne = (TextView) rootView.findViewById(R.id.btnOne);
 
 
         searchPlan = (Button) rootView.findViewById(R.id.searchPlan);
@@ -111,7 +110,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
         txtCountN = (TextView) rootView.findViewById(R.id.txtCountN);
         tvStart = (TextView) rootView.findViewById(R.id.tvStart);
 
-        txtOption = (TextView) rootView.findViewById(R.id.txtOption);
+        txtOption = (ImageView) rootView.findViewById(R.id.txtOption);
         tvEnd = (TextView) rootView.findViewById(R.id.tvEnd);
         lbl_forudgah_mabda = (TextView) rootView.findViewById(R.id.lbl_forudgah_mabda);
         lbl_forudgah_maghsad = (TextView) rootView.findViewById(R.id.lbl_forudgah_maghsad);
@@ -353,10 +352,10 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                 break;
             case R.id.btntwo:
                 flagOneTwo = 2;
-                ((Button) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.purple_button_larg);
-                ((Button) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.raft_big);
-                ((Button) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
-                ((Button) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
+                ((LinearLayout) rootView.findViewById(R.id.llButton)).setBackgroundResource(R.drawable.raftobargasht_button);
+               // ((Button) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.raft_big);
+                ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
+                ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
 
                 //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
                 linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
@@ -370,10 +369,10 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                 break;
             case R.id.btnOne:
                 flagOneTwo = 1;
-                ((Button) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.purple_button_larg);
-                ((Button) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.raft_big);
-                ((Button) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));
-                ((Button) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
+                ((LinearLayout) rootView.findViewById(R.id.llButton)).setBackgroundResource(R.drawable.raft_button);
+                //((Button) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.raft_big);
+                ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));
+                ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
 
                 //linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
                 linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);

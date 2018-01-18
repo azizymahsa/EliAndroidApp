@@ -656,12 +656,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(result);
-
+				JSONObject GetError=null;
 				// JSONObject jsonObj = new JSONObject(retSrc);
 
 				// Getting JSON Array node
 				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightResult");//Error
-				JSONObject GetError = GetAirportsResult.getJSONObject("Error");
+				if(!GetAirportsResult.getString("Error").equals("null")){
+				 GetError = GetAirportsResult.getJSONObject("Error");
+				}
 				if (GetError != null) {
 
 
@@ -669,7 +671,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}else{
 
 
-					JSONArray jArray = GetAirportsResult.getJSONArray("Services");
+				JSONArray jArray = GetAirportsResult.getJSONArray("Services");
 				JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
 
 				Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
@@ -1260,12 +1262,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				linear_list_khadamat.setVisibility(View.VISIBLE);
 				linear_pish_factor.setVisibility(View.GONE);
 				//myScrollView.setSmoothScrollingEnabled(false); // disable scrolling
-				myScrollView.setOnTouchListener(new View.OnTouchListener() {
+				/*myScrollView.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View v, MotionEvent event) {
 						return true;
 					}
-				});
+				});*/
 				//	myScrollView.setVisibility(View.GONE);
 
 				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);

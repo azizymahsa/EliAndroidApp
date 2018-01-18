@@ -1,208 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff" >
 
 
-    <ScrollView
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        <LinearLayout
+
+    <!--
+        <ScrollView
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#000000"
-            android:orientation="vertical">
+            android:layout_height="match_parent" >-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+        <!--<LinearLayout
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="291dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:background="#fff"
-                android:gravity="left">
-
-                <LinearLayout
-                    android:id="@+id/front"
-                    style="@style/MyListFrontContentRe"
-                    android:layout_width="match_parent"
-                    android:layout_height="260dp"
-                    android:background="@drawable/banafsh_jahan"
-                    android:gravity="center"
-                    android:minHeight="40dp"
-                    android:orientation="horizontal"
-                    android:tag="front">
+            style="@style/MyListFrontContentRe"
+            android:layout_width="0dp"
+            android:weight="1"
+            android:layout_height="@dimen/_260"
+            android:background="@drawable/banafsh_jahan"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:orientation="horizontal"
+            android:tag="front">-->
 
 
-                    <TextView
-                        android:id="@+id/lblProductAvailable"
-                        android:layout_width="32dp"
-                        android:layout_height="match_parent"
-                        android:layout_above="@+id/txt_gheymat"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_toRightOf="@+id/txt_emp_dob"
-                        android:layout_weight="0.03"
-                        android:background="@drawable/rectangle"
-                        android:gravity="center"
-                        android:textColor="#FFFFFF"
-                        android:textSize="19sp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="208dp"
-                        android:layout_marginRight="15dip"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="0.09"
-                        android:gravity="right"
-                        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/citySearch"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="50">
 
-                        <LinearLayout
-                            android:id="@+id/linearLayout_mabda"
-                            android:layout_width="wrap_content"
-                            android:layout_height="101dp"
-                            android:layout_above="@+id/linearLayout1"
-                            android:layout_gravity="right"
-                            android:layout_marginRight="3dip"
-                            android:layout_marginTop="10dp"
-                            android:gravity="right"
-                            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/banafsh_jahan" />
 
-                            <TextView
-                                android:id="@+id/lblProductID"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="2dp"
-                                android:gravity="right"
-                                android:text="مبدا : "
-                                android:textColor="#ffffff"
-                                android:textSize="15dip" />
-
-                            <TextView
-                                android:id="@+id/tvStart"
-                                android:layout_width="506dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text=" تهران "
-                                android:textColor="#fff"
-                                android:textSize="20dip"
-                                android:textAppearance="@style/IrsansBold"
-                                />
-
-                            <TextView
-                                android:id="@+id/lbl_forudgah_mabda"
-                                android:layout_width="501dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="(فرودگاه بین المللی امام خمینی) "
-                                android:textColor="#fff"
-                                android:textSize="11dip" />
-                        </LinearLayout>
-                        <!-- /////////////////////////////////linear layout maghsad////////////////////////////////////////////// -->
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout_maghsad"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_above="@+id/linearLayout1"
-                            android:layout_gravity="right"
-                            android:layout_marginRight="3dip"
-                            android:layout_marginTop="1dp"
-                            android:layout_weight="0.02"
-                            android:gravity="right"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/lblmaghsad"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="2dp"
-                                android:gravity="right"
-                                android:text="مقصد : "
-                                android:textColor="#ffffff"
-                                android:textSize="15dip" />
-
-                            <TextView
-                                android:id="@+id/tvEnd"
-                                android:layout_width="506dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text=" استانبول "
-                                android:textColor="#fff"
-                                android:textSize="20dip"
-                                android:textAppearance="@style/IrsansBold" />
-
-                            <TextView
-                                android:id="@+id/lbl_forudgah_maghsad"
-                                android:layout_width="501dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="(فرودگاه بین المللی آتاتورک) "
-                                android:textColor="#fff"
-                                android:textSize="11dp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/txtOption"
-                        android:layout_width="32dp"
-                        android:layout_height="190dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="14dp"
-                        android:background="@drawable/icswitch_big"
-                        android:gravity="center"
-                        android:text=""
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btntwo"
-                    android:layout_width="190dip"
-                    android:layout_height="50dip"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="0.03"
-                    android:background="@drawable/purple_button_larg"
-                    android:clickable="true"
-                    android:gravity="center|fill_vertical"
-                    android:text="رفت و برگشت"
-                    android:textColor="#fff"
-                    android:textSize="12sp"
-                    android:visibility="visible" />
-
-                <Button
-                    android:id="@+id/btnOne"
-                    android:layout_width="190dip"
-                    android:layout_height="50dip"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="0.03"
-                    android:background="@drawable/raft_big"
-                    android:clickable="true"
-                    android:gravity="center|fill_vertical"
-                    android:text="رفت"
-                    android:textColor="#808080"
-                    android:textSize="12sp"
-                    android:visibility="visible" />
-
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/txtOption"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="30dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="50dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icswitch_big" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:layout_toLeftOf="@+id/txtOption"
+                >
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="50"
+                    />
+                <LinearLayout
+                    android:id="@+id/linearLayout_mabda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="100"
+                    android:layout_gravity="right"
+                    android:layout_toLeftOf="@+id/txtOption"
+                    android:gravity="right"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/lblProductID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:gravity="right"
+                        android:text="سفر به : "
+                        android:textColor="#ffffff"
+                        android:textSize="15dip" />
+
+                    <TextView
+                        android:id="@+id/tvStart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text=" تهران "
+                        android:textColor="#fff"
+                      android:textSize="@dimen/_20dp"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/lbl_forudgah_mabda"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="(فرودگاه بین المللی امام خمینی) "
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_11dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout_maghsad"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="100"
+                    android:layout_gravity="right"
+                    android:layout_toLeftOf="@+id/txtOption"
+                    android:gravity="right"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:gravity="right"
+                        android:text="شهر مبدا : "
+                        android:textColor="#ffffff"
+                        android:textSize="15dip" />
+
+                    <TextView
+                        android:id="@+id/tvEnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text=" استانبول "
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/lbl_forudgah_maghsad"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="(فرودگاه بین المللی آتاتورک) "
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_11dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    />
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="50"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginTop="@dimen/_27dp"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
 
                 android:background="#fff"
                 android:orientation="vertical">
@@ -215,7 +229,7 @@
                     android:layout_marginTop="1dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="1dp"
                     android:layout_weight="100"
                     android:background="@color/hotel_detail_background">
 
@@ -228,15 +242,17 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="25dp"
+
+
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/tarikh_be"
                                 android:layout_width="0dp"
+                                android:layout_weight="50"
                                 android:layout_height="match_parent"
                                 android:layout_marginRight="65dp"
-                                android:layout_weight="100"
+
                                 android:background="#fff"
                                 android:gravity="right"
                                 android:text="تاریخ برگشت "
@@ -249,9 +265,9 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginRight="10dp"
-                                android:layout_weight="100"
+                                android:layout_weight="50"
                                 android:background="#fff"
-                                android:gravity="right"
+                                android:gravity="center"
                                 android:text="تاریخ رفت"
                                 android:textColor="#808080"
                                 android:textSize="14dp"
@@ -271,7 +287,9 @@
                                 android:id="@+id/linear_picker"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_marginRight="10dp"
                                 android:layout_weight="100"
+                                android:gravity="right"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -284,12 +302,14 @@
                                     android:gravity="center"
                                     android:text="انتخاب کنید"
                                     android:textColor="@color/textColorRDark"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+
+                                    />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginBottom="1dp"
                                     android:gravity="center"
                                     android:text="@string/icon_calander"
                                     android:textAppearance="@style/IconFonts"
@@ -324,7 +344,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginBottom="1dp"
                                     android:gravity="center"
                                     android:text="@string/icon_calander"
                                     android:textAppearance="@style/IconFonts"
@@ -342,138 +362,9 @@
 
 
                 </android.support.v7.widget.CardView>
-                <!-- <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="86dp"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/shadowbox_big"
-                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="20dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/linear_picker_title"
-                            android:layout_width="0dip"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.25"
-                            android:orientation="vertical"
-                            android:visibility="visible">
-
-                            <Button
-                                android:id="@+id/tarikh_be"
-                                android:layout_width="fill_parent"
-                                android:layout_height="match_parent"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginRight="15dp"
-                                android:background="#fff"
-                                android:gravity="right"
-                                android:shadowColor="#cccccc"
-                                android:text="تاریخ برگشت "
-                                android:textColor="#808080"
-                                android:textSize="11dp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dip"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.25"
-                            android:orientation="vertical">
-
-                            <Button
-                                android:id="@+id/tarikh_az"
-                                android:layout_width="140dp"
-                                android:layout_height="24dp"
-                                android:layout_marginLeft="2dp"
-                                android:layout_marginRight="4dp"
-                                android:layout_marginTop="1dp"
-                                android:background="#fff"
-                                android:gravity="right"
-                                android:shadowColor="#cccccc"
-                                android:shadowDx="-2"
-                                android:shadowDy="-2"
-                                android:text="تاریخ رفت"
-                                android:textColor="#808080"
-                                android:textSize="11dp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-                    &lt;!&ndash; ////////////////////////////////////layout picker tarikh//////////////////////////////////////////////// &ndash;&gt;
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="58dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="1dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/linear_picker"
-                            android:layout_width="0dip"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.25"
-                            android:orientation="vertical"
-
-                            android:visibility="visible">
-
-                            <Button
-                                android:id="@+id/tarikh_be_picker"
-                                android:layout_width="fill_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="14dp"
-                                android:layout_marginRight="2dp"
-                                android:background="#fff"
-                                android:drawableRight="@drawable/calendaricon"
-                                android:gravity="center"
-                                android:shadowColor="#cccccc"
-                                android:text="december 11 2017"
-                                android:textColor="#000000"
-                                android:textSize="11dp"
-                                android:textStyle="bold" />
-
-                            &lt;!&ndash; android:text="اطلاعات مالی" &ndash;&gt;
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dip"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.25"
-                            android:orientation="vertical">
-
-                            <Button
-                                android:id="@+id/tarikh_az_picker"
-                                android:layout_width="fill_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="18dp"
-                                android:layout_marginLeft="2dp"
-                                android:background="#fff"
-                                android:drawableRight="@drawable/calendaricon"
-                                android:gravity="center"
-                                android:shadowColor="#cccccc"
-                                android:shadowDx="-2"
-                                android:shadowDy="-2"
-                                android:text="10 decembre 2017"
-                                android:textColor="#000000"
-                                android:textSize="11dp"
-                                android:textStyle="bold" />
-
-                            &lt;!&ndash; android:text="پیش نمایش" &ndash;&gt;
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>-->
             </LinearLayout>
-
+<!--////////////////////////////////////////////////Tedad nafarat//////////////////////////////////////////////////////////////////////-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -481,17 +372,11 @@
                 android:background="#fff"
                 android:orientation="vertical">
 
-                <!--  <LinearLayout
-                      android:layout_width="match_parent"
-                      android:layout_height="141dp"
-                      android:layout_marginLeft="20dp"
-                      android:layout_marginRight="20dp"
-                      android:background="@drawable/shadowbox_big"
-                      android:orientation="vertical">-->
+
                 <android.support.v7.widget.CardView
 
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="@dimen/_135"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -501,13 +386,13 @@
                     android:background="@color/hotel_detail_background">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="135dp"
+                        android:layout_height="@dimen/_135"
 
                         android:orientation="vertical">
                         <LinearLayout
                             android:layout_marginTop="4dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_32dp"
                             android:layout_marginBottom="14dp"
                             android:layout_marginLeft="14dp"
                             android:layout_marginRight="10dp">
@@ -544,19 +429,19 @@
                             <TextView
                                 android:id="@+id/txtBO"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_margin="1dp"
-                                android:gravity="right"
+                                android:gravity="right|center"
                                 android:text="بزرگسال"
                                 android:textColor="#000000"
-                                android:textSize="11dp" />
+                                android:textSize="@dimen/_11dp" />
 
                         </LinearLayout>
                         <!-- ///////////////koodak////////////////// -->
 
                         <LinearLayout
+                            android:layout_height="@dimen/_32dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginBottom="14dp"
                             android:layout_marginLeft="14dp"
                             android:layout_marginRight="10dp">
@@ -593,19 +478,19 @@
                             <TextView
                                 android:id="@+id/txtKO"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_margin="1dp"
-                                android:gravity="right"
+                                android:gravity="right|center"
                                 android:text="کودک"
                                 android:textColor="#000000"
-                                android:textSize="11dp" />
+                                android:textSize="@dimen/_11dp" />
 
                         </LinearLayout>
                         <!-- //////////////////////nozad/////////////////////// -->
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_32dp"
                             android:layout_marginBottom="1dp"
                             android:layout_marginLeft="14dp"
                             android:layout_marginRight="10dp">
@@ -642,12 +527,12 @@
                             <TextView
                                 android:id="@+id/txtNO"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_margin="1dp"
-                                android:gravity="right"
+                                android:gravity="right|center"
                                 android:text="نوزاد"
                                 android:textColor="#000000"
-                                android:textSize="11dp" />
+                                android:textSize="@dimen/_11dp" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -656,7 +541,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginBottom="@dimen/margin_5dp">
 
                     <Button
                         android:id="@+id/searchPlan"
@@ -675,10 +561,47 @@
 
             </LinearLayout>
 
+    <!--////////////////////////////////////////////////end tedad nafarat////////////////////////////////////////////////////////////////////////////////////// -->
         </LinearLayout>
+    </LinearLayout>
 
-    </ScrollView>
+    <!-- </ScrollView>-->
 
+    <LinearLayout
+        android:id="@+id/llButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/_11dp"
+        android:background="@drawable/raftobargasht_button">
+
+        <TextView
+            android:id="@+id/btnOne"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+
+            android:gravity="center"
+            android:text="رفت"
+            android:textColor="#808080"
+            android:textSize="@dimen/_14dp"
+            android:visibility="visible" />
+        <TextView
+            android:id="@+id/btntwo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:text="رفت و برگشت"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_14dp"
+            android:visibility="visible"
+            android:gravity="center"
+            />
+
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

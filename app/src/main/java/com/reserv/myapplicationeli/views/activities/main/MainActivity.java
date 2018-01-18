@@ -88,6 +88,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnAbout.setOnClickListener(this);
         btnContactUs.setOnClickListener(this);
         btn_condition.setOnClickListener(this);
+        btnFlight.setOnClickListener(this);
     }
 
     @Override
