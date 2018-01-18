@@ -16,6 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.reserv.myapplicationeli.R;
 
 import com.reserv.myapplicationeli.base.BaseActivity;
@@ -37,10 +39,12 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
-    private TextView tvTitle;
-    private RelativeLayout btnFlight,btnHotel,btnPackage,btnTour,btnInsurance,btnHotelFlight,btnAbout,btnContactUs,btn_condition;
+    private TextView tvTitle,tvArrow;
+    private FancyButton btnFlight,btnHotel,btnPackage,btnTour,btnInsurance,btnHotelFlight,btnAbout,btnContactUs,btn_condition;
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
+    RelativeLayout rlUser;
+    ExpandableWeightLayout expandableLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +73,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnFlight = findViewById(R.id.btnFlight);
         btnHotel = findViewById(R.id.btnHotel);
         btnPackage = findViewById(R.id.btnPackage);
-        btnTour = findViewById(R.id.btnTour);
         btnInsurance = findViewById(R.id.btnInsurance);
         btnHotelFlight = findViewById(R.id.btnHotelFlight);
         btnAbout = findViewById(R.id.btnAbout);
         btnContactUs= findViewById(R.id.btnContactUs);
         btn_condition= findViewById(R.id.btn_condition);
+        rlUser= findViewById(R.id.rlUser);
+        tvArrow= findViewById(R.id.tvArrow);
 
         tvTitle.setText(getString(R.string.searchFlight));
 
@@ -83,12 +88,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnMenu.setOnClickListener(this);
         btnHotel.setOnClickListener(this);
         btnPackage.setOnClickListener(this);
-        btnTour.setOnClickListener(this);
+//        btnTour.setOnClickListener(this);
         btnInsurance.setOnClickListener(this);
         btnHotelFlight.setOnClickListener(this);
         btnAbout.setOnClickListener(this);
         btnContactUs.setOnClickListener(this);
         btn_condition.setOnClickListener(this);
+        rlUser.setOnClickListener(this);
+
+
+
+         expandableLayout = findViewById(R.id.expandableLayout);
+
+// toggle expand, collapse
+ // expandableLayout.toggle();
+// expand
+      //  expandableLayout.expand();
+// collapse
+  //expandableLayout.collapse();
+
     }
 
     @Override
@@ -112,14 +130,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 break;
             case R.id.btnHotel:
-                addFragment(getString(R.string.search_hotel),new HotelFragment());
+       addFragment(getString(R.string.search_hotel),new HotelFragment());
 
                 break;
             case R.id.btnPackage:
-                addFragment(getString(R.string.search_package),new PackageFragment());
+          addFragment(getString(R.string.search_package),new PackageFragment());
+           //expandableLayout.toggle();
+
                 break;
-            case R.id.btnTour:
-                break;
+
                 case R.id.btnInsurance:
                     addFragment(getString(R.string.btn_insurance),new InsuranceFragment());
 
@@ -143,6 +162,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Intent intent3 = new Intent(this, ConditionActivity.class);
                 startActivity(intent3);
                 break;
+                case R.id.rlUser:
+
+                    if (expandableLayout.isExpanded()){
+
+                        expandableLayout.collapse();
+                        tvArrow.setText(getString(R.string.icon_arrow_up));
+
+                    }else{
+                        expandableLayout.expand();
+                        tvArrow.setText(getString(R.string.icon_arrow_down));
+
+                    }
+
+                    break;
 
         }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FF938EC5</color>
-    <color name="colorPrimaryDark">#706b9f</color>
+    <color name="colorPrimaryDark">#9075ed</color>
     <color name="colorAccent">#928DC5</color>
 
     <color name="list_item_title">#fff</color>
@@ -76,7 +76,9 @@
 
 
     <color name="dark_blue">#2E3192</color>
+    <color name="menu_text">#aa84ff</color>
+    <color name="toolbar_color">#9d80ff</color>
+    <color name="title_background">#1234</color>
 
-    
 
 </resources>

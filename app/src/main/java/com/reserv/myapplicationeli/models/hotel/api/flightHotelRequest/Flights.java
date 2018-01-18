@@ -10,10 +10,14 @@ public class Flights {
     public final ArrayList<com.reserv.myapplicationeli.models.hotel.api.flightHotelRequest.FltList> FltList;
     public final String ArrRout;
     public final String DepRout;
+    public final String FlightID;
+    public final String Amount;
 
-    public Flights(ArrayList<com.reserv.myapplicationeli.models.hotel.api.flightHotelRequest.FltList> fltList, String arrRout, String depRout) {
+    public Flights(ArrayList<com.reserv.myapplicationeli.models.hotel.api.flightHotelRequest.FltList> fltList, String arrRout, String depRout, String flightID, String amount) {
         FltList = fltList;
         ArrRout = arrRout;
         DepRout = depRout;
+        FlightID = flightID;
+        Amount = amount;
     }
 }

@@ -27,7 +27,7 @@
 				android:id="@+id/toolbar"
 				android:layout_width="match_parent"
 				android:layout_height="60dp"
-				android:background="#9d80ff"/>
+				android:background="@color/toolbar_color"/>
 
 
 			<!--<mehdi.sakout.fancybuttons.FancyButton

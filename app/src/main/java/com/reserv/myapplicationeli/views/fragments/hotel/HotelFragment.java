@@ -487,7 +487,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         int yearS = Integer.valueOf(dateGrg[2]);
 
 
-        return yearS + "/" + monthS + "/" + dayS;
+        return yearS + "/" +"0"+ monthS + "/" + dayS;
     }
 
     //Gregorian==============================================Gregorian=============================Gregorian

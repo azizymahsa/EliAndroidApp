@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70">
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnFlight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_focusColor="#d7d7d7"
+            fancy:fb_radius="6dp"
+            fancy:fb_textColor="#FFFFFF"
+
+            android:layout_gravity="right"
+            fancy:fb_textSize="25dp"
+            fancy:fb_text=" "
+            />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/tv2"
+            android:layout_toStartOf="@+id/tv2"
+            android:gravity="center"
+            android:text="بلیط هواپیما"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="@color/menu_text"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="@string/bigplane"
+            android:textAppearance="@style/IconMenu"
+            android:textColor="@color/menu_text"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70">
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnHotel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_focusColor="#d7d7d7"
+            fancy:fb_radius="6dp"
+            fancy:fb_textColor="#FFFFFF"
+
+            android:layout_gravity="right"
+            fancy:fb_textSize="25dp"
+            fancy:fb_text=" "
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/tv3"
+            android:gravity="center"
+            android:text="رزرو هتل"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="@color/menu_text"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="@string/hotel"
+            android:textAppearance="@style/IconMenu"
+            android:textColor="@color/menu_text"
+            android:textSize="30dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

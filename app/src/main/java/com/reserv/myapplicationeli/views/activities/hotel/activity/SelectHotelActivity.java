@@ -149,6 +149,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
                 i.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
                 i.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
+                i.putExtra("type", 2);
+
 
                 startActivity(i);
             }
@@ -386,7 +388,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                                     selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                                     selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                    selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                    selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
                         }
 
                     }
@@ -440,7 +442,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                             selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                             selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
                 }
 
 
@@ -459,7 +461,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                             selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                             selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
 
                 }
@@ -500,7 +502,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                         selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
                                         selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
                                         selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff()));
+                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(),selectHotelModelArrayList.get(j).getOfferId()));
 
                             }
 
@@ -532,7 +534,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                             selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
                                             selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                             selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText()
-                                            , selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff()));
+                                            , selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),selectHotelModelArrayListFilter.get(j).getOfferId()));
 
                                 }
 
@@ -563,7 +565,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                     selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
                                     selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                     selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff()));
+                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),selectHotelModelArrayListFilter.get(j).getOfferId()));
 
                         }
 
@@ -593,7 +595,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                     selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
                                     selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                     selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff()));
+                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),selectHotelModelArrayListFilter.get(j).getOfferId()));
 
                         }
 
@@ -626,7 +628,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                     selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
                                     selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                     selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff()));
+                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),selectHotelModelArrayListFilter.get(j).getOfferId()));
 
                         }
 
@@ -660,7 +662,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                 }
 
@@ -675,7 +677,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                 }
 
@@ -691,7 +693,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                 }
 
@@ -707,7 +709,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                 }
 
@@ -723,7 +725,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                 }
 
@@ -752,7 +754,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff()
-                                , selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                , selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -773,7 +775,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -790,7 +792,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         selectHotelModelArrayListFilter1.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                                 selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -815,7 +817,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -834,7 +836,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         selectHotelModelArrayListFilter1.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                                 selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -869,7 +871,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -892,7 +894,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -911,7 +913,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         selectHotelModelArrayListFilter1.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                                 selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -936,7 +938,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -957,7 +959,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(),
-                                selectHotelModel.getFacilities(), selectHotelModel.getDiff()));
+                                selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getOfferId()));
 
                     }
 
@@ -996,7 +998,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                         selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
                                         selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
                                         selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff()));
+                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(),selectHotelModelArrayList.get(j).getOfferId()));
 
                             }
                         }
@@ -1031,7 +1033,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                         selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
                                         selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
                                         selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff()));
+                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(),selectHotelModelArrayList.get(j).getOfferId()));
 
                             }
                         }
@@ -1073,7 +1075,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                     selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
                                     selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
                                     selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                    selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff()));
+                                    selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(),selectHotelModelArrayList.get(j).getOfferId()));
 
                         }
 
@@ -1100,7 +1102,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                     selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
                                     selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                     selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff()));
+                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),selectHotelModelArrayListFilter.get(j).getOfferId()));
 
                         }
 
@@ -1258,7 +1260,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             hotels.Availability.RoomLists.get(i).OldPrice, hotels.StarRating,
                             hotels.Availability.RoomLists.get(i).EHotelId,
                             availApi.hotelAvailModelResponse.HotelAvailResult.ResultUniqID, hotels.BestSell, isOff,
-                            off, hotels.TypeText, availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Facilities, xiff));
+                            off, hotels.TypeText, availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Facilities, xiff, hotels.Availability.RoomLists.get(i).OfferId));
 
 
                     //  i++;

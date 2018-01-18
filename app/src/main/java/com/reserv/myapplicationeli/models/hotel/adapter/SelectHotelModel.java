@@ -1,5 +1,7 @@
 package com.reserv.myapplicationeli.models.hotel.adapter;
 
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities;
+
 import java.util.ArrayList;
 
 /**
@@ -25,8 +27,9 @@ public class SelectHotelModel {
     String TypeText;
     ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> Facilities;
     int diff;
+    String offerId;
 
-    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff) {
+    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff, String offerId) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -44,6 +47,7 @@ public class SelectHotelModel {
         TypeText = typeText;
         Facilities = facilities;
         this.diff = diff;
+        this.offerId = offerId;
     }
 
     public String getName() {
@@ -180,5 +184,13 @@ public class SelectHotelModel {
 
     public void setDiff(int diff) {
         this.diff = diff;
+    }
+
+    public String getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(String offerId) {
+        this.offerId = offerId;
     }
 }
