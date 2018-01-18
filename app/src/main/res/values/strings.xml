@@ -152,6 +152,23 @@
     <string name="btn_insurance">جستجوی بیمه</string>
 
 
+    <!--nejati-->
+    <string name="aboutus">&#xe8001;</string>
+    <string name="bigplane">&#xe8011;</string>
+    <string name="contactus">&#xe8021;</string>
+    <string name="forget">&#xe8031;</string>
+    <string name="hotel">&#xe8041;</string>
+    <string name="insurance">&#xe8051;</string>
+    <string name="packages">&#xe8061;</string>
+    <string name="terms">&#xe8071;</string>
+    <string name="tour">&#xe8081;</string>
+    <string name="userlogin">&#xe8091;</string>
+    <string name="userpass">&#xe8011;</string>
+    <string name="icon_arrow_up">&#xe316;</string>
+    <string name="icon_arrow_down">&#xe313;</string>
+
+
+
     <string name="no_results_found">نتیجه ای یافت نشد !</string>
     <string-array name="requestStates">
         <item>درخواست ارسال نشده است</item>

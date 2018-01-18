@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\me\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-w270dp-h560dp-v13\\values-w270dp-h560dp-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\me\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-w270dp-h560dp-v13\\values-w270dp-h560dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,125,186,245,307",
+                        "endColumns": "69,60,58,61,60",
+                        "endOffsets": "120,181,240,302,363"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (4)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-w270dp-h560dp-v13\\values-w270dp-h560dp-v13.xml",
             "map": [
                 {

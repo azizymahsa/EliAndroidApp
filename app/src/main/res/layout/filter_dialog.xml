@@ -282,7 +282,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#1234"
+                    android:background="@color/title_background"
                     android:gravity="center"
                     android:padding="@dimen/margin_5dp"
                     android:text="نوع مکان اقامتی"

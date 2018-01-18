@@ -48,6 +48,7 @@ public class HotelProprtiesAdapter extends BaseAdapter{
             convertView = inflater.inflate(R.layout.select_hotel_item_pro, null);
             holder = new ViewHolder();
             holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+            holder.tvImage = (TextView) convertView.findViewById(R.id.tvImage);
 
 
             convertView.setTag(holder);
@@ -55,13 +56,14 @@ public class HotelProprtiesAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
         holder.tvTitle.setText(hotelProprtiesModels.get(position).getPropertyTitle());
+        holder.tvImage.setText(hotelProprtiesModels.get(position).getImage());
 
         return convertView;
     }
 
 
     public class ViewHolder{
-        TextView tvTitle;
+        TextView tvTitle,tvImage;
 
     }
 }

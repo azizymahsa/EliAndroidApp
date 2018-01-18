@@ -89,4 +89,7 @@
 
     <style name="IconUser" parent="android:TextAppearance">
         <item name="fontPath">fonts/user.ttf</item></style>
+
+    <style name="IconMenu" parent="android:TextAppearance">
+        <item name="fontPath">fonts/fontello.ttf</item></style>
 </resources>

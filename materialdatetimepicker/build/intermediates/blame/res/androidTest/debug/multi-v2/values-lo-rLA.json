@@ -14,6 +14,21 @@
                     }
                 }
             ]
+        },
+        {
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\me\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-lo-rLA\\values-lo-rLA.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\me\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-lo-rLA\\values-lo-rLA.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,186,247,346,461,564,687,789,882,973,1062,1146",
+                        "endColumns": "80,60,98,114,102,122,101,92,90,88,83,95",
+                        "endOffsets": "181,242,341,456,559,682,784,877,968,1057,1141,1237"
+                    }
+                }
+            ]
         }
     ]
 }

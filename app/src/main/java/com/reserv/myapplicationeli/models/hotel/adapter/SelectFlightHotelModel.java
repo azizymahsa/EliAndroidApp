@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.models.hotel.adapter;
 
 import com.reserv.myapplicationeli.models.hotel.api.flightHotelRequest.FltList;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities;
 
 import java.util.ArrayList;
 
@@ -30,8 +31,13 @@ public class SelectFlightHotelModel {
      ArrayList<FltList> Flights;
      String ArrRout;
      String DepRout;
+     String Amount;
 
-    public SelectFlightHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff, ArrayList<FltList> flights, String arrRout, String depRout) {
+    public SelectFlightHotelModel(String name, String city, String title, String board, String price,
+                                  String imageUrl, String location, int oldPrice, int star, int eHotelId,
+                                  String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText
+            , ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff,
+                                  ArrayList<FltList> flights, String arrRout, String depRout, String amount) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -52,6 +58,7 @@ public class SelectFlightHotelModel {
         Flights = flights;
         ArrRout = arrRout;
         DepRout = depRout;
+        Amount = amount;
     }
 
     public String getName() {
@@ -212,5 +219,13 @@ public class SelectFlightHotelModel {
 
     public void setDepRout(String depRout) {
         DepRout = depRout;
+    }
+
+    public String getAmount() {
+        return Amount;
+    }
+
+    public void setAmount(String amount) {
+        Amount = amount;
     }
 }

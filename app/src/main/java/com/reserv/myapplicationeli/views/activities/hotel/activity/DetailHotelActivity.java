@@ -6,6 +6,7 @@ package com.reserv.myapplicationeli.views.activities.hotel.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -38,6 +40,7 @@ import com.reserv.myapplicationeli.api.hotel.GetHotelDetail;
 import com.reserv.myapplicationeli.api.hotel.getHotelRoom.GetHoldRoom;
 import com.reserv.myapplicationeli.api.hotel.room.GetRoomsList;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.base.GlobalApplication;
 import com.reserv.myapplicationeli.models.hotel.api.detail.ImageHotel;
 import com.reserv.myapplicationeli.models.hotel.api.detail.call.GetHotelDRequest;
 import com.reserv.myapplicationeli.models.hotel.api.detail.call.GetHotelDetailRequest;
@@ -55,19 +58,22 @@ import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsModel;
 import com.reserv.myapplicationeli.views.ui.InitUi;
+import com.reserv.myapplicationeli.views.ui.NonScrollGridView;
 import com.reserv.myapplicationeli.views.ui.PassengerHotelActivity;
+import com.reserv.myapplicationeli.views.ui.PassengerHotelFlightActivity;
 import com.reserv.myapplicationeli.views.ui.ViewPagerAttention;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback {
     private TextView tvTitle;
     com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView lvRooms;
-    NonScrollListView gvEmakanat;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private ArrayList<String> arrayStringList = new ArrayList<>();
@@ -91,24 +97,24 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     GetHotelDetail getHotelDetail;
     TextView tvHotelName, tvCityName, tvAdress;
     ImageView ivImage;
-    HotelProprtiesAdapter hotelProprtiesAdapter;
     LinearLayout llDynamic, llLoading;
     AVLoadingIndicatorView avi1;
 
     ImageView ivLoading;
+    String flightId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
-        InitUi.Toolbar(this, false, R.color.flight_status, "جزئیات هتل");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, "جزئیات هتل");
         window = getWindow();
 
         initView();
         initMap();
 
 
-        Log.e("testdddd", getIntent().getExtras().getString("ResultUniqID"));
+        //flights
 
         new GetRoomsAsync().execute();
 
@@ -133,7 +139,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         ivImage = findViewById(R.id.ivImage);
         tvHotelName = findViewById(R.id.tvHotelName);
         tvCityName = findViewById(R.id.tvCityName);
-        gvEmakanat = findViewById(R.id.gvEmakanat);
         llDynamic = findViewById(R.id.llDynamic);
         llLoading = findViewById(R.id.llLoading);
         avi1 = findViewById(R.id.avi1);
@@ -173,10 +178,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             }
         });
 
-        hotelProprtiesAdapter = new HotelProprtiesAdapter(hotelProprtiesModels, this);
-        gvEmakanat.setAdapter(hotelProprtiesAdapter);
-
-
     }
 
     @Override
@@ -185,7 +186,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             case R.id.llRezervClick:
                 flMap.setVisibility(View.GONE);
                 lvRooms.setVisibility(View.VISIBLE);
-                gvEmakanat.setVisibility(View.GONE);
+                llDynamic.setVisibility(View.GONE);
 
 
                 vEmakanat.setVisibility(View.INVISIBLE);
@@ -197,7 +198,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             case R.id.llMapClick:
                 flMap.setVisibility(View.VISIBLE);
                 lvRooms.setVisibility(View.GONE);
-                gvEmakanat.setVisibility(View.GONE);
+                llDynamic.setVisibility(View.GONE);
 
 
                 vEmakanat.setVisibility(View.INVISIBLE);
@@ -208,7 +209,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             case R.id.llEmakanatClick:
                 flMap.setVisibility(View.GONE);
                 lvRooms.setVisibility(View.GONE);
-                gvEmakanat.setVisibility(View.VISIBLE);
+                llDynamic.setVisibility(View.VISIBLE);
 
                 vEmakanat.setVisibility(View.VISIBLE);
                 vMap.setVisibility(View.INVISIBLE);
@@ -327,7 +328,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected void onPreExecute() {
 
             window.setStatusBarColor(getColor(R.color.blue2));
-            //     new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
+             new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
 
 
         }
@@ -351,19 +352,43 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected void onPostExecute(String result) {
             //  new InitUi().Loading(rlLoading,rlRoot,false);
 
-            //  new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
+            new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
             try {
                 int i = 0;
                 // Toast.makeText(DetailHotelActivity.this, getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(DetailHotelActivity.this, PassengerHotelActivity.class);
-                intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
-                intent.putExtra("FlightGuID", getIntent().getExtras().getString("ResultUniqID"));
-                intent.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
-                intent.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
 
-                startActivity(intent);
-                finish();
+//flighthotel
+                if (getIntent().getExtras().getInt("type") == 1) {
+                    flightId = getIntent().getExtras().getString("FlightID");
+                    Log.e("test", flightId);
+
+                    Intent intent = new Intent(DetailHotelActivity.this, PassengerHotelFlightActivity.class);
+                    intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
+                    intent.putExtra("FlightGuID", flightId);
+                    intent.putExtra("CheckIn", getIntent().getExtras().getString("CheckInHF"));
+                    intent.putExtra("CheckOut", getIntent().getExtras().getString("CheckOutHF"));
+                    intent.putExtra("flightId", getIntent().getExtras().getString("ResultUniqID"));
+
+                    startActivity(intent);
+                    finish();
+                }
+                //hotel
+                if (getIntent().getExtras().getInt("type") == 2) {
+                    flightId = "";
+
+                    Intent intent = new Intent(DetailHotelActivity.this, PassengerHotelActivity.class);
+                    intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
+                    intent.putExtra("FlightGuID", getIntent().getExtras().getString("ResultUniqID"));
+                    intent.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
+                    intent.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
+
+                    startActivity(intent);
+                    finish();
+
+
+                }
+
 
 
             } catch (Exception e) {
@@ -412,7 +437,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
          /*   new InitUi().Loading(rlLoading, rlRoot, false);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));*/
-        try {
+            try {
 
                 tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
                 tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
@@ -431,7 +456,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 for (HotelProprties hotelProprties : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties) {
                     arrayStringList.add(hotelProprties.Category);
 
-                    hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category,hotelProprties.PropertyIcon));
+                    hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIcon));
                     //add_textView(hotelProprties.PropertyTitle);
 
                 }
@@ -443,12 +468,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 hs.size();
 
 
-
-              /*  HashMap<String, ArrayList<HotelProprtiesModels>> myMap = new HashMap<String, ArrayList<HotelProprtiesModels>>();
+                HashMap<String, ArrayList<HotelProprtiesModels>> myMap = new HashMap<String, ArrayList<HotelProprtiesModels>>();
                 for (int i =0 ;i<arrayStringList.size();i++){
                     ArrayList<HotelProprtiesModels> test = new ArrayList<>();
 
-                    for (int j =0 ;i<hotelProprtiesModels.size();j++){
+                    for (int j =0 ;j<hotelProprtiesModels.size();j++){
 
                         if (arrayStringList.get(i).equals(hotelProprtiesModels.get(j).getPropertyCat())){
                             test.add(new HotelProprtiesModels(hotelProprtiesModels.get(j).getPropertyTitle(),hotelProprtiesModels.get(j).getPropertyCat(),hotelProprtiesModels.get(j).getImage()));
@@ -458,16 +482,46 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                     }
-
                     myMap.put(arrayStringList.get(i),test);
+
+                }
+
+
+
+
+                for(Map.Entry<String, ArrayList<HotelProprtiesModels>> entry : myMap.entrySet()) {
+                    String key = entry.getKey();
+                    ArrayList<HotelProprtiesModels> value = entry.getValue();
+                    TextView textView = new TextView(DetailHotelActivity.this);
+                    textView.setText(key);
+                    Typeface t = Typeface.createFromAsset(getAssets(),"fonts/iran_sans_bold.ttf");
+                    textView.setTypeface(t);
+                    textView.setPadding(10,10,10,10);
+
+                    textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT));
+                    textView.setTextSize(12);
+                    textView.setGravity(Gravity.CENTER);
+                    textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this,R.color.title_background));
+                    llDynamic.addView(textView);
+                    NonScrollGridView nonScrollGridView = new NonScrollGridView(DetailHotelActivity.this);
+                    nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT));
+                    nonScrollGridView.setNumColumns(2);
+
+                    nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value,DetailHotelActivity.this));
+                    llDynamic.addView(nonScrollGridView);
 
 
 
 
                 }
-*/
 
-                hotelProprtiesAdapter.notifyDataSetChanged();
+
+
+
+
+
                 new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager);
                 tvCityName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CityName + "، " + getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CountryName);
 

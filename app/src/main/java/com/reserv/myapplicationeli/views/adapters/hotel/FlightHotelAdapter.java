@@ -118,7 +118,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         holder.location.setText(selectHotelModelArrayList.get(position).getLocation() + " " + selectHotelModelArrayList.get(position).getName());
         holder.title.setText(selectHotelModelArrayList.get(position).getTitle());
         holder.board.setText(selectHotelModelArrayList.get(position).getBoard());
-        holder.tvPrice.setText(Utility.priceFormat(selectHotelModelArrayList.get(position).getPrice()));
+        holder.tvPrice.setText(Utility.priceFormat(String.valueOf(Integer.valueOf(selectHotelModelArrayList.get(position).getPrice())+Integer.valueOf(selectHotelModelArrayList.get(position).getAmount()))));
 
 
         holder.tvRaft.setText(selectHotelModelArrayList.get(position).getArrRout());

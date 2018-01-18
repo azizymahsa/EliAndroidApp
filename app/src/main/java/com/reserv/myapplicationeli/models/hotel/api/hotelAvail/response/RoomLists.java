@@ -10,12 +10,14 @@ public class RoomLists {
     public final String Title;
     public final int OldPrice;
     public final int EHotelId;
+    public final String OfferId;
 
-    public RoomLists(String board, String price, String title, int oldPrice, int EHotelId) {
+    public RoomLists(String board, String price, String title, int oldPrice, int EHotelId, String offerId) {
         Board = board;
         Price = price;
         Title = title;
         OldPrice = oldPrice;
         this.EHotelId = EHotelId;
+        OfferId = offerId;
     }
 }

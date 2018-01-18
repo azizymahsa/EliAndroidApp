@@ -122,7 +122,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
         ivImage = findViewById(R.id.ivImage);
         tvHotelName = findViewById(R.id.tvHotelName);
         tvCityName = findViewById(R.id.tvCityName);
-        gvEmakanat = findViewById(R.id.gvEmakanat);
+       // gvEmakanat = findViewById(R.id.gvEmakanat);
         llDynamic = findViewById(R.id.llDynamic);
         llEmakanatClick.setOnClickListener(this);
         llMapClick.setOnClickListener(this);

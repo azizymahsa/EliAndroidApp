@@ -1,321 +1,549 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FF938EC5">
-<ImageView
-    android:layout_width="250dp"
-    android:layout_height="0dp"
-    android:layout_weight="200"
-    android:src="@drawable/banafsh_jahan"
-    android:padding="5dp"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:background="#ffffff"
+    android:orientation="vertical">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="25"
+        android:background="@drawable/background_menu"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/ivUser"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/user_sidemenu"
+           android:layout_centerInParent="true"
+            />
 
         <RelativeLayout
-            android:id="@+id/btnFlight"
+            android:id="@+id/rlUser"
+
+            android:layout_below="@+id/ivUser"
+
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="50"
-            >
+            android:layout_height="match_parent">
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:text="ورود به حساب کاربری"
+                android:textSize="@dimen/_14dp_txtSize"
+                android:textColor="#ffffff"
+                android:textAppearance="@style/IrsansBold"
                 android:gravity="center"
-                android:text="پرواز"
-                android:textColor="@android:color/white"
-                android:textSize="18dp"
-                android:layout_toLeftOf="@+id/tv2"
-                android:layout_marginRight="10dp"
                 />
+
             <TextView
-                android:id="@+id/tv2"
+                android:id="@+id/tvArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
+                android:text="@string/icon_arrow_up"
                 android:textAppearance="@style/IconFonts"
-                android:text="@string/icon_airplane"
-                android:textColor="@android:color/white"
-                android:textSize="25dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                />
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_marginLeft="10dp"/>
 
         </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="#FFA9A6D0"/>
-        <RelativeLayout
-            android:id="@+id/btnHotel"
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="100"
+        android:orientation="vertical">
+        <com.github.aakira.expandablelayout.ExpandableWeightLayout
+            android:id="@+id/expandableLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="50"
-            >
+            android:layout_weight="140"
+            app:ael_duration="1000"
+            app:ael_interpolator="anticipateOvershoot">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="70">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="#d7d7d7"
+                        fancy:fb_radius="6dp"
+                        fancy:fb_textColor="#FFFFFF"
+
+                        android:layout_gravity="right"
+                        fancy:fb_textSize="25dp"
+                        fancy:fb_text=" "
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_toLeftOf="@+id/tv1"
+
+                        android:gravity="center"
+                        android:text="قرارداد های من"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="@color/menu_text"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="@string/bigplane"
+                        android:textAppearance="@style/IconMenu"
+                        android:textColor="@color/menu_text"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="70">
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="#d7d7d7"
+                        fancy:fb_radius="6dp"
+                        fancy:fb_textColor="#FFFFFF"
+
+                        android:layout_gravity="right"
+                        fancy:fb_textSize="25dp"
+                        fancy:fb_text=" "
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="15dp"
+                        android:layout_toLeftOf="@+id/tv2"
+                        android:gravity="center"
+                        android:text="مشخصات من"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="@color/menu_text"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="@string/userlogin"
+                        android:textAppearance="@style/IconMenu"
+                        android:textColor="@color/menu_text"
+                        android:textSize="30dp" />
+
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/menu_text"
+                    />
+
+            </LinearLayout>
+
+
+
+
+
+        </com.github.aakira.expandablelayout.ExpandableWeightLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnFlight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+                fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
+                />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="هتل"
-                android:textColor="@android:color/white"
-                android:textSize="18dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv3"
-                android:layout_marginRight="10dp"
-                />
+                android:layout_toStartOf="@+id/tv3"
+                android:gravity="center"
+                android:text="بلیط هواپیما"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/menu_text"
+                android:textSize="14dp" />
+
             <TextView
                 android:id="@+id/tv3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:textAppearance="@style/IconFonts"
-                android:text="@string/icon_bed"
-                android:textColor="@android:color/white"
-                android:textSize="25dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                />
+                android:gravity="center"
+                android:text="@string/bigplane"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/menu_text"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
 
         </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="#FFA9A6D0"/>
+
         <RelativeLayout
-            android:id="@+id/btnPackage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="50"
-            >
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_weight="70">
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnHotel"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="پکیج"
-                android:textColor="@android:color/white"
-                android:textSize="18dp"
-                android:layout_toLeftOf="@+id/tv"
-                android:layout_marginRight="10dp"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+                fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
                 />
             <TextView
-                android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv4"
                 android:gravity="center"
-                android:textAppearance="@style/IconFonts"
-                android:text="@string/icon_briefcase"
-                android:textColor="@android:color/white"
-                android:textSize="25dp"
+                android:text="رزرو هتل"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/menu_text"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                />
+                android:gravity="center"
+                android:text="@string/hotel"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/menu_text"
+                android:textSize="30dp" />
 
         </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#FFA9A6D0"/>
-    <RelativeLayout
-        android:id="@+id/btnTour"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="تور"
-            android:textColor="@android:color/white"
-            android:textSize="18dp"
-            android:layout_toLeftOf="@+id/tv1"
-            android:layout_marginRight="10dp"
-            />
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAppearance="@style/IconFonts"
-            android:text="@string/icon_umbrella"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            />
 
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#FFA9A6D0"/>
-    <RelativeLayout
-        android:id="@+id/btnInsurance"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="بیمه"
-            android:textColor="@android:color/white"
-            android:textSize="18dp"
-            android:layout_toLeftOf="@+id/tv"
-            android:layout_marginRight="10dp"
-            />
-        <TextView
-            android:id="@+id/tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAppearance="@style/IconFonts"
-            android:text="@string/icon_globe"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnHotelFlight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+                fancy:fb_textColor="#FFFFFF"
 
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#FFA9A6D0"/>
-    <RelativeLayout
-        android:id="@+id/btnHotelFlight"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="هتل و پرواز"
-            android:textColor="@android:color/white"
-            android:textSize="18dp"
-            android:layout_toLeftOf="@+id/tv"
-            android:layout_marginRight="10dp"
-            />
-        <TextView
-            android:id="@+id/tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAppearance="@style/IconFonts"
-            android:text="@string/icon_globe"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            />
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv5"
+                android:gravity="center"
+                android:text="بلیط هواپیما+رزرو هتل"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/menu_text"
+                android:textSize="14dp" />
 
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#FFA9A6D0"/>
-    <RelativeLayout
-        android:id="@+id/btnAbout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="درباره ما "
-            android:textColor="@android:color/white"
-            android:textSize="18dp"
-            android:layout_toLeftOf="@+id/tv_about"
-            android:layout_marginRight="10dp"
-            />
-        <TextView
-            android:id="@+id/tv_about"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAppearance="@style/IconFonts"
-            android:text="@string/icon_globe"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            />
+            <TextView
+                android:id="@+id/tv5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/tour"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/menu_text"
+                android:textSize="30dp" />
 
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#FFA9A6D0"/>
-    <RelativeLayout
-        android:id="@+id/btnContactUs"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text=" تماس با ما "
-            android:textColor="@android:color/white"
-            android:textSize="18dp"
-            android:layout_toLeftOf="@+id/tv_contact_us"
-            android:layout_marginRight="10dp"
-            />
-        <TextView
-            android:id="@+id/tv_contact_us"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAppearance="@style/IconFonts"
-            android:text="@string/icon_globe"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            />
+        </RelativeLayout>
 
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#FFA9A6D0"/>
-    <RelativeLayout
-        android:id="@+id/btn_condition"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="شرایط و قوانین "
-            android:textColor="@android:color/white"
-            android:textSize="18dp"
-            android:layout_toLeftOf="@+id/tv_contact_us"
-            android:layout_marginRight="10dp"
-            />
-        <TextView
-            android:id="@+id/tv_contact_us"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAppearance="@style/IconFonts"
-            android:text="@string/icon_globe"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            />
 
-    </RelativeLayout>
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="150"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnPackage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+                fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv6"
+                android:gravity="center"
+                android:text="تور مسافرتی"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/menu_text"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/packages"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/menu_text"
+                android:textSize="30dp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnInsurance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+                fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv7"
+                android:gravity="center"
+                android:text="بیمه مسافرتی"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/menu_text"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/insurance"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/menu_text"
+                android:textSize="30dp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_condition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+                fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv8"
+                android:gravity="center"
+                android:text=" شرایط و قوانین "
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/menu_text"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/terms"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/menu_text"
+                android:textSize="25dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnContactUs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+                fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv9"
+                android:gravity="center"
+                android:text=" تماس با ما "
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/menu_text"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv9"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/contactus"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/menu_text"
+                android:textSize="25dp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnAbout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+                fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv10"
+                android:gravity="center"
+                android:text="درباره ما "
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/menu_text"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv10"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/aboutus"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/menu_text"
+                android:textSize="30dp" />
+
+        </RelativeLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="50" />
+
+
+
     </LinearLayout>
+
+
+</LinearLayout>
 
