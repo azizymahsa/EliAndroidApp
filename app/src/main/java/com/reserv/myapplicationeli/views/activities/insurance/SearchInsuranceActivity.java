@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ProgressBar;
@@ -64,7 +65,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     private Gson gson ;
     private ArrayList<TravelInsurance_> travelInsurances;
     private ArrayList<InsurancePlan_> insurancePlans;
-    InsurancePlan insurancePlan;
+    private InsurancePlan insurancePlan;
 
     @SuppressLint("NewApi")
     @Override
@@ -90,7 +91,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
             accomodationDays = bundle.getInt("AccomodationDays");
             culture = bundle.getString("Culture");
 
-            long _milis = DateUtil.getMiliSecondGregorianDateTime(departureDate,"yyyy-MM-dd") + (accomodationDays*24*60*60*1000);
+            long _milis = DateUtil.getMiliSecondGregorianDateTime(departureDate,"yyyy-MM-dd") + (accomodationDays * 86400000L);
             returnDate = DateUtil.getDateTime(String.valueOf(_milis),"yyyy-MM-dd");
         }
 
@@ -123,8 +124,8 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
                     return;
                 }
 
-                TravelInsurance travelInsurance = response.body().getShowInsuranceResult().getTravelInsurance();
-                  insurancePlan = response.body().getShowInsuranceResult().getInsurancePlan();
+                TravelInsurance  travelInsurance = response.body().getShowInsuranceResult().getTravelInsurance();
+                insurancePlan = response.body().getShowInsuranceResult().getInsurancePlan();
 
                 if(travelInsurance == null && insurancePlan == null){
                     showText();
@@ -135,6 +136,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
                     travelInsurances = travelInsurance.getTravelInsurances();
                     showTravelInsurances();
                 }
+
                 if(insurancePlan != null && !ValidationTools.isEmptyOrNull(insurancePlan.getInsurancePlans()) ){
                     insurancePlans = insurancePlan.getInsurancePlans();
                     showInsurancePlans();
@@ -152,11 +154,13 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     }
 
     private void showInsurancePlans() {
+        rclInsurancePlans.setVisibility(View.VISIBLE);
         InsurancPlanAdapter insurancPlanAdapter = new InsurancPlanAdapter(this,insurancePlans,passCount).setListener(this);
         rclInsurancePlans.setAdapter(insurancPlanAdapter);
     }
 
     private void showTravelInsurances() {
+        rclTravelInsurance.setVisibility(View.VISIBLE);
         TravelInsurancAdapter travelInsurancAdapter = new TravelInsurancAdapter(this,travelInsurances,passCount).setListener(this);
         rclTravelInsurance.setAdapter(travelInsurancAdapter);
     }
@@ -188,8 +192,6 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
     private void hideLoading(){
         prg.setVisibility(View.GONE);
-        rclTravelInsurance.setVisibility(View.VISIBLE);
-        rclInsurancePlans.setVisibility(View.VISIBLE);
         txt.setVisibility(View.GONE);
     }
 
@@ -210,7 +212,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     }
 
     @Override
-    public void onClickInsurancPlanItem(InsurancePlan_ _insurancePlan) {
+    public void onClickInsurancPlanItem(InsurancePlan_  _insurancePlan) {
         Intent intent = new Intent(this, PassengerInsuranceActivity.class);
         Prefs.putString("CountryCode",countryCode );
         Prefs.putString("DepartureDate",departureDate );

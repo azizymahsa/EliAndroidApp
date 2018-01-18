@@ -32,6 +32,7 @@ import com.reserv.myapplicationeli.models.model.insurance.BirthDateList;
 import com.reserv.myapplicationeli.models.model.pack.call.CountryListReq;
 import com.reserv.myapplicationeli.models.model.pack.call.CountryRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.response.CountryListRes;
+import com.reserv.myapplicationeli.tools.AndroidUtilities;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.activities.insurance.AddPassengerActivity;
@@ -125,15 +126,16 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         initViews();
         initParam();
         service = ServiceGenerator.createService(ClientService.class);
-
         act_country.addTextChangedListener(autoCompleteCountryTextWatcher);
 
         act_country.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                AndroidUtilities.hideKeyboard(act_country);
                 country = (Country) arg0.getItemAtPosition(arg2);
                 act_country.removeTextChangedListener(autoCompleteCountryTextWatcher);
                 act_country.setText(country.getCountryNameFa());
                 act_country.addTextChangedListener(autoCompleteCountryTextWatcher);
+
             }
         });
 

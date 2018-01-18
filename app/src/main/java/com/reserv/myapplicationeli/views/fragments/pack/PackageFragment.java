@@ -380,10 +380,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
 
 
-
-
-
-
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
         year_ = year;
@@ -408,7 +404,12 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             departureFrom=currentDateTime;
             PersianCalendar persianCalendarDatePicker = new PersianCalendar();
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);
-            datePickerDialogDepart.initialize(this, year_, month, day);
+            datePickerDialogReturn = DatePickerDialog.newInstance(
+                    this,
+                    year_Min,
+                    monthMin,
+                    dayMin
+            );
             datePickerDialogReturn.setMinDate(persianCalendarDatePicker);
         }
     }
