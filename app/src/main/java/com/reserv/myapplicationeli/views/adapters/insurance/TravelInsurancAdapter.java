@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.insurance.TravelInsurance_;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.views.viewholders.InsuranceRowHolder;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class TravelInsurancAdapter extends RecyclerView.Adapter<InsuranceRowHold
     @Override
     public void onBindViewHolder(InsuranceRowHolder holder, final int position) {
         final TravelInsurance_ item = feedItemList.get(position);
-        holder.txtPrice.setText(String.valueOf(item.getTravelInsurancePricePP().getAmount() * count));
+        holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getTravelInsurancePricePP().getAmount() * count)));
         String[] titles = item.getTravelInsuranceTile().split("-");
         holder.txtPlan.setText(titles[1]);
         holder.txtTitle.setText(titles[0]);

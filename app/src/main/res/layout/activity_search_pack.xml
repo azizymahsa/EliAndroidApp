@@ -22,7 +22,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_60dp_hight"
-                android:background="@color/flight_status"/>
+                android:background="@color/toolbar_color"/>
 
 
             <mehdi.sakout.fancybuttons.FancyButton
@@ -197,12 +197,12 @@
                         android:gravity="center"
                         android:textSize="26dp"
                         android:layout_marginLeft="5dp"
-                        android:textColor="@color/text_bottom_bar" />
+                        android:textColor="#4D4D4D" />
                     <TextView
                         android:layout_toRightOf="@+id/tvNextDay"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textColor="@color/text_bottom_bar"
+                        android:textColor="#4D4D4D"
                         android:gravity="center"
                         android:text="روز بعد"
                         android:textSize="14dp"
@@ -237,7 +237,7 @@
                         android:id="@+id/tvLastDays"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textColor="@color/text_bottom_bar"
+                        android:textColor="#4D4D4D"
                         android:gravity="center"
                         android:text="روز قبل"
                         android:layout_marginLeft="5dp"
@@ -251,7 +251,7 @@
                         android:textAppearance="@style/IconFonts"
                         android:gravity="center"
                         android:textSize="26dp"
-                        android:textColor="@color/text_bottom_bar"
+                        android:textColor="#4D4D4D"
                         android:layout_toRightOf="@+id/tvLastDays"/>
 
 
@@ -274,7 +274,7 @@
                     android:id="@+id/tvFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="@color/text_bottom_bar"
+                    android:textColor="#4D4D4D"
                     android:gravity="center"
                     android:text="فیلتر کردن"
                     android:layout_marginLeft="5dp"
@@ -290,7 +290,7 @@
                     android:gravity="center"
                     android:textSize="26dp"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/text_bottom_bar" />
+                    android:textColor="#4D4D4D" />
             </LinearLayout>
 
             <View
@@ -312,7 +312,7 @@
                     android:id="@+id/tvSort"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="@color/text_bottom_bar"
+                    android:textColor="#4D4D4D"
                     android:gravity="center"
                     android:text="مرتب کردن"
                     android:layout_marginLeft="5dp"
@@ -327,7 +327,7 @@
                     android:gravity="center"
                     android:textSize="26dp"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/text_bottom_bar" />
+                    android:textColor="#4D4D4D" />
 
             </LinearLayout>
 

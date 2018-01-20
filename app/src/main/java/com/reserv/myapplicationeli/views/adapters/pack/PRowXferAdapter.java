@@ -90,23 +90,30 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
 
         holder.rcl_hotels.showList(item.getLstProwHotelAdapter());
 
-        holder.txt_depart_time.setText(item.getXferList().getXFlightsList().get(0).getFltLocalTime());
-        holder.txt_return_time.setText(item.getXferList().getXFlightsList().get(1).getFltLocalTime());
-        holder.txt_airline.setText(item.getXferList().getXFlightsList().get(0).getAirlineEnglishName());
-        holder.txt_economi.setText(item.getXferList().getXFlightsList().get(0).getSeatClassNameFa());
+        holder.time_depart_go.setText(item.getXferList().getXFlightsList().get(0).getFltLocalTime());
+        holder.time_arive_go.setText(item.getXferList().getXFlightsList().get(0).getFltCheckinTime());
+        holder.time_depart_back.setText(item.getXferList().getXFlightsList().get(1).getFltLocalTime());
+        holder.time_arive_back.setText(item.getXferList().getXFlightsList().get(1).getFltCheckinTime());
+
+        holder.txt_airline_go.setText(item.getXferList().getXFlightsList().get(0).getAirlineEnglishName());
+        holder.txt_airline_back.setText(item.getXferList().getXFlightsList().get(1).getAirlineEnglishName());
+
+//        holder.txt_economi.setText(item.getXferList().getXFlightsList().get(0).getSeatClassNameFa());
         if (item.getXferList().getXFlightsList().get(0).getAvailable().equals("Available") || item.getXferList().getXFlightsList().get(0).getAvailable().equals("")) {
 
         } else {
             holder.txt_count.setText(item.getXferList().getXFlightsList().get(0).getAvailable());
         }
-        holder.txt_depart_air.setText(" رفت به " + (ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getArrivalCityName()) ? item.getXferList().getXFlightsList().get(0).getArrivalCityName() : item.getXferList().getXFlightsList().get(0).getArrivalCityName()));
-        holder.txt_return_air.setText(" برگشت به " + (ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getArrivalCityName()) ? item.getXferList().getXFlightsList().get(1).getArrivalCityName() : item.getXferList().getXFlightsList().get(1).getArrivalCityName()));
+        holder.country_depart_go.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getDepartureCityName()) ? item.getXferList().getXFlightsList().get(0).getDepartureCityName() : item.getXferList().getXFlightsList().get(0).getDepartureCityName()));
+        holder.country_arive_go.setText( (ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getArrivalCityName()) ? item.getXferList().getXFlightsList().get(0).getArrivalCityName() : item.getXferList().getXFlightsList().get(0).getArrivalCityName()));
+        holder.country_depart_back.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getDepartureCityName()) ? item.getXferList().getXFlightsList().get(1).getDepartureCityName() : item.getXferList().getXFlightsList().get(1).getDepartureCityName()));
+        holder.country_arive_back.setText( (ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getArrivalCityName()) ? item.getXferList().getXFlightsList().get(1).getArrivalCityName() : item.getXferList().getXFlightsList().get(1).getArrivalCityName()));
         //holder.date_arrive.setText(ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getShamsi())? item.getXferList().getXFlightsList().get(0).getShamsi() : item.getXferList().getXFlightsList().get(0).getShamsi());
         //holder.date_arrive.setText(ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getShamsi())? item.getXferList().getXFlightsList().get(1).getShamsi() : item.getXferList().getXFlightsList().get(1).getShamsi());
 
-        Glide.with(context)
-                .load("http://www.eligasht.com/Content/AirLine/" + item.getXferList().getXFlightsList().get(0).getAirlineCode() + ".png")
-                .into(holder.img_airLine);
+//        Glide.with(context)
+//                .load("http://www.eligasht.com/Content/AirLine/" + item.getXferList().getXFlightsList().get(0).getAirlineCode() + ".png")
+//                .into(holder.img_airLine);
 
         holder.btn_package_booking.setOnClickListener(new View.OnClickListener() {
             @Override

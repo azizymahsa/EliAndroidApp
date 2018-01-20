@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.pack.LstProwPrice;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox;
 import com.reserv.myapplicationeli.views.components.stickyheaders.Section;
@@ -82,10 +83,10 @@ public class LstProwPriceAdapter extends SectioningAdapter {
 
         holder.chk_prow_price.setOnCheckedChangeListener(null);
         holder.chk_prow_price.setChecked(item.isChecked());
-        holder.adaultPrice.setText(String.valueOf(item.getAdl()));
-        holder.childPrice.setText(String.valueOf(item.getChNb()));
-        holder.infantPrice.setText(String.valueOf(item.getInf()));
-        holder.totalPrice.setText(String.valueOf(item.getSumPrice()));
+        holder.adaultPrice.setText(Utility.priceFormat(String.valueOf(item.getAdl())));
+        holder.childPrice.setText(Utility.priceFormat(String.valueOf(item.getChWb())));
+        holder.infantPrice.setText(Utility.priceFormat(String.valueOf(item.getChNb())));
+        holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice())));
         holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF());
 
         holder.chk_prow_price.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {

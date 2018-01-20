@@ -6,153 +6,153 @@
     android:layout_height="wrap_content">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5sp"
+        >
+
+        <TextView
+            android:id="@+id/txt_hr_room_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:background="@color/hotel_detail_background"
+            android:text="اتاق استاندارد با تخت یکنفره"
+            android:layout_gravity="center"
+            android:textColor="@color/blue"
+            android:textSize="12sp"
+            android:gravity="center"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5sp"
-            >
-
-            <TextView
-                android:id="@+id/txt_hr_room_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10sp"
-                android:background="@color/hotel_detail_background"
-                android:text="اتاق استاندارد با تخت یکنفره"
-                android:layout_gravity="center"
-                android:textColor="@color/blue"
-                android:textSize="12sp"
-                android:gravity="center"/>
-
+            android:background="@drawable/background_strock_gray"
+            android:orientation="horizontal">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/layout_total_price"
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:paddingTop="15sp"
+                android:paddingBottom="20sp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_strock_gray"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:id="@+id/layout_total_price"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.5"
-                    android:paddingTop="15sp"
-                    android:paddingBottom="20sp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
-                    <com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox
-                        android:id="@+id/chk_prow_price"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        android:layout_marginBottom="12sp"
+                <com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox
+                    android:id="@+id/chk_prow_price"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_marginBottom="12sp"
+                    android:layout_gravity="center"
+                    app:color_unchecked_stroke="#818181"
+                    app:color_checked="@color/green"
+                    android:gravity="center"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:color_unchecked_stroke="#818181"
-                        app:color_checked="@color/green"
+                        android:text="ریال"
+                        android:layout_marginRight="10sp"
+                        android:textColor="@color/green"
+                        android:gravity="center"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/total_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/color_hotel"
+                        android:text="31,850000"
+                        android:textSize="18sp"
                         android:gravity="center"/>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="ریال"
-                            android:layout_marginRight="10sp"
-                            android:textColor="@color/green"
-                            android:gravity="center"
-                            android:textSize="16sp"/>
-                        <TextView
-                            android:id="@+id/total_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-
-                            android:textColor="@color/color_hotel"
-                            android:text="31,850000"
-                            android:textSize="20sp"
-                            android:gravity="center"/>
-
-                    </LinearLayout>
-
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_info_person_price"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.5"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/price_adault"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.6"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"/>
-
-                        <TextView
-                            android:id="@+id/text_adault"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.4"
-                            android:gravity="right"
-                            android:padding="6sp"
-                            android:text="بزرگسال" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/price_child"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.6"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"/>
-                        <TextView
-                            android:id="@+id/text_child"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.4"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="کودک"
-                            android:padding="6sp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/price_infant"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.6"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"/>
-                        <TextView
-                            android:id="@+id/text_infant"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.4"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="نوزاد"
-                            android:padding="6sp"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_info_person_price"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/price_adault"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/text_adault"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="5sp"
+                        android:text="هر نفر بزرگسال"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/price_child"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/text_child"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text=" کودک با تخت"
+                        android:padding="6sp"
+                        android:textSize="12dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/price_infant"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/text_infant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="کودک بدون تخت"
+                        android:padding="6sp"
+                        android:textSize="12dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
         </LinearLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>
