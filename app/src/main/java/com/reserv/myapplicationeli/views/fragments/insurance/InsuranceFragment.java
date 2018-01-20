@@ -284,7 +284,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 Intent _intent = new Intent(getActivity(), SearchInsuranceActivity.class);
                 _intent.putExtra("BirthDateList" , gson.toJson(passengers));
                 _intent.putExtra("DepartureDate", departureDate);
-                _intent.putExtra("Culture", "fa-IR");
+                _intent.putExtra("Culture", "fa-ir");
                 _intent.putExtra("CountryCode", country.getCountryCode());
                 _intent.putExtra("CountryName", country.getCountryNameFa());
                 _intent.putExtra("AccomodationDays", accomodationDays);

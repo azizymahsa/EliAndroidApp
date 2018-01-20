@@ -24,7 +24,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
-        InitUi.Toolbar(this, false, R.color.app_base_color, "ثبت نام");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, "ثبت نام");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));

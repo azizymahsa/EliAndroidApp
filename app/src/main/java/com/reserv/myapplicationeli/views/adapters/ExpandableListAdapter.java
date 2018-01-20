@@ -242,45 +242,45 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		//((Button)findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.purple_button_larg);
 		//lblProductrow.setBackgroundResource(R.drawable.ir);
 		String s=item2.AirlineCode;
-		if(new String(s).equals("IR"))
+		if(s.toLowerCase().equals("ir"))
 			lblProductrow.setBackgroundResource(R.drawable.ir);
-		if(new String(s).equals("A3"))
+		if(s.toLowerCase().equals("a3"))
 			lblProductrow.setBackgroundResource(R.drawable.a);
-		if(new String(s).equals("AF"))
+		if(s.toLowerCase().equals("af"))
 			lblProductrow.setBackgroundResource(R.drawable.af);
-		if(new String(s).equals("AZ"))
+		if(s.toLowerCase().equals("az"))
 			lblProductrow.setBackgroundResource(R.drawable.az);
-		if(new String(s).equals("EK"))
+		if(s.toLowerCase().equals("ek"))
 			lblProductrow.setBackgroundResource(R.drawable.ek);
-		if(new String(s).equals("EY"))
+		if(s.toLowerCase().equals("ey"))
 			lblProductrow.setBackgroundResource(R.drawable.ey);
-		if(new String(s).equals("FZ"))
+		if(s.toLowerCase().equals("fz"))
 			lblProductrow.setBackgroundResource(R.drawable.fz);
-		if(new String(s).equals("G9"))
+		if(s.toLowerCase().equals("g9"))
 			lblProductrow.setBackgroundResource(R.drawable.g);
-		if(new String(s).equals("J2"))
+		if(s.toLowerCase().equals("j2"))
 			lblProductrow.setBackgroundResource(R.drawable.j);
-		if(new String(s).equals("JI"))
+		if(s.toLowerCase().equals("ji"))
 			lblProductrow.setBackgroundResource(R.drawable.ji);
-		if(new String(s).equals("KK"))
+		if(s.toLowerCase().equals("kk"))
 			lblProductrow.setBackgroundResource(R.drawable.kk);
-		if(new String(s).equals("KL"))
+		if(s.toLowerCase().equals("kl"))
 			lblProductrow.setBackgroundResource(R.drawable.kl);
-		if(new String(s).equals("LH"))
+		if(s.toLowerCase().equals("lh"))
 			lblProductrow.setBackgroundResource(R.drawable.lh);
-		if(new String(s).equals("PC"))
+		if(s.toLowerCase().equals("pc"))
 			lblProductrow.setBackgroundResource(R.drawable.pc);
-		if(new String(s).equals("QR"))
+		if(s.toLowerCase().equals("qr"))
 			lblProductrow.setBackgroundResource(R.drawable.qr);
-		if(new String(s).equals("SU"))
+		if(s.toLowerCase().equals("su"))
 			lblProductrow.setBackgroundResource(R.drawable.su);
-		if(new String(s).equals("TG"))
+		if(s.toLowerCase().equals("tg"))
 			lblProductrow.setBackgroundResource(R.drawable.tg);
-		if(new String(s).equals("TK"))
+		if(s.toLowerCase().equals("tk"))
 			lblProductrow.setBackgroundResource(R.drawable.tk);
-		if(new String(s).equals("W5"))
+		if(s.toLowerCase().equals("w5"))
 			lblProductrow.setBackgroundResource(R.drawable.w);
-		if(new String(s).equals("WY"))
+		if(s.toLowerCase().equals("wy"))
 			lblProductrow.setBackgroundResource(R.drawable.wy);
 
 

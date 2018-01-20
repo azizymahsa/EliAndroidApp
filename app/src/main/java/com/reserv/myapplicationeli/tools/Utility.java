@@ -58,6 +58,7 @@ public class Utility extends Activity {
 		}
 	}
 
+
 	public static String MD5(String str) {
 
 		MessageDigest digest;
@@ -295,24 +296,13 @@ public class Utility extends Activity {
 		}
 	}
 
-	public static boolean isNetworkAvailable(Context context) {
-		boolean haveConnectedWifi = false;
-		boolean haveConnectedMobile = false;
+	public static Boolean isNetworkAvailable(Context context) {
+		ConnectivityManager connectivityManager
+				= (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting() && activeNetworkInfo.isAvailable();
 
-		ConnectivityManager cm = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo[] netInfo = cm.getAllNetworkInfo();
-		for (NetworkInfo ni : netInfo) {
-			if (ni.getTypeName().equalsIgnoreCase("WIFI"))
-				if (ni.isConnected())
-					haveConnectedWifi = true;
-			if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
-				if (ni.isConnected())
-					haveConnectedMobile = true;
-		}
-		return haveConnectedWifi || haveConnectedMobile;
 	}
-
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void setMobileDataEnabled(Context context, boolean enabled) {
 		try {

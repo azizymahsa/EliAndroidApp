@@ -19,6 +19,14 @@
     <dimen name="text_size">15dp</dimen>
     <dimen name="_aboutdp">12dp</dimen>
     <dimen name="_14dp">14dp</dimen>
+    <dimen name="_260">260dp</dimen>
+    <dimen name="_20dp">20dp</dimen>
+    <dimen name="_11dp">11dp</dimen>
+    <dimen name="_50dp">50dip</dimen>
+    <dimen name="_135">135dp</dimen>
+    <dimen name="_10dp">10dp</dimen>
+    <dimen name="_32dp">25dp</dimen>
+    <dimen name="_27dp">27dp</dimen>
 
 
 

@@ -56,4 +56,12 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_16dp_txtSize">16dp</dimen>
     <dimen name="text_message">14dp</dimen>
 
+    <dimen name="_260">560dp</dimen>
+    <dimen name="_20dp">35dp</dimen>
+    <dimen name="_11dp">20dp</dimen>
+    <dimen name="_50dp">70dip</dimen>
+    <dimen name="_135">250dp</dimen>
+    <dimen name="_10dp">40dp</dimen>
+    <dimen name="_32dp">45dp</dimen>
+    <dimen name="_27dp">50dp</dimen>
 </resources>

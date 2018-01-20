@@ -221,25 +221,25 @@ public class FlightHotelAdapter extends BaseAdapter {
         if(s.toLowerCase().contains("ir")){
             holder.ivLogo.setImageResource(R.drawable.ir);}
 
-        if(s.toLowerCase().contains("A3")){
+        if(s.toLowerCase().contains("a3")){
             holder.ivLogo.setImageResource(R.drawable.a);}
 
-        if(s.toLowerCase().contains("AF")){
+        if(s.toLowerCase().contains("af")){
             holder.ivLogo.setImageResource(R.drawable.af);}
 
-        if(s.toLowerCase().contains("AZ")){
+        if(s.toLowerCase().contains("az")){
             holder.ivLogo.setImageResource(R.drawable.az);}
 
-        if(s.toLowerCase().contains("EK")){
+        if(s.toLowerCase().contains("ek")){
             holder.ivLogo.setImageResource(R.drawable.ek);}
 
-        if(s.toLowerCase().contains("EY")){
+        if(s.toLowerCase().contains("ey")){
             holder.ivLogo.setImageResource(R.drawable.ey);}
 
-        if(s.toLowerCase().contains("FZ")){
+        if(s.toLowerCase().contains("fz")){
             holder.ivLogo.setImageResource(R.drawable.fz);}
 
-        if(s.toLowerCase().contains("G9")){
+        if(s.toLowerCase().contains("g9")){
             holder.ivLogo.setImageResource(R.drawable.g);}
 
         if(s.toLowerCase().contains("j2")){

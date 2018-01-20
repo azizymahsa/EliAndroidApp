@@ -18,7 +18,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
-        InitUi.Toolbar(this, false, R.color.app_base_color, "بازیابی رمز عبور");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, "بازیابی رمز عبور");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));

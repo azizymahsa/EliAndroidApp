@@ -3,10 +3,13 @@ package com.reserv.myapplicationeli.views.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.widget.ImageView;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
+import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
 
 
 public class SplashFragment extends BaseActivity {
@@ -65,26 +68,43 @@ public class SplashFragment extends BaseActivity {
                 R.drawable.comp1_00031,
                 R.drawable.comp1_00031,};
 
-        handler = new Handler();
+
+        final int[] i = {0};
+
+        handler = new Handler(Looper.getMainLooper());
         runnable = new Runnable() {
-            int i = 0;
 
             public void run() {
-                ivSplash.setImageResource(imageArray[i]);
-                i++;
-                if (i > imageArray.length - 1) {
-                    i = 0;
+                ivSplash.setImageResource(imageArray[i[0]]);
+                i[0]++;
+                if (i[0] > imageArray.length - 1) {
+                    i[0] = 0;
 
                 }
-                if (i == 36) {
-                    finish();
-                    startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                    finish();
-                }
-                handler.postDelayed(this, 30);  //for interval...
+                if (i[0] == 36) {
+                   // handler.removeCallbacksAndMessages(null);
+                   if(Utility.isNetworkAvailable(SplashFragment.this)){
+
+                       startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                       finish();
+                    }else{
+                       handler.removeCallbacks(runnable);
+
+                       new InternetAlert(SplashFragment.this);
+                   }
+
+
+
+
+                }else{
+            handler.postDelayed(this, 30); } //for interval...
             }
         };
-        handler.postDelayed(runnable, 700); //for initial delay..
+        if (i[0] < 36) {
+            handler.postDelayed(runnable, 30); //for initial delay..
+
+        }
+/*
 
         final int[] imageArray2 = new int[]{
                 R.drawable.small_01,
@@ -114,7 +134,7 @@ public class SplashFragment extends BaseActivity {
 
 
 
-        handler2 = new Handler();
+        handler2 = new Handler(Looper.getMainLooper());
         runnable2 = new Runnable() {
             int i = 0;
 
@@ -132,6 +152,7 @@ public class SplashFragment extends BaseActivity {
         handler2.postDelayed(runnable2, 100); //for initial delay..
 
 
+*/
 
 
     }
@@ -141,7 +162,7 @@ public class SplashFragment extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacks(runnable);
-        handler2.removeCallbacks(runnable2);
+//        handler2.removeCallbacks(runnable2);
 
     }
 

@@ -832,7 +832,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 			headerJson.put("PartnerList", detailsPartner);
 
-			headerJson.put("Culture", "fa-IR");
+			headerJson.put("Culture", "fa-ir");
 			headerJson.put("PackRow_ID",Prefs.getString("PackRow_ID","12"));
 			headerJson.put("PackXfer_IDs",Prefs.getString("PackXfer_IDs","12"));
 			headerJson.put("Flt_IDs",Prefs.getString("Flt_IDs","12"));
@@ -872,7 +872,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
 		try {
-			manJson.put("Culture", "fa-IR");
+			manJson.put("Culture", "fa-ir");
 
 			manJson.put("invoiceNo", "782863");//perches service
 
@@ -908,7 +908,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
 		try {
-			manJson.put("Culture", "fa-IR");
+			manJson.put("Culture", "fa-ir");
 
 			manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
 			manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));
@@ -1095,7 +1095,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				break;
 			case R.id.btn_nextm:
 				String Gender= Gensiyat;
-				String Nationality=txtmahale_eghamat.getText().toString();// "IR";
+				String Nationality=txtmahale_eghamat.getText().toString();// "ir";
 				String Nationality_ID= txtmeliyatm.getText().toString();
 				String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 				String RqPassenger_Birthdate= txttavalodm.getText().toString();
@@ -1111,7 +1111,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				String RqPassenger_Tel= "25548632";
 
 				/*String Gender= "Female";
-				String Nationality= "IR";
+				String Nationality= "ir";
 				String Nationality_ID= "iran";
 				String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 				String RqPassenger_Birthdate= "1997/12/23";

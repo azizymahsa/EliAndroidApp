@@ -106,7 +106,7 @@ public class AboutAdapter extends BaseAdapter {
 
 		holder.txtSectionName.setTextSize(2,18);
 		holder.txtDescription.setTextSize(1,14);
-		holder.txtSectionName.setTextColor(Color.parseColor("#4b494b"));
+		holder.txtSectionName.setTextColor(Color.parseColor("#000000"));
 		holder.txtDescription.setTextColor(Color.parseColor("#4b494b"));
 		if(current.getSectionName().contains("گواهینامه ها")){
 		String[] value_split = current.getSectionName().split("\\|");

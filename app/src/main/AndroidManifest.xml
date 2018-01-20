@@ -122,7 +122,17 @@
 
         <activity android:name=".views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".views.ui.PassengerHotelFlightActivity"/>
+        <activity android:name=".views.ui.PassengerHotelFlightActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.activities.login.LogInActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.activities.login.RegisterLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.activities.login.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".views.activities.pack.AddRoomActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

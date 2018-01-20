@@ -272,7 +272,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 _intent.putExtra("DepartureFrom", departureFrom);
                 _intent.putExtra("DepartureTo", departureTo);
                 _intent.putExtra("RoomList", getRoomList(roomsSelected));
-                _intent.putExtra("Culture", "fa-IR");
+                _intent.putExtra("Culture", "fa-ir");
                 _intent.putExtra("Country", String.valueOf(hotelCity.getCityID()));
                 _intent.putExtra("CityName", String.valueOf(ValidationTools.isEmptyOrNull(hotelCity.getCityNameFa()) ? hotelCity.getCityNameEn() : hotelCity.getCityNameFa()));
                 startActivity(_intent);

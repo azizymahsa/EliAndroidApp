@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Update_at_1_18_2018_3_03_PM__Default_" date="1516275250993" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_18_2018_3_03_PM__Default_/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 1/18/2018 3:03 PM [Default]" />
+  <binary>
+    <option name="BEFORE_PATH" value="materialdatetimepicker/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="materialdatetimepicker/build/intermediates/incremental/debug-mergeJniLibs/merge-state" />
+    <option name="AFTER_PATH" value="materialdatetimepicker/build/intermediates/incremental/debug-mergeJniLibs/merge-state" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_18_2018_3_03_PM__Default_/merge-state" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="materialdatetimepicker/build/intermediates/res/androidTest/debug/resources-debugAndroidTest.ap_" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="materialdatetimepicker/build/generated/mockable-android-23.v3.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>

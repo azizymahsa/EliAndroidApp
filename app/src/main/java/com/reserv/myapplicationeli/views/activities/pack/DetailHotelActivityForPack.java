@@ -157,7 +157,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
                 String json = gson.toJson(new HoldSelectedRoomRequest(new
                         com.reserv.myapplicationeli.models.hotel.api
                                 .holdSelectedRoom.call.RoomRequest(new Identity("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "fa-IR", eHotelId
+                        "EligashtMlb", "Mobile"), "fa-ir", eHotelId
                         , offerIds, getIntent().getExtras().getString("ResultUniqID"))));
                 Log.e("jsonnnnn", json);
                 new GetHoldRoomAsync().execute();
@@ -288,7 +288,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
                         "EligashtMlb", "Mobile"), "",
                         String.valueOf(getIntent().getExtras().getInt("HotelId")),
                         "", "", getIntent().getExtras().getString("ResultUniqID"),
-                        "fa-IR")));
+                        "fa-ir")));
 
             } catch (Exception e) {
 
@@ -340,7 +340,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
                 getHoldRoom = new GetHoldRoom(new HoldSelectedRoomRequest(new
                         com.reserv.myapplicationeli.models.hotel.api
                                 .holdSelectedRoom.call.RoomRequest(new Identity("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "fa-IR", eHotelId
+                        "EligashtMlb", "Mobile"), "fa-ir", eHotelId
                         , offerIds, getIntent().getExtras().getString("ResultUniqID"))));
 
             } catch (Exception e) {
@@ -390,7 +390,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
         @Override
         protected String doInBackground(String... params) {
             try {
-                getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest("fa-IR",   String.valueOf(getIntent().getExtras().getInt("HotelId")))));
+                getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest("fa-ir",   String.valueOf(getIntent().getExtras().getInt("HotelId")))));
 
             } catch (Exception e) {
 

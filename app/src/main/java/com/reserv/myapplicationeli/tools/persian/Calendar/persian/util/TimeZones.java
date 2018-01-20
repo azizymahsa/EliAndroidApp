@@ -146,7 +146,7 @@ public enum TimeZones {
 			.getTimeZone("US/Alaska")), US_ALEUTIAN(TimeZone.getTimeZone("US/Aleutian")), US_ARIZONA(TimeZone.getTimeZone("US/Arizona")), US_CENTRAL(TimeZone.getTimeZone("US/Central")), US_EAST_INDIANA(TimeZone
 			.getTimeZone("US/East-Indiana")), US_EASTERN(TimeZone.getTimeZone("US/Eastern")), US_HAWAII(TimeZone.getTimeZone("US/Hawaii")), US_INDIANA_STARKE(TimeZone.getTimeZone("US/Indiana-Starke")), US_MICHIGAN(TimeZone
 			.getTimeZone("US/Michigan")), US_MOUNTAIN(TimeZone.getTimeZone("US/Mountain")), US_PACIFIC(TimeZone.getTimeZone("US/Pacific")), US_PACIFIC_NEW(TimeZone.getTimeZone("US/Pacific-New")), US_SAMOA(TimeZone.getTimeZone("US/Samoa")), UTC(
-			TimeZone.getTimeZone("UTC")), VST(TimeZone.getTimeZone("VST")), W_SU(TimeZone.getTimeZone("W-SU")), WET(TimeZone.getTimeZone("WET")), ZULU(TimeZone.getTimeZone("Zulu"));
+			TimeZone.getTimeZone("UTC")), VST(TimeZone.getTimeZone("VST")), W_SU(TimeZone.getTimeZone("W-su")), WET(TimeZone.getTimeZone("WET")), ZULU(TimeZone.getTimeZone("Zulu"));
 
 	private final TimeZone tz;
 

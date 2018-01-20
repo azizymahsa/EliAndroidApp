@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.views.activities.AboutActivity;
 import com.reserv.myapplicationeli.views.activities.ConditionActivity;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
+import com.reserv.myapplicationeli.views.activities.login.LogInActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
@@ -45,6 +47,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FragmentManager manager;
     RelativeLayout rlUser;
     ExpandableWeightLayout expandableLayout;
+    ImageView ivUser;
+    RelativeLayout rlHedaer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +84,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btn_condition= findViewById(R.id.btn_condition);
         rlUser= findViewById(R.id.rlUser);
         tvArrow= findViewById(R.id.tvArrow);
+        ivUser= findViewById(R.id.ivUser);
+        rlHedaer= findViewById(R.id.rlHedaer);
 
         tvTitle.setText(getString(R.string.searchFlight));
 
@@ -95,6 +101,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnContactUs.setOnClickListener(this);
         btn_condition.setOnClickListener(this);
         rlUser.setOnClickListener(this);
+        ivUser.setOnClickListener(this);
+        rlHedaer.setOnClickListener(this);
 
 
 
@@ -161,6 +169,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btn_condition:
                 Intent intent3 = new Intent(this, ConditionActivity.class);
                 startActivity(intent3);
+                break;
+                case R.id.ivUser:
+                    startActivity(new Intent(this, LogInActivity.class));
+
                 break;
                 case R.id.rlUser:
 

@@ -103,27 +103,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
 		holder.CityName.setText(current.getCityNameEn());
 
 		holder.AirportName.setTag(current.getCityNameFa());
-		holder.AirportName.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-
-				//		Intent i4 = new Intent(context,HotelActivity.class);
-
-				//i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-					/*	i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());//current.getCityName()
-						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
-						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());
-
-
-						activity.finish();
-						//context.startActivity(i4);*/
-
-
-
-			}
-		});
 		holder.CityName.setTag(current.getCityNameFa());
 		holder.llLayout.setOnClickListener(new View.OnClickListener() {
 
