@@ -208,12 +208,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			lblArrivalCityNameFaB.setVisibility(View.GONE);
 			lblFlightArrivalTimeB.setVisibility(View.GONE);
 		}else{//2tarafe
-			lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
+			//////Ruze hafte
+
+
+			///////////////
+			//lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
+			System.out.println("bargasgt:"+item2.FltDateDayOfWeekFalse);
+			lblArrivalCityNameFaB.setText(" برگشت  "+GetDayWeek(item2.FltDateDayOfWeekFalse)+"");
 			lblFlightArrivalTimeB.setText(item2.FlightTimeB+"");}
 
 
 		//
-		lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
+	//	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
+		System.out.println("raft:"+item2.FltDateDayOfWeek);
+		lblArrivalCityNameFaR.setText(" رفت  "+GetDayWeek(item2.FltDateDayOfWeek)+"");
 		lblFlightArrivalTimeR.setText(item2.FlightArrivalTimeR+"");
 
 		lblAdlCost.setText(item2.AdlCost+"");
@@ -285,6 +293,30 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 		return convertView;
+	}
+
+	private String GetDayWeek(String fltDateDayOfWeekFalse) {
+		if(fltDateDayOfWeekFalse.contains("Saturday")){
+			return "شنبه";
+		}else if(fltDateDayOfWeekFalse.contains("Sunday")){
+			return "یکشنبه";
+		}else if(fltDateDayOfWeekFalse.contains("Monday")){
+			return "دوشنبه";
+		}
+		else if(fltDateDayOfWeekFalse.contains("Tuesday")){
+			return "سه شنبه";
+		}
+		else if(fltDateDayOfWeekFalse.contains("Wednesday")){
+			return "چهارشنبه";
+		}
+		else if(fltDateDayOfWeekFalse.contains("Thursday")){
+			return "پنجشنبه";
+		}
+		else if(fltDateDayOfWeekFalse.contains("Friday")){
+			return "جمعه";
+		}
+
+return "";
 	}
 
 	@Override

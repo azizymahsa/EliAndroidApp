@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -100,7 +102,10 @@ public Activity activity;
 
 			holder.imageView1= (ImageView) convertView.findViewById(R.id.imageView1);
 
-			holder.btnAddsabad= (Button) convertView.findViewById(R.id.btnAddsabad);
+			holder.btnAddsabad= (RelativeLayout) convertView.findViewById(R.id.btnAddsabad);
+			holder.txtAdd= (TextView) convertView.findViewById(R.id.txtAdd);
+			holder.img_khadmat_row= (ImageView) convertView.findViewById(R.id.img_khadmat_row);
+
 			holder.txtServiceTotalPrice= (TextView) convertView.findViewById(R.id.txtServiceTotalPrice);
 
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
@@ -133,7 +138,7 @@ public Activity activity;
 			public void onClick(View v) {
 				//tick_round_button
 
-				String buttonText =  holder.btnAddsabad.getText().toString();
+				String buttonText =  holder.txtAdd.getText().toString();
 				//Drawable icon= context.getResources(). getDrawable( R.drawable.tick_round_button);
 				//show icon to the right of text
 				//	holder.btnAddsabad.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
@@ -147,12 +152,13 @@ public Activity activity;
 
 				Prefs.putString("Select_ID_khadamat",s);
 
-				Toast.makeText(v.getContext(),current.getServiceID()+" "+current.getServiceTotalPrice(),Toast.LENGTH_SHORT).show();
+				//Toast.makeText(v.getContext(),current.getServiceID()+" "+current.getServiceTotalPrice(),Toast.LENGTH_SHORT).show();
 				if(!buttonText.contains("اضافه"))
 					PassengerActivity.updateTotalInfos(current.getServiceTotalPrice());
 
 				holder.btnAddsabad.setBackgroundResource(R.drawable.green_button);
-				holder.btnAddsabad.setText("اضافه شد");
+				holder.img_khadmat_row.setVisibility(View.VISIBLE);
+				holder.txtAdd.setText("اضافه شد");
 			}
 		});
 
@@ -164,8 +170,10 @@ public Activity activity;
 		TextView txtDescription;
 		TextView txtServiceNameFa;
 		ImageView imageView1;
-		Button btnAddsabad;
+		RelativeLayout btnAddsabad;
 
+		 ImageView img_khadmat_row;
+		 TextView txtAdd;
 	}
 
 

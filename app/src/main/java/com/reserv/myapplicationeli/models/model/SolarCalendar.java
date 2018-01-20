@@ -130,7 +130,16 @@ public class SolarCalendar {
 				year = georgianYear - 622;
 			}
 		}
-		return year+"/"+month+"/"+date;
+		String monthS=Integer.toString(month);
+		String dateS=Integer.toString(date);
+
+		if(Integer.toString(month).length()==1){
+			monthS="0"+month;
+		}
+		if(Integer.toString(date).length()==1){
+			dateS="0"+date;
+		}
+		return year+"/"+monthS+"/"+dateS;
 	}
 	private void calSolarCalendar() {
 		int ld;

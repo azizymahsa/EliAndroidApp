@@ -771,8 +771,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList);
 				expListViewExpanding.setAdapter(listAdapterExpanding);
-				iconFilter.setTextColor(Color.parseColor("#aaaaaa"));
-				txtFilter.setTextColor(Color.parseColor("#aaaaaa"));
+				iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
+				txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
 
 			}
 
@@ -785,8 +785,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 		if (dataExpandingListFilter.isEmpty() ||!foundFirst || !foundEc || !foundBis) {
 			// foundFirst=false;
-			iconFilter.setTextColor(Color.parseColor("#aaaaaa"));
-			txtFilter.setTextColor(Color.parseColor("#aaaaaa"));
+			iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
+			txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
 			Toast.makeText(SearchParvazActivity.this, "هیچ موردی یافت نشد!!", Toast.LENGTH_LONG).show();
 			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList);
 			expListViewExpanding.setAdapter(listAdapterExpanding);
@@ -1072,7 +1072,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 							flightSegmentTrue.setFlightNumber(jPricedIfdgtinerary.getString("FlightNumber"));
 
 							flightSegmentTrue.setFlightTime(jPricedIfdgtinerary.getString("FlightTime"));
-							//flightSegmentTrue.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
+							flightSegmentTrue.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
 							//flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getString("FltDurationH"));
 							// flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getString("FltDurationM"));
 							flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getBoolean("IsDepartureSegment"));
@@ -1113,7 +1113,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 							flightSegmentTrue.setFlightNumber(jPricedIfdgtinerary.getString("FlightNumber"));
 
 							flightSegmentTrue.setFlightTime(jPricedIfdgtinerary.getString("FlightTime"));
-							//flightSegmentTrue.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
+							flightSegmentTrue.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
 							//flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getString("FltDurationH"));
 							// flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getString("FltDurationM"));
 							flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getBoolean("IsDepartureSegment"));
@@ -1607,7 +1607,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								, flightsList.get(i).getRemainSeats()
 								, flightsList.get(i).isIsCharter()
 								, SegmentList.get(0).getAirlineNameEn()
-								, SegmentListtrueAkhari.size());//ArrivalCityNameEnR baraye sort bayad en bashe
+								, SegmentListtrueAkhari.size()
+						,SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
+								,SegmentListFalseAvali.get(0).getFltDateDayOfWeek());//ArrivalCityNameEnR baraye sort bayad en bashe
 
 
 						//parentItem.Header.add(header);
@@ -1664,7 +1666,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								, flightsList.get(i).getRemainSeats()
 								, flightsList.get(i).isIsCharter()
 								, SegmentList.get(0).getAirlineNameEn()
-								, SegmentListtrueAkhari.size());//ArrivalCityNameEnR baraye sort bayad en bashe
+								, SegmentListtrueAkhari.size()
+						,SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
+						,SegmentListFalseAvali.get(0).getFltDateDayOfWeek());//ArrivalCityNameEnR baraye sort bayad en bashe
 
 
 						//parentItem.Header.add(header);
@@ -2031,6 +2035,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		public int RemainSeats;
 		public boolean IsCharter;
 		public int SegmentTrueCount;
+		public  String FltDateDayOfWeek;
+		public  String FltDateDayOfWeekFalse;
 
 		public HeaderExpandingPlan(String ArrivalCityNameFaR, String FlightArrivalTimeR,
 								   String DepartureCityNameFaR, String FlightTimeR,
@@ -2040,7 +2046,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								   long AdlCost
 				, String flGUID, String AirlineNameFa
 				, String AirlineCode
-				, String CabinClassNameFa, int RemainSeats, boolean IsCharter, String AirlineNameEa, int SegmentTrueCount) {
+				, String CabinClassNameFa, int RemainSeats, boolean IsCharter, String AirlineNameEa, int SegmentTrueCount,String FltDateDayOfWeekTrue,String FltDateDayOfWeekFalse) {
 			this.ArrivalCityNameFaR = ArrivalCityNameFaR;
 			this.FlightArrivalTimeR = FlightArrivalTimeR;
 
@@ -2065,6 +2071,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 			this.AirlineNameEa = AirlineNameEa;
 			this.SegmentTrueCount = SegmentTrueCount;
+			this.FltDateDayOfWeek=FltDateDayOfWeekTrue;
+			this.FltDateDayOfWeekFalse=FltDateDayOfWeekFalse;
 		}
 
 		public HeaderExpandingPlan() {
@@ -2207,13 +2215,15 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						String monthM=formatted3.substring(5, 7);//01
 						String yearM=formatted3.substring(0, 4);//1396
 
+
 						String  dateShamsi= SolarCalendar.calSolarCalendar(Integer.parseInt(yearM),Integer.parseInt(monthM),Integer.parseInt(dayM));
+						System.out.println("dateShamsi:"+yearM+monthM+dayM+"   "+dateShamsi);
 						String dayMF=dateShamsi.substring(8, 10);//02
 						String monthMF=dateShamsi.substring(5, 7);//01
 						String yearMF=dateShamsi.substring(0, 4);//1396
 
 						PersianCalendar persianCalendar = new PersianCalendar();
-						persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
+						persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
 						/////////////////////
 						//   txtDateOnvan.setText(dfm.format(cal.getTime()) + "  -  " + AdateF);
 						txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);

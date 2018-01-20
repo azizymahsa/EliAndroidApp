@@ -64,4 +64,6 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_10dp">40dp</dimen>
     <dimen name="_32dp">45dp</dimen>
     <dimen name="_27dp">50dp</dimen>
+    <dimen name="_17dp_textsize">17dp</dimen>
+    <dimen name="_32Plan">50dp</dimen>
 </resources>

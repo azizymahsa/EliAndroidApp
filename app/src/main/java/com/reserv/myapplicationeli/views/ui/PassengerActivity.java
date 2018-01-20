@@ -66,6 +66,7 @@ import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
+import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 
@@ -79,18 +80,19 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	Handler handler;
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
-	public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor,btn_next_partnerInfo;
+	public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
 	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
-	public Button btn_nextm,btn_taeed_khadamat,btnAddsabad,btn_pardakht_factor;
+	public Button btnAddsabad,btn_pardakht_factor;
 	public EditText txtnamem,txtfamilym;
 	public static TextView txttavalodm;
 	public EditText txtnumber_passport,txtnameP;
 	public static TextView txtexp_passport;
 	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM;
 	public static TextView txtSumKhadamat;
-	public LinearLayout linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat;
+	public LinearLayout btn_taeed_khadamat,btn_nextm,linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo;
 	private Handler progressBarHandler = new Handler();
-	public ListView list_airport,listKhadamat;
+	public ListView list_airport;
+	public NonScrollListView listKhadamat;
 	ArrayList<HashMap<String,String>> mylist=null;
 	public static String searchText = "";
 	//public static long GET_PRICE_KHADAMAT;
@@ -153,13 +155,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
 		txtTitleCountM.setOnClickListener(this);
 
-		btn_next_partnerInfo=(Button)findViewById(R.id.btn_next_partnerInfo);
+		btn_next_partnerInfo=(LinearLayout) findViewById(R.id.btn_next_partnerInfo);
 		btn_next_partnerInfo.setOnClickListener(this);
 
-		btn_nextm=(Button)findViewById(R.id.btn_nextm);
+		btn_nextm=(LinearLayout)findViewById(R.id.btn_nextm);
 		btn_nextm.setOnClickListener(this);
 
-		btn_taeed_khadamat=(Button)findViewById(R.id.btn_taeed_khadamat);
+		btn_taeed_khadamat=(LinearLayout)findViewById(R.id.btn_taeed_khadamat);
 		btn_taeed_khadamat.setOnClickListener(this);
 
 		btn_pardakht_factor=(Button)findViewById(R.id.btn_pardakht_factor);
@@ -207,7 +209,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
 
-		listKhadamat = (ListView)findViewById(R.id.listKhadamat);
+		listKhadamat = (NonScrollListView)findViewById(R.id.listKhadamat);
 		myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
 
 
@@ -507,6 +509,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				if(successResult==0){
 					//get Error
 					JSONObject getError = jsonObj.getJSONObject("Errors");
+
 					String message= getError.getString("Message");
 					Toast.makeText(PassengerActivity.this, message, Toast.LENGTH_LONG).show();
 				}
@@ -520,8 +523,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				// Setup and Handover data to recyclerview
 				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_on);
-				((Button)findViewById(R.id.btn_pish_factor)).setTextColor(Color.parseColor("#33ccff"));
-				txtTitle.setText("مرحله 4/4: تایید و پرداخت پیش فاکتور    ");
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+				txtTitle.setText("مرحله 4 از 4: تایید و پرداخت پیش فاکتور    ");
 				//	myScrollView.setOnTouchListener(null);
 
 				linear_saler.setVisibility(View.GONE);
@@ -719,16 +722,17 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				linear_mosaferan.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.GONE);
 				linear_list_khadamat.setVisibility(View.VISIBLE);
-				/*myScrollView.setOnTouchListener(new View.OnTouchListener() {
+					/*myScrollView.setSmoothScrollingEnabled(false);
+				myScrollView.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View v, MotionEvent event) {
 						return true;
 					}
-				});
-*/
+				});*/
+
 				((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-				((Button) findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
-				txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+				txtTitle.setText("مرحله 3 از 4: افزودن خدمات به سبد خرید");
 
 				mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this);
 				//mAdapter.setAdapter(mAdapter);
@@ -927,7 +931,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 					linear_pish_factor.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
-					/*myScrollView.setOnTouchListener(new View.OnTouchListener() {
+					/*myScrollView.setSmoothScrollingEnabled(false);
+					myScrollView.setOnTouchListener(new View.OnTouchListener() {
 						@Override
 						public boolean onTouch(View v, MotionEvent event) {
 							return true;
@@ -935,22 +940,25 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					});*/
 
 					((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-					txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+					txtTitle.setText("مرحله 3 از 4: افزودن خدمات به سبد خرید");
 				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
 					linear_list_khadamat.setVisibility(View.GONE);
 					linear_mosaferan.setVisibility(View.VISIBLE);
-					//	myScrollView.setOnTouchListener(null);
+						//myScrollView.setOnTouchListener(null);
 
-					txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
+					txtTitle.setText("مرحله 2 از 4:  اطلاعات مسافران را وارد کنید");
 					((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
+					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_saler.setVisibility(View.VISIBLE);
 					//	myScrollView.setOnTouchListener(null);
 
 
-					txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
+					txtTitle.setText("مرحله 1 از 4:  مشخصات خریدار را وارد کنید");
 					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
+					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
 					finish();
 				}
@@ -985,28 +993,28 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					String flagMosafer="T";
 					///Validate
 					if( RqPartner_Email.trim().length()>6 ){
-						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#aaaaaa"));
 						flagMosafer=flagMosafer+"T";
 					}else{
 						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
 						flagMosafer=flagMosafer+"F";
 					}
 					if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
-						((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#aaaaaa"));
 						flagMosafer=flagMosafer+"T";
 					}else{
 						((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
 						flagMosafer=flagMosafer+"F";
 					}
 					if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
-						((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#aaaaaa"));
 						flagMosafer=flagMosafer+"T";
 					}else{
 						((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
 						flagMosafer=flagMosafer+"F";
 					}
 					if(RqPartner_Mobile != null && RqPartner_Mobile.length()>4 && RqPartner_Mobile.trim().matches("[0-9]+")){
-						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#aaaaaa"));
 						flagMosafer=flagMosafer+"T";
 					}else{
 						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
@@ -1014,7 +1022,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 					if(RqPartner_NationalCode != null)
 						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.trim().matches("[0-9]+")){
-							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#00cc00"));
+							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#aaaaaa"));
 							flagMosafer=flagMosafer+"T";
 						}else{
 							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
@@ -1041,12 +1049,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						linear_saler.setVisibility(View.GONE);
 						linear_pish_factor.setVisibility(View.GONE);
 						linear_mosaferan.setVisibility(View.VISIBLE);
-						txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
+						txtTitle.setText("مرحله 2 از 4:  اطلاعات مسافران را وارد کنید");
 						//((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
 						//((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
 
-						((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
-						((Button)findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#33ccff"));
+						((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
+						((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 					}
 				}catch (Exception e) {
 					System.out.println("Exception ::"+e);
@@ -1099,28 +1107,28 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				String flagMosafer="T";
 				///Validate
 				if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
-					((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#00cc00"));
+					((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#aaaaaa"));
 					flagMosafer=flagMosafer+"T";
 				}else{
 					((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
 					flagMosafer=flagMosafer+"F";
 				}
 				if(Nationality != null && Nationality.length()>1){
-					((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#00cc00"));
+					((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#aaaaaa"));
 					flagMosafer=flagMosafer+"T";
 				}else{
 					((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
 					flagMosafer=flagMosafer+"F";
 				}
 				if(Nationality_ID != null && Nationality_ID.length()>1){
-					((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#00cc00"));
+					((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#aaaaaa"));
 					flagMosafer=flagMosafer+"T";
 				}else{
 					((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
 					flagMosafer=flagMosafer+"F";
 				}
 				if(RqPassenger_Birthdate != null && RqPassenger_Birthdate.length()>4){
-					((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#00cc00"));
+					((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#aaaaaa"));
 					flagMosafer=flagMosafer+"T";
 				}else{
 					((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
@@ -1128,7 +1136,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 				if(RqPassenger_FirstNameEn != null)
 					if( RqPassenger_FirstNameEn.length()>1 && RqPassenger_FirstNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")){
-						((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#aaaaaa"));
 						flagMosafer=flagMosafer+"T";
 					}else{
 						((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
@@ -1136,14 +1144,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 				if(RqPassenger_LastNameEn != null)
 					if( RqPassenger_LastNameEn.length()>1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$") ){
-						((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#aaaaaa"));
 						flagMosafer=flagMosafer+"T";
 					}else{
 						((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
 						flagMosafer=flagMosafer+"F";
 					}
 				if(RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length()>4){
-					((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#00cc00"));
+					((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#aaaaaa"));
 					flagMosafer=flagMosafer+"T";
 				}else{
 					((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
@@ -1162,8 +1170,18 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 					if(sum>0){
+
 						db.insertData(Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-						txtTitleCountM.setText(" اطلاعات مسافر "+counter);
+						if(countB>0) {
+							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+							countB--;
+						}else if(countK>0) {
+							txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+							countK--;
+						}else if(countN>0) {
+							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+							countN--;
+						}
 						System.out.println("counterMosafer:"+counter);
 						counter++;
 						sum--;
@@ -1221,7 +1239,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
 				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
 				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
-				txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
+				txtTitle.setText("مرحله 1 از 4:  مشخصات خریدار را وارد کنید");
 				//myScrollView.setOnTouchListener(null);
 				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
 					linear_pish_factor.setVisibility(View.GONE);
@@ -1251,8 +1272,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
 				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
-				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
-				txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
+				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
+
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+				txtTitle.setText("مرحله 2 از 4:  اطلاعات مسافران را وارد کنید");
 
 				//.setOnTouchListener(null);
 				break;
@@ -1261,19 +1286,24 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				linear_mosaferan.setVisibility(View.GONE);
 				linear_list_khadamat.setVisibility(View.VISIBLE);
 				linear_pish_factor.setVisibility(View.GONE);
-				//myScrollView.setSmoothScrollingEnabled(false); // disable scrolling
-				/*myScrollView.setOnTouchListener(new View.OnTouchListener() {
+
+			/*	myScrollView.setSmoothScrollingEnabled(false); // disable scrolling
+				myScrollView.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View v, MotionEvent event) {
 						return true;
 					}
 				});*/
-				//	myScrollView.setVisibility(View.GONE);
+				//myScrollView.setVisibility(View.GONE);
 
 				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
 				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
-				txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
+
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+				txtTitle.setText("مرحله 3 از 4: افزودن خدمات به سبد خرید");
 				break;
 			case R.id.btn_pish_factor:
 				linear_saler.setVisibility(View.GONE);
@@ -1283,13 +1313,16 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_on);
 				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
-				txtTitle.setText("مرحله 4/4: تایید و پرداخت پیش فاکتور    ");
-				//myScrollView.setOnTouchListener(null);
+				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+				txtTitle.setText("مرحله 4 از 4: تایید و پرداخت پیش فاکتور    ");
+			//myScrollView.setOnTouchListener(null);
 				break;
 			case R.id.txt_hom:
 				Prefs.putBoolean("BACK_HOME",true);
-				//myScrollView.setOnTouchListener(null);
+			//	myScrollView.setOnTouchListener(null);
 				finish();
 				//this.startActivity(i4);
 				break;
@@ -1366,7 +1399,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
 		((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
 
-		((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#808080"));
+		((Button)findViewById(R.id.txtSaler)).setTextColor(Color.parseColor("#808080"));
 		((Button)findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#808080"));
 		((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#808080"));
 		((Button)findViewById(R.id.btn_pish_factor)).setTextColor(Color.parseColor("#808080"));
@@ -1389,28 +1422,32 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 			linear_pish_factor.setVisibility(View.GONE);
 			linear_list_khadamat.setVisibility(View.VISIBLE);
-		/*	myScrollView.setOnTouchListener(new View.OnTouchListener() {
+			/*myScrollView.setSmoothScrollingEnabled(false);
+			myScrollView.setOnTouchListener(new View.OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					return true;
 				}
 			});*/
 			((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-			txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+			((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+			txtTitle.setText("مرحله 3 از 4: افزودن خدمات به سبد خرید");
 		}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
 			linear_list_khadamat.setVisibility(View.GONE);
 			linear_mosaferan.setVisibility(View.VISIBLE);
-			//	myScrollView.setOnTouchListener(null);
+				//myScrollView.setOnTouchListener(null);
 
-			txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
+			txtTitle.setText("مرحله 2 از 4:  اطلاعات مسافران را وارد کنید");
 			((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
+			((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
 		}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
 			linear_mosaferan.setVisibility(View.GONE);
 			linear_saler.setVisibility(View.VISIBLE);
-			//	myScrollView.setOnTouchListener(null);
+				//myScrollView.setOnTouchListener(null);
 
-			txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
+			txtTitle.setText("مرحله 1 از 4:  مشخصات خریدار را وارد کنید");
 			((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
+			((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
 		}else if(linear_saler.getVisibility() == View.VISIBLE) {
 			/*Intent intent = new Intent(this,PlanFragment.class);
 			//i2.putExtra("CUSTOMER_ID", (int) customerID);
@@ -1450,6 +1487,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+serviceTotalPrice;
 		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT))+"");
 	}
+
 	private class GenericTextWatcher implements TextWatcher{
 
 		private View view;
@@ -1467,7 +1505,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				//مسافر
 				case R.id.txtmahale_eghamat:
 					if(text != null && text.length()>1){
-						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#00cc00"));
+						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#aaaaaa"));
 						//flagMosafer=flagMosafer+"T";
 					}else{
 						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
@@ -1476,7 +1514,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					break;
 				case R.id.txtmeliyatm:
 					if(text != null && text.length()>1){
-						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#00cc00"));
+						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#aaaaaa"));
 						//flagMosafer=flagMosafer+"T";
 					}else{
 						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
@@ -1485,7 +1523,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					break;
 				case R.id.txttavalodm:
 					if(text != null && text.length()>4){
-						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#00cc00"));
+						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#aaaaaa"));
 						//flagMosafer=flagMosafer+"T";
 					}else{
 						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
@@ -1496,7 +1534,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				case R.id.txtnamem:
 					if(text != null)
 						if( text.length()>1 && text.toLowerCase().trim().matches("^[a-zA-Z]+$")){
-							((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#00cc00"));
+							((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#aaaaaa"));
 							//flagMosafer=flagMosafer+"T";
 						}else{
 							((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
@@ -1506,7 +1544,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				case R.id.txtfamilym:
 					if(text != null)
 						if( text.length()>1 && text.toLowerCase().trim().matches("^[a-zA-Z]+$") ){
-							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#00cc00"));
+							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#aaaaaa"));
 							//flagMosafer=flagMosafer+"T";
 						}else{
 							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
@@ -1515,7 +1553,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					break;
 				case R.id.txtexp_passport:
 					if(text != null && text.length()>4){
-						((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#00cc00"));
+						((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#aaaaaa"));
 
 					}else{
 						((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
@@ -1525,7 +1563,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				case R.id.txtnumber_passport:
 
 					if( text.trim().length()>6 && text.trim().length()<10 && (text.trim().substring(0,1).matches("^[a-zA-Z]+$")) && text.trim().substring(1, text.length()-1).matches("[0-9]+")){
-						((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#aaaaaa"));
 
 					}else{
 						((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
@@ -1544,7 +1582,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 					if (text.matches(emailPattern) && text.length() > 0){
 						//if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
-						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#aaaaaa"));
 
 					}else{
 						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
@@ -1555,7 +1593,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				case R.id.txtnameP:
 
 					if(text != null && text.length()>1){
-						((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#aaaaaa"));
 
 					}else{
 						((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
@@ -1565,7 +1603,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				case R.id.txtfamilyP:
 
 					if(text != null && text.length()>1){
-						((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#aaaaaa"));
 
 					}else{
 						((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
@@ -1576,7 +1614,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				case R.id.txtmobileP:
 
 					if(text != null && text.length()>9 && text.trim().matches("[0-9]+")){
-						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#00cc00"));
+						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#aaaaaa"));
 
 					}else{
 						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
@@ -1586,7 +1624,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				case R.id.txtkodemeliP:
 					if(text != null)
 						if( text.length()>9 &&  text.length()<12 && text.trim().matches("[0-9]+")){
-							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#00cc00"));
+							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#aaaaaa"));
 
 						}else{
 							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));

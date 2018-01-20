@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="صفحه اصلی"
+            android:text="مشخصات خریدار "
             android:textColor="@android:color/white"
             android:textSize="15dp" />
 
@@ -56,9 +56,10 @@
         android:layout_width="match_parent"
         android:layout_height="28dp"
         android:layout_marginTop="5dp"
-        android:background="#fff"
+
         android:orientation="horizontal"
         android:weightSum="4"
+        android:background="#ffffff"
         android:layout_below="@+id/toolbar_container">
 
         <Button
@@ -94,7 +95,7 @@
 
         <Button
             android:id="@+id/btn_saler"
-            android:layout_width="28dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:background="@drawable/saler_passenger"
@@ -103,9 +104,60 @@
             android:textColor="#33ccff"
             android:textSize="10dp" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/textLayout"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_marginTop="5dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_below="@+id/llLayout">
 
+        <Button
+            android:id="@+id/txtPishfactor"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/transparentt"
+            android:gravity="left|center_vertical"
+            android:text="پرداخت"
+            android:textColor="#aaaaaa"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/txtKhadamat"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparentt"
+            android:gravity="left|center_vertical"
+            android:text=" خدمات "
+            android:textColor="#aaaaaa"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/txtMasaferan"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparentt"
+            android:gravity="left|center_vertical"
+            android:text="مسافران"
+            android:textColor="#aaaaaa"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/txtSaler"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/transparentt"
+            android:gravity="right|center_vertical"
+            android:text="خریدار"
+            android:textColor="#000000"
+            android:textSize="10dp" />
+    </LinearLayout>
     <ScrollView
-        android:layout_below="@+id/llLayout"
+        android:layout_below="@+id/textLayout"
         android:id="@+id/layout_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -121,16 +173,16 @@
             android:orientation="vertical" >
 
 
-            <LinearLayout
+           <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="1dp"
                 android:layout_weight="1.57"
                 android:background="@drawable/top_box_passenger"
                 android:orientation="vertical" >
-                <!-- android:background="@drawable/top_box_passenger"-->
+                &lt;!&ndash; android:background="@drawable/top_box_passenger"&ndash;&gt;
 
-            </LinearLayout>
+            </LinearLayout>-->
             <!-- /////////////linear kharidar//////////// -->
 
             <LinearLayout
@@ -176,7 +228,8 @@
                     <Spinner
                         android:id="@+id/spinner1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -223,10 +276,14 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dp"
+                        android:hint="لطفا فارسی وارد کنید  "
+                        android:textColorHint="#aaaaaa"
                         android:paddingTop="5dp"
                         android:text=""
+                        android:maxLength="20"
+                        android:textSize="@dimen/_14dp"
                         android:singleLine="true"
-                        android:textColorHint="#ff0000" />
+                         />
                 </LinearLayout>
 
                 <!-- family name -->
@@ -276,8 +333,11 @@
                         android:paddingTop="5dp"
                         android:paddingRight="10dp"
                         android:text=""
+                        android:textSize="@dimen/_14dp"
+                        android:maxLength="20"
                         android:singleLine="true"
-                        android:textColorHint="#ff0000" />
+                        android:hint="لطفا فارسی وارد کنید  "
+                        android:textColorHint="#aaaaaa" />
                 </LinearLayout>
                 <!-- mobile -->
 
@@ -327,6 +387,7 @@
                         android:paddingRight="10dp"
                         android:paddingTop="5dp"
                         android:singleLine="true"
+                        android:textSize="@dimen/_14dp"
                         android:text="" />
                 </LinearLayout>
                 <!-- code meli -->
@@ -377,6 +438,7 @@
                         android:paddingRight="10dp"
                         android:singleLine="true"
                         android:paddingTop="5dp"
+                        android:textSize="@dimen/_14dp"
                         android:text="" />
                 </LinearLayout>
                 <!-- emeli -->
@@ -427,23 +489,64 @@
                         android:paddingRight="10dp"
                         android:paddingTop="5dp"
                         android:singleLine="true"
+                        android:textSize="@dimen/_14dp"
                         android:text="" />
                 </LinearLayout>
 
-                <Button
+                <!--<Button
                     android:id="@+id/btn_next_partnerInfo"
-                    android:layout_width="110dp"
+                    android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="21dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/btngravity_big"
-                    android:text="تایید و گام بعدی->"
+                    android:text="تایید و گام بعدی"
                     android:textColor="#FFFFFF"
+                    android:drawableLeft="@string/icon_arrow_left"
+                    android:paddingLeft="@dimen/_12dp"
+                    android:textAppearance="@style/IrsansBold"
                     android:onClick="goButtonClicked"
-                    android:textSize="11dp" />
+                    android:textSize="11dp" />-->
+                <LinearLayout
+                    android:id="@+id/btn_next_partnerInfo"
+                    android:background="@drawable/btngravity_big"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:gravity="center|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp">
+
+
+                    <TextView
+                        android:id="@+id/tvSortIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/arrow_left"
+                        android:textAppearance="@style/IconFonts"
+                        android:gravity="left|center_vertical"
+                        android:layout_gravity="left"
+                        android:textSize="26dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textColor="#ffffff" />
+                    <TextView
+                        android:id="@+id/lblMoratabSazi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        android:text="تایید و گام بعدی"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="14dp"
+                        android:textAppearance="@style/IrsansBold"
+                        />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- linear layout mosferan -->
@@ -470,7 +573,7 @@
                         android:layout_marginRight="2dp"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1.03"
-                        android:text="اطلاعات مسافر1" />
+                        android:text=" اطلاعات مسافربزرگسال 1" />
 
                     <TextView
                         android:id="@+id/textView2"
@@ -488,13 +591,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="1dp"
                     android:orientation="vertical" >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="1dp"
                         android:orientation="horizontal" >
 
                         <TextView
@@ -510,7 +613,7 @@
                             android:id="@+id/txtjensiatm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="2dp"
+                            android:layout_marginRight="5dp"
                             android:text="جنسیت"
                             android:textColor="#808080" />
                     </LinearLayout>
@@ -568,8 +671,12 @@
                         android:singleLine="true"
                         android:inputType="text"
                         android:imeOptions="actionNext"
+                        android:hint="لطفا انگلیسی وارد کنید  "
+                        android:textColorHint="#aaaaaa"
                         android:nextFocusDown="@+id/txtfamilym"
-                        android:text="" />
+                        android:text=""
+                        android:textSize="@dimen/_14dp"
+                        android:maxLength="20"/>
                 </LinearLayout>
 
                 <!-- family name -->
@@ -622,7 +729,11 @@
                         android:inputType="text"
                         android:nextFocusDown="@+id/txtnumber_passport"
                         android:imeOptions="actionNext"
-                        android:text="" />
+                        android:text=""
+                        android:hint="لطفا انگلیسی وارد کنید  "
+                        android:textSize="@dimen/_14dp"
+                        android:textColorHint="#aaaaaa"
+                        android:maxLength="20"/>
                 </LinearLayout>
 
 
@@ -674,6 +785,7 @@
                         android:paddingTop="5dp"
                         android:singleLine="true"
                         android:inputType="text"
+                        android:textSize="@dimen/_14dp"
                         android:text="" />
                 </LinearLayout>
                 <!-- mobile -->
@@ -778,7 +890,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="10dp"
                     android:text="اطلاعات بیشتر"
                     android:textColor="#000099"
                     android:textSize="14dp"
@@ -883,32 +995,72 @@
                         android:text="IR" />
                 </LinearLayout>
 
-                <Button
+                <!--<Button
                     android:id="@+id/btn_nextm"
-                    android:layout_width="110dp"
+                    android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:layout_gravity="left"
-                    android:layout_marginLeft="21dp"
-                    android:layout_marginRight="21dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/btngravity_big"
-                    android:text="تایید و گام بعدی->"
+                    android:text="تایید و گام بعدی"
+                    android:drawableLeft="@drawable/left_arrow_khadamat"
+                    android:paddingLeft="@dimen/_12dp"
+                    android:textAppearance="@style/IrsansBold"
                     android:textColor="#FFFFFF"
-                    android:textSize="11dp" />
+                    android:textSize="11dp" />-->
+                <LinearLayout
+                    android:id="@+id/btn_nextm"
+                    android:background="@drawable/btngravity_big"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:gravity="center|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp">
+
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/arrow_left"
+                        android:textAppearance="@style/IconFonts"
+                        android:gravity="left|center_vertical"
+                        android:layout_gravity="left"
+                        android:textSize="26dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textColor="#ffffff" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        android:text="تایید و گام بعدی"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="14dp"
+                        android:textAppearance="@style/IrsansBold"
+                        />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linear_list_khadamat"
                 android:layout_width="match_parent"
-                android:layout_height="535dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="#ffffff"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:visibility="gone" >
 
-                <ListView
+                <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/listKhadamat"
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
@@ -920,23 +1072,33 @@
                 <LinearLayout
                     android:layout_marginTop="@dimen/_12dp"
                     android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_height="wrap_content" >
-
                     <TextView
-                        android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text=" ریال "
-                        android:textColor="#46b15f" />
+                        android:background="#fff"
+                        android:gravity="right"
+                        android:text="ریال"
+                        android:textColor="#23b574"
+                        android:id="@+id/textView1"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textSize="@dimen/_17dp_textsize" />
 
                     <TextView
                         android:id="@+id/txtSumKhadamat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+
+                        android:gravity="left"
+                        android:text="10,000,000"
+                        android:textColor="#000000"
                         android:layout_weight="9.60"
-                        android:text="100,000,000"
-                        android:textStyle="bold"/>
+                        android:textSize="@dimen/_17dp_textsize"
+                      android:textAppearance="@style/IrsansBold"/>
+
 
                     <TextView
                         android:id="@+id/textView3"
@@ -944,20 +1106,62 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:gravity="right"
-                        android:textStyle="bold"
+                        android:textAppearance="@style/IrsansBold"
                         android:text="جمع کل خدمات: " />
                 </LinearLayout>
 
-                <Button
+               <!-- <Button
                     android:id="@+id/btn_taeed_khadamat"
-                    android:layout_width="110dp"
+                    android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:background="@drawable/btngravity_big"
                     android:drawableLeft="@drawable/left_arrow_khadamat"
+                    android:paddingLeft="@dimen/_12dp"
+                    android:textAppearance="@style/IrsansBold"
                     android:layout_marginTop="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:text="تایید و گام بعدی"
                     android:textColor="#ffff"
-                    android:textSize="11dp" />
+                    android:textSize="11dp" />-->
+                <LinearLayout
+                    android:id="@+id/btn_taeed_khadamat"
+
+                    android:background="@drawable/btngravity_big"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:gravity="center|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp">
+
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/arrow_left"
+                        android:textAppearance="@style/IconFonts"
+                        android:gravity="left|center_vertical"
+                        android:layout_gravity="left"
+                        android:textSize="26dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textColor="#ffffff" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        android:text="تایید و گام بعدی"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="14dp"
+                        android:textAppearance="@style/IrsansBold"
+                        />
+                </LinearLayout>
             </LinearLayout>
             <!-- pish factor -->
 
