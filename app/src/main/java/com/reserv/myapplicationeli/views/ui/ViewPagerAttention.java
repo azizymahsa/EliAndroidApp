@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
@@ -29,6 +30,8 @@ import com.reserv.myapplicationeli.views.activities.hotel.activity.ImageViewActi
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.ImageModel;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -44,11 +47,11 @@ public class ViewPagerAttention {
     ImageLoader imageLoader;
     String brandId;
     int like;
+    int currentPage = 0;
 
 
 
-
-    public ViewPagerAttention(final Activity activity,ArrayList<ImageModel> imageModels,int layout ) {
+    public ViewPagerAttention(final Activity activity, final ArrayList<ImageModel> imageModels, int layout ) {
         this.activity = activity;
         this.layout = layout;
 
@@ -63,6 +66,27 @@ public class ViewPagerAttention {
        // indicator.setViewPager(viewPager);
 
 
+
+
+
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == imageModels.size()-1) {
+                    currentPage = 0;
+                }
+                viewPager.setCurrentItem(currentPage++, true);
+            }
+        };
+
+       Timer timer = new Timer(); // This will create a new Thread
+        timer .schedule(new TimerTask() { // task to be scheduled
+
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 500, 3000);
 
 
        /* indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

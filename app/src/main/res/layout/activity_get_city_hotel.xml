@@ -3,6 +3,7 @@
     xmlns:swipe="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
     android:background="#ffffff"
     android:orientation="vertical">
 
@@ -13,7 +14,20 @@
             android:layout_weight="15"
             android:orientation="horizontal"
             android:background="@color/toolbar_color">
+            <com.wang.avi.AVLoadingIndicatorView
 
+                android:id="@+id/avi"
+                style="@style/AVLoadingIndicatorView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:indicatorColor="#ffffff"
+                app:indicatorName="BallSpinFadeLoaderIndicator"
+                android:layout_below="@+id/ivSplash"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                />
 
 
                 <EditText

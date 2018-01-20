@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.ImageView;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
+import com.wang.avi.AVLoadingIndicatorView;
 
 
 public class SplashFragment extends BaseActivity {
@@ -17,6 +19,7 @@ public class SplashFragment extends BaseActivity {
     private Runnable runnable,runnable2;
     private Handler handler,handler2;
     private ImageView ivSplash,ivLoading;
+    AVLoadingIndicatorView avi;
 
 
     private enum DOWNLOAD_TYPE {
@@ -30,6 +33,7 @@ public class SplashFragment extends BaseActivity {
         super.onCreate(savedInstanceState);
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
+        avi = findViewById(R.id.avi);
         final int[] imageArray = new int[]{R.drawable.comp1_00000,
                 R.drawable.comp1_00001,
                 R.drawable.comp1_00002,
@@ -66,6 +70,19 @@ public class SplashFragment extends BaseActivity {
                 R.drawable.comp1_00031,
                 R.drawable.comp1_00031,
                 R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
                 R.drawable.comp1_00031,};
 
 
@@ -81,7 +98,10 @@ public class SplashFragment extends BaseActivity {
                     i[0] = 0;
 
                 }
-                if (i[0] == 36) {
+                if (i[0] == 31) {
+                    avi.setVisibility(View.VISIBLE);
+                }
+                if (i[0] == 49) {
                    // handler.removeCallbacksAndMessages(null);
                    if(Utility.isNetworkAvailable(SplashFragment.this)){
 
@@ -100,7 +120,7 @@ public class SplashFragment extends BaseActivity {
             handler.postDelayed(this, 30); } //for interval...
             }
         };
-        if (i[0] < 36) {
+        if (i[0] < 49) {
             handler.postDelayed(runnable, 30); //for initial delay..
 
         }

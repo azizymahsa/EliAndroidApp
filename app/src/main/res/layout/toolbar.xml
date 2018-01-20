@@ -19,10 +19,10 @@
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
             android:layout_width="60dp"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
-            fancy:fb_radius="6dp"
+            fancy:fb_radius="100dp"
             fancy:fb_textColor="#FFFFFF"
 
             android:layout_gravity="right"

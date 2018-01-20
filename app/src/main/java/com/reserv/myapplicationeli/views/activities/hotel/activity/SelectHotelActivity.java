@@ -1,9 +1,13 @@
 package com.reserv.myapplicationeli.views.activities.hotel.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -72,6 +76,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     Window window;
     RelativeLayout elNotFound;
 
+
     int maxPrice, minPrice;
 
     LinearLayout llBottom, llSort;
@@ -113,7 +118,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
         btnHome.setOnClickListener(this);
-
+        notiRecive();
 
 
         llBottom.setOnClickListener(this);

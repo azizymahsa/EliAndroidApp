@@ -42,6 +42,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
@@ -88,7 +89,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
 	public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor,btn_next_partnerInfo;
-	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
+	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore,tvfactorNumber;
 	public Button btn_nextm,btn_taeed_khadamat,btnAddsabad,btn_pardakht_factor;
 	public EditText txtnamem,txtfamilym;
 	public static TextView txttavalodm;
@@ -107,7 +108,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 	GetKhadmatAdapter mAdapter;
 	ScrollView myScrollView;
 	private EditText searchtxt;
-	public TextView txt_shomare_factor;
+	public TextView txt_shomare_factor,tvPrice;
 	public ImageView txt_hom,textView4;
 
 	private String Gensiyat;
@@ -124,11 +125,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_passenger);
-		Log.e("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
-		Log.e("FlightGuID", getIntent().getExtras().getString("FlightGuID"));
-		Log.e("CheckOut",  getIntent().getExtras().getString("CheckOut"));
-		Log.e("CheckIn",  getIntent().getExtras().getString("CheckIn"));
-		Log.e("sumtest",Prefs.getInt("SumPass",0)+"");
 
 
 
@@ -140,12 +136,14 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 		txt_hom = (ImageView) findViewById(R.id.txt_hom);
 		textView4 = (ImageView) findViewById(R.id.textView4);
+		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
 		txt_hom.setOnClickListener(this);
 
 		txtMore = (TextView) findViewById(R.id.txtMore);
 		txtMore.setOnClickListener(this);
 
 		txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
+		tvPrice = (TextView) findViewById(R.id.tvPrice);
 		txtSumKhadamat.setOnClickListener(this);
 		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
 
@@ -378,6 +376,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(resultPishfactor);
+				Log.e("jsonObj", jsonObj.toString());
 
 				// Getting JSON Array node
 				JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
@@ -387,7 +386,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 				int RqBase_ID=jFact.getInt("RqBase_ID");
 				//////////////////////////////
 				long totalprice=jFact.getLong("TotalPrice");
-				btn_pardakht_factor.setText(" پرداخت "+String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
+				//btn_pardakht_factor.setText(" پرداخت "+String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
+				tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
 
 
 
@@ -515,6 +515,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(resultPishfactor);
+				Log.e("testiObject", jsonObj.toString());
 
 				// JSONObject jsonObj = new JSONObject(retSrc);
 
@@ -530,8 +531,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 				if(successResult >1){
 					txt_shomare_factor.setText(GetAirportsResult.getString("SuccessResult"));
+					tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
 
-					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 400, 100));
+					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 500, 200));
 
 				}else{
 					txt_shomare_factor.setText("خطایی رخ داده است !");
@@ -1453,7 +1455,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 		else
 			Gensiyat="Man";
 		// Showing selected spinner item
-		Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+	//	Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 
 	}
 	@Override

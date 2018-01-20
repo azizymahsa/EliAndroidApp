@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="2dp"
                     android:gravity="right"
-                    android:text="سفر به : "
+                    android:text="پرواز از :"
                     android:textColor="#ffffff"
                     android:textSize="15dip" />
 
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="2dp"
                     android:gravity="right"
-                    android:text="شهر مبدا : "
+                    android:text="پرواز به :"
                     android:textColor="#ffffff"
                     android:textSize="15dip" />
 
@@ -415,9 +415,9 @@
             android:shadowDx="2"
             android:shadowDy="2"
             android:shadowRadius="2"
-            android:text="جستجو هتل"
+            android:text="جستجو هتل و پرواز"
             android:textColor="#FFFFFF"
-            android:textSize="16dp"
+            android:textSize="@dimen/_16dp_txtSize"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

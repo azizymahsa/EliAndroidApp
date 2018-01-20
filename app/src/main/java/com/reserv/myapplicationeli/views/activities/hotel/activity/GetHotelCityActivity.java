@@ -17,6 +17,7 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.HotelCity;
 import com.reserv.myapplicationeli.views.adapters.GetHotelCityAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -55,10 +56,12 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 		
 		 GetHotelCityAdapter mAdapter;
 		private EditText searchtxt;
+		AVLoadingIndicatorView avLoadingIndicatorView;
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_get_city_hotel);
+			avLoadingIndicatorView=findViewById(R.id.avi);
 			
 			//searchtxt = (EditText) findViewById(R.id.searchtxt);
 		    //Make call to AsyncTask
@@ -71,7 +74,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 	                    @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
 	                    private Timer timer=new Timer();
-	                    private final long DELAY = 10; // milliseconds
+	                    private final long DELAY = 5; // milliseconds
 
 	                    @Override
 	                    public void afterTextChanged(final Editable s) {
@@ -104,7 +107,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 	    }//end oncreate
 
 	    private class AsyncFetch extends AsyncTask<String, String, String> {
-	        ProgressDialog pdLoading = new ProgressDialog(GetHotelCityActivity.this);
+
 	        HttpURLConnection conn;
 	        URL url = null;
 			private ListView listAirPort;
@@ -112,11 +115,8 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 	        @Override
 	        protected void onPreExecute() {
 	            super.onPreExecute();
-
+				avLoadingIndicatorView.setVisibility(View.VISIBLE);
 	            //this method will be running on UI thread
-	            pdLoading.setMessage("\tLoading...");
-	            pdLoading.setCancelable(false);
-	            pdLoading.show();
 
 	        }
 
@@ -215,10 +215,12 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 
 	            //this method will be running on UI thread
 
-	            pdLoading.dismiss();
-	            List<HotelCity> data=new ArrayList<HotelCity>();
+	       //     pdLoading.dismiss();
+				avLoadingIndicatorView.setVisibility(View.INVISIBLE);
 
-	            pdLoading.dismiss();
+				List<HotelCity> data=new ArrayList<HotelCity>();
+
+	         //   pdLoading.dismiss();
 	            try {
 ////////////////////////////
 	            	JSONObject jsonObj = new JSONObject(result);

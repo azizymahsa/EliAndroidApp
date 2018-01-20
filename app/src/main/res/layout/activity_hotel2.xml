@@ -25,7 +25,7 @@
             android:layout_marginBottom="30dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:scaleType="fitCenter"
+            android:scaleType="centerInside"
             android:src="@drawable/hotel_circle_icon" />
 
 
@@ -37,7 +37,8 @@
             android:layout_gravity="right"
             android:layout_toLeftOf="@+id/txtOption"
             android:gravity="right"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginRight="25dp">
 
             <TextView
                 android:id="@+id/lblProductID"
@@ -111,10 +112,11 @@
                         android:layout_weight="100"
                         android:background="#fff"
                         android:gravity="right"
-                        android:text="تاریخ برگشت "
+                        android:text="تاریخ خروج از هتل"
                         android:textSize="@dimen/text_size_12dp"
-                        android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2"
+                        android:textAppearance="@style/IrsansBold"
+
                         />
 
                     <TextView
@@ -125,7 +127,7 @@
                         android:layout_weight="100"
                         android:background="#fff"
                         android:gravity="right"
-                        android:text="تاریخ رفت"
+                        android:text="تاریخ ورود به هتل"
                         android:textColor="@color/text_color_2"
                         android:textSize="@dimen/text_size_12dp"
                         android:textAppearance="@style/IrsansBold"
@@ -219,6 +221,7 @@
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
+            android:id="@+id/cvRoom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="60"
@@ -230,7 +233,7 @@
             card_view:cardElevation="3dp">
 
             <LinearLayout
-                android:id="@+id/llRoom"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -242,7 +245,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="100"
@@ -276,7 +278,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.80"
@@ -312,7 +313,6 @@
                     android:id="@+id/btn_add_room">
 
                     <TextView
-                        android:id="@+id/lblRoomCount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
@@ -350,7 +350,7 @@
             android:shadowRadius="2"
             android:text="جستجو هتل"
             android:textColor="#FFFFFF"
-            android:textSize="16dp"
+            android:textSize="@dimen/_16dp_txtSize"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

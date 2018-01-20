@@ -5,11 +5,15 @@ package com.reserv.myapplicationeli.views.activities.hotel.activity;
  */
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -35,6 +39,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.GetHotelDetail;
 import com.reserv.myapplicationeli.api.hotel.getHotelRoom.GetHoldRoom;
@@ -51,6 +56,7 @@ import com.reserv.myapplicationeli.models.hotel.api.rooms.call.GetRoomsHotelRequ
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.IdentityRooms;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.RoomRequest;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.response.RoomList;
+import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesModels;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.ImageModel;
@@ -354,40 +360,43 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
             new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
-            try {
-                int i = 0;
-                // Toast.makeText(DetailHotelActivity.this, getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId, Toast.LENGTH_SHORT).show();
+           try {
 
-//flighthotel
-                if (getIntent().getExtras().getInt("type") == 1) {
-                    flightId = getIntent().getExtras().getString("FlightID");
-                    Log.e("test", flightId);
 
-                    Intent intent = new Intent(DetailHotelActivity.this, PassengerHotelFlightActivity.class);
-                    intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
-                    intent.putExtra("FlightGuID", flightId);
-                    intent.putExtra("CheckIn", getIntent().getExtras().getString("CheckInHF"));
-                    intent.putExtra("CheckOut", getIntent().getExtras().getString("CheckOutHF"));
-                    intent.putExtra("flightId", getIntent().getExtras().getString("ResultUniqID"));
+                if (Prefs.getLong("time",0)>=50000){
+                    if (getIntent().getExtras().getInt("type") == 1) {
+                        flightId = getIntent().getExtras().getString("FlightID");
+                        Log.e("test", flightId);
 
-                    startActivity(intent);
-                    finish();
+                        Intent intent = new Intent(DetailHotelActivity.this, PassengerHotelFlightActivity.class);
+                        intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
+                        intent.putExtra("FlightGuID", flightId);
+                        intent.putExtra("CheckIn", getIntent().getExtras().getString("CheckInHF"));
+                        intent.putExtra("CheckOut", getIntent().getExtras().getString("CheckOutHF"));
+                        intent.putExtra("flightId", getIntent().getExtras().getString("ResultUniqID"));
+
+                        startActivity(intent);
+                        finish();
+                    }
+                    //hotel
+                    if (getIntent().getExtras().getInt("type") == 2) {
+                        flightId = "";
+
+                        Intent intent = new Intent(DetailHotelActivity.this, PassengerHotelActivity.class);
+                        intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
+                        intent.putExtra("FlightGuID", getIntent().getExtras().getString("ResultUniqID"));
+                        intent.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
+                        intent.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
+
+                        startActivity(intent);
+                        finish();
+
+
+                    }
+                }else{
+                    sendDetailFinish();
                 }
-                //hotel
-                if (getIntent().getExtras().getInt("type") == 2) {
-                    flightId = "";
 
-                    Intent intent = new Intent(DetailHotelActivity.this, PassengerHotelActivity.class);
-                    intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
-                    intent.putExtra("FlightGuID", getIntent().getExtras().getString("ResultUniqID"));
-                    intent.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
-                    intent.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
-
-                    startActivity(intent);
-                    finish();
-
-
-                }
 
 
 
@@ -405,8 +414,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         protected void onPreExecute() {
 
-          /*  window.setStatusBarColor(getColor(R.color.blue2));
-            new InitUi().Loading(rlLoading, rlRoot, true);*/
 
 
         }
@@ -564,29 +571,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
     }
 
+    public void sendDetailFinish() {
 
-    public void add_textView(String label) {
+        Intent intent = new Intent("sendDetailFinish");
 
-
-        LinearLayout linearLayout = new LinearLayout(this);
-
-        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-
-        llDynamic.addView(linearLayout);
-        TextView textView = new TextView(this);
-        textView.setText(label);
-
-          /*  Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "irsans.ttf");
-            textView.setTypeface(type);
-            textView.setTextColor(getResources().getColor(R.color.textColor));*/
-        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        textView.setTextSize(16);
-        textView.setGravity(Gravity.CENTER | Gravity.RIGHT | Gravity.BOTTOM);
-        linearLayout.addView(textView);
-
-
+        LocalBroadcastManager.getInstance(DetailHotelActivity.this).sendBroadcast(intent);
     }
 
 

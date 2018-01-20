@@ -1,11 +1,15 @@
 package com.reserv.myapplicationeli.views.activities.hotel.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -87,12 +91,14 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     String raftFa, bargashtFa;
     boolean isFilter = false;
     String flightId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_hotel_flight);
         //InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
+        notiRecive();
         list = findViewById(R.id.lvHoteResult);
         llBottom = findViewById(R.id.llBottom);
         llSort = findViewById(R.id.llSort);
@@ -1310,5 +1316,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         }
 
     }
+
 
 }

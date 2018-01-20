@@ -2,6 +2,7 @@ package com.reserv.myapplicationeli.views.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelFl
 import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity;
+import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
 import java.text.SimpleDateFormat;
@@ -42,7 +44,7 @@ import java.util.List;
  */
 
 public class HotelFlightFragment extends android.support.v4.app.Fragment implements View.OnClickListener,
-        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,CountTimeAlert.TimerDialogListener {
 
     public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public TextView txtCity, lbl_city_english, tvMabda, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult,tvMabdaEn;
@@ -94,14 +96,12 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         tvBargasht = (TextView) rootView.findViewById(R.id.tvBargasht);
         tvAdult = (TextView) rootView.findViewById(R.id.tvAdult);
         tvChild = (TextView) rootView.findViewById(R.id.tvChild);
-        txtRoomCount.setOnClickListener(this);
         tvRaft.setOnClickListener(this);
         tvBargasht.setOnClickListener(this);
         linearLayout_maghsad.setOnClickListener(this);
 
         btn_add_room = (LinearLayout) rootView.findViewById(R.id.btn_add_room);
         llRoom = (LinearLayout) rootView.findViewById(R.id.llRoom);
-        btn_add_room.setOnClickListener(this);
         llRoom.setOnClickListener(this);
         linearLayout_mabda.setOnClickListener(this);
 
@@ -229,27 +229,10 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 break;
 
             case R.id.searchHotel:
-                boolean ok = true;
-
-                try {
-                    Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);
-
-                    intent.putExtra("CheckInHF", raft);
-                    intent.putExtra("CheckOutHF",bargasht);
-                    intent.putExtra("CheckOutFaHF", tvBargasht.getText().toString());
-                    intent.putExtra("CheckInFaHF",tvRaft.getText().toString());
-                    intent.putExtra("Rooms", getRoomList(roomsSelected));
-                    intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
-                    intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
-                    Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-                    Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString())+1+"" );
+                new CountTimeAlert(getActivity(),this);
 
 
 
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
-                }
                 //   }
 
                 break;
@@ -415,5 +398,36 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
 
         return yearS+"/"+"0"+monthS+"/"+dayS;
+    }
+
+    private void sendStartTimer() {
+        Intent intent = new Intent("sendStartTimer");
+        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+    }
+
+    @Override
+    public void onReturnValue(int type) {
+        try {
+            sendStartTimer();
+
+            Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);
+
+            intent.putExtra("CheckInHF", raft);
+            intent.putExtra("CheckOutHF",bargasht);
+            intent.putExtra("CheckOutFaHF", tvBargasht.getText().toString());
+            intent.putExtra("CheckInFaHF",tvRaft.getText().toString());
+            intent.putExtra("Rooms", getRoomList(roomsSelected));
+            intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
+            intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
+            Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
+            Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString())+1+"" );
+
+
+
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

@@ -41,7 +41,12 @@
             style="@style/fancy_toolbar"
             android:layout_gravity="right"
             fancy:fb_textSize="20dp"
-            android:visibility="visible"/>
+            android:visibility="visible"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            fancy:fb_radius="200dp"
+
+            />
         <ImageView
             android:id="@+id/txt_hom"
             android:layout_width="30dp"

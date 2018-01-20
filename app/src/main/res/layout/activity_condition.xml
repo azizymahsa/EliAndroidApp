@@ -23,8 +23,11 @@
                 android:id="@+id/btnBack"
                 style="@style/fancy_toolbar"
                 android:layout_gravity="right"
+                fancy:fb_textSize="20dp"
                 android:visibility="visible"
-                fancy:fb_textSize="20dp" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                fancy:fb_radius="200dp" />
 
         </LinearLayout>
     </RelativeLayout>

@@ -32,6 +32,7 @@
                 android:layout_alignTop="@+id/llSelectHotel"
                 android:layout_centerHorizontal="true"
                 android:textSize="14dp"
+                android:textColor="#253e96"
                 />
 
             <LinearLayout

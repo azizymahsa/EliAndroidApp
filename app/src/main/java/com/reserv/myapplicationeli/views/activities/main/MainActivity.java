@@ -1,13 +1,20 @@
 package com.reserv.myapplicationeli.views.activities.main;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -19,6 +26,7 @@ import android.widget.Toast;
 
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 
 import com.reserv.myapplicationeli.base.BaseActivity;
@@ -34,32 +42,41 @@ import com.reserv.myapplicationeli.views.fragments.insurance.InsuranceFragment;
 import com.reserv.myapplicationeli.views.fragments.pack.PackageFragment;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
+import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
-    private TextView tvTitle,tvArrow;
-    private FancyButton btnFlight,btnHotel,btnPackage,btnTour,btnInsurance,btnHotelFlight,btnAbout,btnContactUs,btn_condition;
+    private TextView tvTitle, tvArrow;
+    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition;
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
     RelativeLayout rlUser;
     ExpandableWeightLayout expandableLayout;
     ImageView ivUser;
     RelativeLayout rlHedaer;
+    CountDownTimer countDownTimer;
+    private BroadcastReceiver sendFinish;
+    private BroadcastReceiver sendStartTimer,sendDetailFinish;
+    int TotalTime=2000000;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
         manager = getSupportFragmentManager();
         Window window = getWindow();
-
+        sendDetailFinish();
         window.setStatusBarColor(getColor(R.color.flight_status));
-        InitUi.Toolbar(this,true, R.color.TRANSPARENT,"صفحه اصلی");
+        InitUi.Toolbar(this, true, R.color.TRANSPARENT, "صفحه اصلی");
         initViews();
-
+        timer();
+        timerRecive();
         PlanFragment workerStateFragment = new PlanFragment();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -80,12 +97,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnInsurance = findViewById(R.id.btnInsurance);
         btnHotelFlight = findViewById(R.id.btnHotelFlight);
         btnAbout = findViewById(R.id.btnAbout);
-        btnContactUs= findViewById(R.id.btnContactUs);
-        btn_condition= findViewById(R.id.btn_condition);
-        rlUser= findViewById(R.id.rlUser);
-        tvArrow= findViewById(R.id.tvArrow);
-        ivUser= findViewById(R.id.ivUser);
-        rlHedaer= findViewById(R.id.rlHedaer);
+        btnContactUs = findViewById(R.id.btnContactUs);
+        btn_condition = findViewById(R.id.btn_condition);
+        rlUser = findViewById(R.id.rlUser);
+        tvArrow = findViewById(R.id.tvArrow);
+        ivUser = findViewById(R.id.ivUser);
+        rlHedaer = findViewById(R.id.rlHedaer);
 
         tvTitle.setText(getString(R.string.searchFlight));
 
@@ -103,24 +120,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         rlUser.setOnClickListener(this);
         ivUser.setOnClickListener(this);
         rlHedaer.setOnClickListener(this);
+        btnFlight.setOnClickListener(this);
+        expandableLayout = findViewById(R.id.expandableLayout);
 
-
-
-         expandableLayout = findViewById(R.id.expandableLayout);
-
-// toggle expand, collapse
- // expandableLayout.toggle();
-// expand
-      //  expandableLayout.expand();
-// collapse
-  //expandableLayout.collapse();
 
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (drawerLayout.isDrawerVisible(Gravity.RIGHT)){
+        if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
             drawerLayout.closeDrawer(Gravity.LEFT);
 
         }
@@ -134,33 +143,33 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.btnFlight:
-                addFragment(getString(R.string.searchFlight),new PlanFragment());
+                addFragment(getString(R.string.searchFlight), new PlanFragment());
 
                 break;
             case R.id.btnHotel:
-       addFragment(getString(R.string.search_hotel),new HotelFragment());
+                addFragment(getString(R.string.search_hotel), new HotelFragment());
 
                 break;
             case R.id.btnPackage:
-          addFragment(getString(R.string.search_package),new PackageFragment());
-           //expandableLayout.toggle();
+                addFragment(getString(R.string.search_package), new PackageFragment());
+                //expandableLayout.toggle();
 
                 break;
 
-                case R.id.btnInsurance:
-                    addFragment(getString(R.string.btn_insurance),new InsuranceFragment());
+            case R.id.btnInsurance:
+                addFragment(getString(R.string.btn_insurance), new InsuranceFragment());
 
-                    break;
-                case R.id.btnHotelFlight:
-                    addFragment("هتل و پرواز",new HotelFlightFragment());
+                break;
+            case R.id.btnHotelFlight:
+                addFragment("هتل و پرواز", new HotelFlightFragment());
 
-                    break;
+                break;
             case R.id.btnAbout:
-               //addFragment(" درباره ما ",new HotelFlightFragment());
-               // Intent myIntent = new Intent(MainActivity.this, AboutActivity.class);
-               // myIntent.putExtra("key", value); //Optional parameters
-               Intent intent1 = new Intent(this, AboutActivity.class);
-               startActivity(intent1);
+                //addFragment(" درباره ما ",new HotelFlightFragment());
+                // Intent myIntent = new Intent(MainActivity.this, AboutActivity.class);
+                // myIntent.putExtra("key", value); //Optional parameters
+                Intent intent1 = new Intent(this, AboutActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.btnContactUs:
                 Intent intent2 = new Intent(this, ContactUsActivity.class);
@@ -170,42 +179,122 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Intent intent3 = new Intent(this, ConditionActivity.class);
                 startActivity(intent3);
                 break;
-                case R.id.ivUser:
-                    startActivity(new Intent(this, LogInActivity.class));
+            case R.id.ivUser:
+                startActivity(new Intent(this, LogInActivity.class));
 
                 break;
-                case R.id.rlUser:
+            case R.id.rlUser:
 
-                    if (expandableLayout.isExpanded()){
+                if (expandableLayout.isExpanded()) {
 
-                        expandableLayout.collapse();
-                        tvArrow.setText(getString(R.string.icon_arrow_up));
+                    expandableLayout.collapse();
+                    tvArrow.setText(getString(R.string.icon_arrow_up));
 
-                    }else{
-                        expandableLayout.expand();
-                        tvArrow.setText(getString(R.string.icon_arrow_down));
+                } else {
+                    expandableLayout.expand();
+                    tvArrow.setText(getString(R.string.icon_arrow_down));
 
-                    }
+                }
 
-                    break;
+                break;
 
         }
 
     }
-    public void addFragment(String title, Fragment fragment){
+
+    public void addFragment(String title, Fragment fragment) {
         tvTitle.setText(title);
         manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,fragment )
+                .replace(R.id.fragment_container, fragment)
                 .commit();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-               drawerLayout.closeDrawer(Gravity.RIGHT);
+                drawerLayout.closeDrawer(Gravity.RIGHT);
 
             }
         }, 500);
 
     }
+
+    public void timer() {
+        countDownTimer = new CountDownTimer(2000000, 1000) { //40000 milli seconds is total time, 1000 milli seconds is time interval
+
+            public void onTick(long millisUntilFinished) {
+
+
+                Log.e("test", "seconds remaining: " + millisUntilFinished / 1000);
+                Prefs.putLong("time",millisUntilFinished);
+
+            }
+
+            public void onFinish() {
+                sendFinish(false,0);
+                Toast.makeText(MainActivity.this, "زمان شما به پایان رسید.", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+
+    }
+
+
+    public void sendFinish(boolean finish,int time) {
+        Intent intent = new Intent("sendFinish");
+        intent.putExtra("time",time);
+        intent.putExtra("finish",finish);
+        LocalBroadcastManager.getInstance(MainActivity.this).sendBroadcast(intent);
+    }
+
+
+    public void timerRecive() {
+        sendStartTimer = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+
+
+
+                countDownTimer.cancel();
+                countDownTimer.start();
+
+
+
+
+
+
+            }
+        };
+        LocalBroadcastManager.getInstance(this).registerReceiver(sendStartTimer,
+                new IntentFilter("sendStartTimer"));
+
+    }
+
+    public void sendDetailFinish() {
+        sendDetailFinish = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+
+
+
+                countDownTimer.onFinish();
+
+
+
+
+
+
+            }
+        };
+        LocalBroadcastManager.getInstance(this).registerReceiver(sendDetailFinish,
+                new IntentFilter("sendDetailFinish"));
+
+    }
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(context));
+    }
+
 }

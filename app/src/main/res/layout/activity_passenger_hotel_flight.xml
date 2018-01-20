@@ -975,52 +975,52 @@
 
                 android:visibility="gone" >
 
-                        <RelativeLayout
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+                    <ImageView
+                        android:id="@+id/ivImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:src="@drawable/path2"
+
+                        android:scaleType="fitXY"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_centerInParent="true"
+                        android:padding="10dp">
+
+
+
+                        <TextView
+                            android:id="@+id/txt_shomare_factor"
+                            android:layout_width="124dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#098d4e"/>
+
+                        <TextView
+                            android:id="@+id/textView6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
-                            >
-                            <ImageView
-                                android:id="@+id/ivImage"
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:src="@drawable/path2"
-
-                                android:scaleType="fitXY"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="4dp"
-                                android:layout_centerInParent="true"
-                                android:padding="10dp">
+                            android:text="شماره فاکتور:"
+                            android:textSize="14dp"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#4d4d4d"
+                            />
+                    </LinearLayout>
 
 
 
-                                <TextView
-                                    android:id="@+id/txt_shomare_factor"
-                                    android:layout_width="124dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="0"
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="#098d4e"/>
-
-                                <TextView
-                                    android:id="@+id/textView6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="شماره فاکتور:"
-                                    android:textSize="14dp"
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="#4d4d4d"
-                                    />
-                            </LinearLayout>
-
-
-
-                        </RelativeLayout>
+                </RelativeLayout>
 
 
                 <android.support.v7.widget.CardView
@@ -1056,50 +1056,50 @@
                             android:visibility="visible"/>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
-                        <RelativeLayout
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:src="@drawable/path1"
+
+                        android:scaleType="fitXY"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_centerInParent="true"
+                        android:padding="10dp">
+
+
+
+                        <TextView
+                            android:id="@+id/tvPrice"
+                            android:layout_width="124dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#098d4e"/>
+
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
-                            >
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:src="@drawable/path1"
-
-                                android:scaleType="fitXY"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="4dp"
-                                android:layout_centerInParent="true"
-                                android:padding="10dp">
+                            android:text="مبلغ قابل پرداخت:"
+                            android:textSize="14dp"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#4d4d4d"
+                            />
+                    </LinearLayout>
 
 
 
-                                <TextView
-                                    android:id="@+id/tvPrice"
-                                    android:layout_width="124dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="0"
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="#098d4e"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="مبلغ قابل پرداخت:"
-                                    android:textSize="14dp"
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="#4d4d4d"
-                                    />
-                            </LinearLayout>
-
-
-
-                        </RelativeLayout>
+                </RelativeLayout>
 
 
 

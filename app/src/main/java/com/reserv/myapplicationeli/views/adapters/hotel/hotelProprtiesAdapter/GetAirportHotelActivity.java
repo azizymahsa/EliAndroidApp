@@ -17,6 +17,7 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.Country;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -55,10 +56,12 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 		
 		 GetAirPortHotelAdapter mAdapter;
 		private EditText searchtxt;
+		AVLoadingIndicatorView avi;
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_get_airport);
+			avi=findViewById(R.id.avi);
 			
 			//searchtxt = (EditText) findViewById(R.id.searchtxt);
 		    //Make call to AsyncTask
@@ -71,7 +74,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 	                    @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
 	                    private Timer timer=new Timer();
-	                    private final long DELAY = 10; // milliseconds
+	                    private final long DELAY = 5; // milliseconds
 
 	                    @Override
 	                    public void afterTextChanged(final Editable s) {
@@ -104,7 +107,6 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 	    }//end oncreate
 
 	    private class AsyncFetch extends AsyncTask<String, String, String> {
-	        ProgressDialog pdLoading = new ProgressDialog(GetAirportHotelActivity.this);
 	        HttpURLConnection conn;
 	        URL url = null;
 			private ListView listAirPort;
@@ -112,11 +114,10 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 	        @Override
 	        protected void onPreExecute() {
 	            super.onPreExecute();
+				avi.setVisibility(View.VISIBLE);
 
 	            //this method will be running on UI thread
-	            pdLoading.setMessage("\tLoading...");
-	            pdLoading.setCancelable(false);
-	            pdLoading.show();
+
 
 	        }
 
@@ -215,10 +216,12 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 
 	            //this method will be running on UI thread
 
-	            pdLoading.dismiss();
-	            List<Country> data=new ArrayList<Country>();
+	        //    pdLoading.dismiss();
+				avi.setVisibility(View.INVISIBLE);
 
-	            pdLoading.dismiss();
+				List<Country> data=new ArrayList<Country>();
+
+	           // pdLoading.dismiss();
 	            try {
 ////////////////////////////
 	            	JSONObject jsonObj = new JSONObject(result);

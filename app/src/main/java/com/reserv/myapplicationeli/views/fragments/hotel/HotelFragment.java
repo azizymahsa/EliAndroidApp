@@ -1,8 +1,14 @@
 package com.reserv.myapplicationeli.views.fragments.hotel;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +37,9 @@ import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCa
 import com.reserv.myapplicationeli.views.activities.AddRoomActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelCityActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
+import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
+import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
 import java.text.SimpleDateFormat;
@@ -41,12 +49,13 @@ import java.util.List;
 
 
 public class HotelFragment extends Fragment implements OnClickListener,
-        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener{
+        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,CountTimeAlert.TimerDialogListener{
 
     public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult;
     public static int countNafar = 1;
-    LinearLayout btn_add_room, llRoom;
+    LinearLayout btn_add_room;
+    CardView cvRoom;
     public ListView listRoomItem;
     HotelCountRoomAdapter mAdapter;
     public List<ModelRowCountRoom> data;
@@ -69,6 +78,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,7 +90,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
         //listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 
-
         lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
         tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
         //  lblRoomCount.setOnClickListener(this);
@@ -89,14 +99,12 @@ public class HotelFragment extends Fragment implements OnClickListener,
         tvBargasht = (TextView) rootView.findViewById(R.id.tvBargasht);
         tvAdult = (TextView) rootView.findViewById(R.id.tvAdult);
         tvChild = (TextView) rootView.findViewById(R.id.tvChild);
-        txtRoomCount.setOnClickListener(this);
         tvRaft.setOnClickListener(this);
         tvBargasht.setOnClickListener(this);
 
         btn_add_room = (LinearLayout) rootView.findViewById(R.id.btn_add_room);
-        llRoom = (LinearLayout) rootView.findViewById(R.id.llRoom);
-        btn_add_room.setOnClickListener(this);
-        llRoom.setOnClickListener(this);
+        cvRoom = (CardView) rootView.findViewById(R.id.cvRoom);
+        cvRoom.setOnClickListener(this);
 
         //txtTitle= (TextView) rootView.findViewById(R.id.txtTitle);
         citySearch = (RelativeLayout) rootView.findViewById(R.id.citySearch);
@@ -294,44 +302,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 break;
 
             case R.id.searchHotel:
-                boolean ok = true;
-
-         /*       if (tvRaft.getText().toString().equals("انتخاب کنید") && tvBargasht.getText().toString().equals("انتخاب کنید")) {
-                    ok = false;
-                    new AlertDialog(getActivity(), "تاریخ رفت و برگشت را انتخاب کنید");
-                } else {
-                    if (tvRaft.getText().toString().equals("انتخاب کنید")) {
-                        ok = false;
-                        new AlertDialog(getActivity(), "تاریخ رفت ");
-
-                    }
-                    if (tvBargasht.getText().toString().equals("انتخاب کنید")) {
-                        new AlertDialog(getActivity(), "تاریخ برگشت را انتخاب کنید");
-
-                        ok = false;
-                    }
-                }
-*/
-                // if (ok) {
-                try {
-                    Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
-
-                    intent.putExtra("CheckIn", raft);
-                    intent.putExtra("CheckOut", bargasht);
-                    intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
-                    intent.putExtra("CheckInFa", tvRaft.getText().toString());
-                    intent.putExtra("Rooms", getRoomList(roomsSelected));
-                    intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
-                    intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
-                    Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-                    Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
-
-
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
-                }
-                //   }
+                new CountTimeAlert(getActivity(),this);
 
                 break;
             case R.id.tvRaft:
@@ -347,7 +318,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
                 break;
-            case R.id.llRoom:
+            case R.id.cvRoom:
                 Intent room = new Intent(getActivity(), AddRoomActivity.class);
 
                 room.putExtra("roomList", Prefs.getString("Rooms", "dd"));
@@ -488,6 +459,48 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
         return yearS + "/" +"0"+ monthS + "/" + dayS;
+    }
+
+
+
+
+
+
+
+    @Override
+    public void onReturnValue(int type) {
+
+
+        try {
+
+            sendStartTimer();
+            Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
+
+            intent.putExtra("CheckIn", raft);
+            intent.putExtra("CheckOut", bargasht);
+            intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
+            intent.putExtra("CheckInFa", tvRaft.getText().toString());
+            intent.putExtra("Rooms", getRoomList(roomsSelected));
+            intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
+            intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
+            Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
+            Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
+
+
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
+            Prefs.putBoolean("onTimer",false);
+
+        }
+
+
+
+
+    }
+    private void sendStartTimer() {
+        Intent intent = new Intent("sendStartTimer");
+        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
     }
 
     //Gregorian==============================================Gregorian=============================Gregorian

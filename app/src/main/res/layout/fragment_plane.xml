@@ -52,7 +52,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="30dp"
                 android:layout_marginRight="1dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/icswitch_big" />
 
@@ -296,9 +296,8 @@
                                     android:id="@+id/tarikh_be_picker"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_marginLeft="5dp"
                                     android:layout_marginRight="10dp"
+
                                     android:gravity="center"
                                     android:text="انتخاب کنید"
                                     android:textSize="@dimen/text_size_12dp"
@@ -331,8 +330,6 @@
                                     android:id="@+id/tarikh_az_picker"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_marginLeft="5dp"
                                     android:layout_marginRight="10dp"
                                     android:gravity="center"
                                     android:text="انتخاب کنید"
@@ -564,7 +561,7 @@
                         android:background="@drawable/btngravity_big"
                         android:text="جستجو پرواز"
                         android:textColor="#FFFFFF"
-                        android:textSize="11dp" />
+                        android:textSize="@dimen/_16dp_txtSize" />
 
                 </LinearLayout>
 

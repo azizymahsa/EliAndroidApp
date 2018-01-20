@@ -99,7 +99,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     }
 
     private void showInsurance() {
-        InitUi.Toolbar(this, false, R.color.flight_status,  "بیمه مسافرتی برای سفر به کشور" + countryName);
+        InitUi.Toolbar(this, false, R.color.toolbar_color,  "بیمه مسافرتی برای سفر به کشور" + countryName);
 
         showLoading();
         InsuranceListReq insuranceListReq = new InsuranceListReq();

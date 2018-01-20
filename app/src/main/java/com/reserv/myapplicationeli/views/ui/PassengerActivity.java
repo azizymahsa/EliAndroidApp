@@ -80,7 +80,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
 	public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor,btn_next_partnerInfo;
-	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
+	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore,tvfactorNumber;
 	public Button btn_nextm,btn_taeed_khadamat,btnAddsabad,btn_pardakht_factor;
 	public EditText txtnamem,txtfamilym;
 	public static TextView txttavalodm;
@@ -126,6 +126,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txt_hom.setOnClickListener(this);
 
 		txtMore = (TextView) findViewById(R.id.txtMore);
+		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
 		txtMore.setOnClickListener(this);
 
 		txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);

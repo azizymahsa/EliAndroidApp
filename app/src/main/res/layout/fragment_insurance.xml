@@ -222,7 +222,7 @@
                     android:background="@drawable/btngravity_big"
                     android:text="جستجوی بیمه"
                     android:textColor="#FFFFFF"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/_16dp_txtSize"
                     android:textStyle="bold"
                     android:gravity="center"/>
 

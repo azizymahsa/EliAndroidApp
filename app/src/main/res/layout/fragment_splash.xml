@@ -29,7 +29,7 @@
         style="@style/AVLoadingIndicatorView"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:indicatorColor="@color/app_base_color"
         app:indicatorName="BallSpinFadeLoaderIndicator"
         android:layout_marginTop="10dp"
