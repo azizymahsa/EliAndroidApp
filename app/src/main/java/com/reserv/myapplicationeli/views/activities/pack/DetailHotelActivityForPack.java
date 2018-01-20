@@ -95,7 +95,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
-        InitUi.Toolbar(this, false, R.color.flight_status, "جزئیات هتل");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, "جزئیات هتل");
         window = getWindow();
 
         initView();

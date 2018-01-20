@@ -2,6 +2,10 @@ package com.reserv.myapplicationeli.api.retro;
 
 import com.reserv.myapplicationeli.models.model.insurance.call.InsuranceRequestModel;
 import com.reserv.myapplicationeli.models.model.insurance.response.InsuranceRes;
+import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
+import com.reserv.myapplicationeli.models.model.login.call.RegisterRequestModel;
+import com.reserv.myapplicationeli.models.model.login.call.ResetPassRequestModel;
+import com.reserv.myapplicationeli.models.model.login.response.TWebUserLogin;
 import com.reserv.myapplicationeli.models.model.pack.call.CityRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.call.CountryRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageRequestModel;
@@ -20,6 +24,17 @@ import retrofit2.http.POST;
  */
 
 public interface ClientService {
+
+
+    @POST("Common/StaticDataService.svc/Login")
+    Call<TWebUserLogin> Login(@Body LoginRequestModel loginRequestModel);
+
+
+    @POST("Common/StaticDataService.svc/WebUserRegister")
+    Call<TWebUserLogin> Register(@Body RegisterRequestModel registerRequestModel);
+
+    @POST("Common/StaticDataService.svc/WebUserRememberPassword")
+    Call<TWebUserLogin> ResetPassword(@Body ResetPassRequestModel registerRequestModel);
 
     @POST("Insurance/InsuranceService.svc/ShowInsurance")
     Call<InsuranceRes> showInsurance(@Body InsuranceRequestModel insuranceRequestModel);

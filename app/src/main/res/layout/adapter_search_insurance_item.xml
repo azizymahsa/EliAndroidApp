@@ -51,21 +51,24 @@
                             <TextView
 
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
+                                android:layout_weight="0.5"
                                 android:layout_height="wrap_content"
                                 android:text="ریال"
-                                android:gravity="right"
+                                android:gravity="right|center"
                                 android:textColor="@color/green"
-                                android:layout_marginTop="@dimen/_10dp_padding"
-                                android:paddingRight="@dimen/_10dp_padding"/>
+                                android:layout_marginTop="5dp"
+                                android:paddingRight="@dimen/_10dp_padding"
+                                android:textSize="17dp"/>
 
                             <TextView
                                 android:id="@+id/txt_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:layout_marginTop="@dimen/_10dp_padding"
-                                android:paddingRight="@dimen/_10dp_padding"/>
+                                android:gravity="left|center"
+                                android:layout_marginTop="5dp"
+                                android:paddingRight="@dimen/_25dp"
+                                android:textSize="17dp"
+                                android:textAppearance="@style/IrsansBold"/>
                         </LinearLayout>
 
 
@@ -82,12 +85,12 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/btn_buy"
-                        android:layout_width="85dp"
+                        android:layout_width="98dp"
                         android:layout_height="25dp"
                         android:text="خرید بیمه"
                         android:textSize="@dimen/_12dp"
@@ -98,7 +101,7 @@
                         android:layout_margin="@dimen/_12dp"/>
                     <Button
                         android:id="@+id/btn_details"
-                        android:layout_width="85dp"
+                        android:layout_width="98dp"
                         android:layout_height="25dp"
                         android:text="جزییات"
                         android:textSize="@dimen/_12dp"

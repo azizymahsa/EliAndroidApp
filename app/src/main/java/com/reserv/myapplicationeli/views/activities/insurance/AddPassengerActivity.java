@@ -62,7 +62,7 @@ public class AddPassengerActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_passenger);
-        InitUi.Toolbar(this, false, R.color.app_base_color, "اطلاعات مسافر");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, "اطلاعات مسافر");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(getColor(R.color.colorPrimary));

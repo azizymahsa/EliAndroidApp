@@ -21,14 +21,22 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
    public ViewPager intro_view_pager;
    public SimpleRecycleView rcl_price;
    public SimpleRecycleView rcl_hotels;
-    public TextView txt_return_air;
-    public TextView txt_return_time;
-    public TextView txt_depart_air;
-    public TextView txt_depart_time;
+
+    public TextView country_arive_go;
+    public TextView country_depart_go;
+    public TextView country_arive_back;
+    public TextView country_depart_back;
+
+    public TextView time_depart_go;
+    public TextView time_arive_go;
+
+    public TextView time_depart_back;
+    public TextView time_arive_back;
+
     public TextView txt_count;
-    public TextView txt_economi;
-    public TextView txt_airline;
-    public ImageView img_airLine;
+    public TextView txt_airline_go;
+    public TextView txt_airline_back;
+
     public Button btn_package_booking;
    // public TextView date_depart;
    // public TextView date_arrive;
@@ -40,14 +48,18 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
         this.intro_view_pager = itemView.findViewById(R.id.intro_view_pager);
         this.rcl_price = itemView.findViewById(R.id.rcl_price);
         this.rcl_hotels = itemView.findViewById(R.id.rcl_hotels);
-        this.txt_return_air = itemView.findViewById(R.id.txt_return_air);
-        this.txt_return_time = itemView.findViewById(R.id.txt_return_time);
-        this.txt_depart_air = itemView.findViewById(R.id.txt_depart_air);
-        this.txt_depart_time = itemView.findViewById(R.id.txt_depart_time);
-        this.txt_economi = itemView.findViewById(R.id.txt_economi);
-        this.txt_airline = itemView.findViewById(R.id.txt_airline);
-        this.img_airLine = itemView.findViewById(R.id.img_airLine);
+        this.country_arive_go = itemView.findViewById(R.id.country_ariv_go);
+        this.time_depart_go = itemView.findViewById(R.id.time_deprt_go);
+        this.country_depart_go = itemView.findViewById(R.id.country_deprt_go);
+        this.time_depart_back = itemView.findViewById(R.id.time_drt_back);
+        this.txt_airline_go = itemView.findViewById(R.id.txt_airline_go);
+        this.txt_airline_back = itemView.findViewById(R.id.txt_airline_back);
         this.btn_package_booking = itemView.findViewById(R.id.packageBooking);
+        this.country_arive_back = itemView.findViewById(R.id.country_arive_back);
+        this.country_depart_back = itemView.findViewById(R.id.country_depart_back);
+        this.time_arive_go = itemView.findViewById(R.id.time_ariv_go);
+        this.time_arive_back = itemView.findViewById(R.id.time_arrive_back);
+
         //this.date_depart = itemView.findViewById(R.id.date_go);
         //this.date_arrive = itemView.findViewById(R.id.date_back);
 
