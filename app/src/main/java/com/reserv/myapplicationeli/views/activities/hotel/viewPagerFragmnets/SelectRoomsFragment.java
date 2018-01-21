@@ -68,7 +68,7 @@ public class SelectRoomsFragment extends Fragment{
         lvRooms = view.findViewById(R.id.lvRooms);
         rlLoading=getActivity().findViewById(R.id.rlLoading);
         rlRoot=getActivity().findViewById(R.id.rlRoot);
-        roomsAdapter=new RoomsAdapter(roomsModels,getActivity());
+        roomsAdapter=new RoomsAdapter(roomsModels,getActivity(),rlRoot,rlLoading,window);
         lvRooms.setAdapter(roomsAdapter);
         new GetRoomsAsync().execute();
 

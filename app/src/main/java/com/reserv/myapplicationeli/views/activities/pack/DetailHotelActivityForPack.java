@@ -138,7 +138,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
       //  gvEmakanat = findViewById(R.id.gvEmakanat);
         lvRooms = findViewById(R.id.lvRooms);
         tvTitle.setText("چهارشنبه، 28 اسفند-جمعه 30 اسفند");
-        roomsAdapter = new RoomsAdapter(roomsModels, this);
+        roomsAdapter = new RoomsAdapter(roomsModels, this,rlRoot,rlLoading,window);
         lvRooms.setAdapter(roomsAdapter);
 
 
@@ -306,7 +306,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
                 for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {
                     Log.e("testtest", roomList.Description);
 
-                    roomsModels.add(new RoomsModel(roomList.Board, roomList.Title, roomList.Description, roomList.Price, roomList.OfferId, roomList.EHotelId));
+                    roomsModels.add(new RoomsModel(roomList.Board, roomList.Title, roomList.Description, roomList.Price, roomList.OfferId, roomList.EHotelId,getRoomsList.getRoomsListResponse.GetRoomsListResult.SearchKey));
                     //   i++;
 
                 }

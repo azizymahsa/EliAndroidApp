@@ -46,6 +46,7 @@ import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
+import com.reserv.myapplicationeli.views.adapters.GetKhadmatHotelFlightAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 
 import org.apache.http.HttpResponse;
@@ -102,7 +103,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public static long GET_PRICE_KHADAMAT;
     ImageView textView4;
 
-    GetKhadmatAdapter mAdapter;
+    GetKhadmatHotelFlightAdapter mAdapter;
     ScrollView myScrollView;
     private EditText searchtxt;
     public TextView txt_shomare_factor, tvPrice, tvfactorNumber;
@@ -748,7 +749,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 ((Button) findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
                 txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
 
-                mAdapter = new GetKhadmatAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this);
+                mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this);
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);
                 listKhadamat.setAdapter(mAdapter);
@@ -980,7 +981,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                     txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
-                    ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
+                    ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
                     finish();
                 }
@@ -1073,7 +1074,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
                         //((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
 
-                        ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
+                        ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
                         ((Button) findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#33ccff"));
                     }
                 } catch (Exception e) {
@@ -1271,7 +1272,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                 ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
                 ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
-                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
+                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
                 txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
 
                 myScrollView.setOnTouchListener(null);
@@ -1292,7 +1293,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                 ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
                 ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
+                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
                 txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
                 break;
             case R.id.btn_pish_factor:
@@ -1303,7 +1304,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                 ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_on);
                 ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
+                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
                 txtTitle.setText("مرحله 4/4: تایید و پرداخت پیش فاکتور    ");
                 myScrollView.setOnTouchListener(null);
                 break;
@@ -1417,20 +1418,20 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 }
             });
             ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-            txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+            txtTitle.setText("مرحله 3از4: افزودن خدمات به سبد خرید");
         } else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
             linear_list_khadamat.setVisibility(View.GONE);
             linear_mosaferan.setVisibility(View.VISIBLE);
             myScrollView.setOnTouchListener(null);
 
-            txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
+            txtTitle.setText("مرحله 2از4:  اطلاعات مسافران را وارد کنید");
             ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
         } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
             linear_mosaferan.setVisibility(View.GONE);
             linear_saler.setVisibility(View.VISIBLE);
             myScrollView.setOnTouchListener(null);
 
-            txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
+            txtTitle.setText("مرحله 1از4:  مشخصات خریدار را وارد کنید");
             ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
         } else if (linear_saler.getVisibility() == View.VISIBLE) {
 			/*Intent intent = new Intent(this,PlanFragment.class);

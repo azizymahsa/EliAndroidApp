@@ -78,46 +78,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="5dp"
                     >
 
 
                     <TextView
                         android:id="@+id/name"
-                        android:layout_width="200dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="100"
                         android:gravity="center|left"
                         android:textColor="@color/white"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:layout_alignParentLeft="true"
-                        android:maxLines="3"/>
+                        android:maxLines="1"/>
 
-                    <ImageView
-                        android:id="@+id/ivRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="16dp"
-                        android:layout_alignParentRight="true"
-                        android:scaleType="fitEnd"
-                        android:layout_marginRight="5dp"
-                        />
+
 
                 </RelativeLayout>
 
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="15dp"
                     android:layout_below="@+id/linearLayout1"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
                     >
 
                     <TextView
+                        android:id="@+id/tvLoc"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="@string/icon_location2"
                         android:textAppearance="@style/IconFonts"
@@ -125,18 +119,29 @@
                         android:textSize="15dp" />
 
                     <TextView
+                        android:layout_toRightOf="@+id/tvLoc"
                         android:id="@+id/location"
-                        android:layout_width="match_parent"
+                        android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:gravity="left|center"
                         android:textColor="@color/white"
                         android:textSize="10dp"
+                        android:text="jsdkf"
 
+                        />
+                    <ImageView
+                        android:id="@+id/ivRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="16dp"
+                        android:layout_alignParentRight="true"
+                        android:scaleType="fitEnd"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/_4star"
                         />
 
 
-                </LinearLayout>
+                </RelativeLayout>
 
             </RelativeLayout>
 
@@ -162,7 +167,8 @@
                         android:gravity="center"
                         android:text="1 X STANDARD ROOM"
                         android:textColor="#253e96"
-                        android:textSize="12dp"
+                        android:textSize="13dp"
+                        android:textAppearance="@style/IrsansBold"
 
                         />
                     <TextView
@@ -243,7 +249,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp">
                     <ImageView
                         android:id="@+id/ivLogo"
                         android:layout_width="40dp"
@@ -320,7 +328,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="11:50"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_toLeftOf="@+id/tvRaft"
                         android:textColor="#351f8e"
                         android:textAppearance="@style/IrsansBold"
@@ -335,7 +343,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="11:50"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_toLeftOf="@+id/tvBargasht"
                         android:textColor="#351f8e"
                         android:layout_below="@+id/tvAirLines"

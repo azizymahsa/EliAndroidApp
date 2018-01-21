@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto">
     <android.support.v7.widget.CardView
         android:id="@+id/llSelectHotel"
 
@@ -102,8 +103,22 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="100"
+                    android:layout_weight="50"
                     >
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnPolicy"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="#d7d7d7"
+                        fancy:fb_radius="6dp"
+                        fancy:fb_textColor="#FFFFFF"
+
+                        android:layout_gravity="right"
+                        fancy:fb_textSize="25dp"
+                        fancy:fb_text=" "
+                        />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -112,7 +127,7 @@
                         android:textColor="@color/blue"
                         android:textSize="12dp"
                         android:layout_toLeftOf="@+id/tv2"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="5dp"
 
                         />
                     <TextView

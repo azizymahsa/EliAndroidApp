@@ -376,6 +376,8 @@
                     android:textSize="16dp"
                     android:textAppearance="@style/IrsansBold"
                     android:gravity="center"
+                    android:textColor="@color/toolbar_color"
+                    android:visibility="gone"
                     />
 
                 <ImageView
@@ -384,25 +386,34 @@
                     android:src="@drawable/alert"
                     android:layout_centerInParent="true"/>
 
-                <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btnOk"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:elevation="4dp"
-                    android:paddingBottom="1dp"
-                    fancy:fb_defaultColor="@color/app_base_color"
-                    fancy:fb_focusColor="@color/colorPrimaryDark"
-                    fancy:fb_radius="0dp"
-                    fancy:fb_text="بازگشت"
-                    fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="18dp"
-                    android:layout_alignParentBottom="true"/>
+                    android:background="@drawable/btngravity_big"
+                    android:layout_alignParentBottom="true"
+
+                    >
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnOk"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:elevation="4dp"
+                        android:paddingBottom="1dp"
+                        fancy:fb_defaultColor="@color/TRANSPARENT"
+                        fancy:fb_focusColor="@color/focusColor"
+                        fancy:fb_radius="0dp"
+                        fancy:fb_text="بازگشت"
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="18dp"
+                        />
+                </RelativeLayout>
+
+
             </RelativeLayout>
 
 
         </android.support.v7.widget.CardView>
     </RelativeLayout>
-
 
 </RelativeLayout>

@@ -45,16 +45,35 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/banafsh_jahan" />
 
-            <ImageView
+            <RelativeLayout
                 android:id="@+id/txtOption"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="30dp"
-                android:layout_marginRight="1dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="30dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icswitch_big" />
+                >
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+
+                    android:src="@drawable/line_white" />
+                <ImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+
+                    android:src="@drawable/arow_but" />
+
+            </RelativeLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,6 +82,7 @@
                 android:layout_centerInParent="true"
                 android:orientation="vertical"
                 android:layout_toLeftOf="@+id/txtOption"
+                android:layout_marginRight="20dp"
                 >
                 <View
                     android:layout_width="match_parent"
@@ -78,7 +98,6 @@
                     android:layout_toLeftOf="@+id/txtOption"
                     android:gravity="right"
                     android:orientation="vertical"
-                    android:layout_marginBottom="10dp"
                     >
 
                     <TextView
@@ -123,7 +142,6 @@
                     android:layout_toLeftOf="@+id/txtOption"
                     android:gravity="right"
                     android:orientation="vertical"
-                    android:layout_marginTop="20dp"
                     >
 
                     <TextView
@@ -387,10 +405,9 @@
 
                         android:orientation="vertical">
                         <LinearLayout
-                            android:layout_marginTop="4dp"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_32Plan"
-                            android:layout_marginBottom="14dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginLeft="14dp"
                             android:layout_marginRight="10dp">
 
@@ -439,7 +456,7 @@
                         <LinearLayout
                             android:layout_height="@dimen/_32Plan"
                             android:layout_width="match_parent"
-                            android:layout_marginBottom="14dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginLeft="14dp"
                             android:layout_marginRight="10dp">
 
@@ -488,7 +505,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_32Plan"
-                            android:layout_marginBottom="1dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginLeft="14dp"
                             android:layout_marginRight="10dp">
 

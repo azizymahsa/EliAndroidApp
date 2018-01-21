@@ -19,21 +19,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
@@ -62,7 +67,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     private View rootView;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
-    ImageView txtOption;
+    RelativeLayout txtOption;
     int month;
     int year_;
     int day;
@@ -70,6 +75,8 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     int year_Min;
     int dayMin;
     String raft, bargasht;
+    LinearLayout linearLayout_mabda,linearLayout_maghsad;
+    ImageView ivImage;
 
     public static int countNafar = 1;
 
@@ -81,11 +88,14 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
 
         tarikh_az_picker = (TextView) rootView.findViewById(R.id.tarikh_az_picker);
         tarikh_be_picker = (TextView) rootView.findViewById(R.id.tarikh_be_picker);
+        linearLayout_mabda = (LinearLayout) rootView.findViewById(R.id.linearLayout_mabda);
+        linearLayout_maghsad = (LinearLayout) rootView.findViewById(R.id.linearLayout_maghsad);
     /*tarikh_az_picker.setTypeface(face);
     tarikh_be_picker.setTypeface(face);*/
 
         tarikh_az = (TextView) rootView.findViewById(R.id.tarikh_az);
         tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
+        ivImage = (ImageView) rootView.findViewById(R.id.ivImage);
 
 
         btnPlusB = (Button) rootView.findViewById(R.id.btnPlusB);
@@ -112,7 +122,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
         txtCountN = (TextView) rootView.findViewById(R.id.txtCountN);
         tvStart = (TextView) rootView.findViewById(R.id.tvStart);
 
-        txtOption = (ImageView) rootView.findViewById(R.id.txtOption);
+        txtOption = (RelativeLayout) rootView.findViewById(R.id.txtOption);
         tvEnd = (TextView) rootView.findViewById(R.id.tvEnd);
         lbl_forudgah_mabda = (TextView) rootView.findViewById(R.id.lbl_forudgah_mabda);
         lbl_forudgah_maghsad = (TextView) rootView.findViewById(R.id.lbl_forudgah_maghsad);
@@ -337,21 +347,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                 break;
             case R.id.txtOption:
                 anim();
-                String start = "";
-                String end = "";
-                String startF = "";
-                String endF = "";
 
-                start = tvStart.getText().toString();
-                end = tvEnd.getText().toString();
-                startF = lbl_forudgah_mabda.getText().toString();
-                endF = lbl_forudgah_maghsad.getText().toString();
-
-                tvStart.setText(end);
-                tvEnd.setText(start);
-
-                lbl_forudgah_mabda.setText(endF);
-                lbl_forudgah_maghsad.setText(startF);
                 break;
             case R.id.btntwo:
                 flagOneTwo = 2;
@@ -561,9 +557,85 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     public void anim(){
 
 
+      YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+
+
+
+            @Override
+            public void onAnimationStart(android.animation.Animator animation) {
+
+
+                YoYo.with(Techniques.SlideOutDown)
+                        .duration(500)
+                        .playOn(lbl_forudgah_mabda);
+                YoYo.with(Techniques.SlideOutUp)
+                        .duration(500)
+                        .playOn(lbl_forudgah_maghsad);
+
+
+                YoYo.with(Techniques.SlideOutUp)
+                        .duration(500)
+                        .playOn(tvEnd);
+
+            }
+
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+
+                String start = "";
+                String end = "";
+                String startF = "";
+                String endF = "";
+
+                start = tvStart.getText().toString();
+                end = tvEnd.getText().toString();
+                startF = lbl_forudgah_mabda.getText().toString();
+                endF = lbl_forudgah_maghsad.getText().toString();
+
+                tvStart.setText(end);
+                tvEnd.setText(start);
+
+                lbl_forudgah_mabda.setText(endF);
+                lbl_forudgah_maghsad.setText(startF);
+
+
+
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(500)
+                        .playOn(lbl_forudgah_mabda);
+                YoYo.with(Techniques.SlideInDown)
+                        .duration(500)
+                        .playOn(lbl_forudgah_maghsad);
+
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(500)
+                        .playOn(tvStart);
+                YoYo.with(Techniques.SlideInDown)
+                        .duration(500)
+                        .playOn(tvEnd);
+
+
+
+            }
+
+            @Override
+            public void onAnimationCancel(android.animation.Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(android.animation.Animator animation){
+
+            }
+
+        })
+                .playOn(tvStart);
+
+
+
 
 
         final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
-        txtOption.startAnimation(animation);
+        ivImage.startAnimation(animation);
     }
 }

@@ -11,14 +11,16 @@ public class RoomsModel {
     public String price;
     public String offerId;
     public String hotelId;
+    public String SearchKey;
 
-    public RoomsModel(String board, String title, String desc, String price, String offerId, String hotelId) {
+    public RoomsModel(String board, String title, String desc, String price, String offerId, String hotelId, String searchKey) {
         this.board = board;
         this.title = title;
         this.desc = desc;
         this.price = price;
         this.offerId = offerId;
         this.hotelId = hotelId;
+        SearchKey = searchKey;
     }
 
     public String getBoard() {
@@ -67,5 +69,13 @@ public class RoomsModel {
 
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public String getSearchKey() {
+        return SearchKey;
+    }
+
+    public void setSearchKey(String searchKey) {
+        SearchKey = searchKey;
     }
 }

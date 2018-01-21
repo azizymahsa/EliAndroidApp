@@ -97,7 +97,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private View mapView;
     MapView mMapView;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
-    GetHoldRoom getHoldRoom;
     String eHotelId;
     String offerIds;
     GetHotelDetail getHotelDetail;
@@ -107,7 +106,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     AVLoadingIndicatorView avi1;
 
     ImageView ivLoading;
-    String flightId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,27 +160,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         //  gvEmakanat = findViewById(R.id.gvEmakanat);
         lvRooms = findViewById(R.id.lvRooms);
         tvTitle.setText("چهارشنبه، 28 اسفند-جمعه 30 اسفند");
-        roomsAdapter = new RoomsAdapter(roomsModels, this);
+        roomsAdapter = new RoomsAdapter(roomsModels, this,rlRoot,rlLoading,window);
         lvRooms.setAdapter(roomsAdapter);
 
-
-        lvRooms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                offerIds = roomsModels.get(position).getOfferId();
-                eHotelId = roomsModels.get(position).getHotelId();
-                Log.e("testdddd1", getIntent().getExtras().getString("ResultUniqID"));
-
-                Gson gson = new Gson();
-                String json = gson.toJson(new HoldSelectedRoomRequest(new
-                        com.reserv.myapplicationeli.models.hotel.api
-                                .holdSelectedRoom.call.RoomRequest(new Identity("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "fa-ir", eHotelId
-                        , offerIds, getIntent().getExtras().getString("ResultUniqID"))));
-                Log.e("jsonnnnn", json);
-                new GetHoldRoomAsync().execute();
-            }
-        });
 
     }
 
@@ -309,7 +289,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {
                     Log.e("testtest", roomList.Description);
 
-                    roomsModels.add(new RoomsModel(roomList.Board, roomList.Title, roomList.Description, roomList.Price, roomList.OfferId, roomList.EHotelId));
+                    roomsModels.add(new RoomsModel(roomList.Board, roomList.Title, roomList.Description, roomList.Price, roomList.OfferId, roomList.EHotelId,getRoomsList.getRoomsListResponse.GetRoomsListResult.SearchKey));
                     //   i++;
 
                 }
@@ -329,86 +309,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-    private class GetHoldRoomAsync extends AsyncTask<String, Void, String> {
 
-        protected void onPreExecute() {
-
-            window.setStatusBarColor(getColor(R.color.blue2));
-             new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
-
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                getHoldRoom = new GetHoldRoom(new HoldSelectedRoomRequest(new
-                        com.reserv.myapplicationeli.models.hotel.api
-                                .holdSelectedRoom.call.RoomRequest(new Identity("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "fa-ir", eHotelId
-                        , offerIds, getIntent().getExtras().getString("ResultUniqID"))));
-
-            } catch (Exception e) {
-
-            }
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            //  new InitUi().Loading(rlLoading,rlRoot,false);
-
-            new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
-           try {
-
-
-                if (Prefs.getLong("time",0)>=50000){
-                    if (getIntent().getExtras().getInt("type") == 1) {
-                        flightId = getIntent().getExtras().getString("FlightID");
-                        Log.e("test", flightId);
-
-                        Intent intent = new Intent(DetailHotelActivity.this, PassengerHotelFlightActivity.class);
-                        intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
-                        intent.putExtra("FlightGuID", flightId);
-                        intent.putExtra("CheckIn", getIntent().getExtras().getString("CheckInHF"));
-                        intent.putExtra("CheckOut", getIntent().getExtras().getString("CheckOutHF"));
-                        intent.putExtra("flightId", getIntent().getExtras().getString("ResultUniqID"));
-
-                        startActivity(intent);
-                        finish();
-                    }
-                    //hotel
-                    if (getIntent().getExtras().getInt("type") == 2) {
-                        flightId = "";
-
-                        Intent intent = new Intent(DetailHotelActivity.this, PassengerHotelActivity.class);
-                        intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
-                        intent.putExtra("FlightGuID", getIntent().getExtras().getString("ResultUniqID"));
-                        intent.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
-                        intent.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
-
-                        startActivity(intent);
-                        finish();
-
-
-                    }
-                }else{
-                    sendDetailFinish();
-                }
-
-
-
-
-            } catch (Exception e) {
-                Toast.makeText(DetailHotelActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-
-
-        }
-
-    }
 
     private class GetHoldDetailAsync extends AsyncTask<String, Void, String> {
 
@@ -571,12 +472,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-    public void sendDetailFinish() {
 
-        Intent intent = new Intent("sendDetailFinish");
-
-        LocalBroadcastManager.getInstance(DetailHotelActivity.this).sendBroadcast(intent);
-    }
 
 
 }
