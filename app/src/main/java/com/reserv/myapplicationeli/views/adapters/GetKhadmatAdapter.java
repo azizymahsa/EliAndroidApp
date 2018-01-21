@@ -17,9 +17,11 @@ import android.widget.Toast;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
+import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegmentTrue;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +37,7 @@ public class GetKhadmatAdapter extends BaseAdapter {
 	public String value_Maghsad_City;
 	public String value_Maghsad_Airport;
 	public String value_Maghsad_Airport_Code;
+	//public List<StrictMath> SegmentListtrueAvali = new ArrayList<FlightSegmentTrue>();
 public Activity activity;
 
 	// create constructor to innitilize context and data sent from MainActivity
@@ -45,9 +48,7 @@ public Activity activity;
 		this.data=data;
 		myInflater = LayoutInflater.from(activity);
         
-       /* this.value_Maghsad_City=value_Maghsad_City;
-        this.value_Maghsad_Airport=value_Maghsad_Airport;
-        this.value_Maghsad_Airport_Code=value_Maghsad_Airport_Code;*/
+
 	}
 	public GetKhadmatAdapter(Activity activity){
 		//this.context=activity;
@@ -63,12 +64,7 @@ public Activity activity;
 		this.data = data;
 		notifyDataSetChanged();
 	}
-	/*
-	public void setData(String searchText) {
-		this.cursor = new Customers_Table().getCustomersFilter(searchText);
-		//initiated = true;
-		notifyDataSetChanged();
-	}*/
+
 	@Override
 	public int getCount() {
 		return data == null ? 0 : data.size();
@@ -139,10 +135,7 @@ public Activity activity;
 				//tick_round_button
 
 				String buttonText =  holder.txtAdd.getText().toString();
-				//Drawable icon= context.getResources(). getDrawable( R.drawable.tick_round_button);
-				//show icon to the right of text
-				//	holder.btnAddsabad.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
-				//PassengerActivity.GET_PRICE_KHADAMAT=PassengerActivity.GET_PRICE_KHADAMAT+current.getServiceTotalPrice();
+
 				//
 				String s= Prefs.getString("Select_ID_khadamat", "");
 				if(s.length()>1)

@@ -1,8 +1,10 @@
 package com.reserv.myapplicationeli.views.activities;
 
 import android.Manifest;
+import android.animation.TimeInterpolator;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -15,10 +17,14 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AnticipateInterpolator;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -74,10 +80,16 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     TextView txtPhone,txtAddres,txtSocialFollow;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
     private GoogleMap map;
+    ExpandableWeightLayout expandableLayout;
+    public ImageView txtInstagram,txtAparat,txtTweeter,txtPintrest,txtLinkdin,txtGoogleP,txtFacebook,txtTelegram;
+   // private TextView tvTitle, tvArrow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
+
+        //tvArrow = findViewById(R.id.tvArrow);
+        expandableLayout = findViewById(R.id.expandableLayout);
 
         btnBack = (FancyButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
@@ -92,6 +104,24 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
         txtSocialFollow = (TextView) findViewById(R.id.txtSocialFollow);
         txtSocialFollow.setOnClickListener(this);
+
+        txtTelegram = (ImageView) findViewById(R.id.txtTelegram);
+        txtTelegram.setOnClickListener(this);
+        txtFacebook = (ImageView) findViewById(R.id.txtFacebook);
+        txtFacebook.setOnClickListener(this);
+        txtGoogleP = (ImageView) findViewById(R.id.txtGoogleP);
+        txtGoogleP.setOnClickListener(this);
+        txtInstagram = (ImageView) findViewById(R.id.txtInstagram);
+        txtInstagram.setOnClickListener(this);
+        txtLinkdin = (ImageView) findViewById(R.id.txtLinkdin);
+        txtLinkdin.setOnClickListener(this);
+        txtPintrest = (ImageView) findViewById(R.id.txtPintrest);
+        txtPintrest.setOnClickListener(this);
+        txtTweeter = (ImageView) findViewById(R.id.txtTweeter);
+        txtTweeter.setOnClickListener(this);
+        txtAparat = (ImageView) findViewById(R.id.txtAparat);
+        txtAparat.setOnClickListener(this);
+
 
         initMap();
          new GetContactUsAsync().execute();
@@ -111,22 +141,85 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
 
+            case R.id.txtInstagram:
+                Uri uri = Uri.parse("http://www.aparat.com/eligasht");
+                Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+                likeIng.setPackage("com.instagram.android");
+
+                try {
+                    startActivity(likeIng);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://www.aparat.com/eligasht")));
+                }
+                break;
+            case R.id.txtAparat:
+
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://www.aparat.com/eligasht")));
+                break;
+            case R.id.txtTweeter:
+
+                Intent intent = null;
+
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/eligasht"));
+
+                this.startActivity(intent);
+                break;
+            case R.id.txtPintrest:
+
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("pinterest://www.pinterest.com/eligasht")));
+                } catch (Exception e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.pinterest.com/eligasht")));
+                }
+                break;
+            case R.id.txtLinkdin:
+
+                startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/company/eligasht")));
+                break;
+            case R.id.txtGoogleP:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/+Eligasht")));
+
+                break;
+            case R.id.txtFacebook:
+
+                startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/eligashtco")));
+                break;
+            case R.id.txtTelegram:
+
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/eligashtco")));
+                break;
             case R.id.btnBack:
 
                 finish();
                 break;
             case R.id.txtSocialFollow:
+               // expandableLayout.setDuration(1000);
+               // expandableLayout.setInterpolator(new AnticipateInterpolator());
 
-                new AlertDialog(this, "شبکه های اجتماعی ما");
+                //new AlertDialog(this, "شبکه های اجتماعی ما");
+                if (expandableLayout.isExpanded()) {
+
+                    expandableLayout.collapse();
+                  //  tvArrow.setText(getString(R.string.icon_arrow_up));
+
+                } else {
+                    expandableLayout.expand();
+                  //  tvArrow.setText(getString(R.string.icon_arrow_down));
+
+                }
+
                 break;
             case R.id.txtPhone:
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:"+"۰۲۱-۸۵۴۰"));
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+              /*  if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
                     return;
-                }
+                }*/
                 startActivity(callIntent);
 
                 break;

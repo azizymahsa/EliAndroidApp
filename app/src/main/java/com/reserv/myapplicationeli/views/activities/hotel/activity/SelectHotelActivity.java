@@ -1181,7 +1181,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         protected String doInBackground(String... params) {
             try {
                 availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-ir","")));
+                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR","")));
 
 
                 Gson gson = new Gson();

@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp" 
+    android:padding="8dp"
     android:background="#cdd1d6">
 
 
@@ -57,8 +57,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="1dp"
         android:layout_weight="0.02"
@@ -108,16 +108,16 @@
                         android:gravity="left">
 
                         <TextView
-                            android:id="@+id/txt_economi"
+                            android:id="@+id/num_flight_r"
                             android:layout_width="90dp"
 
                             android:layout_height="match_parent"
                             android:layout_marginLeft="1dp"
-                            android:background="#29aae3"
+                            android:textAppearance="@style/IrsansBold"
                             android:gravity="center"
-                            android:text="اکونومی"
-                            android:textColor="#fff"
-                            android:textSize="10dip" />
+                            android:text="TK898"
+                            android:textColor="#003399"
+                            android:textSize="@dimen/_12dp_txtSize" />
 
 
                     </LinearLayout>
@@ -132,7 +132,7 @@
                         android:layout_weight="1"
 
 
-                        android:text="11:50 Am"
+                        android:text="6"
                         android:textColor="#003399"
                         android:textSize="@dimen/_12dp_txtSize" />
 
@@ -141,101 +141,130 @@
                         android:id="@+id/lblArrivalCityNameFaR"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:layout_gravity="right|center_vertical"
+                        android:text="یکشنبه,21:05"
+                        android:textColor="#003399"
+                        android:textSize="@dimen/_12dp_txtSize"
+                        android:textAppearance="@style/IrsansBold"/>
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <ImageView
+
+                        android:layout_width="270dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="1dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/gray_line"
+                        android:gravity="right"
+                        android:text=" "
+                        android:scaleType="fitXY"
+                        android:textColor="#486b6b"
+                        android:textSize="10dip"
+                        android:visibility="visible"
+                        android:padding="4dp"/>
+                </RelativeLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- <TextView
+                         android:id="@+id/textView1"
+                        android:layout_width="0dp"
+                         android:layout_weight="1"
+                         android:layout_height="wrap_content"
+                           android:gravity="right"
+                         android:text="TextView" /> -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="left">
+
+                        <TextView
+                            android:id="@+id/txtArrivelTrueLast"
+                            android:layout_width="90dp"
+
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+
+                            android:gravity="center"
+                            android:text="تهران"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_12dp_txtSize" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+
+                        android:id="@+id/txtDepurtureTrueOne"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
 
                         android:layout_weight="2"
 
                         android:layout_gravity="right|center_vertical"
 
-                        android:text="رفت به استانبول"
+                        android:text="استانبول  "
                         android:textColor="#000"
                         android:textSize="@dimen/_12dp_txtSize" />
 
                 </LinearLayout>
-
+                <!-- /////////////////////////Bargasht/////////////////////////////// -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/txttedad"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-
-                        android:gravity="center"
-                        android:text="فقط 4 نفر"
-                        android:textColor="#486b6b"
-                        android:textSize="10dip"
-                        android:visibility="visible" />
-
-                    <TextView
-
-                        android:id="@+id/lblAirline"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_weight="1"
-
-                        android:gravity="right"
-
-                        android:text="ترکیش "
-                        android:textColor="#003399"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
 
                     <!-- <TextView
-                        android:id="@+id/textView5"
-                       android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                          android:gravity="right"
-                        android:text="TextView" /> -->
+                         android:id="@+id/textView1"
+                        android:layout_width="0dp"
+                         android:layout_weight="1"
+                         android:layout_height="wrap_content"
+                           android:gravity="right"
+                         android:text="TextView" /> -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_weight="3">
+                        android:layout_weight="3"
+                        android:gravity="left">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="#fff"
-                            android:gravity="right"
-                            android:text="ریال"
-                            android:textColor="#23b574"
+                            android:id="@+id/num_flight_b"
+                            android:layout_width="90dp"
 
-                            android:textSize="15dp" />
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:textAppearance="@style/IrsansBold"
+                            android:gravity="center"
+                            android:text="TK898"
+                            android:textColor="#003399"
+                            android:textSize="@dimen/_12dp_txtSize" />
 
-                        <TextView
-                            android:id="@+id/lblAdlCost"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
 
-                            android:gravity="left"
-                            android:text="10,000,000"
-                            android:textColor="#000000"
-                            android:textSize="16dp"
-                            android:textStyle="bold" />
                     </LinearLayout>
+
 
                     <TextView
 
                         android:id="@+id/lblFlightArrivalTimeB"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center|center_vertical"
                         android:layout_weight="1"
 
-                        android:layout_gravity="center|center_vertical"
 
-
-                        android:text="11:50 AM"
+                        android:text="5"
                         android:textColor="#003399"
                         android:textSize="@dimen/_12dp_txtSize" />
 
@@ -244,24 +273,92 @@
                         android:id="@+id/lblArrivalCityNameFaB"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right|center_vertical"
+
                         android:layout_weight="2"
 
-                        android:gravity="right"
-
-
-                        android:text="برگشت به تهران"
-                        android:textColor="#000"
+                        android:layout_gravity="right|center_vertical"
+                        android:textAppearance="@style/IrsansBold"
+                        android:text="یکشنبه,21:05"
+                        android:textColor="#003399"
                         android:textSize="@dimen/_12dp_txtSize" />
 
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <ImageView
+
+                        android:layout_width="270dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="1dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/gray_line"
+                        android:gravity="right"
+                        android:text=" "
+                        android:scaleType="fitXY"
+                        android:textColor="#486b6b"
+                        android:textSize="10dip"
+                        android:visibility="visible"
+                        android:padding="4dp"/>
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- <TextView
+                         android:id="@+id/textView1"
+                        android:layout_width="0dp"
+                         android:layout_weight="1"
+                         android:layout_height="wrap_content"
+                           android:gravity="right"
+                         android:text="TextView" /> -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="left">
+
+                        <TextView
+                            android:id="@+id/txtArrivelFalseLast"
+                            android:layout_width="90dp"
+
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+
+                            android:gravity="center"
+                            android:text="استانبول"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_12dp_txtSize" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+
+                        android:id="@+id/txtDepurtureFalseOne"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="2"
+
+                        android:layout_gravity="right|center_vertical"
+
+                        android:text="تهران  "
+                        android:textColor="#000"
+                        android:textSize="@dimen/_12dp_txtSize" />
+
+                </LinearLayout>
+                <!-- ///////////////////////////////////////////////////// -->
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="5dp"
                 android:gravity="center">
                 <ImageView
                     android:id="@+id/lblProductrow"
@@ -270,14 +367,90 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="1dp"
+
                     android:layout_marginTop="2dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY" />
             </LinearLayout>
         </LinearLayout>
         <!-- ////////////////////////////front bottom///////////////////////////////////// -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#f5eeff" >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="left">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/txt_economi"
+                    android:layout_width="55dp"
+
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/background_strock_blue_dark_economi"
+                    android:gravity="center"
+                    android:text="اکونومی"
+                    android:textColor="#003399"
+                    android:textSize="@dimen/_12dp_txtSize" />
+
+                <TextView
+                    android:id="@+id/txttedad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+
+                    android:gravity="center"
+                    android:text="فقط 4 نفر"
+                    android:textColor="#0e874e"
+                    android:textSize="10dip"
+                    android:visibility="visible" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:layout_weight="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#f5eeff"
+                    android:gravity="right"
+                    android:text="ریال"
+                    android:textColor="#0e874e"
+
+                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/lblAdlCost"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textAppearance="@style/IrsansBold"
+                    android:gravity="left"
+                    android:text="10,000,000"
+                    android:textColor="#000000"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

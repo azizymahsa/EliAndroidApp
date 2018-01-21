@@ -45,6 +45,7 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.Country;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMaghsadAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.wang.avi.AVLoadingIndicatorView;
 
 public class GetAirportMaghsadActivity extends BaseActivity implements Header.onSearchTextChangedListener,OnClickListener{
 	   public static final int CONNECTION_TIMEOUT = 10000;
@@ -54,17 +55,17 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 		private Handler progressBarHandler = new Handler();
 		public ListView list_airport;
 		ArrayList<HashMap<String,String>> mylist=null;
-		 public static String searchText = "";
+		public static String searchText = "";
 		
-		 GetAirPortMaghsadAdapter mAdapter;
+		GetAirPortMaghsadAdapter mAdapter;
 		private EditText searchtxt;
-
+		AVLoadingIndicatorView avi;
 	Activity activity;
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_get_airport);
-			
+			avi=findViewById(R.id.avi);
 			//searchtxt = (EditText) findViewById(R.id.searchtxt);
 		    //Make call to AsyncTask
 	        new AsyncFetch().execute();
@@ -119,10 +120,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 	        protected void onPreExecute() {
 	            super.onPreExecute();
 
-	            //this method will be running on UI thread
-	            pdLoading.setMessage("\tLoading...");
-	            pdLoading.setCancelable(false);
-	            pdLoading.show();
+				avi.setVisibility(View.VISIBLE);
 
 	        }
 
@@ -236,10 +234,10 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
 	            //this method will be running on UI thread
 
-	            pdLoading.dismiss();
+				avi.setVisibility(View.INVISIBLE);
 	            List<Country> data=new ArrayList<Country>();
 
-	            pdLoading.dismiss();
+
 	            try {
 ////////////////////////////
 	            	JSONObject jsonObj = new JSONObject(result);
@@ -288,7 +286,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 	                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 
 	            } catch (JSONException e) {
-	                Toast.makeText(GetAirportMaghsadActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+	                Toast.makeText(GetAirportMaghsadActivity.this, "ارتباط با سرور قطع می باشد", Toast.LENGTH_LONG).show();
 	            }
 
 	        }

@@ -37,16 +37,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 	}
 
-/*
-	public ExpandableListAdapter(
-			Activity activity,
-			//List<String> listDataHeaderExpanding,
-			HashMap<String, HashMap<String, SearchParvazActivity.HeaderExpandingPlan>> listDataHeaderExpanding,
-			HashMap<String, HashMap<String, SearchParvazActivity.ItemExpandingPlan>> listDataChildExpanding) {
-		this._context = activity;
-		
-	}
-*/
+
 
 
 
@@ -184,7 +175,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 
+		TextView txtArrivelFalseLast = (TextView) convertView.findViewById(R.id.txtArrivelFalseLast);
+		TextView txtDepurtureFalseOne = (TextView) convertView.findViewById(R.id.txtDepurtureFalseOne);
 
+		TextView txtArrivelTrueLast = (TextView) convertView.findViewById(R.id.txtArrivelTrueLast);
+		TextView txtDepurtureTrueOne = (TextView) convertView.findViewById(R.id.txtDepurtureTrueOne);
+
+
+		TextView num_flight_r = (TextView) convertView.findViewById(R.id.num_flight_r);
+		TextView num_flight_b = (TextView) convertView.findViewById(R.id.num_flight_b);
 
 		TextView lblArrivalCityNameFaR = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaR);
 		TextView lblFlightArrivalTimeR = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeR);
@@ -195,7 +194,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		TextView lblFlightArrivalTimeB = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeB);
 
 		TextView lblAdlCost = (TextView) convertView.findViewById(R.id.lblAdlCost);
-		TextView lblAirline = (TextView) convertView.findViewById(R.id.lblAirline);
+		//TextView lblAirline = (TextView) convertView.findViewById(R.id.lblAirline);
 
 		ImageView lblProductrow= (ImageView) convertView.findViewById(R.id.lblProductrow);
 
@@ -209,25 +208,33 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			lblFlightArrivalTimeB.setVisibility(View.GONE);
 		}else{//2tarafe
 			//////Ruze hafte
+			//bargasht
+			 txtArrivelFalseLast.setText(item2.DepartureCityNameFaB);
+			 txtDepurtureFalseOne .setText(item2.ArrivalCityNameFaB);
+			//raft
+			 txtArrivelTrueLast.setText(item2.DepartureCityNameFaR);
+			 txtDepurtureTrueOne.setText(item2.ArrivalCityNameFaR);
 
 
+			num_flight_r.setText(item2.AirlineCode+item2.FlightNumberR);
+			num_flight_b.setText(item2.AirlineCode+item2.FlightNumberB);
 			///////////////
 			//lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
 			System.out.println("bargasgt:"+item2.FltDateDayOfWeekFalse);
-			lblArrivalCityNameFaB.setText(" برگشت  "+GetDayWeek(item2.FltDateDayOfWeekFalse)+"");
-			lblFlightArrivalTimeB.setText(item2.FlightTimeB+"");}
-
+			lblArrivalCityNameFaB.setText(""+GetDayWeek(item2.FltDateDayOfWeekFalse)+" , "+item2.FlightTimeB);
+			lblFlightArrivalTimeB.setText(item2.SegmentFalseCount+"");//count bargasht
+		}
 
 		//
 	//	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
 		System.out.println("raft:"+item2.FltDateDayOfWeek);
-		lblArrivalCityNameFaR.setText(" رفت  "+GetDayWeek(item2.FltDateDayOfWeek)+"");
-		lblFlightArrivalTimeR.setText(item2.FlightArrivalTimeR+"");
+		lblArrivalCityNameFaR.setText(""+GetDayWeek(item2.FltDateDayOfWeek)+" , "+item2.FlightArrivalTimeR);
+		lblFlightArrivalTimeR.setText(item2.SegmentTrueCount+"");//count raft
 
 		lblAdlCost.setText(item2.AdlCost+"");
 		lblAdlCost.setText(String.valueOf(NumberFormat.getInstance().format(item2.AdlCost)));
 
-		lblAirline.setText(item2.AirlineNameFa);
+		//lblAirline.setText(item2.AirlineNameFa);
 
 		txt_economi.setText(item2.CabinClassNameFa);
 
