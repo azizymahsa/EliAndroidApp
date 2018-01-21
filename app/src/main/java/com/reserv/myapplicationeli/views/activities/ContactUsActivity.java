@@ -32,6 +32,8 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.ContactInfo;
 import com.reserv.myapplicationeli.models.model.SectionModel;
 import com.reserv.myapplicationeli.views.adapters.AboutAdapter;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.SocialFollowDialog;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -69,7 +71,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     private Handler progressBarHandler = new Handler();
     ArrayList<HashMap<String, String>> mylist = null;
     AboutAdapter mAdapter;
-    TextView txtPhone,txtAddres;
+    TextView txtPhone,txtAddres,txtSocialFollow;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
     private GoogleMap map;
     @Override
@@ -87,6 +89,10 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
         txtAddres = (TextView) findViewById(R.id.txtAddres);
         txtAddres.setOnClickListener(this);
+
+        txtSocialFollow = (TextView) findViewById(R.id.txtSocialFollow);
+        txtSocialFollow.setOnClickListener(this);
+
         initMap();
          new GetContactUsAsync().execute();
 // add PhoneStateListener
@@ -108,6 +114,10 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
             case R.id.btnBack:
 
                 finish();
+                break;
+            case R.id.txtSocialFollow:
+
+                new AlertDialog(this, "شبکه های اجتماعی ما");
                 break;
             case R.id.txtPhone:
 

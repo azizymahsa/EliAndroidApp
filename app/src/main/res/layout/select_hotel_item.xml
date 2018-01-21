@@ -96,6 +96,7 @@
                             android:textAppearance="@style/IconFonts"
                             android:textColor="@color/white"
                             android:textSize="15dp"
+                            android:visibility="invisible"
                             />
 
                         <TextView

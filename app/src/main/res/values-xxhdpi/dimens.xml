@@ -59,6 +59,8 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="_25dp_height">25dp</dimen>
     <dimen name="_16dp_txtSize">16dp</dimen>
     <dimen name="text_message">14dp</dimen>
+    <dimen name="_17dp_textsize">17dp</dimen>
+    <dimen name="_32Plan">32dp</dimen>
 
 
 </resources>

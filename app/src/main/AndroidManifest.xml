@@ -71,7 +71,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBQfxMuyfzRRl-iQTF-m9K6Snl3nq3dIio" />
 
-        <activity android:name=".views.ui.PassengerActivity" />
+        <activity android:name=".views.ui.PassengerActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".views.ui.SearchParvazActivity"
             android:screenOrientation="portrait" />

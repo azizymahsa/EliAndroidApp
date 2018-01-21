@@ -19,6 +19,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -334,6 +336,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                 startActivityForResult(intent, 2);
                 break;
             case R.id.txtOption:
+                anim();
                 String start = "";
                 String end = "";
                 String startF = "";
@@ -550,5 +553,17 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
 
+    }
+
+
+
+
+    public void anim(){
+
+
+
+
+        final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
+        txtOption.startAnimation(animation);
     }
 }

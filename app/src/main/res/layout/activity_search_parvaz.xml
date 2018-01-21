@@ -280,13 +280,13 @@
 							android:gravity="center"
 							android:textSize="26dp"
 							android:layout_marginLeft="5dp"
-							android:textColor="#aaaaaa" />
+							android:textColor="#4d4d4d" />
 						<TextView
 							android:layout_toRightOf="@+id/tvNextDay"
 							android:id="@+id/txtRuzeGhabl"
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
-							android:textColor="#aaaaaa"
+							android:textColor="@color/textColorR"
 							android:gravity="center"
 							android:text="روز قبل"
 							android:textSize="14dp"
@@ -321,7 +321,7 @@
 							android:id="@+id/txtRuzeBad"
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
-							android:textColor="#aaaaaa"
+							android:textColor="@color/textColorR"
 							android:gravity="center"
 							android:text="روز بعد"
 							android:layout_marginLeft="5dp"
@@ -335,7 +335,7 @@
 							android:textAppearance="@style/IconFonts"
 							android:gravity="center"
 							android:textSize="26dp"
-							android:textColor="#aaaaaa"
+							android:textColor="#4d4d4d"
 							android:layout_toRightOf="@+id/txtRuzeBad"/>
 
 
@@ -358,7 +358,7 @@
 						android:id="@+id/txtFilter"
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textColor="#aaaaaa"
+						android:textColor="@color/textColorR"
 						android:gravity="center"
 						android:text="فیلتر کردن"
 						android:layout_marginLeft="5dp"
@@ -374,7 +374,7 @@
 						android:gravity="center"
 						android:textSize="26dp"
 						android:layout_marginLeft="5dp"
-						android:textColor="#aaaaaa" />
+						android:textColor="#4d4d4d" />
 				</LinearLayout>
 
 				<View
@@ -396,7 +396,7 @@
 						android:id="@+id/lblMoratabSazi"
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textColor="#aaaaaa"
+						android:textColor="@color/textColorR"
 						android:gravity="center"
 						android:text="مرتب کردن"
 						android:layout_marginLeft="5dp"
@@ -411,7 +411,7 @@
 						android:gravity="center"
 						android:textSize="26dp"
 						android:layout_marginLeft="5dp"
-						android:textColor="#aaaaaa" />
+						android:textColor="#4d4d4d" />
 
 				</LinearLayout>
 

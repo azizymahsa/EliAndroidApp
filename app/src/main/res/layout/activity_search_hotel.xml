@@ -350,6 +350,7 @@
         android:layout_height="match_parent"
         android:id="@+id/elNotFound"
         android:layout_below="@+id/toolbarLayout"
+        android:visibility="gone"
         >
 
 

@@ -88,16 +88,16 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 	Handler handler;
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
-	public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor,btn_next_partnerInfo;
+	public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
 	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore,tvfactorNumber;
-	public Button btn_nextm,btn_taeed_khadamat,btnAddsabad,btn_pardakht_factor;
+	public Button btnAddsabad,btn_pardakht_factor;
 	public EditText txtnamem,txtfamilym;
 	public static TextView txttavalodm;
 	public EditText txtnumber_passport,txtnameP;
 	public static TextView txtexp_passport;
 	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM;
 	public static TextView txtSumKhadamat;
-	public LinearLayout linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat;
+	public LinearLayout linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo,btn_nextm,btn_taeed_khadamat;
 	private Handler progressBarHandler = new Handler();
 	public ListView list_airport,listKhadamat;
 	ArrayList<HashMap<String,String>> mylist=null;
@@ -167,13 +167,13 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 		txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
 		txtTitleCountM.setOnClickListener(this);
 
-		btn_next_partnerInfo=(Button)findViewById(R.id.btn_next_partnerInfo);
+		btn_next_partnerInfo=(LinearLayout) findViewById(R.id.btn_next_partnerInfo);
 		btn_next_partnerInfo.setOnClickListener(this);
 
-		btn_nextm=(Button)findViewById(R.id.btn_nextm);
+		btn_nextm=(LinearLayout) findViewById(R.id.btn_nextm);
 		btn_nextm.setOnClickListener(this);
 
-		btn_taeed_khadamat=(Button)findViewById(R.id.btn_taeed_khadamat);
+		btn_taeed_khadamat=(LinearLayout)findViewById(R.id.btn_taeed_khadamat);
 		btn_taeed_khadamat.setOnClickListener(this);
 
 		btn_pardakht_factor=(Button)findViewById(R.id.btn_pardakht_factor);

@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-bn-rBD\\values-bn-rBD.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-bn-rBD\\values-bn-rBD.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,195,256,371,492,615,745,870,970,1066,1164,1257",
+                        "endColumns": "89,60,114,120,122,129,124,99,95,97,92,99",
+                        "endOffsets": "190,251,366,487,610,740,865,965,1061,1159,1252,1352"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\Users\\elham.bonyani\\Desktop\\F\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-bn-rBD\\values-bn-rBD.xml",
             "map": [
                 {

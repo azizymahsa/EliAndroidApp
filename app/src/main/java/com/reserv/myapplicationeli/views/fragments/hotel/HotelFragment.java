@@ -302,7 +302,31 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 break;
 
             case R.id.searchHotel:
-                new CountTimeAlert(getActivity(),this);
+               // new CountTimeAlert(getActivity(),this);
+                try {
+
+                    sendStartTimer();
+                    Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
+
+                    intent.putExtra("CheckIn", raft);
+                    intent.putExtra("CheckOut", bargasht);
+                    intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
+                    intent.putExtra("CheckInFa", tvRaft.getText().toString());
+                    intent.putExtra("Rooms", getRoomList(roomsSelected));
+                    intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
+                    intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
+                    Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
+                    Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
+
+
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
+                    Prefs.putBoolean("onTimer",false);
+
+                }
+
+
 
                 break;
             case R.id.tvRaft:
@@ -470,29 +494,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
     @Override
     public void onReturnValue(int type) {
 
-
-        try {
-
-            sendStartTimer();
-            Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
-
-            intent.putExtra("CheckIn", raft);
-            intent.putExtra("CheckOut", bargasht);
-            intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
-            intent.putExtra("CheckInFa", tvRaft.getText().toString());
-            intent.putExtra("Rooms", getRoomList(roomsSelected));
-            intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
-            intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
-            Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-            Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
-
-
-            startActivity(intent);
-        } catch (Exception e) {
-            Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
-            Prefs.putBoolean("onTimer",false);
-
-        }
 
 
 
