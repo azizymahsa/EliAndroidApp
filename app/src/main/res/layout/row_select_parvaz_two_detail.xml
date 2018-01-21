@@ -54,7 +54,7 @@
 					android:layout_height="wrap_content"
 
 					android:gravity="right"
-					android:textSize="14dip"
+					android:textSize="11dp"
 					android:text="استانبول"
 					android:textColor="#003399"
 					/>
@@ -64,11 +64,11 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginBottom="5dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginTop="7dp"
 					android:gravity="right"
 					android:text="3h 45 m ,ترکیش ایر "
-					android:textColor="#486b6b"
-					android:textSize="12dip" />
+					android:textColor="#0e874e"
+					android:textSize="11dp" />
 
 				<TextView
 					android:id="@+id/lblArrivalAirportR"
@@ -78,7 +78,7 @@
 					android:gravity="right"
 					android:text="استانبول"
 					android:textColor="#003399"
-					android:textSize="14dip" />
+					android:textSize="11dp" />
 
 			</LinearLayout>
 			<LinearLayout
@@ -93,11 +93,11 @@
 
 				<TextView
 					android:id="@+id/s1"
-					android:layout_width="12dp"
-					android:layout_height="74dp"
+					android:layout_width="8dp"
+					android:layout_height="68dp"
 					android:layout_marginRight="2dp"
 					android:layout_marginLeft="2dp"
-					android:layout_marginTop="5dp"
+					android:layout_marginTop="3dp"
 					android:background="@drawable/blb"
 					android:gravity="right"
 					android:text=""
@@ -112,7 +112,7 @@
 				android:layout_height="match_parent"
 				android:layout_above="@+id/linearLayout1"
 				android:layout_gravity="right"
-				android:layout_marginRight="3dip"
+				android:layout_marginRight="0dip"
 				android:layout_weight="0.06"
 				android:gravity="right"
 				android:orientation="vertical" >
@@ -125,7 +125,8 @@
 					android:gravity="center"
 					android:text="11:40 AM"
 					android:textColor="#003399"
-					android:textSize="12dip" />
+					android:textAppearance="@style/IrsansBold"
+					android:textSize="10dp" />
 
 				<TextView
 
@@ -134,7 +135,7 @@
 					android:gravity="right"
 					android:text=" 11:50 AM "
 					android:textColor="#486b6b"
-					android:textSize="12dip"
+					android:textSize="12dp"
 					android:visibility="invisible" />
 
 				<TextView
@@ -145,7 +146,8 @@
 					android:gravity="center"
 					android:text="2:40 AM"
 					android:textColor="#003399"
-					android:textSize="12dip" />
+					android:textAppearance="@style/IrsansBold"
+					android:textSize="10dp" />
 
 			</LinearLayout>
 
@@ -166,14 +168,14 @@
 				android:layout_height="wrap_content"
 				android:background="#d5d9dc"
 				android:text="جدول نرخ"
-				android:paddingRight="20dp"
+				android:paddingRight="24dp"
 				android:textColor="#595959"
 				android:textSize="14dp"
 				android:textStyle="bold" />
 
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="35dp" >
+				android:layout_height="30dp" >
 
 				<TextView
 					android:id="@+id/textView1"
@@ -182,7 +184,8 @@
 					android:layout_gravity="center_vertical"
 					android:layout_marginLeft="10dp"
 					android:layout_marginRight="2dp"
-					android:text="ریال" />
+					android:text="ریال"
+					android:textSize="12dp"/>
 
 				<TextView
 					android:id="@+id/txtAdlCostP"
@@ -191,7 +194,7 @@
 					android:layout_gravity="center_vertical"
 					android:text="12,000,000"
 					android:textColor="#000000"
-					android:textSize="14dp"
+					android:textSize="12dp"
 					android:textStyle="bold" />
 
 				<TextView
@@ -201,8 +204,9 @@
 					android:layout_gravity="center_vertical"
 					android:gravity="right"
 					android:text="قیمت پایه"
-					android:paddingRight="20dp"
-					android:textSize="13dp" />
+					android:textColor="#aaaaaa"
+					android:paddingRight="24dp"
+					android:textSize="12dp" />
 
 			</LinearLayout>
 			<View
@@ -211,7 +215,7 @@
 				android:background="#e6e6e6" />
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="35dp" >
+				android:layout_height="30dp" >
 
 				<TextView
 					android:id="@+id/textView9"
@@ -220,6 +224,7 @@
 					android:layout_gravity="center_vertical"
 					android:layout_marginLeft="10dp"
 					android:layout_marginRight="2dp"
+					android:textSize="12dp"
 					android:text="ریال" />
 
 				<TextView
@@ -229,7 +234,7 @@
 					android:layout_gravity="center_vertical"
 					android:text="12,000,000"
 					android:textColor="#000000"
-					android:textSize="14dp"
+					android:textSize="12dp"
 					android:textStyle="bold" />
 
 				<TextView
@@ -239,8 +244,9 @@
 					android:layout_gravity="center_vertical"
 					android:gravity="right"
 					android:text=" مالیات"
-					android:paddingRight="18dp"
-					android:textSize="13dp" />
+					android:textColor="#aaaaaa"
+					android:paddingRight="20dp"
+					android:textSize="12dp" />
 
 			</LinearLayout>
 			<View
@@ -249,7 +255,7 @@
 				android:background="#e6e6e6" />
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="35dp" >
+				android:layout_height="30dp" >
 
 				<TextView
 					android:id="@+id/textView10"
@@ -259,6 +265,7 @@
 					android:layout_marginLeft="10dp"
 					android:layout_marginRight="2dp"
 					android:text="ریال"
+					android:textSize="12dp"
 					android:textColor="#24b574" />
 
 				<TextView
@@ -268,7 +275,7 @@
 					android:layout_gravity="center_vertical"
 					android:text="12,000,000"
 					android:textColor="#000000"
-					android:textSize="14dp"
+					android:textSize="12dp"
 					android:textStyle="bold" />
 
 				<TextView
@@ -277,10 +284,10 @@
 					android:layout_height="wrap_content"
 					android:layout_gravity="center_vertical"
 					android:gravity="right"
-					android:paddingRight="20dp"
+					android:paddingRight="24dp"
 					android:text="قابل پرداخت "
-					android:textColor="#003399"
-					android:textSize="13dp"
+					android:textColor="#aaaaaa"
+					android:textSize="12dp"
 					android:textStyle="bold" />
 
 			</LinearLayout>
@@ -303,14 +310,17 @@
 				style="?android:attr/buttonStyleSmall"
 				android:layout_width="123dp"
 				android:layout_height="28dp"
-				android:layout_margin="5dp"
+				android:layout_margin="10dp"
 				android:layout_marginLeft="14dp"
 				android:layout_marginRight="14dp"
 				android:background="@drawable/btn_plan_select"
 				android:text="انتخاب و رزرو"
 				android:textColor="#fff"
 				android:visibility="visible" />
-
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="@android:color/darker_gray"/>
 		</LinearLayout>
 
 

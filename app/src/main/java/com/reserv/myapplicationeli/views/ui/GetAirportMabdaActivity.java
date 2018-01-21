@@ -44,6 +44,7 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.Country;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMabdaAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.wang.avi.AVLoadingIndicatorView;
 
 
 public class GetAirportMabdaActivity extends BaseActivity implements Header.onSearchTextChangedListener,OnClickListener{
@@ -58,11 +59,12 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 		
 		 GetAirPortMabdaAdapter mAdapter;
 		private EditText searchtxt;
+	AVLoadingIndicatorView avi;
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_get_airport);
-			
+			avi=findViewById(R.id.avi);
 			//searchtxt = (EditText) findViewById(R.id.searchtxt);
 		    //Make call to AsyncTask
 	        new AsyncFetch().execute();
@@ -107,21 +109,19 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 	    }//end oncreate
 
 	    private class AsyncFetch extends AsyncTask<String, String, String> {
-	        ProgressDialog pdLoading = new ProgressDialog(GetAirportMabdaActivity.this);
-	        HttpURLConnection conn;
-	        URL url = null;
+			HttpURLConnection conn;
+			URL url = null;
 			private ListView listAirPort;
 
-	        @Override
-	        protected void onPreExecute() {
-	            super.onPreExecute();
+			@Override
+			protected void onPreExecute() {
+				super.onPreExecute();
+				avi.setVisibility(View.VISIBLE);
 
-	            //this method will be running on UI thread
-	            pdLoading.setMessage("\tLoading...");
-	            pdLoading.setCancelable(false);
-	            pdLoading.show();
+				//this method will be running on UI thread
 
-	        }
+
+			}
 
 	        @Override
 	        protected String doInBackground(String... params) {
@@ -218,10 +218,10 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
 	            //this method will be running on UI thread
 
-	            pdLoading.dismiss();
+				avi.setVisibility(View.INVISIBLE);
 	            List<Country> data=new ArrayList<Country>();
 
-	            pdLoading.dismiss();
+
 	            try {
 ////////////////////////////
 	            	JSONObject jsonObj = new JSONObject(result);
@@ -267,7 +267,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 	                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 
 	            } catch (JSONException e) {
-	                Toast.makeText(GetAirportMabdaActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+	                Toast.makeText(GetAirportMabdaActivity.this, "ارتباط با سرور قطع می باشد", Toast.LENGTH_LONG).show();
 	            }
 
 	        }

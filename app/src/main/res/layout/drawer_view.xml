@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="ورود به حساب کاربری"
-                android:textSize="@dimen/_14dp_txtSize"
+                android:textSize="@dimen/_12dp_txtSize"
                 android:textColor="#ffffff"
                 android:textAppearance="@style/IrsansBold"
                 android:gravity="center"
@@ -110,8 +110,8 @@
                         android:gravity="center"
                         android:text="قرارداد های من"
                         android:textAppearance="@style/IrsansBold"
-                        android:textColor="@color/menu_text"
-                        android:textSize="14dp" />
+                        android:textColor="#2e3192"
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/tv1"
@@ -122,8 +122,8 @@
                         android:gravity="center"
                         android:text="@string/contract"
                         android:textAppearance="@style/IconMenu"
-                        android:textColor="@color/menu_text"
-                        android:textSize="30dp"
+                        android:textColor="#2e3192"
+                        android:textSize="25dp"
                         android:textStyle="bold" />
 
 
@@ -153,8 +153,8 @@
                         android:gravity="center"
                         android:text="مشخصات من"
                         android:textAppearance="@style/IrsansBold"
-                        android:textColor="@color/menu_text"
-                        android:textSize="14dp" />
+                        android:textColor="#2e3192"
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/tv2"
@@ -165,7 +165,7 @@
                         android:gravity="center"
                         android:text="@string/userlogin"
                         android:textAppearance="@style/IconMenu"
-                        android:textColor="@color/menu_text"
+                        android:textColor="#2e3192"
                         android:textSize="30dp" />
 
                 </RelativeLayout>
@@ -174,7 +174,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/menu_text"
+                    android:background="#2e3192"
                     />
 
             </LinearLayout>
@@ -219,8 +219,8 @@
                 android:gravity="center"
                 android:text="بلیط هواپیما"
                 android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/menu_text"
-                android:textSize="14dp" />
+                android:textColor="#2e3192"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv3"
@@ -231,7 +231,7 @@
                 android:gravity="center"
                 android:text="@string/bigplane"
                 android:textAppearance="@style/IconMenu"
-                android:textColor="@color/menu_text"
+                android:textColor="#2e3192"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
@@ -263,8 +263,8 @@
                 android:gravity="center"
                 android:text="رزرو هتل"
                 android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/menu_text"
-                android:textSize="14dp" />
+                android:textColor="#2e3192"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv4"
@@ -275,7 +275,7 @@
                 android:gravity="center"
                 android:text="@string/hotel"
                 android:textAppearance="@style/IconMenu"
-                android:textColor="@color/menu_text"
+                android:textColor="#2e3192"
                 android:textSize="30dp" />
 
         </RelativeLayout>
@@ -305,8 +305,8 @@
                 android:gravity="center"
                 android:text="بلیط هواپیما + رزرو هتل"
                 android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/menu_text"
-                android:textSize="14dp" />
+                android:textColor="#2e3192"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv5"
@@ -317,7 +317,7 @@
                 android:gravity="center"
                 android:text="@string/tour"
                 android:textAppearance="@style/IconMenu"
-                android:textColor="@color/menu_text"
+                android:textColor="#2e3192"
                 android:textSize="30dp" />
 
         </RelativeLayout>
@@ -350,8 +350,8 @@
                 android:gravity="center"
                 android:text="تور مسافرتی"
                 android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/menu_text"
-                android:textSize="14dp" />
+                android:textColor="#2e3192"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv6"
@@ -362,7 +362,7 @@
                 android:gravity="center"
                 android:text="@string/packages"
                 android:textAppearance="@style/IconMenu"
-                android:textColor="@color/menu_text"
+                android:textColor="#2e3192"
                 android:textSize="30dp" />
 
         </RelativeLayout>
@@ -393,8 +393,8 @@
                 android:gravity="center"
                 android:text="بیمه مسافرتی"
                 android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/menu_text"
-                android:textSize="14dp" />
+                android:textColor="#2e3192"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv7"
@@ -405,7 +405,7 @@
                 android:gravity="center"
                 android:text="@string/insurance"
                 android:textAppearance="@style/IconMenu"
-                android:textColor="@color/menu_text"
+                android:textColor="#2e3192"
                 android:textSize="30dp" />
 
         </RelativeLayout>
@@ -436,8 +436,8 @@
                 android:gravity="center"
                 android:text=" شرایط و قوانین "
                 android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/menu_text"
-                android:textSize="14dp" />
+                android:textColor="#2e3192"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv8"
@@ -448,7 +448,7 @@
                 android:gravity="center"
                 android:text="@string/terms"
                 android:textAppearance="@style/IconMenu"
-                android:textColor="@color/menu_text"
+                android:textColor="#2e3192"
                 android:textSize="25dp" />
 
         </RelativeLayout>
@@ -478,8 +478,8 @@
                 android:gravity="center"
                 android:text=" تماس با ما "
                 android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/menu_text"
-                android:textSize="14dp" />
+                android:textColor="#2e3192"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv9"
@@ -490,7 +490,7 @@
                 android:gravity="center"
                 android:text="@string/contactus"
                 android:textAppearance="@style/IconMenu"
-                android:textColor="@color/menu_text"
+                android:textColor="#2e3192"
                 android:textSize="25dp" />
 
         </RelativeLayout>
@@ -521,8 +521,8 @@
                 android:gravity="center"
                 android:text="درباره ما "
                 android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/menu_text"
-                android:textSize="14dp" />
+                android:textColor="#2e3192"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv10"
@@ -533,7 +533,7 @@
                 android:gravity="center"
                 android:text="@string/aboutus"
                 android:textAppearance="@style/IconMenu"
-                android:textColor="@color/menu_text"
+                android:textColor="#2e3192"
                 android:textSize="30dp" />
 
         </RelativeLayout>
