@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200dp"
         android:layout_gravity="center"
-        android:layout_margin="7dp"
+        android:layout_marginTop="5dp"
         android:background="@color/hotel_detail_background"
         card_view:cardBackgroundColor="#ffffff"
         card_view:cardCornerRadius="3dp"
@@ -56,9 +56,10 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingTop="5sp"
-                    android:paddingLeft="5sp"
                     android:paddingRight="5sp"
+                    android:paddingLeft="8dp"
                     >
+
 
                     <TextView
                         android:id="@+id/txt_hotel_name"
@@ -66,19 +67,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center|left"
-
                         android:maxLines="1"
                         android:textColor="@color/white"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
-                    <ImageView
-                        android:id="@+id/rating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="16dp"
-                        android:layout_alignParentRight="true"
-                        android:scaleType="fitEnd"
-                        android:layout_marginRight="5dp"
-                        />
 
 
                 </LinearLayout>
@@ -91,7 +83,8 @@
                     android:layout_below="@+id/linearLayout1"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
-                    android:paddingLeft="5sp">
+                    android:paddingLeft="5sp"
+                    android:paddingRight="5dp">
 
 
                     <LinearLayout
@@ -99,12 +92,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="20sp"
-                            android:layout_height="20sp"
-                            android:padding="3sp"
-                            android:tint="@color/white"
-                            app:srcCompat="@drawable/ic_location_on_black_24dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/icon_location2"
+                            android:textAppearance="@style/IconFonts"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
 
                         <TextView
                             android:id="@+id/txt_location_full_name"
@@ -113,8 +108,8 @@
                             android:layout_marginLeft="5dp"
                             android:gravity="left|center"
                             android:textColor="@color/white"
-                            android:textSize="10dp"
-                            />
+                            android:textSize="10dp" />
+
                         <TextView
                             android:id="@+id/txt_city"
                             android:layout_width="wrap_content"
@@ -125,6 +120,19 @@
                             android:textSize="10dp"
 
                             />
+
+                        <ImageView
+                            android:id="@+id/rating"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="16dp"
+                            android:layout_alignParentRight="true"
+                            android:scaleType="fitEnd"
+                           android:layout_gravity="right"
+                            android:src="@drawable/_2star"
+                            android:paddingRight="5dp"
+                            />
+
                     </LinearLayout>
 
 

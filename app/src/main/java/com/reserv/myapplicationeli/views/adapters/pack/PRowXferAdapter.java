@@ -8,14 +8,22 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.model.pack.LstHotelAmenity;
+import com.reserv.myapplicationeli.models.model.pack.LstProwHotel;
 import com.reserv.myapplicationeli.models.model.pack.LstProwPrice;
 import com.reserv.myapplicationeli.models.model.pack.PRowXfer;
+import com.reserv.myapplicationeli.models.model.pack.filter.AmenityFilter;
+import com.reserv.myapplicationeli.models.model.pack.filter.DegreeFilter;
+import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
+import com.reserv.myapplicationeli.models.model.pack.filter.PriceFilter;
 import com.reserv.myapplicationeli.tools.StreamList;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.views.components.stickyheaders.Section;
 import com.reserv.myapplicationeli.views.viewholders.PRowXferRowHolder;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -26,17 +34,20 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
 
     private Context context;
     private ArrayList<PRowXfer> feedItemList;
+    private ArrayList<PRowXfer> filtertemList;
     private ListenerSearchPackAdapter listenerPackAdapter;
-
+    private int type = 1;
 
     public PRowXferAdapter(Context context, ArrayList<PRowXfer> NameItem) {
 
         this.context = context;
         this.feedItemList = NameItem;
+        filtertemList = new ArrayList<>(feedItemList);
     }
 
     public interface ListenerSearchPackAdapter {
         void onClickPackageBookingItem(PRowXfer pack);
+        void onFilterListChange(ArrayList<PRowXfer> filtertemList);
     }
 
     public PRowXferAdapter setListener(ListenerSearchPackAdapter listener) {
@@ -54,7 +65,8 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
 
     @Override
     public void onBindViewHolder(PRowXferRowHolder holder, final int position) {
-        final PRowXfer item = feedItemList.get(position);
+        final PRowXfer item = filtertemList.get(position);
+
 
 
         if(item.getLstProwPriceAdapter() == null){
@@ -82,7 +94,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
         }
 
         if(item.getLstProwHotelAdapter() == null){
-            item.setLstProwHotelAdapter(new LstProwHotelAdapter(context, feedItemList.get(position).getLstProwHotels()));
+            item.setLstProwHotelAdapter(new LstProwHotelAdapter(context, item.getLstProwHotels()));
         }
 
 
@@ -119,7 +131,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
             @Override
             public void onClick(View view) {
                 if (listenerPackAdapter != null) {
-                    listenerPackAdapter.onClickPackageBookingItem(feedItemList.get(position));
+                    listenerPackAdapter.onClickPackageBookingItem(item);
                     return;
                 }
             }
@@ -128,7 +140,122 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
 
     @Override
     public int getItemCount() {
-        return (feedItemList == null ? 0 : feedItemList.size());
+        return (filtertemList == null ? 0 : filtertemList.size());
+    }
+
+
+    public void filter(ArrayList<DegreeFilter> degreeFiltersSelected,
+                       ArrayList<PriceFilter> priceFiltersSelected,
+                       ArrayList<PlaceFilter> placeFiltersSelected,
+                       ArrayList<AmenityFilter> amenityFiltersSelected){
+
+
+        filtertemList = new ArrayList<>(feedItemList);
+        ArrayList<PRowXfer> filterDegreeList = new ArrayList<>();
+        ArrayList<PRowXfer> filterPriceList = new ArrayList<>();
+        ArrayList<PRowXfer> filterPlaceList = new ArrayList<>();
+        ArrayList<PRowXfer> filterAmenityList = new ArrayList<>();
+
+        if(!ValidationTools.isEmptyOrNull(degreeFiltersSelected)){
+
+            for(DegreeFilter degreeFilter : degreeFiltersSelected){
+                for(PRowXfer pRowXfer : feedItemList){
+                    for(LstProwHotel lstProwHotel : pRowXfer.getLstProwHotels()){
+                        if(Integer.parseInt(lstProwHotel.getHotelStarRating().split("\\*")[0]) == degreeFilter.getStar()){
+                            filterDegreeList.add(pRowXfer);
+                        }
+                    }
+                }
+            }
+            filtertemList = filterDegreeList;
+        }
+
+
+        if(!ValidationTools.isEmptyOrNull(priceFiltersSelected)){
+            for(PriceFilter priceFilter : priceFiltersSelected){
+                for(PRowXfer pRowXfer : filtertemList){
+                    if(pRowXfer.getSumPrice() <= priceFilter.getMaxPrice() && pRowXfer.getSumPrice() >= priceFilter.getMinPrice()){
+                        if(!isExistPack(filterPriceList,pRowXfer)){
+                            filterPriceList.add(pRowXfer);
+                        }
+                    }
+                }
+            }
+            filtertemList = filterPriceList;
+        }
+
+
+        if(!ValidationTools.isEmptyOrNull(placeFiltersSelected)){
+            for(PlaceFilter placeFilter : placeFiltersSelected){
+                for(PRowXfer pRowXfer : filtertemList){
+                    for(LstProwHotel lstProwHotel :pRowXfer.getLstProwHotels()){
+                        if(lstProwHotel.getLocationID() == placeFilter.getLocationId()){
+                            filterPlaceList.add(pRowXfer);
+                        }
+                    }
+                }
+            }
+            filtertemList = filterPlaceList;
+        }
+
+        if(!ValidationTools.isEmptyOrNull(amenityFiltersSelected)){
+            for(AmenityFilter amenityFilter : amenityFiltersSelected){
+                for(PRowXfer pRowXfer : filtertemList){
+                    for(LstHotelAmenity lstHotelAmenity :pRowXfer.getLstHotelAmenity()){
+                        if(lstHotelAmenity.getAmenityID() == amenityFilter.getLstHotelAmenity().getAmenityID()){
+                            filterAmenityList.add(pRowXfer);
+                        }
+                    }
+                }
+            }
+            filtertemList = filterAmenityList;
+        }
+
+        if(listenerPackAdapter != null){
+            listenerPackAdapter.onFilterListChange(filtertemList);
+        }
+        sort(type);
+    }
+
+
+    public void sort(int type){
+        this.type = type;
+        switch (type) {
+            case 1:
+                Collections.sort(filtertemList, new Comparator<PRowXfer>() {
+                    @Override
+                    public int compare(PRowXfer p1, PRowXfer p2) {
+                        return Integer.valueOf(p2.getSumPrice()) - Integer.valueOf(p1.getSumPrice()); // Ascending
+                    }
+                });
+                notifyDataSetChanged();
+
+                break;
+            case 2:
+                Collections.sort(filtertemList, new Comparator<PRowXfer>() {
+                    @Override
+                    public int compare(PRowXfer p1, PRowXfer p2) {
+                        return Integer.valueOf(p1.getSumPrice()) - Integer.valueOf(p2.getSumPrice()); // Ascending
+                    }
+                });
+                notifyDataSetChanged();
+
+                break;
+
+
+        }
+
+    }
+    private boolean isExistPack(ArrayList<PRowXfer> filterPriceList, PRowXfer pRowXfer) {
+        if(ValidationTools.isEmptyOrNull(filterPriceList)){
+            return false;
+        }
+        for (PRowXfer p : filterPriceList){
+            if(p.getPackID() == pRowXfer.getPackID()){
+                return true;
+            }
+        }
+        return false;
     }
 }
 

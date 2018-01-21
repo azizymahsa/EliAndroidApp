@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center|right"
+            android:text="فیلتر"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center|right"
+            android:text="@string/icon_filter"
+            android:textAppearance="@style/IconFonts"
+            android:textColor="@android:color/white"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1234"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="درجه مکان اقامتی"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="14dp" />
+
+
+            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+                android:id="@+id/rcl_degree"
+                android:layoutDirection="rtl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/title_background"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="نوع مکان اقامتی"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="14dp" />
+
+
+            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+                android:id="@+id/rcl_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1234"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="امکانات مکان اقامتی"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="14dp" />
+
+            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+                android:id="@+id/rcl_amenity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1234"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="قیمت"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="14dp" />
+
+            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+                android:id="@+id/rcl_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="100"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="حذف فیلتر"
+                        android:textSize="14dp" />
+
+                    <cn.refactor.library.SmoothCheckBox
+                        android:id="@+id/Remove"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="5dp"
+                        app:color_checked="@color/app_base_color" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnOk"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:elevation="4dp"
+        android:paddingBottom="1dp"
+        app:fb_defaultColor="@color/app_base_color"
+        app:fb_focusColor="@color/colorPrimaryDark"
+        app:fb_radius="0dp"
+        app:fb_text="اعمال فیلتر!"
+        app:fb_textColor="#FFFFFF"
+        app:fb_textSize="18dp" />
+
+</LinearLayout>

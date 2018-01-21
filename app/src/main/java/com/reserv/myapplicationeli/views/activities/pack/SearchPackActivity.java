@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.retro.ClientService;
@@ -24,12 +25,18 @@ import com.reserv.myapplicationeli.models.model.pack.PRowXfer;
 import com.reserv.myapplicationeli.models.model.pack.SearchXPackageResult;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageListReq;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageRequestModel;
+import com.reserv.myapplicationeli.models.model.pack.filter.AmenityFilter;
+import com.reserv.myapplicationeli.models.model.pack.filter.DegreeFilter;
+import com.reserv.myapplicationeli.models.model.pack.filter.FilterPackTools;
+import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
+import com.reserv.myapplicationeli.models.model.pack.filter.PriceFilter;
 import com.reserv.myapplicationeli.models.model.pack.response.PackageListRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.adapters.pack.LstAvailableDateAdapter;
 import com.reserv.myapplicationeli.views.adapters.pack.PRowXferAdapter;
 import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
+import com.reserv.myapplicationeli.views.dialogs.FilterPackageDialog;
 import com.reserv.myapplicationeli.views.dialogs.SortDialogPackage;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
@@ -47,13 +54,17 @@ import retrofit2.Response;
  * Created by elham.bonyani on 1/6/2018.
  */
 
-public class SearchPackActivity extends BaseActivity implements View.OnClickListener,PRowXferAdapter.ListenerSearchPackAdapter,SortDialogPackage.SortHotelDialogListener {
+public class SearchPackActivity extends BaseActivity implements View.OnClickListener, PRowXferAdapter.ListenerSearchPackAdapter, SortDialogPackage.SortHotelDialogListener {
 
     public SimpleRecycleView rcl_package;
     public SimpleRecycleView rcl_available_date;
     public PRowXferAdapter pRowXferAdapter;
     private ClientService service;
     private ArrayList<PRowXfer> pRowXfers;
+    private ArrayList<PriceFilter> priceFilters;
+    private ArrayList<PlaceFilter> placeFilters;
+    private ArrayList<DegreeFilter> degreeFilters;
+    private ArrayList<AmenityFilter> amenityFilters;
     private RelativeLayout rlLoading;
     private RelativeLayout rlRoot;
     private String departureFrom;
@@ -66,6 +77,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private TextView toolbar_date;
     private FancyButton btnBack;
     private ViewGroup layout_sort;
+    private ViewGroup llFilter;
     private FancyButton btn_next_day;
     private FancyButton btn_previous_day;
 
@@ -103,14 +115,13 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         }
 
 
-
         //    InitUi.Toolbar(this, false, R.color.add_room_color, " تور " + cityName + "\n" + date );
 
     }
 
     private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture) {
-        String date= DateUtil.getShortStringDate(departureFrom,"yyyy-MM-dd",true)+" - "+DateUtil.getShortStringDate(departureTo,"yyyy-MM-dd",true);
-        toolbar_title.setText( " تور " + cityName );
+        String date = DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
+        toolbar_title.setText(" تور " + cityName);
         toolbar_date.setText(date);
         showLoading();
         PackageListReq packageListReq = new PackageListReq();
@@ -136,13 +147,17 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 SearchXPackageResult searchXPackageResult = response.body().getSearchXPackageResult();
                 if (searchXPackageResult == null || ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
                     rcl_package.showText();
-                    if(response.body().getSearchXPackageResult().getError()!= null){
+                    if (response.body().getSearchXPackageResult().getError() != null) {
                         Toast.makeText(SearchPackActivity.this, response.body().getSearchXPackageResult().getError().toString(), Toast.LENGTH_SHORT).show();
                     }
                     return;
                 }
                 if (searchXPackageResult.getPRowXfers() != null) {
                     pRowXfers = searchXPackageResult.getPRowXfers();
+                    priceFilters = FilterPackTools.getPriceFilters(pRowXfers);
+                    placeFilters = FilterPackTools.getPlaceFilters(pRowXfers);
+                    degreeFilters = FilterPackTools.getDegreeFilters(pRowXfers);
+                    amenityFilters = FilterPackTools.getAmenityFilters(pRowXfers);
                     showList();
                 } else {
                     rcl_package.showText();
@@ -167,9 +182,11 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
         toolbar_title = findViewById(R.id.tvTitle);
         toolbar_date = findViewById(R.id.tvDate);
-        btnBack = findViewById(R.id.btnBack);btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         layout_sort = findViewById(R.id.llSort);
+        llFilter = findViewById(R.id.llFilter);
         btn_previous_day = findViewById(R.id.btnLastDays);
         btn_next_day = findViewById(R.id.btnNextDays);
 
@@ -184,6 +201,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         rcl_available_date.setVisibility(View.GONE);
 
         btnBack.setOnClickListener(this);
+        llFilter.setOnClickListener(this);
         layout_sort.setOnClickListener(this);
         btn_previous_day.setOnClickListener(this);
         btn_next_day.setOnClickListener(this);
@@ -193,53 +211,78 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnBack :
+            case R.id.btnBack:
                 onBackPressed();
                 break;
-            case R.id.llSort :
-                if(ValidationTools.isEmptyOrNull(pRowXfers) ){
+            case R.id.llSort:
+                if (ValidationTools.isEmptyOrNull(pRowXfers)) {
                     Toast.makeText(this, "موردی یافت نشد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(pRowXfers.size() == 1){
+                if (pRowXfers.size() == 1) {
                     Toast.makeText(this, "فقط یه مورد جهت نمایش وجود دارد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                SortDialogPackage dialogPackage = new SortDialogPackage(this,this);
+                SortDialogPackage dialogPackage = new SortDialogPackage(this, this);
                 break;
 
-            case R.id.btnNextDays :
-                if(DateUtil.getMiliSecondGregorianDateTime(departureFrom,"yyyy-MM-dd") + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo,"yyyy-MM-dd")){
+            case R.id.btnNextDays:
+                if (DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd") + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo, "yyyy-MM-dd")) {
                     Toast.makeText(this, "تاریخ رفت نمی تواند بعد از تاریخ برگشت باشد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                long milis = DateUtil.getMiliSecondGregorianDateTime(departureFrom,"yyyy-MM-dd") + 86400000;
-                departureFrom = DateUtil.getDateTime(String.valueOf(milis),"yyyy-MM-dd");
-                getPackages(country,departureFrom,departureTo,roomList,culture);
+                long milis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd") + 86400000;
+                departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
+                getPackages(country, departureFrom, departureTo, roomList, culture);
                 break;
-            case R.id.btnLastDays :
-                if(DateUtil.getMiliSecondGregorianDateTime(departureFrom,"yyyy-MM-dd") - 86400000 < System.currentTimeMillis()){
+            case R.id.btnLastDays:
+                if (DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd") - 86400000 < System.currentTimeMillis()) {
                     Toast.makeText(this, "تاریخ رفت نمی تواند قبل از امروز باشد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                long _milis = DateUtil.getMiliSecondGregorianDateTime(departureFrom,"yyyy-MM-dd") - 86400000;
-                departureFrom = DateUtil.getDateTime(String.valueOf(_milis),"yyyy-MM-dd");
-                getPackages(country,departureFrom,departureTo,roomList,culture);
+                long _milis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd") - 86400000;
+                departureFrom = DateUtil.getDateTime(String.valueOf(_milis), "yyyy-MM-dd");
+                getPackages(country, departureFrom, departureTo, roomList, culture);
 
+                break;
+
+            case R.id.llFilter:
+                if (ValidationTools.isEmptyOrNull(pRowXfers)) {
+                    return;
+                }
+                FilterPackageDialog filterPackageDialog = new FilterPackageDialog(SearchPackActivity.this);
+                filterPackageDialog.setPrices(priceFilters);
+                filterPackageDialog.setDegrees(degreeFilters);
+                filterPackageDialog.setPlaces(placeFilters);
+                filterPackageDialog.setAmenities(amenityFilters);
+                filterPackageDialog.setOnFiltePackageListener(new FilterPackageDialog.OnFiltePackageListener() {
+                    @Override
+                    public void onConfirm(ArrayList<DegreeFilter> degreeFiltersSelected,
+                                          ArrayList<PriceFilter> priceFiltersSelected,
+                                          ArrayList<PlaceFilter> placeFiltersSelected,
+                                          ArrayList<AmenityFilter> amenityFiltersSelected) {
+
+
+                        if (pRowXferAdapter != null) {
+                            pRowXferAdapter.filter(degreeFiltersSelected,priceFiltersSelected,placeFiltersSelected,amenityFiltersSelected);
+                        }
+                    }
+                });
+                filterPackageDialog.show();
                 break;
         }
     }
 
 
     public void showLoading() {
-        new InitUi().Loading(SearchPackActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
+        new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
         rcl_package.showLoading();
     }
 
 
     public void hideLoading() {
-        new InitUi().Loading(SearchPackActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
+        new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         rcl_package.hideLoading();
     }
 
@@ -248,21 +291,21 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         rcl_package.showList(pRowXferAdapter);
 
         ArrayList<LstAvailableDate> lstAvailableDates = new ArrayList<>();
-        for(PRowXfer pRowXfer : pRowXfers){
-            if(!ValidationTools.isEmptyOrNull(pRowXfer.getLstAvailableDates())){
+        for (PRowXfer pRowXfer : pRowXfers) {
+            if (!ValidationTools.isEmptyOrNull(pRowXfer.getLstAvailableDates())) {
                 lstAvailableDates.addAll(pRowXfer.getLstAvailableDates());
             }
         }
 
-        if(ValidationTools.isEmptyOrNull(lstAvailableDates)){
+        if (ValidationTools.isEmptyOrNull(lstAvailableDates)) {
             return;
         }
-        LstAvailableDateAdapter lstAvailableDateAdapter = new LstAvailableDateAdapter(this,lstAvailableDates).setListener(new LstAvailableDateAdapter.ListenerLstAvailableDateAdapter() {
+        LstAvailableDateAdapter lstAvailableDateAdapter = new LstAvailableDateAdapter(this, lstAvailableDates).setListener(new LstAvailableDateAdapter.ListenerLstAvailableDateAdapter() {
             @Override
             public void onClickLstAvailableDateItem(LstAvailableDate lstAvailableDate) {
                 long milis = DateUtil.getMiliSecondFromJSONDate(lstAvailableDate.getDepartDate());
-                departureFrom = DateUtil.getDateTime(String.valueOf(milis),"yyyy-MM-dd");
-                getPackages(country,departureFrom,departureTo,roomList,culture);
+                departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
+                getPackages(country, departureFrom, departureTo, roomList, culture);
             }
         });
 
@@ -272,12 +315,12 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     }
 
     private int getIndexSelectedItem(ArrayList<LstAvailableDate> lstAvailableDates) {
-        if(ValidationTools.isEmptyOrNull(lstAvailableDates)){
+        if (ValidationTools.isEmptyOrNull(lstAvailableDates)) {
             return 0;
         }
 
-        for (int i = 0 ; i < lstAvailableDates.size() ; i++){
-            if(lstAvailableDates.get(i).getIsSelected()){
+        for (int i = 0; i < lstAvailableDates.size(); i++) {
+            if (lstAvailableDates.get(i).getIsSelected()) {
                 return i;
             }
         }
@@ -288,13 +331,22 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClickPackageBookingItem(PRowXfer pack) {
         Intent intent = new Intent(this, PassengerPackageActivity.class);
-        Prefs.putString("Rooms",roomList);
-        Prefs.putString("PackRow_ID",pRowXfers.get(0).getPackRowID().toString());
-        Prefs.putString("PackXfer_IDs",pRowXfers.get(0).getXFerIDs() );
-        Prefs.putString("Flt_IDs",pRowXfers.get(0).getFltIDs() );
-        Prefs.putInt("PackRoomType_ID",pRowXfers.get(0).getLstProwPrices().get(0).getPackRowRoomTypeID());
-        Prefs.putInt("Room_No",pRowXfers.get(0).getLstProwPrices().get(0).getRoomNo());
+        Prefs.putString("Rooms", roomList);
+        Prefs.putString("PackRow_ID", pRowXfers.get(0).getPackRowID().toString());
+        Prefs.putString("PackXfer_IDs", pRowXfers.get(0).getXFerIDs());
+        Prefs.putString("Flt_IDs", pRowXfers.get(0).getFltIDs());
+        Prefs.putInt("PackRoomType_ID", pRowXfers.get(0).getLstProwPrices().get(0).getPackRowRoomTypeID());
+        Prefs.putInt("Room_No", pRowXfers.get(0).getLstProwPrices().get(0).getRoomNo());
         startActivity(intent);
+    }
+
+    @Override
+    public void onFilterListChange(ArrayList<PRowXfer> filtertemList) {
+        if(ValidationTools.isEmptyOrNull(filtertemList)){
+            rcl_package.showText();
+        }else {
+            rcl_package.showList(pRowXferAdapter);
+        }
     }
 
     @Override
@@ -304,29 +356,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onReturnValue(int type) {
-        switch ( type ) {
-            case 1:
-                Collections.sort(pRowXfers, new Comparator< PRowXfer >() {
-                    @Override public int compare(PRowXfer p1, PRowXfer p2) {
-                        return Integer.valueOf(p2.getLstProwPrices().get(0).getSumPrice())- Integer.valueOf(p1.getLstProwPrices().get(0).getSumPrice()); // Ascending
-                    }
-                });
-                pRowXferAdapter.notifyDataSetChanged();
-
-                break;
-            case 2 :
-                Collections.sort(pRowXfers, new Comparator< PRowXfer >() {
-                    @Override public int compare(PRowXfer p1, PRowXfer p2) {
-                        return Integer.valueOf(p1.getLstProwPrices().get(0).getSumPrice())- Integer.valueOf(p2.getLstProwPrices().get(0).getSumPrice()); // Ascending
-                    }
-                });
-                pRowXferAdapter.notifyDataSetChanged();
-
-                break;
-
-
-
+        if(pRowXferAdapter != null){
+            pRowXferAdapter.sort(type);
         }
-
     }
 }

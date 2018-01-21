@@ -60,19 +60,21 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="ریال"
-                        android:layout_marginRight="10sp"
+                        android:layout_marginRight="5sp"
                         android:textColor="@color/green"
                         android:gravity="center"
-                        android:textSize="16sp"/>
+                        android:textSize="14dp"
+                        android:textAppearance="@style/IrsansBold"/>
                     <TextView
                         android:id="@+id/total_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textColor="@color/color_hotel"
+                        android:textColor="#000"
                         android:text="31,850000"
-                        android:textSize="18sp"
-                        android:gravity="center"/>
+                        android:textSize="15dp"
+                        android:gravity="center"
+                        android:textAppearance="@style/IrsansBold"/>
 
                 </LinearLayout>
 
@@ -94,6 +96,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="0.6"
                         android:layout_height="wrap_content"
+                        android:textSize="12dp"
                         android:gravity="center"/>
 
                     <TextView
@@ -114,7 +117,8 @@
                         android:layout_width="0dp"
                         android:layout_weight="0.6"
                         android:layout_height="wrap_content"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textSize="12dp"/>
                     <TextView
                         android:id="@+id/text_child"
                         android:layout_width="wrap_content"
@@ -135,7 +139,8 @@
                         android:layout_width="0dp"
                         android:layout_weight="0.6"
                         android:layout_height="wrap_content"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textSize="12dp"/>
                     <TextView
                         android:id="@+id/text_infant"
                         android:layout_width="wrap_content"

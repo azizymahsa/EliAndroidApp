@@ -18,9 +18,9 @@ import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 
 public class PRowXferRowHolder extends RecyclerView.ViewHolder {
 
-   public ViewPager intro_view_pager;
-   public SimpleRecycleView rcl_price;
-   public SimpleRecycleView rcl_hotels;
+    public ViewPager intro_view_pager;
+    public SimpleRecycleView rcl_price;
+    public SimpleRecycleView rcl_hotels;
 
     public TextView country_arive_go;
     public TextView country_depart_go;
@@ -38,8 +38,8 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
     public TextView txt_airline_back;
 
     public Button btn_package_booking;
-   // public TextView date_depart;
-   // public TextView date_arrive;
+    // public TextView date_depart;
+    // public TextView date_arrive;
 
 
     public PRowXferRowHolder(View itemView) {

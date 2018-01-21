@@ -8,6 +8,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,6 +33,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
@@ -66,8 +72,10 @@ import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -79,16 +87,16 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 	Handler handler;
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
-	public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor,btn_next_partnerInfo;
-	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
-	public Button btn_nextm,btn_taeed_khadamat,btnAddsabad,btn_pardakht_factor;
+	public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
+	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore,tvfactorNumber;
+	public Button btnAddsabad,btn_pardakht_factor;
 	public EditText txtnamem,txtfamilym;
 	public static TextView txttavalodm;
 	public EditText txtnumber_passport,txtnameP;
 	public static TextView txtexp_passport;
 	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM;
 	public static TextView txtSumKhadamat;
-	public LinearLayout linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat;
+	public LinearLayout linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo,btn_nextm,btn_taeed_khadamat;
 	private Handler progressBarHandler = new Handler();
 	public ListView list_airport,listKhadamat;
 	ArrayList<HashMap<String,String>> mylist=null;
@@ -99,9 +107,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 	GetKhadmatAdapter mAdapter;
 	ScrollView myScrollView;
 	private EditText searchtxt;
-	public TextView txt_shomare_factor;
-	public ImageView txt_hom;
-
+	public TextView txt_shomare_factor,tvPrice;
+	public ImageView txt_hom,textView4;
 	private String Gensiyat;
 	Activity activity;
 	public int countB=SearchParvazActivity.COUNT_B;
@@ -130,12 +137,14 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 		btnBack.setOnClickListener(this);
 
 		txt_hom = (ImageView) findViewById(R.id.txt_hom);
+		textView4 = (ImageView) findViewById(R.id.textView4);
 		txt_hom.setOnClickListener(this);
 
 		txtMore = (TextView) findViewById(R.id.txtMore);
 		txtMore.setOnClickListener(this);
 
 		txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
+		tvPrice = (TextView) findViewById(R.id.tvPrice);
 		txtSumKhadamat.setOnClickListener(this);
 		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
 
@@ -159,24 +168,24 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 		txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
 		txtTitleCountM.setOnClickListener(this);
 
-		btn_next_partnerInfo=(Button)findViewById(R.id.btn_next_partnerInfo);
+		btn_next_partnerInfo=(LinearLayout) findViewById(R.id.btn_next_partnerInfo);
 		btn_next_partnerInfo.setOnClickListener(this);
 
-		btn_nextm=(Button)findViewById(R.id.btn_nextm);
+		btn_nextm=(LinearLayout)findViewById(R.id.btn_nextm);
 		btn_nextm.setOnClickListener(this);
 
-		btn_taeed_khadamat=(Button)findViewById(R.id.btn_taeed_khadamat);
+		btn_taeed_khadamat=(LinearLayout) findViewById(R.id.btn_taeed_khadamat);
 		btn_taeed_khadamat.setOnClickListener(this);
 
-		btn_pardakht_factor=(Button)findViewById(R.id.btn_pardakht_factor);
+		btn_pardakht_factor=(Button) findViewById(R.id.btn_pardakht_factor);
 		btn_pardakht_factor.setOnClickListener(this);
 			/* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
 			 btnAddsabad.setOnClickListener(this);*/
 
-		btn_saler= (Button)findViewById(R.id.btn_saler);
-		btn_mosaferan=(Button)findViewById(R.id.btn_mosaferan);
+		btn_saler= (Button) findViewById(R.id.btn_saler);
+		btn_mosaferan=(Button) findViewById(R.id.btn_mosaferan);
 //		btn_khadamat=(Button)findViewById(R.id.btn_khadamat);
-		btn_pish_factor=(Button)findViewById(R.id.btn_pish_factor);
+		btn_pish_factor=(Button) findViewById(R.id.btn_pish_factor);
 
 		btn_saler.setOnClickListener(this);
 		btn_mosaferan.setOnClickListener(this);
@@ -188,6 +197,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 		linear_pish_factor= (LinearLayout) findViewById(R.id.linear_pish_factor);
 		linearMahaleeghamat= (LinearLayout) findViewById(R.id.linearMahaleeghamat);
 		linearMeliyat= (LinearLayout) findViewById(R.id.linearMeliyat);
+		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
 
 		txtnameP= (EditText)findViewById(R.id.txtnameP);
 		//	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
@@ -376,7 +386,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				int RqBase_ID=jFact.getInt("RqBase_ID");
 				//////////////////////////////
 				long totalprice=jFact.getLong("TotalPrice");
-				btn_pardakht_factor.setText(" پرداخت "+String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
+				tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
+//				btn_pardakht_factor.setText(" پرداخت "+String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
 
 
 
@@ -517,9 +528,12 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 					Toast.makeText(PassengerPackageActivity.this, message, Toast.LENGTH_LONG).show();
 				}
 
-				if(successResult >1)
+				if(successResult >1) {
 					txt_shomare_factor.setText(GetAirportsResult.getString("SuccessResult"));
-				else{
+					tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
+
+					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 500, 200));
+				}else{
 					txt_shomare_factor.setText("خطایی رخ داده است !");
 				}
 				// sfsfs
@@ -1076,7 +1090,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 						//((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
 						//((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
 
-						((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
+						((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
 						((Button)findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#33ccff"));
 					}
 				}catch (Exception e) {
@@ -1273,7 +1287,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
 //				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
-				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
+				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
 				txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
 
 				myScrollView.setOnTouchListener(null);
@@ -1305,7 +1319,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_on);
 //				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger);
+				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
 				txtTitle.setText("مرحله 4/4: تایید و پرداخت پیش فاکتور    ");
 				myScrollView.setOnTouchListener(null);
 				break;
@@ -1618,5 +1632,106 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 			}
 		}
+	}
+
+	public static Bitmap getBitmap(String barcode, int barcodeType, int width, int height)
+	{
+		Bitmap barcodeBitmap = null;
+		BarcodeFormat barcodeFormat = convertToZXingFormat(barcodeType);
+		try
+		{
+			barcodeBitmap = encodeAsBitmap(barcode, barcodeFormat, width, height);
+		}
+		catch (WriterException e)
+		{
+			e.printStackTrace();
+		}
+		return barcodeBitmap;
+	}
+
+	private static BarcodeFormat convertToZXingFormat(int format)
+	{
+		switch (format)
+		{
+			case 8:
+				return BarcodeFormat.CODABAR;
+			case 1:
+				return BarcodeFormat.CODE_128;
+			case 2:
+				return BarcodeFormat.CODE_39;
+			case 4:
+				return BarcodeFormat.CODE_93;
+			case 32:
+				return BarcodeFormat.EAN_13;
+			case 64:
+				return BarcodeFormat.EAN_8;
+			case 128:
+				return BarcodeFormat.ITF;
+			case 512:
+				return BarcodeFormat.UPC_A;
+			case 1024:
+				return BarcodeFormat.UPC_E;
+			//default 128?
+			default:
+				return BarcodeFormat.CODE_128;
+		}
+	}
+
+
+	/**************************************************************
+	 * getting from com.google.zxing.client.android.encode.QRCodeEncoder
+	 *
+	 * See the sites below
+	 * http://code.google.com/p/zxing/
+	 * http://code.google.com/p/zxing/source/browse/trunk/android/src/com/google/zxing/client/android/encode/EncodeActivity.java
+	 * http://code.google.com/p/zxing/source/browse/trunk/android/src/com/google/zxing/client/android/encode/QRCodeEncoder.java
+	 */
+
+	private static final int WHITE = 0xFFFFFFFF;
+	private static final int BLACK = 0xFF000000;
+
+	private static Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException
+	{
+		if (contents == null) {
+			return null;
+		}
+		Map<EncodeHintType, Object> hints = null;
+		String encoding = guessAppropriateEncoding(contents);
+		if (encoding != null) {
+			hints = new EnumMap<>(EncodeHintType.class);
+			hints.put(EncodeHintType.CHARACTER_SET, encoding);
+		}
+		MultiFormatWriter writer = new MultiFormatWriter();
+		BitMatrix result;
+		try {
+			result = writer.encode(contents, format, img_width, img_height, hints);
+		} catch (IllegalArgumentException iae) {
+			// Unsupported format
+			return null;
+		}
+		int width = result.getWidth();
+		int height = result.getHeight();
+		int[] pixels = new int[width * height];
+		for (int y = 0; y < height; y++) {
+			int offset = y * width;
+			for (int x = 0; x < width; x++) {
+				pixels[offset + x] = result.get(x, y) ? BLACK : WHITE;
+			}
+		}
+
+		Bitmap bitmap = Bitmap.createBitmap(width, height,
+				Bitmap.Config.ARGB_8888);
+		bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+		return bitmap;
+	}
+
+	private static String guessAppropriateEncoding(CharSequence contents) {
+		// Very crude at the moment
+		for (int i = 0; i < contents.length(); i++) {
+			if (contents.charAt(i) > 0xFF) {
+				return "UTF-8";
+			}
+		}
+		return null;
 	}
 }

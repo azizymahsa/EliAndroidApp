@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_degree_filter"
+    android:orientation="horizontal"
+    android:background="?android:selectableItemBackground"
+    android:padding="@dimen/_5sp_padding"
+    android:gravity="center_vertical|right">
+
+
+
+
+
+    <cn.refactor.library.SmoothCheckBox
+        android:id="@+id/chk_degree_filter"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/_5dp_margin"
+        app:color_checked="@color/app_base_color" />
+    <TextView
+        android:id="@+id/txt_place_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iran"
+        android:padding="@dimen/_5sp_padding"
+        android:textColor="@color/gray_dark"
+        android:textSize="14sp"/>
+
+
+</LinearLayout>

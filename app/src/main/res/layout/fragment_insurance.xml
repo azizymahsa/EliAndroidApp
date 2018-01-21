@@ -15,7 +15,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="50"
+            android:layout_weight="0.5"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/banafsh_jahan">
@@ -29,7 +29,7 @@
                 android:textColor="@color/white"
                 android:hint="نام کشور را وارد نمایید"
                 android:textColorHint="@color/white"
-                android:background="@drawable/background_strock_white"
+                android:background="@drawable/background_strock_city"
                 android:layout_margin="@dimen/_10dp_marging" />
 
             <ProgressBar
@@ -45,13 +45,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="50"
+            android:layout_weight="0.5"
             android:orientation="vertical">
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="100"
-                android:layout_margin="@dimen/_10dp_margin">
+                android:layout_weight="0.19"
+                android:layout_marginRight="@dimen/_10dp_margin"
+                android:layout_marginLeft="@dimen/_10dp_margin"
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -78,6 +80,7 @@
                             android:textColor="@color/text_color_2"
                             android:textStyle="bold"
                             android:paddingRight="@dimen/_2dp_padding"
+                            android:textAppearance="@style/IrsansBold"
                             />
 
                         <LinearLayout
@@ -137,6 +140,7 @@
                             android:textSize="@dimen/text_size_12dp"
                             android:textStyle="bold"
                             android:paddingRight="@dimen/_14dp_padding"
+                            android:textAppearance="@style/IrsansBold"
 
                             />
 
@@ -183,7 +187,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
+                android:layout_weight="0.09"
                 android:layout_margin="@dimen/_10dp_margin">
                 <LinearLayout
                     android:id="@+id/layout_passenger"
@@ -198,7 +202,6 @@
                         android:layout_height="match_parent"
                         android:text="تعداد مسافران"
                         android:gravity="center"
-                        android:textSize="@dimen/text_size_12dp"
                         android:textColor="@color/text_color_2"
                         android:textStyle="bold"/>
 
@@ -210,15 +213,18 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="25dp">
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+               >
 
                 <Button
                     android:id="@+id/btnSearchInsurance"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-
+                    android:layout_marginLeft="21dp"
+                    android:layout_marginRight="21dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/btngravity_big"
                     android:text="جستجوی بیمه"
                     android:textColor="#FFFFFF"
