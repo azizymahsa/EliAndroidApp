@@ -124,7 +124,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger);
+        setContentView(R.layout.activity_passenger_hotel_flight);
 
 
         btnBack = (FancyButton) findViewById(R.id.btnBack);

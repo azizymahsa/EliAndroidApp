@@ -151,8 +151,10 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
             @Override
             public void onFailure(Call<CityListRes> call, Throwable t) {
-                hideLoading();
-                Toast.makeText(getActivity(), "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                try {
+                    hideLoading();
+                    Toast.makeText(getActivity(), "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){}
             }
         });
 

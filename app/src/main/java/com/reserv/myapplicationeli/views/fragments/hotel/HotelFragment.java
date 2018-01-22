@@ -482,7 +482,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         int yearS = Integer.valueOf(dateGrg[2]);
 
 
-        return yearS + "/" +"0"+ monthS + "/" + dayS;
+        return yearS + "/"+ monthS + "/" + dayS;
     }
 
 

@@ -419,7 +419,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
 
 
-        return yearS+"/"+"0"+monthS+"/"+dayS;
+        return yearS+"/"+monthS+"/"+dayS;
     }
 
     private void sendStartTimer() {
