@@ -211,12 +211,16 @@
 
 
 
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                >
 
                 <Button
                     android:id="@+id/btnSearchInsurance"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="21dp"
                     android:layout_marginRight="21dp"
@@ -232,6 +236,7 @@
             </LinearLayout>
 
 
+        </LinearLayout>
 
 
     </LinearLayout>

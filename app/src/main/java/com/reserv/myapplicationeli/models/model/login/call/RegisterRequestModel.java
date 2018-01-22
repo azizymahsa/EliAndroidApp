@@ -18,4 +18,8 @@ public class RegisterRequestModel {
         this.request = request;
     }
 
+    public RegisterRequestModel (RegisterListReq request){
+        this.request = request;
+    }
+
 }

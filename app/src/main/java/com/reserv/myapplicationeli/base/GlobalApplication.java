@@ -57,6 +57,13 @@ public class GlobalApplication extends Application {
 				.setUseDefaultSharedPreference(true)
 				.build();
 
+		new com.reserv.myapplicationeli.tools.Prefs.Builder()
+				.setContext(this)
+				.setMode(ContextWrapper.MODE_PRIVATE)
+				.setPrefsName(getPackageName())
+				.setUseDefaultSharedPreference(true)
+				.build();
+
 	}
 	public String getMyOperator(Context aContext) {
 		TelephonyManager mTelephonyMgr;

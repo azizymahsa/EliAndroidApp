@@ -140,7 +140,7 @@
             android:layout_weight="0.3">
 
             <Button
-                android:id="@+id/btnSearchInsurance"
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_gravity="bottom"

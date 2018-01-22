@@ -32,6 +32,7 @@ import com.reserv.myapplicationeli.models.model.pack.call.CityListRq;
 import com.reserv.myapplicationeli.models.model.pack.call.CityRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.response.CityListRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
+import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.activities.AddRoomActivity;
 import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
@@ -127,6 +128,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         initParam();
         service = ServiceGenerator.createService(ClientService.class);
         getCities();
+//        Toast.makeText(getActivity(), "password :" +  WebUserTools.getInstance().getUser().getPassword(), Toast.LENGTH_SHORT).show();
+
 
 
 
