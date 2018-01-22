@@ -63,7 +63,7 @@ import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class SelectHotelFlightActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener  {
+public class SelectHotelFlightActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener {
     private ListView list;
     private FlightHotelAdapter adapter;
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
@@ -96,7 +96,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_hotel_flight);
-        //InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
         notiRecive();
         list = findViewById(R.id.lvHoteResult);
@@ -134,20 +133,16 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         bargashtFa = getIntent().getExtras().getString("CheckOutFaHF");
 
 
-        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " +bargashtFa);
+        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
         rooms.add(new Rooms(getIntent().getExtras().getInt("Adult"), getIntent().getExtras().getInt("Child")));
 
 
-
-            rlLoading = findViewById(R.id.rlLoading);
+        rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
         raft = getIntent().getExtras().getString("CheckInHF");
         bargasht = getIntent().getExtras().getString("CheckOutHF");
         new GetHotelAsync().execute();
 
-       /* Log.e("raft", getIntent().getExtras().getString("CheckIn"));
-        Log.e("bargasht", getIntent().getExtras().getString("CheckOut"));
-        Log.e("cod", Prefs.getString("Value-Hotel-City-Code", ""));*/
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -221,7 +216,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     cal.add(Calendar.DATE, +1);
                     System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
                     //shart kamtar az emruz
-                    if (date.getTime()>= date.getTime()) {
+                    if (date.getTime() >= date.getTime()) {
                         raft = formatter.format(cal.getTime());
 
                         ///onvan
@@ -397,7 +392,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                             selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                                     selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                                     selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                    selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                    selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
                         }
 
                     }
@@ -451,7 +446,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                             selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                             selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
                 }
 
 
@@ -470,7 +465,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                             selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                             selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
 
                 }
@@ -511,7 +506,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                         selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
                                         selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
                                         selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(),selectHotelModelArrayList.get(j).getFlights(),selectHotelModelArrayList.get(j).getArrRout(),selectHotelModelArrayList.get(j).getDepRout(),selectHotelModelArrayList.get(j).getAmount()));
+                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(), selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount()));
 
                             }
 
@@ -543,7 +538,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                             selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
                                             selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                             selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText()
-                                            , selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),selectHotelModelArrayListFilter.get(j).getFlights(),selectHotelModelArrayListFilter.get(j).getArrRout(),selectHotelModelArrayListFilter.get(j).getDepRout(),selectHotelModelArrayListFilter.get(j).getAmount()));
+                                            , selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount()));
 
                                 }
 
@@ -574,7 +569,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                     selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
                                     selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                     selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),selectHotelModelArrayListFilter.get(j).getFlights(),selectHotelModelArrayListFilter.get(j).getArrRout(),selectHotelModelArrayListFilter.get(j).getDepRout(),selectHotelModelArrayListFilter.get(j).getAmount()));
+                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount()));
 
                         }
 
@@ -604,7 +599,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                     selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
                                     selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                     selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),selectHotelModelArrayListFilter.get(j).getFlights(),selectHotelModelArrayListFilter.get(j).getArrRout(),selectHotelModelArrayListFilter.get(j).getDepRout(),selectHotelModelArrayListFilter.get(j).getAmount()));
+                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount()));
 
                         }
 
@@ -638,7 +633,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                     selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                     selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
                                     selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),
-                                    selectHotelModelArrayListFilter.get(j).getFlights(),selectHotelModelArrayListFilter.get(j).getArrRout(),selectHotelModelArrayListFilter.get(j).getDepRout(),selectHotelModelArrayListFilter.get(j).getAmount()));
+                                    selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount()));
 
                         }
 
@@ -672,7 +667,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                 }
 
@@ -687,7 +682,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                 }
 
@@ -703,7 +698,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                 }
 
@@ -719,7 +714,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                 }
 
@@ -735,7 +730,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                             selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                 }
 
@@ -764,7 +759,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff()
-                                , selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                , selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -785,7 +780,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -802,7 +797,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                                 selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -827,7 +822,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -846,7 +841,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                                 selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -881,7 +876,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -904,7 +899,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -923,7 +918,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
                                 selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -948,7 +943,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -969,7 +964,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                 selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                                 selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                                 selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(),
-                                selectHotelModel.getFacilities(), selectHotelModel.getDiff(),selectHotelModel.getFlights(),selectHotelModel.getArrRout(),selectHotelModel.getDepRout(),selectHotelModel.getAmount()));
+                                selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
 
                     }
 
@@ -1008,8 +1003,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                         selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
                                         selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
                                         selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(),selectHotelModelArrayList.get(j).getFlights(),
-                                        selectHotelModelArrayList.get(j).getArrRout(),selectHotelModelArrayList.get(j).getDepRout(),selectHotelModelArrayList.get(j).getAmount()));
+                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
+                                        selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount()));
 
                             }
                         }
@@ -1044,8 +1039,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                         selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
                                         selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
                                         selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(),selectHotelModelArrayList.get(j).getFlights(),
-                                        selectHotelModelArrayList.get(j).getArrRout(),selectHotelModelArrayList.get(j).getDepRout(),selectHotelModelArrayList.get(j).getAmount()));
+                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
+                                        selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount()));
 
                             }
                         }
@@ -1087,8 +1082,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                     selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
                                     selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
                                     selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                    selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(),selectHotelModelArrayList.get(j).getFlights(),
-                                    selectHotelModelArrayList.get(j).getArrRout(),selectHotelModelArrayList.get(j).getDepRout(),selectHotelModelArrayList.get(j).getAmount()));
+                                    selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
+                                    selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount()));
 
                         }
 
@@ -1106,7 +1101,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 if (filterHotelPriceModel.get(i).isCheck()) {
                     for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
                         if (filterHotelPriceModel.get(i).getX() == selectHotelModelArrayList.get(j).getDiff()) {
-                            isFilter=true;
+                            isFilter = true;
                             selectHotelModels.add(new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
                                     selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
                                     selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
@@ -1116,8 +1111,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                     selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
                                     selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
                                     selectHotelModelArrayListFilter.get(j).getFacilities(),
-                                    selectHotelModelArrayListFilter.get(j).getDiff(),selectHotelModelArrayListFilter.get(j).getFlights(),
-                                    selectHotelModelArrayListFilter.get(j).getArrRout(),selectHotelModelArrayListFilter.get(j).getDepRout(),selectHotelModelArrayListFilter.get(j).getAmount()));
+                                    selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(),
+                                    selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount()));
 
                         }
 
@@ -1210,7 +1205,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
 
 
-       try {
+            try {
                 if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
@@ -1233,7 +1228,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x4)) + "-" + Utility.priceFormat(String.valueOf(x5)), 5, false));
 
                 int i = 0;
-                int j=0;
+                int j = 0;
                 for (Hotels hotels : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels) {
                     String off = "";
                     boolean isOff = false;
@@ -1277,15 +1272,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                             hotels.Availability.RoomLists.get(i).EHotelId,
                             hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.ResultUniqID, hotels.BestSell, isOff,
                             off, hotels.TypeText, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Facilities,
-                            xiff,hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FltList,
+                            xiff, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FltList,
                             hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.ArrRout,
-                            hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.DepRout,hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.Amount));
+                            hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.DepRout, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.Amount));
 
-                    flightId= hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FlightID;
+                    flightId = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FlightID;
 
                     //  i++;
-
-
 
 
                 }

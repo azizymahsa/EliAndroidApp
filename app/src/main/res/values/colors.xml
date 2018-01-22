@@ -83,6 +83,7 @@
     <color name="red_border">#e9545a</color>
     <color name="text_color_4d">#4d4d4d</color>
     <color name="text_color_2e">#2e3192</color>
+    <color name="color_passenger_prefactor">#e6e6e6</color>
 
 
 </resources>

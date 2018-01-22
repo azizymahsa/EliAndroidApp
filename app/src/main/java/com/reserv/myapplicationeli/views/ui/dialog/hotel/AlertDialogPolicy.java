@@ -41,7 +41,7 @@ public class AlertDialogPolicy implements View.OnClickListener {
         tvAlert = (JustifiedTextView) dialogView.findViewById(R.id.tvAlert);
 
         Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
-        tvAlert.setTextSize(2,15);
+        tvAlert.setTextSize(2,12);
         tvAlert.setLineSpacing(5);
         tvAlert.setTypeFace(typeface);
 
