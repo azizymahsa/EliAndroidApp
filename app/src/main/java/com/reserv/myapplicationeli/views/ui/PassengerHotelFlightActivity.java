@@ -837,7 +837,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             headerJson.put("PartnerList", detailsPartner);
 
-            headerJson.put("Culture", "fa-ir");
+            headerJson.put("Culture", "fa-IR");
             headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
             headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
             headerJson.put("FlightOfferId", getIntent().getExtras().get("flightId"));
@@ -870,7 +870,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
         try {
-            manJson.put("Culture", "fa-ir");
+            manJson.put("Culture", "fa-IR");
 
             manJson.put("invoiceNo", "782863");//perches service
 
@@ -907,7 +907,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
         try {
-            manJson.put("Culture", "fa-ir");
+            manJson.put("Culture", "fa-IR");
 
             manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
             manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));

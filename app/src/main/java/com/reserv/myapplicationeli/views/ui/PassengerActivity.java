@@ -845,7 +845,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			headerJson.put("partnerInfo", detailsPartner);
 
-			headerJson.put("Culture", "fa-ir");
+			headerJson.put("Culture", "fa-IR");
 
 			identityJson.put("Password", "123qwe!@#QWE");
 			identityJson.put("TermianlId", "Mobile");
@@ -869,7 +869,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 		try {
-			manJson.put("Culture", "fa-ir");
+			manJson.put("Culture", "fa-IR");
 
 			manJson.put("invoiceNo", "782863");//perches service
 
@@ -905,7 +905,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 		try {
-			manJson.put("Culture", "fa-ir");
+			manJson.put("Culture", "fa-IR");
 
 			manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
 			manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));

@@ -4,16 +4,17 @@
     android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:id="@+id/layout_root">
+    android:id="@+id/layout_root"
+    >
 
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="7sp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@color/hotel_detail_background"
             card_view:cardBackgroundColor="#ffffff"
             card_view:cardCornerRadius="3dp"
@@ -57,8 +58,9 @@
                                 android:gravity="right|center"
                                 android:textColor="@color/green"
                                 android:layout_marginTop="5dp"
-                                android:paddingRight="@dimen/_10dp_padding"
-                                android:textSize="17dp"/>
+                                android:paddingRight="5dp"
+                                android:textSize="14dp"
+                                android:textAppearance="@style/IrsansBold"/>
 
                             <TextView
                                 android:id="@+id/txt_price"
@@ -67,7 +69,7 @@
                                 android:gravity="left|center"
                                 android:layout_marginTop="5dp"
                                 android:paddingRight="@dimen/_25dp"
-                                android:textSize="17dp"
+                                android:textSize="15dp"
                                 android:textAppearance="@style/IrsansBold"/>
                         </LinearLayout>
 
@@ -85,7 +87,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.1"
                     android:orientation="horizontal">
 
                     <Button
@@ -98,18 +100,20 @@
                         android:background="@drawable/btngravity_big"
                         android:textColor="#fff"
                         android:layout_alignParentLeft="true"
-                        android:layout_margin="@dimen/_12dp"/>
-                    <Button
-                        android:id="@+id/btn_details"
-                        android:layout_width="98dp"
-                        android:layout_height="25dp"
-                        android:text="جزییات"
-                        android:textSize="@dimen/_12dp"
-                        android:gravity="center"
-                        android:background="@drawable/background_strock_banafsh"
-                        android:textColor="@color/titlebackgroundcolor"
-                        android:layout_alignParentRight="true"
-                        android:layout_margin="@dimen/_12dp"/>
+                       android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"/>
+                    <!--<Button-->
+                        <!--android:id="@+id/btn_details"-->
+                        <!--android:layout_width="98dp"-->
+                        <!--android:layout_height="25dp"-->
+                        <!--android:text="جزییات"-->
+                        <!--android:textSize="@dimen/_12dp"-->
+                        <!--android:gravity="center"-->
+                        <!--android:background="@drawable/background_strock_banafsh"-->
+                        <!--android:textColor="@color/titlebackgroundcolor"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_marginRight="@dimen/_12dp"-->
+                        <!--android:layout_marginBottom="10dp"/>-->
 
                 </RelativeLayout>
 

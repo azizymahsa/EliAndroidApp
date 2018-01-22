@@ -67,7 +67,7 @@ public class TravelInsurancAdapter extends RecyclerView.Adapter<InsuranceRowHold
                 break;
             case -3:
                 holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.red_border));
-                holder.txtPlan.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
+                holder.txtPlan.setTextColor(ContextCompat.getColor(context, R.color.red_border));
                 break;
         }
 

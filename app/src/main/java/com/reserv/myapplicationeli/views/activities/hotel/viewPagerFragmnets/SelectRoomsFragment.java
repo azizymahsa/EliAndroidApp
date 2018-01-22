@@ -87,7 +87,7 @@ public class SelectRoomsFragment extends Fragment{
         protected String doInBackground(String... params) {
             try {
                 getRoomsList = new GetRoomsList(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("123qwe!@#QWE",
-                        "EligashtMlb","Mobile"),"",String.valueOf(getActivity().getIntent().getExtras().getInt("HotelId")),"","",getActivity().getIntent().getExtras().getString("ResultUniqID"),"fa-ir")));
+                        "EligashtMlb","Mobile"),"",String.valueOf(getActivity().getIntent().getExtras().getInt("HotelId")),"","",getActivity().getIntent().getExtras().getString("ResultUniqID"),"fa-IR")));
 
             } catch (Exception e) {
 

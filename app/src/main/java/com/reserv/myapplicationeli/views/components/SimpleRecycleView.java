@@ -119,7 +119,12 @@ public class SimpleRecycleView<T extends RecyclerView.ViewHolder> extends Linear
         txtTitle =(TextView) findViewById(R.id.txt_title);
         textView = (TextView) findViewById(R.id.txt);
         recyclerView = (RecyclerView) findViewById(R.id.rcl);
+        recyclerView.setNestedScrollingEnabled(false);
+    }
 
+    public void setNestedScrollingEnabled(boolean value){
+        recyclerView.setNestedScrollingEnabled(value);
+        invalidate();
     }
 
     public void smoothScrollToPosition(int position){

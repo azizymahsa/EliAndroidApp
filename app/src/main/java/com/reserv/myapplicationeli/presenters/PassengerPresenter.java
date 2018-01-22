@@ -106,7 +106,7 @@ public class PassengerPresenter implements PassengerContract.Presenter{
             String birthDay = DateUtil.getLongStringDate(passenger.getBirthDate(),"yyyy-MM-dd",true);
             holder.txt_birthday.setText(birthDay);
         }else {
-            holder.txt_birthday.setText("انتخاب کنید");
+            holder.txt_birthday.setText("تاریخ تولد خود را انتخاب کنید");
         }
         holder.layout_birthday.setOnClickListener(new View.OnClickListener() {
             @Override

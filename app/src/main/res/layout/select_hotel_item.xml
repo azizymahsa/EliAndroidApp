@@ -202,7 +202,7 @@
                         android:gravity="left|center"
                         android:text="ریال"
                         android:textColor="@color/green"
-                        android:textSize="17dp"
+                        android:textSize="14dp"
                         android:textAppearance="@style/IrsansBold"
 
 
@@ -215,7 +215,7 @@
                         android:layout_marginLeft="5dp"
                         android:gravity="left|center"
                         android:textColor="#000000"
-                        android:textSize="17dp"
+                        android:textSize="15dp"
                         android:textAppearance="@style/IrsansBold"
                         android:layout_toRightOf="@+id/tvRial"
 

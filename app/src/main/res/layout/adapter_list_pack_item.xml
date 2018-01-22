@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:background="#ffffff"
             android:orientation="vertical"
-            android:padding="8dp">
+           >
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
                 android:id="@+id/rcl_hotels"
                 android:layout_width="match_parent"
@@ -62,12 +62,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:text="مشخصات پرواز"
                     android:gravity="center"
+                    android:textColor="@color/dark_blue"
                     android:background="@color/hotel_detail_background"/>
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -82,7 +81,8 @@
                         android:layout_centerHorizontal="true"
                         android:gravity="center"
                         android:paddingRight="10dp"
-                        android:textSize="12dp"/>
+                        android:textSize="12dp"
+                        android:textColor="#000"/>
                     <TextView
                         android:id="@+id/time_ariv_go"
                         android:layout_width="wrap_content"
@@ -91,12 +91,13 @@
                         android:gravity="center"
                         android:layout_toLeftOf="@+id/iv"
                         android:layout_centerVertical="true"
-                        android:paddingRight="10dp"/>
+                        android:paddingRight="10dp"
+                        android:textColor="@color/dark_blue"/>
 
                     <ImageView
                         android:id="@+id/iv"
                         android:layout_width="200dp"
-                        android:layout_height="15dp"
+                        android:layout_height="11dp"
                         android:layout_centerInParent="true"
                         android:scaleType="fitXY"
                         android:src="@drawable/group" />
@@ -109,17 +110,19 @@
                         android:gravity="center"
                         android:layout_toRightOf="@+id/iv"
                         android:layout_centerVertical="true"
-                        android:paddingLeft="10dp"/>
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/dark_blue"/>
 
                     <TextView
                         android:id="@+id/country_ariv_go"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/time_deprt_go"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center|right"
+                        android:gravity="center"
                         android:text="tehran"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#000"/>
 
                     <TextView
                         android:id="@+id/country_deprt_go"
@@ -131,7 +134,9 @@
                         android:layout_below="@+id/time_deprt_go"
                         android:text="siraz"
                         android:gravity="right"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="7dp"
+                        android:textColor="#000"
+
                       />
                 </RelativeLayout>
                 <RelativeLayout
@@ -146,7 +151,8 @@
                         android:layout_centerHorizontal="true"
                         android:gravity="center"
                         android:paddingRight="10dp"
-                        android:textSize="12dp"/>
+                        android:textSize="12dp"
+                        android:textColor="#000"/>
 
                     <TextView
                         android:id="@+id/time_arrive_back"
@@ -156,12 +162,13 @@
                         android:gravity="center"
                         android:layout_toLeftOf="@+id/iv"
                         android:layout_centerVertical="true"
-                        android:paddingRight="10dp"/>
+                        android:paddingRight="10dp"
+                        android:textColor="@color/dark_blue"/>
 
                     <ImageView
                         android:id="@+id/iv"
                         android:layout_width="200dp"
-                        android:layout_height="15dp"
+                        android:layout_height="11dp"
                         android:layout_centerInParent="true"
                         android:scaleType="fitXY"
                         android:src="@drawable/group"/>
@@ -174,17 +181,19 @@
                         android:gravity="center"
                         android:layout_toRightOf="@+id/iv"
                         android:layout_centerVertical="true"
-                        android:paddingLeft="10dp"/>
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/dark_blue"/>
 
                     <TextView
                         android:id="@+id/country_arive_back"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/time_drt_back"
-                        android:gravity="center|right"
+                        android:gravity="center"
                         android:text="tehran"
-                        android:layout_marginTop="5dp"
-                        android:textSize="12dp"/>
+                        android:layout_marginLeft="20dp"
+                        android:textSize="12dp"
+                        android:textColor="#000"/>
 
                     <TextView
                         android:id="@+id/country_depart_back"
@@ -196,7 +205,9 @@
                         android:layout_below="@+id/time_drt_back"
                         android:text="siraz"
                         android:gravity="right"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="7dp"
+                        android:textColor="#000"
+
                         />
                 </RelativeLayout>
 

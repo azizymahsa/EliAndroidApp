@@ -84,7 +84,12 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         holder.chk_prow_price.setOnCheckedChangeListener(null);
         holder.chk_prow_price.setChecked(item.isChecked());
         holder.adaultPrice.setText(Utility.priceFormat(String.valueOf(item.getAdl())));
-        holder.childPrice.setText(Utility.priceFormat(String.valueOf(item.getChWb())));
+        if( item.getChWb() == 0){
+            holder.childPrice.setText(" ندارد ");
+        }else {
+            holder.childPrice.setText(Utility.priceFormat(String.valueOf(item.getChWb())));
+        }
+
         holder.infantPrice.setText(Utility.priceFormat(String.valueOf(item.getChNb())));
         holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice())));
         holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF());

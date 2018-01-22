@@ -63,4 +63,7 @@
     <dimen name="text_message">14dp</dimen>
     <dimen name="_17dp_textsize">17dp</dimen>
     <dimen name="_32Plan">32dp</dimen>
+    <dimen name="_25dp_margin">25dp</dimen>
+    <dimen name="_21dp_margin">21dp</dimen>
+    <dimen name="_40dp">40dp</dimen>
 </resources>

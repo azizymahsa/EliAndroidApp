@@ -15,7 +15,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="50"
+            android:layout_weight="0.5"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/banafsh_jahan">
@@ -41,18 +41,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="50"
+            android:layout_weight="0.5"
             android:orientation="vertical">
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="100"
-                android:layout_margin="@dimen/_10dp_margin">
+                android:layout_weight="0.3"
+                android:layout_marginRight="@dimen/_10dp_margin"
+                android:layout_marginLeft="@dimen/_10dp_margin"
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_12dp_marginTop"
                     android:orientation="horizontal"
                     android:layout_gravity="center">
 
@@ -179,8 +180,9 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:layout_margin="@dimen/_10dp_margin">
+                android:layout_weight="0.3"
+                android:layout_margin="10dp">
+
                 <LinearLayout
                     android:id="@+id/layout_room"
                     android:layout_width="match_parent"
@@ -206,7 +208,7 @@
 
                             android:text="کودک"
                             android:textStyle="bold"
-                            android:textSize="@dimen/text_size_12dp"
+
                             android:textColor="@color/text_color_2"/>
 
                         <TextView
@@ -242,7 +244,6 @@
                             android:text="بزرگسال"
                             android:padding="@dimen/_5dp_padding"
                             android:textStyle="bold"
-                            android:textSize="@dimen/text_size_12dp"
                             android:textColor="@color/text_color_2"/>
 
                         <TextView
@@ -280,7 +281,6 @@
                             android:text="اتاق"
                             android:padding="@dimen/_5dp_padding"
                             android:textStyle="bold"
-                            android:textSize="@dimen/text_size_12dp"
                             android:textColor="@color/text_color_2"/>
 
 
@@ -301,22 +301,27 @@
 
 
 
+                <Button
+                    android:id="@+id/btnSearchPackage"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_21dp_margin"
+                    android:layout_marginRight="@dimen/_21dp_margin"
+                    android:layout_marginBottom="@dimen/_5dp_margin"
+                    android:background="@drawable/btngravity_big"
+                    android:text="@string/search_package"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/_16dp_txtSize"
+                    android:textStyle="bold"
+                   />
 
 
-            <Button
-                android:id="@+id/btnSearchPackage"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="21dp"
-                android:layout_marginRight="21dp"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/btngravity_big"
-                android:text="@string/search_package"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/_16dp_txtSize"
-                android:textStyle="bold"
-                android:layout_marginBottom="@dimen/_5dp_margin"/>
+
+
+
+
+
 
 
 

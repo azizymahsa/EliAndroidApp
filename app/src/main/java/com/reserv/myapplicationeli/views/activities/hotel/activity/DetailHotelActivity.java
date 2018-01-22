@@ -271,7 +271,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         "EligashtMlb", "Mobile"), "",
                         String.valueOf(getIntent().getExtras().getInt("HotelId")),
                         "", "", getIntent().getExtras().getString("ResultUniqID"),
-                        "fa-ir")));
+                        "fa-IR")));
 
             } catch (Exception e) {
 
@@ -322,8 +322,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected String doInBackground(String... params) {
             try {
-                getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest("fa-ir", String.valueOf(getIntent().getExtras().getInt("HotelId")))));
-                Log.e("j2j2j2", new Gson().toJson(new GetHotelDetailRequest(new GetHotelDRequest("fa-ir", String.valueOf(getIntent().getExtras().getInt("HotelId"))))));
+                getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest("fa-IR", String.valueOf(getIntent().getExtras().getInt("HotelId")))));
+                Log.e("j2j2j2", new Gson().toJson(new GetHotelDetailRequest(new GetHotelDRequest("fa-IR", String.valueOf(getIntent().getExtras().getInt("HotelId"))))));
 
             } catch (Exception e) {
 

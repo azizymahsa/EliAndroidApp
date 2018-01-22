@@ -233,7 +233,7 @@ public class RoomsAdapter extends BaseAdapter {
                 getHoldRoom = new GetHoldRoom(new HoldSelectedRoomRequest(new
                         com.reserv.myapplicationeli.models.hotel.api
                                 .holdSelectedRoom.call.RoomRequest(new Identity("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "fa-ir", eHotelId
+                        "EligashtMlb", "Mobile"), "fa-IR", eHotelId
                         , offerIds, context.getIntent().getExtras().getString("ResultUniqID"))));
 
             } catch (Exception e) {

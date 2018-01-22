@@ -395,7 +395,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 				JSONObject jFact = jArray.getJSONObject("FactorSummary");
 
 
-				JSONObject jArray2 = jArray.getJSONObject("PreFactorHotels");
+			//	JSONObject jArray2 = jArray.getJSONObject("PreFactorHotels");
 				int RqBase_ID=jFact.getInt("RqBase_ID");
 				//////////////////////////////
 				long totalprice=jFact.getLong("TotalPrice");
@@ -404,7 +404,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 				tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
 
 
-				Log.e("teeeeest", jArray2.toString());
+			//	Log.e("teeeeest", jArray.getJSONObject("PreFactorHotels").toString());
 /*
 				for (int i =0 ;i<jArray2.length();i++){
 					Log.e("teeeeest", jArray2.getJSONObject(i).getString("CityFa"));
@@ -883,7 +883,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 			headerJson.put("PartnerList", detailsPartner);
 
-			headerJson.put("Culture", "fa-ir");
+			headerJson.put("Culture", "fa-IR");
 			headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
 			headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
 /*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
@@ -916,7 +916,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
 		try {
-			manJson.put("Culture", "fa-ir");
+			manJson.put("Culture", "fa-IR");
 
 			manJson.put("invoiceNo", "782863");//perches service
 
@@ -952,7 +952,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
 		try {
-			manJson.put("Culture", "fa-ir");
+			manJson.put("Culture", "fa-IR");
 
 			manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
 			manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));

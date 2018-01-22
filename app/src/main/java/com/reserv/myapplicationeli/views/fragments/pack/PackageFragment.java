@@ -33,14 +33,11 @@ import com.reserv.myapplicationeli.models.model.pack.call.CityRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.response.CityListRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
-import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.reserv.myapplicationeli.views.activities.AddRoomActivity;
 import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
 import com.reserv.myapplicationeli.views.adapters.pack.CitySpinnerAdapter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -77,6 +74,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     private HotelCity hotelCity;
     private String departureFrom;
     private String departureTo;
+    private CitySpinnerAdapter citySpinnerAdapter;
     int month;
     int year_;
     int day;
@@ -147,7 +145,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 }
 
 
-                CitySpinnerAdapter citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
+                citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
                 spn_cities.setAdapter(citySpinnerAdapter);
             }
 
@@ -253,7 +251,10 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.btnSearchPackage:
-
+                if(citySpinnerAdapter == null){
+                    Toast.makeText(getActivity(), "ابتدا شهر مورد نظر را انتخاب نمایید", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (txt_depart_date.getText().toString().equals("انتخاب کنید") && txt_return_date.getText().toString().equals("انتخاب کنید")) {
                     Toast.makeText(getActivity(), "تاریخ رفت و برگشت را انتخاب کنید", Toast.LENGTH_SHORT).show();
                     return;
@@ -272,7 +273,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 _intent.putExtra("DepartureFrom", departureFrom);
                 _intent.putExtra("DepartureTo", departureTo);
                 _intent.putExtra("RoomList", getRoomList(roomsSelected));
-                _intent.putExtra("Culture", "fa-ir");
+                _intent.putExtra("Culture", "fa-IR");
                 _intent.putExtra("Country", String.valueOf(hotelCity.getCityID()));
                 _intent.putExtra("CityName", String.valueOf(ValidationTools.isEmptyOrNull(hotelCity.getCityNameFa()) ? hotelCity.getCityNameEn() : hotelCity.getCityNameFa()));
                 startActivity(_intent);

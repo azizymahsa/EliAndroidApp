@@ -1354,7 +1354,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				manJson.put("AdlCount", Integer.parseInt(adlCount));
 				manJson.put("ChdCount", Integer.parseInt(chdCount));
 				manJson.put("InfCount", Integer.parseInt(infCount));//{"DepartureAirportcode":"THR","ArrivalAirportcode":"IST","DepartureDate":"2017-12-28","ArrivalDate":"2017-12-31","OneWay":"2","CabinClassCode":"Y","AdlCount":1,"ChdCount":0,"InfCount":0}
-				manJson.put("Culture", "fa-ir");
+				manJson.put("Culture", "fa-IR");
 
 				manJson.put("identity", identityJson);
 				jsone.put("request", manJson);
@@ -1376,7 +1376,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				manJson.put("AdlCount", 1);
 				manJson.put("ChdCount", 0);
 				manJson.put("InfCount", 0);
-				manJson.put("Culture", "fa-ir");
+				manJson.put("Culture", "fa-IR");
 
 				//Global
 				COUNT_B = 1;
