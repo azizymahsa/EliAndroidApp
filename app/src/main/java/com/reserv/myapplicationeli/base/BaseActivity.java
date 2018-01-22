@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.base;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +44,22 @@ public class BaseActivity extends AppCompatActivity  {
         LocalBroadcastManager.getInstance(this).registerReceiver(sendStartTimer,
                 new IntentFilter("sendFinish"));
 
+    }
+
+    protected ProgressDialog mProgressDialog;
+    protected void needShowProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage("لطفا کمی صبر کنید ...");
+            mProgressDialog.setIndeterminate(true);
+        }
+        mProgressDialog.show();
+    }
+
+    protected void needHideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 
 }

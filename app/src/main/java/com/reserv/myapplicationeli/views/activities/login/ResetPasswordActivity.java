@@ -1,17 +1,26 @@
 package com.reserv.myapplicationeli.views.activities.login;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.retro.ClientService;
 import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
 import com.reserv.myapplicationeli.models.model.login.call.ResetPassRequestModel;
-import com.reserv.myapplicationeli.models.model.login.response.TWebUserLogin;
+import com.reserv.myapplicationeli.models.model.login.LoginResult;
+import com.reserv.myapplicationeli.models.model.login.response.WebUserRememberPasswordRes;
+import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import retrofit2.Call;
@@ -28,7 +37,9 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
 
     private ClientService service;
     private EditText email_reset_pass;
+    private Button btnResetPassword;
 
+    @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
@@ -46,19 +57,33 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         ResetPassRequestModel resetPassRequestModel = new ResetPassRequestModel();
         resetPassRequestModel.setRequest(email_reset_pass.getText().toString());
 
-        Call<TWebUserLogin> call = service.ResetPassword(new ResetPassRequestModel());
-        call.enqueue(new Callback<TWebUserLogin>() {
+        needShowProgressDialog();
+        Log.e(" request " ,new GsonBuilder().create().toJson(resetPassRequestModel));
+        Call<WebUserRememberPasswordRes> call = service.ResetPassword(resetPassRequestModel);
+        call.enqueue(new Callback<WebUserRememberPasswordRes>() {
             @Override
-            public void onResponse(Call<TWebUserLogin> call, Response<TWebUserLogin> response) {
+            public void onResponse(Call<WebUserRememberPasswordRes> call, Response<WebUserRememberPasswordRes> response) {
+                needHideProgressDialog();
                 if (response == null
                         || response.body() == null
-                        || response.body().getWebUserLogin() == null) {
+                        || response.body().getWebUserRememberPasswordResult() == null) {
+                    Toast.makeText(ResetPasswordActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                if (response.body().getWebUserRememberPasswordResult().getWebUserLogin() == null && response.body().getWebUserRememberPasswordResult().getError()!=null){
+                    Toast.makeText(ResetPasswordActivity.this, response.body().getWebUserRememberPasswordResult().getError().toString(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                //do somethings !!
+
             }
 
             @Override
-            public void onFailure(Call<TWebUserLogin> call, Throwable t) {
+            public void onFailure(Call<WebUserRememberPasswordRes> call, Throwable t) {
+                needHideProgressDialog();
+                Toast.makeText(ResetPasswordActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -66,10 +91,27 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
 
     private void initViews() {
         email_reset_pass = findViewById(R.id.edit_email_resetPass);
+        btnResetPassword = findViewById(R.id.btnResetPassword);
+
+        btnResetPassword.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnResetPassword:
+                if(email_reset_pass.length() == 0){
+                    Toast.makeText(this, "لطفا ایمیل خود را وارد کنید", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                if(!ValidationTools.isEmailValid(email_reset_pass.getText().toString())){
+                    Toast.makeText(this, "ایمیل وارد شده صحیح نمی باشد", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                RememberPass();
+                break;
+        }
     }
 }

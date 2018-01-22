@@ -18,4 +18,7 @@ public class LoginRequestModel {
         this.request = request;
     }
 
+    public LoginRequestModel(LoginListReq request) {
+        this.request = request;
+    }
 }

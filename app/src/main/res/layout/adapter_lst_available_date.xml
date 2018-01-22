@@ -30,8 +30,8 @@
 
             <ImageView
                 android:id="@+id/img_airLine"
-                android:layout_width="30sp"
-                android:layout_height="30sp"/>
+                android:layout_width="40sp"
+                android:layout_height="40sp"/>
 
         </LinearLayout>
 

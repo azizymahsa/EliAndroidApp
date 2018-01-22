@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.views.activities.login;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,15 +13,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.retro.ClientService;
 import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+import com.reserv.myapplicationeli.models.model.login.WebUserLogin;
 import com.reserv.myapplicationeli.models.model.login.call.LoginListReq;
 import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
-import com.reserv.myapplicationeli.models.model.login.response.TWebUserLogin;
+import com.reserv.myapplicationeli.models.model.login.LoginResult;
+import com.reserv.myapplicationeli.models.model.login.response.LoginRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
+import com.reserv.myapplicationeli.tools.WebUserTools;
+import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -45,6 +51,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
     private LinearLayout layoutResetPassword;
     private ClientService service;
 
+    @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -67,24 +74,45 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         loginListReq.setUserName(txtEmail.getText().toString());
         loginListReq.setPassword(txtPassword.getText().toString());
 
-
-        Call<TWebUserLogin> call = service.Login(new LoginRequestModel());
-        call.enqueue(new Callback<TWebUserLogin>() {
+        needShowProgressDialog();
+        Log.e(" request " ,new GsonBuilder().create().toJson(new LoginRequestModel(loginListReq)));
+        Call<LoginRes> call = service.Login(new LoginRequestModel(loginListReq));
+        call.enqueue(new Callback<LoginRes>() {
             @Override
-            public void onResponse(Call<TWebUserLogin> call, Response<TWebUserLogin> response) {
-
-                Log.e("loginRes", "res : " + response.body().getWebUserLogin());
+            public void onResponse(Call<LoginRes> call, Response<LoginRes> response) {
+                needHideProgressDialog();
                 if (response == null
                         || response.body() == null
-                        || response.body().getWebUserLogin() == null) {
+                        || response.body().getLoginResult() == null) {
+                    Toast.makeText(LogInActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                if (response.body().getLoginResult().getWebUserLogin() == null && response.body().getLoginResult().getError()!=null){
+                    Toast.makeText(LogInActivity.this, response.body().getLoginResult().getError().toString(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                WebUserLogin webUserLogin = response.body().getLoginResult().getWebUserLogin();
+                if(webUserLogin != null && webUserLogin.getLoginStatus().equals("NO")){
+                    Toast.makeText(LogInActivity.this, "ایمیل و یا رمز عبور شما اشتباه می باشد .", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+
+                WebUserTools.getInstance().setUser(webUserLogin.getWebUserProperties());
+//                Toast.makeText(LogInActivity.this, "Id of User is :" + webUserLogin.getWebUserProperties().getWebUserID(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LogInActivity.this, "password of User is :" + webUserLogin.getWebUserProperties().getPassword(), Toast.LENGTH_SHORT).show();
+//                Log.e("Id of User is :",webUserLogin.getWebUserProperties()+"");
 
 
             }
 
             @Override
-            public void onFailure(Call<TWebUserLogin> call, Throwable t) {
+            public void onFailure(Call<LoginRes> call, Throwable t) {
+                needHideProgressDialog();
+                Toast.makeText(LogInActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
 
             }
         });

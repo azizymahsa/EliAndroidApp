@@ -5,7 +5,10 @@ import com.reserv.myapplicationeli.models.model.insurance.response.InsuranceRes;
 import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
 import com.reserv.myapplicationeli.models.model.login.call.RegisterRequestModel;
 import com.reserv.myapplicationeli.models.model.login.call.ResetPassRequestModel;
-import com.reserv.myapplicationeli.models.model.login.response.TWebUserLogin;
+import com.reserv.myapplicationeli.models.model.login.LoginResult;
+import com.reserv.myapplicationeli.models.model.login.response.LoginRes;
+import com.reserv.myapplicationeli.models.model.login.response.WebUserRegisterRes;
+import com.reserv.myapplicationeli.models.model.login.response.WebUserRememberPasswordRes;
 import com.reserv.myapplicationeli.models.model.pack.call.CityRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.call.CountryRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageRequestModel;
@@ -27,14 +30,14 @@ public interface ClientService {
 
 
     @POST("Common/StaticDataService.svc/Login")
-    Call<TWebUserLogin> Login(@Body LoginRequestModel loginRequestModel);
+    Call<LoginRes> Login(@Body LoginRequestModel loginRequestModel);
 
 
     @POST("Common/StaticDataService.svc/WebUserRegister")
-    Call<TWebUserLogin> Register(@Body RegisterRequestModel registerRequestModel);
+    Call<WebUserRegisterRes> Register(@Body RegisterRequestModel registerRequestModel);
 
     @POST("Common/StaticDataService.svc/WebUserRememberPassword")
-    Call<TWebUserLogin> ResetPassword(@Body ResetPassRequestModel registerRequestModel);
+    Call<WebUserRememberPasswordRes> ResetPassword(@Body ResetPassRequestModel registerRequestModel);
 
     @POST("Insurance/InsuranceService.svc/ShowInsurance")
     Call<InsuranceRes> showInsurance(@Body InsuranceRequestModel insuranceRequestModel);
