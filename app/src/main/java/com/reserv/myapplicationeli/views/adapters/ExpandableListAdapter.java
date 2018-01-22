@@ -10,6 +10,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
@@ -202,34 +203,40 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		//TextView textCharter = (TextView) convertView.findViewById(R.id.textCharter);
 		TextView txttedad = (TextView) convertView.findViewById(R.id.txttedad);
 
+		LinearLayout linearBargashtOne = (LinearLayout) convertView.findViewById(R.id.linearBargashtOne);
+		RelativeLayout linearBargashtTwo = (RelativeLayout) convertView.findViewById(R.id.linearBargashtTwo);
+		LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
 		///
-		if(item2.DepartureCityNameFaB.length() <= 2){//yek tarafe
-			lblArrivalCityNameFaB.setVisibility(View.GONE);
-			lblFlightArrivalTimeB.setVisibility(View.GONE);
+		if(item2.SegmentFalseCount <= 1){//yek tarafe
+			linearBargashtOne.setVisibility(View.GONE);
+			linearBargashtTwo.setVisibility(View.GONE);
+
+			linearBargashtTree.setVisibility(View.GONE);
+
 		}else{//2tarafe
 			//////Ruze hafte
 			//bargasht
 			 txtArrivelFalseLast.setText(item2.DepartureCityNameFaB);
 			 txtDepurtureFalseOne .setText(item2.ArrivalCityNameFaB);
-			//raft
-			 txtArrivelTrueLast.setText(item2.DepartureCityNameFaR);
-			 txtDepurtureTrueOne.setText(item2.ArrivalCityNameFaR);
 
-
-			num_flight_r.setText(item2.AirlineCode+item2.FlightNumberR);
 			num_flight_b.setText(item2.AirlineCode+item2.FlightNumberB);
 			///////////////
 			//lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
 			System.out.println("bargasgt:"+item2.FltDateDayOfWeekFalse);
 			lblArrivalCityNameFaB.setText(""+GetDayWeek(item2.FltDateDayOfWeekFalse)+" , "+item2.FlightTimeB);
-			lblFlightArrivalTimeB.setText(item2.SegmentFalseCount+"");//count bargasht
+			lblFlightArrivalTimeB.setText(item2.SegmentFalseCount+" توقف ");//count bargasht
 		}
+		//raft
+		txtArrivelTrueLast.setText(item2.DepartureCityNameFaR);
+		txtDepurtureTrueOne.setText(item2.ArrivalCityNameFaR);
 
+
+		num_flight_r.setText(item2.AirlineCode+item2.FlightNumberR);
 		//
 	//	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
 		System.out.println("raft:"+item2.FltDateDayOfWeek);
 		lblArrivalCityNameFaR.setText(""+GetDayWeek(item2.FltDateDayOfWeek)+" , "+item2.FlightArrivalTimeR);
-		lblFlightArrivalTimeR.setText(item2.SegmentTrueCount+"");//count raft
+		lblFlightArrivalTimeR.setText(item2.SegmentTrueCount+" توقف ");//count raft
 
 		lblAdlCost.setText(item2.AdlCost+"");
 		lblAdlCost.setText(String.valueOf(NumberFormat.getInstance().format(item2.AdlCost)));

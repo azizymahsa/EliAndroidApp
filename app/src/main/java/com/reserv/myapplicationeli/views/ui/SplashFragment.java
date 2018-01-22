@@ -1,9 +1,14 @@
 package com.reserv.myapplicationeli.views.ui;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.ImageView;
 import com.reserv.myapplicationeli.R;
@@ -31,6 +36,15 @@ public class SplashFragment extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_splash);
         super.onCreate(savedInstanceState);
+
+        //checking permission in start app
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = {Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE, Manifest.permission.CALL_PRIVILEGED};
+
+        if(!hasPermissions(this, PERMISSIONS)){
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
+        //
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
         avi = findViewById(R.id.avi);
@@ -199,5 +213,14 @@ public class SplashFragment extends BaseActivity {
 		findViewById(R.id.downloadButtonsPanel).setVisibility(View.GONE);*/
     }
 
-
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

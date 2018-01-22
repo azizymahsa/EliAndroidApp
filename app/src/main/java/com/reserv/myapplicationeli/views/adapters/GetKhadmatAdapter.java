@@ -37,6 +37,9 @@ public class GetKhadmatAdapter extends BaseAdapter {
 	public String value_Maghsad_City;
 	public String value_Maghsad_Airport;
 	public String value_Maghsad_Airport_Code;
+	List<String> selectId = new ArrayList<String>();
+	List<Long> gheymat = new ArrayList<Long>();
+
 	//public List<StrictMath> SegmentListtrueAvali = new ArrayList<FlightSegmentTrue>();
 public Activity activity;
 
@@ -85,7 +88,7 @@ public Activity activity;
 		return s;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		final ViewHolder holder;
 
 		if (convertView == null) {
@@ -134,24 +137,63 @@ public Activity activity;
 			public void onClick(View v) {
 				//tick_round_button
 
-				String buttonText =  holder.txtAdd.getText().toString();
+
 
 				//
-				String s= Prefs.getString("Select_ID_khadamat", "");
-				if(s.length()>1)
-				s=s+"|"+current.getSelectID();
-				else
-					s=current.getSelectID();//avalin bar
+				String sumSelectId= Prefs.getString("Select_ID_khadamat", "");
+				long sumGheymat=0;
 
-				Prefs.putString("Select_ID_khadamat",s);
 
-				//Toast.makeText(v.getContext(),current.getServiceID()+" "+current.getServiceTotalPrice(),Toast.LENGTH_SHORT).show();
-				if(!buttonText.contains("اضافه"))
-					PassengerActivity.updateTotalInfos(current.getServiceTotalPrice());
 
-				holder.btnAddsabad.setBackgroundResource(R.drawable.green_button);
-				holder.img_khadmat_row.setVisibility(View.VISIBLE);
-				holder.txtAdd.setText("اضافه شد");
+
+
+/*//////////////////////////////////CHANGE////////////////////////////////////////////////*/
+				String buttonText =  holder.txtAdd.getText().toString();
+
+
+
+				if (current.isFlag()){
+
+					current.setFlag(false);
+					holder.btnAddsabad.setBackgroundResource(R.drawable.blue_button);
+					holder.img_khadmat_row.setVisibility(View.GONE);
+					holder.txtAdd.setText("افزودن به سبد خرید");
+
+
+				}else{
+
+					current.setFlag(true);
+
+					holder.btnAddsabad.setBackgroundResource(R.drawable.green_button);
+					holder.img_khadmat_row.setVisibility(View.VISIBLE);
+					holder.txtAdd.setText("اضافه شد");
+
+				}
+				notifyDataSetChanged();
+
+
+				sumSelectId="";
+				for (int i =0 ;i<data.size();i++){
+					if(data.get(i).isFlag()) {
+						sumGheymat = sumGheymat + data.get(i).getServiceTotalPrice();
+						if(sumSelectId.length()>2) {
+
+							sumSelectId = sumSelectId + "|" + data.get(i).getSelectID();
+						}else {
+							sumSelectId = data.get(i).getSelectID();//avalin bar
+						}
+					}
+				}
+			//	Toast.makeText(v.getContext(),sumSelectId,Toast.LENGTH_SHORT).show();
+				Prefs.putString("Select_ID_khadamat",sumSelectId);
+				PassengerActivity.updateTotalInfos(sumGheymat);
+
+
+
+/*//////////////////////////////////END CHANGE////////////////////////////////////////////////*/
+
+
+
 			}
 		});
 

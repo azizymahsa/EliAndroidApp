@@ -222,6 +222,7 @@
                 </LinearLayout>
                 <!-- /////////////////////////Bargasht/////////////////////////////// -->
                 <LinearLayout
+                    android:id="@+id/linearBargashtOne"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp">
@@ -285,6 +286,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:id="@+id/linearBargashtTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
                     <ImageView
@@ -304,16 +306,11 @@
                         android:padding="4dp"/>
                 </RelativeLayout>
                 <LinearLayout
+                    android:id="@+id/linearBargashtTree"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <!-- <TextView
-                         android:id="@+id/textView1"
-                        android:layout_width="0dp"
-                         android:layout_weight="1"
-                         android:layout_height="wrap_content"
-                           android:gravity="right"
-                         android:text="TextView" /> -->
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -435,7 +432,7 @@
                     android:textColor="#0e874e"
 
                     android:textAppearance="@style/IrsansBold"
-                    android:textSize="17dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/lblAdlCost"
@@ -446,7 +443,7 @@
                     android:gravity="left"
                     android:text="10,000,000"
                     android:textColor="#000000"
-                    android:textSize="17dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

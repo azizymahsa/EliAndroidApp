@@ -28,6 +28,7 @@ public class PurchaseFlightResult {
 	private String ServiceTypeImgURL;
 	
 	private long ServiceTotalPrice;
+	boolean flag;
 	private String SelectID; 
 	public String getCityEn() {
 		return CityEn;
@@ -155,5 +156,12 @@ public class PurchaseFlightResult {
 	public void setSelectID(String selectID) {
 		SelectID = selectID;
 	}
-	
+
+	public boolean isFlag() {
+		return flag;
+	}
+
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
 }
