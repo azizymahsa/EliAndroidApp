@@ -64,43 +64,43 @@
         android:background="#ffffff"
         android:layout_below="@+id/toolbar_container">
 
-        <ImageView
+        <Button
             android:id="@+id/btn_pish_factor"
-            android:layout_width="95dp"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
-            android:src="@drawable/factor_passenger_off"
+            android:background="@drawable/factor_passenger_off"
             android:gravity="right|center_vertical"
             android:text=""
             android:textColor="#808080"
             android:textSize="10dp" />
 
-        <ImageView
+        <Button
             android:id="@+id/btn_khadamat"
-            android:layout_width="95dp"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/khadamat_passenger_off"
-            android:gravity="right"
-            android:text="  "
-            android:textColor="#808080"
-            android:textSize="10dp" />
-
-        <ImageView
-            android:id="@+id/btn_mosaferan"
-            android:layout_width="95dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mosaferan_passenger_off"
+            android:background="@drawable/khadamat_passenger_off"
             android:gravity="right|center_vertical"
             android:text="  "
             android:textColor="#808080"
             android:textSize="10dp" />
 
-        <ImageView
+        <Button
+            android:id="@+id/btn_mosaferan"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mosaferan_passenger_off"
+            android:gravity="right|center_vertical"
+            android:text="  "
+            android:textColor="#808080"
+            android:textSize="10dp" />
+
+        <Button
             android:id="@+id/btn_saler"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:src="@drawable/saler_passenger"
+            android:background="@drawable/saler_passenger"
             android:gravity="right|center_vertical"
             android:text=""
             android:textColor="#33ccff"
@@ -1576,6 +1576,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="0"
+                        android:textSize="15dp"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#098d4e"/>
 

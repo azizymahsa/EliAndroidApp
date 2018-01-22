@@ -1297,6 +1297,8 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="0"
+                            android:textSize="15dp"
+
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#098d4e"/>
 

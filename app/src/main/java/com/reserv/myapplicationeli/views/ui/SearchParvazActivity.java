@@ -1609,10 +1609,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								, SegmentList.get(0).getAirlineNameEn()
 								, SegmentListtrueAkhari.size()
 								,SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
-								,SegmentListFalseAvali.get(0).getFltDateDayOfWeek()
+								,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0")//SegmentListFalseAvali.get(0).getFltDateDayOfWeek()
 						,SegmentListFalseAkhari.size()
 						,SegmentListtrueAvali.get(0).getFlightNumber()
-						,SegmentListFalseAvali.get(0).getFlightNumber());//ArrivalCityNameEnR baraye sort bayad en bashe
+						,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"));//ArrivalCityNameEnR baraye sort bayad en bashe
 
 
 						//parentItem.Header.add(header);
@@ -1671,10 +1671,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								, SegmentList.get(0).getAirlineNameEn()
 								, SegmentListtrueAkhari.size()
 						,SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
-						,SegmentListFalseAvali.get(0).getFltDateDayOfWeek()
+						,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0")
 								,SegmentListFalseAkhari.size()
 								,SegmentListtrueAvali.get(0).getFlightNumber()
-								,SegmentListFalseAvali.get(0).getFlightNumber());//ArrivalCityNameEnR baraye sort bayad en bashe
+								, (String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"));//ArrivalCityNameEnR baraye sort bayad en bashe
 
 
 						//parentItem.Header.add(header);

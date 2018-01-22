@@ -94,7 +94,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 	Handler handler;
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
-	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
+	public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
 	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore,tvfactorNumber;
 	public Button btnAddsabad,btn_pardakht_factor;
 	public EditText txtnamem,txtfamilym;
@@ -196,10 +196,10 @@ NonScrollListView lvFactor;
 			/* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
 			 btnAddsabad.setOnClickListener(this);*/
 
-		btn_saler= (ImageView) findViewById(R.id.btn_saler);
-		btn_mosaferan=(ImageView)findViewById(R.id.btn_mosaferan);
-		btn_khadamat=(ImageView)findViewById(R.id.btn_khadamat);
-		btn_pish_factor=(ImageView)findViewById(R.id.btn_pish_factor);
+		btn_saler= (Button)findViewById(R.id.btn_saler);
+		btn_mosaferan=(Button)findViewById(R.id.btn_mosaferan);
+		btn_khadamat=(Button)findViewById(R.id.btn_khadamat);
+		btn_pish_factor=(Button)findViewById(R.id.btn_pish_factor);
 
 		btn_saler.setOnClickListener(this);
 		btn_mosaferan.setOnClickListener(this);
@@ -711,7 +711,7 @@ NonScrollListView lvFactor;
 				// sfsfs
 
 				// Setup and Handover data to recyclerview
-				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
+				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_on);
 				((Button)findViewById(R.id.btn_pish_factor)).setTextColor(Color.parseColor("#33ccff"));
 				txtTitle.setText("تایید و پرداخت پیش فاکتور ");
 				//myScrollView.setOnTouchListener(null);
@@ -1130,7 +1130,7 @@ NonScrollListView lvFactor;
 						}
 					});*/
 
-					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+					((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
 					txtTitle.setText("افزودن خدمات به سبد خرید");
 				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
 					linear_list_khadamat.setVisibility(View.GONE);
@@ -1138,7 +1138,7 @@ NonScrollListView lvFactor;
 				//	myScrollView.setOnTouchListener(null);
 
 					txtTitle.setText("اطلاعات مسافران");
-					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+					((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_saler.setVisibility(View.VISIBLE);
@@ -1146,7 +1146,7 @@ NonScrollListView lvFactor;
 
 
 					txtTitle.setText("مشخصات خریدار");
-					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
                     finish();
 				}
@@ -1406,9 +1406,9 @@ NonScrollListView lvFactor;
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.GONE);
 
-				((ImageView)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-				((ImageView)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
-				((ImageView)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
+				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
+				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
+				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
 				txtTitle.setText("مشخصات خریدار");
 	//			myScrollView.setOnTouchListener(null);
 				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
@@ -1437,9 +1437,9 @@ NonScrollListView lvFactor;
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.GONE);
 
-				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
-				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
+				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
+				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
 				txtTitle.setText("اطلاعات مسافران");
 
 			//	myScrollView.setOnTouchListener(null);
@@ -1458,9 +1458,9 @@ NonScrollListView lvFactor;
 				});*/
 			//	myScrollView.setVisibility(View.GONE);
 
-				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
-				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
+				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
+				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
 				txtTitle.setText("افزودن خدمات به سبد خرید");
 				break;
 			case R.id.btn_pish_factor:
@@ -1469,9 +1469,9 @@ NonScrollListView lvFactor;
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.VISIBLE);
 
-				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
-				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
-				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+				((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_on);
+				((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
+				((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
 				txtTitle.setText("تایید و پرداخت");
 			//	myScrollView.setOnTouchListener(null);
 				break;
@@ -1549,10 +1549,10 @@ NonScrollListView lvFactor;
 	}//endDatepicker
 	void ClearMenu(View v){//android:background="@drawable/blue_line_with_arrow_small"
 		//android:background="@drawable/trans_line_with_arrow_small"
-		((ImageView)findViewById(R.id.btn_saler)).setImageResource(R.drawable.trans_line_with_arrow_small);
-		((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.trans_line_with_arrow_small);
-		((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.trans_line_with_arrow_small);
-		((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.trans_line_with_arrow_small);
+		((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
+		((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
+		((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
+		((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
 
 		((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#808080"));
 		((Button)findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#808080"));
@@ -1583,7 +1583,7 @@ NonScrollListView lvFactor;
 					return true;
 				}
 			});*/
-			((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+			((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
 			txtTitle.setText("افزودن خدمات به سبد خرید");
 		}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
 			linear_list_khadamat.setVisibility(View.GONE);
@@ -1591,14 +1591,14 @@ NonScrollListView lvFactor;
 		/*	myScrollView.setOnTouchListener(null);*/
 
 			txtTitle.setText("اطلاعات مسافران");
-			((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+			((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
 		}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
 			linear_mosaferan.setVisibility(View.GONE);
 			linear_saler.setVisibility(View.VISIBLE);
 			//myScrollView.setOnTouchListener(null);
 
 			txtTitle.setText("مشخصات خریدار");
-			((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+			((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
 		}else if(linear_saler.getVisibility() == View.VISIBLE) {
 			/*Intent intent = new Intent(this,PlanFragment.class);
 			//i2.putExtra("CUSTOMER_ID", (int) customerID);

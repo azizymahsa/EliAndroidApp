@@ -57,49 +57,50 @@
         android:layout_width="match_parent"
         android:layout_height="28dp"
         android:layout_marginTop="5dp"
-
+        android:layout_gravity="center"
         android:orientation="horizontal"
         android:weightSum="4"
         android:background="#ffffff"
-        android:layout_below="@+id/toolbar_container">
+        android:layout_below="@+id/toolbar_container"
+        android:gravity="center">
 
-        <Button
+        <ImageView
             android:id="@+id/btn_pish_factor"
-            android:layout_width="105dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
-            android:background="@drawable/factor_passenger_off"
+            android:src="@drawable/factor_passenger_off"
             android:gravity="right|center_vertical"
             android:text=""
             android:textColor="#808080"
             android:textSize="10dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_khadamat"
-            android:layout_width="105dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/khadamat_passenger_off"
+            android:src="@drawable/khadamat_passenger_off"
             android:gravity="right|center_vertical"
             android:text="  "
             android:textColor="#808080"
             android:textSize="10dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_mosaferan"
-            android:layout_width="105dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/mosaferan_passenger_off"
+            android:src="@drawable/mosaferan_passenger_off"
             android:gravity="right|center_vertical"
             android:text="  "
             android:textColor="#808080"
             android:textSize="10dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_saler"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:background="@drawable/saler_passenger"
+            android:src="@drawable/saler_passenger"
             android:gravity="right|center_vertical"
             android:text=""
             android:textColor="#33ccff"
@@ -113,11 +114,12 @@
         android:background="#fff"
         android:orientation="horizontal"
         android:weightSum="4"
+        android:gravity="center"
         android:layout_below="@+id/llLayout">
 
         <Button
             android:id="@+id/txtPishfactor"
-            android:layout_width="105dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:background="@drawable/transparentt"
@@ -128,7 +130,7 @@
 
         <Button
             android:id="@+id/txtKhadamat"
-            android:layout_width="105dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:background="@drawable/transparentt"
             android:gravity="left|center_vertical"
@@ -138,7 +140,7 @@
 
         <Button
             android:id="@+id/txtMasaferan"
-            android:layout_width="105dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:background="@drawable/transparentt"
             android:gravity="left|center_vertical"
@@ -1086,7 +1088,7 @@
                         android:textColor="#23b574"
                         android:id="@+id/textView1"
                         android:textAppearance="@style/IrsansBold"
-                        android:textSize="@dimen/_14dp_txtSize" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/txtSumKhadamat"
@@ -1255,7 +1257,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/IrsansBold"
                             android:textSize="12dp"
-                            android:text="asdasdasd"
+                            android:text=" "
                             android:layout_gravity="center"
                             android:visibility="visible"/>
                         <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
@@ -1297,6 +1299,8 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="0"
+                            android:textSize="15dp"
+
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#098d4e"/>
 
