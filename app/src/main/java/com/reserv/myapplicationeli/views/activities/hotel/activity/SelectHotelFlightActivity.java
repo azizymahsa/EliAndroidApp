@@ -1207,6 +1207,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
             try {
+                if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Error!=null) {
+                    elNotFound.setVisibility(View.VISIBLE);
+                    tvAlert.setText("در حال حاضر پاسخگویی به در خواست شما ممکن نمی باشد!");
+                    list.setVisibility(View.GONE);
+                    llFilter.setVisibility(View.GONE);
+
+                }else
                 if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
@@ -1215,13 +1222,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
                 }
 
-                if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Error!=null) {
-                    elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("در حال حاضر پاسخگویی به در خواست شما ممکن نمی باشد!");
-                    list.setVisibility(View.GONE);
-                    llFilter.setVisibility(View.GONE);
 
-                }
                 maxPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MaxPrice;
                 minPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MinPrice;
                 int dif = maxPrice - minPrice;

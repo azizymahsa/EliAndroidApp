@@ -1211,26 +1211,6 @@
         <!-- pish factor -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <LinearLayout
             android:id="@+id/linear_pish_factor"
             android:layout_width="match_parent"
@@ -1328,223 +1308,204 @@
                         android:fillViewport="true">
 
 
-                        <LinearLayout
-                            android:id="@+id/llDetail"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="right"
-                            android:orientation="vertical"
-                           >
+                        <!--dfsdfsfsdfsdfsfsfsf-->
                         <RelativeLayout
-                            android:id="@+id/llPassengerPrefactor"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="gone">
+                            android:orientation="vertical"
 
+                            >
 
-                        </RelativeLayout>
-                            <RelativeLayout
-                                android:id="@+id/llFlightPrefactor"
+                            <LinearLayout
+
+                                android:id="@+id/llDetailPassanger"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:orientation="vertical"
                                 android:visibility="gone">
-
-
-                            </RelativeLayout>
-
-                            <RelativeLayout
-                                android:id="@+id/llServicePrefactor"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone">
-
-
-                            </RelativeLayout>
-
-                            <RelativeLayout
-                                android:id="@+id/llHotelPrefactor"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:id="@+id/rlUser"
-                                android:layout_width="match_parent"
-
-
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp">
-
-
-                                <TextView
-                                    android:id="@+id/tvHotelDetail"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/color_passenger_prefactor"
-                                    android:gravity="center"
-                                    android:padding="5dp"
-                                    android:text="جزئیات هتل"
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="@color/text_color_2e"
-                                    android:textSize="12dp" />
-
-                                <TextView
-                                    android:id="@+id/tvArrow"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentLeft="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:gravity="center"
-
-                                    android:text="@string/icon_arrow_up"
-                                    android:textAppearance="@style/IconFonts"
-                                    android:textColor="@color/text_color_2e"
-                                    android:textSize="18dp" />
-
-                            </RelativeLayout>
-
-                            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                                android:id="@+id/expandableLayout"
-                                android:layout_width="match_parent"
-                                android:layout_height="150dp"
-                                android:layout_below="@+id/rlUser"
-
-                                app:ael_duration="1000"
-
-                                app:ael_interpolator="anticipateOvershoot">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
                                     android:orientation="horizontal">
 
-
-                                    <LinearLayout
+                                    <View
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="1dp"
                                         android:layout_weight="100"
-                                        android:gravity="right"
-                                        android:orientation="vertical">
+                                        android:background="@color/text_color_2e" />
 
-                                        <TextView
-                                            android:id="@+id/tvHotelName"
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="نام هتل"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="#4d4d4d"
-
-                                            android:textSize="12dp" />
-
-                                        <TextView
-                                            android:id="@+id/tvSum"
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تعداد نفرات"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="#4d4d4d"
-
-                                            android:textSize="12dp" />
-
-                                        <TextView
-                                            android:id="@+id/tvCheckOut"
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تاریخ خروج از هتل"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="#4d4d4d"
-
-                                            android:textSize="12dp" />
-
-                                        <TextView
-                                            android:id="@+id/tvCheckIn"
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تاریخ ورود به هتل	"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="#4d4d4d"
-
-                                            android:textSize="12dp" />
-
-
-                                    </LinearLayout>
-
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
+                                    <TextView
+                                        android:layout_width="120dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="40"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="مشخصات مسافران"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="12dp" />
 
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="نام هتل"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="@color/text_color_2e"
-
-                                            android:textSize="12dp" />
-
-                                        <TextView
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تعداد نفرات"
-
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="@color/text_color_2e"
-                                            android:textSize="12dp" />
-
-                                        <TextView
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تاریخ خروج از هتل"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="@color/text_color_2e"
-
-                                            android:textSize="12dp" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تاریخ ورود به هتل	"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="@color/text_color_2e"
-
-                                            android:textSize="12dp" />
-
-
-                                    </LinearLayout>
-
-
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
                                 </LinearLayout>
 
 
-                            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
-                            </RelativeLayout>
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerViewPassenger"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llDetailHotel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/llDetailPassanger"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:id="@+id/rlTitleHotel"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+
+                                    <TextView
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="جزئیات هتل"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="12dp" />
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+                                </LinearLayout>
+
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical" />
+
+                            </LinearLayout>
+                            <LinearLayout
+
+                                android:id="@+id/llDetailService"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_below="@+id/llDetailHotel"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="خدمات قابل ارائه"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="12dp" />
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+                                </LinearLayout>
+
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerViewService"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+
+                                android:id="@+id/llDetailFlight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_below="@+id/llDetailService"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="اطاعات پرواز"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="12dp" />
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+                                </LinearLayout>
+
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerViewFlight"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical" />
+
+                            </LinearLayout>
+                        </RelativeLayout>
+
+
+                        <!--dfsdfsfsdfsdfsfsfsf-->
 
 
 
@@ -1565,19 +1526,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-                        </LinearLayout>
 
 
                     </ScrollView>

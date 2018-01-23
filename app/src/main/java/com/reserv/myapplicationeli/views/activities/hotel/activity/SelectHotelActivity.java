@@ -1202,6 +1202,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
             try {
+                if (availApi.hotelAvailModelResponse.HotelAvailResult.Error!=null) {
+                    elNotFound.setVisibility(View.VISIBLE);
+                    tvAlert.setText("در حال حاضر پاسخگویی به در خواست شما ممکن نمی باشد!");
+                    list.setVisibility(View.GONE);
+                    llFilter.setVisibility(View.GONE);
+
+                }else
                 if (availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
@@ -1209,13 +1216,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     llFilter.setVisibility(View.GONE);
 
                 }
-                if (availApi.hotelAvailModelResponse.HotelAvailResult.Error!=null) {
-                    elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("در حال حاضر پاسخگویی به در خواست شما ممکن نمی باشد!");
-                    list.setVisibility(View.GONE);
-                    llFilter.setVisibility(View.GONE);
 
-                }
                 maxPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MaxPrice;
                 minPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MinPrice;
                 int dif = maxPrice - minPrice;

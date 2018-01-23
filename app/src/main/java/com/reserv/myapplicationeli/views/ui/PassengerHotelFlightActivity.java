@@ -13,6 +13,9 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,6 +36,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -41,10 +45,19 @@ import com.google.zxing.common.BitMatrix;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.lost.flight.FlightPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.flight.FlightPreFactorModel;
+import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorModel;
+import com.reserv.myapplicationeli.lost.passenger.PassangerPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.passenger.PassengerPreFactorModel;
+import com.reserv.myapplicationeli.lost.service.ServicePreFactorAdapter;
+import com.reserv.myapplicationeli.lost.service.ServicePreFactorModel;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
+import com.reserv.myapplicationeli.views.adapters.GetHotelKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatHotelFlightAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
@@ -79,37 +92,36 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class PassengerHotelFlightActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnItemSelectedListener {
 
-
     public static boolean flag;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     Handler handler;
     ProgressDialog progressBar;
     public FancyButton btnBack;
-    public Button btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
-    public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
-    public Button btnAddsabad,btn_pardakht_factor;
-    public EditText txtnamem,txtfamilym;
+    public ImageView btn_saler, btn_mosaferan, btn_khadamat, btn_pish_factor;
+    public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
+    public Button btnAddsabad, btn_pardakht_factor;
+    public EditText txtnamem, txtfamilym;
     public static TextView txttavalodm;
-    public EditText txtnumber_passport,txtnameP;
+    public EditText txtnumber_passport, txtnameP;
     public static TextView txtexp_passport;
-    public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM;
+    public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
     public static TextView txtSumKhadamat;
-    public LinearLayout linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo,btn_nextm,btn_taeed_khadamat;
+    public LinearLayout linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo, btn_nextm, btn_taeed_khadamat;
     private Handler progressBarHandler = new Handler();
-    public ListView list_airport,listKhadamat;
-    ArrayList<HashMap<String,String>> mylist=null;
+    public ListView list_airport, listKhadamat;
+    ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
     //public static long GET_PRICE_KHADAMAT;
-
     public static long GET_PRICE_KHADAMAT;
-    ImageView textView4;
+    ExpandableRelativeLayout expandableLayout;
+
 
     GetKhadmatHotelFlightAdapter mAdapter;
-    ScrollView myScrollView;
+    //ScrollView myScrollView;
     private EditText searchtxt;
-    public TextView txt_shomare_factor, tvPrice, tvfactorNumber;
-    public ImageView txt_hom;
+    public TextView txt_shomare_factor, tvPrice;
+    public ImageView txt_hom, textView4;
 
     private String Gensiyat;
     Activity activity;
@@ -118,76 +130,83 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public int countN = SearchParvazActivity.COUNT_N;
     //public int sum=countB+countK+countN;
     public int sum;
-    int count;
+    //int count;
+    //change for Prefactor=========================================================================
+    LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
 
+
+    //ExpandableLayoutListView lvFactor;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger_hotel_flight);
+        setContentView(R.layout.activity_passenger_hotel);
 
 
         btnBack = (FancyButton) findViewById(R.id.btnBack);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setVisibility(View.VISIBLE);
-        btnBack.setOnClickListener(this);
+        btnBack.setOnClickListener(PassengerHotelFlightActivity.this);
 
         txt_hom = (ImageView) findViewById(R.id.txt_hom);
-        txt_hom.setOnClickListener(this);
+        textView4 = (ImageView) findViewById(R.id.textView4);
+        tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
+        expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
+        txt_hom.setOnClickListener(PassengerHotelFlightActivity.this);
 
         txtMore = (TextView) findViewById(R.id.txtMore);
-        tvPrice = (TextView) findViewById(R.id.tvPrice);
-        tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
-        txtMore.setOnClickListener(this);
+        txtMore.setOnClickListener(PassengerHotelFlightActivity.this);
 
         txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
-        txtSumKhadamat.setOnClickListener(this);
+        tvPrice = (TextView) findViewById(R.id.tvPrice);
+        txtSumKhadamat.setOnClickListener(PassengerHotelFlightActivity.this);
         txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
 
         txttavalodm = (TextView) findViewById(R.id.txttavalodm);
-        txttavalodm.setOnClickListener(this);
+        txttavalodm.setOnClickListener(PassengerHotelFlightActivity.this);
         txtnamem = (EditText) findViewById(R.id.txtnamem);
-        txtnamem.setOnClickListener(this);
+        txtnamem.setOnClickListener(PassengerHotelFlightActivity.this);
         txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
 
         txtfamilym = (EditText) findViewById(R.id.txtfamilym);
-        txtfamilym.setOnClickListener(this);
+        //lvFactor = (ExpandableLayoutListView) findViewById(R.id.lvFactor);
+        txtfamilym.setOnClickListener(PassengerHotelFlightActivity.this);
         txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
         txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
-        txtnumber_passport.setOnClickListener(this);
+        txtnumber_passport.setOnClickListener(PassengerHotelFlightActivity.this);
         txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
         txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
-        txtexp_passport.setOnClickListener(this);
+        txtexp_passport.setOnClickListener(PassengerHotelFlightActivity.this);
 
         txtTitle = (TextView) findViewById(R.id.tvTitle);
-        txtTitle.setOnClickListener(this);
+        txtTitle.setOnClickListener(PassengerHotelFlightActivity.this);
         txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
-        txtTitleCountM.setOnClickListener(this);
+        txtTitleCountM.setOnClickListener(PassengerHotelFlightActivity.this);
 
         btn_next_partnerInfo = (LinearLayout) findViewById(R.id.btn_next_partnerInfo);
-        btn_next_partnerInfo.setOnClickListener(this);
+        btn_next_partnerInfo.setOnClickListener(PassengerHotelFlightActivity.this);
 
         btn_nextm = (LinearLayout) findViewById(R.id.btn_nextm);
-        btn_nextm.setOnClickListener(this);
+        btn_nextm.setOnClickListener(PassengerHotelFlightActivity.this);
 
         btn_taeed_khadamat = (LinearLayout) findViewById(R.id.btn_taeed_khadamat);
-        btn_taeed_khadamat.setOnClickListener(this);
+        btn_taeed_khadamat.setOnClickListener(PassengerHotelFlightActivity.this);
 
         btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);
-        btn_pardakht_factor.setOnClickListener(this);
+        btn_pardakht_factor.setOnClickListener(PassengerHotelFlightActivity.this);
             /* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
-			 btnAddsabad.setOnClickListener(this);*/
+			 btnAddsabad.setOnClickListener(PassengerHotelFlightActivity.this);*/
 
-        btn_saler = (Button) findViewById(R.id.btn_saler);
-        btn_mosaferan = (Button) findViewById(R.id.btn_mosaferan);
-        btn_khadamat = (Button) findViewById(R.id.btn_khadamat);
-        btn_pish_factor = (Button) findViewById(R.id.btn_pish_factor);
+        btn_saler = (ImageView) findViewById(R.id.btn_saler);
+        btn_mosaferan = (ImageView) findViewById(R.id.btn_mosaferan);
+        btn_khadamat = (ImageView) findViewById(R.id.btn_khadamat);
+        btn_pish_factor = (ImageView) findViewById(R.id.btn_pish_factor);
 
-        btn_saler.setOnClickListener(this);
-        btn_mosaferan.setOnClickListener(this);
-        btn_khadamat.setOnClickListener(this);
-        btn_pish_factor.setOnClickListener(this);
+        btn_saler.setOnClickListener(PassengerHotelFlightActivity.this);
+        btn_mosaferan.setOnClickListener(PassengerHotelFlightActivity.this);
+        btn_khadamat.setOnClickListener(PassengerHotelFlightActivity.this);
+        btn_pish_factor.setOnClickListener(PassengerHotelFlightActivity.this);
 
         linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
         linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
@@ -210,18 +229,21 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
 
         txtmeliyatm = (TextView) findViewById(R.id.txtmeliyatm);
-        textView4 = (ImageView) findViewById(R.id.textView4);
-        txtmeliyatm.setOnClickListener(this);
+        txtmeliyatm.setOnClickListener(PassengerHotelFlightActivity.this);
         txtmahale_eghamat = (TextView) findViewById(R.id.txtmahale_eghamat);
-        txtmahale_eghamat.setOnClickListener(this);
+        txtmahale_eghamat.setOnClickListener(PassengerHotelFlightActivity.this);
 
         txt_shomare_factor = (TextView) findViewById(R.id.txt_shomare_factor);
-        txt_shomare_factor.setOnClickListener(this);
+        txt_shomare_factor.setOnClickListener(PassengerHotelFlightActivity.this);
 
         linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
 
         listKhadamat = (ListView) findViewById(R.id.listKhadamat);
-        myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
+        llDetailHotel = (LinearLayout) findViewById(R.id.llDetailHotel);
+        llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
+        llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
+        llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
+        // myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
 
 
         //////////////////////////
@@ -230,8 +252,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         Spinner spinnerMosafer = (Spinner) findViewById(R.id.spinnerMosafer);
 
         // Spinner click listener
-        spinner.setOnItemSelectedListener(this);
-        spinnerMosafer.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(PassengerHotelFlightActivity.this);
+        spinnerMosafer.setOnItemSelectedListener(PassengerHotelFlightActivity.this);
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
@@ -240,7 +262,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(PassengerHotelFlightActivity.this, android.R.layout.simple_spinner_item, categories);
 
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -252,11 +274,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
         // new AsyncFetch().execute();
-        count = Prefs.getInt("SumPass", 0);
+        sum = Prefs.getInt("SumPass", 0);
+
 
     }//end oncreate
-
     //AsyncFetchGetPreFactorDetails
+
+
     private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
         ProgressDialog pdLoading = new ProgressDialog(PassengerHotelFlightActivity.this);
         HttpURLConnection conn;
@@ -267,7 +291,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //this method will be running on UI thread
+            //PassengerHotelFlightActivity.this method will be running on UI thread
             pdLoading.setMessage("\tLoading...");
             pdLoading.setCancelable(false);
             pdLoading.show();
@@ -365,7 +389,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         @Override
         protected void onPostExecute(String resultPishfactor) {
 
-            //this method will be running on UI thread
+            //PassengerHotelFlightActivity.this method will be running on UI thread
             //{"PurchaseServiceResult":{"Errors":null,"ResultText":"Temp Contract Saved Successfully!","SuccessResult":782528}}
             //  pdLoading.dismiss();
             //List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
@@ -374,35 +398,190 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
+                Log.e("jsonObj", jsonObj.toString());
 
                 // Getting JSON Array node
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
+
+
                 JSONObject jArray = GetAirportsResult.getJSONObject("PreFactor");//FactorSummary
+
+
+                //FactorSummary
                 JSONObject jFact = jArray.getJSONObject("FactorSummary");
-                JSONArray jFlight = jArray.getJSONArray("PreFactorFlights");
-                for (int i =0 ;i<jFlight.length();i++){
-
-                    Log.e("test",   jFlight.getJSONObject(i).getString("AirlineNameEn"));
-
-                }
 
 
                 int RqBase_ID = jFact.getInt("RqBase_ID");
                 //////////////////////////////
                 long totalprice = jFact.getLong("TotalPrice");
-            //    btn_pardakht_factor.setText(" پرداخت " + String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
-                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
 
 
+                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+
+//for hotel==========================================================================================
+                final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
+                recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerHotelFlightActivity.this, 1));
+                recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerHotelFlightActivity.this));
+                ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
+
+                JSONArray jArray2 = jArray.getJSONArray("PreFactorHotels");
+
+
+                for (int i = 0; i < jArray2.length(); i++) {
+                    Log.e("teeeeest", jArray2.getJSONObject(i).getString("CityFa"));
+                    hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"), jArray2.getJSONObject(i).getString("HotelChekin")
+                            , jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount")));
+
+                }
+                if (!hotelPreFactorModels.isEmpty()) {
+                    recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
+                    llDetailHotel.setVisibility(View.VISIBLE);
+                }
+
+
+//for passenger======================================================================================
+
+
+
+                final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+                recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerHotelFlightActivity.this, 1));
+                recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerHotelFlightActivity.this));
+                ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
+
+                JSONArray jArray3 = jArray.getJSONArray("RequestPassenger");
+
+
+                for (int i = 0; i < jArray3.length(); i++) {
+                    passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
+                            jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
+                            jArray3.getJSONObject(i).getString("RqPassenger_FirstNameFa"),jArray3.getJSONObject(i).getString("RqPassenger_LastNameFa")));
+
+                }
+                if (!passengerPreFactorModels.isEmpty()) {
+                    llDetailPassanger.setVisibility(View.VISIBLE);
+                    recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
+
+                }
+
+
+                //for Services=============================================================================
+                final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
+                recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerHotelFlightActivity.this, 1));
+                recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerHotelFlightActivity.this));
+                ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
+                JSONArray jArray4 = jArray.getJSONArray("PreFactorServices");
+
+                for (int i = 0; i < jArray4.length(); i++) {
+                    servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
+                            jArray4.getJSONObject(i).getString("ServicePrice"),jArray4.getJSONObject(i).getString("ServiceType"),
+                            jArray4.getJSONObject(i).getString("CityFa"),jArray4.getJSONObject(i).getString("ServiceNameFa")));
+
+                }
+                if (!servicePreFactorModels.isEmpty()) {
+                    llDetailService.setVisibility(View.VISIBLE);
+                    recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
+
+                }
+                //for flight==================================================================================
+                final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+                recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerHotelFlightActivity.this, 1));
+                recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerHotelFlightActivity.this));
+                ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
+                JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
+
+                for (int i = 0; i < jArray5.length(); i++) {
+                    flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
+                            jArray5.getJSONObject(i).getString("ArrAirPortFa"),
+                            jArray5.getJSONObject(i).getString("DepAirPortFa"),
+                            jArray5.getJSONObject(i).getString("FltDate"),
+                            jArray5.getJSONObject(i).getString("FltCheckinTime"),
+                            jArray5.getJSONObject(i).getString("FltTime"),
+                            jArray5.getJSONObject(i).getString("FltNumber"),
+                            jArray5.getJSONObject(i).getString("AirlineNameFa")));
+
+                }
+                if (!flightPreFactorModels.isEmpty()) {
+                    llDetailFlight.setVisibility(View.VISIBLE);
+                    recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
+
+                }
 
             } catch (JSONException e) {
                 Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
             }
 
 
+
+
+
+
         }//end on pos excute
 
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //end AsyncFetchGetPreFactorDetails
     //AsyncFetchPishFactor
@@ -416,7 +595,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //this method will be running on UI thread
+            //PassengerHotelFlightActivity.this method will be running on UI thread
             pdLoading.setMessage("\tLoading...");
             pdLoading.setCancelable(false);
             pdLoading.show();
@@ -520,6 +699,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
 
+
                 // JSONObject jsonObj = new JSONObject(retSrc);
 
                 // Getting JSON Array node
@@ -532,22 +712,22 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     Toast.makeText(PassengerHotelFlightActivity.this, message, Toast.LENGTH_LONG).show();
                 }
 
-                if (successResult > 1)  {
+                if (successResult > 1) {
                     txt_shomare_factor.setText(GetAirportsResult.getString("SuccessResult"));
-
                     tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
 
                     textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 500, 200));
-                }else{
+
+                } else {
                     txt_shomare_factor.setText("خطایی رخ داده است !");
                 }
                 // sfsfs
 
                 // Setup and Handover data to recyclerview
-                ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_on);
-                ((Button) findViewById(R.id.btn_pish_factor)).setTextColor(Color.parseColor("#33ccff"));
-                txtTitle.setText("تایید و پرداخت");
-                myScrollView.setOnTouchListener(null);
+                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
+                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+                txtTitle.setText("تایید و پرداخت پیش فاکتور ");
+                //myScrollView.setOnTouchListener(null);
 
                 linear_saler.setVisibility(View.GONE);
                 linear_mosaferan.setVisibility(View.GONE);
@@ -575,7 +755,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //this method will be running on UI thread
+            //PassengerHotelFlightActivity.this method will be running on UI thread
             pdLoading.setMessage("\tLoading...");
             pdLoading.setCancelable(false);
             pdLoading.show();
@@ -638,7 +818,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                 HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/HotelFlight/HotelFlightService.svc/PurchaseFlightHotel");
+                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
 
@@ -674,7 +854,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         @Override
         protected void onPostExecute(String result) {
 
-            //this method will be running on UI thread
+            //PassengerHotelFlightActivity.this method will be running on UI thread
 
             pdLoading.dismiss();
             List<PurchaseFlightResult> data = new ArrayList<PurchaseFlightResult>();
@@ -690,7 +870,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightHotelResult");//Error
 
 				 /* JSONObject GetError = jsonObj.getJSONObject("Error");
-				  Toast.makeText(PassengerHotelActivity.this,  Get, Toast.LENGTH_LONG).show();*/
+				  Toast.makeText(PassengerHotelFlightActivity.this,  Get, Toast.LENGTH_LONG).show();*/
 
                 JSONArray jArray = GetAirportsResult.getJSONArray("Services");
                 JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
@@ -740,16 +920,16 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 linear_mosaferan.setVisibility(View.GONE);
                 linear_pish_factor.setVisibility(View.GONE);
                 linear_list_khadamat.setVisibility(View.VISIBLE);
-                myScrollView.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        return true;
-                    }
-                });
+	/*			myScrollView.setOnTouchListener(new View.OnTouchListener() {
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						return true;
+					}
+				});*/
 
-                ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-                ((Button) findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#33ccff"));
-                txtTitle.setText("خدمات");
+                ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+                txtTitle.setText("افزودن خدمات به سبد خرید");
 
                 mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this);
                 //mAdapter.setAdapter(mAdapter);
@@ -874,7 +1054,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         try {
             manJson.put("Culture", "fa-IR");
 
-            manJson.put("invoiceNo", "782863");//perches service
+            manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
 
 
             identityJson.put("Password", "123qwe!@#QWE");
@@ -952,7 +1132,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 break;
 
             case R.id.btnBack:
-			/*	Intent intent = new Intent(this,PlanFragment.class);
+			/*	Intent intent = new Intent(PassengerHotelFlightActivity.this,PlanFragment.class);
 				//i2.putExtra("CUSTOMER_ID", (int) customerID);
 				startActivity(intent);*/
 
@@ -960,30 +1140,33 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 if (linear_pish_factor.getVisibility() == View.VISIBLE) {
                     linear_pish_factor.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.VISIBLE);
-                    myScrollView.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            return true;
-                        }
-                    });
+					/*myScrollView.setOnTouchListener(new View.OnTouchListener() {
+						@Override
+						public boolean onTouch(View v, MotionEvent event) {
+							return true;
+						}
+					});*/
 
-                    ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-                    txtTitle.setText("خدمات");
+                    ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+                    ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+                    txtTitle.setText("افزودن خدمات به سبد خرید");
                 } else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.VISIBLE);
-                    myScrollView.setOnTouchListener(null);
+                    //	myScrollView.setOnTouchListener(null);
 
                     txtTitle.setText("اطلاعات مسافران");
-                    ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
+                    ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+                    ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
                 } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_saler.setVisibility(View.VISIBLE);
-                    myScrollView.setOnTouchListener(null);
+                    //myScrollView.setOnTouchListener(null);
 
 
                     txtTitle.setText("مشخصات خریدار");
-                    ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
+                    ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+                    ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
                     finish();
                 }
@@ -1055,7 +1238,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         }
                     //////////////////////////End Validate
                     if (flagMosafer.contains("F")) {
-                        Toast.makeText(this, "اطلاعات ورودی نامعتبر است!", 2000).show();
+                        Toast.makeText(PassengerHotelFlightActivity.this, "اطلاعات ورودی نامعتبر است!", 2000).show();
                     } else {
                         //insert partner
                         PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerHotelFlightActivity.this);
@@ -1076,8 +1259,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
                         //((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
 
-                        ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
-                        ((Button) findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#33ccff"));
+                        ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+                        ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     }
                 } catch (Exception e) {
                     System.out.println("Exception ::" + e);
@@ -1183,7 +1366,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                 if (flagMosafer.contains("F")) {
-                    Toast.makeText(this, "اطلاعات ورودی نامعتبر است!", 2000).show();
+                    Toast.makeText(PassengerHotelFlightActivity.this, "اطلاعات ورودی نامعتبر است!", 2000).show();
                 } else {
                     PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelFlightActivity.this);
 
@@ -1191,13 +1374,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     db.openDB();
 
                     int counter = 1;
-                    Log.e("summmm", count + "");
-                    if (count > 0) {
+                    Log.e("summmm", sum + "");
+                    if (sum > 0) {
                         db.insertData(Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                         txtTitleCountM.setText("اطلاعات مسافر" + counter);
                         counter++;
-                        count--;
-                        System.out.println("insert:" + "sum:" + count);
+                        sum--;
+                        System.out.println("insert:" + "sum:" + sum);
                     }
                     db.closeDB();
                     //insert mosafer
@@ -1206,8 +1389,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                 //call api saler
-                if (count == 0) {
-                    System.out.println("APICALL:" + "sum:" + count);
+                if (sum == 0) {
+                    System.out.println("APICALL:" + "sum:" + sum);
                     System.out.println("insert:");
                     new AsyncFetch().execute();
 
@@ -1226,12 +1409,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
             case R.id.txtmeliyatm:
-                final Intent intent4 = new Intent(this, NationalitycodeActivity.class);
+                final Intent intent4 = new Intent(PassengerHotelFlightActivity.this, NationalitycodeActivity.class);
                 startActivityForResult(intent4, 1);
 
                 break;
             case R.id.txtmahale_eghamat:
-                final Intent intent3 = new Intent(this, CountrycodeActivity.class);
+                final Intent intent3 = new Intent(PassengerHotelFlightActivity.this, CountrycodeActivity.class);
                 startActivityForResult(intent3, 1);
                 break;
 
@@ -1241,29 +1424,35 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 linear_list_khadamat.setVisibility(View.GONE);
                 linear_pish_factor.setVisibility(View.GONE);
 
-                ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-                ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
-                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
+                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+                ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+
+                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
+                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
+
+
                 txtTitle.setText("مشخصات خریدار");
-                myScrollView.setOnTouchListener(null);
+                //			myScrollView.setOnTouchListener(null);
 				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
 					linear_pish_factor.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 
-					((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-					txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+					((Button)findViewById(R.id.txtPishfactor)).setBackgroundResource(R.drawable.factor_passenger_off);
+					txtTitle.setText("مرحله 3/4: افزودن افزودن خدمات به سبد خرید به سبد خرید");
 				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE){
 					linear_list_khadamat.setVisibility(View.GONE);
 					linear_mosaferan.setVisibility(View.VISIBLE);
 
-					txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
-					((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
+					txtTitle.setText("مرحله 2/4:  اطلاعات اطلاعات مسافران را وارد کنید");
+					((Button)findViewById(R.id.txtKhadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE){
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_saler.setVisibility(View.VISIBLE);
 
-					txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
-					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
+					txtTitle.setText("مرحله 1/4:  مشخصات مشخصات خریدار را وارد کنید");
+					((Button)findViewById(R.id.txtMasaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
 				}*/
                 break;
             case R.id.btn_mosaferan:
@@ -1272,12 +1461,15 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 linear_list_khadamat.setVisibility(View.GONE);
                 linear_pish_factor.setVisibility(View.GONE);
 
-                ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-                ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
-                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
+                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+                ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
+                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
                 txtTitle.setText("اطلاعات مسافران");
 
-                myScrollView.setOnTouchListener(null);
+                //	myScrollView.setOnTouchListener(null);
                 break;
             case R.id.btn_khadamat:
                 linear_saler.setVisibility(View.GONE);
@@ -1285,17 +1477,20 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 linear_list_khadamat.setVisibility(View.VISIBLE);
                 linear_pish_factor.setVisibility(View.GONE);
                 //myScrollView.setSmoothScrollingEnabled(false); // disable scrolling
-                myScrollView.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        return true;
-                    }
-                });
+			/*	myScrollView.setOnTouchListener(new View.OnTouchListener() {
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						return true;
+					}
+				});*/
                 //	myScrollView.setVisibility(View.GONE);
 
-                ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-                ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
+                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+                ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
                 txtTitle.setText("افزودن خدمات به سبد خرید");
                 break;
             case R.id.btn_pish_factor:
@@ -1304,17 +1499,20 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 linear_list_khadamat.setVisibility(View.GONE);
                 linear_pish_factor.setVisibility(View.VISIBLE);
 
-                ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_on);
-                ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-                ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_on);
-                txtTitle.setText(" تایید و پرداخت پیش فاکتور");
-                myScrollView.setOnTouchListener(null);
+                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
+                ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+                txtTitle.setText("تایید و پرداخت پیش فاکتور");
+                //	myScrollView.setOnTouchListener(null);
                 break;
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME", true);
-                myScrollView.setOnTouchListener(null);
+                //	myScrollView.setOnTouchListener(null);
                 finish();
-                //this.startActivity(i4);
+                //PassengerHotelFlightActivity.this.startActivity(i4);
                 break;
         }
 
@@ -1329,7 +1527,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             String nationalityCode = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYCODE);
             String nationalityName = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYNAME);
-            //Toast.makeText(this, "You selected countrycode: " + countryCode, Toast.LENGTH_LONG).show();
+            //Toast.makeText(PassengerHotelFlightActivity.this, "You selected countrycode: " + countryCode, Toast.LENGTH_LONG).show();
             if (countryCode != null)
                 txtmahale_eghamat.setText(countryCode + "");//txtmahale_eghamat.setText(countryCode+" "+countryName);
             if (nationalityCode != null)
@@ -1381,72 +1579,54 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
         }
-    }//endDatepicker
-
-    void ClearMenu(View v) {//android:background="@drawable/blue_line_with_arrow_small"
-        //android:background="@drawable/trans_line_with_arrow_small"
-        ((Button) findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
-        ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
-        ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
-        ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.trans_line_with_arrow_small);
-
-        ((Button) findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#808080"));
-        ((Button) findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#808080"));
-        ((Button) findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#808080"));
-        ((Button) findViewById(R.id.btn_pish_factor)).setTextColor(Color.parseColor("#808080"));
-
-        //((TextView)findViewById(R.id.imageDiscover)).setBackgroundDrawable(null);
-        //((TextView)findViewById(R.id.imageDiscover)).setTextColor(Color.WHITE);
-        if (v != null) {
-            v.setBackgroundResource(R.drawable.blue_line_with_arrow_small);
-            ((TextView) v).setTextColor(Color.parseColor("#33ccff"));
-        }
-        //if(currentMenu!=null) currentMenu.finish();
     }
 
     @Override
     public void onBackPressed() {
 
-			/* Intent intent = new Intent(this,PlanFragment.class);
+			/* Intent intent = new Intent(PassengerHotelFlightActivity.this,PlanFragment.class);
 				//i2.putExtra("CUSTOMER_ID", (int) customerID);
 				startActivity(intent);*/
         if (linear_pish_factor.getVisibility() == View.VISIBLE) {
             linear_pish_factor.setVisibility(View.GONE);
             linear_list_khadamat.setVisibility(View.VISIBLE);
-            myScrollView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    return true;
-                }
-            });
-            ((Button) findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
+		/*	myScrollView.setOnTouchListener(new View.OnTouchListener() {
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					return true;
+				}
+			});*/
+            ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
             txtTitle.setText("افزودن خدمات به سبد خرید");
         } else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
             linear_list_khadamat.setVisibility(View.GONE);
             linear_mosaferan.setVisibility(View.VISIBLE);
-            myScrollView.setOnTouchListener(null);
+		/*	myScrollView.setOnTouchListener(null);*/
 
             txtTitle.setText("اطلاعات مسافران");
-            ((Button) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
+            ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+            ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
         } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
             linear_mosaferan.setVisibility(View.GONE);
             linear_saler.setVisibility(View.VISIBLE);
-            myScrollView.setOnTouchListener(null);
+            //myScrollView.setOnTouchListener(null);
 
             txtTitle.setText("مشخصات خریدار");
-            ((Button) findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
+            ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+            ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
+
         } else if (linear_saler.getVisibility() == View.VISIBLE) {
-			/*Intent intent = new Intent(this,PlanFragment.class);
+			/*Intent intent = new Intent(PassengerHotelFlightActivity.this,PlanFragment.class);
 			//i2.putExtra("CUSTOMER_ID", (int) customerID);
 			startActivity(intent);*/
-            //PassengerHotelActivity.this.finish();
+            //PassengerHotelFlightActivity.this.finish();
             finish();
         }
     }
 
     @Override
     public void searchTextChanged(String searchText) {
-			/*this.searchText = searchText;
+			/*PassengerHotelFlightActivity.this.searchText = searchText;
 			if(searchText.length()>2)
 			new AsyncFetch().execute();*/
         //mAdapter.setData(searchText);
@@ -1463,7 +1643,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         else
             Gensiyat = "Man";
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        //	Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 
     }
 
@@ -1572,7 +1752,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     break;
 
-                //خریدار
+                //مشخصات خریدار
                 case R.id.txtemeliP:
                     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                     if (text.matches(emailPattern) && text.length() > 0) {
@@ -1630,6 +1810,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             }
         }
     }
+
 
     public static Bitmap getBitmap(String barcode, int barcodeType, int width, int height) {
         Bitmap barcodeBitmap = null;
@@ -1724,6 +1905,5 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         }
         return null;
     }
-
 
 }
