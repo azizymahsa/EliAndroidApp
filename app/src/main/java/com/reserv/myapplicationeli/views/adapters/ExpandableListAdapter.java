@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
@@ -19,6 +20,8 @@ import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 import java.text.NumberFormat;
 import java.util.List;
+
+import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -175,6 +178,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 
 
+        TextView btnExpand = (TextView) convertView.findViewById(R.id.btnExpand);
+
 
 		TextView txtArrivelFalseLast = (TextView) convertView.findViewById(R.id.txtArrivelFalseLast);
 		TextView txtDepurtureFalseOne = (TextView) convertView.findViewById(R.id.txtDepurtureFalseOne);
@@ -206,6 +211,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		LinearLayout linearBargashtOne = (LinearLayout) convertView.findViewById(R.id.linearBargashtOne);
 		RelativeLayout linearBargashtTwo = (RelativeLayout) convertView.findViewById(R.id.linearBargashtTwo);
 		LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
+		//LinearLayout linear_all = (LinearLayout) convertView.findViewById(R.id.linear_all);
+
+
+        if (isExpanded){
+            btnExpand.setText(_context.getString(R.string.icon_exp_up));
+
+
+        }else{
+            btnExpand.setText(_context.getString(R.string.icon_exp_down));
+        }
+
 		///
 		if(item2.SegmentFalseCount <= 1){//yek tarafe
 			linearBargashtOne.setVisibility(View.GONE);
