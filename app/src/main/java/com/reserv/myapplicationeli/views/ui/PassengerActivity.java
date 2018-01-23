@@ -543,7 +543,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 500, 200));
 				}else{
-					txt_shomare_factor.setText("خطایی رخ داده است !");
+					//txt_shomare_factor.setText("خطایی رخ داده است !");
+					Toast.makeText(PassengerActivity.this, "خطایی رخ داده است !", Toast.LENGTH_LONG).show();
+					finish();
+
 				}
 				// sfsfs
 
@@ -757,7 +760,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 				});*/
 
-				((ImageView) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
+				((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 				txtTitle.setText(" افزودن خدمات به سبد خرید");
 

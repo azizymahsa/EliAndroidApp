@@ -156,6 +156,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				finish();
 			}
 		}
+
 		rlLoading = findViewById(R.id.rlLoading);
 		rlRoot = findViewById(R.id.rlRoot);
 		iconFilter = findViewById(R.id.iconFilter);
@@ -233,6 +234,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			@Override
 			public boolean onGroupClick(ExpandableListView parent, View v,
 										int groupPosition, long id) {
+
+
+
+
                         /* Toast.makeText(getApplicationContext(),
                          "Group Clicked " + listDataHeader.get(groupPosition),
 	    				 Toast.LENGTH_SHORT).show();*/
@@ -254,6 +259,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 			@Override
 			public void onGroupCollapse(int groupPosition) {
+
 				//Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Collapsed",Toast.LENGTH_SHORT).show();
 
 			}
