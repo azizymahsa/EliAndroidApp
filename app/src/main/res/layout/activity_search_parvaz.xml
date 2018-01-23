@@ -198,6 +198,8 @@
 						android:id="@+id/txtNoResult"
 						android:layout_width="match_parent"
 						android:layout_height="104dp"
+						android:layout_marginLeft="@dimen/_12dp"
+						android:layout_marginRight="@dimen/_12dp"
 						android:gravity="center"
 						android:textColor="#927fff"
 						android:textSize="14dp"
