@@ -1213,104 +1213,107 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
-                }else
-                if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
+                }else if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
-                }
+                }else{
+
+                    maxPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MaxPrice;
+                    minPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MinPrice;
+                    int dif = maxPrice - minPrice;
+                    dif = dif / 5;
+                    int x0 = minPrice;
+                    int x1 = x0 + dif;
+                    int x2 = x1 + dif;
+                    int x3 = x2 + dif;
+                    int x4 = x3 + dif;
+                    int x5 = x4 + dif;
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x0)) + "-" + Utility.priceFormat(String.valueOf(x1)), 1, false));
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x1)) + "-" + Utility.priceFormat(String.valueOf(x2)), 2, false));
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x2)) + "-" + Utility.priceFormat(String.valueOf(x3)), 3, false));
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x3)) + "-" + Utility.priceFormat(String.valueOf(x4)), 4, false));
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x4)) + "-" + Utility.priceFormat(String.valueOf(x5)), 5, false));
+
+                    int i = 0;
+                    int j = 0;
+                    for (Hotels hotels : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels) {
+                        String off = "";
+                        boolean isOff = false;
+                        int xiff = 0;
+                        int hotelPrice = Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
 
 
-                maxPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MaxPrice;
-                minPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MinPrice;
-                int dif = maxPrice - minPrice;
-                dif = dif / 5;
-                int x0 = minPrice;
-                int x1 = x0 + dif;
-                int x2 = x1 + dif;
-                int x3 = x2 + dif;
-                int x4 = x3 + dif;
-                int x5 = x4 + dif;
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x0)) + "-" + Utility.priceFormat(String.valueOf(x1)), 1, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x1)) + "-" + Utility.priceFormat(String.valueOf(x2)), 2, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x2)) + "-" + Utility.priceFormat(String.valueOf(x3)), 3, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x3)) + "-" + Utility.priceFormat(String.valueOf(x4)), 4, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x4)) + "-" + Utility.priceFormat(String.valueOf(x5)), 5, false));
+                        if ((hotels.Availability.RoomLists.get(i).OldPrice > 0) &&
+                                (hotels.Availability.RoomLists.get(i).OldPrice > Integer.valueOf(hotels.Availability.RoomLists.get(i).Price))) {
 
-                int i = 0;
-                int j = 0;
-                for (Hotels hotels : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels) {
-                    String off = "";
-                    boolean isOff = false;
-                    int xiff = 0;
-                    int hotelPrice = Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
+                            int p1 = hotels.Availability.RoomLists.get(i).OldPrice - Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
+                            int p2 = p1 * 100;
+                            int p3 = p2 / hotels.Availability.RoomLists.get(i).OldPrice;
+                            if (p3 != 0) {
+                                isOff = true;
 
+                                off = p3 + "%\nتخفیف";
 
-                    if ((hotels.Availability.RoomLists.get(i).OldPrice > 0) &&
-                            (hotels.Availability.RoomLists.get(i).OldPrice > Integer.valueOf(hotels.Availability.RoomLists.get(i).Price))) {
-
-                        int p1 = hotels.Availability.RoomLists.get(i).OldPrice - Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
-                        int p2 = p1 * 100;
-                        int p3 = p2 / hotels.Availability.RoomLists.get(i).OldPrice;
-                        if (p3 != 0) {
-                            isOff = true;
-
-                            off = p3 + "%\nتخفیف";
-
+                            }
                         }
-                    }
-                    if ((hotelPrice >= x0) && (hotelPrice < x1)) {
-                        xiff = 1;
-                    }
-                    if ((hotelPrice >= x1) && (hotelPrice < x2)) {
-                        xiff = 2;
-                    }
-                    if ((hotelPrice >= x2) && (hotelPrice < x3)) {
-                        xiff = 3;
-                    }
-                    if ((hotelPrice >= x3) && (hotelPrice < x4)) {
-                        xiff = 4;
-                    }
-                    if ((hotelPrice >= x4) && (hotelPrice <= x5)) {
-                        xiff = 5;
+                        if ((hotelPrice >= x0) && (hotelPrice < x1)) {
+                            xiff = 1;
+                        }
+                        if ((hotelPrice >= x1) && (hotelPrice < x2)) {
+                            xiff = 2;
+                        }
+                        if ((hotelPrice >= x2) && (hotelPrice < x3)) {
+                            xiff = 3;
+                        }
+                        if ((hotelPrice >= x3) && (hotelPrice < x4)) {
+                            xiff = 4;
+                        }
+                        if ((hotelPrice >= x4) && (hotelPrice <= x5)) {
+                            xiff = 5;
+                        }
+
+
+                        selectHotelModelArrayList.add(new SelectFlightHotelModel(hotels.Name, hotels.City, hotels.Availability.RoomLists.get(i).Title,
+                                hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location,
+                                hotels.Availability.RoomLists.get(i).OldPrice, hotels.StarRating,
+                                hotels.Availability.RoomLists.get(i).EHotelId,
+                                hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.ResultUniqID, hotels.BestSell, isOff,
+                                off, hotels.TypeText, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Facilities,
+                                xiff, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FltList,
+                                hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.ArrRout,
+                                hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.DepRout, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.Amount));
+
+                        flightId = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FlightID;
+
+                        //  i++;
+
+
                     }
 
 
-                    selectHotelModelArrayList.add(new SelectFlightHotelModel(hotels.Name, hotels.City, hotels.Availability.RoomLists.get(i).Title,
-                            hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location,
-                            hotels.Availability.RoomLists.get(i).OldPrice, hotels.StarRating,
-                            hotels.Availability.RoomLists.get(i).EHotelId,
-                            hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.ResultUniqID, hotels.BestSell, isOff,
-                            off, hotels.TypeText, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Facilities,
-                            xiff, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FltList,
-                            hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.ArrRout,
-                            hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.DepRout, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.Amount));
+                    for (Facilities facilities : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Facilities) {
 
-                    flightId = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FlightID;
+                        filterHotelFacilitiesModels.add(new FilterHotelTypeModel(facilities.Title, false));
+                    }
 
-                    //  i++;
+                    for (HotelTypes hotelTypes : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.HotelTypes) {
 
+
+                        filterHotelTypeModel.add(new FilterHotelTypeModel(hotelTypes.Title, false));
+
+
+                    }
+                    tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", ""));
+                    tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+                    adapter.notifyDataSetChanged();
 
                 }
 
 
-                for (Facilities facilities : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Facilities) {
 
-                    filterHotelFacilitiesModels.add(new FilterHotelTypeModel(facilities.Title, false));
-                }
-
-                for (HotelTypes hotelTypes : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.HotelTypes) {
-
-
-                    filterHotelTypeModel.add(new FilterHotelTypeModel(hotelTypes.Title, false));
-
-
-                }
-                tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", ""));
-                tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
-                adapter.notifyDataSetChanged();
             } catch (Exception e) {
                 llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);

@@ -8,13 +8,17 @@ public class HotelPreFactorModel {
     String HotelName;
     String CheckIn;
     String CheckOut;
-    String Sum;
+    String Adult;
+    String Child;
+    String Room;
 
-    public HotelPreFactorModel(String hotelName, String checkIn, String checkOut, String sum) {
+    public HotelPreFactorModel(String hotelName, String checkIn, String checkOut, String adult, String child, String room) {
         HotelName = hotelName;
         CheckIn = checkIn;
         CheckOut = checkOut;
-        Sum = sum;
+        Adult = adult;
+        Child = child;
+        Room = room;
     }
 
     public String getHotelName() {
@@ -41,11 +45,27 @@ public class HotelPreFactorModel {
         CheckOut = checkOut;
     }
 
-    public String getSum() {
-        return Sum;
+    public String getAdult() {
+        return Adult;
     }
 
-    public void setSum(String sum) {
-        Sum = sum;
+    public void setAdult(String adult) {
+        Adult = adult;
+    }
+
+    public String getChild() {
+        return Child;
+    }
+
+    public void setChild(String child) {
+        Child = child;
+    }
+
+    public String getRoom() {
+        return Room;
+    }
+
+    public void setRoom(String room) {
+        Room = room;
     }
 }

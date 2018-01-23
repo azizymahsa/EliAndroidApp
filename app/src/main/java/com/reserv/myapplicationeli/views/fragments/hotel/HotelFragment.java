@@ -346,6 +346,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 Intent room = new Intent(getActivity(), AddRoomActivity.class);
 
                 room.putExtra("roomList", Prefs.getString("Rooms", "dd"));
+                Log.e("roomm",  Prefs.getString("Rooms", "dd"));
                 startActivity(room);
 
                 break;

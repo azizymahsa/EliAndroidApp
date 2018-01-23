@@ -123,9 +123,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
     private String Gensiyat;
     Activity activity;
-    public int countB = SearchParvazActivity.COUNT_B;
-    public int countK = SearchParvazActivity.COUNT_K;
-    public int countN = SearchParvazActivity.COUNT_N;
+    public int countB ;
+    public int countK ;
+    public int countN ;
     //public int sum=countB+countK+countN;
     public int sum;
     int counter=2;
@@ -140,6 +140,21 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_hotel);
+        Prefs.getString("Rooms", "dd");
+        JSONArray jsonObj = null;
+        try {
+            jsonObj = new JSONArray( Prefs.getString("Rooms", "dd"));
+            countB=jsonObj.getJSONObject(0).getInt("CountB");
+            countK=jsonObj.getJSONObject(0).getInt("CountK");
+            countN=jsonObj.getJSONObject(0).getInt("CountN");
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.e("jsonObj", jsonObj.toString());
+
+        // Getting JSON Array node
 
 
         btnBack = (FancyButton) findViewById(R.id.btnBack);
@@ -431,7 +446,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 for (int i = 0; i < jArray2.length(); i++) {
                     Log.e("teeeeest", jArray2.getJSONObject(i).getString("CityFa"));
                     hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"), jArray2.getJSONObject(i).getString("HotelChekin")
-                            , jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount")));
+                            , jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount"),
+                            jArray2.getJSONObject(i).getString("ChdCount"),jArray2.getJSONObject(i).getString("RoomTitleFa")));
 
                 }
                 if (!hotelPreFactorModels.isEmpty()) {
@@ -455,7 +471,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 for (int i = 0; i < jArray3.length(); i++) {
                     passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
                             jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_FirstNameFa"),jArray3.getJSONObject(i).getString("RqPassenger_LastNameFa")));
+                            jArray3.getJSONObject(i).getString("RqPassenger_FirstNameEn"),jArray3.getJSONObject(i).getString("RqPassenger_LastNameEn")));
 
                 }
                 if (!passengerPreFactorModels.isEmpty()) {

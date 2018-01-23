@@ -1208,98 +1208,102 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
-                }else
-                if (availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels.isEmpty()) {
+                }else if (availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
-                }
-
-                maxPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MaxPrice;
-                minPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MinPrice;
-                int dif = maxPrice - minPrice;
-                dif = dif / 5;
-                int x0 = minPrice;
-                int x1 = x0 + dif;
-                int x2 = x1 + dif;
-                int x3 = x2 + dif;
-                int x4 = x3 + dif;
-                int x5 = x4 + dif;
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x0)) + "-" + Utility.priceFormat(String.valueOf(x1)), 1, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x1)) + "-" + Utility.priceFormat(String.valueOf(x2)), 2, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x2)) + "-" + Utility.priceFormat(String.valueOf(x3)), 3, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x3)) + "-" + Utility.priceFormat(String.valueOf(x4)), 4, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x4)) + "-" + Utility.priceFormat(String.valueOf(x5)), 5, false));
-
-                int i = 0;
-                for (Hotels hotels : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels) {
-                    String off = "";
-                    boolean isOff = false;
-                    int xiff = 0;
-                    int hotelPrice = Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
+                }else {
 
 
-                    if ((hotels.Availability.RoomLists.get(i).OldPrice > 0) &&
-                            (hotels.Availability.RoomLists.get(i).OldPrice > Integer.valueOf(hotels.Availability.RoomLists.get(i).Price))) {
+                    maxPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MaxPrice;
+                    minPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MinPrice;
+                    int dif = maxPrice - minPrice;
+                    dif = dif / 5;
+                    int x0 = minPrice;
+                    int x1 = x0 + dif;
+                    int x2 = x1 + dif;
+                    int x3 = x2 + dif;
+                    int x4 = x3 + dif;
+                    int x5 = x4 + dif;
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x0)) + "-" + Utility.priceFormat(String.valueOf(x1)), 1, false));
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x1)) + "-" + Utility.priceFormat(String.valueOf(x2)), 2, false));
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x2)) + "-" + Utility.priceFormat(String.valueOf(x3)), 3, false));
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x3)) + "-" + Utility.priceFormat(String.valueOf(x4)), 4, false));
+                    filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x4)) + "-" + Utility.priceFormat(String.valueOf(x5)), 5, false));
 
-                        int p1 = hotels.Availability.RoomLists.get(i).OldPrice - Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
-                        int p2 = p1 * 100;
-                        int p3 = p2 / hotels.Availability.RoomLists.get(i).OldPrice;
-                        if (p3 != 0) {
-                            isOff = true;
+                    int i = 0;
+                    for (Hotels hotels : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels) {
+                        String off = "";
+                        boolean isOff = false;
+                        int xiff = 0;
+                        int hotelPrice = Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
 
-                            off = p3 + "%\nتخفیف";
 
+                        if ((hotels.Availability.RoomLists.get(i).OldPrice > 0) &&
+                                (hotels.Availability.RoomLists.get(i).OldPrice > Integer.valueOf(hotels.Availability.RoomLists.get(i).Price))) {
+
+                            int p1 = hotels.Availability.RoomLists.get(i).OldPrice - Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
+                            int p2 = p1 * 100;
+                            int p3 = p2 / hotels.Availability.RoomLists.get(i).OldPrice;
+                            if (p3 != 0) {
+                                isOff = true;
+
+                                off = p3 + "%\nتخفیف";
+
+                            }
                         }
-                    }
-                    if ((hotelPrice >= x0) && (hotelPrice < x1)) {
-                        xiff = 1;
-                    }
-                    if ((hotelPrice >= x1) && (hotelPrice < x2)) {
-                        xiff = 2;
-                    }
-                    if ((hotelPrice >= x2) && (hotelPrice < x3)) {
-                        xiff = 3;
-                    }
-                    if ((hotelPrice >= x3) && (hotelPrice < x4)) {
-                        xiff = 4;
-                    }
-                    if ((hotelPrice >= x4) && (hotelPrice <= x5)) {
-                        xiff = 5;
+                        if ((hotelPrice >= x0) && (hotelPrice < x1)) {
+                            xiff = 1;
+                        }
+                        if ((hotelPrice >= x1) && (hotelPrice < x2)) {
+                            xiff = 2;
+                        }
+                        if ((hotelPrice >= x2) && (hotelPrice < x3)) {
+                            xiff = 3;
+                        }
+                        if ((hotelPrice >= x3) && (hotelPrice < x4)) {
+                            xiff = 4;
+                        }
+                        if ((hotelPrice >= x4) && (hotelPrice <= x5)) {
+                            xiff = 5;
+                        }
+
+
+                        selectHotelModelArrayList.add(new SelectHotelModel(hotels.Name, hotels.City, hotels.Availability.RoomLists.get(i).Title,
+                                hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location,
+                                hotels.Availability.RoomLists.get(i).OldPrice, hotels.StarRating,
+                                hotels.Availability.RoomLists.get(i).EHotelId,
+                                availApi.hotelAvailModelResponse.HotelAvailResult.ResultUniqID, hotels.BestSell, isOff,
+                                off, hotels.TypeText, availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Facilities, xiff, hotels.Availability.RoomLists.get(i).OfferId));
+
+
+                        //  i++;
+
+
                     }
 
 
-                    selectHotelModelArrayList.add(new SelectHotelModel(hotels.Name, hotels.City, hotels.Availability.RoomLists.get(i).Title,
-                            hotels.Availability.RoomLists.get(i).Board, hotels.Availability.RoomLists.get(i).Price, hotels.MainImage, hotels.Location,
-                            hotels.Availability.RoomLists.get(i).OldPrice, hotels.StarRating,
-                            hotels.Availability.RoomLists.get(i).EHotelId,
-                            availApi.hotelAvailModelResponse.HotelAvailResult.ResultUniqID, hotels.BestSell, isOff,
-                            off, hotels.TypeText, availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Facilities, xiff, hotels.Availability.RoomLists.get(i).OfferId));
+                    for (Facilities facilities : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Facilities) {
+
+                        filterHotelFacilitiesModels.add(new FilterHotelTypeModel(facilities.Title, false));
+                    }
+
+                    for (HotelTypes hotelTypes : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.HotelTypes) {
 
 
-                    //  i++;
+                        filterHotelTypeModel.add(new FilterHotelTypeModel(hotelTypes.Title, false));
 
+
+                    }
+                    tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa", ""));
+                    tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+                    adapter.notifyDataSetChanged();
 
                 }
 
 
-                for (Facilities facilities : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Facilities) {
-
-                    filterHotelFacilitiesModels.add(new FilterHotelTypeModel(facilities.Title, false));
-                }
-
-                for (HotelTypes hotelTypes : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.HotelTypes) {
-
-
-                    filterHotelTypeModel.add(new FilterHotelTypeModel(hotelTypes.Title, false));
-
-
-                }
-                tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa", ""));
-                tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
-                adapter.notifyDataSetChanged();
             } catch (Exception e) {
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);

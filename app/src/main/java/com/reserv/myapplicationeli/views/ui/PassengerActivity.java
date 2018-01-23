@@ -439,9 +439,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				for (int i = 0; i < jArray2.length(); i++) {
-					Log.e("teeeeest", jArray2.getJSONObject(i).getString("CityFa"));
 					hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"), jArray2.getJSONObject(i).getString("HotelChekin")
-							, jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount")));
+							, jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount"),
+							jArray2.getJSONObject(i).getString("ChdCount"),jArray2.getJSONObject(i).getString("RoomTitleFa")));
 
 				}
 				if (!hotelPreFactorModels.isEmpty()) {

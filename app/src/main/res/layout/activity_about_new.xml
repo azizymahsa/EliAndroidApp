@@ -6,248 +6,266 @@
     android:background="#ffffff" >
 
 
-
-    <RelativeLayout
-       android:id="@+id/relative"
-        android:layout_width="match_parent"
-        android:layout_height="208dp"
-        android:background="@drawable/about_us_back">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_12dp">
-
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btnBack"
-                style="@style/fancy_toolbar"
-                android:layout_gravity="right"
-                fancy:fb_textSize="20dp"
-                android:visibility="visible"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                fancy:fb_radius="200dp" />
-
-        </LinearLayout>
-    </RelativeLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:id="@+id/linear_tree"
-        android:layout_below="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_12dp"
-        android:weightSum="3">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
 
 
-        <android.support.v7.widget.CardView
-
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="2dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="1dp"
-            android:layout_weight="1"
-            android:background="@color/hotel_detail_background"
-            android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="208dp"
+            android:background="@drawable/about_us_back">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-               >
+                android:layout_marginTop="@dimen/_12dp">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="1200"
-                    android:textColor="#2e3192"
-                    android:textSize="@dimen/text_size"
-                    />
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/btnBack"
+                    style="@style/fancy_toolbar"
+                    android:layout_gravity="right"
+                    fancy:fb_textSize="20dp"
+                    android:visibility="visible"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    fancy:fb_radius="200dp" />
 
-                <TextView
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/city_for_aboutus"
-                    android:gravity="center"
-                    android:text=" " />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="شهر در سراسر جهان"
-                    android:textColor="#2e3192"
-                    android:textSize="@dimen/_aboutdp"/>
             </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <!-- /////////////////////////////// -->
-        <android.support.v7.widget.CardView
+        </RelativeLayout>
 
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="2dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="1dp"
-            android:layout_weight="1"
-            android:background="@color/hotel_detail_background"
-            android:orientation="vertical"
-            >
+        <LinearLayout
+            android:id="@+id/linear_tree"
+            android:layout_below="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_12dp"
+            android:weightSum="3">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+
+            <android.support.v7.widget.CardView
+
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:background="@color/hotel_detail_background"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="1200"
+                        android:textColor="#2e3192"
+                        android:textSize="@dimen/text_size"
+                        />
+
+                    <TextView
+
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/city_for_aboutus"
+                        android:gravity="center"
+                        android:text=" " />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="شهر در سراسر جهان"
+                        android:textColor="#2e3192"
+                        android:textSize="@dimen/_aboutdp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <!-- /////////////////////////////// -->
+            <android.support.v7.widget.CardView
+
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:background="@color/hotel_detail_background"
                 android:orientation="vertical"
                 >
 
-                <TextView
-                    android:id="@+id/textView8"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="900"
-                    android:textColor="#2e3192"
-                    android:textSize="@dimen/text_size"
-                    />
+                    android:orientation="vertical"
+                    >
 
-                <TextView
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="900"
+                        android:textColor="#2e3192"
+                        android:textSize="@dimen/text_size"
+                        />
 
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:background="@drawable/plane_for_about_us"
-                    android:text=" " />
+                    <TextView
 
-                <TextView
-                    android:id="@+id/textView10"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:background="@drawable/plane_for_about_us"
+                        android:text=" " />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="ایرلاین معتبر"
+                        android:textColor="#2e3192"
+                        android:textSize="@dimen/_aboutdp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <!-- /////////////////////////////// -->
+            <android.support.v7.widget.CardView
+
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:background="@color/hotel_detail_background"
+                android:orientation="vertical">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="ایرلاین معتبر"
-                    android:textColor="#2e3192"
-                    android:textSize="@dimen/_aboutdp"/>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="20000"
+                        android:textColor="#2e3192"
+                        android:textSize="@dimen/text_size"/>
+
+                    <TextView
+
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:background="@drawable/hotel_for_aboutus"
+                        android:text=" " />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="هتل در سراسر جهان"
+                        android:textColor="#2e3192"
+                        android:textSize="@dimen/_aboutdp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
         <!-- /////////////////////////////// -->
-        <android.support.v7.widget.CardView
 
-            android:layout_width="0dp"
-            android:layout_height="100dp"
+
+        <android.support.v7.widget.CardView
+            android:layout_below="@+id/linear_tree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="2dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="1dp"
-            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_weight="100"
             android:background="@color/hotel_detail_background"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-               >
+                android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/textView5"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="120dp"
+                        android:layout_height="1dp"
+                        android:background="#2e3192"/>
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="درباره ما"
+                        android:gravity="center"
+                        android:textColor="#2e3192"
+                        android:textSize="@dimen/_25dp" />
+                    <View
+                        android:layout_width="120dp"
+                        android:layout_height="1dp"
+                        android:background="#2e3192"/>
+                </LinearLayout>
+
+
+                <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                    android:id="@+id/lvExp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="20000"
-                    android:textColor="#2e3192"
-                    android:textSize="@dimen/text_size"/>
+                    android:cacheColorHint="#00000000" />
 
-                <TextView
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:background="@drawable/hotel_for_aboutus"
-                    android:text=" " />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="هتل در سراسر جهان"
-                    android:textColor="#2e3192"
-                    android:textSize="@dimen/_aboutdp"/>
             </LinearLayout>
+
+
         </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-    <!-- /////////////////////////////// -->
-
-
-    <android.support.v7.widget.CardView
-        android:layout_below="@+id/linear_tree"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="100"
-        android:background="@color/hotel_detail_background"
-        android:orientation="horizontal">
-
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="51dp"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <View
-                    android:layout_width="120dp"
-                    android:layout_height="1dp"
-                    android:background="#2e3192"/>
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="درباره ما"
-                    android:gravity="center"
-                    android:textColor="#2e3192"
-                    android:textSize="@dimen/_25dp" />
-                <View
-                    android:layout_width="120dp"
-                    android:layout_height="1dp"
-                    android:background="#2e3192"/>
-            </LinearLayout>
-
-            <ListView
-                android:id="@+id/lvExp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:cacheColorHint="#00000000" />
+    </LinearLayout>
 
 
 
-        </LinearLayout>
+</ScrollView>
 
-    </android.support.v7.widget.CardView>
 
 
 

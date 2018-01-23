@@ -285,6 +285,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
             }
         };
         LocalBroadcastManager.getInstance(this).registerReceiver(sendDetailFinish,

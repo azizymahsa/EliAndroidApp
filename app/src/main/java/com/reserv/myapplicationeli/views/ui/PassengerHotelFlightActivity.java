@@ -432,7 +432,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 for (int i = 0; i < jArray2.length(); i++) {
                     Log.e("teeeeest", jArray2.getJSONObject(i).getString("CityFa"));
                     hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"), jArray2.getJSONObject(i).getString("HotelChekin")
-                            , jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount")));
+                            , jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount"),
+                            jArray2.getJSONObject(i).getString("ChdCount"),jArray2.getJSONObject(i).getString("RoomTitleFa")));
 
                 }
                 if (!hotelPreFactorModels.isEmpty()) {
@@ -456,7 +457,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 for (int i = 0; i < jArray3.length(); i++) {
                     passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
                             jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_FirstNameFa"),jArray3.getJSONObject(i).getString("RqPassenger_LastNameFa")));
+                            jArray3.getJSONObject(i).getString("RqPassenger_FirstNameEn"),jArray3.getJSONObject(i).getString("RqPassenger_LastNameEn")));
 
                 }
                 if (!passengerPreFactorModels.isEmpty()) {

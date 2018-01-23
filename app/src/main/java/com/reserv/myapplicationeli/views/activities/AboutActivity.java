@@ -34,6 +34,7 @@ import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.AboutAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMabdaAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
+import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
@@ -159,7 +160,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         ProgressDialog pdLoading = new ProgressDialog(AboutActivity.this);
         HttpURLConnection conn;
         URL url = null;
-        private ListView listAirPort;
+        private NonScrollListView listAirPort;
 
         @Override
         protected void onPreExecute() {
@@ -293,7 +294,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 }
 
 
-                listAirPort = (ListView)findViewById(R.id.lvExp);
+                listAirPort = (NonScrollListView)findViewById(R.id.lvExp);
                 mAdapter = new AboutAdapter(AboutActivity.this, data,AboutActivity.this);
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);

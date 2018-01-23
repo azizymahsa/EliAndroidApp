@@ -60,10 +60,9 @@
         app:ael_duration="400"
         app:ael_expanded="false"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="150dp"
             android:orientation="horizontal">
 
 
@@ -104,6 +103,18 @@
 
                 <TextView
                     android:id="@+id/tvCheckIn"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center|right"
+                    android:padding="5dp"
+                    android:text="تاریخ ورود به هتل	"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="#4d4d4d"
+
+                    android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/tvRoom"
 
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -162,12 +173,24 @@
                     android:textColor="@color/text_color_2e"
 
                     android:textSize="12dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center|right"
+                    android:padding="5dp"
+                    android:text="اتاق"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="@color/text_color_2e"
+
+                    android:textSize="12dp" />
+
 
 
             </LinearLayout>
 
 
         </LinearLayout>
+
     </com.github.aakira.expandablelayout.ExpandableLinearLayout>
 </RelativeLayout>
 

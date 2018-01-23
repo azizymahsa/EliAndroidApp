@@ -47,11 +47,22 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final HotelPreFactorModel item = data.get(position);
+
+        String sum="";
+        sum=item.getAdult()+" بزرگسال";
+        if (Integer.valueOf(item.getChild())!=0){
+            sum=sum+" "+item.getChild()+" کودک";
+
+        }
+
+
+
         holder.setIsRecyclable(false);
         holder.tvHotelName.setText(item.getHotelName());
-        holder.tvSum.setText(item.getSum());
+        holder.tvSum.setText(sum);
         holder.tvCheckOut.setText(item.getCheckIn());
         holder.tvCheckIn.setText(item.getCheckOut());
+        holder.tvRoom.setText(item.getRoom());
        // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);
        // holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2));
@@ -90,7 +101,7 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvHotelName,tvSum,tvCheckOut,tvCheckIn,tvArrow;
+        public TextView tvHotelName,tvSum,tvCheckOut,tvCheckIn,tvArrow,tvNumAdult,tvRoom;
       //  public RelativeLayout tvArrow;
         /**
          * You must use the ExpandableLinearLayout in the recycler view.
@@ -106,6 +117,7 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
             tvCheckIn = (TextView) v.findViewById(R.id.tvCheckIn);
             expandableLayout = (ExpandableLinearLayout) v.findViewById(R.id.expandableLayout);
             tvArrow = (TextView) v.findViewById(R.id.tvArrow);
+            tvRoom = (TextView) v.findViewById(R.id.tvRoom);
         }
     }
 
