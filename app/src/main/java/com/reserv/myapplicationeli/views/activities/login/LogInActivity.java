@@ -89,7 +89,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                 }
 
                 if (response.body().getLoginResult().getWebUserLogin() == null && response.body().getLoginResult().getError()!=null){
-                    Toast.makeText(LogInActivity.this, response.body().getLoginResult().getError().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, response.body().getLoginResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -103,8 +103,11 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
                 WebUserTools.getInstance().setUser(webUserLogin.getWebUserProperties());
 //                Toast.makeText(LogInActivity.this, "Id of User is :" + webUserLogin.getWebUserProperties().getWebUserID(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(LogInActivity.this, "password of User is :" + webUserLogin.getWebUserProperties().getPassword(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LogInActivity.this, "password of User is :" + webUserLogin.getWebUserProperties().getPassword(), Toast.LENGTH_SHORT).show();
 //                Log.e("Id of User is :",webUserLogin.getWebUserProperties()+"");
+
+                Intent intent1 = new Intent(LogInActivity.this,ProfileActivity.class);
+                startActivity(intent1);
 
 
             }
@@ -165,6 +168,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                     return;
                 }
                 Login();
+
                 break;
         }
 

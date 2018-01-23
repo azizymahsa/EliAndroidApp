@@ -48,6 +48,9 @@ public class PassengerPresenter implements PassengerContract.Presenter{
         if (ValidationTools.isEmptyOrNull(getPassengers())) {
             return;
         }
+        if(getPassengersCount() >= 9){
+            return;
+        }
         BirthDateList birthDateList = new BirthDateList();
         birthDateList.setPassNo(getPassengersCount() + 1);
         passengers.add(birthDateList);

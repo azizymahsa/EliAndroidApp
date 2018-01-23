@@ -1261,7 +1261,9 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
-                        android:background="@color/color_passenger_prefactor"/>
+                        android:background="@color/color_passenger_prefactor"
+                        android:layout_marginBottom="15dp"
+                        android:scaleType="fitXY"/>
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="match_parent"

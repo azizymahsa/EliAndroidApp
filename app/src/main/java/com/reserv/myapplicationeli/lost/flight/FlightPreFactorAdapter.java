@@ -50,7 +50,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         holder.tvFlightDetail.setText(item.getAirlineNameEn());
         holder.tvArrAirport.setText(item.getArrAirPortFa());
         holder.tvDepAir.setText(item.getDepAirPortFa());
-        holder.tvDate.setText(item.getDepAirPortFa());
+        holder.tvDate.setText(item.getFltDate());
         holder.tvOutTime.setText(item.getFltTime());
         holder.tvInTime.setText(item.getFltCheckinTime());
         holder.tvNumber.setText(item.getFltNumber());

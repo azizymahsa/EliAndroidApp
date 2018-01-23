@@ -63,9 +63,9 @@
         android:background="#ffffff"
         android:layout_below="@+id/toolbar_container">
 
-        <Button
+        <ImageView
             android:id="@+id/btn_pish_factor"
-            android:layout_width="105dp"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:background="@drawable/khadamat_passenger_off"
@@ -76,9 +76,9 @@
 
 
 
-        <Button
+        <ImageView
             android:id="@+id/btn_mosaferan"
-            android:layout_width="105dp"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:background="@drawable/mosaferan_passenger_off"
             android:gravity="right|center_vertical"
@@ -86,7 +86,7 @@
             android:textColor="#808080"
             android:textSize="10dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_saler"
             android:layout_width="30dp"
             android:layout_height="wrap_content"

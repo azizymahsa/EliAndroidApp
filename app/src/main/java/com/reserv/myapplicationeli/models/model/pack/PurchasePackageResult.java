@@ -3,12 +3,13 @@ package com.reserv.myapplicationeli.models.model.pack;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.reserv.myapplicationeli.models.model.Error;
 
 public class PurchasePackageResult {
 
     @SerializedName("Error")
     @Expose
-    private Object error;
+    private Error error;
     @SerializedName("Services")
     @Expose
     private Object services;
@@ -20,7 +21,7 @@ public class PurchasePackageResult {
         return error;
     }
 
-    public void setError(Object error) {
+    public void setError(Error error) {
         this.error = error;
     }
 

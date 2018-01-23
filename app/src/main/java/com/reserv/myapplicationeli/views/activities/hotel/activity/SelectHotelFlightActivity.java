@@ -1207,9 +1207,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
             try {
-                if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Error!=null) {
+                if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors!=null) {
                     elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("در حال حاضر پاسخگویی به در خواست شما ممکن نمی باشد!");
+                    tvAlert.setText(hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors.get(0).Message);
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 

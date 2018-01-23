@@ -124,10 +124,16 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
                     return;
                 }
 
+                if(response.body().getShowInsuranceResult().getError() != null){
+                    Toast.makeText(SearchInsuranceActivity.this, response.body().getShowInsuranceResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
+                    showText();
+                    return;
+                }
+
                 TravelInsurance  travelInsurance = response.body().getShowInsuranceResult().getTravelInsurance();
                 insurancePlan = response.body().getShowInsuranceResult().getInsurancePlan();
 
-                if(travelInsurance == null && insurancePlan == null){
+                if(travelInsurance == null && insurancePlan == null ){
                     showText();
                     return;
                 }

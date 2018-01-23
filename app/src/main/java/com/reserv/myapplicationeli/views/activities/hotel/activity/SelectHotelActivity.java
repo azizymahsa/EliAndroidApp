@@ -1202,9 +1202,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
             try {
-                if (availApi.hotelAvailModelResponse.HotelAvailResult.Error!=null) {
+                if (availApi.hotelAvailModelResponse.HotelAvailResult.Errors!=null) {
                     elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("در حال حاضر پاسخگویی به در خواست شما ممکن نمی باشد!");
+                    tvAlert.setText(availApi.hotelAvailModelResponse.HotelAvailResult.Errors.get(0).Message);
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 

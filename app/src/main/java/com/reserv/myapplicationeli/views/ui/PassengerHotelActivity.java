@@ -492,11 +492,11 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 for (int i = 0; i < jArray5.length(); i++) {
                     flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
-                            jArray5.getJSONObject(i).getString("ArrAirPortFa"),
                             jArray5.getJSONObject(i).getString("DepAirPortFa"),
+                            jArray5.getJSONObject(i).getString("ArrAirPortFa"),
                             jArray5.getJSONObject(i).getString("FltDate"),
-                            jArray5.getJSONObject(i).getString("FltCheckinTime"),
                             jArray5.getJSONObject(i).getString("FltTime"),
+                            jArray5.getJSONObject(i).getString("FltCheckinTime"),
                             jArray5.getJSONObject(i).getString("FltNumber"),
                             jArray5.getJSONObject(i).getString("AirlineNameFa")));
 
@@ -1918,7 +1918,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
      * http://code.google.com/p/zxing/source/browse/trunk/android/src/com/google/zxing/client/android/encode/QRCodeEncoder.java
      */
 
-    private static final int WHITE = 0xFFFFFFFF;
+    private static final int WHITE = 15132390;
     private static final int BLACK = 0xFF000000;
 
     private static Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException {

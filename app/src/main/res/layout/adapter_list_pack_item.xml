@@ -92,15 +92,16 @@
                         android:layout_toLeftOf="@+id/iv"
                         android:layout_centerVertical="true"
                         android:paddingRight="10dp"
-                        android:textColor="@color/dark_blue"/>
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_12dp"/>
 
                     <ImageView
                         android:id="@+id/iv"
                         android:layout_width="200dp"
-                        android:layout_height="11dp"
+                        android:layout_height="8dp"
                         android:layout_centerInParent="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/group" />
+                        android:src="@drawable/gray_line" />
                     <TextView
                         android:id="@+id/time_deprt_go"
                         android:layout_below="@+id/time_ariv_go"
@@ -111,7 +112,8 @@
                         android:layout_toRightOf="@+id/iv"
                         android:layout_centerVertical="true"
                         android:paddingLeft="10dp"
-                        android:textColor="@color/dark_blue"/>
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_12dp"/>
 
                     <TextView
                         android:id="@+id/country_ariv_go"
@@ -163,15 +165,16 @@
                         android:layout_toLeftOf="@+id/iv"
                         android:layout_centerVertical="true"
                         android:paddingRight="10dp"
-                        android:textColor="@color/dark_blue"/>
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_12dp"/>
 
                     <ImageView
                         android:id="@+id/iv"
                         android:layout_width="200dp"
-                        android:layout_height="11dp"
+                        android:layout_height="8dp"
                         android:layout_centerInParent="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/group"/>
+                        android:src="@drawable/gray_line"/>
                     <TextView
                         android:id="@+id/time_drt_back"
                         android:layout_below="@+id/time_arrive_back"
@@ -182,7 +185,8 @@
                         android:layout_toRightOf="@+id/iv"
                         android:layout_centerVertical="true"
                         android:paddingLeft="10dp"
-                        android:textColor="@color/dark_blue"/>
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_12dp"/>
 
                     <TextView
                         android:id="@+id/country_arive_back"

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +69,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private ArrayList<AmenityFilter> amenityFilters;
     private RelativeLayout rlLoading;
     private RelativeLayout rlRoot;
+    private HorizontalScrollView scroll_availabel_date;
     private String departureFrom;
     private String departureTo;
     private String country;
@@ -75,6 +78,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private String cityName;
     private TextView toolbar_title;
     private TextView toolbar_date;
+    private TextView txt_comin_soon;
     private FancyButton btnBack;
     private ViewGroup layout_sort;
     private ViewGroup llFilter;
@@ -134,7 +138,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         packageListReq.setCulture(culture);
         Log.e("roomlist", roomList);
 
-
+        Log.e("req_pack", new GsonBuilder().create().toJson(new PackageRequestModel(packageListReq)));
         Call<PackageListRes> call = service.getPackageListResult(new PackageRequestModel(packageListReq));
         call.enqueue(new Callback<PackageListRes>() {
             @Override
@@ -148,7 +152,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 if (searchXPackageResult == null || ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
                     rcl_package.showText();
                     if (response.body().getSearchXPackageResult().getError() != null) {
-                        Toast.makeText(SearchPackActivity.this, response.body().getSearchXPackageResult().getError().toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchPackActivity.this, response.body().getSearchXPackageResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                     return;
                 }
@@ -183,12 +187,14 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         toolbar_title = findViewById(R.id.tvTitle);
         toolbar_date = findViewById(R.id.tvDate);
         btnBack = findViewById(R.id.btnBack);
+        txt_comin_soon = findViewById(R.id.txt_comin_soon);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         layout_sort = findViewById(R.id.llSort);
         llFilter = findViewById(R.id.llFilter);
         btn_previous_day = findViewById(R.id.btnLastDays);
         btn_next_day = findViewById(R.id.btnNextDays);
+        scroll_availabel_date = findViewById(R.id.scroll_availabel_date);
 
 
         rlLoading = findViewById(R.id.rlLoading);
@@ -199,6 +205,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         rcl_available_date.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rcl_available_date.hideLoading();
         rcl_available_date.setVisibility(View.GONE);
+        txt_comin_soon.setVisibility(View.GONE);
+        rcl_available_date.setNestedScrollingEnabled(false);
 
         btnBack.setOnClickListener(this);
         llFilter.setOnClickListener(this);
@@ -265,7 +273,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
 
                         if (pRowXferAdapter != null) {
-                            pRowXferAdapter.filter(degreeFiltersSelected,priceFiltersSelected,placeFiltersSelected,amenityFiltersSelected);
+                            pRowXferAdapter.filter(degreeFiltersSelected, priceFiltersSelected, placeFiltersSelected, amenityFiltersSelected);
                         }
                     }
                 });
@@ -300,6 +308,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         if (ValidationTools.isEmptyOrNull(lstAvailableDates)) {
             return;
         }
+
+
         LstAvailableDateAdapter lstAvailableDateAdapter = new LstAvailableDateAdapter(this, lstAvailableDates).setListener(new LstAvailableDateAdapter.ListenerLstAvailableDateAdapter() {
             @Override
             public void onClickLstAvailableDateItem(LstAvailableDate lstAvailableDate) {
@@ -309,12 +319,29 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             }
         });
 
+        int indexSeletedItem = getIndexSelectedItem(lstAvailableDates);
+
         rcl_available_date.showList(lstAvailableDateAdapter);
         rcl_available_date.setVisibility(View.VISIBLE);
-        rcl_available_date.getRecyclerView().scrollToPosition(getIndexSelectedItem(lstAvailableDates));
+
+        scroll_availabel_date.post(new Runnable() {
+            @Override
+            public void run() {
+                scroll_availabel_date.fullScroll(View.FOCUS_RIGHT);
+            }
+        });
+
+        if(indexSeletedItem == 0 ){
+            txt_comin_soon.setVisibility(View.VISIBLE);
+        }else{
+            txt_comin_soon.setVisibility(View.GONE);
+        }
+
     }
 
     private int getIndexSelectedItem(ArrayList<LstAvailableDate> lstAvailableDates) {
+
+
         if (ValidationTools.isEmptyOrNull(lstAvailableDates)) {
             return 0;
         }
@@ -342,9 +369,9 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onFilterListChange(ArrayList<PRowXfer> filtertemList) {
-        if(ValidationTools.isEmptyOrNull(filtertemList)){
+        if (ValidationTools.isEmptyOrNull(filtertemList)) {
             rcl_package.showText();
-        }else {
+        } else {
             rcl_package.showList(pRowXferAdapter);
         }
     }
@@ -356,7 +383,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onReturnValue(int type) {
-        if(pRowXferAdapter != null){
+        if (pRowXferAdapter != null) {
             pRowXferAdapter.sort(type);
         }
     }
