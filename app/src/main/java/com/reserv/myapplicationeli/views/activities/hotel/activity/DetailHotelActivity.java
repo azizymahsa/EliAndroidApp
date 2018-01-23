@@ -159,7 +159,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvTitle = findViewById(R.id.tvTitle);
         //  gvEmakanat = findViewById(R.id.gvEmakanat);
         lvRooms = findViewById(R.id.lvRooms);
-        tvTitle.setText("چهارشنبه، 28 اسفند-جمعه 30 اسفند");
         roomsAdapter = new RoomsAdapter(roomsModels, this,rlRoot,rlLoading,window);
         lvRooms.setAdapter(roomsAdapter);
 
@@ -348,6 +347,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             try {
 
                 tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                tvTitle.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+
                 tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
                 Log.e("test", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
                 LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),

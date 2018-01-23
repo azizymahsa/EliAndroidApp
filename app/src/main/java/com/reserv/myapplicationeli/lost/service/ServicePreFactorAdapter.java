@@ -74,7 +74,7 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         });
 
         holder.tvArrow.setRotation(expandState.get(position) ? 180f : 0f);
-        holder.tvArrow.setOnClickListener(new View.OnClickListener() {
+        holder.tvServicName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 onClickButton(holder.expandableLayout);

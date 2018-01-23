@@ -72,7 +72,7 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
         });
 
         holder.tvArrow.setRotation(expandState.get(position) ? 180f : 0f);
-        holder.tvArrow.setOnClickListener(new View.OnClickListener() {
+        holder.tvHotelName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 onClickButton(holder.expandableLayout);

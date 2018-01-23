@@ -1444,6 +1444,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			if(flag){
 				txttavalodm.setText(year+"/" +sMonth +"/"+ sDay);
 			}else{
+
 				txtexp_passport.setText(year+"/" + sMonth +"/" + sDay);
 			}
 

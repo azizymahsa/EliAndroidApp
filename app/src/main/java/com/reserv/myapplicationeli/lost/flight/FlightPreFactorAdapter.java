@@ -75,7 +75,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         });
 
         holder.tvArrow.setRotation(expandState.get(position) ? 180f : 0f);
-        holder.tvArrow.setOnClickListener(new View.OnClickListener() {
+        holder.tvFlightDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 onClickButton(holder.expandableLayout);

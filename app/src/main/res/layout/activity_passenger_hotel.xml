@@ -1249,14 +1249,19 @@
 
                     <TextView
                         android:id="@+id/txt_shomare_factor"
-                        android:layout_width="124dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="0"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#098d4e" />
-
+                    <ImageView
+                        android:id="@+id/textView4"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:background="@color/color_passenger_prefactor"/>
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="match_parent"
@@ -1288,11 +1293,7 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/textView4"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center" />
+
 
                     <TextView
                         android:id="@+id/tvfactorNumber"
@@ -1361,7 +1362,8 @@
                                     android:id="@+id/recyclerViewPassenger"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:scrollbars="vertical" />
+                                    android:scrollbars="vertical"
+                                    />
 
                             </LinearLayout>
 
@@ -1408,7 +1410,8 @@
                                     android:id="@+id/recyclerView"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:scrollbars="vertical" />
+                                    android:scrollbars="vertical"
+                                    />
 
                             </LinearLayout>
                             <LinearLayout
@@ -1454,7 +1457,8 @@
                                     android:id="@+id/recyclerViewService"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:scrollbars="vertical" />
+                                    android:scrollbars="vertical"
+                                    />
 
                             </LinearLayout>
 
@@ -1501,7 +1505,8 @@
                                     android:id="@+id/recyclerViewFlight"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:scrollbars="vertical" />
+                                    android:scrollbars="vertical"
+                                    />
 
                             </LinearLayout>
                         </RelativeLayout>

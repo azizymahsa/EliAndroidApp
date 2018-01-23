@@ -18,16 +18,17 @@
         android:gravity="right">
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
-            fancy:fb_radius="100dp"
+            fancy:fb_radius="200dp"
             fancy:fb_textColor="#FFFFFF"
 
-            android:layout_gravity="right"
-            fancy:fb_textSize="25dp"
+            android:layout_gravity="right|center"
+            fancy:fb_textSize="20dp"
             fancy:fb_text=" "
+            android:gravity="right"
             />
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnMenu"
@@ -59,7 +60,8 @@
             android:textAppearance="@style/IrsansBold"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:maxLines="1"/>
 
         <TextView
             android:id="@+id/tvDate"
