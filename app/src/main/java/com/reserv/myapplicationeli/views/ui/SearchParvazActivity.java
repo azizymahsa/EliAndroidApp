@@ -986,7 +986,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				if(!GetAirportsResult.getString("Errors").equals("null")){
 					jError=GetAirportsResult.getJSONArray("Errors");//
 					JSONObject jPricedItinerary = jError.getJSONObject(0);
-					GetError = jPricedItinerary.getString("Message");
+					GetError = jPricedItinerary.getString("DetailedMessage");
 
 				}
 				if (GetError.length()>1) {

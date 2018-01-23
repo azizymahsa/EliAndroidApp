@@ -67,8 +67,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 			avi=findViewById(R.id.avi);
 			//searchtxt = (EditText) findViewById(R.id.searchtxt);
 		    //Make call to AsyncTask
-	        new AsyncFetch().execute();
-	        
+
 	    	searchtxt = (EditText) findViewById(R.id.searchtxt);
 			searchtxt.addTextChangedListener(
 	                new TextWatcher() {
