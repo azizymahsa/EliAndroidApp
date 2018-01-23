@@ -83,7 +83,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
     int maxPrice, minPrice;
 
-    LinearLayout llBottom, llSort;
+    LinearLayout llBottom, llSort,llFilter;
     FancyButton btnOk, btnBack, btnHome;
     ImageView ivLoading;
 
@@ -115,6 +115,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         tvFilter = findViewById(R.id.tvFilter);
         btnOk = findViewById(R.id.btnOk);
         tvDate = findViewById(R.id.tvDate);
+        llFilter = findViewById(R.id.llFilter);
         btnHome.setOnClickListener(this);
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
@@ -1210,6 +1211,16 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
                     list.setVisibility(View.GONE);
+                    llFilter.setVisibility(View.GONE);
+
+                }
+
+                if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Error!=null) {
+                    elNotFound.setVisibility(View.VISIBLE);
+                    tvAlert.setText("در حال حاضر پاسخگویی به در خواست شما ممکن نمی باشد!");
+                    list.setVisibility(View.GONE);
+                    llFilter.setVisibility(View.GONE);
+
                 }
                 maxPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MaxPrice;
                 minPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MinPrice;
@@ -1300,6 +1311,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
                 adapter.notifyDataSetChanged();
             } catch (Exception e) {
+                llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText("خطا در برقراری ارتباط");

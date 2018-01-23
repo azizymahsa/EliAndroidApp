@@ -267,7 +267,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 	                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 
 	            } catch (JSONException e) {
-	                Toast.makeText(GetAirportHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+	                Toast.makeText(GetAirportHotelActivity.this, "خطا در برقراری ارتباط", Toast.LENGTH_LONG).show();
 	            }
 
 	        }

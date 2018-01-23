@@ -146,6 +146,7 @@
             android:layout_height="1dp"
             android:background="@drawable/shadow3"/>
         <LinearLayout
+            android:id="@+id/llFilter"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
@@ -376,8 +377,7 @@
                     android:textSize="16dp"
                     android:textAppearance="@style/IrsansBold"
                     android:gravity="center"
-                    android:textColor="@color/toolbar_color"
-                    android:visibility="gone"
+                    android:textColor="@color/text_color_2e"
                     />
 
                 <ImageView

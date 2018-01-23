@@ -79,7 +79,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
     int maxPrice, minPrice;
 
-    LinearLayout llBottom, llSort;
+    LinearLayout llBottom, llSort,llFilter;
     FancyButton btnOk, btnBack, btnHome;
     ImageView ivLoading;
     boolean isFilter = false;
@@ -113,6 +113,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         tvFilter = findViewById(R.id.tvFilter);
         btnOk = findViewById(R.id.btnOk);
         tvDate = findViewById(R.id.tvDate);
+        llFilter = findViewById(R.id.llFilter);
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
         btnNextDays.setOnClickListener(this);
@@ -1205,6 +1206,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
                     list.setVisibility(View.GONE);
+                    llFilter.setVisibility(View.GONE);
+
+                }
+                if (availApi.hotelAvailModelResponse.HotelAvailResult.Error!=null) {
+                    elNotFound.setVisibility(View.VISIBLE);
+                    tvAlert.setText("در حال حاضر پاسخگویی به در خواست شما ممکن نمی باشد!");
+                    list.setVisibility(View.GONE);
+                    llFilter.setVisibility(View.GONE);
+
                 }
                 maxPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MaxPrice;
                 minPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MinPrice;
@@ -1293,6 +1303,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText("خطا در برقراری ارتباط");
+                llFilter.setVisibility(View.GONE);
             }
 
 

@@ -163,8 +163,7 @@ public class RoomsAdapter extends BaseAdapter {
             try {
                 getHotelPolicyApi = new GetHotelPolicyApi(new PolicyRequest(new RequestPolicy(new IdentityRooms("123qwe!@#QWE",
                         "EligashtMlb", "Mobile"),EHotelId,OfferId,SearchKey,"fa-IR",false)));
-                Log.e("reqqqq",new Gson().toJson(new GetHotelPolicyApi(new PolicyRequest(new RequestPolicy(new IdentityRooms("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"),EHotelId,OfferId,SearchKey,"fa-IR",false)))));
+
 
             } catch (Exception e) {
 

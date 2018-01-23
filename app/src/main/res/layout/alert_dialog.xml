@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/toolbar_color"
         android:padding="10dp"
         android:orientation="horizontal"
         android:gravity="right">
@@ -64,7 +64,7 @@
         android:layout_gravity="center"
         android:elevation="4dp"
         android:paddingBottom="1dp"
-        fancy:fb_defaultColor="@color/app_base_color"
+        fancy:fb_defaultColor="@color/toolbar_color"
         fancy:fb_focusColor="@color/colorPrimaryDark"
         fancy:fb_radius="0dp"
         fancy:fb_text="بازگشت"

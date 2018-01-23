@@ -16,6 +16,7 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.HotelCity;
 import com.reserv.myapplicationeli.views.adapters.GetHotelCityAdapter;
+import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -256,7 +257,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 	                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 
 	            } catch (JSONException e) {
-	                Toast.makeText(GetHotelCityActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+					Toast.makeText(GetHotelCityActivity.this, "خطا در برقراری ارتباط", Toast.LENGTH_LONG).show();
 	            }
 
 	        }

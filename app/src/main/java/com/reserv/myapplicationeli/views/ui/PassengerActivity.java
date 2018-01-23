@@ -972,7 +972,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_mosaferan.setVisibility(View.VISIBLE);
 						//myScrollView.setOnTouchListener(null);
 
-					txtTitle.setText("  اطلاعات مسافران ");
+					txtTitle.setText("اطلاعات مسافران");
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
@@ -981,7 +981,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					//	myScrollView.setOnTouchListener(null);
 
 
-					txtTitle.setText("  مشخصات خریدار ");
+					txtTitle.setText(" مشخصات خریدار ");
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
@@ -1302,7 +1302,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
 				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
-				txtTitle.setText("  اطلاعات مسافران ");
+				txtTitle.setText("اطلاعات مسافران");
 
 				//.setOnTouchListener(null);
 				break;
@@ -1342,7 +1342,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-				txtTitle.setText(" تایید و پرداخت پیش فاکتور    ");
+				txtTitle.setText(" تایید و پرداخت پیش فاکتور ");
 			//myScrollView.setOnTouchListener(null);
 				break;
 			case R.id.txt_hom:
