@@ -1477,7 +1477,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			/*Intent intent = new Intent(this,PlanFragment.class);
 			//i2.putExtra("CUSTOMER_ID", (int) customerID);
 			startActivity(intent);*/
-			//PassengerActivity.this.finish();
+			//PassengerPackageActivity.this.finish();
 			finish();
 		}
 	}

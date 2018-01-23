@@ -72,9 +72,12 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
                 }
 
                 if (response.body().getWebUserRememberPasswordResult().getWebUserLogin() == null && response.body().getWebUserRememberPasswordResult().getError()!=null){
-                    Toast.makeText(ResetPasswordActivity.this, response.body().getWebUserRememberPasswordResult().getError().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResetPasswordActivity.this, response.body().getWebUserRememberPasswordResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                Intent intent = new Intent(ResetPasswordActivity.this , SuccessResetPassActivity.class);
+                startActivity(intent);
 
                 //do somethings !!
 

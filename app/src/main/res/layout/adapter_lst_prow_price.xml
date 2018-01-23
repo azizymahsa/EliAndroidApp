@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background_strock_gray"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <LinearLayout
                 android:id="@+id/layout_total_price"
@@ -113,14 +114,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/price_child"
+                        android:id="@+id/price_w_child"
                         android:layout_width="0dp"
                         android:layout_weight="0.6"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="12dp"/>
                     <TextView
-                        android:id="@+id/text_child"
+                        android:id="@+id/text_w_child"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -135,14 +136,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/price_infant"
+                        android:id="@+id/price_n_child"
                         android:layout_width="0dp"
                         android:layout_weight="0.6"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="12dp"/>
                     <TextView
-                        android:id="@+id/text_infant"
+                        android:id="@+id/text_n_child"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -151,6 +152,28 @@
                         android:textSize="12dp"/>
 
                 </LinearLayout>
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/price_infant"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_weight="0.6"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:gravity="center"-->
+                        <!--android:textSize="12dp"/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/text_infant"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:gravity="right"-->
+                        <!--android:text="نوزاد"-->
+                        <!--android:padding="6sp"-->
+                        <!--android:textSize="12dp"/>-->
+
+                <!--</LinearLayout>-->
 
             </LinearLayout>
 

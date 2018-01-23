@@ -1,5 +1,6 @@
 package com.reserv.myapplicationeli.models.model.login;
 
+import com.reserv.myapplicationeli.models.model.Error;
 import com.reserv.myapplicationeli.models.model.login.WebUserLogin;
 
 import org.json.JSONObject;
@@ -19,12 +20,12 @@ public class LoginResult {
         WebUserLogin = value;
     }
 
-    private JSONObject Error;
-    public final JSONObject getError()
+    private com.reserv.myapplicationeli.models.model.Error Error;
+    public final Error getError()
     {
         return Error;
     }
-    public final void setError(JSONObject value)
+    public final void setError(Error value)
     {
         Error = value;
     }

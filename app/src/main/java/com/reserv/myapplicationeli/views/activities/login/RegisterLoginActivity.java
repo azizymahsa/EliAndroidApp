@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.views.activities.login;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +17,14 @@ import com.reserv.myapplicationeli.api.retro.ClientService;
 import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+import com.reserv.myapplicationeli.models.model.login.WebUserLogin;
 import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
 import com.reserv.myapplicationeli.models.model.login.call.RegisterListReq;
 import com.reserv.myapplicationeli.models.model.login.call.RegisterRequestModel;
 import com.reserv.myapplicationeli.models.model.login.LoginResult;
 import com.reserv.myapplicationeli.models.model.login.response.WebUserRegisterRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
+import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import retrofit2.Call;
@@ -79,10 +82,14 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                 }
 
                 if (response.body().getWebUserRegisterResult().getWebUserLogin() == null && response.body().getWebUserRegisterResult().getError()!=null){
-                    Toast.makeText(RegisterLoginActivity.this, response.body().getWebUserRegisterResult().getError().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterLoginActivity.this, response.body().getWebUserRegisterResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                WebUserLogin webUserLogin = response.body().getWebUserRegisterResult().getWebUserLogin();
+                WebUserTools.getInstance().setUser(webUserLogin.getWebUserProperties());
+                Intent intent1 = new Intent(RegisterLoginActivity.this,SuccessResetPassActivity.class);
+                startActivity(intent1);
                 //do somethings !!
             }
 
@@ -138,6 +145,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                 }
 
                 Register();
+
                 break;
         }
     }

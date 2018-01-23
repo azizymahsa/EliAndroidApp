@@ -140,7 +140,7 @@ public Activity activity;
 				//Drawable icon= context.getResources(). getDrawable( R.drawable.tick_round_button);
 				//show icon to the right of text
 				//	holder.btnAddsabad.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
-				//PassengerActivity.GET_PRICE_KHADAMAT=PassengerActivity.GET_PRICE_KHADAMAT+current.getServiceTotalPrice();
+				//PassengerPackageActivity.GET_PRICE_KHADAMAT=PassengerPackageActivity.GET_PRICE_KHADAMAT+current.getServiceTotalPrice();
 				//
 				String s= Prefs.getString("Select_ID_khadamat", "");
 				if(s.length()>1)

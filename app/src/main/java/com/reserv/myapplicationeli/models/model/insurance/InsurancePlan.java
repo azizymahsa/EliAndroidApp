@@ -3,6 +3,7 @@ package com.reserv.myapplicationeli.models.model.insurance;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.reserv.myapplicationeli.models.model.Error;
 
 import org.json.JSONObject;
 
@@ -12,7 +13,7 @@ public class InsurancePlan {
 
     @SerializedName("Error")
     @Expose
-    private JSONObject error;
+    private Error error;
     @SerializedName("InsurancePlans")
     @Expose
     private ArrayList<InsurancePlan_> insurancePlans = null;
@@ -20,11 +21,11 @@ public class InsurancePlan {
     @Expose
     private String searchKey;
 
-    public JSONObject getError() {
+    public Error getError() {
         return error;
     }
 
-    public void setError(JSONObject error) {
+    public void setError(Error error) {
         this.error = error;
     }
 

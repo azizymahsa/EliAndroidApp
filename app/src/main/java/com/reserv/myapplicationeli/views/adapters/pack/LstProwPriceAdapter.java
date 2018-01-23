@@ -28,7 +28,8 @@ public class LstProwPriceAdapter extends SectioningAdapter {
     private ArrayList<Section> feedItemList;
     public class ItemViewHolder extends SectioningAdapter.ItemViewHolder {
         public TextView adaultPrice;
-        public TextView childPrice;
+        public TextView wChildPrice;
+        public TextView nChildPrice;
         public TextView infantPrice;
         public TextView totalPrice;
         public TextView total_price;
@@ -38,8 +39,9 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         public ItemViewHolder(View itemView) {
             super(itemView);
             adaultPrice = itemView.findViewById(R.id.price_adault);
-            childPrice = itemView.findViewById(R.id.price_child);
-            infantPrice = itemView.findViewById(R.id.price_infant);
+            wChildPrice = itemView.findViewById(R.id.price_w_child);
+            nChildPrice = itemView.findViewById(R.id.price_n_child);
+//            infantPrice = itemView.findViewById(R.id.price_infant);
             totalPrice = itemView.findViewById(R.id.total_price);
             //    total_price = itemView.findViewById(R.id.total_price);
             txt_hr_room_list = itemView.findViewById(R.id.txt_hr_room_list);
@@ -84,13 +86,31 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         holder.chk_prow_price.setOnCheckedChangeListener(null);
         holder.chk_prow_price.setChecked(item.isChecked());
         holder.adaultPrice.setText(Utility.priceFormat(String.valueOf(item.getAdl())));
-        if( item.getChWb() == 0){
-            holder.childPrice.setText(" ندارد ");
-        }else {
-            holder.childPrice.setText(Utility.priceFormat(String.valueOf(item.getChWb())));
+
+        if (item.getChdWBCount() == 0) {
+            holder.wChildPrice.setText(" ندارد ");
+        } else if (item.getChWb() == 0) {
+            holder.wChildPrice.setText(" ندارد ");
+        } else {
+            holder.wChildPrice.setText(Utility.priceFormat(String.valueOf(item.getChWb())));
         }
 
-        holder.infantPrice.setText(Utility.priceFormat(String.valueOf(item.getChNb())));
+        if (item.getChdNBCount()==0 & item.getInfCount() ==0) {
+            holder.nChildPrice.setText(" ندارد ");
+        } else if (item.getChNb() == 0 & item.getInf() == 0) {
+            holder.nChildPrice.setText(" ندارد ");
+        } else {
+            holder.nChildPrice.setText(Utility.priceFormat(String.valueOf( item.getChNb() + item.getInf() ) ));
+        }
+
+//        if (item.getInfCount()  == 0) {
+//            holder.infantPrice.setText(" ندارد ");
+//        } else if (item.getInf()  == 0) {
+//            holder.infantPrice.setText(" ندارد ");
+//        } else {
+//            holder.infantPrice.setText(Utility.priceFormat(String.valueOf( item.getInf())));
+//        }
+
         holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice())));
         holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF());
 
@@ -125,7 +145,21 @@ public class LstProwPriceAdapter extends SectioningAdapter {
 
         try{
             int adlCount = ((LstProwPrice) feedItemList.get(sectionIndex).getList().get(0)).getAdlCount();
-            String title = " اتاق " + getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + "پیشنهاد برای " + adlCount + " نفر بزرگسال ";
+            int chCount = ((LstProwPrice) feedItemList.get(sectionIndex).getList().get(0)).getChdWBCount()
+                    + ((LstProwPrice) feedItemList.get(sectionIndex).getList().get(0)).getChdNBCount();
+            int infCount = ((LstProwPrice) feedItemList.get(sectionIndex).getList().get(0)).getInfCount();
+            String countPassenger = "";
+            if(adlCount != 0){
+                countPassenger = adlCount + " نفر بزرگسال ";
+            }
+            if(chCount != 0){
+                countPassenger = countPassenger + " و " + chCount + " نفر کودک ";
+            }
+
+            if(infCount != 0){
+                countPassenger = countPassenger + " و " + infCount + " نفر نوزاد ";
+            }
+            String title = " اتاق " + getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + "پیشنهاد برای " + countPassenger;
             holder.txt_title_header.setText(title);
         }catch (Exception e){
             e.printStackTrace();
