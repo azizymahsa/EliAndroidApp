@@ -40,8 +40,12 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
@@ -69,6 +73,14 @@ import com.google.zxing.common.BitMatrix;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.lost.flight.FlightPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.flight.FlightPreFactorModel;
+import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorModel;
+import com.reserv.myapplicationeli.lost.passenger.PassangerPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.passenger.PassengerPreFactorModel;
+import com.reserv.myapplicationeli.lost.service.ServicePreFactorAdapter;
+import com.reserv.myapplicationeli.lost.service.ServicePreFactorModel;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
@@ -78,7 +90,8 @@ import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
-import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
+
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -115,7 +128,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public TextView txt_shomare_factor,tvPrice,tvfactorNumber;
 
 	public ImageView txt_hom;
-
+	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
 	private String Gensiyat;
 	Activity activity;
 	public int countB=SearchParvazActivity.COUNT_B;
@@ -240,7 +253,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		listKhadamat = (NonScrollListView)findViewById(R.id.listKhadamat);
 		myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
-
+		llDetailHotel = (LinearLayout) findViewById(R.id.llDetailHotel);
+		llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
+		llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
+		llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
 
 
 		//////////////////////////
@@ -393,22 +409,120 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(resultPishfactor);
+				Log.e("jsonObj", jsonObj.toString());
 
 				// Getting JSON Array node
 				JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
+
+
 				JSONObject jArray = GetAirportsResult.getJSONObject("PreFactor");//FactorSummary
+
+
+				//FactorSummary
 				JSONObject jFact = jArray.getJSONObject("FactorSummary");
 
-				int RqBase_ID=jFact.getInt("RqBase_ID");
+
+				int RqBase_ID = jFact.getInt("RqBase_ID");
 				//////////////////////////////
-				long totalprice=jFact.getLong("TotalPrice");
-				tvPrice.setText(" "+String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
+				long totalprice = jFact.getLong("TotalPrice");
 
 
+				tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+
+//for hotel==========================================================================================
+				final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
+				recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
+				recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+				ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
+
+				JSONArray jArray2 = jArray.getJSONArray("PreFactorHotels");
+
+
+				for (int i = 0; i < jArray2.length(); i++) {
+					Log.e("teeeeest", jArray2.getJSONObject(i).getString("CityFa"));
+					hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"), jArray2.getJSONObject(i).getString("HotelChekin")
+							, jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount")));
+
+				}
+				if (!hotelPreFactorModels.isEmpty()) {
+					recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
+					llDetailHotel.setVisibility(View.VISIBLE);
+				}
+
+
+//for passenger======================================================================================
+
+
+
+				final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+				recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
+				recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+				ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
+
+				JSONArray jArray3 = jArray.getJSONArray("RequestPassenger");
+
+
+				for (int i = 0; i < jArray3.length(); i++) {
+					passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
+							jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
+							jArray3.getJSONObject(i).getString("RqPassenger_FirstNameFa"),jArray3.getJSONObject(i).getString("RqPassenger_LastNameFa")));
+
+				}
+				if (!passengerPreFactorModels.isEmpty()) {
+					llDetailPassanger.setVisibility(View.VISIBLE);
+					recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
+
+				}
+
+
+				//for Services=============================================================================
+				final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
+				recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
+				recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+				ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
+				JSONArray jArray4 = jArray.getJSONArray("PreFactorServices");
+
+				for (int i = 0; i < jArray4.length(); i++) {
+					servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
+							jArray4.getJSONObject(i).getString("ServicePrice"),jArray4.getJSONObject(i).getString("ServiceType"),
+							jArray4.getJSONObject(i).getString("CityFa"),jArray4.getJSONObject(i).getString("ServiceNameFa")));
+
+				}
+				if (!servicePreFactorModels.isEmpty()) {
+					llDetailService.setVisibility(View.VISIBLE);
+					recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
+
+				}
+				//for flight==================================================================================
+				final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+				recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
+				recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+				ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
+				JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
+
+				for (int i = 0; i < jArray5.length(); i++) {
+					flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
+							jArray5.getJSONObject(i).getString("DepAirPortFa"),
+							jArray5.getJSONObject(i).getString("ArrAirPortFa"),
+
+							jArray5.getJSONObject(i).getString("FltDate"),
+							jArray5.getJSONObject(i).getString("FltTime"),
+							jArray5.getJSONObject(i).getString("FltCheckinTime"),
+
+							jArray5.getJSONObject(i).getString("FltNumber"),
+							jArray5.getJSONObject(i).getString("AirlineNameFa")));
+
+				}
+				if (!flightPreFactorModels.isEmpty()) {
+					llDetailFlight.setVisibility(View.VISIBLE);
+					recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
+
+				}
 
 			} catch (JSONException e) {
-				new AlertDialog(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!");
-			//	Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
+				AlertDialogPassenger.setText("ارتباط با سرور برقرار نشد !!");
+				//Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
 			}
 
 
@@ -553,7 +667,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 500, 200));
 				}else{
 					//txt_shomare_factor.setText("خطایی رخ داده است !");
-					new AlertDialog(PassengerActivity.this, "خطایی رخ داده است !");
+					//new AlertDialog(PassengerActivity.this, "خطایی رخ داده است !");
+					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
+					AlertDialogPassenger.setText("خطایی رخ داده است !");
 					//Toast.makeText(PassengerActivity.this, "خطایی رخ داده است !", Toast.LENGTH_LONG).show();
 					finish();
 
@@ -573,7 +689,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 			} catch (JSONException e) {
-				new AlertDialog(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!");
+				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
+				AlertDialogPassenger.setText("ارتباط با سرور برقرار نشد !!");
+				//new AlertDialog(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!");
 				//Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
 			}
 
@@ -723,8 +841,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					GetError = jPricedItinerary.getString("Message");
 				}
 				if (GetError.length()>1) {
-
-					new AlertDialog(PassengerActivity.this,"لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز");
+					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
+					AlertDialogPassenger.setText("لطفا یک پرواز دیگر را چک کنید ! ");
+					//new AlertDialog(PassengerActivity.this,"لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز");
 						//Toast.makeText(PassengerActivity.this, "لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز", Toast.LENGTH_LONG).show();
 				}else{
 
@@ -796,7 +915,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				listKhadamat.setAdapter(mAdapter);
 			}
 			} catch (JSONException e) {
-				new AlertDialog(PassengerActivity.this,"ارتباط با سرور برقرار نشد !!");
+				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
+				AlertDialogPassenger.setText("ارتباط با سرور برقرار نشد !!");
+				//new AlertDialog(PassengerActivity.this,"ارتباط با سرور برقرار نشد !!");
 				//Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
 			}
 
