@@ -16,13 +16,13 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 
 	public static enum Columns {
 
-		Gender(text), Nationality(text), Nationality_ID(text)
+		ID(integer),Gender(text), Nationality(text), Nationality_ID(text)
 		,RqPassenger_Address(text), RqPassenger_Birthdate(text), RqPassenger_Email(text)
 		,RqPassenger_FirstNameEn(text), RqPassenger_FirstNameFa(text), RqPassenger_LastNameEn(text)
 		,RqPassenger_LastNameFa(text), RqPassenger_Mobile(text), RqPassenger_NationalCode(text)
-		,RqPassenger_PassExpDate(text), RqPassenger_PassNo(text), RqPassenger_Tel(text);
+		,RqPassenger_PassExpDate(text), RqPassenger_PassNo(text), RqPassenger_Tel(text) ;
 		
-		public static boolean firstIsPrimery = false;
+		public static boolean firstIsPrimery = true;
 		private String parameterValue;
 
 		private Columns(String value) {
@@ -54,12 +54,14 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 	/*****************************************************************************************/
 
 	/*****************************************************************************************/
-	public int insertData(String Gender, String Nationality, String Nationality_ID,
+	public int insertData(int id,String Gender, String Nationality, String Nationality_ID,
 			String RqPassenger_Address, String RqPassenger_Birthdate, String RqPassenger_Email,
 			String RqPassenger_FirstNameEn, String RqPassenger_FirstNameFa, String RqPassenger_LastNameEn,
 			String RqPassenger_LastNameFa, String RqPassenger_Mobile, String RqPassenger_NationalCode, String RqPassenger_PassExpDate,
 			String RqPassenger_PassNo,String RqPassenger_Tel) {
 		ContentValues cv = new ContentValues();
+
+		cv.put(Columns.ID.value(), id);
 		cv.put(Columns.Gender.value(), Gender);
 		cv.put(Columns.Nationality.value(), Nationality);
 		cv.put(Columns.Nationality_ID.value(), Nationality_ID);
@@ -84,15 +86,15 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 	}
 
 	/*****************************************************************************************/
-/*	public CursorManager getDatas(int requestId) {
-		String conditions = Columns.RequestId + "='" + requestId + "'";
-		String columns = String.format("%s,%s,%s", Columns.GoodCode,
-				Columns.Amount, Columns.Award);
-		return SELECT_FROM_DB(columns, TABLE_NAME, conditions,
-				Columns.RequestId.value() + "," + Columns.GoodCode.value(), 0,
+	public CursorManager getMosaferById(int idMosafer) {
+		String conditions = Columns.ID + "='" + idMosafer + "'";
+		/*String columns = String.format("%s,%s,%s", Columns.GoodCode,
+				Columns.Amount, Columns.Award);*/
+		return SELECT_FROM_DB("*", TABLE_NAME, conditions,
+				Columns.ID.value() + "," + Columns.Nationality.value(), 0,
 				0);
 	}
-*/
+
 	/*public void insertRequest(int requestId, int goodCode, int amount,String award) {
 		String columns = String.format("%s,%s,%s,%s", Columns.RequestId,Columns.GoodCode, Columns.Amount, Columns.Award);
 		String values = String.format("'%s','%s','%s','%s'", requestId,goodCode, amount, award);
