@@ -8,8 +8,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
@@ -82,6 +85,7 @@ import com.reserv.myapplicationeli.lost.passenger.PassengerPreFactorModel;
 import com.reserv.myapplicationeli.lost.service.ServicePreFactorAdapter;
 import com.reserv.myapplicationeli.lost.service.ServicePreFactorModel;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
+import com.reserv.myapplicationeli.tools.datetools.SolarCalendar;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
@@ -501,11 +505,27 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
 
 				for (int i = 0; i < jArray5.length(); i++) {
+					/////////////////////////////////////////////
+
+						String date=jArray5.getJSONObject(i).getString("FltDate");
+						String[] splite=date.split(" ");
+						//date=splite[0];//2018/02/06
+						String dayM = splite[0].substring(8, 10);//02
+						String monthM = splite[0].substring(5, 7);//01
+						String yearM = splite[0].substring(0, 4);//1396
+
+						Calendar cal = Calendar.getInstance();
+						cal.set(Calendar.YEAR, Integer.parseInt(yearM));
+						cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(monthM));
+						cal.set(Calendar.MONTH, Integer.parseInt(dayM));
+						String format = new SimpleDateFormat(" MMM d").format(cal.getTime());
+
+					////////////////////////
 					flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
 							jArray5.getJSONObject(i).getString("DepAirPortFa"),
 							jArray5.getJSONObject(i).getString("ArrAirPortFa"),
-
-							jArray5.getJSONObject(i).getString("FltDate"),
+							format+" "+splite[1],
+							//jArray5.getJSONObject(i).getString("FltDate"),//2018/01/23 12:00 ==>25 jun 8:20
 							jArray5.getJSONObject(i).getString("FltTime"),
 							jArray5.getJSONObject(i).getString("FltCheckinTime"),
 
@@ -655,7 +675,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					//get Error
 					JSONObject getError = jsonObj.getJSONObject("Errors");
 
-					String message= getError.getString("Message");
+					String message= getError.getString("DetailedMessage");
 					Toast.makeText(PassengerActivity.this, message, Toast.LENGTH_LONG).show();
 				}
 
@@ -838,7 +858,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				if(!GetAirportsResult.getString("Errors").equals("null")){
 					jError = GetAirportsResult.getJSONArray("Errors");//
 					JSONObject jPricedItinerary = jError.getJSONObject(0);
-					GetError = jPricedItinerary.getString("Message");
+					GetError = jPricedItinerary.getString("DetailedMessage");
 				}
 				if (GetError.length()>1) {
 					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
