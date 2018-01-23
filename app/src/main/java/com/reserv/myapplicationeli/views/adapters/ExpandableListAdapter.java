@@ -223,7 +223,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
 		///
-		if(item2.SegmentFalseCount <= 1){//yek tarafe
+		if(item2.SegmentFalseCount <1 || item2.SegmentFalseCount ==1){//yek tarafe
 			linearBargashtOne.setVisibility(View.GONE);
 			linearBargashtTwo.setVisibility(View.GONE);
 
