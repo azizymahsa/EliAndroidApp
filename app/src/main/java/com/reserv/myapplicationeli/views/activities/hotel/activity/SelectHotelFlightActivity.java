@@ -1318,7 +1318,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
-                tvAlert.setText("خطا در برقراری ارتباط");
+                tvAlert.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
             }
 
 

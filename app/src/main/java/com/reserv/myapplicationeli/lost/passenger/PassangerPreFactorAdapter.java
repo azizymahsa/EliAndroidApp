@@ -53,7 +53,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.tvPassNo.setText(item.getRqPassenger_PassNo());
         holder.tvNationality.setText(item.getNationality());
         holder.tvGender.setText(item.getGender());
-        holder.tvPassangerName.setText(item.getRqPassenger_FirstNameFa()+" "+item.getRqPassenger_LastNameFa());
+        holder.tvPassangerName.setText(item.getRqPassenger_name());
         // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);
         // holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2));

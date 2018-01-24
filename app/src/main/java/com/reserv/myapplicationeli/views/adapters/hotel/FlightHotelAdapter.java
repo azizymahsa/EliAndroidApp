@@ -3,8 +3,10 @@ package com.reserv.myapplicationeli.views.adapters.hotel;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -23,6 +26,7 @@ import com.reserv.myapplicationeli.models.hotel.FilterPriceModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectFlightHotelModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectHotelModel;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 
 import java.util.ArrayList;
 
@@ -88,6 +92,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvBargashtTimeWait = (TextView) convertView.findViewById(R.id.tvBargashtTimeWait);
             holder.tvRaftTimeWait = (TextView) convertView.findViewById(R.id.tvRaftTimeWait);
             holder.tvAirLines = (TextView) convertView.findViewById(R.id.tvAirLines);
+            holder.llRaftDy = (LinearLayout) convertView.findViewById(R.id.llRaftDy);
 
             convertView.setTag(holder);
         } else {
@@ -175,6 +180,22 @@ public class FlightHotelAdapter extends BaseAdapter {
                 break;
             case 2:
                 waitBargasht="بدون توقف";
+
+
+                TextView textView = new TextView(context);
+                textView.setText(strings2[0]);
+                Typeface t = Typeface.createFromAsset(context.getAssets(),"fonts/irsans.ttf");
+                textView.setTypeface(t);
+                textView.setPadding(10,10,10,10);
+
+                textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                textView.setTextSize(12);
+                textView.setGravity(Gravity.CENTER);
+                textView.setBackgroundColor(ContextCompat.getColor(context,R.color.text_color_4d));
+                holder.llRaftDy.addView(textView);
+
+
 
                 break;
             case 3:
@@ -328,6 +349,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime,tvRaftTimeWait,tvBargashtTimeWait,tvAirLines;
         ImageView ivHotelPic, ivRate,ivLogo;
         CardView cvHotel;
+        LinearLayout llRaftDy;
 
 
     }

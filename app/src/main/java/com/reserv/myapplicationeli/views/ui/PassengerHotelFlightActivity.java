@@ -54,6 +54,7 @@ import com.reserv.myapplicationeli.lost.passenger.PassengerPreFactorModel;
 import com.reserv.myapplicationeli.lost.service.ServicePreFactorAdapter;
 import com.reserv.myapplicationeli.lost.service.ServicePreFactorModel;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
@@ -81,6 +82,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.EnumMap;
@@ -430,9 +432,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                 for (int i = 0; i < jArray2.length(); i++) {
-                    Log.e("teeeeest", jArray2.getJSONObject(i).getString("CityFa"));
-                    hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"), jArray2.getJSONObject(i).getString("HotelChekin")
-                            , jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount"),
+                    hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"),
+                            Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekin"))
+                            , Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekout")),
+                            jArray2.getJSONObject(i).getString("AdlCount"),
                             jArray2.getJSONObject(i).getString("ChdCount"),jArray2.getJSONObject(i).getString("RoomTitleFa")));
 
                 }
@@ -457,7 +460,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 for (int i = 0; i < jArray3.length(); i++) {
                     passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
                             jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_FirstNameEn"),jArray3.getJSONObject(i).getString("RqPassenger_LastNameEn")));
+                            jArray3.getJSONObject(i).getString("RqPassenger_name")));
 
                 }
                 if (!passengerPreFactorModels.isEmpty()) {
@@ -496,9 +499,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
                             jArray5.getJSONObject(i).getString("DepAirPortFa"),
                             jArray5.getJSONObject(i).getString("ArrAirPortFa"),
-                            jArray5.getJSONObject(i).getString("FltDate"),
+                            Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
                             jArray5.getJSONObject(i).getString("FltTime"),
-                            jArray5.getJSONObject(i).getString("FltCheckinTime"),
+                            Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+
                             jArray5.getJSONObject(i).getString("FltNumber"),
                             jArray5.getJSONObject(i).getString("AirlineNameFa")));
 
@@ -719,7 +723,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     txt_shomare_factor.setText(GetAirportsResult.getString("SuccessResult"));
                     tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
 
-                    textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 350, 100));
+                    textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 500, 200));
 
                 } else {
                     txt_shomare_factor.setText("خطایی رخ داده است !");
@@ -1920,7 +1924,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
      * http://code.google.com/p/zxing/source/browse/trunk/android/src/com/google/zxing/client/android/encode/QRCodeEncoder.java
      */
 
-    private static final int WHITE = 15132390;
+    private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
 
     private static Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException {
@@ -1966,5 +1970,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         }
         return null;
     }
+
+
+
+
+
+
+
 
 }

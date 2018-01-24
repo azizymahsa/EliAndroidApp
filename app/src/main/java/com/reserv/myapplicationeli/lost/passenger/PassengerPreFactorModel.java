@@ -10,16 +10,14 @@ public class PassengerPreFactorModel {
     String Nationality;
     String RqPassenger_Birthdate;
     String RqPassenger_PassNo;
-    String RqPassenger_FirstNameFa;
-    String RqPassenger_LastNameFa;
+    String RqPassenger_name;
 
-    public PassengerPreFactorModel(String gender, String nationality, String rqPassenger_Birthdate, String rqPassenger_PassNo, String rqPassenger_FirstNameFa, String rqPassenger_LastNameFa) {
+    public PassengerPreFactorModel(String gender, String nationality, String rqPassenger_Birthdate, String rqPassenger_PassNo, String rqPassenger_name) {
         Gender = gender;
         Nationality = nationality;
         RqPassenger_Birthdate = rqPassenger_Birthdate;
         RqPassenger_PassNo = rqPassenger_PassNo;
-        RqPassenger_FirstNameFa = rqPassenger_FirstNameFa;
-        RqPassenger_LastNameFa = rqPassenger_LastNameFa;
+        RqPassenger_name = rqPassenger_name;
     }
 
     public String getGender() {
@@ -54,20 +52,12 @@ public class PassengerPreFactorModel {
         RqPassenger_PassNo = rqPassenger_PassNo;
     }
 
-    public String getRqPassenger_FirstNameFa() {
-        return RqPassenger_FirstNameFa;
+    public String getRqPassenger_name() {
+        return RqPassenger_name;
     }
 
-    public void setRqPassenger_FirstNameFa(String rqPassenger_FirstNameFa) {
-        RqPassenger_FirstNameFa = rqPassenger_FirstNameFa;
-    }
-
-    public String getRqPassenger_LastNameFa() {
-        return RqPassenger_LastNameFa;
-    }
-
-    public void setRqPassenger_LastNameFa(String rqPassenger_LastNameFa) {
-        RqPassenger_LastNameFa = rqPassenger_LastNameFa;
+    public void setRqPassenger_name(String rqPassenger_name) {
+        RqPassenger_name = rqPassenger_name;
     }
 }
 

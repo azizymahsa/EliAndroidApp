@@ -85,6 +85,7 @@ import com.reserv.myapplicationeli.lost.passenger.PassengerPreFactorModel;
 import com.reserv.myapplicationeli.lost.service.ServicePreFactorAdapter;
 import com.reserv.myapplicationeli.lost.service.ServicePreFactorModel;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.datetools.SolarCalendar;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
@@ -443,8 +444,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				for (int i = 0; i < jArray2.length(); i++) {
-					hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"), jArray2.getJSONObject(i).getString("HotelChekin")
-							, jArray2.getJSONObject(i).getString("HotelChekout"), jArray2.getJSONObject(i).getString("AdlCount"),
+					hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"),
+							Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekin"))
+							, Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekout")),
+							jArray2.getJSONObject(i).getString("AdlCount"),
 							jArray2.getJSONObject(i).getString("ChdCount"),jArray2.getJSONObject(i).getString("RoomTitleFa")));
 
 				}
@@ -469,7 +472,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				for (int i = 0; i < jArray3.length(); i++) {
 					passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
 							jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
-							jArray3.getJSONObject(i).getString("RqPassenger_FirstNameFa"),jArray3.getJSONObject(i).getString("RqPassenger_LastNameFa")));
+							jArray3.getJSONObject(i).getString("RqPassenger_name")));
 
 				}
 				if (!passengerPreFactorModels.isEmpty()) {
@@ -507,27 +510,19 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				for (int i = 0; i < jArray5.length(); i++) {
 					/////////////////////////////////////////////
 
-						String date=jArray5.getJSONObject(i).getString("FltDate");
-						String[] splite=date.split(" ");
-						//date=splite[0];//2018/02/06
-						String dayM = splite[0].substring(8, 10);//02
-						String monthM = splite[0].substring(5, 7);//01
-						String yearM = splite[0].substring(0, 4);//1396
 
-						Calendar cal = Calendar.getInstance();
-						cal.set(Calendar.YEAR, Integer.parseInt(yearM));
-						cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(monthM));
-						cal.set(Calendar.MONTH, Integer.parseInt(dayM));
-						String format = new SimpleDateFormat(" MMM d").format(cal.getTime());
+
+
+
+
 
 					////////////////////////
 					flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
 							jArray5.getJSONObject(i).getString("DepAirPortFa"),
 							jArray5.getJSONObject(i).getString("ArrAirPortFa"),
-							format+" "+splite[1],
-							//jArray5.getJSONObject(i).getString("FltDate"),//2018/01/23 12:00 ==>25 jun 8:20
+							Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
 							jArray5.getJSONObject(i).getString("FltTime"),
-							jArray5.getJSONObject(i).getString("FltCheckinTime"),
+							Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
 
 							jArray5.getJSONObject(i).getString("FltNumber"),
 							jArray5.getJSONObject(i).getString("AirlineNameFa")));

@@ -440,4 +440,19 @@ public class Utility extends Activity {
 		params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		listView.setLayoutParams(params);
 	}
+	public static String dateShow(String date){
+
+		String[] splite=date.split(" ");
+		//date=splite[0];//2018/02/06
+		String dayM = splite[0].substring(8, 10);//02
+		String monthM = splite[0].substring(5, 7);//01
+		String yearM = splite[0].substring(0, 4);//1396
+
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, Integer.parseInt(yearM));
+		cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(monthM));
+		cal.set(Calendar.MONTH, Integer.parseInt(dayM));
+		String format = new SimpleDateFormat(" MMM d").format(cal.getTime());
+return format+"-"+splite[1];
+	}
 }
