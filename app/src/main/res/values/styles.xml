@@ -93,6 +93,8 @@
         <item name="fontPath">fonts/user.ttf</item></style>
     <style name="User_pass_login" parent="android:TextAppearance">
         <item name="fontPath">fonts/user_pass_login.ttf</item></style>
+    <style name="IconContract" parent="android:TextAppearance">
+        <item name="fontPath">fonts/contracts.ttf</item></style>
 
     <style name="IconMenu" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello.ttf</item></style>

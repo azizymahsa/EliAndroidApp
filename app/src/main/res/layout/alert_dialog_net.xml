@@ -5,36 +5,24 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        android:gravity="right">
+
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/alert_header_background"
             android:text="پیغام"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textSize="16dp"
-            android:gravity="center|right"
+            android:gravity="center"
+            android:layout_centerInParent="true"
             android:textAppearance="@style/IrsansBold"
-            android:layout_marginRight="10dp"
 
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textAppearance="@style/IconFonts"
-            android:textColor="@android:color/white"
-            android:text="@string/icon_info"
-            android:textSize="25dp"
-            android:gravity="center|right"
-            />
 
-    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tvAlert"
@@ -53,17 +41,18 @@
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/btnOk"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:elevation="4dp"
         android:paddingBottom="1dp"
-        fancy:fb_defaultColor="@color/TRANSPARENT"
+        fancy:fb_defaultColor="#1234"
         fancy:fb_focusColor="@color/focusColor"
-        fancy:fb_radius="0dp"
+        fancy:fb_radius="100dp"
         fancy:fb_text="باشه!"
         fancy:fb_textColor="@color/toolbar_color"
-        fancy:fb_textSize="18dp" />
+        fancy:fb_textSize="18dp"
+        android:layout_marginBottom="@dimen/_10dp_margin"/>
 
 
 

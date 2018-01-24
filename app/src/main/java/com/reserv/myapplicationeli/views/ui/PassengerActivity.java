@@ -145,6 +145,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	int counter=2;
 	private ImageView textView4;
 
+	String paymentUrl;
 
 
 	@SuppressLint("WrongViewCast")
@@ -292,7 +293,19 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		spinnerMosafer.setAdapter(dataAdapter);
 		////////////////////////////////
 
+		btn_pardakht_factor.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
 
+				Utility.openUrlCustomTab(PassengerActivity.this, paymentUrl);
+/*
+                String url = "http://foyr.com";
+                Intent launchGoogleChrome = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                launchGoogleChrome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                launchGoogleChrome.setPackage("com.android.chrome");
+                launchGoogleChrome.putExtra("com.android.chrome.EXTRA_OPEN_NEW_INCOGNITO_TAB", true);*/
+			}
+		});
 
 		// new AsyncFetch().execute();
 
@@ -426,7 +439,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				//FactorSummary
 				JSONObject jFact = jArray.getJSONObject("FactorSummary");
-
+				paymentUrl = jFact.getString("OnlinePaymentURL");
 
 				int RqBase_ID = jFact.getInt("RqBase_ID");
 				//////////////////////////////

@@ -33,7 +33,7 @@ public class GetHotelPolicyResult {
     @Override
     public String toString()
     {
-        return "ClassPojo [HCancellationPolicies = "+HCancellationPolicies+", Error = "+Error+"]";
+        return "ClassPojo [HCancellationPolicies = "+HCancellationPolicies+", Errors = "+Error+"]";
     }
 }
 

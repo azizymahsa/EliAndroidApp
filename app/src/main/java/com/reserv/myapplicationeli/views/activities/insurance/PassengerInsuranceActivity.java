@@ -529,7 +529,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseServiceResult");
 				int successResult=GetAirportsResult.getInt("SuccessResult");
 				if(successResult==0){
-					//get Error
+					//get Errors
 					JSONObject getError = jsonObj.getJSONObject("Errors");
 
 					String message= getError.getString("Message");
@@ -689,9 +689,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				// JSONObject jsonObj = new JSONObject(retSrc);
 
 				// Getting JSON Array node
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightResult");//Error
-				if(!GetAirportsResult.getString("Error").equals("null")){
-				 GetError = GetAirportsResult.getJSONObject("Error");
+				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightResult");//Errors
+				if(!GetAirportsResult.getString("Errors").equals("null")){
+				 GetError = GetAirportsResult.getJSONObject("Errors");
 				}
 				if (GetError != null) {
 

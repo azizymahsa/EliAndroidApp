@@ -1,7 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone">
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:id="@+id/linear_3_bargasht"
+    android:visibility="gone"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvANRaft3_1_bargasht"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/ivArrow"
+            android:text="IKA"
+            android:textColor="@color/text_color_4d"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/ivArrow55"
+
+            android:layout_width="50dp"
+            android:layout_height="18dp"
+
+            android:gravity="right"
+            android:padding="4dp"
+            android:src="@drawable/gray_line2"
+            android:text=" "
+            android:textColor="#486b6b"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvANRaft3_2_bargasht"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivArrow"
+            android:text="IKA"
+            android:textColor="@color/text_color_4d"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/ivArrow77"
+
+            android:layout_width="50dp"
+            android:layout_height="18dp"
+
+            android:gravity="right"
+            android:padding="4dp"
+            android:src="@drawable/gray_line2"
+            android:text=" "
+            android:textColor="#486b6b"
+            android:textSize="10dip"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvANRaft3_3_bargasht"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivArrow"
+            android:text="IKA"
+            android:textColor="@color/text_color_4d"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/ivArrow66"
+
+            android:layout_width="50dp"
+            android:layout_height="18dp"
+
+            android:gravity="right"
+            android:padding="4dp"
+            android:src="@drawable/gray_line2"
+            android:text=" "
+            android:textColor="#486b6b"
+            android:textSize="10dip"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvANRaft3_4_bargasht"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivArrow"
+            android:text="IKA"
+            android:textColor="@color/text_color_4d"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

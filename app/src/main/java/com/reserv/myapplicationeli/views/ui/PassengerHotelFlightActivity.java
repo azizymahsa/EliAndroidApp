@@ -145,7 +145,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger_hotel);
+        setContentView(R.layout.activity_passenger);
 
 
         btnBack = (FancyButton) findViewById(R.id.btnBack);
@@ -511,12 +511,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             jArray5.getJSONObject(i).getString("ArrAirPortFa"),
                             Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
                             jArray5.getJSONObject(i).getString("FltTime"),
-                            Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                            //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                            jArray5.getJSONObject(i).getString("FltCheckinTime"),
 
                             jArray5.getJSONObject(i).getString("FltNumber"),
                             jArray5.getJSONObject(i).getString("AirlineNameFa"),
-                            jArray5.getJSONObject(i).getString("DepartureCityFa")
-                            ));
+                            jArray5.getJSONObject(i).getString("DepartureCityFa")));
 
                 }
                 if (!flightPreFactorModels.isEmpty()) {

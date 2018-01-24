@@ -138,53 +138,47 @@
 
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="100"
-                    android:gravity="center">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="حذف فیلتر"
-                        android:textSize="14dp" />
-
-                    <cn.refactor.library.SmoothCheckBox
-                        android:id="@+id/Remove"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="5dp"
-                        app:color_checked="@color/app_base_color" />
-                </LinearLayout>
-
-
-            </LinearLayout>
-
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/btnOk"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:elevation="4dp"
-        android:paddingBottom="1dp"
-        app:fb_defaultColor="@color/app_base_color"
-        app:fb_focusColor="@color/colorPrimaryDark"
-        app:fb_radius="0dp"
-        app:fb_text="اعمال فیلتر!"
-        app:fb_textColor="#FFFFFF"
-        app:fb_textSize="18dp" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnDeletFilter"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="0.5"
+            android:elevation="4dp"
+            android:paddingBottom="1dp"
+            app:fb_defaultColor="@color/app_base_color"
+            app:fb_focusColor="@color/colorPrimaryDark"
+            app:fb_radius="0dp"
+            app:fb_text="حذف فیلتر"
+            app:fb_textColor="#FFFFFF"
+            app:fb_textSize="18dp" />
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnOk"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="0.5"
+            android:elevation="4dp"
+            android:paddingBottom="1dp"
+            app:fb_defaultColor="@color/app_base_color"
+            app:fb_focusColor="@color/colorPrimaryDark"
+            app:fb_radius="0dp"
+            app:fb_text="اعمال فیلتر"
+            app:fb_textColor="#FFFFFF"
+            app:fb_textSize="18dp" />
+
+
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

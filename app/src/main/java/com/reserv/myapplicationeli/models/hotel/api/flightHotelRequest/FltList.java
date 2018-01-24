@@ -14,9 +14,9 @@ public class FltList {
     public final String ArrivalAirportCode;
     public final String FltDurationH;
     public final String FltDurationM;
+    public final String FlightNumber;
 
-    public FltList(String airlineNameEn, String airlineNameFa, String flightArrivalTime,
-                   String flightTime, String airlineCode, boolean isDepartureSegment, String arrivalAirportCode, String fltDurationH, String fltDurationM) {
+    public FltList(String airlineNameEn, String airlineNameFa, String flightArrivalTime, String flightTime, String airlineCode, boolean isDepartureSegment, String arrivalAirportCode, String fltDurationH, String fltDurationM, String flightNumber) {
         AirlineNameEn = airlineNameEn;
         AirlineNameFa = airlineNameFa;
         FlightArrivalTime = flightArrivalTime;
@@ -26,5 +26,6 @@ public class FltList {
         ArrivalAirportCode = arrivalAirportCode;
         FltDurationH = fltDurationH;
         FltDurationM = fltDurationM;
+        FlightNumber = flightNumber;
     }
 }

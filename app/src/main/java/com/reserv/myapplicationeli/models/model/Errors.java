@@ -4,7 +4,7 @@ package com.reserv.myapplicationeli.models.model;
  * Created by elham.bonyani on 1/22/2018.
  */
 
-public class Error {
+public class Errors {
 
 
         private int Code;

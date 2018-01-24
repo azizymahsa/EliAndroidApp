@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +67,9 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     private ArrayList<TravelInsurance_> travelInsurances;
     private ArrayList<InsurancePlan_> insurancePlans;
     private InsurancePlan insurancePlan;
+    private RelativeLayout error_layout;
+    private TextView txt_error;
+
 
     @SuppressLint("NewApi")
     @Override
@@ -112,6 +116,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         insuranceListReq.setBirthDateList(birthDateLists);
         insuranceListReq.setCulture(culture);
 
+        Log.e(" request " ,new GsonBuilder().create().toJson(new InsuranceRequestModel(insuranceListReq) ));
         Call<InsuranceRes> call = service.showInsurance(new InsuranceRequestModel(insuranceListReq));
         call.enqueue(new Callback<InsuranceRes>() {
             @Override
@@ -121,19 +126,27 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
                         || response.body() == null
                         || response.body().getShowInsuranceResult() == null) {
                     showText();
+                    txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                    error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
                 if(response.body().getShowInsuranceResult().getError() != null){
-                    Toast.makeText(SearchInsuranceActivity.this, response.body().getShowInsuranceResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
                     showText();
+                    needShowAlertDialog(response.body().getShowInsuranceResult().getError().get(0).getDetailedMessage(), true);
                     return;
                 }
+
 
                 TravelInsurance  travelInsurance = response.body().getShowInsuranceResult().getTravelInsurance();
                 insurancePlan = response.body().getShowInsuranceResult().getInsurancePlan();
 
                 if(travelInsurance == null && insurancePlan == null ){
+                    showText();
+                    return;
+                }
+
+                if ((travelInsurance != null && ValidationTools.isEmptyOrNull(travelInsurance.getTravelInsurances()))&& (insurancePlan != null && ValidationTools.isEmptyOrNull(insurancePlan.getInsurancePlans()))) {
                     showText();
                     return;
                 }
@@ -153,7 +166,11 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
             @Override
             public void onFailure(Call<InsuranceRes> call, Throwable t) {
                 hideLoading();
-                Toast.makeText(SearchInsuranceActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                showText();
+//                needShowAlertDialog("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", true);
+                txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                error_layout.setVisibility( View.VISIBLE  );
+
             }
         });
 
@@ -187,6 +204,8 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         rclInsurancePlans.setLayoutManager(new LinearLayoutManager(this));
         TextView tvTitleDate = findViewById(R.id.tvTitleDate);
         tvTitleDate.setVisibility(View.GONE);
+        error_layout = findViewById(R.id.elNotFound);
+        txt_error = findViewById(R.id.tvAlert);
     }
 
     private void showLoading(){

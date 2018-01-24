@@ -67,12 +67,12 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
                 if (response == null
                         || response.body() == null
                         || response.body().getWebUserRememberPasswordResult() == null) {
-                    Toast.makeText(ResetPasswordActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResetPasswordActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (response.body().getWebUserRememberPasswordResult().getWebUserLogin() == null && response.body().getWebUserRememberPasswordResult().getError()!=null){
-                    Toast.makeText(ResetPasswordActivity.this, response.body().getWebUserRememberPasswordResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResetPasswordActivity.this, response.body().getWebUserRememberPasswordResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -86,7 +86,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onFailure(Call<WebUserRememberPasswordRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(ResetPasswordActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ResetPasswordActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
 
             }
         });

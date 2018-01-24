@@ -7,6 +7,7 @@
     android:gravity="center"
     android:id="@+id/linear_2_bargasht"
     android:visibility="gone"
+
    >
     <LinearLayout
         android:layout_width="wrap_content"
@@ -28,7 +29,7 @@
         <ImageView
             android:id="@+id/ivArrow11"
 
-            android:layout_width="120dp"
+            android:layout_width="80dp"
             android:layout_height="18dp"
 
             android:gravity="right"
@@ -62,7 +63,7 @@
         <ImageView
             android:id="@+id/ivArrow"
 
-            android:layout_width="120dp"
+            android:layout_width="80dp"
             android:layout_height="18dp"
 
             android:gravity="right"

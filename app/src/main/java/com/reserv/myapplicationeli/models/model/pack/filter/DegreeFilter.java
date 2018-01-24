@@ -1,7 +1,7 @@
 package com.reserv.myapplicationeli.models.model.pack.filter;
 
 /**
- * Created by hoseinraeisi on 1/20/18.
+ * Created byelham.bonyani on 1/20/18.
  */
 
 public class DegreeFilter {

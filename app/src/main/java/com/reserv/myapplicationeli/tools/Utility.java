@@ -25,6 +25,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mohamadamin.persianmaterialdatetimepicker.Utils;
+import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.GlobalApplication;
 
 
@@ -474,7 +476,8 @@ public class Utility extends Activity {
 
 // create an intent builder
 		CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
-
+		intentBuilder.setToolbarColor(ContextCompat.getColor(context, R.color.toolbar_color));
+		intentBuilder.setSecondaryToolbarColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
 // Begin customizing
 // set toolbar colors
 

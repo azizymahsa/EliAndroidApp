@@ -142,7 +142,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger_hotel);
+        setContentView(R.layout.activity_passenger);
         Prefs.getString("Rooms", "dd");
         JSONArray jsonObj = null;
         try {
@@ -534,12 +534,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             jArray5.getJSONObject(i).getString("ArrAirPortFa"),
                             Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
                             jArray5.getJSONObject(i).getString("FltTime"),
-                            Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                            //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                            jArray5.getJSONObject(i).getString("FltCheckinTime"),
 
                             jArray5.getJSONObject(i).getString("FltNumber"),
                             jArray5.getJSONObject(i).getString("AirlineNameFa"),
                             jArray5.getJSONObject(i).getString("DepartureCityFa")));
-
                 }
                 if (!flightPreFactorModels.isEmpty()) {
                     llDetailFlight.setVisibility(View.VISIBLE);

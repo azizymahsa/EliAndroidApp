@@ -7,12 +7,7 @@
 	xmlns:card_view="http://schemas.android.com/tools"
 	android:id="@+id/rlRoot"
 	android:orientation="vertical">
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="#ffffff"
-		android:orientation="vertical"
-		>
+
 
 
 
@@ -145,7 +140,8 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			android:layout_below="@+id/toolbarLayout">
 
 
 			<LinearLayout
@@ -226,92 +222,6 @@
 						android:background="@drawable/btngravity_big"/>
 
 				</LinearLayout>-->
-				<LinearLayout
-					android:id="@+id/linear_no_result"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-
-					android:layout_below="@+id/toolbarLayout"
-					android:visibility="gone"
-					>
-
-
-
-
-					<android.support.v7.widget.CardView
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:layout_gravity="center"
-						android:layout_margin="7dp"
-						android:background="@color/hotel_detail_background"
-						card_view:cardBackgroundColor="#ffffff"
-						card_view:cardCornerRadius="3dp"
-						card_view:cardElevation="2dp">
-
-						<RelativeLayout
-							android:layout_width="match_parent"
-							android:layout_height="match_parent">
-							<TextView
-								android:id="@+id/txtNoResult"
-								android:layout_width="match_parent"
-								android:layout_height="wrap_content"
-								android:padding="10dp"
-								android:layout_marginTop="10dp"
-								android:textSize="16dp"
-								android:textAppearance="@style/IrsansBold"
-								android:gravity="center"
-								android:textColor="@color/text_color_2e"
-								/>
-
-							<ImageView
-								android:layout_width="wrap_content"
-								android:layout_height="match_parent"
-								android:src="@drawable/alert"
-								android:layout_centerInParent="true"/>
-
-							<RelativeLayout
-								android:layout_width="wrap_content"
-								android:layout_height="40dp"
-
-								android:layout_alignParentBottom="true"
-
-								>
-								<!--<mehdi.sakout.fancybuttons.FancyButton
-									android:id="@+id/btnOk"
-									android:layout_width="match_parent"
-									android:layout_height="40dp"
-									android:layout_gravity="center"
-									android:elevation="4dp"
-									android:paddingBottom="1dp"
-									fancy:fb_defaultColor="@color/TRANSPARENT"
-									fancy:fb_focusColor="@color/focusColor"
-									fancy:fb_radius="0dp"
-									fancy:fb_text="بازگشت"
-									fancy:fb_textColor="#FFFFFF"
-									fancy:fb_textSize="18dp"
-									/>-->
-								<Button
-									android:id="@+id/btn_no_Result"
-									android:layout_width="match_parent"
-									android:layout_height="40dp"
-									android:layout_gravity="center"
-									android:text="بازگشت به صفحه قبل"
-									android:textColor="#fff"
-									android:textSize="14dp"
-									android:textStyle="bold"
-									android:layout_marginTop="1dp"
-									android:layout_marginLeft="@dimen/_12dp"
-									android:layout_marginRight="@dimen/_12dp"
-									android:layout_marginBottom="2dp"
-									android:background="@drawable/btngravity_big"/>
-							</RelativeLayout>
-
-
-						</RelativeLayout>
-
-
-					</android.support.v7.widget.CardView>
-				</LinearLayout>
 
 
 			</LinearLayout>
@@ -516,9 +426,94 @@
 
 		</LinearLayout>
 
+
+
+	<LinearLayout
+		android:id="@+id/linear_no_result"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+
+		android:layout_below="@+id/toolbarLayout"
+		android:visibility="gone"
+		>
+
+
+
+
+		<android.support.v7.widget.CardView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_gravity="center"
+			android:layout_margin="7dp"
+			android:background="@color/hotel_detail_background"
+			card_view:cardBackgroundColor="#ffffff"
+			card_view:cardCornerRadius="3dp"
+			card_view:cardElevation="2dp">
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+				<TextView
+					android:id="@+id/txtNoResult"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="10dp"
+					android:layout_marginTop="10dp"
+					android:textSize="16dp"
+					android:textAppearance="@style/IrsansBold"
+					android:gravity="center"
+					android:textColor="@color/text_color_2e"
+					/>
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:src="@drawable/alert"
+					android:layout_centerInParent="true"/>
+
+				<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="40dp"
+
+					android:layout_alignParentBottom="true"
+
+					>
+					<!--<mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnOk"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:elevation="4dp"
+                        android:paddingBottom="1dp"
+                        fancy:fb_defaultColor="@color/TRANSPARENT"
+                        fancy:fb_focusColor="@color/focusColor"
+                        fancy:fb_radius="0dp"
+                        fancy:fb_text="بازگشت"
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="18dp"
+                        />-->
+					<Button
+						android:id="@+id/btn_no_Result"
+						android:layout_width="match_parent"
+						android:layout_height="40dp"
+						android:layout_gravity="center"
+						android:text="بازگشت به صفحه قبل"
+						android:textColor="#fff"
+						android:textSize="14dp"
+						android:textStyle="bold"
+						android:layout_marginTop="1dp"
+						android:layout_marginLeft="@dimen/_12dp"
+						android:layout_marginRight="@dimen/_12dp"
+						android:layout_marginBottom="2dp"
+						android:background="@drawable/btngravity_big"/>
+				</RelativeLayout>
+
+
+			</RelativeLayout>
+
+
+		</android.support.v7.widget.CardView>
 	</LinearLayout>
-
-
 
 	<include
 		layout="@layout/loading_layout_parvaz"

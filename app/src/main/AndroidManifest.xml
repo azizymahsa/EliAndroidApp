@@ -148,14 +148,13 @@
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
 
-
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="example.com"
-                    android:scheme="http" />
-                <action android:name="android.intent.action.VIEW" />
+                    android:host="invoice"
+                    android:scheme="eligasht" />
                 <!-- <data -->
                 <!-- android:host="www.tarafdari.com" -->
                 <!-- android:pathPrefix="/node/" -->

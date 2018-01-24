@@ -1,16 +1,29 @@
 package com.reserv.myapplicationeli.base;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.reserv.myapplicationeli.R;
+
+import mehdi.sakout.fancybuttons.FancyButton;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
@@ -47,6 +60,8 @@ public class BaseActivity extends AppCompatActivity  {
     }
 
     protected ProgressDialog mProgressDialog;
+    protected AlertDialog mAlertDialog;
+
     protected void needShowProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
@@ -60,6 +75,31 @@ public class BaseActivity extends AppCompatActivity  {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
+    }
+
+    public void needShowAlertDialog(String message, boolean canelable) {
+        if(mAlertDialog!= null && mAlertDialog.isShowing()){
+            return;
+        }
+        mAlertDialog = new AlertDialog.Builder(this).create();
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.alert_dialog_net, null);
+        mAlertDialog.setCancelable(canelable);
+        FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
+        TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
+
+        btnOk.setCustomTextFont("irsans.ttf");
+        tvAlert.setText(message);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAlertDialog.dismiss();
+            }
+        });
+
+        mAlertDialog.setView(view);
+        mAlertDialog.setCancelable(true);
+        mAlertDialog.show();
     }
 
 }

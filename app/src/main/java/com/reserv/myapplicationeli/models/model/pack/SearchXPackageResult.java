@@ -3,26 +3,24 @@ package com.reserv.myapplicationeli.models.model.pack;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.reserv.myapplicationeli.models.model.Error;
-
-import org.json.JSONObject;
+import com.reserv.myapplicationeli.models.model.Errors;
 
 import java.util.ArrayList;
 
 public class SearchXPackageResult {
 
-    @SerializedName("Error")
+    @SerializedName("Errors")
     @Expose
-    private Error error;
+    private ArrayList<Errors> error;
     @SerializedName("PRowXfers")
     @Expose
     private ArrayList<PRowXfer> PRowXfers = null;
 
-    public Error getError() {
+    public ArrayList<Errors> getError() {
         return error;
     }
 
-    public void setError(Error error) {
+    public void setError(ArrayList<Errors> error) {
         this.error = error;
     }
 

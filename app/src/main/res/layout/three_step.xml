@@ -6,7 +6,8 @@
     android:orientation="horizontal"
     android:gravity="center"
     android:id="@+id/linear_3"
-    android:visibility="gone">
+    android:visibility="gone"
+   >
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +28,7 @@
         <ImageView
             android:id="@+id/ivArrow11"
 
-            android:layout_width="80dp"
+            android:layout_width="50dp"
             android:layout_height="18dp"
 
             android:gravity="right"
@@ -60,7 +61,7 @@
         <ImageView
             android:id="@+id/ivArrow22"
 
-            android:layout_width="80dp"
+            android:layout_width="50dp"
             android:layout_height="18dp"
 
             android:gravity="right"
@@ -93,7 +94,7 @@
         <ImageView
             android:id="@+id/ivArrow33"
 
-            android:layout_width="80dp"
+            android:layout_width="50dp"
             android:layout_height="18dp"
 
             android:gravity="right"

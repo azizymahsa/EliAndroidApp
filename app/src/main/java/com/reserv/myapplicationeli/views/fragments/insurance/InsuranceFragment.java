@@ -1,8 +1,10 @@
 package com.reserv.myapplicationeli.views.fragments.insurance;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -27,6 +29,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.retro.ClientService;
 import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
+import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.Country;
 import com.reserv.myapplicationeli.models.model.insurance.BirthDateList;
 import com.reserv.myapplicationeli.models.model.pack.call.CountryListReq;
@@ -43,6 +46,7 @@ import com.reserv.myapplicationeli.views.dialogs.NumberPickerDialog;
 import java.util.ArrayList;
 import java.util.List;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -156,6 +160,9 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         @Override
         public void afterTextChanged(Editable editable) {
             String input = act_country.getText().toString();
+            if(ValidationTools.isEmptyOrNull(input)){
+                return;
+            }
             getCountries(input);
         }
     };
@@ -166,7 +173,13 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             @Override
             public void onResponse(Call<CountryListRes> call, Response<CountryListRes> response) {
                 hideLoading();
-                if (response == null || response.body() == null || response.body().getCountryAjaxResult() == null || ValidationTools.isEmptyOrNull(response.body().getCountryAjaxResult().getCountries())) {
+                if (response == null || response.body() == null){
+                    act_country.setText("");
+                    needShowAlertDialog("خطا در ارتباط", true);
+                    return;
+                }
+
+                if( response.body().getCountryAjaxResult() == null || ValidationTools.isEmptyOrNull(response.body().getCountryAjaxResult().getCountries())) {
                     return;
                 }
 
@@ -179,7 +192,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             @Override
             public void onFailure(Call<CountryListRes> call, Throwable t) {
                 hideLoading();
-                Toast.makeText(getActivity(), "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                act_country.setText("");
+                needShowAlertDialog("خطا در ارتباط", true);
             }
         });
 
@@ -350,5 +364,31 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             datePickerDialogDepart.initialize(this, year_, month, day);
 
         }
+    }
+
+    AlertDialog mAlertDialog ;
+    public void needShowAlertDialog(String message, boolean canelable) {
+        if(mAlertDialog!= null && mAlertDialog.isShowing()){
+            return;
+        }
+        mAlertDialog = new AlertDialog.Builder(getActivity()).create();
+        final LayoutInflater layoutInflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.alert_dialog_net, null);
+        mAlertDialog.setCancelable(canelable);
+        FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
+        TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
+
+        btnOk.setCustomTextFont("irsans.ttf");
+        tvAlert.setText(message);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAlertDialog.dismiss();
+            }
+        });
+
+        mAlertDialog.setView(view);
+        mAlertDialog.setCancelable(true);
+        mAlertDialog.show();
     }
 }
