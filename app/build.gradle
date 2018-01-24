@@ -80,14 +80,15 @@ dependencies {
     compile 'com.github.crosswall:Android-Coverflow:release-v1.0.4'
     compile 'com.shawnlin:number-picker:2.4.4'
     compile 'com.github.kenglxn.QRGen:javase:2.0.0'
-  //  compile 'com.github.traex.expandablelayout:library:1.2.2'
-  //  compile 'com.github.traex.expandablelayout:library:1.2.2'
+    //  compile 'com.github.traex.expandablelayout:library:1.2.2'
+    //  compile 'com.github.traex.expandablelayout:library:1.2.2'
     compile 'com.github.aakira:expandable-layout:1.6.0@aar'
 
 
 
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
-  compile 'com.github.traex.expandablelayout:library:1.2.2'
+    compile 'com.github.traex.expandablelayout:library:1.2.2'
+    compile 'com.android.support:customtabs:26.1.0'
 
 
 }

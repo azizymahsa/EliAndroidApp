@@ -19,21 +19,19 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
-
     <application
-        tools:replace="icon, label"
-
         android:name=".base.GlobalApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo_luncher"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_luncher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="icon, label">
         <activity
             android:name=".views.ui.SplashFragment"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,17 +61,17 @@
         <activity
             android:name=".views.activities.hotel.activity.DetailHotelActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".views.ui.PassengerHotelActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBQfxMuyfzRRl-iQTF-m9K6Snl3nq3dIio" />
 
-        <activity android:name=".views.ui.PassengerActivity"
+        <activity
+            android:name=".views.ui.PassengerActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".views.ui.SearchParvazActivity"
@@ -94,16 +92,18 @@
             android:name=".views.activities.pack.SearchPackActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".views.activities.hotel.activity.ImageViewActivity" />
-        <activity android:name=".views.activities.hotel.activity.SelectHotelFlightActivity"
+        <activity
+            android:name=".views.activities.hotel.activity.SelectHotelFlightActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.reserv.myapplicationeli.views.activities.AboutActivity"
+        <activity
+            android:name=".views.activities.AboutActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.reserv.myapplicationeli.views.activities.ContactUsActivity"
+        <activity
+            android:name=".views.activities.ContactUsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.reserv.myapplicationeli.views.activities.ConditionActivity"
+        <activity
+            android:name=".views.activities.ConditionActivity"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".views.activities.pack.DetailHotelActivityForPack"
             android:screenOrientation="portrait" />
@@ -116,27 +116,52 @@
         <activity
             android:name=".views.activities.AddRoomActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.ui.PassengerHotelFlightActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".views.activities.login.LogInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.login.RegisterLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.login.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.pack.AddRoomActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.insurance.PassengerInsuranceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.pack.PassengerPackageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.login.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".lost.FinalResult">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
 
-        <activity android:name=".views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".views.ui.PassengerHotelFlightActivity"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.login.LogInActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.login.RegisterLoginActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.login.ResetPasswordActivity"
-            android:screenOrientation="portrait" />
 
-        <activity android:name=".views.activities.pack.AddRoomActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.insurance.PassengerInsuranceActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.pack.PassengerPackageActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.login.ProfileActivity"
-            android:screenOrientation="portrait" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="example.com"
+                    android:scheme="http" />
+                <action android:name="android.intent.action.VIEW" />
+                <!-- <data -->
+                <!-- android:host="www.tarafdari.com" -->
+                <!-- android:pathPrefix="/node/" -->
+                <!-- android:scheme="http" /> -->
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

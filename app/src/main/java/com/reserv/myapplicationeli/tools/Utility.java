@@ -24,6 +24,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.support.customtabs.CustomTabsIntent;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mohamadamin.persianmaterialdatetimepicker.Utils;
 import com.reserv.myapplicationeli.base.GlobalApplication;
 
 
@@ -442,17 +444,53 @@ public class Utility extends Activity {
 	}
 	public static String dateShow(String date){
 
-		String[] splite=date.split(" ");
-		//date=splite[0];//2018/02/06
-		String dayM = splite[0].substring(8, 10);//02
-		String monthM = splite[0].substring(5, 7);//01
-		String yearM = splite[0].substring(0, 4);//1396
+		try{
+			String[] splite=date.split(" ");
+			//date=splite[0];//2018/02/06
+			String[] dateSplite=splite[0].split("/");
+   /*String dayM = splite[0].substring(8, 10);//02
+   String monthM = splite[0].substring(5, 7);//01
+   String yearM = splite[0].substring(0, 4);//1396*/
+			String dayM=dateSplite[2];
+			String monthM=dateSplite[1];
+			String yearM=dateSplite[0];
 
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.YEAR, Integer.parseInt(yearM));
-		cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(monthM));
-		cal.set(Calendar.MONTH, Integer.parseInt(dayM));
-		String format = new SimpleDateFormat(" MMM d").format(cal.getTime());
-return format+"-"+splite[1];
+			Calendar cal = Calendar.getInstance();
+			cal.set(Calendar.YEAR, Integer.parseInt(yearM));
+			cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(monthM));
+			cal.set(Calendar.MONTH, Integer.parseInt(dayM));
+			String format = new SimpleDateFormat(" MMM d").format(cal.getTime());
+
+			return format+"-"+splite[1];
+		}catch (Exception e) {
+			System.out.println("Exception ::"+e);
+			return "";
+		}
+
 	}
+
+	public static void openUrlCustomTab(Activity context, String url) {
+		Uri uri = Uri.parse(url);
+
+// create an intent builder
+		CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
+
+// Begin customizing
+// set toolbar colors
+
+// set start and exit animations
+//        intentBuilder.setStartAnimations(context, android.R.anim.slide_in_right, R.anim.slide_out_left);
+//        intentBuilder.setExitAnimations(context, android.R.anim.slide_in_left,
+//                android.R.anim.slide_out_right);
+
+// build custom tabs intent
+		CustomTabsIntent customTabsIntent = intentBuilder.build();
+
+// launch the url
+		customTabsIntent.launchUrl(context, uri);
+
+	}
+
+
+
 }

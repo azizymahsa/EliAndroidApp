@@ -1307,7 +1307,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             } catch (Exception e) {
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
-                tvAlert.setText("خطا در برقراری ارتباط");
+                tvAlert.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
                 llFilter.setVisibility(View.GONE);
             }
 

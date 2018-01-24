@@ -92,7 +92,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvBargashtTimeWait = (TextView) convertView.findViewById(R.id.tvBargashtTimeWait);
             holder.tvRaftTimeWait = (TextView) convertView.findViewById(R.id.tvRaftTimeWait);
             holder.tvAirLines = (TextView) convertView.findViewById(R.id.tvAirLines);
-            holder.llRaftDy = (LinearLayout) convertView.findViewById(R.id.llRaftDy);
+          //  holder.llRaftDy = (LinearLayout) convertView.findViewById(R.id.llRaftDy);
 
             convertView.setTag(holder);
         } else {
@@ -181,7 +181,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             case 2:
                 waitBargasht="بدون توقف";
 
-
+/*
                 TextView textView = new TextView(context);
                 textView.setText(strings2[0]);
                 Typeface t = Typeface.createFromAsset(context.getAssets(),"fonts/irsans.ttf");
@@ -193,7 +193,7 @@ public class FlightHotelAdapter extends BaseAdapter {
                 textView.setTextSize(12);
                 textView.setGravity(Gravity.CENTER);
                 textView.setBackgroundColor(ContextCompat.getColor(context,R.color.text_color_4d));
-                holder.llRaftDy.addView(textView);
+                holder.llRaftDy.addView(textView);*/
 
 
 

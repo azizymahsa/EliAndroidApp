@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -117,6 +118,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     //public static long GET_PRICE_KHADAMAT;
     public static long GET_PRICE_KHADAMAT;
     ExpandableRelativeLayout expandableLayout;
+    String paymentUrl;
 
 
     GetKhadmatHotelFlightAdapter mAdapter;
@@ -279,7 +281,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         // new AsyncFetch().execute();
         sum = Prefs.getInt("SumPass", 0);
-
+        btn_pardakht_factor.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(paymentUrl));
+                startActivity(browserIntent);
+            }
+        });
 
     }//end oncreate
     //AsyncFetchGetPreFactorDetails
@@ -351,6 +359,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                 String data = OrderToJsonGetPreFactorDetails();
+                Log.e("reqqqq", data);
 
 
                 HttpClient client = new DefaultHttpClient();
@@ -418,6 +427,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 int RqBase_ID = jFact.getInt("RqBase_ID");
                 //////////////////////////////
                 long totalprice = jFact.getLong("TotalPrice");
+              paymentUrl = jFact.getString("OnlinePaymentURL");
 
 
                 tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
@@ -703,6 +713,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             pdLoading.dismiss();
             try {
+
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
 
@@ -741,6 +752,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 linear_list_khadamat.setVisibility(View.GONE);
                 linear_pish_factor.setVisibility(View.VISIBLE);
 
+                new AsyncFetchGetPreFactorDetails().execute();
 
             } catch (JSONException e) {
                 Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
@@ -825,7 +837,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                 HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
+                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/HotelFlight/HotelFlightService.svc/PurchaseFlightHotel");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
 
@@ -870,6 +882,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(result);
+                Log.e("jsonObj", jsonObj.toString());
 
                 // JSONObject jsonObj = new JSONObject(retSrc);
 
@@ -1027,6 +1040,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", "fa-IR");
+            headerJson.put("Type", "HF");
+
             headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
             headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
             headerJson.put("FlightOfferId", getIntent().getExtras().get("flightId"));
@@ -1062,6 +1077,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             manJson.put("Culture", "fa-IR");
 
             manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
+            manJson.put("Type", "HF");//perches service
 
 
             identityJson.put("Password", "123qwe!@#QWE");
@@ -1433,7 +1449,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 new AsyncFetchPishFactor().execute();
 
                 //call api GetPreFactorDetails
-                new AsyncFetchGetPreFactorDetails().execute();
                 break;
 
 

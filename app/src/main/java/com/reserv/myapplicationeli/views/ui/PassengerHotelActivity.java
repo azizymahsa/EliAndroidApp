@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -115,7 +116,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     public static long GET_PRICE_KHADAMAT;
     ExpandableRelativeLayout expandableLayout;
     public TextView imgCount;
-
+    String paymentUrl;
 
     GetHotelKhadmatAdapter mAdapter;
     //ScrollView myScrollView;
@@ -154,7 +155,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e("jsonObj", jsonObj.toString());
+
 
         // Getting JSON Array node
 
@@ -214,7 +215,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);
         btn_pardakht_factor.setOnClickListener(this);
             /* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
-			 btnAddsabad.setOnClickListener(this);*/
+             btnAddsabad.setOnClickListener(this);*/
 
         btn_saler = (ImageView) findViewById(R.id.btn_saler);
         btn_mosaferan = (ImageView) findViewById(R.id.btn_mosaferan);
@@ -293,7 +294,19 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
         // new AsyncFetch().execute();
         sum = Prefs.getInt("SumPass", 0);
+        btn_pardakht_factor.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Utility.openUrlCustomTab(PassengerHotelActivity.this, paymentUrl);
+/*
+                String url = "http://foyr.com";
+                Intent launchGoogleChrome = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                launchGoogleChrome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                launchGoogleChrome.setPackage("com.android.chrome");
+                launchGoogleChrome.putExtra("com.android.chrome.EXTRA_OPEN_NEW_INCOGNITO_TAB", true);*/
+            }
+        });
 
     }//end oncreate
     //AsyncFetchGetPreFactorDetails
@@ -418,25 +431,26 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
 
 /*         if (!ErrorInApi(jsonObj)){*/
-    Log.e("jsonObj", jsonObj.toString());
+                Log.e("jsonObj", jsonObj.toString());
 
-    // Getting JSON Array node
-    JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
-
-
-    JSONObject jArray = GetAirportsResult.getJSONObject("PreFactor");//FactorSummary
+                // Getting JSON Array node
+                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
 
 
-    //FactorSummary
-    JSONObject jFact = jArray.getJSONObject("FactorSummary");
+                JSONObject jArray = GetAirportsResult.getJSONObject("PreFactor");//FactorSummary
 
 
-    int RqBase_ID = jFact.getInt("RqBase_ID");
-    //////////////////////////////
-    long totalprice = jFact.getLong("TotalPrice");
+                //FactorSummary
+                JSONObject jFact = jArray.getJSONObject("FactorSummary");
 
 
-    tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+                int RqBase_ID = jFact.getInt("RqBase_ID");
+                //////////////////////////////
+                long totalprice = jFact.getLong("TotalPrice");
+                paymentUrl = jFact.getString("OnlinePaymentURL");
+
+
+                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
 
 //for hotel==========================================================================================
                 final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
@@ -452,7 +466,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekin"))
                             , Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekout")),
                             jArray2.getJSONObject(i).getString("AdlCount"),
-                            jArray2.getJSONObject(i).getString("ChdCount"),jArray2.getJSONObject(i).getString("RoomTitleFa")));
+                            jArray2.getJSONObject(i).getString("ChdCount"), jArray2.getJSONObject(i).getString("RoomTitleFa")));
 
                 }
                 if (!hotelPreFactorModels.isEmpty()) {
@@ -464,7 +478,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 //for passenger======================================================================================
 
 
-
                 final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
                 recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerHotelActivity.this, 1));
                 recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerHotelActivity.this));
@@ -474,8 +487,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
                 for (int i = 0; i < jArray3.length(); i++) {
-                    passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
+                    passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"), jArray3.getJSONObject(i).getString("Nationality"),
+                            jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"), jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
                             jArray3.getJSONObject(i).getString("RqPassenger_name")));
 
                 }
@@ -495,8 +508,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 for (int i = 0; i < jArray4.length(); i++) {
                     servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
-                            jArray4.getJSONObject(i).getString("ServicePrice"),jArray4.getJSONObject(i).getString("ServiceType"),
-                            jArray4.getJSONObject(i).getString("CityFa"),jArray4.getJSONObject(i).getString("ServiceNameFa")));
+                            jArray4.getJSONObject(i).getString("ServicePrice"), jArray4.getJSONObject(i).getString("ServiceType"),
+                            jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa")));
 
                 }
                 if (!servicePreFactorModels.isEmpty()) {
@@ -513,11 +526,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 for (int i = 0; i < jArray5.length(); i++) {
                     /////////////////////////////////////////////
-
-
-
-
-
 
 
                     ////////////////////////
@@ -703,7 +711,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 linear_list_khadamat.setVisibility(View.GONE);
                 linear_pish_factor.setVisibility(View.VISIBLE);
 
-
+                new AsyncFetchGetPreFactorDetails().execute();
             } catch (JSONException e) {
                 Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
             }
@@ -989,6 +997,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", "fa-IR");
+            headerJson.put("Type", "H");
             headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
             headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
 /*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
@@ -1023,6 +1032,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             manJson.put("Culture", "fa-IR");
 
             manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
+            Log.e("54", tvfactorNumber.getText().toString());
+            manJson.put("Type", "H");//perches service
 
 
             identityJson.put("Password", "123qwe!@#QWE");
@@ -1392,7 +1403,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 new AsyncFetchPishFactor().execute();
 
                 //call api GetPreFactorDetails
-                new AsyncFetchGetPreFactorDetails().execute();
+
                 break;
 
 
@@ -1937,9 +1948,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
 
 
-        if (GetAirportsResult.getJSONArray("Errors")!=null){
+        if (GetAirportsResult.getJSONArray("Errors") != null) {
             JSONArray errors = GetAirportsResult.getJSONArray("Errors");
-            Toast.makeText(PassengerHotelActivity.this,errors.getJSONObject(0).getString("DetailedMessage"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(PassengerHotelActivity.this, errors.getJSONObject(0).getString("DetailedMessage"), Toast.LENGTH_SHORT).show();
 
             return true;
 
@@ -1947,10 +1958,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         }
 
 
-
         return false;
     }
-
 
 
 }
