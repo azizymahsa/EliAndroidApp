@@ -589,6 +589,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
 
                 start = tvStart.getText().toString();
                 end = tvEnd.getText().toString();
+
                 startF = lbl_forudgah_mabda.getText().toString();
                 endF = lbl_forudgah_maghsad.getText().toString();
 
@@ -597,9 +598,23 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
 
                 lbl_forudgah_mabda.setText(endF);
                 lbl_forudgah_maghsad.setText(startF);
+/////////////////////////
+                String airportMaghsad=  Prefs.getString("Value-Maghsad-Airport-Code","");
+                String airPortMabda= Prefs.getString("Value-Mabda-Airport-Code","");
 
+                Prefs.putString("Value-Mabda-Airport-Code",airportMaghsad);
+                Prefs.putString("Value-Maghsad-Airport-Code",airPortMabda);
 
+                String mabdaCity = Prefs.getString("Value-Mabda-City", "");
+                String mabdaAirPort = Prefs.getString("Value-Mabda-Airport", "");
+                String maghsadCity = Prefs.getString("Value-Maghsad-City", "");
+                String maghsadAirPort = Prefs.getString("Value-Maghsad-Airport", "");
 
+                Prefs.putString("Value-Mabda-City", maghsadCity);
+                Prefs.putString("Value-Mabda-Airport", maghsadAirPort);
+                Prefs.putString("Value-Maghsad-City", mabdaCity);
+                Prefs.putString("Value-Maghsad-Airport", mabdaAirPort);
+////////////////////////
                 YoYo.with(Techniques.SlideInUp)
                         .duration(500)
                         .playOn(lbl_forudgah_mabda);

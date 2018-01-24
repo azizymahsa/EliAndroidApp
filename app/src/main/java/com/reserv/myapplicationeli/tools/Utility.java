@@ -439,20 +439,30 @@ public class Utility extends Activity {
 		ViewGroup.LayoutParams params = listView.getLayoutParams();
 		params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		listView.setLayoutParams(params);
-	}
+	}//
 	public static String dateShow(String date){
-
+		System.out.println("date:"+date);
+		try{
 		String[] splite=date.split(" ");
 		//date=splite[0];//2018/02/06
-		String dayM = splite[0].substring(8, 10);//02
+		String[] dateSplite=splite[0].split("/");
+		/*String dayM = splite[0].substring(8, 10);//02
 		String monthM = splite[0].substring(5, 7);//01
-		String yearM = splite[0].substring(0, 4);//1396
+		String yearM = splite[0].substring(0, 4);//1396*/
+		String dayM=dateSplite[2];
+		String monthM=dateSplite[1];
+		String yearM=dateSplite[0];
 
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, Integer.parseInt(yearM));
 		cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(monthM));
 		cal.set(Calendar.MONTH, Integer.parseInt(dayM));
 		String format = new SimpleDateFormat(" MMM d").format(cal.getTime());
-return format+"-"+splite[1];
+
+		return format+"-"+splite[1];
+		}catch (Exception e) {
+			System.out.println("Exception ::"+e);
+			return "";
+		}
 	}
 }

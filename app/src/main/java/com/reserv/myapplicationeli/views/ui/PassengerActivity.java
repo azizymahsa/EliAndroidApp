@@ -275,6 +275,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		// Spinner Drop down elements
 		List<String> categories = new ArrayList<String>();
+		categories.add("لطفا جنسیت را انتخاب کنید");
 		categories.add("مرد");
 		categories.add("زن");
 
@@ -522,10 +523,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							jArray5.getJSONObject(i).getString("ArrAirPortFa"),
 							Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
 							jArray5.getJSONObject(i).getString("FltTime"),
-							Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+							//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+							jArray5.getJSONObject(i).getString("FltCheckinTime"),
 
 							jArray5.getJSONObject(i).getString("FltNumber"),
-							jArray5.getJSONObject(i).getString("AirlineNameFa")));
+							jArray5.getJSONObject(i).getString("AirlineNameFa"),
+							jArray5.getJSONObject(i).getString("DepartureCityFa")));
 
 				}
 				if (!flightPreFactorModels.isEmpty()) {
@@ -536,8 +539,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			} catch (JSONException e) {
 				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-				AlertDialogPassenger.setText("ارتباط با سرور برقرار نشد !!");
-				//Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+				AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
 
 
@@ -702,12 +705,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.VISIBLE);
 
+				//call api GetPreFactorDetails
+				new AsyncFetchGetPreFactorDetails().execute();
 
 			} catch (JSONException e) {
 				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-				AlertDialogPassenger.setText("ارتباط با سرور برقرار نشد !!");
-				//new AlertDialog(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!");
-				//Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+				AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+				//new AlertDialog(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
 
 
@@ -853,11 +858,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				if(!GetAirportsResult.getString("Errors").equals("null")){
 					jError = GetAirportsResult.getJSONArray("Errors");//
 					JSONObject jPricedItinerary = jError.getJSONObject(0);
-					GetError = jPricedItinerary.getString("DetailedMessage");
+					GetError = jPricedItinerary.getString("Message");
 				}
 				if (GetError.length()>1) {
 					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-					AlertDialogPassenger.setText("لطفا یک پرواز دیگر را چک کنید ! ");
+					AlertDialogPassenger.setText("لطفا یک پرواز دیگر را چک کنید ! "+"  "+GetError);
 					//new AlertDialog(PassengerActivity.this,"لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز");
 						//Toast.makeText(PassengerActivity.this, "لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز", Toast.LENGTH_LONG).show();
 				}else{
@@ -931,9 +936,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 			} catch (JSONException e) {
 				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-				AlertDialogPassenger.setText("ارتباط با سرور برقرار نشد !!");
-				//new AlertDialog(PassengerActivity.this,"ارتباط با سرور برقرار نشد !!");
-				//Toast.makeText(PassengerActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+				AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+				//new AlertDialog(PassengerActivity.this,"در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
 
 		}//end on pos excute
@@ -1016,6 +1021,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			headerJson.put("partnerInfo", detailsPartner);
 
 			headerJson.put("Culture", "fa-IR");
+			headerJson.put("Type", "F");
 
 			identityJson.put("Password", "123qwe!@#QWE");
 			identityJson.put("TermianlId", "Mobile");
@@ -1040,6 +1046,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		try {
 			manJson.put("Culture", "fa-IR");
+			manJson.put("Type", "F");
 
 			manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
 
@@ -1076,6 +1083,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		try {
 			manJson.put("Culture", "fa-IR");
+			manJson.put("Type", "F");
 
 			manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
 			manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));
@@ -1410,8 +1418,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				//call api pishFactor
 				new AsyncFetchPishFactor().execute();
 
-				//call api GetPreFactorDetails
-				new AsyncFetchGetPreFactorDetails().execute();
+
 				break;
 
 
@@ -1701,10 +1708,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							   long id) {
 		// On selecting a spinner item
 		String item = parent.getItemAtPosition(position).toString();
-		if(item.equals("زن"))
-			Gensiyat="Female";
-		else
-			Gensiyat="Man";
+		if(item.equals("زن")) {
+			Gensiyat = "Female";
+		}else if(item.equals("مرد")){
+			Gensiyat="Man";}
 		// Showing selected spinner item
 		//Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 

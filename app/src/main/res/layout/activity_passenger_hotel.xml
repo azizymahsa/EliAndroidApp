@@ -1254,7 +1254,7 @@
                         android:text="1445151"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#098d4e"
-                        android:textSize="14dp"  />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/textView6"
@@ -1268,13 +1268,14 @@
 
 
             </RelativeLayout>
+
             <ImageView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:padding="5dp"
-                android:scaleType="fitXY"
-                android:layout_gravity="center"/>
+                android:scaleType="fitXY" />
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -1292,7 +1293,6 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical">
-
 
 
                     <TextView
@@ -1362,8 +1362,7 @@
                                     android:id="@+id/recyclerViewPassenger"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:scrollbars="vertical"
-                                    />
+                                    android:scrollbars="vertical" />
 
                             </LinearLayout>
 
@@ -1410,17 +1409,17 @@
                                     android:id="@+id/recyclerView"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:scrollbars="vertical"
-                                    />
+                                    android:scrollbars="vertical" />
 
                             </LinearLayout>
+
                             <LinearLayout
 
                                 android:id="@+id/llDetailService"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
                                 android:layout_below="@+id/llDetailHotel"
+                                android:orientation="vertical"
                                 android:visibility="gone">
 
                                 <LinearLayout
@@ -1457,8 +1456,7 @@
                                     android:id="@+id/recyclerViewService"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:scrollbars="vertical"
-                                    />
+                                    android:scrollbars="vertical" />
 
                             </LinearLayout>
 
@@ -1467,8 +1465,8 @@
                                 android:id="@+id/llDetailFlight"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
                                 android:layout_below="@+id/llDetailService"
+                                android:orientation="vertical"
                                 android:visibility="gone">
 
                                 <LinearLayout
@@ -1505,34 +1503,13 @@
                                     android:id="@+id/recyclerViewFlight"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:scrollbars="vertical"
-                                    />
+                                    android:scrollbars="vertical" />
 
                             </LinearLayout>
                         </RelativeLayout>
 
 
                         <!--dfsdfsfsdfsdfsfsfsf-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                     </ScrollView>

@@ -14,17 +14,6 @@ public class FlightPreFactorModel {
     String FltNumber;
     String AirlineNameEn;
 
-    public FlightPreFactorModel(String airlineNameFa, String arrAirPortFa, String depAirPortFa, String fltDate, String fltCheckinTime, String fltTime, String fltNumber, String airlineNameEn) {
-        AirlineNameFa = airlineNameFa;
-        ArrAirPortFa = arrAirPortFa;
-        DepAirPortFa = depAirPortFa;
-        FltDate = fltDate;
-        FltCheckinTime = fltCheckinTime;
-        FltTime = fltTime;
-        FltNumber = fltNumber;
-        AirlineNameEn = airlineNameEn;
-    }
-
     public String getAirlineNameFa() {
         return AirlineNameFa;
     }
@@ -88,5 +77,29 @@ public class FlightPreFactorModel {
     public void setAirlineNameEn(String airlineNameEn) {
         AirlineNameEn = airlineNameEn;
     }
+
+    public String getDepartureCityFa() {
+        return DepartureCityFa;
+    }
+
+    public void setDepartureCityFa(String departureCityFa) {
+        DepartureCityFa = departureCityFa;
+    }
+
+    public FlightPreFactorModel(String airlineNameFa, String arrAirPortFa, String depAirPortFa, String fltDate, String fltCheckinTime, String fltTime, String fltNumber, String airlineNameEn, String departureCityFa) {
+        AirlineNameFa = airlineNameFa;
+        ArrAirPortFa = arrAirPortFa;
+        DepAirPortFa = depAirPortFa;
+        FltDate = fltDate;
+        FltCheckinTime = fltCheckinTime;
+        FltTime = fltTime;
+        FltNumber = fltNumber;
+        AirlineNameEn = airlineNameEn;
+        DepartureCityFa = departureCityFa;
+    }
+
+    String DepartureCityFa;
+
+
 }
 

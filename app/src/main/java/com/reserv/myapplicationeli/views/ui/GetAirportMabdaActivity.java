@@ -44,6 +44,7 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.Country;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMabdaAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.wang.avi.AVLoadingIndicatorView;
 
 
@@ -223,50 +224,60 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
 	            try {
 ////////////////////////////
-	            	JSONObject jsonObj = new JSONObject(result);
-					
-					 // JSONObject jsonObj = new JSONObject(retSrc);
-					  
-		              // Getting JSON Array node
-				  JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
-		          JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
-	            	//////////////////////////////
-	              //  JSONArray jArray = new JSONArray(result);
+					JSONObject jsonObj = new JSONObject(result);
 
-	                // Extract data from json and store into ArrayList as class objects
-	                for(int i=0;i<jArray.length();i++){
-	                    JSONObject json_data = jArray.getJSONObject(i);
-	                    Country fishData = new Country();
-	                    fishData.setCityName(json_data.getString("CityName")) ;
-	                    fishData.setAirportName(json_data.getString("AirportName")) ;
-	                    fishData.setAirportCode(json_data.getString("AirportCode")) ;
-	                    fishData.setAirportID(json_data.getString("AirportID")) ;
-	                    fishData.setParentId(json_data.getString("ParentId")) ;
-	                  
-	                    data.add(fishData);
-	                }
+					//JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
+					/////////////////////////////////////
+					String GetError = "";
+					JSONArray jError = null;
+					// Getting JSON Array node
+					JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");//Error
+					if (!GetAirportsResult.getString("Errors").equals("null")) {
+						jError = GetAirportsResult.getJSONArray("Errors");//
+						JSONObject jPricedItinerary = jError.getJSONObject(0);
+						GetError = jPricedItinerary.getString("Message");
+					}
+					if (GetError.length() > 1) {
+						AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
+						AlertDialogPassenger.setText(GetError);
 
-	                // Setup and Handover data to recyclerview
-	                String Value_Maghsad_City="";
-	                String Value_Maghsad_Airport="";
-	                String Value_Maghsad_Airport_Code="";
-	                ////
-	                if( Prefs.getString("Value-Maghsad-City", "") != null) {
+					}else{
+////////////////////////////////
+					JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
+
+					for (int i = 0; i < jArray.length(); i++) {
+						JSONObject json_data = jArray.getJSONObject(i);
+						Country fishData = new Country();
+						fishData.setCityName(json_data.getString("CityName"));
+						fishData.setAirportName(json_data.getString("AirportName"));
+						fishData.setAirportCode(json_data.getString("AirportCode"));
+						fishData.setAirportID(json_data.getString("AirportID"));
+						fishData.setParentId(json_data.getString("ParentId"));
+
+						data.add(fishData);
+					}
+
+
+					String Value_Maghsad_City = "";
+					String Value_Maghsad_Airport = "";
+					String Value_Maghsad_Airport_Code = "";
+					////
+					if (Prefs.getString("Value-Maghsad-City", "") != null) {
 						Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
 						Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
 						Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
 					}
-	                
-	                ////
-	                listAirPort = (ListView)findViewById(R.id.listAirPort);
-	                  mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data,Value_Maghsad_City,Value_Maghsad_Airport,Value_Maghsad_Airport_Code,GetAirportMabdaActivity.this);
-	                //mAdapter.setAdapter(mAdapter);
-	                mAdapter.setData(data);
-	                listAirPort.setAdapter(mAdapter);
-	                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 
+					////
+					listAirPort = (ListView) findViewById(R.id.listAirPort);
+					mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
+
+					mAdapter.setData(data);
+					listAirPort.setAdapter(mAdapter);
+				}
 	            } catch (JSONException e) {
-	                Toast.makeText(GetAirportMabdaActivity.this, "ارتباط با سرور قطع می باشد", Toast.LENGTH_LONG).show();
+					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(GetAirportMabdaActivity.this);
+					AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
 	            }
 
 	        }
