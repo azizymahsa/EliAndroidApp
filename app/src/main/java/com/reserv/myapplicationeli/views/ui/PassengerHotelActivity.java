@@ -693,7 +693,7 @@ NonScrollListView lvFactor;
 				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseServiceResult");
 				int successResult=GetAirportsResult.getInt("SuccessResult");
 				if(successResult==0){
-					//get Error
+					//get Errors
 					JSONObject getError = jsonObj.getJSONObject("Errors");
 					String message= getError.getString("Message");
 					Toast.makeText(PassengerHotelActivity.this, message, Toast.LENGTH_LONG).show();
@@ -853,9 +853,9 @@ NonScrollListView lvFactor;
 				// JSONObject jsonObj = new JSONObject(retSrc);
 
 				// Getting JSON Array node
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightHotelResult");//Error
+				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightHotelResult");//Errors
 
-				 /* JSONObject GetError = jsonObj.getJSONObject("Error");
+				 /* JSONObject GetError = jsonObj.getJSONObject("Errors");
 				  Toast.makeText(PassengerHotelActivity.this,  Get, Toast.LENGTH_LONG).show();*/
 
 				JSONArray jArray = GetAirportsResult.getJSONArray("Services");

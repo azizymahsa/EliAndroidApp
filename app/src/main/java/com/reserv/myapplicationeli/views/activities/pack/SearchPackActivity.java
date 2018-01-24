@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -84,6 +85,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private ViewGroup llFilter;
     private FancyButton btn_next_day;
     private FancyButton btn_previous_day;
+    private RelativeLayout error_layout;
+    private TextView txt_error;
 
 
     @SuppressLint("NewApi")
@@ -136,9 +139,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         packageListReq.setDepartureFrom(departureFrom);
         packageListReq.setDepartureTo(departureTo);
         packageListReq.setCulture(culture);
-        Log.e("roomlist", roomList);
 
-        Log.e("req_pack", new GsonBuilder().create().toJson(new PackageRequestModel(packageListReq)));
         Call<PackageListRes> call = service.getPackageListResult(new PackageRequestModel(packageListReq));
         call.enqueue(new Callback<PackageListRes>() {
             @Override
@@ -147,34 +148,48 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (response == null || response.body() == null) {
                     rcl_package.showText();
+                    txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                    error_layout.setVisibility( View.VISIBLE  );
                 }
+
+
                 SearchXPackageResult searchXPackageResult = response.body().getSearchXPackageResult();
-                if (searchXPackageResult == null || ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
+
+                if (searchXPackageResult == null) {
                     rcl_package.showText();
-                    if (response.body().getSearchXPackageResult().getError() != null) {
-                        Toast.makeText(SearchPackActivity.this, response.body().getSearchXPackageResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                   txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                   error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
-                if (searchXPackageResult.getPRowXfers() != null) {
-                    pRowXfers = searchXPackageResult.getPRowXfers();
-                    priceFilters = FilterPackTools.getPriceFilters(pRowXfers);
-                    placeFilters = FilterPackTools.getPlaceFilters(pRowXfers);
-                    degreeFilters = FilterPackTools.getDegreeFilters(pRowXfers);
-                    amenityFilters = FilterPackTools.getAmenityFilters(pRowXfers);
-                    showList();
-                } else {
+
+                if (searchXPackageResult.getError() != null) {
                     rcl_package.showText();
+                    needShowAlertDialog(response.body().getSearchXPackageResult().getError().get(0).getDetailedMessage(), true);
+                    return;
                 }
+
+                if (ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
+                    rcl_package.showText();
+                    return;
+                }
+
+                pRowXfers = searchXPackageResult.getPRowXfers();
+                priceFilters = FilterPackTools.getPriceFilters(pRowXfers);
+                placeFilters = FilterPackTools.getPlaceFilters(pRowXfers);
+                degreeFilters = FilterPackTools.getDegreeFilters(pRowXfers);
+                amenityFilters = FilterPackTools.getAmenityFilters(pRowXfers);
+                showList();
+
 
             }
 
             @Override
             public void onFailure(Call<PackageListRes> call, Throwable t) {
                 hideLoading();
-                Toast.makeText(SearchPackActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
-
-
+                rcl_package.showText();
+//                needShowAlertDialog("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", true);
+                txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                error_layout.setVisibility( View.VISIBLE  );
             }
         });
     }
@@ -195,6 +210,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         btn_previous_day = findViewById(R.id.btnLastDays);
         btn_next_day = findViewById(R.id.btnNextDays);
         scroll_availabel_date = findViewById(R.id.scroll_availabel_date);
+        error_layout = findViewById(R.id.elNotFound);
+        txt_error = findViewById(R.id.tvAlert);
 
 
         rlLoading = findViewById(R.id.rlLoading);
@@ -279,6 +296,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 });
                 filterPackageDialog.show();
                 break;
+
         }
     }
 
@@ -331,9 +349,9 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             }
         });
 
-        if(indexSeletedItem == 0 ){
+        if (indexSeletedItem == lstAvailableDates.size()-1) {
             txt_comin_soon.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             txt_comin_soon.setVisibility(View.GONE);
         }
 

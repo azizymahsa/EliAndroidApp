@@ -939,7 +939,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				HttpResponse res = client.execute(post);
 				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 
-			/*	JSONObject jsonObj = new JSONObject("Error");
+			/*	JSONObject jsonObj = new JSONObject("Errors");
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("SearchFlightsResult");*/
 
 				return retSrc;

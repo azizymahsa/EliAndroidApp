@@ -44,7 +44,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
 
     private FancyButton btnLogin;
-    private FancyButton btnRegister;
+    private LinearLayout btnRegister;
     private EditText txtEmail;
     private EditText txtPassword;
     private ImageView eLogo;
@@ -84,12 +84,12 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                 if (response == null
                         || response.body() == null
                         || response.body().getLoginResult() == null) {
-                    Toast.makeText(LogInActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (response.body().getLoginResult().getWebUserLogin() == null && response.body().getLoginResult().getError()!=null){
-                    Toast.makeText(LogInActivity.this, response.body().getLoginResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, response.body().getLoginResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -102,12 +102,9 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
 
                 WebUserTools.getInstance().setUser(webUserLogin.getWebUserProperties());
-//                Toast.makeText(LogInActivity.this, "Id of User is :" + webUserLogin.getWebUserProperties().getWebUserID(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(LogInActivity.this, "password of User is :" + webUserLogin.getWebUserProperties().getPassword(), Toast.LENGTH_SHORT).show();
-//                Log.e("Id of User is :",webUserLogin.getWebUserProperties()+"");
 
-                Intent intent1 = new Intent(LogInActivity.this,ProfileActivity.class);
-                startActivity(intent1);
+                Intent intent = new Intent(LogInActivity.this,ProfileActivity.class);
+                startActivity(intent);
 
 
             }
@@ -115,7 +112,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onFailure(Call<LoginRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(LogInActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LogInActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -130,7 +127,6 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         layoutResetPassword = findViewById(R.id.layout_reset_password);
         txtPassword = findViewById(R.id.txt_password);
 
-        btnRegister.setCustomTextFont("fonts/irsans.ttf");
         btnLogin.setCustomTextFont("fonts/irsans.ttf");
         eLogo.setVisibility(View.INVISIBLE);
 

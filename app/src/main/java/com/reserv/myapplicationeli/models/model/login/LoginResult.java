@@ -1,9 +1,8 @@
 package com.reserv.myapplicationeli.models.model.login;
 
-import com.reserv.myapplicationeli.models.model.Error;
-import com.reserv.myapplicationeli.models.model.login.WebUserLogin;
+import com.reserv.myapplicationeli.models.model.Errors;
 
-import org.json.JSONObject;
+import java.util.ArrayList;
 
 /**
  * Created by elham.bonyani on 1/20/2018.
@@ -20,12 +19,12 @@ public class LoginResult {
         WebUserLogin = value;
     }
 
-    private com.reserv.myapplicationeli.models.model.Error Error;
-    public final Error getError()
+    private ArrayList<Errors> Error;
+    public final ArrayList<Errors> getError()
     {
         return Error;
     }
-    public final void setError(Error value)
+    public final void setError(ArrayList<Errors> value)
     {
         Error = value;
     }

@@ -440,4 +440,16 @@ public class Utility extends Activity {
 		params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		listView.setLayoutParams(params);
 	}
+
+
+	public static void changeFontInViewGroup(ViewGroup viewGroup, String fontPath) {
+		for (int i = 0; i < viewGroup.getChildCount(); i++) {
+			View child = viewGroup.getChildAt(i);
+			if (TextView.class.isAssignableFrom(child.getClass())) {
+				((TextView) child).setTypeface(AndroidUtilities.getTypeface(fontPath));
+			} else if (ViewGroup.class.isAssignableFrom(child.getClass())) {
+				changeFontInViewGroup((ViewGroup) viewGroup.getChildAt(i), fontPath);
+			}
+		}
+	}
 }

@@ -77,12 +77,12 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                 if (response == null
                         || response.body() == null
                         || response.body().getWebUserRegisterResult() == null) {
-                    Toast.makeText(RegisterLoginActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterLoginActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (response.body().getWebUserRegisterResult().getWebUserLogin() == null && response.body().getWebUserRegisterResult().getError()!=null){
-                    Toast.makeText(RegisterLoginActivity.this, response.body().getWebUserRegisterResult().getError().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterLoginActivity.this, response.body().getWebUserRegisterResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -96,7 +96,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onFailure(Call<WebUserRegisterRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(RegisterLoginActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterLoginActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
 
             }
         });

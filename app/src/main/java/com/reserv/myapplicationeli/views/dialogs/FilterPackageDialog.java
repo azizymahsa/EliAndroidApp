@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
- * Created by hoseinraeisi on 1/20/18.
+ * Created by elham.bonyani on 1/20/18.
  */
 
 public class FilterPackageDialog implements View.OnClickListener {
@@ -45,6 +45,7 @@ public class FilterPackageDialog implements View.OnClickListener {
     private ArrayList<PlaceFilter> placeFiltersSelected;
     private ArrayList<AmenityFilter> amenityFiltersSelected;
     private FancyButton btnOk;
+    private FancyButton btnDeleteFilter;
 
     public interface OnFiltePackageListener{
 
@@ -74,6 +75,7 @@ public class FilterPackageDialog implements View.OnClickListener {
         rcl_place = view.findViewById(R.id.rcl_place);
         rcl_amenity = view.findViewById(R.id.rcl_amenity);
         btnOk = view.findViewById(R.id.btnOk);
+        btnDeleteFilter = view.findViewById(R.id.btnDeletFilter);
 
         rcl_degree.setLayoutManager( new GridLayoutManager(context, 2));
         rcl_price.setLayoutManager(new LinearLayoutManager(context));
@@ -96,6 +98,7 @@ public class FilterPackageDialog implements View.OnClickListener {
         rcl_amenity.setVisibility(View.GONE);
 
         btnOk.setOnClickListener(this);
+        btnDeleteFilter.setOnClickListener(this);
     }
 
 
@@ -190,6 +193,9 @@ public class FilterPackageDialog implements View.OnClickListener {
                     onFiltePackageListener.onConfirm(degreeFiltersSelected,priceFiltersSelected,placeFiltersSelected,amenityFiltersSelected);
                     dismiss();
                 }
+                break;
+            case R.id.btnDeletFilter :
+                dismiss();
                 break;
         }
     }

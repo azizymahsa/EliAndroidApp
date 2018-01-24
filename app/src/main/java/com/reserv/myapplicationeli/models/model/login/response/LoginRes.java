@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import com.reserv.myapplicationeli.models.model.login.LoginResult;
 
 /**
- * Created by hoseinraeisi on 1/22/18.
+ * Created by elham.bonyani on 1/22/18.
  */
 
 public class LoginRes {
