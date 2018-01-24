@@ -47,7 +47,9 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
 
         final FlightPreFactorModel item = data.get(position);
         holder.setIsRecyclable(false);
-        holder.tvFlightDetail.setText(item.getAirlineNameEn());
+        holder.tvFlightDetail.setText(item.getDepartureCityFa()+" " +item.getFltDate());
+
+
         holder.tvArrAirport.setText(item.getArrAirPortFa());
         holder.tvDepAir.setText(item.getDepAirPortFa());
         holder.tvDate.setText(item.getFltDate());

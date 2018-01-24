@@ -514,7 +514,9 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
 
                             jArray5.getJSONObject(i).getString("FltNumber"),
-                            jArray5.getJSONObject(i).getString("AirlineNameFa")));
+                            jArray5.getJSONObject(i).getString("AirlineNameFa"),
+                            jArray5.getJSONObject(i).getString("DepartureCityFa")
+                            ));
 
                 }
                 if (!flightPreFactorModels.isEmpty()) {
