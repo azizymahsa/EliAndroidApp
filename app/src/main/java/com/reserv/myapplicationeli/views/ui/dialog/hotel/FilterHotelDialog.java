@@ -27,7 +27,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
     Context activity;
-    FancyButton btnOk, btnCancel;
+    FancyButton btnOk, btnDeletFilter;
     FilterHotelDialogListenerArray filterHotelDialogListenerArray;
     SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1;
     ArrayList<FilterModel> filter;
@@ -60,11 +60,12 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
-        dialogView = inflater.inflate(R.layout.filter_dialog, null);
+        dialogView = inflater.inflate(R.layout.filter_dialog_r, null);
         // filter.add(new FilterModel(false, false, false, false, false, false, false, false, false, false, false));
 
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
+        btnDeletFilter = (FancyButton) dialogView.findViewById(R.id.btnDeletFilter);
         searchtxt = (EditText) dialogView.findViewById(R.id.searchtxt);
         bestSeler = (SmoothCheckBox) dialogView.findViewById(R.id.bestSeler);
         bestOff = (SmoothCheckBox) dialogView.findViewById(R.id.bestOff);
@@ -145,8 +146,10 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         bestSeler.setOnCheckedChangeListener(this);
 
 
-        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setCustomTextFont("fonts/irsans.ttf");
+        btnDeletFilter.setCustomTextFont("fonts/irsans.ttf");
         btnOk.setOnClickListener(this);
+        btnDeletFilter.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
 
@@ -350,6 +353,20 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
                 dialog.cancel();
 
+
+                break;
+            case R.id.btnDeletFilter:
+                if (filter.isEmpty()) {
+                    filter.add(new FilterModel(false, false, false, false, false, false, false, remove_));
+
+
+                } else {
+                    filter.set(0, new FilterModel(false, false, false, false, false, false, false, remove_));
+
+                }
+                filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelPriceModel);
+
+                dialog.cancel();
 
                 break;
 

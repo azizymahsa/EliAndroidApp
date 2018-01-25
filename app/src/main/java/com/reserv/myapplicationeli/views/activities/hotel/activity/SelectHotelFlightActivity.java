@@ -31,6 +31,7 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.FilterPriceModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectFlightHotelModel;
+import com.reserv.myapplicationeli.models.hotel.adapter.SelectHotelModel;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Request;
@@ -340,7 +341,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             top_filter(filterModel, filterHotelTypeModels);
             star_filter(filterModel, filterHotelTypeModels);
-            facilities_filter(filterHotelFacilitiesModels);
+           // facilities_filter(filterHotelFacilitiesModels);
             price_filter(filterHotelPriceModel);
 
             if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4()
@@ -375,8 +376,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4() || filterModel.isStar5() || filterModel.isBestSeler() || filterModel.isBestOff())
                     || filterHotelTypeModels.size() > 0) {
+                if (selectHotelModelArrayListFilter.isEmpty()){
+                    for (Iterator<SelectFlightHotelModel> it = selectHotelModelArrayList.iterator(); it.hasNext(); ) {
+                        if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
+                            it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+                        }
 
-                if (search != null) {
+
+                    }
+                }else{
                     for (Iterator<SelectFlightHotelModel> it = selectHotelModelArrayListFilter.iterator(); it.hasNext(); ) {
                         if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
                             it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
@@ -385,6 +393,10 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
                     }
                 }
+
+
+
+
             } else {
                 if (search != null) {
                     for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
@@ -403,8 +415,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
             if (filterModel.isRemove()) {
-                tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_bottom_bar));
-                tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_bottom_bar));
+                tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+                tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
                 adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
             }
@@ -414,11 +426,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
         if (selectHotelModelArrayListFilter.isEmpty()) {
             isFilter = false;
-            Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
-            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_bottom_bar));
-            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_bottom_bar));
+           // Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
+            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
             adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
+            tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+
 
         } else {
             isFilter = true;

@@ -32,10 +32,10 @@
 
     <color name="titlebackgroundcolor">#3232CD</color>
     <color name="titletextcolor">#FFFF00</color>
-    <color name="focusColor">#83000000</color>
+    <color name="focusColor">#67000000</color>
     <color name="color_hotel">#E06F38</color>
     <color name="color_hotel_dark">#ce6836</color>
-    <color name="hotel_detail_background">#efefef</color>
+    <color name="hotel_detail_background">#e6e6e6</color>
     <color name="blue">#4690ee</color>
     <color name="TRANSPARENT">#00ffffff</color>
     <color name="flight_status">#8581b4</color>

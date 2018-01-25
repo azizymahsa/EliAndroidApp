@@ -96,6 +96,9 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvBargashtTimeWait = (TextView) convertView.findViewById(R.id.tvBargashtTimeWait);
             holder.tvRaftTimeWait = (TextView) convertView.findViewById(R.id.tvRaftTimeWait);
             holder.tvAirLines = (TextView) convertView.findViewById(R.id.tvAirLines);
+
+
+
             holder.linear_1 = (LinearLayout) convertView.findViewById(R.id.linear_1);
             holder.linear_2 = (LinearLayout) convertView.findViewById(R.id.linear_2);
             holder.tvANRaft2_1 = (TextView) convertView.findViewById(R.id.tvANRaft2_1);
@@ -112,6 +115,23 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvANRaft2_3_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft2_3_bargasht);
             holder.tvANRaft1_1_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft1_1_bargasht);
             holder.tvANRaft1_2_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft1_2_bargasht);
+
+
+
+
+            holder.linear_3_bargasht = (LinearLayout) convertView.findViewById(R.id.linear_3_bargasht);
+            holder.linear_3 = (LinearLayout) convertView.findViewById(R.id.linear_3);
+
+            holder.tvANRaft3_1 = (TextView) convertView.findViewById(R.id.tvANRaft3_1);
+            holder.tvANRaft3_2 = (TextView) convertView.findViewById(R.id.tvANRaft3_2);
+            holder.tvANRaft3_3 = (TextView) convertView.findViewById(R.id.tvANRaft3_3);
+            holder.tvANRaft3_4 = (TextView) convertView.findViewById(R.id.tvANRaft3_4);
+
+            holder.tvANRaft3_1_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_1_bargasht);
+            holder.tvANRaft3_2_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_2_bargasht);
+            holder.tvANRaft3_3_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_3_bargasht);
+            holder.tvANRaft3_4_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_4_bargasht);
+
 
             convertView.setTag(holder);
         } else {
@@ -184,6 +204,12 @@ public class FlightHotelAdapter extends BaseAdapter {
                 break;
             case 4:
                 waitRaft = "دو توقف";
+                holder.linear_3.setVisibility(View.VISIBLE);
+                holder.tvANRaft3_1.setText(strings[0]);
+                holder.tvANRaft3_2.setText(strings[1]);
+                holder.tvANRaft3_3.setText(strings[2]);
+                holder.tvANRaft3_4.setText(strings[3]);
+
 
                 break;
             case 5:
@@ -206,34 +232,39 @@ public class FlightHotelAdapter extends BaseAdapter {
             case 0:
                 waitBargasht = "بدون توقف";
                 holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1_bargasht.setText(strings[0]);
-                holder.tvANRaft1_2_bargasht.setText(strings[1]);
+                holder.tvANRaft1_1_bargasht.setText(strings2[0]);
+                holder.tvANRaft1_2_bargasht.setText(strings2[1]);
                 break;
             case 1:
                 waitBargasht = "بدون توقف";
 
                 holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1_bargasht.setText(strings[0]);
-                holder.tvANRaft1_2_bargasht.setText(strings[1]);
+                holder.tvANRaft1_1_bargasht.setText(strings2[0]);
+                holder.tvANRaft1_2_bargasht.setText(strings2[1]);
 
                 break;
             case 2:
                 waitBargasht = "بدون توقف";
                 holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1_bargasht.setText(strings[0]);
-                holder.tvANRaft1_2_bargasht.setText(strings[1]);
+                holder.tvANRaft1_1_bargasht.setText(strings2[0]);
+                holder.tvANRaft1_2_bargasht.setText(strings2[1]);
 
                 break;
             case 3:
                 waitBargasht = "یک توقف";
                 holder.linear_2_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft2_1_bargasht.setText(strings[0]);
-                holder.tvANRaft2_2_bargasht.setText(strings[1]);
-                holder.tvANRaft2_3_bargasht.setText(strings[2]);
+                holder.tvANRaft2_1_bargasht.setText(strings2[0]);
+                holder.tvANRaft2_2_bargasht.setText(strings2[1]);
+                holder.tvANRaft2_3_bargasht.setText(strings2[2]);
 
                 break;
             case 4:
                 waitBargasht = "دو توقف";
+                holder.linear_3_bargasht.setVisibility(View.VISIBLE);
+                holder.tvANRaft3_1_bargasht.setText(strings2[0]);
+                holder.tvANRaft3_2_bargasht.setText(strings2[1]);
+                holder.tvANRaft3_3_bargasht.setText(strings2[2]);
+                holder.tvANRaft3_4_bargasht.setText(strings2[3]);
 
                 break;
             case 5:
@@ -392,12 +423,14 @@ public class FlightHotelAdapter extends BaseAdapter {
         TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines;
         ImageView ivHotelPic, ivRate, ivLogo;
         CardView cvHotel;
-        LinearLayout linear_1, linear_2;
+        LinearLayout linear_1, linear_2,linear_3;
         TextView tvANRaft2_1, tvANRaft2_2, tvANRaft2_3;
+        TextView tvANRaft3_1, tvANRaft3_2, tvANRaft3_3,tvANRaft3_4;
         TextView tvANRaft1_1, tvANRaft1_2;
 
-        LinearLayout linear_1_bargasht, linear_2_bargasht;
+        LinearLayout linear_1_bargasht, linear_2_bargasht,linear_3_bargasht;
         TextView tvANRaft2_1_bargasht, tvANRaft2_2_bargasht, tvANRaft2_3_bargasht;
+        TextView tvANRaft3_1_bargasht, tvANRaft3_2_bargasht, tvANRaft3_3_bargasht,tvANRaft3_4_bargasht;
         TextView tvANRaft1_1_bargasht, tvANRaft1_2_bargasht;
 
     }

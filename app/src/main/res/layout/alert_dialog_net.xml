@@ -30,7 +30,7 @@
         android:layout_height="100dp"
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:text="اینترنت شما قطع و یا از دسترس خارج می باشد، برای استفاده از امکانات این نرم افزار سرویس اینترنت خود را ببرسی نمایید!"
         />
 
@@ -45,6 +45,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:elevation="4dp"
+        android:gravity="center"
         android:paddingBottom="1dp"
         fancy:fb_defaultColor="#1234"
         fancy:fb_focusColor="@color/focusColor"

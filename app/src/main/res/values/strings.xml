@@ -158,6 +158,9 @@
 
 
     <string name="btn_insurance">جستجوی بیمه</string>
+    <string name="icon_like">&#xe914;</string>
+    <string name="icon_dislike">&#xe915;</string>
+    <string name="icon_message">&#xe049;</string>
 
 
     <!--nejati-->

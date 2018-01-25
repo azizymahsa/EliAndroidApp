@@ -9,10 +9,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.google.gson.Gson;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequestAdd;
+import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequsetAddComment;
+import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.ReviewComment;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
@@ -36,7 +43,9 @@ public class SplashFragment extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_splash);
         super.onCreate(savedInstanceState);
-
+        Log.e("test", new  Gson().toJson( new RequsetAddComment(new RequestAdd(new Identity("123qwe!@#QWE",
+                "EligashtMlb", "Mobile"),"fa-IR",new ReviewComment(0,"sdfdsf",
+                0,1,"Developer@eligasht.com","dsfsdf","sfsdfsdf",0)))));
         //checking permission in start app
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE, Manifest.permission.CALL_PRIVILEGED};

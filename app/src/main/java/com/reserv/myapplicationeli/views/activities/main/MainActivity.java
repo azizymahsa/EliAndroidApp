@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -28,11 +29,17 @@ import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 
+import com.reserv.myapplicationeli.api.hotel.comment.AddComment;
 import com.reserv.myapplicationeli.base.BaseActivity;
 
+import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequestAdd;
+import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequsetAddComment;
+import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.ReviewComment;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.views.activities.AboutActivity;
 import com.reserv.myapplicationeli.views.activities.ConditionActivity;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 import com.reserv.myapplicationeli.views.activities.login.LogInActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
@@ -63,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private BroadcastReceiver sendStartTimer,sendDetailFinish;
     int TotalTime=2000000;
 
-
+AddComment addComment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rlHedaer.setOnClickListener(this);
         btnFlight.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
-
 
     }
 
@@ -296,5 +302,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(context));
     }
-
 }

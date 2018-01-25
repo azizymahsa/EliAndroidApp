@@ -378,13 +378,26 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     || filterHotelTypeModels.size() > 0) {
 
                 if (search != null) {
-                    for (Iterator<SelectHotelModel> it = selectHotelModelArrayListFilter.iterator(); it.hasNext(); ) {
-                        if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
-                            it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+
+                    if (selectHotelModelArrayListFilter.isEmpty()){
+                        for (Iterator<SelectHotelModel> it = selectHotelModelArrayList.iterator(); it.hasNext(); ) {
+                            if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
+                                it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+                            }
+
+
                         }
+                        }else{
+                        for (Iterator<SelectHotelModel> it = selectHotelModelArrayListFilter.iterator(); it.hasNext(); ) {
+                            if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
+                                it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+                            }
 
 
+                        }
                     }
+
+
                 }
             } else {
                 if (search != null) {
@@ -404,8 +417,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
             if (filterModel.isRemove()) {
-                tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_bottom_bar));
-                tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_bottom_bar));
+                tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+                tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
                 adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this);
             }
@@ -415,11 +428,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
         if (selectHotelModelArrayListFilter.isEmpty()) {
             isFilter = false;
-            Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
-            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_bottom_bar));
-            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_bottom_bar));
+          ///Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
+            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
             adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this);
+            tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+
 
         } else {
             isFilter = true;

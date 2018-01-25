@@ -3,6 +3,7 @@ package com.reserv.myapplicationeli.api.hotel.getHotelPolicy;
 import android.support.annotation.RawRes;
 import android.util.Log;
 
+import com.reserv.myapplicationeli.api.hotel.getHotelRoom.GetHoldRoom;
 import com.reserv.myapplicationeli.base.BaseAPI;
 import com.reserv.myapplicationeli.models.hotel.api.hotelPolicy.request.PolicyRequest;
 import com.reserv.myapplicationeli.models.hotel.api.hotelPolicy.response.GetHotelPolicyResponse;
@@ -18,14 +19,14 @@ import retrofit2.http.POST;
 
 public class GetHotelPolicyApi extends BaseAPI {
     private final String TAG = "__" + this.getClass().getSimpleName().toUpperCase().toString();
-    public final static String ACTION_NAME = "http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/GetHotelPolicy";
+    public final static String ACTION_NAME = "Hotel/HotelService.svc/GetHotelPolicy";
     public MyPojo getHotelPolicyResponse;
 
     PolicyRequest policyRequest;
 
     public interface GetPolicy {
         @RawRes
-        @POST("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/GetHotelPolicy")
+        @POST(GetHotelPolicyApi.ACTION_NAME)
         Call<MyPojo> get_policy(
                 @Body PolicyRequest policyRequest
         );

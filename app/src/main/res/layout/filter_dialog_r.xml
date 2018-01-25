@@ -291,10 +291,10 @@
                     android:textSize="14dp" />
 
 
-             <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
-                 android:id="@+id/lvHotelTypes"
-                 android:layout_width="match_parent"
-                 android:layout_height="100dp"/>
+                <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                    android:id="@+id/lvHotelTypes"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -340,6 +340,39 @@
 
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="100"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="حذف فیلتر"
+                        android:textSize="14dp" />
+
+                    <cn.refactor.library.SmoothCheckBox
+                        android:id="@+id/Remove"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="5dp"
+                        app:color_checked="@color/app_base_color" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -351,7 +384,6 @@
         android:orientation="horizontal"
         android:layout_marginBottom="@dimen/_10dp_margin"
         android:layout_marginTop="10dp"
-
         >
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnDeletFilter"

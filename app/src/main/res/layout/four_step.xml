@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="center"
-    android:id="@+id/linear_2_bargasht"
+    android:id="@+id/linear_4"
     android:visibility="gone"
 
-   >
+    >
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,9 +17,8 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvANRaft2_1_bargasht"
-            android:layout_width="30dp"
-            android:gravity="right"
+            android:id="@+id/tvANRaft4_1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/ivArrow"
@@ -28,26 +27,20 @@
             android:textSize="12dp" />
 
         <ImageView
-            android:id="@+id/ivArrow11"
 
-            android:layout_width="80dp"
+            android:layout_width="30dp"
             android:layout_height="14dp"
             android:scaleType="fitXY"
-
-
-            android:gravity="right"
             android:padding="4dp"
             android:src="@drawable/gray_line2"
             android:text=" "
             android:textColor="#486b6b"
-            android:textSize="10dip"
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/tvANRaft2_2_bargasht"
+            android:id="@+id/tvANRaft4_2"
 
-            android:layout_width="30dp"
-            android:gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
@@ -65,13 +58,10 @@
 
 
         <ImageView
-            android:id="@+id/ivArrow"
 
-            android:layout_width="80dp"
+            android:layout_width="30dp"
             android:layout_height="14dp"
             android:scaleType="fitXY"
-
-
             android:gravity="right"
             android:padding="4dp"
             android:src="@drawable/gray_line2"
@@ -81,9 +71,9 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/tvANRaft2_3_bargasht"
-            android:layout_width="30dp"
-            android:gravity="left"
+            android:id="@+id/tvANRaft4_3"
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
@@ -91,5 +81,69 @@
             android:textSize="12dp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <ImageView
+
+            android:layout_width="30dp"
+            android:layout_height="14dp"
+            android:scaleType="fitXY"
+            android:gravity="right"
+            android:padding="4dp"
+            android:src="@drawable/gray_line2"
+            android:text=" "
+            android:textColor="#486b6b"
+            android:textSize="10dip"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvANRaft4_4"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivArrow"
+            android:text="IKA"
+            android:textColor="@color/text_color_4d"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <ImageView
+
+            android:layout_width="30dp"
+            android:layout_height="14dp"
+            android:scaleType="fitXY"
+            android:gravity="right"
+            android:padding="4dp"
+            android:src="@drawable/gray_line2"
+            android:text=" "
+            android:textColor="#486b6b"
+            android:textSize="10dip"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvANRaft4_5"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivArrow"
+            android:text="IKA"
+            android:textColor="@color/text_color_4d"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

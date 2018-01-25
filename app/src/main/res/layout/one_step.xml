@@ -8,6 +8,10 @@
     android:visibility="gone"
 
 
+
+
+
+
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +22,8 @@
 
         <TextView
             android:id="@+id/tvANRaft1_1"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
+            android:gravity="right"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/ivArrow"
             android:text="IKA"
@@ -29,20 +34,22 @@
             android:id="@+id/ivArrow"
 
             android:layout_width="200dp"
-            android:layout_height="18dp"
-
+            android:layout_height="14dp"
+            android:scaleType="fitXY"
             android:gravity="right"
             android:padding="4dp"
-            android:src="@drawable/gray_line2"
+            android:src="@drawable/gray_line"
             android:text=" "
             android:textColor="#486b6b"
             android:textSize="10dip"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:rotation="180"/>
 
         <TextView
             android:id="@+id/tvANRaft1_2"
 
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
+            android:gravity="left"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"

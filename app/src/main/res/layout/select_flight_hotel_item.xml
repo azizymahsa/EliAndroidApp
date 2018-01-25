@@ -284,6 +284,7 @@
 
 
                             <include
+
                                 layout="@layout/one_step"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -300,13 +301,17 @@
 
 
                             <include
-                                android:id="@+id/llRaft"
                                 layout="@layout/three_step"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/colorPrimary" />
 
 
+                            <include
+                                layout="@layout/four_step"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimary" />
 
                             <TextView
                                 android:id="@+id/tvRaftTime"
@@ -317,7 +322,7 @@
                                 android:text="رفت به استانبول"
                                 android:textColor="@color/text_color_2e"
                                 android:textSize="12dp"
-                                android:layout_marginTop="10dp"/>
+                                android:layout_marginTop="15dp"/>
 
 
                         </RelativeLayout>
@@ -327,7 +332,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/llRaft"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:layout_marginTop="20dp">
 
 
                             <RelativeLayout
@@ -365,6 +371,11 @@
 
 
 
+                                <include
+                                    layout="@layout/four_step_bargasht"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/colorPrimary" />
 
                                 <TextView
                                     android:id="@+id/tvBargashtTime"
@@ -374,7 +385,7 @@
                                     android:text="رفت به استانبول"
                                     android:textColor="@color/text_color_2e"
                                     android:textSize="12dp"
-                                    android:layout_marginTop="10dp"/>
+                                    android:layout_marginTop="15dp"/>
                             </RelativeLayout>
 
 
@@ -411,6 +422,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/tk"
+                            android:layout_marginBottom="10dp"
 
 
                             />

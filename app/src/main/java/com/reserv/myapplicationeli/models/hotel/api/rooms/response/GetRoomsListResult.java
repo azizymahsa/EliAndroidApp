@@ -1,5 +1,7 @@
 package com.reserv.myapplicationeli.models.hotel.api.rooms.response;
 
+import com.reserv.myapplicationeli.models.model.Errors;
+
 import java.util.List;
 
 /**
@@ -9,9 +11,11 @@ import java.util.List;
 public class GetRoomsListResult {
     public final String SearchKey;
     public final List<RoomList> roomList;
+    public final List<Errors> errors;
 
-    public GetRoomsListResult(String searchKey, List<RoomList> roomList) {
+    public GetRoomsListResult(String searchKey, List<RoomList> roomList, List<Errors> errors) {
         SearchKey = searchKey;
         this.roomList = roomList;
+        this.errors = errors;
     }
 }
