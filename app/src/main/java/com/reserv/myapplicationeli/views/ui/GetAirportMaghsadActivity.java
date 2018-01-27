@@ -31,6 +31,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,6 +44,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.views.adapters.GetAirPortMabdaAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMaghsadAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
@@ -98,8 +100,16 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 	                                            	 new AsyncFetch().execute();
 	                                            	 
 	                                            	 }
-	                                            	/*customerstAdapter.SearchText=d;
-	                                    			customerstAdapter.setData(d);*/
+													if(d.length()<0 || d.length()==0){
+														////
+														ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+														List<Country> data=null;
+														mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data,  GetAirportMaghsadActivity.this);
+
+														mAdapter.setData(data);
+														listAirPort.setAdapter(mAdapter);
+
+													}
 	                                            }
 	                                        });
 	                                    }
@@ -240,7 +250,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
 
 	            try {
-
+					if (!TextUtils.isEmpty(searchtxt.getText())) {
 	            	JSONObject jsonObj = new JSONObject(result);
 
 					/////////////////////////////////////
@@ -296,6 +306,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 						mAdapter.setData(data);
 						listAirPort.setAdapter(mAdapter);
 						//mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
+					}
 					}
 	            } catch (JSONException e) {
 					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(GetAirportMaghsadActivity.this);

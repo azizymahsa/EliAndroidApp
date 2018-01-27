@@ -49,7 +49,14 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 		this.context=activity;
 		myInflater = LayoutInflater.from(activity);
 	}
-
+	public GetAirPortMaghsadAdapter(Context context, List<Country> data, Activity activity) {
+		this.activity=activity;
+		this.context=context;
+		inflater= LayoutInflater.from(context);
+		this.data=data;
+		myInflater = LayoutInflater.from(context);
+		notifyDataSetChanged();
+	}
 	public void setData(List<Country> data) {
 		this.data = data;
 		notifyDataSetChanged();

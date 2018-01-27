@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,10 +15,13 @@ import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.models.Country;
 import com.reserv.myapplicationeli.models.model.HotelCity;
+import com.reserv.myapplicationeli.views.adapters.GetAirPortMabdaAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetHotelCityAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
@@ -94,9 +98,24 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 	                                            	 GetHotelCityActivity.searchText = d.toLowerCase();
 	                                            	 new AsyncFetch().execute();
 	                                            	 
-	                                            	 }
-	                                            	
-	                                            }
+	                                            	 }else{
+													if(d.length()<0 || d.length()==0){
+														////
+														/*ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+														List<HotelCity> data=null;
+														mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data,  GetHotelCityActivity.this);
+
+														mAdapter.setData(data);
+														listAirPort.setAdapter(mAdapter);*/
+														GetHotelCityActivity.searchText ="";
+																List<HotelCity> data=null;
+														ListView listAirPort = (ListView)findViewById(R.id.listCityHotel);
+														mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data,  GetHotelCityActivity.this);
+														//mAdapter.setAdapter(mAdapter);
+														mAdapter.setData(data);
+														listAirPort.setAdapter(mAdapter);
+													}
+	                                            }}
 	                                        });
 	                                    }
 	                                },
@@ -223,39 +242,39 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 
 	         //   pdLoading.dismiss();
 	            try {
+					if (!TextUtils.isEmpty(searchtxt.getText())) {
 ////////////////////////////
-	            	JSONObject jsonObj = new JSONObject(result);
-					
-					 // JSONObject jsonObj = new JSONObject(retSrc);
-					  
-		              // Getting JSON Array node
-				  JSONObject GetAirportsResult = jsonObj.getJSONObject("GetHotelListResult");
-		              JSONArray jArray = GetAirportsResult.getJSONArray("Cities");//AirportCode //AirportName//CityName ":
-	            	//////////////////////////////
-	      
-	                // Extract data from json and store into ArrayList as class objects
-	                for(int i=0;i<jArray.length();i++){
-	                    JSONObject json_data = jArray.getJSONObject(i);
-	                    HotelCity hotelCity = new HotelCity();
-	                    hotelCity.setCityCode(json_data.getString("CityCode")) ;
-	                    hotelCity.setCityID(json_data.getInt("CityID")) ;
-	                    hotelCity.setCityNameEn(json_data.getString("CityNameEn")) ;
-	                    hotelCity.setCityNameFa(json_data.getString("CityNameFa")) ;
-	                    hotelCity.setCountryID(json_data.getInt("CountryID")) ;
-	                  
-	                    data.add(hotelCity);
-	                }
+						JSONObject jsonObj = new JSONObject(result);
 
-	           
-	                
-	                ////
-	                listAirPort = (ListView)findViewById(R.id.listCityHotel);
-	                  mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this,GetHotelCityActivity.this, data,getIntent().getExtras().getInt("type"));
-	                //mAdapter.setAdapter(mAdapter);
-	                mAdapter.setData(data);
-	                listAirPort.setAdapter(mAdapter);
-	                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
+						// JSONObject jsonObj = new JSONObject(retSrc);
 
+						// Getting JSON Array node
+						JSONObject GetAirportsResult = jsonObj.getJSONObject("GetHotelListResult");
+						JSONArray jArray = GetAirportsResult.getJSONArray("Cities");//AirportCode //AirportName//CityName ":
+						//////////////////////////////
+
+						// Extract data from json and store into ArrayList as class objects
+						for (int i = 0; i < jArray.length(); i++) {
+							JSONObject json_data = jArray.getJSONObject(i);
+							HotelCity hotelCity = new HotelCity();
+							hotelCity.setCityCode(json_data.getString("CityCode"));
+							hotelCity.setCityID(json_data.getInt("CityID"));
+							hotelCity.setCityNameEn(json_data.getString("CityNameEn"));
+							hotelCity.setCityNameFa(json_data.getString("CityNameFa"));
+							hotelCity.setCountryID(json_data.getInt("CountryID"));
+
+							data.add(hotelCity);
+						}
+
+
+						////
+						listAirPort = (ListView) findViewById(R.id.listCityHotel);
+						mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, GetHotelCityActivity.this, data, getIntent().getExtras().getInt("type"));
+						//mAdapter.setAdapter(mAdapter);
+						mAdapter.setData(data);
+						listAirPort.setAdapter(mAdapter);
+						//mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
+					}
 	            } catch (JSONException e) {
 					Toast.makeText(GetHotelCityActivity.this, "خطا در برقراری ارتباط", Toast.LENGTH_LONG).show();
 	            }

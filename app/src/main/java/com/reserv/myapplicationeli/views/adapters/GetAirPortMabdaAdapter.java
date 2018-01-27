@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 
 import java.util.List;
 
@@ -46,6 +47,15 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 	public GetAirPortMabdaAdapter(Activity activity){
 		this.context=activity;
 		myInflater = LayoutInflater.from(context);
+	}
+
+	public GetAirPortMabdaAdapter(Context context, List<Country> data, Activity activity) {
+		this.activity=activity;
+		this.context=context;
+		inflater= LayoutInflater.from(context);
+		this.data=data;
+		myInflater = LayoutInflater.from(context);
+		notifyDataSetChanged();
 	}
 
 	public void setData(List<Country> data) {

@@ -266,8 +266,9 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-        categories.add("زن");
+        categories.add("لطفا جنسیت را انتخاب کنید");
         categories.add("مرد");
+        categories.add("زن");
 
 
         // Creating adapter for spinner
@@ -1006,7 +1007,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     cursorM.moveToPosition(i);
 
                     detailsJson = new JSONObject();
-                    detailsJson.put("Gender", cursorM.getString(PassengerMosaferItems_Table.Columns.Gender.value()));
+                    detailsJson.put("Gender", cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
                     detailsJson.put("Nationality", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
                     detailsJson.put("Nationality_ID", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 
@@ -1040,7 +1041,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             detailsPartner.put("RqPartner_Address", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
             detailsPartner.put("RqPartner_Email", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
             detailsPartner.put("RqPartner_FirstNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
-            detailsPartner.put("RqPartner_Gender", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
+            detailsPartner.put("RqPartner_Gender", cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
             detailsPartner.put("RqPartner_LastNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
             detailsPartner.put("RqPartner_Mobile", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
             detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
@@ -1727,10 +1728,11 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
-        if (item.equals("زن"))
-            Gensiyat = "Female";
-        else
-            Gensiyat = "Man";
+        if(item.contains("زن")) {
+            Gensiyat = "false";
+        }else if(item.contains("مرد")){
+            Gensiyat="true";
+        }
         // Showing selected spinner item
         //	Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 

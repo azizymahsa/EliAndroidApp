@@ -423,7 +423,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			//{"PurchaseServiceResult":{"Errors":null,"ResultText":"Temp Contract Saved Successfully!","SuccessResult":782528}}
 			//  pdLoading.dismiss();
 			//List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
-
+System.out.println("resultPishfactor:"+resultPishfactor);
 			pdLoading.dismiss();
 			try {
 ////////////////////////////
@@ -446,7 +446,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				long totalprice = jFact.getLong("TotalPrice");
 
 
-				tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+				tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+ " ریال " : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
 
 //for hotel==========================================================================================
 				final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
@@ -482,7 +482,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				JSONArray jArray3 = jArray.getJSONArray("RequestPassenger");
 
-
+System.out.println("json detail mossfaer:"+jArray3);
 				for (int i = 0; i < jArray3.length(); i++) {
 					passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
 							jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
@@ -991,7 +991,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					cursorM.moveToPosition(i);
 
 					detailsJson = new JSONObject();
-					detailsJson.put("Gender",cursorM.getString(PassengerMosaferItems_Table.Columns.Gender.value()));
+					detailsJson.put("Gender",cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
 					detailsJson.put("Nationality", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 					detailsJson.put("Nationality_ID",cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 
@@ -1012,7 +1012,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					detailsJson.put("RqPassenger_Tel",cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
 
 					detailJsonArray.put(detailsJson);
-
+					System.out.println("detailsJson:"+detailsJson);
 
 				}
 				headerJson.put("passList", detailJsonArray);
@@ -1025,7 +1025,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			detailsPartner.put("RqPartner_Address", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
 			detailsPartner.put("RqPartner_Email", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
 			detailsPartner.put("RqPartner_FirstNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
-			detailsPartner.put("RqPartner_Gender", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
+			detailsPartner.put("RqPartner_Gender", cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
 			detailsPartner.put("RqPartner_LastNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
 			detailsPartner.put("RqPartner_Mobile", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
 			detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
@@ -1048,7 +1048,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		System.out.println("detailsPartner:"+jsone.toString());
 		return jsone.toString();
 	}
 	public String OrderToJsonGetPreFactorDetails() {
@@ -1069,8 +1069,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			identityJson.put("UserName", "EligashtMlb");
 			manJson.put("identity",identityJson);
 			//manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
-			jsone.put("request",manJson);
 
+			jsone.put("request",manJson);
+			System.out.println("OrderToJsonGetPreFactorDetails:"+jsone.toString());
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -1383,7 +1384,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 					if(sum>0){
-
+System.out.println("gender:"+Gender);
 						db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 						if(countB>0) {
 							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
@@ -1721,12 +1722,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							   long id) {
 		// On selecting a spinner item
 		String item = parent.getItemAtPosition(position).toString();
-		if(item.equals("زن")) {
-			Gensiyat = "Female";
-		}else if(item.equals("مرد")){
-			Gensiyat="Man";}
+		if(item.contains("زن")) {
+			Gensiyat = "false";
+		}else if(item.contains("مرد")){
+			Gensiyat="true";
+		}
 		// Showing selected spinner item
-		//Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+	//	Toast.makeText(parent.getContext(), "Selected: " + item +" gensiyat:"+Gensiyat, Toast.LENGTH_LONG).show();
 
 	}
 	@Override
@@ -1738,16 +1740,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	public static void updateTotalInfos(long serviceTotalPrice) {
 		// TODO Auto-generated method stub
-		//GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+serviceTotalPrice;
-		//txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT))+"");
 		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(serviceTotalPrice))+"");
-		/*for (int i =0 ;i<data.size();i++){
-			if(data.get(i).isFlag()){
-				GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+data.get(i).getServiceTotalPrice();
-			}
 
-		}
-		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT))+"");*/
 	}
 
 	private class GenericTextWatcher implements TextWatcher{

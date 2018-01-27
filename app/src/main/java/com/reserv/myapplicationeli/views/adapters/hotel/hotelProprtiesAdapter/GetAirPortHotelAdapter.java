@@ -52,7 +52,18 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 		myInflater = LayoutInflater.from(context);
 	}
 
-	public void setData(List<Country> data) {
+    public GetAirPortHotelAdapter(GetAirportHotelActivity context, List<Country> data, GetAirportHotelActivity activity) {
+		this.activity=activity;
+		this.context=context;
+		this.type=type;
+		inflater= LayoutInflater.from(context);
+		this.data=data;
+		myInflater = LayoutInflater.from(context);
+
+		notifyDataSetChanged();
+    }
+
+    public void setData(List<Country> data) {
 		this.data = data;
 		notifyDataSetChanged();
 	}

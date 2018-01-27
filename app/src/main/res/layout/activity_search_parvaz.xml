@@ -154,6 +154,7 @@
 				android:layout_height="wrap_content"
 				android:background="#ffffff"
 				android:orientation="vertical"
+				android:visibility="gone"
 				>
 
 
@@ -479,9 +480,9 @@
 						<RelativeLayout
 							android:layout_width="0dp"
 							android:layout_height="match_parent"
-							android:layout_weight="5"
 							android:layout_marginLeft="9dp"
 							android:layout_marginRight="5dp"
+							android:layout_weight="5"
 
 							>
 
@@ -498,15 +499,16 @@
 								android:textColor="#9966ff"
 								android:textSize="12sp"
 								android:visibility="visible" />
+
 							<ImageView
 								android:id="@+id/lblProductrow"
 								android:layout_width="40dp"
 								android:layout_height="40dp"
 								android:layout_centerInParent="true"
-								android:src="@drawable/ir"
-
 								android:adjustViewBounds="true"
-								android:scaleType="fitXY" />
+
+								android:scaleType="fitXY"
+								android:src="@drawable/ir" />
 						</RelativeLayout>
 					</LinearLayout>
 					<!-- ////////////////////////////front bottom///////////////////////////////////// -->
@@ -936,8 +938,6 @@
 					android:layout_marginTop="8dp"
 					android:background="#ffffff"
 					android:orientation="horizontal"
-
-
 					android:visibility="visible">
 
 

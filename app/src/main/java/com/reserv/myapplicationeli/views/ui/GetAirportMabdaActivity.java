@@ -31,6 +31,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -95,8 +96,18 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 	                                            	 GetAirportMabdaActivity.searchText = d.toLowerCase();
 	                                            	 new AsyncFetch().execute();
 	                                            	 
-	                                            	 }
-	                                            	
+	                                            	 }else {
+														if (d.length() < 0 || d.length() == 0) {
+															////
+															ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+															List<Country> data = null;
+															mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, GetAirportMabdaActivity.this);
+
+															mAdapter.setData(data);
+															listAirPort.setAdapter(mAdapter);
+
+														}
+													}
 	                                            }
 	                                        });
 	                                    }
@@ -223,58 +234,63 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
 
 	            try {
+
+	            	if (!TextUtils.isEmpty(searchtxt.getText())) {
+
+
 ////////////////////////////
-					JSONObject jsonObj = new JSONObject(result);
+						JSONObject jsonObj = new JSONObject(result);
 
-					//JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
-					/////////////////////////////////////
-					String GetError = "";
-					JSONArray jError = null;
-					// Getting JSON Array node
-					JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");//Error
-					if (!GetAirportsResult.getString("Errors").equals("null")) {
-						jError = GetAirportsResult.getJSONArray("Errors");//
-						JSONObject jPricedItinerary = jError.getJSONObject(0);
-						GetError = jPricedItinerary.getString("Message");
-					}
-					if (GetError.length() > 1) {
-						AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
-						AlertDialogPassenger.setText(GetError);
+						//JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
+						/////////////////////////////////////
+						String GetError = "";
+						JSONArray jError = null;
+						// Getting JSON Array node
+						JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");//Error
+						if (!GetAirportsResult.getString("Errors").equals("null")) {
+							jError = GetAirportsResult.getJSONArray("Errors");//
+							JSONObject jPricedItinerary = jError.getJSONObject(0);
+							GetError = jPricedItinerary.getString("Message");
+						}
+						if (GetError.length() > 1) {
+							AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
+							AlertDialogPassenger.setText(GetError);
 
-					}else{
+						} else {
 ////////////////////////////////
-					JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
+							JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
 
-					for (int i = 0; i < jArray.length(); i++) {
-						JSONObject json_data = jArray.getJSONObject(i);
-						Country fishData = new Country();
-						fishData.setCityName(json_data.getString("CityName"));
-						fishData.setAirportName(json_data.getString("AirportName"));
-						fishData.setAirportCode(json_data.getString("AirportCode"));
-						fishData.setAirportID(json_data.getString("AirportID"));
-						fishData.setParentId(json_data.getString("ParentId"));
+							for (int i = 0; i < jArray.length(); i++) {
+								JSONObject json_data = jArray.getJSONObject(i);
+								Country fishData = new Country();
+								fishData.setCityName(json_data.getString("CityName"));
+								fishData.setAirportName(json_data.getString("AirportName"));
+								fishData.setAirportCode(json_data.getString("AirportCode"));
+								fishData.setAirportID(json_data.getString("AirportID"));
+								fishData.setParentId(json_data.getString("ParentId"));
 
-						data.add(fishData);
+								data.add(fishData);
+							}
+
+
+							String Value_Maghsad_City = "";
+							String Value_Maghsad_Airport = "";
+							String Value_Maghsad_Airport_Code = "";
+							////
+							if (Prefs.getString("Value-Maghsad-City", "") != null) {
+								Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
+								Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
+								Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
+							}
+
+							////
+							listAirPort = (ListView) findViewById(R.id.listAirPort);
+							mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
+
+							mAdapter.setData(data);
+							listAirPort.setAdapter(mAdapter);
+						}
 					}
-
-
-					String Value_Maghsad_City = "";
-					String Value_Maghsad_Airport = "";
-					String Value_Maghsad_Airport_Code = "";
-					////
-					if (Prefs.getString("Value-Maghsad-City", "") != null) {
-						Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
-						Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
-						Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
-					}
-
-					////
-					listAirPort = (ListView) findViewById(R.id.listAirPort);
-					mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
-
-					mAdapter.setData(data);
-					listAirPort.setAdapter(mAdapter);
-				}
 	            } catch (JSONException e) {
 					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(GetAirportMabdaActivity.this);
 					AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
