@@ -2,6 +2,7 @@ package com.reserv.myapplicationeli.views.fragments.profile;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+import com.google.gson.GsonBuilder;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.login.call.RegisterListReq;
+import com.reserv.myapplicationeli.models.model.login.call.RegisterRequestModel;
+import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox;
@@ -60,7 +64,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     int monthMin;
     int year_Min;
     int dayMin;
-    String currentDateTime;
 
     public static EditProfileFragment instance() {
         EditProfileFragment fragment = new EditProfileFragment();
@@ -99,21 +102,35 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         birthday_date = view.findViewById(R.id.edt_birthday);
         txt_birthday =view.findViewById(R.id.txt_birthday);
 
-        currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
-        birthdayDate = currentDateTime;
+        birthdayDate = WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserBirthDayMiladi();
+        edt_name_fa.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
+        edt_name_En.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameE());
+        edt_last_name_fa.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+        edt_last_name_En.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameE());
+        edt_mobile.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMobile());
+        edt_home_phone.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserTel());
+        edt_code_meli.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserNationalCode());
+        edt_address.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserAddress());
+        edt_email_user_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
 
-        int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-        int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
-        int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
-        birthdayDate = DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true);
-        if(birthdayDate == null){
+
+
+        String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "dd/MM/yyyy");
+
+        int currentDay = DateUtil.getDayOfMonth(currentDateTime, "dd/MM/yyyy", true);
+        int currentYear = DateUtil.getYear(currentDateTime, "dd/MM/yyyy", true);
+        int currentMonth = DateUtil.getMonth(currentDateTime, "dd/MM/yyyy", true) - 1;
+
+
+        if(ValidationTools.isEmptyOrNull(birthdayDate)){
             txt_birthday.setText("انتخاب کنید");
+
         }else{
-            txt_birthday.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            txt_birthday.setText(DateUtil.getLongStringDate(birthdayDate, "dd/MM/yyyy", true));
         }
 
 
-        datePickerDialogDepart = DatePickerDialog.newInstance(
+      datePickerDialogDepart = DatePickerDialog.newInstance(
                 EditProfileFragment.this,
                 currentYear,
                 currentMonth,
@@ -193,7 +210,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                 }
                 break;
             case R.id.edt_birthday :
-                datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
+                datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "BirthDay");
                 break;
         }
     }
@@ -230,10 +247,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     public RegisterListReq getRegisterListReq(){
         RegisterListReq registerListReq = new RegisterListReq();
-        registerListReq.setWebUserNameF(edt_name_fa.getText().toString());
-        registerListReq.setWebUserNameE(edt_name_En.getText().toString());
-        registerListReq.setWebUserFnameF(edt_last_name_fa.getText().toString());
-        registerListReq.setWebUserFnameE(edt_last_name_En.getText().toString());
+        registerListReq.setWebUserFnameF(edt_name_fa.getText().toString());
+        registerListReq.setWebUserFnameE(edt_name_En.getText().toString());
+        registerListReq.setWebUserLnameF(edt_last_name_fa.getText().toString());
+        registerListReq.setWebUserLnameE(edt_last_name_En.getText().toString());
         registerListReq.setWebUserMail(edt_email_user_name.getText().toString());
         registerListReq.setWebUserTel(edt_home_phone.getText().toString());
         registerListReq.setWebUserMobile(edt_mobile.getText().toString());
@@ -247,7 +264,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         }
         registerListReq.setWebUserBirthDayMiladi(birthdayDate);
 
-        registerListReq.setWebUserID(WebUserTools.getInstance().getUser().getWebUserID());
+        registerListReq.setWebUserID(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID());
 
         // set other parameter here!
 
@@ -276,8 +293,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         long milis = DateUtil.getMiliSecondPersianDateTime(year, monthOfYear, dayOfMonth);
         String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
 
-
-        if (view.getTag().equals("DepartureFrom")) {
+        if (view.getTag().equals("BirthDay")) {
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;

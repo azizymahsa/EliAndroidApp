@@ -97,9 +97,10 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                     return;
                 }
 
-                WebUserTools.getInstance().setUser(webUserLogin.getWebUserProperties());
+                WebUserTools.getInstance().setUser(webUserLogin);
                 Intent intent = new Intent(RegisterLoginActivity.this,SuccessResetPassActivity.class);
                 startActivity(intent);
+                finish();
             }
 
             @Override

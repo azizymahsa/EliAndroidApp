@@ -2,6 +2,7 @@ package com.reserv.myapplicationeli.views.fragments.profile;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,8 +58,15 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
         follower = view.findViewById(R.id.contract_follower);
         email = view.findViewById(R.id.contract_email);
 
-        num_contract.setText(WebUserTools.getInstance().getUser().getWebUserIDcardNo());
-//        date.setText(WebUserTools.getInstance().getUser().get);
+        num_contract.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getCntID()+"");
+        date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getDateFa());
+        path.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getPathNames());
+        depart_date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getDeparture());
+        login_date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getCheckDate());
+        sum_price.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getFinalPrice()+"");
+        remained_price.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getRemained()+"");
+        follower.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getFollowerName()+"");
+        email.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
 
     }
 
@@ -78,8 +86,8 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
         emailContractReq.setCulture("fa-IR");
         emailContractReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
         emailContractReq.setBody("");
-        emailContractReq.setEncryptedContractID(WebUserTools.getInstance().getUser().getEncryptWebUserID());
-        emailContractReq.setRecieverEmail(WebUserTools.getInstance().getUser().getWebUserMail());
+        emailContractReq.setEncryptedContractID(WebUserTools.getInstance().getUser().getWebUserProperties().getEncryptWebUserID());
+        emailContractReq.setRecieverEmail(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
         return emailContractReq;
     }
 }

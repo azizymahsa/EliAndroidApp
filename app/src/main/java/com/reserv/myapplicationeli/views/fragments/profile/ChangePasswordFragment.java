@@ -82,11 +82,11 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
     public ChangePasswordReq getChangePasswordReq() {
 
         ChangePasswordReq changePasswordReq = new ChangePasswordReq();
-        changePasswordReq.setCulture(WebUserTools.getInstance().getUser().getCulture());
+        changePasswordReq.setCulture(WebUserTools.getInstance().getUser().getWebUserProperties().getCulture());
         changePasswordReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
         changePasswordReq.setOldPassword(changePass_old.getText().toString());
         changePasswordReq.setNewPassword(changePass_new.getText().toString());
-        changePasswordReq.setWebUser(WebUserTools.getInstance().getUser());
+        changePasswordReq.setWebUser(WebUserTools.getInstance().getUser().getWebUserProperties());
 
         return changePasswordReq;
     }

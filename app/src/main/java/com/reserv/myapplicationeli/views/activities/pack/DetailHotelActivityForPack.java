@@ -165,7 +165,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
         });
 
         hotelProprtiesAdapter = new HotelProprtiesAdapter(hotelProprtiesModels,this);
-        gvEmakanat.setAdapter(hotelProprtiesAdapter);
+       gvEmakanat.setAdapter(hotelProprtiesAdapter);
     }
 
     @Override

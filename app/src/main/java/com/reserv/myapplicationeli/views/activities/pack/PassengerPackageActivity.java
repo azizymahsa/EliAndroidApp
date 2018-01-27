@@ -640,7 +640,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
 				HttpPost post = new HttpPost();
-				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Flight/FlightService.svc/PurchaseFlight");
+				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Package/PackageService.svc/PurchasePackage");
 				post.setHeader("Content-Type", "application/json; charset=UTF-8");
 				post.setHeader("Accept", "application/json; charset=UTF-8");
 
@@ -689,18 +689,18 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				// JSONObject jsonObj = new JSONObject(retSrc);
 
 				// Getting JSON Array node
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightResult");//Errors
+				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchasePackageResult");//Errors
 				if(!GetAirportsResult.getString("Errors").equals("null")){
 				 GetError = GetAirportsResult.getJSONObject("Errors");
 				}
 				if (GetError != null) {
 
 
-						Toast.makeText(PassengerPackageActivity.this, "لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز", Toast.LENGTH_LONG).show();
+					//	Toast.makeText(PassengerPackageActivity.this, "لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز", Toast.LENGTH_LONG).show();
 				}else{
 
 
-				JSONArray jArray = GetAirportsResult.getJSONArray("Services");
+			/*	JSONArray jArray = GetAirportsResult.getJSONArray("Services");*/
 				JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
 
 				Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
@@ -708,40 +708,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				//  JSONArray jArray = new JSONArray(result);
 
 				// Extract data from json and store into ArrayList as class objects
-				for (int i = 0; i < jArray.length(); i++) {
-					JSONObject json_data = jArray.getJSONObject(i);
 
-					PurchaseFlightResult fishData = new PurchaseFlightResult();
-					fishData.setCityEn(json_data.getString("CityEn"));
-					fishData.setCityFa(json_data.getString("CityFa"));
-					fishData.setCurrency_ID(json_data.getString("Currency_ID"));
-
-					fishData.setHasFlight(json_data.getString("HasFlight"));
-					fishData.setHasHotel(json_data.getString("HasHotel"));
-					fishData.setLoadDB(json_data.getString("LoadDB"));
-
-					fishData.setServiceAdlPrice(json_data.getString("ServiceAdlPrice"));
-					fishData.setServiceChdPrice(json_data.getString("ServiceChdPrice"));
-					fishData.setServiceDescEn(json_data.getString("ServiceDescEn"));
-
-					fishData.setServiceDescFa(json_data.getString("ServiceDescFa"));
-					fishData.setServiceID(json_data.getString("ServiceID"));
-					fishData.setServiceImgURL(json_data.getString("ServiceImgURL"));
-
-					fishData.setServiceInfPrice(json_data.getString("ServiceInfPrice"));
-					fishData.setServiceNameEn(json_data.getString("ServiceNameEn"));
-					fishData.setServiceNameFa(json_data.getString("ServiceNameFa"));
-
-
-					fishData.setServiceTypeEn(json_data.getString("ServiceTypeEn"));
-					fishData.setServiceTypeFa(json_data.getString("ServiceTypeFa"));
-					fishData.setServiceTypeID(json_data.getString("ServiceTypeID"));
-
-					fishData.setServiceTotalPrice(json_data.getLong("ServiceTotalPrice"));
-					fishData.setSelectID(json_data.getString("SelectID"));
-					fishData.setFlag(false);
-					data.add(fishData);
-				}
 
 				// Setup and Handover data to recyclerview
 
@@ -758,9 +725,9 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				});*/
 
 //				((ImageView) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+				/*((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 				txtTitle.setText(" افزودن خدمات به سبد خرید");
-
+*/
 				mAdapter = new GetKhadmatAdapter(PassengerPackageActivity.this, data, PassengerPackageActivity.this);
 				//mAdapter.setAdapter(mAdapter);
 				mAdapter.setData(data);

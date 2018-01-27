@@ -70,7 +70,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initParam() {
-        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserNameF());
+        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+ " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
     }
 
     private void setupPager() {
@@ -212,7 +212,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     return;
                 }
 
-                WebUserTools.getInstance().setUser(webUserLogin.getWebUserProperties());
+                WebUserTools.getInstance().setUser(webUserLogin);
                 Toast.makeText(ProfileActivity.this, "درخواست شما با موفقیت انجام شد.", Toast.LENGTH_SHORT).show();
 
             }

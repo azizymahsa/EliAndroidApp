@@ -142,6 +142,9 @@
             android:name=".views.activities.pack.PassengerPackageActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".views.activities.pack.PassengerPackageActivityT"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".views.activities.login.ProfileActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".lost.FinalResult">
