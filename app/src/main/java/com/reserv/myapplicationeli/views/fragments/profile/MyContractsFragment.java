@@ -6,13 +6,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+import com.reserv.myapplicationeli.models.model.login.call.EmailContractReq;
+import com.reserv.myapplicationeli.tools.WebUserTools;
 
+/**
+ * Created by elham.bonyani on 1/25/2018.
+ */
 
 public class MyContractsFragment extends Fragment implements View.OnClickListener {
 
     public ViewGroup view;
+    private TextView num_contract;
+    private TextView date;
+    private TextView path;
+    private TextView depart_date;
+    private TextView login_date;
+    private TextView sum_price;
+    private TextView remained_price;
+    private TextView follower;
+    private TextView email;
+
 
     public static MyContractsFragment instance() {
         MyContractsFragment fragment = new MyContractsFragment();
@@ -30,6 +47,18 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
 
 
     private void initViews() {
+        num_contract = view.findViewById(R.id.contract_number);
+        date = view.findViewById(R.id.contract_date);
+        path = view.findViewById(R.id.contract_path);
+        depart_date = view.findViewById(R.id.contract_depart_date);
+        login_date = view.findViewById(R.id.contract_login_date);
+        sum_price = view.findViewById(R.id.contract_total_price);
+        remained_price = view.findViewById(R.id.contract_remained);
+        follower = view.findViewById(R.id.contract_follower);
+        email = view.findViewById(R.id.contract_email);
+
+        num_contract.setText(WebUserTools.getInstance().getUser().getWebUserIDcardNo());
+//        date.setText(WebUserTools.getInstance().getUser().get);
 
     }
 
@@ -37,5 +66,20 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
         }
+    }
+
+    public boolean isValidForm(){
+        // check validation and if all thigs are ok return true else return false;
+        return true;
+    }
+
+    public EmailContractReq getEmailContractReq(){
+        EmailContractReq emailContractReq = new EmailContractReq();
+        emailContractReq.setCulture("fa-IR");
+        emailContractReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+        emailContractReq.setBody("");
+        emailContractReq.setEncryptedContractID(WebUserTools.getInstance().getUser().getEncryptWebUserID());
+        emailContractReq.setRecieverEmail(WebUserTools.getInstance().getUser().getWebUserMail());
+        return emailContractReq;
     }
 }

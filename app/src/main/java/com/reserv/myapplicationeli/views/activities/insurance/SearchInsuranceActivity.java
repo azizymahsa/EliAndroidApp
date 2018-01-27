@@ -23,6 +23,7 @@ import com.reserv.myapplicationeli.api.retro.ClientService;
 import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.models.model.insurance.BirthDateList;
 import com.reserv.myapplicationeli.models.model.insurance.InsurancePlan;
 import com.reserv.myapplicationeli.models.model.insurance.InsurancePlan_;
@@ -31,6 +32,7 @@ import com.reserv.myapplicationeli.models.model.insurance.TravelInsurance_;
 import com.reserv.myapplicationeli.models.model.insurance.call.InsuranceListReq;
 import com.reserv.myapplicationeli.models.model.insurance.call.InsuranceRequestModel;
 import com.reserv.myapplicationeli.models.model.insurance.response.InsuranceRes;
+import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.adapters.insurance.InsurancPlanAdapter;
@@ -40,6 +42,7 @@ import com.reserv.myapplicationeli.views.ui.InitUi;
 import java.util.ArrayList;
 import java.util.List;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,6 +72,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     private InsurancePlan insurancePlan;
     private RelativeLayout error_layout;
     private TextView txt_error;
+    private FancyButton btnOk;
 
 
     @SuppressLint("NewApi")
@@ -116,7 +120,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         insuranceListReq.setBirthDateList(birthDateLists);
         insuranceListReq.setCulture(culture);
 
-        Log.e(" request " ,new GsonBuilder().create().toJson(new InsuranceRequestModel(insuranceListReq) ));
+        Log.i(" Hosein " , "req : " + new GsonBuilder().create().toJson(new InsuranceRequestModel(insuranceListReq)));
         Call<InsuranceRes> call = service.showInsurance(new InsuranceRequestModel(insuranceListReq));
         call.enqueue(new Callback<InsuranceRes>() {
             @Override
@@ -131,9 +135,10 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
                     return;
                 }
 
-                if(response.body().getShowInsuranceResult().getError() != null){
+                if(!ValidationTools.isEmptyOrNull(response.body().getShowInsuranceResult().getError())){
                     showText();
-                    needShowAlertDialog(response.body().getShowInsuranceResult().getError().get(0).getDetailedMessage(), true);
+                    txt_error.setText(response.body().getShowInsuranceResult().getError().get(0).getDetailedMessage());
+                    error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
@@ -143,11 +148,29 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
                 if(travelInsurance == null && insurancePlan == null ){
                     showText();
+                    txt_error.setText("نتیجه ای یافت نشد !");
+                    error_layout.setVisibility( View.VISIBLE  );
+                    return;
+                }
+
+                if (travelInsurance == null && (insurancePlan != null && ValidationTools.isEmptyOrNull(insurancePlan.getInsurancePlans()))) {
+                    showText();
+                    txt_error.setText("نتیجه ای یافت نشد !");
+                    error_layout.setVisibility( View.VISIBLE  );
+                    return;
+                }
+
+                if ((travelInsurance != null && ValidationTools.isEmptyOrNull(travelInsurance.getTravelInsurances()))&& insurancePlan == null) {
+                    showText();
+                    txt_error.setText("نتیجه ای یافت نشد !");
+                    error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
                 if ((travelInsurance != null && ValidationTools.isEmptyOrNull(travelInsurance.getTravelInsurances()))&& (insurancePlan != null && ValidationTools.isEmptyOrNull(insurancePlan.getInsurancePlans()))) {
                     showText();
+                    txt_error.setText("نتیجه ای یافت نشد !");
+                    error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
@@ -167,8 +190,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
             public void onFailure(Call<InsuranceRes> call, Throwable t) {
                 hideLoading();
                 showText();
-//                needShowAlertDialog("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", true);
-                txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                txt_error.setText(t.getMessage());
                 error_layout.setVisibility( View.VISIBLE  );
 
             }
@@ -198,6 +220,8 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     private void initViews() {
         rclTravelInsurance = findViewById(R.id.rclTravelInsurance);
         rclInsurancePlans = findViewById(R.id.rclInsurancePlans);
+        btnOk = findViewById(R.id.btnOk);
+
         prg = findViewById(R.id.prg);
         txt = findViewById(R.id.txt);
         rclTravelInsurance.setLayoutManager(new LinearLayoutManager(this));
@@ -206,6 +230,9 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         tvTitleDate.setVisibility(View.GONE);
         error_layout = findViewById(R.id.elNotFound);
         txt_error = findViewById(R.id.tvAlert);
+        error_layout.setVisibility(View.GONE);
+
+        btnOk.setOnClickListener(this);
     }
 
     private void showLoading(){
@@ -222,6 +249,11 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnOk:
+                onBackPressed();
+                break;
+        }
     }
 
     @Override

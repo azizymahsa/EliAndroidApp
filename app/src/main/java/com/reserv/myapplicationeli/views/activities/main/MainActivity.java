@@ -30,10 +30,12 @@ import com.reserv.myapplicationeli.R;
 
 import com.reserv.myapplicationeli.base.BaseActivity;
 
+import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.views.activities.AboutActivity;
 import com.reserv.myapplicationeli.views.activities.ConditionActivity;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.activities.login.LogInActivity;
+import com.reserv.myapplicationeli.views.activities.login.ProfileActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
     RelativeLayout rlUser;
+    TextView txt_name;
     ExpandableWeightLayout expandableLayout;
     ImageView ivUser;
     RelativeLayout rlHedaer;
@@ -99,13 +102,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnContactUs = findViewById(R.id.btnContactUs);
         btn_condition = findViewById(R.id.btn_condition);
         rlUser = findViewById(R.id.rlUser);
+        txt_name = findViewById(R.id.txt_name);
         tvArrow = findViewById(R.id.tvArrow);
         ivUser = findViewById(R.id.ivUser);
         rlHedaer = findViewById(R.id.rlHedaer);
 
         tvTitle.setText(getString(R.string.searchFlight));
 
-
+        if(WebUserTools.getInstance().getUser().getWebUserID()!= -1){
+            txt_name.setText(WebUserTools.getInstance().getUser().getWebUserNameF());
+        }
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
         btnHotel.setOnClickListener(this);
@@ -179,7 +185,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent3);
                 break;
             case R.id.ivUser:
-                startActivity(new Intent(this, LogInActivity.class));
+                if(WebUserTools.getInstance().getUser().getWebUserID() == -1){
+                    startActivity(new Intent(this, LogInActivity.class));
+                }else{
+                    startActivity(new Intent(this,ProfileActivity.class));
+                }
 
                 break;
             case R.id.rlUser:

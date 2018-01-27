@@ -105,6 +105,39 @@ public class FilterPackTools {
         return false;
     }
 
+
+    public static ArrayList<HotelTypeFilter> getHotelTypeFilters(ArrayList<PRowXfer> pRowXfers){
+        ArrayList<HotelTypeFilter> hotelTypeFilters = new ArrayList<>();
+        if (ValidationTools.isEmptyOrNull(pRowXfers)) {
+            return hotelTypeFilters;
+        }
+
+        for(PRowXfer pRowXfer : pRowXfers){
+            for (LstProwHotel lstProwHotel : pRowXfer.getLstProwHotels()){
+                if(!isExistHotelTypeFilter(hotelTypeFilters,lstProwHotel.getHTypeNameE(),lstProwHotel.getHTypeNameF())){
+                    hotelTypeFilters.add(new HotelTypeFilter(lstProwHotel.getHTypeNameE(),lstProwHotel.getHTypeNameF()));
+                }
+            }
+        }
+
+        return hotelTypeFilters;
+    }
+
+    private static boolean isExistHotelTypeFilter(ArrayList<HotelTypeFilter> hotelTypeFilters ,String hTypeNameE, String hTypeNameF) {
+        if(ValidationTools.isEmptyOrNull(hotelTypeFilters)){
+            return false;
+        }
+
+        for(HotelTypeFilter hotelTypeFilter : hotelTypeFilters){
+            if(hotelTypeFilter.getHotelTypeNameEn().equals(hTypeNameE) && hotelTypeFilter.getHotelTypeNameFa().equals(hTypeNameF)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     public static ArrayList<AmenityFilter> getAmenityFilters(ArrayList<PRowXfer> pRowXfers){
         ArrayList<AmenityFilter> amenityFilters = new ArrayList<>();
         if (ValidationTools.isEmptyOrNull(pRowXfers)) {

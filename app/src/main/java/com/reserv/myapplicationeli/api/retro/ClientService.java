@@ -2,13 +2,20 @@ package com.reserv.myapplicationeli.api.retro;
 
 import com.reserv.myapplicationeli.models.model.insurance.call.InsuranceRequestModel;
 import com.reserv.myapplicationeli.models.model.insurance.response.InsuranceRes;
+import com.reserv.myapplicationeli.models.model.login.call.ChangePasswordReq;
+import com.reserv.myapplicationeli.models.model.login.call.ChangePasswordRequestModel;
+import com.reserv.myapplicationeli.models.model.login.call.EmailContractReq;
+import com.reserv.myapplicationeli.models.model.login.call.EmailContractRequestModel;
 import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
 import com.reserv.myapplicationeli.models.model.login.call.RegisterRequestModel;
 import com.reserv.myapplicationeli.models.model.login.call.ResetPassRequestModel;
-import com.reserv.myapplicationeli.models.model.login.LoginResult;
+import com.reserv.myapplicationeli.models.model.login.response.EmailContractRes;
 import com.reserv.myapplicationeli.models.model.login.response.LoginRes;
+import com.reserv.myapplicationeli.models.model.login.response.EmailContractResult;
+import com.reserv.myapplicationeli.models.model.login.response.WebUserChangePasswordRes;
 import com.reserv.myapplicationeli.models.model.login.response.WebUserRegisterRes;
 import com.reserv.myapplicationeli.models.model.login.response.WebUserRememberPasswordRes;
+import com.reserv.myapplicationeli.models.model.login.response.WebUserUpdateProfileRes;
 import com.reserv.myapplicationeli.models.model.pack.call.CityRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.call.CountryRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageRequestModel;
@@ -32,6 +39,14 @@ public interface ClientService {
     @POST("Common/StaticDataService.svc/Login")
     Call<LoginRes> Login(@Body LoginRequestModel loginRequestModel);
 
+    @POST("Common/StaticDataService.svc/WebUserUpdateProfile")
+    Call<WebUserUpdateProfileRes> updateProfile(@Body RegisterRequestModel registerRequestModel);
+
+    @POST("Common/StaticDataService.svc/EmailContract")
+    Call<EmailContractRes> emailContractProfile(@Body EmailContractRequestModel emailContractRequestModel);
+
+    @POST("Common/StaticDataService.svc/WebUserChangePassword")
+    Call<WebUserChangePasswordRes> changePasswordProfile(@Body ChangePasswordRequestModel changePasswordRequestModel);
 
     @POST("Common/StaticDataService.svc/WebUserRegister")
     Call<WebUserRegisterRes> Register(@Body RegisterRequestModel registerRequestModel);

@@ -18,10 +18,8 @@ import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.model.login.WebUserLogin;
-import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
 import com.reserv.myapplicationeli.models.model.login.call.RegisterListReq;
 import com.reserv.myapplicationeli.models.model.login.call.RegisterRequestModel;
-import com.reserv.myapplicationeli.models.model.login.LoginResult;
 import com.reserv.myapplicationeli.models.model.login.response.WebUserRegisterRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.WebUserTools;
@@ -81,16 +79,27 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                     return;
                 }
 
-                if (response.body().getWebUserRegisterResult().getWebUserLogin() == null && response.body().getWebUserRegisterResult().getError()!=null){
+                if (response.body().getWebUserRegisterResult().getError()!=null){
                     Toast.makeText(RegisterLoginActivity.this, response.body().getWebUserRegisterResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 WebUserLogin webUserLogin = response.body().getWebUserRegisterResult().getWebUserLogin();
+
+                if(webUserLogin== null){
+                    Toast.makeText(RegisterLoginActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                if(webUserLogin.getLoginStatus().toUpperCase().equals("DUP")){
+                    Toast.makeText(RegisterLoginActivity.this, " ایمیل وارد شده در حال حاضر در سیستم وجود دارد .", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 WebUserTools.getInstance().setUser(webUserLogin.getWebUserProperties());
-                Intent intent1 = new Intent(RegisterLoginActivity.this,SuccessResetPassActivity.class);
-                startActivity(intent1);
-                //do somethings !!
+                Intent intent = new Intent(RegisterLoginActivity.this,SuccessResetPassActivity.class);
+                startActivity(intent);
             }
 
             @Override

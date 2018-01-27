@@ -32,7 +32,7 @@
             android:textAppearance="@style/IrsansBold"
             android:gravity="center"
             android:textColor="@color/toolbar_color"
-            android:visibility="gone"
+            android:visibility="visible"
             />
 
         <ImageView

@@ -14,6 +14,7 @@ import com.reserv.myapplicationeli.models.model.pack.LstProwPrice;
 import com.reserv.myapplicationeli.models.model.pack.PRowXfer;
 import com.reserv.myapplicationeli.models.model.pack.filter.AmenityFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.DegreeFilter;
+import com.reserv.myapplicationeli.models.model.pack.filter.HotelTypeFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PriceFilter;
 import com.reserv.myapplicationeli.tools.StreamList;
@@ -147,6 +148,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
     public void filter(ArrayList<DegreeFilter> degreeFiltersSelected,
                        ArrayList<PriceFilter> priceFiltersSelected,
                        ArrayList<PlaceFilter> placeFiltersSelected,
+                       ArrayList<HotelTypeFilter> hotelTypeFiltersSelected,
                        ArrayList<AmenityFilter> amenityFiltersSelected){
 
 
@@ -154,6 +156,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
         ArrayList<PRowXfer> filterDegreeList = new ArrayList<>();
         ArrayList<PRowXfer> filterPriceList = new ArrayList<>();
         ArrayList<PRowXfer> filterPlaceList = new ArrayList<>();
+        ArrayList<PRowXfer> filterHotelTypeList = new ArrayList<>();
         ArrayList<PRowXfer> filterAmenityList = new ArrayList<>();
 
         if(!ValidationTools.isEmptyOrNull(degreeFiltersSelected)){
@@ -196,6 +199,19 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
                 }
             }
             filtertemList = filterPlaceList;
+        }
+
+        if(!ValidationTools.isEmptyOrNull(hotelTypeFiltersSelected)){
+            for(HotelTypeFilter hotelTypeFilter : hotelTypeFiltersSelected){
+                for(PRowXfer pRowXfer : filtertemList){
+                    for(LstProwHotel lstProwHotel :pRowXfer.getLstProwHotels()){
+                        if(lstProwHotel.getHTypeNameE().equals(hotelTypeFilter.getHotelTypeNameEn()) && lstProwHotel.getHTypeNameF().equals(hotelTypeFilter.getHotelTypeNameFa())){
+                            filterHotelTypeList.add(pRowXfer);
+                        }
+                    }
+                }
+            }
+            filtertemList = filterHotelTypeList;
         }
 
         if(!ValidationTools.isEmptyOrNull(amenityFiltersSelected)){
