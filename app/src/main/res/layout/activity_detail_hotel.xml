@@ -381,196 +381,24 @@
                     android:orientation="vertical"
                     android:layout_below="@+id/cvHotel"
                     android:layout_marginTop="5dp"
-                    android:visibility="gone"
-
-
-
 
                    >
+                        <com.wang.avi.AVLoadingIndicatorView
 
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/cvHotel"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        card_view:cardBackgroundColor="#ffffff"
-                        card_view:cardCornerRadius="3dp"
-                        card_view:cardElevation="1dp"
-
-
-                        >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:orientation="horizontal"
-                        android:gravity="right"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        android:layout_marginTop="5dp">
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="60"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="100"
-                                android:gravity="center"
-                                android:padding="5dp"
-                                android:text="3 از 5"
-                                android:textAppearance="@style/IrsansBold"
-                                android:textColor="@color/text_color_2e"
-                                android:textSize="10dp"
-                                android:layout_marginRight="5dp"
-                                />
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="100"
-                                android:gravity="center">
-                                <ImageView
-                                    android:layout_width="90dp"
-                                    android:layout_height="20dp"
-                                    android:gravity="center"
-                                    android:src="@drawable/rating_start"
-                                    android:scaleType="fitXY"
-
-                                    />
-                            </LinearLayout>
+                            android:id="@+id/aviComment"
+                            style="@style/AVLoadingIndicatorView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/tv"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:visibility="visible"
+                            app:indicatorColor="@color/app_base_color"
+                            app:indicatorName="BallSpinFadeLoaderIndicator"
 
 
 
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="60"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="100"
-                                android:gravity="right|center"
-                                android:padding="5dp"
-                                android:text="امتیاز هتل:"
-                                android:textAppearance="@style/IrsansBold"
-                                android:textColor="@color/text_color_2e"
-                                android:textSize="14dp"
-                                />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="100"
-                                android:gravity="right|center"
-                                android:padding="5dp"
-                                android:text="از مجموع 12 رای ثبت شده"
-                                android:textAppearance="@style/IrsansBold"
-                                android:textColor="@color/text_color_2e"
-                                android:textSize="10dp"
-                                />
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:orientation="horizontal"
-                        android:gravity="right"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        android:layout_marginTop="5dp">
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="60"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:background="@drawable/comment_background"
-                            android:gravity="center">
-                            <mehdi.sakout.fancybuttons.FancyButton
-                                android:id="@+id/btnSortComment"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center"
-                                android:layout_alignParentLeft="true"
-                                android:layout_centerVertical="true"
-                                android:elevation="1dp"
-                                android:paddingBottom="1dp"
-                                fancy:fb_defaultColor="@color/TRANSPARENT"
-                                fancy:fb_focusColor="@color/focusColor"
-                                fancy:fb_radius="4dp"
-                                fancy:fb_text=" "
-                                fancy:fb_textColor="#ffff"
-                                fancy:fb_textSize="14dp"
-                                android:layout_marginLeft="5dp"/>
-
-
-                            <TextView
-                                android:id="@+id/tvSortComment"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:padding="5dp"
-                                android:text="مفیدترین نظرات"
-                                android:textAppearance="@style/IrsansBold"
-                                android:textColor="@color/text_color_2e"
-                                android:textSize="14dp"
-                                android:layout_marginRight="5dp"
-                                />
-                            <TextView
-                                android:layout_toRightOf="@+id/tvSortComment"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:text="@string/icon_sort"
-                                android:textAppearance="@style/IconFonts"
-                                android:textColor="@color/text_color_2e"
-                                android:textSize="@dimen/_20dp"
-
-                                />
-
-
-
-                        </RelativeLayout>
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="100"
-                            android:layout_height="match_parent"
-                            android:gravity="right|center"
-                            android:padding="5dp"
-                            android:text="نظرات کاربران-  15 نظر"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
-                            android:textSize="14dp"
                             />
-
-                    </LinearLayout>
-
-                    <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
-                        android:id="@+id/lvComments"
-                        android:layout_marginTop="5dp"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:divider="@null"
-                        android:dividerHeight="0dp"
-                       />
-
-
 
                     <TextView
                         android:id="@+id/tvAlertComment"
@@ -585,64 +413,261 @@
                         android:visibility="gone"
                         />
 
-                    <android.support.v7.widget.CardView
-                        android:layout_width="wrap_content"
 
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/cvHotel"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        android:layout_marginTop="5dp"
-                        card_view:cardBackgroundColor="#ffffff"
-                        card_view:cardCornerRadius="3dp"
-                        card_view:cardElevation="1dp"
+                    <LinearLayout
+                        android:id="@+id/llCommentContent"
 
-
-                        >
-                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:background="@drawable/background_hotel_detail"
-                        android:layout_margin="5dp">
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/cvHotel"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            card_view:cardBackgroundColor="#ffffff"
+                            card_view:cardCornerRadius="3dp"
+                            card_view:cardElevation="1dp"
 
 
-                        <EditText
-                            android:id="@+id/etComment"
-                            android:layout_toRightOf="@+id/btnSendComment"
+                            >
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:orientation="horizontal"
+                                android:gravity="right"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_marginTop="5dp">
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="60"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="100"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="3 از 5"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="10dp"
+                                        android:layout_marginRight="5dp"
+                                        />
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="100"
+                                        android:gravity="center">
+                                        <ImageView
+                                            android:layout_width="90dp"
+                                            android:layout_height="20dp"
+                                            android:gravity="center"
+                                            android:src="@drawable/rating_start"
+                                            android:scaleType="fitXY"
+
+                                            />
+                                    </LinearLayout>
+
+
+
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="60"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="100"
+                                        android:gravity="right|center"
+                                        android:padding="5dp"
+                                        android:text="امتیاز هتل:"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="14dp"
+                                        />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="100"
+                                        android:gravity="right|center"
+                                        android:padding="5dp"
+                                        android:text="از مجموع 12 رای ثبت شده"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="10dp"
+                                        />
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:gravity="right"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_marginTop="5dp">
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="60"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:background="@drawable/comment_background"
+                                android:gravity="center">
+                                <mehdi.sakout.fancybuttons.FancyButton
+                                    android:id="@+id/btnSortComment"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:elevation="1dp"
+                                    android:paddingBottom="1dp"
+                                    fancy:fb_defaultColor="@color/TRANSPARENT"
+                                    fancy:fb_focusColor="@color/focusColor"
+                                    fancy:fb_radius="4dp"
+                                    fancy:fb_text=" "
+                                    fancy:fb_textColor="#ffff"
+                                    fancy:fb_textSize="14dp"
+                                    android:layout_marginLeft="5dp"/>
+
+
+                                <TextView
+                                    android:id="@+id/tvSortComment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:padding="5dp"
+                                    android:text="مفیدترین نظرات"
+                                    android:textAppearance="@style/IrsansBold"
+                                    android:textColor="@color/text_color_2e"
+                                    android:textSize="14dp"
+                                    android:layout_marginRight="5dp"
+                                    />
+                                <TextView
+                                    android:layout_toRightOf="@+id/tvSortComment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="@string/icon_sort"
+                                    android:textAppearance="@style/IconFonts"
+                                    android:textColor="@color/text_color_2e"
+                                    android:textSize="@dimen/_20dp"
+
+                                    />
+
+
+
+                            </RelativeLayout>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="100"
+                                android:layout_height="match_parent"
+                                android:gravity="right|center"
+                                android:padding="5dp"
+                                android:text="نظرات کاربران-  15 نظر"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textColor="@color/text_color_2e"
+                                android:textSize="14dp"
+                                />
+
+                        </LinearLayout>
+
+                        <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                            android:id="@+id/lvComments"
+                            android:layout_marginTop="5dp"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
 
-                            android:minHeight="35dp"
-                            android:gravity="center|right"
-                            android:paddingRight="5dp"
-                            android:textSize="14dp"
-                            android:hint="لطفا نظر خود را بنویسید..."
-                            android:background="@drawable/transparent"/>
+                            android:divider="@null"
+                            android:dividerHeight="0dp"
+                            />
 
 
-                        <mehdi.sakout.fancybuttons.FancyButton
-                            android:id="@+id/btnSendComment"
-                            android:layout_width="55dp"
-                            android:layout_height="30dp"
+
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/cvHotel"
                             android:layout_gravity="center"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true"
-                            android:elevation="1dp"
-                            android:paddingBottom="1dp"
-                            fancy:fb_defaultColor="@color/toolbar_color"
-                            fancy:fb_focusColor="@color/focusColor"
-                            fancy:fb_radius="100dp"
-                            fancy:fb_text="ارسال"
-                            fancy:fb_textColor="#ffff"
-                            fancy:fb_textSize="14dp"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_marginTop="5dp"
+                            card_view:cardBackgroundColor="#ffffff"
+                            card_view:cardCornerRadius="3dp"
+                            card_view:cardElevation="1dp"
 
 
-                    </RelativeLayout>
-                    </android.support.v7.widget.CardView>
+                            >
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:background="@drawable/background_hotel_detail"
+                                android:layout_margin="5dp">
+
+
+                                <EditText
+                                    android:id="@+id/etComment"
+                                    android:layout_toRightOf="@+id/btnSendComment"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:minHeight="35dp"
+                                    android:gravity="center|right"
+                                    android:paddingRight="5dp"
+                                    android:textSize="14dp"
+                                    android:hint="لطفا نظر خود را بنویسید..."
+                                    android:background="@drawable/transparent"/>
+
+
+                                <mehdi.sakout.fancybuttons.FancyButton
+                                    android:id="@+id/btnSendComment"
+                                    android:layout_width="55dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:elevation="1dp"
+                                    android:paddingBottom="1dp"
+                                    fancy:fb_defaultColor="@color/toolbar_color"
+                                    fancy:fb_focusColor="@color/focusColor"
+                                    fancy:fb_radius="100dp"
+                                    fancy:fb_text="ارسال"
+                                    fancy:fb_textColor="#ffff"
+                                    fancy:fb_textSize="14dp"
+                                    android:layout_marginLeft="5dp"/>
+
+
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+
+
 
 
                 </LinearLayout>

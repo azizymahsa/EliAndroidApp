@@ -126,6 +126,7 @@ try {
     }else{
 
         txt_name.setText("ورود به حساب کاربری");
+        btnExit.setVisibility(View.GONE);
 
     }
 }catch (Exception e){

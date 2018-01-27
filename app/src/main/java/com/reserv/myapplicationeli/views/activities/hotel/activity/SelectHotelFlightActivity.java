@@ -43,6 +43,7 @@ import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.datetools.SolarCalendar;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.FlightHotelAdapter;
+import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelDialog;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelTypeModel;
@@ -376,36 +377,60 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4() || filterModel.isStar5() || filterModel.isBestSeler() || filterModel.isBestOff())
                     || filterHotelTypeModels.size() > 0) {
-                if (selectHotelModelArrayListFilter.isEmpty()){
-                    for (Iterator<SelectFlightHotelModel> it = selectHotelModelArrayList.iterator(); it.hasNext(); ) {
-                        if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
-                            it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+
+                if (search != null) {
+                    ArrayList<SelectFlightHotelModel> selectHotelModelArrayListFilter3 = new ArrayList<>();
+
+                    if (selectHotelModelArrayListFilter.isEmpty()){
+
+
+                        for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                            if (selectHotelModel.getName().toLowerCase().contains(search.toLowerCase())) {
+                                selectHotelModelArrayListFilter3.add(new SelectFlightHotelModel(selectHotelModel.getName(),
+                                        selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                        selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                        selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                        selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
+                                        selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
+                                        selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
+                            }
+
+                            //    }
+                /*    }
+                        for (Iterator<SelectHotelModel> it = selectHotelModelArrayListFilter3.iterator(); it.hasNext(); ) {
+                            if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
+                                it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+                            }*/
                         }
 
+                        selectHotelModelArrayListFilter.clear();
+                        selectHotelModelArrayListFilter=selectHotelModelArrayListFilter3;
 
-                    }
-                }else{
-                    for (Iterator<SelectFlightHotelModel> it = selectHotelModelArrayListFilter.iterator(); it.hasNext(); ) {
-                        if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
-                            it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+                    }else{
+                        for (Iterator<SelectFlightHotelModel> it = selectHotelModelArrayListFilter.iterator(); it.hasNext(); ) {
+                            if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
+                                it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+                            }
+
+
                         }
-
-
                     }
+
+
                 }
-
-
-
-
             } else {
                 if (search != null) {
                     for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
 
                         if (selectHotelModel.getName().toLowerCase().contains(search.toLowerCase())) {
-                            selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                            selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(),
+                                    selectHotelModel.getCity(), selectHotelModel.getTitle(),
                                     selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
                                     selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                    selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
+                                    selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
+                                    selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
+                                    selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount()));
                         }
 
                     }
@@ -419,19 +444,23 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
                 adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
+                tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+                adapter.notifyDataSetChanged();
             }
 
 
         }
 
         if (selectHotelModelArrayListFilter.isEmpty()) {
+
             isFilter = false;
-           // Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
+            ///Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
             adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
             tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+
 
 
         } else {

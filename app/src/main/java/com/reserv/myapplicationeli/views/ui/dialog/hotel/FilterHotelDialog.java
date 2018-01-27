@@ -357,11 +357,11 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
                 break;
             case R.id.btnDeletFilter:
                 if (filter.isEmpty()) {
-                    filter.add(new FilterModel(false, false, false, false, false, false, false, remove_));
+                    filter.add(new FilterModel(false, false, false, false, false, false, false, true));
 
 
                 } else {
-                    filter.set(0, new FilterModel(false, false, false, false, false, false, false, remove_));
+                    filter.set(0, new FilterModel(false, false, false, false, false, false, false, true));
 
                 }
                 filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelPriceModel);

@@ -378,15 +378,31 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     || filterHotelTypeModels.size() > 0) {
 
                 if (search != null) {
+                     ArrayList<SelectHotelModel> selectHotelModelArrayListFilter3 = new ArrayList<>();
 
                     if (selectHotelModelArrayListFilter.isEmpty()){
-                        for (Iterator<SelectHotelModel> it = selectHotelModelArrayList.iterator(); it.hasNext(); ) {
-                            if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
-                                it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+
+
+                        for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                            if (selectHotelModel.getName().toLowerCase().contains(search.toLowerCase())) {
+                                selectHotelModelArrayListFilter3.add(new SelectHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                                        selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                                        selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                                        selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getOfferId()));
                             }
 
-
+                            //    }
+                /*    }
+                        for (Iterator<SelectHotelModel> it = selectHotelModelArrayListFilter3.iterator(); it.hasNext(); ) {
+                            if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
+                                it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+                            }*/
                         }
+
+                            selectHotelModelArrayListFilter.clear();
+                            selectHotelModelArrayListFilter=selectHotelModelArrayListFilter3;
+
                         }else{
                         for (Iterator<SelectHotelModel> it = selectHotelModelArrayListFilter.iterator(); it.hasNext(); ) {
                             if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
@@ -421,19 +437,23 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
                 adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this);
+                tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+                adapter.notifyDataSetChanged();
             }
 
 
         }
 
         if (selectHotelModelArrayListFilter.isEmpty()) {
+
             isFilter = false;
-          ///Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
+            ///Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
             adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this);
             tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+
 
 
         } else {
