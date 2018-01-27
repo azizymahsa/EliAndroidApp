@@ -89,9 +89,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 		//nerkh
-		txtAdlCostP.setText(String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
-		txtTaxes.setText(String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
-		txtTotalFareCost.setText(String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
+		txtAdlCostP.setText( item.AdlBaseFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)) : "It");//    String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
+		txtTaxes.setText(item.Taxes > 0 ? String.valueOf(NumberFormat.getInstance().format(item.Taxes)) : "It");//String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
+		txtTotalFareCost.setText(item.TotalFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.TotalFare)) : "It");//String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
 
 		lblFlightTimeR.setText(item.FlightTimeR+"");
 		lblFlightArrivalTimeR.setText(item.FlightArrivalTimeR+"");

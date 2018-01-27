@@ -17,6 +17,7 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorAdapter;
 import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorModel;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 /**
@@ -52,7 +53,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.tvBrithDay.setText(item.getRqPassenger_Birthdate());
         holder.tvPassNo.setText(item.getRqPassenger_PassNo());
         holder.tvNationality.setText(item.getNationality());
-        holder.tvGender.setText(item.getGender());
+        holder.tvGender.setText(item.getGender().contains("false") ? "زن" : "مرد");//item.getGender());
         holder.tvPassangerName.setText(item.getRqPassenger_name());
         // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);

@@ -43,8 +43,8 @@ public class AlertDialogPassenger implements View.OnClickListener {
         tvAlert.setLineSpacing(5);
         tvAlert.setTypeFace(typeface);
 
-        btnOk.setCustomTextFont("fonts/iran_sans_bold.ttf");
-        btnOk.setText(activity.getString(R.string.icon_close));
+      //  btnOk.setCustomTextFont("fonts/iran_sans_bold.ttf");
+       // btnOk.setText(activity.getString(R.string.icon_close));
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);

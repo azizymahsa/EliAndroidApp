@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.HotelCity;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelCityActivity;
 
 import java.util.List;
 
@@ -46,12 +47,24 @@ public class GetHotelCityAdapter extends BaseAdapter {
 
 
 	}
-	public GetHotelCityAdapter(Activity activity){
-		this.context=activity;
-		myInflater = LayoutInflater.from(activity);
+	public GetHotelCityAdapter(Activity activity,Context context, List<HotelCity> data, GetHotelCityActivity getHotelCityActivity1) {
+		this.context=context;
+		this.activity=activity;
+		this.type=type;
+		inflater= LayoutInflater.from(context);
+		this.data=data;
+		myInflater = LayoutInflater.from(context);
 	}
 
-	public void setData(List<HotelCity> data) {
+	public GetHotelCityAdapter(GetHotelCityActivity getHotelCityActivity, List<HotelCity> data, Activity activity){
+		this.context=activity;
+		myInflater = LayoutInflater.from(activity);
+		this.data = null;
+		notifyDataSetChanged();
+	}
+
+
+    public void setData(List<HotelCity> data) {
 		this.data = data;
 		notifyDataSetChanged();
 	}

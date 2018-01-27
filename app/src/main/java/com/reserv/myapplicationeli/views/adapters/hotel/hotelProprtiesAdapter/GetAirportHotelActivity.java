@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,7 +17,9 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.views.adapters.GetAirPortMabdaAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
@@ -93,7 +96,19 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 	                                            	 GetAirportHotelActivity.searchText = d.toLowerCase();
 	                                            	 new AsyncFetch().execute();
 	                                            	 
-	                                            	 }
+	                                            	 }else {
+														if (d.length() < 0 || d.length() == 0) {
+															////
+															ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+															List<Country> data = null;
+															listAirPort = (ListView)findViewById(R.id.listAirPort);
+															mAdapter = new GetAirPortHotelAdapter(GetAirportHotelActivity.this, data, GetAirportHotelActivity.this);
+															//mAdapter.setAdapter(mAdapter);
+															mAdapter.setData(data);
+															listAirPort.setAdapter(mAdapter);
+
+														}
+													}
 	                                            	
 	                                            }
 	                                        });
@@ -223,49 +238,50 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 
 	           // pdLoading.dismiss();
 	            try {
+					if (!TextUtils.isEmpty(searchtxt.getText())) {
 ////////////////////////////
-	            	JSONObject jsonObj = new JSONObject(result);
-					
-					 // JSONObject jsonObj = new JSONObject(retSrc);
-					  
-		              // Getting JSON Array node
-				  JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
-		          JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
-	            	//////////////////////////////
-	              //  JSONArray jArray = new JSONArray(result);
+						JSONObject jsonObj = new JSONObject(result);
 
-	                // Extract data from json and store into ArrayList as class objects
-	                for(int i=0;i<jArray.length();i++){
-	                    JSONObject json_data = jArray.getJSONObject(i);
-	                    Country fishData = new Country();
-	                    fishData.setCityName(json_data.getString("CityName")) ;
-	                    fishData.setAirportName(json_data.getString("AirportName")) ;
-	                    fishData.setAirportCode(json_data.getString("AirportCode")) ;
-	                    fishData.setAirportID(json_data.getString("AirportID")) ;
-	                    fishData.setParentId(json_data.getString("ParentId")) ;
-	                  
-	                    data.add(fishData);
-	                }
+						// JSONObject jsonObj = new JSONObject(retSrc);
 
-	                // Setup and Handover data to recyclerview
-	                String Value_Maghsad_City="";
-	                String Value_Maghsad_Airport="";
-	                String Value_Maghsad_Airport_Code="";
-	                ////
-	                if( Prefs.getString("Value-Maghsad-City", "") != null) {
-						Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
-						Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
-						Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
+						// Getting JSON Array node
+						JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
+						JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
+						//////////////////////////////
+						//  JSONArray jArray = new JSONArray(result);
+
+						// Extract data from json and store into ArrayList as class objects
+						for (int i = 0; i < jArray.length(); i++) {
+							JSONObject json_data = jArray.getJSONObject(i);
+							Country fishData = new Country();
+							fishData.setCityName(json_data.getString("CityName"));
+							fishData.setAirportName(json_data.getString("AirportName"));
+							fishData.setAirportCode(json_data.getString("AirportCode"));
+							fishData.setAirportID(json_data.getString("AirportID"));
+							fishData.setParentId(json_data.getString("ParentId"));
+
+							data.add(fishData);
+						}
+
+						// Setup and Handover data to recyclerview
+						String Value_Maghsad_City = "";
+						String Value_Maghsad_Airport = "";
+						String Value_Maghsad_Airport_Code = "";
+						////
+						if (Prefs.getString("Value-Maghsad-City", "") != null) {
+							Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
+							Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
+							Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
+						}
+
+						////
+						listAirPort = (ListView) findViewById(R.id.listAirPort);
+						mAdapter = new GetAirPortHotelAdapter(GetAirportHotelActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportHotelActivity.this, getIntent().getExtras().getInt("type"));
+						//mAdapter.setAdapter(mAdapter);
+						mAdapter.setData(data);
+						listAirPort.setAdapter(mAdapter);
+						//mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 					}
-	                
-	                ////
-	                listAirPort = (ListView)findViewById(R.id.listAirPort);
-	                  mAdapter = new GetAirPortHotelAdapter(GetAirportHotelActivity.this, data,Value_Maghsad_City,Value_Maghsad_Airport,Value_Maghsad_Airport_Code, GetAirportHotelActivity.this,getIntent().getExtras().getInt("type"));
-	                //mAdapter.setAdapter(mAdapter);
-	                mAdapter.setData(data);
-	                listAirPort.setAdapter(mAdapter);
-	                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
-
 	            } catch (JSONException e) {
 	                Toast.makeText(GetAirportHotelActivity.this, "خطا در برقراری ارتباط", Toast.LENGTH_LONG).show();
 	            }

@@ -417,8 +417,9 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
 
                     Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
 
-                    if (Prefs.getString("Value-Mabda-City","") != null) {
-                        if (Prefs.getString("Value-Mabda-Airport-Code","") != null) {
+                    if (Prefs.getString("Value-Mabda-City","") != null && Prefs.getString("Value-Mabda-City","").length()>0) {
+                        System.out.println("not default"+Prefs.getString("Value-Mabda-City",""));
+                        if (Prefs.getString("Value-Mabda-Airport-Code","") != null && Prefs.getString("Value-Mabda-Airport-Code","").length()>0) {
                             intent1.putExtra("Value-Mabda-City", Prefs.getString("Value-Mabda-City",""));
                             intent1.putExtra("Value-Mabda-Airport", Prefs.getString("Value-Mabda-Airport",""));
                             intent1.putExtra("Value-Mabda-Airport-Code", Prefs.getString("Value-Mabda-Airport-Code",""));//*THR
@@ -427,7 +428,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                             intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
                             intent1.putExtra("Value-Mabda-Airport-Code", "THR");//*THR
                         }
-                        if (Prefs.getString("Value-Maghsad-Airport-Code","") != null) {
+                        if (Prefs.getString("Value-Maghsad-Airport-Code","") != null && Prefs.getString("Value-Maghsad-Airport-Code","").length()>0) {
                             intent1.putExtra("Value-Maghsad-City", Prefs.getString("Value-Maghsad-City",""));
                             intent1.putExtra("Value-Maghsad-Airport", Prefs.getString("Value-Maghsad-Airport",""));
                             intent1.putExtra("Value-Maghsad-Airport-Code",  Prefs.getString("Value-Maghsad-Airport-Code",""));//*
@@ -445,17 +446,15 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                         intent1.putExtra("Value-ChdCount", txtCountK.getText().toString());
                         intent1.putExtra("Value-InfCount", txtCountN.getText().toString());
 
-                   /* intent1.putExtra("Value-DepartureDate", picker_az);//2017-11-24
-                    intent1.putExtra("Value-ArrivalDate", picker_be);//2017-11-29
 
-                    intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
-                    intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29*/
                         intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
                         intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
 
                     } else {//default
+
+                        System.out.println("default");
                         intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
                         intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
                         intent1.putExtra("Value-Mabda-Airport-Code", "THR");//*THR
