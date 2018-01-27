@@ -1067,12 +1067,12 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                 }
                 break;
             case R.id.txttavalodm:
-                DialogFragment newFragment2 = new PassengerPackageActivityT.DatePickerFragment();
+                DialogFragment newFragment2 = new PassengerPackageActivity.DatePickerFragment();
                 newFragment2.show(getFragmentManager(), "datePicker");
                 flag = true;
                 break;
             case R.id.txtexp_passport:
-                DialogFragment newFragment3 = new PassengerPackageActivityT.DatePickerFragment();
+                DialogFragment newFragment3 = new PassengerPackageActivity.DatePickerFragment();
                 newFragment3.show(getFragmentManager(), "datePicker");
                 flag = false;
                 break;

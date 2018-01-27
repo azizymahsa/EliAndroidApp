@@ -163,9 +163,9 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
                 new GetHoldRoomAsync().execute();
             }
         });
-
+/*
         hotelProprtiesAdapter = new HotelProprtiesAdapter(hotelProprtiesModels,this);
-       gvEmakanat.setAdapter(hotelProprtiesAdapter);
+       gvEmakanat.setAdapter(hotelProprtiesAdapter);*/
     }
 
     @Override
