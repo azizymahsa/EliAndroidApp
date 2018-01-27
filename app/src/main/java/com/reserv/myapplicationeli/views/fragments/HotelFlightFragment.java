@@ -182,6 +182,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         super.onResume();
         try {
 
+            Log.e("11111", "Value-Hotel-City-Code-HF-Raft");
+            Log.e("322222", Prefs.getString("Value-Hotel-City-Code-HF-Source", ""));
 
             Gson gson;
 

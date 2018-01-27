@@ -294,7 +294,7 @@ public class PersianCalendar extends JalaliCalendar implements Serializable{
 	 */
 	public String getPersianLongDate() {
 //		return getPersianWeekDayName() + "  " + this.persianDay + "  " + getPersianMonthName() + "  " + this.persianYear;
-		return getPersianWeekDayName() + "  " + getPersianDay() + "  " + getPersianMonthName() + "  " + getPersianYear();
+		return getPersianWeekDayName() + " " + getPersianDay() + " " + getPersianMonthName() + " " + getPersianYear();
 	}
 
 	public String getPersianLongDateAndTime() {

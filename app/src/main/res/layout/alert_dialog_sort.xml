@@ -31,7 +31,8 @@
             android:text="@string/icon_sort"
             android:textSize="25dp"
             android:gravity="center|right"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:visibility="gone"/>
 
     </LinearLayout>
     <LinearLayout

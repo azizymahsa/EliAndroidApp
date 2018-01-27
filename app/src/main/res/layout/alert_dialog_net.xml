@@ -30,8 +30,8 @@
         android:layout_height="100dp"
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
-        android:textSize="14dp"
-        android:text="اینترنت شما قطع و یا از دسترس خارج می باشد، برای استفاده از امکانات این نرم افزار سرویس اینترنت خود را ببرسی نمایید!"
+        android:textSize="12dp"
+        android:text="اینترنت شما قطع و یا از دسترس خارج می باشد، برای استفاده از امکانات این نرم افزار سرویس اینترنت خود را برسی نمایید!"
         />
 
 
@@ -47,11 +47,12 @@
         android:elevation="4dp"
         android:gravity="center"
         android:paddingBottom="1dp"
+        android:paddingTop="1dp"
         fancy:fb_defaultColor="#1234"
         fancy:fb_focusColor="@color/focusColor"
         fancy:fb_radius="100dp"
         fancy:fb_text="باشه!"
-        fancy:fb_textColor="@color/toolbar_color"
+        fancy:fb_textColor="@color/text_color_4d"
         fancy:fb_textSize="18dp"
         android:layout_marginBottom="@dimen/_10dp_margin"/>
 

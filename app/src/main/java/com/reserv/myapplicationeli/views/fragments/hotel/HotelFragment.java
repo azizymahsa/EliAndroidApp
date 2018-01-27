@@ -254,6 +254,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     public void onResume() {
         super.onResume();
         try {
+        //    Log.e("citycode",  Prefs.getString("Value-Hotel-City-Code", ""));
 
 
             Gson gson;
