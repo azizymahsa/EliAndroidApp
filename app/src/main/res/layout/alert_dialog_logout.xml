@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:background="@drawable/alert_header_background"
+        android:text="پیغام"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textAppearance="@style/IrsansBold"
+
+        />
+
+
+
+    <TextView
+        android:id="@+id/tvAlert"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:textAppearance="@style/IrsansBold"
+        android:textSize="12dp"
+        android:text="آیا برای خروج اطمینان دارید؟"
+        />
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/_10dp_margin"
+        android:layout_marginTop="10dp"
+        >
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnOk"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:elevation="1dp"
+            android:paddingBottom="1dp"
+            fancy:fb_defaultColor="#1234"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="100dp"
+            fancy:fb_text="خیر"
+            fancy:fb_textColor="#4d4d4d"
+            fancy:fb_textSize="14dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnExit"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:elevation="1dp"
+            android:paddingBottom="1dp"
+            fancy:fb_defaultColor="#1234"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="100dp"
+            fancy:fb_text="بله"
+            fancy:fb_textColor="#4d4d4d"
+            fancy:fb_textSize="14dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

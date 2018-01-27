@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -50,6 +51,7 @@ import com.reserv.myapplicationeli.views.fragments.pack.PackageFragment;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
+import com.reserv.myapplicationeli.views.ui.dialog.app.LogOutAlert;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private BroadcastReceiver sendFinish;
     private BroadcastReceiver sendStartTimer,sendDetailFinish;
     int TotalTime=2000000;
+    Button btnExit;
 
 
     @Override
@@ -112,12 +115,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvArrow = findViewById(R.id.tvArrow);
         ivUser = findViewById(R.id.ivUser);
         rlHedaer = findViewById(R.id.rlHedaer);
+        btnExit = findViewById(R.id.btnExit);
 
         tvTitle.setText(getString(R.string.searchFlight));
 try {
     if(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()!= -1){
         txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+ " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
 
+
+    }else{
+
+        txt_name.setText("ورود به حساب کاربری");
 
     }
 }catch (Exception e){
@@ -140,6 +148,7 @@ try {
         ivUser.setOnClickListener(this);
         rlHedaer.setOnClickListener(this);
         btnFlight.setOnClickListener(this);
+        btnExit.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
 
 
@@ -219,6 +228,9 @@ try {
 
                 }
 
+                break;
+            case R.id.btnExit:
+                new LogOutAlert(this);
                 break;
 
         }
