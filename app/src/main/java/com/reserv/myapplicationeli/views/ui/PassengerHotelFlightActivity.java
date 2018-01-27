@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -182,6 +183,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
         txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
         txtnumber_passport.setOnClickListener(PassengerHotelFlightActivity.this);
+        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
         txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
         txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
         txtexp_passport.setOnClickListener(PassengerHotelFlightActivity.this);
