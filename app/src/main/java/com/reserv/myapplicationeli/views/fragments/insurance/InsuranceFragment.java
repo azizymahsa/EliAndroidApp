@@ -196,8 +196,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 needShowAlertDialog("خطا در ارتباط", true);
             }
         });
-
-
     }
 
     private void initParam() {
@@ -223,7 +221,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
 
-        txt_depart_date.setText(DateUtil.getShortStringDate(currentDateTime, "yyyy-MM-dd", true));
+        txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
 
 
         datePickerDialogDepart = DatePickerDialog.newInstance(
@@ -357,7 +355,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            txt_depart_date.setText(DateUtil.getShortStringDate(currentDateTime, "yyyy-MM-dd", true));
+            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
             departureDate = currentDateTime;
             PersianCalendar persianCalendarDatePicker = new PersianCalendar();
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);
@@ -368,6 +366,9 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
     AlertDialog mAlertDialog ;
     public void needShowAlertDialog(String message, boolean canelable) {
+        if(getActivity() == null){
+            return;
+        }
         if(mAlertDialog!= null && mAlertDialog.isShowing()){
             return;
         }

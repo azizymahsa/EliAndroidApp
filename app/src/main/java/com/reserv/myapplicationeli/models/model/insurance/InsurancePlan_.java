@@ -28,7 +28,7 @@ public class InsurancePlan_ {
     private Integer discountPercentage;
     @SerializedName("PassengerKey")
     @Expose
-    private Integer passengerKey;
+    private String passengerKey;
     @SerializedName("Price")
     @Expose
     private Integer price;
@@ -87,11 +87,11 @@ public class InsurancePlan_ {
         this.discountPercentage = discountPercentage;
     }
 
-    public Integer getPassengerKey() {
+    public String getPassengerKey() {
         return passengerKey;
     }
 
-    public void setPassengerKey(Integer passengerKey) {
+    public void setPassengerKey(String passengerKey) {
         this.passengerKey = passengerKey;
     }
 

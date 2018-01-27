@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -32,6 +31,7 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.comment.AddComment;
 import com.reserv.myapplicationeli.base.BaseActivity;
 
+import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequestAdd;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequsetAddComment;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.ReviewComment;
@@ -41,6 +41,7 @@ import com.reserv.myapplicationeli.views.activities.ConditionActivity;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 import com.reserv.myapplicationeli.views.activities.login.LogInActivity;
+import com.reserv.myapplicationeli.views.activities.login.ProfileActivity;
 import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
     RelativeLayout rlUser;
+    TextView txt_name;
     ExpandableWeightLayout expandableLayout;
     ImageView ivUser;
     RelativeLayout rlHedaer;
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private BroadcastReceiver sendStartTimer,sendDetailFinish;
     int TotalTime=2000000;
 
-AddComment addComment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,13 +108,16 @@ AddComment addComment;
         btnContactUs = findViewById(R.id.btnContactUs);
         btn_condition = findViewById(R.id.btn_condition);
         rlUser = findViewById(R.id.rlUser);
+        txt_name = findViewById(R.id.txt_name);
         tvArrow = findViewById(R.id.tvArrow);
         ivUser = findViewById(R.id.ivUser);
         rlHedaer = findViewById(R.id.rlHedaer);
 
         tvTitle.setText(getString(R.string.searchFlight));
 
-
+        if(WebUserTools.getInstance().getUser().getWebUserID()!= -1){
+            txt_name.setText(WebUserTools.getInstance().getUser().getWebUserNameF());
+        }
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
         btnHotel.setOnClickListener(this);
@@ -128,6 +133,7 @@ AddComment addComment;
         rlHedaer.setOnClickListener(this);
         btnFlight.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
+
 
     }
 
@@ -185,7 +191,11 @@ AddComment addComment;
                 startActivity(intent3);
                 break;
             case R.id.ivUser:
-                startActivity(new Intent(this, LogInActivity.class));
+                if(WebUserTools.getInstance().getUser().getWebUserID() == -1){
+                    startActivity(new Intent(this, LogInActivity.class));
+                }else{
+                    startActivity(new Intent(this,ProfileActivity.class));
+                }
 
                 break;
             case R.id.rlUser:
@@ -302,4 +312,5 @@ AddComment addComment;
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(context));
     }
+
 }

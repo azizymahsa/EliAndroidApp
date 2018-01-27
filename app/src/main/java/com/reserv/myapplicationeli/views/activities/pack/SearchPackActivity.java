@@ -31,6 +31,7 @@ import com.reserv.myapplicationeli.models.model.pack.call.PackageRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.filter.AmenityFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.DegreeFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.FilterPackTools;
+import com.reserv.myapplicationeli.models.model.pack.filter.HotelTypeFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PriceFilter;
 import com.reserv.myapplicationeli.models.model.pack.response.PackageListRes;
@@ -66,6 +67,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private ArrayList<PRowXfer> pRowXfers;
     private ArrayList<PriceFilter> priceFilters;
     private ArrayList<PlaceFilter> placeFilters;
+    private ArrayList<HotelTypeFilter> hotelTypeFilters;
     private ArrayList<DegreeFilter> degreeFilters;
     private ArrayList<AmenityFilter> amenityFilters;
     private RelativeLayout rlLoading;
@@ -87,6 +89,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private FancyButton btn_previous_day;
     private RelativeLayout error_layout;
     private TextView txt_error;
+    private FancyButton btnOk;
 
 
     @SuppressLint("NewApi")
@@ -100,7 +103,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
         }
         initViews();
-        initParam();
         service = ServiceGenerator.createService(ClientService.class);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -120,10 +122,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
 
         }
-
-
-        //    InitUi.Toolbar(this, false, R.color.add_room_color, " تور " + cityName + "\n" + date );
-
     }
 
     private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture) {
@@ -149,7 +147,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 if (response == null || response.body() == null) {
                     rcl_package.showText();
                     txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
-                    error_layout.setVisibility( View.VISIBLE  );
+                    error_layout.setVisibility( View.VISIBLE);
                 }
 
 
@@ -157,25 +155,29 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (searchXPackageResult == null) {
                     rcl_package.showText();
-                   txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
-                   error_layout.setVisibility( View.VISIBLE  );
+                    txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                    error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
-                if (searchXPackageResult.getError() != null) {
+                if (!ValidationTools.isEmptyOrNull(searchXPackageResult.getError())) {
                     rcl_package.showText();
-                    needShowAlertDialog(response.body().getSearchXPackageResult().getError().get(0).getDetailedMessage(), true);
+                    txt_error.setText(response.body().getSearchXPackageResult().getError().get(0).getDetailedMessage());
+                    error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
                 if (ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
                     rcl_package.showText();
+                    txt_error.setText("نتیجه ای یافت نشد !");
+                    error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
                 pRowXfers = searchXPackageResult.getPRowXfers();
                 priceFilters = FilterPackTools.getPriceFilters(pRowXfers);
                 placeFilters = FilterPackTools.getPlaceFilters(pRowXfers);
+                hotelTypeFilters = FilterPackTools.getHotelTypeFilters(pRowXfers);
                 degreeFilters = FilterPackTools.getDegreeFilters(pRowXfers);
                 amenityFilters = FilterPackTools.getAmenityFilters(pRowXfers);
                 showList();
@@ -187,15 +189,12 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             public void onFailure(Call<PackageListRes> call, Throwable t) {
                 hideLoading();
                 rcl_package.showText();
-//                needShowAlertDialog("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", true);
                 txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
                 error_layout.setVisibility( View.VISIBLE  );
             }
         });
     }
 
-    private void initParam() {
-    }
 
     private void initViews() {
 
@@ -212,7 +211,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         scroll_availabel_date = findViewById(R.id.scroll_availabel_date);
         error_layout = findViewById(R.id.elNotFound);
         txt_error = findViewById(R.id.tvAlert);
-
+        btnOk = findViewById(R.id.btnOk);
+        error_layout.setVisibility(View.GONE);
 
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
@@ -225,6 +225,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         txt_comin_soon.setVisibility(View.GONE);
         rcl_available_date.setNestedScrollingEnabled(false);
 
+        btnOk.setOnClickListener(this);
         btnBack.setOnClickListener(this);
         llFilter.setOnClickListener(this);
         layout_sort.setOnClickListener(this);
@@ -236,6 +237,9 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btnOk:
+                onBackPressed();
+                break;
             case R.id.btnBack:
                 onBackPressed();
                 break;
@@ -280,17 +284,19 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 filterPackageDialog.setPrices(priceFilters);
                 filterPackageDialog.setDegrees(degreeFilters);
                 filterPackageDialog.setPlaces(placeFilters);
+                filterPackageDialog.setHotelTypess(hotelTypeFilters);
                 filterPackageDialog.setAmenities(amenityFilters);
                 filterPackageDialog.setOnFiltePackageListener(new FilterPackageDialog.OnFiltePackageListener() {
                     @Override
                     public void onConfirm(ArrayList<DegreeFilter> degreeFiltersSelected,
                                           ArrayList<PriceFilter> priceFiltersSelected,
                                           ArrayList<PlaceFilter> placeFiltersSelected,
+                                          ArrayList<HotelTypeFilter> hotelTypeFiltersSelected,
                                           ArrayList<AmenityFilter> amenityFiltersSelected) {
 
 
                         if (pRowXferAdapter != null) {
-                            pRowXferAdapter.filter(degreeFiltersSelected, priceFiltersSelected, placeFiltersSelected, amenityFiltersSelected);
+                            pRowXferAdapter.filter(degreeFiltersSelected, priceFiltersSelected, placeFiltersSelected,hotelTypeFiltersSelected, amenityFiltersSelected);
                         }
                     }
                 });

@@ -9,14 +9,14 @@ public class InsuranceRes {
 
     @SerializedName("ShowInsuranceResult")
     @Expose
-    private ShowInsuranceResult showInsuranceResult;
+    private ShowInsuranceResult ShowInsuranceResult;
 
     public ShowInsuranceResult getShowInsuranceResult() {
-        return showInsuranceResult;
+        return ShowInsuranceResult;
     }
 
     public void setShowInsuranceResult(ShowInsuranceResult showInsuranceResult) {
-        this.showInsuranceResult = showInsuranceResult;
+        this.ShowInsuranceResult = showInsuranceResult;
     }
 
 }

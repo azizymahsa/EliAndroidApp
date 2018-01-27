@@ -115,6 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:gravity="right"
                 >
                 <TextView
                     android:id="@+id/txt_comin_soon"
@@ -130,8 +131,7 @@
 
                 <com.reserv.myapplicationeli.views.components.SimpleRecycleView
                     android:id="@+id/rcl_available_date"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:layout_marginTop="@dimen/_4dp_margin"
                     android:background="@color/gray_light"
@@ -364,6 +364,7 @@
         layout="@layout/error_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbarLayout"
         />
 
 </RelativeLayout>

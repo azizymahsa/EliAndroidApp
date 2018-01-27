@@ -235,7 +235,7 @@ public class WebUser {
     }
 
 
-    private int WebUserID;
+    private int WebUserID = -1;
     public final int getWebUserID()
     {
         return WebUserID;

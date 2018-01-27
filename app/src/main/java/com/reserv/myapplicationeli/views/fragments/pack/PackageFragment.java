@@ -196,8 +196,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
         int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
-        txt_return_date.setText(DateUtil.getShortStringDate(currentDateTime,"yyyy-MM-dd",true));
-        txt_depart_date.setText(DateUtil.getShortStringDate(currentDateTime,"yyyy-MM-dd",true));
+        txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
+        txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
 
 
         datePickerDialogDepart = DatePickerDialog.newInstance(
@@ -405,7 +405,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         String currentDateTime = DateUtil.getDateTime(String.valueOf(milis),"yyyy-MM-dd");
 
         if (view.getTag().equals("DepartureTo")) {
-            txt_return_date.setText(DateUtil.getShortStringDate(currentDateTime,"yyyy-MM-dd",true));
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
             departureTo=currentDateTime;
         }
 
@@ -414,8 +414,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            txt_depart_date.setText(DateUtil.getShortStringDate(currentDateTime,"yyyy-MM-dd",true));
-            txt_return_date.setText(DateUtil.getShortStringDate(currentDateTime,"yyyy-MM-dd",true));
+            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
             departureFrom=currentDateTime;
             PersianCalendar persianCalendarDatePicker = new PersianCalendar();
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);

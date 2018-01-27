@@ -85,6 +85,30 @@
 
 
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+                android:id="@+id/rcl_hotel_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/title_background"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="موقعیت مکان اقامتی"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="14dp" />
+
+
+            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
                 android:id="@+id/rcl_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

@@ -5,14 +5,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+import com.reserv.myapplicationeli.models.model.login.call.ChangePasswordReq;
+import com.reserv.myapplicationeli.tools.WebUserTools;
 
+/**
+ * Created by elham.bonyani on 1/25/2018.
+ */
 
 public class ChangePasswordFragment extends Fragment implements View.OnClickListener {
 
     public ViewGroup view;
+    private EditText changePass_old;
+    private EditText changePass_new;
+    private EditText changePass_new_confirm;
 
     public static ChangePasswordFragment instance() {
         ChangePasswordFragment fragment = new ChangePasswordFragment();
@@ -31,11 +42,52 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
 
     private void initViews() {
 
+        changePass_old = view.findViewById(R.id.changePass_username_current);
+        changePass_new = view.findViewById(R.id.changePass_username_new);
+        changePass_new_confirm = view.findViewById(R.id.changePass_username_new_confirm);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
         }
+    }
+
+    public boolean isValidForm() {
+        // check validation and if all thigs are ok return true else return false;
+        if (changePass_old.length() == 0) {
+            Toast.makeText(getActivity(), "رمز عبور خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (changePass_new_confirm.length() == 0) {
+            Toast.makeText(getActivity(), "تکرار رمز عبور را وارد کنید", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (changePass_new.length() == 0) {
+            Toast.makeText(getActivity(), "پسورد جدید خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+//        if(changePass_new.getText().equals(changePass_new_confirm.getText())){
+//            return true;
+//        }else{
+//            Toast.makeText(getActivity(),"تکرار رمز عبور اشتباه میباشد", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+        return true;
+
+
+    }
+
+
+    public ChangePasswordReq getChangePasswordReq() {
+
+        ChangePasswordReq changePasswordReq = new ChangePasswordReq();
+        changePasswordReq.setCulture(WebUserTools.getInstance().getUser().getCulture());
+        changePasswordReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+        changePasswordReq.setOldPassword(changePass_old.getText().toString());
+        changePasswordReq.setNewPassword(changePass_new.getText().toString());
+        changePasswordReq.setWebUser(WebUserTools.getInstance().getUser());
+
+        return changePasswordReq;
     }
 }

@@ -22,11 +22,9 @@ import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.model.login.WebUserLogin;
 import com.reserv.myapplicationeli.models.model.login.call.LoginListReq;
 import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
-import com.reserv.myapplicationeli.models.model.login.LoginResult;
 import com.reserv.myapplicationeli.models.model.login.response.LoginRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.WebUserTools;
-import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -88,13 +86,18 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                     return;
                 }
 
-                if (response.body().getLoginResult().getWebUserLogin() == null && response.body().getLoginResult().getError()!=null){
+                if (response.body().getLoginResult().getError()!=null){
                     Toast.makeText(LogInActivity.this, response.body().getLoginResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 WebUserLogin webUserLogin = response.body().getLoginResult().getWebUserLogin();
-                if(webUserLogin != null && webUserLogin.getLoginStatus().equals("NO")){
+                if(webUserLogin == null){
+                    Toast.makeText(LogInActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                if(webUserLogin.getLoginStatus().equals("NO")){
                     Toast.makeText(LogInActivity.this, "ایمیل و یا رمز عبور شما اشتباه می باشد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -102,7 +105,6 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
 
                 WebUserTools.getInstance().setUser(webUserLogin.getWebUserProperties());
-
                 Intent intent = new Intent(LogInActivity.this,ProfileActivity.class);
                 startActivity(intent);
 

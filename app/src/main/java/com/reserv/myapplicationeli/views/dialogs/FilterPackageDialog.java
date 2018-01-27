@@ -13,11 +13,13 @@ import android.widget.Button;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.pack.filter.AmenityFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.DegreeFilter;
+import com.reserv.myapplicationeli.models.model.pack.filter.HotelTypeFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PriceFilter;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.views.adapters.pack.filter.AmenityFilterAdapter;
 import com.reserv.myapplicationeli.views.adapters.pack.filter.DegreeFilterAdapter;
+import com.reserv.myapplicationeli.views.adapters.pack.filter.HotelTypeFilterAdapter;
 import com.reserv.myapplicationeli.views.adapters.pack.filter.PlaceFilterAdapter;
 import com.reserv.myapplicationeli.views.adapters.pack.filter.PriceFilterAdapter;
 import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
@@ -39,11 +41,13 @@ public class FilterPackageDialog implements View.OnClickListener {
     private SimpleRecycleView rcl_price;
     private SimpleRecycleView rcl_degree;
     private SimpleRecycleView rcl_amenity;
+    private SimpleRecycleView rcl_hotel_type;
     private OnFiltePackageListener onFiltePackageListener;
     private ArrayList<DegreeFilter> degreeFiltersSelected;
     private ArrayList<PriceFilter> priceFiltersSelected;
     private ArrayList<PlaceFilter> placeFiltersSelected;
     private ArrayList<AmenityFilter> amenityFiltersSelected;
+    private ArrayList<HotelTypeFilter> hotelTypeFiltersSelected;
     private FancyButton btnOk;
     private FancyButton btnDeleteFilter;
 
@@ -52,6 +56,7 @@ public class FilterPackageDialog implements View.OnClickListener {
         void onConfirm(ArrayList<DegreeFilter> degreeFiltersSelected,
                        ArrayList<PriceFilter> priceFiltersSelected,
                        ArrayList<PlaceFilter> placeFiltersSelected,
+                       ArrayList<HotelTypeFilter> hotelTypeFiltersSelected,
                        ArrayList<AmenityFilter> amenityFiltersSelected);
     }
 
@@ -74,6 +79,7 @@ public class FilterPackageDialog implements View.OnClickListener {
         rcl_price = view.findViewById(R.id.rcl_price);
         rcl_place = view.findViewById(R.id.rcl_place);
         rcl_amenity = view.findViewById(R.id.rcl_amenity);
+        rcl_hotel_type = view.findViewById(R.id.rcl_hotel_type);
         btnOk = view.findViewById(R.id.btnOk);
         btnDeleteFilter = view.findViewById(R.id.btnDeletFilter);
 
@@ -81,18 +87,22 @@ public class FilterPackageDialog implements View.OnClickListener {
         rcl_price.setLayoutManager(new LinearLayoutManager(context));
         rcl_place.setLayoutManager(new LinearLayoutManager(context));
         rcl_amenity.setLayoutManager(new LinearLayoutManager(context));
+        rcl_hotel_type.setLayoutManager(new LinearLayoutManager(context));
 
         rcl_place.setNestedScrollingEnabled(false);
         rcl_price.setNestedScrollingEnabled(false);
         rcl_degree.setNestedScrollingEnabled(false);
         rcl_amenity.setNestedScrollingEnabled(false);
+        rcl_hotel_type.setNestedScrollingEnabled(false);
 
         rcl_degree.hideLoading();
+        rcl_hotel_type.hideLoading();
         rcl_price.hideLoading();
         rcl_place.hideLoading();
         rcl_amenity.hideLoading();
 
         rcl_degree.setVisibility(View.GONE);
+        rcl_hotel_type.setVisibility(View.GONE);
         rcl_price.setVisibility(View.GONE);
         rcl_place.setVisibility(View.GONE);
         rcl_amenity.setVisibility(View.GONE);
@@ -148,6 +158,23 @@ public class FilterPackageDialog implements View.OnClickListener {
         rcl_place.showList(placeFilterAdapter);
     }
 
+    public void setHotelTypess(ArrayList<HotelTypeFilter> hotelTypeFilters){
+        if(ValidationTools.isEmptyOrNull(hotelTypeFilters)){
+            rcl_hotel_type.setVisibility(View.GONE);
+            return;
+        }
+
+        rcl_hotel_type.setVisibility(View.VISIBLE);
+
+        HotelTypeFilterAdapter hotelTypeFilterAdapter = new HotelTypeFilterAdapter(context,hotelTypeFilters).setOnHotelTypeFilterListener(new HotelTypeFilterAdapter.OnHotelTypeFilterListener() {
+            @Override
+            public void onChangeFilters(ArrayList<HotelTypeFilter> hotelTypeFiltersSelected) {
+                FilterPackageDialog.this.hotelTypeFiltersSelected = hotelTypeFiltersSelected;
+            }
+        });
+        rcl_hotel_type.showList(hotelTypeFilterAdapter);
+    }
+
     public void setDegrees(ArrayList<DegreeFilter> degreeFilters){
         if(ValidationTools.isEmptyOrNull(degreeFilters)){
             rcl_degree.setVisibility(View.GONE);
@@ -185,12 +212,17 @@ public class FilterPackageDialog implements View.OnClickListener {
     public void setOnFiltePackageListener(OnFiltePackageListener onFiltePackageListener){
         this.onFiltePackageListener = onFiltePackageListener;
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnOk:
                 if(onFiltePackageListener != null){
-                    onFiltePackageListener.onConfirm(degreeFiltersSelected,priceFiltersSelected,placeFiltersSelected,amenityFiltersSelected);
+                    onFiltePackageListener.onConfirm(degreeFiltersSelected,
+                            priceFiltersSelected,
+                            placeFiltersSelected,
+                            hotelTypeFiltersSelected,
+                            amenityFiltersSelected);
                     dismiss();
                 }
                 break;

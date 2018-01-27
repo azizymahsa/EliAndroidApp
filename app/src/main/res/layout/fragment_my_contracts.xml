@@ -298,12 +298,12 @@
                     <TextView
                         android:id="@+id/contract_remained"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="30dp"
-                        android:text="180561"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:textSize="@dimen/_12dp"
-                        android:textColor="@color/dark_blue"/>
+                        android:text="180561"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/_12dp" />
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="0.3"

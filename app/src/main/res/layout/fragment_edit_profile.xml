@@ -119,7 +119,7 @@
                             android:background="@drawable/background_strock_gray"
                             android:textColor="@color/dark_blue"
                             android:gravity="center"
-                            android:imeOptions="actionNext"
+                            android:imeOptions="actionDone"
                             android:singleLine="true"/>
 
 
@@ -330,8 +330,8 @@
                                 android:paddingTop="@dimen/_10dp_padding"
                                 android:paddingBottom="@dimen/_10dp_padding"
                                 android:gravity="center|right"/>
-                            <cn.refactor.library.SmoothCheckBox
-                                android:id="@+id/woman"
+                            <com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox
+                                android:id="@+id/chB_woman"
                                 android:layout_width="18dp"
                                 android:layout_height="18dp"
                                 android:layout_marginTop="5dp"
@@ -349,13 +349,14 @@
                                 android:paddingTop="@dimen/_10dp_padding"
                                 android:paddingBottom="@dimen/_10dp_padding"
                                 android:gravity="center|right"/>
-                            <cn.refactor.library.SmoothCheckBox
-                                android:id="@+id/man"
-                                android:layout_width="18dp"
+
+                            <com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox
+                                android:id="@+id/chB_man"
+                                android:layout_width="17dp"
                                 android:layout_height="18dp"
+                                android:layout_gravity="center"
                                 android:layout_margin="5dp"
-                                app:color_checked="@color/app_base_color"
-                                android:layout_gravity="center"/>
+                                app:color_checked="@color/app_base_color" />
 
                         </LinearLayout>
 
@@ -432,45 +433,26 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            >
-                            <EditText
-                                android:id="@+id/edt_birthday_year"
+                            android:id="@+id/edt_birthday">
+                            <TextView
+                               android:id="@+id/txt_birthday"
                                 android:layout_width="0dp"
-                                android:layout_weight="0.33"
+                                android:layout_weight="1"
                                 android:layout_height="35dp"
-                                android:background="@drawable/background_strock_gray"
                                 android:textColor="@color/dark_blue"
-                                android:gravity="center"
-                                android:imeOptions="actionNext"
+                                android:gravity="right"
                                 android:singleLine="true"
-                                android:layout_marginRight="@dimen/_10dp_marging"
-                                android:hint="سال"
-                                android:textSize="@dimen/_12dp"/>
-                            <EditText
-                                android:id="@+id/edt_birthday_month"
+                                android:textSize="@dimen/_12dp"
+                                android:text="انتخاب کنید" />
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_weight="0.33"
-                                android:layout_height="35dp"
-                                android:background="@drawable/background_strock_gray"
-                                android:textColor="@color/dark_blue"
+                                android:layout_weight="0.2"
+                                android:layout_height="match_parent"
+                                android:textAppearance="@style/IconFonts"
+                                android:text="@string/icon_calander"
                                 android:gravity="center"
-                                android:imeOptions="actionNext"
-                                android:singleLine="true"
-                                android:layout_marginRight="@dimen/_10dp_marging"
-                                android:hint="ماه"
-                                android:textSize="@dimen/_12dp"/>
-                            <EditText
-                                android:id="@+id/edt_birthday_day"
-                                android:layout_width="0dp"
-                                android:layout_weight="0.33"
-                                android:layout_height="35dp"
-                                android:background="@drawable/background_strock_gray"
-                                android:textColor="@color/dark_blue"
-                                android:gravity="center"
-                                android:imeOptions="actionNext"
-                                android:singleLine="true"
-                                android:hint="روز"
-                                android:textSize="12dp"/>
+                                android:textColor="@color/text_color_2"
+                                android:textSize="@dimen/icon_size_25dp" />
 
                         </LinearLayout>
 
@@ -500,7 +482,7 @@
                             android:background="@drawable/background_strock_gray"
                             android:textColor="@color/dark_blue"
                             android:gravity="center"
-                            android:imeOptions="actionNext"
+                            android:imeOptions="actionDone"
                             android:singleLine="true"/>
 
                     </LinearLayout>
