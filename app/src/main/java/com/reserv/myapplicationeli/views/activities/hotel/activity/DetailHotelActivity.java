@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -100,7 +101,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
-
+   // RecyclerView lvComments;
 
     RelativeLayout rlLoading, rlRoot;
     AddComment addComment;
@@ -152,7 +153,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         new GetRoomsAsync().execute();
         // new AddCommentAsync().execute();
 
-        commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
+        commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
                 "سه شنبه 10 بهمن 1396", "مریم"));
         commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
                 "سه شنبه 10 بهمن 1396", "مریم"));
@@ -166,7 +167,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 "سه شنبه 10 بهمن 1396", "مریم"));
         commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
                 "سه شنبه 10 بهمن 1396", "مریم"));
-        commentAdapter = new CommentAdapter(this, commentModels);
+        commentAdapter = new CommentAdapter(this,commentModels);
         lvComments.setAdapter(commentAdapter);
     }
 

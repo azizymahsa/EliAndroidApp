@@ -16,6 +16,7 @@ import com.github.aakira.expandablelayout.Utils;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorAdapter;
 import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorModel;
+import com.reserv.myapplicationeli.tools.Utility;
 
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         holder.tvServiceFa.setText(item.getServiceNameFa());
         holder.tvCityName.setText(item.getCityFa());
         holder.tvTypeService.setText(item.getServiceType());
-        holder.tvPrice.setText(item.getServicePrice());
+        holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice()));
         // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);
         // holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2));

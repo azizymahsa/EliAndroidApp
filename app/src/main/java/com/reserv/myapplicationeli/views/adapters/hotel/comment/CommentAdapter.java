@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.views.adapters.hotel.comment;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelCheckBox;
 import com.reserv.myapplicationeli.views.adapters.hotel.FilterAdapter;
@@ -52,24 +54,36 @@ public class CommentAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.comment_item, null);
             holder = new ViewHolder();
-            holder.tvComment = (TextView) convertView.findViewById(R.id.tvComment);
+         //   holder.tvComment = (TextView) convertView.findViewById(R.id.tvComment);
             holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
             holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
             holder.tvName = (TextView) convertView.findViewById(R.id.tvName);
             holder.tvLike = (TextView) convertView.findViewById(R.id.tvLike);
             holder.tvDislike = (TextView) convertView.findViewById(R.id.tvDislike);
+            holder.expandable_text = (TextView) convertView.findViewById(R.id.expandable_text);
+            holder.expand_text_view = (ExpandableTextView) convertView.findViewById(R.id.expand_text_view);
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.tvComment.setText(commentModels.get(position).getComment());
+        holder.expand_text_view.setText(commentModels.get(position).getComment());
         holder.tvTitle.setText(commentModels.get(position).getTitle());
         holder.tvDate.setText(commentModels.get(position).getDate());
         holder.tvName.setText(commentModels.get(position).getName());
         holder.tvLike.setText(commentModels.get(position).getLike()+"");
         holder.tvDislike.setText(commentModels.get(position).getDisLike()+"");
+        holder.expand_text_view.setOnExpandStateChangeListener(new ExpandableTextView.OnExpandStateChangeListener() {
+            @Override
+            public void onExpandStateChanged(TextView textView, boolean isExpanded) {
+                if(isExpanded){
+holder.expandable_text.setEllipsize(null);
+                }else{
+                    holder.expandable_text.setEllipsize(TextUtils.TruncateAt.END);
+                }
+            }
+        });
 
 
 
@@ -78,6 +92,8 @@ public class CommentAdapter extends BaseAdapter {
 
 
     public class ViewHolder {
-        TextView tvComment,tvTitle,tvDate,tvName,tvLike,tvDislike;
+        TextView tvComment,tvTitle,tvDate,tvName,tvLike,tvDislike,expandable_text;
+        ExpandableTextView expand_text_view;
+
     }
 }

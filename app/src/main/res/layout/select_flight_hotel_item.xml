@@ -165,8 +165,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
+                        android:orientation="horizontal">
 
 
                         <TextView
@@ -176,16 +175,16 @@
                             android:layout_alignParentRight="false"
                             android:gravity="left|center"
                             android:text="1 X STANDARD ROOM"
+                            android:textAppearance="@style/IrsansBold"
                             android:textColor="#253e96"
                             android:textSize="13dp"
-                            android:textAppearance="@style/IrsansBold"
                             android:textStyle="bold"
 
                             />
 
 
-
                     </RelativeLayout>
+
                     <TextView
                         android:id="@+id/board"
                         android:layout_width="wrap_content"
@@ -195,7 +194,8 @@
                         android:gravity="left|center"
                         android:textColor="@color/green"
                         android:textSize="12dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="@dimen/_5dp_margin"
+
 
                         />
 
@@ -203,7 +203,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="5dp">
+                        android:layout_marginBottom="@dimen/_5dp_margin"
+                        android:layout_marginTop="@dimen/_5dp_margin"
+               >
 
                         <TextView
                             android:id="@+id/tvRial"
@@ -211,9 +213,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="left|center"
                             android:text="ریال"
+                            android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/green"
                             android:textSize="14dp"
-                            android:textAppearance="@style/IrsansBold"
 
 
                             />
@@ -223,13 +225,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/tvRial"
                             android:gravity="left|center"
+                            android:textAppearance="@style/IrsansBold"
                             android:textColor="#000000"
                             android:textSize="15dp"
-                            android:textAppearance="@style/IrsansBold"
-                            android:layout_toRightOf="@+id/tvRial"
 
                             />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -260,7 +263,8 @@
 
                     android:layout_marginTop="@dimen/_10dp"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true">
+                    android:layout_centerVertical="true"
+                    android:padding="5dp">
 
 
 

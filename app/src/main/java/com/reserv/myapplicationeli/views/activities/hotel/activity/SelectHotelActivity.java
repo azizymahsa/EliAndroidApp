@@ -1263,9 +1263,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             int p2 = p1 * 100;
                             int p3 = p2 / hotels.Availability.RoomLists.get(i).OldPrice;
                             if (p3 != 0) {
-                                isOff = true;
+                                if (p3 > 0) {
+                                    // negative
+                                    isOff = true;
 
-                                off = p3 + "%\nتخفیف";
+                                    off = p3 + "%\nتخفیف";
+
+                                }
 
                             }
                         }

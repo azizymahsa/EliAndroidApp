@@ -56,6 +56,7 @@ import com.reserv.myapplicationeli.lost.service.ServicePreFactorAdapter;
 import com.reserv.myapplicationeli.lost.service.ServicePreFactorModel;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
@@ -164,6 +165,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         txtMore = (TextView) findViewById(R.id.txtMore);
         txtMore.setOnClickListener(PassengerHotelFlightActivity.this);
+
 
         txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
         tvPrice = (TextView) findViewById(R.id.tvPrice);
