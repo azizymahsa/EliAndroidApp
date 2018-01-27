@@ -603,7 +603,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
             } catch (Exception e) {
-                Toast.makeText(DetailHotelActivity.this, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailHotelActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_SHORT).show();
                 finish();
                 avi1.setVisibility(View.GONE);
                 llLoading.setVisibility(View.GONE);

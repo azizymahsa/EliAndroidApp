@@ -1219,12 +1219,13 @@
                 android:layout_marginTop="1dp"
                 android:background="#ffffff"
                 android:orientation="vertical"
+                android:visibility="gone"
 
-                android:visibility="gone">
+              >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
 
                     >
 
@@ -1236,12 +1237,13 @@
 
                         android:src="@drawable/path2" />
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_margin="4dp"
-                        android:padding="10dp">
+                        android:orientation="horizontal"
+                        >
 
 
                         <TextView
@@ -1251,7 +1253,9 @@
                             android:text="1445151"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#098d4e"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"/>
 
                         <TextView
                             android:id="@+id/textView6"
@@ -1268,8 +1272,11 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:padding="5dp"
-                            android:scaleType="fitXY" />
-                    </LinearLayout>
+                            android:scaleType="fitXY"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"/>
+
+                    </RelativeLayout>
 
 
                 </RelativeLayout>
