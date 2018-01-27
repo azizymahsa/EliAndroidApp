@@ -182,7 +182,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         super.onResume();
         try {
 
-            Log.e("11111", "Value-Hotel-City-Code-HF-Raft");
+            Log.e("11111",   Prefs.getString("Value-Hotel-City-Code-HF-Raft", ""));
             Log.e("322222", Prefs.getString("Value-Hotel-City-Code-HF-Source", ""));
 
             Gson gson;
@@ -199,9 +199,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         } catch (Exception e) {
         }
 
-        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", ""));
+        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
         lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En-HF-Raft", ""));
-        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", ""));
+        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", "تهران"));
         tvMabdaEn.setText(Prefs.getString("Value-Hotel-City-En-HF-Source", ""));
     }
 

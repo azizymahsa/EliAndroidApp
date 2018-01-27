@@ -87,6 +87,9 @@
         <item name="fontPath">fonts/fontello_plane.ttf</item></style>
     <style name="Arrow" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello_up_and_down.ttf</item></style>
+    <style name="fontello_train" parent="android:TextAppearance">
+        <item name="fontPath">fonts/fontello-train.ttf</item></style>
+
 
 
     <style name="IconUser" parent="android:TextAppearance">

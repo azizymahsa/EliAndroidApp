@@ -3,6 +3,7 @@ package com.reserv.myapplicationeli.views.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -169,7 +170,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
 		//ArrayList<SearchParvazActivity.HeaderExpandingPlan> item2 = this.dataExpandingList.get(groupPosition).Header;
-		SearchParvazActivity.HeaderExpandingPlan item2 = this.dataExpandingList.get(groupPosition).Header;
+		final SearchParvazActivity.HeaderExpandingPlan item2 = this.dataExpandingList.get(groupPosition).Header;
 
 
 		if (convertView == null) {
@@ -180,6 +181,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView btnExpand = (TextView) convertView.findViewById(R.id.btnExpand);
 
+		 final TextView txtPin= (TextView) convertView.findViewById(R.id.txtPin);
 
 		TextView txtArrivelFalseLast = (TextView) convertView.findViewById(R.id.txtArrivelFalseLast);
 		TextView txtDepurtureFalseOne = (TextView) convertView.findViewById(R.id.txtDepurtureFalseOne);
@@ -212,6 +214,27 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		RelativeLayout linearBargashtTwo = (RelativeLayout) convertView.findViewById(R.id.linearBargashtTwo);
 		LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
 		//LinearLayout linear_all = (LinearLayout) convertView.findViewById(R.id.linear_all);
+		//final int[] flag = {0};
+		txtPin.setTag(item2.IsPin);
+		txtPin.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v){
+
+				Toast.makeText(v.getContext(), groupPosition+"اتخاب شده!!", Toast.LENGTH_SHORT).show();
+			//	flag[0] =1;
+				if(item2.IsPin){
+					item2.setPin(false);
+					txtPin.setTextColor(Color.parseColor("#aaaaaa"));
+				}else{
+					item2.setPin(true);
+					txtPin.setTextColor(Color.parseColor("#9966ff"));
+				}
+				notifyDataSetChanged();
+
+			}
+		});
+
 
 
         if (isExpanded){
@@ -223,7 +246,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
 		///
-		if(item2.SegmentFalseCount <1 || item2.SegmentFalseCount ==1){//yek tarafe
+		System.out.println("item2.SegmentFalseCount:"+item2.SegmentFalseCount);
+		if(item2.SegmentFalseCount <1 || item2.SegmentFalseCount ==0){//yek tarafe
 			linearBargashtOne.setVisibility(View.GONE);
 			linearBargashtTwo.setVisibility(View.GONE);
 

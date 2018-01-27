@@ -431,10 +431,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tvTrain"
+                android:gravity="center"
+                android:text="(به زودی) "
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/red"
+                android:textSize="12dp" />
+            <TextView
+                android:id="@+id/tvTrain"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv11"
                 android:gravity="center"
-                android:text="قطار خارجی (به زودی) "
+                android:text="قطار خارجی "
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="12dp" />
@@ -446,8 +457,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
-                android:text="@string/aboutus"
-                android:textAppearance="@style/IconMenu"
+                android:text="@string/train"
+                android:textAppearance="@style/fontello_train"
                 android:textColor="@color/text_color_2e"
                 android:textSize="30dp" />
 

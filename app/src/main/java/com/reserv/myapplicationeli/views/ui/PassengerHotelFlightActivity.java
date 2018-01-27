@@ -63,6 +63,7 @@ import com.reserv.myapplicationeli.views.adapters.GetHotelKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatHotelFlightAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -284,8 +285,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         btn_pardakht_factor.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(paymentUrl));
-                startActivity(browserIntent);
+                Utility.openUrlCustomTab(PassengerHotelFlightActivity.this, paymentUrl);
+
             }
         });
 
@@ -526,7 +527,9 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 }
 
             } catch (JSONException e) {
-                Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
             }
 
 
@@ -732,7 +735,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     Toast.makeText(PassengerHotelFlightActivity.this, message, Toast.LENGTH_LONG).show();
                 }
 
-                if (successResult > 1) {
+                if (successResult > 1){
                     txt_shomare_factor.setText(GetAirportsResult.getString("SuccessResult"));
                     tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
 
@@ -746,7 +749,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 // Setup and Handover data to recyclerview
                 ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-                txtTitle.setText("تایید و پرداخت پیش فاکتور ");
+                 txtTitle.setText("تایید و پرداخت پیش فاکتور ");
                 //myScrollView.setOnTouchListener(null);
 
                 linear_saler.setVisibility(View.GONE);
@@ -757,7 +760,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 new AsyncFetchGetPreFactorDetails().execute();
 
             } catch (JSONException e) {
-                Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
             }
 
 
@@ -959,7 +963,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 listKhadamat.setAdapter(mAdapter);
 
             } catch (JSONException e) {
-                Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
             }
 
         }//end on pos excute
@@ -1737,8 +1742,16 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
     public static void updateTotalInfos(long serviceTotalPrice) {
         // TODO Auto-generated method stub
-        GET_PRICE_KHADAMAT = GET_PRICE_KHADAMAT + serviceTotalPrice;
-        txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)) + "");
+        //GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+serviceTotalPrice;
+        //txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT))+"");
+        txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(serviceTotalPrice))+"");
+		/*for (int i =0 ;i<data.size();i++){
+			if(data.get(i).isFlag()){
+				GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+data.get(i).getServiceTotalPrice();
+			}
+
+		}
+		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT))+"");*/
     }
 
     private class GenericTextWatcher implements TextWatcher {

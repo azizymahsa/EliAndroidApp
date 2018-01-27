@@ -595,7 +595,7 @@
                         android:layout_weight="1.5"
                         android:gravity="right"
                         android:layout_gravity="center|center_vertical"
-                        android:text=" اطلاعات مسافربزرگسال 1" />
+                        android:text=" اطلاعات مسافر بزرگسال 1" />
 
                     <TextView
                         android:id="@+id/imgCount"
@@ -609,7 +609,7 @@
                         android:gravity="center"
                         android:text=" 1 "
                         android:textColor="#fff"
-                        android:textSize="8dp" />
+                        android:textSize="12dp" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -1692,8 +1692,16 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
     public static void updateTotalInfos(long serviceTotalPrice) {
         // TODO Auto-generated method stub
-        GET_PRICE_KHADAMAT = GET_PRICE_KHADAMAT + serviceTotalPrice;
-        txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)) + "");
+        //GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+serviceTotalPrice;
+        //txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT))+"");
+        txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(serviceTotalPrice))+"");
+		/*for (int i =0 ;i<data.size();i++){
+			if(data.get(i).isFlag()){
+				GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+data.get(i).getServiceTotalPrice();
+			}
+
+		}
+		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT))+"");*/
     }
 
     private class GenericTextWatcher implements TextWatcher {

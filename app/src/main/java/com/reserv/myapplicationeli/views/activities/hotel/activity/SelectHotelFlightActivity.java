@@ -1201,7 +1201,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         protected String doInBackground(String... params) {
             try {
                 hotelFlightSearch = new HotelFlightSearch(new HotelAvailRequestModel(new Request("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", ""), "", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", Prefs.getString("Value-Hotel-City-Code-HF-Source", ""))));
+                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), "", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"))));
 
 
                 Gson gson = new Gson();
@@ -1320,7 +1320,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
                     }
-                    tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", ""));
+                    tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
                     tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
                     adapter.notifyDataSetChanged();
 
