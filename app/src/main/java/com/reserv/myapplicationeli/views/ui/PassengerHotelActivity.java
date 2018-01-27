@@ -60,6 +60,7 @@ import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.views.adapters.GetHotelKhadmatAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -417,7 +418,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
 
-/*         if (!ErrorInApi(jsonObj)){*/
+
     Log.e("jsonObj", jsonObj.toString());
 
     // Getting JSON Array node
@@ -512,13 +513,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
 
                 for (int i = 0; i < jArray5.length(); i++) {
-                    /////////////////////////////////////////////
-
-
-
-
-
-
 
                     ////////////////////////
                     flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
@@ -541,8 +535,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
             } catch (JSONException e) {
-                Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-
+                //Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelActivity.this);
+                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
 
             }
 
@@ -706,7 +701,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
             } catch (JSONException e) {
-                Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelActivity.this);
+                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
             }
 
 
@@ -907,7 +903,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 listKhadamat.setAdapter(mAdapter);
 
             } catch (JSONException e) {
-                Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelActivity.this);
+                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
             }
 
         }//end on pos excute

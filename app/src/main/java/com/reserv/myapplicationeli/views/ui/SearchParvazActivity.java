@@ -182,6 +182,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		txtRuzeBad = (TextView) findViewById(R.id.txtRuzeBad);
 		txtRuzeBad.setOnClickListener(this);
 
+
+
 		btn_no_Result = (Button) findViewById(R.id.btn_no_Result);
 		btn_no_Result.setOnClickListener(this);
 
@@ -1657,7 +1659,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0")//SegmentListFalseAvali.get(0).getFltDateDayOfWeek()
 						,SegmentListFalseAkhari.size()
 						,SegmentListtrueAvali.get(0).getFlightNumber()
-						,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"));//ArrivalCityNameEnR baraye sort bayad en bashe
+						,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"),false);//ArrivalCityNameEnR baraye sort bayad en bashe
 
 
 						//parentItem.Header.add(header);
@@ -1719,7 +1721,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0")
 								,SegmentListFalseAkhari.size()
 								,SegmentListtrueAvali.get(0).getFlightNumber()
-								, (String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"));//ArrivalCityNameEnR baraye sort bayad en bashe
+								, (String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"),false);//ArrivalCityNameEnR baraye sort bayad en bashe
 
 
 						//parentItem.Header.add(header);
@@ -2097,6 +2099,15 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		public String FlightNumberB;
 		public String FlightNumberR;
 
+		public boolean isPin() {
+			return IsPin;
+		}
+
+		public void setPin(boolean pin) {
+			IsPin = pin;
+		}
+
+		public boolean IsPin;
 		public HeaderExpandingPlan(String ArrivalCityNameFaR, String FlightArrivalTimeR,
 								   String DepartureCityNameFaR, String FlightTimeR,
 
@@ -2106,7 +2117,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				, String flGUID, String AirlineNameFa
 				, String AirlineCode
 				, String CabinClassNameFa, int RemainSeats, boolean IsCharter, String AirlineNameEa, int SegmentTrueCount,String FltDateDayOfWeekTrue,String FltDateDayOfWeekFalse,int SegmentFalseCount,String FlightNumberR
-				,String FlightNumberB) {
+				,String FlightNumberB
+		,boolean IsPin) {
 			this.ArrivalCityNameFaR = ArrivalCityNameFaR;
 			this.FlightArrivalTimeR = FlightArrivalTimeR;
 
@@ -2137,6 +2149,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			this.SegmentFalseCount=SegmentFalseCount;
 			this.FlightNumberR=FlightNumberR;
 			this.FlightNumberB=FlightNumberB;
+			this. IsPin= IsPin;
 		}
 
 		public HeaderExpandingPlan() {
@@ -2224,6 +2237,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		Fragment fragment2;
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
+
 			case R.id.txtBack:
 				/*Intent intent = new Intent(this,PlanFragment.class);
 				//i2.putExtra("CUSTOMER_ID", (int) customerID);

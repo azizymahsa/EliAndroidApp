@@ -380,25 +380,38 @@
                 <!-- ///////////////////////////////////////////////////// -->
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
                 android:layout_marginLeft="9dp"
                 android:layout_marginRight="5dp"
-                android:gravity="center">
+
+                >
+
+                <TextView
+                    android:id="@+id/txtPin"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center"
+                    android:text="@string/icon_pin"
+                    android:textAppearance="@style/IconFonts"
+
+                    android:textColor="#aaaaaa"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
                 <ImageView
                     android:id="@+id/lblProductrow"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
-                    android:layout_marginBottom="8dp"
 
-                    android:layout_marginTop="2dp"
+
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY" />
-            </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
         <!-- ////////////////////////////front bottom///////////////////////////////////// -->
 
