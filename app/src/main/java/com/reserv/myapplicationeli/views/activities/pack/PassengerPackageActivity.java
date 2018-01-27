@@ -13,6 +13,9 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,6 +36,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -41,15 +45,27 @@ import com.google.zxing.common.BitMatrix;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.lost.flight.FlightPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.flight.FlightPreFactorModel;
+import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorModel;
+import com.reserv.myapplicationeli.lost.passenger.PassangerPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.passenger.PassengerPreFactorModel;
+import com.reserv.myapplicationeli.lost.service.ServicePreFactorAdapter;
+import com.reserv.myapplicationeli.lost.service.ServicePreFactorModel;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
+import com.reserv.myapplicationeli.views.adapters.GetHotelKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.CountrycodeActivity;
 import com.reserv.myapplicationeli.views.ui.NationalitycodeActivity;
+import com.reserv.myapplicationeli.views.activities.pack.PassengerPackageActivity;
+import com.reserv.myapplicationeli.views.ui.PassengerHotelActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 import org.apache.http.HttpResponse;
@@ -88,8 +104,9 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 	Handler handler;
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
+	public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
+
 	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
-	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
 	public Button btnAddsabad,btn_pardakht_factor;
 	public EditText txtnamem,txtfamilym;
 	public static TextView txttavalodm;
@@ -100,37 +117,47 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 	public LinearLayout btn_taeed_khadamat,btn_nextm,linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo;
 	private Handler progressBarHandler = new Handler();
 	public ListView list_airport;
-	public NonScrollListView listKhadamat;
+	public ListView listKhadamat;
 	ArrayList<HashMap<String,String>> mylist=null;
 	public static String searchText = "";
 	//public static long GET_PRICE_KHADAMAT;
 	public static long GET_PRICE_KHADAMAT;
 
-	GetKhadmatAdapter mAdapter;
 	ScrollView myScrollView;
-	private EditText searchtxt;
-	public TextView txt_shomare_factor,tvPrice,tvfactorNumber;
 
-	public ImageView txt_hom;
+	ExpandableRelativeLayout expandableLayout;
+
+
+	public TextView imgCount;
+	String paymentUrl;
+
+
+	public List<PurchaseFlightResult> data;
+
+
+
+	GetHotelKhadmatAdapter mAdapter;
+	//ScrollView myScrollView;
+	private EditText searchtxt;
+	public TextView txt_shomare_factor, tvPrice;
+	public ImageView txt_hom, textView4;
 
 	private String Gensiyat;
 	Activity activity;
-	public int countB=SearchParvazActivity.COUNT_B;
-	public int countK=SearchParvazActivity.COUNT_K;
-	public int countN=SearchParvazActivity.COUNT_N;
-	public int sum=countB+countK+countN;
-
-	public List<PurchaseFlightResult> data;
-	int counter=2;
-	private ImageView textView4;
-
+	public int countB;
+	public int countK;
+	public int countN;
+	//public int sum=countB+countK+countN;
+	public int sum;
+	int counter = 2;
+	//int count;
+	//change for Prefactor=========================================================================
+	LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight;
 	@SuppressLint("WrongViewCast")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_passenger_pack);
-
-		 data=new ArrayList<PurchaseFlightResult>();
+		setContentView(R.layout.activity_passenger);
 		btnBack = (FancyButton) findViewById(R.id.btnBack);
 		btnBack.setCustomTextFont("fonts/icomoon.ttf");
 		btnBack.setText(getString(R.string.search_back_right));
@@ -138,15 +165,16 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 		btnBack.setOnClickListener(this);
 
 		txt_hom = (ImageView) findViewById(R.id.txt_hom);
+		textView4 = (ImageView) findViewById(R.id.textView4);
+		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
+		expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
 		txt_hom.setOnClickListener(this);
 
 		txtMore = (TextView) findViewById(R.id.txtMore);
 		txtMore.setOnClickListener(this);
 
-		tvPrice= (TextView) findViewById(R.id.tvPrice);
-		tvPrice.setOnClickListener(this);
-
 		txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
+		tvPrice = (TextView) findViewById(R.id.tvPrice);
 		txtSumKhadamat.setOnClickListener(this);
 		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
 
@@ -155,45 +183,42 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 		txtnamem = (EditText) findViewById(R.id.txtnamem);
 		txtnamem.setOnClickListener(this);
 		txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
+		imgCount = (TextView) findViewById(R.id.imgCount);
+		imgCount.setOnClickListener(this);
 
 		txtfamilym = (EditText) findViewById(R.id.txtfamilym);
+		//lvFactor = (ExpandableLayoutListView) findViewById(R.id.lvFactor);
 		txtfamilym.setOnClickListener(this);
 		txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
 		txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
 		txtnumber_passport.setOnClickListener(this);
-		txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
 		txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
 		txtexp_passport.setOnClickListener(this);
 
-		txtTitle= (TextView) findViewById(R.id.tvTitle);
+		txtTitle = (TextView) findViewById(R.id.tvTitle);
 		txtTitle.setOnClickListener(this);
 		txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
 		txtTitleCountM.setOnClickListener(this);
 
-		btn_next_partnerInfo=(LinearLayout) findViewById(R.id.btn_next_partnerInfo);
+		btn_next_partnerInfo = (LinearLayout) findViewById(R.id.btn_next_partnerInfo);
 		btn_next_partnerInfo.setOnClickListener(this);
 
-		btn_nextm=(LinearLayout)findViewById(R.id.btn_nextm);
+		btn_nextm = (LinearLayout) findViewById(R.id.btn_nextm);
 		btn_nextm.setOnClickListener(this);
 
-		btn_taeed_khadamat=(LinearLayout)findViewById(R.id.btn_taeed_khadamat);
+		btn_taeed_khadamat = (LinearLayout) findViewById(R.id.btn_taeed_khadamat);
 		btn_taeed_khadamat.setOnClickListener(this);
 
-		btn_pardakht_factor=(Button)findViewById(R.id.btn_pardakht_factor);
+		btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);
 		btn_pardakht_factor.setOnClickListener(this);
+            /* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
+             btnAddsabad.setOnClickListener(this);*/
 
-		textView4 = (ImageView) findViewById(R.id.textView4);
-
-		textView4 = (ImageView) findViewById(R.id.textView4);
-		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
-			/* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
-			 btnAddsabad.setOnClickListener(this);*/
-
-		btn_saler= (ImageView) findViewById(R.id.btn_saler);
-		btn_mosaferan=(ImageView)findViewById(R.id.btn_mosaferan);
-//		btn_khadamat=(ImageView)findViewById(R.id.btn_khadamat);
-		btn_pish_factor=(ImageView)findViewById(R.id.btn_pish_factor);
+		btn_saler = (ImageView) findViewById(R.id.btn_saler);
+		btn_mosaferan = (ImageView) findViewById(R.id.btn_mosaferan);
+//		btn_khadamat = (ImageView) findViewById(R.id.btn_khadamat);
+		btn_pish_factor = (ImageView) findViewById(R.id.btn_pish_factor);
 
 		btn_saler.setOnClickListener(this);
 		btn_mosaferan.setOnClickListener(this);
@@ -202,37 +227,40 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 		linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
 		linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
-		linear_pish_factor= (LinearLayout) findViewById(R.id.linear_pish_factor);
-		linearMahaleeghamat= (LinearLayout) findViewById(R.id.linearMahaleeghamat);
-		linearMeliyat= (LinearLayout) findViewById(R.id.linearMeliyat);
+		linear_pish_factor = (LinearLayout) findViewById(R.id.linear_pish_factor);
+		linearMahaleeghamat = (LinearLayout) findViewById(R.id.linearMahaleeghamat);
+		linearMeliyat = (LinearLayout) findViewById(R.id.linearMeliyat);
 
-		txtnameP= (EditText)findViewById(R.id.txtnameP);
+		txtnameP = (EditText) findViewById(R.id.txtnameP);
 		//	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
 		txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
 
-		txtfamilyP= (EditText)findViewById(R.id.txtfamilyP);
+		txtfamilyP = (EditText) findViewById(R.id.txtfamilyP);
 		//	txtfamilyP.setHint("لطفا نام خانوادگی را فارسی وارد کنید");
 		txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
-		txtmobileP= (EditText)findViewById(R.id.txtmobileP);
+		txtmobileP = (EditText) findViewById(R.id.txtmobileP);
 		txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
-		txtkodemeliP= (EditText)findViewById(R.id.txtkodemeliP);
+		txtkodemeliP = (EditText) findViewById(R.id.txtkodemeliP);
 		txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
-		txtemeliP= (EditText)findViewById(R.id.txtemeliP);
+		txtemeliP = (EditText) findViewById(R.id.txtemeliP);
 		txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
 
-		txtmeliyatm= (TextView)findViewById(R.id.txtmeliyatm);
+		txtmeliyatm = (TextView) findViewById(R.id.txtmeliyatm);
 		txtmeliyatm.setOnClickListener(this);
-		txtmahale_eghamat= (TextView)findViewById(R.id.txtmahale_eghamat);
+		txtmahale_eghamat = (TextView) findViewById(R.id.txtmahale_eghamat);
 		txtmahale_eghamat.setOnClickListener(this);
 
-		txt_shomare_factor= (TextView)findViewById(R.id.txt_shomare_factor);
+		txt_shomare_factor = (TextView) findViewById(R.id.txt_shomare_factor);
 		txt_shomare_factor.setOnClickListener(this);
 
 		linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
 
-		listKhadamat = (NonScrollListView)findViewById(R.id.listKhadamat);
-		myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
-
+		listKhadamat = (ListView) findViewById(R.id.listKhadamat);
+		llDetailHotel = (LinearLayout) findViewById(R.id.llDetailHotel);
+		llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
+		llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
+		llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
+		// myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
 
 
 		//////////////////////////
@@ -246,15 +274,15 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 		// Spinner Drop down elements
 		List<String> categories = new ArrayList<String>();
+		categories.add("لطفا جنسیت را انتخاب کنید");
 		categories.add("مرد");
 		categories.add("زن");
-
 
 
 		// Creating adapter for spinner
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
-		// Drop down dialog_custom style - list view with radio button
+		// Drop down layout style - list view with radio button
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		// attaching data adapter to spinner
@@ -263,8 +291,21 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 		////////////////////////////////
 
 
-
 		// new AsyncFetch().execute();
+		sum = Prefs.getInt("SumPass", 0);
+		btn_pardakht_factor.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				Utility.openUrlCustomTab(PassengerPackageActivity.this, paymentUrl);
+/*
+                String url = "http://foyr.com";
+                Intent launchGoogleChrome = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                launchGoogleChrome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                launchGoogleChrome.setPackage("com.android.chrome");
+                launchGoogleChrome.putExtra("com.android.chrome.EXTRA_OPEN_NEW_INCOGNITO_TAB", true);*/
+			}
+		});
 
 	}//end oncreate
 	//AsyncFetchGetPreFactorDetails
@@ -333,7 +374,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				}
 
 
-				String data =OrderToJsonGetPreFactorDetails();
+				String data = OrderToJsonGetPreFactorDetails();
 
 
 				HttpClient client = new DefaultHttpClient();
@@ -386,26 +427,139 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(resultPishfactor);
 
+/*         if (!ErrorInApi(jsonObj)){*/
+				Log.e("jsonObj", jsonObj.toString());
+
 				// Getting JSON Array node
 				JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
+
+
 				JSONObject jArray = GetAirportsResult.getJSONObject("PreFactor");//FactorSummary
+
+
+				//FactorSummary
 				JSONObject jFact = jArray.getJSONObject("FactorSummary");
 
-				int RqBase_ID=jFact.getInt("RqBase_ID");
-				//////////////////////////////
-				long totalprice=jFact.getLong("TotalPrice");
-				tvPrice.setText(" "+String.valueOf(NumberFormat.getInstance().format(totalprice))+" ریال ");
 
+				int RqBase_ID = jFact.getInt("RqBase_ID");
+				//////////////////////////////
+				long totalprice = jFact.getLong("TotalPrice");
+				paymentUrl = jFact.getString("OnlinePaymentURL");
+
+
+				tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+
+//for hotel==========================================================================================
+				final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
+				recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+				recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+				ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
+
+				JSONArray jArray2 = jArray.getJSONArray("PreFactorHotels");
+
+
+				for (int i = 0; i < jArray2.length(); i++) {
+					hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"),
+							Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekin"))
+							, Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekout")),
+							jArray2.getJSONObject(i).getString("AdlCount"),
+							jArray2.getJSONObject(i).getString("ChdCount"), jArray2.getJSONObject(i).getString("RoomTitleFa")));
+
+				}
+				if (!hotelPreFactorModels.isEmpty()) {
+					recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
+					llDetailHotel.setVisibility(View.VISIBLE);
+				}
+
+
+//for passenger======================================================================================
+
+
+				final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+				recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+				recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+				ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
+
+				JSONArray jArray3 = jArray.getJSONArray("RequestPassenger");
+
+
+				for (int i = 0; i < jArray3.length(); i++) {
+					passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"), jArray3.getJSONObject(i).getString("Nationality"),
+							jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"), jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
+							jArray3.getJSONObject(i).getString("RqPassenger_name")));
+
+				}
+				if (!passengerPreFactorModels.isEmpty()) {
+					llDetailPassanger.setVisibility(View.VISIBLE);
+					recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
+
+				}
+
+
+				//for Services=============================================================================
+				final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
+				recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+				recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+				ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
+				JSONArray jArray4 = jArray.getJSONArray("PreFactorServices");
+
+				for (int i = 0; i < jArray4.length(); i++) {
+					servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
+							jArray4.getJSONObject(i).getString("ServicePrice"), jArray4.getJSONObject(i).getString("ServiceType"),
+							jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa")));
+
+				}
+				if (!servicePreFactorModels.isEmpty()) {
+					llDetailService.setVisibility(View.VISIBLE);
+					recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
+
+				}
+				//for flight==================================================================================
+				final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+				recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+				recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+				ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
+				JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
+
+				for (int i = 0; i < jArray5.length(); i++) {
+					/////////////////////////////////////////////
+
+
+					////////////////////////
+					flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
+							jArray5.getJSONObject(i).getString("DepAirPortFa"),
+							jArray5.getJSONObject(i).getString("ArrAirPortFa"),
+							Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
+							jArray5.getJSONObject(i).getString("FltTime"),
+							//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+							jArray5.getJSONObject(i).getString("FltCheckinTime"),
+
+							jArray5.getJSONObject(i).getString("FltNumber"),
+							jArray5.getJSONObject(i).getString("AirlineNameFa"),
+							jArray5.getJSONObject(i).getString("DepartureCityFa")));
+				}
+				if (!flightPreFactorModels.isEmpty()) {
+					llDetailFlight.setVisibility(View.VISIBLE);
+					recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
+
+				}
 
 
 			} catch (JSONException e) {
-				Toast.makeText(PassengerPackageActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+				Toast.makeText(PassengerPackageActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+
+
 			}
 
 
 		}//end on pos excute
 
-	}
+
+
+
+
+		}//end on pos excute
+
 	//end AsyncFetchGetPreFactorDetails
 	//AsyncFetchPishFactor
 	private class AsyncFetchPishFactor extends AsyncTask<String, String, String> {
@@ -716,19 +870,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				linear_mosaferan.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.GONE);
 				linear_list_khadamat.setVisibility(View.VISIBLE);
-					/*myScrollView.setSmoothScrollingEnabled(false);
-				myScrollView.setOnTouchListener(new View.OnTouchListener() {
-					@Override
-					public boolean onTouch(View v, MotionEvent event) {
-						return true;
-					}
-				});*/
 
-//				((ImageView) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-				/*((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-				txtTitle.setText(" افزودن خدمات به سبد خرید");
-*/
-				mAdapter = new GetKhadmatAdapter(PassengerPackageActivity.this, data, PassengerPackageActivity.this);
+				mAdapter = new GetHotelKhadmatAdapter(PassengerPackageActivity.this, data, PassengerPackageActivity.this);
 				//mAdapter.setAdapter(mAdapter);
 				mAdapter.setData(data);
 				listKhadamat.setAdapter(mAdapter);
@@ -773,7 +916,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 					cursorM.moveToPosition(i);
 
 					detailsJson = new JSONObject();
-					detailsJson.put("Gender",cursorM.getString(PassengerMosaferItems_Table.Columns.Gender.value()));
+					detailsJson.put("Gender",cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
 					detailsJson.put("Nationality", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 					detailsJson.put("Nationality_ID",cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 					detailsJson.put("Nationality_ID",cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
@@ -811,7 +954,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 			detailsPartner.put("RqPartner_Address", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
 			detailsPartner.put("RqPartner_Email", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
 			detailsPartner.put("RqPartner_FirstNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
-			detailsPartner.put("RqPartner_Gender", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
+			detailsPartner.put("RqPartner_Gender", cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
 			detailsPartner.put("RqPartner_LastNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
 			detailsPartner.put("RqPartner_Mobile", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
 			detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
@@ -820,6 +963,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 			headerJson.put("PartnerList", detailsPartner);
 
 			headerJson.put("Culture", "fa-IR");
+			headerJson.put("Type", "P");
+
 			headerJson.put("PackRow_ID",Prefs.getString("PackRow_ID","12"));
 			headerJson.put("PackXfer_IDs",Prefs.getString("PackXfer_IDs","12"));
 			headerJson.put("Flt_IDs",Prefs.getString("Flt_IDs","12"));
@@ -861,7 +1006,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 		try {
 			manJson.put("Culture", "fa-IR");
 
-			manJson.put("invoiceNo", "782863");//perches service
+			manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
+			manJson.put("Type", "P");
 
 
 			identityJson.put("Password", "123qwe!@#QWE");
@@ -896,6 +1042,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 		try {
 			manJson.put("Culture", "fa-IR");
+
 
 			manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
 			manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));

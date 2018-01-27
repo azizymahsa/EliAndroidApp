@@ -69,7 +69,7 @@
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
-            android:src="@drawable/factor_passenger_off"
+            android:src="@drawable/khadamat_passenger_off"
             android:gravity="right|center_vertical"
             android:text=""
             android:textColor="#808080"
@@ -83,7 +83,8 @@
             android:gravity="right|center_vertical"
             android:text="  "
             android:textColor="#808080"
-            android:textSize="10dp" />
+            android:textSize="10dp"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/btn_mosaferan"
@@ -136,7 +137,8 @@
             android:gravity="left|center_vertical"
             android:text=" خدمات "
             android:textColor="#aaaaaa"
-            android:textSize="10dp" />
+            android:textSize="10dp"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/txtMasaferan"

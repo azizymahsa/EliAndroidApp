@@ -381,7 +381,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClickPackageBookingItem(PRowXfer pack) {
-        Intent intent = new Intent(this, PassengerPackageActivityT.class);
+        Intent intent = new Intent(this, PassengerPackageActivity.class);
         Prefs.putString("Rooms", roomList);
         Prefs.putString("PackRow_ID", pRowXfers.get(0).getPackRowID().toString());
         Prefs.putString("PackXfer_IDs", pRowXfers.get(0).getXFerIDs());
