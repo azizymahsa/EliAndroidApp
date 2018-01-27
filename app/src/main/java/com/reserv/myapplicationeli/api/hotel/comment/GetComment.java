@@ -7,6 +7,7 @@ import com.reserv.myapplicationeli.base.BaseAPI;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequsetAddComment;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.response.AddCommentsResult;
 import com.reserv.myapplicationeli.models.hotel.api.getComment.call.GetCommentRequest;
+import com.reserv.myapplicationeli.models.hotel.api.getComment.response.GetCommentResponse;
 import com.reserv.myapplicationeli.models.hotel.api.getComment.response.GetHotelReviewResult;
 
 import retrofit2.Call;
@@ -19,13 +20,13 @@ import retrofit2.http.POST;
 
 public class GetComment extends BaseAPI { private final String TAG = "__" + this.getClass().getSimpleName().toUpperCase().toString();
     public final static String ACTION_NAME = "Hotel/HotelService.svc/GetHotelReview";
-    public GetHotelReviewResult getHotelReviewResult;
+    public GetCommentResponse getHotelReviewResult;
     GetCommentRequest getCommentRequest;
 
     public interface GetR {
         @RawRes
         @POST(GetComment.ACTION_NAME)
-        Call<GetHotelReviewResult> get_comment(
+        Call<GetCommentResponse> get_comment(
                 @Body GetCommentRequest getCommentRequest
         );
     }
@@ -44,7 +45,7 @@ public class GetComment extends BaseAPI { private final String TAG = "__" + this
     protected void execute() {
 
         GetR getR = retrofit.create(GetR.class);
-        Call<GetHotelReviewResult> call = getR.get_comment(getCommentRequest);
+        Call<GetCommentResponse> call = getR.get_comment(getCommentRequest);
         try {
             getHotelReviewResult = call.execute().body();
 

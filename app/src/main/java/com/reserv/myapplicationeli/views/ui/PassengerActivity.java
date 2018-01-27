@@ -695,7 +695,7 @@ System.out.println("json detail mossfaer:"+jArray3);
 
 					tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
 
-					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 500, 200));
+					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 300, 150));
 				}else{
 					//txt_shomare_factor.setText("خطایی رخ داده است !");
 					//new AlertDialog(PassengerActivity.this, "خطایی رخ داده است !");
@@ -1949,7 +1949,7 @@ System.out.println("gender:"+Gender);
 	 * http://code.google.com/p/zxing/source/browse/trunk/android/src/com/google/zxing/client/android/encode/QRCodeEncoder.java
 	 */
 
-	private static final int WHITE = 0xFFFFFFFF;
+	private static final int WHITE = 15132390;
 	private static final int BLACK = 0xFF000000;
 
 	private static Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException

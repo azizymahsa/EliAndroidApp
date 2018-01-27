@@ -155,9 +155,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         //flights
 
         new GetRoomsAsync().execute();
-     // new GetCommentAsync().execute();
+     new GetCommentAsync().execute();
 
-        commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
+      /*  commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
                 "سه شنبه 10 بهمن 1396", "مریم"));
         commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
                 "سه شنبه 10 بهمن 1396", "مریم"));
@@ -172,7 +172,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
                 "سه شنبه 10 بهمن 1396", "مریم"));
         commentAdapter = new CommentAdapter(this,commentModels);
-        lvComments.setAdapter(commentAdapter);
+        lvComments.setAdapter(commentAdapter);*/
     }
 
     @Override
@@ -683,8 +683,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected String doInBackground(String... params) {
             try {
-                GetCommentRequest getCommentRequest=       new GetCommentRequest();
-                getCommentRequest.setRequest(new Request());
+                GetCommentRequest getCommentRequest=   new GetCommentRequest();
+                Request request= new Request();
+                request.setCulture("HotelId");
+                request.setEHotelId("767");
+                getCommentRequest.setRequest(request);
+                Log.e("testtt",new Gson().toJson(getCommentRequest).toString() );
                 getComment= new GetComment(getCommentRequest);
 
             } catch (Exception e) {
@@ -700,19 +704,28 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
             try {
 
+                for(int i= 0;i<getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length;i++){
+                    commentModels.add(new CommentModel(1, 5, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Title, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Content,
+                            getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitDate, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitNickName));
 
 
+                }
+
+                commentAdapter = new CommentAdapter(DetailHotelActivity.this,commentModels);
+                lvComments.setAdapter(commentAdapter);
+
+            //    Toast.makeText(DetailHotelActivity.this, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[0].SubmitNickName, Toast.LENGTH_SHORT).show();
                 //  setListViewHeightBasedOnChildren(lvRooms);
             } catch (Exception e) {
-                avi1.setVisibility(View.GONE);
+               /* avi1.setVisibility(View.GONE);
                 llLoading.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlertError.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
-            }
+            }*/
 
 
-        }
+            }}}
 
-    }
+
 
 }

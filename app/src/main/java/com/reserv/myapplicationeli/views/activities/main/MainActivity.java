@@ -114,10 +114,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rlHedaer = findViewById(R.id.rlHedaer);
 
         tvTitle.setText(getString(R.string.searchFlight));
+try {
+    if(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()!= -1){
+        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+ " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
 
-        if(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()!= -1){
-            txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+ " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
-        }
+
+    }
+}catch (Exception e){
+
+
+}
+
+
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
         btnHotel.setOnClickListener(this);

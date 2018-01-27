@@ -5,21 +5,9 @@ package com.reserv.myapplicationeli.models.hotel.api.getComment.response;
  */
 
 public class GetCommentResponse {
-    private GetHotelReviewResult GetHotelReviewResult;
+    public final GetHotelReviewResult GetHotelReviewResult;
 
-    public GetHotelReviewResult getGetHotelReviewResult ()
-    {
-        return GetHotelReviewResult;
-    }
-
-    public void setGetHotelReviewResult (GetHotelReviewResult GetHotelReviewResult)
-    {
-        this.GetHotelReviewResult = GetHotelReviewResult;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [GetHotelReviewResult = "+GetHotelReviewResult+"]";
+    public GetCommentResponse(com.reserv.myapplicationeli.models.hotel.api.getComment.response.GetHotelReviewResult getHotelReviewResult) {
+        GetHotelReviewResult = getHotelReviewResult;
     }
 }
