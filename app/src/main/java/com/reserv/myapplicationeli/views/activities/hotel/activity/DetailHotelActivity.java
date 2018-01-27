@@ -51,6 +51,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.GetHotelDetail;
 import com.reserv.myapplicationeli.api.hotel.comment.AddComment;
+import com.reserv.myapplicationeli.api.hotel.comment.GetComment;
 import com.reserv.myapplicationeli.api.hotel.getHotelRoom.GetHoldRoom;
 import com.reserv.myapplicationeli.api.hotel.room.GetRoomsList;
 import com.reserv.myapplicationeli.base.BaseActivity;
@@ -62,6 +63,8 @@ import com.reserv.myapplicationeli.models.hotel.api.detail.ImageHotel;
 import com.reserv.myapplicationeli.models.hotel.api.detail.call.GetHotelDRequest;
 import com.reserv.myapplicationeli.models.hotel.api.detail.call.GetHotelDetailRequest;
 import com.reserv.myapplicationeli.models.hotel.api.detail.call.HotelProprties;
+import com.reserv.myapplicationeli.models.hotel.api.getComment.call.GetCommentRequest;
+import com.reserv.myapplicationeli.models.hotel.api.getComment.call.Request;
 import com.reserv.myapplicationeli.models.hotel.api.holdSelectedRoom.call.HoldSelectedRoomRequest;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.GetRoomsHotelRequest;
@@ -134,6 +137,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     boolean isNew = false;
     ScrollView svDetail;
     RelativeLayout elNotFound;
+    GetComment getComment;
 
 
 
@@ -151,7 +155,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         //flights
 
         new GetRoomsAsync().execute();
-        // new AddCommentAsync().execute();
+     // new GetCommentAsync().execute();
 
         commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
                 "سه شنبه 10 بهمن 1396", "مریم"));
@@ -655,6 +659,57 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 tvAlert.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
 
             }
+
+        }
+
+    }
+
+
+
+
+
+    private class GetCommentAsync extends AsyncTask<String, Void, String> {
+
+        protected void onPreExecute() {
+
+            window.setStatusBarColor(getColor(R.color.blue2));
+            ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
+            Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
+            Log.e("test2", getIntent().getExtras().getString("ResultUniqID"));
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                GetCommentRequest getCommentRequest=       new GetCommentRequest();
+                getCommentRequest.setRequest(new Request());
+                getComment= new GetComment(getCommentRequest);
+
+            } catch (Exception e) {
+
+            }
+            return "Executed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //  new InitUi().Loading(rlLoading,rlRoot,false);
+
+
+            try {
+
+
+
+                //  setListViewHeightBasedOnChildren(lvRooms);
+            } catch (Exception e) {
+                avi1.setVisibility(View.GONE);
+                llLoading.setVisibility(View.GONE);
+                elNotFound.setVisibility(View.VISIBLE);
+                tvAlertError.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+            }
+
 
         }
 
