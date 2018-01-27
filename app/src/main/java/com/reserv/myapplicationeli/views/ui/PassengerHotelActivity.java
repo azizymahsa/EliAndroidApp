@@ -849,7 +849,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightHotelResult");//Error
 
 				 /* JSONObject GetError = jsonObj.getJSONObject("Error");
-				  Toast.makeText(PassengerHotelActivity.this,  Get, Toast.LENGTH_LONG).show();*/
+				  Toast.makeText(PassengerPackageActivityT.this,  Get, Toast.LENGTH_LONG).show();*/
 
                 JSONArray jArray = GetAirportsResult.getJSONArray("Services");
                 JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");

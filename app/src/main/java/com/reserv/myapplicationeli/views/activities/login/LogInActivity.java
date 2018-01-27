@@ -104,9 +104,11 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
 
 
-                WebUserTools.getInstance().setUser(webUserLogin.getWebUserProperties());
+                WebUserTools.getInstance().setUser(webUserLogin);
+                Log.e("contract" , response.body().getLoginResult().getWebUserLogin().getPreviousContracts().get(0).getPathNames() +"");
                 Intent intent = new Intent(LogInActivity.this,ProfileActivity.class);
                 startActivity(intent);
+                finish();
 
 
             }

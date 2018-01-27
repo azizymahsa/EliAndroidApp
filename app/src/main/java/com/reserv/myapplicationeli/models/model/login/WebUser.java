@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.models.model.login;
 
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+import com.reserv.myapplicationeli.tools.ValidationTools;
 
 /**
  * Created by elham.bonyani on 1/20/2018.
@@ -172,6 +173,9 @@ public class WebUser {
     private String WebUserBirthDayMiladi;
     public final String getWebUserBirthDayMiladi()
     {
+        if(!ValidationTools.isEmptyOrNull(WebUserBirthDayMiladi)){
+            WebUserBirthDayMiladi = WebUserBirthDayMiladi.split(" ")[0];
+        }
         return WebUserBirthDayMiladi;
     }
     public final void setWebUserBirthDayMiladi(String value)

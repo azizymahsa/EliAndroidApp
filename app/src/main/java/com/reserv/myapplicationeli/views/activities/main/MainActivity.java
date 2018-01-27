@@ -115,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         tvTitle.setText(getString(R.string.searchFlight));
 
-        if(WebUserTools.getInstance().getUser().getWebUserID()!= -1){
-            txt_name.setText(WebUserTools.getInstance().getUser().getWebUserNameF());
+        if(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()!= -1){
+            txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+ " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
         }
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent3);
                 break;
             case R.id.ivUser:
-                if(WebUserTools.getInstance().getUser().getWebUserID() == -1){
+                if(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() == -1){
                     startActivity(new Intent(this, LogInActivity.class));
                 }else{
                     startActivity(new Intent(this,ProfileActivity.class));
