@@ -1,10 +1,14 @@
 package com.reserv.myapplicationeli.views.ui;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Color;
 import android.icu.util.GregorianCalendar;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,15 +31,21 @@ import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.lost.flight.FlightPreFactorAdapter;
+import com.reserv.myapplicationeli.lost.flight.FlightPreFactorModel;
 import com.reserv.myapplicationeli.models.Country;
 import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
 import com.reserv.myapplicationeli.models.model.ModelCheckBox;
+import com.reserv.myapplicationeli.models.model.PinModelDetail;
+import com.reserv.myapplicationeli.models.model.PinModelHeader;
 import com.reserv.myapplicationeli.models.model.SearchParvazModelExp;
 import com.reserv.myapplicationeli.models.model.SolarCalendar;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.datetools.JalaliCalendar;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.adapters.ExpandableListAdapter;
+import com.reserv.myapplicationeli.views.adapters.SearchParvazPinAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.Flight;
 import com.reserv.myapplicationeli.views.ui.OBGParvaz.FlightSegment;
@@ -71,6 +81,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -146,7 +157,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	public String Adate;
 	public TextView txtDateOnvan;
 	public LinearLayout linear_expand ;
-
+	public  SearchParvazPinAdapter searchParvazPinAdapter;
+	public static RecyclerView recyclerViewFlight;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -229,7 +241,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		expandingListData();
 
 
-		listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList);
+		listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
 
 		// setting list adapter
 		expListViewExpanding.setAdapter(listAdapterExpanding);
@@ -288,9 +300,69 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			}
 		});
 
+///////////////////Pin
 
+		//for flight==================================================================================
+		  recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+		recyclerViewFlight.addItemDecoration(new DividerItemDecoration(SearchParvazActivity.this, 1));
+		recyclerViewFlight.setLayoutManager(new LinearLayoutManager(SearchParvazActivity.this));
+		ArrayList<PinModelDetail> pinModelDetails = new ArrayList<>();
+		ArrayList<PinModelHeader> pinModelHeaders = new ArrayList<>();
+		//JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
+
+		/*for (int i = 0; i < jArray5.length(); i++) {
+
+			pinModelDetails.add(new PinModelDetail(jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepAirPortFa"),
+					jArray5.getJSONObject(i).getString("ArrAirPortFa"),
+					Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
+					jArray5.getJSONObject(i).getString("FltTime"),
+					//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+					jArray5.getJSONObject(i).getString("FltCheckinTime"),
+
+					jArray5.getJSONObject(i).getString("FltNumber"),
+					jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepartureCityFa")));
+
+		}*/
+		if (!pinModelDetails.isEmpty()) {
+			recyclerViewFlight.setVisibility(View.VISIBLE);
+			recyclerViewFlight.setAdapter(new SearchParvazPinAdapter(pinModelDetails,pinModelHeaders));
+
+		}
+		////////EndPin
 	}//end oncreat======================================================================================
+	public static void updateAdapterPin( List<PinModelDetail> pinModelDetails,List<PinModelHeader> pinModelHeaders,Context activity) {
+		// TODO Auto-generated method stub
+		// recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+		recyclerViewFlight.addItemDecoration(new DividerItemDecoration(activity, 1));
+		recyclerViewFlight.setLayoutManager(new LinearLayoutManager(activity));
+		//ArrayList<PinModelDetail> pinModelDetails = new ArrayList<>();
+		//ArrayList<PinModelHeader> pinModelHeaders = new ArrayList<>();
+		//JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
 
+		/*for (int i = 0; i < jArray5.length(); i++) {
+
+			pinModelDetails.add(new PinModelDetail(jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepAirPortFa"),
+					jArray5.getJSONObject(i).getString("ArrAirPortFa"),
+					Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
+					jArray5.getJSONObject(i).getString("FltTime"),
+					//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+					jArray5.getJSONObject(i).getString("FltCheckinTime"),
+
+					jArray5.getJSONObject(i).getString("FltNumber"),
+					jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepartureCityFa")));
+
+		}*/
+		if (!pinModelDetails.isEmpty()) {
+			recyclerViewFlight.setVisibility(View.VISIBLE);
+			recyclerViewFlight.setAdapter(new SearchParvazPinAdapter(pinModelDetails,pinModelHeaders));
+
+		}
+
+	}
 	@Override
 	public void onReturnValueFlightNew(ArrayList<FilterModelّFlight> type, ArrayList<ModelCheckBox> arrayTrue) {
 
@@ -781,7 +853,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 			if(filterModel.isRemove()){
 
-				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList);
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
 				expListViewExpanding.setAdapter(listAdapterExpanding);
 				iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
 				txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
@@ -800,11 +872,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
 			txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
 			Toast.makeText(SearchParvazActivity.this, "هیچ موردی یافت نشد!!", Toast.LENGTH_LONG).show();
-			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList);
+			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
 			expListViewExpanding.setAdapter(listAdapterExpanding);
 		} else {
 
-			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingListFilter);
+			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingListFilter,searchParvazPinAdapter);
 			expListViewExpanding.setAdapter(listAdapterExpanding);
 			iconFilter.setTextColor(Color.RED);
 			txtFilter.setTextColor(Color.RED);
@@ -830,7 +902,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 					}
 				});
 				//////////////////////////////////////
-				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList);
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
 
 
 				// setting list adapter
@@ -848,7 +920,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 					}
 				});
 				//////////////////////////////////////
-				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList);
+				listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
 
 
 				// setting list adapter
@@ -1290,7 +1362,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			expandingListData();
 
 
-			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList);
+			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
 
 			runOnUiThread(new Runnable() {
 				@Override

@@ -30,7 +30,7 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
     Context activity;
-    FancyButton btnOk, btnCancel;
+    FancyButton btnOk, btnCancel,btnDeletFilter;
     SmoothCheckBox noStop, oneStop,twoStopMore,economiF, businessF, ferstF;
     TextView txtTavaghof;
     // FilterFlightDialogListenerNew filterFlightDialogListenerNew;
@@ -65,6 +65,11 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
+        btnDeletFilter = (FancyButton) dialogView.findViewById(R.id.btnDeletFilter);
+        btnOk.setCustomTextFont("fonts/irsans.ttf");
+        btnDeletFilter.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setOnClickListener(this);
+        btnDeletFilter.setOnClickListener(this);
 
         noStop = (SmoothCheckBox) dialogView.findViewById(R.id.noStop);
         oneStop = (SmoothCheckBox) dialogView.findViewById(R.id.oneStop);
@@ -123,8 +128,7 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
             }
         });
 
-        btnOk.setCustomTextFont("irsans.ttf");
-        btnOk.setOnClickListener(this);
+
         dialog = builder.create();
         dialog.setCancelable(true);
 
@@ -285,7 +289,31 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
         switch (checkBox.getId()) {
 
 
+            case R.id.btnDeletFilter:
+                if (filter.isEmpty()) {
+                    filter.add(new FilterModelّFlight(false,false,false,true,false,false,false));
+                } else {
+                    noStop.setChecked(false);
+                    oneStop.setChecked(false);
+                    twoStopMore.setChecked(false);
+                    ferstF.setChecked(false);
+                    businessF.setChecked(false);
+                    economiF.setChecked(false);
+                    //star1.setChecked(false);
+                    for (int i =0;i<modelCheckBoxes.size();i++){
 
+                        modelCheckBoxes.set(i,new ModelCheckBox(modelCheckBoxes.get(i).getName(),false));
+
+                    }
+                    adapter.notifyDataSetChanged();
+
+                    filter.set(0, new FilterModelّFlight(false,false,false,true,false,false,false));
+                }
+                filterFlightDialogListenerArray.onReturnValueFlightNew(filter,modelCheckBoxes);
+
+
+                dialog.cancel();
+                break;
             case R.id.Remove:
                 if (isChecked) {
 

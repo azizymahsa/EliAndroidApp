@@ -69,7 +69,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
             }
 
             @Override
-            public void onPreClose() {
+            public void onPreClose(){
                 createRotateAnimator(holder.tvArrow, 180f, 0f).start();
                 expandState.put(position, false);
             }
