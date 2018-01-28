@@ -25,6 +25,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.view.View;
@@ -472,7 +473,7 @@ public class Utility extends Activity {
 	}
 
 	public static void openUrlCustomTab(Activity context, String url) {
-		/*Uri uri = Uri.parse(url);
+		Uri uri = Uri.parse(url);
 
 // create an intent builder
 		CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
@@ -490,7 +491,7 @@ public class Utility extends Activity {
 		CustomTabsIntent customTabsIntent = intentBuilder.build();
 
 // launch the url
-		customTabsIntent.launchUrl(context, uri);*/
+		customTabsIntent.launchUrl(context, uri);
 
 	}
 

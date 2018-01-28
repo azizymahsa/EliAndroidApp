@@ -25,6 +25,7 @@ import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
 import com.reserv.myapplicationeli.models.model.login.response.LoginRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.WebUserTools;
+import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -105,6 +106,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
 
                 WebUserTools.getInstance().setUser(webUserLogin);
+                MainActivity.setUserName(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
                 Log.e("contract" , response.body().getLoginResult().getWebUserLogin().getPreviousContracts().get(0).getCntID() +"");
                 Intent intent = new Intent(LogInActivity.this,ProfileActivity.class);
                 startActivity(intent);
@@ -147,6 +149,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
             case R.id.btn_register :
                 Intent intent = new Intent(this,RegisterLoginActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.layout_reset_password :
                 Intent _intent = new Intent(this,ResetPasswordActivity.class);

@@ -47,7 +47,7 @@
         android:layout_marginTop="10dp"
         >
         <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btnOk"
+            android:id="@+id/btnExitLogout"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="40dp"
@@ -63,7 +63,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
         <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btnExit"
+            android:id="@+id/btnOkLogout"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="40dp"

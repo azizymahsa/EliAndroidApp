@@ -121,28 +121,29 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         int currentYear = DateUtil.getYear(currentDateTime, "dd/MM/yyyy", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "dd/MM/yyyy", true) - 1;
 
-
         if(ValidationTools.isEmptyOrNull(birthdayDate)){
             txt_birthday.setText("انتخاب کنید");
-
+            datePickerDialogDepart = DatePickerDialog.newInstance(
+                    this,
+                    currentYear - 66,
+                    0,
+                    1
+            );
         }else{
             txt_birthday.setText(DateUtil.getLongStringDate(birthdayDate, "dd/MM/yyyy", true));
+            int day = DateUtil.getDayOfMonth(birthdayDate, "dd/MM/yyyy", true);
+            int year = DateUtil.getYear(birthdayDate, "dd/MM/yyyy", true);
+            int month = DateUtil.getMonth(birthdayDate, "dd/MM/yyyy", true) - 1;
+            datePickerDialogDepart = DatePickerDialog.newInstance(
+                    this,
+                    year,
+                    month,
+                    day
+            );
         }
 
 
-      datePickerDialogDepart = DatePickerDialog.newInstance(
-                EditProfileFragment.this,
-                currentYear,
-                currentMonth,
-                currentDay
-        );
-        PersianCalendar persianCalendarDatePicker = new PersianCalendar();
-        persianCalendarDatePicker.setPersianDate(currentYear, currentMonth, currentDay);
-
-        datePickerDialogDepart.setMinDate(persianCalendarDatePicker);
-
-
-
+        datePickerDialogDepart.setYearRange(1330, currentYear);
 
 
         txt_arrow1.setText(getString(R.string.icon_arrow_up));

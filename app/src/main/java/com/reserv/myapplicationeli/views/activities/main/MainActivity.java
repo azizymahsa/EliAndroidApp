@@ -43,6 +43,7 @@ import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 import com.reserv.myapplicationeli.views.activities.login.LogInActivity;
 import com.reserv.myapplicationeli.views.activities.login.ProfileActivity;
+import com.reserv.myapplicationeli.views.dialogs.LogOutAlert;
 import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
@@ -51,7 +52,6 @@ import com.reserv.myapplicationeli.views.fragments.pack.PackageFragment;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
-import com.reserv.myapplicationeli.views.ui.dialog.app.LogOutAlert;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -65,14 +65,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
     RelativeLayout rlUser;
-    TextView txt_name;
+    private  static  TextView txt_name;
     ExpandableWeightLayout expandableLayout;
     ImageView ivUser;
     RelativeLayout rlHedaer;
     CountDownTimer countDownTimer;
     private BroadcastReceiver sendFinish;
-    private BroadcastReceiver sendStartTimer,sendDetailFinish;
-    int TotalTime=2000000;
+    private BroadcastReceiver sendStartTimer, sendDetailFinish;
+    int TotalTime = 2000000;
     Button btnExit;
 
 
@@ -118,18 +118,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnExit = findViewById(R.id.btnExit);
 
         tvTitle.setText(getString(R.string.searchFlight));
-try {
-    if(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()!= -1){
-        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+ " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+        try {
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
+                txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+            } else {
+                txt_name.setText("ورود به حساب کاربری");
+                btnExit.setVisibility(View.GONE);
 
-
-    }else{
-
-        txt_name.setText("ورود به حساب کاربری");
-        btnExit.setVisibility(View.GONE);
-
-    }
-}catch (Exception e){
+            }
+        } catch (Exception e) {
+            txt_name.setText("ورود به حساب کاربری");
+            btnExit.setVisibility(View.GONE);
 
 
 }
@@ -155,6 +154,11 @@ try {
 
     }
 
+    public static void setUserName(String name){
+        if(txt_name != null){
+            txt_name.setText(name);
+        }
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -209,11 +213,21 @@ try {
                 startActivity(intent3);
                 break;
             case R.id.ivUser:
-                if(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() == -1){
+
+
+                try {
+                    if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() == -1) {
+                        startActivity(new Intent(this, LogInActivity.class));
+                    } else {
+                        startActivity(new Intent(this, ProfileActivity.class));
+                    }
+                }catch (Exception e){
                     startActivity(new Intent(this, LogInActivity.class));
-                }else{
-                    startActivity(new Intent(this,ProfileActivity.class));
+
+
+
                 }
+
 
                 break;
             case R.id.rlUser:
@@ -329,6 +343,7 @@ try {
                 new IntentFilter("sendDetailFinish"));
 
     }
+
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(context));

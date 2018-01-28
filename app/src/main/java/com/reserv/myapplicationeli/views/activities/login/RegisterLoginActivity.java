@@ -23,6 +23,7 @@ import com.reserv.myapplicationeli.models.model.login.call.RegisterRequestModel;
 import com.reserv.myapplicationeli.models.model.login.response.WebUserRegisterRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.WebUserTools;
+import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import retrofit2.Call;
@@ -98,6 +99,8 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                 }
 
                 WebUserTools.getInstance().setUser(webUserLogin);
+                MainActivity.setUserName(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+
                 Intent intent = new Intent(RegisterLoginActivity.this,SuccessResetPassActivity.class);
                 startActivity(intent);
                 finish();

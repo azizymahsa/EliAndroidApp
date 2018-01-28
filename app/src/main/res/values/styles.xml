@@ -90,6 +90,9 @@
     <style name="fontello_train" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-train.ttf</item></style>
 
+    <style name="fontello_plan" parent="android:TextAppearance">
+        <item name="fontPath">fonts/fontello-plan.ttf</item></style>
+
 
 
     <style name="IconUser" parent="android:TextAppearance">
