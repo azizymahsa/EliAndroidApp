@@ -98,13 +98,13 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
-    private TextView tvTitle,tvAlertComment;
+    private TextView tvTitle, tvAlertComment;
     com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView lvRooms, lvComments;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
-   // RecyclerView lvComments;
+    // RecyclerView lvComments;
 
     RelativeLayout rlLoading, rlRoot;
     AddComment addComment;
@@ -112,7 +112,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     RoomsAdapter roomsAdapter;
     GetRoomsList getRoomsList;
     Window window;
-    LinearLayout llEmakanatClick, llMapClick, llRezervClick, llCommentClick,llCommentContent;
+    LinearLayout llEmakanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent;
     FrameLayout flMap;
     View vEmakanat, vMap, vRezerv, vComment;
     private GoogleMap map;
@@ -122,11 +122,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     String eHotelId;
     String offerIds;
     GetHotelDetail getHotelDetail;
-    TextView tvHotelName, tvCityName, tvAdress, tvAlert,tvAlertError;
+    TextView tvHotelName, tvCityName, tvAdress, tvAlert, tvAlertError;
     ImageView ivImage;
     LinearLayout llDynamic, llLoading, llComment;
-    AVLoadingIndicatorView avi1,aviComment;
-    FancyButton btnSendComment, btnSortComment,btnOk;
+    AVLoadingIndicatorView avi1, aviComment;
+    FancyButton btnSendComment, btnSortComment, btnOk;
 
     ImageView ivLoading;
     EditText etComment;
@@ -138,8 +138,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     ScrollView svDetail;
     RelativeLayout elNotFound;
     GetComment getComment;
-    boolean isComment=true;
-
+    boolean isComment = true;
 
 
     @Override
@@ -304,7 +303,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 vMap.setVisibility(View.INVISIBLE);
                 vRezerv.setVisibility(View.INVISIBLE);
                 vComment.setVisibility(View.VISIBLE);
-                if (isComment){
+                if (isComment) {
                     new GetCommentAsync().execute();
 
                 }
@@ -429,12 +428,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
             try {
 
-                if (getRoomsList.getRoomsListResponse.GetRoomsListResult.errors!=null){
+                if (getRoomsList.getRoomsListResponse.GetRoomsListResult.errors != null) {
                     elNotFound.setVisibility(View.VISIBLE);
 
                     tvAlertError.setText(getRoomsList.getRoomsListResponse.GetRoomsListResult.errors.get(0).getMessage());
 
-                }else{
+                } else {
 
                     int i = 0;
                     for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {
@@ -448,6 +447,14 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     new GetHoldDetailAsync().execute();
 
                 }
+                try {
+                    if (getIntent().getExtras().getString("Pakage").equals("Pakage")) {
+                        lvRooms.setVisibility(View.GONE);
+
+                    }
+                } catch (Exception e) {
+                }
+
 
                 //  setListViewHeightBasedOnChildren(lvRooms);
             } catch (Exception e) {
@@ -674,9 +681,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-
-
-
     private class GetCommentAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
@@ -692,13 +696,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected String doInBackground(String... params) {
             try {
-                GetCommentRequest getCommentRequest=   new GetCommentRequest();
-                Request request= new Request();
+                GetCommentRequest getCommentRequest = new GetCommentRequest();
+                Request request = new Request();
                 request.setCulture("fa-IR");
                 request.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
                 getCommentRequest.setRequest(request);
-                Log.e("testtt",new Gson().toJson(getCommentRequest).toString() );
-                getComment= new GetComment(getCommentRequest);
+                Log.e("testtt", new Gson().toJson(getCommentRequest).toString());
+                getComment = new GetComment(getCommentRequest);
 
             } catch (Exception e) {
 
@@ -711,28 +715,28 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             //  new InitUi().Loading(rlLoading,rlRoot,false);
             llCommentContent.setVisibility(View.VISIBLE);
             aviComment.setVisibility(View.GONE);
-            isComment=false;
+            isComment = false;
 
 
             try {
 
-                for(int i= 0;i<getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length;i++){
+                for (int i = 0; i < getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length; i++) {
                     commentModels.add(new CommentModel(1, 5, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Title, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Content,
                             getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitDate, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitNickName));
 
 
                 }
 
-                commentAdapter = new CommentAdapter(DetailHotelActivity.this,commentModels);
+                commentAdapter = new CommentAdapter(DetailHotelActivity.this, commentModels);
                 lvComments.setAdapter(commentAdapter);
-                if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews==null||getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length==0){
+                if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {
 
 
                     tvAlertComment.setVisibility(View.VISIBLE);
                     llCommentContent.setVisibility(View.GONE);
                 }
 
-            //    Toast.makeText(DetailHotelActivity.this, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[0].SubmitNickName, Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(DetailHotelActivity.this, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[0].SubmitNickName, Toast.LENGTH_SHORT).show();
                 //  setListViewHeightBasedOnChildren(lvRooms);
             } catch (Exception e) {
                /* avi1.setVisibility(View.GONE);
@@ -742,8 +746,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             }*/
 
 
-            }}}
-
+            }
+        }
+    }
 
 
 }

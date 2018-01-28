@@ -105,6 +105,7 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
                 i.putExtra("ResultUniqID", String.valueOf(item.getPackRowID()));
                 i.putExtra("CheckIn", item.getCheckIn());
                 i.putExtra("CheckOut", item.getCheckOut());
+                i.putExtra("Type", "Pakage");
                 i.putExtra("type", 2);
                 context.startActivity(i);
             }

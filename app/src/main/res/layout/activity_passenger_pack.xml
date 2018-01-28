@@ -57,30 +57,40 @@
         android:layout_width="match_parent"
         android:layout_height="28dp"
         android:layout_marginTop="5dp"
-        android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="horizontal"
         android:weightSum="4"
         android:background="#ffffff"
-        android:layout_below="@+id/toolbar_container">
+        android:layout_below="@+id/toolbar_container"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/btn_pish_factor"
-            android:layout_width="94dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
-            android:background="@drawable/khadamat_passenger_off"
+            android:src="@drawable/khadamat_passenger_off"
             android:gravity="right|center_vertical"
             android:text=""
             android:textColor="#808080"
             android:textSize="10dp" />
 
-
+        <ImageView
+            android:id="@+id/btn_khadamat"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/khadamat_passenger_off"
+            android:gravity="right|center_vertical"
+            android:text="  "
+            android:textColor="#808080"
+            android:textSize="10dp"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/btn_mosaferan"
-            android:layout_width="94dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/mosaferan_passenger_off"
+            android:src="@drawable/mosaferan_passenger_off"
             android:gravity="right|center_vertical"
             android:text="  "
             android:textColor="#808080"
@@ -91,7 +101,7 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:background="@drawable/saler_passenger"
+            android:src="@drawable/saler_passenger"
             android:gravity="right|center_vertical"
             android:text=""
             android:textColor="#33ccff"
@@ -105,12 +115,12 @@
         android:background="#fff"
         android:orientation="horizontal"
         android:weightSum="4"
-        android:layout_below="@+id/llLayout"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_below="@+id/llLayout">
 
         <Button
             android:id="@+id/txtPishfactor"
-            android:layout_width="105dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:background="@drawable/transparentt"
@@ -119,10 +129,20 @@
             android:textColor="#aaaaaa"
             android:textSize="10dp" />
 
+        <Button
+            android:id="@+id/txtKhadamat"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparentt"
+            android:gravity="left|center_vertical"
+            android:text=" خدمات "
+            android:textColor="#aaaaaa"
+            android:textSize="10dp"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/txtMasaferan"
-            android:layout_width="105dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:background="@drawable/transparentt"
             android:gravity="left|center_vertical"
@@ -141,1184 +161,1430 @@
             android:textColor="#000000"
             android:textSize="10dp" />
     </LinearLayout>
-    <ScrollView
-        android:layout_below="@+id/textLayout"
-        android:id="@+id/layout_scroll"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
-        <!-- <ScrollView
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"> -->
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:layout_below="@+id/textLayout">
+
+
+        <!-- <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="40dp"
+             android:layout_margin="1dp"
+             android:layout_weight="1.57"
+             android:background="@drawable/top_box_passenger"
+             android:orientation="vertical" >
+             &lt;!&ndash; android:background="@drawable/top_box_passenger"&ndash;&gt;
+
+         </LinearLayout>-->
+        <!-- /////////////linear kharidar//////////// -->
 
         <LinearLayout
+            android:id="@+id/linear_saler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ffffff"
-            android:orientation="vertical" >
+            android:layout_margin="1dp"
+            android:orientation="vertical"
+            android:visibility="visible" >
 
-
-            <!-- <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="40dp"
-                 android:layout_margin="1dp"
-                 android:layout_weight="1.57"
-                 android:background="@drawable/top_box_passenger"
-                 android:orientation="vertical" >
-                 &lt;!&ndash; android:background="@drawable/top_box_passenger"&ndash;&gt;
-
-             </LinearLayout>-->
-            <!-- /////////////linear kharidar//////////// -->
-
-            <LinearLayout
-                android:id="@+id/linear_saler"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:orientation="vertical"
-                android:visibility="visible" >
-
-                <!-- ///////////////////////// -->
-
+                android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/txtjensiat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="جنسیت"
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <Spinner
-                        android:id="@+id/spinner1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="0.05"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lblname"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="نام"
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/txtnameP"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:paddingRight="10dp"
-                        android:hint="لطفا فارسی وارد کنید  "
-                        android:textColorHint="#aaaaaa"
-                        android:paddingTop="5dp"
-                        android:text=""
-                        android:maxLength="20"
-                        android:textSize="@dimen/_14dp"
-                        android:singleLine="true"
-                        />
-                </LinearLayout>
-
-                <!-- family name -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:orientation="vertical" >
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
+                        android:layout_height="58dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical" >
 
-                        <TextView
-                            android:layout_width="257dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="15dp">
 
-                        <TextView
-                            android:id="@+id/lblfamily"
-                            android:layout_width="wrap_content"
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/txtjensiat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:text="جنسیت"
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <Spinner
+                            android:id="@+id/spinner1"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="نام خانوادگی"
-                            android:textColor="#808080" />
+                            />
                     </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/txtfamilyP"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:paddingTop="5dp"
-                        android:paddingRight="10dp"
-                        android:text=""
-                        android:textSize="@dimen/_14dp"
-                        android:maxLength="20"
-                        android:singleLine="true"
-                        android:hint="لطفا فارسی وارد کنید  "
-                        android:textColorHint="#aaaaaa" />
-                </LinearLayout>
-                <!-- mobile -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lblmobile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="موبایل "
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/txtmobileP"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:inputType="number"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_14dp"
-                        android:text="" />
-                </LinearLayout>
-                <!-- code meli -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lblkodemeli"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="کدملی "
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/txtkodemeliP"
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:inputType="number"
-                        android:paddingRight="10dp"
-                        android:singleLine="true"
-                        android:paddingTop="5dp"
-                        android:textSize="@dimen/_14dp"
-                        android:text="" />
-                </LinearLayout>
-                <!-- emeli -->
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="0.05"
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="1dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/lblemeli"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="ایمیل "
-                            android:textColor="#808080" />
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="نام"
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/txtnameP"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:paddingRight="10dp"
+                            android:hint="لطفا فارسی وارد کنید  "
+                            android:textColorHint="#aaaaaa"
+                            android:paddingTop="5dp"
+                            android:text=""
+                            android:maxLength="20"
+                            android:textSize="@dimen/_14dp"
+                            android:singleLine="true"
+                            />
                     </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/txtemeliP"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:inputType="textEmailAddress"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_14dp"
-                        android:text="" />
-                </LinearLayout>
-
-                <!--<Button
-                    android:id="@+id/btn_next_partnerInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/btngravity_big"
-                    android:text="تایید و گام بعدی"
-                    android:textColor="#FFFFFF"
-                    android:drawableLeft="@string/icon_arrow_left"
-                    android:paddingLeft="@dimen/_12dp"
-                    android:textAppearance="@style/IrsansBold"
-                    android:onClick="goButtonClicked"
-                    android:textSize="11dp" />-->
-                <LinearLayout
-                    android:id="@+id/btn_next_partnerInfo"
-                    android:background="@drawable/btngravity_big"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:orientation="horizontal"
-                    android:gravity="center|center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp">
-
-
-                    <TextView
-                        android:id="@+id/tvSortIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/arrow_left"
-                        android:textAppearance="@style/IconFonts"
-                        android:gravity="left|center_vertical"
-                        android:layout_gravity="left"
-                        android:textSize="26dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:textColor="#ffffff" />
-                    <TextView
-                        android:id="@+id/lblMoratabSazi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textColor="#FFFFFF"
-                        android:gravity="center"
-                        android:text="تایید و گام بعدی"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="14dp"
-                        android:textAppearance="@style/IrsansBold"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- linear layout mosferan -->
-
-            <LinearLayout
-                android:id="@+id/linear_mosaferan"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:orientation="vertical"
-                android:visibility="gone" >
-
-                <!-- ///////////////////////// -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/box_passenger" >
-
-                    <TextView
-                        android:id="@+id/txtTitleCountM"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_weight="1.03"
-                        android:text=" اطلاعات مسافربزرگسال 1" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_margin="2dp"
-                        android:background="@drawable/circle_passenger"
-                        android:gravity="center"
-                        android:text=" 1 "
-                        android:textColor="#fff"
-                        android:textSize="8dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:layout_marginTop="1dp"
-                    android:orientation="vertical" >
+                    <!-- family name -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:orientation="horizontal" >
+                        android:layout_height="70dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical" >
 
-                        <TextView
-                            android:layout_width="257dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal" >
 
-                        <TextView
-                            android:id="@+id/txtjensiatm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblfamily"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="نام خانوادگی"
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/txtfamilyP"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
                             android:layout_marginRight="5dp"
-                            android:text="جنسیت"
-                            android:textColor="#808080" />
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:paddingTop="5dp"
+                            android:paddingRight="10dp"
+                            android:text=""
+                            android:textSize="@dimen/_14dp"
+                            android:maxLength="20"
+                            android:singleLine="true"
+                            android:hint="لطفا فارسی وارد کنید  "
+                            android:textColorHint="#aaaaaa" />
                     </LinearLayout>
-
-                    <Spinner
-                        android:id="@+id/spinnerMosafer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
+                    <!-- mobile -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lblnamem"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="نام"
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/txtnamem"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:singleLine="true"
-                        android:inputType="text"
-                        android:imeOptions="actionNext"
-                        android:hint="لطفا انگلیسی وارد کنید  "
-                        android:textColorHint="#aaaaaa"
-                        android:nextFocusDown="@+id/txtfamilym"
-                        android:text=""
-                        android:textSize="@dimen/_14dp"
-                        android:maxLength="20"/>
-                </LinearLayout>
-
-                <!-- family name -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lblfamilym"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="نام خانوادگی"
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/txtfamilym"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:singleLine="true"
-                        android:inputType="text"
-                        android:nextFocusDown="@+id/txtnumber_passport"
-                        android:imeOptions="actionNext"
-                        android:text=""
-                        android:hint="لطفا انگلیسی وارد کنید  "
-                        android:textSize="@dimen/_14dp"
-                        android:textColorHint="#aaaaaa"
-                        android:maxLength="20"/>
-                </LinearLayout>
-
-
-                <!-- shomare pasport -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="1dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lblnumber_passport"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="شماره پاسپورت   "
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/txtnumber_passport"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:singleLine="true"
-                        android:inputType="text"
-                        android:textSize="@dimen/_14dp"
-                        android:text="" />
-                </LinearLayout>
-                <!-- mobile -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lbltavalodm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="تاریخ تولد "
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/txttavalodm"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:inputType="date"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:text="" />
-                </LinearLayout>
-                <!-- expire pasport -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="1dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lblexp_passport"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="انقضاء پاسپورت   "
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/txtexp_passport"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:paddingRight="10dp"
-                        android:text="" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/txtMore"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="10dp"
-                    android:text="اطلاعات بیشتر"
-                    android:textColor="#000099"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-                <!-- code meliat -->
-
-                <LinearLayout
-                    android:id="@+id/linearMeliyat"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical"
-                    android:visibility="gone" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lblmeliyatm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text="ملیت "
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/txtmeliyatm"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:text="iranian" />
-                </LinearLayout>
-                <!-- mahale eghamat -->
-
-                <LinearLayout
-                    android:id="@+id/linearMahaleeghamat"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical"
-                    android:visibility="gone" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="1dp"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="257dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="1.43"
-                            android:gravity="right"
-                            android:text="*"
-                            android:textColor="#ff0000" />
-
-                        <TextView
-                            android:id="@+id/lblmahale_eghamat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:text=" محل اقامت "
-                            android:textColor="#808080" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/txtmahale_eghamat"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_margin="4dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.62"
-                        android:background="@drawable/background_strock_white"
-                        android:gravity="right|center_vertical"
-                        android:paddingRight="10dp"
-                        android:text="IR" />
-                </LinearLayout>
-
-                <!--<Button
-                    android:id="@+id/btn_nextm"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/btngravity_big"
-                    android:text="تایید و گام بعدی"
-                    android:drawableLeft="@drawable/left_arrow_khadamat"
-                    android:paddingLeft="@dimen/_12dp"
-                    android:textAppearance="@style/IrsansBold"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11dp" />-->
-                <LinearLayout
-                    android:id="@+id/btn_nextm"
-                    android:background="@drawable/btngravity_big"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:orientation="horizontal"
-                    android:gravity="center|center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp">
-
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/arrow_left"
-                        android:textAppearance="@style/IconFonts"
-                        android:gravity="left|center_vertical"
-                        android:layout_gravity="left"
-                        android:textSize="26dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:textColor="#ffffff" />
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textColor="#FFFFFF"
-                        android:gravity="center"
-                        android:text="تایید و گام بعدی"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="14dp"
-                        android:textAppearance="@style/IrsansBold"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear_list_khadamat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:background="#ffffff"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:visibility="gone" >
-
-                <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
-                    android:id="@+id/listKhadamat"
-                    android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:isScrollContainer="false"
-                    android:listSelector="@drawable/list_selector"
-                    android:nestedScrollingEnabled="true"
-                    android:visibility="visible" />
-
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_12dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_height="wrap_content" >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="right"
-                        android:text="ریال"
-                        android:textColor="#23b574"
-                        android:id="@+id/textView1"
-                        android:textAppearance="@style/IrsansBold"
-                        android:textSize="@dimen/_17dp_textsize" />
-
-                    <TextView
-                        android:id="@+id/txtSumKhadamat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-
-                        android:gravity="left"
-                        android:text="10,000,000"
-                        android:textColor="#000000"
-                        android:layout_weight="9.60"
-                        android:textSize="@dimen/_17dp_textsize"
-                        android:textAppearance="@style/IrsansBold"/>
-
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="164dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:gravity="right"
-                        android:textAppearance="@style/IrsansBold"
-                        android:text="جمع کل خدمات: " />
-                </LinearLayout>
-
-                <!-- <Button
-                     android:id="@+id/btn_taeed_khadamat"
-                     android:layout_width="match_parent"
-                     android:layout_height="32dp"
-                     android:background="@drawable/btngravity_big"
-                     android:drawableLeft="@drawable/left_arrow_khadamat"
-                     android:paddingLeft="@dimen/_12dp"
-                     android:textAppearance="@style/IrsansBold"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginLeft="8dp"
-                     android:layout_marginRight="8dp"
-                     android:text="تایید و گام بعدی"
-                     android:textColor="#ffff"
-                     android:textSize="11dp" />-->
-                <LinearLayout
-                    android:id="@+id/btn_taeed_khadamat"
-
-                    android:background="@drawable/btngravity_big"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:orientation="horizontal"
-                    android:gravity="center|center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp">
-
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/arrow_left"
-                        android:textAppearance="@style/IconFonts"
-                        android:gravity="left|center_vertical"
-                        android:layout_gravity="left"
-                        android:textSize="26dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:textColor="#ffffff" />
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textColor="#FFFFFF"
-                        android:gravity="center"
-                        android:text="تایید و گام بعدی"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="14dp"
-                        android:textAppearance="@style/IrsansBold"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-            <!-- pish factor -->
-
-            <LinearLayout
-                android:id="@+id/linear_pish_factor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="1dp"
-                android:background="#ffffff"
-                android:orientation="vertical"
-                android:layout_marginLeft="@dimen/_20dp"
-                android:layout_marginRight="@dimen/_20dp"
-
-                android:visibility="gone" >
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    >
-                    <ImageView
-                        android:id="@+id/ivImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:src="@drawable/path2"
-
-                        android:scaleType="fitXY"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:layout_centerInParent="true"
-                        android:padding="10dp">
-
-
-
-                        <TextView
-                            android:id="@+id/txt_shomare_factor"
-                            android:layout_width="124dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="0"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="#098d4e"/>
-
-                        <TextView
-                            android:id="@+id/textView6"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="شماره فاکتور:"
-                            android:textSize="14dp"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="#4d4d4d"
-                            />
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblmobile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="موبایل "
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/txtmobileP"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:inputType="number"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_14dp"
+                            android:text="" />
                     </LinearLayout>
+                    <!-- code meli -->
 
-
-
-                </RelativeLayout>
-
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center"
-
-                    android:layout_weight="60"
-                    android:background="@color/hotel_detail_background"
-                    card_view:cardBackgroundColor="#ffffff"
-                    card_view:cardCornerRadius="1dp"
-                    card_view:cardElevation="1dp">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp">
 
-                        <ImageView
-                            android:id="@+id/textView4"
-                            android:layout_width="100dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            />
-                        <TextView
-                            android:id="@+id/tvfactorNumber"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textSize="12dp"
-                            android:text="asdasdasd"
-                            android:layout_gravity="center"
-                            android:visibility="visible"/>
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblkodemeli"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="کدملی "
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/txtkodemeliP"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:inputType="number"
+                            android:paddingRight="10dp"
+                            android:singleLine="true"
+                            android:paddingTop="5dp"
+                            android:textSize="@dimen/_14dp"
+                            android:text="" />
                     </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    >
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:src="@drawable/path1"
-
-                        android:scaleType="fitXY"/>
+                    <!-- emeli -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:layout_centerInParent="true"
-                        android:padding="10dp">
+                        android:layout_height="70dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical" >
 
-
-
-                        <TextView
-                            android:id="@+id/tvPrice"
-                            android:layout_width="124dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="0"
-                            android:textSize="15dp"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="#098d4e"/>
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="مبلغ قابل پرداخت:"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="1dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblemeli"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="ایمیل "
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/txtemeliP"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:inputType="textEmailAddress"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_14dp"
+                            android:text="" />
+                    </LinearLayout>
+
+                    <!--<Button
+                        android:id="@+id/btn_next_partnerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/btngravity_big"
+                        android:text="تایید و گام بعدی"
+                        android:textColor="#FFFFFF"
+                        android:drawableLeft="@string/icon_arrow_left"
+                        android:paddingLeft="@dimen/_12dp"
+                        android:textAppearance="@style/IrsansBold"
+                        android:onClick="goButtonClicked"
+                        android:textSize="11dp" />-->
+                    <LinearLayout
+                        android:id="@+id/btn_next_partnerInfo"
+                        android:background="@drawable/btngravity_big"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:orientation="horizontal"
+                        android:gravity="center|center_vertical"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp">
+
+
+                        <TextView
+                            android:id="@+id/tvSortIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/arrow_left"
+                            android:textAppearance="@style/IconFonts"
+                            android:gravity="left|center_vertical"
+                            android:layout_gravity="left"
+                            android:textSize="26dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:textColor="#ffffff" />
+                        <TextView
+                            android:id="@+id/lblMoratabSazi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="#FFFFFF"
+                            android:gravity="center"
+                            android:text="تایید و گام بعدی"
+                            android:layout_marginLeft="5dp"
                             android:textSize="14dp"
                             android:textAppearance="@style/IrsansBold"
-                            android:textColor="#4d4d4d"
                             />
                     </LinearLayout>
 
+                </LinearLayout>
+            </ScrollView>
+
+            <!-- ///////////////////////// -->
 
 
-                </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <Button
-                    android:id="@+id/btn_pardakht_factor"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/btngravity_big"
-                    android:text="ثبت و پرداخت"
-                    android:textColor="#ffff"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
         </LinearLayout>
 
-        <!-- </LinearLayout> -->
+        <!-- linear layout mosferan -->
 
-    </ScrollView>
+        <LinearLayout
+            android:id="@+id/linear_mosaferan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <!-- ///////////////////////// -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/box_passenger" >
+
+                        <TextView
+                            android:id="@+id/txtTitleCountM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="1.5"
+                            android:gravity="right"
+                            android:layout_gravity="center|center_vertical"
+                            android:text=" اطلاعات مسافر بزرگسال 1" />
+
+                        <TextView
+                            android:id="@+id/imgCount"
+                            android:layout_width="35dp"
+
+                            android:layout_height="35dp"
+                            android:layout_gravity="right"
+                            android:layout_margin="5dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/background_strock_blue"
+                            android:gravity="center"
+                            android:text=" 1 "
+                            android:textColor="#fff"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/txtjensiatm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:text="جنسیت"
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <Spinner
+                            android:id="@+id/spinnerMosafer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblnamem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="نام"
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/txtnamem"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:singleLine="true"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:hint="لطفا انگلیسی وارد کنید  "
+                            android:textColorHint="#aaaaaa"
+                            android:nextFocusDown="@+id/txtfamilym"
+                            android:text=""
+                            android:textSize="@dimen/_14dp"
+                            android:maxLength="20"/>
+                    </LinearLayout>
+
+                    <!-- family name -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblfamilym"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="نام خانوادگی"
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/txtfamilym"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:singleLine="true"
+                            android:inputType="text"
+                            android:nextFocusDown="@+id/txtnumber_passport"
+                            android:imeOptions="actionNext"
+                            android:text=""
+                            android:hint="لطفا انگلیسی وارد کنید  "
+                            android:textSize="@dimen/_14dp"
+                            android:textColorHint="#aaaaaa"
+                            android:maxLength="20"/>
+                    </LinearLayout>
+
+
+                    <!-- shomare pasport -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="1dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblnumber_passport"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="شماره پاسپورت   "
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/txtnumber_passport"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:singleLine="true"
+                            android:inputType="text"
+                            android:textSize="@dimen/_14dp"
+                            android:text="" />
+                    </LinearLayout>
+                    <!-- mobile -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lbltavalodm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="تاریخ تولد "
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txttavalodm"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:inputType="date"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:text="" />
+                    </LinearLayout>
+                    <!-- expire pasport -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="1dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblexp_passport"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="انقضاء پاسپورت   "
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtexp_passport"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:paddingRight="10dp"
+                            android:text="" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtMore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="24dp"
+                        android:text="اطلاعات بیشتر"
+                        android:textColor="#000099"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                    <!-- code meliat -->
+
+                    <LinearLayout
+                        android:id="@+id/linearMeliyat"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="22dp"
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblmeliyatm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="ملیت "
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtmeliyatm"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:paddingRight="10dp"
+                            android:paddingTop="5dp"
+                            android:text="iranian" />
+                    </LinearLayout>
+                    <!-- mahale eghamat -->
+
+                    <LinearLayout
+                        android:id="@+id/linearMahaleeghamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="1dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
+                            <TextView
+                                android:id="@+id/lblmahale_eghamat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text=" محل اقامت "
+                                android:textColor="#808080" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtmahale_eghamat"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.62"
+                            android:background="@drawable/background_strock_white"
+                            android:gravity="center|center_vertical"
+                            android:paddingRight="10dp"
+                            android:text="IR" />
+                    </LinearLayout>
+
+                    <!--<Button
+                        android:id="@+id/btn_nextm"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/btngravity_big"
+                        android:text="تایید و گام بعدی"
+                        android:drawableLeft="@drawable/left_arrow_khadamat"
+                        android:paddingLeft="@dimen/_12dp"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11dp" />-->
+                    <LinearLayout
+                        android:id="@+id/btn_nextm"
+                        android:background="@drawable/btngravity_big"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:orientation="horizontal"
+                        android:gravity="center|center_vertical"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp">
+
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/arrow_left"
+                            android:textAppearance="@style/IconFonts"
+                            android:gravity="left|center_vertical"
+                            android:layout_gravity="left"
+                            android:textSize="26dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:textColor="#ffffff" />
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="#FFFFFF"
+                            android:gravity="center"
+                            android:text="تایید و گام بعدی"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="14dp"
+                            android:textAppearance="@style/IrsansBold"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+            <!-- pish factor -->
+
+        </LinearLayout>
+        <!--///////////Khadamat-->
+        <LinearLayout
+            android:id="@+id/linear_list_khadamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:visibility="gone">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                        android:id="@+id/listKhadamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:isScrollContainer="false"
+                        android:listSelector="@drawable/list_selector"
+                        android:visibility="visible" />
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/_12dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="wrap_content" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:gravity="right"
+                            android:text="ریال"
+                            android:textColor="#23b574"
+                            android:id="@+id/textView1"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/txtSumKhadamat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+
+                            android:gravity="left"
+                            android:text="10,000,000"
+                            android:textColor="#000000"
+                            android:layout_weight="9.60"
+                            android:textSize="15dp"
+                            android:textAppearance="@style/IrsansBold"/>
+
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="164dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:textAppearance="@style/IrsansBold"
+                            android:text="جمع کل خدمات: " />
+                    </LinearLayout>
+
+                    <!-- <Button
+                         android:id="@+id/btn_taeed_khadamat"
+                         android:layout_width="match_parent"
+                         android:layout_height="32dp"
+                         android:background="@drawable/btngravity_big"
+                         android:drawableLeft="@drawable/left_arrow_khadamat"
+                         android:paddingLeft="@dimen/_12dp"
+                         android:textAppearance="@style/IrsansBold"
+                         android:layout_marginTop="5dp"
+                         android:layout_marginLeft="8dp"
+                         android:layout_marginRight="8dp"
+                         android:text="تایید و گام بعدی"
+                         android:textColor="#ffff"
+                         android:textSize="11dp" />-->
+                    <LinearLayout
+                        android:id="@+id/btn_taeed_khadamat"
+
+                        android:background="@drawable/btngravity_big"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:orientation="horizontal"
+                        android:gravity="center|center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp">
+
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/arrow_left"
+                            android:textAppearance="@style/IconFonts"
+                            android:gravity="left|center_vertical"
+                            android:layout_gravity="left"
+                            android:textSize="26dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:textColor="#ffffff" />
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="#FFFFFF"
+                            android:gravity="center"
+                            android:text="تایید و گام بعدی"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="14dp"
+                            android:textAppearance="@style/IrsansBold"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <!--/////Pishfactor-->
+        <LinearLayout
+            android:id="@+id/linear_pish_factor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/_20dp"
+            android:layout_marginRight="@dimen/_20dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:orientation="vertical"
+
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+
+                >
+
+                <ImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:scaleType="fitXY"
+
+                    android:src="@drawable/path2" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="4dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/txt_shomare_factor"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="1445151"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="#098d4e"
+                        android:textSize="14dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:layout_alignParentLeft="true"/>
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="شماره فاکتور:"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="#4d4d4d"
+                        android:textSize="14dp"
+                        android:visibility="gone"/>
+                    <ImageView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:scaleType="fitXY"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+
+                android:layout_weight="60"
+                android:background="@color/hotel_detail_background"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="1dp"
+                card_view:cardElevation="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/tvfactorNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="asdasdasd"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textSize="12dp"
+                        android:visibility="gone" />
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fillViewport="true">
+
+
+                        <!--dfsdfsfsdfsdfsfsfsf-->
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+
+                            >
+
+                            <LinearLayout
+
+                                android:id="@+id/llDetailPassanger"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="مشخصات مسافران"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="12dp" />
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+                                </LinearLayout>
+
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerViewPassenger"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llDetailHotel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/llDetailPassanger"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:id="@+id/rlTitleHotel"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+
+                                    <TextView
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="جزئیات هتل"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="12dp" />
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+                                </LinearLayout>
+
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+
+                                android:id="@+id/llDetailService"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/llDetailHotel"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="خدمات قابل ارائه"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="12dp" />
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+                                </LinearLayout>
+
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerViewService"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+
+                                android:id="@+id/llDetailFlight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/llDetailService"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="اطاعات پرواز"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="12dp" />
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+                                </LinearLayout>
+
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerViewFlight"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical" />
+
+                            </LinearLayout>
+                        </RelativeLayout>
+
+
+                        <!--dfsdfsfsdfsdfsfsfsf-->
+
+
+                    </ScrollView>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:scaleType="fitXY"
+
+                    android:src="@drawable/path1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="4dp"
+                    android:padding="10dp">
+
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="124dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="#098d4e"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="مبلغ قابل پرداخت:"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="#4d4d4d"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/btn_pardakht_factor"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/btngravity_big"
+                android:text="ثبت و پرداخت"
+                android:textColor="#ffff"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- </LinearLayout> -->
+
 </RelativeLayout>
+
