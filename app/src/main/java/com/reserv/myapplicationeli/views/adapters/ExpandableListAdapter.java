@@ -16,10 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.model.PinModelDetail;
+import com.reserv.myapplicationeli.models.model.PinModelHeader;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -29,13 +32,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 	private Context _context;
 	Activity activity;
-
+	SearchParvazPinAdapter searchParvazPinAdapter;
 	List<SearchParvazActivity.ParentItemExpandingPlan>  dataExpandingList;
+	List<PinModelDetail> pinModelDetails;
+	List<PinModelHeader> pinModelHeaders;
 
-	public ExpandableListAdapter(Context context,List<SearchParvazActivity.ParentItemExpandingPlan> dataList) {
+	public ExpandableListAdapter(Context context,List<SearchParvazActivity.ParentItemExpandingPlan> dataList,SearchParvazPinAdapter searchParvazPinAdapter) {
 		this._context = context;
 
 		this.dataExpandingList = dataList;
+		this.searchParvazPinAdapter = searchParvazPinAdapter;
 
 
 
@@ -59,8 +65,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 
 	@Override
-	public View getChildView(int groupPosition, final int childPosition,
-							 boolean isLastChild, View convertView, ViewGroup parent) {
+	public View getChildView(int groupPosition, final int childPosition,boolean isLastChild, View convertView, ViewGroup parent) {
 		System.out.println("groupPosition:"+groupPosition+"childPosition:"+childPosition);
 		final SearchParvazActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(childPosition);
 
@@ -98,7 +103,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		lblDepurtureAirportR.setText(item.DepartureCityNameFa+" , "+item.DepartureAirportNameFaR);
 		lblArrivalAirportR.setText(item.ArrivalCityNameFa+" , "+item.ArrivalAirportNameFaR);
 		lblFlightNumberR.setText(item.AirlineCode+item.FlightNumberR+" , "+ item.AirlineNameFaR);
-		//txtListChildSumPrice.setText("جمع :"+String.valueOf(NumberFormat.getInstance().format(item.fee*item.amount)));
+
 		int size=this.dataExpandingList.get(groupPosition).Items.size();
 		int childSize=childPosition+1;
 		System.out.println(size +"ggg"+childPosition);
@@ -113,7 +118,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			linearTableNerkh.setVisibility(View.VISIBLE);
 			linearButton.setVisibility(View.VISIBLE);
 		}
-		// this.dataExpandingList.get(groupPosition).Items.size();
+
 		btnSelect.setTag(childPosition);
 		btnSelect.setOnClickListener(new View.OnClickListener() {
 
@@ -122,13 +127,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 				Intent i4 = new Intent(_context,PassengerActivity.class);
 
-				//i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				i4.putExtra("Flight_GUID",item.flGUID+"");//current.getCityName()
-					/*i4.putExtra("Value-Mabda-Airport",current.getAirportName());
-					i4.putExtra("Value-Mabda-Airport-Code",current.getAirportCode());*/
+
 				_context.startActivity(i4);
 				System.out.println("item.flGUID:"+item.flGUID);
-				//	Toast.makeText(v.getContext(),"fffff"+childPosition+"GUID:"+item.flGUID,Toast.LENGTH_SHORT).show();
+
 			}
 		});
 
@@ -173,6 +176,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		final SearchParvazActivity.HeaderExpandingPlan item2 = this.dataExpandingList.get(groupPosition).Header;
 
 
+
 		if (convertView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = infalInflater.inflate(R.layout.list_group_expanding, null);//list Group header//row_select_parvaz_two_header
@@ -196,18 +200,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		TextView lblArrivalCityNameFaR = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaR);
 		TextView lblFlightArrivalTimeR = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeR);
 
-
-
 		TextView lblArrivalCityNameFaB = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaB);
 		TextView lblFlightArrivalTimeB = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeB);
 
 		TextView lblAdlCost = (TextView) convertView.findViewById(R.id.lblAdlCost);
-		//TextView lblAirline = (TextView) convertView.findViewById(R.id.lblAirline);
 
 		ImageView lblProductrow= (ImageView) convertView.findViewById(R.id.lblProductrow);
 
 		TextView txt_economi = (TextView) convertView.findViewById(R.id.txt_economi);
-		//TextView textCharter = (TextView) convertView.findViewById(R.id.textCharter);
+
 		TextView txttedad = (TextView) convertView.findViewById(R.id.txttedad);
 
 		LinearLayout linearBargashtOne = (LinearLayout) convertView.findViewById(R.id.linearBargashtOne);
@@ -216,6 +217,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		//LinearLayout linear_all = (LinearLayout) convertView.findViewById(R.id.linear_all);
 		//final int[] flag = {0};
 		txtPin.setTag(item2.IsPin);
+
 		txtPin.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -229,11 +231,35 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				}else{
 					item2.setPin(true);
 					txtPin.setTextColor(Color.parseColor("#9966ff"));
+
+
 				}
 				notifyDataSetChanged();
 
 			}
 		});
+		if(item2.IsPin){
+			pinModelHeaders=new ArrayList<>();
+
+			PinModelHeader pinModelHeader=new PinModelHeader(item2.isPin()+"",item2.DepartureCityNameFaB,item2.ArrivalCityNameFaB,item2.DepartureCityNameFaR,item2.ArrivalCityNameFaR,item2.AirlineCode+item2.FlightNumberR+"",item2.AirlineCode+item2.FlightNumberB+""
+			,""+GetDayWeek(item2.FltDateDayOfWeek)+" , "+item2.FlightArrivalTimeR,item2.SegmentTrueCount+" توقف ",
+					GetDayWeek(item2.FltDateDayOfWeekFalse)+" , "+item2.FlightTimeB,item2.SegmentFalseCount+" توقف ",item2.AdlCost+"",item2.AirlineCode,item2.CabinClassNameFa,"نفر"+item2.RemainSeats+"فقط" ,item2.SegmentFalseCount,item2.RemainSeats);
+			pinModelHeaders.add(pinModelHeader);
+			//
+			pinModelDetails =new ArrayList<>();
+			int count=item2.SegmentFalseCount+item2.SegmentTrueCount;//count segment
+			for (int i = 0; i < count; i++) {
+				SearchParvazActivity.ItemExpandingPlan item =this.dataExpandingList.get(groupPosition).Items.get(i);;
+
+				PinModelDetail pinModelDetail=new PinModelDetail(item.AdlBaseFare,item.Taxes,item.TotalFare,item.FlightTimeR,item.FlightArrivalTimeR,item.DepartureCityNameFa,item.DepartureAirportNameFaR,item.ArrivalCityNameFa,item.ArrivalAirportNameFaR,item.AirlineCode,item.FlightNumberR,item.AirlineNameFaR,this.dataExpandingList.get(groupPosition).Items.size());
+				pinModelDetails.add(pinModelDetail);
+			}
+			//felan barmidaram
+			//SearchParvazActivity.updateAdapterPin(pinModelDetails,pinModelHeaders,_context);
+
+		}
+
+
 
 
 

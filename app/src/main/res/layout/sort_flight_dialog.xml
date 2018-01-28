@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -144,10 +145,83 @@
         fancy:fb_defaultColor="#1234"
         fancy:fb_focusColor="@color/focusColor"
         fancy:fb_radius="100dp"
-        fancy:fb_text="مرتب سازی!"
+        fancy:fb_text="مرتب سازی"
         fancy:fb_textColor="@color/text_color_4d"
-        fancy:fb_textSize="18dp"
+        fancy:fb_textSize="14dp"
         android:layout_marginBottom="@dimen/_10dp_margin"/>
 
 
-</LinearLayout>
+</LinearLayout>-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/alert_header_background"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="مرتب سازی"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:gravity="center|right"
+            android:layout_margin="5dp"
+            android:textAppearance="@style/IrsansBold"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/IconFonts"
+            android:textColor="@android:color/white"
+            android:text="@string/icon_sort"
+            android:textSize="25dp"
+            android:gravity="center|right"
+            android:layout_margin="5dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/tvMax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="بر اساس بیشترین قیمت"
+            android:textSize="12dp"
+            android:textColor="@color/textColorR"
+            android:textAppearance="@style/IrsansBold"
+            android:gravity="center"
+            android:padding="@dimen/_10dp_margin"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/textColorR"/>
+
+        <TextView
+            android:id="@+id/tvMin"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="بر اساس کمترین قیمت"
+            android:textSize="12dp"
+            android:textColor="@color/textColorR"
+            android:textAppearance="@style/IrsansBold"
+            android:gravity="center"
+            android:padding="@dimen/_10dp_margin"/>
+
+
+
+    </LinearLayout></LinearLayout>

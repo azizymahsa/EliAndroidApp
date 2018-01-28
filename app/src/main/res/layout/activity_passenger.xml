@@ -283,11 +283,12 @@
                                 android:paddingRight="10dp"
                                 android:hint="لطفا فارسی وارد کنید  "
                                 android:textColorHint="#aaaaaa"
-                                android:paddingTop="5dp"
+                                android:paddingTop="0dp"
                                 android:text=""
                                 android:maxLength="20"
                                 android:textSize="@dimen/_14dp"
                                 android:singleLine="true"
+                                android:textColor="#000000"
                                 />
                         </LinearLayout>
 
@@ -335,14 +336,15 @@
                                 android:layout_weight="0.62"
                                 android:background="@drawable/background_strock_white"
                                 android:gravity="center|center_vertical"
-                                android:paddingTop="5dp"
+                                android:paddingTop="0dp"
                                 android:paddingRight="10dp"
                                 android:text=""
                                 android:textSize="@dimen/_14dp"
                                 android:maxLength="20"
                                 android:singleLine="true"
                                 android:hint="لطفا فارسی وارد کنید  "
-                                android:textColorHint="#aaaaaa" />
+                                android:textColorHint="#aaaaaa"
+                                android:textColor="#4d4d4d"/>
                         </LinearLayout>
                         <!-- mobile -->
 
@@ -390,10 +392,11 @@
                                 android:gravity="center|center_vertical"
                                 android:inputType="number"
                                 android:paddingRight="10dp"
-                                android:paddingTop="5dp"
+                                android:paddingTop="0dp"
                                 android:singleLine="true"
                                 android:textSize="@dimen/_14dp"
-                                android:text="" />
+                                android:text=""
+                                android:textColor="#4d4d4d"/>
                         </LinearLayout>
                         <!-- code meli -->
 
@@ -442,9 +445,10 @@
                                 android:inputType="number"
                                 android:paddingRight="10dp"
                                 android:singleLine="true"
-                                android:paddingTop="5dp"
+                                android:paddingTop="0dp"
                                 android:textSize="@dimen/_14dp"
-                                android:text="" />
+                                android:text=""
+                                android:textColor="#4d4d4d"/>
                         </LinearLayout>
                         <!-- emeli -->
 
@@ -492,10 +496,11 @@
                                 android:gravity="center|center_vertical"
                                 android:inputType="textEmailAddress"
                                 android:paddingRight="10dp"
-                                android:paddingTop="5dp"
+                                android:paddingTop="0dp"
                                 android:singleLine="true"
                                 android:textSize="@dimen/_14dp"
-                                android:text="" />
+                                android:text=""
+                                android:textColor="#4d4d4d"/>
                         </LinearLayout>
 
                         <!--<Button
@@ -694,7 +699,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="center|center_vertical"
                         android:paddingRight="10dp"
-                        android:paddingTop="5dp"
+                        android:paddingTop="0dp"
                         android:singleLine="true"
                         android:inputType="text"
                         android:imeOptions="actionNext"
@@ -703,7 +708,8 @@
                         android:nextFocusDown="@+id/txtfamilym"
                         android:text=""
                         android:textSize="@dimen/_14dp"
-                        android:maxLength="20"/>
+                        android:maxLength="20"
+                        android:textColor="#4d4d4d"/>
                 </LinearLayout>
 
                 <!-- family name -->
@@ -751,7 +757,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="center|center_vertical"
                         android:paddingRight="10dp"
-                        android:paddingTop="5dp"
+                        android:paddingTop="0dp"
                         android:singleLine="true"
                         android:inputType="text"
                         android:nextFocusDown="@+id/txtnumber_passport"
@@ -760,7 +766,8 @@
                         android:hint="لطفا انگلیسی وارد کنید  "
                         android:textSize="@dimen/_14dp"
                         android:textColorHint="#aaaaaa"
-                        android:maxLength="20"/>
+                        android:maxLength="20"
+                        android:textColor="#4d4d4d"/>
                 </LinearLayout>
 
 
@@ -810,11 +817,12 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="center|center_vertical"
                         android:paddingRight="10dp"
-                        android:paddingTop="5dp"
+                        android:paddingTop="0dp"
                         android:singleLine="true"
                         android:inputType="text"
                         android:textSize="@dimen/_14dp"
-                        android:text="" />
+                        android:text=""
+                        android:textColor="#4d4d4d"/>
                 </LinearLayout>
                 <!-- mobile -->
 
@@ -863,7 +871,7 @@
                         android:gravity="center|center_vertical"
                         android:inputType="date"
                         android:paddingRight="10dp"
-                        android:paddingTop="5dp"
+                        android:paddingTop="0dp"
                         android:text="" />
                 </LinearLayout>
                 <!-- expire pasport -->
@@ -973,7 +981,7 @@
                         android:background="@drawable/background_strock_white"
                         android:gravity="center|center_vertical"
                         android:paddingRight="10dp"
-                        android:paddingTop="5dp"
+                        android:paddingTop="0dp"
                         android:text="iranian" />
                 </LinearLayout>
                 <!-- mahale eghamat -->
