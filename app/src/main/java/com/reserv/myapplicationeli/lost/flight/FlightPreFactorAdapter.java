@@ -7,6 +7,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.aakira.expandablelayout.ExpandableLayout;
@@ -77,7 +78,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         });
 
         holder.tvArrow.setRotation(expandState.get(position) ? 180f : 0f);
-        holder.tvFlightDetail.setOnClickListener(new View.OnClickListener() {
+        holder.buttonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 onClickButton(holder.expandableLayout);
@@ -96,6 +97,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvFlightDetail,tvArrAirport,tvDepAir,tvDate,tvOutTime,tvInTime,tvNumber,tvAirLineName,tvArrow;
+        RelativeLayout buttonLayout;
         //  public RelativeLayout tvArrow;
         /**
          * You must use the ExpandableLinearLayout in the recycler view.
@@ -115,6 +117,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
             tvAirLineName = (TextView) v.findViewById(R.id.tvAirLineName);
             expandableLayout = (ExpandableLinearLayout) v.findViewById(R.id.expandableLayout);
             tvArrow = (TextView) v.findViewById(R.id.tvArrow);
+            buttonLayout = (RelativeLayout) v.findViewById(R.id.buttonLayout);
         }
     }
 

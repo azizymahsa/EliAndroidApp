@@ -392,9 +392,10 @@
                             android:layout_below="@+id/tv"
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             app:indicatorColor="@color/app_base_color"
                             app:indicatorName="BallSpinFadeLoaderIndicator"
+
 
 
 

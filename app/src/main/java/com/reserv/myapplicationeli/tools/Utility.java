@@ -460,11 +460,11 @@ public class Utility extends Activity {
 
 			Calendar cal = Calendar.getInstance();
 			cal.set(Calendar.YEAR, Integer.parseInt(yearM));
-			cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(monthM));
-			cal.set(Calendar.MONTH, Integer.parseInt(dayM));
+			cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dayM));
+			cal.set(Calendar.MONTH, Integer.parseInt(monthM));
 			String format = new SimpleDateFormat(" MMM d").format(cal.getTime());
 
-			return format+"-"+splite[1];
+			return format;
 		}catch (Exception e) {
 			System.out.println("Exception ::"+e);
 			return "";

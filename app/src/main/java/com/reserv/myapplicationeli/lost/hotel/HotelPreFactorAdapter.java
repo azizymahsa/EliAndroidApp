@@ -8,6 +8,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.aakira.expandablelayout.ExpandableLayout;
@@ -83,7 +84,7 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
         });
 
         holder.tvArrow.setRotation(expandState.get(position) ? 180f : 0f);
-        holder.tvHotelName.setOnClickListener(new View.OnClickListener() {
+        holder.buttonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 onClickButton(holder.expandableLayout);
@@ -102,6 +103,7 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvHotelName,tvSum,tvCheckOut,tvCheckIn,tvArrow,tvNumAdult,tvRoom;
+        RelativeLayout buttonLayout;
       //  public RelativeLayout tvArrow;
         /**
          * You must use the ExpandableLinearLayout in the recycler view.
@@ -118,6 +120,7 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
             expandableLayout = (ExpandableLinearLayout) v.findViewById(R.id.expandableLayout);
             tvArrow = (TextView) v.findViewById(R.id.tvArrow);
             tvRoom = (TextView) v.findViewById(R.id.tvRoom);
+            buttonLayout = (RelativeLayout) v.findViewById(R.id.buttonLayout);
         }
     }
 

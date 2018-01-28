@@ -33,9 +33,9 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         card_view:cardBackgroundColor="#ffffff"
-        card_view:cardCornerRadius="3dp"
+        card_view:cardCornerRadius="6dp"
         card_view:cardElevation="1dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         >
 
 
@@ -75,6 +75,7 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
+        android:id="@+id/cv2"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -84,9 +85,9 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         card_view:cardBackgroundColor="#ffffff"
-        card_view:cardCornerRadius="3dp"
+        card_view:cardCornerRadius="6dp"
         card_view:cardElevation="1dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         >
 
 
@@ -145,7 +146,29 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="اطلاعات پرواز"
+                    android:text="تهران به استانبول"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="12dp"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="مبلغ: 31,000,000"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="12dp"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="پرداخت از طریق بانک پاسارگاد"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/text_color_4d"
                     android:textSize="12dp"
@@ -154,6 +177,90 @@
             </LinearLayout>
 
         </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+    <android.support.v7.widget.CardView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cv2"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        card_view:cardBackgroundColor="#ffffff"
+        card_view:cardCornerRadius="6dp"
+        card_view:cardElevation="1dp"
+        android:layout_marginTop="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/background_prefactor">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/green">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/white_check"
+                    android:layout_centerInParent="true"/>
+
+
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="قرداد شما با شماره"
+                android:textColor="@color/green"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp"
+
+                />
+            <TextView
+                android:id="@+id/tvFactor2"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:textSize="25dp"
+                android:layout_marginTop="5dp"
+
+
+                />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/green"
+                android:textSize="14dp"
+                android:text="به ثبت رسید"
+
+                />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:textColor="#ff9e3e"
+                android:textSize="10dp"
+                android:text="جزئیات قرار داد به ایمیل example@example.com ارسال شد"
+                android:layout_marginBottom="5dp"
+
+                />
+        </LinearLayout>
+
+
     </android.support.v7.widget.CardView>
 </RelativeLayout>
 

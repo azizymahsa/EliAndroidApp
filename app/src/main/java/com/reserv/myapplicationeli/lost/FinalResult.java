@@ -13,7 +13,7 @@ import java.util.List;
 
 public class FinalResult extends BaseActivity {
     private String factorId;
-    TextView tvFactor;
+    TextView tvFactor,tvFactor2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +25,13 @@ public class FinalResult extends BaseActivity {
         try {
             InitUi.Toolbar(this, false, R.color.toolbar_color, "تایید نهایی فاکتور");
             tvFactor = findViewById(R.id.tvFactor);
+            tvFactor2 = findViewById(R.id.tvFactor2);
             if (getIntent().getAction().equals(Intent.ACTION_VIEW)) {
                 final List<String> segments = getIntent().getData().getPathSegments();
                 if (segments.size() > 0) {
                     factorId = segments.get(0);
                     tvFactor.setText(factorId + "");
+                    tvFactor2.setText(factorId + "");
                 }
             }
         } catch (Exception e) {

@@ -255,6 +255,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                     tvAlert.setVisibility(View.VISIBLE);
                     lvRooms.setVisibility(View.GONE);
+                    aviComment.setVisibility(View.GONE);
+
                 }
 
 
@@ -684,6 +686,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private class GetCommentAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
+            aviComment.setVisibility(View.VISIBLE);
+
 
             window.setStatusBarColor(getColor(R.color.blue2));
             ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);

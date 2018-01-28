@@ -7,6 +7,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.aakira.expandablelayout.ExpandableLayout;
@@ -55,6 +56,20 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         holder.tvCityName.setText(item.getCityFa());
         holder.tvTypeService.setText(item.getServiceType());
         holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice()));
+
+        if (item.getServiceNameFa().contains("بیمه")){
+            holder.tvServiceCityUi.setVisibility(View.GONE);
+            holder.tvCityName.setVisibility(View.GONE);
+
+        }else{
+
+            holder.tvServiceCityUi.setVisibility(View.VISIBLE);
+            holder.tvCityName.setVisibility(View.VISIBLE);
+
+
+        }
+
+
         // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);
         // holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2));
@@ -75,7 +90,7 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         });
 
         holder.tvArrow.setRotation(expandState.get(position) ? 180f : 0f);
-        holder.tvServicName.setOnClickListener(new View.OnClickListener() {
+        holder.buttonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 onClickButton(holder.expandableLayout);
@@ -93,7 +108,8 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvPrice,tvArrow;
+        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvPrice,tvArrow,tvServiceCityUi;
+        RelativeLayout buttonLayout;
         //  public RelativeLayout tvArrow;
         /**
          * You must use the ExpandableLinearLayout in the recycler view.
@@ -110,6 +126,8 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
             tvPrice = (TextView) v.findViewById(R.id.tvPrice);
             expandableLayout = (ExpandableLinearLayout) v.findViewById(R.id.expandableLayout);
             tvArrow = (TextView) v.findViewById(R.id.tvArrow);
+            buttonLayout = (RelativeLayout) v.findViewById(R.id.buttonLayout);
+            tvServiceCityUi = (TextView) v.findViewById(R.id.tvServiceCityUi);
         }
     }
 
