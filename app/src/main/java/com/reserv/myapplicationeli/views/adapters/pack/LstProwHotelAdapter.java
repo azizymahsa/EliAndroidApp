@@ -13,6 +13,8 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.pack.LstProwHotel;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.activities.pack.DetailHotelActivityForPack;
 import com.reserv.myapplicationeli.views.viewholders.LstProwHotelRowHolder;
 
@@ -56,7 +58,7 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
                 DateUtil.getShortStringDateFromMilis(String.valueOf(checkin_milis), "yyyy-MM-dd", true) +
                 " تا " +
                 DateUtil.getShortStringDateFromMilis(String.valueOf(checkout_milis), "yyyy-MM-dd", true) +
-        " - " +
+                " - " +
                 diferent_day + " شب ");
 
         try {
@@ -97,9 +99,13 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         holder.ivBigImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context, DetailHotelActivityForPack.class);
+
+                Intent i = new Intent(context, DetailHotelActivity.class);
                 i.putExtra("HotelId", item.getHotelID());
-                // i.putExtra("ResultUniqID",item.getPackRowID());
+                i.putExtra("ResultUniqID", String.valueOf(item.getPackRowID()));
+                i.putExtra("CheckIn", item.getCheckIn());
+                i.putExtra("CheckOut", item.getCheckOut());
+                i.putExtra("type", 2);
                 context.startActivity(i);
             }
         });

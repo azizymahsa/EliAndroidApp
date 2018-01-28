@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 import com.reserv.myapplicationeli.views.activities.login.LogInActivity;
 import com.reserv.myapplicationeli.views.activities.login.ProfileActivity;
+import com.reserv.myapplicationeli.views.dialogs.LogOutAlert;
 import com.reserv.myapplicationeli.views.fragments.HotelFlightFragment;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.fragments.hotel.HotelFragment;
@@ -63,14 +65,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
     RelativeLayout rlUser;
-    TextView txt_name;
+    private  static  TextView txt_name;
     ExpandableWeightLayout expandableLayout;
     ImageView ivUser;
     RelativeLayout rlHedaer;
     CountDownTimer countDownTimer;
     private BroadcastReceiver sendFinish;
-    private BroadcastReceiver sendStartTimer,sendDetailFinish;
-    int TotalTime=2000000;
+    private BroadcastReceiver sendStartTimer, sendDetailFinish;
+    int TotalTime = 2000000;
+    Button btnExit;
 
 
     @Override
@@ -112,18 +115,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvArrow = findViewById(R.id.tvArrow);
         ivUser = findViewById(R.id.ivUser);
         rlHedaer = findViewById(R.id.rlHedaer);
+        btnExit = findViewById(R.id.btnExit);
 
         tvTitle.setText(getString(R.string.searchFlight));
-try {
-    if(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()!= -1){
-        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+ " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+        try {
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
+                txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+            } else {
+                txt_name.setText("ورود به حساب کاربری");
+            }
+        } catch (Exception e) {
 
 
-    }
-}catch (Exception e){
-
-
-}
+        }
 
 
         //onClick===================================================================================
@@ -140,17 +144,22 @@ try {
         ivUser.setOnClickListener(this);
         rlHedaer.setOnClickListener(this);
         btnFlight.setOnClickListener(this);
+        btnExit.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
 
 
     }
 
+    public static void setUserName(String name){
+        if(txt_name != null){
+            txt_name.setText(name);
+        }
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
             drawerLayout.closeDrawer(Gravity.LEFT);
-
         }
 
     }
@@ -199,10 +208,10 @@ try {
                 startActivity(intent3);
                 break;
             case R.id.ivUser:
-                if(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() == -1){
+                if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() == -1) {
                     startActivity(new Intent(this, LogInActivity.class));
-                }else{
-                    startActivity(new Intent(this,ProfileActivity.class));
+                } else {
+                    startActivity(new Intent(this, ProfileActivity.class));
                 }
 
                 break;
@@ -219,6 +228,9 @@ try {
 
                 }
 
+                break;
+            case R.id.btnExit:
+                new LogOutAlert(this);
                 break;
 
         }
@@ -249,12 +261,12 @@ try {
 
 
                 Log.e("test", "seconds remaining: " + millisUntilFinished / 1000);
-                Prefs.putLong("time",millisUntilFinished);
+                Prefs.putLong("time", millisUntilFinished);
 
             }
 
             public void onFinish() {
-                sendFinish(false,0);
+                sendFinish(false, 0);
                 Toast.makeText(MainActivity.this, "زمان شما به پایان رسید.", Toast.LENGTH_SHORT).show();
             }
         };
@@ -263,10 +275,10 @@ try {
     }
 
 
-    public void sendFinish(boolean finish,int time) {
+    public void sendFinish(boolean finish, int time) {
         Intent intent = new Intent("sendFinish");
-        intent.putExtra("time",time);
-        intent.putExtra("finish",finish);
+        intent.putExtra("time", time);
+        intent.putExtra("finish", finish);
         LocalBroadcastManager.getInstance(MainActivity.this).sendBroadcast(intent);
     }
 
@@ -277,14 +289,8 @@ try {
             public void onReceive(Context context, Intent intent) {
 
 
-
-
                 countDownTimer.cancel();
                 countDownTimer.start();
-
-
-
-
 
 
             }
@@ -300,14 +306,7 @@ try {
             public void onReceive(Context context, Intent intent) {
 
 
-
-
                 countDownTimer.onFinish();
-
-
-
-
-
 
 
             }
@@ -316,6 +315,7 @@ try {
                 new IntentFilter("sendDetailFinish"));
 
     }
+
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(context));

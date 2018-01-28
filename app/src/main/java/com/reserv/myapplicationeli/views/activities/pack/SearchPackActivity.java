@@ -24,6 +24,7 @@ import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.model.pack.LstAvailableDate;
+import com.reserv.myapplicationeli.models.model.pack.LstProwPrice;
 import com.reserv.myapplicationeli.models.model.pack.PRowXfer;
 import com.reserv.myapplicationeli.models.model.pack.SearchXPackageResult;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageListReq;
@@ -137,7 +138,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         packageListReq.setDepartureFrom(departureFrom);
         packageListReq.setDepartureTo(departureTo);
         packageListReq.setCulture(culture);
-
+        Log.e(" requestPackage " ,new GsonBuilder().create().toJson(new PackageRequestModel(packageListReq)));
         Call<PackageListRes> call = service.getPackageListResult(new PackageRequestModel(packageListReq));
         call.enqueue(new Callback<PackageListRes>() {
             @Override
@@ -382,12 +383,14 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClickPackageBookingItem(PRowXfer pack) {
         Intent intent = new Intent(this, PassengerPackageActivity.class);
+
+        LstProwPrice lstProwPrice = getLstProwPriceSelected(pack.getLstProwPrices());
         Prefs.putString("Rooms", roomList);
-        Prefs.putString("PackRow_ID", pRowXfers.get(0).getPackRowID().toString());
-        Prefs.putString("PackXfer_IDs", pRowXfers.get(0).getXFerIDs());
-        Prefs.putString("Flt_IDs", pRowXfers.get(0).getFltIDs());
-        Prefs.putInt("PackRoomType_ID", pRowXfers.get(0).getLstProwPrices().get(0).getPackRowRoomTypeID());
-        Prefs.putInt("Room_No", pRowXfers.get(0).getLstProwPrices().get(0).getRoomNo());
+        Prefs.putString("PackRow_ID", pack.getPackRowID().toString());
+        Prefs.putString("PackXfer_IDs", pack.getXFerIDs());
+        Prefs.putString("Flt_IDs", pack.getFltIDs());
+        Prefs.putInt("PackRoomType_ID",lstProwPrice.getPackRowRoomTypeID());
+        Prefs.putInt("Room_No",lstProwPrice.getRoomNo());
         startActivity(intent);
     }
 
@@ -400,6 +403,21 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         }
     }
 
+    private LstProwPrice getLstProwPriceSelected(ArrayList<LstProwPrice> lstProwPriceArrayList){
+        if(ValidationTools.isEmptyOrNull(lstProwPriceArrayList)){
+            Toast.makeText(this, "error!", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        for(LstProwPrice lstProwPrice : lstProwPriceArrayList){
+            if(lstProwPrice.isChecked()){
+                return lstProwPrice;
+            }
+        }
+
+        Toast.makeText(this, "error!", Toast.LENGTH_SHORT).show();
+        return null;
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
