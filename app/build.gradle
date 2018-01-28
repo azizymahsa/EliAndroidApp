@@ -90,6 +90,8 @@ dependencies {
     compile 'com.github.traex.expandablelayout:library:1.2.2'
     compile 'com.android.support:customtabs:26.1.0'
     compile 'com.ms-square:expandableTextView:0.1.4'
+    compile 'com.github.shinelw.colorarcprogressbar:library:1.0.3'
+
 
 }
 apply plugin: 'com.google.gms.google-services'
