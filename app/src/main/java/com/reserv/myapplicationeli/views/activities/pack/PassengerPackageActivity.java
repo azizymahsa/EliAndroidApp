@@ -157,7 +157,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_passenger);
+		setContentView(R.layout.activity_passenger_pack);
 		btnBack = (FancyButton) findViewById(R.id.btnBack);
 		btnBack.setCustomTextFont("fonts/icomoon.ttf");
 		btnBack.setText(getString(R.string.search_back_right));
@@ -292,7 +292,16 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
 		// new AsyncFetch().execute();
-		sum = Prefs.getInt("SumPass", 0);
+
+		Prefs.getInt("Adlt_count",  1);
+		Prefs.getInt("chd_count",1);
+		Prefs.getInt("inf_count",1);
+		sum = Prefs.getInt("total", 0);
+
+
+		  countB=Prefs.getInt("Adlt_count",  1);
+		  countK=Prefs.getInt("chd_count",1);
+		  countN=Prefs.getInt("inf_count",1);
 		btn_pardakht_factor.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -712,6 +721,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.VISIBLE);
 
+				new AsyncFetchGetPreFactorDetails().execute();
+
 
 			} catch (JSONException e) {
 				Toast.makeText(PassengerPackageActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
@@ -979,6 +990,9 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 			headerJson.put("Checkout", getIntent().getExtras().getString("CheckOut"));
 
 */
+
+
+
 
 
 			identityJson.put("Password", "123qwe!@#QWE");
@@ -1327,7 +1341,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 					//db.dropTable();
 					db.openDB();
 
-sum=1;
+
 					if(sum>0){
 
 						db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
@@ -1375,7 +1389,6 @@ sum=1;
 				new AsyncFetchPishFactor().execute();
 
 				//call api GetPreFactorDetails
-				new AsyncFetchGetPreFactorDetails().execute();
 				break;
 
 

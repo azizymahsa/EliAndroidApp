@@ -93,6 +93,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private FancyButton btnOk;
 
 
+
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -380,6 +381,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         return 0;
     }
 
+
     @Override
     public void onClickPackageBookingItem(PRowXfer pack) {
         Intent intent = new Intent(this, PassengerPackageActivity.class);
@@ -391,6 +393,11 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         Prefs.putString("Flt_IDs", pack.getFltIDs());
         Prefs.putInt("PackRoomType_ID",lstProwPrice.getPackRowRoomTypeID());
         Prefs.putInt("Room_No",lstProwPrice.getRoomNo());
+        Prefs.putInt("Adlt_count",  lstProwPrice.getAdlCount());
+        Prefs.putInt("chd_count", lstProwPrice.getChdNBCount() + lstProwPrice.getChdWBCount());
+        Prefs.putInt("inf_count",lstProwPrice.getInfCount() );
+        Prefs.putInt("total", lstProwPrice.getAdlCount()+lstProwPrice.getChdNBCount() + lstProwPrice.getChdWBCount()+lstProwPrice.getInfCount() );
+
         startActivity(intent);
     }
 

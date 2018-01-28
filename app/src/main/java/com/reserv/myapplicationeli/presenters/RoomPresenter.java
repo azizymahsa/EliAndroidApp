@@ -112,6 +112,10 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
         holder.txt_child.setText(String.valueOf(room.getCountK()));
         holder.room_title.setText("اتاق" + " " + getStringPosition(position));
 
+        if(!ValidationTools.isEmptyOrNull(room.getChildModels())){
+            ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(),room.getChildModels());
+            holder.rcl_child.showList(childAdapter);
+        }
         holder.btn_adt_mines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,7 +148,6 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
                 room.setCountK(room.getCountK() + 1);
                 holder.txt_child.setText(String.valueOf(room.getCountK()));
                 room.addChildModel(new ChildModel("کودک" + " " + getStringPosition(room.getChildModels().size())));
-                Log.i("elham","size : " + room.getChildModels().size());
                 ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(),room.getChildModels());
                 holder.rcl_child.showList(childAdapter);
 
