@@ -963,7 +963,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 			headerJson.put("PartnerList", detailsPartner);
 
 			headerJson.put("Culture", "fa-IR");
-			headerJson.put("Type", "P");
+		//	headerJson.put("Type", "P");
 
 			headerJson.put("PackRow_ID",Prefs.getString("PackRow_ID","12"));
 			headerJson.put("PackXfer_IDs",Prefs.getString("PackXfer_IDs","12"));
@@ -1327,7 +1327,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 					//db.dropTable();
 					db.openDB();
 
-
+sum=1;
 					if(sum>0){
 
 						db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
