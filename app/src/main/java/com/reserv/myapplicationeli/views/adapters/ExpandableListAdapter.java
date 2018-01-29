@@ -223,8 +223,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			@Override
 			public void onClick(View v){
 
-				Toast.makeText(v.getContext(), groupPosition+"اتخاب شده!!", Toast.LENGTH_SHORT).show();
-			//	flag[0] =1;
+			/*	Toast.makeText(v.getContext(), groupPosition+"اتخاب شده!!", Toast.LENGTH_SHORT).show();
+
 				if(item2.IsPin){
 					item2.setPin(false);
 					txtPin.setTextColor(Color.parseColor("#aaaaaa"));
@@ -234,7 +234,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 				}
-				notifyDataSetChanged();
+				notifyDataSetChanged();*/
 
 			}
 		});
@@ -290,7 +290,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			//lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
 			System.out.println("bargasgt:"+item2.FltDateDayOfWeekFalse);
 			lblArrivalCityNameFaB.setText(""+GetDayWeek(item2.FltDateDayOfWeekFalse)+" , "+item2.FlightTimeB);
-			lblFlightArrivalTimeB.setText(item2.SegmentFalseCount+" توقف ");//count bargasht
+			int tavaghofB=item2.SegmentFalseCount-1;
+			lblFlightArrivalTimeB.setText((tavaghofB == 0) ? "بدون توقف" : tavaghofB+" توقف "  );//count bargasht
 		}
 		//raft
 		txtArrivelTrueLast.setText(item2.DepartureCityNameFaR);
@@ -302,7 +303,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	//	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
 		System.out.println("raft:"+item2.FltDateDayOfWeek);
 		lblArrivalCityNameFaR.setText(""+GetDayWeek(item2.FltDateDayOfWeek)+" , "+item2.FlightArrivalTimeR);
-		lblFlightArrivalTimeR.setText(item2.SegmentTrueCount+" توقف ");//count raft
+		int tavaghofR=item2.SegmentTrueCount-1;
+		lblFlightArrivalTimeR.setText((tavaghofR == 0) ? "بدون توقف" : tavaghofR+" توقف "  );//count raft
 
 		lblAdlCost.setText(item2.AdlCost+"");
 		lblAdlCost.setText(String.valueOf(NumberFormat.getInstance().format(item2.AdlCost)));

@@ -425,7 +425,7 @@
             fancy:fb_defaultColor="#1234"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="100dp"
-            fancy:fb_text="اعمال "
+            fancy:fb_text="اعمال فیلتر "
             fancy:fb_textColor="#4d4d4d"
             fancy:fb_textSize="14dp"
             android:layout_marginLeft="5dp"

@@ -57,9 +57,9 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 		private Handler progressBarHandler = new Handler();
 		public ListView list_airport;
 		ArrayList<HashMap<String,String>> mylist=null;
-		 public static String searchText = "";
+		public static String searchText = "";
 		
-		 GetAirPortMabdaAdapter mAdapter;
+		GetAirPortMabdaAdapter mAdapter;
 		private EditText searchtxt;
 	AVLoadingIndicatorView avi;
 		@Override

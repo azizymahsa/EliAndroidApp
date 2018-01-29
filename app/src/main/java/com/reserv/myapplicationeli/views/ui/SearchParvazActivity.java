@@ -127,8 +127,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	public ArrayList<String> airlineConstraint = new ArrayList<>();
 	private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
 
-	public TextView  txtCityBargasht;
-	public FancyButton txtBack,txtCityRaft,btnHome;
+	public TextView  txtCityBargasht,txtCityRaft,txtCityBargashtt;
+	public FancyButton txtBack,btnHome,txticon;
 
 	public List<ParentItemExpandingPlan> dataExpandingList;
 	public List<ParentItemExpandingPlan> dataExpandingListFilter = new ArrayList<>();
@@ -205,8 +205,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		lblMoratabSazi = (TextView) findViewById(R.id.lblMoratabSazi);
 		lblMoratabSazi.setOnClickListener(this);
 
-		txtCityRaft = (FancyButton) findViewById(R.id.txtCityRaft);
+		txtCityRaft = (TextView) findViewById(R.id.txtCityRaft);
 		txtCityRaft.setOnClickListener(this);
+
+		txticon = (FancyButton) findViewById(R.id.txticon);
+		txticon.setOnClickListener(this);
+
+		txtCityBargashtt = (TextView) findViewById(R.id.txtCityBargashtt);
+		txtCityBargashtt.setOnClickListener(this);
 
 		txtCityBargasht = (TextView) findViewById(R.id.txtCityBargasht);
 		txtCityBargasht.setOnClickListener(this);
@@ -216,8 +222,15 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			String maghsadf = extras.getString("Value-Maghsad-City");
 			String mabdaf = extras.getString("Value-Mabda-City");
 
-			txtCityRaft.setCustomTextFont("fonts/fontello_plane.ttf");
-			txtCityRaft.setText(mabdaf +"  "+ getString(R.string.icon_plane)+"  "+maghsadf);//sdfsdf
+			//txtCityRaft.setCustomTextFont("fonts/iran_sans_normal.ttf");
+			txtCityRaft.setText(mabdaf);//sdfsdf
+
+			txticon.setCustomTextFont("fonts/fontello_plane.ttf");
+			txticon.setText(getString(R.string.icon_plane));//sdfsdf
+
+			//txtCityBargashtt.setCustomTextFont("fonts/iran_sans_normal.ttf");
+			txtCityBargashtt.setText(maghsadf);//sdfsdf
+
 			txtCityBargasht.setText(maghsadf + "");
 
 			DdateF = extras.getString("Value-DepartureDate-format");
@@ -871,7 +884,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			// foundFirst=false;
 			iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
 			txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
-			Toast.makeText(SearchParvazActivity.this, "هیچ موردی یافت نشد!!", Toast.LENGTH_LONG).show();
+			//Toast.makeText(SearchParvazActivity.this, "هیچ موردی یافت نشد", Toast.LENGTH_LONG).show();
 			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
 			expListViewExpanding.setAdapter(listAdapterExpanding);
 		} else {
@@ -2381,7 +2394,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						Ddate = formatter.format(cal.getTime());
 						callApiDateNext();
 					} else {
-						Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد!!!",
+						Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
 								Toast.LENGTH_SHORT).show();
 					}
 
@@ -2427,14 +2440,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						String yearMF=dateShamsi.substring(0, 4);//1396
 
 						PersianCalendar persianCalendar = new PersianCalendar();
-						persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
+						persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
 						/////////////////////
 						// txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
 						txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
 						///
 						callApiDateNext();
 					} else {
-						Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز!!!", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز", Toast.LENGTH_SHORT).show();
 					}
 
 
