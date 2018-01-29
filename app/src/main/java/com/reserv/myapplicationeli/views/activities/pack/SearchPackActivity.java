@@ -2,8 +2,10 @@ package com.reserv.myapplicationeli.views.activities.pack;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +28,7 @@ import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.model.pack.LstAvailableDate;
 import com.reserv.myapplicationeli.models.model.pack.LstProwPrice;
 import com.reserv.myapplicationeli.models.model.pack.PRowXfer;
+import com.reserv.myapplicationeli.models.model.pack.PackageRoomNoToRequest;
 import com.reserv.myapplicationeli.models.model.pack.SearchXPackageResult;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageListReq;
 import com.reserv.myapplicationeli.models.model.pack.call.PackageRequestModel;
@@ -38,6 +41,7 @@ import com.reserv.myapplicationeli.models.model.pack.filter.PriceFilter;
 import com.reserv.myapplicationeli.models.model.pack.response.PackageListRes;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
+import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.pack.LstAvailableDateAdapter;
 import com.reserv.myapplicationeli.views.adapters.pack.PRowXferAdapter;
 import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
@@ -90,8 +94,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private FancyButton btn_previous_day;
     private RelativeLayout error_layout;
     private TextView txt_error;
+    private FancyButton btnHome;
     private FancyButton btnOk;
-
 
 
     @SuppressLint("NewApi")
@@ -139,7 +143,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         packageListReq.setDepartureFrom(departureFrom);
         packageListReq.setDepartureTo(departureTo);
         packageListReq.setCulture(culture);
-        Log.e(" requestPackage " ,new GsonBuilder().create().toJson(new PackageRequestModel(packageListReq)));
+        Log.e(" requestPackage ", new GsonBuilder().create().toJson(new PackageRequestModel(packageListReq)));
         Call<PackageListRes> call = service.getPackageListResult(new PackageRequestModel(packageListReq));
         call.enqueue(new Callback<PackageListRes>() {
             @Override
@@ -149,7 +153,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 if (response == null || response.body() == null) {
                     rcl_package.showText();
                     txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
-                    error_layout.setVisibility( View.VISIBLE);
+                    error_layout.setVisibility(View.VISIBLE);
                 }
 
 
@@ -158,21 +162,21 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 if (searchXPackageResult == null) {
                     rcl_package.showText();
                     txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
-                    error_layout.setVisibility( View.VISIBLE  );
+                    error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
 
                 if (!ValidationTools.isEmptyOrNull(searchXPackageResult.getError())) {
                     rcl_package.showText();
                     txt_error.setText(response.body().getSearchXPackageResult().getError().get(0).getDetailedMessage());
-                    error_layout.setVisibility( View.VISIBLE  );
+                    error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
 
                 if (ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
                     rcl_package.showText();
                     txt_error.setText("نتیجه ای یافت نشد !");
-                    error_layout.setVisibility( View.VISIBLE  );
+                    error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
 
@@ -192,7 +196,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 hideLoading();
                 rcl_package.showText();
                 txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
-                error_layout.setVisibility( View.VISIBLE  );
+                error_layout.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -207,6 +211,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         layout_sort = findViewById(R.id.llSort);
+        btnHome = findViewById(R.id.btnHome);
         llFilter = findViewById(R.id.llFilter);
         btn_previous_day = findViewById(R.id.btnLastDays);
         btn_next_day = findViewById(R.id.btnNextDays);
@@ -227,6 +232,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         txt_comin_soon.setVisibility(View.GONE);
         rcl_available_date.setNestedScrollingEnabled(false);
 
+        btnHome.setOnClickListener(this);
         btnOk.setOnClickListener(this);
         btnBack.setOnClickListener(this);
         llFilter.setOnClickListener(this);
@@ -239,6 +245,13 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btnHome:
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                startActivity(intent);
+                finish();
+                break;
             case R.id.btnOk:
                 onBackPressed();
                 break;
@@ -296,10 +309,22 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                                           ArrayList<HotelTypeFilter> hotelTypeFiltersSelected,
                                           ArrayList<AmenityFilter> amenityFiltersSelected) {
 
+                        if (!ValidationTools.isEmptyOrNull(degreeFiltersSelected)
+                                || !ValidationTools.isEmptyOrNull(priceFiltersSelected)
+                                || !ValidationTools.isEmptyOrNull(placeFiltersSelected)
+                                || !ValidationTools.isEmptyOrNull(hotelTypeFiltersSelected)
+                                || !ValidationTools.isEmptyOrNull(amenityFiltersSelected)){
 
-                        if (pRowXferAdapter != null) {
-                            pRowXferAdapter.filter(degreeFiltersSelected, priceFiltersSelected, placeFiltersSelected,hotelTypeFiltersSelected, amenityFiltersSelected);
+                            llFilter.setBackgroundColor(ContextCompat.getColor(SearchPackActivity.this,R.color.red));
+                        }else {
+                            llFilter.setBackgroundColor(ContextCompat.getColor(SearchPackActivity.this,R.color.hotel_detail_background));
                         }
+
+                            if (pRowXferAdapter != null) {
+                                pRowXferAdapter.filter(degreeFiltersSelected, priceFiltersSelected, placeFiltersSelected, hotelTypeFiltersSelected, amenityFiltersSelected);
+                            }
+
+
                     }
                 });
                 filterPackageDialog.show();
@@ -357,7 +382,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             }
         });
 
-        if (indexSeletedItem == lstAvailableDates.size()-1) {
+        if (indexSeletedItem == lstAvailableDates.size() - 1) {
             txt_comin_soon.setVisibility(View.VISIBLE);
         } else {
             txt_comin_soon.setVisibility(View.GONE);
@@ -386,18 +411,11 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     public void onClickPackageBookingItem(PRowXfer pack) {
         Intent intent = new Intent(this, PassengerPackageActivity.class);
 
-        LstProwPrice lstProwPrice = getLstProwPriceSelected(pack.getLstProwPrices());
         Prefs.putString("Rooms", roomList);
         Prefs.putString("PackRow_ID", pack.getPackRowID().toString());
         Prefs.putString("PackXfer_IDs", pack.getXFerIDs());
         Prefs.putString("Flt_IDs", pack.getFltIDs());
-        Prefs.putInt("PackRoomType_ID",lstProwPrice.getPackRowRoomTypeID());
-        Prefs.putInt("Room_No",lstProwPrice.getRoomNo());
-        Prefs.putInt("Adlt_count",  lstProwPrice.getAdlCount());
-        Prefs.putInt("chd_count", lstProwPrice.getChdNBCount() + lstProwPrice.getChdWBCount());
-        Prefs.putInt("inf_count",lstProwPrice.getInfCount() );
-        Prefs.putInt("total", lstProwPrice.getAdlCount()+lstProwPrice.getChdNBCount() + lstProwPrice.getChdWBCount()+lstProwPrice.getInfCount() );
-
+        intent.putExtra("PackageRoomNoToRequest", new GsonBuilder().create().toJson(getPackageRoomNoToRequest(pack.getLstProwPrices())));
         startActivity(intent);
     }
 
@@ -410,21 +428,42 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    private LstProwPrice getLstProwPriceSelected(ArrayList<LstProwPrice> lstProwPriceArrayList){
-        if(ValidationTools.isEmptyOrNull(lstProwPriceArrayList)){
+    private ArrayList<PackageRoomNoToRequest> getPackageRoomNoToRequest(ArrayList<LstProwPrice> lstProwPriceArrayList) {
+        ArrayList<PackageRoomNoToRequest> packageRoomNoToRequests = new ArrayList<>();
+        if (ValidationTools.isEmptyOrNull(lstProwPriceArrayList)) {
             Toast.makeText(this, "error!", Toast.LENGTH_SHORT).show();
-            return null;
+            return packageRoomNoToRequests;
         }
 
-        for(LstProwPrice lstProwPrice : lstProwPriceArrayList){
-            if(lstProwPrice.isChecked()){
-                return lstProwPrice;
+        for (LstProwPrice lstProwPrice : lstProwPriceArrayList) {
+            if (lstProwPrice.isChecked()) {
+                for (int i = 0; i < lstProwPrice.getAdlCount(); i++) {
+                    packageRoomNoToRequests.add(new PackageRoomNoToRequest("adl", lstProwPrice.getPackRowRoomTypeID(), lstProwPrice.getRoomNo()));
+                }
             }
         }
 
-        Toast.makeText(this, "error!", Toast.LENGTH_SHORT).show();
-        return null;
+        for (LstProwPrice lstProwPrice : lstProwPriceArrayList) {
+            if (lstProwPrice.isChecked()) {
+                for (int i = 0; i < (lstProwPrice.getChdNBCount() + lstProwPrice.getChdWBCount()); i++) {
+                    packageRoomNoToRequests.add(new PackageRoomNoToRequest("chl", lstProwPrice.getPackRowRoomTypeID(), lstProwPrice.getRoomNo()));
+                }
+
+            }
+        }
+
+        for (LstProwPrice lstProwPrice : lstProwPriceArrayList) {
+            if (lstProwPrice.isChecked()) {
+                for (int i = 0; i < lstProwPrice.getInfCount(); i++) {
+                    packageRoomNoToRequests.add(new PackageRoomNoToRequest("inf", lstProwPrice.getPackRowRoomTypeID(), lstProwPrice.getRoomNo()));
+                }
+
+            }
+        }
+
+        return packageRoomNoToRequests;
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

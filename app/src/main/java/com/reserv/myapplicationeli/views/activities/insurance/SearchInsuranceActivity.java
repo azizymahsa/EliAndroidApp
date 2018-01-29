@@ -259,12 +259,14 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     @Override
     public void onClickTravelInsurancItem(TravelInsurance_ travelInsurance) {
         Intent intent = new Intent(this, PassengerInsuranceActivity.class);
+
         Prefs.putString("CountryCode",countryCode );
         Prefs.putString("DepartureDate",departureDate );
         Prefs.putString("DtStart",departureDate );
         Prefs.putString("ReturnDate",returnDate );
         Prefs.putInt("Price",(travelInsurance.getTravelInsurancePricePP().getAmount())*passCount);
         Prefs.putString("Id",travelInsurance.getInsID().toString());
+        Prefs.putInt("PassCount",passCount);
         startActivity(intent);
     }
 

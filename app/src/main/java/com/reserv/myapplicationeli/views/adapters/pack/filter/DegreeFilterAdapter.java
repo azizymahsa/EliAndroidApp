@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.pack.ChildAgeRange;
 import com.reserv.myapplicationeli.models.model.pack.ChildModel;
+import com.reserv.myapplicationeli.models.model.pack.filter.AmenityFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.DegreeFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
 import com.reserv.myapplicationeli.tools.ValidationTools;
@@ -106,5 +107,17 @@ public class DegreeFilterAdapter extends RecyclerView.Adapter<DegreeFilterRowHol
             }
         }
         return degreeFiltersSelected;
+    }
+
+    public void removeFilter(){
+        if(ValidationTools.isEmptyOrNull(degreeFilters)){
+            return;
+        }
+
+        for(DegreeFilter degreeFilter : degreeFilters){
+            degreeFilter.setSelected(false);
+        }
+
+        notifyDataSetChanged();
     }
 }

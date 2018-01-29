@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.pack.filter.DegreeFilter;
+import com.reserv.myapplicationeli.models.model.pack.filter.HotelTypeFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PriceFilter;
 import com.reserv.myapplicationeli.tools.ValidationTools;
@@ -99,5 +100,17 @@ public class PlaceFilterAdapter extends RecyclerView.Adapter<PlaceFilterRowHolde
             }
         }
         return placeFiltersSelected;
+    }
+
+    public void removeFilter(){
+        if(ValidationTools.isEmptyOrNull(placeFilters)){
+            return;
+        }
+
+        for(PlaceFilter placeFilter : placeFilters){
+            placeFilter.setSelected(false);
+        }
+
+        notifyDataSetChanged();
     }
 }

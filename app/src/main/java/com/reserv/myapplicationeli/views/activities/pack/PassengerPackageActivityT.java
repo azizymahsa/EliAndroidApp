@@ -56,6 +56,7 @@ import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
+import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.GetHotelKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
@@ -100,6 +101,7 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
     Handler handler;
     ProgressDialog progressBar;
     public FancyButton btnBack;
+    public FancyButton btnHome;
     public ImageView btn_saler, btn_mosaferan, btn_khadamat, btn_pish_factor;
     public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
     public Button btnAddsabad, btn_pardakht_factor;
@@ -124,7 +126,7 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
     //ScrollView myScrollView;
     private EditText searchtxt;
     public TextView txt_shomare_factor, tvPrice;
-    public ImageView txt_hom, textView4;
+    public ImageView textView4;
 
     private String Gensiyat;
     Activity activity;
@@ -164,16 +166,16 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 
 
         btnBack = (FancyButton) findViewById(R.id.btnBack);
+        btnHome = (FancyButton) findViewById(R.id.btnHome);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setVisibility(View.VISIBLE);
         btnBack.setOnClickListener(this);
+        btnHome.setOnClickListener(this);
 
-        txt_hom = (ImageView) findViewById(R.id.txt_hom);
         textView4 = (ImageView) findViewById(R.id.textView4);
         tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
         expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
-        txt_hom.setOnClickListener(this);
 
         txtMore = (TextView) findViewById(R.id.txtMore);
         txtMore.setOnClickListener(this);
@@ -773,6 +775,7 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                     detailsJson.put("Nationality", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
                     detailsJson.put("Nationality_ID",cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
                     detailsJson.put("Nationality_ID",cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+
                     detailsJson.put("PackRoomType_ID",Prefs.getInt("PackRoomType_ID",12));
                     detailsJson.put("Room_No",Prefs.getInt("Room_No",12));
 
@@ -925,7 +928,14 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 
         switch (v.getId()) {
 
+            case R.id.btnHome:
+                Prefs.putBoolean("BACK_HOME", true);
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
+                startActivity(intent);
+                finish();
+                break;
             case R.id.txtMore:
 
                 linearMahaleeghamat.setVisibility(View.VISIBLE);
@@ -1327,12 +1337,6 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                 txtTitle.setText(" تایید و پرداخت پیش فاکتور ");
                 //myScrollView.setOnTouchListener(null);
-                break;
-            case R.id.txt_hom:
-                Prefs.putBoolean("BACK_HOME", true);
-                //	myScrollView.setOnTouchListener(null);
-                finish();
-                //this.startActivity(i4);
                 break;
         }
 

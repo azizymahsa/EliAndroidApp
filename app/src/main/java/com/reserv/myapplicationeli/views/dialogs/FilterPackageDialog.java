@@ -50,6 +50,11 @@ public class FilterPackageDialog implements View.OnClickListener {
     private ArrayList<HotelTypeFilter> hotelTypeFiltersSelected;
     private FancyButton btnOk;
     private FancyButton btnDeleteFilter;
+    private AmenityFilterAdapter amenityFilterAdapter;
+    private PriceFilterAdapter priceFilterAdapter;
+    private HotelTypeFilterAdapter hotelTypeFilterAdapter;
+    private PlaceFilterAdapter placeFilterAdapter;
+    private DegreeFilterAdapter degreeFilterAdapter;
 
     public interface OnFiltePackageListener{
 
@@ -132,7 +137,7 @@ public class FilterPackageDialog implements View.OnClickListener {
 
         rcl_price.setVisibility(View.VISIBLE);
 
-        PriceFilterAdapter priceFilterAdapter = new PriceFilterAdapter(context,priceFilters).setOnPriceFilterListener(new PriceFilterAdapter.OnPriceFilterListener() {
+        priceFilterAdapter = new PriceFilterAdapter(context,priceFilters).setOnPriceFilterListener(new PriceFilterAdapter.OnPriceFilterListener() {
             @Override
             public void onChangeFilters(ArrayList<PriceFilter> priceFiltersSelected) {
                 FilterPackageDialog.this.priceFiltersSelected = priceFiltersSelected;
@@ -149,7 +154,7 @@ public class FilterPackageDialog implements View.OnClickListener {
 
         rcl_place.setVisibility(View.VISIBLE);
 
-        PlaceFilterAdapter placeFilterAdapter = new PlaceFilterAdapter(context,placeFilters).setOnPlaceFilterListener(new PlaceFilterAdapter.OnPlaceFilterListener() {
+        placeFilterAdapter = new PlaceFilterAdapter(context,placeFilters).setOnPlaceFilterListener(new PlaceFilterAdapter.OnPlaceFilterListener() {
             @Override
             public void onChangeFilters(ArrayList<PlaceFilter> placeFiltersSelected) {
                 FilterPackageDialog.this.placeFiltersSelected = placeFiltersSelected;
@@ -166,7 +171,7 @@ public class FilterPackageDialog implements View.OnClickListener {
 
         rcl_hotel_type.setVisibility(View.VISIBLE);
 
-        HotelTypeFilterAdapter hotelTypeFilterAdapter = new HotelTypeFilterAdapter(context,hotelTypeFilters).setOnHotelTypeFilterListener(new HotelTypeFilterAdapter.OnHotelTypeFilterListener() {
+        hotelTypeFilterAdapter = new HotelTypeFilterAdapter(context,hotelTypeFilters).setOnHotelTypeFilterListener(new HotelTypeFilterAdapter.OnHotelTypeFilterListener() {
             @Override
             public void onChangeFilters(ArrayList<HotelTypeFilter> hotelTypeFiltersSelected) {
                 FilterPackageDialog.this.hotelTypeFiltersSelected = hotelTypeFiltersSelected;
@@ -183,7 +188,7 @@ public class FilterPackageDialog implements View.OnClickListener {
 
         rcl_degree.setVisibility(View.VISIBLE);
 
-        DegreeFilterAdapter degreeFilterAdapter = new DegreeFilterAdapter(context,degreeFilters).setOnDegreeFilterListener(new DegreeFilterAdapter.OnDegreeFilterListener() {
+        degreeFilterAdapter = new DegreeFilterAdapter(context,degreeFilters).setOnDegreeFilterListener(new DegreeFilterAdapter.OnDegreeFilterListener() {
             @Override
             public void onChangeFilters(ArrayList<DegreeFilter> degreeFiltersSelected) {
                 FilterPackageDialog.this.degreeFiltersSelected = degreeFiltersSelected;
@@ -200,7 +205,7 @@ public class FilterPackageDialog implements View.OnClickListener {
 
         rcl_amenity.setVisibility(View.VISIBLE);
 
-        AmenityFilterAdapter amenityFilterAdapter = new AmenityFilterAdapter(context,amenitieFilters).setOnAmenityFilterListener(new AmenityFilterAdapter.OnAmenityFilterListener() {
+        amenityFilterAdapter = new AmenityFilterAdapter(context,amenitieFilters).setOnAmenityFilterListener(new AmenityFilterAdapter.OnAmenityFilterListener() {
             @Override
             public void onChangeFilters(ArrayList<AmenityFilter> amenityFiltersSelected) {
                 FilterPackageDialog.this.amenityFiltersSelected = amenityFiltersSelected;
@@ -227,7 +232,35 @@ public class FilterPackageDialog implements View.OnClickListener {
                 }
                 break;
             case R.id.btnDeletFilter :
-                dismiss();
+
+                if(amenityFilterAdapter != null){
+                    amenityFilterAdapter.removeFilter();
+                }
+
+                if(hotelTypeFilterAdapter != null){
+                    hotelTypeFilterAdapter.removeFilter();
+                }
+
+                if(placeFilterAdapter != null){
+                    placeFilterAdapter.removeFilter();
+                }
+
+                if(priceFilterAdapter != null){
+                    priceFilterAdapter.removeFilter();
+                }
+
+                if(degreeFilterAdapter != null){
+                    degreeFilterAdapter.removeFilter();
+                }
+
+                if(onFiltePackageListener != null){
+                    onFiltePackageListener.onConfirm(degreeFiltersSelected,
+                            priceFiltersSelected,
+                            placeFiltersSelected,
+                            hotelTypeFiltersSelected,
+                            amenityFiltersSelected);
+                    dismiss();
+                }
                 break;
         }
     }

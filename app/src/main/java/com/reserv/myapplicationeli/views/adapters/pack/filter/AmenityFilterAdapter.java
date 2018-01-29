@@ -102,4 +102,18 @@ public class AmenityFilterAdapter extends RecyclerView.Adapter<AmenityilterRowHo
         }
         return amenityFiltersSelected;
     }
+
+
+
+    public void removeFilter(){
+        if(ValidationTools.isEmptyOrNull(amenityFilters)){
+            return;
+        }
+
+        for(AmenityFilter amenityFilter : amenityFilters){
+            amenityFilter.setSelected(false);
+        }
+
+        notifyDataSetChanged();
+    }
 }

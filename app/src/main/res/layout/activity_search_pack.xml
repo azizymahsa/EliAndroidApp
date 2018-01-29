@@ -71,32 +71,31 @@
                     android:textSize="@dimen/_12dp_txtSize" />
 
                 <RelativeLayout
+                    android:id="@+id/llHome"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:gravity="left">
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    >
 
                     <mehdi.sakout.fancybuttons.FancyButton
                         android:id="@+id/btnHome"
-                        android:layout_width="@dimen/_50dp_width"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="right"
-                        android:gravity="right"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         fancy:fb_defaultColor="@android:color/transparent"
                         fancy:fb_focusColor="@color/focusColor"
 
-                        fancy:fb_radius="@dimen/_6dp_radius"
+                        fancy:fb_radius="6dp"
                         fancy:fb_text=" "
                         fancy:fb_textColor="#FFFFFF"
-                        fancy:fb_textSize="@dimen/_25dp_txtSize" />
+                        fancy:fb_textSize="25dp" />
 
                     <ImageView
-                        android:layout_width="@dimen/_50dp_width"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/_10dp_padding"
-                        android:src="@drawable/e_logo" />
+                        android:id="@+id/e_logo"
+                        android:layout_width="60dp"
+                        android:layout_height="@dimen/toolbar_height_70dp"
+                        android:padding="14dp"
+                        android:src="@drawable/e_logo"
+                        />
 
 
                 </RelativeLayout>
@@ -283,7 +282,6 @@
 
             <LinearLayout
                 android:id="@+id/llFilter"
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"

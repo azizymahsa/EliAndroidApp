@@ -82,9 +82,17 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 		cv.put(Columns.RqPassenger_PassNo.value(), RqPassenger_PassNo);
 		cv.put(Columns.RqPassenger_Tel.value(), RqPassenger_Tel);
 		openDB();
+
 		return (int) db.insert(TABLE_NAME, null, cv);
+
 	}
 
+	public void removeAllRecord(){
+		if(db == null){
+			return;
+		}
+		db.execSQL("delete from "+ TABLE_NAME);
+	}
 	/*****************************************************************************************/
 	public CursorManager getMosaferById(int idMosafer) {
 		String conditions = Columns.ID + "='" + idMosafer + "'";
