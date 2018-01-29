@@ -95,7 +95,7 @@ import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
-import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -545,8 +545,8 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 				}
 
 			} catch (JSONException e) {
-				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-				AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+				AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
 
@@ -693,8 +693,8 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 				}else{
 					//txt_shomare_factor.setText("خطایی رخ داده است !");
 					//new AlertDialog(PassengerActivity.this, "خطایی رخ داده است !");
-					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-					AlertDialogPassenger.setText("خطایی رخ داده است !");
+					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+					AlertDialogPassengerFlight.setText("خطایی رخ داده است !");
 					//Toast.makeText(PassengerActivity.this, "خطایی رخ داده است !", Toast.LENGTH_LONG).show();
 					finish();
 
@@ -716,8 +716,8 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 				new AsyncFetchGetPreFactorDetails().execute();
 
 			} catch (JSONException e) {
-				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-				AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+				AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
 				//new AlertDialog(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
@@ -868,8 +868,8 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 					GetError = jPricedItinerary.getString("Message");
 				}
 				if (GetError.length()>1) {
-					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-					AlertDialogPassenger.setText(""+"  "+GetError);
+					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+					AlertDialogPassengerFlight.setText(""+"  "+GetError);
 					//new AlertDialog(PassengerActivity.this,"لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز");
 						//Toast.makeText(PassengerActivity.this, "لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز", Toast.LENGTH_LONG).show();
 				}else{
@@ -942,8 +942,8 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 				listKhadamat.setAdapter(mAdapter);
 			}
 			} catch (JSONException e) {
-				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-				AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+				AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
 				//new AlertDialog(PassengerActivity.this,"در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
@@ -1323,8 +1323,8 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 					if(flagMosafer.contains("F")){
 						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
 						//Toast.makeText(this,errorMessage,2000).show();
-						AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-						AlertDialogPassenger.setText(""+"  "+errorMessage);
+						AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+						AlertDialogPassengerFlight.setText(""+"  "+errorMessage);
 					}else{
 						//insert partner
 						PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerActivity.this);
@@ -1471,8 +1471,8 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 
 				if(flagMosafer.contains("F")){
 					//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
-					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-					AlertDialogPassenger.setText(""+"  "+errorMessagePartner);
+					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+					AlertDialogPassengerFlight.setText(""+"  "+errorMessagePartner);
 					//Toast.makeText(this,errorMessagePartner,2000).show();
 				}else{
 					PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerActivity.this);
