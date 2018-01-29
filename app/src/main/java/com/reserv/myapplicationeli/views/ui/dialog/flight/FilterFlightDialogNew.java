@@ -280,15 +280,6 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
                 dialog.cancel();
 
                 break;
-
-        }
-    }
-
-    @Override
-    public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-        switch (checkBox.getId()) {
-
-
             case R.id.btnDeletFilter:
                 if (filter.isEmpty()) {
                     filter.add(new FilterModelّFlight(false,false,false,true,false,false,false));
@@ -314,6 +305,15 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
                 dialog.cancel();
                 break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+        switch (checkBox.getId()) {
+
+
+
             case R.id.Remove:
                 if (isChecked) {
 
