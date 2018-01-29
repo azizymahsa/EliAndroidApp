@@ -62,6 +62,7 @@ public class FilterHotelTypeAdapter extends BaseAdapter{
         holder.tvTitle.setText(hotelProprtiesModels.get(position).getTitle());
 
         holder.checkbox.setEnabled(false);
+        holder.checkbox.setClickable(false);
 
 
         if (hotelProprtiesModels.get(position).isCheck()){

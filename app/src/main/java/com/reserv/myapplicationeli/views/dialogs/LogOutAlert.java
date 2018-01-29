@@ -41,8 +41,8 @@ public class LogOutAlert implements View.OnClickListener {
         btnExit = (FancyButton) dialogView.findViewById(R.id.btnExitLogout);
         tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("fonts/irsans.ttf");
-        btnExit.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnExit.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         dialog = builder.create();

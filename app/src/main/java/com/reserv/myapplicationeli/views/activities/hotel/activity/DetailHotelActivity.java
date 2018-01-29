@@ -231,8 +231,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         lvRooms = findViewById(R.id.lvRooms);
         roomsAdapter = new RoomsAdapter(roomsModels, this, rlRoot, rlLoading, window);
         lvRooms.setAdapter(roomsAdapter);
-        btnSendComment.setCustomTextFont("fonts/irsans.ttf");
-        btnOk.setCustomTextFont("fonts/irsans.ttf");
+        btnSendComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         lvRooms.setFocusable(false);
         llComment.setFocusable(false);
         svDetail.setFocusable(false);
@@ -527,7 +527,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
                         Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
 
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 20));
                 map.addMarker(new MarkerOptions().position(location).title(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName));
                 for (ImageHotel imageHotel : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelImages) {
                     imageModels.add(new ImageModel(imageHotel.HotelImagesURL));
@@ -538,7 +538,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 for (HotelProprties hotelProprties : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties) {
                     arrayStringList.add(hotelProprties.Category);
 
-                    hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIcon));
+                    hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont));
                     //add_textView(hotelProprties.PropertyTitle);
 
                 }
@@ -574,6 +574,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     ArrayList<HotelProprtiesModels> value = entry.getValue();
                     TextView textView = new TextView(DetailHotelActivity.this);
                     textView.setText(key);
+
                     Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
                     textView.setTypeface(t);
                     textView.setPadding(10, 10, 10, 10);
@@ -584,6 +585,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     textView.setGravity(Gravity.CENTER);
                     textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
                     llDynamic.addView(textView);
+
+
                     NonScrollGridView nonScrollGridView = new NonScrollGridView(DetailHotelActivity.this);
                     nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));

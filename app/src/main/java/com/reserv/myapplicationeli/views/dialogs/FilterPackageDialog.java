@@ -114,8 +114,8 @@ public class FilterPackageDialog implements View.OnClickListener {
 
         btnOk.setOnClickListener(this);
         btnDeleteFilter.setOnClickListener(this);
-        btnOk.setCustomTextFont("fonts/irsans.ttf");
-        btnDeleteFilter.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnDeleteFilter.setCustomTextFont("fonts/iran_sans_normal.ttf");
     }
 
 

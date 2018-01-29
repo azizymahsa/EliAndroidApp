@@ -85,6 +85,7 @@
     <color name="text_color_2e">#2e3192</color>
     <color name="color_passenger_prefactor">#e6e6e6</color>
     <color name="sorati">#f5eeff</color>
+    <color name="status_loading">#d874ff</color>
 
 
 </resources>

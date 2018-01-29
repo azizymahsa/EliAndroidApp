@@ -485,7 +485,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     if (sum > 0) {
 
-                        passengerMosaferItemsTable.insertData(counter - 1, Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                        passengerMosaferItemsTable.insertData(counter - 1,"اطلاعات مسافربزرگسال 1", Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                         if (countB > 1) {
                             txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
                             countB--;
@@ -1185,7 +1185,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 for (int i = 0; i < jArray4.length(); i++) {
                     servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
                             jArray4.getJSONObject(i).getString("ServicePrice"), jArray4.getJSONObject(i).getString("ServiceType"),
-                            jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa")));
+                            jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa"),jArray4.getJSONObject(i).getString("CountryFa")));
 
                 }
                 if (!servicePreFactorModels.isEmpty()) {
@@ -1215,7 +1215,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                             jArray5.getJSONObject(i).getString("FltNumber"),
                             jArray5.getJSONObject(i).getString("AirlineNameFa"),
-                            jArray5.getJSONObject(i).getString("DepartureCityFa")));
+                            jArray5.getJSONObject(i).getString("DepartureCityFa"),jArray5.getJSONObject(i).getString("AirlineCode")));
                 }
                 if (!flightPreFactorModels.isEmpty()) {
                     llDetailFlight.setVisibility(View.VISIBLE);

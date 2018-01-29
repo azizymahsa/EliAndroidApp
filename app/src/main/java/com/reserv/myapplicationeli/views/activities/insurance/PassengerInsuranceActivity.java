@@ -106,7 +106,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
 	public FancyButton btnHome;
-	public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
+	public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore;
 
 	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
 	public Button btnAddsabad,btn_pardakht_factor;
@@ -130,7 +130,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 	ExpandableRelativeLayout expandableLayout;
 
 
-	public TextView imgCount;
 	String paymentUrl;
 
 
@@ -141,9 +140,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 	GetHotelKhadmatAdapter mAdapter;
 	//ScrollView myScrollView;
 	private EditText searchtxt;
-	public TextView txt_shomare_factor, tvPrice;
-	public ImageView textView4;
 
+
+	public TextView txt_shomare_factor,tvPrice,tvfactorNumber;
+
+	public ImageView txt_hom,textView4;
+	public TextView imgCount;
 	private String Gensiyat;
 	Activity activity;
 	public int countB;
@@ -162,6 +164,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_passenger_pack);
 
+		 data=new ArrayList<PurchaseFlightResult>();
 		btnBack = (FancyButton) findViewById(R.id.btnBack);
 		btnHome = (FancyButton) findViewById(R.id.btnHome);
 		btnBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -170,7 +173,11 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 		btnBack.setOnClickListener(this);
 		btnHome.setOnClickListener(this);
 
-		textView4 = (ImageView) findViewById(R.id.textView4);
+		imgCount=(TextView) findViewById(R.id.imgCount);
+		imgCount.setOnClickListener(this);
+
+		txt_hom = (ImageView) findViewById(R.id.txt_hom);
+		txt_hom.setOnClickListener(this);
 		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
 		expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
 
@@ -196,6 +203,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 		txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
 		txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
 		txtnumber_passport.setOnClickListener(this);
+		txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
 		txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
 		txtexp_passport.setOnClickListener(this);
@@ -278,21 +286,22 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 		// Spinner Drop down elements
 		List<String> categories = new ArrayList<String>();
-		categories.add("لطفا جنسیت را انتخاب کنید");
 		categories.add("مرد");
 		categories.add("زن");
+
 
 
 		// Creating adapter for spinner
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
-		// Drop down layout style - list view with radio button
+		// Drop down dialog_custom style - list view with radio button
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		// attaching data adapter to spinner
 		spinner.setAdapter(dataAdapter);
 		spinnerMosafer.setAdapter(dataAdapter);
 		////////////////////////////////
+
 
 
 		// new AsyncFetch().execute();
@@ -519,7 +528,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				for (int i = 0; i < jArray4.length(); i++) {
 					servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
 							jArray4.getJSONObject(i).getString("ServicePrice"), jArray4.getJSONObject(i).getString("ServiceType"),
-							jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa")));
+							jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa"),jArray4.getJSONObject(i).getString("CountryFa")));
 
 				}
 				if (!servicePreFactorModels.isEmpty()) {
@@ -549,7 +558,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 							jArray5.getJSONObject(i).getString("FltNumber"),
 							jArray5.getJSONObject(i).getString("AirlineNameFa"),
-							jArray5.getJSONObject(i).getString("DepartureCityFa")));
+							jArray5.getJSONObject(i).getString("DepartureCityFa"),jArray5.getJSONObject(i).getString("AirlineCode")));
 				}
 				if (!flightPreFactorModels.isEmpty()) {
 					llDetailFlight.setVisibility(View.VISIBLE);
@@ -1404,17 +1413,41 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 					if(sum>0){
 
-						db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-						if(countB>0) {
-							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+						System.out.println("gender:"+Gender);
+						//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+						if(countB>=1) {
+							System.out.println("countB:"+countB);
+							//txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+							//imgCount.setText(counter+"");
 							countB--;
-						}else if(countK>0) {
-							txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+						}else if(countK>=1) {
+							System.out.println("countK:"+countK);
+							//txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+							//imgCount.setText(counter+"");
 							countK--;
-						}else if(countN>0) {
-							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+						}else if(countN>=1) {
+							System.out.println("countN:"+countN);
+							//txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+							//imgCount.setText(counter+"");
 							countN--;
 						}
+						if(countB!=0){
+
+							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+							imgCount.setText(counter+"");
+						}
+						else if(countK!=0){
+
+							txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+							imgCount.setText(counter+"");
+						}
+						else if(countN!=0){
+
+							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+							imgCount.setText(counter+"");
+						}
+						db.insertData(counter-1,txtTitleCountM.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+
 						System.out.println("counterMosafer:"+counter);
 						counter++;
 						sum--;
@@ -1469,6 +1502,26 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
 				((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
 				txtTitle.setText(" مشخصات خریدار ");
+				//myScrollView.setOnTouchListener(null);
+				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
+					linear_pish_factor.setVisibility(View.GONE);
+					linear_list_khadamat.setVisibility(View.VISIBLE);
+
+					((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
+					txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE){
+					linear_list_khadamat.setVisibility(View.GONE);
+					linear_mosaferan.setVisibility(View.VISIBLE);
+
+					txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
+					((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
+				}else if (linear_mosaferan.getVisibility() == View.VISIBLE){
+					linear_mosaferan.setVisibility(View.GONE);
+					linear_saler.setVisibility(View.VISIBLE);
+
+					txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
+					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
+				}*/
 				break;
 			case R.id.btn_mosaferan:
 				linear_saler.setVisibility(View.GONE);
@@ -1483,6 +1536,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
 				((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 				txtTitle.setText("  اطلاعات مسافران ");
+
+				//.setOnTouchListener(null);
 				break;
 //			case R.id.btn_khadamat:
 //				linear_saler.setVisibility(View.GONE);
@@ -1505,7 +1560,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 //
 //				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 //				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-//				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
+//				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
 //				txtTitle.setText(" افزودن خدمات به سبد خرید");
 //				break;
 			case R.id.btn_pish_factor:
@@ -1906,8 +1961,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 	private static final int WHITE = 15132390;
 	private static final int BLACK = 0xFF000000;
 
-	private static Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException
-	{
+	private static Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException {
 		if (contents == null) {
 			return null;
 		}

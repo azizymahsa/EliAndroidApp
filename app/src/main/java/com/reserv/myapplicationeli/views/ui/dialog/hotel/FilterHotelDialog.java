@@ -14,6 +14,8 @@ import com.reserv.myapplicationeli.views.adapters.hotel.FilterHotelTypeAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.PriceFilterAdapter;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import cn.refactor.library.SmoothCheckBox;
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -41,9 +43,9 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
     boolean bestSeler_;
     boolean bestOff_;
     boolean remove_;
-    com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView lvHotelTypes, lvFacilitiesTypes,lvPrice;
-    FilterHotelTypeAdapter filterHotelTypeAdapter, filterHotelFacilitiesAdapter;
-    ArrayList<FilterHotelTypeModel> filterHotelTypeModels, filterHotelFacilitiesModels;
+    com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView lvHotelTypes, lvFacilitiesTypes,lvPrice,lvLocationTypes;
+    FilterHotelTypeAdapter filterHotelTypeAdapter, filterHotelFacilitiesAdapter,filterHotelLocationAdapter;
+    ArrayList<FilterHotelTypeModel> filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelLocationModels;
     ArrayList<FilterPriceModel> filterHotelPriceModel;
     PriceFilterAdapter priceFilterAdapter;
     String search;
@@ -53,12 +55,15 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
     public FilterHotelDialog(final Context activity, ArrayList<FilterModel> filter,
                              FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
-                             final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,String search) {
+                             final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,
+                             String search,final ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
         this.activity = activity;
         this.filter = filter;
         this.search = search;
         this.filterHotelDialogListenerArray = filterHotelDialogListenerArray;
+        Collections.reverse(filterHotelPriceModel);
         this.filterHotelPriceModel = filterHotelPriceModel;
+        this.filterHotelLocationModels = filterHotelLocationModels;
 
         this.filterHotelTypeModels = filterHotelTypeModels;
         this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
@@ -83,13 +88,16 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         searchtxt.setText(search);
         lvHotelTypes = (com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView) dialogView.findViewById(R.id.lvHotelTypes);
         lvFacilitiesTypes = (com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView) dialogView.findViewById(R.id.lvFacilitiesTypes);
+        lvLocationTypes = (com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView) dialogView.findViewById(R.id.lvLocationTypes);
         lvPrice = (com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView) dialogView.findViewById(R.id.lvPrice);
         filterHotelTypeAdapter = new FilterHotelTypeAdapter(filterHotelTypeModels, activity);
         filterHotelFacilitiesAdapter = new FilterHotelTypeAdapter(filterHotelFacilitiesModels, activity);
+        filterHotelLocationAdapter = new FilterHotelTypeAdapter(filterHotelLocationModels, activity);
         priceFilterAdapter = new PriceFilterAdapter(filterHotelPriceModel, activity);
         lvPrice.setAdapter(priceFilterAdapter);
 
         lvHotelTypes.setAdapter(filterHotelTypeAdapter);
+        lvLocationTypes.setAdapter(filterHotelLocationAdapter);
         lvFacilitiesTypes.setAdapter(filterHotelFacilitiesAdapter);
         lvHotelTypes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -108,6 +116,22 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
             }
         });
 
+        lvLocationTypes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (filterHotelLocationModels.get(position).isCheck()) {
+                    filterHotelLocationModels.set(position, new FilterHotelTypeModel(filterHotelLocationModels.get(position).getTitle(), false));
+
+                } else {
+                    filterHotelLocationModels.set(position, new FilterHotelTypeModel(filterHotelLocationModels.get(position).getTitle(), true));
+                    Remove.setChecked(false);
+
+
+                }
+                filterHotelLocationAdapter.notifyDataSetChanged();
+
+            }
+        });
 
         lvFacilitiesTypes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -152,8 +176,8 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         bestSeler.setOnCheckedChangeListener(this);
 
 
-        btnOk.setCustomTextFont("fonts/irsans.ttf");
-        btnDeletFilter.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnDeletFilter.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         btnDeletFilter.setOnClickListener(this);
         dialog = builder.create();
@@ -259,12 +283,17 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
             }
         }
 
-        scrollViewObject.postDelayed(new Runnable() {
+       /* scrollViewObject.postDelayed(new Runnable() {
             @Override
             public void run() {
                 scrollViewObject.fullScroll(ScrollView.FOCUS_UP);
             }
-        }, 600);
+        }, 600);*/
+      /*  scrollViewObject.setFocusable(false);
+        lvHotelTypes.setFocusable(false);
+        lvFacilitiesTypes.setFocusable(false);
+        lvPrice.setFocusable(false);
+        lvLocationTypes.setFocusable(false);*/
         dialog.show();
     }
 
@@ -359,7 +388,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
                 }
 
 
-                filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelPriceModel);
+                filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelPriceModel,filterHotelLocationModels);
 
 
                 dialog.cancel();
@@ -367,6 +396,32 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
                 break;
             case R.id.btnDeletFilter:
+                for (int i = 0; i < filterHotelTypeModels.size(); i++) {
+                    filterHotelTypeModels.set(i, new FilterHotelTypeModel(filterHotelTypeModels.get(i).getTitle(), false));
+
+
+                }
+
+                for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
+                    filterHotelFacilitiesModels.set(i, new FilterHotelTypeModel(filterHotelFacilitiesModels.get(i).getTitle(), false));
+
+
+                }
+
+                for (int i = 0; i < filterHotelPriceModel.size(); i++) {
+                    filterHotelPriceModel.set(i, new FilterPriceModel(filterHotelPriceModel.get(i).getDiff(),filterHotelPriceModel.get(i).getX(), false));
+
+
+                }
+                for (int i = 0; i < filterHotelLocationModels.size(); i++) {
+                    filterHotelLocationModels.set(i, new FilterHotelTypeModel(filterHotelLocationModels.get(i).getTitle(), false));
+
+
+                }
+                filterHotelTypeAdapter.notifyDataSetChanged();
+                filterHotelFacilitiesAdapter.notifyDataSetChanged();
+                priceFilterAdapter.notifyDataSetChanged();
+                filterHotelLocationAdapter.notifyDataSetChanged();
                 if (filter.isEmpty()) {
                     filter.add(new FilterModel(false, false, false, false, false, false, false, true));
 
@@ -375,7 +430,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
                     filter.set(0, new FilterModel(false, false, false, false, false, false, false, true));
 
                 }
-                filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelPriceModel);
+                filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelPriceModel,filterHotelLocationModels);
 
                 dialog.cancel();
 
@@ -470,7 +525,8 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
     public interface FilterHotelDialogListenerArray {
         public void onReturnValue(ArrayList<FilterModel> type, String search,
                                   ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
-                                  ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, ArrayList<FilterPriceModel> filterHotelPriceModel);
+                                  ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,
+                                  ArrayList<FilterPriceModel> filterHotelPriceModel,ArrayList<FilterHotelTypeModel> filterHotelLocationModels);
     }
 
 }

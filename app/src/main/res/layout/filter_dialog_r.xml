@@ -301,7 +301,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#000000" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#1234"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_5dp"
+                    android:text="نوع مکان اقامتی"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="14dp" />
 
+                <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                    android:id="@+id/lvLocationTypes"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#000000" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

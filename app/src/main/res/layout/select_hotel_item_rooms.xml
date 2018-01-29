@@ -38,6 +38,7 @@
                 android:textAppearance="@style/IrsansBold"
                 android:textStyle="bold"
                 android:maxLines="1"
+                android:ellipsize="end"
                 />
 
             <LinearLayout
@@ -102,6 +103,7 @@
                     android:textColor="#c61a1f"
                     android:gravity="left"
                     android:maxLines="1"
+                    android:ellipsize="end"
 
                     />
                 <RelativeLayout

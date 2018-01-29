@@ -55,18 +55,22 @@
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/white"
                  />
-                <ImageView
+                <TextView
                     android:id="@+id/ivIsBestseler"
                     android:layout_width="60dp"
                     android:layout_height="50dp"
-                    android:scaleType="fitXY"
+                    android:text="بیشترین فروش"
+                    android:background="@drawable/best_seller_back"
+                    android:textColor="@color/text_color_4d"
+
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:padding="2dp"
                     android:src="@drawable/best_seller"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_marginBottom="20dp"
-
-
-                    />
+                    android:visibility="gone"/>
             </RelativeLayout>
 
 
@@ -103,6 +107,7 @@
                         android:textColor="@color/white"
                         android:textSize="14dp"
                         android:layout_alignParentLeft="true"
+                        android:ellipsize="end"
                         android:maxLines="1"/>
 
 
@@ -139,6 +144,8 @@
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:text="jsdkf"
+                        android:ellipsize="end"
+                        android:maxLines="1"
 
                         />
                     <ImageView
@@ -181,6 +188,8 @@
                         android:textSize="13dp"
                         android:textAppearance="@style/IrsansBold"
                         android:textStyle="bold"
+                        android:ellipsize="end"
+                        android:maxLines="1"
 
                         />
 

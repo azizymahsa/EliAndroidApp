@@ -36,7 +36,7 @@ public class SocialFollowDialog implements View.OnClickListener {
         tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
         tvAlert.setText(text);
 
-        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setCustomTextFont("iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);

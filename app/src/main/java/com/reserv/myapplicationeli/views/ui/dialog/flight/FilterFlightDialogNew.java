@@ -66,8 +66,8 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
         btnDeletFilter = (FancyButton) dialogView.findViewById(R.id.btnDeletFilter);
-        btnOk.setCustomTextFont("fonts/irsans.ttf");
-        btnDeletFilter.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnDeletFilter.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         btnDeletFilter.setOnClickListener(this);
 

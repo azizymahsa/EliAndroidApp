@@ -48,7 +48,9 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
 
         final FlightPreFactorModel item = data.get(position);
         holder.setIsRecyclable(false);
-        holder.tvFlightDetail.setText(item.getDepartureCityFa()+" " +item.getFltDate()+" - "+item.getFltTime());
+        holder.tvFlightDetail.setText(" " +item.getDepartureCityFa()+" ");
+        holder.tvFlightDetail2.setText(item.getFltTime()+" ");
+        holder.tvFlightDetail3.setText(item.getFltDate());
 
 
         holder.tvArrAirport.setText(item.getArrAirPortFa());
@@ -56,7 +58,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         holder.tvDate.setText(item.getFltDate());
         holder.tvOutTime.setText(item.getFltTime());
         holder.tvInTime.setText(item.getFltCheckinTime());
-        holder.tvNumber.setText(item.getFltNumber());
+        holder.tvNumber.setText(item.getAirlineCode()+","+item.getFltNumber());
         holder.tvAirLineName.setText(item.getAirlineNameEn());
         // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);
@@ -96,7 +98,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvFlightDetail,tvArrAirport,tvDepAir,tvDate,tvOutTime,tvInTime,tvNumber,tvAirLineName,tvArrow;
+        public TextView tvFlightDetail,tvArrAirport,tvDepAir,tvDate,tvOutTime,tvInTime,tvNumber,tvAirLineName,tvArrow,tvFlightDetail2,tvFlightDetail3;
         RelativeLayout buttonLayout;
         //  public RelativeLayout tvArrow;
         /**
@@ -108,6 +110,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         public ViewHolder(View v) {
             super(v);
             tvFlightDetail = (TextView) v.findViewById(R.id.tvFlightDetail);
+            tvFlightDetail2 = (TextView) v.findViewById(R.id.tvFlightDetail2);
             tvArrAirport = (TextView) v.findViewById(R.id.tvArrAirport);
             tvDepAir = (TextView) v.findViewById(R.id.tvDepAir);
             tvDate = (TextView) v.findViewById(R.id.tvDate);
@@ -117,6 +120,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
             tvAirLineName = (TextView) v.findViewById(R.id.tvAirLineName);
             expandableLayout = (ExpandableLinearLayout) v.findViewById(R.id.expandableLayout);
             tvArrow = (TextView) v.findViewById(R.id.tvArrow);
+            tvFlightDetail3 = (TextView) v.findViewById(R.id.tvFlightDetail3);
             buttonLayout = (RelativeLayout) v.findViewById(R.id.buttonLayout);
         }
     }

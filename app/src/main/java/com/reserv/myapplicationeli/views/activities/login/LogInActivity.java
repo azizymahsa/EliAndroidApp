@@ -133,7 +133,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         layoutResetPassword = findViewById(R.id.layout_reset_password);
         txtPassword = findViewById(R.id.txt_password);
 
-        btnLogin.setCustomTextFont("fonts/irsans.ttf");
+        btnLogin.setCustomTextFont("fonts/iran_sans_normal.ttf");
         eLogo.setVisibility(View.INVISIBLE);
 
 

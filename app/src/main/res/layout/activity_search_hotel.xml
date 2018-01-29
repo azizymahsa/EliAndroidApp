@@ -172,7 +172,8 @@
 
 
                     <mehdi.sakout.fancybuttons.FancyButton
-                        android:id="@+id/btnNextDays"
+                        android:id="@+id/btnLastDays"
+
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         fancy:fb_defaultColor="@android:color/transparent"
@@ -204,7 +205,8 @@
                         android:layout_height="match_parent"
                         android:textColor="#4d4d4d"
                         android:gravity="center"
-                        android:text="روز بعد"
+
+                        android:text="روز قبل"
                         android:textSize="14dp"
                         />
 
@@ -219,7 +221,9 @@
                     android:layout_height="wrap_content">
 
                     <mehdi.sakout.fancybuttons.FancyButton
-                        android:id="@+id/btnLastDays"
+
+                        android:id="@+id/btnNextDays"
+
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         fancy:fb_defaultColor="@android:color/transparent"
@@ -239,7 +243,8 @@
                         android:layout_height="match_parent"
                         android:textColor="#4d4d4d"
                         android:gravity="center"
-                        android:text="روز قبل"
+
+                        android:text="روز بعد"
                         android:layout_marginLeft="5dp"
                         android:textSize="14dp"
                         />
@@ -249,8 +254,9 @@
                         android:layout_height="match_parent"
                         android:text="@string/icon_arrow_right"
                         android:textAppearance="@style/IconFonts"
-                        android:gravity="center"
                         android:textSize="26dp"
+                        android:gravity="center"
+
                         android:textColor="#4d4d4d"
                         android:layout_toRightOf="@+id/tvLastDays"/>
 

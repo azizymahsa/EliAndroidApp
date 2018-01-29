@@ -96,7 +96,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvBargashtTimeWait = (TextView) convertView.findViewById(R.id.tvBargashtTimeWait);
             holder.tvRaftTimeWait = (TextView) convertView.findViewById(R.id.tvRaftTimeWait);
             holder.tvAirLines = (TextView) convertView.findViewById(R.id.tvAirLines);
-            holder.ivIsBestseler = (ImageView) convertView.findViewById(R.id.ivIsBestseler);
+            holder.ivIsBestseler = (TextView) convertView.findViewById(R.id.ivIsBestseler);
 
 
 
@@ -240,12 +240,13 @@ public class FlightHotelAdapter extends BaseAdapter {
             case 1:
                 waitBargasht = "بدون توقف";
                 try {
-
+                    holder.tvANRaft1_2_bargasht.setText(strings2[1]);
                     holder.linear_1_bargasht.setVisibility(View.VISIBLE);
                     holder.tvANRaft1_1_bargasht.setText(strings2[0]);
-                    holder.tvANRaft1_2_bargasht.setText(strings2[1]);
+
                 }catch (Exception e){
                     holder.nonStop.setText(strings2[0]);
+                    holder.nonStop.setVisibility(View.VISIBLE);
 
                 }
 
@@ -435,8 +436,8 @@ public class FlightHotelAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines,nonStop;
-        ImageView ivHotelPic, ivRate, ivLogo,ivIsBestseler;
+        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines,nonStop,ivIsBestseler;
+        ImageView ivHotelPic, ivRate, ivLogo;
         CardView cvHotel;
         LinearLayout linear_1, linear_2,linear_3;
         TextView tvANRaft2_1, tvANRaft2_2, tvANRaft2_3;

@@ -51,14 +51,15 @@
         android:layout_gravity="center">
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:text="صفحه اصلی"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/toolbar_title_16dp"
             android:textAppearance="@style/IrsansBold"
             android:layout_centerHorizontal="true"
+            android:textSize="@dimen/toolbar_title_16dp"
+
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:maxLines="1"/>

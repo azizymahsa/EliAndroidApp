@@ -40,7 +40,7 @@ public class InternetAlert implements View.OnClickListener {
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
         tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setCustomTextFont("iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(false);

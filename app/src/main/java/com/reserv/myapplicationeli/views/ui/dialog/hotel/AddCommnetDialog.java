@@ -70,7 +70,7 @@ public class AddCommnetDialog implements View.OnClickListener {
    /*     tvAlert.setTextSize(2,12);
         tvAlert.setLineSpacing(5);
         tvAlert.setTypeFace(typeface);*/
-        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setCustomTextFont("iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);

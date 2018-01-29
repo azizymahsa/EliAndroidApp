@@ -519,7 +519,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 for (int i = 0; i < jArray4.length(); i++) {
                     servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
                             jArray4.getJSONObject(i).getString("ServicePrice"), jArray4.getJSONObject(i).getString("ServiceType"),
-                            jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa")));
+                            jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa"),jArray4.getJSONObject(i).getString("CountryFa")));
 
                 }
                 if (!servicePreFactorModels.isEmpty()) {
@@ -549,7 +549,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                             jArray5.getJSONObject(i).getString("FltNumber"),
                             jArray5.getJSONObject(i).getString("AirlineNameFa"),
-                            jArray5.getJSONObject(i).getString("DepartureCityFa")));
+                            jArray5.getJSONObject(i).getString("DepartureCityFa"),jArray5.getJSONObject(i).getString("AirlineCode")));
                 }
                 if (!flightPreFactorModels.isEmpty()) {
                     llDetailFlight.setVisibility(View.VISIBLE);
@@ -1128,35 +1128,77 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 if (linear_pish_factor.getVisibility() == View.VISIBLE) {
                     linear_pish_factor.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.VISIBLE);
-					/*myScrollView.setSmoothScrollingEnabled(false);
-					myScrollView.setOnTouchListener(new View.OnTouchListener() {
-						@Override
-						public boolean onTouch(View v, MotionEvent event) {
-							return true;
-						}
-					});*/
 
-                    ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-                    ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+                    ((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
                     txtTitle.setText(" افزودن خدمات به سبد خرید");
-                } else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
+                }else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.VISIBLE);
-                    //myScrollView.setOnTouchListener(null);
-
-                    txtTitle.setText("اطلاعات مسافران");
-                    ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
-                    ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
-                } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
-                    linear_mosaferan.setVisibility(View.GONE);
-                    linear_saler.setVisibility(View.VISIBLE);
-                    //	myScrollView.setOnTouchListener(null);
 
 
-                    txtTitle.setText(" مشخصات خریدار ");
-                    ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-                    ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-                } else if (linear_saler.getVisibility() == View.VISIBLE) {
+                    txtTitle.setText("  اطلاعات مسافران ");
+                    ((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+                    ((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ////////////////////bazyabi atelaate akharin mosafer
+                    PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerHotelActivity.this);
+                    CursorManager cursorM=items_Table.getMosaferById(counter-1);
+                    if(cursorM != null){
+                        for (int i = 0; i < cursorM.getCount(); i++) {
+
+                            txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+                            txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
+                            txtnumber_passport.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
+
+                            txttavalodm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
+                            txtexp_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
+
+                            txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
+
+                            txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                            txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
+                        }
+                    }
+                    counter--;
+                 //   txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+                    imgCount.setText(counter+"");
+                    ///////////////////
+                }else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
+                    ////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
+                    if(counter>1) {
+                        PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerHotelActivity.this);
+                        CursorManager cursorM=items_Table.getMosaferById(counter-1);
+                        if(cursorM != null){
+                            for (int i = 0; i < cursorM.getCount(); i++) {
+
+                                txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+                                txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
+                                txtnumber_passport.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
+
+                                txttavalodm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
+                                txtexp_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
+
+                                txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
+                                txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                                txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
+                            }
+
+                        }
+                        counter--;
+                        //txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+                        imgCount.setText(counter+"");
+                    }else{
+                        //////////////////////
+                        linear_mosaferan.setVisibility(View.GONE);
+                        linear_saler.setVisibility(View.VISIBLE);
+
+
+                        txtTitle.setText(" مشخصات خریدار ");
+                        ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+                        ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
+                    }
+                }else if(linear_saler.getVisibility() == View.VISIBLE) {
+
                     finish();
                 }
                 break;
@@ -1190,28 +1232,28 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     String flagMosafer = "T";
                     ///Validate
                     if (RqPartner_Email.trim().length() > 6) {
-                        ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
+                        ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#aaaaaa"));
                         flagMosafer = flagMosafer + "T";
                     } else {
                         ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                     }
                     if (RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length() > 1) {
-                        ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
+                        ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#aaaaaa"));
                         flagMosafer = flagMosafer + "T";
                     } else {
                         ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                     }
                     if (RqPartner_LastNameFa != null && RqPartner_LastNameFa.length() > 1) {
-                        ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
+                        ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#aaaaaa"));
                         flagMosafer = flagMosafer + "T";
                     } else {
                         ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                     }
                     if (RqPartner_Mobile != null && RqPartner_Mobile.length() > 4 && RqPartner_Mobile.trim().matches("[0-9]+")) {
-                        ((EditText) findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
+                        ((EditText) findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#aaaaaa"));
                         flagMosafer = flagMosafer + "T";
                     } else {
                         ((EditText) findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
@@ -1219,7 +1261,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }
                     if (RqPartner_NationalCode != null)
                         if (RqPartner_NationalCode.length() > 1 && RqPartner_NationalCode.trim().matches("[0-9]+")) {
-                            ((EditText) findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
+                            ((EditText) findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#aaaaaa"));
                             flagMosafer = flagMosafer + "T";
                         } else {
                             ((EditText) findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
@@ -1302,28 +1344,28 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 String flagMosafer = "T";
                 ///Validate
                 if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
-                    ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer = flagMosafer + "F";
                 }
                 if (Nationality != null && Nationality.length() > 1) {
-                    ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer = flagMosafer + "F";
                 }
                 if (Nationality_ID != null && Nationality_ID.length() > 1) {
-                    ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer = flagMosafer + "F";
                 }
                 if (RqPassenger_Birthdate != null && RqPassenger_Birthdate.length() > 4) {
-                    ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
@@ -1331,7 +1373,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 }
                 if (RqPassenger_FirstNameEn != null)
                     if (RqPassenger_FirstNameEn.length() > 1 && RqPassenger_FirstNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")) {
-                        ((EditText) findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
+                        ((EditText) findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#aaaaaa"));
                         flagMosafer = flagMosafer + "T";
                     } else {
                         ((EditText) findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
@@ -1339,14 +1381,14 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }
                 if (RqPassenger_LastNameEn != null)
                     if (RqPassenger_LastNameEn.length() > 1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")) {
-                        ((EditText) findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
+                        ((EditText) findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#aaaaaa"));
                         flagMosafer = flagMosafer + "T";
                     } else {
                         ((EditText) findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                     }
                 if (RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length() > 4) {
-                    ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
@@ -1365,32 +1407,63 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
                     if (sum > 0) {
+                        System.out.println("gender:"+Gender);
+                        //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                        if(counter-1 ==1){
+                            db.insertData(counter-1,"اطلاعات مسافر بزرگسال 1",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
-                        db.insertData(counter - 1, Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-                        if (countB > 0) {
-                            txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
-                            imgCount.setText(counter + "");
+                        }else{
+                            db.insertData(counter-1,txtTitleCountM.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                        }
+                        System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
+                        if(countB>=1) {
+                            System.out.println("countB:"+countB);
+                            //txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+                            //imgCount.setText(counter+"");
                             countB--;
-                        } else if (countK > 0) {
-                            txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
-                            imgCount.setText(counter + "");
+                        }else if(countK>=1) {
+                            System.out.println("countK:"+countK);
+                            //txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+                            //imgCount.setText(counter+"");
                             countK--;
-                        } else if (countN > 0) {
-                            txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
-                            imgCount.setText(counter + "");
+                        }else if(countN>=1) {
+                            System.out.println("countN:"+countN);
+                            //txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+                            //imgCount.setText(counter+"");
                             countN--;
                         }
-                        System.out.println("counterMosafer:" + counter);
+                        if(countB!=0){
+
+                            txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+                            imgCount.setText(counter+"");
+                        }
+                        else if(countK!=0){
+
+                            txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+                            imgCount.setText(counter+"");
+                        }
+                        else if(countN!=0){
+
+                            txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+                            imgCount.setText(counter+"");
+                        }
+
+
+                        System.out.println("counterMosafer:"+counter);
+
                         counter++;
                         sum--;
                         ///pak kardan data haye mosafere ghabli:
-                        txttavalodm.setText("");
-                        txtnamem.setText("");
-                        txtfamilym.setText("");
-                        txtexp_passport.setText("");
-                        txtnumber_passport.setText("");
+                        if(sum>0){
+                            //counter--;
 
-                        System.out.println("insert:" + "sum:" + sum);
+                            txttavalodm.setText("");
+                            txtnamem.setText("");
+                            txtfamilym.setText("");
+                            txtexp_passport.setText("");
+                            txtnumber_passport.setText("");
+                        }
+                        System.out.println("insert:"+"sum:"+sum);
                     }
                     db.closeDB();
                     //insert mosafer
@@ -1595,77 +1668,81 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     public void onBackPressed() {
 
 
+
         if (linear_pish_factor.getVisibility() == View.VISIBLE) {
             linear_pish_factor.setVisibility(View.GONE);
             linear_list_khadamat.setVisibility(View.VISIBLE);
 
-            ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-            ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
+            ((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+            ((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
             txtTitle.setText(" افزودن خدمات به سبد خرید");
-        } else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
+        }else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
             linear_list_khadamat.setVisibility(View.GONE);
             linear_mosaferan.setVisibility(View.VISIBLE);
 
 
             txtTitle.setText("  اطلاعات مسافران ");
-            ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
-            ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+            ((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+            ((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
             ////////////////////bazyabi atelaate akharin mosafer
-            PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerHotelActivity.this);
-            CursorManager cursorM = items_Table.getMosaferById(counter - 1);
-            if (cursorM != null) {
+            PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerHotelActivity.this);
+            CursorManager cursorM=items_Table.getMosaferById(counter-1);
+            if(cursorM != null){
                 for (int i = 0; i < cursorM.getCount(); i++) {
 
-                    txtnamem.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+                    txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
                     txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-                    txtnumber_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
+                    txtnumber_passport.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
 
-                    txttavalodm.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
+                    txttavalodm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
                     txtexp_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
 
                     txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 
-                    txtmeliyatm.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                    txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                    txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
+                    //txtTitleCountM.setText(" اطلاعات مسافر " + counter);
                 }
             }
             counter--;
-            txtTitleCountM.setText(" اطلاعات مسافر " + counter);
-            imgCount.setText(counter + "");
+
+            imgCount.setText(counter+"");
             ///////////////////
-        } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
+        }else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
             ////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
-            if (counter > 1) {
-                PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerHotelActivity.this);
-                CursorManager cursorM = items_Table.getMosaferById(counter - 1);
-                if (cursorM != null) {
+            if(counter>1) {
+                PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerHotelActivity.this);
+                CursorManager cursorM=items_Table.getMosaferById(counter-1);
+                if(cursorM != null){
                     for (int i = 0; i < cursorM.getCount(); i++) {
 
-                        txtnamem.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+                        txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
                         txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-                        txtnumber_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
+                        txtnumber_passport.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
 
-                        txttavalodm.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
+                        txttavalodm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
                         txtexp_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
 
                         txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-                        txtmeliyatm.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                        txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                        txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
                     }
 
                 }
                 counter--;
-                txtTitleCountM.setText(" اطلاعات مسافر " + counter);
-                imgCount.setText(counter + "");
-            } else {
+               // txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+                imgCount.setText(counter+"");
+            }else{
                 //////////////////////
                 linear_mosaferan.setVisibility(View.GONE);
                 linear_saler.setVisibility(View.VISIBLE);
 
 
                 txtTitle.setText(" مشخصات خریدار ");
-                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
+                ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+                ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
             }
-        } else if (linear_saler.getVisibility() == View.VISIBLE) {
+        }else if(linear_saler.getVisibility() == View.VISIBLE) {
 
             finish();
         }
@@ -1813,7 +1890,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                     if (text.matches(emailPattern) && text.length() > 0) {
                         //if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
-                        ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
+                        ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#aaaaaa"));
 
                     } else {
                         ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));

@@ -45,7 +45,7 @@ public class NumberPickerDialog implements View.OnClickListener {
         numberPicker.setDisplayedValues(during_trip_string);
 
         btnOk = dialogView.findViewById(R.id.btnOk);
-        Typeface type = Typeface.createFromAsset(activity.getAssets(), "fonts/irsans.ttf");
+        Typeface type = Typeface.createFromAsset(activity.getAssets(), "fonts/iran_sans_normal.ttf");
         numberPicker.setTypeface(type);
         numberPicker.setDividerColorResource(R.color.colorPrimary);
         numberPicker.setSelectedTextColorResource(R.color.colorPrimary);
@@ -53,7 +53,7 @@ public class NumberPickerDialog implements View.OnClickListener {
         numberPicker.setSelectedTextSize(R.dimen._16dp_txtSize);
 
         btnOk.setText("انتخاب");
-        btnOk.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         // numberPicker.setOnClickListener(this);
         dialog = builder.create();

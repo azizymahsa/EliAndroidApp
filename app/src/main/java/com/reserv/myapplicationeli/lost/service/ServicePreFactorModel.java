@@ -10,13 +10,15 @@ public class ServicePreFactorModel {
     String ServiceType;
     String CityFa;
     String ServiceNameFa;
+    String CountryFa;
 
-    public ServicePreFactorModel(String serviceNameEn, String servicePrice, String serviceType, String cityFa, String serviceNameFa) {
+    public ServicePreFactorModel(String serviceNameEn, String servicePrice, String serviceType, String cityFa, String serviceNameFa, String countryFa) {
         ServiceNameEn = serviceNameEn;
         ServicePrice = servicePrice;
         ServiceType = serviceType;
         CityFa = cityFa;
         ServiceNameFa = serviceNameFa;
+        CountryFa = countryFa;
     }
 
     public String getServiceNameEn() {
@@ -57,5 +59,13 @@ public class ServicePreFactorModel {
 
     public void setServiceNameFa(String serviceNameFa) {
         ServiceNameFa = serviceNameFa;
+    }
+
+    public String getCountryFa() {
+        return CountryFa;
+    }
+
+    public void setCountryFa(String countryFa) {
+        CountryFa = countryFa;
     }
 }

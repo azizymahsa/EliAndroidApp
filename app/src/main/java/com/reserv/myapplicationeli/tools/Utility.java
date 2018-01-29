@@ -6,8 +6,10 @@ import java.net.InetAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -445,30 +447,64 @@ public class Utility extends Activity {
 		params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		listView.setLayoutParams(params);
 	}
-	public static String dateShow(String date){
+	public static String dateShow(String time){
 
-		try{
-			String[] splite=date.split(" ");
-			//date=splite[0];//2018/02/06
-			String[] dateSplite=splite[0].split("/");
-   /*String dayM = splite[0].substring(8, 10);//02
-   String monthM = splite[0].substring(5, 7);//01
-   String yearM = splite[0].substring(0, 4);//1396*/
-			String dayM=dateSplite[2];
-			String monthM=dateSplite[1];
-			String yearM=dateSplite[0];
+		String[] splite=time.split(" ");
+		String[] dateSplite=splite[0].split("/");
 
-			Calendar cal = Calendar.getInstance();
+		String dayM=dateSplite[2];
+		String monthM=dateSplite[1];
+		String yearM=dateSplite[0];
+
+		/*	Calendar cal = Calendar.getInstance();
 			cal.set(Calendar.YEAR, Integer.parseInt(yearM));
 			cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dayM));
 			cal.set(Calendar.MONTH, Integer.parseInt(monthM));
-			String format = new SimpleDateFormat(" MMM d").format(cal.getTime());
+			String format = new SimpleDateFormat(" MMM dd").format(cal.getTime());
 
 			return format;
 		}catch (Exception e) {
 			System.out.println("Exception ::"+e);
-			return "";
+			//return "";
 		}
+
+*/
+
+		//String outputPattern = "dd-MMM-yyyy h:mm a";
+
+
+		String inputPattern = "yyyy/MM/dd HH:mm";
+		String outputPattern = "dd MMM";
+		SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+		SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+		Date date = null;
+		String str = null;
+
+		try {
+			date = inputFormat.parse(time);
+			str = outputFormat.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return str;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	}
 

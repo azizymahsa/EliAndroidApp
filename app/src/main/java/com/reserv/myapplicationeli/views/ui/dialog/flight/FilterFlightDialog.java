@@ -145,7 +145,7 @@ public class FilterFlightDialog implements View.OnClickListener {
         });*/
 
 
-        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setCustomTextFont("iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);

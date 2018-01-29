@@ -2,6 +2,7 @@ package com.reserv.myapplicationeli.models.hotel.adapter;
 
 import com.reserv.myapplicationeli.models.hotel.api.flightHotelRequest.FltList;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations;
 
 import java.util.ArrayList;
 
@@ -32,12 +33,9 @@ public class SelectFlightHotelModel {
      String ArrRout;
      String DepRout;
      String Amount;
+    ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations> Locations;
 
-    public SelectFlightHotelModel(String name, String city, String title, String board, String price,
-                                  String imageUrl, String location, int oldPrice, int star, int eHotelId,
-                                  String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText
-            , ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff,
-                                  ArrayList<FltList> flights, String arrRout, String depRout, String amount) {
+    public SelectFlightHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff, ArrayList<FltList> flights, String arrRout, String depRout, String amount, ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations> locations) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -59,6 +57,7 @@ public class SelectFlightHotelModel {
         ArrRout = arrRout;
         DepRout = depRout;
         Amount = amount;
+        Locations = locations;
     }
 
     public String getName() {
@@ -227,5 +226,13 @@ public class SelectFlightHotelModel {
 
     public void setAmount(String amount) {
         Amount = amount;
+    }
+
+    public ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations> getLocations() {
+        return Locations;
+    }
+
+    public void setLocations(ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations> locations) {
+        Locations = locations;
     }
 }

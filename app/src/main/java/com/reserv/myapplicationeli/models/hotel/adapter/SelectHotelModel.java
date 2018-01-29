@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.models.hotel.adapter;
 
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities;
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations;
 
 import java.util.ArrayList;
 
@@ -28,8 +29,9 @@ public class SelectHotelModel {
     ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> Facilities;
     int diff;
     String offerId;
+    ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations> Locations;
 
-    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff, String offerId) {
+    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff, String offerId, ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations> locations) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -48,6 +50,7 @@ public class SelectHotelModel {
         Facilities = facilities;
         this.diff = diff;
         this.offerId = offerId;
+        Locations = locations;
     }
 
     public String getName() {
@@ -192,5 +195,13 @@ public class SelectHotelModel {
 
     public void setOfferId(String offerId) {
         this.offerId = offerId;
+    }
+
+    public ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations> getLocations() {
+        return Locations;
+    }
+
+    public void setLocations(ArrayList<com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations> locations) {
+        Locations = locations;
     }
 }

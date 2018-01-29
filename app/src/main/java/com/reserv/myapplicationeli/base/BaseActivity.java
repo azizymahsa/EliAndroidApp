@@ -88,7 +88,7 @@ public class BaseActivity extends AppCompatActivity  {
         FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
         TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setCustomTextFont("iran_sans_normal.ttf");
         tvAlert.setText(message);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

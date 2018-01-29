@@ -69,7 +69,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBQfxMuyfzRRl-iQTF-m9K6Snl3nq3dIio" />
+            android:value="AIzaSyDCzLClp1-Wulmj8L2sUa6dVc-mar3pKEo" />
 
         <activity
             android:name=".views.ui.PassengerActivity"
