@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.model.pack.filter.DegreeFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.HotelTypeFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
 import com.reserv.myapplicationeli.tools.ValidationTools;
@@ -98,5 +99,17 @@ public class HotelTypeFilterAdapter extends RecyclerView.Adapter<HotelTypeFilter
             }
         }
         return hotelTypeFiltersSelected;
+    }
+
+    public void removeFilter(){
+        if(ValidationTools.isEmptyOrNull(hotelTypeFilters)){
+            return;
+        }
+
+        for(HotelTypeFilter hotelTypeFilter : hotelTypeFilters){
+            hotelTypeFilter.setSelected(false);
+        }
+
+        notifyDataSetChanged();
     }
 }

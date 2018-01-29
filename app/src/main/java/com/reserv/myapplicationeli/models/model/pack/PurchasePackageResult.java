@@ -19,7 +19,7 @@ public class PurchasePackageResult {
     @Expose
     private TmpReserveResult tmpReserveResult;
 
-    public Object getError() {
+    public ArrayList<Errors> getError() {
         return error;
     }
 

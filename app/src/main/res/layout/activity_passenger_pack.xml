@@ -41,13 +41,35 @@
             android:layout_gravity="right"
             fancy:fb_textSize="20dp"
             android:visibility="visible"/>
-        <ImageView
-            android:id="@+id/txt_hom"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/e_logo"/>
+        <RelativeLayout
+            android:id="@+id/llHome"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="left"
+            >
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnHome"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="@color/focusColor"
+
+                fancy:fb_radius="6dp"
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <ImageView
+                android:id="@+id/e_logo"
+                android:layout_width="60dp"
+                android:layout_height="@dimen/toolbar_height_70dp"
+                android:padding="14dp"
+                android:src="@drawable/e_logo"
+                />
+
+
+        </RelativeLayout>
 
 
     </FrameLayout>

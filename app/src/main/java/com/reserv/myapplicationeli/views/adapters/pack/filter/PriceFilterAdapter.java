@@ -102,4 +102,16 @@ public class PriceFilterAdapter extends RecyclerView.Adapter<PriceFilterRowHolde
         }
         return priceFiltersSelected;
     }
+
+    public void removeFilter(){
+        if(ValidationTools.isEmptyOrNull(priceFilters)){
+            return;
+        }
+
+        for(PriceFilter priceFilter : priceFilters){
+            priceFilter.setSelected(false);
+        }
+
+        notifyDataSetChanged();
+    }
 }
