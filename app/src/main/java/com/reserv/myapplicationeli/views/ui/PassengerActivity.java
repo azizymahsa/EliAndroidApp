@@ -1510,15 +1510,17 @@ System.out.println("gender:"+Gender);
 							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
 						}
 						System.out.println("counterMosafer:"+counter);
+
 						counter++;
 						sum--;
 						///pak kardan data haye mosafere ghabli:
+						if(sum>0){
 						txttavalodm.setText("");
 						txtnamem.setText("");
 						txtfamilym.setText("");
 						txtexp_passport.setText("");
 						txtnumber_passport.setText("");
-
+						}
 						System.out.println("insert:"+"sum:"+sum);
 					}
 					db.closeDB();
