@@ -28,6 +28,8 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.hotelFlight.HotelFlightSearch;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.models.HotelAR;
+import com.reserv.myapplicationeli.models.RquestHF;
 import com.reserv.myapplicationeli.models.hotel.FilterPriceModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectFlightHotelModel;
@@ -92,7 +94,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     String raft, bargasht;
     String raftFa, bargashtFa;
     boolean isFilter = false;
-    String flightId;
+    String flightId,searchIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,15 +151,32 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(SelectHotelFlightActivity.this, DetailHotelActivity.class);
-                i.putExtra("HotelId", selectHotelModelArrayList.get(position).geteHotelId());
-                i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
-                i.putExtra("FlightID", flightId);
-                i.putExtra("CheckInHF", getIntent().getExtras().getString("CheckInHF"));
-                i.putExtra("CheckOutHF", getIntent().getExtras().getString("CheckOutHF"));
-                i.putExtra("type", 1);
+                if (selectHotelModelArrayListFilter.isEmpty()) {
 
-                startActivity(i);
+                    Intent i = new Intent(SelectHotelFlightActivity.this, DetailHotelActivity.class);
+                    i.putExtra("HotelId", selectHotelModelArrayList.get(position).geteHotelId());
+                    i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
+                    i.putExtra("FlightID", flightId);
+                    i.putExtra("CheckInHF", getIntent().getExtras().getString("CheckInHF"));
+                    i.putExtra("CheckOutHF", getIntent().getExtras().getString("CheckOutHF"));
+                    i.putExtra("type", 1);
+
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(SelectHotelFlightActivity.this, DetailHotelActivity.class);
+                    i.putExtra("HotelId", selectHotelModelArrayListFilter.get(position).geteHotelId());
+                    i.putExtra("ResultUniqID", selectHotelModelArrayListFilter.get(position).getResultUniqID());
+                    i.putExtra("FlightID", flightId);
+                    i.putExtra("CheckInHF", getIntent().getExtras().getString("CheckInHF"));
+                    i.putExtra("CheckOutHF", getIntent().getExtras().getString("CheckOutHF"));
+                    i.putExtra("type", 1);
+
+                    startActivity(i);
+
+
+                }
+
+
             }
         });
         btnOk.setCustomTextFont("fonts/irsans.ttf");
@@ -185,7 +204,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.llBottom:
-                new FilterHotelDialog(SelectHotelFlightActivity.this, filterModels, this, filterHotelTypeModel, filterHotelFacilitiesModels, filterHotelPriceModels);
+                new FilterHotelDialog(SelectHotelFlightActivity.this, filterModels, this, filterHotelTypeModel, filterHotelFacilitiesModels, filterHotelPriceModels,searchIn);
 
 
                 break;
@@ -328,6 +347,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
         this.filterModels = type;
+        this.searchIn = search;
         this.filterHotelTypeModel = filterHotelTypeModels;
         this.filterHotelPriceModels = filterHotelPriceModel;
         this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
@@ -440,6 +460,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
             if (filterModel.isRemove()) {
+                search="";
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
@@ -460,6 +481,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
             tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+            searchIn="";
 
 
 
@@ -1229,14 +1251,14 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         @Override
         protected String doInBackground(String... params) {
             try {
-                hotelFlightSearch = new HotelFlightSearch(new HotelAvailRequestModel(new Request("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), "", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"))));
+                hotelFlightSearch = new HotelFlightSearch(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
+                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"))));
 
 
                 Gson gson = new Gson();
 
-                Log.e("test", gson.toJson(new HotelAvailRequestModel(new Request("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", ""), "", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", Prefs.getString("Value-Hotel-City-Code-HF-Source", "")))));
+                Log.e("test", gson.toJson(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
+                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR")))));
             } catch (Exception e) {
 
             }
@@ -1247,7 +1269,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         protected void onPostExecute(String result) {
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
-
+            selectHotelModelArrayList.clear();
+            selectHotelModelArrayListFilter.clear();
 
             try {
                 if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors!=null) {
@@ -1351,6 +1374,18 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     }
                     tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
                     tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+                    Collections.sort(selectHotelModelArrayList, new Comparator<SelectFlightHotelModel>() {
+                        @Override
+                        public int compare(SelectFlightHotelModel p1, SelectFlightHotelModel p2) {
+                            return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
+                        }
+                    });
+                    Collections.sort(selectHotelModelArrayListFilter, new Comparator<SelectFlightHotelModel>() {
+                        @Override
+                        public int compare(SelectFlightHotelModel p1, SelectFlightHotelModel p2) {
+                            return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
+                        }
+                    });
                     adapter.notifyDataSetChanged();
 
                 }

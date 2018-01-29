@@ -55,6 +55,15 @@
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/white"
                     android:visibility="gone"/>
+                <ImageView
+                    android:id="@+id/ivIsBestseler"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/best_seller"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="20dp"/>
 
             </RelativeLayout>
 
@@ -316,6 +325,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/colorPrimary" />
+                            <TextView
+                                android:id="@+id/nonStop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:layout_toLeftOf="@+id/ivArrow"
+                                android:text="IKA"
+                                android:textColor="@color/text_color_4d"
+                                android:textSize="12dp"
+                                android:visibility="gone"/>
 
                             <TextView
                                 android:id="@+id/tvRaftTime"

@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.hotelAvail.HotelAvailApi;
@@ -86,7 +88,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     FancyButton btnNextDays, btnLastDays;
 
     String raft, bargasht;
-    String raftFa, bargashtFa;
+    String raftFa, bargashtFa,searchIn;
     //TextView tvAlert;
 
 
@@ -150,15 +152,28 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(SelectHotelActivity.this, DetailHotelActivity.class);
-                i.putExtra("HotelId", selectHotelModelArrayList.get(position).geteHotelId());
-                i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
-                i.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
-                i.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
-                i.putExtra("type", 2);
+
+                if (selectHotelModelArrayListFilter.isEmpty()) {
+                    Intent i = new Intent(SelectHotelActivity.this, DetailHotelActivity.class);
+                    i.putExtra("HotelId", selectHotelModelArrayList.get(position).geteHotelId());
+                    i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
+                    i.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
+                    i.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
+                    i.putExtra("type", 2);
 
 
-                startActivity(i);
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(SelectHotelActivity.this, DetailHotelActivity.class);
+                    i.putExtra("HotelId", selectHotelModelArrayListFilter.get(position).geteHotelId());
+                    i.putExtra("ResultUniqID", selectHotelModelArrayListFilter.get(position).getResultUniqID());
+                    i.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
+                    i.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
+                    i.putExtra("type", 2);
+
+
+                    startActivity(i);
+                }
             }
         });
         btnOk.setCustomTextFont("fonts/irsans.ttf");
@@ -186,7 +201,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.llBottom:
-                new FilterHotelDialog(SelectHotelActivity.this, filterModels, this, filterHotelTypeModel, filterHotelFacilitiesModels, filterHotelPriceModels);
+                new FilterHotelDialog(SelectHotelActivity.this, filterModels, this, filterHotelTypeModel, filterHotelFacilitiesModels, filterHotelPriceModels,searchIn);
 
 
                 break;
@@ -205,6 +220,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 finish();
                 break;
             case R.id.btnNextDays:
+                btnNextDays.setClickable(true);
+                btnNextDays.setEnabled(true);
 
                 try {
 
@@ -222,33 +239,42 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         raft = formatter.format(cal.getTime());
 
                         ///onvan
-                        SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
+                       // SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
                         /////////////////////////////
-                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");//2017/03/24 11:49
+                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd");//2017/03/24 11:49
                         String formatted3 = format3.format(cal.getTime());
-
-                        String dayM = formatted3.substring(8, 10);//02
-                        String monthM = formatted3.substring(5, 7);//01
-                        String yearM = formatted3.substring(0, 4);//1396
-
-                        String dateShamsi = SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
-                        String dayMF = dateShamsi.substring(8, 10);//02
-                        String monthMF = dateShamsi.substring(5, 7);//01
-                        String yearMF = dateShamsi.substring(0, 4);//1396
+                        String[] dateSplite=formatted3.split("/");
+                        String dayM=dateSplite[2];
+                        String monthM=dateSplite[1];
+                        String yearM=dateSplite[0];
 
                         PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
-                        /////////////////////
-                        // txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
-                        //  txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
+
+                        persianCalendar.set(Integer.valueOf(yearM), Integer.valueOf(monthM)-1,Integer.valueOf(dayM) );
+
                         raft = formatted3;
                         raftFa = persianCalendar.getPersianLongDate();
 
                         Log.e("raaaaaaaaaaaft", formatted3);
                         Log.e("raaaaaaaaaaaft", persianCalendar.getPersianLongDate());
 
-                        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
-                        new GetHotelAsync().execute();
+
+                        String[] fasttest=formatted3.split("/");
+                        String dayF=fasttest[2];
+                        String monthF=fasttest[1].replace("0","");
+                        String yearF=fasttest[0];
+                        String raftTest=yearF+"/"+monthF+"/"+dayF;
+
+                        if (raftTest.equals(bargasht)){
+                         //   Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+
+                            btnNextDays.setClickable(false);
+                            btnNextDays.setEnabled(false);
+
+                        }else{
+                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+                            new GetHotelAsync().execute();
+                        }
 
                         ///
                         // callApiDateNext();
@@ -277,35 +303,54 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     cal.add(Calendar.DATE, -1);
                     System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
                     //shart kamtar az emruz
-                    if (System.currentTimeMillis() <= date.getTime()) {
-                        bargasht = formatter.format(cal.getTime());
+                    if (date.getTime()>= date.getTime()) {
+                        raft = formatter.format(cal.getTime());
 
                         ///onvan
+                        // SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
                         /////////////////////////////
-                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");//2017/03/24 11:49
+                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd");//2017/03/24 11:49
                         String formatted3 = format3.format(cal.getTime());
-
-                        String dayM = formatted3.substring(8, 10);//02
-                        String monthM = formatted3.substring(5, 7);//01
-                        String yearM = formatted3.substring(0, 4);//1396
+                        String[] dateSplite=formatted3.split("/");
+                        String dayM=dateSplite[2];
+                        String monthM=dateSplite[1];
+                        String yearM=dateSplite[0];
 
                         String dateShamsi = SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
-                        String dayMF = dateShamsi.substring(8, 10);//02
-                        String monthMF = dateShamsi.substring(5, 7);//01
-                        String yearMF = dateShamsi.substring(0, 4);//1396
+                        String[] dateSplite2=dateShamsi.split("/");
+                        String dayMF=dateSplite2[2];
+                        String monthMF=dateSplite2[1];
+                        String yearMF=dateSplite2[0];
+
 
                         PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
+                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
                         /////////////////////
                         // txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
                         //  txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
                         raft = formatted3;
                         raftFa = persianCalendar.getPersianLongDate();
+
                         Log.e("raaaaaaaaaaaft", formatted3);
                         Log.e("raaaaaaaaaaaft", persianCalendar.getPersianLongDate());
 
-                        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
-                       new GetHotelAsync().execute();
+
+                        String[] fasttest=formatted3.split("/");
+                        String dayF=fasttest[2];
+                        String monthF=fasttest[1].replace("0","");
+                        String yearF=fasttest[0];
+                        String raftTest=yearF+"/"+monthF+"/"+dayF;
+
+                        if (raftTest.equals(raft)){
+                            Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+
+                            btnNextDays.setClickable(false);
+                            btnNextDays.setEnabled(false);
+
+                        }else{
+                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+                            new GetHotelAsync().execute();
+                        }
 
                         ///
                         // callApiDateNext();
@@ -317,6 +362,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 } catch (java.text.ParseException e) {
                     System.out.println("Exception :" + e);
                 }
+
+
+
                 break;
         }
     }
@@ -327,6 +375,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
         this.filterModels = type;
+        this.searchIn = search;
         this.filterHotelTypeModel = filterHotelTypeModels;
         this.filterHotelPriceModels = filterHotelPriceModel;
         this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
@@ -439,6 +488,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this);
                 tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
                 adapter.notifyDataSetChanged();
+                selectHotelModelArrayListFilter.clear();
+                searchIn="";
             }
 
 
@@ -1222,8 +1273,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                 Gson gson = new Gson();
 
-                Log.e("test", gson.toJson(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        getIntent().getExtras().getString("CheckIn"), getIntent().getExtras().getString("CheckOut"), Prefs.getString("Value-Hotel-City-Code", ""), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR",""))));
+                Log.e("hoteltest", gson.toJson(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
+                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code", "c25972"), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR",""))));
             } catch (Exception e) {
 
             }
@@ -1235,7 +1286,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
 
-
+            selectHotelModelArrayList.clear();
+            selectHotelModelArrayListFilter.clear();
             try {
                 if (availApi.hotelAvailModelResponse.HotelAvailResult.Errors!=null) {
                     elNotFound.setVisibility(View.VISIBLE);
@@ -1338,6 +1390,19 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     }
                     tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
                     tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+
+                    Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
+                        @Override
+                        public int compare(SelectHotelModel p1, SelectHotelModel p2) {
+                            return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
+                        }
+                    });
+                    Collections.sort(selectHotelModelArrayListFilter, new Comparator<SelectHotelModel>() {
+                        @Override
+                        public int compare(SelectHotelModel p1, SelectHotelModel p2) {
+                            return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
+                        }
+                    });
                     adapter.notifyDataSetChanged();
 
                 }

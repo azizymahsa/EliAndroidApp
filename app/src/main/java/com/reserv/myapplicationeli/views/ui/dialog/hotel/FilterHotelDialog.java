@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ScrollView;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.hotel.FilterPriceModel;
@@ -45,14 +46,17 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
     ArrayList<FilterHotelTypeModel> filterHotelTypeModels, filterHotelFacilitiesModels;
     ArrayList<FilterPriceModel> filterHotelPriceModel;
     PriceFilterAdapter priceFilterAdapter;
+    String search;
+    ScrollView scrollViewObject;
 
 
 
     public FilterHotelDialog(final Context activity, ArrayList<FilterModel> filter,
                              FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
-                             final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel) {
+                             final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,String search) {
         this.activity = activity;
         this.filter = filter;
+        this.search = search;
         this.filterHotelDialogListenerArray = filterHotelDialogListenerArray;
         this.filterHotelPriceModel = filterHotelPriceModel;
 
@@ -65,6 +69,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
+        scrollViewObject = (ScrollView) dialogView.findViewById(R.id.scrollViewObject);
         btnDeletFilter = (FancyButton) dialogView.findViewById(R.id.btnDeletFilter);
         searchtxt = (EditText) dialogView.findViewById(R.id.searchtxt);
         bestSeler = (SmoothCheckBox) dialogView.findViewById(R.id.bestSeler);
@@ -75,6 +80,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         star3 = (SmoothCheckBox) dialogView.findViewById(R.id.star3);
         star4 = (SmoothCheckBox) dialogView.findViewById(R.id.star4);
         star5 = (SmoothCheckBox) dialogView.findViewById(R.id.star5);
+        searchtxt.setText(search);
         lvHotelTypes = (com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView) dialogView.findViewById(R.id.lvHotelTypes);
         lvFacilitiesTypes = (com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView) dialogView.findViewById(R.id.lvFacilitiesTypes);
         lvPrice = (com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView) dialogView.findViewById(R.id.lvPrice);
@@ -253,7 +259,12 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
             }
         }
 
-
+        scrollViewObject.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                scrollViewObject.fullScroll(ScrollView.FOCUS_UP);
+            }
+        }, 600);
         dialog.show();
     }
 
@@ -330,19 +341,19 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
                 //========
                 if (Remove.isChecked()) {
                     if (filter.isEmpty()) {
-                        filter.add(new FilterModel(false, false, false, false, false, false, false, remove_));
+                        filter.add(new FilterModel(false, false, false, false, false, false, false, false));
 
 
                     } else {
-                        filter.set(0, new FilterModel(false, false, false, false, false, false, false, remove_));
+                        filter.set(0, new FilterModel(false, false, false, false, false, false, false, false));
 
                     }
                 } else {
                     if (filter.isEmpty()) {
-                        filter.add(new FilterModel(star1_, star2_, star3_, star4_, star5_, bestSeler_, bestOff_, remove_));
+                        filter.add(new FilterModel(star1_, star2_, star3_, star4_, star5_, bestSeler_, bestOff_, false));
 
                     } else {
-                        filter.set(0, new FilterModel(star1_, star2_, star3_, star4_, star5_, bestSeler_, bestOff_, remove_));
+                        filter.set(0, new FilterModel(star1_, star2_, star3_, star4_, star5_, bestSeler_, bestOff_, false));
 
                     }
                 }

@@ -233,6 +233,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         lvRooms.setAdapter(roomsAdapter);
         btnSendComment.setCustomTextFont("fonts/irsans.ttf");
         btnOk.setCustomTextFont("fonts/irsans.ttf");
+        lvRooms.setFocusable(false);
+        llComment.setFocusable(false);
+        svDetail.setFocusable(false);
+        llDynamic.setFocusable(false);
+        llCommentContent.setFocusable(false);
 
        /* svDetail.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -245,6 +250,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.llRezervClick:
                 flMap.setVisibility(View.GONE);
@@ -295,6 +301,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case R.id.llCommentClick:
+                svDetail.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        svDetail.fullScroll(ScrollView.FOCUS_UP);
+                    }
+                }, 100);
                 flMap.setVisibility(View.GONE);
                 lvRooms.setVisibility(View.GONE);
                 tvAlert.setVisibility(View.GONE);
@@ -578,6 +590,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     nonScrollGridView.setNumColumns(2);
 
                     nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, DetailHotelActivity.this));
+                    nonScrollGridView.setFocusable(false);
                     llDynamic.addView(nonScrollGridView);
 
 

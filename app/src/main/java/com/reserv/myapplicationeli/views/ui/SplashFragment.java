@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
@@ -56,6 +57,8 @@ public class SplashFragment extends BaseActivity {
         //
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
+        Glide.with(this).load(R.raw.new_splash_loading).into(ivSplash);
+
         avi = findViewById(R.id.avi);
         final int[] imageArray = new int[]{R.drawable.comp1_00000,
                 R.drawable.comp1_00001,
@@ -115,7 +118,7 @@ public class SplashFragment extends BaseActivity {
         runnable = new Runnable() {
 
             public void run() {
-                ivSplash.setImageResource(imageArray[i[0]]);
+               // ivSplash.setImageResource(imageArray[i[0]]);
                 i[0]++;
                 if (i[0] > imageArray.length - 1) {
                     i[0] = 0;
@@ -140,11 +143,11 @@ public class SplashFragment extends BaseActivity {
 
 
                 }else{
-            handler.postDelayed(this, 30); } //for interval...
+            handler.postDelayed(this, 80); } //for interval...
             }
         };
         if (i[0] < 49) {
-            handler.postDelayed(runnable, 30); //for initial delay..
+            handler.postDelayed(runnable, 80); //for initial delay..
 
         }
 /*

@@ -96,6 +96,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvBargashtTimeWait = (TextView) convertView.findViewById(R.id.tvBargashtTimeWait);
             holder.tvRaftTimeWait = (TextView) convertView.findViewById(R.id.tvRaftTimeWait);
             holder.tvAirLines = (TextView) convertView.findViewById(R.id.tvAirLines);
+            holder.ivIsBestseler = (ImageView) convertView.findViewById(R.id.ivIsBestseler);
 
 
 
@@ -115,6 +116,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvANRaft2_3_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft2_3_bargasht);
             holder.tvANRaft1_1_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft1_1_bargasht);
             holder.tvANRaft1_2_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft1_2_bargasht);
+            holder.nonStop = (TextView) convertView.findViewById(R.id.nonStop);
 
 
 
@@ -237,10 +239,16 @@ public class FlightHotelAdapter extends BaseAdapter {
                 break;
             case 1:
                 waitBargasht = "بدون توقف";
+                try {
 
-                holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1_bargasht.setText(strings2[0]);
-                holder.tvANRaft1_2_bargasht.setText(strings2[1]);
+                    holder.linear_1_bargasht.setVisibility(View.VISIBLE);
+                    holder.tvANRaft1_1_bargasht.setText(strings2[0]);
+                    holder.tvANRaft1_2_bargasht.setText(strings2[1]);
+                }catch (Exception e){
+                    holder.nonStop.setText(strings2[0]);
+
+                }
+
 
                 break;
             case 2:
@@ -386,6 +394,13 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvOff.setVisibility(View.GONE);
 
         }
+        if (selectHotelModelArrayList.get(position).isBestSell()) {
+            holder.ivIsBestseler.setVisibility(View.VISIBLE);
+
+        } else {
+            holder.ivIsBestseler.setVisibility(View.GONE);
+
+        }
 
 
         switch (selectHotelModelArrayList.get(position).getStar()) {
@@ -420,8 +435,8 @@ public class FlightHotelAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines;
-        ImageView ivHotelPic, ivRate, ivLogo;
+        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines,nonStop;
+        ImageView ivHotelPic, ivRate, ivLogo,ivIsBestseler;
         CardView cvHotel;
         LinearLayout linear_1, linear_2,linear_3;
         TextView tvANRaft2_1, tvANRaft2_2, tvANRaft2_3;

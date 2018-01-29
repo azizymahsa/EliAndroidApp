@@ -135,8 +135,24 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         //   listRoomItem.setAdapter(mAdapter);
 
 
+
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
-        tvBargasht.setText(persianCalendarDatePicker.getPersianLongDate());
+        //  Date currentTime = Calendar.getInstance().getTime();
+        //=================================================================================================
+        PersianCalendar persianCalendar = new PersianCalendar();
+
+        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay()+1);
+
+
+        tvBargasht.setText(persianCalendar.getPersianLongDate());
+        tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
+        month = persianCalendarDatePicker.getPersianMonth();
+        year_ = persianCalendarDatePicker.getPersianYear();
+        day = persianCalendarDatePicker.getPersianDay();
+
+
+
+        tvBargasht.setText(persianCalendar.getPersianLongDate());
         tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
         month = persianCalendarDatePicker.getPersianMonth();
         year_ = persianCalendarDatePicker.getPersianYear();
@@ -158,19 +174,19 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
         datePickerDialog2 = DatePickerDialog.newInstance(
                 this,
-                persianCalendarDatePicker.getPersianYear(),
-                persianCalendarDatePicker.getPersianMonth(),
-                persianCalendarDatePicker.getPersianDay()
+                persianCalendar.getPersianYear(),
+                persianCalendar.getPersianMonth(),
+                persianCalendar.getPersianDay()
         );
-        datePickerDialog2.setMinDate(persianCalendarDatePicker);
+        datePickerDialog2.setMinDate(persianCalendar);
 
 
         raft=date_server(  persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
-        bargasht=date_server(  persianCalendarDatePicker.getPersianYear(),
-                persianCalendarDatePicker.getPersianMonth(),
-                persianCalendarDatePicker.getPersianDay());
+        bargasht=date_server(  persianCalendar.getPersianYear(),
+                persianCalendar.getPersianMonth(),
+                persianCalendar.getPersianDay());
 
 
         return rootView;

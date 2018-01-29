@@ -70,6 +70,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.ivHotelPic = (ImageView) convertView.findViewById(R.id.ivHotelPic);
             holder.ivRate = (ImageView) convertView.findViewById(R.id.ivRate);
+            holder.ivIsBestseler = (ImageView) convertView.findViewById(R.id.ivIsBestseler);
             holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.location = (TextView) convertView.findViewById(R.id.location);
             holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -118,6 +119,13 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 holder.tvOff.setVisibility(View.GONE);
 
             }
+            if (selectHotelModelArrayList.get(position).isBestSell()){
+            holder.ivIsBestseler.setVisibility(View.VISIBLE);
+
+            } else {
+                holder.ivIsBestseler.setVisibility(View.GONE);
+
+            }
 
 
 
@@ -155,7 +163,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
 
     public class ViewHolder {
         TextView name, location, title, board, tvPrice, tvOff;
-        ImageView ivHotelPic, ivRate;
+        ImageView ivHotelPic, ivRate,ivIsBestseler;
         CardView cvHotel;
 
 

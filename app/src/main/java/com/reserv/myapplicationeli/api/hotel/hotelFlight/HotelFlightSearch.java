@@ -4,6 +4,7 @@ import android.support.annotation.RawRes;
 import android.util.Log;
 
 import com.reserv.myapplicationeli.base.BaseAPI;
+import com.reserv.myapplicationeli.models.HotelAR;
 import com.reserv.myapplicationeli.models.hotel.api.flightHotelRequest.HotelFlightModelResponse;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
 
@@ -20,18 +21,18 @@ public class HotelFlightSearch extends BaseAPI {
     public final static String ACTION_NAME = "HotelFlight/HotelFlightService.svc/HotelFlightSearch";
     public HotelFlightModelResponse hotelFlightModelResponse;
 
-    HotelAvailRequestModel hotelAvailRequestModel;
+    HotelAR hotelAvailRequestModel;
 
     public interface GetHotel {
         @RawRes
         @POST(HotelFlightSearch.ACTION_NAME)
         Call<HotelFlightModelResponse> get_hotel(
-                @Body HotelAvailRequestModel hotelAvailRequestModel
+                @Body HotelAR hotelAvailRequestModel
         );
     }
 
 
-    public HotelFlightSearch(HotelAvailRequestModel hotelAvailRequestModel) {
+    public HotelFlightSearch(HotelAR hotelAvailRequestModel) {
         this.hotelAvailRequestModel = hotelAvailRequestModel;
         Log.e("hotel",hotelAvailRequestModel.toString());
         send();

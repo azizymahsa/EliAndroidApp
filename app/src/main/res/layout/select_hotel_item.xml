@@ -54,8 +54,19 @@
                     android:textSize="14dp"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/white"
-                    android:visibility="gone"/>
+                 />
+                <ImageView
+                    android:id="@+id/ivIsBestseler"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/best_seller"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="20dp"
 
+
+                    />
             </RelativeLayout>
 
 
