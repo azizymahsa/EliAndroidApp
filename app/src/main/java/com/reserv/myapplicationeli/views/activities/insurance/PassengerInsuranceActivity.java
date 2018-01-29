@@ -112,7 +112,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 	public TextView txt_shomare_factor,tvPrice,tvfactorNumber;
 
 	public ImageView txt_hom;
-
+	public TextView imgCount;
 	private String Gensiyat;
 	Activity activity;
 	public int countB=SearchParvazActivity.COUNT_B;
@@ -136,6 +136,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 		btnBack.setText(getString(R.string.search_back_right));
 		btnBack.setVisibility(View.VISIBLE);
 		btnBack.setOnClickListener(this);
+
+		imgCount=(TextView) findViewById(R.id.imgCount);
+		imgCount.setOnClickListener(this);
 
 		txt_hom = (ImageView) findViewById(R.id.txt_hom);
 		txt_hom.setOnClickListener(this);
@@ -1225,27 +1228,55 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 					if(sum>0){
 
-						db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-						if(countB>0) {
-							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+						System.out.println("gender:"+Gender);
+						//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+						if(countB>=1) {
+							System.out.println("countB:"+countB);
+							//txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+							//imgCount.setText(counter+"");
 							countB--;
-						}else if(countK>0) {
-							txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+						}else if(countK>=1) {
+							System.out.println("countK:"+countK);
+							//txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+							//imgCount.setText(counter+"");
 							countK--;
-						}else if(countN>0) {
-							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+						}else if(countN>=1) {
+							System.out.println("countN:"+countN);
+							//txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+							//imgCount.setText(counter+"");
 							countN--;
 						}
+						if(countB!=0){
+
+							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+							imgCount.setText(counter+"");
+						}
+						else if(countK!=0){
+
+							txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+							imgCount.setText(counter+"");
+						}
+						else if(countN!=0){
+
+							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+							imgCount.setText(counter+"");
+						}
+						db.insertData(counter-1,txtTitleCountM.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+
 						System.out.println("counterMosafer:"+counter);
+
 						counter++;
 						sum--;
 						///pak kardan data haye mosafere ghabli:
-						txttavalodm.setText("");
-						txtnamem.setText("");
-						txtfamilym.setText("");
-						txtexp_passport.setText("");
-						txtnumber_passport.setText("");
+						if(sum>0){
+							//counter--;
 
+							txttavalodm.setText("");
+							txtnamem.setText("");
+							txtfamilym.setText("");
+							txtexp_passport.setText("");
+							txtnumber_passport.setText("");
+						}
 						System.out.println("insert:"+"sum:"+sum);
 					}
 					db.closeDB();

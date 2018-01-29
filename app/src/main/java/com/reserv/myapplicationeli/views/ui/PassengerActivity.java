@@ -1165,10 +1165,11 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 							txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 
 							txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+							txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
 						}
 					}
 					counter--;
-					txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+					//xtTitleCountM.setText(" اطلاعات مسافر " + counter);
 					imgCount.setText(counter+"");
 					///////////////////
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
@@ -1188,11 +1189,12 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 
 								txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 								txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+								txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
 							}
 
 						}
 						counter--;
-						txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+						//txtTitleCountM.setText(" اطلاعات مسافر " + counter);
 						imgCount.setText(counter+"");
 					}else{
 						//////////////////////
@@ -1482,39 +1484,56 @@ System.out.println("resultPishfactor:"+resultPishfactor);
 
 
 					if(sum>0){
-System.out.println("gender:"+Gender);
-						db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+					System.out.println("gender:"+Gender);
+					//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+						if(counter-1 ==1){
+							db.insertData(counter-1,"اطلاعات مسافر بزرگسال 1",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+
+						}else{
+							db.insertData(counter-1,txtTitleCountM.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+						}
+						System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
 						if(countB>=1) {
 							System.out.println("countB:"+countB);
 							//txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
-							imgCount.setText(counter+"");
+							//imgCount.setText(counter+"");
 							countB--;
 						}else if(countK>=1) {
 							System.out.println("countK:"+countK);
 							//txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
-							imgCount.setText(counter+"");
+							//imgCount.setText(counter+"");
 							countK--;
 						}else if(countN>=1) {
 							System.out.println("countN:"+countN);
 							//txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
-							imgCount.setText(counter+"");
+							//imgCount.setText(counter+"");
 							countN--;
 						}
 						if(countB!=0){
+
 							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+							imgCount.setText(counter+"");
 						}
 						else if(countK!=0){
+
 							txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+							imgCount.setText(counter+"");
 						}
 						else if(countN!=0){
+
 							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+							imgCount.setText(counter+"");
 						}
+
+
 						System.out.println("counterMosafer:"+counter);
 
 						counter++;
 						sum--;
 						///pak kardan data haye mosafere ghabli:
 						if(sum>0){
+							//counter--;
+
 						txttavalodm.setText("");
 						txtnamem.setText("");
 						txtfamilym.setText("");
@@ -1777,10 +1796,13 @@ System.out.println("gender:"+Gender);
 					txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 
 					txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+					txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
+					//txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+					System.out.println("InsertMosaferGet:"+cursorM.getString(PassengerMosaferItems_Table.Columns.ID.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
 				}
 			}
 			counter--;
-			txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+
 			imgCount.setText(counter+"");
 			///////////////////
 		}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
@@ -1800,11 +1822,14 @@ System.out.println("gender:"+Gender);
 
 						txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 						txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+						txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
+						System.out.println("InsertMosaferGet:"+cursorM.getString(PassengerMosaferItems_Table.Columns.ID.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+
 					}
 
 				}
 				counter--;
-				txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+				//txtTitleCountM.setText(" اطلاعات مسافر " + counter);
 				imgCount.setText(counter+"");
 			}else{
 			//////////////////////
