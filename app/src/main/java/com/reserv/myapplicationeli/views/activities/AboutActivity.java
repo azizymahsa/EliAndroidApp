@@ -99,7 +99,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         new GetAboutAsync().execute();
 
 /////////////////
-        TapTargetView.showFor(this,                 // `this` is an Activity
+      /*  TapTargetView.showFor(this,                 // `this` is an Activity
                 TapTarget.forView(findViewById(R.id.btnBack), "بازگشت به صفحه قبل", "با کلیک بر روی این دکمه به صفحه قبل بازگردید")
                         // All options below are optional
                         .outerCircleColor(R.color.focusColor)      // Specify a color for the outer circle
@@ -124,7 +124,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                         super.onTargetClick(view);      // This call is optional
                       //  doSomething();
                     }
-                });
+                });*/
 /////////////////////
     }
 

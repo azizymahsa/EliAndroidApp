@@ -76,7 +76,7 @@ public class FilterPackageDialog implements View.OnClickListener {
         View view = layoutInflater.inflate(R.layout.view_filter_package_dialog, null);
         initViews(view);
         alertDialog.setView(view);
-        alertDialog.setCancelable(false);
+        alertDialog.setCancelable(true);
     }
 
     private void initViews(View view) {
@@ -114,6 +114,8 @@ public class FilterPackageDialog implements View.OnClickListener {
 
         btnOk.setOnClickListener(this);
         btnDeleteFilter.setOnClickListener(this);
+        btnOk.setCustomTextFont("fonts/irsans.ttf");
+        btnDeleteFilter.setCustomTextFont("fonts/irsans.ttf");
     }
 
 

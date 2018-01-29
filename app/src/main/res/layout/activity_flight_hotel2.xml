@@ -16,17 +16,34 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/banafsh_jahan" />
-
-        <ImageView
-            android:id="@+id/ivHotel"
+        <RelativeLayout
+            android:id="@+id/txtOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:scaleType="centerInside"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="30dp"
             android:layout_marginRight="@dimen/_10dp_margin"
             android:layout_marginTop="30dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/hotel_circle_icon" />
+            >
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+
+                android:src="@drawable/line_white" />
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+
+                android:src="@drawable/arow_but" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +51,8 @@
             android:gravity="center"
             android:layout_centerInParent="true"
             android:orientation="vertical"
-            android:layout_toLeftOf="@+id/ivHotel"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/txtOption"
             >
             <View
                 android:layout_width="match_parent"

@@ -114,18 +114,24 @@
             android:layout_marginBottom="12sp"
             android:orientation="vertical">
 
+
             <Button
                 android:id="@+id/btn_confirm"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="21dp"
-                android:layout_marginRight="21dp"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/blue_button"
+                android:layout_marginLeft="@dimen/_21dp_margin"
+                android:layout_marginRight="@dimen/_21dp_margin"
+                android:layout_marginBottom="@dimen/_5dp_margin"
+                android:background="@drawable/btngravity_big"
+                android:shadowColor="@color/drawer_shadow"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"
                 android:text="@string/accept"
                 android:textColor="#FFFFFF"
-                android:textSize="11dp" />
+                android:textSize="@dimen/_16dp_txtSize"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </LinearLayout>

@@ -1,5 +1,6 @@
 package com.reserv.myapplicationeli.views.ui.dialog.hotel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -23,14 +24,14 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
     Context activity;
-    PassengerActivity passengerActivity;
+    Activity passengerActivity;
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     String text;
     // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
 
 
-    public AlertDialogPassengerFlight(final Context activity, PassengerActivity passengerActivity) {
+    public AlertDialogPassengerFlight(final Context activity, Activity passengerActivity) {
         this.activity = activity;
         this.passengerActivity=passengerActivity;
         builder = new android.app.AlertDialog.Builder(activity);

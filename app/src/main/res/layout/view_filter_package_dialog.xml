@@ -3,14 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:gravity="right"
+        android:layout_height="50dp"
+        android:background="@drawable/alert_header_background"
+        android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">
 
@@ -35,7 +36,8 @@
             android:text="@string/icon_filter"
             android:textAppearance="@style/IconFonts"
             android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
@@ -165,44 +167,47 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/_10dp_margin"
+        android:layout_marginTop="10dp"
+        >
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnDeletFilter"
             android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_gravity="bottom"
             android:layout_weight="0.5"
-            android:elevation="4dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:elevation="1dp"
             android:paddingBottom="1dp"
-            app:fb_defaultColor="@color/app_base_color"
-            app:fb_focusColor="@color/colorPrimaryDark"
-            app:fb_radius="0dp"
-            app:fb_text="حذف فیلتر"
-            app:fb_textColor="#FFFFFF"
-            app:fb_textSize="18dp" />
+            fancy:fb_defaultColor="#1234"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="100dp"
+            fancy:fb_text="حذف فیلتر"
+            fancy:fb_textColor="#4d4d4d"
+            fancy:fb_textSize="14dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnOk"
             android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_gravity="bottom"
             android:layout_weight="0.5"
-            android:elevation="4dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:elevation="1dp"
             android:paddingBottom="1dp"
-            app:fb_defaultColor="@color/app_base_color"
-            app:fb_focusColor="@color/colorPrimaryDark"
-            app:fb_radius="0dp"
-            app:fb_text="اعمال فیلتر"
-            app:fb_textColor="#FFFFFF"
-            app:fb_textSize="18dp" />
-
-
-
+            fancy:fb_defaultColor="#1234"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="100dp"
+            fancy:fb_text="اعمال فیلتر"
+            fancy:fb_textColor="#4d4d4d"
+            fancy:fb_textSize="14dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
 
     </LinearLayout>
-
-
 </LinearLayout>

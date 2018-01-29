@@ -7,13 +7,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -44,10 +50,10 @@ import java.util.List;
  */
 
 public class HotelFlightFragment extends android.support.v4.app.Fragment implements View.OnClickListener,
-        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,CountTimeAlert.TimerDialogListener {
+        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener {
 
     public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
-    public TextView txtCity, lbl_city_english, tvMabda, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult,tvMabdaEn;
+    public TextView txtCity, lbl_city_english, tvMabda, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, tvMabdaEn;
     public static int countNafar = 1;
     LinearLayout btn_add_room, llRoom;
     public ListView listRoomItem;
@@ -68,8 +74,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     int year_Min;
     int dayMin;
     String raft, bargasht;
-    LinearLayout linearLayout_mabda,linearLayout_maghsad;
-
+    LinearLayout linearLayout_mabda, linearLayout_maghsad;
+    ImageView ivImage;
 
 
     @Override
@@ -96,6 +102,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         tvBargasht = (TextView) rootView.findViewById(R.id.tvBargasht);
         tvAdult = (TextView) rootView.findViewById(R.id.tvAdult);
         tvChild = (TextView) rootView.findViewById(R.id.tvChild);
+        ivImage = rootView.findViewById(R.id.ivImage);
         tvRaft.setOnClickListener(this);
         tvBargasht.setOnClickListener(this);
         linearLayout_maghsad.setOnClickListener(this);
@@ -117,6 +124,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
         searchHotel = (Button) rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
+        ivImage.setOnClickListener(this);
 
 
         data = new ArrayList<ModelRowCountRoom>();
@@ -135,13 +143,12 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         //   listRoomItem.setAdapter(mAdapter);
 
 
-
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
         //  Date currentTime = Calendar.getInstance().getTime();
         //=================================================================================================
         PersianCalendar persianCalendar = new PersianCalendar();
 
-        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay()+1);
+        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() + 1);
 
 
         tvBargasht.setText(persianCalendar.getPersianLongDate());
@@ -151,15 +158,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         day = persianCalendarDatePicker.getPersianDay();
 
 
-
         tvBargasht.setText(persianCalendar.getPersianLongDate());
         tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
         month = persianCalendarDatePicker.getPersianMonth();
         year_ = persianCalendarDatePicker.getPersianYear();
         day = persianCalendarDatePicker.getPersianDay();
-
-
-
 
 
         datePickerDialog = DatePickerDialog.newInstance(
@@ -181,10 +184,10 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         datePickerDialog2.setMinDate(persianCalendar);
 
 
-        raft=date_server(  persianCalendarDatePicker.getPersianYear(),
+        raft = date_server(persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
-        bargasht=date_server(  persianCalendar.getPersianYear(),
+        bargasht = date_server(persianCalendar.getPersianYear(),
                 persianCalendar.getPersianMonth(),
                 persianCalendar.getPersianDay());
 
@@ -198,7 +201,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         super.onResume();
         try {
 
-            Log.e("11111",   Prefs.getString("Value-Hotel-City-Code-HF-Raft", ""));
+            Log.e("11111", Prefs.getString("Value-Hotel-City-Code-HF-Raft", ""));
             Log.e("322222", Prefs.getString("Value-Hotel-City-Code-HF-Source", ""));
 
             Gson gson;
@@ -242,35 +245,33 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             case R.id.linearLayout_mabda:
                 //	new FilterHotelDialog(getActivity());
                 Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
-                intent2.putExtra("type",1);;
+                intent2.putExtra("type", 1);
+                ;
                 startActivity(intent2);
                 break;
 
             case R.id.searchHotel:
-              //  new CountTimeAlert(getActivity(),this);
+                //  new CountTimeAlert(getActivity(),this);
                 try {
                     sendStartTimer();
 
                     Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);
 
                     intent.putExtra("CheckInHF", raft);
-                    intent.putExtra("CheckOutHF",bargasht);
+                    intent.putExtra("CheckOutHF", bargasht);
                     intent.putExtra("CheckOutFaHF", tvBargasht.getText().toString());
-                    intent.putExtra("CheckInFaHF",tvRaft.getText().toString());
+                    intent.putExtra("CheckInFaHF", tvRaft.getText().toString());
                     intent.putExtra("Rooms", getRoomList(roomsSelected));
                     intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                     intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
                     Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-                    Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString())+1+"" );
-
+                    Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
 
 
                     startActivity(intent);
                 } catch (Exception e) {
                     Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
                 }
-
-
 
 
                 //   }
@@ -296,20 +297,32 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             case R.id.llRoom:
                 Intent room = new Intent(getActivity(), AddRoomActivity.class);
 
-                room.putExtra("roomList",Prefs.getString("Rooms", "dd"));
+                room.putExtra("roomList", Prefs.getString("Rooms", "dd"));
                 startActivity(room);
 
                 break;
             case R.id.linearLayout_maghsad:
                 //	new FilterHotelDialog(getActivity());
                 Intent intent = new Intent(getActivity(), GetAirportHotelActivity.class);
-                intent.putExtra("type",2);;
+                intent.putExtra("type", 2);
+
                 startActivity(intent);
 
+                break;
+            case R.id.ivImage:
+                anim();
                 break;
 
 
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+
+
     }
 
     private String getRoomList(ArrayList<ModelRowCountRoom> roomsSelected) {
@@ -398,11 +411,10 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         persianCalendar.set(year, month, day);
 
 
-        Log.e("salam",date_server(year_, month, day));
+        Log.e("salam", date_server(year_, month, day));
         if (view.getTag().equals("DatepickerdialogBargasht")) {
             tvBargasht.setText(persianCalendar.getPersianLongDate());
-            bargasht=date_server(year,monthOfYear,dayOfMonth);
-
+            bargasht = date_server(year, monthOfYear, dayOfMonth);
 
 
         }
@@ -415,7 +427,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             dayMin = dayOfMonth;
             tvRaft.setText(persianCalendar.getPersianLongDate());
             tvBargasht.setText(persianCalendar.getPersianLongDate());
-            raft=date_server(year,monthOfYear,dayOfMonth);
+            raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
             datePickerDialog2.initialize(this, year_, month, day);
@@ -436,8 +448,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         int yearS = Integer.valueOf(dateGrg[2]);
 
 
-
-        return yearS+"/"+monthS+"/"+dayS;
+        return yearS + "/" + monthS + "/" + dayS;
     }
 
     private void sendStartTimer() {
@@ -450,4 +461,124 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
 
     }
+
+
+    public void anim() {
+
+
+        YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+
+
+            @Override
+            public void onAnimationStart(android.animation.Animator animation) {
+
+
+                YoYo.with(Techniques.SlideOutDown)
+                        .duration(500)
+                        .playOn(tvMabdaEn);
+                YoYo.with(Techniques.SlideOutUp)
+                        .duration(500)
+                        .playOn(lbl_city_english);
+
+
+                YoYo.with(Techniques.SlideOutUp)
+                        .duration(500)
+                        .playOn(txtCity);
+
+            }
+
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+
+                String start = "";
+                String end = "";
+                String startF = "";
+                String endF = "";
+
+                start = tvMabda.getText().toString();
+                end = txtCity.getText().toString();
+
+                startF = tvMabdaEn.getText().toString();
+                endF = lbl_city_english.getText().toString();
+
+                tvMabda.setText(end);
+                txtCity.setText(start);
+
+                tvMabdaEn.setText(endF);
+                lbl_city_english.setText(startF);
+/////////////////////////
+
+                String m3=  Prefs.getString("Value-Hotel-City-Code-HF-Raft","");
+
+
+                String m4= Prefs.getString("Value-Hotel-City-Code-HF-Source","");
+                Prefs.putString("Value-Hotel-City-Code-HF-Raft",m4);
+                Prefs.putString("Value-Hotel-City-Code-HF-Source",m3);
+
+                Prefs.putString("Value-Hotel-City-Fa-HF-Raft", start);
+                Prefs.putString("Value-Hotel-City-En-HF-Raft", startF);
+                Prefs.putString("Value-Hotel-City-Fa-HF-Source", end);
+                Prefs.putString("Value-Hotel-City-En-HF-Source", endF);
+
+           /*     String airportMaghsad=  Prefs.getString("Value-Maghsad-Airport-Code","");
+                String airPortMabda= Prefs.getString("Value-Mabda-Airport-Code","");
+
+                Prefs.putString("Value-Mabda-Airport-Code",airportMaghsad);
+                Prefs.putString("Value-Maghsad-Airport-Code",airPortMabda);
+
+                String mabdaCity = Prefs.getString("Value-Mabda-City", "");
+                String mabdaAirPort = Prefs.getString("Value-Mabda-Airport", "");
+                String maghsadCity = Prefs.getString("Value-Maghsad-City", "");
+                String maghsadAirPort = Prefs.getString("Value-Maghsad-Airport", "");
+
+                Prefs.putString("Value-Mabda-City", maghsadCity);
+                Prefs.putString("Value-Mabda-Airport", maghsadAirPort);
+                Prefs.putString("Value-Maghsad-City", mabdaCity);
+                Prefs.putString("Value-Maghsad-Airport", mabdaAirPort);*/
+
+
+
+              /*  tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", "تهران"));
+                tvMabdaEn.setText(Prefs.getString("Value-Hotel-City-En-HF-Source", ""));
+
+*/
+
+
+////////////////////////
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(500)
+                        .playOn(tvMabdaEn);
+                YoYo.with(Techniques.SlideInDown)
+                        .duration(500)
+                        .playOn(lbl_city_english);
+
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(500)
+                        .playOn(tvMabda);
+                YoYo.with(Techniques.SlideInDown)
+                        .duration(500)
+                        .playOn(txtCity);
+
+
+            }
+
+            @Override
+            public void onAnimationCancel(android.animation.Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(android.animation.Animator animation) {
+
+            }
+
+        })
+                .playOn(tvMabda);
+
+
+        final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
+        ivImage.startAnimation(animation);
+    }
+
+
 }
