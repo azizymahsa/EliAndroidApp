@@ -150,6 +150,21 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         initView();
         initMap();
+        try{
+            if (getIntent().getExtras().getString("Type").equals("Pakage")){
+
+                llRezervClick.setVisibility(View.GONE);
+                lvRooms.setVisibility(View.GONE);
+                vComment.setVisibility(View.GONE);
+                tvAlert.setVisibility(View.GONE);
+
+                llDynamic.setVisibility(View.VISIBLE);
+
+                vEmakanat.setVisibility(View.VISIBLE);
+
+            }
+
+        }catch (Exception e){}
 
 
         //flights
@@ -527,7 +542,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
                         Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
 
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 20));
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 17));
                 map.addMarker(new MarkerOptions().position(location).title(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName));
                 for (ImageHotel imageHotel : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelImages) {
                     imageModels.add(new ImageModel(imageHotel.HotelImagesURL));

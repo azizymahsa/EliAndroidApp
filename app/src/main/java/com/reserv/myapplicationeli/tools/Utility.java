@@ -28,6 +28,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 
 
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.view.View;
@@ -452,9 +453,9 @@ public class Utility extends Activity {
 		String[] splite=time.split(" ");
 		String[] dateSplite=splite[0].split("/");
 
-		String dayM=dateSplite[2];
+	/*	String dayM=dateSplite[2];
 		String monthM=dateSplite[1];
-		String yearM=dateSplite[0];
+		String yearM=dateSplite[0];*/
 
 		/*	Calendar cal = Calendar.getInstance();
 			cal.set(Calendar.YEAR, Integer.parseInt(yearM));
@@ -490,26 +491,56 @@ public class Utility extends Activity {
 		return str;
 
 
+	}
 
 
+	public static String dateShowView(String time){
+
+		String[] splite=time.split(" ");
+		String[] dateSplite=splite[0].split("/");
+
+	/*	String dayM=dateSplite[2];
+		String monthM=dateSplite[1];
+		String yearM=dateSplite[0];*/
+
+		/*	Calendar cal = Calendar.getInstance();
+			cal.set(Calendar.YEAR, Integer.parseInt(yearM));
+			cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dayM));
+			cal.set(Calendar.MONTH, Integer.parseInt(monthM));
+			String format = new SimpleDateFormat(" MMM dd").format(cal.getTime());
+
+			return format;
+		}catch (Exception e) {
+			System.out.println("Exception ::"+e);
+			//return "";
+		}
+
+*/
+
+		//String outputPattern = "dd-MMM-yyyy h:mm a";
 
 
+		String inputPattern = "yyyy/MM/dd";
+		String outputPattern = "dd MMM yyyy";
+		SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+		SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
 
+		Date date = null;
+		String str = null;
 
-
-
-
-
-
-
-
-
+		try {
+			date = inputFormat.parse(time);
+			str = outputFormat.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return str;
 
 
 	}
 
 	public static void openUrlCustomTab(Activity context, String url) {
-	/*	Uri uri = Uri.parse(url);
+		Uri uri = Uri.parse(url);
 
 // create an intent builder
 		CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
@@ -527,7 +558,7 @@ public class Utility extends Activity {
 		CustomTabsIntent customTabsIntent = intentBuilder.build();
 
 // launch the url
-		customTabsIntent.launchUrl(context, uri);*/
+		customTabsIntent.launchUrl(context, uri);
 
 	}
 

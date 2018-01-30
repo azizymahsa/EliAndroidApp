@@ -32,6 +32,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.models.model.pack.ChildModel;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.reserv.myapplicationeli.views.activities.AddRoomActivity;
@@ -42,8 +43,11 @@ import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -152,27 +156,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
         datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
-        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
-
-
-
-                PersianCalendar persianCalendar = new PersianCalendar();
-
-                monthOfYear = persianCalendar.getPersianMonth();
-                year = persianCalendar.getPersianYear();
-                dayOfMonth = persianCalendar.getPersianDay();
-                Log.e("m", monthOfYear+"");
-                Log.e("y", year+"" );
-                Log.e("d", dayOfMonth+"");
-                datePickerDialogGregorian2.setMinDate(persianCalendar.toGregorianCalendar());
-
-
-
-            }
-        });
        // datePickerDialogGregorian2.setOnDateSetListener(this);
       //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);
 
@@ -248,6 +232,67 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
             }
         });
+
+
+//=====================================================================================================
+
+
+        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+
+                Log.e("GGGGGGGRaft", year+"=="+monthOfYear+1+"=="+dayOfMonth);
+
+
+
+
+
+
+                String str_date =  year+"/"+ monthOfYear+1+"/"+ dayOfMonth;//2018-01-16
+                DateFormat formatter;
+                Date date;
+                formatter = new SimpleDateFormat("yyyy/MM/dd");
+                try {
+                    date = (Date) formatter.parse(str_date);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    datePickerDialogGregorian2.setMinDate(cal);
+
+
+                    tvRaft.setText(Utility.dateShowView(year+"/"+ monthOfYear+1+"/"+ dayOfMonth));
+
+                    raft =year+"/"+ monthOfYear+1+"/"+ dayOfMonth;
+                    Log.e("GGGGGGG", raft);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                tvBargasht.setText(tvRaft.getText().toString());
+
+
+
+            }
+        });
+        datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+                Log.e("GGGGGGGBar", year+"=="+monthOfYear+1+"=="+dayOfMonth);
+
+                tvBargasht.setText(Utility.dateShowView(year+"/"+ monthOfYear+1+"/"+ dayOfMonth));
+                bargasht =year+"/"+ monthOfYear+1+"/"+ dayOfMonth;
+
+
+
+            }
+
+
+        });
+
+
+
+//=====================================================================================================
 
 
         return rootView;
