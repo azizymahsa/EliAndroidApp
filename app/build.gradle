@@ -94,6 +94,7 @@ dependencies {
     compile 'com.ms-square:expandableTextView:0.1.4'
    // compile 'com.github.shinelw.colorarcprogressbar:library:1.0.3'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
+    compile 'gun0912.ted:tedpermission:1.0.3'
 
 
 
