@@ -92,7 +92,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
     LinearLayout llBottom, llSort,llFilter;
     FancyButton btnOk, btnBack, btnHome;
-    ImageView ivLoading;
+    ImageView ivLoading,ivImage;
 
     String raft, bargasht;
     String raftFa, bargashtFa;
@@ -126,9 +126,10 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         btnHome.setOnClickListener(this);
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
+        ivImage = findViewById(R.id.ivImage);
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
-
+        ivImage.setImageResource(R.drawable.flight_h);
         llBottom.setOnClickListener(this);
         llSort.setOnClickListener(this);
         adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, this);

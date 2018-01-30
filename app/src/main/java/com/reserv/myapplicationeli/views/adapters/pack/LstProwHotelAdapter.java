@@ -16,8 +16,7 @@ import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
-import com.reserv.myapplicationeli.views.activities.pack.DetailHotelActivityForPack;
-import com.reserv.myapplicationeli.views.viewholders.LstProwHotelRowHolder;
+ import com.reserv.myapplicationeli.views.viewholders.LstProwHotelRowHolder;
 
 import java.util.ArrayList;
 

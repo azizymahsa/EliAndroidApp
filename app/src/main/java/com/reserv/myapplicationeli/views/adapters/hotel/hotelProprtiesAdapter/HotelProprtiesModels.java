@@ -8,11 +8,15 @@ public class HotelProprtiesModels {
     String PropertyTitle;
     String PropertyCat;
     String Image;
+    String PropertyDescription;
+    int CategoryID;
 
-    public HotelProprtiesModels(String propertyTitle, String propertyCat, String image) {
+    public HotelProprtiesModels(String propertyTitle, String propertyCat, String image, String propertyDescription, int categoryID) {
         PropertyTitle = propertyTitle;
         PropertyCat = propertyCat;
         Image = image;
+        PropertyDescription = propertyDescription;
+        CategoryID = categoryID;
     }
 
     public String getPropertyTitle() {
@@ -37,5 +41,21 @@ public class HotelProprtiesModels {
 
     public void setImage(String image) {
         Image = image;
+    }
+
+    public String getPropertyDescription() {
+        return PropertyDescription;
+    }
+
+    public void setPropertyDescription(String propertyDescription) {
+        PropertyDescription = propertyDescription;
+    }
+
+    public int getCategoryID() {
+        return CategoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        CategoryID = categoryID;
     }
 }
