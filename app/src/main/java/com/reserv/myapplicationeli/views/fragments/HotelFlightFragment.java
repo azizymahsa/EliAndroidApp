@@ -31,6 +31,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.models.model.pack.ChildModel;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelFlightActivity;
@@ -40,8 +41,11 @@ import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.Ge
 import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -65,8 +69,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     DatePickerDialogPrivate datePickerDialogRaft, datePickerDialogBargasht;
     private ArrayList<ModelRowCountRoom> roomsSelected;
     private final int ADD_ROOM_REQUEST = 100;
-    DatePickerDialog datePickerDialog;
-    DatePickerDialog datePickerDialog2;
+    DatePickerDialog datePickerDialog2,datePickerDialog;
     int month;
     int year_;
     int day;
@@ -77,6 +80,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     LinearLayout linearLayout_mabda, linearLayout_maghsad;
     ImageView ivImage;
 
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -143,6 +148,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         //   listRoomItem.setAdapter(mAdapter);
 
 
+        //==================================================================================================
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
         //  Date currentTime = Calendar.getInstance().getTime();
         //=================================================================================================
@@ -157,13 +163,14 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         year_ = persianCalendarDatePicker.getPersianYear();
         day = persianCalendarDatePicker.getPersianDay();
 
+        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
 
-        tvBargasht.setText(persianCalendar.getPersianLongDate());
-        tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
-        month = persianCalendarDatePicker.getPersianMonth();
-        year_ = persianCalendarDatePicker.getPersianYear();
-        day = persianCalendarDatePicker.getPersianDay();
+        // datePickerDialogGregorian2.setOnDateSetListener(this);
+        //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);
 
+        datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
 
         datePickerDialog = DatePickerDialog.newInstance(
                 this,
@@ -187,9 +194,108 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         raft = date_server(persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
+
+
         bargasht = date_server(persianCalendar.getPersianYear(),
                 persianCalendar.getPersianMonth(),
                 persianCalendar.getPersianDay());
+
+
+        //=====================================================================================================
+
+        datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener()  {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft_");
+               /// datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
+
+
+            }
+        });
+
+
+        datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft_");
+
+
+            }
+        });
+
+
+//=====================================================================================================
+
+        datePickerDialog2.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht_");
+            }
+        });
+
+
+        datePickerDialogGregorian2.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht_");
+
+
+            }
+        });
+
+
+//=====================================================================================================
+
+
+        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+
+                Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
+
+
+                String str_date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;//2018-01-16
+                DateFormat formatter;
+                Date date;
+                formatter = new SimpleDateFormat("yyyy/MM/dd");
+                try {
+                    date = (Date) formatter.parse(str_date);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    datePickerDialogGregorian2.setMinDate(cal);
+
+
+                    tvRaft.setText(Utility.dateShowView(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth));
+
+                    raft = year + "/" + monthOfYear + 1 + "/" + dayOfMonth;
+                    Log.e("GGGGGGG", raft);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                tvBargasht.setText(tvRaft.getText().toString());
+
+
+            }
+        });
+        datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+                Log.e("GGGGGGGBar", year + "==" + (monthOfYear + 1) + "==" + dayOfMonth);
+
+                tvBargasht.setText(Utility.dateShowView(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth));
+                bargasht = year + "/" + monthOfYear + 1 + "/" + dayOfMonth;
+
+
+            }
+
+
+        });
+
+
+//=====================================================================================================
 
 
         return rootView;
@@ -284,13 +390,13 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                     }
                 });
 
-                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft_");
 
                 break;
             case R.id.tvBargasht:
                 datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
-                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht_");
 
 
                 break;
@@ -320,7 +426,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     @Override
     public void onDestroy() {
         super.onDestroy();
-
 
 
     }
@@ -412,7 +517,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
 
         Log.e("salam", date_server(year_, month, day));
-        if (view.getTag().equals("DatepickerdialogBargasht")) {
+        if (view.getTag().equals("DatepickerdialogBargasht_")) {
             tvBargasht.setText(persianCalendar.getPersianLongDate());
             bargasht = date_server(year, monthOfYear, dayOfMonth);
 
@@ -420,7 +525,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         }
 
 
-        if (view.getTag().equals("DatepickerdialogRaft")) {
+        if (view.getTag().equals("DatepickerdialogRaft_")) {
 
             year_Min = year;
             monthMin = monthOfYear;
@@ -508,12 +613,12 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 lbl_city_english.setText(startF);
 /////////////////////////
 
-                String m3=  Prefs.getString("Value-Hotel-City-Code-HF-Raft","");
+                String m3 = Prefs.getString("Value-Hotel-City-Code-HF-Raft", "");
 
 
-                String m4= Prefs.getString("Value-Hotel-City-Code-HF-Source","");
-                Prefs.putString("Value-Hotel-City-Code-HF-Raft",m4);
-                Prefs.putString("Value-Hotel-City-Code-HF-Source",m3);
+                String m4 = Prefs.getString("Value-Hotel-City-Code-HF-Source", "");
+                Prefs.putString("Value-Hotel-City-Code-HF-Raft", m4);
+                Prefs.putString("Value-Hotel-City-Code-HF-Source", m3);
 
                 Prefs.putString("Value-Hotel-City-Fa-HF-Raft", start);
                 Prefs.putString("Value-Hotel-City-En-HF-Raft", startF);

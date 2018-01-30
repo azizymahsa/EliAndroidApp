@@ -249,7 +249,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
 
-                String str_date =  year+"/"+ monthOfYear+1+"/"+ dayOfMonth;//2018-01-16
+                String str_date =  year+"/"+  (monthOfYear+1)+"/"+ dayOfMonth;//2018-01-16
                 DateFormat formatter;
                 Date date;
                 formatter = new SimpleDateFormat("yyyy/MM/dd");
@@ -260,7 +260,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     datePickerDialogGregorian2.setMinDate(cal);
 
 
-                    tvRaft.setText(Utility.dateShowView(year+"/"+ monthOfYear+1+"/"+ dayOfMonth));
+                    tvRaft.setText(Utility.dateShowView(year+"/"+ (monthOfYear+1)+"/"+ dayOfMonth));
 
                     raft =year+"/"+ monthOfYear+1+"/"+ dayOfMonth;
                     Log.e("GGGGGGG", raft);
@@ -278,9 +278,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
         datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-                Log.e("GGGGGGGBar", year+"=="+monthOfYear+1+"=="+dayOfMonth);
+                Log.e("GGGGGGGBar", year+"=="+(monthOfYear+1)+"=="+dayOfMonth);
 
-                tvBargasht.setText(Utility.dateShowView(year+"/"+ monthOfYear+1+"/"+ dayOfMonth));
+                tvBargasht.setText(Utility.dateShowView(year+"/"+ (monthOfYear+1)+"/"+ dayOfMonth));
                 bargasht =year+"/"+ monthOfYear+1+"/"+ dayOfMonth;
 
 

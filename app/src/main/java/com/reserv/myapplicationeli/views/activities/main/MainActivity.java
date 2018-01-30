@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try {
             if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
                 txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+                btnExit.setVisibility(View.VISIBLE);
             } else {
                 txt_name.setText("ورود به حساب کاربری");
                 btnExit.setVisibility(View.GONE);
