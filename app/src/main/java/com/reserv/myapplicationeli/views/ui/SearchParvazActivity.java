@@ -161,7 +161,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	public  SearchParvazPinAdapter searchParvazPinAdapter;
 	public static RecyclerView recyclerViewFlight;
 	Window window;
-	public ArrayList<ModelCheckBox> arrayTrue=new ArrayList<>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -233,23 +233,14 @@ public class FlightHotelAdapter extends BaseAdapter {
         switch (strings2.length) {
             case 0:
                 waitBargasht = "بدون توقف";
-                holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1_bargasht.setText(strings2[0]);
-                holder.tvANRaft1_2_bargasht.setText(strings2[1]);
+                holder.nonStop.setText(strings2[0]);
+                holder.nonStop.setVisibility(View.VISIBLE);
+
                 break;
             case 1:
                 waitBargasht = "بدون توقف";
-                try {
-                    holder.tvANRaft1_2_bargasht.setText(strings2[1]);
-                    holder.tvANRaft1_1_bargasht.setText(strings2[0]);
-                    holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-
-
-                }catch (Exception e){
-                    holder.nonStop.setText(strings2[0]);
-                    holder.nonStop.setVisibility(View.VISIBLE);
-
-                }
+                holder.nonStop.setText(strings2[0]);
+                holder.nonStop.setVisibility(View.VISIBLE);
 
 
                 break;

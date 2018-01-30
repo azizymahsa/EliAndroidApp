@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/tvANRaft3_1"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:gravity="right"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"

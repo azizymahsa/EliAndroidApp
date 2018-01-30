@@ -59,9 +59,10 @@
                     android:id="@+id/ivIsBestseler"
                     android:layout_width="60dp"
                     android:layout_height="50dp"
-                    android:text="بیشترین فروش"
+                    android:text="پر فروش"
                     android:background="@drawable/best_seller_back"
                     android:textColor="@color/text_color_4d"
+                    android:textAppearance="@style/IrsansBold"
 
                     android:gravity="center"
                     android:textSize="10dp"
@@ -69,8 +70,7 @@
                     android:src="@drawable/best_seller"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="20dp"
-                    android:visibility="gone"/>
+                    android:layout_marginBottom="20dp"/>
             </RelativeLayout>
 
 

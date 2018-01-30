@@ -13,6 +13,7 @@
 
 
 
+
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,10 +23,13 @@
 
         <TextView
             android:id="@+id/tvANRaft1_1"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
+            android:gravity="right"
+
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/ivArrow"
             android:text="IKA"
+
             android:textColor="@color/text_color_4d"
             android:textSize="12dp" />
 
