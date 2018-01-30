@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.models.model.pack.call.CityListRq;
 import com.reserv.myapplicationeli.models.model.pack.call.CityRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.response.CityListRes;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
@@ -41,7 +43,12 @@ import com.reserv.myapplicationeli.views.activities.AddRoomActivity;
 import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
 import com.reserv.myapplicationeli.views.adapters.pack.CitySpinnerAdapter;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -58,7 +65,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class PackageFragment extends Fragment implements View.OnClickListener,
         TimePickerDialog.OnTimeSetListener,
-        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener  {
+        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
 
     public ViewGroup view;
@@ -88,6 +95,9 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     int dayMin;
     TextView txt_return_date;
     TextView txt_depart_date;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
+    boolean geo = false;
 
     public static PackageFragment instance() {
         PackageFragment fragment = new PackageFragment();
@@ -135,8 +145,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 //        Toast.makeText(getActivity(), "password :" +  WebUserTools.getInstance().getUser().getPassword(), Toast.LENGTH_SHORT).show();
 
 
-
-
         return view;
     }
 
@@ -147,12 +155,12 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             @Override
             public void onResponse(Call<CityListRes> call, Response<CityListRes> response) {
                 hideLoading();
-                if (response == null || response.body() == null){
+                if (response == null || response.body() == null) {
                     needShowAlertDialog("خطا در ارتباط", true);
                     return;
                 }
 
-                if( response.body().getGetHotelListResult() == null || response.body().getGetHotelListResult().getCities() == null) {
+                if (response.body().getGetHotelListResult() == null || response.body().getGetHotelListResult().getCities() == null) {
                     needShowAlertDialog("شهری برای نمایش وجود ندارد", true);
                     return;
                 }
@@ -166,7 +174,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 try {
                     hideLoading();
                     needShowAlertDialog("خطا در ارتباط", true);
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
             }
         });
 
@@ -188,7 +197,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         txt_depart_date = view.findViewById(R.id.txt_depart_date);
 
 
-
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
         departureFrom = currentDateTime;
         departureTo = currentDateTime;
@@ -196,8 +204,11 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
         int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
-        txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
-        txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
+
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+
+
 
 
         datePickerDialogDepart = DatePickerDialog.newInstance(
@@ -214,10 +225,116 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         );
 
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
-        persianCalendarDatePicker.setPersianDate(currentYear,currentMonth ,currentDay);
+        persianCalendarDatePicker.setPersianDate(currentYear, currentMonth, currentDay);
 
         datePickerDialogDepart.setMinDate(persianCalendarDatePicker);
         datePickerDialogReturn.setMinDate(persianCalendarDatePicker);
+
+        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+
+        // datePickerDialogGregorian2.setOnDateSetListener(this);
+        //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);
+        datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+
+
+
+        //=====================================================================================================
+
+
+        datePickerDialogDepart.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+
+            }
+        });
+
+
+        datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+
+            }
+        });
+
+        //=====================================================================================================
+
+
+//=====================================================================================================
+
+        datePickerDialogReturn.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
+            }
+        });
+
+
+        datePickerDialogGregorian2.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+
+
+            }
+        });
+
+
+//=====================================================================================================
+
+
+        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+                geo = true;
+
+                Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
+
+
+                String str_date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;//2018-01-16
+                DateFormat formatter;
+                Date date;
+                formatter = new SimpleDateFormat("yyyy/MM/dd");
+                try {
+                    date = (Date) formatter.parse(str_date);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    datePickerDialogGregorian2.setMinDate(cal);
+
+
+                    txt_depart_date.setText(Utility.dateShowView(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth));
+
+                    departureFrom = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
+                    // Log.e("GGGGGGG", raft);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                txt_return_date.setText(txt_depart_date.getText().toString());
+
+
+            }
+        });
+        datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+                geo = true;
+
+                Log.e("GGGGGGGBar", year + "==" + (monthOfYear + 1) + "==" + dayOfMonth);
+
+                txt_return_date.setText(Utility.dateShowView(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth));
+                departureTo = year + "/" + monthOfYear + 1 + "/" + dayOfMonth;
+
+
+            }
+
+
+        });
+
 
         gson = new GsonBuilder().create();
 
@@ -258,14 +375,14 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.layout_room:
-                Gson gson =new GsonBuilder().create();
+                Gson gson = new GsonBuilder().create();
                 Intent intent = new Intent(getActivity(), AddRoomActivity.class);
-                intent.putExtra("roomList" , gson.toJson(roomsSelected));
+                intent.putExtra("roomList", gson.toJson(roomsSelected));
                 startActivityForResult(intent, ADD_ROOM_REQUEST);
                 break;
 
             case R.id.btnSearchPackage:
-                if(citySpinnerAdapter == null){
+                if (citySpinnerAdapter == null) {
                     Toast.makeText(getActivity(), "ابتدا شهر مورد نظر را انتخاب نمایید", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -393,20 +510,18 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     }
 
 
-
-
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
-
-        long milis = DateUtil.getMiliSecondPersianDateTime(year,monthOfYear,dayOfMonth);
-        String currentDateTime = DateUtil.getDateTime(String.valueOf(milis),"yyyy-MM-dd");
+        geo = false;
+        long milis = DateUtil.getMiliSecondPersianDateTime(year, monthOfYear, dayOfMonth);
+        String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
 
         if (view.getTag().equals("DepartureTo")) {
-            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
-            departureTo=currentDateTime;
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            departureTo = currentDateTime;
         }
 
 
@@ -414,9 +529,9 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
-            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime,"yyyy-MM-dd",true));
-            departureFrom=currentDateTime;
+            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            departureFrom = currentDateTime;
             PersianCalendar persianCalendarDatePicker = new PersianCalendar();
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);
             datePickerDialogReturn = DatePickerDialog.newInstance(
@@ -430,13 +545,14 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     }
 
 
-    AlertDialog mAlertDialog ;
+    AlertDialog mAlertDialog;
+
     public void needShowAlertDialog(String message, boolean canelable) {
-        if(mAlertDialog!= null && mAlertDialog.isShowing()){
+        if (mAlertDialog != null && mAlertDialog.isShowing()) {
             return;
         }
         mAlertDialog = new AlertDialog.Builder(getActivity()).create();
-        final LayoutInflater layoutInflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.alert_dialog_net, null);
         mAlertDialog.setCancelable(canelable);
         FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);

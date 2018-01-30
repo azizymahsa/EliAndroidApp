@@ -134,9 +134,9 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     }
 
     private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture) {
-        String date = DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
+      //  String date ;//= DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
         toolbar_title.setText(" تور " + cityName);
-        toolbar_date.setText(date);
+        toolbar_date.setText(departureTo+" - "+departureTo);
         goneView(layout_availabel_date, R.anim.slide_out_top);
         goneView(txtNotFoundResualt, R.anim.slide_out_top);
         showLoading();
