@@ -53,7 +53,7 @@ public class NumberPickerDialog implements View.OnClickListener {
         numberPicker.setSelectedTextSize(R.dimen._16dp_txtSize);
 
         btnOk.setText("انتخاب");
-        btnOk.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         // numberPicker.setOnClickListener(this);
         dialog = builder.create();

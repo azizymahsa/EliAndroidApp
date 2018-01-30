@@ -52,8 +52,8 @@
         fancy:fb_focusColor="@color/focusColor"
         fancy:fb_radius="100dp"
         fancy:fb_text="باشه!"
-        fancy:fb_textColor="@color/text_color_4d"
-        fancy:fb_textSize="16dp"
+        fancy:fb_textColor="#4d4d4d"
+        fancy:fb_textSize="14dp"
         android:layout_marginBottom="@dimen/_10dp_margin"/>
 
 

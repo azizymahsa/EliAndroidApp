@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.views.viewholders;
 
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -36,6 +37,7 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
     public TextView txt_count;
     public TextView txt_airline_go;
     public TextView txt_airline_back;
+    public CardView list_pack;
 
     public Button btn_package_booking;
     // public TextView date_depart;
@@ -59,6 +61,8 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
         this.country_depart_back = itemView.findViewById(R.id.country_depart_back);
         this.time_arive_go = itemView.findViewById(R.id.time_ariv_go);
         this.time_arive_back = itemView.findViewById(R.id.time_arrive_back);
+        this.list_pack = itemView.findViewById(R.id.crd_pack);
+
 
         //this.date_depart = itemView.findViewById(R.id.date_go);
         //this.date_arrive = itemView.findViewById(R.id.date_back);

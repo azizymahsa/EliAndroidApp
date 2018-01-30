@@ -1,19 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f5f5f5"
     android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_not_found_resualt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbarLayout"
+            android:layout_marginTop="120sp"
+            android:background="@drawable/bg_banafash_with_stroke"
+            android:gravity="center"
+            android:paddingBottom="3sp"
+            android:paddingTop="3sp"
+            android:text="در تاریخ مذکور نتیجه ای یافت نشد، نزدیکترین تاریخ موجود به صورت زیر است:"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/layout_availabel_date"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60dp_hight"
+            android:layout_marginTop="@dimen/_60dp_hight">
+
+
+
+            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+                android:id="@+id/rcl_available_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_4dp_margin"
+                android:background="@color/gray_light"
+                android:layoutDirection="rtl"
+                android:visibility="visible">
+
+            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+
+
+        </LinearLayout>
 
         <FrameLayout xmlns:fancy="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
@@ -74,8 +111,7 @@
                     android:id="@+id/llHome"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
-                    android:layout_gravity="left"
-                    >
+                    android:layout_gravity="left">
 
                     <mehdi.sakout.fancybuttons.FancyButton
                         android:id="@+id/btnHome"
@@ -94,8 +130,7 @@
                         android:layout_width="60dp"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:padding="14dp"
-                        android:src="@drawable/e_logo"
-                        />
+                        android:src="@drawable/e_logo" />
 
 
                 </RelativeLayout>
@@ -103,57 +138,11 @@
 
         </FrameLayout>
 
-        <HorizontalScrollView
-            android:id="@+id/scroll_availabel_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="right"
-                >
-                <TextView
-                    android:id="@+id/txt_comin_soon"
-                    android:layout_width="90sp"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="به زودی ..."
-                    android:textColor="#d2d2d2"
-                    android:background="#f5f5f5"
-                    android:textSize="12sp"
-                    android:textAppearance="@style/IrsansBold"/>
-
-
-                <com.reserv.myapplicationeli.views.components.SimpleRecycleView
-                    android:id="@+id/rcl_available_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60sp"
-                    android:layout_marginTop="@dimen/_4dp_margin"
-                    android:background="@color/gray_light"
-                    android:layoutDirection="rtl"
-                    android:visibility="visible">
-
-                </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
-
-
-            </LinearLayout>
-        </HorizontalScrollView>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#c1c0c0" />
-
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbarLayout"
         android:orientation="vertical">
 
@@ -362,7 +351,6 @@
         layout="@layout/error_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbarLayout"
-        />
+        android:layout_below="@id/toolbarLayout" />
 
 </RelativeLayout>

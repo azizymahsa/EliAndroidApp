@@ -156,27 +156,28 @@
 
                 </LinearLayout>
 
-                <!--<LinearLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:orientation="horizontal">-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/price_infant"-->
-                        <!--android:layout_width="0dp"-->
-                        <!--android:layout_weight="0.6"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:gravity="center"-->
-                        <!--android:textSize="12dp"/>-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/text_infant"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:gravity="right"-->
-                        <!--android:text="نوزاد"-->
-                        <!--android:padding="6sp"-->
-                        <!--android:textSize="12dp"/>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/price_infant"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="12dp"/>
+                    <TextView
+                        android:id="@+id/text_infant"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="هر نفر نوزاد"
+                        android:padding="6sp"
+                        android:textSize="12dp"/>
 
-                <!--</LinearLayout>-->
+                </LinearLayout>
 
             </LinearLayout>
 

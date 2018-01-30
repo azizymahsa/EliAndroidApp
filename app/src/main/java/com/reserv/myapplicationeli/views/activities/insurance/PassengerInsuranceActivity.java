@@ -66,6 +66,7 @@ import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.CountrycodeActivity;
 import com.reserv.myapplicationeli.views.ui.NationalitycodeActivity;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 import org.apache.http.HttpResponse;
@@ -224,10 +225,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 //		btn_khadamat = (ImageView) findViewById(R.id.btn_khadamat);
 		btn_pish_factor = (ImageView) findViewById(R.id.btn_pish_factor);
 
-		btn_saler.setOnClickListener(this);
-		btn_mosaferan.setOnClickListener(this);
+		//btn_saler.setOnClickListener(this);
+		//btn_mosaferan.setOnClickListener(this);
 //		btn_khadamat.setOnClickListener(this);
-		btn_pish_factor.setOnClickListener(this);
+		//btn_pish_factor.setOnClickListener(this);
 
 		linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
 		linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
@@ -734,6 +735,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 		}//end on pos excute
 
 	}//end async get pish factor
+
 	//het khadamat
 	private class AsyncFetch extends AsyncTask<String, String, String> {
 		ProgressDialog pdLoading = new ProgressDialog(PassengerInsuranceActivity.this);
@@ -1163,7 +1165,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 ////
 				if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 					linear_pish_factor.setVisibility(View.GONE);
-					linear_list_khadamat.setVisibility(View.VISIBLE);
+					linear_list_khadamat.setVisibility(View.GONE);
+					linear_mosaferan.setVisibility(View.VISIBLE);
 					/*myScrollView.setSmoothScrollingEnabled(false);
 					myScrollView.setOnTouchListener(new View.OnTouchListener() {
 						@Override
@@ -1172,7 +1175,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 						}
 					});*/
 
-					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
 					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
 					txtTitle.setText(" افزودن خدمات به سبد خرید");
 				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
@@ -1429,12 +1432,14 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 					}
 					db.closeDB();
 					//insert mosafer
+					//call api saler
 
 				}
 
-
-				//call api saler
+				//call api pishFactor
 				new AsyncFetchPishFactor().execute();
+
+
 				break;
 
 //			case R.id.btn_taeed_khadamat:
@@ -1463,12 +1468,33 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.GONE);
 
-				((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
-				((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-				((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
-				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
-				((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
+				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
+//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
 				txtTitle.setText(" مشخصات خریدار ");
+				//myScrollView.setOnTouchListener(null);
+				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
+					linear_pish_factor.setVisibility(View.GONE);
+					linear_list_khadamat.setVisibility(View.VISIBLE);
+
+					((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
+					txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
+				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE){
+					linear_list_khadamat.setVisibility(View.GONE);
+					linear_mosaferan.setVisibility(View.VISIBLE);
+
+					txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
+					((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
+				}else if (linear_mosaferan.getVisibility() == View.VISIBLE){
+					linear_mosaferan.setVisibility(View.GONE);
+					linear_saler.setVisibility(View.VISIBLE);
+
+					txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
+					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
+				}*/
 				break;
 			case R.id.btn_mosaferan:
 				linear_saler.setVisibility(View.GONE);
@@ -1476,13 +1502,16 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.GONE);
 
-				((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
-				((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
+//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 
-				((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
-				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
-				((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
 				txtTitle.setText("  اطلاعات مسافران ");
+
+				//.setOnTouchListener(null);
 				break;
 //			case R.id.btn_khadamat:
 //				linear_saler.setVisibility(View.GONE);
@@ -1514,12 +1543,14 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.VISIBLE);
 
-				((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
-				((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
-				((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
-				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-				((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
+//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
 				txtTitle.setText(" تایید و پرداخت پیش فاکتور    ");
+				//myScrollView.setOnTouchListener(null);
 				break;
 
 		}

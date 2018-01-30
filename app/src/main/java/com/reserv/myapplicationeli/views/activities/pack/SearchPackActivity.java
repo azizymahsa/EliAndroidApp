@@ -39,6 +39,7 @@ import com.reserv.myapplicationeli.models.model.pack.filter.HotelTypeFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PriceFilter;
 import com.reserv.myapplicationeli.models.model.pack.response.PackageListRes;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
@@ -77,7 +78,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private ArrayList<AmenityFilter> amenityFilters;
     private RelativeLayout rlLoading;
     private RelativeLayout rlRoot;
-    private HorizontalScrollView scroll_availabel_date;
+    private ViewGroup layout_availabel_date;
     private String departureFrom;
     private String departureTo;
     private String country;
@@ -86,7 +87,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private String cityName;
     private TextView toolbar_title;
     private TextView toolbar_date;
-    private TextView txt_comin_soon;
     private FancyButton btnBack;
     private ViewGroup layout_sort;
     private ViewGroup llFilter;
@@ -96,6 +96,9 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private TextView txt_error;
     private FancyButton btnHome;
     private FancyButton btnOk;
+    private TextView txtFilter;
+    private TextView txtIconFilter;
+    private TextView txtNotFoundResualt;
 
 
     @SuppressLint("NewApi")
@@ -134,6 +137,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         String date = DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
         toolbar_title.setText(" تور " + cityName);
         toolbar_date.setText(date);
+        goneView(layout_availabel_date, R.anim.slide_out_top);
+        goneView(txtNotFoundResualt, R.anim.slide_out_top);
         showLoading();
         PackageListReq packageListReq = new PackageListReq();
 
@@ -143,7 +148,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         packageListReq.setDepartureFrom(departureFrom);
         packageListReq.setDepartureTo(departureTo);
         packageListReq.setCulture(culture);
-        Log.e(" requestPackage ", new GsonBuilder().create().toJson(new PackageRequestModel(packageListReq)));
+
         Call<PackageListRes> call = service.getPackageListResult(new PackageRequestModel(packageListReq));
         call.enqueue(new Callback<PackageListRes>() {
             @Override
@@ -207,7 +212,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         toolbar_title = findViewById(R.id.tvTitle);
         toolbar_date = findViewById(R.id.tvDate);
         btnBack = findViewById(R.id.btnBack);
-        txt_comin_soon = findViewById(R.id.txt_comin_soon);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         layout_sort = findViewById(R.id.llSort);
@@ -215,11 +219,14 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         llFilter = findViewById(R.id.llFilter);
         btn_previous_day = findViewById(R.id.btnLastDays);
         btn_next_day = findViewById(R.id.btnNextDays);
-        scroll_availabel_date = findViewById(R.id.scroll_availabel_date);
+        layout_availabel_date = findViewById(R.id.layout_availabel_date);
         error_layout = findViewById(R.id.elNotFound);
         txt_error = findViewById(R.id.tvAlert);
         btnOk = findViewById(R.id.btnOk);
         error_layout.setVisibility(View.GONE);
+        txtFilter = findViewById(R.id.tvFilter);
+        txtIconFilter = findViewById(R.id.tvFilterIcon);
+        txtNotFoundResualt = findViewById(R.id.txt_not_found_resualt);
 
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
@@ -229,8 +236,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         rcl_available_date.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rcl_available_date.hideLoading();
         rcl_available_date.setVisibility(View.GONE);
-        txt_comin_soon.setVisibility(View.GONE);
-        rcl_available_date.setNestedScrollingEnabled(false);
+        layout_availabel_date.setVisibility(View.GONE);
+        txtNotFoundResualt.setVisibility(View.GONE);
 
         btnHome.setOnClickListener(this);
         btnOk.setOnClickListener(this);
@@ -271,21 +278,23 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 break;
 
             case R.id.btnNextDays:
-                if (DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd") + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo, "yyyy-MM-dd")) {
+                long _departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd");
+
+                if (_departMilis + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo, "yyyy-MM-dd")) {
                     Toast.makeText(this, "تاریخ رفت نمی تواند بعد از تاریخ برگشت باشد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                long milis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd") + 86400000;
+                long milis = _departMilis + 86400000;
                 departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
                 getPackages(country, departureFrom, departureTo, roomList, culture);
                 break;
             case R.id.btnLastDays:
-                if (DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd") - 86400000 < System.currentTimeMillis()) {
+                long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd");
+                if (departMilis <= System.currentTimeMillis()) {
                     Toast.makeText(this, "تاریخ رفت نمی تواند قبل از امروز باشد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                long _milis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd") - 86400000;
+                long _milis = departMilis - 86400000;
                 departureFrom = DateUtil.getDateTime(String.valueOf(_milis), "yyyy-MM-dd");
                 getPackages(country, departureFrom, departureTo, roomList, culture);
 
@@ -313,16 +322,18 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                                 || !ValidationTools.isEmptyOrNull(priceFiltersSelected)
                                 || !ValidationTools.isEmptyOrNull(placeFiltersSelected)
                                 || !ValidationTools.isEmptyOrNull(hotelTypeFiltersSelected)
-                                || !ValidationTools.isEmptyOrNull(amenityFiltersSelected)){
+                                || !ValidationTools.isEmptyOrNull(amenityFiltersSelected)) {
 
-                            llFilter.setBackgroundColor(ContextCompat.getColor(SearchPackActivity.this,R.color.red_filter));
-                        }else {
-                            llFilter.setBackgroundColor(ContextCompat.getColor(SearchPackActivity.this,R.color.hotel_detail_background));
+                            txtFilter.setTextColor(ContextCompat.getColor(SearchPackActivity.this, R.color.red));
+                            txtIconFilter.setTextColor(ContextCompat.getColor(SearchPackActivity.this, R.color.red));
+                        } else {
+                            txtFilter.setTextColor(Color.parseColor("#4D4D4D"));
+                            txtIconFilter.setTextColor(Color.parseColor("#4D4D4D"));
                         }
 
-                            if (pRowXferAdapter != null) {
-                                pRowXferAdapter.filter(degreeFiltersSelected, priceFiltersSelected, placeFiltersSelected, hotelTypeFiltersSelected, amenityFiltersSelected);
-                            }
+                        if (pRowXferAdapter != null) {
+                            pRowXferAdapter.filter(degreeFiltersSelected, priceFiltersSelected, placeFiltersSelected, hotelTypeFiltersSelected, amenityFiltersSelected);
+                        }
 
 
                     }
@@ -350,6 +361,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         rcl_package.showList(pRowXferAdapter);
 
         ArrayList<LstAvailableDate> lstAvailableDates = new ArrayList<>();
+
         for (PRowXfer pRowXfer : pRowXfers) {
             if (!ValidationTools.isEmptyOrNull(pRowXfer.getLstAvailableDates())) {
                 lstAvailableDates.addAll(pRowXfer.getLstAvailableDates());
@@ -360,6 +372,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             return;
         }
 
+        visibileView(layout_availabel_date, R.anim.slide_in_top);
 
         LstAvailableDateAdapter lstAvailableDateAdapter = new LstAvailableDateAdapter(this, lstAvailableDates).setListener(new LstAvailableDateAdapter.ListenerLstAvailableDateAdapter() {
             @Override
@@ -370,40 +383,27 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             }
         });
 
-        int indexSeletedItem = getIndexSelectedItem(lstAvailableDates);
+        int indexSeletedItem = lstAvailableDateAdapter.getIndexSelectedItem();
+        long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd");
+
+        if (departMilis != DateUtil.getMiliSecondFromJSONDate(lstAvailableDates.get(indexSeletedItem).getDepartDate())) {
+            departureFrom = DateUtil.getDateTime(String.valueOf(DateUtil.getMiliSecondFromJSONDate(lstAvailableDates.get(indexSeletedItem).getDepartDate())), "yyyy-MM-dd");
+            visibileView(txtNotFoundResualt, R.anim.slide_in_top);
+        } else {
+            goneView(txtNotFoundResualt, R.anim.slide_out_top);
+        }
+
+
+        long departureToMilis = DateUtil.getMiliSecondFromJSONDate(String.valueOf(pRowXfers.get(0).getXferList().getXFlightsList().get(1).getFltArrDate()));
+        departureTo = DateUtil.getDateTime(String.valueOf(departureToMilis), "yyyy-MM-dd");
+
+        String date = DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
+        toolbar_date.setText(date);
 
         rcl_available_date.showList(lstAvailableDateAdapter);
         rcl_available_date.setVisibility(View.VISIBLE);
+        rcl_available_date.getRecyclerView().scrollToPosition(indexSeletedItem - 2);
 
-        scroll_availabel_date.post(new Runnable() {
-            @Override
-            public void run() {
-                scroll_availabel_date.fullScroll(View.FOCUS_RIGHT);
-            }
-        });
-
-        if (indexSeletedItem == lstAvailableDates.size() - 1) {
-            txt_comin_soon.setVisibility(View.VISIBLE);
-        } else {
-            txt_comin_soon.setVisibility(View.GONE);
-        }
-
-    }
-
-    private int getIndexSelectedItem(ArrayList<LstAvailableDate> lstAvailableDates) {
-
-
-        if (ValidationTools.isEmptyOrNull(lstAvailableDates)) {
-            return 0;
-        }
-
-        for (int i = 0; i < lstAvailableDates.size(); i++) {
-            if (lstAvailableDates.get(i).getIsSelected()) {
-                return i;
-            }
-        }
-
-        return 0;
     }
 
 
@@ -473,6 +473,20 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     public void onReturnValue(int type) {
         if (pRowXferAdapter != null) {
             pRowXferAdapter.sort(type);
+        }
+    }
+
+    private void visibileView(View view, int animId) {
+        if (view.getVisibility() != View.VISIBLE) {
+            Utility.startAnim(this, view, animId);
+            view.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void goneView(View view, int animId) {
+        if (view.getVisibility() == View.VISIBLE) {
+            Utility.startAnim(this, view, animId);
+            view.setVisibility(View.GONE);
         }
     }
 }

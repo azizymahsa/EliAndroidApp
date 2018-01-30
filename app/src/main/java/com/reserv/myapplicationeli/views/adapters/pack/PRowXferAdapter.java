@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.bumptech.glide.Glide;
 import com.reserv.myapplicationeli.R;
@@ -37,7 +39,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
     private ArrayList<PRowXfer> feedItemList;
     private ArrayList<PRowXfer> filtertemList;
     private ListenerSearchPackAdapter listenerPackAdapter;
-    private int type = 1;
+    private int type = 2;
 
     public PRowXferAdapter(Context context, ArrayList<PRowXfer> NameItem) {
 
@@ -68,7 +70,8 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
     public void onBindViewHolder(PRowXferRowHolder holder, final int position) {
         final PRowXfer item = filtertemList.get(position);
 
-
+        Animation scaleUp = AnimationUtils.loadAnimation(context, R.anim.anim_list);
+        holder.list_pack .startAnimation(scaleUp);
 
         if(item.getLstProwPriceAdapter() == null){
             List<String> list = StreamList.convertAll(item.getLstProwPrices(), new StreamList.Function<LstProwPrice, String>() {
