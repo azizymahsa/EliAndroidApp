@@ -352,7 +352,16 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         // txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
                         raftFa = persianCalendar.getPersianLongDate();
                         raft = formatter.format(cal.getTime());
-                        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+                        if (getIntent().getExtras().getBoolean("Geo")) {
+
+                            tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
+
+                        }else{
+                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+
+
+                        }
+
                         new GetHotelAsync().execute();
                     } else {
                         Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز", Toast.LENGTH_SHORT).show();

@@ -127,7 +127,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     public TextView txt_shomare_factor, tvPrice;
     public ImageView txt_hom, textView4;
 
-    private String Gensiyat;
+    private String Gensiyat="";
     Activity activity;
     public int countB;
     public int countK;

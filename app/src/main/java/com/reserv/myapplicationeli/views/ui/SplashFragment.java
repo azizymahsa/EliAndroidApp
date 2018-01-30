@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.MediaController;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -26,6 +27,10 @@ import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageButton;
+import pl.droidsonroids.gif.GifImageView;
+
 
 public class SplashFragment extends BaseActivity {
 
@@ -33,6 +38,7 @@ public class SplashFragment extends BaseActivity {
     private Handler handler,handler2;
     private ImageView ivSplash,ivLoading;
     AVLoadingIndicatorView avi;
+    GifImageView gifImageView;
 
 
     private enum DOWNLOAD_TYPE {
@@ -57,7 +63,14 @@ public class SplashFragment extends BaseActivity {
         //
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
-        Glide.with(this).load(R.raw.new_splash_loading).into(ivSplash);
+       // Glide.with(this).load(R.raw.new_splash_loading).into(ivSplash);
+      gifImageView=findViewById(R.id.gif);
+   /*     GifImageButton gib = new GifImageButton(this);
+        setContentView(gib);*/
+        gifImageView.setImageResource(R.drawable.new_splash_loading);
+        final MediaController mc = new MediaController(this);
+        mc.setMediaPlayer((GifDrawable) gifImageView.getDrawable());
+        mc.setAnchorView(gifImageView);
 
         avi = findViewById(R.id.avi);
         final int[] imageArray = new int[]{R.drawable.comp1_00000,
@@ -109,6 +122,12 @@ public class SplashFragment extends BaseActivity {
                 R.drawable.comp1_00031,
                 R.drawable.comp1_00031,
                 R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
+                R.drawable.comp1_00031,
                 R.drawable.comp1_00031,};
 
 
@@ -127,7 +146,7 @@ public class SplashFragment extends BaseActivity {
                 if (i[0] == 31) {
                     avi.setVisibility(View.VISIBLE);
                 }
-                if (i[0] == 49) {
+                if (i[0] == 56) {
                    // handler.removeCallbacksAndMessages(null);
                    if(Utility.isNetworkAvailable(SplashFragment.this)){
 
@@ -146,7 +165,7 @@ public class SplashFragment extends BaseActivity {
             handler.postDelayed(this, 80); } //for interval...
             }
         };
-        if (i[0] < 49) {
+        if (i[0] < 56) {
             handler.postDelayed(runnable, 80); //for initial delay..
 
         }

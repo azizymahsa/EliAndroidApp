@@ -47,7 +47,7 @@ public class AlertDialogPassenger implements View.OnClickListener {
        // btnOk.setText(activity.getString(R.string.icon_close));
         btnOk.setOnClickListener(this);
         dialog = builder.create();
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
         dialog.show();
     }
 
