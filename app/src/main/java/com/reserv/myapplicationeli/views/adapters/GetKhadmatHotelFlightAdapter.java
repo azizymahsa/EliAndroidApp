@@ -15,6 +15,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
+import com.reserv.myapplicationeli.views.ui.PassengerHotelActivity;
 import com.reserv.myapplicationeli.views.ui.PassengerHotelFlightActivity;
 
 import java.text.NumberFormat;
@@ -114,7 +115,7 @@ public class GetKhadmatHotelFlightAdapter extends BaseAdapter {
 		holder.txtDescription.setText(current.getServiceDescFa()+ "");
 
 		holder.txtServiceNameFa.setText(current.getServiceNameFa());
-		holder.txtServiceTotalPrice.setText(String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
+		holder.txtServiceTotalPrice.setText(current.getServiceTotalPrice() > 0 ? String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice())) : "It");//String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
 		if(current.getServiceTypeID().equals("4"))
 			holder.imageView1.setBackgroundResource(R.drawable.cip_service_khadamat);
 

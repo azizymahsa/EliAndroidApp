@@ -114,7 +114,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 		holder.txtDescription.setText(current.getServiceDescFa()+ "");
 
 		holder.txtServiceNameFa.setText(current.getServiceNameFa());
-		holder.txtServiceTotalPrice.setText(String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
+		holder.txtServiceTotalPrice.setText(current.getServiceTotalPrice() > 0 ? String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice())) : "It");//String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
 		if(current.getServiceTypeID().equals("4"))
 			holder.imageView1.setBackgroundResource(R.drawable.cip_service_khadamat);
 

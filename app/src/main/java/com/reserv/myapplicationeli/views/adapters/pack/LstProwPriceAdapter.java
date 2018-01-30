@@ -41,7 +41,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
             adaultPrice = itemView.findViewById(R.id.price_adault);
             wChildPrice = itemView.findViewById(R.id.price_w_child);
             nChildPrice = itemView.findViewById(R.id.price_n_child);
-//            infantPrice = itemView.findViewById(R.id.price_infant);
+            infantPrice = itemView.findViewById(R.id.price_infant);
             totalPrice = itemView.findViewById(R.id.total_price);
             //    total_price = itemView.findViewById(R.id.total_price);
             txt_hr_room_list = itemView.findViewById(R.id.txt_hr_room_list);
@@ -95,24 +95,24 @@ public class LstProwPriceAdapter extends SectioningAdapter {
             holder.wChildPrice.setText(Utility.priceFormat(String.valueOf(item.getChWb())));
         }
 
-        if (item.getChdNBCount()==0 & item.getInfCount() ==0) {
+        if (item.getChdNBCount()==0 ) {
             holder.nChildPrice.setText(" ندارد ");
-        } else if (item.getChNb() == 0 & item.getInf() == 0) {
+        } else if (item.getChNb() == 0 ) {
             holder.nChildPrice.setText(" ندارد ");
         } else {
-            holder.nChildPrice.setText(Utility.priceFormat(String.valueOf( item.getChNb() + item.getInf() ) ));
+            holder.nChildPrice.setText(Utility.priceFormat(String.valueOf( item.getChNb() ) ));
         }
 
-//        if (item.getInfCount()  == 0) {
-//            holder.infantPrice.setText(" ندارد ");
-//        } else if (item.getInf()  == 0) {
-//            holder.infantPrice.setText(" ندارد ");
-//        } else {
-//            holder.infantPrice.setText(Utility.priceFormat(String.valueOf( item.getInf())));
-//        }
+        if (item.getInfCount()  == 0) {
+            holder.infantPrice.setText(" ندارد ");
+        } else if (item.getInf()  == 0) {
+            holder.infantPrice.setText(" ندارد ");
+        } else {
+            holder.infantPrice.setText(Utility.priceFormat(String.valueOf( item.getInf())));
+        }
 
         holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice())));
-        holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF());
+        holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF() +"+" + item.getHServiceF() + "(" + item.getHService() +")");
 
         holder.chk_prow_price.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
@@ -153,13 +153,13 @@ public class LstProwPriceAdapter extends SectioningAdapter {
                 countPassenger = adlCount + " نفر بزرگسال ";
             }
             if(chCount != 0){
-                countPassenger = countPassenger + " و " + chCount + " نفر کودک ";
+                countPassenger = countPassenger + " + " + chCount + " نفر کودک ";
             }
 
             if(infCount != 0){
-                countPassenger = countPassenger + " و " + infCount + " نفر نوزاد ";
+                countPassenger = countPassenger + " + " + infCount + " نفر نوزاد ";
             }
-            String title = " اتاق " + getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + "پیشنهاد برای " + countPassenger;
+            String title = " اتاق " + getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + "پیشنهاد برای " + countPassenger ;
             holder.txt_title_header.setText(title);
         }catch (Exception e){
             e.printStackTrace();

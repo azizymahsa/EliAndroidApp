@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,13 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
     @Override
     public void onBindViewHolder(LstProwHotelRowHolder holder, int position) {
         final LstProwHotel item = feedItemList.get(position);
+        if(item.getHTypeNameF().contains("هتل") ){
+            holder.lableHotelTilte.setVisibility(View.VISIBLE);
+        }else {
+            holder.lableHotelTilte.setVisibility(View.INVISIBLE);
+        }
         holder.txt_hotel_name.setText(ValidationTools.isEmptyOrNull(item.getHotelNameE()) ? item.getHotelNameE() : item.getHotelNameE() );
+        holder.txt_hotel_name.setEllipsize(TextUtils.TruncateAt.END);
         holder.txt_location_full_name.setText(ValidationTools.isEmptyOrNull(item.getLocationFullNameFa()) ? item.getLocationFullNameFa() : item.getLocationFullNameFa() + " ");
         holder.txt_city_name.setText(ValidationTools.isEmptyOrNull(item.getCityPersianName()) ? item.getCityPersianName() : item.getCityPersianName()+ " ،");
 

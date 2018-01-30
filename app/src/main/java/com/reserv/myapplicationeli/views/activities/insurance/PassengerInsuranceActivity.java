@@ -66,6 +66,7 @@ import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.CountrycodeActivity;
 import com.reserv.myapplicationeli.views.ui.NationalitycodeActivity;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 import org.apache.http.HttpResponse;
@@ -106,7 +107,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
 	public FancyButton btnHome;
-	public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore;
+	public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
 
 	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
 	public Button btnAddsabad,btn_pardakht_factor;
@@ -130,6 +131,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 	ExpandableRelativeLayout expandableLayout;
 
 
+	public TextView imgCount;
 	String paymentUrl;
 
 
@@ -140,12 +142,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 	GetHotelKhadmatAdapter mAdapter;
 	//ScrollView myScrollView;
 	private EditText searchtxt;
+	public TextView txt_shomare_factor, tvPrice;
+	public ImageView textView4;
 
-
-	public TextView txt_shomare_factor,tvPrice,tvfactorNumber;
-
-	public ImageView txt_hom,textView4;
-	public TextView imgCount;
 	private String Gensiyat;
 	Activity activity;
 	public int countB;
@@ -164,7 +163,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_passenger_pack);
 
-		 data=new ArrayList<PurchaseFlightResult>();
 		btnBack = (FancyButton) findViewById(R.id.btnBack);
 		btnHome = (FancyButton) findViewById(R.id.btnHome);
 		btnBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -173,11 +171,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 		btnBack.setOnClickListener(this);
 		btnHome.setOnClickListener(this);
 
-		imgCount=(TextView) findViewById(R.id.imgCount);
-		imgCount.setOnClickListener(this);
-
-		txt_hom = (ImageView) findViewById(R.id.txt_hom);
-		txt_hom.setOnClickListener(this);
+		textView4 = (ImageView) findViewById(R.id.textView4);
 		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
 		expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
 
@@ -203,7 +197,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 		txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
 		txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
 		txtnumber_passport.setOnClickListener(this);
-		txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
 		txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
 		txtexp_passport.setOnClickListener(this);
@@ -232,10 +225,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 //		btn_khadamat = (ImageView) findViewById(R.id.btn_khadamat);
 		btn_pish_factor = (ImageView) findViewById(R.id.btn_pish_factor);
 
-		btn_saler.setOnClickListener(this);
-		btn_mosaferan.setOnClickListener(this);
+		//btn_saler.setOnClickListener(this);
+		//btn_mosaferan.setOnClickListener(this);
 //		btn_khadamat.setOnClickListener(this);
-		btn_pish_factor.setOnClickListener(this);
+		//btn_pish_factor.setOnClickListener(this);
 
 		linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
 		linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
@@ -286,22 +279,21 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 		// Spinner Drop down elements
 		List<String> categories = new ArrayList<String>();
+		categories.add("لطفا جنسیت را انتخاب کنید");
 		categories.add("مرد");
 		categories.add("زن");
-
 
 
 		// Creating adapter for spinner
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
-		// Drop down dialog_custom style - list view with radio button
+		// Drop down layout style - list view with radio button
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		// attaching data adapter to spinner
 		spinner.setAdapter(dataAdapter);
 		spinnerMosafer.setAdapter(dataAdapter);
 		////////////////////////////////
-
 
 
 		// new AsyncFetch().execute();
@@ -743,6 +735,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 		}//end on pos excute
 
 	}//end async get pish factor
+
 	//het khadamat
 	private class AsyncFetch extends AsyncTask<String, String, String> {
 		ProgressDialog pdLoading = new ProgressDialog(PassengerInsuranceActivity.this);
@@ -1172,7 +1165,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 ////
 				if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 					linear_pish_factor.setVisibility(View.GONE);
-					linear_list_khadamat.setVisibility(View.VISIBLE);
+					linear_list_khadamat.setVisibility(View.GONE);
+					linear_mosaferan.setVisibility(View.VISIBLE);
 					/*myScrollView.setSmoothScrollingEnabled(false);
 					myScrollView.setOnTouchListener(new View.OnTouchListener() {
 						@Override
@@ -1181,7 +1175,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 						}
 					});*/
 
-					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
 					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 					txtTitle.setText(" افزودن خدمات به سبد خرید");
 				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
@@ -1413,41 +1407,17 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 					if(sum>0){
 
-						System.out.println("gender:"+Gender);
-						//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-						if(countB>=1) {
-							System.out.println("countB:"+countB);
-							//txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
-							//imgCount.setText(counter+"");
+						db.insertData(counter-1,"اطلاعات مسافربزرگسال",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+						if(countB>0) {
+							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
 							countB--;
-						}else if(countK>=1) {
-							System.out.println("countK:"+countK);
-							//txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
-							//imgCount.setText(counter+"");
+						}else if(countK>0) {
+							txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
 							countK--;
-						}else if(countN>=1) {
-							System.out.println("countN:"+countN);
-							//txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
-							//imgCount.setText(counter+"");
+						}else if(countN>0) {
+							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
 							countN--;
 						}
-						if(countB!=0){
-
-							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
-							imgCount.setText(counter+"");
-						}
-						else if(countK!=0){
-
-							txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
-							imgCount.setText(counter+"");
-						}
-						else if(countN!=0){
-
-							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
-							imgCount.setText(counter+"");
-						}
-						db.insertData(counter-1,txtTitleCountM.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-
 						System.out.println("counterMosafer:"+counter);
 						counter++;
 						sum--;
@@ -1462,12 +1432,14 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 					}
 					db.closeDB();
 					//insert mosafer
+					//call api saler
 
 				}
 
-
-				//call api saler
+				//call api pishFactor
 				new AsyncFetchPishFactor().execute();
+
+
 				break;
 
 //			case R.id.btn_taeed_khadamat:
@@ -1496,11 +1468,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.GONE);
 
-				((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
-				((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-				((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
-				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
-				((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
+				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
+//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
 				txtTitle.setText(" مشخصات خریدار ");
 				//myScrollView.setOnTouchListener(null);
 				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
@@ -1529,12 +1502,13 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.GONE);
 
-				((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
-				((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
+//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 
-				((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
-				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
-				((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 				txtTitle.setText("  اطلاعات مسافران ");
 
 				//.setOnTouchListener(null);
@@ -1560,7 +1534,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 //
 //				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 //				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-//				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+//				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 //				txtTitle.setText(" افزودن خدمات به سبد خرید");
 //				break;
 			case R.id.btn_pish_factor:
@@ -1569,12 +1543,14 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 				linear_list_khadamat.setVisibility(View.GONE);
 				linear_pish_factor.setVisibility(View.VISIBLE);
 
-				((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
-				((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
-				((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
-				((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-				((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
+//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
 				txtTitle.setText(" تایید و پرداخت پیش فاکتور    ");
+				//myScrollView.setOnTouchListener(null);
 				break;
 
 		}
@@ -1961,7 +1937,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 	private static final int WHITE = 15132390;
 	private static final int BLACK = 0xFF000000;
 
-	private static Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException {
+	private static Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException
+	{
 		if (contents == null) {
 			return null;
 		}

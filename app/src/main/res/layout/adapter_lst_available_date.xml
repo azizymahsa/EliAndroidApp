@@ -6,6 +6,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/layout_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -36,5 +37,21 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txt_coming_soon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:paddingLeft="15sp"
+        android:paddingRight="15sp"
+        android:paddingTop="15sp"
+        android:paddingBottom="15sp"
+        android:text="به زودی ..."
+        android:textAppearance="@style/IrsansBold"
+        android:textColor="#878787"
+        android:textSize="12sp" />
 
 </FrameLayout>

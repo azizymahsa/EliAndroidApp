@@ -33,6 +33,8 @@ import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -539,6 +541,13 @@ public class Utility extends Activity {
 
 	}
 
+	public static void startAnim(Context context,View view,int animId){
+		if(context == null || view == null){
+			return;
+		}
+		Animation animation = AnimationUtils.loadAnimation(context, animId);
+		view.startAnimation(animation);
+	}
 	public static void openUrlCustomTab(Activity context, String url) {
 		Uri uri = Uri.parse(url);
 

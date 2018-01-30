@@ -45,7 +45,7 @@ public class AlertDialogPolicy implements View.OnClickListener {
         tvAlert.setLineSpacing(5);
         tvAlert.setTypeFace(typeface);
 
-        btnOk.setCustomTextFont("fonts/iran_sans_bold.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);

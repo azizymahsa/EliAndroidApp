@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.insurance.TravelInsurance_;
@@ -80,6 +82,10 @@ public class TravelInsurancAdapter extends RecyclerView.Adapter<InsuranceRowHold
                 }
             }
         });
+
+        Animation scaleUp = AnimationUtils.loadAnimation(context, R.anim.anim_list);
+        holder.list_inPlan.startAnimation(scaleUp);
+
 
     }
 

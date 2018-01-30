@@ -379,7 +379,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
         TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("iran_sans_normal.ttf");
+        btnOk.setCustomTextFont("irsans.ttf");
         tvAlert.setText(message);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

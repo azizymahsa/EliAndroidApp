@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.pack.LstAvailableDate;
+import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.viewholders.LstAvailableDateRowHolder;
 
@@ -30,6 +31,15 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
 
         this.context = context;
         this.feedItemList = NameItem;
+        if(getIndexSelectedItem() == feedItemList.size() - 1){
+            feedItemList.add(new LstAvailableDate());
+        }
+        if(!ValidationTools.isEmptyOrNull(feedItemList)){
+            if(getIndexSelectedItem() == feedItemList.size() - 1){
+                feedItemList.add(new LstAvailableDate());
+            }
+        }
+
     }
 
     public interface ListenerLstAvailableDateAdapter {
@@ -51,6 +61,14 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
     public void onBindViewHolder(LstAvailableDateRowHolder holder, final int position) {
         final LstAvailableDate item = feedItemList.get(position);
 
+        if(item.getPackID() == null){
+            holder.txt_coming_soon.setVisibility(View.VISIBLE);
+            holder.layout_date.setVisibility(View.GONE);
+            return;
+        }
+
+        holder.txt_coming_soon.setVisibility(View.GONE);
+        holder.layout_date.setVisibility(View.VISIBLE);
         if(item.getIsSelected()){
             holder.view_selected.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_banafash_with_stroke));
         }else{
@@ -83,6 +101,20 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
     @Override
     public int getItemCount() {
         return (feedItemList == null ? 0 : feedItemList.size());
+    }
+
+    public int getIndexSelectedItem() {
+        if (ValidationTools.isEmptyOrNull(feedItemList)) {
+            return 0;
+        }
+
+        for (int i = 0; i < feedItemList.size(); i++) {
+            if (feedItemList.get(i).getIsSelected()) {
+                return i;
+            }
+        }
+
+        return 0;
     }
 }
 

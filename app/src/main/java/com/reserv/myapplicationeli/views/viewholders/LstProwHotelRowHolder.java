@@ -21,6 +21,7 @@ public class LstProwHotelRowHolder extends RecyclerView.ViewHolder {
     public ImageView rating;
     public AVLoadingIndicatorView avi;
     public TextView txt_city_name;
+    public TextView lableHotelTilte;
 
     public LstProwHotelRowHolder(View view) {
         super(view);
@@ -31,5 +32,6 @@ public class LstProwHotelRowHolder extends RecyclerView.ViewHolder {
         this.txt_location_full_name = (TextView) view.findViewById(R.id.txt_location_full_name);
         this.rating = (ImageView) view.findViewById(R.id.rating);
         this.txt_city_name = view.findViewById(R.id.txt_city);
+        this.lableHotelTilte = view.findViewById(R.id.txt_lable_hotel);
     }
 }
