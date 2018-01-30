@@ -182,7 +182,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             }
         });
-        btnOk.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,7 +207,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.llBottom:
-                new FilterHotelDialog(SelectHotelFlightActivity.this, filterModels, this, filterHotelTypeModel, filterHotelFacilitiesModels, filterHotelPriceModels,searchIn,null);
+                new FilterHotelDialog(SelectHotelFlightActivity.this, filterModels, this, filterHotelTypeModel, filterHotelFacilitiesModels, filterHotelPriceModels,searchIn,filterHotelLocationModels);
 
 
                 break;
@@ -228,65 +228,91 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
             case R.id.btnNextDays:
+                btnNextDays.setClickable(true);
+                btnNextDays.setEnabled(true);
 
+
+                    /*         tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+                            new GetHotelAsync().execute();*/
+
+
+//rastie AdateF
+
+//Ddate kochike
+                //adate bargasht
+
+                //"2017-12-24"
                 try {
 
-                    String str_date = raft;//"11-June-07";
+                    String str_date = raft;//2018-01-16
                     DateFormat formatter;
                     Date date;
                     formatter = new SimpleDateFormat("yyyy/MM/dd");
                     date = (Date) formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
-                    cal.add(Calendar.DATE, +1);
-                    System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
-                    //shart kamtar az emruz
-                    if (date.getTime() >= date.getTime()) {
-                        raft = formatter.format(cal.getTime());
+                    cal.add(Calendar.DATE, 1);
+                    System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
 
-                        ///onvan
+
+                    Date dateRaft = (Date) formatter.parse(raft);
+                    Date dateBargasht = (Date) formatter.parse(bargasht);
+                    if (dateBargasht.after(dateRaft)) {
+                        ///
+                        ///
                         SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
+                        //  txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
                         /////////////////////////////
-                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");//2017/03/24 11:49
+                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd");//2017/03/24 11:49
                         String formatted3 = format3.format(cal.getTime());
+                        String[] dateSplite=formatted3.split("/");
 
-                        String dayM = formatted3.substring(8, 10);//02
-                        String monthM = formatted3.substring(5, 7);//01
-                        String yearM = formatted3.substring(0, 4);//1396
+                        String dayM=dateSplite[2];
+                        String monthM=dateSplite[1];
+                        String yearM=dateSplite[0];
 
-                        String dateShamsi = SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
-                        String dayMF = dateShamsi.substring(8, 10);//02
-                        String monthMF = dateShamsi.substring(5, 7);//01
-                        String yearMF = dateShamsi.substring(0, 4);//1396
+                        String  dateShamsi= SolarCalendar.calSolarCalendar(Integer.parseInt(yearM),Integer.parseInt(monthM),Integer.parseInt(dayM));
+                        System.out.println("dateShamsi:"+yearM+monthM+dayM+"   "+dateShamsi);
 
+                        String[] dateSplite2=dateShamsi.split("/");
+
+                        String dayMF=dateSplite2[2];
+                        String monthMF=dateSplite2[1];
+                        String yearMF=dateSplite2[0];
+                      /*  String dayMF=dateShamsi.substring(8, 10);//02
+                        String monthMF=dateShamsi.substring(5, 7);//01
+                        String yearMF=dateShamsi.substring(0, 4);//1396
+*/
                         PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
+                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
                         /////////////////////
-                        // txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
-                        //  txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
-                        raft = formatted3;
-                        raftFa = persianCalendar.getPersianLongDate();
-
-                        Log.e("raaaaaaaaaaaft", formatted3);
-                        Log.e("raaaaaaaaaaaft", persianCalendar.getPersianLongDate());
-
+                        //   txtDateOnvan.setText(dfm.format(cal.getTime()) + "  -  " + AdateF);
+                        ///
+                        raftFa=persianCalendar.getPersianLongDate();
+                        raft = formatter.format(cal.getTime());
                         tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
                         new GetHotelAsync().execute();
-
-                        ///
-                        // callApiDateNext();
                     } else {
-                        //  Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
+                                Toast.LENGTH_SHORT).show();
                     }
-
 
                 } catch (java.text.ParseException e) {
                     System.out.println("Exception :" + e);
                 }
 
 
+
+
+
+
                 break;
             case R.id.btnLastDays:
+
+//rastie AdateF
+
+//Ddate kochike
+                //adate bargasht
 
                 try {
 
@@ -301,45 +327,42 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
                     //shart kamtar az emruz
                     if (System.currentTimeMillis() <= date.getTime()) {
-                        bargasht = formatter.format(cal.getTime());
+                        raft = formatter.format(cal.getTime());
 
                         ///onvan
+                        SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
                         /////////////////////////////
-                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");//2017/03/24 11:49
+                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd");//2017/03/24 11:49
                         String formatted3 = format3.format(cal.getTime());
+                        String[] dateSplite=formatted3.split("/");
 
-                        String dayM = formatted3.substring(8, 10);//02
-                        String monthM = formatted3.substring(5, 7);//01
-                        String yearM = formatted3.substring(0, 4);//1396
+                        String dayM=dateSplite[2];
+                        String monthM=dateSplite[1];
+                        String yearM=dateSplite[0];
+                        String  dateShamsi= com.reserv.myapplicationeli.models.model.SolarCalendar.calSolarCalendar(Integer.parseInt(yearM),Integer.parseInt(monthM),Integer.parseInt(dayM));
+                        String[] dateSplite2=dateShamsi.split("/");
 
-                        String dateShamsi = SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
-                        String dayMF = dateShamsi.substring(8, 10);//02
-                        String monthMF = dateShamsi.substring(5, 7);//01
-                        String yearMF = dateShamsi.substring(0, 4);//1396
-
+                        String dayMF=dateSplite2[2];
+                        String monthMF=dateSplite2[1];
+                        String yearMF=dateSplite2[0];
                         PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
+                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
                         /////////////////////
                         // txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
-                        //  txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
-                        raft = formatted3;
-                        raftFa = persianCalendar.getPersianLongDate();
-                        Log.e("raaaaaaaaaaaft", formatted3);
-                        Log.e("raaaaaaaaaaaft", persianCalendar.getPersianLongDate());
-
+                        raftFa=persianCalendar.getPersianLongDate();
+                        raft = formatter.format(cal.getTime());
                         tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
                         new GetHotelAsync().execute();
-
-                        ///
-                        // callApiDateNext();
                     } else {
-                        //  Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز", Toast.LENGTH_SHORT).show();
                     }
 
 
                 } catch (java.text.ParseException e) {
                     System.out.println("Exception :" + e);
                 }
+
+
                 break;
         }
     }
@@ -370,6 +393,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             star_filter(filterModel, filterHotelTypeModels);
            // facilities_filter(filterHotelFacilitiesModels);
             price_filter(filterHotelPriceModel);
+            location_filter(filterHotelLocationModels);
+
 
             if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4()
                     || filterModel.isStar5()) && (filterModel.isBestSeler() || filterModel.isBestOff())) {
@@ -377,6 +402,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 isBestOff_and_isStar(filterModel);
                 isBestSell_and_isStar(filterModel);
                 type_location_filter(filterHotelTypeModels, 0, false, false);
+
                 //todo change this
 
                 selectHotelModelArrayListFilter = new ArrayList<>();
@@ -499,7 +525,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
 
+            if (selectHotelModelArrayListFilter.size()==selectHotelModelArrayList.size()){
 
+                tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+                tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+            }
         }
         list.setAdapter(adapter);
 
@@ -1143,24 +1173,18 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             for (int i = 0; i < filterHotelLocationModels.size(); i++) {
                 if (filterHotelLocationModels.get(i).isCheck()) {
                     for (int j = 0; j < selectHotelModelArrayList.size(); j++) {
+                        if (filterHotelLocationModels.get(i).getTitle().equals(selectHotelModelArrayList.get(j).getLocation())) {
 
-                        for (int k = 0; k < selectHotelModelArrayList.get(j).getLocations().size(); k++) {
+                            selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
+                                    selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
+                                    selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
+                                    selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
+                                    selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
+                                    selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
+                                    selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
+                                    selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
+                                    selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(), selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount(),selectHotelModelArrayList.get(j).getLocations()));
 
-                            if (filterHotelFacilitiesModels.get(i).getTitle().contains(selectHotelModelArrayList.get(j).getLocation())) {
-
-                                selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
-                                        selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
-                                        selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
-                                        selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
-                                        selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
-                                        selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
-                                        selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
-                                        selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
-                                        selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount()
-                                        ,selectHotelModelArrayList.get(j).getLocations()));
-
-                            }
                         }
 
                     }
@@ -1173,49 +1197,43 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         } else {
             boolean isFilter = false;
 
+
             ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
-
-
             for (int i = 0; i < filterHotelLocationModels.size(); i++) {
                 if (filterHotelLocationModels.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayList.size(); j++) {
+                    for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
+                        if (filterHotelLocationModels.get(i).getTitle().equals(selectHotelModelArrayListFilter.get(j).getLocation())) {
+                            isFilter = true;
+                            selectHotelModels.add(new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
+                                    selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
+                                    selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
+                                    selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
+                                    selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
+                                    selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
+                                    selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
+                                    selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
+                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),
+                                    selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount(), selectHotelModelArrayListFilter.get(j).getLocations()));
 
-                        for (int k = 0; k < selectHotelModelArrayList.get(j).getLocations().size(); k++) {
-
-                            if (filterHotelFacilitiesModels.get(i).getTitle().contains(selectHotelModelArrayList.get(j).getLocation())) {
-                                isFilter = true;
-
-                                selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
-                                        selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
-                                        selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
-                                        selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
-                                        selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
-                                        selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
-                                        selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
-                                        selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
-                                        selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount(),selectHotelModelArrayList.get(j).getLocations()));
-
-                            }
                         }
 
-
                     }
+
+
+                }
+
+                if (isFilter) {
+
+                    selectHotelModelArrayListFilter.clear();
+                    selectHotelModelArrayListFilter = selectHotelModels;
                 }
 
 
-            }
-            if (isFilter) {
+            }}
 
-                selectHotelModelArrayListFilter.clear();
-                selectHotelModelArrayListFilter = selectHotelModels;
-            }
 
 
         }
-
-
-    }
 
 
     public void price_filter(ArrayList<FilterPriceModel> filterHotelPriceModel) {
@@ -1439,7 +1457,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                 xiff, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FltList,
                                 hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.ArrRout,
                                 hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.DepRout,
-                                hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.Amount,hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Locations));
+                                hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.Amount,
+                                hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Locations));
 
                         flightId = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FlightID;
 

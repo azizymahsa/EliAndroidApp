@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -134,7 +135,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	public List<ParentItemExpandingPlan> dataExpandingListFilter = new ArrayList<>();
 	public List<ParentItemExpandingPlan> dataExpandingListFilter2 = new ArrayList<>();
 
-
+	public static boolean FlagRemove;
 	private ExpandableListAdapter listAdapterExpanding;
 	public ExpandableListView expListViewExpanding;
 	public TextView lblMoratabSazi;
@@ -159,10 +160,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	public LinearLayout linear_expand ;
 	public  SearchParvazPinAdapter searchParvazPinAdapter;
 	public static RecyclerView recyclerViewFlight;
+	Window window;
+	public ArrayList<ModelCheckBox> arrayTrue=new ArrayList<>();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_parvaz);
+		window = getWindow();
 		linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
@@ -384,6 +389,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		boolean foundFirst = true;
 		boolean foundBis = true;
 		boolean foundEc = true;
+	this. filterAirlines = arrayTrue;
 
 
 		this.filterModels = type;
@@ -871,6 +877,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
 				txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
 
+
 			}
 
 
@@ -878,15 +885,41 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 
 
-
+		linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+		linear_expand.setVisibility(View.VISIBLE);
+		LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+		txtNoResult.setText("هیچ موردی یافت نشد");
+		linear_no_result.setVisibility(View.GONE);
 
 		if (dataExpandingListFilter.isEmpty() ||!foundFirst || !foundEc || !foundBis) {
 			// foundFirst=false;
-			iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
-			txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
+
 			//Toast.makeText(SearchParvazActivity.this, "هیچ موردی یافت نشد", Toast.LENGTH_LONG).show();
-			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
-			expListViewExpanding.setAdapter(listAdapterExpanding);
+			///////////////
+			iconFilter.setTextColor(Color.RED);
+			txtFilter.setTextColor(Color.RED);
+
+			linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+			linear_expand.setVisibility(View.GONE);
+			 linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+			txtNoResult.setText("هیچ موردی یافت نشد");
+			linear_no_result.setVisibility(View.VISIBLE);
+
+			if(FlagRemove){
+				iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
+				txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
+
+				FlagRemove=false;
+
+				linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+				linear_expand.setVisibility(View.VISIBLE);
+				linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+				txtNoResult.setText("هیچ موردی یافت نشد");
+				linear_no_result.setVisibility(View.GONE);
+			}
+			/////////////////
+			//listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
+			//expListViewExpanding.setAdapter(listAdapterExpanding);
 		} else {
 
 			listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingListFilter,searchParvazPinAdapter);
@@ -894,7 +927,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			iconFilter.setTextColor(Color.RED);
 			txtFilter.setTextColor(Color.RED);
 
+			linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+			linear_expand.setVisibility(View.VISIBLE);
+			 linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+			txtNoResult.setText("هیچ موردی یافت نشد");
+			linear_no_result.setVisibility(View.GONE);
 		}
+
+
 		listAdapterExpanding.notifyDataSetChanged();
 
 
@@ -956,8 +996,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 		@Override
 		protected void onPreExecute() {
+			window.setStatusBarColor(getColor(R.color.banafsh_flight));
 
-			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.loading_parvaz_search);
+			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
 
 
 		}
@@ -1056,10 +1097,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
-			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.loading_parvaz_search);//dismiss
+		protected void onPostExecute(String result){
+			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
 
-
+			window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
 			List<Country> data = new ArrayList<Country>();
 
 			try {

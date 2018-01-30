@@ -8,8 +8,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
 import com.reserv.myapplicationeli.models.model.ModelCheckBox;
 import com.reserv.myapplicationeli.views.adapters.hotel.FilterAdapter;
+import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelTypeModel;
 
 import java.util.ArrayList;
 
@@ -49,7 +52,7 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
     ListView lv;
      FilterAdapter adapter;
-    public ArrayList<ModelCheckBox> modelItems=new ArrayList<>();
+    public ArrayList<ModelCheckBox> filterAirlines=new ArrayList<>();
 
 
     public FilterFlightDialogNew(final Context activity, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray, ArrayList<ModelCheckBox> filterAirlines) {
@@ -108,10 +111,11 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
 
 
-
-          adapter = new FilterAdapter(activity,modelCheckBoxes);
+          adapter = new FilterAdapter(activity,filterAirlines);
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        adapter.notifyDataSetChanged();
+
+    /*    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (modelCheckBoxes.get(position).isCheck()){
@@ -127,7 +131,7 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
             }
         });
-
+*/
 
         dialog = builder.create();
         dialog.setCancelable(true);
@@ -199,6 +203,7 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
             }
         }//end for
+
         dialog.show();
     }
 
@@ -281,25 +286,16 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
                 break;
             case R.id.btnDeletFilter:
-                if (filter.isEmpty()) {
-                    filter.add(new FilterModelّFlight(false,false,false,true,false,false,false));
-                } else {
-                    noStop.setChecked(false);
-                    oneStop.setChecked(false);
-                    twoStopMore.setChecked(false);
-                    ferstF.setChecked(false);
-                    businessF.setChecked(false);
-                    economiF.setChecked(false);
-                    //star1.setChecked(false);
-                    for (int i =0;i<modelCheckBoxes.size();i++){
+                SearchParvazActivity.FlagRemove=true;
+                for (int i = 0; i < modelCheckBoxes.size(); i++) {
+                    modelCheckBoxes.set(i, new ModelCheckBox(modelCheckBoxes.get(i).getName(), false));
 
-                        modelCheckBoxes.set(i,new ModelCheckBox(modelCheckBoxes.get(i).getName(),false));
 
-                    }
-                    adapter.notifyDataSetChanged();
-
-                    filter.set(0, new FilterModelّFlight(false,false,false,true,false,false,false));
                 }
+
+try{                filter.set(0, new FilterModelّFlight(false,false,false,true,false,false,false));
+}catch (Exception e){}
+
                 filterFlightDialogListenerArray.onReturnValueFlightNew(filter,modelCheckBoxes);
 
 

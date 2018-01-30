@@ -269,7 +269,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         passengerMosaferItemsTable = new PassengerMosaferItems_Table(PassengerPackageActivity.this);
         passengerMosaferItemsTable.dropTable();
         passengerMosaferItemsTable.openDB();
-        passengerMosaferItemsTable.removeAllRecord();
+       // passengerMosaferItemsTable.removeAllRecord();
 
         btn_pardakht_factor.setOnClickListener(new OnClickListener() {
             @Override
@@ -438,28 +438,28 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                 String flagMosafer = "T";
                 if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
-                    ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer = flagMosafer + "F";
                 }
                 if (Nationality != null && Nationality.length() > 1) {
-                    ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer = flagMosafer + "F";
                 }
                 if (Nationality_ID != null && Nationality_ID.length() > 1) {
-                    ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer = flagMosafer + "F";
                 }
                 if (RqPassenger_Birthdate != null && RqPassenger_Birthdate.length() > 4) {
-                    ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
@@ -467,7 +467,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 }
                 if (RqPassenger_FirstNameEn != null)
                     if (RqPassenger_FirstNameEn.length() > 1 && RqPassenger_FirstNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")) {
-                        ((EditText) findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
+                        ((EditText) findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#aaaaaa"));
                         flagMosafer = flagMosafer + "T";
                     } else {
                         ((EditText) findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
@@ -475,14 +475,14 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }
                 if (RqPassenger_LastNameEn != null)
                     if (RqPassenger_LastNameEn.length() > 1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")) {
-                        ((EditText) findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
+                        ((EditText) findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#aaaaaa"));
                         flagMosafer = flagMosafer + "T";
                     } else {
                         ((EditText) findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                     }
                 if (RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length() > 4) {
-                    ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#aaaaaa"));
                     flagMosafer = flagMosafer + "T";
                 } else {
                     ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
@@ -518,15 +518,17 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         txtexp_passport.setText("");
                         txtnumber_passport.setText("");
                         passengerMosaferItemsTable.closeDB();
-//                        if (sum == 0) {
-//                            new AsyncFetch().execute();
-//                        }
+
                     }
 
-                    new AsyncFetchPishFactor().execute();
+                    if (sum == 0) {
+                        new AsyncFetchPishFactor().execute();
+                    }
+
                 }
 
                 break;
+
 
 //            case R.id.btn_taeed_khadamat:
 //                new AsyncFetchPishFactor().execute();
