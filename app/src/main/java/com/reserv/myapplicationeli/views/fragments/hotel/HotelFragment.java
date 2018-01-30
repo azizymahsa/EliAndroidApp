@@ -80,6 +80,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     String raft, bargasht;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
+    boolean geo=false;
 
 
 
@@ -241,6 +242,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
+                geo=true;
 
                 Log.e("GGGGGGGRaft", year+"=="+monthOfYear+1+"=="+dayOfMonth);
 
@@ -279,7 +281,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
                 Log.e("GGGGGGGBar", year+"=="+(monthOfYear+1)+"=="+dayOfMonth);
-
+                geo=true;
                 tvBargasht.setText(Utility.dateShowView(year+"/"+ (monthOfYear+1)+"/"+ dayOfMonth));
                 bargasht =year+"/"+ monthOfYear+1+"/"+ dayOfMonth;
 
@@ -365,6 +367,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     intent.putExtra("Rooms", getRoomList(roomsSelected));
                     intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                     intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
+                    intent.putExtra("Geo",geo);
                     Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
                     Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
 
@@ -488,7 +491,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-
+        geo=false;
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;

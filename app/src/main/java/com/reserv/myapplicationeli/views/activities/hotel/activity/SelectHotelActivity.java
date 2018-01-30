@@ -284,7 +284,18 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         ///
                         raftFa = persianCalendar.getPersianLongDate();
                         raft = formatter.format(cal.getTime());
-                        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+
+                        if (getIntent().getExtras().getBoolean("Geo")) {
+
+                            tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
+
+                        }else{
+                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+
+
+                        }
+
+
                         new GetHotelAsync().execute();
                     } else {
                         Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
@@ -362,7 +373,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                               ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,
                               ArrayList<FilterPriceModel> filterHotelPriceModel, ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
 
-        boolean remove =false;
+        boolean remove = false;
 
         this.filterModels = type;
         this.searchIn = search;
@@ -491,15 +502,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         }
 
         if (selectHotelModelArrayListFilter.isEmpty()) {
-            if (!remove){
-            //   Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
+            if (!remove) {
+                //   Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText("هیچ موردی یافت نشد");
                 list.setVisibility(View.GONE);
                 btnOk.setVisibility(View.GONE);
                 tvCount.setText("(" + 0 + "مورد یافت شد" + ")");
 
-            }else{
+            } else {
 
             }
 
@@ -1374,7 +1385,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     btnOk.setVisibility(View.VISIBLE);
 
 
-
                 } else if (availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
@@ -1382,7 +1392,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     llFilter.setVisibility(View.GONE);
                     list.setVisibility(View.GONE);
                     btnOk.setVisibility(View.VISIBLE);
-
 
 
                 } else {

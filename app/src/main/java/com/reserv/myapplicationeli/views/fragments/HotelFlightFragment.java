@@ -82,6 +82,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     ImageView ivImage;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
+    boolean geo = false;
 
 
     @Override
@@ -251,7 +252,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
-
+                geo = true;
                 Log.e("GGGGGGGRaft", year+"=="+monthOfYear+1+"=="+dayOfMonth);
 
 
@@ -289,7 +290,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
                 Log.e("GGGGGGGBar", year+"=="+(monthOfYear+1)+"=="+dayOfMonth);
-
+                geo = true;
                 tvBargasht.setText(Utility.dateShowView(year+"/"+ (monthOfYear+1)+"/"+ dayOfMonth));
                 bargasht =year+"/"+ monthOfYear+1+"/"+ dayOfMonth;
 
@@ -377,6 +378,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                     intent.putExtra("Rooms", getRoomList(roomsSelected));
                     intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                     intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
+                    intent.putExtra("Geo",true);
+
                     Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
                     Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
 
@@ -391,7 +394,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 break;
             case R.id.tvRaft:
-               
+
                 datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
                 break;
@@ -511,7 +514,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-
+        geo = false;
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
