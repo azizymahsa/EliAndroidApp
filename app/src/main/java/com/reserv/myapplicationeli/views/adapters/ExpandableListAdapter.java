@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -214,8 +216,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		LinearLayout linearBargashtOne = (LinearLayout) convertView.findViewById(R.id.linearBargashtOne);
 		RelativeLayout linearBargashtTwo = (RelativeLayout) convertView.findViewById(R.id.linearBargashtTwo);
 		LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
-		//LinearLayout linear_all = (LinearLayout) convertView.findViewById(R.id.linear_all);
+		LinearLayout linearKol = (LinearLayout) convertView.findViewById(R.id.linearKol);
 		//final int[] flag = {0};
+		Animation scaleUp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
+		linearKol.startAnimation(scaleUp);
+
 		txtPin.setTag(item2.IsPin);
 
 		txtPin.setOnClickListener(new View.OnClickListener() {
@@ -265,10 +270,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         if (isExpanded){
             btnExpand.setText(_context.getString(R.string.icon_exp_up));
-
+			linearKol.clearAnimation();
 
         }else{
             btnExpand.setText(_context.getString(R.string.icon_exp_down));
+			Animation scaleUpp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
+			linearKol.startAnimation(scaleUpp);
         }
 
 		///

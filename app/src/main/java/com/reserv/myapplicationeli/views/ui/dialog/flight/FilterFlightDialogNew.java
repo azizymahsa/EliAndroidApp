@@ -8,8 +8,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
 import com.reserv.myapplicationeli.models.model.ModelCheckBox;
 import com.reserv.myapplicationeli.views.adapters.hotel.FilterAdapter;
+import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
 import java.util.ArrayList;
 
@@ -66,8 +68,8 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
         btnDeletFilter = (FancyButton) dialogView.findViewById(R.id.btnDeletFilter);
-        btnOk.setCustomTextFont("fonts/irsans.ttf");
-        btnDeletFilter.setCustomTextFont("fonts/irsans.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnDeletFilter.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         btnDeletFilter.setOnClickListener(this);
 
@@ -111,7 +113,7 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
           adapter = new FilterAdapter(activity,modelCheckBoxes);
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    /*    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (modelCheckBoxes.get(position).isCheck()){
@@ -127,7 +129,7 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
             }
         });
-
+*/
 
         dialog = builder.create();
         dialog.setCancelable(true);
@@ -281,7 +283,19 @@ public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheck
 
                 break;
             case R.id.btnDeletFilter:
-                if (filter.isEmpty()) {
+                SearchParvazActivity.FlagRemove=true;
+              /*  if (filter.isEmpty()) {
+                    filter.add(new FilterModelّFlight(false,false,false,true,false,false,false));
+
+
+                } else {
+                    filter.set(0, new FilterModelّFlight(false,false,false,true,false,false,false));
+
+                }
+
+                filterFlightDialogListenerArray.onReturnValueFlightNew(filter,modelCheckBoxes);
+                dialog.cancel();*/
+               if (filter.isEmpty()) {
                     filter.add(new FilterModelّFlight(false,false,false,true,false,false,false));
                 } else {
                     noStop.setChecked(false);

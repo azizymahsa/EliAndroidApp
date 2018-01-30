@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.reserv.myapplicationeli.R;
@@ -53,6 +54,7 @@ public class FilterAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.cbCheck = (SmoothCheckBox) convertView.findViewById(R.id.cbCheck);
             holder.textView1 = (TextView) convertView.findViewById(R.id.textView1);
+            holder.llLayout = (LinearLayout) convertView.findViewById(R.id.llLayout);
 
             convertView.setTag(holder);
         } else {
@@ -60,8 +62,24 @@ public class FilterAdapter extends BaseAdapter {
         }
 
         holder.textView1.setText(modelCheckBoxes.get(position).getName());
-        holder.cbCheck.setEnabled(false);
+     holder.cbCheck.setEnabled(false);
+        holder.cbCheck.setClickable(false);
 
+        holder.llLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (modelCheckBoxes.get(position).isCheck()) {
+
+
+                    modelCheckBoxes.set(position, new ModelCheckBox(modelCheckBoxes.get(position).getName(), false));
+
+                } else {
+                    modelCheckBoxes.set(position, new ModelCheckBox(modelCheckBoxes.get(position).getName(), true));
+
+                }
+                notifyDataSetChanged();
+            }
+        });
         if (modelCheckBoxes.get(position).isCheck()){
             holder.cbCheck.setChecked(true);
 
@@ -71,7 +89,15 @@ public class FilterAdapter extends BaseAdapter {
             Log.e("falseadapter",modelCheckBoxes.get(position).isCheck()+"");
 
         }
+     /*   if (modelCheckBoxes.get(position).isCheck()){
+            holder.cbCheck.setChecked(true);
+            Log.e("trueadapter",modelCheckBoxes.get(position).isCheck()+"");
+        }else{
+            holder.cbCheck.setChecked(false);
+            Log.e("falseadapter",modelCheckBoxes.get(position).isCheck()+"");
 
+        }
+*/
 
         return convertView;
     }
@@ -80,5 +106,6 @@ public class FilterAdapter extends BaseAdapter {
     public class ViewHolder {
         TextView textView1;
         SmoothCheckBox cbCheck;
+        LinearLayout llLayout;
     }
 }

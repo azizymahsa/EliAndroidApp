@@ -84,7 +84,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-       Animation scaleUp = AnimationUtils.loadAnimation(activity, R.anim.anim_list);
+        Animation scaleUp = AnimationUtils.loadAnimation(activity, R.anim.anim_list);
         holder.cvHotel.startAnimation(scaleUp);
 
         String imageUri = "https://cdn.elicdn.com" + selectHotelModelArrayList.get(position).getImageUrl();

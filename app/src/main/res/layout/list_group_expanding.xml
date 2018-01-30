@@ -23,6 +23,7 @@
     android:layout_height="wrap_content"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
+    android:id="@+id/linearKol"
     android:orientation="vertical"
   >
 
