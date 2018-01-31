@@ -3,7 +3,12 @@ package com.reserv.myapplicationeli.views.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +22,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.PinModelDetail;
 import com.reserv.myapplicationeli.models.model.PinModelHeader;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +53,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	List<SearchParvazActivity.ParentItemExpandingPlan>  dataExpandingList;
 	List<PinModelDetail> pinModelDetails;
 	List<PinModelHeader> pinModelHeaders;
-
+	ImageLoader imageLoader;
 	public ExpandableListAdapter(Context context,List<SearchParvazActivity.ParentItemExpandingPlan> dataList,SearchParvazPinAdapter searchParvazPinAdapter) {
 		this._context = context;
 
 		this.dataExpandingList = dataList;
 		this.searchParvazPinAdapter = searchParvazPinAdapter;
-
-
-
-
+		imageLoader = ImageLoader.getInstance();
+		ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
 	}
 
 
@@ -339,47 +352,100 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		//((Button)findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.purple_button_larg);
 		//lblProductrow.setBackgroundResource(R.drawable.ir);
 		String s=item2.AirlineCode;
-		if(s.toLowerCase().equals("ir"))
+		/*if(s.toLowerCase().equals("ir"))
 			lblProductrow.setBackgroundResource(R.drawable.ir);
-		if(s.toLowerCase().equals("a3"))
+		else if(s.toLowerCase().equals("a3"))
 			lblProductrow.setBackgroundResource(R.drawable.a);
-		if(s.toLowerCase().equals("af"))
+		else if(s.toLowerCase().equals("af"))
 			lblProductrow.setBackgroundResource(R.drawable.af);
-		if(s.toLowerCase().equals("az"))
+		else if(s.toLowerCase().equals("az"))
 			lblProductrow.setBackgroundResource(R.drawable.az);
-		if(s.toLowerCase().equals("ek"))
+		else if(s.toLowerCase().equals("ek"))
 			lblProductrow.setBackgroundResource(R.drawable.ek);
-		if(s.toLowerCase().equals("ey"))
+		else if(s.toLowerCase().equals("ey"))
 			lblProductrow.setBackgroundResource(R.drawable.ey);
-		if(s.toLowerCase().equals("fz"))
+		else if(s.toLowerCase().equals("fz"))
 			lblProductrow.setBackgroundResource(R.drawable.fz);
-		if(s.toLowerCase().equals("g9"))
+		else if(s.toLowerCase().equals("g9"))
 			lblProductrow.setBackgroundResource(R.drawable.g);
-		if(s.toLowerCase().equals("j2"))
+		else if(s.toLowerCase().equals("j2"))
 			lblProductrow.setBackgroundResource(R.drawable.j);
-		if(s.toLowerCase().equals("ji"))
+		else if(s.toLowerCase().equals("ji"))
 			lblProductrow.setBackgroundResource(R.drawable.ji);
-		if(s.toLowerCase().equals("kk"))
+		else if(s.toLowerCase().equals("kk"))
 			lblProductrow.setBackgroundResource(R.drawable.kk);
-		if(s.toLowerCase().equals("kl"))
+		else if(s.toLowerCase().equals("kl"))
 			lblProductrow.setBackgroundResource(R.drawable.kl);
-		if(s.toLowerCase().equals("lh"))
+		else if(s.toLowerCase().equals("lh"))
 			lblProductrow.setBackgroundResource(R.drawable.lh);
-		if(s.toLowerCase().equals("pc"))
+		else if(s.toLowerCase().equals("pc"))
 			lblProductrow.setBackgroundResource(R.drawable.pc);
-		if(s.toLowerCase().equals("qr"))
+		else if(s.toLowerCase().equals("qr"))
 			lblProductrow.setBackgroundResource(R.drawable.qr);
-		if(s.toLowerCase().equals("su"))
+		else if(s.toLowerCase().equals("su"))
 			lblProductrow.setBackgroundResource(R.drawable.su);
-		if(s.toLowerCase().equals("tg"))
+		else if(s.toLowerCase().equals("tg"))
 			lblProductrow.setBackgroundResource(R.drawable.tg);
-		if(s.toLowerCase().equals("tk"))
+		else if(s.toLowerCase().equals("tk"))
 			lblProductrow.setBackgroundResource(R.drawable.tk);
-		if(s.toLowerCase().equals("w5"))
+		else if(s.toLowerCase().equals("w5"))
 			lblProductrow.setBackgroundResource(R.drawable.w);
-		if(s.toLowerCase().equals("wy"))
+		else if(s.toLowerCase().equals("wy"))
 			lblProductrow.setBackgroundResource(R.drawable.wy);
+		else {*/
+		System.out.println(s);
+				/*	try {
+						InputStream is = (InputStream) new URL("https://cdn.elicdn.com/Content/AirLine/"+s+".png").getContent();
+						System.out.println("https://cdn.elicdn.com/Content/AirLine/"+s+".png");
+						Bitmap d = BitmapFactory.decodeStream(is);
+						is.close();
+						lblProductrow.setImageBitmap(d);
+						//return d;
+					} catch (Exception e) {
+						System.out.println(e);
+						return null;
+					}*/
 
+		String imageUri = "https://cdn.elicdn.com/Content/AirLine/"+s+".png";
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+				// this will make circle, pass the width of image
+				.displayer(new RoundedBitmapDisplayer(3))
+				.cacheInMemory(true)
+				.cacheOnDisk(true)
+				.bitmapConfig(Bitmap.Config.RGB_565)
+				.considerExifParams(true)
+				.build();
+		System.out.println("https://cdn.elicdn.com/Content/AirLine/"+s+".png");
+
+		imageLoader.displayImage(imageUri,lblProductrow, options,null);
+
+
+		/*lblProductrow.setImageResource();
+		/////////////store image/////////////////////
+		File filename;
+		Bitmap bitMapImg = null;
+		try {
+			bitMapImg = ((BitmapDrawable) lblProductrow.getDrawable()).getBitmap();
+			//System.out.println("bitmap"+bitMapImg);
+			String path = Environment.getExternalStorageDirectory().toString();
+
+			new File(path + "/folder/subfolder").mkdirs();
+			filename = new File(path + "/folder/subfolder/"+s+".png");
+
+			FileOutputStream out = new FileOutputStream(filename);
+
+			bitMapImg.compress(Bitmap.CompressFormat.JPEG, 90, out);
+			out.flush();
+			out.close();
+
+			//MediaStore.Images.Media.insertImage(_context, filename.getAbsolutePath(), filename.getName(), filename.getName());
+
+			Toast.makeText(_context, "File is Saved in  " + filename, 1000).show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+		////////////////////////////////////////////
+			//}
 
 		return convertView;
 	}

@@ -58,12 +58,16 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,6 +101,8 @@ import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.fragments.PlanFragment;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassengerFlight;
+import com.rey.material.widget.RadioButton;
+import com.rey.material.widget.Switch;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -150,6 +156,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	private boolean FlagTab=false;
 	private boolean FlagMosaferan=true;
 
+	private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
+
+
 
 	@SuppressLint("WrongViewCast")
 	@Override
@@ -163,6 +172,59 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		btnBack.setText(getString(R.string.search_back_right));
 		btnBack.setVisibility(View.VISIBLE);
 		btnBack.setOnClickListener(this);
+
+		//kharidar
+		btnzanS = (com.rey.material.widget.RadioButton) findViewById(R.id.zanS);
+		btnzanS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(btnzanS.isChecked()){
+					btnmardS.setChecked(false);
+					System.out.println("zan");
+					Gensiyat="false";
+				}
+			}
+		});
+
+		btnmardS = (com.rey.material.widget.RadioButton) findViewById(R.id.mardS);
+		btnmardS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(btnmardS.isChecked()){
+					btnzanS.setChecked(false);
+					System.out.println("mard");
+					Gensiyat="true";
+				}
+			}
+		});
+		////////mosafer
+		btnzan = (com.rey.material.widget.RadioButton) findViewById(R.id.zan);
+		btnzan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(btnzan.isChecked()){
+					btnmard.setChecked(false);
+					System.out.println("zan");
+					Gensiyat="false";
+				}
+			}
+		});
+
+		btnmard = (com.rey.material.widget.RadioButton) findViewById(R.id.mard);
+		btnmard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(btnmard.isChecked()){
+					btnzan.setChecked(false);
+					System.out.println("mard");
+					Gensiyat="true";
+				}
+			}
+		});
+
+
+
+
 
 		txt_hom = (ImageView) findViewById(R.id.txt_hom);
 		txt_hom.setOnClickListener(this);
@@ -1559,6 +1621,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 						((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 					}
+					Gensiyat="";
 				}catch (Exception e) {
 					System.out.println("Exception ::"+e);
 				}
@@ -1574,6 +1637,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				flag = false;
 				break;
 			case R.id.btn_nextm:
+				txtexp_passport.setScroller(new Scroller(this));
+				ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
+				scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
 			if(FlagMosaferan){
 				String Gender= Gensiyat;
 				String Nationality=txtmahale_eghamat.getText().toString();// "ir";
@@ -1701,7 +1767,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						System.out.println("gender:"+Gender);
 						//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 						if(counter-1 ==1){
-							db.insertData(counter-1,"اطلاعات مسافر بزرگسال 1",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+							db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
 						}else{
 							db.insertData(counter-1,txtTitleCountM.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
@@ -1725,22 +1791,22 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						}
 						if(countB!=0){
 
-							txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+							txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
 							imgCount.setText(counter+"");
 						}
 						else if(countK!=0){
 
-							txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+							txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
 							imgCount.setText(counter+"");
 						}
 						else if(countN!=0){
 
-							txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+							txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
 							imgCount.setText(counter+"");
 						}
 
 
-						System.out.println("counterMosafer:"+counter);
+						System.out.println("counterMosafer:"+getCounter(counter)+counter);
 
 						counter++;
 						sum--;
@@ -1898,6 +1964,48 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}
 
 	}
+
+	public String getCounter(int i) {
+		String s="";
+		switch (i) {
+			case 1:
+				s= "اول";
+			break;
+			case 2:
+				s= "دوم";
+			break;
+			case 3:
+				s= "سوم";
+			break;
+			case 4:
+				s= "چهارم";
+			break;
+			case 5:
+				s= "پنجم";
+			break;
+			case 6:
+				s= "ششم";
+			break;
+			case 7:
+				s= "هفتم";
+			break;
+			case 8:
+				s= "هشتم";
+			break;
+			case 9:
+				s="نهم";
+			break;
+			default:
+
+				System.out.println("Unknown result");
+
+				break;
+
+		}
+		return s;
+
+	}
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
