@@ -367,7 +367,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                 Utility.openUrlCustomTab(PassengerInsuranceActivity.this, paymentUrl);
                 Prefs.putString("TypeGetPre", "I");
-                Prefs.putString("PaymentUrl", paymentUrl);
 /*
                 String url = "http://foyr.com";
                 Intent launchGoogleChrome = new Intent(Intent.ACTION_VIEW, Uri.parse(url));

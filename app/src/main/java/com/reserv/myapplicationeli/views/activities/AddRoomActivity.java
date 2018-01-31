@@ -50,7 +50,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
         InitUi.Toolbar(this, false, R.color.toolbar_color, "اطلاعات اتاق");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.colorPrimary));
+            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
         }
         initViews();
         roomPresenter = new RoomPresenter(this);

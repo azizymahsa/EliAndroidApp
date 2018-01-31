@@ -78,7 +78,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     int year_Min;
     int dayMin;
     String raft, bargasht;
-    LinearLayout linearLayout_mabda, linearLayout_maghsad;
+    LinearLayout linearLayout_mabda, linearLayout_maghsad,llRaft,llBargasht;
     ImageView ivImage;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
@@ -110,8 +110,12 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         tvAdult = (TextView) rootView.findViewById(R.id.tvAdult);
         tvChild = (TextView) rootView.findViewById(R.id.tvChild);
         ivImage = rootView.findViewById(R.id.ivImage);
-        tvRaft.setOnClickListener(this);
-        tvBargasht.setOnClickListener(this);
+        llRaft = rootView.findViewById(R.id.llRaft);
+        llBargasht = rootView.findViewById(R.id.llBargasht);
+       // tvRaft.setOnClickListener(this);
+        llRaft.setOnClickListener(this);
+        llBargasht.setOnClickListener(this);
+       // tvBargasht.setOnClickListener(this);
         linearLayout_maghsad.setOnClickListener(this);
 
         btn_add_room = (LinearLayout) rootView.findViewById(R.id.btn_add_room);
@@ -393,12 +397,12 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 //   }
 
                 break;
-            case R.id.tvRaft:
+            case R.id.llRaft:
 
                 datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
                 break;
-            case R.id.tvBargasht:
+            case R.id.llBargasht:
                 datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
                 datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");

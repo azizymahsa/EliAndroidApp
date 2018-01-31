@@ -42,7 +42,7 @@ import java.util.List;
 
 public class FinalResult extends BaseActivity {
     private String factorId;
-    TextView tvFactor, tvFactor2, tvPaymen, tvPrice, tvPeygiri, tvStatusFactor,tvSuccses,tvNumberPeygiri;
+    TextView tvFactor, tvFactor2, tvPaymen, tvPrice, tvPeygiri, tvStatusFactor,tvSuccses,tvNumberPeygiri,tvMail;
     GetPreFactor getPreFactor;
     RelativeLayout rlPrice, rlPeygiri, rlStatus, rlIv, rlLoading;
     ImageView ivImage;
@@ -99,6 +99,7 @@ public class FinalResult extends BaseActivity {
         ivImage = findViewById(R.id.ivImage);
         lvLog = findViewById(R.id.lvLog);
         tvSuccses = findViewById(R.id.tvSuccses);
+        tvMail = findViewById(R.id.tvMail);
         tvNumberPeygiri = findViewById(R.id.tvNumberPeygiri);
         drawable = (GradientDrawable) rlStatus.getBackground();
 
@@ -154,7 +155,7 @@ public class FinalResult extends BaseActivity {
                         rlIv.setBackgroundColor(ContextCompat.getColor(FinalResult.this, R.color.red));
                         ivImage.setImageResource(R.drawable.close);
                         tvStatusFactor.setText("قرار داد ثبت نشد");
-                        drawable.setStroke(3, ContextCompat.getColor(FinalResult.this, R.color.red));
+                        drawable.setStroke(1, ContextCompat.getColor(FinalResult.this, R.color.red));
                         rlPeygiri.setVisibility(View.GONE);
                         tvPaymen.setText("مبلغی برای این سبد خرید پرداخت نشده است");
                         tvPaymen.setTextColor(ContextCompat.getColor(FinalResult.this, R.color.red));
@@ -188,8 +189,16 @@ public class FinalResult extends BaseActivity {
                     if (!getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.isEmpty()){
                         rlPeygiri.setVisibility(View.VISIBLE);
                         rlPrice.setVisibility(View.VISIBLE);
+                        tvStatusFactor.setVisibility(View.GONE);
                         tvPrice.setText(getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.get(0).PaymentAmount);
                         tvNumberPeygiri.setText(getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.get(0).PaymentSaleReferenceId);
+                        ivImage.setImageResource(R.drawable.close);
+                        tvStatusFactor.setText("قرار داد با موفقیت ثبت شد");
+                        drawable.setStroke(1, ContextCompat.getColor(FinalResult.this, R.color.green));
+                        tvMail.setText(" ارسال شد"+getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPartner.get(0).RqPartner_Email +"جزئیات قرار داد به ایمیل  ");
+
+
+
 
                     }
 

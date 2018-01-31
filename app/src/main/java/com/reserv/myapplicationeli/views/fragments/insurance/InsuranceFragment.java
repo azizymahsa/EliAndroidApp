@@ -95,6 +95,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     private Button btnSearchInsurance;
     private int accomodationDays;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
+    LinearLayout linear_picker_depart_date,linear_picker_during_travel;
 
 
     public static InsuranceFragment instance() {
@@ -216,6 +217,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         txt_during_trip = view.findViewById(R.id.txt_during_trip);
         prg_country = view.findViewById(R.id.prg_country);
         act_country = view.findViewById(R.id.act_country);
+        linear_picker_depart_date = view.findViewById(R.id.linear_picker_depart_date);
+        linear_picker_during_travel = view.findViewById(R.id.linear_picker_during_travel);
         btnSearchInsurance = view.findViewById(R.id.btnSearchInsurance);
 
         layout_passenger = (ViewGroup) view.findViewById(R.id.layout_passenger);
@@ -303,10 +306,9 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
 
 
-        Gson gson = new GsonBuilder().create();
 
-        layout_depart_date.setOnClickListener(this);
-        layout_duringTrip.setOnClickListener(this);
+        linear_picker_depart_date.setOnClickListener(this);
+        linear_picker_during_travel.setOnClickListener(this);
         layout_passenger.setOnClickListener(this);
         btnSearchInsurance.setOnClickListener(this);
     }
@@ -322,7 +324,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.layout_during_travel:
+            case R.id.linear_picker_during_travel:
 
                 NumberPickerDialog dialog = new NumberPickerDialog(getActivity(), this);
                 break;
@@ -334,7 +336,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 startActivityForResult(intent, ADD_PASSENGER_REQUEST);
                 break;
 
-            case R.id.layout_depart_date:
+            case R.id.linear_picker_depart_date:
                 datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
                 break;
             case R.id.btnSearchInsurance :

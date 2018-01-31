@@ -74,7 +74,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     public ProgressBar prg_cities;
     public Button btnSearchPackage;
     public LinearLayout btn_return_date;
-    public LinearLayout btn_depart_date;
+    public LinearLayout btn_depart_date,linear_picker_depart,linear_picker_return;
     private final int ADD_ROOM_REQUEST = 100;
     private ClientService service;
     DatePickerDialog datePickerDialogDepart, datePickerDialogReturn;
@@ -195,6 +195,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         txt_count_room = (TextView) view.findViewById(R.id.txt_count_room);
         txt_return_date = view.findViewById(R.id.txt_return_date);
         txt_depart_date = view.findViewById(R.id.txt_depart_date);
+        linear_picker_depart = view.findViewById(R.id.linear_picker_depart);
+        linear_picker_return = view.findViewById(R.id.linear_picker_return);
 
 
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
@@ -340,8 +342,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
         layout_room.setOnClickListener(this);
         btnSearchPackage.setOnClickListener(this);
-        btn_return_date.setOnClickListener(this);
-        btn_depart_date.setOnClickListener(this);
+        linear_picker_return.setOnClickListener(this);
+        linear_picker_depart.setOnClickListener(this);
 
         spn_cities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -410,11 +412,11 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 startActivity(_intent);
                 break;
 
-            case R.id.btn_depart_date:
+            case R.id.linear_picker_depart:
                 datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
                 break;
 
-            case R.id.btn_return_date:
+            case R.id.linear_picker_return:
                 datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DepartureTo");
                 break;
         }

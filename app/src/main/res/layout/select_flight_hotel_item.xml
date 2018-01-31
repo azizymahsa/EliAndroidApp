@@ -308,7 +308,8 @@
                                 layout="@layout/one_step"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@color/colorPrimary" />
+                                android:background="@color/colorPrimary"
+                                />
 
 
 
@@ -404,6 +405,7 @@
                                     android:layout_marginRight="5dp"
                                     android:layout_toLeftOf="@+id/ivArrow"
                                     android:text="IKA"
+                                    android:gravity="left"
                                     android:textColor="@color/text_color_4d"
                                     android:textSize="12dp"
                                     android:visibility="gone"/>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fillViewport="true">
 
     <LinearLayout
@@ -17,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
-            android:orientation="vertical"
+            android:background="@drawable/banafsh_jahan"
             android:gravity="center"
-            android:background="@drawable/banafsh_jahan">
+            android:orientation="vertical">
 
 
             <Spinner
@@ -27,9 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@null"
-                android:layout_margin="@dimen/_10dp_marging">
-            </Spinner>
+                android:layout_margin="@dimen/_10dp_marging"
+                android:background="@null"></Spinner>
 
             <ProgressBar
                 android:id="@+id/prg_cities"
@@ -39,30 +37,30 @@
                 android:layout_gravity="center" />
 
         </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
             android:orientation="vertical">
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:layout_marginRight="@dimen/_10dp_margin"
                 android:layout_marginLeft="@dimen/_10dp_margin"
+                android:layout_marginRight="@dimen/_10dp_margin"
                 android:layout_marginTop="@dimen/_10dp"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="3dp"
-                card_view:cardElevation="3dp">
+                android:layout_weight="0.8"
+                card_view:cardBackgroundColor="#ffffff">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/linear_picker"
+                        android:id="@+id/linear_picker_return"
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -76,12 +74,12 @@
                             android:layout_marginTop="15dp"
                             android:gravity="right"
                             android:text="تاریخ برگشت "
-                            android:textSize="@dimen/text_size_12dp"
+                            android:layout_marginRight="6dp"
+
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2"
-                            android:textStyle="bold"
-                            android:paddingRight="@dimen/_2dp_padding"
-                           />
+                            android:textSize="@dimen/text_size_12dp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:id="@+id/btn_return_date"
@@ -92,27 +90,27 @@
                             <TextView
                                 android:id="@+id/txt_return_date"
                                 android:layout_width="0dp"
-                                android:layout_weight="0.8"
                                 android:layout_height="match_parent"
-                                android:text="انتخاب کنید"
                                 android:layout_marginRight="@dimen/_2dp_margin"
+                                android:layout_weight="0.8"
                                 android:background="#fff"
                                 android:gravity="right|center"
-                                android:textSize="@dimen/text_size_12dp"
+                                android:text="انتخاب کنید"
                                 android:textColor="@color/text_color_2"
+                                android:textSize="@dimen/text_size_12dp"
                                 android:textStyle="bold" />
+
                             <TextView
                                 android:layout_width="0dp"
-                                android:layout_weight="0.2"
                                 android:layout_height="match_parent"
-                                android:textAppearance="@style/IconFonts"
-                                android:text="@string/icon_calander"
+                                android:layout_weight="0.2"
                                 android:gravity="center"
+                                android:text="@string/icon_calander"
+                                android:textAppearance="@style/IconFonts"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/icon_size_25dp"/>
+                                android:textSize="@dimen/icon_size_25dp" />
 
                         </LinearLayout>
-
 
 
                         <!-- android:text="اطلاعات مالی" -->
@@ -120,6 +118,8 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linear_picker_depart"
+
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -129,17 +129,14 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_2dp_margin"
-                            android:layout_marginRight="@dimen/_4dp_margin"
                             android:layout_marginTop="@dimen/_15dp_margin"
                             android:gravity="right"
-                            android:shadowDx="-2"
-                            android:shadowDy="-2"
                             android:text="تاریخ رفت"
-                            android:textSize="@dimen/text_size_12dp"
-                            android:textColor="@color/text_color_2"
-                            android:textStyle="bold"
-                            android:paddingRight="@dimen/_14dp_padding"
                             android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_2"
+                            android:textSize="@dimen/text_size_12dp"
+                            android:textStyle="bold"
+                            android:layout_marginRight="6dp"
                             />
 
                         <LinearLayout
@@ -151,25 +148,25 @@
                             <TextView
                                 android:id="@+id/txt_depart_date"
                                 android:layout_width="0dp"
-                                android:layout_weight="0.8"
                                 android:layout_height="match_parent"
-                                android:text="انتخاب کنید"
                                 android:layout_marginRight="@dimen/_2dp_margin"
+                                android:layout_weight="0.8"
                                 android:background="#fff"
                                 android:gravity="right|center"
-                                android:textSize="@dimen/text_size_12dp"
+                                android:text="انتخاب کنید"
                                 android:textColor="@color/text_color_2"
-                                android:textStyle="bold"
-                                />
+                                android:textSize="@dimen/text_size_12dp"
+                                android:textStyle="bold" />
+
                             <TextView
                                 android:layout_width="0dp"
-                                android:layout_weight="0.2"
                                 android:layout_height="match_parent"
-                                android:textAppearance="@style/IconFonts"
-                                android:text="@string/icon_calander"
+                                android:layout_weight="0.2"
                                 android:gravity="center"
+                                android:text="@string/icon_calander"
+                                android:textAppearance="@style/IconFonts"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/icon_size_25dp"/>
+                                android:textSize="@dimen/icon_size_25dp" />
 
                         </LinearLayout>
 
@@ -185,28 +182,25 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.8"
                 android:layout_margin="@dimen/_10dp"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="3dp"
-                card_view:cardElevation="3dp">
+                android:layout_weight="0.8"
+                card_view:cardBackgroundColor="#ffffff">
 
                 <LinearLayout
                     android:id="@+id/layout_room"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
 
 
                     <LinearLayout
 
                         android:layout_width="0dp"
-                        android:layout_weight="0.33"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_gravity="center"
-                        >
+                        android:layout_weight="0.33"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -215,23 +209,24 @@
                             android:padding="@dimen/_5sp_padding"
 
                             android:text="کودک"
-                            android:textStyle="bold"
+                            android:textColor="@color/text_color_2"
 
-                            android:textColor="@color/text_color_2"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/txt_count_child"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="0"
-                            android:textSize="@dimen/text_size_12dp"
-                            android:textColor="@color/text_color_2"
                             android:layout_gravity="center"
+                            android:gravity="center"
                             android:padding="@dimen/_10dp_padding"
+                            android:text="0"
+                            android:textColor="@color/text_color_2"
+                            android:textSize="@dimen/text_size_12dp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
+
                     <View
                         android:layout_width="@dimen/_1dp_width"
                         android:layout_height="match_parent"
@@ -241,55 +236,55 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="0.33"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
+                        android:layout_gravity="center"
+                        android:layout_weight="0.33"
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="بزرگسال"
                             android:padding="@dimen/_5dp_padding"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_color_2"/>
+                            android:text="بزرگسال"
+                            android:textColor="@color/text_color_2"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/txt_count_adult"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="1"
                             android:padding="@dimen/_10dp_padding"
-                            android:textStyle="bold"
+                            android:text="1"
+                            android:textColor="@color/text_color_2"
                             android:textSize="@dimen/text_size_12dp"
-                            android:textColor="@color/text_color_2"/>
+                            android:textStyle="bold" />
 
                     </LinearLayout>
+
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_1dp_margin"
                         android:layout_marginTop="@dimen/_1dp_margin"
-                        android:background="#a6a6a6"
-                        />
+                        android:background="#a6a6a6" />
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="0.33"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_gravity="center"
-                        >
+                        android:layout_weight="0.33"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="اتاق"
                             android:padding="@dimen/_5dp_padding"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_color_2"/>
+                            android:text="اتاق"
+                            android:textColor="@color/text_color_2"
+                            android:textStyle="bold" />
 
 
                         <TextView
@@ -297,10 +292,10 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="1"
-                            android:textSize="@dimen/text_size_12dp"
-                            android:textColor="@color/text_color_2"
                             android:padding="@dimen/_10dp_padding"
+                            android:text="1"
+                            android:textColor="@color/text_color_2"
+                            android:textSize="@dimen/text_size_12dp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -318,24 +313,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_20dp"
-                    android:layout_marginRight="@dimen/_20dp"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:layout_marginRight="@dimen/_10dp"
                     android:layout_marginTop="@dimen/_10dp"
                     android:background="@drawable/btngravity_big"
                     android:text="@string/search_package"
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/_16dp_txtSize"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
             </LinearLayout>
-
-
-
-
-
-
-
 
 
         </LinearLayout>

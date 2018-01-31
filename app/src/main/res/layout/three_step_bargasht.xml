@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/tvANRaft3_1_bargasht"
             android:layout_width="30dp"
-            android:gravity="right"
+            android:gravity="left"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/ivArrow"

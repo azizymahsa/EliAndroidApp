@@ -61,7 +61,7 @@
                     android:layout_gravity="center">
 
                     <LinearLayout
-                        android:id="@+id/linear_picker"
+                        android:id="@+id/linear_picker_during_travel"
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -78,7 +78,7 @@
                             android:textSize="@dimen/text_size_12dp"
                             android:textColor="@color/text_color_2"
                             android:textStyle="bold"
-                            android:paddingRight="@dimen/_2dp_padding"
+                            android:layout_marginRight="6dp"
                             android:textAppearance="@style/IrsansBold"
                             />
 
@@ -120,6 +120,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linear_picker_depart_date"
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -129,7 +130,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_2dp_margin"
-                            android:layout_marginRight="@dimen/_4dp_margin"
+                            android:layout_marginRight="6dp"
                             android:layout_marginTop="@dimen/_15dp_margin"
                             android:gravity="right"
 
@@ -137,7 +138,6 @@
                             android:textColor="@color/text_color_2"
                             android:textSize="@dimen/text_size_12dp"
                             android:textStyle="bold"
-                            android:paddingRight="@dimen/_14dp_padding"
                             android:textAppearance="@style/IrsansBold"
 
                             />
@@ -222,8 +222,8 @@
                     android:layout_height="@dimen/_40dp"
                     android:layout_gravity="center"
 
-                    android:layout_marginLeft="@dimen/_20dp"
-                    android:layout_marginRight="@dimen/_20dp"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:layout_marginRight="@dimen/_10dp"
                     android:layout_marginTop="@dimen/_10dp"
 
                     android:background="@drawable/btngravity_big"

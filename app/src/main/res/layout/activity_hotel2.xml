@@ -88,10 +88,10 @@
             android:layout_marginLeft="@dimen/_10dp_margin"
             android:layout_marginTop="@dimen/_10dp"
             card_view:cardBackgroundColor="#ffffff"
-            card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="3dp">
+>
 
             <LinearLayout
+                android:id="@+id/llBargasht"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
@@ -116,8 +116,9 @@
                         android:textSize="@dimen/text_size_12dp"
                         android:textColor="@color/text_color_2"
                         android:textStyle="bold"
-                        android:paddingRight="@dimen/_2dp_padding"
-                        android:textAppearance="@style/IrsansBold"/>
+                        android:textAppearance="@style/IrsansBold"
+                        android:layout_marginRight="6dp"
+                        />
 
                     <LinearLayout
                         android:id="@+id/btn_return_date"
@@ -156,6 +157,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llRaft"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -165,8 +167,6 @@
                         android:id="@+id/tarikh_az"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_2dp_margin"
-                        android:layout_marginRight="@dimen/_4dp_margin"
                         android:layout_marginTop="@dimen/_15dp_margin"
                         android:gravity="right"
 
@@ -174,8 +174,8 @@
                         android:textSize="@dimen/text_size_12dp"
                         android:textColor="@color/text_color_2"
                         android:textStyle="bold"
-                        android:paddingRight="@dimen/_14dp_padding"
                         android:textAppearance="@style/IrsansBold"
+                        android:layout_marginRight="6dp"
                         />
 
                     <LinearLayout
@@ -224,8 +224,7 @@
             android:layout_weight="0.8"
             android:layout_margin="@dimen/_10dp"
             card_view:cardBackgroundColor="#ffffff"
-            card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="3dp">
+>
 
             <LinearLayout
                 android:id="@+id/layout_room"
@@ -354,8 +353,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_20dp"
-                android:layout_marginRight="@dimen/_20dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:layout_marginRight="@dimen/_10dp"
                 android:layout_marginTop="@dimen/_10dp"
                 android:background="@drawable/btngravity_big"
                 android:text="جستجوی هتل"

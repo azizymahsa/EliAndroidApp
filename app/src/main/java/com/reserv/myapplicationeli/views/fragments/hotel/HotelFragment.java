@@ -58,7 +58,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult;
     public static int countNafar = 1;
-    LinearLayout btn_add_room;
+    LinearLayout btn_add_room,llRaft,llBargasht;
     CardView cvRoom;
     public ListView listRoomItem;
     HotelCountRoomAdapter mAdapter;
@@ -104,9 +104,11 @@ public class HotelFragment extends Fragment implements OnClickListener,
         tvBargasht = (TextView) rootView.findViewById(R.id.tvBargasht);
         tvAdult = (TextView) rootView.findViewById(R.id.tvAdult);
         tvChild = (TextView) rootView.findViewById(R.id.tvChild);
-        tvRaft.setOnClickListener(this);
-        tvBargasht.setOnClickListener(this);
-
+        llRaft = rootView.findViewById(R.id.llRaft);
+        llBargasht = rootView.findViewById(R.id.llBargasht);
+        // tvRaft.setOnClickListener(this);
+        llRaft.setOnClickListener(this);
+        llBargasht.setOnClickListener(this);
         btn_add_room = (LinearLayout) rootView.findViewById(R.id.btn_add_room);
         cvRoom = (CardView) rootView.findViewById(R.id.cvRoom);
         cvRoom.setOnClickListener(this);
@@ -382,13 +384,13 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
                 break;
-            case R.id.tvRaft:
+            case R.id.llRaft:
 
 
                 datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
                 break;
-            case R.id.tvBargasht:
+            case R.id.llBargasht:
                 datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
                 datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
