@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff" >
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff">
 
 
 
@@ -92,11 +93,10 @@
                         android:id="@+id/lblProductID"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
                         android:gravity="right"
                         android:text="مبدا  : "
                         android:textColor="#ffffff"
-                        android:textSize="15dip" />
+                        android:textSize="@dimen/_15dp" />
 
                     <TextView
                         android:id="@+id/tvStart"
@@ -116,7 +116,7 @@
                         android:gravity="right"
                         android:text="(فرودگاه بین المللی امام خمینی) "
                         android:textColor="#fff"
-                        android:textSize="@dimen/_11dp"
+                        android:textSize="@dimen/_12dp_txtSize"
                         android:layout_marginLeft="@dimen/margin_5dp"/>
                 </LinearLayout>
 
@@ -139,7 +139,7 @@
                         android:gravity="right"
                         android:text=" مقصد : "
                         android:textColor="#ffffff"
-                        android:textSize="15dip" />
+                        android:textSize="@dimen/_15dp" />
 
                     <TextView
                         android:id="@+id/tvEnd"
@@ -159,7 +159,7 @@
                         android:gravity="right"
                         android:text="(فرودگاه بین المللی آتاتورک) "
                         android:textColor="#fff"
-                        android:textSize="@dimen/_11dp"
+                        android:textSize="@dimen/_12dp_txtSize"
                         android:layout_marginLeft="@dimen/margin_5dp"/>
                 </LinearLayout>
 
@@ -230,14 +230,17 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/cvDate"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="85dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="1dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="1dp"
                     android:layout_weight="100"
-                    android:background="@color/hotel_detail_background">
+                    android:background="@color/hotel_detail_background"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="3dp"
+                    card_view:cardElevation="3dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -263,6 +266,7 @@
                                 android:gravity="right"
                                 android:text="تاریخ برگشت "
                                 android:textSize="@dimen/text_size_12dp"
+                                android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/text_color_2"
                                 android:textStyle="bold" />
 
@@ -276,8 +280,9 @@
                                 android:gravity="right"
                                 android:text="تاریخ رفت"
                                 android:textSize="@dimen/text_size_12dp"
+                                android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/text_color_2"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"/>
 
                         </LinearLayout>
 
@@ -308,6 +313,7 @@
                                     android:text="انتخاب کنید"
                                     android:textSize="@dimen/text_size_12dp"
                                     android:textColor="@color/text_color_2"
+                                    android:textStyle="bold"
 
                                     />
 
@@ -341,6 +347,7 @@
                                     android:text="انتخاب کنید"
                                     android:textSize="@dimen/text_size_12dp"
                                     android:textColor="@color/text_color_2"
+                                    android:textStyle="bold"
 
                                     />
 
@@ -386,7 +393,11 @@
                     android:layout_marginTop="7dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="100"
-                    android:background="@color/hotel_detail_background">
+                    android:background="@color/hotel_detail_background"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="3dp"
+                    card_view:cardElevation="3dp"
+                    >
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -395,14 +406,13 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_32Plan"
-                            android:layout_marginBottom="5dp"
                             android:layout_marginLeft="14dp"
                             android:layout_marginRight="10dp">
 
                             <Button
                                 android:id="@+id/btnMinesB"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_marginBottom="1dp"
                                 android:layout_marginLeft="22dp"
                                 android:layout_marginRight="20dp"
@@ -413,17 +423,21 @@
 
                             <TextView
                                 android:id="@+id/txtCountB"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
                                 android:text="1"
                                 android:textColor="#000000" />
 
                             <Button
                                 android:id="@+id/btnPlusB"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_margin="1dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginLeft="22dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="+"
                                 android:textColor="#000000" />
@@ -444,14 +458,13 @@
                         <LinearLayout
                             android:layout_height="@dimen/_32Plan"
                             android:layout_width="match_parent"
-                            android:layout_marginBottom="5dp"
                             android:layout_marginLeft="14dp"
                             android:layout_marginRight="10dp">
 
                             <Button
                                 android:id="@+id/btnMinesK"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_marginBottom="1dp"
                                 android:layout_marginLeft="22dp"
                                 android:layout_marginRight="20dp"
@@ -462,17 +475,21 @@
 
                             <TextView
                                 android:id="@+id/txtCountK"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
                                 android:text="0"
                                 android:textColor="#000000" />
 
                             <Button
                                 android:id="@+id/btnPlusK"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_margin="1dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginLeft="22dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="+"
                                 android:textColor="#000000" />
@@ -493,14 +510,13 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_32Plan"
-                            android:layout_marginBottom="5dp"
                             android:layout_marginLeft="14dp"
                             android:layout_marginRight="10dp">
 
                             <Button
                                 android:id="@+id/btnMinesN"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_marginBottom="1dp"
                                 android:layout_marginLeft="22dp"
                                 android:layout_marginRight="20dp"
@@ -511,17 +527,22 @@
 
                             <TextView
                                 android:id="@+id/txtCountN"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+
                                 android:text="0"
                                 android:textColor="#000000" />
 
                             <Button
                                 android:id="@+id/btnPlusN"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_margin="1dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginLeft="22dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="+"
                                 android:textColor="#000000" />
@@ -549,11 +570,12 @@
                     <Button
                         android:id="@+id/searchPlan"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40dp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_marginRight="@dimen/_20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="@dimen/_10dp"
                         android:background="@drawable/btngravity_big"
                         android:text="جستجو پرواز"
                         android:textColor="#FFFFFF"

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:fillViewport="true">
 
@@ -45,11 +46,14 @@
             android:orientation="vertical">
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
                 android:layout_marginRight="@dimen/_10dp_margin"
                 android:layout_marginLeft="@dimen/_10dp_margin"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="@dimen/_10dp"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="3dp"
+                card_view:cardElevation="3dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,10 +77,11 @@
                             android:gravity="right"
                             android:text="تاریخ برگشت "
                             android:textSize="@dimen/text_size_12dp"
+                            android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2"
                             android:textStyle="bold"
                             android:paddingRight="@dimen/_2dp_padding"
-                            android:textAppearance="@style/IrsansBold"/>
+                           />
 
                         <LinearLayout
                             android:id="@+id/btn_return_date"
@@ -179,9 +184,12 @@
             <android.support.v7.widget.CardView
 
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.1"
-                android:layout_margin="10dp">
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:layout_margin="@dimen/_10dp"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="3dp"
+                card_view:cardElevation="3dp">
 
                 <LinearLayout
                     android:id="@+id/layout_room"
@@ -308,11 +316,11 @@
                 <Button
                     android:id="@+id/btnSearchPackage"
                     android:layout_width="match_parent"
-                    android:layout_height="42dp"
+                    android:layout_height="@dimen/_40dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="21dp"
-                    android:layout_marginRight="21dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/_20dp"
+                    android:layout_marginTop="@dimen/_10dp"
                     android:background="@drawable/btngravity_big"
                     android:text="@string/search_package"
                     android:textColor="#FFFFFF"

@@ -22,7 +22,7 @@ public class ImageViewActivity extends BaseActivity {
         photoView = findViewById(R.id.photo_view);
         imageLoader = ImageLoader.getInstance();
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this));
-        InitUi.Toolbar(this, false, R.color.flight_status, "نمایش عکس");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, "نمایش عکس");
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 // this will make circle, pass the width of image
