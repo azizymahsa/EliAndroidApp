@@ -28,12 +28,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -144,7 +146,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     //change for Prefactor=========================================================================
     LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
 
-
+    private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
     //ExpandableLayoutListView lvFactor;
     @SuppressLint("WrongViewCast")
     @Override
@@ -170,6 +172,58 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setVisibility(View.VISIBLE);
         btnBack.setOnClickListener(PassengerHotelFlightActivity.this);
+
+        //kharidar
+        btnzanS = (com.rey.material.widget.RadioButton) findViewById(R.id.zanS);
+        btnzanS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(btnzanS.isChecked()){
+                    btnmardS.setChecked(false);
+                    System.out.println("zan");
+                    Gensiyat="false";
+                }
+            }
+        });
+
+        btnmardS = (com.rey.material.widget.RadioButton) findViewById(R.id.mardS);
+        btnmardS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(btnmardS.isChecked()){
+                    btnzanS.setChecked(false);
+                    System.out.println("mard");
+                    Gensiyat="true";
+                }
+            }
+        });
+        ////////mosafer
+        btnzan = (com.rey.material.widget.RadioButton) findViewById(R.id.zan);
+        btnzan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(btnzan.isChecked()){
+                    btnmard.setChecked(false);
+                    System.out.println("zan");
+                    Gensiyat="false";
+                }
+            }
+        });
+
+        btnmard = (com.rey.material.widget.RadioButton) findViewById(R.id.mard);
+        btnmard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(btnmard.isChecked()){
+                    btnzan.setChecked(false);
+                    System.out.println("mard");
+                    Gensiyat="true";
+                }
+            }
+        });
+
+
+
 
         txt_hom = (ImageView) findViewById(R.id.txt_hom);
         textView4 = (ImageView) findViewById(R.id.textView4);
@@ -1408,6 +1462,7 @@ txtnameP.setOnFocusChangeListener(this);
                         ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
                         ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     }
+                    Gensiyat="";
                 }catch (Exception e) {
                     System.out.println("Exception ::"+e);
                 }
@@ -1423,6 +1478,9 @@ txtnameP.setOnFocusChangeListener(this);
                 flag = false;
                 break;
             case R.id.btn_nextm:
+                txtexp_passport.setScroller(new Scroller(this));
+                ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
+                scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
                 if(FlagMosaferan){
                     String Gender= Gensiyat;
                     String Nationality=txtmahale_eghamat.getText().toString();// "ir";
@@ -1550,7 +1608,7 @@ txtnameP.setOnFocusChangeListener(this);
                             System.out.println("gender:"+Gender);
                             //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                             if(counter-1 ==1){
-                                db.insertData(counter-1,"اطلاعات مسافر بزرگسال 1",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
                             }else{
                                 db.insertData(counter-1,txtTitleCountM.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
@@ -1574,17 +1632,17 @@ txtnameP.setOnFocusChangeListener(this);
                             }
                             if(countB!=0){
 
-                                txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+                                txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
                                 imgCount.setText(counter+"");
                             }
                             else if(countK!=0){
 
-                                txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+                                txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
                                 imgCount.setText(counter+"");
                             }
                             else if(countN!=0){
 
-                                txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+                                txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
                                 imgCount.setText(counter+"");
                             }
 
@@ -1747,7 +1805,46 @@ txtnameP.setOnFocusChangeListener(this);
         }
 
     }
+    public String getCounter(int i) {
+        String s="";
+        switch (i) {
+            case 1:
+                s= "اول";
+                break;
+            case 2:
+                s= "دوم";
+                break;
+            case 3:
+                s= "سوم";
+                break;
+            case 4:
+                s= "چهارم";
+                break;
+            case 5:
+                s= "پنجم";
+                break;
+            case 6:
+                s= "ششم";
+                break;
+            case 7:
+                s= "هفتم";
+                break;
+            case 8:
+                s= "هشتم";
+                break;
+            case 9:
+                s="نهم";
+                break;
+            default:
 
+                System.out.println("Unknown result");
+
+                break;
+
+        }
+        return s;
+
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

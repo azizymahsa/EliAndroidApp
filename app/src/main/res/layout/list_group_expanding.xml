@@ -430,7 +430,7 @@
                     android:layout_centerVertical="true"
 
                     android:adjustViewBounds="true"
-                    android:scaleType="centerInside"
+                    android:scaleType="fitXY"
                     />
             </RelativeLayout>
             </RelativeLayout>

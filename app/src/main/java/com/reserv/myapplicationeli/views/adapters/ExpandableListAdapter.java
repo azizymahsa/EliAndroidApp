@@ -406,7 +406,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 						return null;
 					}*/
 
-		String imageUri = "https://cdn.elicdn.com/Content/AirLine/"+s+".png";
+		String imageUri = "https://cdn.elicdn.com/Content/AirLine/MblSize/"+s+".png";
 		DisplayImageOptions options = new DisplayImageOptions.Builder()
 				// this will make circle, pass the width of image
 				.displayer(new RoundedBitmapDisplayer(3))
@@ -415,7 +415,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				.bitmapConfig(Bitmap.Config.RGB_565)
 				.considerExifParams(true)
 				.build();
-		System.out.println("https://cdn.elicdn.com/Content/AirLine/"+s+".png");
+		System.out.println("https://cdn.elicdn.com/Content/AirLine/MblSize/"+s+".png");
 
 		imageLoader.displayImage(imageUri,lblProductrow, options,null);
 

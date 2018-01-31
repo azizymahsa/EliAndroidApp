@@ -223,43 +223,63 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="58dp"
-                        android:layout_marginTop="10dp"
-                        android:orientation="vertical" >
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:orientation="horizontal" >
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="257dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:orientation="horizontal"
-                            android:layout_marginRight="15dp">
+                            android:layout_gravity="right"
+                            android:layout_weight="1.43"
+                            android:gravity="right"
+                            android:text="*"
+                            android:textColor="#ff0000" />
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight="1.43"
-                                android:gravity="right"
-                                android:text="*"
-                                android:textColor="#ff0000" />
+                        <TextView
 
-                            <TextView
-                                android:id="@+id/txtjensiat"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="10dp"
-                                android:text="جنسیت"
-                                android:textColor="#808080" />
-                        </LinearLayout>
-
-                        <Spinner
-                            android:id="@+id/spinner1"
-                            android:layout_marginRight="15dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            />
+                            android:layout_marginRight="5dp"
+                            android:text="جنسیت"
+                            android:textColor="#808080" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:orientation="horizontal">
+
+                        <com.rey.material.widget.RadioButton
+                            android:id="@+id/zanS"
+                            style="@style/Material.Drawable.RadioButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="3"
+                            android:gravity="left|center"
+                            android:paddingLeft="50dp"
+                            android:text="زن" />
+                        <!--  app:lrb_unCheckedColor="#9d80ff" />-->
+
+
+                        <com.rey.material.widget.RadioButton
+                            android:id="@+id/mardS"
+                            style="@style/Material.Drawable.RadioButton"
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center"
+                            android:text="مرد"/>
+
+                    </LinearLayout>
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -619,7 +639,7 @@
                             android:layout_weight="1.5"
                             android:gravity="right"
                             android:layout_gravity="center|center_vertical"
-                            android:text=" اطلاعات مسافر بزرگسال 1" />
+                            android:text="اطلاعات مسافر اول ( بزرگسال )" />
 
                         <TextView
                             android:id="@+id/imgCount"
@@ -668,10 +688,41 @@
                                 android:textColor="#808080" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:orientation="horizontal">
+
+                            <com.rey.material.widget.RadioButton
+                                android:id="@+id/zan"
+                                style="@style/Material.Drawable.RadioButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="3"
+                                android:gravity="left|center"
+                                android:paddingLeft="50dp"
+                                android:text="زن" />
+                            <!--  app:lrb_unCheckedColor="#9d80ff" />-->
+
+
+                            <com.rey.material.widget.RadioButton
+                                android:id="@+id/mard"
+                                style="@style/Material.Drawable.RadioButton"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="left|center"
+                                android:text="مرد"/>
+
+                        </LinearLayout>
                         <Spinner
                             android:id="@+id/spinnerMosafer"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"/>
                     </LinearLayout>
 
                     <LinearLayout
