@@ -95,8 +95,8 @@ dependencies {
    // compile 'com.github.shinelw.colorarcprogressbar:library:1.0.3'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     compile 'gun0912.ted:tedpermission:1.0.3'
-
-
+    compile 'com.github.nirhart:parallaxscroll:1.0'
+   // compile 'com.airbnb.android:lottie:2.5.0-rc1'
 
 
 

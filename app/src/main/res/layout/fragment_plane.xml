@@ -19,18 +19,6 @@
         android:layout_height="match_parent"
         android:background="#ffffff"
         android:orientation="vertical">
-        <!--<LinearLayout
-
-            style="@style/MyListFrontContentRe"
-            android:layout_width="0dp"
-            android:weight="1"
-            android:layout_height="@dimen/_260"
-            android:background="@drawable/banafsh_jahan"
-            android:gravity="center"
-            android:minHeight="40dp"
-            android:orientation="horizontal"
-            android:tag="front">-->
-
 
 
         <RelativeLayout
@@ -50,9 +38,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginBottom="@dimen/_30dp"
+                android:layout_marginRight="@dimen/_30dp"
+                android:layout_marginTop="@dimen/_30dp"
                 android:scaleType="centerInside"
                 >
 
@@ -82,7 +70,7 @@
                 android:layout_centerInParent="true"
                 android:orientation="vertical"
                 android:layout_toLeftOf="@+id/txtOption"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="5dp"
                 >
                 <View
                     android:layout_width="match_parent"

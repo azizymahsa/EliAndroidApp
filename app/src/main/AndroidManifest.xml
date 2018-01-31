@@ -27,6 +27,7 @@
         android:roundIcon="@drawable/logo_luncher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:largeHeap="true"
         tools:replace="icon, label">
         <activity
             android:name=".views.ui.SplashFragment"

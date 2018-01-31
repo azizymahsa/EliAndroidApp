@@ -408,7 +408,7 @@
 
 
     <include
-        layout="@layout/loading_layout"
+        layout="@layout/loading_layout_fh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"

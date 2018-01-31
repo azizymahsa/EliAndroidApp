@@ -81,8 +81,8 @@ public class InitUi {
 
     }
     public  void Loading(Activity activity,final RelativeLayout rlLoading, final RelativeLayout root, boolean start,int image ) {
-        ImageView ivImage=activity.findViewById(R.id.ivImage);
-        ivImage.setImageDrawable(ContextCompat.getDrawable(activity,image));
+      //  ImageView ivImage=activity.findViewById(R.id.ivImage);
+      //  ivImage.setImageDrawable(ContextCompat.getDrawable(activity,image));
 
 
 

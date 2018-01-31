@@ -7,9 +7,10 @@
     >
 
     <ImageView
+        android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/flight"
+        android:src="@drawable/package_loading"
         android:scaleType="fitXY"/>
     <com.wang.avi.AVLoadingIndicatorView
 
@@ -28,7 +29,7 @@
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="رزرواسیون آنلاین بلیط هواپیما \n با بیش از 900 ایرلاین در 70 کشور"
+        android:text="رزرواسیون آنلاین هتل \n با بیش از 200000 هتل در سراسر دنیا"
         android:textSize="16dp"
         android:textColor="@color/white"
         android:gravity="center"

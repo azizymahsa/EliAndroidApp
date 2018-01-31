@@ -63,6 +63,7 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="_32Plan">32dp</dimen>
     <dimen name="_25dp_margin">25dp</dimen>
     <dimen name="_40dp">40dp</dimen>
+    <dimen name="_30dp">30dp</dimen>
 
 
 </resources>

@@ -8,6 +8,7 @@ import com.reserv.myapplicationeli.base.BaseAPI;
 import com.reserv.myapplicationeli.models.hotel.api.getComment.call.GetCommentRequest;
 import com.reserv.myapplicationeli.models.hotel.api.getComment.response.GetCommentResponse;
 import com.reserv.myapplicationeli.models.hotel.getprefactor.call.RequestPre;
+import com.reserv.myapplicationeli.models.hotel.getprefactor.call.RequestPrefactor;
 import com.reserv.myapplicationeli.models.hotel.getprefactor.response.GetPrefactorResponse;
 
 import retrofit2.Call;
@@ -21,17 +22,17 @@ import retrofit2.http.POST;
 public class GetPreFactor extends BaseAPI {
     public final static String ACTION_NAME = "Common/StaticDataService.svc/GetPreFactorDetails";
     public GetPrefactorResponse getPrefactorResponse;
-    RequestPre requestPre;
+    RequestPrefactor requestPre;
 
     public interface GetPre {
         @RawRes
-        @POST(GetPreFactor.ACTION_NAME)
+        @POST("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails")
         Call<GetPrefactorResponse> get_pre(
-                @Body RequestPre requestPre
+                @Body RequestPrefactor requestPre
         );
     }
 
-    public GetPreFactor(RequestPre requestPre) {
+    public GetPreFactor(RequestPrefactor requestPre) {
         this.requestPre = requestPre;
         send();
     }

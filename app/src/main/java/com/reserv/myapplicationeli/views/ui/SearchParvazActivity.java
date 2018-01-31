@@ -1002,7 +1002,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 		@Override
 		protected void onPreExecute() {
-			window.setStatusBarColor(getColor(R.color.banafsh_flight));
+			window.setStatusBarColor(getColor(R.color.status_loading));
 
 			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
 

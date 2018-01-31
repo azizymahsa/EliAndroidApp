@@ -105,7 +105,8 @@
     <style name="IconMenu" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello.ttf</item></style>
 
-
+    <style name="IconCheck" parent="android:TextAppearance">
+        <item name="fontPath">fonts/fontello-check-and-close.ttf</item></style>
 
 
     <style name="Text"/>

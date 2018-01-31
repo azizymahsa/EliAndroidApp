@@ -126,10 +126,10 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         btnHome.setOnClickListener(this);
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
-        ivImage = findViewById(R.id.ivImage);
+       // ivImage = findViewById(R.id.ivImage);
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
-        ivImage.setImageResource(R.drawable.flight_h);
+       // ivImage.setImageResource(R.drawable.flight_h);
         llBottom.setOnClickListener(this);
         llSort.setOnClickListener(this);
         adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, this);
@@ -1372,7 +1372,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     private class GetHotelAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
-            window.setStatusBarColor(getColor(R.color.status_loading));
+            window.setStatusBarColor(getColor(R.color.hf));
 
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 

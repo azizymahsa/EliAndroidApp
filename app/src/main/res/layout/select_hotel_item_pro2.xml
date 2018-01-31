@@ -19,8 +19,12 @@
                     android:textSize="10dp"
                     android:textColor="@color/text_color_2e"
                     android:gravity="right"
+                    android:textAppearance="@style/IrsansBold"
+
 
                     android:text="asdasd"
+                    android:padding="5dp"
+
 
 
                     />
@@ -30,19 +34,12 @@
                     android:layout_height="wrap_content"
                     android:textSize="10dp"
                     android:textColor="@color/text_color_2e"
-                    android:textAppearance="@style/IrsansBold"
-                    android:gravity="center"
+                    android:gravity="center|right"
                     android:layout_marginTop="5dp"
+                    android:padding="5dp"
 
                     />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/text_color_2e"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
-                        />
+
 
         </LinearLayout>
 

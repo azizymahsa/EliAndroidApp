@@ -346,12 +346,16 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
 
     public void showLoading() {
+      Window  window = getWindow();
+      window.setStatusBarColor(getColor(R.color.hf));
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
         rcl_package.showLoading();
     }
 
 
     public void hideLoading() {
+        Window  window = getWindow();
+        window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         rcl_package.hideLoading();
     }
