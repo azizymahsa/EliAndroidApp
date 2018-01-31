@@ -26,12 +26,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -155,7 +157,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     //int count;
     //change for Prefactor=========================================================================
     LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight;
-
+    private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,6 +171,59 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         btnBack.setVisibility(View.VISIBLE);
         btnBack.setOnClickListener(this);
         btnHome.setOnClickListener(this);
+
+        //kharidar
+        btnzanS = (com.rey.material.widget.RadioButton) findViewById(R.id.zanS);
+        btnzanS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(btnzanS.isChecked()){
+                    btnmardS.setChecked(false);
+                    System.out.println("zan");
+                    Gensiyat="false";
+                }
+            }
+        });
+
+        btnmardS = (com.rey.material.widget.RadioButton) findViewById(R.id.mardS);
+        btnmardS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(btnmardS.isChecked()){
+                    btnzanS.setChecked(false);
+                    System.out.println("mard");
+                    Gensiyat="true";
+                }
+            }
+        });
+        ////////mosafer
+        btnzan = (com.rey.material.widget.RadioButton) findViewById(R.id.zan);
+        btnzan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(btnzan.isChecked()){
+                    btnmard.setChecked(false);
+                    System.out.println("zan");
+                    Gensiyat="false";
+                }
+            }
+        });
+
+        btnmard = (com.rey.material.widget.RadioButton) findViewById(R.id.mard);
+        btnmard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(btnmard.isChecked()){
+                    btnzan.setChecked(false);
+                    System.out.println("mard");
+                    Gensiyat="true";
+                }
+            }
+        });
+
+
+
+
 
         textView4 = (ImageView) findViewById(R.id.textView4);
         tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
@@ -1245,6 +1300,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
                         ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     }
+                    Gensiyat="";
                 } catch (Exception e) {
                     System.out.println("Exception ::" + e);
                 }
@@ -1260,6 +1316,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 flag = false;
                 break;
             case R.id.btn_nextm:
+                txtexp_passport.setScroller(new Scroller(this));
+                ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
+                scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
 
                 String Gender = Gensiyat;
                 String Nationality = txtmahale_eghamat.getText().toString();// "ir";
