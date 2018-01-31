@@ -1317,8 +1317,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 break;
             case R.id.btn_nextm:
                 txtexp_passport.setScroller(new Scroller(this));
-                ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
-                scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
+              /*  ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
+                scrolMosafer.fullScroll(ScrollView.FOCUS_UP);*/
 
                 String Gender = Gensiyat;
                 String Nationality = txtmahale_eghamat.getText().toString();// "ir";

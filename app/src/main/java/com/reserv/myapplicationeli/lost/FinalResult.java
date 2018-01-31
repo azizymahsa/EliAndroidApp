@@ -51,6 +51,7 @@ public class FinalResult extends BaseActivity {
     NonScrollListView lvLog;
     AfterPaymentAdapter afterPaymentAdapter;
     private ArrayList<AfterPaymentModel> afterPaymentModels = new ArrayList<>();
+    String url;
 
 
 
@@ -104,7 +105,7 @@ public class FinalResult extends BaseActivity {
         btnRPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utility.openUrlCustomTab(FinalResult.this, Prefs.getString("PaymentUrl", ""));
+                Utility.openUrlCustomTab(FinalResult.this, url);
                 finish();
 
             }
@@ -146,6 +147,7 @@ public class FinalResult extends BaseActivity {
                     Toast.makeText(FinalResult.this, getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.errors.get(0).getDetailedMessage(), Toast.LENGTH_SHORT).show();
 
                 } else {
+
                     if (getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.ContractNo <= 0) {
                         rlStatus.setVisibility(View.VISIBLE);
                         rlIv.setVisibility(View.VISIBLE);
@@ -162,6 +164,7 @@ public class FinalResult extends BaseActivity {
                             && getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.isEmpty() &&
                             getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.PreFactorBookingLogs.isEmpty()) {
                         btnRPayment.setVisibility(View.VISIBLE);
+                        url=getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.OnlinePaymentURL;
 
                     }
 

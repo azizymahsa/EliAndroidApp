@@ -6,8 +6,10 @@ package com.reserv.myapplicationeli.models.hotel.getprefactor.response;
 
 public class FactorSummary {
     public final int ContractNo;
+    public final String OnlinePaymentURL;
 
-    public FactorSummary(int contractNo) {
+    public FactorSummary(int contractNo, String onlinePaymentURL) {
         ContractNo = contractNo;
+        OnlinePaymentURL = onlinePaymentURL;
     }
 }
