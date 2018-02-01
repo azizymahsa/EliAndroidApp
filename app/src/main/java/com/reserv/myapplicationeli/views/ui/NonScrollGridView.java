@@ -1,7 +1,10 @@
 package com.reserv.myapplicationeli.views.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
@@ -12,6 +15,7 @@ import android.widget.GridView;
 public class NonScrollGridView extends GridView {
     public NonScrollGridView(Context context) {
         super(context);
+
     }
 
     public NonScrollGridView(Context context, AttributeSet attrs) {
@@ -29,5 +33,29 @@ public class NonScrollGridView extends GridView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec_custom);
         ViewGroup.LayoutParams params = getLayoutParams();
         params.height = getMeasuredHeight();
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+
+        final int count = getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = getChildAt(i);
+            int bottom = child.getBottom();
+            int left = child.getLeft();
+            int right = child.getRight();
+
+            Paint paint = new Paint();
+            paint.setColor(0xffececec);
+
+            paint.setStrokeWidth(Math.round(0.5));
+
+            int offset =1; // Some offset
+
+                    canvas.drawLine(left + offset, bottom, right - offset, bottom, paint);
+        }
+
+
+        super.dispatchDraw(canvas);
     }
 }

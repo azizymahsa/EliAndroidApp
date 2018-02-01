@@ -20,17 +20,19 @@ import java.util.ArrayList;
  * Created by Reza.nejati on 1/8/2018.
  */
 
-public class HotelProprtiesAdapter extends BaseAdapter{
+public class HotelProprtiesAdapter extends BaseAdapter {
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private LayoutInflater inflater;
     private ViewHolder holder;
     Activity context;
     NonScrollGridView nonScrollGridView;
+    boolean isPolicy;
 
 
-    public HotelProprtiesAdapter(ArrayList<HotelProprtiesModels> hotelProprtiesModels, Activity context, NonScrollGridView nonScrollGridView) {
+    public HotelProprtiesAdapter(ArrayList<HotelProprtiesModels> hotelProprtiesModels, Activity context, NonScrollGridView nonScrollGridView, boolean isPolicy) {
         this.hotelProprtiesModels = hotelProprtiesModels;
         this.context = context;
+        this.isPolicy = isPolicy;
         this.nonScrollGridView = nonScrollGridView;
         inflater = LayoutInflater.from(context);
     }
@@ -54,10 +56,10 @@ public class HotelProprtiesAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            if (hotelProprtiesModels.get(position).getCategoryID()==1){
+            if (hotelProprtiesModels.get(position).getCategoryID() == 1) {
                 convertView = inflater.inflate(R.layout.select_hotel_item_pro, null);
 
-            }else{
+            } else {
 
                 convertView = inflater.inflate(R.layout.select_hotel_item_pro2, null);
 
@@ -72,35 +74,40 @@ public class HotelProprtiesAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-
-        if (hotelProprtiesModels.get(position).getCategoryID()==1) {
-            try{
-                Typeface t = Typeface.createFromAsset(context.getAssets(), "fonts/Facility.ttf");
-                holder.tvImage.setTypeface(t);
-                String icon = hotelProprtiesModels.get(position).getImage().substring(1);
-                icon="&#"+icon+";";
-                // char c = icon.charAt(0);
-
-                String valHexStr = icon.replace("&#x", "").replace(";", "");
-                long valLong = Long.parseLong(valHexStr,16);
-
-                holder.tvImage.setText((char)valLong+"");
-                Log.e("dfsf", hotelProprtiesModels.get(position).getImage() );
-                Log.e("dfsf",  holder.tvImage.getText().toString() );
-
-            }catch (Exception e){}
-            holder.tvTitle.setText(hotelProprtiesModels.get(position).getPropertyTitle());
-            nonScrollGridView.setNumColumns(3);
-
-        }else {
-            nonScrollGridView.setNumColumns(1);
+        if (isPolicy){
             holder.tvTitle.setText(hotelProprtiesModels.get(position).getPropertyTitle());
 
             holder.tvImage.setText(hotelProprtiesModels.get(position).getPropertyDescription());
+        }else{
+            if (hotelProprtiesModels.get(position).getCategoryID() == 1) {
+                try {
+                    Typeface t = Typeface.createFromAsset(context.getAssets(), "fonts/Facility.ttf");
+                    holder.tvImage.setTypeface(t);
+                    String icon = hotelProprtiesModels.get(position).getImage().substring(1);
+                    icon = "&#" + icon + ";";
+                    // char c = icon.charAt(0);
+
+                    String valHexStr = icon.replace("&#x", "").replace(";", "");
+                    long valLong = Long.parseLong(valHexStr, 16);
+
+                    holder.tvImage.setText((char) valLong + "");
+                    Log.e("dfsf", hotelProprtiesModels.get(position).getImage());
+                    Log.e("dfsf", holder.tvImage.getText().toString());
+
+                } catch (Exception e) {
+                }
+                holder.tvTitle.setText(hotelProprtiesModels.get(position).getPropertyTitle());
+                nonScrollGridView.setNumColumns(3);
+
+            } else {
+                nonScrollGridView.setNumColumns(1);
+                holder.tvTitle.setText(hotelProprtiesModels.get(position).getPropertyTitle());
+
+                holder.tvImage.setText(hotelProprtiesModels.get(position).getPropertyDescription());
 
 
+            }
         }
-
 
 
 
@@ -108,8 +115,8 @@ public class HotelProprtiesAdapter extends BaseAdapter{
     }
 
 
-    public class ViewHolder{
-        TextView tvTitle,tvImage;
+    public class ViewHolder {
+        TextView tvTitle, tvImage;
 
     }
 }

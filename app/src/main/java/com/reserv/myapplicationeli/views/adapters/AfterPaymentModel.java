@@ -5,8 +5,8 @@ package com.reserv.myapplicationeli.views.adapters;
  */
 
 public class AfterPaymentModel {
-    public final int ActionStep;
-    public final String MsgTextFa;
+      int ActionStep;
+      String MsgTextFa;
 
     public AfterPaymentModel(int actionStep, String msgTextFa) {
         ActionStep = actionStep;

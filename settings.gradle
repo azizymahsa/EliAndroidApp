@@ -2,5 +2,6 @@ include ':app'
 include ':materialdatetimepicker'
 include ':persianmaterialdatetimepicker'
 include ':library'
+include ':CircleProgressView'
 //include ':library2'
 

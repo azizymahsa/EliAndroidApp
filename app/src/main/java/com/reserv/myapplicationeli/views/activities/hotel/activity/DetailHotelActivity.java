@@ -88,17 +88,20 @@ import com.reserv.myapplicationeli.views.ui.ViewPagerAttention;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AddCommnetDialog;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import at.grabner.circleprogress.CircleProgressView;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
-    private TextView tvTitle, tvAlertComment;
+    private TextView tvTitle, tvAlertComment,tvCommentCount,tvVoteCount;
     com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView lvRooms, lvComments;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
@@ -112,7 +115,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     RoomsAdapter roomsAdapter;
     GetRoomsList getRoomsList;
     Window window;
-    LinearLayout llEmakanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent;
+    LinearLayout llEmakanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel,llInformation,llPolicy;
     FrameLayout flMap;
     View vEmakanat, vMap, vRezerv, vComment;
     private GoogleMap map;
@@ -124,7 +127,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     GetHotelDetail getHotelDetail;
     TextView tvHotelName, tvCityName, tvAdress, tvAlert, tvAlertError;
     ImageView ivImage;
-    LinearLayout llDynamic, llLoading, llComment;
+    LinearLayout llDynamic, llLoading, llComment, llEmkanat;
     AVLoadingIndicatorView avi1, aviComment;
     FancyButton btnSendComment, btnSortComment, btnOk;
 
@@ -139,6 +142,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     RelativeLayout elNotFound;
     GetComment getComment;
     boolean isComment = true;
+    CircleProgressView circleView;
+
 
 
     @Override
@@ -150,8 +155,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         initView();
         initMap();
-        try{
-            if (getIntent().getExtras().getString("Type").equals("Pakage")){
+        try {
+            if (getIntent().getExtras().getString("Type").equals("Pakage")) {
 
                 llRezervClick.setVisibility(View.GONE);
                 lvRooms.setVisibility(View.GONE);
@@ -164,7 +169,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
             }
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
 
         //flights
@@ -226,6 +232,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvAlertError = findViewById(R.id.tvAlertError);
         tvAlert = findViewById(R.id.tvAlert);
         svDetail = findViewById(R.id.svDetail);
+        llEmkanat = findViewById(R.id.llEmkanat);
+        llAroundHotel = findViewById(R.id.llAroundHotel);
+        llInformation = findViewById(R.id.llInformation);
+        circleView = findViewById(R.id.circleView);
+        llPolicy = findViewById(R.id.llPolicy);
+        tvCommentCount = findViewById(R.id.tvCommentCount);
+        tvVoteCount = findViewById(R.id.tvVoteCount);
         avi1 = findViewById(R.id.avi1);
         llEmakanatClick.setOnClickListener(this);
         llMapClick.setOnClickListener(this);
@@ -253,6 +266,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         svDetail.setFocusable(false);
         llDynamic.setFocusable(false);
         llCommentContent.setFocusable(false);
+        svDetail.setFocusable(false);
 
        /* svDetail.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -551,12 +565,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 }
 
                 for (HotelProprties hotelProprties : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties) {
-                    if (hotelProprties.CategoryID!=4){
+                    if (hotelProprties.CategoryID != 4) {
                         arrayStringList.add(hotelProprties.Category);
 
-                        hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont,hotelProprties.PropertyDescription,hotelProprties.CategoryID));
+                        hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
                     }
-
 
 
                     //add_textView(hotelProprties.PropertyTitle);
@@ -570,6 +583,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 hs.size();
 
 
+              /*  String toMoveUp = "امکانات هتل";
+                while (arrayStringList.indexOf(toMoveUp) != 0) {
+                    int i = arrayStringList.indexOf(toMoveUp);
+                    Collections.swap(arrayStringList, i, i - 2);
+                }
+*/
                 HashMap<String, ArrayList<HotelProprtiesModels>> myMap = new HashMap<String, ArrayList<HotelProprtiesModels>>();
                 for (int i = 0; i < arrayStringList.size(); i++) {
                     ArrayList<HotelProprtiesModels> test = new ArrayList<>();
@@ -578,7 +597,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                         if (arrayStringList.get(i).equals(hotelProprtiesModels.get(j).getPropertyCat())) {
                             test.add(new HotelProprtiesModels(hotelProprtiesModels.get(j).getPropertyTitle(), hotelProprtiesModels.get(j).getPropertyCat(),
-                                    hotelProprtiesModels.get(j).getImage(),hotelProprtiesModels.get(j).getPropertyDescription(),hotelProprtiesModels.get(j).getCategoryID()));
+                                    hotelProprtiesModels.get(j).getImage(), hotelProprtiesModels.get(j).getPropertyDescription(), hotelProprtiesModels.get(j).getCategoryID()));
 
 
                         }
@@ -593,32 +612,51 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 for (Map.Entry<String, ArrayList<HotelProprtiesModels>> entry : myMap.entrySet()) {
                     String key = entry.getKey();
                     ArrayList<HotelProprtiesModels> value = entry.getValue();
-                    TextView textView = new TextView(DetailHotelActivity.this);
-                    textView.setText(key);
+                    if (key.contains("امکانات")) {
+                        add_view(key, value, llEmkanat);
 
-                    Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
-                    textView.setTypeface(t);
-                    textView.setPadding(10, 10, 10, 10);
+                    }
+                    if (key.contains("اطراف")) {
 
-                    textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT));
-                    textView.setTextSize(12);
-                    textView.setGravity(Gravity.CENTER);
-                    textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
-                    llDynamic.addView(textView);
+                        add_view(key, value, llAroundHotel);
+
+                    }
+                    if (key.contains("قوانین")) {
+
+                        //add_view(key, value, llPolicy);
+                        TextView textView = new TextView(DetailHotelActivity.this);
+                        textView.setText(key);
+
+                        Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
+                        textView.setTypeface(t);
+                        textView.setPadding(10, 10, 10, 10);
+
+                        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT));
+                        textView.setTextSize(12);
+                        textView.setGravity(Gravity.CENTER);
+                        textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
+                        llPolicy.addView(textView);
 
 
 
 
 
-                    NonScrollGridView nonScrollGridView = new NonScrollGridView(DetailHotelActivity.this);
-                    nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT));
-                   // nonScrollGridView.setNumColumns(2);
+                        NonScrollListView nonScrollGridView = new NonScrollListView(DetailHotelActivity.this);
+                        nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT));
+                        // nonScrollGridView.setNumColumns(2);
 
-                    nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, DetailHotelActivity.this,nonScrollGridView));
-                    nonScrollGridView.setFocusable(false);
-                    llDynamic.addView(nonScrollGridView);
+                        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, DetailHotelActivity.this, null,true));
+                        //     nonScrollGridView.setFocusable(false);
+                        llPolicy.addView(nonScrollGridView);
+
+                    }
+                    if (key.contains("اطلاعات")) {
+
+                        add_view(key, value, llInformation);
+
+                    }
 
 
                 }
@@ -669,6 +707,36 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         }
 
+    }
+
+    public void add_view(String key, ArrayList<HotelProprtiesModels> hotelProprtiesModels, LinearLayout linearLayout) {
+
+        TextView textView = new TextView(DetailHotelActivity.this);
+        textView.setText(key);
+
+        Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
+        textView.setTypeface(t);
+        textView.setPadding(10, 10, 10, 10);
+
+        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        textView.setTextSize(12);
+        textView.setGravity(Gravity.CENTER);
+        textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
+        linearLayout.addView(textView);
+
+
+
+
+
+        NonScrollGridView nonScrollGridView = new NonScrollGridView(DetailHotelActivity.this);
+        nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        // nonScrollGridView.setNumColumns(2);
+
+        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(hotelProprtiesModels, DetailHotelActivity.this, nonScrollGridView,false));
+   //     nonScrollGridView.setFocusable(false);
+        linearLayout.addView(nonScrollGridView);
     }
 
 
@@ -743,7 +811,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 GetCommentRequest getCommentRequest = new GetCommentRequest();
                 Request request = new Request();
                 request.setCulture("fa-IR");
-                request.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
+             //   request.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
+                request.setEHotelId("767");
                 getCommentRequest.setRequest(request);
                 Log.e("testtt", new Gson().toJson(getCommentRequest).toString());
                 getComment = new GetComment(getCommentRequest);
@@ -763,6 +832,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
             try {
+                circleView.setDecimalFormat(new DecimalFormat("0.0"));
+
+                circleView.setMaxValue(10);
+              circleView.setUnitVisible(false);
+
 
                 for (int i = 0; i < getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length; i++) {
                     commentModels.add(new CommentModel(1, 5, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Title, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Content,
@@ -773,6 +847,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 commentAdapter = new CommentAdapter(DetailHotelActivity.this, commentModels);
                 lvComments.setAdapter(commentAdapter);
+                lvComments.setFocusable(false);
+                tvVoteCount.setText("از مجموع "+getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent+" رای ثبت شده");
+                tvCommentCount.setText("نظرات کاربران "+getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount+" نظر");
+                circleView.setValueAnimated(Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore));
+                Log.e("fer", Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore)+"");
                 if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {
 
 
@@ -780,8 +859,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     llCommentContent.setVisibility(View.GONE);
                 }
 
-                //    Toast.makeText(DetailHotelActivity.this, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[0].SubmitNickName, Toast.LENGTH_SHORT).show();
-                //  setListViewHeightBasedOnChildren(lvRooms);
+              /*  View view=getLayoutInflater().inflate(R.layout.view_header,null);
+                lvComments.addHeaderView(view);*/
             } catch (Exception e) {
                /* avi1.setVisibility(View.GONE);
                 llLoading.setVisibility(View.GONE);
