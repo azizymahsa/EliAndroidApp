@@ -61,6 +61,7 @@
                 android:imeOptions="actionNext"
                 android:textColor="@color/dark_blue"
                 android:singleLine="true"
+                android:inputType="textEmailAddress"
                 />
             <TextView
                 android:layout_width="0dp"

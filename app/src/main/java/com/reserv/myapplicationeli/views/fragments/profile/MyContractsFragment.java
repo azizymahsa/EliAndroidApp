@@ -58,6 +58,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
         follower = view.findViewById(R.id.contract_follower);
         email = view.findViewById(R.id.contract_email);
 
+        //set data of login for contracts
         num_contract.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getCntID()+"");
         date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getDateFa());
         path.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getPathNames());
@@ -81,6 +82,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
         return true;
     }
 
+    //request for send contract
     public EmailContractReq getEmailContractReq(){
         EmailContractReq emailContractReq = new EmailContractReq();
         emailContractReq.setCulture("fa-IR");

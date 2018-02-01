@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Created by elham.bonyani on 1/6/2018.
+ * list of date in top of the activity search pack
  */
 
 public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableDateRowHolder> {

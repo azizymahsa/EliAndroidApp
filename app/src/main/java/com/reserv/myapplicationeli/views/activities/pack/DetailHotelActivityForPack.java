@@ -1,11 +1,8 @@
-/*
 package com.reserv.myapplicationeli.views.activities.pack;
 
-*/
 /**
  * Reza Nejati <reza.n.j.t.i@gmail.com>
- *//*
-
+ */
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -166,11 +163,9 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
                 new GetHoldRoomAsync().execute();
             }
         });
-*/
 /*
         hotelProprtiesAdapter = new HotelProprtiesAdapter(hotelProprtiesModels,this);
-       gvEmakanat.setAdapter(hotelProprtiesAdapter);*//*
-
+       gvEmakanat.setAdapter(hotelProprtiesAdapter);*/
     }
 
     @Override
@@ -264,13 +259,11 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
         //  rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
         //  rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         // rlp.setMargins(0, 0, 30, 210);
-      */
-/*  map.setTrafficEnabled(true);
+      /*  map.setTrafficEnabled(true);
         map.setOnMapClickListener(this);
         map.setOnCameraIdleListener(this);
         map.setOnCameraMoveListener(this);
-        *//*
-
+        */
 
 
     }
@@ -388,10 +381,8 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
 
         protected void onPreExecute() {
 
-          */
-/*  window.setStatusBarColor(getColor(R.color.blue2));
-            new InitUi().Loading(rlLoading, rlRoot, true);*//*
-
+          /*  window.setStatusBarColor(getColor(R.color.blue2));
+            new InitUi().Loading(rlLoading, rlRoot, true);*/
 
 
         }
@@ -418,10 +409,8 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
             ArrayList<ImageModel> imageModels = new ArrayList<>();
             //  new InitUi().Loading(rlLoading,rlRoot,false);
 
-         */
-/*   new InitUi().Loading(rlLoading, rlRoot, false);
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));*//*
-
+         /*   new InitUi().Loading(rlLoading, rlRoot, false);
+            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));*/
        try {
              tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
              tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
@@ -437,7 +426,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
              }
 
              for (HotelProprties hotelProprties :getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties){
-                 hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle,hotelProprties.PropertyCategory,hotelProprties.PropertyIcon,));
+                 hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle,hotelProprties.PropertyCategory,hotelProprties.PropertyIcon));
                  //add_textView(hotelProprties.PropertyTitle);
 
              }
@@ -499,11 +488,9 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
             TextView textView = new TextView(this);
             textView.setText(label);
             textView.setTextSize(16);
-          */
-/*  Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "irsans.ttf");
+          /*  Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "irsans.ttf");
             textView.setTypeface(type);
-            textView.setTextColor(getResources().getColor(R.color.textColor));*//*
-
+            textView.setTextColor(getResources().getColor(R.color.textColor));*/
             textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             textView.setGravity(Gravity.CENTER | Gravity.RIGHT | Gravity.BOTTOM);
@@ -517,4 +504,3 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
 
 
 }
-*/

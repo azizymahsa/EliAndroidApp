@@ -92,7 +92,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
     LinearLayout llBottom, llSort,llFilter;
     FancyButton btnOk, btnBack, btnHome;
-    ImageView ivLoading,ivImage;
+    ImageView ivLoading;
 
     String raft, bargasht;
     String raftFa, bargashtFa;
@@ -126,10 +126,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         btnHome.setOnClickListener(this);
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
-        ivImage = findViewById(R.id.ivImage);
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
-        ivImage.setImageResource(R.drawable.flight_h);
+
         llBottom.setOnClickListener(this);
         llSort.setOnClickListener(this);
         adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, this);
@@ -291,15 +290,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         ///
                         raftFa=persianCalendar.getPersianLongDate();
                         raft = formatter.format(cal.getTime());
-                        if (getIntent().getExtras().getBoolean("Geo")) {
-
-                            tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
-
-                        }else{
-                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
-
-
-                        }
+                        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
                         new GetHotelAsync().execute();
                     } else {
                         Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
@@ -380,9 +371,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     public void onReturnValue(ArrayList<FilterModel> type, String search, ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
                               ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, ArrayList<FilterPriceModel> filterHotelPriceModel,
                               ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
-        boolean remove =false;
-        list.setVisibility(View.VISIBLE);
-        elNotFound.setVisibility(View.GONE);
+
 
         this.filterModels = type;
         this.searchIn = search;
@@ -504,8 +493,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
             if (filterModel.isRemove()) {
-                remove = true;
-
                 search="";
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
@@ -519,17 +506,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         }
 
         if (selectHotelModelArrayListFilter.isEmpty()) {
-            if (!remove){
-                //   Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
-                elNotFound.setVisibility(View.VISIBLE);
-                tvAlert.setText("هیچ موردی یافت نشد");
-                list.setVisibility(View.GONE);
-                btnOk.setVisibility(View.GONE);
-                tvCount.setText("(" + 0 + "مورد یافت شد" + ")");
-
-            }else{
-
-            }
 
             isFilter = false;
             ///Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
@@ -538,7 +514,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
             tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
-
+            searchIn="";
 
 
 
@@ -1409,15 +1385,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
-                    list.setVisibility(View.GONE);
-
                 }else if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
-
-                    list.setVisibility(View.GONE);
 
                 }else{
 
@@ -1541,10 +1513,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
-
-                list.setVisibility(View.GONE);
-                btnOk.setVisibility(View.VISIBLE);
-
             }
 
 

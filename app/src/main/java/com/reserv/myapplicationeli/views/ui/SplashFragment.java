@@ -12,12 +12,9 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.MediaController;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequestAdd;
@@ -29,12 +26,6 @@ import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.util.ArrayList;
-
-import pl.droidsonroids.gif.GifDrawable;
-import pl.droidsonroids.gif.GifImageButton;
-import pl.droidsonroids.gif.GifImageView;
-
 
 public class SplashFragment extends BaseActivity {
 
@@ -42,7 +33,6 @@ public class SplashFragment extends BaseActivity {
     private Handler handler,handler2;
     private ImageView ivSplash,ivLoading;
     AVLoadingIndicatorView avi;
-    GifImageView gifImageView;
 
 
     private enum DOWNLOAD_TYPE {
@@ -58,18 +48,16 @@ public class SplashFragment extends BaseActivity {
                 "EligashtMlb", "Mobile"),"fa-IR",new ReviewComment(0,"sdfdsf",
                 0,1,"Developer@eligasht.com","dsfsdf","sfsdfsdf",0)))));
         //checking permission in start app
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = {Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE, Manifest.permission.CALL_PRIVILEGED};
 
+        if(!hasPermissions(this, PERMISSIONS)){
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
         //
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
-       // Glide.with(this).load(R.raw.new_splash_loading).into(ivSplash);
-      gifImageView=findViewById(R.id.gif);
-   /*     GifImageButton gib = new GifImageButton(this);
-        setContentView(gib);*/
-        gifImageView.setImageResource(R.drawable.new_splash_loading);
-        final MediaController mc = new MediaController(this);
-        mc.setMediaPlayer((GifDrawable) gifImageView.getDrawable());
-        mc.setAnchorView(gifImageView);
+        Glide.with(this).load(R.raw.new_splash_loading).into(ivSplash);
 
         avi = findViewById(R.id.avi);
         final int[] imageArray = new int[]{R.drawable.comp1_00000,
@@ -138,34 +126,13 @@ public class SplashFragment extends BaseActivity {
                 }
                 if (i[0] == 31) {
                     avi.setVisibility(View.VISIBLE);
-
                 }
                 if (i[0] == 49) {
                    // handler.removeCallbacksAndMessages(null);
-
-
-
                    if(Utility.isNetworkAvailable(SplashFragment.this)){
-                       new TedPermission(SplashFragment.this)
-                               .setPermissionListener(new PermissionListener() {
-                                   @Override
-                                   public void onPermissionGranted() {
 
-
-                                       startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                                       finish();
-                                   }
-
-                                   @Override
-                                   public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-
-                                   }
-                               })
-                               .setDeniedMessage("If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
-                               .setPermissions(Manifest.permission.INTERNET,Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE)
-                               .check();
-
-
+                       startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                       finish();
                     }else{
                        handler.removeCallbacks(runnable);
 

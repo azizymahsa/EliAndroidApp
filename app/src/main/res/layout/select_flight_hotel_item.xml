@@ -332,7 +332,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/colorPrimary" />
-
+                            <TextView
+                                android:id="@+id/nonStop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:layout_toLeftOf="@+id/ivArrow"
+                                android:text="IKA"
+                                android:textColor="@color/text_color_4d"
+                                android:textSize="12dp"
+                                android:visibility="gone"/>
 
                             <TextView
                                 android:id="@+id/tvRaftTime"
@@ -399,16 +408,6 @@
                                     android:background="@color/colorPrimary" />
                                 <TextView
                                     android:id="@+id/nonStop2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_toLeftOf="@+id/ivArrow"
-                                    android:text="IKA"
-                                    android:textColor="@color/text_color_4d"
-                                    android:textSize="12dp"
-                                    android:visibility="gone"/>
-                                <TextView
-                                    android:id="@+id/nonStop"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="5dp"

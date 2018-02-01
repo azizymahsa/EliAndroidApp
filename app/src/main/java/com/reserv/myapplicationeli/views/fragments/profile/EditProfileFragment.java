@@ -102,6 +102,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         birthday_date = view.findViewById(R.id.edt_birthday);
         txt_birthday =view.findViewById(R.id.txt_birthday);
 
+        //set information of user
         birthdayDate = WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserBirthDayMiladi();
         edt_name_fa.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
         edt_name_En.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameE());
@@ -245,7 +246,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         }
         return true;
     }
-
+    //request for edit profile
     public RegisterListReq getRegisterListReq(){
         RegisterListReq registerListReq = new RegisterListReq();
         registerListReq.setWebUserFnameF(edt_name_fa.getText().toString());
@@ -285,6 +286,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     }
 
+    //shamsi
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
         year_ = year;

@@ -31,7 +31,7 @@ import com.reserv.myapplicationeli.views.ui.InitUi;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//use mvp's model -> go to RoomPassenger for get function of views
 public class AddRoomActivity extends BaseActivity implements View.OnClickListener, InfoRoomsContract.View {
 
     public SimpleRecycleView rcl_room;

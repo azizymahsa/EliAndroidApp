@@ -58,6 +58,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    //request for register and get result
     private void Register(){
 
         RegisterListReq registerListReq = new RegisterListReq();

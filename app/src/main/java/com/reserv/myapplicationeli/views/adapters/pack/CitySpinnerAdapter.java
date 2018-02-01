@@ -11,7 +11,7 @@ import com.reserv.myapplicationeli.models.model.HotelCity;
 
 import java.util.ArrayList;
 
-
+//cities spinner
 public class CitySpinnerAdapter extends ArrayAdapter<HotelCity> {
 
     private ArrayList<HotelCity> mValues;

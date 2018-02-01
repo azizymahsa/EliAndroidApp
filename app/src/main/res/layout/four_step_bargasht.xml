@@ -19,8 +19,7 @@
 
         <TextView
             android:id="@+id/tvANRaft4_1_bargasht"
-            android:layout_width="30dp"
-            android:gravity="right"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/ivArrow"
             android:text="IKA"

@@ -551,14 +551,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 }
 
                 for (HotelProprties hotelProprties : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties) {
-                    if (hotelProprties.CategoryID!=4){
-                        arrayStringList.add(hotelProprties.Category);
+                    arrayStringList.add(hotelProprties.Category);
 
-                        hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont,hotelProprties.PropertyDescription,hotelProprties.CategoryID));
-                    }
-
-
-
+                    hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont));
                     //add_textView(hotelProprties.PropertyTitle);
 
                 }
@@ -577,8 +572,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     for (int j = 0; j < hotelProprtiesModels.size(); j++) {
 
                         if (arrayStringList.get(i).equals(hotelProprtiesModels.get(j).getPropertyCat())) {
-                            test.add(new HotelProprtiesModels(hotelProprtiesModels.get(j).getPropertyTitle(), hotelProprtiesModels.get(j).getPropertyCat(),
-                                    hotelProprtiesModels.get(j).getImage(),hotelProprtiesModels.get(j).getPropertyDescription(),hotelProprtiesModels.get(j).getCategoryID()));
+                            test.add(new HotelProprtiesModels(hotelProprtiesModels.get(j).getPropertyTitle(), hotelProprtiesModels.get(j).getPropertyCat(), hotelProprtiesModels.get(j).getImage()));
 
 
                         }
@@ -608,15 +602,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     llDynamic.addView(textView);
 
 
-
-
-
                     NonScrollGridView nonScrollGridView = new NonScrollGridView(DetailHotelActivity.this);
                     nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));
-                   // nonScrollGridView.setNumColumns(2);
+                    nonScrollGridView.setNumColumns(2);
 
-                    nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, DetailHotelActivity.this,nonScrollGridView));
+                    nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, DetailHotelActivity.this));
                     nonScrollGridView.setFocusable(false);
                     llDynamic.addView(nonScrollGridView);
 

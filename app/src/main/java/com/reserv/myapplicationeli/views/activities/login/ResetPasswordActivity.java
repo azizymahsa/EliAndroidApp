@@ -51,6 +51,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    //request for remember password
     private void RememberPass(){
         ResetPassRequestModel resetPassRequestModel = new ResetPassRequestModel();
         resetPassRequestModel.setRequest(email_reset_pass.getText().toString());

@@ -161,6 +161,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	public  SearchParvazPinAdapter searchParvazPinAdapter;
 	public static RecyclerView recyclerViewFlight;
 	Window window;
+	public ArrayList<ModelCheckBox> arrayTrue=new ArrayList<>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -187,9 +188,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 		btnHome = (FancyButton) findViewById(R.id.btnHome);
 		btnHome.setOnClickListener(this);
-      /*btnHome.setCustomTextFont("fonts/icomoon.ttf");
-      btnHome.setText(getString(R.string.search_back_right));
-      */
+		/*btnHome.setCustomTextFont("fonts/icomoon.ttf");
+		btnHome.setText(getString(R.string.search_back_right));
+		*/
 		txtNoResult = (TextView) findViewById(R.id.txtNoResult);
 		txtNoResult.setOnClickListener(this);
 		txtFilter = (TextView) findViewById(R.id.txtFilter);
@@ -239,19 +240,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 			DdateF = extras.getString("Value-DepartureDate-format");
 			AdateF = extras.getString("Value-ArrivalDate-format");
-			txtDateOnvan = (TextView) findViewById(R.id.txtDateOnvan);
 
 			Ddate = extras.getString("Value-DepartureDate");
 			Adate = extras.getString("Value-ArrivalDate");
 
-			if (getIntent().getExtras().getBoolean("Geo")){
-				txtDateOnvan.setText( Utility.dateShowViewFlight(Adate) + "  -  " +Utility.dateShowViewFlight(Ddate));
-
-
-			}else{
-				txtDateOnvan.setText(DdateF+ "  -  " + AdateF);
-
-			}
+			txtDateOnvan = (TextView) findViewById(R.id.txtDateOnvan);
+			txtDateOnvan.setText(DdateF + "  -  " + AdateF);
 
 			System.out.println("txtCityBargasht" + maghsadf + "txtCityRaft" + mabdaf);
 		}
@@ -282,7 +276,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         /* Toast.makeText(getApplicationContext(),
                          "Group Clicked " + listDataHeader.get(groupPosition),
-                    Toast.LENGTH_SHORT).show();*/
+	    				 Toast.LENGTH_SHORT).show();*/
 				return false;
 			}
 		});
@@ -314,10 +308,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			public boolean onChildClick(ExpandableListView parent, View v,
 										int groupPosition, int childPosition, long id) {
 
-                  /*Toast.makeText(SearchParvazActivity.this,
+						/*Toast.makeText(SearchParvazActivity.this,
                                  listDataHeaderExpanding.get(groupPosition)
-                               + " : "
-                               + listDataChildExpanding.get(listDataHeaderExpanding.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();*/
+	     								+ " : "
+	     								+ listDataChildExpanding.get(listDataHeaderExpanding.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();*/
 
 
 				return false;
@@ -327,28 +321,28 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 ///////////////////Pin
 
 		//for flight==================================================================================
-		recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+		  recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
 		recyclerViewFlight.addItemDecoration(new DividerItemDecoration(SearchParvazActivity.this, 1));
 		recyclerViewFlight.setLayoutManager(new LinearLayoutManager(SearchParvazActivity.this));
 		ArrayList<PinModelDetail> pinModelDetails = new ArrayList<>();
 		ArrayList<PinModelHeader> pinModelHeaders = new ArrayList<>();
 		//JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
 
-      /*for (int i = 0; i < jArray5.length(); i++) {
+		/*for (int i = 0; i < jArray5.length(); i++) {
 
-         pinModelDetails.add(new PinModelDetail(jArray5.getJSONObject(i).getString("AirlineNameFa"),
-               jArray5.getJSONObject(i).getString("DepAirPortFa"),
-               jArray5.getJSONObject(i).getString("ArrAirPortFa"),
-               Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
-               jArray5.getJSONObject(i).getString("FltTime"),
-               //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
-               jArray5.getJSONObject(i).getString("FltCheckinTime"),
+			pinModelDetails.add(new PinModelDetail(jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepAirPortFa"),
+					jArray5.getJSONObject(i).getString("ArrAirPortFa"),
+					Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
+					jArray5.getJSONObject(i).getString("FltTime"),
+					//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+					jArray5.getJSONObject(i).getString("FltCheckinTime"),
 
-               jArray5.getJSONObject(i).getString("FltNumber"),
-               jArray5.getJSONObject(i).getString("AirlineNameFa"),
-               jArray5.getJSONObject(i).getString("DepartureCityFa")));
+					jArray5.getJSONObject(i).getString("FltNumber"),
+					jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepartureCityFa")));
 
-      }*/
+		}*/
 		if (!pinModelDetails.isEmpty()) {
 			recyclerViewFlight.setVisibility(View.VISIBLE);
 			recyclerViewFlight.setAdapter(new SearchParvazPinAdapter(pinModelDetails,pinModelHeaders));
@@ -365,21 +359,21 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		//ArrayList<PinModelHeader> pinModelHeaders = new ArrayList<>();
 		//JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
 
-      /*for (int i = 0; i < jArray5.length(); i++) {
+		/*for (int i = 0; i < jArray5.length(); i++) {
 
-         pinModelDetails.add(new PinModelDetail(jArray5.getJSONObject(i).getString("AirlineNameFa"),
-               jArray5.getJSONObject(i).getString("DepAirPortFa"),
-               jArray5.getJSONObject(i).getString("ArrAirPortFa"),
-               Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
-               jArray5.getJSONObject(i).getString("FltTime"),
-               //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
-               jArray5.getJSONObject(i).getString("FltCheckinTime"),
+			pinModelDetails.add(new PinModelDetail(jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepAirPortFa"),
+					jArray5.getJSONObject(i).getString("ArrAirPortFa"),
+					Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
+					jArray5.getJSONObject(i).getString("FltTime"),
+					//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+					jArray5.getJSONObject(i).getString("FltCheckinTime"),
 
-               jArray5.getJSONObject(i).getString("FltNumber"),
-               jArray5.getJSONObject(i).getString("AirlineNameFa"),
-               jArray5.getJSONObject(i).getString("DepartureCityFa")));
+					jArray5.getJSONObject(i).getString("FltNumber"),
+					jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepartureCityFa")));
 
-      }*/
+		}*/
 		if (!pinModelDetails.isEmpty()) {
 			recyclerViewFlight.setVisibility(View.VISIBLE);
 			recyclerViewFlight.setAdapter(new SearchParvazPinAdapter(pinModelDetails,pinModelHeaders));
@@ -395,7 +389,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		boolean foundFirst = true;
 		boolean foundBis = true;
 		boolean foundEc = true;
-		this. filterAirlines = arrayTrue;
+	this. filterAirlines = arrayTrue;
 
 
 		this.filterModels = type;
@@ -907,7 +901,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 			linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
 			linear_expand.setVisibility(View.GONE);
-			linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+			 linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
 			txtNoResult.setText("هیچ موردی یافت نشد");
 			linear_no_result.setVisibility(View.VISIBLE);
 
@@ -935,7 +929,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 			linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
 			linear_expand.setVisibility(View.VISIBLE);
-			linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+			 linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
 			txtNoResult.setText("هیچ موردی یافت نشد");
 			linear_no_result.setVisibility(View.GONE);
 		}
@@ -1083,7 +1077,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				HttpResponse res = client.execute(post);
 				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 
-         /* JSONObject jsonObj = new JSONObject("Error");
+			/*	JSONObject jsonObj = new JSONObject("Error");
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("SearchFlightsResult");*/
 
 				return retSrc;
@@ -1141,276 +1135,276 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 					}
 					//Toast.makeText(SearchParvazActivity.this, GetError, Toast.LENGTH_LONG).show();
 				}else{
-					String ResultUniqID = GetAirportsResult.getString("ResultUniqID");//
-					globalResultUniqID = ResultUniqID;
+				String ResultUniqID = GetAirportsResult.getString("ResultUniqID");//
+				globalResultUniqID = ResultUniqID;
 
-					JSONArray jArray = GetAirportsResult.getJSONArray("Flights");//
+				JSONArray jArray = GetAirportsResult.getJSONArray("Flights");//
 
 
-					//Flights
-					for (int i = 0; i < jArray.length(); i++) {
-						JSONObject jPricedItinerary = jArray.getJSONObject(i);//
-						Flight flight = new Flight();
-						//SegmentList
-						JSONArray ss = jPricedItinerary.getJSONArray("SegmentList");
+				//Flights
+				for (int i = 0; i < jArray.length(); i++) {
+					JSONObject jPricedItinerary = jArray.getJSONObject(i);//
+					Flight flight = new Flight();
+					//SegmentList
+					JSONArray ss = jPricedItinerary.getJSONArray("SegmentList");
 
-						List<FlightSegment> SegmentList = new ArrayList<FlightSegment>();
-						List<FlightSegmentTrue> SegmentListTrue = new ArrayList<FlightSegmentTrue>();
-						List<FlightSegmentFalse> SegmentListFalse = new ArrayList<FlightSegmentFalse>();
+					List<FlightSegment> SegmentList = new ArrayList<FlightSegment>();
+					List<FlightSegmentTrue> SegmentListTrue = new ArrayList<FlightSegmentTrue>();
+					List<FlightSegmentFalse> SegmentListFalse = new ArrayList<FlightSegmentFalse>();
 
-						for (int i1 = 0; i1 < ss.length(); i1++) {
-							JSONObject jPricedIfdgtinerary = ss.getJSONObject(i1);//
-							// for(int i=0;i<jArray.length();i++){
+					for (int i1 = 0; i1 < ss.length(); i1++) {
+						JSONObject jPricedIfdgtinerary = ss.getJSONObject(i1);//
+						// for(int i=0;i<jArray.length();i++){
 
-							FlightSegment flightSegment = new FlightSegment();
-							flightSegment.setAirlineCode(jPricedIfdgtinerary.getString("AirlineCode"));
-							flightSegment.setAirlineID(jPricedIfdgtinerary.getInt("AirlineID"));
-							flightSegment.setAirlineNameEn(jPricedIfdgtinerary.getString("AirlineNameEn"));
-							flightSegment.setAirlineNameFa(jPricedIfdgtinerary.getString("AirlineNameFa"));
-							flightSegment.setAirplaneName(jPricedIfdgtinerary.getString("AirplaneName"));
-							flightSegment.setArrivalAirportCode(jPricedIfdgtinerary.getString("ArrivalAirportCode"));
-							flightSegment.setArrivalAirportNameEn(jPricedIfdgtinerary.getString("ArrivalAirportNameEn"));
-							flightSegment.setArrivalAirportNameFa(jPricedIfdgtinerary.getString("ArrivalAirportNameFa"));
-							flightSegment.setArrivalCityCode(jPricedIfdgtinerary.getString("ArrivalCityCode"));
-							flightSegment.setArrivalCityNameEn(jPricedIfdgtinerary.getString("ArrivalCityNameEn"));
+						FlightSegment flightSegment = new FlightSegment();
+						flightSegment.setAirlineCode(jPricedIfdgtinerary.getString("AirlineCode"));
+						flightSegment.setAirlineID(jPricedIfdgtinerary.getInt("AirlineID"));
+						flightSegment.setAirlineNameEn(jPricedIfdgtinerary.getString("AirlineNameEn"));
+						flightSegment.setAirlineNameFa(jPricedIfdgtinerary.getString("AirlineNameFa"));
+						flightSegment.setAirplaneName(jPricedIfdgtinerary.getString("AirplaneName"));
+						flightSegment.setArrivalAirportCode(jPricedIfdgtinerary.getString("ArrivalAirportCode"));
+						flightSegment.setArrivalAirportNameEn(jPricedIfdgtinerary.getString("ArrivalAirportNameEn"));
+						flightSegment.setArrivalAirportNameFa(jPricedIfdgtinerary.getString("ArrivalAirportNameFa"));
+						flightSegment.setArrivalCityCode(jPricedIfdgtinerary.getString("ArrivalCityCode"));
+						flightSegment.setArrivalCityNameEn(jPricedIfdgtinerary.getString("ArrivalCityNameEn"));
 
-							flightSegment.setArrivalCityNameFa(jPricedIfdgtinerary.getString("ArrivalCityNameFa"));
-							flightSegment.setArrivalCountryNameEn(jPricedIfdgtinerary.getString("ArrivalCountryNameEn"));
-							flightSegment.setArrivalCountryNameFa(jPricedIfdgtinerary.getString("ArrivalCountryNameFa"));
+						flightSegment.setArrivalCityNameFa(jPricedIfdgtinerary.getString("ArrivalCityNameFa"));
+						flightSegment.setArrivalCountryNameEn(jPricedIfdgtinerary.getString("ArrivalCountryNameEn"));
+						flightSegment.setArrivalCountryNameFa(jPricedIfdgtinerary.getString("ArrivalCountryNameFa"));
+						//  flightSegment.setArrivalDate(jPricedIfdgtinerary.getString("ArrivalDate"));az noe date convert mikhad
+						flightSegment.setArrivalDateShamsi(jPricedIfdgtinerary.getString("ArrivalDateShamsi"));
+						flightSegment.setCabinClassCode(jPricedIfdgtinerary.getString("CabinClassCode"));
+						flightSegment.setCabinClassName(jPricedIfdgtinerary.getString("CabinClassName"));
+						flightSegment.setCabinClassNameFa(jPricedIfdgtinerary.getString("CabinClassNameFa"));
+						flightSegment.setDepartureAirportCode(jPricedIfdgtinerary.getString("DepartureAirportCode"));
+						flightSegment.setDepartureAirportNameEn(jPricedIfdgtinerary.getString("DepartureAirportNameEn"));
+
+						flightSegment.setDepartureAirportNameFa(jPricedIfdgtinerary.getString("DepartureAirportNameFa"));
+						flightSegment.setDepartureCityCode(jPricedIfdgtinerary.getString("DepartureCityCode"));
+						flightSegment.setDepartureCityNameEn(jPricedIfdgtinerary.getString("DepartureCityNameEn"));
+						flightSegment.setDepartureCityNameFa(jPricedIfdgtinerary.getString("DepartureCityNameFa"));
+						flightSegment.setDepartureCountryNameEn(jPricedIfdgtinerary.getString("DepartureCountryNameEn"));
+						flightSegment.setDepartureCountryNameFa(jPricedIfdgtinerary.getString("DepartureCountryNameFa"));
+						// flightSegment.setDepartureDate(jPricedIfdgtinerary.getString("DepartureDate"));convert date mikhad
+						flightSegment.setDepartureDateShamsi(jPricedIfdgtinerary.getString("DepartureDateShamsi"));
+						flightSegment.setFlightArrivalTime(jPricedIfdgtinerary.getString("FlightArrivalTime"));
+						flightSegment.setFlightNumber(jPricedIfdgtinerary.getString("FlightNumber"));
+
+						flightSegment.setFlightTime(jPricedIfdgtinerary.getString("FlightTime"));
+						flightSegment.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
+						flightSegment.setFltDurationH(jPricedIfdgtinerary.getString("FltDurationH"));
+						flightSegment.setFltDurationM(jPricedIfdgtinerary.getString("FltDurationM"));
+						flightSegment.setIsDepartureSegment(jPricedIfdgtinerary.getBoolean("IsDepartureSegment"));
+						//List<flightSegment> SegmentList ;
+						SegmentList.add(flightSegment);
+
+						if (jPricedIfdgtinerary.getBoolean("IsDepartureSegment")) {
+							FlightSegmentTrue flightSegmentTrue = new FlightSegmentTrue();
+							flightSegmentTrue.setAirlineCode(jPricedIfdgtinerary.getString("AirlineCode"));
+							flightSegmentTrue.setAirlineID(jPricedIfdgtinerary.getInt("AirlineID"));
+							// flightSegmentTrue.setAirlineNameEn(jPricedIfdgtinerary.getString("AirlineNameEn"));
+							flightSegmentTrue.setAirlineNameFa(jPricedIfdgtinerary.getString("AirlineNameFa"));
+							flightSegmentTrue.setAirplaneName(jPricedIfdgtinerary.getString("AirplaneName"));
+							flightSegmentTrue.setArrivalAirportCode(jPricedIfdgtinerary.getString("ArrivalAirportCode"));
+							//flightSegmentTrue.setArrivalAirportNameEn(jPricedIfdgtinerary.getString("ArrivalAirportNameEn"));
+							flightSegmentTrue.setArrivalAirportNameFa(jPricedIfdgtinerary.getString("ArrivalAirportNameFa"));
+							//flightSegmentTrue.setArrivalCityCode(jPricedIfdgtinerary.getString("ArrivalCityCode"));
+							//  flightSegmentTrue.setArrivalCityNameEn(jPricedIfdgtinerary.getString("ArrivalCityNameEn"));
+
+							flightSegmentTrue.setArrivalCityNameFa(jPricedIfdgtinerary.getString("ArrivalCityNameFa"));
+							// flightSegmentTrue.setArrivalCountryNameEn(jPricedIfdgtinerary.getString("ArrivalCountryNameEn"));
+							flightSegmentTrue.setArrivalCountryNameFa(jPricedIfdgtinerary.getString("ArrivalCountryNameFa"));
 							//  flightSegment.setArrivalDate(jPricedIfdgtinerary.getString("ArrivalDate"));az noe date convert mikhad
-							flightSegment.setArrivalDateShamsi(jPricedIfdgtinerary.getString("ArrivalDateShamsi"));
-							flightSegment.setCabinClassCode(jPricedIfdgtinerary.getString("CabinClassCode"));
-							flightSegment.setCabinClassName(jPricedIfdgtinerary.getString("CabinClassName"));
-							flightSegment.setCabinClassNameFa(jPricedIfdgtinerary.getString("CabinClassNameFa"));
-							flightSegment.setDepartureAirportCode(jPricedIfdgtinerary.getString("DepartureAirportCode"));
-							flightSegment.setDepartureAirportNameEn(jPricedIfdgtinerary.getString("DepartureAirportNameEn"));
+							flightSegmentTrue.setArrivalDateShamsi(jPricedIfdgtinerary.getString("ArrivalDateShamsi"));
+							// flightSegmentTrue.setCabinClassCode(jPricedIfdgtinerary.getString("CabinClassCode"));
+							// flightSegmentTrue.setCabinClassName(jPricedIfdgtinerary.getString("CabinClassName"));
+							// flightSegmentTrue.setCabinClassNameFa(jPricedIfdgtinerary.getString("CabinClassNameFa"));
+							flightSegmentTrue.setDepartureAirportCode(jPricedIfdgtinerary.getString("DepartureAirportCode"));
+							// flightSegmentTrue.setDepartureAirportNameEn(jPricedIfdgtinerary.getString("DepartureAirportNameEn"));
 
-							flightSegment.setDepartureAirportNameFa(jPricedIfdgtinerary.getString("DepartureAirportNameFa"));
-							flightSegment.setDepartureCityCode(jPricedIfdgtinerary.getString("DepartureCityCode"));
-							flightSegment.setDepartureCityNameEn(jPricedIfdgtinerary.getString("DepartureCityNameEn"));
-							flightSegment.setDepartureCityNameFa(jPricedIfdgtinerary.getString("DepartureCityNameFa"));
-							flightSegment.setDepartureCountryNameEn(jPricedIfdgtinerary.getString("DepartureCountryNameEn"));
-							flightSegment.setDepartureCountryNameFa(jPricedIfdgtinerary.getString("DepartureCountryNameFa"));
+							flightSegmentTrue.setDepartureAirportNameFa(jPricedIfdgtinerary.getString("DepartureAirportNameFa"));
+							// flightSegmentTrue.setDepartureCityCode(jPricedIfdgtinerary.getString("DepartureCityCode"));
+							//flightSegmentTrue.setDepartureCityNameEn(jPricedIfdgtinerary.getString("DepartureCityNameEn"));
+							flightSegmentTrue.setDepartureCityNameFa(jPricedIfdgtinerary.getString("DepartureCityNameFa"));
+							//flightSegmentTrue.setDepartureCountryNameEn(jPricedIfdgtinerary.getString("DepartureCountryNameEn"));
+							//flightSegmentTrue.setDepartureCountryNameFa(jPricedIfdgtinerary.getString("DepartureCountryNameFa"));
 							// flightSegment.setDepartureDate(jPricedIfdgtinerary.getString("DepartureDate"));convert date mikhad
-							flightSegment.setDepartureDateShamsi(jPricedIfdgtinerary.getString("DepartureDateShamsi"));
-							flightSegment.setFlightArrivalTime(jPricedIfdgtinerary.getString("FlightArrivalTime"));
-							flightSegment.setFlightNumber(jPricedIfdgtinerary.getString("FlightNumber"));
+							flightSegmentTrue.setDepartureDateShamsi(jPricedIfdgtinerary.getString("DepartureDateShamsi"));
+							flightSegmentTrue.setFlightArrivalTime(jPricedIfdgtinerary.getString("FlightArrivalTime"));
+							flightSegmentTrue.setFlightNumber(jPricedIfdgtinerary.getString("FlightNumber"));
 
-							flightSegment.setFlightTime(jPricedIfdgtinerary.getString("FlightTime"));
-							flightSegment.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
-							flightSegment.setFltDurationH(jPricedIfdgtinerary.getString("FltDurationH"));
-							flightSegment.setFltDurationM(jPricedIfdgtinerary.getString("FltDurationM"));
-							flightSegment.setIsDepartureSegment(jPricedIfdgtinerary.getBoolean("IsDepartureSegment"));
-							//List<flightSegment> SegmentList ;
-							SegmentList.add(flightSegment);
+							flightSegmentTrue.setFlightTime(jPricedIfdgtinerary.getString("FlightTime"));
+							flightSegmentTrue.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
+							//flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getString("FltDurationH"));
+							// flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getString("FltDurationM"));
+							flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getBoolean("IsDepartureSegment"));
+							SegmentListTrue.add(flightSegmentTrue);
+						} else {
+							FlightSegmentFalse flightSegmentTrue = new FlightSegmentFalse();
+							flightSegmentTrue.setAirlineCode(jPricedIfdgtinerary.getString("AirlineCode"));
+							flightSegmentTrue.setAirlineID(jPricedIfdgtinerary.getInt("AirlineID"));
+							// flightSegmentTrue.setAirlineNameEn(jPricedIfdgtinerary.getString("AirlineNameEn"));
+							flightSegmentTrue.setAirlineNameFa(jPricedIfdgtinerary.getString("AirlineNameFa"));
+							flightSegmentTrue.setAirplaneName(jPricedIfdgtinerary.getString("AirplaneName"));
+							flightSegmentTrue.setArrivalAirportCode(jPricedIfdgtinerary.getString("ArrivalAirportCode"));
+							//flightSegmentTrue.setArrivalAirportNameEn(jPricedIfdgtinerary.getString("ArrivalAirportNameEn"));
+							flightSegmentTrue.setArrivalAirportNameFa(jPricedIfdgtinerary.getString("ArrivalAirportNameFa"));
+							//flightSegmentTrue.setArrivalCityCode(jPricedIfdgtinerary.getString("ArrivalCityCode"));
+							//  flightSegmentTrue.setArrivalCityNameEn(jPricedIfdgtinerary.getString("ArrivalCityNameEn"));
 
-							if (jPricedIfdgtinerary.getBoolean("IsDepartureSegment")) {
-								FlightSegmentTrue flightSegmentTrue = new FlightSegmentTrue();
-								flightSegmentTrue.setAirlineCode(jPricedIfdgtinerary.getString("AirlineCode"));
-								flightSegmentTrue.setAirlineID(jPricedIfdgtinerary.getInt("AirlineID"));
-								// flightSegmentTrue.setAirlineNameEn(jPricedIfdgtinerary.getString("AirlineNameEn"));
-								flightSegmentTrue.setAirlineNameFa(jPricedIfdgtinerary.getString("AirlineNameFa"));
-								flightSegmentTrue.setAirplaneName(jPricedIfdgtinerary.getString("AirplaneName"));
-								flightSegmentTrue.setArrivalAirportCode(jPricedIfdgtinerary.getString("ArrivalAirportCode"));
-								//flightSegmentTrue.setArrivalAirportNameEn(jPricedIfdgtinerary.getString("ArrivalAirportNameEn"));
-								flightSegmentTrue.setArrivalAirportNameFa(jPricedIfdgtinerary.getString("ArrivalAirportNameFa"));
-								//flightSegmentTrue.setArrivalCityCode(jPricedIfdgtinerary.getString("ArrivalCityCode"));
-								//  flightSegmentTrue.setArrivalCityNameEn(jPricedIfdgtinerary.getString("ArrivalCityNameEn"));
+							flightSegmentTrue.setArrivalCityNameFa(jPricedIfdgtinerary.getString("ArrivalCityNameFa"));
+							// flightSegmentTrue.setArrivalCountryNameEn(jPricedIfdgtinerary.getString("ArrivalCountryNameEn"));
+							flightSegmentTrue.setArrivalCountryNameFa(jPricedIfdgtinerary.getString("ArrivalCountryNameFa"));
+							//  flightSegment.setArrivalDate(jPricedIfdgtinerary.getString("ArrivalDate"));az noe date convert mikhad
+							flightSegmentTrue.setArrivalDateShamsi(jPricedIfdgtinerary.getString("ArrivalDateShamsi"));
+							// flightSegmentTrue.setCabinClassCode(jPricedIfdgtinerary.getString("CabinClassCode"));
+							// flightSegmentTrue.setCabinClassName(jPricedIfdgtinerary.getString("CabinClassName"));
+							// flightSegmentTrue.setCabinClassNameFa(jPricedIfdgtinerary.getString("CabinClassNameFa"));
+							flightSegmentTrue.setDepartureAirportCode(jPricedIfdgtinerary.getString("DepartureAirportCode"));
+							// flightSegmentTrue.setDepartureAirportNameEn(jPricedIfdgtinerary.getString("DepartureAirportNameEn"));
 
-								flightSegmentTrue.setArrivalCityNameFa(jPricedIfdgtinerary.getString("ArrivalCityNameFa"));
-								// flightSegmentTrue.setArrivalCountryNameEn(jPricedIfdgtinerary.getString("ArrivalCountryNameEn"));
-								flightSegmentTrue.setArrivalCountryNameFa(jPricedIfdgtinerary.getString("ArrivalCountryNameFa"));
-								//  flightSegment.setArrivalDate(jPricedIfdgtinerary.getString("ArrivalDate"));az noe date convert mikhad
-								flightSegmentTrue.setArrivalDateShamsi(jPricedIfdgtinerary.getString("ArrivalDateShamsi"));
-								// flightSegmentTrue.setCabinClassCode(jPricedIfdgtinerary.getString("CabinClassCode"));
-								// flightSegmentTrue.setCabinClassName(jPricedIfdgtinerary.getString("CabinClassName"));
-								// flightSegmentTrue.setCabinClassNameFa(jPricedIfdgtinerary.getString("CabinClassNameFa"));
-								flightSegmentTrue.setDepartureAirportCode(jPricedIfdgtinerary.getString("DepartureAirportCode"));
-								// flightSegmentTrue.setDepartureAirportNameEn(jPricedIfdgtinerary.getString("DepartureAirportNameEn"));
+							flightSegmentTrue.setDepartureAirportNameFa(jPricedIfdgtinerary.getString("DepartureAirportNameFa"));
+							flightSegmentTrue.setDepartureCityCode(jPricedIfdgtinerary.getString("DepartureCityCode"));
+							//flightSegmentTrue.setDepartureCityNameEn(jPricedIfdgtinerary.getString("DepartureCityNameEn"));
+							flightSegmentTrue.setDepartureCityNameFa(jPricedIfdgtinerary.getString("DepartureCityNameFa"));
+							//flightSegmentTrue.setDepartureCountryNameEn(jPricedIfdgtinerary.getString("DepartureCountryNameEn"));
+							//flightSegmentTrue.setDepartureCountryNameFa(jPricedIfdgtinerary.getString("DepartureCountryNameFa"));
+							// flightSegment.setDepartureDate(jPricedIfdgtinerary.getString("DepartureDate"));convert date mikhad
+							flightSegmentTrue.setDepartureDateShamsi(jPricedIfdgtinerary.getString("DepartureDateShamsi"));
+							flightSegmentTrue.setFlightArrivalTime(jPricedIfdgtinerary.getString("FlightArrivalTime"));
+							flightSegmentTrue.setFlightNumber(jPricedIfdgtinerary.getString("FlightNumber"));
 
-								flightSegmentTrue.setDepartureAirportNameFa(jPricedIfdgtinerary.getString("DepartureAirportNameFa"));
-								// flightSegmentTrue.setDepartureCityCode(jPricedIfdgtinerary.getString("DepartureCityCode"));
-								//flightSegmentTrue.setDepartureCityNameEn(jPricedIfdgtinerary.getString("DepartureCityNameEn"));
-								flightSegmentTrue.setDepartureCityNameFa(jPricedIfdgtinerary.getString("DepartureCityNameFa"));
-								//flightSegmentTrue.setDepartureCountryNameEn(jPricedIfdgtinerary.getString("DepartureCountryNameEn"));
-								//flightSegmentTrue.setDepartureCountryNameFa(jPricedIfdgtinerary.getString("DepartureCountryNameFa"));
-								// flightSegment.setDepartureDate(jPricedIfdgtinerary.getString("DepartureDate"));convert date mikhad
-								flightSegmentTrue.setDepartureDateShamsi(jPricedIfdgtinerary.getString("DepartureDateShamsi"));
-								flightSegmentTrue.setFlightArrivalTime(jPricedIfdgtinerary.getString("FlightArrivalTime"));
-								flightSegmentTrue.setFlightNumber(jPricedIfdgtinerary.getString("FlightNumber"));
+							flightSegmentTrue.setFlightTime(jPricedIfdgtinerary.getString("FlightTime"));
+							flightSegmentTrue.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
+							//flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getString("FltDurationH"));
+							// flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getString("FltDurationM"));
+							flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getBoolean("IsDepartureSegment"));
+							SegmentListFalse.add(flightSegmentTrue);
+						}
 
-								flightSegmentTrue.setFlightTime(jPricedIfdgtinerary.getString("FlightTime"));
-								flightSegmentTrue.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
-								//flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getString("FltDurationH"));
-								// flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getString("FltDurationM"));
-								flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getBoolean("IsDepartureSegment"));
-								SegmentListTrue.add(flightSegmentTrue);
-							} else {
-								FlightSegmentFalse flightSegmentTrue = new FlightSegmentFalse();
-								flightSegmentTrue.setAirlineCode(jPricedIfdgtinerary.getString("AirlineCode"));
-								flightSegmentTrue.setAirlineID(jPricedIfdgtinerary.getInt("AirlineID"));
-								// flightSegmentTrue.setAirlineNameEn(jPricedIfdgtinerary.getString("AirlineNameEn"));
-								flightSegmentTrue.setAirlineNameFa(jPricedIfdgtinerary.getString("AirlineNameFa"));
-								flightSegmentTrue.setAirplaneName(jPricedIfdgtinerary.getString("AirplaneName"));
-								flightSegmentTrue.setArrivalAirportCode(jPricedIfdgtinerary.getString("ArrivalAirportCode"));
-								//flightSegmentTrue.setArrivalAirportNameEn(jPricedIfdgtinerary.getString("ArrivalAirportNameEn"));
-								flightSegmentTrue.setArrivalAirportNameFa(jPricedIfdgtinerary.getString("ArrivalAirportNameFa"));
-								//flightSegmentTrue.setArrivalCityCode(jPricedIfdgtinerary.getString("ArrivalCityCode"));
-								//  flightSegmentTrue.setArrivalCityNameEn(jPricedIfdgtinerary.getString("ArrivalCityNameEn"));
+						flight.setSegmentList(SegmentList);
+						flight.setSegmentListTrue(SegmentListTrue);
+						flight.setSegmentListFalse(SegmentListFalse);
+					}//for segment parvazha
 
-								flightSegmentTrue.setArrivalCityNameFa(jPricedIfdgtinerary.getString("ArrivalCityNameFa"));
-								// flightSegmentTrue.setArrivalCountryNameEn(jPricedIfdgtinerary.getString("ArrivalCountryNameEn"));
-								flightSegmentTrue.setArrivalCountryNameFa(jPricedIfdgtinerary.getString("ArrivalCountryNameFa"));
-								//  flightSegment.setArrivalDate(jPricedIfdgtinerary.getString("ArrivalDate"));az noe date convert mikhad
-								flightSegmentTrue.setArrivalDateShamsi(jPricedIfdgtinerary.getString("ArrivalDateShamsi"));
-								// flightSegmentTrue.setCabinClassCode(jPricedIfdgtinerary.getString("CabinClassCode"));
-								// flightSegmentTrue.setCabinClassName(jPricedIfdgtinerary.getString("CabinClassName"));
-								// flightSegmentTrue.setCabinClassNameFa(jPricedIfdgtinerary.getString("CabinClassNameFa"));
-								flightSegmentTrue.setDepartureAirportCode(jPricedIfdgtinerary.getString("DepartureAirportCode"));
-								// flightSegmentTrue.setDepartureAirportNameEn(jPricedIfdgtinerary.getString("DepartureAirportNameEn"));
+					///////////////////////////////////////
+					//  Flight flight =new Flight();
+					flight.setAdults(jPricedItinerary.getInt("Adults")); //int Adults ;
 
-								flightSegmentTrue.setDepartureAirportNameFa(jPricedIfdgtinerary.getString("DepartureAirportNameFa"));
-								flightSegmentTrue.setDepartureCityCode(jPricedIfdgtinerary.getString("DepartureCityCode"));
-								//flightSegmentTrue.setDepartureCityNameEn(jPricedIfdgtinerary.getString("DepartureCityNameEn"));
-								flightSegmentTrue.setDepartureCityNameFa(jPricedIfdgtinerary.getString("DepartureCityNameFa"));
-								//flightSegmentTrue.setDepartureCountryNameEn(jPricedIfdgtinerary.getString("DepartureCountryNameEn"));
-								//flightSegmentTrue.setDepartureCountryNameFa(jPricedIfdgtinerary.getString("DepartureCountryNameFa"));
-								// flightSegment.setDepartureDate(jPricedIfdgtinerary.getString("DepartureDate"));convert date mikhad
-								flightSegmentTrue.setDepartureDateShamsi(jPricedIfdgtinerary.getString("DepartureDateShamsi"));
-								flightSegmentTrue.setFlightArrivalTime(jPricedIfdgtinerary.getString("FlightArrivalTime"));
-								flightSegmentTrue.setFlightNumber(jPricedIfdgtinerary.getString("FlightNumber"));
+					flight.setRemainSeats(jPricedItinerary.getInt("RemainSeats")); //int Adults ;
+					flight.setIsCharter(jPricedItinerary.getBoolean("IsCharter")); //int Adults ;
 
-								flightSegmentTrue.setFlightTime(jPricedIfdgtinerary.getString("FlightTime"));
-								flightSegmentTrue.setFltDateDayOfWeek(jPricedIfdgtinerary.getString("FltDateDayOfWeek"));
-								//flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getString("FltDurationH"));
-								// flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getString("FltDurationM"));
-								flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getBoolean("IsDepartureSegment"));
-								SegmentListFalse.add(flightSegmentTrue);
-							}
+					flight.setAccountID(jPricedItinerary.getString("AccountID"));// AccountID;
 
-							flight.setSegmentList(SegmentList);
-							flight.setSegmentListTrue(SegmentListTrue);
-							flight.setSegmentListFalse(SegmentListFalse);
-						}//for segment parvazha
+					flight.setChilds(jPricedItinerary.getInt("Childs"));//AdlBaseFare
 
-						///////////////////////////////////////
-						//  Flight flight =new Flight();
-						flight.setAdults(jPricedItinerary.getInt("Adults")); //int Adults ;
+					flight.setFlightGUID(jPricedItinerary.getString("FlightGUID"));
 
-						flight.setRemainSeats(jPricedItinerary.getInt("RemainSeats")); //int Adults ;
-						flight.setIsCharter(jPricedItinerary.getBoolean("IsCharter")); //int Adults ;
+					JSONObject jAdlBaseFare = jPricedItinerary.getJSONObject("AdlBaseFare");
 
-						flight.setAccountID(jPricedItinerary.getString("AccountID"));// AccountID;
+					PriceField priceField = new PriceField();
+					priceField.setAmount(jAdlBaseFare.getLong("Amount"));
+					priceField.setCurrencyCode(jAdlBaseFare.getString("CurrencyCode"));
+					flight.setAdlBaseFare(priceField);//AdlCost
 
-						flight.setChilds(jPricedItinerary.getInt("Childs"));//AdlBaseFare
+					JSONObject AdlCost = jPricedItinerary.getJSONObject("AdlCost");
+					PriceField priceField2 = new PriceField();
+					priceField2.setAmount(AdlCost.getLong("Amount"));
+					priceField2.setCurrencyCode(AdlCost.getString("CurrencyCode"));
+					flight.setAdlCost(priceField2);//AdlTotalFare
 
-						flight.setFlightGUID(jPricedItinerary.getString("FlightGUID"));
+					JSONObject AdlTotalFare = jPricedItinerary.getJSONObject("AdlTotalFare");
+					PriceField priceField3 = new PriceField();
+					priceField3.setAmount(AdlTotalFare.getLong("Amount"));
+					priceField3.setCurrencyCode(AdlTotalFare.getString("CurrencyCode"));
+					flight.setAdlTotalFare(priceField3);//BaseFare
 
-						JSONObject jAdlBaseFare = jPricedItinerary.getJSONObject("AdlBaseFare");
+					JSONObject BaseFare = jPricedItinerary.getJSONObject("BaseFare");
+					PriceField priceField4 = new PriceField();
+					priceField4.setAmount(BaseFare.getLong("Amount"));
+					priceField4.setCurrencyCode(BaseFare.getString("CurrencyCode"));
+					flight.setBaseFare(priceField4);//ChdBaseFare
 
-						PriceField priceField = new PriceField();
-						priceField.setAmount(jAdlBaseFare.getLong("Amount"));
-						priceField.setCurrencyCode(jAdlBaseFare.getString("CurrencyCode"));
-						flight.setAdlBaseFare(priceField);//AdlCost
+					JSONObject ChdBaseFare = jPricedItinerary.getJSONObject("ChdBaseFare");
+					PriceField priceField5 = new PriceField();
+					priceField5.setAmount(ChdBaseFare.getLong("Amount"));
+					priceField5.setCurrencyCode(ChdBaseFare.getString("CurrencyCode"));
+					flight.setChdBaseFare(priceField5);//BaseFare
 
-						JSONObject AdlCost = jPricedItinerary.getJSONObject("AdlCost");
-						PriceField priceField2 = new PriceField();
-						priceField2.setAmount(AdlCost.getLong("Amount"));
-						priceField2.setCurrencyCode(AdlCost.getString("CurrencyCode"));
-						flight.setAdlCost(priceField2);//AdlTotalFare
+					//  ChdCost  ChdTotalFare InfBaseFare InfCost InfTotalFare
+					JSONObject ChdCost = jPricedItinerary.getJSONObject("ChdCost");
+					PriceField priceField6 = new PriceField();
+					priceField6.setAmount(ChdCost.getLong("Amount"));
+					priceField6.setCurrencyCode(ChdCost.getString("CurrencyCode"));
+					flight.setChdCost(priceField6);//
 
-						JSONObject AdlTotalFare = jPricedItinerary.getJSONObject("AdlTotalFare");
-						PriceField priceField3 = new PriceField();
-						priceField3.setAmount(AdlTotalFare.getLong("Amount"));
-						priceField3.setCurrencyCode(AdlTotalFare.getString("CurrencyCode"));
-						flight.setAdlTotalFare(priceField3);//BaseFare
+					JSONObject ChdTotalFare = jPricedItinerary.getJSONObject("ChdTotalFare");
+					PriceField priceField7 = new PriceField();
+					priceField7.setAmount(ChdTotalFare.getLong("Amount"));
+					priceField7.setCurrencyCode(ChdTotalFare.getString("CurrencyCode"));
+					flight.setChdTotalFare(priceField7);//
 
-						JSONObject BaseFare = jPricedItinerary.getJSONObject("BaseFare");
-						PriceField priceField4 = new PriceField();
-						priceField4.setAmount(BaseFare.getLong("Amount"));
-						priceField4.setCurrencyCode(BaseFare.getString("CurrencyCode"));
-						flight.setBaseFare(priceField4);//ChdBaseFare
+					JSONObject InfBaseFare = jPricedItinerary.getJSONObject("InfBaseFare");
+					PriceField priceField8 = new PriceField();
+					priceField8.setAmount(InfBaseFare.getLong("Amount"));
+					priceField8.setCurrencyCode(InfBaseFare.getString("CurrencyCode"));
+					flight.setInfBaseFare(priceField8);//
 
-						JSONObject ChdBaseFare = jPricedItinerary.getJSONObject("ChdBaseFare");
-						PriceField priceField5 = new PriceField();
-						priceField5.setAmount(ChdBaseFare.getLong("Amount"));
-						priceField5.setCurrencyCode(ChdBaseFare.getString("CurrencyCode"));
-						flight.setChdBaseFare(priceField5);//BaseFare
+					JSONObject InfCost = jPricedItinerary.getJSONObject("InfCost");
+					PriceField priceField9 = new PriceField();
+					priceField9.setAmount(InfCost.getLong("Amount"));
+					priceField9.setCurrencyCode(InfCost.getString("CurrencyCode"));
+					flight.setInfCost(priceField9);//
 
-						//  ChdCost  ChdTotalFare InfBaseFare InfCost InfTotalFare
-						JSONObject ChdCost = jPricedItinerary.getJSONObject("ChdCost");
-						PriceField priceField6 = new PriceField();
-						priceField6.setAmount(ChdCost.getLong("Amount"));
-						priceField6.setCurrencyCode(ChdCost.getString("CurrencyCode"));
-						flight.setChdCost(priceField6);//
+					JSONObject InfTotalFare = jPricedItinerary.getJSONObject("InfTotalFare");
+					PriceField priceField10 = new PriceField();
+					priceField10.setAmount(InfTotalFare.getLong("Amount"));
+					priceField10.setCurrencyCode(InfTotalFare.getString("CurrencyCode"));
+					flight.setInfTotalFare(priceField10);//
 
-						JSONObject ChdTotalFare = jPricedItinerary.getJSONObject("ChdTotalFare");
-						PriceField priceField7 = new PriceField();
-						priceField7.setAmount(ChdTotalFare.getLong("Amount"));
-						priceField7.setCurrencyCode(ChdTotalFare.getString("CurrencyCode"));
-						flight.setChdTotalFare(priceField7);//
+					// Taxes TotalFare TotalFareCost
+					JSONObject Taxes = jPricedItinerary.getJSONObject("Taxes");
+					PriceField priceField11 = new PriceField();
+					priceField11.setAmount(Taxes.getLong("Amount"));
+					priceField11.setCurrencyCode(Taxes.getString("CurrencyCode"));
+					flight.setTaxes(priceField11);//
 
-						JSONObject InfBaseFare = jPricedItinerary.getJSONObject("InfBaseFare");
-						PriceField priceField8 = new PriceField();
-						priceField8.setAmount(InfBaseFare.getLong("Amount"));
-						priceField8.setCurrencyCode(InfBaseFare.getString("CurrencyCode"));
-						flight.setInfBaseFare(priceField8);//
+					JSONObject TotalFare = jPricedItinerary.getJSONObject("TotalFare");
+					PriceField priceField12 = new PriceField();
+					priceField12.setAmount(TotalFare.getLong("Amount"));
+					priceField12.setCurrencyCode(TotalFare.getString("CurrencyCode"));
+					flight.setTotalFare(priceField12);//
 
-						JSONObject InfCost = jPricedItinerary.getJSONObject("InfCost");
-						PriceField priceField9 = new PriceField();
-						priceField9.setAmount(InfCost.getLong("Amount"));
-						priceField9.setCurrencyCode(InfCost.getString("CurrencyCode"));
-						flight.setInfCost(priceField9);//
-
-						JSONObject InfTotalFare = jPricedItinerary.getJSONObject("InfTotalFare");
-						PriceField priceField10 = new PriceField();
-						priceField10.setAmount(InfTotalFare.getLong("Amount"));
-						priceField10.setCurrencyCode(InfTotalFare.getString("CurrencyCode"));
-						flight.setInfTotalFare(priceField10);//
-
-						// Taxes TotalFare TotalFareCost
-						JSONObject Taxes = jPricedItinerary.getJSONObject("Taxes");
-						PriceField priceField11 = new PriceField();
-						priceField11.setAmount(Taxes.getLong("Amount"));
-						priceField11.setCurrencyCode(Taxes.getString("CurrencyCode"));
-						flight.setTaxes(priceField11);//
-
-						JSONObject TotalFare = jPricedItinerary.getJSONObject("TotalFare");
-						PriceField priceField12 = new PriceField();
-						priceField12.setAmount(TotalFare.getLong("Amount"));
-						priceField12.setCurrencyCode(TotalFare.getString("CurrencyCode"));
-						flight.setTotalFare(priceField12);//
-
-						JSONObject TotalFareCost = jPricedItinerary.getJSONObject("TotalFareCost");
-						PriceField priceField13 = new PriceField();
-						priceField13.setAmount(TotalFareCost.getLong("Amount"));
-						priceField13.setCurrencyCode(TotalFareCost.getString("CurrencyCode"));
-						flight.setTotalFareCost(priceField13);//
+					JSONObject TotalFareCost = jPricedItinerary.getJSONObject("TotalFareCost");
+					PriceField priceField13 = new PriceField();
+					priceField13.setAmount(TotalFareCost.getLong("Amount"));
+					priceField13.setCurrencyCode(TotalFareCost.getString("CurrencyCode"));
+					flight.setTotalFareCost(priceField13);//
 
 
-						flightsList.add(flight);
+					flightsList.add(flight);
 
-						//}//for segment parvazha
-					}      ///////////Parvaz
-					//Add to list expanding :
+					//}//for segment parvazha
+				}      ///////////Parvaz
+				//Add to list expanding :
 
-					showDataExpanding();
+				showDataExpanding();
 
              /*   listAirPort = (ListView)findViewById(R.id.listAirPort);
                 mAdapter = new GetAirPortMabdaAdapter(SearchParvazActivity.this, data);
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);
-               listAirPort.setAdapter(mAdapter);*/
+                listAirPort.setAdapter(mAdapter);*/
 
-					getAirLine();}
+				getAirLine();}
 			} catch (JSONException e) {//d/sfdsf
 				//Toast.makeText(SearchParvazActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
 				//if (flightsListFilter.size() == 0 || flightsListFilter== null) {
-				linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
-				linear_expand.setVisibility(View.GONE);
-				LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-				txtNoResult.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
-				linear_no_result.setVisibility(View.VISIBLE);
+					linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
+					linear_expand.setVisibility(View.GONE);
+					LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+					txtNoResult.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+					linear_no_result.setVisibility(View.VISIBLE);
 				//}
 
 			}
@@ -1450,7 +1444,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 						@Override
 						public void onGroupExpand(int groupPosition) {
-							// Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
+							//	Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
 							//Toast.makeText(SearchParvazActivity.this, " Expanded",Toast.LENGTH_SHORT).show();
 						}
 					});
@@ -1462,7 +1456,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						public void onGroupCollapse(int groupPosition) {
                     /*Toast.makeText(SearchParvazActivity.this,
                              listDataHeaderExpanding.get(groupPosition) + " Collapsed",
-                      Toast.LENGTH_SHORT).show();*/
+     						Toast.LENGTH_SHORT).show();*/
 
 						}
 					});
@@ -1474,9 +1468,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						public boolean onChildClick(ExpandableListView parent, View v,
 													int groupPosition, int childPosition, long id) {
                     /*Toast.makeText(SearchParvazActivity.this,
-                      listDataHeaderExpanding.get(groupPosition)
-                            + " : "
-                            + listDataChildExpanding.get(listDataHeaderExpanding.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();*/
+     						listDataHeaderExpanding.get(groupPosition)
+     								+ " : "
+     								+ listDataChildExpanding.get(listDataHeaderExpanding.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();*/
 							return false;
 						}
 					});
@@ -1511,7 +1505,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				COUNT_N = Integer.parseInt(infCount);
 
 				System.out.println("YYYYYYYYYYYYYYYYYYYYYYY");
-				System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Ddate" + Ddate + "Adate" + Adate+"Format:"+DdateF+AdateF);
+				System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Ddate" + Ddate + "Adate" + Adate);
 
 				//identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}
 				identityJson.put("Password", "123qwe!@#QWE");
@@ -1575,7 +1569,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	}
 
 	private void ferstClassListData() {
-		// if(SegmentList.get(0).getCabinClassNameFa().contains("فرست")){
+		//	if(SegmentList.get(0).getCabinClassNameFa().contains("فرست")){
 		List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
 
 		if (dataExpandingListFilter != null) {
@@ -1628,7 +1622,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	}//end fersclas
 
 	private void bisnesListData() {
-		// if(SegmentList.get(0).getCabinClassNameFa().contains("بیزنس")){
+		//	if(SegmentList.get(0).getCabinClassNameFa().contains("بیزنس")){
 		List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
 
 		if (dataExpandingListFilter != null) {
@@ -1711,7 +1705,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						dataExpandingListFilterTrue.add(parentItem);
 					}//endif
 				}//endfor
-				// if(dataExpandingListFilterTrue.size()>0){
+				//	if(dataExpandingListFilterTrue.size()>0){
 				dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
 				dataExpandingListFilter = dataExpandingListFilterTrue;
 				//}
@@ -1738,7 +1732,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		linear_expand.setVisibility(View.VISIBLE);
 		LinearLayout linear_no_resultt = (LinearLayout) findViewById(R.id.linear_no_result);
 		linear_no_resultt.setVisibility(View.GONE);
-		// listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
 		listDataChildExpanding = new HashMap<String, HashMap<String, ItemExpandingPlan>>();
 		dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
 		ArrayList<SearchParvazModelExp> searchParvazModelExps = new ArrayList<SearchParvazModelExp>();
@@ -1750,7 +1744,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				System.out.println("flightsList.size():" + flightsList.size());
 				dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
 				for (int i = 0; i < flightsList.size(); i++) {
-					// String test = searchParvazModelExps1.get(i).AirlineCode;
+					//	String test = searchParvazModelExps1.get(i).AirlineCode;
 
 
 					System.out.println("HEADER I=" + i);
@@ -1789,9 +1783,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								, SegmentListtrueAkhari.size()
 								,SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
 								,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0")//SegmentListFalseAvali.get(0).getFltDateDayOfWeek()
-								,SegmentListFalseAkhari.size()
-								,SegmentListtrueAvali.get(0).getFlightNumber()
-								,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"),false);//ArrivalCityNameEnR baraye sort bayad en bashe
+						,SegmentListFalseAkhari.size()
+						,SegmentListtrueAvali.get(0).getFlightNumber()
+						,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"),false);//ArrivalCityNameEnR baraye sort bayad en bashe
 
 
 						//parentItem.Header.add(header);
@@ -1849,8 +1843,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								, flightsList.get(i).isIsCharter()
 								, SegmentList.get(0).getAirlineNameEn()
 								, SegmentListtrueAkhari.size()
-								,SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
-								,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0")
+						,SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
+						,(String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0")
 								,SegmentListFalseAkhari.size()
 								,SegmentListtrueAvali.get(0).getFlightNumber()
 								, (String) (SegmentListFalseAvali.size() >0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"),false);//ArrivalCityNameEnR baraye sort bayad en bashe
@@ -2020,7 +2014,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	}//filterOneStop
 
 	private void getAirLine() {
-		// listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
 		listDataChildExpanding = new HashMap<String, HashMap<String, ItemExpandingPlan>>();
 		//dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
 		ArrayList<SearchParvazModelExp> searchParvazModelExps = new ArrayList<SearchParvazModelExp>();
@@ -2035,7 +2029,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				SegmentList = flightsList.get(i).getSegmentList();
 				//FilterAirline filterAirline=new FilterAirline(SegmentList.get(0).getAirlineNameFa());
 
-				// filterAirlines.add(SegmentList.get(0).getAirlineNameFa(),false);
+				//	filterAirlines.add(SegmentList.get(0).getAirlineNameFa(),false);
 
 
 				airlineConstraint.add(SegmentList.get(0).getAirlineNameFa());
@@ -2250,7 +2244,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				, String AirlineCode
 				, String CabinClassNameFa, int RemainSeats, boolean IsCharter, String AirlineNameEa, int SegmentTrueCount,String FltDateDayOfWeekTrue,String FltDateDayOfWeekFalse,int SegmentFalseCount,String FlightNumberR
 				,String FlightNumberB
-				,boolean IsPin) {
+		,boolean IsPin) {
 			this.ArrivalCityNameFaR = ArrivalCityNameFaR;
 			this.FlightArrivalTimeR = FlightArrivalTimeR;
 
@@ -2371,9 +2365,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		switch (v.getId()) {
 
 			case R.id.txtBack:
-            /*Intent intent = new Intent(this,PlanFragment.class);
-            //i2.putExtra("CUSTOMER_ID", (int) customerID);
-            startActivity(intent);*/
+				/*Intent intent = new Intent(this,PlanFragment.class);
+				//i2.putExtra("CUSTOMER_ID", (int) customerID);
+				startActivity(intent);*/
 				finish();
 				break;
 			case R.id.btnHome:
@@ -2436,21 +2430,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
 						/////////////////////
 						//   txtDateOnvan.setText(dfm.format(cal.getTime()) + "  -  " + AdateF);
-
-
+						txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
 						///
 						Ddate = formatter.format(cal.getTime());
-
-						if (getIntent().getExtras().getBoolean("Geo")){
-							txtDateOnvan.setText( Utility.dateShowViewFlight(Adate) + "  -  " +Utility.dateShowViewFlight(Ddate));
-
-
-						}else{
-							txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
-
-						}
-
-
 						callApiDateNext();
 					} else {
 						Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
@@ -2502,15 +2484,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
 						/////////////////////
 						// txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
-						//txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
-						if (getIntent().getExtras().getBoolean("Geo")){
-							txtDateOnvan.setText( Utility.dateShowViewFlight(Adate) + "  -  " +Utility.dateShowViewFlight(Ddate));
-
-
-						}else{
-							txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
-
-						}
+						txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
 						///
 						callApiDateNext();
 					} else {
@@ -2558,4 +2532,3 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 	}
 }
-

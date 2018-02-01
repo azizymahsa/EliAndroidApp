@@ -88,6 +88,8 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         service = ServiceGenerator.createService(ClientService.class);
         Bundle bundle = getIntent().getExtras();
         gson = new GsonBuilder().create();
+
+        //get necessary information from fragmentPackage
         if (bundle != null) {
 
             birthDateLists = gson.fromJson(bundle.getString("BirthDateList"), new TypeToken<List<BirthDateList>>() {
@@ -106,6 +108,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         showInsurance();
     }
 
+    //send request to server for get list of insurance
     private void showInsurance() {
         InitUi.Toolbar(this, false, R.color.toolbar_color,  "بیمه مسافرتی برای سفر به کشور" + countryName);
 
@@ -120,7 +123,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         insuranceListReq.setBirthDateList(birthDateLists);
         insuranceListReq.setCulture(culture);
 
-        Log.i(" Hosein " , "req : " + new GsonBuilder().create().toJson(new InsuranceRequestModel(insuranceListReq)));
+
         Call<InsuranceRes> call = service.showInsurance(new InsuranceRequestModel(insuranceListReq));
         call.enqueue(new Callback<InsuranceRes>() {
             @Override
@@ -198,12 +201,13 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
     }
 
+    //first list of insurance
     private void showInsurancePlans() {
         rclInsurancePlans.setVisibility(View.VISIBLE);
         InsurancPlanAdapter insurancPlanAdapter = new InsurancPlanAdapter(this,insurancePlans,passCount).setListener(this);
         rclInsurancePlans.setAdapter(insurancPlanAdapter);
     }
-
+    //second list of insurance
     private void showTravelInsurances() {
         rclTravelInsurance.setVisibility(View.VISIBLE);
         TravelInsurancAdapter travelInsurancAdapter = new TravelInsurancAdapter(this,travelInsurances,passCount).setListener(this);
@@ -256,6 +260,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    //onclick the first's list from  insurance
     @Override
     public void onClickTravelInsurancItem(TravelInsurance_ travelInsurance) {
         Intent intent = new Intent(this, PassengerInsuranceActivity.class);
@@ -270,6 +275,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         startActivity(intent);
     }
 
+    //onclick the second's list from  insurance
     @Override
     public void onClickInsurancPlanItem(InsurancePlan_  _insurancePlan) {
         Intent intent = new Intent(this, PassengerInsuranceActivity.class);
@@ -280,6 +286,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         Prefs.putInt("Price",(_insurancePlan.getPrice())* passCount);
         Prefs.putString("Id",_insurancePlan.getCode().toString());
         Prefs.putString("SearchKey",insurancePlan.getSearchKey());
+        Prefs.putInt("PassCount",passCount);
         startActivity(intent);
     }
 }

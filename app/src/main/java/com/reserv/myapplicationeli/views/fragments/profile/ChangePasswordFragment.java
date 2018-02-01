@@ -78,7 +78,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
 
     }
 
-
+    //request for change password
     public ChangePasswordReq getChangePasswordReq() {
 
         ChangePasswordReq changePasswordReq = new ChangePasswordReq();

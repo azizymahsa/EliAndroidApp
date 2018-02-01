@@ -61,7 +61,7 @@
                 fancy:fb_textSize="25dp" />
 
             <ImageView
-                android:id="@+id/e_logo"
+                android:id="@+id/txt_hom"
                 android:layout_width="60dp"
                 android:layout_height="@dimen/toolbar_height_70dp"
                 android:padding="14dp"
