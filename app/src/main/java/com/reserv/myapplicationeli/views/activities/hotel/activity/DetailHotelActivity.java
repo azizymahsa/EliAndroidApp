@@ -316,12 +316,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case R.id.llCommentClick:
-                svDetail.postDelayed(new Runnable() {
+      /*          svDetail.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         svDetail.fullScroll(ScrollView.FOCUS_UP);
                     }
-                }, 100);
+                }, 100);*/
                 flMap.setVisibility(View.GONE);
                 lvRooms.setVisibility(View.GONE);
                 tvAlert.setVisibility(View.GONE);
@@ -840,8 +840,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                 for (int i = 0; i < getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length; i++) {
-                    commentModels.add(new CommentModel(Integer.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].HelpfulAmount), 5, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Title, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Content,
-                            getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitDate, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitNickName));
+                    commentModels.add(new CommentModel(Integer.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].HelpfulAmount),
+                            5, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Title,
+                            getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Content,
+                            getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitDate,
+                            getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitNickName));
 
 
                 }
@@ -852,9 +855,10 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
 
-                commentAdapter = new CommentAdapter(DetailHotelActivity.this, commentModels);
+                commentAdapter = new CommentAdapter(DetailHotelActivity.this, commentModels,svDetail,lvComments);
                 lvComments.setAdapter(commentAdapter);
                 lvComments.setFocusable(false);
+
                 tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount  + " کاربر امتیاز داده اند");
                 tvCommentCount.setText(" نظرات کاربران  ("+getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length + " نظر)");
                 tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent+"% این هتل را پیشنهاد داده اند");

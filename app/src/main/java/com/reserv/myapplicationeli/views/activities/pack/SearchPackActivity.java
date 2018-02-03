@@ -85,7 +85,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private String country;
     private String culture;
     private String roomList;
-    private String cityName;
+    private String cityName,PreferedAir;
     private TextView toolbar_title;
     private TextView toolbar_date;
     private FancyButton btnBack;
@@ -128,13 +128,13 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     , departureFrom
                     , departureTo
                     , roomList
-                    , culture);
+                    , culture,PreferedAir);
 
 
         }
     }
     //send request for get package
-    private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture) {
+    private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture,String PreferedAir) {
         String date = DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
         toolbar_title.setText(" تور " + cityName);
         toolbar_date.setText(date);
@@ -149,6 +149,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         packageListReq.setDepartureFrom(departureFrom);
         packageListReq.setDepartureTo(departureTo);
         packageListReq.setCulture(culture);
+        packageListReq.setPreferedAir(PreferedAir);
         Log.e("packreq",new Gson().toJson(packageListReq).toString());
 
 
@@ -289,7 +290,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 }
                 long milis = _departMilis + 86400000;
                 departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
-                getPackages(country, departureFrom, departureTo, roomList, culture);
+                getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
                 break;
             case R.id.btnLastDays:
                 long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd");
@@ -299,7 +300,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 }
                 long _milis = departMilis - 86400000;
                 departureFrom = DateUtil.getDateTime(String.valueOf(_milis), "yyyy-MM-dd");
-                getPackages(country, departureFrom, departureTo, roomList, culture);
+                getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
 
                 break;
 
@@ -388,8 +389,10 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
                 Log.e("PackageTest", departureFrom);
                 Log.e("PackageTest2", milis+"");
+                Log.e("PackageTest3", lstAvailableDate.getPackID()+"");
 
-                getPackages(country, departureFrom, departureTo, roomList, culture);
+
+                getPackages(country, departureFrom, departureTo, roomList, culture,String.valueOf(lstAvailableDate.getPackID()));
             }
         });
 

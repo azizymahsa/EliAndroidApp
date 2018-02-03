@@ -3,5 +3,6 @@ include ':materialdatetimepicker'
 include ':persianmaterialdatetimepicker'
 include ':library'
 include ':CircleProgressView'
+include ':lottie'
 //include ':library2'
 

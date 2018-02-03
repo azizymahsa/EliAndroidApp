@@ -7,12 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelCheckBox;
 import com.reserv.myapplicationeli.views.adapters.hotel.FilterAdapter;
+import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 
 import java.util.ArrayList;
 
@@ -26,11 +30,14 @@ public class CommentAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private ViewHolder holder;
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
+    ScrollView scrollView;
+    NonScrollListView nonScrollListView;
 
 
-
-    public CommentAdapter(Context context, ArrayList<CommentModel> commentModels ) {
+    public CommentAdapter(Context context, ArrayList<CommentModel> commentModels, ScrollView scrollView, NonScrollListView nonScrollListView) {
         this.commentModels = commentModels;
+        this.scrollView = scrollView;
+        this.nonScrollListView = nonScrollListView;
         inflater = LayoutInflater.from(context);
     }
 
@@ -54,7 +61,7 @@ public class CommentAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.comment_item, null);
             holder = new ViewHolder();
-         //   holder.tvComment = (TextView) convertView.findViewById(R.id.tvComment);
+            //   holder.tvComment = (TextView) convertView.findViewById(R.id.tvComment);
             holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
             holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
             holder.tvName = (TextView) convertView.findViewById(R.id.tvName);
@@ -72,19 +79,44 @@ public class CommentAdapter extends BaseAdapter {
         holder.tvTitle.setText(commentModels.get(position).getTitle());
         holder.tvDate.setText(commentModels.get(position).getDate());
         holder.tvName.setText(commentModels.get(position).getName());
-        holder.tvLike.setText(commentModels.get(position).getLike()+"");
-        holder.tvDislike.setText(commentModels.get(position).getDisLike()+"");
+        holder.tvLike.setText(commentModels.get(position).getLike() + "");
+        holder.tvDislike.setText(commentModels.get(position).getDisLike() + "");
         holder.expand_text_view.setOnExpandStateChangeListener(new ExpandableTextView.OnExpandStateChangeListener() {
             @Override
             public void onExpandStateChanged(TextView textView, boolean isExpanded) {
-                if(isExpanded){
-holder.expandable_text.setEllipsize(null);
-                }else{
+                if (isExpanded) {
+                    holder.expandable_text.setEllipsize(null);
+                    nonScrollListView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ViewGroup.LayoutParams layoutParams = scrollView.getLayoutParams();
+                            ViewGroup.LayoutParams layoutParams2 = nonScrollListView.getLayoutParams();
+
+                            Log.e("height1", layoutParams.height+"");
+                            Log.e("height2", layoutParams2.height+"");
+                           /* scrollView.setLayoutParams(new RelativeLayout.LayoutParams(
+                                    RelativeLayout.LayoutParams.FILL_PARENT, layoutParams2.height));*/
+                        }
+                    }, 1000);
+
+                } else {
                     holder.expandable_text.setEllipsize(TextUtils.TruncateAt.END);
+                    nonScrollListView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ViewGroup.LayoutParams layoutParams = scrollView.getLayoutParams();
+                            ViewGroup.LayoutParams layoutParams2 = nonScrollListView.getLayoutParams();
+                            Log.e("height3", layoutParams.height+"");
+                            Log.e("height4", layoutParams2.height+"");
+                           /* scrollView.setLayoutParams(new RelativeLayout.LayoutParams(
+                                    RelativeLayout.LayoutParams.FILL_PARENT, layoutParams2.height));
+*/
+                        }
+                    }, 1000);
+
                 }
             }
         });
-
 
 
         return convertView;
@@ -92,7 +124,7 @@ holder.expandable_text.setEllipsize(null);
 
 
     public class ViewHolder {
-        TextView tvComment,tvTitle,tvDate,tvName,tvLike,tvDislike,expandable_text;
+        TextView tvComment, tvTitle, tvDate, tvName, tvLike, tvDislike, expandable_text;
         ExpandableTextView expand_text_view;
 
     }

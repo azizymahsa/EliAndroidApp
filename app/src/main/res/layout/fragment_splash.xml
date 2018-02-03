@@ -27,9 +27,19 @@
         android:id="@+id/gif"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
 
         />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_fileName="e-splash.json"
+       />
     <com.wang.avi.AVLoadingIndicatorView
 
         android:id="@+id/avi"

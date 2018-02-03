@@ -15,7 +15,7 @@ public class PackageListReq {
     private String DepartureTo;
     private String Country;
     private String Culture;
-
+    private String PreferedAir;
 
 
     public Identity getIdentity() {
@@ -64,5 +64,13 @@ public class PackageListReq {
 
     public void setCulture(String culture) {
         Culture = culture;
+    }
+
+    public String getPreferedAir() {
+        return PreferedAir;
+    }
+
+    public void setPreferedAir(String preferedAir) {
+        PreferedAir = preferedAir;
     }
 }

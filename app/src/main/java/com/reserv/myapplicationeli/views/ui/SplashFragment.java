@@ -13,6 +13,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieComposition;
+import com.airbnb.lottie.model.layer.Layer;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.reserv.myapplicationeli.R;
@@ -26,6 +29,9 @@ import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 public class SplashFragment extends BaseActivity {
 
@@ -33,6 +39,11 @@ public class SplashFragment extends BaseActivity {
     private Handler handler,handler2;
     private ImageView ivSplash,ivLoading;
     AVLoadingIndicatorView avi;
+    LottieAnimationView lottieAnimationView;
+
+
+
+
 
 
     private enum DOWNLOAD_TYPE {
@@ -57,7 +68,10 @@ public class SplashFragment extends BaseActivity {
         //
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
-        Glide.with(this).load(R.raw.new_splash_loading).into(ivSplash);
+        lottieAnimationView = findViewById(R.id.animation_view);
+        lottieAnimationView.setAnimation("e-splash.json");
+        lottieAnimationView.playAnimation();
+       // Glide.with(this).load(R.raw.new_splash_loading).into(ivSplash);
 
         avi = findViewById(R.id.avi);
         final int[] imageArray = new int[]{R.drawable.comp1_00000,
@@ -235,4 +249,7 @@ public class SplashFragment extends BaseActivity {
         }
         return true;
     }
+
+
+
 }

@@ -37,6 +37,7 @@ dependencies {
     compile project(':persianmaterialdatetimepicker')
     compile project(':library')
     compile project(':CircleProgressView')
+    compile project(':CircleProgressView')
     //compile project(':library2')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
@@ -104,6 +105,7 @@ dependencies {
     compile 'com.github.rey5137:material:1.2.4'
 
     //compile 'com.github.jakob-grabner:Circle-Progress-View:v1.3'
+    compile 'com.airbnb.android:lottie:2.5.0-rc1'
 
 
 }

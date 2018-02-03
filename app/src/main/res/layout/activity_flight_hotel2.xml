@@ -444,7 +444,7 @@
                 android:layout_marginRight="@dimen/_10dp"
                 android:layout_marginTop="@dimen/_10dp"
                 android:background="@drawable/btngravity_big"
-                android:text="جستجوی هتل"
+                android:text="جستجوی بلیط هواپیما + رزرو هتل"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_16dp_txtSize"
                 android:textStyle="bold"

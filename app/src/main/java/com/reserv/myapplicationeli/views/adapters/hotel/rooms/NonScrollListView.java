@@ -2,6 +2,7 @@ package com.reserv.myapplicationeli.views.adapters.hotel.rooms;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
@@ -28,4 +29,7 @@ public class NonScrollListView extends ListView {
         ViewGroup.LayoutParams params = getLayoutParams();
         params.height = getMeasuredHeight();
     }
+
+
+
 }
