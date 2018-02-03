@@ -77,7 +77,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     String raft, bargasht;
     LinearLayout linearLayout_mabda,linearLayout_maghsad;
     ImageView ivImage;
-
+public  LinearLayout linear_tarikh_az_picker;
     public static int countNafar = 1;
 
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
@@ -92,7 +92,8 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_plane, container, false);
 
-
+        linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
+        linear_tarikh_az_picker= (LinearLayout) rootView.findViewById(R.id.linear_tarikh_az_picker);
         tarikh_az_picker = (TextView) rootView.findViewById(R.id.tarikh_az_picker);
         tarikh_be_picker = (TextView) rootView.findViewById(R.id.tarikh_be_picker);
         linearLayout_mabda = (LinearLayout) rootView.findViewById(R.id.linearLayout_mabda);
@@ -135,8 +136,10 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
         lbl_forudgah_maghsad = (TextView) rootView.findViewById(R.id.lbl_forudgah_maghsad);
 
 
-        tarikh_az_picker.setOnClickListener(this);
-        tarikh_be_picker.setOnClickListener(this);
+        linear_tarikh_az_picker.setOnClickListener(this);
+        linear_picker.setOnClickListener(this);
+       // tarikh_az_picker.setOnClickListener(this);
+       // tarikh_be_picker.setOnClickListener(this);
         btnPlusB.setOnClickListener(this);
         btnMinesB.setOnClickListener(this);
 
@@ -503,13 +506,14 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                 tarikh_be.setVisibility(View.INVISIBLE);
                 linear_picker.setVisibility(View.INVISIBLE);
                 break;
-            case R.id.tarikh_be_picker:
+           // case R.id.tarikh_be_picker:
+            case R.id.linear_picker:
                 datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
                 datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
                 break;
-            case R.id.tarikh_az_picker:
-
+            //case R.id.tarikh_az_picker:
+            case R.id.linear_tarikh_az_picker:
 
                 datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
