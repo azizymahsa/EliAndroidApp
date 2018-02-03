@@ -65,6 +65,7 @@ import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
+import com.reserv.myapplicationeli.views.activities.insurance.PassengerInsuranceActivity;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.GetHotelKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
@@ -520,7 +521,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }
 
                     if (sum == 0) {
-                        new AsyncFetchPishFactor().execute();
+                        new AsyncFetch().execute();
                     }
 
                 }
@@ -1521,11 +1522,18 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
 
                     Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
+                    txt_shomare_factor.setText(jsonResult.getString("BookingCode"));
 
+                    textView4.setImageBitmap(getBitmap(jsonResult.getString("BookingCode"), 128, 300, 150));
+
+                    Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
+                    tvfactorNumber.setText(jsonResult.getString("BookingCode"));
+                    //////////////////////////////
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);
-                    linear_pish_factor.setVisibility(View.GONE);
-                    linear_list_khadamat.setVisibility(View.VISIBLE);
+                    linear_list_khadamat.setVisibility(View.GONE);
+                    linear_pish_factor.setVisibility(View.VISIBLE);
+                    new AsyncFetchGetPreFactorDetails().execute();
 
                     mAdapter = new GetHotelKhadmatAdapter(PassengerPackageActivity.this, data, PassengerPackageActivity.this);
                     //mAdapter.setAdapter(mAdapter);
