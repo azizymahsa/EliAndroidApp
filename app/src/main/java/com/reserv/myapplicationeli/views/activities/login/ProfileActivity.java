@@ -139,6 +139,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    //request for changePassword to server and get results
     private void changePasswordProfile() {
         if(!profilePagerAdapter.getChangePasswordFragment().isValidForm()){
             return;
@@ -180,6 +181,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     }
 
+    //request for updateProfile and get results
     private void updateProfile() {
         if(!profilePagerAdapter.getEditProfileFragment().isValidForm()){
             return;
@@ -226,6 +228,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     }
 
+    //request for send contracts and get result
     private void emailContractProfile(){
         if(!profilePagerAdapter.getMyContractsFragment().isValidForm()){
             return;

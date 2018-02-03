@@ -8,6 +8,7 @@ import com.reserv.myapplicationeli.views.viewholders.RoomRowHolder;
 
 /**
  * Created by elham.bonyani on 1/4/2018.
+ * for list of rooms
  */
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomRowHolder> {

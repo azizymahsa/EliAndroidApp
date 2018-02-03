@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Created by elham.bonyani on 1/4/2018.
+ * list children white ageRanging
  */
 
 public class ChildAdapter extends RecyclerView.Adapter<ChildRowHolder> {

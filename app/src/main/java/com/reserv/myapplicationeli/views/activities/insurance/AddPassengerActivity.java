@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -26,7 +25,6 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.contracts.PassengerContract;
 import com.reserv.myapplicationeli.models.model.insurance.BirthDateList;
 import com.reserv.myapplicationeli.presenters.PassengerPresenter;
-import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.adapters.insurance.PassengerAdapter;
@@ -38,6 +36,7 @@ import java.util.List;
 
 /**
  * Created by elham.bonyani on 1/14/2018.
+ * use mvp model for add passenger->go to passenger presenter
  */
 
 public class AddPassengerActivity extends BaseActivity implements
@@ -57,8 +56,6 @@ public class AddPassengerActivity extends BaseActivity implements
     int month;
     int year_;
     int day;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
-
     private BirthDateList currentPassenger;
 
     @SuppressLint("NewApi")
@@ -69,12 +66,13 @@ public class AddPassengerActivity extends BaseActivity implements
         InitUi.Toolbar(this, false, R.color.toolbar_color, "اطلاعات مسافر");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+            window.setStatusBarColor(getColor(R.color.colorPrimary));
         }
         initViews();
         passengerPresenter = new PassengerPresenter(this);
         ArrayList<BirthDateList> passengerArrayList = null;
         Bundle bundle = getIntent().getExtras();
+        //get birthdayDate of passenger
         Gson gson = new GsonBuilder().create();
         if (bundle != null) {
             passengerArrayList = gson.fromJson(bundle.getString("BirthDateList"), new TypeToken<List<BirthDateList>>() {
@@ -107,15 +105,7 @@ public class AddPassengerActivity extends BaseActivity implements
         int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
 
-
-        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
-
-        // datePickerDialogGregorian2.setOnDateSetListener(this);
-        //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);
-
-
-
-
+        //shamsi
         datePickerDialogBirthDay = DatePickerDialog.newInstance(
                 this,
                 currentYear - 66,
@@ -123,41 +113,6 @@ public class AddPassengerActivity extends BaseActivity implements
                 1
         );
         datePickerDialogBirthDay.setYearRange(1330, currentYear);
-       /* datePickerDialogGregorian1.setYearRange(1330, currentYear);
-
-        datePickerDialogBirthDay.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
-            }
-        });
-
-
-        datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialogBirthDay.show(getSupportFragmentManager(), "DatepickerdialogRaft");
-
-
-            }
-        });
-
-        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-                Log.e("GGGGGGGBar", year+"=="+(monthOfYear+1)+"=="+dayOfMonth);
-
-             *//*   tvBargasht.setText(Utility.dateShowView(year+"/"+ (monthOfYear+1)+"/"+ dayOfMonth));
-                bargasht =year+"/"+ monthOfYear+1+"/"+ dayOfMonth;*//*
-
-                passengerPresenter.setBirthday(currentPassenger, year+"/"+(monthOfYear+1) +"/"+ dayOfMonth);
-
-            }
-
-
-        });
-*/
-
 
         btn_add.setOnClickListener(this);
         btn_remove.setOnClickListener(this);
@@ -272,7 +227,7 @@ public class AddPassengerActivity extends BaseActivity implements
 
 
 
-
+    //shamsi
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
         year_ = year;

@@ -16,12 +16,13 @@ import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
- import com.reserv.myapplicationeli.views.viewholders.LstProwHotelRowHolder;
+import com.reserv.myapplicationeli.views.viewholders.LstProwHotelRowHolder;
 
 import java.util.ArrayList;
 
 /**
  * Created by elham.bonyani on 1/6/2018.
+ * for list of hotel's pic in top of ever package
  */
 
 public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHolder> {
@@ -45,10 +46,11 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
     @Override
     public void onBindViewHolder(LstProwHotelRowHolder holder, int position) {
         final LstProwHotel item = feedItemList.get(position);
-        if(item.getHTypeNameF().contains("هتل") ){
-            holder.lableHotelTilte.setVisibility(View.VISIBLE);
+        if(item.getHTypeNameE().contains("Hotel") || item.getHTypeNameE().equals("Hotel")){
+            holder.lableHotelTilte.setVisibility(View.GONE);
         }else {
-            holder.lableHotelTilte.setVisibility(View.INVISIBLE);
+            holder.lableHotelTilte.setVisibility(View.VISIBLE);
+            holder.lableHotelTilte.setText(item.getHTypeNameF());
         }
         holder.txt_hotel_name.setText(ValidationTools.isEmptyOrNull(item.getHotelNameE()) ? item.getHotelNameE() : item.getHotelNameE() );
         holder.txt_hotel_name.setEllipsize(TextUtils.TruncateAt.END);

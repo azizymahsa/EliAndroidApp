@@ -130,7 +130,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     public TextView txt_shomare_factor, tvPrice;
     public ImageView txt_hom, textView4;
 
-    private String Gensiyat="";
+    private String Gensiyat;
     Activity activity;
     public int countB;
     public int countK;
@@ -580,7 +580,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 for (int i = 0; i < jArray4.length(); i++) {
                     servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
                             jArray4.getJSONObject(i).getString("ServicePrice"), jArray4.getJSONObject(i).getString("ServiceType"),
-                            jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa"),jArray4.getJSONObject(i).getString("CountryFa")));
+                            jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa"),
+                            jArray4.getJSONObject(i).getString("CountryFa")));
 
                 }
                 if (!servicePreFactorModels.isEmpty()) {

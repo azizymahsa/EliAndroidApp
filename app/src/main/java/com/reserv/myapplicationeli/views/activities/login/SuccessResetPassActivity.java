@@ -16,6 +16,7 @@ import com.reserv.myapplicationeli.views.ui.InitUi;
 
 /**
  * Created by elham.bonyani on 1/23/2018.
+ * this class for return massage that go to email
  */
 
 public class SuccessResetPassActivity extends BaseActivity implements View.OnClickListener{

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by elham.bonyani on 1/6/2018.
  */
-
+//cities
 public class CityAdapter extends RecyclerView.Adapter<CityRowHolder>{
 
     private Context context;

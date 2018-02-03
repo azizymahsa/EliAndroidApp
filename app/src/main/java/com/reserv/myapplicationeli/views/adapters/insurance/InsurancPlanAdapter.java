@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Created by elham.bonyani on 1/15/2018.
+ * for second list of insurance
  */
 
 public class InsurancPlanAdapter extends RecyclerView.Adapter<InsuranceRowHolder> {

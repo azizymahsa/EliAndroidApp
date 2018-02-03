@@ -437,7 +437,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
              }
 
              for (HotelProprties hotelProprties :getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties){
-                 hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle,hotelProprties.PropertyCategory,hotelProprties.PropertyIcon,));
+                 hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle,hotelProprties.PropertyCategory,hotelProprties.PropertyIcon));
                  //add_textView(hotelProprties.PropertyTitle);
 
              }

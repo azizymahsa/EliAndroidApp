@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 /**
  * Created by elham.bonyani on 1/6/2018.
+ * for list of price in end of ever pack
  */
 
 public class LstProwPriceAdapter extends SectioningAdapter {

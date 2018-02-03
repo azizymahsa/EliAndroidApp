@@ -26,14 +26,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
-import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,18 +97,18 @@ import java.util.Map;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
+//this class just me send request of insurance and set sum of passenger but there is problem of ui
 public class PassengerInsuranceActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnItemSelectedListener {
 
 
     public static boolean flag;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    Handler handler;
-    ProgressDialog progressBar;
+    private Handler handler;
+    private ProgressDialog progressBar;
     public FancyButton btnBack;
     public FancyButton btnHome;
     public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
-
     public ImageView btn_saler, btn_mosaferan, btn_khadamat, btn_pish_factor;
     public Button btnAddsabad, btn_pardakht_factor;
     public EditText txtnamem, txtfamilym;
@@ -123,264 +121,153 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     private Handler progressBarHandler = new Handler();
     public ListView list_airport;
     public ListView listKhadamat;
-    ArrayList<HashMap<String, String>> mylist = null;
+    private ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
-    //public static long GET_PRICE_KHADAMAT;
     public static long GET_PRICE_KHADAMAT;
-
-    ScrollView myScrollView;
-
-    ExpandableRelativeLayout expandableLayout;
-
-
+    private ScrollView myScrollView;
+    private ExpandableRelativeLayout expandableLayout;
     public TextView imgCount;
-    String paymentUrl;
-
-
+    private String paymentUrl;
     public List<PurchaseFlightResult> data;
-
-
-    GetHotelKhadmatAdapter mAdapter;
-    //ScrollView myScrollView;
+    private GetHotelKhadmatAdapter mAdapter;
     private EditText searchtxt;
     public TextView txt_shomare_factor, tvPrice;
     public ImageView textView4;
-
     private String Gensiyat;
-    Activity activity;
+    private Activity activity;
     public int countB;
     public int countK;
     public int countN;
-    //public int sum=countB+countK+countN;
     public int sum;
-    int counter = 2;
-    //int count;
-    //change for Prefactor=========================================================================
-    LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight;
-    private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
+    private int counter = 2;
+    private LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight;
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_pack);
 
-        btnBack = (FancyButton) findViewById(R.id.btnBack);
-        btnHome = (FancyButton) findViewById(R.id.btnHome);
-        btnBack.setCustomTextFont("fonts/icomoon.ttf");
-        btnBack.setText(getString(R.string.search_back_right));
-        btnBack.setVisibility(View.VISIBLE);
-        btnBack.setOnClickListener(this);
-        btnHome.setOnClickListener(this);
+        initViews();
+        setupGenderSpinner();
 
-        //kharidar
-        btnzanS = (com.rey.material.widget.RadioButton) findViewById(R.id.zanS);
-        btnzanS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        sum = Prefs.getInt("PassCount", 1);
+
+        countB = sum;
+        btn_pardakht_factor.setOnClickListener(new OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(btnzanS.isChecked()){
-                    btnmardS.setChecked(false);
-                    System.out.println("zan");
-                    Gensiyat="false";
-                }
+            public void onClick(View v) {
+                Utility.openUrlCustomTab(PassengerInsuranceActivity.this, paymentUrl);
             }
         });
+    }
 
-        btnmardS = (com.rey.material.widget.RadioButton) findViewById(R.id.mardS);
-        btnmardS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(btnmardS.isChecked()){
-                    btnzanS.setChecked(false);
-                    System.out.println("mard");
-                    Gensiyat="true";
-                }
-            }
-        });
-        ////////mosafer
-        btnzan = (com.rey.material.widget.RadioButton) findViewById(R.id.zan);
-        btnzan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(btnzan.isChecked()){
-                    btnmard.setChecked(false);
-                    System.out.println("zan");
-                    Gensiyat="false";
-                }
-            }
-        });
+    private void setupGenderSpinner() {
 
-        btnmard = (com.rey.material.widget.RadioButton) findViewById(R.id.mard);
-        btnmard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(btnmard.isChecked()){
-                    btnzan.setChecked(false);
-                    System.out.println("mard");
-                    Gensiyat="true";
-                }
-            }
-        });
-
-
-
-
-
-        textView4 = (ImageView) findViewById(R.id.textView4);
-        tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
-        expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
-
-        txtMore = (TextView) findViewById(R.id.txtMore);
-        txtMore.setOnClickListener(this);
-
-        txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
-        tvPrice = (TextView) findViewById(R.id.tvPrice);
-        txtSumKhadamat.setOnClickListener(this);
-        txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
-
-        txttavalodm = (TextView) findViewById(R.id.txttavalodm);
-        txttavalodm.setOnClickListener(this);
-        txtnamem = (EditText) findViewById(R.id.txtnamem);
-        txtnamem.setOnClickListener(this);
-        txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
-        imgCount = (TextView) findViewById(R.id.imgCount);
-        imgCount.setOnClickListener(this);
-
-        txtfamilym = (EditText) findViewById(R.id.txtfamilym);
-        //lvFactor = (ExpandableLayoutListView) findViewById(R.id.lvFactor);
-        txtfamilym.setOnClickListener(this);
-        txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
-        txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
-        txtnumber_passport.setOnClickListener(this);
-        txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
-        txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
-        txtexp_passport.setOnClickListener(this);
-
-        txtTitle = (TextView) findViewById(R.id.tvTitle);
-        txtTitle.setOnClickListener(this);
-        txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
-        txtTitleCountM.setOnClickListener(this);
-
-        btn_next_partnerInfo = (LinearLayout) findViewById(R.id.btn_next_partnerInfo);
-        btn_next_partnerInfo.setOnClickListener(this);
-
-        btn_nextm = (LinearLayout) findViewById(R.id.btn_nextm);
-        btn_nextm.setOnClickListener(this);
-
-        btn_taeed_khadamat = (LinearLayout) findViewById(R.id.btn_taeed_khadamat);
-        btn_taeed_khadamat.setOnClickListener(this);
-
-        btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);
-        btn_pardakht_factor.setOnClickListener(this);
-            /* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
-             btnAddsabad.setOnClickListener(this);*/
-
-        btn_saler = (ImageView) findViewById(R.id.btn_saler);
-        btn_mosaferan = (ImageView) findViewById(R.id.btn_mosaferan);
-//		btn_khadamat = (ImageView) findViewById(R.id.btn_khadamat);
-        btn_pish_factor = (ImageView) findViewById(R.id.btn_pish_factor);
-
-        //btn_saler.setOnClickListener(this);
-        //btn_mosaferan.setOnClickListener(this);
-//		btn_khadamat.setOnClickListener(this);
-        //btn_pish_factor.setOnClickListener(this);
-
-        linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
-        linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
-        linear_pish_factor = (LinearLayout) findViewById(R.id.linear_pish_factor);
-        linearMahaleeghamat = (LinearLayout) findViewById(R.id.linearMahaleeghamat);
-        linearMeliyat = (LinearLayout) findViewById(R.id.linearMeliyat);
-
-        txtnameP = (EditText) findViewById(R.id.txtnameP);
-        //	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
-        txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
-
-        txtfamilyP = (EditText) findViewById(R.id.txtfamilyP);
-        //	txtfamilyP.setHint("لطفا نام خانوادگی را فارسی وارد کنید");
-        txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
-        txtmobileP = (EditText) findViewById(R.id.txtmobileP);
-        txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
-        txtkodemeliP = (EditText) findViewById(R.id.txtkodemeliP);
-        txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
-        txtemeliP = (EditText) findViewById(R.id.txtemeliP);
-        txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
-
-        txtmeliyatm = (TextView) findViewById(R.id.txtmeliyatm);
-        txtmeliyatm.setOnClickListener(this);
-        txtmahale_eghamat = (TextView) findViewById(R.id.txtmahale_eghamat);
-        txtmahale_eghamat.setOnClickListener(this);
-
-        txt_shomare_factor = (TextView) findViewById(R.id.txt_shomare_factor);
-        txt_shomare_factor.setOnClickListener(this);
-
-        linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
-
-        listKhadamat = (ListView) findViewById(R.id.listKhadamat);
-        llDetailHotel = (LinearLayout) findViewById(R.id.llDetailHotel);
-        llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
-        llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
-        llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
-        // myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
-
-
-        //////////////////////////
-        // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.spinner1);
         Spinner spinnerMosafer = (Spinner) findViewById(R.id.spinnerMosafer);
 
-        // Spinner click listener
         spinner.setOnItemSelectedListener(this);
         spinnerMosafer.setOnItemSelectedListener(this);
-
-        // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("لطفا جنسیت را انتخاب کنید");
         categories.add("مرد");
         categories.add("زن");
 
-
-        // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
         spinnerMosafer.setAdapter(dataAdapter);
-        ////////////////////////////////
+
+    }
+
+    private void initViews() {
+
+        btnBack = (FancyButton) findViewById(R.id.btnBack);
+        btnHome = (FancyButton) findViewById(R.id.btnHome);
+        btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnBack.setText(getString(R.string.search_back_right));
+        btnBack.setVisibility(View.VISIBLE);
 
 
-        // new AsyncFetch().execute();
+        textView4 = (ImageView) findViewById(R.id.textView4);
+        tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
+        expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
+        txtMore = (TextView) findViewById(R.id.txtMore);
+        txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
+        tvPrice = (TextView) findViewById(R.id.tvPrice);
+        txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
+        txttavalodm = (TextView) findViewById(R.id.txttavalodm);
+        txtnamem = (EditText) findViewById(R.id.txtnamem);
+        imgCount = (TextView) findViewById(R.id.imgCount);
+        txtfamilym = (EditText) findViewById(R.id.txtfamilym);
+        txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
+        txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
+        txtTitle = (TextView) findViewById(R.id.tvTitle);
+        txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
+        btn_next_partnerInfo = (LinearLayout) findViewById(R.id.btn_next_partnerInfo);
+        btn_nextm = (LinearLayout) findViewById(R.id.btn_nextm);
+        btn_taeed_khadamat = (LinearLayout) findViewById(R.id.btn_taeed_khadamat);
+        btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);
+        btn_saler = (ImageView) findViewById(R.id.btn_saler);
+        btn_mosaferan = (ImageView) findViewById(R.id.btn_mosaferan);
+        btn_pish_factor = (ImageView) findViewById(R.id.btn_pish_factor);
+        linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
+        linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
+        linear_pish_factor = (LinearLayout) findViewById(R.id.linear_pish_factor);
+        linearMahaleeghamat = (LinearLayout) findViewById(R.id.linearMahaleeghamat);
+        linearMeliyat = (LinearLayout) findViewById(R.id.linearMeliyat);
+        txtnameP = (EditText) findViewById(R.id.txtnameP);
+        txtfamilyP = (EditText) findViewById(R.id.txtfamilyP);
+        txtmobileP = (EditText) findViewById(R.id.txtmobileP);
+        txtkodemeliP = (EditText) findViewById(R.id.txtkodemeliP);
+        txtemeliP = (EditText) findViewById(R.id.txtemeliP);
+        txtmeliyatm = (TextView) findViewById(R.id.txtmeliyatm);
+        txtmahale_eghamat = (TextView) findViewById(R.id.txtmahale_eghamat);
+        txt_shomare_factor = (TextView) findViewById(R.id.txt_shomare_factor);
+        linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
+        listKhadamat = (ListView) findViewById(R.id.listKhadamat);
+        llDetailHotel = (LinearLayout) findViewById(R.id.llDetailHotel);
+        llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
+        llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
+        llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
+        txtTitleCountM.setText(" اطلاعات مسافر " + 1);
 
-        Prefs.getInt("Adlt_count", 1);
-        Prefs.getInt("chd_count", 1);
-        Prefs.getInt("inf_count", 1);
-        sum = Prefs.getInt("passCount", 1);
+        txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
+        txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
+        txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
+        txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
+        txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
+        txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
+        txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
+        txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
 
+        txt_shomare_factor.setOnClickListener(this);
+        txtmahale_eghamat.setOnClickListener(this);
+        txtmeliyatm.setOnClickListener(this);
+        //btn_saler.setOnClickListener(this);
+        //btn_mosaferan.setOnClickListener(this);
+        //btn_pish_factor.setOnClickListener(this);
+        btn_pardakht_factor.setOnClickListener(this);
+        btn_taeed_khadamat.setOnClickListener(this);
+        btn_nextm.setOnClickListener(this);
+        btn_next_partnerInfo.setOnClickListener(this);
+        txtTitleCountM.setOnClickListener(this);
+        txtTitle.setOnClickListener(this);
+        txtexp_passport.setOnClickListener(this);
+        txtnumber_passport.setOnClickListener(this);
+        txtfamilym.setOnClickListener(this);
+        imgCount.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
+        btnHome.setOnClickListener(this);
+        txtMore.setOnClickListener(this);
+        txtSumKhadamat.setOnClickListener(this);
+        txttavalodm.setOnClickListener(this);
+        txtnamem.setOnClickListener(this);
 
-        countB = Prefs.getInt("Adlt_count", 1);
-        countK = Prefs.getInt("chd_count", 1);
-        countN = Prefs.getInt("inf_count", 1);
-        btn_pardakht_factor.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
 
-                Utility.openUrlCustomTab(PassengerInsuranceActivity.this, paymentUrl);
-                Prefs.putString("TypeGetPre", "I");
-/*
-                String url = "http://foyr.com";
-                Intent launchGoogleChrome = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                launchGoogleChrome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                launchGoogleChrome.setPackage("com.android.chrome");
-                launchGoogleChrome.putExtra("com.android.chrome.EXTRA_OPEN_NEW_INCOGNITO_TAB", true);*/
-            }
-        });
-
-    }//end oncreate
-
-    //AsyncFetchGetPreFactorDetails
     private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
-        ProgressDialog pdLoading = new ProgressDialog(PassengerInsuranceActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -389,10 +276,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+            needShowProgressDialog();
 
         }
 
@@ -489,10 +373,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             //this method will be running on UI thread
             //{"PurchaseServiceResult":{"Errors":null,"ResultText":"Temp Contract Saved Successfully!","SuccessResult":782528}}
-            //  pdLoading.dismiss();
             //List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
 
-            pdLoading.dismiss();
+            needHideProgressDialog();
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -627,10 +510,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
     }//end on pos excute
 
-    //end AsyncFetchGetPreFactorDetails
-    //AsyncFetchPishFactor
     private class AsyncFetchPishFactor extends AsyncTask<String, String, String> {
-        ProgressDialog pdLoading = new ProgressDialog(PassengerInsuranceActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -638,12 +518,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
-
+            needShowProgressDialog();
         }
 
         @Override
@@ -738,7 +613,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         protected void onPostExecute(String resultPishfactor) {
 
 
-            pdLoading.dismiss();
+            needHideProgressDialog();
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -789,9 +664,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
     }//end async get pish factor
 
-    //het khadamat
     private class AsyncFetch extends AsyncTask<String, String, String> {
-        ProgressDialog pdLoading = new ProgressDialog(PassengerInsuranceActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -799,11 +672,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+            needShowProgressDialog();
 
         }
 
@@ -898,15 +767,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         @Override
         protected void onPostExecute(String result) {
 
-            //this method will be running on UI thread
-
-
-            //this method will be running on UI thread
-
-            pdLoading.dismiss();
-
-
-            pdLoading.dismiss();
+            needHideProgressDialog();
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(result);
@@ -925,23 +786,24 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 } else {
 
 
+
+
 			/*	JSONArray jArray = GetAirportsResult.getJSONArray("Services");*/
                     JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
+                    txt_shomare_factor.setText(jsonResult.getString("BookingCode"));
+
+                    textView4.setImageBitmap(getBitmap(jsonResult.getString("BookingCode"), 128, 300, 150));
 
                     Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
+                    tvfactorNumber.setText(jsonResult.getString("BookingCode"));
                     //////////////////////////////
-                    //  JSONArray jArray = new JSONArray(result);
 
-                    // Extract data from json and store into ArrayList as class objects
-
-
-                    // Setup and Handover data to recyclerview
 
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);
-                    linear_pish_factor.setVisibility(View.GONE);
-                    linear_list_khadamat.setVisibility(View.VISIBLE);
-
+                    linear_list_khadamat.setVisibility(View.GONE);
+                    linear_pish_factor.setVisibility(View.VISIBLE);
+                    new AsyncFetchGetPreFactorDetails().execute();
                     mAdapter = new GetHotelKhadmatAdapter(PassengerInsuranceActivity.this, data, PassengerInsuranceActivity.this);
                     //mAdapter.setAdapter(mAdapter);
                     mAdapter.setData(data);
@@ -956,7 +818,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         }//end on pos excute
 
     }//end async
-
 
     public String OrderToJson() {
         JSONObject jsone = new JSONObject();
@@ -978,11 +839,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             JSONObject detailsJson = new JSONObject();
             JSONObject detailsPartner = new JSONObject();
             JSONObject identityJson = new JSONObject();
-//
-//			headerJson.put("EchoToken",ResultUniqId);
-//			headerJson.put("BookingReferenceID", GUID);///ID.toString()
 
-            //mosaferan
             PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
             CursorManager cursorM = items_Table.getAllMosafer();
             if (cursorM != null) {
@@ -1045,16 +902,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             headerJson.put("ReturnDate", Prefs.getString("ReturnDate", "12"));
             headerJson.put("SearchKey", Prefs.getString("SearchKey", "12"));
 
-
-		/*	headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
-*//*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
-            headerJson.put("Checkout", getIntent().getExtras().get("Checkin"));*//*
-			headerJson.put("Checkin", getIntent().getExtras().getString("CheckIn"));
-			headerJson.put("Checkout", getIntent().getExtras().getString("CheckOut"));
-
-*/
-
-
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
@@ -1072,7 +919,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         return jsone.toString();
     }
 
-
     public String OrderToJsonGetPreFactorDetails() {
         JSONObject jsone = new JSONObject();
         JSONObject manJson = new JSONObject();
@@ -1083,14 +929,13 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             manJson.put("Culture", "fa-IR");
 
             manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
-            manJson.put("Type", "P");
+            manJson.put("Type", "I");
 
 
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
             manJson.put("identity", identityJson);
-            //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);
 
 
@@ -1104,19 +949,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 
     public String OrderToJsonPishFactor() {
-			/* public class PurchaseServiceReq
-			    {
-			        public string RqBaseID { get; set; } // "782528"  => ????? ??? ??????
-			        public string ServiceStr { get; set; } // I1515:1877300|S1303:1877300|S1304:1877300     => ?? ?????2: ?? ?????1 ??? ?????2 ?? ?????: ?? ?????1 ??? ?????2 |
-			        public string Exc { get; set; }
-			        public string InsCoverageXML { get; set; }
-			        public string InsPrcieXML { get; set; }
-			        public int InsPlanCode { get; set; }
-			    }*/
+
         JSONObject jsone = new JSONObject();
         JSONObject manJson = new JSONObject();
         JSONObject identityJson = new JSONObject();
-
 
         try {
             manJson.put("Culture", "fa-IR");
@@ -1134,9 +970,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
             manJson.put("identity", identityJson);
-            //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);
-
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -1150,7 +984,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
     @Override
     public void onClick(View v) {
-        Fragment fragment2;
 
         switch (v.getId()) {
 
@@ -1170,19 +1003,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             case R.id.btnBack:
 
-
-////
                 if (linear_pish_factor.getVisibility() == View.VISIBLE) {
                     linear_pish_factor.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.VISIBLE);
-					/*myScrollView.setSmoothScrollingEnabled(false);
-					myScrollView.setOnTouchListener(new View.OnTouchListener() {
-						@Override
-						public boolean onTouch(View v, MotionEvent event) {
-							return true;
-						}
-					});*/
 
                     ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1190,17 +1014,11 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 } else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.VISIBLE);
-                    //myScrollView.setOnTouchListener(null);
 
                     txtTitle.setText("  اطلاعات مسافران ");
-//					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
-//					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
                 } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_saler.setVisibility(View.VISIBLE);
-                    //	myScrollView.setOnTouchListener(null);
-
-
                     txtTitle.setText("  مشخصات خریدار ");
                     ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1211,12 +1029,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             case R.id.btn_next_partnerInfo:
 
                 try {
-                    //jadvale mosafer khali beshe
 
                     PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
-                    //   db.openDB();
                     db.dropTable();
-                    ////////////////////////Validate
                     String RqPartner_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
                     String RqPartner_Email = txtemeliP.getText().toString();
                     String RqPartner_FirstNameFa = txtnameP.getText().toString();
@@ -1226,17 +1041,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     String RqPartner_NationalCode = txtkodemeliP.getText().toString();
                     String RqPartner_Tel = "21587632";
 
-					/*String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-					String RqPartner_Email= "mohebbi@eligasht.com";
-					String RqPartner_FirstNameFa= "مریم";
-					String RqPartner_Gender= "Female";
-					String RqPartner_LastNameFa= "محبی";
-					String RqPartner_Mobile= "0235884";
-					String RqPartner_NationalCode= "0062532148";
-					String RqPartner_Tel= "21587632";*/
 
                     String flagMosafer = "T";
-                    ///Validate
                     if (RqPartner_Email.trim().length() > 6) {
                         ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
@@ -1273,33 +1079,25 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             ((EditText) findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
                         }
-                    //////////////////////////End Validate
                     if (flagMosafer.contains("F")) {
-                        Toast.makeText(this, "اطلاعات ورودی نامعتبر است!", 2000).show();
+                        Toast.makeText(this, "اطلاعات ورودی نامعتبر است!", Toast.LENGTH_SHORT).show();
                     } else {
-                        //insert partner
                         PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerInsuranceActivity.this);
 
                         partnerInfo_Table.dropTable();
                         partnerInfo_Table.openDB();
 
-
                         partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
 
-
                         partnerInfo_Table.closeDB();
-                        ////////////////
                         linear_saler.setVisibility(View.GONE);
                         linear_pish_factor.setVisibility(View.GONE);
                         linear_mosaferan.setVisibility(View.VISIBLE);
                         txtTitle.setText(" اطلاعات مسافران ");
-                        //((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
-                        //((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
 
                         ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
                         ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     }
-                    Gensiyat="";
                 } catch (Exception e) {
                     System.out.println("Exception ::" + e);
                 }
@@ -1315,9 +1113,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 flag = false;
                 break;
             case R.id.btn_nextm:
-                txtexp_passport.setScroller(new Scroller(this));
-              /*  ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
-                scrolMosafer.fullScroll(ScrollView.FOCUS_UP);*/
 
                 String Gender = Gensiyat;
                 String Nationality = txtmahale_eghamat.getText().toString();// "ir";
@@ -1335,24 +1130,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 String RqPassenger_PassNo = txtnumber_passport.getText().toString();
                 String RqPassenger_Tel = "25548632";
 
-				/*String Gender= "Female";
-				String Nationality= "ir";
-				String Nationality_ID= "iran";
-				String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-				String RqPassenger_Birthdate= "1997/12/23";
-				String RqPassenger_Email= "mohebbi@eligasht.com";
-				String RqPassenger_FirstNameEn= "Maryam";
-				String RqPassenger_FirstNameFa= "مریم";
-				String RqPassenger_LastNameEn="Mohebi";
-				String RqPassenger_LastNameFa= "محبی";
-				String RqPassenger_Mobile= "0235588456";
-				String RqPassenger_NationalCode= "0062532148";
-				String RqPassenger_PassExpDate= "2018/08/23";
-				String RqPassenger_PassNo= "d1234567";
-				String RqPassenger_Tel= "25548632";*/
 
                 String flagMosafer = "T";
-                ///Validate
                 if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
                     ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                     flagMosafer = flagMosafer + "T";
@@ -1404,23 +1183,18 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer = flagMosafer + "F";
                 }
-                ///endValidate
-
 
                 if (flagMosafer.contains("F")) {
-                    Toast.makeText(this, "اطلاعات ورودی نامعتبر است!", 2000).show();
+                    Toast.makeText(this, "اطلاعات ورودی نامعتبر است!", Toast.LENGTH_SHORT).show();
                 } else {
                     PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
-
-                    //db.dropTable();
                     db.openDB();
-
 
                     if (sum > 0) {
 
                         db.insertData(counter - 1, "اطلاعات مسافربزرگسال", Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                         if (countB > 0) {
-                            txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+                            txtTitleCountM.setText(" اطلاعات مسافر " + counter);
                             countB--;
                         } else if (countK > 0) {
                             txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
@@ -1432,36 +1206,21 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         System.out.println("counterMosafer:" + counter);
                         counter++;
                         sum--;
-                        ///pak kardan data haye mosafere ghabli:
                         txttavalodm.setText("");
                         txtnamem.setText("");
                         txtfamilym.setText("");
                         txtexp_passport.setText("");
                         txtnumber_passport.setText("");
 
-                        System.out.println("insert:" + "sum:" + sum);
                     }
                     db.closeDB();
-                    //insert mosafer
-                    //call api saler
-
                 }
 
-                //call api pishFactor
-                new AsyncFetchPishFactor().execute();
-
+                if (sum == 0) {
+                    new AsyncFetch().execute();
+                }
 
                 break;
-
-//			case R.id.btn_taeed_khadamat:
-//
-//
-//				//call api pishFactor
-//				new AsyncFetchPishFactor().execute();
-//
-//				//call api GetPreFactorDetails
-//				break;
-
 
             case R.id.txtmeliyatm:
                 final Intent intent4 = new Intent(this, NationalitycodeActivity.class);
@@ -1480,32 +1239,11 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 linear_pish_factor.setVisibility(View.GONE);
 
                 ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
-//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
                 ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
                 ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                 txtTitle.setText(" مشخصات خریدار ");
-                //myScrollView.setOnTouchListener(null);
-				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
-					linear_pish_factor.setVisibility(View.GONE);
-					linear_list_khadamat.setVisibility(View.VISIBLE);
-
-					((Button)findViewById(R.id.btn_pish_factor)).setBackgroundResource(R.drawable.factor_passenger_off);
-					txtTitle.setText("مرحله 3/4: افزودن خدمات به سبد خرید");
-				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE){
-					linear_list_khadamat.setVisibility(View.GONE);
-					linear_mosaferan.setVisibility(View.VISIBLE);
-
-					txtTitle.setText("مرحله 2/4:  اطلاعات مسافران را وارد کنید");
-					((Button)findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_off);
-				}else if (linear_mosaferan.getVisibility() == View.VISIBLE){
-					linear_mosaferan.setVisibility(View.GONE);
-					linear_saler.setVisibility(View.VISIBLE);
-
-					txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
-					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
-				}*/
                 break;
             case R.id.btn_mosaferan:
                 linear_saler.setVisibility(View.GONE);
@@ -1514,40 +1252,13 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 linear_pish_factor.setVisibility(View.GONE);
 
                 ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
-//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
                 ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 
                 ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
                 txtTitle.setText("  اطلاعات مسافران ");
-
-                //.setOnTouchListener(null);
                 break;
-//			case R.id.btn_khadamat:
-//				linear_saler.setVisibility(View.GONE);
-//				linear_mosaferan.setVisibility(View.GONE);
-//				linear_list_khadamat.setVisibility(View.VISIBLE);
-//				linear_pish_factor.setVisibility(View.GONE);
-//
-//			/*	myScrollView.setSmoothScrollingEnabled(false); // disable scrolling
-//				myScrollView.setOnTouchListener(new View.OnTouchListener() {
-//					@Override
-//					public boolean onTouch(View v, MotionEvent event) {
-//						return true;
-//					}
-//				});*/
-//				//myScrollView.setVisibility(View.GONE);
-//
-//				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
-//				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
-//
-//				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
-//				((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-//				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
-//				txtTitle.setText(" افزودن خدمات به سبد خرید");
-//				break;
             case R.id.btn_pish_factor:
                 linear_saler.setVisibility(View.GONE);
                 linear_mosaferan.setVisibility(View.GONE);
@@ -1555,15 +1266,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 linear_pish_factor.setVisibility(View.VISIBLE);
 
                 ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
-//				((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
                 ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
                 ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                 txtTitle.setText(" تایید و پرداخت پیش فاکتور    ");
-                //myScrollView.setOnTouchListener(null);
                 break;
-
         }
 
     }
@@ -1578,7 +1286,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             String nationalityCode = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYCODE);
             String nationalityName = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYNAME);
-            //Toast.makeText(this, "You selected countrycode: " + countryCode, Toast.LENGTH_LONG).show();
             if (countryCode != null)
                 txtmahale_eghamat.setText(countryCode + "");//txtmahale_eghamat.setText(countryCode+" "+countryName);
             if (nationalityCode != null)
@@ -1592,25 +1299,20 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             DatePickerDialog dialog = null;
-            if (flag) {//tavalodm
+            if (flag) {
                 final Calendar c = Calendar.getInstance();
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
                 dialog = new DatePickerDialog(getActivity(), this, year - 30, month, day);
-                // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-            } else {//expPasport
+            } else {
                 final Calendar c = Calendar.getInstance();
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
                 dialog = new DatePickerDialog(getActivity(), this, year + 1, month, day);//1997/12/23
 
-		 	   /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		 	    Date mDate;*/
-                // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
             }
-            //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
             return dialog;
         }
 
@@ -1630,94 +1332,57 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 
         }
-    }//endDatepicker
+    }
 
     void ClearMenu(View v) {//android:background="@drawable/blue_line_with_arrow_small"
-        //android:background="@drawable/trans_line_with_arrow_small"
         ((ImageView) findViewById(R.id.btn_saler)).setImageResource(R.drawable.trans_line_with_arrow_small);
         ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.trans_line_with_arrow_small);
-//		((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.trans_line_with_arrow_small);
         ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.trans_line_with_arrow_small);
-
         ((Button) findViewById(R.id.txtSaler)).setTextColor(Color.parseColor("#808080"));
         ((Button) findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#808080"));
-//		((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#808080"));
         ((Button) findViewById(R.id.btn_pish_factor)).setTextColor(Color.parseColor("#808080"));
-
-        //((TextView)findViewById(R.id.imageDiscover)).setBackgroundDrawable(null);
-        //((TextView)findViewById(R.id.imageDiscover)).setTextColor(Color.WHITE);
         if (v != null) {
             v.setBackgroundResource(R.drawable.blue_line_with_arrow_small);
             ((TextView) v).setTextColor(Color.parseColor("#33ccff"));
         }
-        //if(currentMenu!=null) currentMenu.finish();
     }
 
     @Override
     public void onBackPressed() {
 
-			/* Intent intent = new Intent(this,PlanFragment.class);
-				//i2.putExtra("CUSTOMER_ID", (int) customerID);
-				startActivity(intent);*/
         if (linear_pish_factor.getVisibility() == View.VISIBLE) {
             linear_pish_factor.setVisibility(View.GONE);
             linear_list_khadamat.setVisibility(View.VISIBLE);
-			/*myScrollView.setSmoothScrollingEnabled(false);
-			myScrollView.setOnTouchListener(new View.OnTouchListener() {
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					return true;
-				}
-			});*/
             ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
             ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
             txtTitle.setText(" افزودن خدمات به سبد خرید");
         } else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
             linear_list_khadamat.setVisibility(View.GONE);
             linear_mosaferan.setVisibility(View.VISIBLE);
-            //myScrollView.setOnTouchListener(null);
 
             txtTitle.setText("  اطلاعات مسافران ");
-//			((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
-//			((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
         } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
             linear_mosaferan.setVisibility(View.GONE);
             linear_saler.setVisibility(View.VISIBLE);
-            //myScrollView.setOnTouchListener(null);
-
             txtTitle.setText(" مشخصات خریدار ");
             ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
             ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
         } else if (linear_saler.getVisibility() == View.VISIBLE) {
-			/*Intent intent = new Intent(this,PlanFragment.class);
-			//i2.putExtra("CUSTOMER_ID", (int) customerID);
-			startActivity(intent);*/
-            //PassengerInsuranceActivity.this.finish();
             finish();
         }
     }
 
     @Override
     public void searchTextChanged(String searchText) {
-			/*this.searchText = searchText;
-			if(searchText.length()>2)
-			new AsyncFetch().execute();*/
-        //mAdapter.setData(searchText);
-
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position,
-                               long id) {
-        // On selecting a spinner item
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String item = parent.getItemAtPosition(position).toString();
         if (item.equals("زن"))
             Gensiyat = "Female";
         else
             Gensiyat = "Man";
-        // Showing selected spinner item
-        //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
     }
 
     @Override
@@ -1729,16 +1394,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
     public static void updateTotalInfos(long serviceTotalPrice) {
         // TODO Auto-generated method stub
-        //GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+serviceTotalPrice;
-        //txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT))+"");
         txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(serviceTotalPrice)) + "");
-		/*for (int i =0 ;i<data.size();i++){
-			if(data.get(i).isFlag()){
-				GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+data.get(i).getServiceTotalPrice();
-			}
-
-		}
-		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT))+"");*/
     }
 
     private class GenericTextWatcher implements TextWatcher {
@@ -1763,7 +1419,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 case R.id.txtmahale_eghamat:
                     if (text != null && text.length() > 1) {
                         ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
-                        //flagMosafer=flagMosafer+"T";
                     } else {
                         ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                         txtmahale_eghamat.setError("لطفا محل اقامت را وارد کنید ");
@@ -1893,7 +1548,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         }
     }
 
-
     public static Bitmap getBitmap(String barcode, int barcodeType, int width, int height) {
         Bitmap barcodeBitmap = null;
         BarcodeFormat barcodeFormat = convertToZXingFormat(barcodeType);
@@ -1979,7 +1633,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     }
 
     private static String guessAppropriateEncoding(CharSequence contents) {
-        // Very crude at the moment
         for (int i = 0; i < contents.length(); i++) {
             if (contents.charAt(i) > 0xFF) {
                 return "UTF-8";

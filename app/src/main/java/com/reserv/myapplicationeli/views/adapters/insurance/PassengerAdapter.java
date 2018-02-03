@@ -8,6 +8,7 @@ import com.reserv.myapplicationeli.views.viewholders.PassengerRowHolder;
 
 /**
  * Created by elham.bonyani on 1/4/2018.
+ * for add passenger in  activity passenger
  */
 
 public class PassengerAdapter extends RecyclerView.Adapter<PassengerRowHolder> {

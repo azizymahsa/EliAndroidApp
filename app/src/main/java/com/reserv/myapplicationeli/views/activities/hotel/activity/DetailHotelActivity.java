@@ -101,7 +101,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
-    private TextView tvTitle, tvAlertComment,tvCommentCount,tvVoteCount;
+    private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount;
     com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView lvRooms, lvComments;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
@@ -115,7 +115,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     RoomsAdapter roomsAdapter;
     GetRoomsList getRoomsList;
     Window window;
-    LinearLayout llEmakanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel,llInformation,llPolicy;
+    LinearLayout llEmakanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel, llInformation, llPolicy;
     FrameLayout flMap;
     View vEmakanat, vMap, vRezerv, vComment;
     private GoogleMap map;
@@ -143,7 +143,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     GetComment getComment;
     boolean isComment = true;
     CircleProgressView circleView;
-
 
 
     @Override
@@ -178,22 +177,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         new GetRoomsAsync().execute();
 
 
-      /*  commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
-                "سه شنبه 10 بهمن 1396", "مریم"));
-        commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
-                "سه شنبه 10 بهمن 1396", "مریم"));
-        commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
-                "سه شنبه 10 بهمن 1396", "مریم"));
-        commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
-                "سه شنبه 10 بهمن 1396", "مریم"));
-        commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
-                "سه شنبه 10 بهمن 1396", "مریم"));
-        commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
-                "سه شنبه 10 بهمن 1396", "مریم"));
-        commentModels.add(new CommentModel(1, 5, "خیلی هم عالی", "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
-                "سه شنبه 10 بهمن 1396", "مریم"));
-        commentAdapter = new CommentAdapter(this,commentModels);
-        lvComments.setAdapter(commentAdapter);*/
     }
 
     @Override
@@ -639,16 +622,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         llPolicy.addView(textView);
 
 
-
-
-
                         NonScrollListView nonScrollGridView = new NonScrollListView(DetailHotelActivity.this);
                         nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT));
                         // nonScrollGridView.setNumColumns(2);
 
-                        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, DetailHotelActivity.this, null,true));
-                        //     nonScrollGridView.setFocusable(false);
+                        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, DetailHotelActivity.this, null, true));
+                      nonScrollGridView.setFocusable(false);
                         llPolicy.addView(nonScrollGridView);
 
                     }
@@ -726,16 +706,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         linearLayout.addView(textView);
 
 
-
-
-
         NonScrollGridView nonScrollGridView = new NonScrollGridView(DetailHotelActivity.this);
         nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         // nonScrollGridView.setNumColumns(2);
 
-        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(hotelProprtiesModels, DetailHotelActivity.this, nonScrollGridView,false));
-   //     nonScrollGridView.setFocusable(false);
+        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(hotelProprtiesModels, DetailHotelActivity.this, nonScrollGridView, false));
+       nonScrollGridView.setFocusable(false);
         linearLayout.addView(nonScrollGridView);
     }
 
@@ -811,8 +788,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 GetCommentRequest getCommentRequest = new GetCommentRequest();
                 Request request = new Request();
                 request.setCulture("fa-IR");
-             //   request.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
-                request.setEHotelId("767");
+                request.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
+                // request.setEHotelId("767");
                 getCommentRequest.setRequest(request);
                 Log.e("testtt", new Gson().toJson(getCommentRequest).toString());
                 getComment = new GetComment(getCommentRequest);
@@ -835,7 +812,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 circleView.setDecimalFormat(new DecimalFormat("0.0"));
 
                 circleView.setMaxValue(10);
-              circleView.setUnitVisible(false);
+                circleView.setUnitVisible(false);
 
 
                 for (int i = 0; i < getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length; i++) {
@@ -848,10 +825,10 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 commentAdapter = new CommentAdapter(DetailHotelActivity.this, commentModels);
                 lvComments.setAdapter(commentAdapter);
                 lvComments.setFocusable(false);
-                tvVoteCount.setText("از مجموع "+getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent+" رای ثبت شده");
-                tvCommentCount.setText("نظرات کاربران "+getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount+" نظر");
+                tvVoteCount.setText("از مجموع " + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent + " رای ثبت شده");
+                tvCommentCount.setText("نظرات کاربران " + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount + " نظر");
                 circleView.setValueAnimated(Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore));
-                Log.e("fer", Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore)+"");
+                Log.e("fer", Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore) + "");
                 if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {
 
 

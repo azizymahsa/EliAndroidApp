@@ -539,8 +539,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}else{
 						//((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
 						txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
-					}
-				}
+					}}
 				break;
 
 			case R.id.txtmobileP:
@@ -994,7 +993,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	}//end async get pish factor
 	//het khadamat
 	private class AsyncFetch extends AsyncTask<String, String, String> {
-
 		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
 		HttpURLConnection conn;
 		URL url = null;

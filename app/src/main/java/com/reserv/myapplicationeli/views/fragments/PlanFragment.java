@@ -1,6 +1,5 @@
 package com.reserv.myapplicationeli.views.fragments;
 
-import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -66,7 +65,8 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     public static int picker_az_month;
     public static int picker_az_day;
     private View rootView;
-    boolean Geo=false;
+    com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
+    com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
     RelativeLayout txtOption;
     int month;
     int year_;
@@ -79,13 +79,6 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     ImageView ivImage;
 
     public static int countNafar = 1;
-
-    com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
-    com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
-     /*com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -154,18 +147,8 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
         btnOne.setOnClickListener(this);
 
         searchPlan.setOnClickListener(this);
-
 ///Calender nejati\
-        //==================================================================================================
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
-        //  Date currentTime = Calendar.getInstance().getTime();
-        //=================================================================================================
-        ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        PersianCalendar persianCalendar = new PersianCalendar();
-
-        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay()+1);
-        ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
-
         tarikh_az_picker.setText(persianCalendarDatePicker.getPersianLongDate());
         picker_az_format=persianCalendarDatePicker.getPersianLongDate();
         tarikh_be_picker.setText(persianCalendarDatePicker.getPersianLongDate());
@@ -175,13 +158,9 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
         day = persianCalendarDatePicker.getPersianDay();//24
 
 
-///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
-        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
-//RRRRRRRRRRRRRRRRRRRRR
-        datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
-        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
-        //RRRRRRRRRRRRRRRRRRRRRRRR
+
+
+
 
         datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
                 this,
@@ -200,116 +179,13 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                 persianCalendarDatePicker.getPersianDay()
         );
         datePickerDialog2.setMinDate(persianCalendarDatePicker);
-
         raft=date_server(  persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
-
         bargasht=date_server(  persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
-//RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        //=====================================================================================================
 
-
-        datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
-            }
-        });
-
-
-        datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
-
-
-            }
-        });
-
-
-//=====================================================================================================
-
-        datePickerDialog2.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
-            }
-        });
-
-
-        datePickerDialogGregorian2.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
-
-
-            }
-        });
-
-
-//=====================================================================================================
-
-
-        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-                Geo=true;
-
-
-                Log.e("GGGGGGGRaft", year+"=="+(monthOfYear+1)+"=="+dayOfMonth);
-
-
-
-
-
-
-                String str_date =  year+"-"+  (monthOfYear+1)+"-"+ dayOfMonth;//2018-01-16
-                DateFormat formatter;
-                Date date;
-                formatter = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    date = (Date) formatter.parse(str_date);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(date);
-                    datePickerDialogGregorian2.setMinDate(cal);
-
-
-                    tarikh_az_picker.setText(Utility.dateShowViewFlight(year+"-"+ (monthOfYear+1)+"-"+ dayOfMonth));
-
-                    raft =year+"-"+ (monthOfYear+1)+"-"+ dayOfMonth;
-                    Log.e("GGGGGGG", raft);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                tarikh_be_picker.setText(tarikh_az_picker.getText().toString());
-
-
-
-            }
-        });
-        datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-                Log.e("GGGGGGGBar", year+"=="+(monthOfYear+1)+"=="+dayOfMonth);
-                Geo=true;
-
-                tarikh_be_picker.setText(Utility.dateShowViewFlight(year+"-"+ (monthOfYear+1)+"-"+ dayOfMonth));
-                bargasht =year+"-"+( monthOfYear+1)+"-"+ dayOfMonth;
-
-
-
-            }
-
-
-        });
-
-
-        //RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRrr
 
         //set value bundle
         //get
@@ -476,7 +352,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
             case R.id.btntwo:
                 flagOneTwo = 2;
                 ((LinearLayout) rootView.findViewById(R.id.llButton)).setBackgroundResource(R.drawable.raftobargasht_button);
-                // ((Button) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.raft_big);
+               // ((Button) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.raft_big);
                 ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
                 ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
 
@@ -486,9 +362,9 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                 tarikh_be.setVisibility(View.VISIBLE);
                 linear_picker.setVisibility(View.VISIBLE);
                 //v.setBackgroundResource(R.drawable.btnwhite);
-         /*((Button)rootView.findViewById(R.id.btnAward)).setBackgroundDrawable(R.drawable.background_back);
-         ((Button)rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#E06F3"));
-         ((Button)rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));*/
+			/*((Button)rootView.findViewById(R.id.btnAward)).setBackgroundDrawable(R.drawable.background_back);
+			((Button)rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#E06F3"));
+			((Button)rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));*/
                 break;
             case R.id.btnOne:
                 flagOneTwo = 1;
@@ -509,7 +385,11 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                 datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
                 break;
             case R.id.tarikh_az_picker:
-
+                datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+                    @Override
+                    public void onCalendarChanged(boolean isGregorian) {
+                    }
+                });
 
                 datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
@@ -594,8 +474,6 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
                     }
-                    intent1.putExtra("Geo",  Geo);//2017-11-24
-
 
                     startActivity(intent1);
                 } catch (Exception e) {
@@ -623,7 +501,6 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-        Geo=false;
 
         year_ = year;
         month = monthOfYear;
@@ -679,7 +556,7 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
     public void anim(){
 
 
-        YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+      YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
 
 
 
@@ -776,4 +653,3 @@ public class PlanFragment extends Fragment implements OnClickListener ,TimePicke
         ivImage.startAnimation(animation);
     }
 }
-

@@ -23,18 +23,18 @@ import mehdi.sakout.fancybuttons.FancyButton;
  * Created by Reza.nejati on 1/7/2018.
  */
 
-public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckBox.OnCheckedChangeListener {
+public class FilterFlightDialogNew implements View.OnClickListener , SmoothCheckBox.OnCheckedChangeListener{
     android.app.AlertDialog dialog;
 
-    public ArrayList<ModelCheckBox> arrayTrue = new ArrayList<>();
+    public ArrayList<ModelCheckBox> arrayTrue=new ArrayList<>();
     private ArrayList<ModelCheckBox> modelCheckBoxes = new ArrayList<>();
 
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
     Context activity;
-    FancyButton btnOk, btnCancel, btnDeletFilter;
-    SmoothCheckBox noStop, oneStop, twoStopMore, economiF, businessF, ferstF;
+    FancyButton btnOk, btnCancel,btnDeletFilter;
+    SmoothCheckBox noStop, oneStop,twoStopMore,economiF, businessF, ferstF;
     TextView txtTavaghof;
     // FilterFlightDialogListenerNew filterFlightDialogListenerNew;
     FilterFlightDialogListenerArray filterFlightDialogListenerArray;
@@ -51,8 +51,8 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
     boolean remove_;
 
     ListView lv;
-    FilterAdapter adapter;
-    public ArrayList<ModelCheckBox> filterAirlines = new ArrayList<>();
+     FilterAdapter adapter;
+    public ArrayList<ModelCheckBox> filterAirlines=new ArrayList<>();
 
 
     public FilterFlightDialogNew(final Context activity, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray, ArrayList<ModelCheckBox> filterAirlines) {
@@ -90,7 +90,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
         txtTavaghof = (TextView) dialogView.findViewById(R.id.txtTavaghof);
 
 
-        lv = (ListView) dialogView.findViewById(R.id.listView1);
+        lv = (ListView)  dialogView.findViewById(R.id.listView1);
        /* modelItems = new ModelCheckBox[5];
         modelItems[0] = new ModelCheckBox("pizza", 0);
         modelItems[1] = new ModelCheckBox("burger", 1);
@@ -108,7 +108,10 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
         remove.setOnCheckedChangeListener(this);
 
 
-        adapter = new FilterAdapter(activity, modelCheckBoxes);
+
+
+
+          adapter = new FilterAdapter(activity,filterAirlines);
         lv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -190,7 +193,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
             }
             //========
             if (filterModel.isRemove()) {
-                remove.setChecked(true);
+               remove.setChecked(true);
                 remove_ = true;
 
 
@@ -206,7 +209,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
 
 
     @Override
-    public void onClick(View v) {
+    public void onClick (View v){
         switch (v.getId()) {
             case R.id.btnOk:
                 // activity.startActivity(new Intent(activity, ProfileActivity.class));
@@ -216,7 +219,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
                     noStop_ = true;
 
 
-                } else {
+                } else{
                     noStop_ = false;
 
 
@@ -224,78 +227,76 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
                 if (oneStop.isChecked()) {
                     oneStop_ = true;
 
-                } else {
-                    oneStop_ = false;
+                }else{
+                    oneStop_=false;
                 }
                 if (twoStopMore.isChecked()) {
                     twoStopMore_ = true;
 
 
-                } else {
-                    twoStopMore_ = false;
+                }else{
+                    twoStopMore_=false;
                 }
 
                 if (economiF.isChecked()) {
                     economiF_ = true;
-                } else {
-                    economiF_ = false;
+                }else{
+                    economiF_=false;
                 }
 
                 if (businessF.isChecked()) {
                     businessF_ = true;
 
 
-                } else {
-                    businessF_ = false;
+                }else{
+                    businessF_=false;
                 }
                 if (ferstF.isChecked()) {
                     ferstF_ = true;
-                } else {
-                    ferstF_ = false;
+                }else{
+                    ferstF_=false;
                 }
                 //========
                 if (remove.isChecked()) {
                     if (filter.isEmpty()) {
-                        filter.add(new FilterModelّFlight(false, false, false, remove_, false, false, false));
+                        filter.add(new FilterModelّFlight(false,false,false,remove_,false,false,false));
                     } else {
-                        filter.set(0, new FilterModelّFlight(false, false, false, true, false, false, false));
+                        filter.set(0, new FilterModelّFlight(false,false,false,true,false,false,false));
                     }
                 } else {
 
                     if (filter.isEmpty()) {
-                        filter.add(new FilterModelّFlight(noStop_, oneStop_, twoStopMore_, false, economiF_, businessF_, ferstF_));
+                        filter.add(new FilterModelّFlight(noStop_,oneStop_,twoStopMore_,false,economiF_,businessF_,ferstF_));
 
                     } else {
-                        filter.set(0, new FilterModelّFlight(noStop_, oneStop_, twoStopMore_, false, economiF_, businessF_, ferstF_));
+                        filter.set(0, new FilterModelّFlight(noStop_,oneStop_,twoStopMore_,false,economiF_,businessF_,ferstF_));
 
                     }
                 }
+
 
 
                 //  }
 
 
-                filterFlightDialogListenerArray.onReturnValueFlightNew(filter, modelCheckBoxes);
+                filterFlightDialogListenerArray.onReturnValueFlightNew(filter,modelCheckBoxes);
 
 
                 dialog.cancel();
 
                 break;
             case R.id.btnDeletFilter:
-                SearchParvazActivity.FlagRemove = true;
+                SearchParvazActivity.FlagRemove=true;
                 for (int i = 0; i < modelCheckBoxes.size(); i++) {
                     modelCheckBoxes.set(i, new ModelCheckBox(modelCheckBoxes.get(i).getName(), false));
 
 
                 }
-                adapter.notifyDataSetChanged();
 
-                try {
-                    filter.set(0, new FilterModelّFlight(false, false, false, true, false, false, false));
-                } catch (Exception e) {
-                }
+try{                filter.set(0, new FilterModelّFlight(false,false,false,true,false,false,false));
+}catch (Exception e){}
 
-                filterFlightDialogListenerArray.onReturnValueFlightNew(filter, modelCheckBoxes);
+                filterFlightDialogListenerArray.onReturnValueFlightNew(filter,modelCheckBoxes);
 
 
                 dialog.cancel();
@@ -308,9 +309,10 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
         switch (checkBox.getId()) {
 
 
+
             case R.id.Remove:
                 if (isChecked) {
-/*
+
                     noStop.setChecked(false);
                     oneStop.setChecked(false);
                     twoStopMore.setChecked(false);
@@ -318,34 +320,36 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
                     businessF.setChecked(false);
                     economiF.setChecked(false);
                     //star1.setChecked(false);
-                    for (int i = 0; i < modelCheckBoxes.size(); i++) {
+                    for (int i =0;i<modelCheckBoxes.size();i++){
 
-                        modelCheckBoxes.set(i, new ModelCheckBox(modelCheckBoxes.get(i).getName(), false));
+                        modelCheckBoxes.set(i,new ModelCheckBox(modelCheckBoxes.get(i).getName(),false));
 
                     }
-                    adapter.notifyDataSetChanged();*/
+                    adapter.notifyDataSetChanged();
 
 
                 }
                 break;
-            case R.id.noStop:
+                case R.id.noStop:
                 if (isChecked) {
+                    remove.setChecked(false);
+
+
+
+                }
+                break;
+                case R.id.oneStop:
+                if (isChecked) {
+
                     remove.setChecked(false);
 
 
                 }
                 break;
-            case R.id.oneStop:
-                if (isChecked) {
-
-                    remove.setChecked(false);
-
-
-                }
-                break;
-            case R.id.twoStopMore:
+                case R.id.twoStopMore:
                 if (isChecked) {
                     remove.setChecked(false);
+
 
 
                 }
@@ -361,6 +365,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
             case R.id.businessF:
                 if (isChecked) {
                     remove.setChecked(false);
+
 
 
                 }

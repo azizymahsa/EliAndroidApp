@@ -11,7 +11,7 @@ import com.reserv.myapplicationeli.models.model.pack.ChildAgeRange;
 
 import java.util.ArrayList;
 
-
+//ageRang for children
 public class ChildAgeRangeAdapter extends ArrayAdapter<ChildAgeRange> {
 
     private ArrayList<ChildAgeRange> mValues;
