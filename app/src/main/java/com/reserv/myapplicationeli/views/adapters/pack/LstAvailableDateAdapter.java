@@ -3,6 +3,7 @@ package com.reserv.myapplicationeli.views.adapters.pack;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,9 +80,14 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
         }else{
             holder.txt_depart_date.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_white_with_stroke));
         }
+        //todo change this
 
         long milis = DateUtil.getMiliSecondFromJSONDate(item.getDepartDate());
-        holder.txt_depart_date.setText(DateUtil.getShortStringDateFromMilis(String.valueOf(milis),"yyyy-MM-dd",true));
+        String date=DateUtil.getShortStringDateFromMilis(String.valueOf(milis),"yyyy-MM-dd",true).replaceAll("شنبه","").replaceAll("جمعه","")
+                .replaceAll("سه","").replaceAll("چهار","").replaceAll("پنج","").replaceAll("یک","")
+                .replaceAll("دو","");
+
+        holder.txt_depart_date.setText(date);
         Glide.with(context)
                 .load("http://www.eligasht.com/Content/AirLine/" + item.getAirlineCode() + ".png")
                 .into(holder.img_airLine);

@@ -201,9 +201,12 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
             @Override
             public void onFailure(Call<CountryListRes> call, Throwable t) {
-                hideLoading();
-                act_country.setText("");
-                needShowAlertDialog("خطا در ارتباط", true);
+                try{
+                    hideLoading();
+                    act_country.setText("");
+                    needShowAlertDialog("خطا در ارتباط", true);
+                }catch (Exception e){}
+
             }
         });
     }

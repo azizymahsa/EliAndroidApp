@@ -200,7 +200,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginTop="15dp"
                         android:gravity="right"
-                        android:text="تاریخ خروج از هتل "
+                        android:text="تاریخ برگشت"
                         android:textSize="@dimen/text_size_12dp"
                         android:textColor="@color/text_color_2"
                         android:textStyle="bold"
@@ -258,7 +258,7 @@
                         android:layout_marginTop="@dimen/_15dp_margin"
                         android:gravity="right"
 
-                        android:text="تاریخ ورود به هتل"
+                        android:text="تاریخ رفت"
                         android:textSize="@dimen/text_size_12dp"
                         android:textColor="@color/text_color_2"
                         android:textStyle="bold"

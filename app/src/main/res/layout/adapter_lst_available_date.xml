@@ -18,7 +18,7 @@
             android:gravity="center"
             android:textColor="#5f5e5e"
             android:background="@drawable/bg_grey_with_stroke"
-            android:textSize="9sp"
+            android:textSize="@dimen/_10dp"
             android:padding="@dimen/_5sp_padding"
             android:text="1"/>
 
