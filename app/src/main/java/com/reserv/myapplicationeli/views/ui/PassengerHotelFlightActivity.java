@@ -34,6 +34,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Scroller;
 import android.widget.Spinner;
@@ -126,7 +127,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     ExpandableRelativeLayout expandableLayout;
     String paymentUrl;
     private boolean FlagTab=false;
-
+    RelativeLayout rlLoading;
 
     GetKhadmatHotelFlightAdapter mAdapter;
     //ScrollView myScrollView;
@@ -223,7 +224,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         });
 
 
-
+        rlLoading = findViewById(R.id.rlLoading);
 
         txt_hom = (ImageView) findViewById(R.id.txt_hom);
         textView4 = (ImageView) findViewById(R.id.textView4);
@@ -384,10 +385,7 @@ txtnameP.setOnFocusChangeListener(this);
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //PassengerHotelFlightActivity.this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+            rlLoading.setVisibility(View.VISIBLE);
 
         }
 
@@ -483,12 +481,8 @@ txtnameP.setOnFocusChangeListener(this);
         @Override
         protected void onPostExecute(String resultPishfactor) {
 
-            //PassengerHotelFlightActivity.this method will be running on UI thread
-            //{"PurchaseServiceResult":{"Errors":null,"ResultText":"Temp Contract Saved Successfully!","SuccessResult":782528}}
-            //  pdLoading.dismiss();
-            //List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
 
-            pdLoading.dismiss();
+            rlLoading.setVisibility(View.GONE);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -697,10 +691,7 @@ txtnameP.setOnFocusChangeListener(this);
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //PassengerHotelFlightActivity.this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+            rlLoading.setVisibility(View.VISIBLE);
 
         }
 
@@ -796,7 +787,7 @@ txtnameP.setOnFocusChangeListener(this);
         protected void onPostExecute(String resultPishfactor) {
 
 
-            pdLoading.dismiss();
+            rlLoading.setVisibility(View.GONE);
             try {
 
 ////////////////////////////
@@ -862,10 +853,7 @@ txtnameP.setOnFocusChangeListener(this);
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //PassengerHotelFlightActivity.this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+            rlLoading.setVisibility(View.VISIBLE);
 
         }
 
@@ -961,12 +949,10 @@ txtnameP.setOnFocusChangeListener(this);
         @Override
         protected void onPostExecute(String result) {
             FlagMosaferan=false;
-            //PassengerHotelFlightActivity.this method will be running on UI thread
-
-            pdLoading.dismiss();
+            rlLoading.setVisibility(View.GONE);
             List<PurchaseFlightResult> data = new ArrayList<PurchaseFlightResult>();
 
-            pdLoading.dismiss();
+
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(result);

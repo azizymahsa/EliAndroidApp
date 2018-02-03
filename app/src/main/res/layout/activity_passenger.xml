@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff">
 
 
@@ -1634,5 +1635,28 @@
 
         </LinearLayout>
         <!-- </LinearLayout> -->
+    <RelativeLayout
+        android:id="@+id/rlLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ad000000"
+        android:visibility="gone">
 
+
+        <com.wang.avi.AVLoadingIndicatorView
+
+            android:id="@+id/avi1"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/tv"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            app:indicatorColor="@color/toolbar_color"
+            app:indicatorName="BallSpinFadeLoaderIndicator"
+
+            />
+    </RelativeLayout>
 </RelativeLayout>
