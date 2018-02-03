@@ -33,6 +33,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Scroller;
 import android.widget.Spinner;
@@ -130,7 +131,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     public TextView txt_shomare_factor, tvPrice;
     public ImageView txt_hom, textView4;
 
-    private String Gensiyat;
+    private String Gensiyat="";
     Activity activity;
     public int countB;
     public int countK;
@@ -144,7 +145,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     private boolean FlagMosaferan=true;
     private boolean FlagTab=false;
     private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
-
+    RelativeLayout rlLoading;
 
     //ExpandableLayoutListView lvFactor;
     @SuppressLint("WrongViewCast")
@@ -225,6 +226,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         });
 
 
+        rlLoading = findViewById(R.id.rlLoading);
 
 
         txt_hom = (ImageView) findViewById(R.id.txt_hom);
@@ -394,9 +396,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             super.onPreExecute();
 
             //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+            rlLoading.setVisibility(View.VISIBLE);
 
         }
 
@@ -496,7 +496,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             //  pdLoading.dismiss();
             //List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
 
-            pdLoading.dismiss();
+            rlLoading.setVisibility(View.GONE);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -646,11 +646,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
-
+            rlLoading.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -745,7 +741,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         protected void onPostExecute(String resultPishfactor) {
 
 
-            pdLoading.dismiss();
+            rlLoading.setVisibility(View.GONE);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -809,10 +805,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+            rlLoading.setVisibility(View.VISIBLE);
 
         }
 
@@ -910,10 +903,10 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             FlagMosaferan=false;
             //this method will be running on UI thread
 
-            pdLoading.dismiss();
+
             List<PurchaseFlightResult> data = new ArrayList<PurchaseFlightResult>();
 
-            pdLoading.dismiss();
+            rlLoading.setVisibility(View.GONE);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(result);

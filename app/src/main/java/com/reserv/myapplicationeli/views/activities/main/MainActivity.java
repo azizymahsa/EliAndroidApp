@@ -85,14 +85,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sendDetailFinish();
         window.setStatusBarColor(getColor(R.color.flight_status));
         InitUi.Toolbar(this, true, R.color.TRANSPARENT, "صفحه اصلی");
-        initViews();
+
         timer();
         timerRecive();
-        PlanFragment workerStateFragment = new PlanFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, workerStateFragment)
-                .commit();
+
+        initViews();
 
     }
 
@@ -160,6 +157,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLastBuy.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
 
+        switch (Prefs.getInt("type",0)){
+            case 0:
+                addFragment(getString(R.string.searchFlight), new PlanFragment());
+             break;
+            case 1:
+                addFragment(getString(R.string.search_hotel), new HotelFragment());
+             break;
+            case 2:
+                addFragment(getString(R.string.search_package), new PackageFragment());
+                break;
+            case 3:
+                addFragment(getString(R.string.btn_insurance), new InsuranceFragment());
+                break;
+            case 4:
+                addFragment("هتل و پرواز", new HotelFlightFragment());
+                break;
+                default:
+                    PlanFragment workerStateFragment = new PlanFragment();
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, workerStateFragment)
+                            .commit();
+                    break;
+        }
+
 
     }
 
@@ -187,23 +209,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnFlight:
                 addFragment(getString(R.string.searchFlight), new PlanFragment());
+                Prefs.putInt("type",0);
 
                 break;
             case R.id.btnHotel:
                 addFragment(getString(R.string.search_hotel), new HotelFragment());
+                Prefs.putInt("type",1);
 
                 break;
             case R.id.btnPackage:
                 addFragment(getString(R.string.search_package), new PackageFragment());
-                //expandableLayout.toggle();
+                Prefs.putInt("type",2);
 
                 break;
 
             case R.id.btnInsurance:
                 addFragment(getString(R.string.btn_insurance), new InsuranceFragment());
-
+                Prefs.putInt("type",3);
                 break;
             case R.id.btnHotelFlight:
+                addFragment("هتل و پرواز", new HotelFlightFragment());
+                Prefs.putInt("type",4);
                 addFragment("بلیط هواپیما + رزرو هتل", new HotelFlightFragment());
 
                 break;
@@ -294,7 +320,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+    public void onDestroy() {
 
+        super.onDestroy();
+       // Prefs.putInt("type",0);
+    }
     public void addFragment(String title, Fragment fragment) {
         tvTitle.setText(title);
         manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -347,8 +377,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onReceive(Context context, Intent intent) {
 
 
+
+
                 countDownTimer.cancel();
                 countDownTimer.start();
+
+
+
+
 
 
             }
@@ -364,7 +400,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onReceive(Context context, Intent intent) {
 
 
+
+
                 countDownTimer.onFinish();
+
+
+
+
+
 
 
             }

@@ -44,8 +44,11 @@ import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCa
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 import com.reserv.myapplicationeli.views.ui.GetAirportMaghsadActivity;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 
 public class PlanFragment extends Fragment implements OnClickListener ,TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     public PlanFragment() {
@@ -541,7 +544,7 @@ public  LinearLayout linear_tarikh_az_picker;
 
                     Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
 
-                    if (Prefs.getString("Value-Mabda-City","") != null && Prefs.getString("Value-Mabda-City","").length()>0) {
+                    if (Prefs.getString("Value-Mabda-City","") != null && Prefs.getString("Value-Mabda-City","").length()>0 && Prefs.getString("Value-Maghsad-Airport-Code","") != null && Prefs.getString("Value-Maghsad-Airport-Code","").length()>0) {
                         System.out.println("not default"+Prefs.getString("Value-Mabda-City",""));
                         if (Prefs.getString("Value-Mabda-Airport-Code","") != null && Prefs.getString("Value-Mabda-Airport-Code","").length()>0) {
                             intent1.putExtra("Value-Mabda-City", Prefs.getString("Value-Mabda-City",""));
@@ -575,17 +578,21 @@ public  LinearLayout linear_tarikh_az_picker;
                         intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
+                        intent1.putExtra("Geo",  Geo);//2017-11-24
 
+
+                        startActivity(intent1);
                     } else {//default
-
-                        System.out.println("default");
+                        AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(getActivity());
+                        AlertDialogPassenger.setText("لطفا مبدا و مقصد را انتخاب کنید ");
+                       /* System.out.println("default");
                         intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
                         intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
-                        intent1.putExtra("Value-Mabda-Airport-Code", "THR");//*THR
+                        intent1.putExtra("Value-Mabda-Airport-Code", "THR");/*//*THR
 
                         intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());
                         intent1.putExtra("Value-Maghsad-Airport", lbl_forudgah_maghsad.getText().toString());
-                        intent1.putExtra("Value-Maghsad-Airport-Code", "IST");//*
+                        intent1.putExtra("Value-Maghsad-Airport-Code", "IST");/*//*
 
                         intent1.putExtra("Value-Flag-Two", Integer.toString(flagOneTwo));
                         intent1.putExtra("Value-AdlCount", txtCountB.getText().toString());
@@ -596,12 +603,9 @@ public  LinearLayout linear_tarikh_az_picker;
                         intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
 
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
-                        intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
+                        intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29*/
                     }
-                    intent1.putExtra("Geo",  Geo);//2017-11-24
 
-
-                    startActivity(intent1);
                 } catch (Exception e) {
                     Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
                 }

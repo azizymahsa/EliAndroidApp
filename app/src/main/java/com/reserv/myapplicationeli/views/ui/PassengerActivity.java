@@ -66,6 +66,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Scroller;
 import android.widget.Spinner;
@@ -157,7 +158,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	private boolean FlagMosaferan=true;
 
 	private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
-
+	RelativeLayout rlLoading;
 
 
 	@SuppressLint("WrongViewCast")
@@ -222,7 +223,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 		});
 
-
+		rlLoading = findViewById(R.id.rlLoading);
 
 
 
@@ -585,10 +586,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		protected void onPreExecute() {
 			super.onPreExecute();
 
-			//this method will be running on UI thread
-			pdLoading.setMessage("\tLoading...");
-			pdLoading.setCancelable(false);
-			pdLoading.show();
+
+			rlLoading.setVisibility(View.VISIBLE);
 
 		}
 
@@ -688,7 +687,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			//  pdLoading.dismiss();
 			//List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
 			System.out.println("resultPishfactor:"+resultPishfactor);
-			pdLoading.dismiss();
+			rlLoading.setVisibility(View.GONE);
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -830,10 +829,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			super.onPreExecute();
 
 			//this method will be running on UI thread
-			pdLoading.setMessage("\tLoading...");
-			pdLoading.setCancelable(false);
-			pdLoading.show();
-
+			rlLoading.setVisibility(View.VISIBLE);
 		}
 
 		@Override
@@ -929,7 +925,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 
-			pdLoading.dismiss();
+			rlLoading.setVisibility(View.GONE);
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -1002,10 +998,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		protected void onPreExecute(){
 			super.onPreExecute();
 
-			//this method will be running on UI thread
-			pdLoading.setMessage("\tLoading...");
-			pdLoading.setCancelable(false);
-			pdLoading.show();
+			rlLoading.setVisibility(View.VISIBLE);
 
 		}
 
@@ -1104,10 +1097,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			//this method will be running on UI thread
 
-			pdLoading.dismiss();
-
-
-			pdLoading.dismiss();
+			rlLoading.setVisibility(View.GONE);
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(result);
@@ -2206,10 +2196,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	}
 	@Override
 	public void searchTextChanged(String searchText) {
-			/*this.searchText = searchText;
-		if(searchText.length()>2)
-			new AsyncFetch().execute();*/
-		//mAdapter.setData(searchText);
+
 
 	}
 	@Override
@@ -2222,8 +2209,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}else if(item.contains("مرد")){
 			Gensiyat="true";
 		}
-		// Showing selected spinner item
-		//	Toast.makeText(parent.getContext(), "Selected: " + item +" gensiyat:"+Gensiyat, Toast.LENGTH_LONG).show();
+
 
 	}
 	@Override
