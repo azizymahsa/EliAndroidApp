@@ -113,7 +113,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         }
 
         holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice())));
-        holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF() +"+" + item.getHServiceF() + "(" + item.getHService() +")");
+        holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF() +"\n" + item.getHServiceF() + "(" + item.getHService() +")");
 
         holder.chk_prow_price.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override

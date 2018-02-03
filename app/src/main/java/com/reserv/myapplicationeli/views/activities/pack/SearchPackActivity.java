@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
@@ -148,6 +149,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         packageListReq.setDepartureFrom(departureFrom);
         packageListReq.setDepartureTo(departureTo);
         packageListReq.setCulture(culture);
+        Log.e("packreq",new Gson().toJson(packageListReq).toString());
+
 
         Call<PackageListRes> call = service.getPackageListResult(new PackageRequestModel(packageListReq));
         call.enqueue(new Callback<PackageListRes>() {
@@ -383,6 +386,9 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             public void onClickLstAvailableDateItem(LstAvailableDate lstAvailableDate) {
                 long milis = DateUtil.getMiliSecondFromJSONDate(lstAvailableDate.getDepartDate());
                 departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
+                Log.e("PackageTest", departureFrom);
+                Log.e("PackageTest2", milis+"");
+
                 getPackages(country, departureFrom, departureTo, roomList, culture);
             }
         });

@@ -48,7 +48,7 @@ public class NonScrollGridView extends GridView {
             Paint paint = new Paint();
             paint.setColor(0xffececec);
 
-            paint.setStrokeWidth(Math.round(1));
+            paint.setStrokeWidth(Math.round(4));
 
             int offset =1; // Some offset
 

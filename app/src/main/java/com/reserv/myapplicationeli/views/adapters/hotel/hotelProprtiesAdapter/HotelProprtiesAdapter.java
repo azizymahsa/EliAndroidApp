@@ -101,8 +101,12 @@ public class HotelProprtiesAdapter extends BaseAdapter {
 
             } else {
                 nonScrollGridView.setNumColumns(1);
-                holder.tvTitle.setText(hotelProprtiesModels.get(position).getPropertyTitle());
 
+                if (hotelProprtiesModels.get(position).getPropertyDescription().equals("0")){
+                    hotelProprtiesModels.remove(position);
+                    notifyDataSetChanged();
+                }
+                holder.tvTitle.setText(hotelProprtiesModels.get(position).getPropertyTitle());
                 holder.tvImage.setText(hotelProprtiesModels.get(position).getPropertyDescription());
 
 

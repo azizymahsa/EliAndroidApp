@@ -871,6 +871,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     detailsJson.put("RqPassenger_PassExpDate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
                     detailsJson.put("RqPassenger_PassNo", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
                     detailsJson.put("RqPassenger_Tel", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+                    detailsJson.put("RqPassenger_InsPrice", Prefs.getInt("Price", 0));
 
                     detailJsonArray.put(detailsJson);
 
@@ -892,6 +893,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
             detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
 
+
+
             headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", "fa-IR");
@@ -900,6 +903,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             headerJson.put("DtStart", Prefs.getString("DtStart", "12"));
             headerJson.put("PlanCode", Prefs.getString("Id", "12"));
             headerJson.put("ReturnDate", Prefs.getString("ReturnDate", "12"));
+            headerJson.put("SearchKey", Prefs.getString("SearchKey", "12"));
             headerJson.put("SearchKey", Prefs.getString("SearchKey", "12"));
 
             identityJson.put("Password", "123qwe!@#QWE");

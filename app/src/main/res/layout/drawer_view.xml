@@ -88,6 +88,7 @@
                     android:layout_weight="70">
 
                     <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnLastBuy"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         fancy:fb_defaultColor="@android:color/transparent"

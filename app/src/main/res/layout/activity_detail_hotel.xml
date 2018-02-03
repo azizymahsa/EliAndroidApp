@@ -102,7 +102,8 @@
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#000000"
                         android:textSize="18dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_marginRight="3dp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -277,7 +278,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
-                    android:gravity="center">
+                    android:gravity="center"
+            >
 
                     <com.wang.avi.AVLoadingIndicatorView
 
@@ -485,17 +487,17 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvVoteCount"
                                     android:layout_width="match_parent"
                                     android:layout_height="0dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_weight="40"
+                                    android:layout_weight="32"
                                     android:gravity="center"
                                     android:padding="5dp"
-                                    android:text="3 از 5"
+                                    android:text="از مجموع 12 رای ثبت شده"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="@color/text_color_2e"
                                     android:textSize="10dp"
-                                    android:visibility="gone"/>
+                                    />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -519,7 +521,7 @@
                                         CircleProgressView:cpv_spinColor="@color/text_color_2e"
                                         CircleProgressView:cpv_textColor="@color/text_color_2e"
                                         CircleProgressView:cpv_textScale="1"
-                                        CircleProgressView:cpv_unit="%"
+                                        CircleProgressView:cpv_unit="/10"
 
 
                                         CircleProgressView:cpv_unitColor="@color/colorPrimary"
@@ -538,28 +540,19 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="100"
-                                    android:gravity="right|center|bottom"
-                                    android:padding="5dp"
-                                    android:text="امتیاز هتل:"
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="@color/text_color_2e"
-                                    android:textSize="14dp" />
+
 
                                 <TextView
-                                    android:id="@+id/tvVoteCount"
+                                    android:id="@+id/tvRecommendedPercent"
                                     android:layout_width="match_parent"
                                     android:layout_height="0dp"
                                     android:layout_weight="100"
-                                    android:gravity="right|center|top"
+                                    android:gravity="center"
                                     android:padding="5dp"
                                     android:text="از مجموع 12 رای ثبت شده"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="@color/text_color_2e"
-                                    android:textSize="10dp" />
+                                    android:textSize="12dp" />
 
 
                             </LinearLayout>

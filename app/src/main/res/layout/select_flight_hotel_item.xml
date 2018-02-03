@@ -89,7 +89,7 @@
 
                     />
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/linearLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,18 +101,35 @@
 
                     <TextView
                         android:id="@+id/name"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="100"
                         android:gravity="center|left"
                         android:textColor="@color/white"
                         android:textSize="14dp"
                         android:layout_alignParentLeft="true"
+                        android:ellipsize="end"
                         android:maxLines="1"/>
 
 
+                    <TextView
+                        android:id="@+id/txt_lable_hotel"
+                        android:layout_width="62dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:text="هتل"
+                        android:background="@color/green"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
 
-                </RelativeLayout>
+                        />
+
+
+
+                </LinearLayout>
 
 
                 <RelativeLayout

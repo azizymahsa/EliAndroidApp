@@ -77,6 +77,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
             holder.board = (TextView) convertView.findViewById(R.id.board);
             holder.tvPrice = (TextView) convertView.findViewById(R.id.tvPrice);
             holder.tvOff = (TextView) convertView.findViewById(R.id.tvOff);
+            holder.txt_lable_hotel = (TextView) convertView.findViewById(R.id.txt_lable_hotel);
             holder.cvHotel = (CardView) convertView.findViewById(R.id.cvHotel);
 
             convertView.setTag(holder);
@@ -98,7 +99,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 .build();
 
 
-        imageLoader.displayImage(imageUri, holder.ivHotelPic, options,null);
+        imageLoader.displayImage(imageUri, holder.ivHotelPic, options, null);
 
      /*   AQuery aQuery=new AQuery(v);
         aQuery.id(holder.imgPhoto).image(item.getImageUrl().toString());
@@ -111,23 +112,42 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         holder.tvPrice.setText(Utility.priceFormat(selectHotelModelArrayList.get(position).getPrice()));
 
 
-        if (selectHotelModelArrayList.get(position).isOff()){
+        if (selectHotelModelArrayList.get(position).isOff()) {
             holder.tvOff.setVisibility(View.VISIBLE);
             holder.tvOff.setText(selectHotelModelArrayList.get(position).getOff());
 
-            } else {
-                holder.tvOff.setVisibility(View.GONE);
+        } else {
+            holder.tvOff.setVisibility(View.GONE);
 
-            }
-            if (selectHotelModelArrayList.get(position).isBestSell()){
+        }
+        if (selectHotelModelArrayList.get(position).isBestSell()) {
             holder.ivIsBestseler.setVisibility(View.VISIBLE);
 
-            } else {
-                holder.ivIsBestseler.setVisibility(View.GONE);
+        } else {
+            holder.ivIsBestseler.setVisibility(View.GONE);
 
-            }
+        }
+
+        if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")) {
+            holder.txt_lable_hotel.setText("هتل آپارتمان");
+            holder.txt_lable_hotel.setVisibility(View.VISIBLE);
+
+        }else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")) {
+            holder.txt_lable_hotel.setVisibility(View.VISIBLE);
+            holder.txt_lable_hotel.setText("بوتیک هتل");
 
 
+
+        }else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")) {
+            holder.txt_lable_hotel.setVisibility(View.VISIBLE);
+            holder.txt_lable_hotel.setText("ریزورت هتل");
+
+
+
+        }else{
+            holder.txt_lable_hotel.setVisibility(View.GONE);
+
+        }
 
 
         switch (selectHotelModelArrayList.get(position).getStar()) {
@@ -162,7 +182,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView name, location, title, board, tvPrice, tvOff,ivIsBestseler;
+        TextView name, location, title, board, tvPrice, tvOff, ivIsBestseler, txt_lable_hotel;
         ImageView ivHotelPic, ivRate;
         CardView cvHotel;
 

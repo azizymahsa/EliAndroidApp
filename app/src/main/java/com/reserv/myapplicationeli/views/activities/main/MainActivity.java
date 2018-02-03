@@ -61,11 +61,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle, tvArrow;
-    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition;
+    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy;
     public static String GET_FRAGMENT = null;
     private FragmentManager manager;
     RelativeLayout rlUser;
-    private  static  TextView txt_name;
+    private static TextView txt_name;
     ExpandableWeightLayout expandableLayout;
     ImageView ivUser;
     RelativeLayout rlHedaer;
@@ -116,14 +116,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ivUser = findViewById(R.id.ivUser);
         rlHedaer = findViewById(R.id.rlHedaer);
         btnExit = findViewById(R.id.btnExit);
+        btnLastBuy = findViewById(R.id.btnLastBuy);
 
         tvTitle.setText(getString(R.string.searchFlight));
         try {
             if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
                 txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+                btnExit.setVisibility(View.VISIBLE);
+                tvArrow.setVisibility(View.VISIBLE);
+                rlUser.setClickable(true);
+
+
             } else {
                 txt_name.setText("ورود به حساب کاربری");
                 btnExit.setVisibility(View.GONE);
+                tvArrow.setVisibility(View.INVISIBLE);
+                rlUser.setClickable(false);
 
             }
         } catch (Exception e) {
@@ -131,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btnExit.setVisibility(View.GONE);
 
 
-}
+        }
 
 
         //onClick===================================================================================
@@ -149,16 +157,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rlHedaer.setOnClickListener(this);
         btnFlight.setOnClickListener(this);
         btnExit.setOnClickListener(this);
+        btnLastBuy.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
 
 
     }
 
-    public static void setUserName(String name){
-        if(txt_name != null){
+    public static void setUserName(String name) {
+        if (txt_name != null) {
             txt_name.setText(name);
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -194,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.btnHotelFlight:
-                addFragment("هتل و پرواز", new HotelFlightFragment());
+                addFragment("بلیط هواپیما + رزرو هتل", new HotelFlightFragment());
 
                 break;
             case R.id.btnAbout:
@@ -220,10 +230,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(new Intent(this, LogInActivity.class));
                     } else {
                         startActivity(new Intent(this, ProfileActivity.class));
-                    }
-                }catch (Exception e){
-                    startActivity(new Intent(this, LogInActivity.class));
 
+                    }
+                } catch (Exception e) {
+                    startActivity(new Intent(this, LogInActivity.class));
 
 
                 }
@@ -247,6 +257,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnExit:
                 new LogOutAlert(this);
                 break;
+            case R.id.btnLastBuy:
+                Intent intent =new Intent(this, ProfileActivity.class);
+                intent.putExtra("isLastBuy",true);
+                startActivity(intent);
+
+                break;
+
+        }
+
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        try {
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
+                txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+                btnExit.setVisibility(View.VISIBLE);
+                tvArrow.setVisibility(View.VISIBLE);
+                rlUser.setClickable(true);
+
+
+            } else {
+                txt_name.setText("ورود به حساب کاربری");
+                btnExit.setVisibility(View.GONE);
+                tvArrow.setVisibility(View.INVISIBLE);
+                rlUser.setClickable(false);
+
+            }
+        } catch (Exception e) {
+            txt_name.setText("ورود به حساب کاربری");
+            btnExit.setVisibility(View.GONE);
+
 
         }
 
@@ -276,12 +319,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 Log.e("test", "seconds remaining: " + millisUntilFinished / 1000);
-                Prefs.putLong("time",millisUntilFinished);
+                Prefs.putLong("time", millisUntilFinished);
 
             }
 
             public void onFinish() {
-                sendFinish(false,0);
+                sendFinish(false, 0);
                 Toast.makeText(MainActivity.this, "زمان شما به پایان رسید.", Toast.LENGTH_SHORT).show();
             }
         };
@@ -290,10 +333,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public void sendFinish(boolean finish,int time) {
+    public void sendFinish(boolean finish, int time) {
         Intent intent = new Intent("sendFinish");
-        intent.putExtra("time",time);
-        intent.putExtra("finish",finish);
+        intent.putExtra("time", time);
+        intent.putExtra("finish", finish);
         LocalBroadcastManager.getInstance(MainActivity.this).sendBroadcast(intent);
     }
 
@@ -304,14 +347,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onReceive(Context context, Intent intent) {
 
 
-
-
                 countDownTimer.cancel();
                 countDownTimer.start();
-
-
-
-
 
 
             }
@@ -327,14 +364,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onReceive(Context context, Intent intent) {
 
 
-
-
                 countDownTimer.onFinish();
-
-
-
-
-
 
 
             }

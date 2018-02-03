@@ -56,6 +56,7 @@ import com.reserv.myapplicationeli.api.hotel.getHotelRoom.GetHoldRoom;
 import com.reserv.myapplicationeli.api.hotel.room.GetRoomsList;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.base.GlobalApplication;
+import com.reserv.myapplicationeli.models.hotel.adapter.SelectHotelModel;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequestAdd;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequsetAddComment;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.ReviewComment;
@@ -91,6 +92,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -101,7 +103,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
-    private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount;
+    private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount,tvRecommendedPercent;
     com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView lvRooms, lvComments;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
@@ -222,6 +224,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         llPolicy = findViewById(R.id.llPolicy);
         tvCommentCount = findViewById(R.id.tvCommentCount);
         tvVoteCount = findViewById(R.id.tvVoteCount);
+        tvRecommendedPercent = findViewById(R.id.tvRecommendedPercent);
         avi1 = findViewById(R.id.avi1);
         llEmakanatClick.setOnClickListener(this);
         llMapClick.setOnClickListener(this);
@@ -354,9 +357,30 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 if (isNew) {
                     tvSortComment.setText("مفیدترین نظرات");
                     isNew = false;
+
+                    Collections.sort(commentModels, new Comparator<CommentModel>() {
+                        @Override
+                        public int compare(CommentModel p1, CommentModel p2) {
+                            return p2.getLike() -p1.getLike(); // Ascending
+                        }
+                    });
+
+
+
+
+                    commentAdapter.notifyDataSetChanged();
                 } else {
                     tvSortComment.setText("جدیدترین نظرات");
                     isNew = true;
+                    Collections.sort(commentModels, new Comparator<CommentModel>() {
+                        public int compare(CommentModel o1, CommentModel o2) {
+                            if (o1.getDate() == null || o2.getDate() == null)
+                                return 0;
+                            return o2.getDate().compareTo(o1.getDate());
+                        }
+                    });
+                    commentAdapter.notifyDataSetChanged();
+
                 }
                 break;
             case R.id.btnOk:
@@ -812,25 +836,31 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 circleView.setDecimalFormat(new DecimalFormat("0.0"));
 
                 circleView.setMaxValue(10);
-                circleView.setUnitVisible(false);
+                //circleView.setUnitVisible(false);
 
 
                 for (int i = 0; i < getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length; i++) {
-                    commentModels.add(new CommentModel(1, 5, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Title, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Content,
+                    commentModels.add(new CommentModel(Integer.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].HelpfulAmount), 5, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Title, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Content,
                             getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitDate, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitNickName));
 
 
                 }
 
+
+
+
+
+
+
                 commentAdapter = new CommentAdapter(DetailHotelActivity.this, commentModels);
                 lvComments.setAdapter(commentAdapter);
                 lvComments.setFocusable(false);
-                tvVoteCount.setText("از مجموع " + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent + " رای ثبت شده");
-                tvCommentCount.setText("نظرات کاربران " + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount + " نظر");
+                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount  + " کاربر امتیاز داده اند");
+                tvCommentCount.setText(" نظرات کاربران  ("+getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length + " نظر)");
+                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent+"% این هتل را پیشنهاد داده اند");
                 circleView.setValueAnimated(Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore));
                 Log.e("fer", Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore) + "");
                 if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {
-
 
                     tvAlertComment.setVisibility(View.VISIBLE);
                     llCommentContent.setVisibility(View.GONE);

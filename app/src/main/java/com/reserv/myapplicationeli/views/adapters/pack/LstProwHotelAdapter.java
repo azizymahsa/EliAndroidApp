@@ -46,11 +46,23 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
     @Override
     public void onBindViewHolder(LstProwHotelRowHolder holder, int position) {
         final LstProwHotel item = feedItemList.get(position);
-        if(item.getHTypeNameE().contains("Hotel") || item.getHTypeNameE().equals("Hotel")){
-            holder.lableHotelTilte.setVisibility(View.GONE);
-        }else {
+        if(item.getHTypeNameE().contains("Apartment") ){
             holder.lableHotelTilte.setVisibility(View.VISIBLE);
-            holder.lableHotelTilte.setText(item.getHTypeNameF());
+            holder.lableHotelTilte.setText("هتل آپارتمان");
+
+        }else if(item.getHTypeNameE().contains("Boutique")){
+            holder.lableHotelTilte.setVisibility(View.GONE);
+            holder.lableHotelTilte.setText("بوتیک هتل");
+
+        }
+        if(item.getHTypeNameE().contains("Resort")) {
+            holder.lableHotelTilte.setVisibility(View.GONE);
+            holder.lableHotelTilte.setText("ریزورت هتل");
+
+        }else{
+
+            holder.lableHotelTilte.setVisibility(View.GONE);
+//            holder.lableHotelTilte.setText(item.getHTypeNameF());
         }
         holder.txt_hotel_name.setText(ValidationTools.isEmptyOrNull(item.getHotelNameE()) ? item.getHotelNameE() : item.getHotelNameE() );
         holder.txt_hotel_name.setEllipsize(TextUtils.TruncateAt.END);

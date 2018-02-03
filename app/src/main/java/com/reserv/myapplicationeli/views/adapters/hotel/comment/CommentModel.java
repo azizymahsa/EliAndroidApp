@@ -12,15 +12,6 @@ public class CommentModel {
     public String date;
     public String name;
 
-    public CommentModel(int like, int disLike, String title, String comment, String date, String name) {
-        this.like = like;
-        this.disLike = disLike;
-        this.title = title;
-        this.comment = comment;
-        this.date = date;
-        this.name = name;
-    }
-
     public int getLike() {
         return like;
     }
@@ -66,6 +57,16 @@ public class CommentModel {
     }
 
     public void setName(String name) {
+        this.name = name;
+    }
+
+    public CommentModel(int like, int disLike, String title, String comment, String date, String name) {
+
+        this.like = like;
+        this.disLike = disLike;
+        this.title = title;
+        this.comment = comment;
+        this.date = date;
         this.name = name;
     }
 }

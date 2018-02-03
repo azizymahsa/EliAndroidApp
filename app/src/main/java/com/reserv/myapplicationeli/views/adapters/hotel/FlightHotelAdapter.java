@@ -97,6 +97,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvRaftTimeWait = (TextView) convertView.findViewById(R.id.tvRaftTimeWait);
             holder.tvAirLines = (TextView) convertView.findViewById(R.id.tvAirLines);
             holder.ivIsBestseler = (TextView) convertView.findViewById(R.id.ivIsBestseler);
+            holder.txt_lable_hotel = (TextView) convertView.findViewById(R.id.txt_lable_hotel);
 
 
 
@@ -169,6 +170,29 @@ public class FlightHotelAdapter extends BaseAdapter {
 
         holder.tvRaft.setText(selectHotelModelArrayList.get(position).getArrRout());
         holder.tvBargasht.setText(selectHotelModelArrayList.get(position).getDepRout());
+
+
+        if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")) {
+            holder.txt_lable_hotel.setText("هتل آپارتمان");
+            holder.txt_lable_hotel.setVisibility(View.VISIBLE);
+
+        }else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")) {
+            holder.txt_lable_hotel.setVisibility(View.VISIBLE);
+            holder.txt_lable_hotel.setText("بوتیک هتل");
+
+
+
+        }else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")) {
+            holder.txt_lable_hotel.setVisibility(View.VISIBLE);
+            holder.txt_lable_hotel.setText("ریزورت هتل");
+
+
+
+        }else{
+            holder.txt_lable_hotel.setVisibility(View.GONE);
+
+        }
+
 
         String waitRaft;
         String waitBargasht;
@@ -437,7 +461,7 @@ public class FlightHotelAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines,nonStop,ivIsBestseler;
+        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines,nonStop,ivIsBestseler,txt_lable_hotel;
         ImageView ivHotelPic, ivRate, ivLogo;
         CardView cvHotel;
         LinearLayout linear_1, linear_2,linear_3;
