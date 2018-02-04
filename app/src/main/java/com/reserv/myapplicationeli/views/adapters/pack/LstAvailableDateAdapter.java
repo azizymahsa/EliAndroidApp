@@ -72,12 +72,15 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
         holder.txt_coming_soon.setVisibility(View.GONE);
         holder.layout_date.setVisibility(View.VISIBLE);
         if(item.getIsSelected()){
-            holder.view_selected.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_banafash_with_stroke));
+            holder.view_selected.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_package));
         }else{
             holder.view_selected.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_white_with_stroke));
         }
+
+
+
         if(item.getIsSelected()){
-            holder.txt_depart_date.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_banafash_with_stroke));
+            holder.txt_depart_date.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_package));
         }else{
             holder.txt_depart_date.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_white_with_stroke));
         }

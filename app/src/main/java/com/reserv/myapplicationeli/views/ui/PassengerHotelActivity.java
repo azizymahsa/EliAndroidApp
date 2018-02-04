@@ -154,13 +154,21 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger);
         Prefs.getString("Rooms", "dd");
+        Prefs.getString("Rooms", "dd");
         JSONArray jsonObj = null;
         try {
             jsonObj = new JSONArray(Prefs.getString("Rooms", "dd"));
-            countB = jsonObj.getJSONObject(0).getInt("CountB");
-            countK = jsonObj.getJSONObject(0).getInt("CountK");
-            countN = jsonObj.getJSONObject(0).getInt("CountN");
+            countB=0;
+            countK=0;
+            countN=0;
+            for (int i =0; i<jsonObj.length();i++){
 
+                countB =countB+ jsonObj.getJSONObject(i).getInt("CountB");
+                countK = countK+jsonObj.getJSONObject(i).getInt("CountK");
+                countN =countN+ jsonObj.getJSONObject(i).getInt("CountN");
+
+            }
+            sum=countB+countK+countN;
 
         } catch (JSONException e) {
             e.printStackTrace();

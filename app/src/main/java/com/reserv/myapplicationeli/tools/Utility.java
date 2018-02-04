@@ -616,5 +616,25 @@ public class Utility extends Activity {
 
 
 	}
+	public static String getDeviceID(Context context) {
+		//  postEvent(new ReadPhoneStatePermissionRequiredEvent());
+		TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+		return telephonyManager.getDeviceId();
+	}
+	public static String getSubscriberID(Context context) {
+		//  postEvent(new ReadPhoneStatePermissionRequiredEvent());
+		TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+		return telephonyManager.getSubscriberId();
+	}
+	public static String getOpratorID(Context context) {
+		//  postEvent(new ReadPhoneStatePermissionRequiredEvent());
+		TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+		return telephonyManager.getNetworkOperatorName();
+	}
+	public static String getSoftWareVersion(Context context) {
+		//  postEvent(new ReadPhoneStatePermissionRequiredEvent());
+		TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+		return telephonyManager.getDeviceSoftwareVersion();
+	}
 
 }

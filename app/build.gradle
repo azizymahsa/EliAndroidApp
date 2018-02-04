@@ -39,6 +39,9 @@ dependencies {
     compile project(':CircleProgressView')
     compile project(':CircleProgressView')
     //compile project(':library2')
+    compile "com.android.support:support-core-utils:26.1.0"
+    compile 'com.android.support:support-v4:13.0.+'
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support:cardview-v7:26.1.0'
@@ -106,6 +109,8 @@ dependencies {
 
     //compile 'com.github.jakob-grabner:Circle-Progress-View:v1.3'
     compile 'com.airbnb.android:lottie:2.5.0-rc1'
+    compile 'com.android.support:multidex:1.0.1'
+
 
 
 }

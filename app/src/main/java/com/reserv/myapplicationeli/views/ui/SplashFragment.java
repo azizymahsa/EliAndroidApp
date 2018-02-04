@@ -1,49 +1,72 @@
 package com.reserv.myapplicationeli.views.ui;
 
 import android.Manifest;
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieComposition;
 import com.airbnb.lottie.model.layer.Layer;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+import com.reserv.myapplicationeli.BuildConfig;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.api.app.UserEntranceRequest;
+import com.reserv.myapplicationeli.api.hotel.comment.GetComment;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.lost.CommentAdapterRecycle;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequestAdd;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequsetAddComment;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.ReviewComment;
+import com.reserv.myapplicationeli.models.hotel.api.getComment.call.GetCommentRequest;
+import com.reserv.myapplicationeli.models.hotel.api.getComment.call.Request;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+import com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.UserRequest;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
+import com.reserv.myapplicationeli.views.adapters.hotel.comment.CommentModel;
 import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
 
 public class SplashFragment extends BaseActivity {
 
-    private Runnable runnable,runnable2;
-    private Handler handler,handler2;
-    private ImageView ivSplash,ivLoading;
+    private Runnable runnable, runnable2;
+    private Handler handler, handler2;
+    private ImageView ivSplash, ivLoading;
     AVLoadingIndicatorView avi;
     LottieAnimationView lottieAnimationView;
-
-
-
-
+    UserEntranceRequest userEntranceRequest;
+    String deviceId;
+    String deviceSubscriberID;
+    String operator;
+    String sdkVersion;
+    String model;
+    String brand;
+    String product;
 
 
     private enum DOWNLOAD_TYPE {
@@ -55,164 +78,76 @@ public class SplashFragment extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_splash);
         super.onCreate(savedInstanceState);
-        Log.e("test", new  Gson().toJson( new RequsetAddComment(new RequestAdd(new Identity("123qwe!@#QWE",
-                "EligashtMlb", "Mobile"),"fa-IR",new ReviewComment(0,"sdfdsf",
-                0,1,"Developer@eligasht.com","dsfsdf","sfsdfsdf",0)))));
-        //checking permission in start app
+
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE, Manifest.permission.CALL_PRIVILEGED};
 
-        if(!hasPermissions(this, PERMISSIONS)){
+        if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
         //
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
+        avi = findViewById(R.id.avi);
         lottieAnimationView = findViewById(R.id.animation_view);
         lottieAnimationView.setAnimation("e-splash.json");
         lottieAnimationView.playAnimation();
-       // Glide.with(this).load(R.raw.new_splash_loading).into(ivSplash);
 
-        avi = findViewById(R.id.avi);
-        final int[] imageArray = new int[]{R.drawable.comp1_00000,
-                R.drawable.comp1_00001,
-                R.drawable.comp1_00002,
-                R.drawable.comp1_00003,
-                R.drawable.comp1_00004,
-                R.drawable.comp1_00005,
-                R.drawable.comp1_00006,
-                R.drawable.comp1_00007,
-                R.drawable.comp1_00008,
-                R.drawable.comp1_00009,
-                R.drawable.comp1_00010,
-                R.drawable.comp1_00011,
-                R.drawable.comp1_00012,
-                R.drawable.comp1_00013,
-                R.drawable.comp1_00014,
-                R.drawable.comp1_00015,
-                R.drawable.comp1_00016,
-                R.drawable.comp1_00017,
-                R.drawable.comp1_00018,
-                R.drawable.comp1_00019,
-                R.drawable.comp1_00020,
-                R.drawable.comp1_00021,
-                R.drawable.comp1_00022,
-                R.drawable.comp1_00023,
-                R.drawable.comp1_00024,
-                R.drawable.comp1_00025,
-                R.drawable.comp1_00026,
-                R.drawable.comp1_00027,
-                R.drawable.comp1_00028,
-                R.drawable.comp1_00029,
-                R.drawable.comp1_00030,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,
-                R.drawable.comp1_00031,};
+        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
-
-        final int[] i = {0};
-
-        handler = new Handler(Looper.getMainLooper());
-        runnable = new Runnable() {
-
-            public void run() {
-               // ivSplash.setImageResource(imageArray[i[0]]);
-                i[0]++;
-                if (i[0] > imageArray.length - 1) {
-                    i[0] = 0;
-
-                }
-                if (i[0] == 31) {
-                    avi.setVisibility(View.VISIBLE);
-                }
-                if (i[0] == 49) {
-                   // handler.removeCallbacksAndMessages(null);
-                   if(Utility.isNetworkAvailable(SplashFragment.this)){
-
-                       startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                       finish();
-                    }else{
-                       handler.removeCallbacks(runnable);
-
-                       new InternetAlert(SplashFragment.this);
-                   }
-
-
-
-
-                }else{
-            handler.postDelayed(this, 80); } //for interval...
             }
-        };
-        if (i[0] < 49) {
-            handler.postDelayed(runnable, 80); //for initial delay..
 
-        }
-/*
+            @Override
+            public void onAnimationEnd(Animator animation) {
 
-        final int[] imageArray2 = new int[]{
-                R.drawable.small_01,
-                R.drawable.small_02,
-                R.drawable.small_03,
-                R.drawable.small_04,
-                R.drawable.small_05,
-                R.drawable.small_06,
-                R.drawable.small_07,
-                R.drawable.small_08,
-                R.drawable.small_09,
-                R.drawable.small_10,
-                R.drawable.small_11,
-                R.drawable.small_12,
-                R.drawable.small_13,
-                R.drawable.small_14,
-                R.drawable.small_15,
-                R.drawable.small_16,
-                R.drawable.small_17,
-                R.drawable.small_18,
-                R.drawable.small_19,
-                R.drawable.small_20,
-                R.drawable.small_21,
-                R.drawable.small_22,
-                R.drawable.small_23,
-                R.drawable.small_24};
+
+                new TedPermission(SplashFragment.this)
+                        .setPermissionListener(new PermissionListener() {
+                            @Override
+                            public void onPermissionGranted() {
 
 
 
-        handler2 = new Handler(Looper.getMainLooper());
-        runnable2 = new Runnable() {
-            int i = 0;
+                                if (Utility.isNetworkAvailable(SplashFragment.this)) {
+                                    deviceId = Utility.getDeviceID(SplashFragment.this);
+                                    deviceSubscriberID = Utility.getSubscriberID(SplashFragment.this);
+                                    operator =Utility.getMyOperator(SplashFragment.this);
+                                    sdkVersion = android.os.Build.VERSION.SDK_INT + "";
+                                    model = android.os.Build.MODEL;
+                                    brand = Build.BRAND;
+                                    product =Build.PRODUCT;
+                                    new GetCommentAsync().execute();
 
-            public void run() {
-                ivLoading.setImageResource(imageArray2[i]);
-                i++;
-                if (i > imageArray2.length - 1) {
-                    i = 0;
+                                } else {
 
-                }
+                                    new InternetAlert(SplashFragment.this);
+                                }
+                            }
 
-                handler2.postDelayed(this, 50);  //for interval...
+                            @Override
+                            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+
+                            }
+                        })
+                        .setDeniedMessage("If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
+                        .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)
+                        .check();
+
+
             }
-        };
-        handler2.postDelayed(runnable2, 100); //for initial delay..
 
+            @Override
+            public void onAnimationCancel(Animator animation) {
 
-*/
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
 
 
     }
@@ -221,7 +156,7 @@ public class SplashFragment extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        handler.removeCallbacks(runnable);
+        //   handler.removeCallbacks(runnable);
 //        handler2.removeCallbacks(runnable2);
 
     }
@@ -242,7 +177,7 @@ public class SplashFragment extends BaseActivity {
     public static boolean hasPermissions(Context context, String... permissions) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
             for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
                     return false;
                 }
             }
@@ -251,5 +186,48 @@ public class SplashFragment extends BaseActivity {
     }
 
 
+    private class GetCommentAsync extends AsyncTask<String, Void, String> {
 
+        protected void onPreExecute() {
+            avi.setVisibility(View.VISIBLE);
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                userEntranceRequest=new UserEntranceRequest(new UserRequest
+                        (new com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.
+                                UserEntranceRequest(deviceId,deviceSubscriberID,sdkVersion,model,product, BuildConfig.VERSION_CODE,2,operator,brand)));
+                Log.e("ggg", new Gson().toJson(new UserRequest
+                        (new com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.
+                                UserEntranceRequest(deviceId,deviceSubscriberID,sdkVersion,model,product, BuildConfig.VERSION_CODE,2,operator,brand))) );
+
+
+            } catch (Exception e) {
+
+            }
+            return "Executed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //  new InitUi().Loading(rlLoading,rlRoot,false);
+            avi.setVisibility(View.GONE);
+
+            try {
+                Log.e("onon", userEntranceRequest.entranceResponse.UserEntranceServiceResult.CanEnter+"" );
+
+
+                startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                finish();
+
+            } catch (Exception e) {
+                Toast.makeText(SplashFragment.this, "ارتباط با سرور مقدور نمی باشد", Toast.LENGTH_SHORT).show();
+
+
+            }
+        }
+    }
 }

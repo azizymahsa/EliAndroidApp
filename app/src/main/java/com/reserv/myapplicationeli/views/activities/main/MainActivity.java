@@ -1,5 +1,6 @@
 package com.reserv.myapplicationeli.views.activities.main;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void initViews() {
         //findView==================================================================================
         btnMenu = findViewById(R.id.btnMenu);
-        drawerLayout = findViewById(R.id.drawerLayout);
+    drawerLayout = findViewById(R.id.drawerLayout);
         tvTitle = findViewById(R.id.tvTitle);
 
         btnFlight = findViewById(R.id.btnFlight);

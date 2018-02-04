@@ -141,7 +141,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public int countK ;
     public int countN;
     //public int sum=countB+countK+countN;
-    public int sum;
+    public int sum,rooms;
     int counter=2;
     //int count;
     //change for Prefactor=========================================================================
@@ -158,9 +158,18 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         JSONArray jsonObj = null;
         try {
             jsonObj = new JSONArray(Prefs.getString("Rooms", "dd"));
-            countB = jsonObj.getJSONObject(0).getInt("CountB");
-            countK = jsonObj.getJSONObject(0).getInt("CountK");
-            countN = jsonObj.getJSONObject(0).getInt("CountN");
+            rooms=jsonObj.length();
+            countB=0;
+            countK=0;
+            countN=0;
+            for (int i =0; i<jsonObj.length();i++){
+
+                countB =countB+ jsonObj.getJSONObject(i).getInt("CountB");
+                countK = countK+jsonObj.getJSONObject(i).getInt("CountK");
+                countN =countN+ jsonObj.getJSONObject(i).getInt("CountN");
+
+            }
+            sum=countB+countK+countN;
 
 
         } catch (JSONException e) {
@@ -1600,6 +1609,9 @@ txtnameP.setOnFocusChangeListener(this);
                                 db.insertData(counter-1,txtTitleCountM.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                             }
                             System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
+
+
+
                             if(countB>=1) {
                                 System.out.println("countB:"+countB);
                                 //txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
@@ -1631,6 +1643,12 @@ txtnameP.setOnFocusChangeListener(this);
                                 txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
                                 imgCount.setText(counter+"");
                             }
+
+
+
+
+
+
 
 
                             System.out.println("counterMosafer:"+counter);

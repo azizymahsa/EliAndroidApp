@@ -11,6 +11,7 @@ import android.content.ContextWrapper;
 import android.graphics.Typeface;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.multidex.MultiDex;
 import android.telephony.TelephonyManager;
 
 import com.pixplicity.easyprefs.library.Prefs;
@@ -162,4 +163,11 @@ public class GlobalApplication extends Application {
 		}
 		GlobalApplication.activityStack.clear();
 	}
+
+	@Override
+	protected void attachBaseContext(Context base) {
+		super.attachBaseContext(base);
+		MultiDex.install(this);
+	}
+
 }

@@ -130,12 +130,12 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         btnRegister = findViewById(R.id.btn_register);
         btnLogin = findViewById(R.id.btnLogIn);
         txtEmail = findViewById(R.id.txt_email);
-        eLogo = findViewById(R.id.e_logo);
+       // eLogo = findViewById(R.id.e_logo);
         layoutResetPassword = findViewById(R.id.layout_reset_password);
         txtPassword = findViewById(R.id.txt_password);
 
         btnLogin.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        eLogo.setVisibility(View.INVISIBLE);
+      //  eLogo.setVisibility(View.INVISIBLE);
 
 
         btnLogin.setOnClickListener(this);

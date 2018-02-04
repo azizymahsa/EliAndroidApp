@@ -37,6 +37,8 @@ import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -51,6 +53,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.api.app.UserEntranceRequest;
 import com.reserv.myapplicationeli.api.hotel.GetHotelDetail;
 import com.reserv.myapplicationeli.api.hotel.comment.AddComment;
 import com.reserv.myapplicationeli.api.hotel.comment.GetComment;
@@ -151,7 +154,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     boolean isComment = true;
     CircleProgressView circleView;
     NonScrollRecyclerView lvComments;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -286,6 +288,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 }
 
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(700)
+                        .playOn(lvRooms);
 
                 vEmakanat.setVisibility(View.INVISIBLE);
                 vMap.setVisibility(View.INVISIBLE);
@@ -301,6 +306,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 llComment.setVisibility(View.GONE);
                 tvAlert.setVisibility(View.GONE);
 
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(700)
+                        .playOn(flMap);
 
                 vEmakanat.setVisibility(View.INVISIBLE);
                 vMap.setVisibility(View.VISIBLE);
@@ -314,7 +322,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 llComment.setVisibility(View.GONE);
                 tvAlert.setVisibility(View.GONE);
                 llDynamic.setVisibility(View.VISIBLE);
-
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(700)
+                        .playOn(llDynamic);
                 vEmakanat.setVisibility(View.VISIBLE);
                 vMap.setVisibility(View.INVISIBLE);
                 vRezerv.setVisibility(View.INVISIBLE);
@@ -333,7 +343,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 tvAlert.setVisibility(View.GONE);
                 llComment.setVisibility(View.VISIBLE);
                 llDynamic.setVisibility(View.GONE);
-
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(500)
+                        .playOn(llComment);
                 vEmakanat.setVisibility(View.INVISIBLE);
                 vMap.setVisibility(View.INVISIBLE);
                 vRezerv.setVisibility(View.INVISIBLE);
@@ -361,21 +373,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.btnSortComment:
                 if (isNew) {
-                    tvSortComment.setText("مفیدترین نظرات");
-                    isNew = false;
-
-                    Collections.sort(commentModels, new Comparator<CommentModel>() {
-                        @Override
-                        public int compare(CommentModel p1, CommentModel p2) {
-                            return p2.getLike() -p1.getLike(); // Ascending
-                        }
-                    });
 
 
-
-
-                    commentAdapter.notifyDataSetChanged();
-                } else {
                     tvSortComment.setText("جدیدترین نظرات");
                     isNew = true;
                     Collections.sort(commentModels, new Comparator<CommentModel>() {
@@ -383,6 +382,22 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                             if (o1.getDate() == null || o2.getDate() == null)
                                 return 0;
                             return o2.getDate().compareTo(o1.getDate());
+                        }
+                    });
+                    commentAdapter.notifyDataSetChanged();
+
+                } else {
+
+
+
+
+                    tvSortComment.setText("مفیدترین نظرات");
+                    isNew = false;
+
+                    Collections.sort(commentModels, new Comparator<CommentModel>() {
+                        @Override
+                        public int compare(CommentModel p1, CommentModel p2) {
+                            return p2.getLike() -p1.getLike(); // Ascending
                         }
                     });
                     commentAdapter.notifyDataSetChanged();
@@ -501,6 +516,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     }
                     roomsAdapter.notifyDataSetChanged();
                     new GetHoldDetailAsync().execute();
+                    YoYo.with(Techniques.SlideInUp)
+                            .duration(700)
+                            .playOn(lvRooms);
+
+
 
                 }
                 try {

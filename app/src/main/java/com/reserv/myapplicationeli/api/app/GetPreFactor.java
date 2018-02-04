@@ -26,7 +26,7 @@ public class GetPreFactor extends BaseAPI {
 
     public interface GetPre {
         @RawRes
-        @POST("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails")
+        @POST(GetPreFactor.ACTION_NAME)
         Call<GetPrefactorResponse> get_pre(
                 @Body RequestPrefactor requestPre
         );
