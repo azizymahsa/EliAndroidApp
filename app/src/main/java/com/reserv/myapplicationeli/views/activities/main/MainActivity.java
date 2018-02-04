@@ -160,10 +160,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (Prefs.getInt("type",0)){
             case 0:
                 addFragment(getString(R.string.searchFlight), new PlanFragment());
-             break;
+                break;
             case 1:
                 addFragment(getString(R.string.search_hotel), new HotelFragment());
-             break;
+                break;
             case 2:
                 addFragment(getString(R.string.search_package), new PackageFragment());
                 break;
@@ -173,13 +173,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 4:
                 addFragment("هتل و پرواز", new HotelFlightFragment());
                 break;
-                default:
-                    PlanFragment workerStateFragment = new PlanFragment();
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, workerStateFragment)
-                            .commit();
-                    break;
+            default:
+                PlanFragment workerStateFragment = new PlanFragment();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, workerStateFragment)
+                        .commit();
+                break;
         }
 
 
@@ -323,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onDestroy() {
 
         super.onDestroy();
-       // Prefs.putInt("type",0);
+        // Prefs.putInt("type",0);
     }
     public void addFragment(String title, Fragment fragment) {
         tvTitle.setText(title);

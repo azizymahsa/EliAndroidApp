@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.tools.db.local.RecentCity_Table;
 import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 
 import java.util.List;
@@ -119,7 +120,8 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 					
 					@Override
 					public void onClick(View v) {
-					
+						RecentCity_Table recentCity_table=new RecentCity_Table(activity);
+						recentCity_table.insertData(current.getAirportName(),current.getCityName(),current.getAirportCode(),1);//mabda
 
 						Prefs.putString("Value-Mabda-City",current.getCityName());
 						Prefs.putString("Value-Mabda-Airport",current.getAirportName());
@@ -142,7 +144,8 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 					
 					@Override
 					public void onClick(View v) {
-					
+						RecentCity_Table recentCity_table=new RecentCity_Table(activity);
+						recentCity_table.insertData(current.getAirportName(),current.getCityName(),current.getAirportCode(),1);//mabda
 
 						Prefs.putString("Value-Mabda-City",current.getCityName());
 						Prefs.putString("Value-Mabda-Airport",current.getAirportName());

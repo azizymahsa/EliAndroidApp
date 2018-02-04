@@ -12,6 +12,7 @@
         android:orientation="horizontal" > -->
 
 	<LinearLayout
+		android:id="@+id/llCounter"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="@drawable/back_linear_row"
