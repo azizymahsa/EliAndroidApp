@@ -1,23 +1,21 @@
-package com.reserv.myapplicationeli.views.adapters.hotel.rooms;
+package com.reserv.myapplicationeli.tools;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 /**
- * Created by Reza.nejati on 1/7/2018.
+ * Created by Reza.nejati on 2/4/2018.
  */
 
-public class NonScrollListView extends ListView {
-
-    public NonScrollListView(Context context) {
+public class NonScrollRecyclerView extends android.support.v7.widget.RecyclerView {
+    public NonScrollRecyclerView(Context context) {
         super(context);
     }
-    public NonScrollListView(Context context, AttributeSet attrs) {
+    public NonScrollRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-    public NonScrollListView(Context context, AttributeSet attrs, int defStyle) {
+    public NonScrollRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
     @Override
@@ -28,7 +26,4 @@ public class NonScrollListView extends ListView {
         ViewGroup.LayoutParams params = getLayoutParams();
         params.height = getMeasuredHeight();
     }
-
-
-
 }

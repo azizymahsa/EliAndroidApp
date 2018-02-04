@@ -16,6 +16,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -56,6 +58,7 @@ import com.reserv.myapplicationeli.api.hotel.getHotelRoom.GetHoldRoom;
 import com.reserv.myapplicationeli.api.hotel.room.GetRoomsList;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.base.GlobalApplication;
+import com.reserv.myapplicationeli.lost.CommentAdapterRecycle;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectHotelModel;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequestAdd;
 import com.reserv.myapplicationeli.models.hotel.api.addcomment.call.RequsetAddComment;
@@ -72,6 +75,7 @@ import com.reserv.myapplicationeli.models.hotel.api.rooms.call.GetRoomsHotelRequ
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.IdentityRooms;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.RoomRequest;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.response.RoomList;
+import com.reserv.myapplicationeli.tools.NonScrollRecyclerView;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.comment.CommentAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.comment.CommentModel;
@@ -83,6 +87,7 @@ import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsModel;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.NonScrollGridView;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.PassengerHotelActivity;
 import com.reserv.myapplicationeli.views.ui.PassengerHotelFlightActivity;
 import com.reserv.myapplicationeli.views.ui.ViewPagerAttention;
@@ -104,7 +109,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
     private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount,tvRecommendedPercent;
-    com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView lvRooms, lvComments;
+    com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView lvRooms;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private ArrayList<String> arrayStringList = new ArrayList<>();
@@ -137,7 +142,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     EditText etComment;
     AddCommnetDialog addCommnetDialog;
     String comment, userName, title;
-    CommentAdapter commentAdapter;
+    CommentAdapterRecycle commentAdapter;
     TextView tvSortComment;
     boolean isNew = false;
     ScrollView svDetail;
@@ -145,6 +150,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     GetComment getComment;
     boolean isComment = true;
     CircleProgressView circleView;
+    NonScrollRecyclerView lvComments;
 
 
     @Override
@@ -853,9 +859,10 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
 
+                lvComments.addItemDecoration(new DividerItemDecoration(DetailHotelActivity.this, 1));
+                lvComments.setLayoutManager(new LinearLayoutManager(DetailHotelActivity.this));
 
-
-                commentAdapter = new CommentAdapter(DetailHotelActivity.this, commentModels,svDetail,lvComments);
+                commentAdapter = new CommentAdapterRecycle(commentModels);
                 lvComments.setAdapter(commentAdapter);
                 lvComments.setFocusable(false);
 

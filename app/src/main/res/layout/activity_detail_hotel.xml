@@ -639,7 +639,7 @@
 
                     </LinearLayout>
 
-                    <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                    <com.reserv.myapplicationeli.tools.NonScrollRecyclerView
                         android:id="@+id/lvComments"
                         android:layout_width="match_parent"
 
