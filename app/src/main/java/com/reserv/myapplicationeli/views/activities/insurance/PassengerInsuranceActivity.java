@@ -672,7 +672,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         protected void onPostExecute(String resultPishfactor) {
 
 
-             rlLoading.setVisibility(View.GONE);
+            rlLoading.setVisibility(View.GONE);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -827,7 +827,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         @Override
         protected void onPostExecute(String result) {
 
-             rlLoading.setVisibility(View.GONE);
+            rlLoading.setVisibility(View.GONE);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(result);
@@ -863,7 +863,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_pish_factor.setVisibility(View.VISIBLE);
-                    ((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
+                    ((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
                     ((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                     txtTitle.setText(" تایید و پرداخت پیش فاکتور    ");
                     FlagTab=true;
@@ -1075,7 +1075,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     linear_pish_factor.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.VISIBLE);
-                    ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+                    ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
                     txtTitle.setText("  اطلاعات مسافران ");
                     ////////////////////bazyabi atelaate akharin mosafer
@@ -1463,33 +1463,33 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             case R.id.btn_saler:
                 if(FlagTab) {
-                linear_saler.setVisibility(View.VISIBLE);
-                linear_mosaferan.setVisibility(View.GONE);
-                linear_list_khadamat.setVisibility(View.GONE);
-                linear_pish_factor.setVisibility(View.GONE);
+                    linear_saler.setVisibility(View.VISIBLE);
+                    linear_mosaferan.setVisibility(View.GONE);
+                    linear_list_khadamat.setVisibility(View.GONE);
+                    linear_pish_factor.setVisibility(View.GONE);
 
-                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
-                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
-                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
-                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-                txtTitle.setText(" مشخصات خریدار ");
+                    ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
+                    ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+                    ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
+                    txtTitle.setText(" مشخصات خریدار ");
                 }
                 break;
             case R.id.btn_mosaferan:
                 if(FlagTab) {
-                linear_saler.setVisibility(View.GONE);
-                linear_mosaferan.setVisibility(View.VISIBLE);
-                linear_list_khadamat.setVisibility(View.GONE);
-                linear_pish_factor.setVisibility(View.GONE);
+                    linear_saler.setVisibility(View.GONE);
+                    linear_mosaferan.setVisibility(View.VISIBLE);
+                    linear_list_khadamat.setVisibility(View.GONE);
+                    linear_pish_factor.setVisibility(View.GONE);
 
-                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
-                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+                    ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
+                    ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 
-                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
-                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
-                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
-                txtTitle.setText("  اطلاعات مسافران ");
+                    ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+                    ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+                    ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
+                    txtTitle.setText("  اطلاعات مسافران ");
                 }
                 break;
             case R.id.btn_pish_factor:
@@ -1652,7 +1652,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             linear_pish_factor.setVisibility(View.GONE);
             linear_list_khadamat.setVisibility(View.GONE);
 
-            ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+            ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_off);
             ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 
             linear_mosaferan.setVisibility(View.VISIBLE);

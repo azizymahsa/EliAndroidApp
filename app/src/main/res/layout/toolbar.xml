@@ -56,13 +56,13 @@
             android:layout_gravity="center"
             android:text="صفحه اصلی"
             android:textColor="@android:color/white"
-            android:textAppearance="@style/IrsansBold"
+            android:textAppearance="@style/fontello_flight"
             android:layout_centerHorizontal="true"
-            android:textSize="@dimen/toolbar_title_16dp"
+            android:textSize="15dp"
 
             android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:maxLines="1"/>
+            android:layout_marginTop="5dp"
+            android:maxLines="2"/>
 
         <TextView
             android:id="@+id/tvDate"
@@ -99,12 +99,12 @@
             fancy:fb_textSize="25dp" />
 
         <ImageView
-            android:id="@+id/e_logo"
-            android:layout_width="60dp"
-            android:layout_height="@dimen/toolbar_height_70dp"
-            android:padding="10dp"
-            android:src="@drawable/e_logo"
-            />
+            android:id="@+id/txt_hom"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/e_logo"/>
 
 
     </RelativeLayout>

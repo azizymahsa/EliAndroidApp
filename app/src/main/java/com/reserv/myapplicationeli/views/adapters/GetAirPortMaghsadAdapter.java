@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.tools.db.local.RecentCity_Table;
 
 import java.util.List;
 
@@ -131,20 +132,9 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 					
 					@Override
 					public void onClick(View v) {
-					/*
-						Intent i4 = new Intent(context,PlanFragment.class);
-						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-						i4.putExtra("Value-Maghsad-City",current.getCityName());//current.getCityName()
-						i4.putExtra("Value-Maghsad-Airport",current.getAirportName());
-						i4.putExtra("Value-Maghsad-Airport-Code",current.getAirportCode());
-						
-						i4.putExtra("Value-Mabda-City",value_Mabda_City);//current.getCityName()
-						i4.putExtra("Value-Mabda-Airport",value_Mabda_Airport);
-						i4.putExtra("Value-Mabda-Airport-Code",value_Mabda_Airport_Code);
-						
-						context.startActivity(i4);
-						//finish();
-						Toast.makeText(v.getContext(),current.getCityName()+" "+current.getAirportName(),Toast.LENGTH_SHORT).show();*/
+						RecentCity_Table recentCity_table=new RecentCity_Table(activity);
+						recentCity_table.insertData(current.getAirportName(),current.getCityName(),current.getAirportCode(),2);//maghsad
+
 						Prefs.putString("Value-Maghsad-City",current.getCityName());
 						Prefs.putString("Value-Maghsad-Airport",current.getAirportName());
 						Prefs.putString("Value-Maghsad-Airport-Code",current.getAirportCode());
@@ -167,14 +157,9 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 					@Override
 					public void onClick(View v) {
 
-						/*Intent i4 = new Intent(context,PlanFragment.class);
-						i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-						i4.putExtra("Value-Maghsad-City",current.getCityName());//current.getCityName()
-						i4.putExtra("Value-Maghsad-Airport",current.getAirportName());
-						i4.putExtra("Value-Maghsad-Airport-Code",current.getAirportCode());
-						context.startActivity(i4);
-						//finish();
-						Toast.makeText(v.getContext(),current.getCityName()+" "+current.getAirportName(),Toast.LENGTH_SHORT).show();*/
+						RecentCity_Table recentCity_table=new RecentCity_Table(activity);
+						recentCity_table.insertData(current.getAirportName(),current.getCityName(),current.getAirportCode(),2);//maghsad
+
 						Prefs.putString("Value-Maghsad-City",current.getCityName());
 						Prefs.putString("Value-Maghsad-Airport",current.getAirportName());
 						Prefs.putString("Value-Maghsad-Airport-Code",current.getAirportCode());

@@ -22,6 +22,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -89,7 +91,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			convertView = infalInflater.inflate(R.layout.row_select_parvaz_two_detail, null);
 		}
 
-
+		LinearLayout llCounter = (LinearLayout) convertView.findViewById(R.id.llCounter);
 		TextView lblFlightTimeR = (TextView) convertView.findViewById(R.id.lblFlightTimeR);
 		TextView lblFlightArrivalTimeR = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeR);
 		TextView lblDepurtureAirportR = (TextView) convertView.findViewById(R.id.lblDepurtureAirportR);
@@ -106,6 +108,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 		Button btnSelect = (Button) convertView.findViewById(R.id.btnSelect);
+		YoYo.with(Techniques.SlideInDown)
+				.duration(500)
+				.playOn(llCounter);
 
 
 		//nerkh
@@ -198,9 +203,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 
 
-        TextView btnExpand = (TextView) convertView.findViewById(R.id.btnExpand);
+		TextView btnExpand = (TextView) convertView.findViewById(R.id.btnExpand);
 
-		 final TextView txtPin= (TextView) convertView.findViewById(R.id.txtPin);
+		final TextView txtPin= (TextView) convertView.findViewById(R.id.txtPin);
 
 		TextView txtArrivelFalseLast = (TextView) convertView.findViewById(R.id.txtArrivelFalseLast);
 		TextView txtDepurtureFalseOne = (TextView) convertView.findViewById(R.id.txtDepurtureFalseOne);
@@ -231,8 +236,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
 		LinearLayout linearKol = (LinearLayout) convertView.findViewById(R.id.linearKol);
 		//final int[] flag = {0};
-		Animation scaleUp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
-		linearKol.startAnimation(scaleUp);
+	/*	Animation scaleUp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
+		linearKol.startAnimation(scaleUp);*/
 
 		txtPin.setTag(item2.IsPin);
 
@@ -260,7 +265,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			pinModelHeaders=new ArrayList<>();
 
 			PinModelHeader pinModelHeader=new PinModelHeader(item2.isPin()+"",item2.DepartureCityNameFaB,item2.ArrivalCityNameFaB,item2.DepartureCityNameFaR,item2.ArrivalCityNameFaR,item2.AirlineCode+item2.FlightNumberR+"",item2.AirlineCode+item2.FlightNumberB+""
-			,""+GetDayWeek(item2.FltDateDayOfWeek)+" , "+item2.FlightArrivalTimeR,item2.SegmentTrueCount+" توقف ",
+					,""+GetDayWeek(item2.FltDateDayOfWeek)+" , "+item2.FlightArrivalTimeR,item2.SegmentTrueCount+" توقف ",
 					GetDayWeek(item2.FltDateDayOfWeekFalse)+" , "+item2.FlightTimeB,item2.SegmentFalseCount+" توقف ",item2.AdlCost+"",item2.AirlineCode,item2.CabinClassNameFa,"نفر"+item2.RemainSeats+"فقط" ,item2.SegmentFalseCount,item2.RemainSeats);
 			pinModelHeaders.add(pinModelHeader);
 			//
@@ -281,15 +286,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 
-        if (isExpanded){
-            btnExpand.setText(_context.getString(R.string.icon_exp_up));
+		if (isExpanded){
+			btnExpand.setText(_context.getString(R.string.icon_exp_up));
 			linearKol.clearAnimation();
 
-        }else{
-            btnExpand.setText(_context.getString(R.string.icon_exp_down));
-			Animation scaleUpp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
-			linearKol.startAnimation(scaleUpp);
-        }
+		}else{
+			btnExpand.setText(_context.getString(R.string.icon_exp_down));
+		/*	Animation scaleUpp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
+			linearKol.startAnimation(scaleUpp);*/
+		}
 
 		///
 		System.out.println("item2.SegmentFalseCount:"+item2.SegmentFalseCount);
@@ -302,8 +307,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}else{//2tarafe
 			//////Ruze hafte
 			//bargasht
-			 txtArrivelFalseLast.setText(item2.DepartureCityNameFaB);
-			 txtDepurtureFalseOne .setText(item2.ArrivalCityNameFaB);
+			txtArrivelFalseLast.setText(item2.DepartureCityNameFaB);
+			txtDepurtureFalseOne .setText(item2.ArrivalCityNameFaB);
 
 			num_flight_b.setText(item2.AirlineCode+item2.FlightNumberB);
 			///////////////
@@ -320,7 +325,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 		num_flight_r.setText(item2.AirlineCode+item2.FlightNumberR);
 		//
-	//	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
+		//	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
 		System.out.println("raft:"+item2.FltDateDayOfWeek);
 		lblArrivalCityNameFaR.setText(""+GetDayWeek(item2.FltDateDayOfWeek)+" , "+item2.FlightArrivalTimeR);
 		int tavaghofR=item2.SegmentTrueCount-1;
@@ -445,7 +450,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			e.printStackTrace();
 		}*/
 		////////////////////////////////////////////
-			//}
+		//}
 
 		return convertView;
 	}
@@ -471,7 +476,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			return "جمعه";
 		}
 
-return "";
+		return "";
 	}
 
 	@Override
