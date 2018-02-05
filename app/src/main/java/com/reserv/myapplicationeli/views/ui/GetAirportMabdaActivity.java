@@ -89,7 +89,21 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 					data.add(fishData);
 				}
 			}
-			mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data,  GetAirportMabdaActivity.this);
+			String Value_Maghsad_City = "";
+			String Value_Maghsad_Airport = "";
+			String Value_Maghsad_Airport_Code = "";
+			////
+			if (Prefs.getString("Value-Maghsad-City", "") != null) {
+				Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
+				Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
+				Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
+			}
+
+			////
+			listAirPort = (ListView) findViewById(R.id.listAirPort);
+			mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
+
+		//	mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data,  GetAirportMabdaActivity.this);
 
 			mAdapter.setData(data);
 			listAirPort.setAdapter(mAdapter);
