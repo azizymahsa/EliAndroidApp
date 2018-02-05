@@ -66,12 +66,7 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 		this.data = data;
 		notifyDataSetChanged();
 	}
-	/*
-	public void setData(String searchText) {
-		this.cursor = new Customers_Table().getCustomersFilter(searchText);
-		//initiated = true;
-		notifyDataSetChanged();
-	}*/
+
 	@Override
 	public int getCount() {
 		return data == null ? 0 : data.size();
@@ -94,20 +89,7 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final ViewHolder holder;
-		/*if (convertView == null) {
-			convertView = myInflater.inflate(R.layout.row_airport, null);
-			///
-			
-				
-			
-			holder = new ViewHolder();
-			holder.row = (TextView) convertView.findViewById(R.id.text1);
-			holder.customerID = (TextView) convertView.findViewById(R.id.text2);
-			
-			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}*/
+
 		if (convertView == null) {
 			Log.e("POSITION", "" + position);
 			convertView = myInflater.inflate(R.layout.row_airport, null);
@@ -145,8 +127,6 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 
 						//get
 						//Prefs.getString("Value-Mabda-Airport","");
-
-
 
 						activity.finish();
 					}

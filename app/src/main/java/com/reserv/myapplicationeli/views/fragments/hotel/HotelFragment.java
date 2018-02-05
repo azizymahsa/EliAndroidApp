@@ -338,7 +338,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
             case R.id.citySearch:
                 Intent intent2 = new Intent(getActivity(), GetHotelCityActivity.class);
                 intent2.putExtra("type", 0);
-                ;
+
                 startActivity(intent2);
                 break;
 

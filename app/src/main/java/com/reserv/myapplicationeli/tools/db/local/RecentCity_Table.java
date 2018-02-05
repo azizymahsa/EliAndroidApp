@@ -66,10 +66,35 @@ public class RecentCity_Table extends MainLocalDB {
 		openDB();
 		return (int) db.insert(TABLE_NAME, null, cv);
 	}
+	/*****************************************************************************************/
 
+	public CursorManager getCountRow() {
+		String query = String.format("SELECT COUNT(%s) FROM %s",Columns.Id,TABLE_NAME);
+		return QUERY(query);
+	}
+	/*****************************************************************************************/
+	public void deletById(int uuID) {
+		System.out.println("remov:"+uuID);
+		DELETE_FROM_DB(TABLE_NAME,
+				String.format("%s='%s'", Columns.Id, uuID+""));
+	}
 	/*****************************************************************************************/
 	public CursorManager getAll(int typeFlag) {
-		return SELECT_FROM_DB("*", TABLE_NAME,Columns.flag + "=" + typeFlag, "", 0, 0);
+		//return SELECT_FROM_DB("*", TABLE_NAME,Columns.flag + "=" + typeFlag, Columns.Id+"  desc", 0, 0);
+		String query = String.format("SELECT  DISTINCT  "+Columns.AirPortCode+","+Columns.AirPortName+","+Columns.CityName +" FROM %s WHERE %s=%s  order by %s desc  LIMIT 5",TABLE_NAME, Columns.flag,typeFlag,Columns.Id);
+		//String query = String.format("SELECT  TOP 3 * FROM %s WHERE %s=%s  order by %s desc ",TABLE_NAME, Columns.flag,typeFlag,Columns.Id);
+
+		System.out.println("guery:"+query);
+		return QUERY(query);
+	}
+	/*****************************************************************************************/
+	public CursorManager getAllAsc(int typeFlag) {
+		//return SELECT_FROM_DB("*", TABLE_NAME,Columns.flag + "=" + typeFlag, Columns.Id+"  desc", 0, 0);
+		String query = String.format("SELECT  DISTINCT  "+Columns.AirPortCode+","+Columns.AirPortName+","+Columns.CityName +" FROM %s WHERE %s=%s    LIMIT 5",TABLE_NAME, Columns.flag,typeFlag);
+		//String query = String.format("SELECT  TOP 3 * FROM %s WHERE %s=%s  order by %s desc ",TABLE_NAME, Columns.flag,typeFlag,Columns.Id);
+
+		System.out.println("guery:"+query);
+		return QUERY(query);
 	}
 	/*****************************************************************************************/
 	/*public CursorManager getConditionId(int goodCode) {//SELECT top 1 * FROM GAWARD WHERE GoodCode=100011

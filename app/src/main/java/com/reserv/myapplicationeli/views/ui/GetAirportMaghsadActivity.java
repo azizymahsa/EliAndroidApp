@@ -44,6 +44,8 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.tools.db.local.RecentCity_Table;
+import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMabdaAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMaghsadAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
@@ -72,7 +74,61 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 			//searchtxt = (EditText) findViewById(R.id.searchtxt);
 		    //Make call to AsyncTask
 	        //new AsyncFetch().execute();
-	        
+
+			//////////////////show recent
+			ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+			List<Country> data=new ArrayList<>();
+			RecentCity_Table recentCity_table=new RecentCity_Table(this);
+			CursorManager cursorManager=recentCity_table.getAll(2);//maghsad
+			if(cursorManager != null) {
+				for (int i = 0; i < cursorManager.getCount(); i++) {
+					cursorManager.moveToPosition(i);
+					Country fishData = new Country();
+					fishData.setCityName(cursorManager.getString(RecentCity_Table.Columns.CityName.value()));
+					fishData.setAirportName(cursorManager.getString(RecentCity_Table.Columns.AirPortName.value()));
+					fishData.setAirportCode(cursorManager.getString(RecentCity_Table.Columns.AirPortCode.value()));
+					fishData.setAirportID(cursorManager.getString(RecentCity_Table.Columns.AirPortCode.value()));
+					fishData.setParentId(cursorManager.getString(RecentCity_Table.Columns.CityName.value()));
+
+					data.add(fishData);
+				}
+			}
+			mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data,  GetAirportMaghsadActivity.this);
+
+			mAdapter.setData(data);
+			listAirPort.setAdapter(mAdapter);
+
+			//////////////////////////
+			//////////////////////////Remove recent
+			CursorManager cursorManager1=recentCity_table.getCountRow();
+			System.out.println("count:"+cursorManager1.getInt("COUNT(Id)"));
+			if(cursorManager1 != null) {
+				if (cursorManager1.getInt("COUNT(Id)") >= 10) {
+
+					CursorManager cursorType1=recentCity_table.getAll(1);//mabda
+					CursorManager cursorType2=recentCity_table.getAll(2);//maghsad
+
+					RecentCity_Table db=new RecentCity_Table(this);
+					db.dropTable();
+					db.openDB();
+
+
+					if (cursorType1 != null)
+						for (int e = cursorType1.getCount()-1; e >= 0; e--) {
+							cursorType1.moveToPosition(e);
+							db.insertData(cursorType1.getString(RecentCity_Table.Columns.AirPortName.value()),cursorType1.getString(RecentCity_Table.Columns.CityName.value()),cursorType1.getString(RecentCity_Table.Columns.AirPortCode.value()),1);//mabda
+						}
+					if (cursorType2 != null)
+						for (int t = cursorType2.getCount()-1; t >= 0; t--) {
+							cursorType2.moveToPosition(t);
+							db.insertData(cursorType2.getString(RecentCity_Table.Columns.AirPortName.value()),cursorType2.getString(RecentCity_Table.Columns.CityName.value()),cursorType2.getString(RecentCity_Table.Columns.AirPortCode.value()),2);//maghsad
+						}
+					db.closeDB();
+
+				}
+			}
+
+			/////////////////////////////
 	    	searchtxt = (EditText) findViewById(R.id.searchtxt);
 			searchtxt.addTextChangedListener(
 	                new TextWatcher() {
