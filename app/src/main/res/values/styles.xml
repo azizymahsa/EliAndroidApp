@@ -106,7 +106,7 @@
         <item name="fontPath">fonts/contracts.ttf</item></style>
 
     <style name="IconMenu" parent="android:TextAppearance">
-        <item name="fontPath">fonts/fontello.ttf</item></style>
+        <item name="fontPath">fonts/fontello-side-menu-new-font.ttf</item></style>
 
     <style name="IconCheck" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-check-and-close.ttf</item></style>

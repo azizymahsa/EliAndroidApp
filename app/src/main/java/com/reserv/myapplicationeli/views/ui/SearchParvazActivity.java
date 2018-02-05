@@ -2,10 +2,12 @@ package com.reserv.myapplicationeli.views.ui;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.icu.util.GregorianCalendar;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -2373,7 +2375,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				finish();
 				break;
 			case R.id.btnHome:
-				finish();
+				Intent intent = new Intent("sendFinish");
+
+				LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 				break;
 			case R.id.txtFilter:
 

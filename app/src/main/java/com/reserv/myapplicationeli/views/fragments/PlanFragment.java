@@ -173,6 +173,36 @@ public  LinearLayout linear_tarikh_az_picker;
 
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay()+1);
         ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
+/*
+        if (Prefs.getString("bargashtfa","null").equals("null")){
+
+            tarikh_be_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+            picker_be_format=persianCalendarDatePicker.getPersianLongDate();
+        }else{
+
+
+            tarikh_be_picker.setText(Prefs.getString("bargashtfa","null"));
+            picker_be_format=Prefs.getString("bargashtfa","null");
+            bargasht=Prefs.getString("bargasht","null");
+
+        }
+
+
+
+
+        if (Prefs.getString("raftfa","null").equals("null")){
+            tarikh_az_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+            picker_az_format=persianCalendarDatePicker.getPersianLongDate();
+
+        }else{
+            tarikh_az_picker.setText(Prefs.getString("raftfa","null"));
+            picker_az_format=Prefs.getString("raftfa","null");
+            raft=Prefs.getString("raft","null");
+        }
+*/
+
+
+
 
         tarikh_az_picker.setText(persianCalendarDatePicker.getPersianLongDate());
         picker_az_format=persianCalendarDatePicker.getPersianLongDate();
@@ -295,6 +325,10 @@ public  LinearLayout linear_tarikh_az_picker;
                 }
 
                 tarikh_be_picker.setText(tarikh_az_picker.getText().toString());
+                Prefs.putString("bargashtfa",tarikh_az_picker.getText().toString());
+
+                Prefs.putString("raft",raft);
+                Prefs.putString("raftfa",tarikh_az_picker.getText().toString());
 
 
 
@@ -309,6 +343,8 @@ public  LinearLayout linear_tarikh_az_picker;
                 tarikh_be_picker.setText(Utility.dateShowViewFlight(year+"-"+ (monthOfYear+1)+"-"+ dayOfMonth));
                 bargasht =year+"-"+( monthOfYear+1)+"-"+ dayOfMonth;
 
+                Prefs.putString("bargasht",bargasht);
+                Prefs.putString("bargashtfa",Utility.dateShowView(year + "/" +( monthOfYear + 1 )+ "/" + dayOfMonth));
 
 
             }
@@ -660,7 +696,8 @@ public  LinearLayout linear_tarikh_az_picker;
 
 
             picker_be_format=persianCalendar.getPersianLongDate();
-
+            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());
+            Prefs.putString("bargasht",bargasht);
         }
 
 
@@ -683,7 +720,10 @@ public  LinearLayout linear_tarikh_az_picker;
             datePickerDialog2.initialize(this, year_, month, day);
             datePickerDialog2.setMinDate(persianCalendarDatePicker2);
 
+            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());
 
+            Prefs.putString("raft",raft);
+            Prefs.putString("raftfa",persianCalendar.getPersianLongDate());
         }
     }
 

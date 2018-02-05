@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -1745,7 +1746,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME", true);
                 //	myScrollView.setOnTouchListener(null);
-                finish();
+                Intent intent = new Intent("sendFinish");
+
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 //this.startActivity(i4);
                 break;
         }

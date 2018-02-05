@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
@@ -69,11 +70,14 @@ public class InitUi {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, MainActivity.class);
+              /*  Intent intent = new Intent(activity, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 activity.startActivity(intent);
-                activity.finish();
+                activity.finish();*/
+                Intent intent = new Intent("sendFinish");
+
+                LocalBroadcastManager.getInstance(activity).sendBroadcast(intent);
             }
         });
 
@@ -128,4 +132,10 @@ public class InitUi {
         }
 
 
-    }}
+    }
+
+
+
+
+
+}

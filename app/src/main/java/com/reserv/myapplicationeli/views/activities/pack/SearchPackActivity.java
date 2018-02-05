@@ -138,7 +138,17 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     }
     //send request for get package
     private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture,String PreferedAir) {
-        String date = DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
+        String date;
+        if (Prefs.getString("raftfa","null").equals("null")) {
+             date = DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
+
+        }else{
+
+            date = Prefs.getString("bargashtfa","null") + " - " + Prefs.getString("raftfa","null");
+
+        }
+
+
         toolbar_title.setText(" تور " + cityName);
         toolbar_date.setText(date);
         goneView(layout_availabel_date, R.anim.slide_out_top);

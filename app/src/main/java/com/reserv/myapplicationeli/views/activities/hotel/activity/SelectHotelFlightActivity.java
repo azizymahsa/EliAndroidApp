@@ -222,10 +222,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 finish();
                 break;
             case R.id.btnHome:
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                Intent intent = new Intent("sendFinish");
+
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
 
 

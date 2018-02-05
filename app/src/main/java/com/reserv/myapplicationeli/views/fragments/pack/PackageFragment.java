@@ -216,8 +216,35 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
         int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
         int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
-        txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
-        txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+
+
+
+        if (Prefs.getString("bargashtfa","null").equals("null")){
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+
+        }else{
+            txt_return_date.setText(Prefs.getString("bargashtfa","null"));
+
+            departureTo=Prefs.getString("bargasht","null");
+
+        }
+
+
+
+
+        if (Prefs.getString("raftfa","null").equals("null")){
+            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+
+
+        }else{
+            txt_depart_date.setText(Prefs.getString("raftfa","null"));
+
+            departureFrom=Prefs.getString("raft","null");
+        }
+
+
+
+
 
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
         persianCalendarDatePicker.setPersianDate(currentYear, currentMonth, currentDay);
@@ -590,6 +617,10 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
             datePickerDialogReturnGregorian.setMinDate(persianCalendarDatePicker2);
+
+
+
+
         }
     }
 }

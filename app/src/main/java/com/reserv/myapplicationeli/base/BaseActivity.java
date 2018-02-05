@@ -61,6 +61,10 @@ public class BaseActivity extends AppCompatActivity  {
 
     }
 
+
+
+
+
     protected ProgressDialog mProgressDialog;
     protected AlertDialog mAlertDialog;
 

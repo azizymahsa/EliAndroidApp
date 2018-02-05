@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -85,13 +86,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
         manager = getSupportFragmentManager();
-        Window window = getWindow();
         sendDetailFinish();
-        window.setStatusBarColor(getColor(R.color.flight_status));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+
+            window.setStatusBarColor(getColor(R.color.flight_status));
+        }
+
         InitUi.Toolbar(this, true, R.color.TRANSPARENT, "صفحه اصلی");
 
-        timer();
-        timerRecive();
+      //  timer();
+       // timerRecive();
         initViews();
     }
 
