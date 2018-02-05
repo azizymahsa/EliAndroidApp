@@ -51,6 +51,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.app.UserEntranceRequest;
@@ -159,6 +160,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
+        OneSignal.sendTag("position", "isDetailHotel");
         InitUi.Toolbar(this, false, R.color.toolbar_color, "جزئیات هتل");
         window = getWindow();
 
@@ -261,7 +263,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         llDynamic.setFocusable(false);
         llCommentContent.setFocusable(false);
         svDetail.setFocusable(false);
-
+        tvSortComment.setText("جدیدترین نظرات");
        /* svDetail.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -376,7 +378,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                     tvSortComment.setText("جدیدترین نظرات");
-                    isNew = true;
+                    isNew = false;
                     Collections.sort(commentModels, new Comparator<CommentModel>() {
                         public int compare(CommentModel o1, CommentModel o2) {
                             if (o1.getDate() == null || o2.getDate() == null)
@@ -389,10 +391,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 } else {
 
 
+                    isNew = true;
 
 
                     tvSortComment.setText("مفیدترین نظرات");
-                    isNew = false;
+
 
                     Collections.sort(commentModels, new Comparator<CommentModel>() {
                         @Override
@@ -824,7 +827,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             aviComment.setVisibility(View.VISIBLE);
 
 
-            window.setStatusBarColor(getColor(R.color.blue2));
+          //  window.setStatusBarColor(getColor(R.color.blue2));
             ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
             Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
             Log.e("test2", getIntent().getExtras().getString("ResultUniqID"));

@@ -28,6 +28,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
@@ -87,6 +88,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
+        Utility.sendTag("H",true,false);
 
         //	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
 

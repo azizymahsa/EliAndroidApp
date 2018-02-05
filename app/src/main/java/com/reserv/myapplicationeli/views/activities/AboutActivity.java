@@ -24,6 +24,7 @@ import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.hotelAvail.HotelAvailApi;
@@ -93,6 +94,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_new);
+
 
         btnBack = (FancyButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);

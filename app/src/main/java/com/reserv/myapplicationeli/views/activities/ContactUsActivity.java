@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.views.activities;
 
 import android.Manifest;
+import android.animation.Animator;
 import android.animation.TimeInterpolator;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -10,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
@@ -33,11 +35,17 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+import com.onesignal.OneSignal;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.ContactInfo;
 import com.reserv.myapplicationeli.models.model.SectionModel;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.views.adapters.AboutAdapter;
+import com.reserv.myapplicationeli.views.ui.SplashFragment;
+import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialog;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.SocialFollowDialog;
 
@@ -87,6 +95,8 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
+        OneSignal.sendTag("position", "isContactUs");
+
 
         //tvArrow = findViewById(R.id.tvArrow);
         expandableLayout = findViewById(R.id.expandableLayout);
@@ -214,15 +224,38 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.txtPhone:
 
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:"+"۰۲۱-۸۵۴۰"));
-              /*  if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                new TedPermission(ContactUsActivity.this)
+                        .setPermissionListener(new PermissionListener() {
+                            @Override
+                            public void onPermissionGranted() {
 
-                    return;
-                }*/
-                startActivity(callIntent);
 
-                break;
+                                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                callIntent.setData(Uri.parse("tel:"+"۰۲۱-۸۵۴۰"));
+
+                                startActivity(callIntent);
+
+
+
+                            }
+
+                            @Override
+                            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+
+                            }
+                        })
+                        .setDeniedMessage("If you reject permission,you can not call, Please turn on permissions at [Setting] > [Permission]")
+                        .setPermissions( Manifest.permission.CALL_PHONE)
+                        .check();
+
+
+
+
+
+
+
+
+
         }
     }
 

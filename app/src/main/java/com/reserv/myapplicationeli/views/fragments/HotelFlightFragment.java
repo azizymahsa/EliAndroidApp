@@ -28,6 +28,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
@@ -91,8 +92,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_flight_hotel2, container, false);
-
         //	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
+        Utility.sendTag("HF",true,false);
 
 
         //listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);

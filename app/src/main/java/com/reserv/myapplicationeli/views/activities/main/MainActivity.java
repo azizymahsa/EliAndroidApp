@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 
@@ -91,15 +92,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         timer();
         timerRecive();
-
         initViews();
-
     }
 
     public void initViews() {
         //findView==================================================================================
         btnMenu = findViewById(R.id.btnMenu);
-    drawerLayout = findViewById(R.id.drawerLayout);
+        drawerLayout = findViewById(R.id.drawerLayout);
         tvTitle = findViewById(R.id.tvTitle);
 
         btnFlight = findViewById(R.id.btnFlight);
@@ -116,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ivUser = findViewById(R.id.ivUser);
         rlHedaer = findViewById(R.id.rlHedaer);
         btnExit = findViewById(R.id.btnExit);
+
         btnLastBuy = findViewById(R.id.btnLastBuy);
 
         tvTitle.setText(getString(R.string.searchFlight));
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLastBuy.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
 
-        switch (Prefs.getInt("type",0)){
+        switch (Prefs.getInt("type", 0)) {
             case 0:
                 addFragment(getString(R.string.searchFlight), new PlanFragment());
                 break;
@@ -196,11 +196,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-       // super.onBackPressed();
+        // super.onBackPressed();
         if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
             drawerLayout.closeDrawer(Gravity.RIGHT);
 
-        }else {
+        } else {
 
 
             if (doubleBackToExitPressedOnce) {
@@ -228,27 +228,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnFlight:
                 addFragment(getString(R.string.searchFlight), new PlanFragment());
-                Prefs.putInt("type",0);
+                Prefs.putInt("type", 0);
 
                 break;
             case R.id.btnHotel:
                 addFragment(getString(R.string.search_hotel), new HotelFragment());
-                Prefs.putInt("type",1);
+                Prefs.putInt("type", 1);
 
                 break;
             case R.id.btnPackage:
                 addFragment(getString(R.string.search_package), new PackageFragment());
-                Prefs.putInt("type",2);
+                Prefs.putInt("type", 2);
 
                 break;
 
             case R.id.btnInsurance:
                 addFragment(getString(R.string.btn_insurance), new InsuranceFragment());
-                Prefs.putInt("type",3);
+                Prefs.putInt("type", 3);
                 break;
             case R.id.btnHotelFlight:
                 addFragment("هتل و پرواز", new HotelFlightFragment());
-                Prefs.putInt("type",4);
+                Prefs.putInt("type", 4);
                 addFragment("بلیط هواپیما + رزرو هتل", new HotelFlightFragment());
 
                 break;
@@ -302,12 +302,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnExit:
                 new LogOutAlert(this);
                 break;
-            case R.id.btnLastBuy:
+           /* case R.id.btnLastBuy:
                 Intent intent =new Intent(this, ProfileActivity.class);
                 intent.putExtra("isLastBuy",true);
                 startActivity(intent);
 
-                break;
+                break;*/
 
         }
 
@@ -339,11 +339,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
     public void onDestroy() {
 
         super.onDestroy();
         // Prefs.putInt("type",0);
     }
+
     public void addFragment(String title, Fragment fragment) {
         tvTitle.setText(title);
         manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -396,14 +398,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onReceive(Context context, Intent intent) {
 
 
-
-
                 countDownTimer.cancel();
                 countDownTimer.start();
-
-
-
-
 
 
             }
@@ -419,14 +415,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onReceive(Context context, Intent intent) {
 
 
-
-
                 countDownTimer.onFinish();
-
-
-
-
-
 
 
             }

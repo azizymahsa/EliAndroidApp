@@ -23,6 +23,8 @@ import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.onesignal.OneSignal;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.retro.ClientService;
 import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
@@ -34,6 +36,7 @@ import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.models.model.pack.call.CityListRq;
 import com.reserv.myapplicationeli.models.model.pack.call.CityRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.response.CityListRes;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
@@ -136,10 +139,22 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         view = (ViewGroup) inflater.inflate(R.layout.fragment_package, null);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         view.setLayoutParams(layoutParams);
+        Utility.sendTag("P",true,false);
+
         initViews();
         initParam();
         service = ServiceGenerator.createService(ClientService.class);
         getCities();
+        try {
+            roomsSelected = gson.fromJson(Prefs.getString("Rooms", "dd"), new TypeToken<List<ModelRowCountRoom>>() {
+            }.getType());
+
+            txt_count_adult.setText(String.valueOf(getCountAdult(roomsSelected)));
+            txt_count_child.setText(String.valueOf(getCountChild(roomsSelected)));
+            txt_count_room.setText(String.valueOf(getCountRooms(roomsSelected)));
+
+        }catch (Exception e){}
+
         return view;
     }
     //send request to server for get cities os spinner
@@ -314,7 +329,7 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
             case R.id.layout_room:
                 Gson gson = new GsonBuilder().create();
                 Intent intent = new Intent(getActivity(), AddRoomActivity.class);
-                intent.putExtra("roomList", gson.toJson(roomsSelected));
+                intent.putExtra("roomList", Prefs.getString("Rooms", "dd"));
                 startActivityForResult(intent, ADD_ROOM_REQUEST);
                 break;
 
@@ -410,6 +425,7 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
 
         return roomList;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {

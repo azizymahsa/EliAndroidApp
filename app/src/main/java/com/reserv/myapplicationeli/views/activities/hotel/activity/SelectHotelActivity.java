@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.hotelAvail.HotelAvailApi;
@@ -98,6 +99,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
+        OneSignal.sendTag("position", "isSearchHotel");
         //InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
         list = findViewById(R.id.lvHoteResult);

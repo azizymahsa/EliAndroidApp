@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -40,10 +41,12 @@ import com.reserv.myapplicationeli.models.hotel.api.getComment.call.Request;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.UserRequest;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.views.activities.AboutActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.comment.CommentModel;
 import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
+import com.reserv.myapplicationeli.views.ui.dialog.app.SplashDialog;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
@@ -53,7 +56,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
-public class SplashFragment extends BaseActivity {
+public class SplashFragment extends BaseActivity implements SplashDialog.TryDialogListener {
 
     private Runnable runnable, runnable2;
     private Handler handler, handler2;
@@ -69,6 +72,18 @@ public class SplashFragment extends BaseActivity {
     String brand;
     String product;
 
+    @Override
+    public void onReturnValue() {
+        deviceId = Utility.getDeviceID(SplashFragment.this);
+        deviceSubscriberID = Utility.getSubscriberID(SplashFragment.this);
+        operator =Utility.getMyOperator(SplashFragment.this);
+        sdkVersion = android.os.Build.VERSION.SDK_INT + "";
+        model = android.os.Build.MODEL;
+        brand = Build.BRAND;
+        product =Build.PRODUCT;
+        new GetCommentAsync().execute();
+    }
+
 
     private enum DOWNLOAD_TYPE {
         NONE, MAP, SOFTWARE
@@ -79,15 +94,13 @@ public class SplashFragment extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_splash);
         super.onCreate(savedInstanceState);
-       Window window = getWindow();
-        window.setStatusBarColor(getColor(R.color.list_selection));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
 
-        int PERMISSION_ALL = 1;
-        String[] PERMISSIONS = {Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE, Manifest.permission.CALL_PRIVILEGED};
-
-        if (!hasPermissions(this, PERMISSIONS)) {
-            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
         }
+
+
         //
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
@@ -135,7 +148,7 @@ public class SplashFragment extends BaseActivity {
                             }
                         })
                         .setDeniedMessage("If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
-                        .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)
+                        .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)
                         .check();
 
 
@@ -221,16 +234,21 @@ public class SplashFragment extends BaseActivity {
 
             try {
                 Log.e("onon", userEntranceRequest.entranceResponse.UserEntranceServiceResult.CanEnter+"" );
+                Utility.sendTag("Splash",true,true);
 
 
                 startActivity(new Intent(SplashFragment.this, MainActivity.class));
                 finish();
 
             } catch (Exception e) {
-                Toast.makeText(SplashFragment.this, "ارتباط با سرور مقدور نمی باشد", Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(SplashFragment.this, "ارتباط با سرور مقدور نمی باشد", Toast.LENGTH_SHORT).show();
 
+                alert();
 
             }
         }
+    }
+    public void alert(){
+        new SplashDialog(SplashFragment.this,this);
     }
 }

@@ -74,11 +74,12 @@ public class FinalResult extends BaseActivity {
                     tvFactor2.setText(factorId + "");
 
 
-                    new GetRoomsAsync().execute();
+
                 }
             }
         } catch (Exception e) {
         }
+        new GetRoomsAsync().execute();
     }
 
 

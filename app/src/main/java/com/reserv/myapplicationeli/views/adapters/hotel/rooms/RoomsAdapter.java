@@ -220,7 +220,7 @@ public class RoomsAdapter extends BaseAdapter {
 
         protected void onPreExecute() {
 
-            window.setStatusBarColor(context.getColor(R.color.blue2));
+            window.setStatusBarColor(context.getColor(R.color.status_loading));
             new InitUi().Loading(context,rlLoading, rlRoot, true,R.drawable.hotel_loading);
 
 

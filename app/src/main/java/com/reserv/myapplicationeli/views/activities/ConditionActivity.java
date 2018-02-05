@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.onesignal.OneSignal;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.SectionModel;
@@ -62,6 +63,8 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condition);
+        OneSignal.sendTag("position", "isCondition");
+
 
         textView12= (JustifiedTextView) findViewById(R.id.textView12);
         Typeface face = Typeface.createFromAsset(this.getAssets(),"fonts/iran_sans_normal.ttf");

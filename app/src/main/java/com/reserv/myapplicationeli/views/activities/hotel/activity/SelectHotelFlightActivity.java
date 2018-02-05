@@ -103,6 +103,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_hotel_flight);
+
         window = getWindow();
         notiRecive();
         list = findViewById(R.id.lvHoteResult);

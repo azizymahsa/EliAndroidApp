@@ -58,7 +58,8 @@
             android:textColor="@android:color/white"
             android:textAppearance="@style/fontello_flight"
             android:layout_centerHorizontal="true"
-            android:textSize="15dp"
+            android:textSize="@dimen/toolbar_title_16dp"
+            android:ellipsize="end"
 
             android:gravity="center"
             android:layout_marginTop="5dp"

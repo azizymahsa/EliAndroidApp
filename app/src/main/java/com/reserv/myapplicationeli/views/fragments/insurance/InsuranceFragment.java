@@ -26,6 +26,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.onesignal.OneSignal;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.retro.ClientService;
 import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
@@ -36,6 +37,7 @@ import com.reserv.myapplicationeli.models.model.pack.call.CountryListReq;
 import com.reserv.myapplicationeli.models.model.pack.call.CountryRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.response.CountryListRes;
 import com.reserv.myapplicationeli.tools.AndroidUtilities;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.activities.insurance.AddPassengerActivity;
@@ -121,12 +123,15 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         if (view != null) {
             return view;
         }
         view = (ViewGroup) inflater.inflate(R.layout.fragment_insurance, null);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         view.setLayoutParams(layoutParams);
+        Utility.sendTag("I",true,false);
+
         initViews();
         initParam();
         service = ServiceGenerator.createService(ClientService.class);

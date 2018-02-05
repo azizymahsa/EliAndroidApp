@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
@@ -167,6 +168,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_parvaz);
+		OneSignal.sendTag("position", "isSearchFlight");
 		window = getWindow();
 		linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
 		Bundle bundle = this.getIntent().getExtras();

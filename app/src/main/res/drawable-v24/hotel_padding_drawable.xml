@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true">
-        <inset android:drawable="@drawable/plus_icon_hotel" android:insetTop="20dp" android:insetRight="80dp"  android:insetBottom="20dp"  />
-    </item>
-    <item>
-        <inset android:drawable="@drawable/plus_icon_hotel"  android:insetTop="20dp" android:insetRight="80dp"  android:insetBottom="20dp" />
-    </item>
-</selector>

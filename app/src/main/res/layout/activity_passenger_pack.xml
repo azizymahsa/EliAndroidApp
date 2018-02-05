@@ -1421,7 +1421,52 @@
                                     android:scrollbars="vertical" />
 
                             </LinearLayout>
+                            <LinearLayout
 
+                                android:id="@+id/llDetailFlight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/llDetailService"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="اطاعات پرواز"
+                                        android:textAppearance="@style/IrsansBold"
+                                        android:textColor="@color/text_color_2e"
+                                        android:textSize="12dp" />
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="100"
+                                        android:background="@color/text_color_2e" />
+                                </LinearLayout>
+
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerViewFlight"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical" />
+
+                            </LinearLayout>
                             <LinearLayout
                                 android:id="@+id/llDetailHotel"
                                 android:layout_width="match_parent"
@@ -1469,6 +1514,9 @@
 
                             </LinearLayout>
 
+
+
+
                             <LinearLayout
 
                                 android:id="@+id/llDetailService"
@@ -1510,53 +1558,6 @@
 
                                 <android.support.v7.widget.RecyclerView
                                     android:id="@+id/recyclerViewService"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:scrollbars="vertical" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-
-                                android:id="@+id/llDetailFlight"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/llDetailService"
-                                android:orientation="vertical"
-                                android:visibility="gone">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="30dp"
-                                    android:gravity="center"
-                                    android:orientation="horizontal">
-
-                                    <View
-                                        android:layout_width="0dp"
-                                        android:layout_height="1dp"
-                                        android:layout_weight="100"
-                                        android:background="@color/text_color_2e" />
-
-                                    <TextView
-                                        android:layout_width="120dp"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:padding="5dp"
-                                        android:text="اطاعات پرواز"
-                                        android:textAppearance="@style/IrsansBold"
-                                        android:textColor="@color/text_color_2e"
-                                        android:textSize="12dp" />
-
-                                    <View
-                                        android:layout_width="0dp"
-                                        android:layout_height="1dp"
-                                        android:layout_weight="100"
-                                        android:background="@color/text_color_2e" />
-                                </LinearLayout>
-
-
-                                <android.support.v7.widget.RecyclerView
-                                    android:id="@+id/recyclerViewFlight"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:scrollbars="vertical" />

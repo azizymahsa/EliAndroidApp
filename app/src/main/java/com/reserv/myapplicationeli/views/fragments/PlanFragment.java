@@ -37,6 +37,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.tools.Utility;
@@ -94,6 +95,7 @@ public  LinearLayout linear_tarikh_az_picker;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_plane, container, false);
+        Utility.sendTag("F",true,false);
 
         linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
         linear_tarikh_az_picker= (LinearLayout) rootView.findViewById(R.id.linear_tarikh_az_picker);
