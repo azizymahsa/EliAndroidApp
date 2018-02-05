@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="eligasht_tag_id" type="id"/>
-
-    <!-- StickyHeaders -->
-    <item name="sectioning_adapter_tag_key_view_viewholder" type="id"/>
-
-</resources>

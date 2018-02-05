@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -14,7 +16,9 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.SectionModel;
 import com.reserv.myapplicationeli.tools.JustifiedTextView;
+import com.reserv.myapplicationeli.tools.NonScrollRecyclerView;
 import com.reserv.myapplicationeli.views.adapters.AboutAdapter;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -104,7 +108,7 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         ProgressDialog pdLoading = new ProgressDialog(ConditionActivity.this);
         HttpURLConnection conn;
         URL url = null;
-        private ListView listAirPort;
+        private NonScrollRecyclerView listAirPort;
 
         @Override
         protected void onPreExecute() {
@@ -237,11 +241,11 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
                     data.add(sectionModel);
                 }
 
-
-                listAirPort = (ListView)findViewById(R.id.lvExp);
-                mAdapter = new AboutAdapter(ConditionActivity.this, data,ConditionActivity.this);
+                listAirPort.addItemDecoration(new DividerItemDecoration(ConditionActivity.this, 1));
+                listAirPort.setLayoutManager(new LinearLayoutManager(ConditionActivity.this));
+                listAirPort = (NonScrollRecyclerView)findViewById(R.id.lvExp);
+                mAdapter = new AboutAdapter(data);
                 //mAdapter.setAdapter(mAdapter);
-                mAdapter.setData(data);
                 listAirPort.setAdapter(mAdapter);
                 //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 

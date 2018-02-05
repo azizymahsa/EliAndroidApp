@@ -15,6 +15,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -78,6 +79,8 @@ public class SplashFragment extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_splash);
         super.onCreate(savedInstanceState);
+       Window window = getWindow();
+        window.setStatusBarColor(getColor(R.color.list_selection));
 
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE, Manifest.permission.CALL_PRIVILEGED};

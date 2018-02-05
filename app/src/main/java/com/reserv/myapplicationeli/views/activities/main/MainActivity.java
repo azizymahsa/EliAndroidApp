@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
     int TotalTime = 2000000;
     Button btnExit;
+    private boolean doubleBackToExitPressedOnce = false;
+    private int TIME_INTERVAL = 2000;
 
 
     @Override
@@ -194,12 +196,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+       // super.onBackPressed();
         if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
-            drawerLayout.closeDrawer(Gravity.LEFT);
+            drawerLayout.closeDrawer(Gravity.RIGHT);
+
+        }else {
+
+
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, getString(R.string.back_exit), Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+
+            }, TIME_INTERVAL);
 
         }
-
     }
 
     @Override

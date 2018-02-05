@@ -65,17 +65,17 @@
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btnBack"
-                android:layout_width="@dimen/_50dp_width"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right|center"
                 android:gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="@color/focusColor"
+                fancy:fb_radius="200dp"
 
-                fancy:fb_radius="@dimen/_6dp_radius"
                 fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
-                fancy:fb_textSize="@dimen/_25dp_txtSize" />
+                fancy:fb_textSize="20dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -166,7 +166,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8"
+            android:layout_weight="10"
             android:background="@color/hotel_detail_background"
             android:gravity="center"
             android:orientation="horizontal">

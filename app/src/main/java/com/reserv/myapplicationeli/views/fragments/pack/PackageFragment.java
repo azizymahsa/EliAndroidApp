@@ -95,6 +95,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     int dayMin;
     TextView txt_return_date;
     TextView txt_depart_date;
+    boolean geo = false;
 
     public static PackageFragment instance() {
         PackageFragment fragment = new PackageFragment();
@@ -244,6 +245,10 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
             }
         });
 
+
+
+
+
         datePickerDialogDepartgGregorian.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
@@ -257,6 +262,12 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
                 datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DepartureTo");
             }
         });
+
+
+
+
+
+
 
         datePickerDialogReturnGregorian.setOnDateSetListener(this);
         datePickerDialogDepartgGregorian.setOnDateSetListener(this);
@@ -337,11 +348,27 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
                 break;
 
             case R.id.linear_picker_depart:
-                datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
+                if (geo){
+
+                    datePickerDialogDepartgGregorian.show(getActivity().getFragmentManager(), "DepartureFromGregorian");
+
+                }else{
+                    datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
+
+                }
                 break;
 
             case R.id.linear_picker_return:
-                datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DepartureTo");
+                if (geo){
+
+                    datePickerDialogReturnGregorian.show(getActivity().getFragmentManager(), "DepartureToGregorian");
+
+
+                }else{
+                    datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DepartureTo");
+
+                }
+
                 break;
         }
     }
@@ -467,6 +494,8 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
     //Shamsi
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+        geo = false;
+
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
@@ -503,6 +532,9 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
     // miladi
     @Override
     public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+
+        geo = true;
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
@@ -533,14 +565,15 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
                 e.printStackTrace();
             }
 
-            datePickerDialogReturnGregorian = com.wdullaer.materialdatetimepicker.date.DatePickerDialog.newInstance(
-                    this,
+
+            datePickerDialogReturnGregorian.initialize(  this,
                     year_Min,
                     monthMin,
-                    dayMin,
-                    true
-            );
-            datePickerDialogReturnGregorian.setMinDate(cal);
+                    dayMin);
+
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
+            datePickerDialogReturnGregorian.setMinDate(persianCalendarDatePicker2);
         }
     }
 }

@@ -511,14 +511,24 @@ public  LinearLayout linear_tarikh_az_picker;
                 break;
            // case R.id.tarikh_be_picker:
             case R.id.linear_picker:
-                datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
+                if(Geo){
+                    datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
 
-                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+                }else{
+                    datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+
+                }
                 break;
             //case R.id.tarikh_az_picker:
             case R.id.linear_tarikh_az_picker:
+                if(Geo){
+                    datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
 
-                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+                }else{
+                    datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+
+                }
+
 
                 break;
             case R.id.searchPlan:

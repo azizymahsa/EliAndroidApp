@@ -81,6 +81,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
 
+    boolean geo = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -239,6 +240,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+                geo = true;
 
 
                 Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
@@ -270,6 +272,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
         datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+                geo = true;
+
                 Log.e("GGGGGGGBar", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
 
                 tvBargasht.setText(Utility.dateShowView(year + "/" + monthOfYear + 1 + "/" + dayOfMonth));
@@ -358,6 +362,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
                     Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
                     Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
+                    intent.putExtra("Geo",true);
+
 
 
                     startActivity(intent);
@@ -370,15 +376,26 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                 break;
             case R.id.llRaft:
+                if (geo){
+                    datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+
+                }else{
+                    datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+
+                }
 
 
-                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
                 break;
             case R.id.llBargasht:
-                datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
-                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+                if (geo){
+                    datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+
+                }else{
+                    datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+
+                }
 
 
                 break;
@@ -478,6 +495,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+        geo = false;
 
         year_ = year;
         month = monthOfYear;

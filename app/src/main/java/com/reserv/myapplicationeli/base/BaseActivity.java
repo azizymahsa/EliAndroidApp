@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.onesignal.OneSignal;
 import com.reserv.myapplicationeli.R;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -40,6 +41,7 @@ public class BaseActivity extends AppCompatActivity  {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         notiRecive();
+
 
     }
     @Override

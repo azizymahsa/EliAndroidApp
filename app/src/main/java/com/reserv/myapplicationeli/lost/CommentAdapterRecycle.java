@@ -61,11 +61,17 @@ public class CommentAdapterRecycle extends RecyclerView.Adapter<CommentAdapterRe
             @Override
             public void onExpandStateChanged(TextView textView, boolean isExpanded) {
                 if (isExpanded) {
-                    holder.expandable_text.setEllipsize(null);
+                    holder.expandable_text.setEllipsize(TextUtils.TruncateAt.END);
+                    Log.e("testExpand", "onExpandStateChanged: 1" );
+
+
+
 
                 } else {
                     holder.expandable_text.setEllipsize(TextUtils.TruncateAt.END);
+                    Log.e("testExpand", "onExpandStateChanged: 2" );
                 }
+
             }
         });
     }

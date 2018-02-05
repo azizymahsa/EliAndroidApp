@@ -47,7 +47,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:visibility="invisible"
-        app:indicatorColor="@color/app_base_color"
+        app:indicatorColor="@color/list_selection"
         app:indicatorName="BallSpinFadeLoaderIndicator"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/ivSplash"

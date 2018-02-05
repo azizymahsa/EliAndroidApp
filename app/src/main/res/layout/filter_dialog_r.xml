@@ -295,7 +295,7 @@
                 <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/lvHotelTypes"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -314,7 +314,7 @@
                 <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/lvLocationTypes"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
+                    android:layout_height="wrap_content"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -332,7 +332,7 @@
                 <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/lvFacilitiesTypes"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
+                    android:layout_height="wrap_content"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

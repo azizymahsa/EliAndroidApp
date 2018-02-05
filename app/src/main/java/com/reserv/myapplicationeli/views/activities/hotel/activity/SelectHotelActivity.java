@@ -284,7 +284,16 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         ///
                         raftFa=persianCalendar.getPersianLongDate();
                         raft = formatter.format(cal.getTime());
-                        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+
+                        if (getIntent().getExtras().getBoolean("Geo")) {
+
+                            tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
+
+                        }else{
+                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+
+
+                        }
                         new GetHotelAsync().execute();
                     } else {
                         Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",

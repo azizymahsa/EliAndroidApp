@@ -400,14 +400,24 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 break;
             case R.id.llRaft:
+                if (geo){
+                    datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+                }else{
+                    datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+
+                }
+
 
                 break;
             case R.id.llBargasht:
-                datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
+                if (geo){
+                    datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+                }else{
+                    datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+
+                }
 
 
                 break;

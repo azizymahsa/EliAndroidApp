@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -27,6 +29,7 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.hotelAvail.HotelAvailApi;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.model.SectionModel;
+import com.reserv.myapplicationeli.tools.NonScrollRecyclerView;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.datetools.SolarCalendar;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
@@ -37,6 +40,7 @@ import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 import com.reserv.myapplicationeli.views.ui.InitUi;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelDialog;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelTypeModel;
@@ -160,7 +164,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         ProgressDialog pdLoading = new ProgressDialog(AboutActivity.this);
         HttpURLConnection conn;
         URL url = null;
-        private NonScrollListView listAirPort;
+        private NonScrollRecyclerView listAirPort;
 
         @Override
         protected void onPreExecute() {
@@ -294,10 +298,11 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 }
 
 
-                listAirPort = (NonScrollListView)findViewById(R.id.lvExp);
-                mAdapter = new AboutAdapter(AboutActivity.this, data,AboutActivity.this);
+                listAirPort = (NonScrollRecyclerView)findViewById(R.id.lvExp);
+                listAirPort.addItemDecoration(new DividerItemDecoration(AboutActivity.this, 1));
+                listAirPort.setLayoutManager(new LinearLayoutManager(AboutActivity.this));
+                mAdapter = new AboutAdapter(data);
                 //mAdapter.setAdapter(mAdapter);
-                mAdapter.setData(data);
                 listAirPort.setAdapter(mAdapter);
                 //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 

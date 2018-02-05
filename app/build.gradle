@@ -1,10 +1,19 @@
+plugins {
+    id 'com.onesignal.androidsdk.onesignal-gradle-plugin' version '0.8.1'
+}
+
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
 apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.reserv.myapplicationeli"
-        minSdkVersion 15
+        manifestPlaceholders = [onesignal_app_id: "270b4b08-04ea-4e4f-a22e-824a0bed3017",
+                                // Project number pulled from dashboard, local value is ignored.
+                                onesignal_google_project_number: "REMOTE"]
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -39,15 +48,21 @@ dependencies {
     compile project(':CircleProgressView')
     compile project(':CircleProgressView')
     //compile project(':library2')
-    compile "com.android.support:support-core-utils:26.1.0"
-    compile 'com.android.support:support-v4:13.0.+'
-
+    compile 'com.android.support:support-core-utils:26.1.0'
     implementation 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support:cardview-v7:26.1.0'
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.google.android.gms:play-services:9.4.0'
+
+/*    compile 'com.google.android.gms:play-services-analytics:9.4.0'
+    compile 'com.google.android.gms:play-services-gcm:9.4.0'
+    compile 'com.google.android.gms:play-services-location:9.4.0'
+    compile 'com.google.android.gms:play-services-plus:9.4.0'*/
+
+
+
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     //compile 'com.google.android.gms:play-services:9.0.0'
@@ -90,29 +105,21 @@ dependencies {
     //  compile 'com.github.traex.expandablelayout:library:1.2.2'
     //  compile 'com.github.traex.expandablelayout:library:1.2.2'
     compile 'com.github.aakira:expandable-layout:1.6.0@aar'
-
-
-
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
     compile 'com.github.traex.expandablelayout:library:1.2.2'
     compile 'com.android.support:customtabs:26.1.0'
     compile 'com.ms-square:expandableTextView:0.1.4'
-   // compile 'com.github.shinelw.colorarcprogressbar:library:1.0.3'
+    // compile 'com.github.shinelw.colorarcprogressbar:library:1.0.3'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     compile 'gun0912.ted:tedpermission:1.0.3'
     compile 'com.github.nirhart:parallaxscroll:1.0'
-   // compile 'com.airbnb.android:lottie:2.5.0-rc1'
-
+    // compile 'com.airbnb.android:lottie:2.5.0-rc1'
     compile 'me.omidh:liquidradiobutton:1.0.01'
-
     compile 'com.github.rey5137:material:1.2.4'
-
     //compile 'com.github.jakob-grabner:Circle-Progress-View:v1.3'
     compile 'com.airbnb.android:lottie:2.5.0-rc1'
     compile 'com.android.support:multidex:1.0.1'
-
-
-
+    compile 'com.onesignal:OneSignal:[3.7.1, 3.99.99]'
 }
 apply plugin: 'com.google.gms.google-services'
 

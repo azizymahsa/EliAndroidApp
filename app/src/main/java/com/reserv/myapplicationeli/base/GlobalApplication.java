@@ -14,9 +14,11 @@ import android.os.Handler;
 import android.support.multidex.MultiDex;
 import android.telephony.TelephonyManager;
 
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.notification.GetNotification;
 import com.reserv.myapplicationeli.views.ui.font.CustomViewWithTypefaceSupport;
 import com.reserv.myapplicationeli.views.ui.font.TextField;
 import com.reserv.myapplicationeli.views.activities.IDM_Activity;
@@ -40,6 +42,12 @@ public class GlobalApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		OneSignal.startInit(this)
+				.inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+				.unsubscribeWhenNotificationsAreDisabled(true)
+				.setNotificationReceivedHandler(new GetNotification())
+				.init();
+
 		mInstance = this;
 		applicationContext = getApplicationContext();
 		applicationHandler = new Handler(applicationContext.getMainLooper());
@@ -150,24 +158,12 @@ public class GlobalApplication extends Application {
 		GlobalApplication.context = context;
 	}
 
-	public static String getWebserviceURL() {
-		return "";//getActivity().getString(R.string.WEBSERVICE_URL);
-	}
 
-	public static void clearStack() {
-		for (IDM_Activity activity : GlobalApplication.activityStack) {
-			try {
-				activity.finish();
-			} catch (Exception e) {
-			}
-		}
-		GlobalApplication.activityStack.clear();
-	}
 
 	@Override
 	protected void attachBaseContext(Context base) {
 		super.attachBaseContext(base);
-		MultiDex.install(this);
+		//MultiDex.install(this);
 	}
 
 }
