@@ -16,7 +16,7 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 
 	public static enum Columns {
 
-		ID(integer),Onvan(text),Gender(text), Nationality(text), Nationality_ID(text)
+		ID(integer),Onvan(text),Otagh(text),Gender(text), Nationality(text), Nationality_ID(text)
 		,RqPassenger_Address(text), RqPassenger_Birthdate(text), RqPassenger_Email(text)
 		,RqPassenger_FirstNameEn(text), RqPassenger_FirstNameFa(text), RqPassenger_LastNameEn(text)
 		,RqPassenger_LastNameFa(text), RqPassenger_Mobile(text), RqPassenger_NationalCode(text)
@@ -54,7 +54,7 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 	/*****************************************************************************************/
 
 	/*****************************************************************************************/
-	public int insertData(int id,String onvan,String Gender, String Nationality, String Nationality_ID,
+	public int insertData(int id,String onvan,String Otagh,String Gender, String Nationality, String Nationality_ID,
 						  String RqPassenger_Address, String RqPassenger_Birthdate, String RqPassenger_Email,
 						  String RqPassenger_FirstNameEn, String RqPassenger_FirstNameFa, String RqPassenger_LastNameEn,
 						  String RqPassenger_LastNameFa, String RqPassenger_Mobile, String RqPassenger_NationalCode, String RqPassenger_PassExpDate,
@@ -63,6 +63,7 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 
 		cv.put(Columns.ID.value(), id);
 		cv.put(Columns.Onvan.value(), onvan);
+		cv.put(Columns.Otagh.value(), Otagh);
 		cv.put(Columns.Gender.value(), Gender);
 		cv.put(Columns.Nationality.value(), Nationality);
 		cv.put(Columns.Nationality_ID.value(), Nationality_ID);

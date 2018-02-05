@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.HotelCity;
+import com.reserv.myapplicationeli.tools.db.local.RecentCityHotel_Table;
+import com.reserv.myapplicationeli.tools.db.local.RecentCity_Table;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelCityActivity;
 
 import java.util.List;
@@ -56,8 +58,9 @@ public class GetHotelCityAdapter extends BaseAdapter {
 		myInflater = LayoutInflater.from(context);
 	}
 
-	public GetHotelCityAdapter(GetHotelCityActivity getHotelCityActivity, List<HotelCity> data, Activity activity){
-		this.context=activity;
+	public GetHotelCityAdapter(Context context, List<HotelCity> data, Activity activity){
+		this.context=context;
+		this.activity=activity;
 		myInflater = LayoutInflater.from(activity);
 		this.data = null;
 		notifyDataSetChanged();
@@ -123,11 +126,8 @@ public class GetHotelCityAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 
-			/*			Intent i4 = new Intent(context,HotelActivity.class);
-
-						i4.putExtra("Value-Hotel-City-Fa",current.getCityNameFa());
-						i4.putExtra("Value-Hotel-City-En",current.getCityNameEn());
-						i4.putExtra("Value-Hotel-City-Code",current.getCityCode());*/
+				RecentCityHotel_Table recentCity_table=new RecentCityHotel_Table(activity);
+				recentCity_table.insertData(current.getCityNameFa(),current.getCityNameEn(),current.getCityCode());
 
 				if (type==0){
 					Prefs.putString("Value-Hotel-City-Fa",current.getCityNameFa());

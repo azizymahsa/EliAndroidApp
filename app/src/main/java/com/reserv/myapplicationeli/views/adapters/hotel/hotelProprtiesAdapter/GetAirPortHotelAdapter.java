@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.Country;
+import com.reserv.myapplicationeli.tools.db.local.RecentCity_Table;
 
 import java.util.List;
 
@@ -63,7 +64,18 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 		notifyDataSetChanged();
     }
 
-    public void setData(List<Country> data) {
+	public GetAirPortHotelAdapter(GetAirportHotelActivity getAirportHotelActivity, List<Country> data, GetAirportHotelActivity getAirportHotelActivity1, int type) {
+		this.activity=getAirportHotelActivity1;
+		this.context=getAirportHotelActivity;
+		this.type=type;
+		inflater= LayoutInflater.from(context);
+		this.data=data;
+		myInflater = LayoutInflater.from(context);
+
+		notifyDataSetChanged();
+	}
+
+	public void setData(List<Country> data) {
 		this.data = data;
 		notifyDataSetChanged();
 	}
@@ -129,6 +141,9 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 			public void onClick(View v) {
 
 				if (type==1){
+					RecentCity_Table recentCity_table=new RecentCity_Table(activity);
+					recentCity_table.insertData(current.getAirportName(),current.getCityName(),current.getAirportCode(),1);//mabda
+
 					Prefs.putString("Value-Hotel-City-Fa-HF-Raft",current.getCityName());
 					Prefs.putString("Value-Hotel-City-En-HF-Raft",current.getAirportName());
 					Prefs.putString("Value-Hotel-City-Code-HF-Raft",current.getAirportCode());
@@ -139,6 +154,8 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 */
 				}
 				if (type==2){
+					RecentCity_Table recentCity_table=new RecentCity_Table(activity);
+					recentCity_table.insertData(current.getAirportName(),current.getCityName(),current.getAirportCode(),2);//maghsad
 
 					Prefs.putString("Value-Hotel-City-Fa-HF-Source",current.getCityName());
 					Prefs.putString("Value-Hotel-City-En-HF-Source",current.getAirportName());

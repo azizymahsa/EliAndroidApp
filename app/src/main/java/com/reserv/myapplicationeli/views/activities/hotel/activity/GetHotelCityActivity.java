@@ -17,11 +17,16 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.models.Country;
 import com.reserv.myapplicationeli.models.model.HotelCity;
+import com.reserv.myapplicationeli.tools.db.local.RecentCityHotel_Table;
+import com.reserv.myapplicationeli.tools.db.local.RecentCity_Table;
+import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.views.adapters.GetAirPortMabdaAdapter;
+import com.reserv.myapplicationeli.views.adapters.GetAirPortMaghsadAdapter;
 import com.reserv.myapplicationeli.views.adapters.GetHotelCityAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
+import com.reserv.myapplicationeli.views.ui.GetAirportMaghsadActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
@@ -67,10 +72,31 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_get_city_hotel);
 			avLoadingIndicatorView=findViewById(R.id.avi);
-			
-			//searchtxt = (EditText) findViewById(R.id.searchtxt);
-		    //Make call to AsyncTask
-	      //  new AsyncFetch().execute();
+
+			//////////////////show recent
+			ListView listAirPort = (ListView) findViewById(R.id.listCityHotel);
+			List<HotelCity> data=new ArrayList<>();
+			RecentCityHotel_Table recentCity_table=new RecentCityHotel_Table(this);
+			CursorManager cursorManager=recentCity_table.getAll();
+			if(cursorManager != null) {
+				for (int i = 0; i < cursorManager.getCount(); i++) {
+					cursorManager.moveToPosition(i);
+					HotelCity hotelCity = new HotelCity();
+
+					hotelCity.setCityCode(cursorManager.getString(RecentCityHotel_Table.Columns.CityCode.value()));
+					hotelCity.setCityID(cursorManager.getInt(RecentCityHotel_Table.Columns.CityCode.value()));
+					hotelCity.setCityNameEn(cursorManager.getString(RecentCityHotel_Table.Columns.CityNameEn.value()));
+					hotelCity.setCityNameFa(cursorManager.getString(RecentCityHotel_Table.Columns.CityNameFa.value()));
+					hotelCity.setCountryID(cursorManager.getInt(RecentCityHotel_Table.Columns.CityCode.value()));
+
+					data.add(hotelCity);
+				}
+			}
+			mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data,  GetHotelCityActivity.this);
+			mAdapter.setData(data);
+			listAirPort.setAdapter(mAdapter);
+
+			//////////////////////////
 	        
 	    	searchtxt = (EditText) findViewById(R.id.searchtxt);
 			searchtxt.addTextChangedListener(
