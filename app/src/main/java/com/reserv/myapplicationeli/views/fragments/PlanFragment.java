@@ -173,13 +173,21 @@ public  LinearLayout linear_tarikh_az_picker;
 
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay()+1);
         ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
-/*
+
+        tarikh_az_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+        picker_az_format=persianCalendarDatePicker.getPersianLongDate();
+        tarikh_be_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+        picker_be_format=persianCalendarDatePicker.getPersianLongDate();
+        month = persianCalendarDatePicker.getPersianMonth();//9
+        year_ = persianCalendarDatePicker.getPersianYear();//1396
+        day = persianCalendarDatePicker.getPersianDay();//24
+
+        //////////////recent date
         if (Prefs.getString("bargashtfa","null").equals("null")){
 
             tarikh_be_picker.setText(persianCalendarDatePicker.getPersianLongDate());
             picker_be_format=persianCalendarDatePicker.getPersianLongDate();
         }else{
-
 
             tarikh_be_picker.setText(Prefs.getString("bargashtfa","null"));
             picker_be_format=Prefs.getString("bargashtfa","null");
@@ -199,19 +207,7 @@ public  LinearLayout linear_tarikh_az_picker;
             picker_az_format=Prefs.getString("raftfa","null");
             raft=Prefs.getString("raft","null");
         }
-*/
-
-
-
-
-        tarikh_az_picker.setText(persianCalendarDatePicker.getPersianLongDate());
-        picker_az_format=persianCalendarDatePicker.getPersianLongDate();
-        tarikh_be_picker.setText(persianCalendarDatePicker.getPersianLongDate());
-        picker_be_format=persianCalendarDatePicker.getPersianLongDate();
-        month = persianCalendarDatePicker.getPersianMonth();//9
-        year_ = persianCalendarDatePicker.getPersianYear();//1396
-        day = persianCalendarDatePicker.getPersianDay();//24
-
+//////////////////////end recent date
 
 ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
@@ -573,21 +569,7 @@ public  LinearLayout linear_tarikh_az_picker;
                 boolean ok = true;
 
                 try {
-               /*     Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
 
-                  *//*  intent.putExtra("CheckIn", raft);
-                    intent.putExtra("CheckOut",bargasht);
-                    intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
-                    intent.putExtra("CheckInFa",tvRaft.getText().toString());*//*
-                    intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
-                    intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
-                    intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
-                    intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
-
-
-
-
-                    startActivity(intent1);*/
 
 
                     Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
@@ -621,9 +603,29 @@ public  LinearLayout linear_tarikh_az_picker;
                         intent1.putExtra("Value-ChdCount", txtCountK.getText().toString());
                         intent1.putExtra("Value-InfCount", txtCountN.getText().toString());
 
+                        //////////////recent date
+                        if (Prefs.getString("bargashtfa","null").equals("null")){
+                            intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
+                        }else{
 
-                        intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
-                        intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
+
+                            picker_be_format=Prefs.getString("bargashtfa","null");
+                            bargasht=Prefs.getString("bargasht","null");
+                            intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
+                        }
+
+                        if (Prefs.getString("raftfa","null").equals("null")){
+
+                            intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
+                        }else{
+
+                            picker_az_format=Prefs.getString("raftfa","null");
+                            raft=Prefs.getString("raft","null");
+                            intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
+                        }
+                        //////////////////////end recent date
+
+
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
                         intent1.putExtra("Geo",  Geo);//2017-11-24
@@ -692,12 +694,13 @@ public  LinearLayout linear_tarikh_az_picker;
         if (view.getTag().equals("DatepickerdialogBargasht")) {
             tarikh_be_picker.setText(persianCalendar.getPersianLongDate());
 
-            bargasht=date_server(year,monthOfYear,dayOfMonth);
+            bargasht=date_server(year,monthOfYear,dayOfMonth);//2018-02-9
 
 
-            picker_be_format=persianCalendar.getPersianLongDate();
-            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());
-            Prefs.putString("bargasht",bargasht);
+            picker_be_format=persianCalendar.getPersianLongDate();//جمعه 20 بهمن 1396
+            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());//پنج‌شنبه 19 بهمن 1396
+            Prefs.putString("bargasht",bargasht);//2018-02-11
+
         }
 
 
@@ -720,10 +723,10 @@ public  LinearLayout linear_tarikh_az_picker;
             datePickerDialog2.initialize(this, year_, month, day);
             datePickerDialog2.setMinDate(persianCalendarDatePicker2);
 
-            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());
+            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());//چهارشنبه 18 بهمن 1396
 
-            Prefs.putString("raft",raft);
-            Prefs.putString("raftfa",persianCalendar.getPersianLongDate());
+            Prefs.putString("raft",raft);//2018-02-7
+            Prefs.putString("raftfa",persianCalendar.getPersianLongDate());//چهارشنبه 18 بهمن 1396
         }
     }
 
