@@ -405,10 +405,12 @@
                     android:visibility="visible" />
            <!-- <RelativeLayout
                 android:id="@+id/RelativeLayoutHotel"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
                 android:layout_toLeftOf="@+id/txtPin"
-                android:layout_toStartOf="@+id/txtPin">
+                android:layout_toStartOf="@+id/txtPin"
+                >-->
 
                 <com.wang.avi.AVLoadingIndicatorView
 
@@ -433,7 +435,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     />
-          <!--  </RelativeLayout>-->
+           <!--</RelativeLayout>-->
             </RelativeLayout>
         </LinearLayout>
         <!-- ////////////////////////////front bottom///////////////////////////////////// -->
