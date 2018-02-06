@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -45,6 +46,7 @@ import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Location
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.tools.datetools.SolarCalendar;
+import com.reserv.myapplicationeli.views.activities.login.ResetPasswordActivity;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.FlightHotelAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
@@ -361,7 +363,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         // txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
                         raftFa=persianCalendar.getPersianLongDate();
                         raft = formatter.format(cal.getTime());
-                        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+                        if (getIntent().getExtras().getBoolean("Geo")) {
+
+                            tvDate.setText("از تاریخ: " + DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " تا تاریخ: " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
+
+                        }else{
+                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+
+
+                        }
                         new GetHotelAsync().execute();
                     } else {
                         Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز", Toast.LENGTH_SHORT).show();
@@ -1373,8 +1383,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     private class GetHotelAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
-            window.setStatusBarColor(getColor(R.color.hf));
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this
+                        ,R.color.hf));
+            }
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 
         }
@@ -1400,7 +1413,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         @Override
         protected void onPostExecute(String result) {
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this
+                        ,R.color.colorPrimaryDark));
+            }
+
+
+
             selectHotelModelArrayList.clear();
             selectHotelModelArrayListFilter.clear();
 

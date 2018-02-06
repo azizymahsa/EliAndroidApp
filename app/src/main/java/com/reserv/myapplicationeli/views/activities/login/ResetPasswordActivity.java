@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -43,8 +44,10 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         setContentView(R.layout.activity_reset_password);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "بازیابی رمز عبور");
         Window window = getWindow();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+            window.setStatusBarColor(ContextCompat.getColor(ResetPasswordActivity.this
+                    ,R.color.colorPrimaryDark));
         }
         initViews();
         service = ServiceGenerator.createService(ClientService.class);

@@ -372,7 +372,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		btn_pardakht_factor.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
+				Prefs.putString("TypeGetPre", "F");
 				Utility.openUrlCustomTab(PassengerActivity.this, paymentUrl);
 /*
                 String url = "http://foyr.com";

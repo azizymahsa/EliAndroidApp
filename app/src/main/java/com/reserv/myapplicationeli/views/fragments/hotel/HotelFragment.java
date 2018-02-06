@@ -35,6 +35,7 @@ import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
+import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.reserv.myapplicationeli.views.activities.AddRoomActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.GetHotelCityActivity;
@@ -214,7 +215,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 persianCalendar.getPersianMonth(),
                 persianCalendar.getPersianDay());
 
-
         //=====================================================================================================
 
 
@@ -254,6 +254,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
             }
         });
+        datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
 
 //=====================================================================================================
@@ -262,11 +263,12 @@ public class HotelFragment extends Fragment implements OnClickListener,
         datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
                 geo = true;
-
-
                 Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
-                String str_date = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;//2018-01-16
+
+
+                String str_date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;//2018-01-16
                 DateFormat formatter;
                 Date date;
                 formatter = new SimpleDateFormat("yyyy/MM/dd");
@@ -277,9 +279,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     datePickerDialogGregorian2.setMinDate(cal);
 
 
-                    tvRaft.setText(Utility.dateShowView(year + "/" +( monthOfYear + 1 )+ "/" + dayOfMonth));
+                    tvRaft.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
-                    raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
+                    raft = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;
                     Log.e("GGGGGGG", raft);
 
                 } catch (ParseException e) {
@@ -287,30 +289,53 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 }
 
                 tvBargasht.setText(tvRaft.getText().toString());
-                Prefs.putString("bargashtfa",tvRaft.getText().toString());
 
-                Prefs.putString("raft",raft);
-                Prefs.putString("raftfa",tvRaft.getText().toString());
+                Prefs.putString("bargashtfa", tvRaft.getText().toString());
+
+                Prefs.putString("raft", raft);
+                Prefs.putString("raftfa", tvRaft.getText().toString());
+
 
             }
         });
         datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+                Log.e("GGGGGGGBar", year + "==" + (monthOfYear + 1) + "==" + dayOfMonth);
                 geo = true;
+                tvBargasht.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
-                Log.e("GGGGGGGBar", year + "==" +( monthOfYear + 1) + "==" + dayOfMonth);
+                bargasht = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;
 
-                tvBargasht.setText(Utility.dateShowView(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth));
-                bargasht = year + "/" +( monthOfYear + 1) + "/" + dayOfMonth;
-                Prefs.putString("bargasht",bargasht);
-                Prefs.putString("bargashtfa",Utility.dateShowView(year + "/" +( monthOfYear + 1 )+ "/" + dayOfMonth));
 
+                Prefs.putString("bargasht", bargasht);
+                Prefs.putString("bargashtfa", tvBargasht.getText().toString());
 
             }
 
 
         });
+
+
+        if (Prefs.getString("bargashtfa", "null").equals("null")) {
+            tvBargasht.setText(persianCalendar.getPersianLongDate());
+
+        } else {
+
+            tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
+            bargasht = Prefs.getString("bargasht", "null");
+
+        }
+
+
+        if (Prefs.getString("raftfa", "null").equals("null")) {
+            tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
+
+        } else {
+            tvRaft.setText(Prefs.getString("raftfa", "null"));
+            raft = Prefs.getString("raft", "null");
+        }
+//=====================================================================================================
 
 
 //=====================================================================================================
@@ -321,7 +346,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
     }//end oncreat
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
         Prefs.putBoolean("geo", geo);
         try {

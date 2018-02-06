@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -28,6 +30,7 @@ import com.reserv.myapplicationeli.models.hotel.api.hotelPolicy.request.RequestP
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.IdentityRooms;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
+import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.PassengerHotelActivity;
 import com.reserv.myapplicationeli.views.ui.PassengerHotelFlightActivity;
@@ -220,7 +223,14 @@ public class RoomsAdapter extends BaseAdapter {
 
         protected void onPreExecute() {
 
-            window.setStatusBarColor(context.getColor(R.color.status_loading));
+
+
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                window.setStatusBarColor(ContextCompat.getColor(context,R.color.status_loading));
+            }
+
+
             new InitUi().Loading(context,rlLoading, rlRoot, true,R.drawable.hotel_loading);
 
 
@@ -246,11 +256,14 @@ public class RoomsAdapter extends BaseAdapter {
             //  new InitUi().Loading(rlLoading,rlRoot,false);
 
             new InitUi().Loading(context,rlLoading, rlRoot, false,R.drawable.hotel_loading);
-            window.setStatusBarColor(context.getColor(R.color.colorPrimaryDark));
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                window.setStatusBarColor(ContextCompat.getColor(context,R.color.colorPrimaryDark));
+            }
             try {
 
 
-                if (Prefs.getLong("time",0)>=50000){
+            /*    if (Prefs.getLong("time",0)>=50000){*/
                     if (context.getIntent().getExtras().getInt("type") == 1) {
                         flightId = context.getIntent().getExtras().getString("FlightID");
 
@@ -279,9 +292,9 @@ public class RoomsAdapter extends BaseAdapter {
 
 
                     }
-                }else{
+            /*    }else{
                     sendDetailFinish();
-                }
+                }*/
 
 
 

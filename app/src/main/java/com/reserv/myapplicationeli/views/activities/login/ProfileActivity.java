@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -60,8 +61,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         InitUi.Toolbar(this, false, R.color.toolbar_color, "پروفایل من");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
         }
+
+
+
+
         initViews();
         setupPager();
         initParam();

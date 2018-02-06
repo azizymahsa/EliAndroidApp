@@ -137,9 +137,9 @@
     <string name="icon_arrow_left">&#xe314;</string>
     <string name="icon_arrow_right">&#xe315;</string>
     <string name="icon_user">&#xf2c0;</string>
-    <string name="icon_user_login">&#xe8091;</string>
-    <string name="icon_pass_login">&#xe80a1;</string>
-    <string name="icon_forget_login">&#xe8031;</string>
+    <string name="icon_user_login">&#xe618;</string>
+    <string name="icon_pass_login">&#xe619;</string>
+    <string name="icon_forget_login">&#xe612;</string>
 
     <string name="searchFlight">جستجوی پرواز</string>
     <string name="search_package">جستجوی  تور</string>
@@ -149,7 +149,7 @@
     <string name="icon_calander">&#xe908;</string>
     <string name="icon_search">&#xe909;</string>
     <string name="search_back_right">&#xea3c;</string>
-    <string name="icon_plane">&#xe8090;</string>
+    <string name="icon_plane">&#xe622;</string>
     <string name="arrow_left">&#xea40;</string>
     <string name="icon_close">&#xe913;</string>
 
@@ -180,8 +180,8 @@
     <string name="icon_arrow_up">&#xe316;</string>
     <string name="icon_arrow_down">&#xe313;</string>
     <string name="contract">&#xe620;</string>
-    <string name="contract_num">&#xe5012;</string>
-    <string name="contract_email">&#xf0e02;</string>
+    <string name="contract_num">&#xe623;</string>
+    <string name="contract_email">&#xe625;</string>
     <string name="train">&#xe621;</string>
     <string name="ok">&#xe640;</string>
     <string name="cancel">&#xe641;</string>

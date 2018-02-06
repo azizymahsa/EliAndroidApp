@@ -168,6 +168,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         btn_pardakht_factor.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Prefs.putString("TypeGetPre", "I");
+
                 Utility.openUrlCustomTab(PassengerInsuranceActivity.this, paymentUrl);
             }
         });

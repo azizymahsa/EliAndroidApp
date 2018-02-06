@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.Window;
@@ -66,8 +67,12 @@ public class AddPassengerActivity extends BaseActivity implements
         InitUi.Toolbar(this, false, R.color.toolbar_color, "اطلاعات مسافر");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.colorPrimary));
+            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
         }
+
+
+
+
         initViews();
         passengerPresenter = new PassengerPresenter(this);
         ArrayList<BirthDateList> passengerArrayList = null;
@@ -113,6 +118,7 @@ public class AddPassengerActivity extends BaseActivity implements
                 1
         );
         datePickerDialogBirthDay.setYearRange(1330, currentYear);
+        datePickerDialogBirthDay.setTitle("لطفا تاریخ تولد خود را انتخاب نمایید");
 
         btn_add.setOnClickListener(this);
         btn_remove.setOnClickListener(this);

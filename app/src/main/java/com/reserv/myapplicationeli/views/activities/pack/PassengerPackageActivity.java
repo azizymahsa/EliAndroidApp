@@ -336,6 +336,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         btn_pardakht_factor.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Prefs.putString("TypeGetPre", "P");
 
                 Utility.openUrlCustomTab(PassengerPackageActivity.this, paymentUrl);
             }

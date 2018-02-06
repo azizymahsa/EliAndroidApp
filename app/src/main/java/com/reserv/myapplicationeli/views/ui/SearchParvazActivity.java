@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.icu.util.GregorianCalendar;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,6 +50,8 @@ import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.datetools.JalaliCalendar;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
+import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
+import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
 import com.reserv.myapplicationeli.views.adapters.ExpandableListAdapter;
 import com.reserv.myapplicationeli.views.adapters.SearchParvazPinAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
@@ -234,7 +238,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			//txtCityRaft.setCustomTextFont("fonts/iran_sans_normal.ttf");
 			txtCityRaft.setText(mabdaf);//sdfsdf
 
-			txticon.setCustomTextFont("fonts/fontello_plane.ttf");
+			txticon.setCustomTextFont("fonts/fontello-all-icons.ttf");
 			txticon.setText(getString(R.string.icon_plane));//sdfsdf
 
 			//txtCityBargashtt.setCustomTextFont("fonts/iran_sans_normal.ttf");
@@ -1000,7 +1004,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 		@Override
 		protected void onPreExecute() {
-			window.setStatusBarColor(getColor(R.color.status_loading));
+
+
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+				window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this
+						,R.color.status_loading));
+			}
 
 			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
 
@@ -1104,7 +1114,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		protected void onPostExecute(String result){
 			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
 
-			window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+				window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this
+						,R.color.colorPrimaryDark));
+			}
 			List<Country> data = new ArrayList<Country>();
 
 			try {

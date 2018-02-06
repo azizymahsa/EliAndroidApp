@@ -43,6 +43,7 @@ import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.activities.AddRoomActivity;
 import com.reserv.myapplicationeli.views.activities.pack.SearchPackActivity;
 import com.reserv.myapplicationeli.views.adapters.pack.CitySpinnerAdapter;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -73,7 +74,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     public ViewGroup view;
     public ViewGroup layout_room;
     public Spinner spn_cities;
-    public ProgressBar prg_cities;
+    public AVLoadingIndicatorView prg_cities;
     public Button btnSearchPackage;
     public LinearLayout btn_return_date;
     public LinearLayout btn_depart_date,linear_picker_depart,linear_picker_return;
@@ -196,7 +197,7 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
 
         layout_room = (ViewGroup) view.findViewById(R.id.layout_room);
         spn_cities = (Spinner) view.findViewById(R.id.spn_cities);
-        prg_cities = (ProgressBar) view.findViewById(R.id.prg_cities);
+        prg_cities = (AVLoadingIndicatorView) view.findViewById(R.id.prg_cities);
         btnSearchPackage = (Button) view.findViewById(R.id.btnSearchPackage);
         btn_return_date = (LinearLayout) view.findViewById(R.id.btn_return_date);
         btn_depart_date = (LinearLayout) view.findViewById(R.id.btn_depart_date);
@@ -334,6 +335,11 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
+
+
+
+        datePickerDialogReturn.setTitle("تاریخ برگشت را انتخاب نمایید");
+
     }
 
     private void initParam() {

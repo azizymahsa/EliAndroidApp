@@ -165,24 +165,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() + 1);
 
-        if (Prefs.getString("bargashtfa", "null").equals("null")) {
-            tvBargasht.setText(persianCalendar.getPersianLongDate());
-
-        } else {
-
-            tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
-            bargasht = Prefs.getString("bargasht", "null");
-
-        }
-
-
-        if (Prefs.getString("raftfa", "null").equals("null")) {
-            tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
-
-        } else {
-            tvRaft.setText(Prefs.getString("raftfa", "null"));
-            raft = Prefs.getString("raft", "null");
-        }
         month = persianCalendarDatePicker.getPersianMonth();
         year_ = persianCalendarDatePicker.getPersianYear();
         day = persianCalendarDatePicker.getPersianDay();
@@ -264,6 +246,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
             }
         });
+        datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
 
 //=====================================================================================================
@@ -326,6 +309,24 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         });
 
 
+        if (Prefs.getString("bargashtfa", "null").equals("null")) {
+            tvBargasht.setText(persianCalendar.getPersianLongDate());
+
+        } else {
+
+            tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
+            bargasht = Prefs.getString("bargasht", "null");
+
+        }
+
+
+        if (Prefs.getString("raftfa", "null").equals("null")) {
+            tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
+
+        } else {
+            tvRaft.setText(Prefs.getString("raftfa", "null"));
+            raft = Prefs.getString("raft", "null");
+        }
 //=====================================================================================================
 
 

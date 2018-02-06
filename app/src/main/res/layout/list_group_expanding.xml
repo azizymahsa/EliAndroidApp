@@ -159,7 +159,7 @@
 
                         android:text="6"
                         android:textColor="#aaa"
-                        android:textSize="@dimen/_12dp_txtSize" />
+                        android:textSize="10dp" />
 
                     <TextView
 
@@ -297,7 +297,7 @@
 
                         android:text="5"
                         android:textColor="#aaa"
-                        android:textSize="@dimen/_12dp_txtSize" />
+                        android:textSize="10dp" />
 
                     <TextView
 

@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -472,8 +473,10 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         protected void onPreExecute() {
 
-            window.setStatusBarColor(getColor(R.color.blue2));
-            ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this,R.color.blue2));
+            }            ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
             Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
             Log.e("test2", getIntent().getExtras().getString("ResultUniqID"));
 
@@ -573,7 +576,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             avi1.setVisibility(View.GONE);
             llLoading.setVisibility(View.GONE);
             //new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this,R.color.colorPrimaryDark));
+            }
+
             ImageLoader imageLoader = ImageLoader.getInstance();
             ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(DetailHotelActivity.this));
 

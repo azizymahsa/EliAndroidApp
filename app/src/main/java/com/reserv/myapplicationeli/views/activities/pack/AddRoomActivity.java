@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.reserv.myapplicationeli.contracts.InfoRoomsContract;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.presenters.RoomPresenter;
 import com.reserv.myapplicationeli.tools.ValidationTools;
+import com.reserv.myapplicationeli.views.activities.login.LogInActivity;
 import com.reserv.myapplicationeli.views.adapters.pack.RoomAdapter;
 import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 import com.reserv.myapplicationeli.views.ui.InitUi;
@@ -49,8 +51,10 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_add_room);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "اطلاعات اتاق");
         Window window = getWindow();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+            window.setStatusBarColor(ContextCompat.getColor(AddRoomActivity.this
+                    ,R.color.colorPrimaryDark));
         }
         initViews();
         roomPresenter = new RoomPresenter(this);

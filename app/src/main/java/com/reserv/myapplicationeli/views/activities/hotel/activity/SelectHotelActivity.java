@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -40,6 +41,7 @@ import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelTyp
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Hotels;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.tools.datetools.SolarCalendar;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
@@ -99,7 +101,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
-        OneSignal.sendTag("position", "isSearchHotel");
+      //  OneSignal.sendTag("position", "isSearchHotel");
         //InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
         list = findViewById(R.id.lvHoteResult);
@@ -287,7 +289,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                         if (getIntent().getExtras().getBoolean("Geo")) {
 
-                            tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
+                            tvDate.setText("از تاریخ: " + DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " تا تاریخ: " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
 
                         }else{
                             tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
@@ -354,8 +356,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         // txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
                         raftFa=persianCalendar.getPersianLongDate();
                         raft = formatter.format(cal.getTime());
-                        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
-                        new GetHotelAsync().execute();
+                        if (getIntent().getExtras().getBoolean("Geo")) {
+
+                            tvDate.setText("از تاریخ: " + DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " تا تاریخ: " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
+
+                        }else{
+                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+
+
+                        }                        new GetHotelAsync().execute();
                     } else {
                         Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز", Toast.LENGTH_SHORT).show();
                     }
@@ -1333,7 +1342,12 @@ if (selectHotelModelArrayListFilter.size()==selectHotelModelArrayList.size()){
     private class GetHotelAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
-            window.setStatusBarColor(getColor(R.color.status_loading));
+
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this,R.color.status_loading));
+            }
+
 
             new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 
@@ -1359,7 +1373,11 @@ if (selectHotelModelArrayListFilter.size()==selectHotelModelArrayList.size()){
         @Override
         protected void onPostExecute(String result) {
             new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this,R.color.colorPrimaryDark));
+            }
+
 
             selectHotelModelArrayList.clear();
             selectHotelModelArrayListFilter.clear();

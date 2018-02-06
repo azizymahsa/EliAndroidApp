@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
 
-            window.setStatusBarColor(getColor(R.color.flight_status));
+            window.setStatusBarColor(ContextCompat.getColor(this,R.color.flight_status));
         }
 
         InitUi.Toolbar(this, true, R.color.TRANSPARENT, "صفحه اصلی");
@@ -307,12 +307,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnExit:
                 new LogOutAlert(this);
                 break;
-           /* case R.id.btnLastBuy:
+            case R.id.btnLastBuy:
                 Intent intent =new Intent(this, ProfileActivity.class);
                 intent.putExtra("isLastBuy",true);
                 startActivity(intent);
 
-                break;*/
+                break;
 
         }
 
@@ -419,7 +419,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void sendDetailFinish() {
-        sendDetailFinish = new BroadcastReceiver() {
+      /*  sendDetailFinish = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
 
@@ -431,7 +431,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
         LocalBroadcastManager.getInstance(this).registerReceiver(sendDetailFinish,
                 new IntentFilter("sendDetailFinish"));
-
+*/
     }
 
     @Override

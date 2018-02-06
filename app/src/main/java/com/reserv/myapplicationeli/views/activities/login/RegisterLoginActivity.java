@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -49,9 +50,15 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
         setContentView(R.layout.activity_login_register);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "ثبت نام");
         Window window = getWindow();
+
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
         }
+
+
+
         initViews();
         service = ServiceGenerator.createService(ClientService.class);
 

@@ -375,10 +375,10 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         btn_pardakht_factor.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Utility.openUrlCustomTab(PassengerHotelActivity.this, paymentUrl);
                 Prefs.putString("TypeGetPre", "H");
                 Prefs.putString("PaymentUrl", paymentUrl);
+                Utility.openUrlCustomTab(PassengerHotelActivity.this, paymentUrl);
+
 /*
                 String url = "http://foyr.com";
                 Intent launchGoogleChrome = new Intent(Intent.ACTION_VIEW, Uri.parse(url));

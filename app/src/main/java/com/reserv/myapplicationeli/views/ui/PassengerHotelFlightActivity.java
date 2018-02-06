@@ -377,6 +377,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         btn_pardakht_factor.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Prefs.putString("TypeGetPre", "HF");
                 Utility.openUrlCustomTab(PassengerHotelFlightActivity.this, paymentUrl);
 
             }

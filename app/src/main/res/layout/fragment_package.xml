@@ -27,15 +27,22 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/_10dp_marging"
-                android:background="@null"></Spinner>
+                android:background="@null"/>
 
-            <ProgressBar
+
+            <com.wang.avi.AVLoadingIndicatorView
+
                 android:id="@+id/prg_cities"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                style="@style/AVLoadingIndicatorView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="visible"
+                app:indicatorColor="@color/white"
+                app:indicatorName="BallSpinFadeLoaderIndicator"
+                android:layout_gravity="center"
 
+
+                />
         </FrameLayout>
 
         <LinearLayout
@@ -317,7 +324,7 @@
                     android:layout_marginRight="@dimen/_10dp"
                     android:layout_marginTop="@dimen/_10dp"
                     android:background="@drawable/btngravity_big"
-                    android:text="@string/search_package"
+                    android:text="جستجوی"
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/_16dp_txtSize"
                     android:textStyle="bold" />

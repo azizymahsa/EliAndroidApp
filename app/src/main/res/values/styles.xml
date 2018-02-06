@@ -85,28 +85,28 @@
     <style name="IrsansBold" parent="android:TextAppearance">
         <item name="fontPath">fonts/iran_sans_bold.ttf</item></style>
     <style name="IconFonts3" parent="android:TextAppearance">
-        <item name="fontPath">fonts/fontello_plane.ttf</item></style>
+        <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
     <style name="Arrow" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello_up_and_down.ttf</item></style>
     <style name="fontello_train" parent="android:TextAppearance">
-        <item name="fontPath">fonts/fontello-train.ttf</item></style>
+        <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
     <style name="fontello_flight" parent="android:TextAppearance">
         <item name="fontPath">fonts/iran_sans_normal.ttf</item></style>
 
     <style name="fontello_plan" parent="android:TextAppearance">
-        <item name="fontPath">fonts/fontello-plan.ttf</item></style>
+        <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
 
 
 
     <style name="IconUser" parent="android:TextAppearance">
         <item name="fontPath">fonts/user.ttf</item></style>
     <style name="User_pass_login" parent="android:TextAppearance">
-        <item name="fontPath">fonts/user_pass_login.ttf</item></style>
+        <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
     <style name="IconContract" parent="android:TextAppearance">
-        <item name="fontPath">fonts/contracts.ttf</item></style>
+        <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
 
     <style name="IconMenu" parent="android:TextAppearance">
-        <item name="fontPath">fonts/fontello-side-menu-new-font.ttf</item></style>
+        <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
 
     <style name="IconCheck" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-check-and-close.ttf</item></style>

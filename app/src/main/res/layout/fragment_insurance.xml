@@ -29,7 +29,8 @@
                 android:textColorHint="@color/white"
                 android:background="@drawable/background_strock_city"
                 android:layout_margin="@dimen/_10dp_marging"
-                android:textSize="@dimen/_25dp_txtSize"/>
+                android:textSize="@dimen/_25dp_txtSize"
+                android:textCursorDrawable="@drawable/color_cursor"/>
 
             <ProgressBar
                 android:id="@+id/prg_country"
@@ -227,7 +228,7 @@
                     android:layout_marginTop="@dimen/_10dp"
 
                     android:background="@drawable/btngravity_big"
-                    android:text="جستجوی بیمه"
+                    android:text="جستجو"
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/_16dp_txtSize"
                     android:textStyle="bold"

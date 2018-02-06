@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.retro.ClientService;
 import com.reserv.myapplicationeli.api.retro.ServiceGenerator;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.views.activities.insurance.SearchInsuranceActivity;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 /**
@@ -30,8 +32,10 @@ public class SuccessResetPassActivity extends BaseActivity implements View.OnCli
         setContentView(R.layout.activity_success_reset_pass);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "فعالسازی حساب کاربری");
         Window window = getWindow();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+            window.setStatusBarColor(ContextCompat.getColor(SuccessResetPassActivity.this
+                    ,R.color.colorPrimaryDark));
         }
         initViews();
 

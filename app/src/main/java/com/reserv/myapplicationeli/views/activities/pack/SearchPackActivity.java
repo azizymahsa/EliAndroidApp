@@ -44,6 +44,7 @@ import com.reserv.myapplicationeli.models.model.pack.response.PackageListRes;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.pack.LstAvailableDateAdapter;
 import com.reserv.myapplicationeli.views.adapters.pack.PRowXferAdapter;
@@ -112,8 +113,10 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
 
         Window window = getWindow();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this
+                    ,R.color.colorPrimaryDark));
         }
         initViews();
         service = ServiceGenerator.createService(ClientService.class);
@@ -364,7 +367,13 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
     public void showLoading() {
       Window  window = getWindow();
-      window.setStatusBarColor(getColor(R.color.hf));
+
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this,R.color.hf));
+        }
+
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
         rcl_package.showLoading();
     }
@@ -372,7 +381,15 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
     public void hideLoading() {
         Window  window = getWindow();
-        window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this,R.color.colorPrimaryDark));
+        }
+
+
+
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         rcl_package.hideLoading();
     }

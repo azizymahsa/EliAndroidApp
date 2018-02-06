@@ -79,6 +79,8 @@
                 android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/toolbar_desc_12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 />
 
             <RelativeLayout

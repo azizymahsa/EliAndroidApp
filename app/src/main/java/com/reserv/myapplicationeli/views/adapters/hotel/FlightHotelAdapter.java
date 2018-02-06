@@ -20,13 +20,16 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.hotel.FilterPriceModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectFlightHotelModel;
 import com.reserv.myapplicationeli.models.hotel.adapter.SelectHotelModel;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -98,6 +101,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvAirLines = (TextView) convertView.findViewById(R.id.tvAirLines);
             holder.ivIsBestseler = (TextView) convertView.findViewById(R.id.ivIsBestseler);
             holder.txt_lable_hotel = (TextView) convertView.findViewById(R.id.txt_lable_hotel);
+            holder.avi2 = (AVLoadingIndicatorView) convertView.findViewById(R.id.avi2);
 
 
 
@@ -329,87 +333,38 @@ public class FlightHotelAdapter extends BaseAdapter {
 
         holder.tvAirLines.setText(selectHotelModelArrayList.get(position).getFlights().get(0).AirlineNameFa);
 
+        String imageUri2 = "https://cdn.elicdn.com/Content/AirLine/MblSize/"+selectHotelModelArrayList.get(position).getFlights().get(0).AirlineCode+".png";
 
-        String s = selectHotelModelArrayList.get(position).getFlights().get(0).AirlineCode.toLowerCase();
-        if (s.toLowerCase().contains("ir")) {
-            holder.ivLogo.setImageResource(R.drawable.ir);
-        }
 
-        if (s.toLowerCase().contains("a3")) {
-            holder.ivLogo.setImageResource(R.drawable.a);
-        }
+        imageLoader.displayImage(imageUri2, holder.ivLogo, options, new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String imageUri, View view) {
 
-        if (s.toLowerCase().contains("af")) {
-            holder.ivLogo.setImageResource(R.drawable.af);
-        }
+            }
 
-        if (s.toLowerCase().contains("az")) {
-            holder.ivLogo.setImageResource(R.drawable.az);
-        }
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                holder.avi2.setVisibility(View.GONE);
 
-        if (s.toLowerCase().contains("ek")) {
-            holder.ivLogo.setImageResource(R.drawable.ek);
-        }
+            }
 
-        if (s.toLowerCase().contains("ey")) {
-            holder.ivLogo.setImageResource(R.drawable.ey);
-        }
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                holder.avi2.setVisibility(View.GONE);
+            }
 
-        if (s.toLowerCase().contains("fz")) {
-            holder.ivLogo.setImageResource(R.drawable.fz);
-        }
+            @Override
+            public void onLoadingCancelled(String imageUri, View view) {
+                holder.avi2.setVisibility(View.GONE);
 
-        if (s.toLowerCase().contains("g9")) {
-            holder.ivLogo.setImageResource(R.drawable.g);
-        }
+            }
+        });
 
-        if (s.toLowerCase().contains("j2")) {
-            holder.ivLogo.setImageResource(R.drawable.j);
-        }
 
-        if (s.toLowerCase().contains("ji")) {
-            holder.ivLogo.setImageResource(R.drawable.ji);
-        }
 
-        if (s.toLowerCase().contains("kk")) {
-            holder.ivLogo.setImageResource(R.drawable.kk);
-        }
 
-        if (s.toLowerCase().contains("kl")) {
-            holder.ivLogo.setImageResource(R.drawable.kl);
-        }
 
-        if (s.toLowerCase().contains("lh")) {
-            holder.ivLogo.setImageResource(R.drawable.lh);
-        }
 
-        if (s.toLowerCase().contains("pc")) {
-            holder.ivLogo.setImageResource(R.drawable.pc);
-        }
-
-        if (s.toLowerCase().contains("qr")) {
-            holder.ivLogo.setImageResource(R.drawable.qr);
-        }
-
-        if (s.toLowerCase().contains("su")) {
-            holder.ivLogo.setImageResource(R.drawable.su);
-        }
-
-        if (s.toLowerCase().contains("tg")) {
-            holder.ivLogo.setImageResource(R.drawable.tg);
-        }
-
-        if (s.toLowerCase().contains("tk")) {
-            holder.ivLogo.setImageResource(R.drawable.tk);
-        }
-
-        if (s.toLowerCase().contains("w5")) {
-            holder.ivLogo.setImageResource(R.drawable.w);
-        }
-
-        if (s.toLowerCase().contains("wy")) {
-            holder.ivLogo.setImageResource(R.drawable.wy);
-        }
 
 
         if (selectHotelModelArrayList.get(position).isOff()) {
@@ -468,6 +423,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         TextView tvANRaft2_1, tvANRaft2_2, tvANRaft2_3;
         TextView tvANRaft3_1, tvANRaft3_2, tvANRaft3_3,tvANRaft3_4;
         TextView tvANRaft1_1, tvANRaft1_2;
+        AVLoadingIndicatorView avi2;
 
         LinearLayout linear_1_bargasht, linear_2_bargasht,linear_3_bargasht;
         TextView tvANRaft2_1_bargasht, tvANRaft2_2_bargasht, tvANRaft2_3_bargasht;

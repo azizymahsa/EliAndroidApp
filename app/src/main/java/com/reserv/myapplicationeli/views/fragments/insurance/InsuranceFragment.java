@@ -188,11 +188,14 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 if( response.body().getCountryAjaxResult() == null || ValidationTools.isEmptyOrNull(response.body().getCountryAjaxResult().getCountries())) {
                     return;
                 }
+                try {
+                    CountryAutoAdapter adapter = new CountryAutoAdapter(getActivity(),0,0, response.body().getCountryAjaxResult().getCountries());
+                    act_country.setThreshold(0);
+                    act_country.setAdapter(adapter);
+                    act_country.showDropDown();
+                }catch (Exception e){}
 
-                CountryAutoAdapter adapter = new CountryAutoAdapter(getActivity(),0,0, response.body().getCountryAjaxResult().getCountries());
-                act_country.setThreshold(0);
-                act_country.setAdapter(adapter);
-                act_country.showDropDown();
+
             }
 
             @Override
@@ -252,6 +255,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         layout_duringTrip.setOnClickListener(this);
         layout_passenger.setOnClickListener(this);
         btnSearchInsurance.setOnClickListener(this);
+        datePickerDialogDepart.setTitle("تاریخ شروع سفر را انتخاب نمایید");
     }
 
     private void showLoading() {

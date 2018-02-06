@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.gson.Gson;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.app.GetPreFactor;
@@ -52,6 +55,7 @@ public class FinalResult extends BaseActivity {
     AfterPaymentAdapter afterPaymentAdapter;
     private ArrayList<AfterPaymentModel> afterPaymentModels = new ArrayList<>();
     String url;
+    CardView cvStatus,cv2,cv1;
 
 
 
@@ -102,6 +106,9 @@ public class FinalResult extends BaseActivity {
         tvSuccses = findViewById(R.id.tvSuccses);
         tvMail = findViewById(R.id.tvMail);
         tvNumberPeygiri = findViewById(R.id.tvNumberPeygiri);
+        cvStatus = findViewById(R.id.cvStatus);
+        cv2 = findViewById(R.id.cv2);
+        cv1 = findViewById(R.id.cv1);
         drawable = (GradientDrawable) rlStatus.getBackground();
 
         btnRPayment.setOnClickListener(new View.OnClickListener() {
@@ -161,11 +168,28 @@ public class FinalResult extends BaseActivity {
                         tvPaymen.setText("مبلغی برای این سبد خرید پرداخت نشده است");
                         tvPaymen.setTextColor(ContextCompat.getColor(FinalResult.this, R.color.red));
                         tvFactor2.setVisibility(View.GONE);
+                        cvStatus.setVisibility(View.VISIBLE);
+                        cv2.setVisibility(View.VISIBLE);
+                        cv1.setVisibility(View.VISIBLE);
+
+
+                        YoYo.with(Techniques.BounceInRight)
+                                .duration(500)
+                                .playOn(cvStatus);
+                        YoYo.with(Techniques.BounceInRight)
+                                .duration(500)
+                                .playOn(cv2);
+                        YoYo.with(Techniques.BounceInRight)
+                                .duration(500)
+                                .playOn(cv1);
                     }
                     if (getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.ContractNo <= 0
                             && getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.isEmpty() &&
                             getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.PreFactorBookingLogs.isEmpty()) {
                         btnRPayment.setVisibility(View.VISIBLE);
+                        YoYo.with(Techniques.BounceInUp)
+                                .duration(500)
+                                .playOn(btnRPayment);
                         url=getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.OnlinePaymentURL;
 
                     }

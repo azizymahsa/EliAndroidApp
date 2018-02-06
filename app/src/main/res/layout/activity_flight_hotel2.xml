@@ -81,7 +81,7 @@
                     android:gravity="right"
                     android:text="پرواز از :"
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/_14dp_txtSize" />
+                    android:textSize="15dip" />
                 <TextView
                     android:id="@+id/tvMabda"
                     android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                     android:gravity="right"
                     android:text=" استانبول "
                     android:textColor="#fff"
-                    android:textSize="@dimen/_20dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -100,7 +100,7 @@
                     android:gravity="right"
                     android:text="Istanbul,Turkey "
                     android:textColor="#fff"
-                    android:textSize="@dimen/_12dp_txtSize"
+                    android:textSize="14dp"
                     android:layout_marginLeft="@dimen/margin_5dp"/>
             </LinearLayout>
 
@@ -123,7 +123,7 @@
                     android:gravity="right"
                     android:text="پرواز به :"
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/_14dp_txtSize" />
+                    android:textSize="15dip" />
 
                 <TextView
                     android:id="@+id/txtCity"
@@ -132,7 +132,7 @@
                     android:gravity="right"
                     android:text=" استانبول "
                     android:textColor="#fff"
-                    android:textSize="@dimen/_20dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -142,7 +142,7 @@
                     android:gravity="right"
                     android:text="Istanbul,Turkey "
                     android:textColor="#fff"
-                    android:textSize="@dimen/_12dp_txtSize"
+                    android:textSize="14dp"
                     android:layout_marginLeft="@dimen/margin_5dp"/>
             </LinearLayout>
 
@@ -444,7 +444,7 @@
                 android:layout_marginRight="@dimen/_10dp"
                 android:layout_marginTop="@dimen/_10dp"
                 android:background="@drawable/btngravity_big"
-                android:text="جستجوی بلیط هواپیما + رزرو هتل"
+                android:text="جستجو"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_16dp_txtSize"
                 android:textStyle="bold"
