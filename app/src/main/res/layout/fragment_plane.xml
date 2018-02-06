@@ -242,7 +242,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -256,15 +256,15 @@
                             <TextView
                                 android:id="@+id/tarikh_be"
                                 android:layout_width="0dp"
-                                android:layout_weight="80"
                                 android:layout_height="match_parent"
                                 android:layout_marginRight="65dp"
+                                android:layout_weight="80"
 
                                 android:background="#fff"
                                 android:gravity="right"
                                 android:text="تاریخ برگشت "
-                                android:textSize="@dimen/text_size_12dp"
                                 android:textColor="@color/text_color_2"
+                                android:textSize="@dimen/text_size_12dp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -276,8 +276,8 @@
                                 android:background="#fff"
                                 android:gravity="right"
                                 android:text="تاریخ رفت"
-                                android:textSize="@dimen/text_size_12dp"
                                 android:textColor="@color/text_color_2"
+                                android:textSize="@dimen/text_size_12dp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -285,7 +285,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
 
                             android:layout_marginTop="10dp"
                             android:orientation="horizontal">
@@ -307,8 +307,8 @@
 
                                     android:gravity="center"
                                     android:text="انتخاب کنید"
-                                    android:textSize="@dimen/text_size_12dp"
                                     android:textColor="@color/text_color_2"
+                                    android:textSize="@dimen/text_size_12dp"
 
                                     />
 
@@ -341,8 +341,8 @@
                                     android:layout_marginRight="10dp"
                                     android:gravity="center"
                                     android:text="انتخاب کنید"
-                                    android:textSize="@dimen/text_size_12dp"
                                     android:textColor="@color/text_color_2"
+                                    android:textSize="@dimen/text_size_12dp"
 
                                     />
 

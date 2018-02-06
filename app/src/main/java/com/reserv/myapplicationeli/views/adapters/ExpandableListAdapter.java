@@ -108,9 +108,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 		Button btnSelect = (Button) convertView.findViewById(R.id.btnSelect);
-		YoYo.with(Techniques.SlideInDown)
+		/*YoYo.with(Techniques.SlideInDown)
 				.duration(500)
-				.playOn(llCounter);
+				.playOn(llCounter);*/
 
 
 		//nerkh
@@ -236,8 +236,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
 		LinearLayout linearKol = (LinearLayout) convertView.findViewById(R.id.linearKol);
 		//final int[] flag = {0};
-	/*	Animation scaleUp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
-		linearKol.startAnimation(scaleUp);*/
+		Animation scaleUp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
+		linearKol.startAnimation(scaleUp);
 
 		txtPin.setTag(item2.IsPin);
 
