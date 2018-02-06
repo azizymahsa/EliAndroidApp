@@ -72,13 +72,14 @@
 
             <TextView
                 android:id="@+id/tvDate"
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/toolbar_desc_12dp"
+                android:ellipsize="end"
                 />
 
             <RelativeLayout

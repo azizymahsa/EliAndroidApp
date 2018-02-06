@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -1058,11 +1059,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME", true);
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent("sendFinish");
 
-                startActivity(intent);
-                finish();
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
             case R.id.txtMore:
 

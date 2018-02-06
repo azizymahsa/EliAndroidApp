@@ -89,7 +89,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
         Utility.sendTag("H",true,false);
-
+        geo = Prefs.getBoolean("geo", false);
         //	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
 
 
@@ -151,8 +151,28 @@ public class HotelFragment extends Fragment implements OnClickListener,
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() + 1);
 
 
-        tvBargasht.setText(persianCalendar.getPersianLongDate());
-        tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
+
+        if (Prefs.getString("bargashtfa","null").equals("null")){
+            tvBargasht.setText(persianCalendar.getPersianLongDate());
+
+        }else{
+
+            tvBargasht.setText(Prefs.getString("bargashtfa","null"));
+            bargasht=Prefs.getString("bargasht","null");
+
+        }
+
+
+
+
+        if (Prefs.getString("raftfa","null").equals("null")){
+            tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
+
+        }else{
+            tvRaft.setText(Prefs.getString("raftfa","null"));
+            raft=Prefs.getString("raft","null");
+        }
+
         month = persianCalendarDatePicker.getPersianMonth();
         year_ = persianCalendarDatePicker.getPersianYear();
         day = persianCalendarDatePicker.getPersianDay();
@@ -246,7 +266,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
                 Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
-                String str_date = year + "/" + monthOfYear + 1 + "/" + dayOfMonth;//2018-01-16
+                String str_date = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;//2018-01-16
                 DateFormat formatter;
                 Date date;
                 formatter = new SimpleDateFormat("yyyy/MM/dd");
@@ -257,9 +277,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     datePickerDialogGregorian2.setMinDate(cal);
 
 
-                    tvRaft.setText(Utility.dateShowView(year + "/" + monthOfYear + 1 + "/" + dayOfMonth));
+                    tvRaft.setText(Utility.dateShowView(year + "/" +( monthOfYear + 1 )+ "/" + dayOfMonth));
 
-                    raft = year + "/" + monthOfYear + 1 + "/" + dayOfMonth;
+                    raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
                     Log.e("GGGGGGG", raft);
 
                 } catch (ParseException e) {
@@ -267,7 +287,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 }
 
                 tvBargasht.setText(tvRaft.getText().toString());
+                Prefs.putString("bargashtfa",tvRaft.getText().toString());
 
+                Prefs.putString("raft",raft);
+                Prefs.putString("raftfa",tvRaft.getText().toString());
 
             }
         });
@@ -276,10 +299,12 @@ public class HotelFragment extends Fragment implements OnClickListener,
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
                 geo = true;
 
-                Log.e("GGGGGGGBar", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
+                Log.e("GGGGGGGBar", year + "==" +( monthOfYear + 1) + "==" + dayOfMonth);
 
-                tvBargasht.setText(Utility.dateShowView(year + "/" + monthOfYear + 1 + "/" + dayOfMonth));
-                bargasht = year + "/" + monthOfYear + 1 + "/" + dayOfMonth;
+                tvBargasht.setText(Utility.dateShowView(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth));
+                bargasht = year + "/" +( monthOfYear + 1) + "/" + dayOfMonth;
+                Prefs.putString("bargasht",bargasht);
+                Prefs.putString("bargashtfa",Utility.dateShowView(year + "/" +( monthOfYear + 1 )+ "/" + dayOfMonth));
 
 
             }
@@ -298,6 +323,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     @Override
     public void onResume() {
         super.onResume();
+        Prefs.putBoolean("geo", geo);
         try {
             //    Log.e("citycode",  Prefs.getString("Value-Hotel-City-Code", ""));
 
@@ -326,6 +352,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Prefs.putBoolean("geo", geo);
 
    /*     Prefs.putString("Value-Hotel-City-Fa", "");
         Prefs.putString("Value-Hotel-City-En", "");
@@ -334,6 +361,13 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     public boolean isInRange(int a, int b, int c) {
         return b > a ? c >= a && c <= b : c >= b && c <= a;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Prefs.putBoolean("geo", geo);
+
     }
 
     @Override
@@ -355,7 +389,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     sendStartTimer();
                     Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
 
-                    intent.putExtra("CheckIn", raft);
+                    intent.putExtra("CheckIn",raft);
                     intent.putExtra("CheckOut", bargasht);
                     intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
                     intent.putExtra("CheckInFa", tvRaft.getText().toString());
@@ -364,7 +398,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
                     Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
                     Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
-                    intent.putExtra("Geo",true);
+                    intent.putExtra("Geo",geo);
 
 
 
@@ -510,6 +544,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
         if (view.getTag().equals("DatepickerdialogBargasht")) {
             tvBargasht.setText(persianCalendar.getPersianLongDate());
             bargasht = date_server(year, monthOfYear, dayOfMonth);
+            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());
+            Prefs.putString("bargasht",bargasht);
+
+
 
 
         }
@@ -527,6 +565,12 @@ public class HotelFragment extends Fragment implements OnClickListener,
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
             datePickerDialog2.initialize(this, year_, month, day);
             datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+
+
+            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());
+
+            Prefs.putString("raft",raft);
+            Prefs.putString("raftfa",persianCalendar.getPersianLongDate());
 
 
         }

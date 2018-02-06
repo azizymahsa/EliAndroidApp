@@ -619,7 +619,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/btngravity_big"
-            android:text="جستجو پرواز"
+            android:text="جستجو"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/_16dp_txtSize" />
 

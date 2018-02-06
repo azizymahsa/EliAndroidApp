@@ -109,7 +109,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         tvTitle = findViewById(R.id.tvTitle);
         tvCount = findViewById(R.id.tvCount);
         btnBack = findViewById(R.id.btnBack);
-        btnHome = findViewById(R.id.btnHome);
         ivLoading = findViewById(R.id.ivLoading);
         tvFilterIcon = findViewById(R.id.tvFilterIcon);
         btnHome = findViewById(R.id.btnHome);
@@ -218,10 +217,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 finish();
                 break;
             case R.id.btnHome:
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                Intent intent = new Intent("sendFinish");
+
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
             case R.id.btnNextDays:
                 btnNextDays.setClickable(true);

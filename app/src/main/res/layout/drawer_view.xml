@@ -460,7 +460,7 @@
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:text="@string/train"
-                android:textAppearance="@style/fontello_train"
+                android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
                 android:textSize="30dp" />
 

@@ -43,6 +43,7 @@ import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.HotelTyp
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Hotels;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.response.Locations;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.tools.datetools.SolarCalendar;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.FlightHotelAdapter;
@@ -222,10 +223,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 finish();
                 break;
             case R.id.btnHome:
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                Intent intent = new Intent("sendFinish");
+
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
 
 
@@ -294,7 +294,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         raft = formatter.format(cal.getTime());
                         if (getIntent().getExtras().getBoolean("Geo")) {
 
-                            tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
+                            tvDate.setText("از تاریخ: " + DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " تا تاریخ: " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
 
                         }else{
                             tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);

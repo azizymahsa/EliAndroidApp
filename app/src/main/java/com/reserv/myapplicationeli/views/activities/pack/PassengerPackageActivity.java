@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -369,11 +370,9 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         switch (v.getId()) {
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME",true);
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent("sendFinish");
 
-                startActivity(intent);
-                finish();
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
             case R.id.txtMore:
                 linearMahaleeghamat.setVisibility(View.VISIBLE);

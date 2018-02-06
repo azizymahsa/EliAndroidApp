@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -85,13 +86,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
         manager = getSupportFragmentManager();
-        Window window = getWindow();
         sendDetailFinish();
-        window.setStatusBarColor(getColor(R.color.flight_status));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+
+            window.setStatusBarColor(getColor(R.color.flight_status));
+        }
+
         InitUi.Toolbar(this, true, R.color.TRANSPARENT, "صفحه اصلی");
 
-        timer();
-        timerRecive();
+      //  timer();
+       // timerRecive();
         initViews();
     }
 
@@ -118,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnLastBuy = findViewById(R.id.btnLastBuy);
 
-        tvTitle.setText(getString(R.string.searchFlight));
+        //tvTitle.setText(getString(R.string.searchFlight));
         try {
             if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
                 txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
@@ -174,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 addFragment(getString(R.string.btn_insurance), new InsuranceFragment());
                 break;
             case 4:
-                addFragment("هتل و پرواز", new HotelFlightFragment());
+                addFragment("بلیط هواپیما + رزرو هتل", new HotelFlightFragment());
                 break;
             default:
                 PlanFragment workerStateFragment = new PlanFragment();
@@ -247,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Prefs.putInt("type", 3);
                 break;
             case R.id.btnHotelFlight:
-                addFragment("هتل و پرواز", new HotelFlightFragment());
+
                 Prefs.putInt("type", 4);
                 addFragment("بلیط هواپیما + رزرو هتل", new HotelFlightFragment());
 
@@ -343,6 +348,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onDestroy() {
 
         super.onDestroy();
+        Prefs.putString("raft", "null");
+        Prefs.putString("raftfa","null");
+        Prefs.putString("bargasht","null");
+        Prefs.putString("bargashtfa","null");
         // Prefs.putInt("type",0);
     }
 
