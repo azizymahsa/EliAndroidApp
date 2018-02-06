@@ -398,7 +398,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
                     Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
                     Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
-                    intent.putExtra("Geo",true);
+                    intent.putExtra("Geo",geo);
 
 
 

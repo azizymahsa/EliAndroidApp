@@ -35,6 +35,7 @@ import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
 import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
+import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
@@ -287,9 +288,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                     datePickerDialogGregorian2.setMinDate(cal);
 
 
-                    tvRaft.setText(Utility.dateShowView(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth));
+                    tvRaft.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
-                    raft = year + "/" + monthOfYear + 1 + "/" + dayOfMonth;
+                    raft = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;
                     Log.e("GGGGGGG", raft);
 
                 } catch (ParseException e) {
@@ -311,13 +312,13 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
                 Log.e("GGGGGGGBar", year + "==" + (monthOfYear + 1) + "==" + dayOfMonth);
                 geo = true;
+                tvBargasht.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
-                tvBargasht.setText(Utility.dateShowView(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth));
-                bargasht = year + "/" + monthOfYear + 1 + "/" + dayOfMonth;
+                bargasht = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;
 
 
                 Prefs.putString("bargasht", bargasht);
-                Prefs.putString("bargashtfa", Utility.dateShowView(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth));
+                Prefs.putString("bargashtfa", tvBargasht.getText().toString());
 
             }
 
@@ -403,7 +404,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                     intent.putExtra("Rooms", getRoomList(roomsSelected));
                     intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                     intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
-                    intent.putExtra("Geo", true);
+                    intent.putExtra("Geo", geo);
 
                     Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
                     Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");

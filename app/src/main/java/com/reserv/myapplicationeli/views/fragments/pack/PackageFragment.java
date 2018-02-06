@@ -549,6 +549,9 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
         if (view.getTag().equals("DepartureTo")) {
             txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
             departureTo = currentDateTime;
+
+            Prefs.putString("bargashtfa",txt_return_date.getText().toString());
+            Prefs.putString("bargasht", departureTo);
         }
 
 
@@ -568,6 +571,11 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
                     dayMin
             );
             datePickerDialogReturn.setMinDate(persianCalendarDatePicker);
+
+            Prefs.putString("bargashtfa",departureFrom);
+
+            Prefs.putString("raft",  departureFrom);
+            Prefs.putString("raftfa",  txt_depart_date.getText().toString());
         }
     }
 
@@ -587,6 +595,8 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
         if (view.getTag().equals("DepartureToGregorian")) {
             txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", false));
             departureTo = currentDateTime;
+            Prefs.putString("bargashtfa",txt_return_date.getText().toString());
+            Prefs.putString("bargasht", departureTo);
         }
 
 
@@ -618,7 +628,10 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
             datePickerDialogReturnGregorian.setMinDate(persianCalendarDatePicker2);
 
+            Prefs.putString("bargashtfa",departureFrom);
 
+            Prefs.putString("raft",  departureFrom);
+            Prefs.putString("raftfa",  txt_depart_date.getText().toString());
 
 
         }
