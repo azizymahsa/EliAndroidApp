@@ -24,6 +24,7 @@ import com.reserv.myapplicationeli.models.model.login.WebUserLogin;
 import com.reserv.myapplicationeli.models.model.login.call.LoginListReq;
 import com.reserv.myapplicationeli.models.model.login.call.LoginRequestModel;
 import com.reserv.myapplicationeli.models.model.login.response.LoginRes;
+import com.reserv.myapplicationeli.tools.Prefs;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
@@ -72,7 +73,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
     private void Login(){
 
         LoginListReq loginListReq = new LoginListReq();
-        loginListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+        loginListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile", Prefs.getString("userId","-1")));
         loginListReq.setCulture("fa-IR");
         loginListReq.setUserName(txtEmail.getText().toString());
         loginListReq.setPassword(txtPassword.getText().toString());

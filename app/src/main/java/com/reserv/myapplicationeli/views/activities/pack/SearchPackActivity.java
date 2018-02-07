@@ -143,7 +143,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture,String PreferedAir) {
         String date;
         if (Prefs.getString("raftfa","null").equals("null")) {
-             date = DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
+             date = DateUtil.getShortStringDate(departureFrom, "yyyy/MM/dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy/MM/dd", true);
 
         }else{
 
@@ -159,7 +159,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         showLoading();
         PackageListReq packageListReq = new PackageListReq();
 
-        packageListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+        packageListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile",Prefs.getString("userId","-1")));
         packageListReq.setCountry(country);
         packageListReq.setRoomList(roomList);
         packageListReq.setDepartureFrom(departureFrom);
@@ -298,24 +298,24 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 break;
 
             case R.id.btnNextDays:
-                long _departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd");
+                long _departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
 
-                if (_departMilis + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo, "yyyy-MM-dd")) {
+                if (_departMilis + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo, "yyyy/MM/dd")) {
                     Toast.makeText(this, "تاریخ رفت نمی تواند بعد از تاریخ برگشت باشد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long milis = _departMilis + 86400000;
-                departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
+                departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy/MM/dd");
                 getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
                 break;
             case R.id.btnLastDays:
-                long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd");
+                long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
                 if (departMilis <= System.currentTimeMillis()) {
                     Toast.makeText(this, "تاریخ رفت نمی تواند قبل از امروز باشد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long _milis = departMilis - 86400000;
-                departureFrom = DateUtil.getDateTime(String.valueOf(_milis), "yyyy-MM-dd");
+                departureFrom = DateUtil.getDateTime(String.valueOf(_milis), "yyyy/MM/dd");
                 getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
 
                 break;
@@ -416,7 +416,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onClickLstAvailableDateItem(LstAvailableDate lstAvailableDate) {
                 long milis = DateUtil.getMiliSecondFromJSONDate(lstAvailableDate.getDepartDate());
-                departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
+                departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy/MM/dd");
                 Log.e("PackageTest", departureFrom);
                 Log.e("PackageTest2", milis+"");
                 Log.e("PackageTest3", lstAvailableDate.getPackID()+"");
@@ -427,10 +427,10 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         });
 
         int indexSeletedItem = lstAvailableDateAdapter.getIndexSelectedItem();
-        long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy-MM-dd");
+        long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
 
         if (departMilis != DateUtil.getMiliSecondFromJSONDate(lstAvailableDates.get(indexSeletedItem).getDepartDate())) {
-            departureFrom = DateUtil.getDateTime(String.valueOf(DateUtil.getMiliSecondFromJSONDate(lstAvailableDates.get(indexSeletedItem).getDepartDate())), "yyyy-MM-dd");
+            departureFrom = DateUtil.getDateTime(String.valueOf(DateUtil.getMiliSecondFromJSONDate(lstAvailableDates.get(indexSeletedItem).getDepartDate())), "yyyy/MM/dd");
             visibileView(txtNotFoundResualt, R.anim.slide_in_top);
         } else {
             goneView(txtNotFoundResualt, R.anim.slide_out_top);
@@ -438,9 +438,9 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
 
         long departureToMilis = DateUtil.getMiliSecondFromJSONDate(String.valueOf(pRowXfers.get(0).getXferList().getXFlightsList().get(1).getFltArrDate()));
-        departureTo = DateUtil.getDateTime(String.valueOf(departureToMilis), "yyyy-MM-dd");
+        departureTo = DateUtil.getDateTime(String.valueOf(departureToMilis), "yyyy/MM/dd");
 
-        String date = DateUtil.getShortStringDate(departureFrom, "yyyy-MM-dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy-MM-dd", true);
+        String date = DateUtil.getShortStringDate(departureFrom, "yyyy/MM/dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy/MM/dd", true);
         toolbar_date.setText(date);
 
         rcl_available_date.showList(lstAvailableDateAdapter);

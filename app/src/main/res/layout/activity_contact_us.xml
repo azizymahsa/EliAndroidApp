@@ -227,7 +227,7 @@
             <android.support.v7.widget.CardView
 
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="10dp"
@@ -244,183 +244,185 @@
                     <TextView
                         android:id="@+id/txtSocialFollow"
                         android:layout_width="355dp"
-                        android:layout_height="match_parent"
                         android:layout_gravity="center"
+                        android:layout_height="0dp"
+                        android:layout_weight="50"
                         android:gravity="center"
                         android:text="ما را در شبکه های اجتماعی دنبال کنید ...  "
                         android:textColor="#2e3192"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:padding="10dp"/>
 
-
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-           <!-- //////////////////////////////Expanding social/////////////////////////////////-->
-            <com.github.aakira.expandablelayout.ExpandableWeightLayout
-                android:id="@+id/expandableLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="140"
-                app:ael_duration="1000"
-                app:ael_interpolator="anticipateOvershoot">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/background_strock_white_light"
-                    android:gravity="center"
-                    >
-
-
-
+                    <com.github.aakira.expandablelayout.ExpandableWeightLayout
+                        android:id="@+id/expandableLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="140"
+                        app:ael_duration="700"
+                        app:ael_interpolator="anticipateOvershoot">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="vertical"
+                            android:background="@drawable/background_strock_white_light"
+                            android:gravity="center"
+                            >
 
-                            <ImageView
-                                android:id="@+id/txtTelegram"
-                                android:layout_width="0dp"
-                                android:layout_marginLeft="30dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp"
-                                android:layout_marginBottom="0dp"
-                                android:layout_weight="50"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:src="@drawable/telegram"
-                                android:text="  " />
 
-                            <ImageView
-                                android:id="@+id/txtFacebook"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp"
-                                android:layout_marginBottom="0dp"
-                                android:layout_width="0dp"
-                                android:layout_weight="50"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:src="@drawable/facebook"
-                                android:text=" " />
 
-                            <ImageView
-                                android:id="@+id/txtGoogleP"
-                                android:layout_width="0dp"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp"
-                                android:layout_marginBottom="0dp"
-                                android:layout_weight="50"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:src="@drawable/google_plus"
-                                android:text=" "/>
 
-                            <ImageView
-                                android:id="@+id/txtInstagram"
-                                android:layout_width="0dp"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="30dp"
-                                android:layout_marginBottom="0dp"
-                                android:layout_weight="50"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:src="@drawable/instagram"
-                                android:text=" "/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" >
+
+                                <ImageView
+                                    android:id="@+id/txtTelegram"
+                                    android:layout_width="0dp"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:layout_weight="50"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:src="@drawable/telegram"
+                                    android:text="  " />
+
+                                <ImageView
+                                    android:id="@+id/txtFacebook"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="50"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:src="@drawable/facebook"
+                                    android:text=" " />
+
+                                <ImageView
+                                    android:id="@+id/txtGoogleP"
+                                    android:layout_width="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:layout_weight="50"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:src="@drawable/google_plus"
+                                    android:text=" "/>
+
+                                <ImageView
+                                    android:id="@+id/txtInstagram"
+                                    android:layout_width="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginRight="30dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:layout_weight="50"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:src="@drawable/instagram"
+                                    android:text=" "/>
+
+                            </LinearLayout>
+
+
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" >
+
+                                <ImageView
+                                    android:id="@+id/txtLinkdin"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="50"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:src="@drawable/linkdine"
+                                    android:text=" "/>
+
+                                <ImageView
+
+                                    android:id="@+id/txtPintrest"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="50"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:src="@drawable/pintrest"
+                                    android:text=" " />
+                                <ImageView
+                                    android:id="@+id/txtTweeter"
+                                    android:layout_width="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_weight="50"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:src="@drawable/tweeter"
+                                    android:text=" " />
+
+                                <ImageView
+                                    android:id="@+id/txtAparat"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginRight="30dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="50"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:src="@drawable/aparat"
+                                    android:text=" "/>
+                            </LinearLayout>
+
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="#aaaaaa"
+                                android:visibility="gone"
+                                />
 
                         </LinearLayout>
 
 
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
 
-                        <ImageView
-                            android:id="@+id/txtLinkdin"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="1dp"
-                            android:layout_marginRight="15dp"
-                            android:layout_marginBottom="15dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="50"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:src="@drawable/linkdine"
-                            android:text=" "/>
-
-                        <ImageView
-
-                            android:id="@+id/txtPintrest"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="1dp"
-                            android:layout_marginRight="15dp"
-                            android:layout_marginBottom="15dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="50"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:src="@drawable/pintrest"
-                            android:text=" " />
-                        <ImageView
-                            android:id="@+id/txtTweeter"
-                            android:layout_width="0dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="1dp"
-                            android:layout_marginRight="15dp"
-                            android:layout_marginBottom="15dp"
-                            android:layout_weight="50"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:src="@drawable/tweeter"
-                            android:text=" " />
-
-                        <ImageView
-                            android:id="@+id/txtAparat"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="1dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginBottom="15dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="50"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:src="@drawable/aparat"
-                            android:text=" "/>
-                    </LinearLayout>
-
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="#aaaaaa"
-                        android:visibility="gone"
-                        />
+                    </com.github.aakira.expandablelayout.ExpandableWeightLayout>
 
                 </LinearLayout>
+            </android.support.v7.widget.CardView>
+           <!-- //////////////////////////////Expanding social/////////////////////////////////-->
 
-
-
-
-
-            </com.github.aakira.expandablelayout.ExpandableWeightLayout>
             <!--//////////////////////////////////////////////////////////////////-->
             <android.support.v7.widget.CardView
 

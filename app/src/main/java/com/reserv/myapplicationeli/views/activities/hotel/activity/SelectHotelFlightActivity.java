@@ -415,7 +415,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             top_filter(filterModel, filterHotelTypeModels);
             star_filter(filterModel, filterHotelTypeModels);
-           facilities_filter(filterHotelFacilitiesModels);
+            facilities_filter(filterHotelFacilitiesModels);
             price_filter(filterHotelPriceModel);
             location_filter(filterHotelLocationModels);
 
@@ -576,7 +576,26 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     }
 
     public void top_filter(FilterModel filterModel, ArrayList<FilterHotelTypeModel> filterHotelTypeModels) {
-        if (filterModel.isBestSeler()) {
+
+
+        if (filterModel.isBestSeler() && filterModel.isBestOff()) {
+            for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                if (selectHotelModel.isBestSell()&&selectHotelModel.isOff()) {
+                    selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(),
+                            selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
+                            selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
+                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(), selectHotelModel.getLocations()));
+                }
+
+
+            }
+            type_location_filter(filterHotelTypeModels, 0, true, true);
+
+        } else if (filterModel.isBestSeler()) {
             for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
 
                 if (selectHotelModel.isBestSell()) {
@@ -586,16 +605,16 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                             selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
                             selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
                             selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
+                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(), selectHotelModel.getLocations()));
                 }
 
 
             }
             type_location_filter(filterHotelTypeModels, 0, false, true);
 
-        }
 
-        if (filterModel.isBestOff()) {
+
+    }else if (filterModel.isBestOff()) {
             for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
 
                 if (selectHotelModel.isOff()) {
@@ -1407,14 +1426,14 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         @Override
         protected String doInBackground(String... params) {
             try {
-                hotelFlightSearch = new HotelFlightSearch(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
+                hotelFlightSearch = new HotelFlightSearch(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile",Prefs.getString("userId","-1")),
                         raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), "fa-IR",
                         Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"))));
 
 
                 Gson gson = new Gson();
 
-                Log.e("test", gson.toJson(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
+                Log.e("test", gson.toJson(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile", Prefs.getString("userId","-1")),
                         raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR")))));
             } catch (Exception e) {
 

@@ -236,7 +236,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			//txtCityRaft.setCustomTextFont("fonts/iran_sans_normal.ttf");
 			txtCityRaft.setText(mabdaf);//sdfsdf
 
-			txticon.setCustomTextFont("fonts/fontello_plane.ttf");
+			txticon.setCustomTextFont("fonts/fontello-all-icons.ttf");
 			txticon.setText(getString(R.string.icon_plane));//sdfsdf
 
 			//txtCityBargashtt.setCustomTextFont("fonts/iran_sans_normal.ttf");

@@ -152,17 +152,15 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                for (int i =0;i<filterHotelPriceModel.size();i++){
-                    filterHotelPriceModel.set( i, new FilterPriceModel(filterHotelPriceModel.get( i).getDiff(),filterHotelPriceModel.get(position).getX(), false));
+                if (filterHotelPriceModel.get(position).isCheck()) {
+                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(),filterHotelPriceModel.get(position).getX(), false));
+
+                } else {
+                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(),filterHotelPriceModel.get(position).getX(), true));
+                    Remove.setChecked(false);
+
 
                 }
-
-
-
-                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(),filterHotelPriceModel.get(position).getX(), true));
-
-
-
                 priceFilterAdapter.notifyDataSetChanged();
             }
         });

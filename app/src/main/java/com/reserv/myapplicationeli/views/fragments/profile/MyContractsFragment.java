@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.model.login.call.EmailContractReq;
+import com.reserv.myapplicationeli.tools.Prefs;
 import com.reserv.myapplicationeli.tools.WebUserTools;
 
 /**
@@ -86,7 +87,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
     public EmailContractReq getEmailContractReq(){
         EmailContractReq emailContractReq = new EmailContractReq();
         emailContractReq.setCulture("fa-IR");
-        emailContractReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+        emailContractReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile", Prefs.getString("userId","-1")));
         emailContractReq.setBody("");
         emailContractReq.setEncryptedContractID(WebUserTools.getInstance().getUser().getWebUserProperties().getEncryptWebUserID());
         emailContractReq.setRecieverEmail(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());

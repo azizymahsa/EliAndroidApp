@@ -706,16 +706,16 @@ public class Utility extends Activity {
                 date2 = (Date) formatter.parse(Return);
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
-                //shart kamtar az emruz
                 if (date2.getTime() < date.getTime()) {
                     return true;
+                }else {
+                    return false;
                 }
 
             } catch (Exception e) {
                 return false;
             }
 
-            return false;
         }
 
 

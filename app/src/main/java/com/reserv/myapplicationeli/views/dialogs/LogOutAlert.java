@@ -25,13 +25,13 @@ public class LogOutAlert implements View.OnClickListener {
     View dialogView;
     LayoutInflater inflater;
     AlertDialog.Builder builder;
-    Activity activity;
+    MainActivity activity;
     FancyButton btnOk, btnExit;
     // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
     SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1, hotel, boutique, apartment, resort;
 
 
-    public LogOutAlert(final Activity activity) {
+    public LogOutAlert(final MainActivity activity) {
         this.activity = activity;
         builder = new AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
@@ -55,7 +55,8 @@ public class LogOutAlert implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btnOkLogout:
                 Prefs.remove("WEB_USER");
-                activity.finish();
+               // activity.finish();
+                activity.initUser();
                 dialog.dismiss();
                 break;
             case R.id.btnExitLogout:

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.model.login.call.ChangePasswordReq;
+import com.reserv.myapplicationeli.tools.Prefs;
 import com.reserv.myapplicationeli.tools.WebUserTools;
 
 /**
@@ -83,7 +84,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
 
         ChangePasswordReq changePasswordReq = new ChangePasswordReq();
         changePasswordReq.setCulture(WebUserTools.getInstance().getUser().getWebUserProperties().getCulture());
-        changePasswordReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+        changePasswordReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile", Prefs.getString("userId","-1")));
         changePasswordReq.setOldPassword(changePass_old.getText().toString());
         changePasswordReq.setNewPassword(changePass_new.getText().toString());
         changePasswordReq.setWebUser(WebUserTools.getInstance().getUser().getWebUserProperties());

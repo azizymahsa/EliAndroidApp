@@ -11,8 +11,8 @@ public class CountryListReq extends Identity {
 
     private String CityCode;
 
-    public CountryListReq(String userName, String password, String termianlId,String cityCode) {
-        super(userName, password, termianlId);
+    public CountryListReq(String userName, String password, String termianlId,String cityCode,String requestorID ) {
+        super(userName, password, termianlId,requestorID);
         this.CityCode = cityCode;
     }
 

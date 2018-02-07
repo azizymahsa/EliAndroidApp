@@ -32,6 +32,7 @@ import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.ModelRowCountRoom;
+import com.reserv.myapplicationeli.models.model.SolarCalendar;
 import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
@@ -331,6 +332,25 @@ public class HotelFragment extends Fragment implements OnClickListener,
         } else {
             tvRaft.setText(Prefs.getString("raftfa", "null"));
             raft = Prefs.getString("raft", "null");
+       /*     String[] dateSplite2=raft.split("/");
+
+            String dayMF=dateSplite2[2];
+            String monthMF=dateSplite2[1];
+            String yearMF=dateSplite2[0];
+
+
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(Integer.valueOf(yearMF), Integer.valueOf(monthMF)-1, Integer.valueOf(dayMF));
+            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+            datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+*/
+
+
+
+
+
+
+
         }
 //=====================================================================================================
 
@@ -567,31 +587,27 @@ public class HotelFragment extends Fragment implements OnClickListener,
             Prefs.putString("bargasht", bargasht);
 
 
+
+
         }
 
 
         if (view.getTag().equals("DatepickerdialogRaft")) {
-
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
             tvRaft.setText(persianCalendar.getPersianLongDate());
-         //   tvBargasht.setText(persianCalendar.getPersianLongDate());
+            //  tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
 
+
             if (Utility.campareDate(raft,bargasht)){
                 tvBargasht.setText(persianCalendar.getPersianLongDate());
-                datePickerDialog2.initialize(this, year_, month, day);
+                //     datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-
             }
-
-
-
-
-
 
 
 

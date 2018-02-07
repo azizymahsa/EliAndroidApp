@@ -120,7 +120,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
         showLoading();
         InsuranceListReq insuranceListReq = new InsuranceListReq();
-        insuranceListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+        insuranceListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile", com.reserv.myapplicationeli.tools.Prefs.getString("userId","-1")));
         insuranceListReq.setCountryCode(countryCode);
         insuranceListReq.setDepartureDate(departureDate);
         insuranceListReq.setAccomodationDays(accomodationDays);

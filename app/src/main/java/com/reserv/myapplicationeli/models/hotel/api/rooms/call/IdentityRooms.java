@@ -5,13 +5,15 @@ package com.reserv.myapplicationeli.models.hotel.api.rooms.call;
  */
 
 public class IdentityRooms {
-    public final String Password;
     public final String UserName;
+    public final String Password;
     public final String TermianlId;
+    public final String RequestorID;
 
-    public IdentityRooms(String password, String userName, String termianlId) {
-        Password = password;
+    public IdentityRooms(String userName, String password, String termianlId, String requestorID) {
         UserName = userName;
+        Password = password;
         TermianlId = termianlId;
+        RequestorID = requestorID;
     }
 }

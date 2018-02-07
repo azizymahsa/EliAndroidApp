@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
@@ -84,6 +85,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
     Window window;
     RelativeLayout elNotFound;
+    LottieAnimationView lottieAnimationView;
+
 
 
     int maxPrice, minPrice;
@@ -129,6 +132,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnLastDays.setOnClickListener(this);
         btnHome.setOnClickListener(this);
         notiRecive();
+        lottieAnimationView = findViewById(R.id.animation_view);
+        lottieAnimationView.setAnimation("circle-l.json");
+        lottieAnimationView.playAnimation();
+
 
 
         llBottom.setOnClickListener(this);
@@ -539,7 +546,26 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     }
 
     public void top_filter(FilterModel filterModel, ArrayList<FilterHotelTypeModel> filterHotelTypeModels) {
-        if (filterModel.isBestSeler()) {
+
+
+        if (filterModel.isBestSeler()&&filterModel.isBestOff()) {
+            for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
+
+                if (selectHotelModel.isBestSell()&&selectHotelModel.isOff()) {
+                    selectHotelModelArrayListFilter.add(new SelectHotelModel(selectHotelModel.getName(),
+                            selectHotelModel.getCity(), selectHotelModel.getTitle(),
+                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
+                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
+                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
+                            selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
+                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getOfferId(), selectHotelModel.getLocations()));
+                }
+
+
+            }
+            type_location_filter(filterHotelTypeModels, 0, false, true);
+
+        }else if (filterModel.isBestSeler()) {
             for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
 
                 if (selectHotelModel.isBestSell()) {
@@ -556,9 +582,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             }
             type_location_filter(filterHotelTypeModels, 0, false, true);
 
-        }
-
-        if (filterModel.isBestOff()) {
+        } else  if (filterModel.isBestOff()) {
             for (SelectHotelModel selectHotelModel : selectHotelModelArrayList) {
 
                 if (selectHotelModel.isOff()) {
@@ -1368,13 +1392,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         @Override
         protected String doInBackground(String... params) {
             try {
-                availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
+                availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile",Prefs.getString("userId","-1")),
                         raft, bargasht, Prefs.getString("Value-Hotel-City-Code", "c25972"), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", "")));
 
 
                 Gson gson = new Gson();
 
-                Log.e("hoteltest", gson.toJson(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
+                Log.e("hoteltest", gson.toJson(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile",Prefs.getString("userId","-1")),
                         raft, bargasht, Prefs.getString("Value-Hotel-City-Code", "c25972"), "DXB", rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", ""))));
             } catch (Exception e) {
 

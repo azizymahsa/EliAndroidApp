@@ -165,7 +165,7 @@ public class RoomsAdapter extends BaseAdapter {
         protected String doInBackground(String... params) {
             try {
                 getHotelPolicyApi = new GetHotelPolicyApi(new PolicyRequest(new RequestPolicy(new IdentityRooms("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"),EHotelId,OfferId,SearchKey,"fa-IR",false)));
+                        "EligashtMlb", "Mobile",Prefs.getString("userId","-1")),EHotelId,OfferId,SearchKey,"fa-IR",false)));
 
 
             } catch (Exception e) {
@@ -242,7 +242,7 @@ public class RoomsAdapter extends BaseAdapter {
                 getHoldRoom = new GetHoldRoom(new HoldSelectedRoomRequest(new
                         com.reserv.myapplicationeli.models.hotel.api
                                 .holdSelectedRoom.call.RoomRequest(new Identity("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "fa-IR", eHotelId
+                        "EligashtMlb", "Mobile", Prefs.getString("userId","-1")), "fa-IR", eHotelId
                         , offerIds, context.getIntent().getExtras().getString("ResultUniqID"))));
 
             } catch (Exception e) {

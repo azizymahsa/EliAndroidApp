@@ -22,6 +22,7 @@ import com.reserv.myapplicationeli.models.model.login.WebUserLogin;
 import com.reserv.myapplicationeli.models.model.login.call.RegisterListReq;
 import com.reserv.myapplicationeli.models.model.login.call.RegisterRequestModel;
 import com.reserv.myapplicationeli.models.model.login.response.WebUserRegisterRes;
+import com.reserv.myapplicationeli.tools.Prefs;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
@@ -69,7 +70,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
     private void Register(){
 
         RegisterListReq registerListReq = new RegisterListReq();
-        registerListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+        registerListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile", Prefs.getString("userId","-1")));
         registerListReq.setCulture("fa-IR");
         registerListReq.setUsername(txtEmail.getText().toString());
         registerListReq.setPassword(txtPass.getText().toString());

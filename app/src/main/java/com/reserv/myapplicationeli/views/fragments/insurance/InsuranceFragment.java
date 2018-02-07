@@ -37,6 +37,7 @@ import com.reserv.myapplicationeli.models.model.pack.call.CountryListReq;
 import com.reserv.myapplicationeli.models.model.pack.call.CountryRequestModel;
 import com.reserv.myapplicationeli.models.model.pack.response.CountryListRes;
 import com.reserv.myapplicationeli.tools.AndroidUtilities;
+import com.reserv.myapplicationeli.tools.Prefs;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
@@ -174,7 +175,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     //send request to server for get cities
     private void getCountries(String cityCode) {
         showLoading();
-        Call<CountryListRes> call = service.getCountryListResult(new CountryRequestModel(new CountryListReq("EligashtMlb", "123qwe!@#QWE", "Mobile", cityCode)));
+        Call<CountryListRes> call = service.getCountryListResult(new CountryRequestModel(new CountryListReq("EligashtMlb", "123qwe!@#QWE", "Mobile", cityCode,
+                Prefs.getString("userId","-1"))));
         call.enqueue(new Callback<CountryListRes>() {
             @Override
             public void onResponse(Call<CountryListRes> call, Response<CountryListRes> response) {

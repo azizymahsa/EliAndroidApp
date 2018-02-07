@@ -85,18 +85,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
+        Prefs.putString("raft", "null");
+        Prefs.putString("raftfa", "null");
+        Prefs.putString("bargasht", "null");
+        Prefs.putString("bargashtfa", "null");
         manager = getSupportFragmentManager();
         sendDetailFinish();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
 
-            window.setStatusBarColor(ContextCompat.getColor(this,R.color.flight_status));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.flight_status));
         }
 
         InitUi.Toolbar(this, true, R.color.TRANSPARENT, "صفحه اصلی");
 
-      //  timer();
-       // timerRecive();
+        //  timer();
+        // timerRecive();
         initViews();
     }
 
@@ -124,27 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLastBuy = findViewById(R.id.btnLastBuy);
 
         //tvTitle.setText(getString(R.string.searchFlight));
-        try {
-            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
-                txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
-                btnExit.setVisibility(View.VISIBLE);
-                tvArrow.setVisibility(View.VISIBLE);
-                rlUser.setClickable(true);
-
-
-            } else {
-                txt_name.setText("ورود به حساب کاربری");
-                btnExit.setVisibility(View.GONE);
-                tvArrow.setVisibility(View.INVISIBLE);
-                rlUser.setClickable(false);
-
-            }
-        } catch (Exception e) {
-            txt_name.setText("ورود به حساب کاربری");
-            btnExit.setVisibility(View.GONE);
-
-
-        }
+        initUser();
 
 
         //onClick===================================================================================
@@ -279,13 +263,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() == -1) {
                         startActivity(new Intent(this, LogInActivity.class));
+                        Prefs.putString("userId","-1");
                     } else {
                         startActivity(new Intent(this, ProfileActivity.class));
+                        Prefs.putString("userId",WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
 
                     }
                 } catch (Exception e) {
                     startActivity(new Intent(this, LogInActivity.class));
-
+                    Prefs.putString("userId","-1");
 
                 }
 
@@ -309,8 +295,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new LogOutAlert(this);
                 break;
             case R.id.btnLastBuy:
-                Intent intent =new Intent(this, ProfileActivity.class);
-                intent.putExtra("isLastBuy",true);
+                Intent intent = new Intent(this, ProfileActivity.class);
+                intent.putExtra("isLastBuy", true);
                 startActivity(intent);
 
                 break;
@@ -350,9 +336,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         super.onDestroy();
         Prefs.putString("raft", "null");
-        Prefs.putString("raftfa","null");
-        Prefs.putString("bargasht","null");
-        Prefs.putString("bargashtfa","null");
+        Prefs.putString("raftfa", "null");
+        Prefs.putString("bargasht", "null");
+        Prefs.putString("bargashtfa", "null");
         // Prefs.putInt("type",0);
     }
 
@@ -438,6 +424,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(context));
+    }
+
+    public void initUser() {
+
+
+        try {
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
+                txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+                btnExit.setVisibility(View.VISIBLE);
+                tvArrow.setVisibility(View.VISIBLE);
+                rlUser.setClickable(true);
+
+                Prefs.putString("userId",WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
+
+            } else {
+                txt_name.setText("ورود به حساب کاربری");
+                btnExit.setVisibility(View.GONE);
+                tvArrow.setVisibility(View.INVISIBLE);
+                rlUser.setClickable(false);
+                Prefs.putString("userId","-1");
+
+
+            }
+        } catch (Exception e) {
+            txt_name.setText("ورود به حساب کاربری");
+            btnExit.setVisibility(View.GONE);
+
+            Prefs.putString("userId","-1");
+
+        }
+
+
     }
 
 }

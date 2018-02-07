@@ -488,7 +488,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected String doInBackground(String... params) {
             try {
                 getRoomsList = new GetRoomsList(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "",
+                        "EligashtMlb", "Mobile", Prefs.getString("userId","-1")), "",
                         String.valueOf(getIntent().getExtras().getInt("HotelId")),
                         "", "", getIntent().getExtras().getString("ResultUniqID"),
                         "fa-IR")));
@@ -808,7 +808,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected String doInBackground(String... params) {
             try {
                 addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "fa-IR", new ReviewComment(0, comment,
+                        "EligashtMlb", "Mobile",Prefs.getString("userId","-1")), "fa-IR", new ReviewComment(0, comment,
                         0, 1, "Developer@eligasht.com", userName, title, 0))));
 
 

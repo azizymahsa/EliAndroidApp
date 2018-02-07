@@ -161,7 +161,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     //send request to server for get cities os spinner
     private void getCities() {
         showLoading();
-        Call<CityListRes> call = service.getCityListResult(new CityRequestModel(new CityListRq(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"))));
+        Call<CityListRes> call = service.getCityListResult(new CityRequestModel(new CityListRq(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile",Prefs.getString("userId","-1")))));
         call.enqueue(new Callback<CityListRes>() {
             @Override
             public void onResponse(Call<CityListRes> call, Response<CityListRes> response) {
@@ -210,18 +210,18 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
         linear_picker_return = view.findViewById(R.id.linear_picker_return);
 
 
-        String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+        String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy/MM/dd");
         departureFrom = currentDateTime;
         departureTo = currentDateTime;
 
-        int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-        int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
-        int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
+        int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy/M/dd", true);
+        int currentYear = DateUtil.getYear(currentDateTime, "yyyy/MM/dd", true);
+        int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy/MM/dd", true) - 1;
 
 
 
         if (Prefs.getString("bargashtfa","null").equals("null")){
-            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
 
         }else{
             txt_return_date.setText(Prefs.getString("bargashtfa","null"));
@@ -234,7 +234,7 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
 
 
         if (Prefs.getString("raftfa","null").equals("null")){
-            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
 
 
         }else{
@@ -550,10 +550,10 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
         day = dayOfMonth;
 
         long milis = DateUtil.getMiliSecondPersianDateTime(year, monthOfYear, dayOfMonth);
-        String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
+        String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy/MM/dd");
 
         if (view.getTag().equals("DepartureTo")) {
-            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
             departureTo = currentDateTime;
 
             Prefs.putString("bargashtfa",txt_return_date.getText().toString());
@@ -565,18 +565,31 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
-            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
+        //    txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
             departureFrom = currentDateTime;
             PersianCalendar persianCalendarDatePicker = new PersianCalendar();
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);
-            datePickerDialogReturn = DatePickerDialog.newInstance(
-                    this,
-                    year_Min,
-                    monthMin,
-                    dayMin
-            );
-            datePickerDialogReturn.setMinDate(persianCalendarDatePicker);
+
+
+
+            if (Utility.campareDate(departureFrom,departureTo)){
+                txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
+                //     datePickerDialog2.initialize(this, year_, month, day);
+
+                datePickerDialogReturn = DatePickerDialog.newInstance(
+                        this,
+                        year_Min,
+                        monthMin,
+                        dayMin
+                );
+                datePickerDialogReturn.setMinDate(persianCalendarDatePicker);
+            }
+
+
+
+
+
 
             Prefs.putString("bargashtfa",departureFrom);
 
@@ -599,7 +612,7 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
         String currentDateTime = year + "-" + monthOfYear + 1 + "-" + dayOfMonth;//2018-01-16;
 
         if (view.getTag().equals("DepartureToGregorian")) {
-            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", false));
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", false));
             departureTo = currentDateTime;
             Prefs.putString("bargashtfa",txt_return_date.getText().toString());
             Prefs.putString("bargasht", departureTo);
@@ -610,8 +623,8 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", false));
-            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", false));
+            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", false));
+            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", false));
             departureFrom = currentDateTime;
             Calendar cal = Calendar.getInstance();
             DateFormat formatter;

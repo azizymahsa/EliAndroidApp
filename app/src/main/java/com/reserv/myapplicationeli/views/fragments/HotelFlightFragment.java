@@ -175,8 +175,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         // datePickerDialogGregorian2.setOnDateSetListener(this);
         //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);
 
-        datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
-        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+
 
         datePickerDialog = DatePickerDialog.newInstance(
                 this,
@@ -185,7 +184,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 persianCalendarDatePicker.getPersianDay()
         );
 
-        datePickerDialog.setMinDate(persianCalendarDatePicker);
 
 
         datePickerDialog2 = DatePickerDialog.newInstance(
@@ -309,6 +307,16 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         });
 
 
+
+
+        datePickerDialog.setMinDate(persianCalendarDatePicker);
+        datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+
+
+
+
+
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
             tvBargasht.setText(persianCalendar.getPersianLongDate());
 
@@ -316,6 +324,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
             tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
             bargasht = Prefs.getString("bargasht", "null");
+
+
+
 
         }
 
@@ -326,6 +337,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         } else {
             tvRaft.setText(Prefs.getString("raftfa", "null"));
             raft = Prefs.getString("raft", "null");
+
+
+
         }
 //=====================================================================================================
 
@@ -566,6 +580,14 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             Prefs.putString("bargashtfa", persianCalendar.getPersianLongDate());
             Prefs.putString("bargasht", bargasht);
 
+
+            if (Utility.campareDate(raft,bargasht)){
+                tvRaft.setText(persianCalendar.getPersianLongDate());
+
+            }
+
+
+
         }
 
 
@@ -575,12 +597,34 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
             tvRaft.setText(persianCalendar.getPersianLongDate());
-            tvBargasht.setText(persianCalendar.getPersianLongDate());
+          //  tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
-            datePickerDialog2.initialize(this, year_, month, day);
-            datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+
+
+            if (Utility.campareDate(raft,bargasht)){
+                tvBargasht.setText(persianCalendar.getPersianLongDate());
+           //     datePickerDialog2.initialize(this, year_, month, day);
+                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             Prefs.putString("bargashtfa", persianCalendar.getPersianLongDate());
 

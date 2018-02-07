@@ -18,6 +18,7 @@ import com.reserv.myapplicationeli.models.hotel.api.rooms.call.GetRoomsHotelRequ
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.IdentityRooms;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.RoomRequest;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.response.RoomList;
+import com.reserv.myapplicationeli.tools.Prefs;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsModel;
 import com.reserv.myapplicationeli.views.ui.InitUi;
@@ -87,7 +88,7 @@ public class SelectRoomsFragment extends Fragment{
         protected String doInBackground(String... params) {
             try {
                 getRoomsList = new GetRoomsList(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("123qwe!@#QWE",
-                        "EligashtMlb","Mobile"),"",String.valueOf(getActivity().getIntent().getExtras().getInt("HotelId")),"","",getActivity().getIntent().getExtras().getString("ResultUniqID"),"fa-IR")));
+                        "EligashtMlb","Mobile", Prefs.getString("userId","-1")),"",String.valueOf(getActivity().getIntent().getExtras().getInt("HotelId")),"","",getActivity().getIntent().getExtras().getString("ResultUniqID"),"fa-IR")));
 
             } catch (Exception e) {
 
