@@ -48,7 +48,7 @@ import com.reserv.myapplicationeli.models.hotel.api.detail.call.HotelProprties;
 import com.reserv.myapplicationeli.models.hotel.api.holdSelectedRoom.call.HoldSelectedRoomRequest;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.GetRoomsHotelRequest;
-import com.reserv.myapplicationeli.models.hotel.api.rooms.call.IdentityRooms;
+import com.reserv.myapplicationeli.models.hotel.api.rooms.call.IdentityRooms2;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.RoomRequest;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.response.RoomList;
 import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesAdapter;
@@ -291,7 +291,7 @@ public class DetailHotelActivityForPack extends BaseActivity implements View.OnC
         @Override
         protected String doInBackground(String... params) {
             try {
-                getRoomsList = new GetRoomsList(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("123qwe!@#QWE",
+                getRoomsList = new GetRoomsList(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms2("123qwe!@#QWE",
                         "EligashtMlb", "Mobile"), "",
                         String.valueOf(getIntent().getExtras().getInt("HotelId")),
                         "", "", getIntent().getExtras().getString("ResultUniqID"),

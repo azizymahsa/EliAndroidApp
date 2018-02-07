@@ -175,8 +175,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     //send request to server for get cities
     private void getCountries(String cityCode) {
         showLoading();
-        Call<CountryListRes> call = service.getCountryListResult(new CountryRequestModel(new CountryListReq("EligashtMlb", "123qwe!@#QWE", "Mobile", cityCode,
-                Prefs.getString("userId","-1"))));
+        Call<CountryListRes> call = service.getCountryListResult(new CountryRequestModel(new CountryListReq("EligashtMlb", "123qwe!@#QWE", "Mobile", cityCode)));
         call.enqueue(new Callback<CountryListRes>() {
             @Override
             public void onResponse(Call<CountryListRes> call, Response<CountryListRes> response) {

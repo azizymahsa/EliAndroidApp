@@ -161,7 +161,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     //send request to server for get cities os spinner
     private void getCities() {
         showLoading();
-        Call<CityListRes> call = service.getCityListResult(new CityRequestModel(new CityListRq(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile",Prefs.getString("userId","-1")))));
+        Call<CityListRes> call = service.getCityListResult(new CityRequestModel(new CityListRq(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"))));
         call.enqueue(new Callback<CityListRes>() {
             @Override
             public void onResponse(Call<CityListRes> call, Response<CityListRes> response) {

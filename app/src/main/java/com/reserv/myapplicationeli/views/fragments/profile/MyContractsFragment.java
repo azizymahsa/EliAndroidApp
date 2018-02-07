@@ -87,7 +87,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
     public EmailContractReq getEmailContractReq(){
         EmailContractReq emailContractReq = new EmailContractReq();
         emailContractReq.setCulture("fa-IR");
-        emailContractReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile", Prefs.getString("userId","-1")));
+        emailContractReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
         emailContractReq.setBody("");
         emailContractReq.setEncryptedContractID(WebUserTools.getInstance().getUser().getWebUserProperties().getEncryptWebUserID());
         emailContractReq.setRecieverEmail(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());

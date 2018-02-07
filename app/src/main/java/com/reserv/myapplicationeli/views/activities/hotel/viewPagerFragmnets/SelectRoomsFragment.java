@@ -1,3 +1,4 @@
+/*
 package com.reserv.myapplicationeli.views.activities.hotel.viewPagerFragmnets;
 
 import android.os.AsyncTask;
@@ -25,9 +26,11 @@ import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import java.util.ArrayList;
 
+*/
 /**
  * Created by Reza.nejati on 1/7/2018.
- */
+ *//*
+
 
 public class SelectRoomsFragment extends Fragment{
     ListView lvRooms;
@@ -118,3 +121,4 @@ public class SelectRoomsFragment extends Fragment{
     }
 
 }
+*/

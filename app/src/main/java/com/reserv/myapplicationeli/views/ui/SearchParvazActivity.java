@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.icu.util.GregorianCalendar;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -1006,7 +1008,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 		@Override
 		protected void onPreExecute() {
-			window.setStatusBarColor(getColor(R.color.status_loading));
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+				window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
+			}
+
 
 			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
 
@@ -1110,7 +1116,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		protected void onPostExecute(String result){
 			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
 
-			window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+				window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+			}
 			List<Country> data = new ArrayList<Country>();
 
 			try {

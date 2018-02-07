@@ -159,7 +159,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         showLoading();
         PackageListReq packageListReq = new PackageListReq();
 
-        packageListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile",Prefs.getString("userId","-1")));
+        packageListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
         packageListReq.setCountry(country);
         packageListReq.setRoomList(roomList);
         packageListReq.setDepartureFrom(departureFrom);

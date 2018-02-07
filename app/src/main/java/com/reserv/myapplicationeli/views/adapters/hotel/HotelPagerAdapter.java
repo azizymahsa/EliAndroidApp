@@ -1,3 +1,4 @@
+/*
 package com.reserv.myapplicationeli.views.adapters.hotel;
 
 import android.support.v4.app.Fragment;
@@ -10,9 +11,11 @@ import com.reserv.myapplicationeli.views.adapters.hotel.rooms.RoomsModel;
 
 import java.util.ArrayList;
 
+*/
 /**
  * Created by Reza.nejati on 1/3/2018.
- */
+ *//*
+
 
 public class HotelPagerAdapter extends FragmentPagerAdapter {
     ArrayList<RoomsModel> roomsModels;
@@ -64,3 +67,4 @@ public class HotelPagerAdapter extends FragmentPagerAdapter {
 
 }
 
+*/

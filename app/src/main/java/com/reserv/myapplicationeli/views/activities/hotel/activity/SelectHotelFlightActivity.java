@@ -1426,14 +1426,14 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         @Override
         protected String doInBackground(String... params) {
             try {
-                hotelFlightSearch = new HotelFlightSearch(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile",Prefs.getString("userId","-1")),
+                hotelFlightSearch = new HotelFlightSearch(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
                         raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), "fa-IR",
                         Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"))));
 
 
                 Gson gson = new Gson();
 
-                Log.e("test", gson.toJson(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile", Prefs.getString("userId","-1")),
+                Log.e("test", gson.toJson(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
                         raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR")))));
             } catch (Exception e) {
 

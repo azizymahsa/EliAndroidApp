@@ -70,7 +70,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
     private void Register(){
 
         RegisterListReq registerListReq = new RegisterListReq();
-        registerListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile", Prefs.getString("userId","-1")));
+        registerListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
         registerListReq.setCulture("fa-IR");
         registerListReq.setUsername(txtEmail.getText().toString());
         registerListReq.setPassword(txtPass.getText().toString());
