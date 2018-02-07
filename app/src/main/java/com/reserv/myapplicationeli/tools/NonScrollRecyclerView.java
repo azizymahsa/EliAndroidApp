@@ -26,4 +26,6 @@ public class NonScrollRecyclerView extends android.support.v7.widget.RecyclerVie
         ViewGroup.LayoutParams params = getLayoutParams();
         params.height = getMeasuredHeight();
     }
+
+
 }

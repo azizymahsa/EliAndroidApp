@@ -307,7 +307,7 @@
                     android:background="#1234"
                     android:gravity="center"
                     android:padding="@dimen/margin_5dp"
-                    android:text="نوع مکان اقامتی"
+                    android:text="موقعیت مکان اقامتی"
                     android:textAppearance="@style/IrsansBold"
                     android:textSize="14dp" />
 

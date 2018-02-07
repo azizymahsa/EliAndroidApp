@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -306,8 +307,17 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 mAdapter = new AboutAdapter(data);
                 //mAdapter.setAdapter(mAdapter);
                 listAirPort.setAdapter(mAdapter);
+                listAirPort.setClickable(false);
+                listAirPort.setEnabled(false);
+                listAirPort.setScrollContainer(false);
                 //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
-
+                listAirPort.setOnFlingListener(new RecyclerView.OnFlingListener() {
+                    @Override
+                    public boolean onFling(int velocityX, int velocityY) {
+                        listAirPort.dispatchNestedFling(velocityX, velocityY, false);
+                        return false;
+                    }
+                });
             } catch (JSONException e) {
                 Toast.makeText(AboutActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
             }

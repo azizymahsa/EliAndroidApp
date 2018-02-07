@@ -566,7 +566,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
         persianCalendar.set(year, month, day);
 
 
-        Log.e("salam", date_server(year_, month, day));
         if (view.getTag().equals("DatepickerdialogBargasht")) {
             tvBargasht.setText(persianCalendar.getPersianLongDate());
             bargasht = date_server(year, monthOfYear, dayOfMonth);
@@ -589,8 +588,16 @@ public class HotelFragment extends Fragment implements OnClickListener,
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
-            datePickerDialog2.initialize(this, year_, month, day);
-            datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+            Log.e("time1", ((int)((persianCalendarDatePicker2.getTime().getTime()/(24*60*60*1000)))+""));
+            Log.e("time11", ((int)((persianCalendar.getTime().getTime()/(24*60*60*1000)))+""));
+
+            if (((int)((persianCalendarDatePicker2.getTime().getTime()/(24*60*60*1000)))<((int)((persianCalendar.getTime().getTime()/(24*60*60*1000)))))){
+                Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
+            }
+
+
+           /* datePickerDialog2.initialize(this, year_, month, day);
+            datePickerDialog2.setMinDate(persianCalendarDatePicker2);*/
 
 
             Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());

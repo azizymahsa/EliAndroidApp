@@ -96,14 +96,15 @@
                 <TextView
                     android:id="@+id/tvDesc"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="100"
                     android:textSize="10dp"
                     android:text="غیر قابل استرداد و غیر قابل تغییر"
                     android:textColor="#c61a1f"
-                    android:gravity="left"
+                    android:gravity="center|left"
                     android:maxLines="1"
                     android:ellipsize="end"
+
 
                     />
                 <RelativeLayout

@@ -61,6 +61,7 @@ public class PriceFilterAdapter extends BaseAdapter {
         holder.tvTitle.setText(filterPriceModels.get(position).getDiff());
 
         holder.checkbox.setEnabled(false);
+        holder.checkbox.setClickable(false);
 
 
         if (filterPriceModels.get(position).isCheck()){

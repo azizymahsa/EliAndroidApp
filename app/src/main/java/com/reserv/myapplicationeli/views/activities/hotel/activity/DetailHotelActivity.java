@@ -81,6 +81,7 @@ import com.reserv.myapplicationeli.models.hotel.api.rooms.call.IdentityRooms;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.call.RoomRequest;
 import com.reserv.myapplicationeli.models.hotel.api.rooms.response.RoomList;
 import com.reserv.myapplicationeli.tools.NonScrollRecyclerView;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.comment.CommentAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.comment.CommentModel;
@@ -609,9 +610,27 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 for (HotelProprties hotelProprties : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties) {
                     if (hotelProprties.CategoryID != 4) {
-                        arrayStringList.add(hotelProprties.Category);
 
-                        hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
+
+                        arrayStringList.add(hotelProprties.Category);
+                        if (hotelProprties.CategoryID != 2){
+                            hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
+
+
+                        }else{
+
+                            if (hotelProprties.PropertyDescription.equals("0")||hotelProprties.PropertyDescription.equals(" ")||
+                                    hotelProprties.PropertyDescription.equals("")||TextUtils.isEmpty(hotelProprties.PropertyDescription)){
+
+                            }else{
+                                hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
+
+                            }
+                        }
+
+
+
+
                     }
 
 
@@ -771,6 +790,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         // nonScrollGridView.setNumColumns(2);
 
+
         nonScrollGridView.setAdapter(new HotelProprtiesAdapter(hotelProprtiesModels, DetailHotelActivity.this, nonScrollGridView, false));
        nonScrollGridView.setFocusable(false);
         linearLayout.addView(nonScrollGridView);
@@ -906,6 +926,14 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     tvAlertComment.setVisibility(View.VISIBLE);
                     llCommentContent.setVisibility(View.GONE);
                 }
+
+                lvComments.setOnFlingListener(new RecyclerView.OnFlingListener() {
+                    @Override
+                    public boolean onFling(int velocityX, int velocityY) {
+                        lvComments.dispatchNestedFling(velocityX, velocityY, false);
+                        return false;
+                    }
+                });
 
               /*  View view=getLayoutInflater().inflate(R.layout.view_header,null);
                 lvComments.addHeaderView(view);*/

@@ -164,8 +164,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnExit.setOnClickListener(this);
         btnLastBuy.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
+        addFragment(getString(R.string.searchFlight), new PlanFragment());
 
-        switch (Prefs.getInt("type", 0)) {
+      /*  switch (Prefs.getInt("type", 0)) {
             case 0:
                 addFragment(getString(R.string.searchFlight), new PlanFragment());
                 break;
@@ -189,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .commit();
                 break;
         }
-
+*/
 
     }
 

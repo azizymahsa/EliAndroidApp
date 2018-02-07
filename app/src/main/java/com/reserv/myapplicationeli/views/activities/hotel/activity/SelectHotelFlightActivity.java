@@ -66,8 +66,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -146,7 +148,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         bargashtFa = getIntent().getExtras().getString("CheckOutFaHF");
 
 
-        tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+        tvDate.setText(raftFa + " - " + bargashtFa);
         rooms.add(new Rooms(getIntent().getExtras().getInt("Adult"), getIntent().getExtras().getInt("Child")));
 
 
@@ -296,10 +298,10 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         raft = formatter.format(cal.getTime());
                         if (getIntent().getExtras().getBoolean("Geo")) {
 
-                            tvDate.setText("از تاریخ: " + DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " تا تاریخ: " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
+                            tvDate.setText(DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " - " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
 
                         }else{
-                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+                            tvDate.setText(raftFa + " - " + bargashtFa);
 
 
                         }
@@ -365,16 +367,16 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         raft = formatter.format(cal.getTime());
                         if (getIntent().getExtras().getBoolean("Geo")) {
 
-                            tvDate.setText("از تاریخ: " + DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " تا تاریخ: " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
+                            tvDate.setText(DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " - " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
 
                         }else{
-                            tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+                            tvDate.setText(raftFa + " - " + bargashtFa);
 
 
                         }
                         new GetHotelAsync().execute();
                     } else {
-                        Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز را نمی توان انتخاب کرد", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -413,7 +415,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             top_filter(filterModel, filterHotelTypeModels);
             star_filter(filterModel, filterHotelTypeModels);
-           // facilities_filter(filterHotelFacilitiesModels);
+           facilities_filter(filterHotelFacilitiesModels);
             price_filter(filterHotelPriceModel);
             location_filter(filterHotelLocationModels);
 
@@ -1152,6 +1154,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
             }
+            Set<SelectFlightHotelModel> hs = new HashSet<>();
+            hs.addAll(selectHotelModelArrayListFilter);
+            selectHotelModelArrayListFilter.clear();
+            selectHotelModelArrayListFilter.addAll(hs);
+            hs.size();
 
 
         } else {
@@ -1189,6 +1196,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
             }
+            Set<SelectFlightHotelModel> hs = new HashSet<>();
+            hs.addAll(selectHotelModelArrayListFilter);
+            selectHotelModelArrayListFilter.clear();
+            selectHotelModelArrayListFilter.addAll(hs);
+            hs.size();
             if (isFilter) {
 
                 selectHotelModelArrayListFilter.clear();
@@ -1428,7 +1440,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             try {
                 if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors!=null) {
                     elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText(hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors.get(0).Message);
+                    tvAlert.setText(hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors.get(0).DetailedMessage);
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
@@ -1459,7 +1471,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x2)) + "-" + Utility.priceFormat(String.valueOf(x3)), 3, false));
                     filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x3)) + "-" + Utility.priceFormat(String.valueOf(x4)), 4, false));
                     filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x4)) + "-" + Utility.priceFormat(String.valueOf(x5)), 5, false));
-
+                    Collections.reverse(filterHotelPriceModels);
                     int i = 0;
                     int j = 0;
                     for (Hotels hotels : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels) {
@@ -1504,7 +1516,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                                 hotels.Availability.RoomLists.get(i).OldPrice, hotels.StarRating,
                                 hotels.Availability.RoomLists.get(i).EHotelId,
                                 hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.ResultUniqID, hotels.BestSell, isOff,
-                                off, hotels.TypeText, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Facilities,
+                                off, hotels.TypeText, hotels.Facilities,
                                 xiff, hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.FltList,
                                 hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.ArrRout,
                                 hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Flights.DepRout,

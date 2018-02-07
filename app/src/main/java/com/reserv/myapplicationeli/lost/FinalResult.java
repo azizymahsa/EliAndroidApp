@@ -173,22 +173,22 @@ public class FinalResult extends BaseActivity {
                         cv1.setVisibility(View.VISIBLE);
 
 
-                        YoYo.with(Techniques.BounceInRight)
-                                .duration(500)
+                        YoYo.with(Techniques.SlideInLeft)
+                                .duration(800)
                                 .playOn(cvStatus);
-                        YoYo.with(Techniques.BounceInRight)
-                                .duration(500)
+                        YoYo.with(Techniques.SlideInLeft)
+                                .duration(800)
                                 .playOn(cv2);
-                        YoYo.with(Techniques.BounceInRight)
-                                .duration(500)
+                        YoYo.with(Techniques.SlideInLeft)
+                                .duration(800)
                                 .playOn(cv1);
                     }
                     if (getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.ContractNo <= 0
                             && getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.isEmpty() &&
                             getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.PreFactorBookingLogs.isEmpty()) {
                         btnRPayment.setVisibility(View.VISIBLE);
-                        YoYo.with(Techniques.BounceInUp)
-                                .duration(500)
+                        YoYo.with(Techniques.SlideInUp)
+                                .duration(1000)
                                 .playOn(btnRPayment);
                         url=getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.OnlinePaymentURL;
 

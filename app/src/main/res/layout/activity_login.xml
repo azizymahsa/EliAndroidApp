@@ -170,7 +170,8 @@
                 android:gravity="right"
                 android:paddingRight="40dp"
                 android:textColor="@color/dark_blue"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:textAppearance="@style/IrsansBold"/>
 
         </LinearLayout>
 

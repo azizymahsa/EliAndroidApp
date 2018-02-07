@@ -61,7 +61,7 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         this.filter = filter;
         this.search = search;
         this.filterHotelDialogListenerArray = filterHotelDialogListenerArray;
-        Collections.reverse(filterHotelPriceModel);
+
         this.filterHotelPriceModel = filterHotelPriceModel;
         this.filterHotelLocationModels = filterHotelLocationModels;
 
@@ -151,15 +151,18 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         lvPrice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (filterHotelPriceModel.get(position).isCheck()) {
-                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(),filterHotelPriceModel.get(position).getX(), false));
 
-                } else {
-                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(),filterHotelPriceModel.get(position).getX(), true));
-                    Remove.setChecked(false);
-
+                for (int i =0;i<filterHotelPriceModel.size();i++){
+                    filterHotelPriceModel.set( i, new FilterPriceModel(filterHotelPriceModel.get( i).getDiff(),filterHotelPriceModel.get(position).getX(), false));
 
                 }
+
+
+
+                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(),filterHotelPriceModel.get(position).getX(), true));
+
+
+
                 priceFilterAdapter.notifyDataSetChanged();
             }
         });
