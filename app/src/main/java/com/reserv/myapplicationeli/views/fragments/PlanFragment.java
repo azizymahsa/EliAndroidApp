@@ -156,8 +156,8 @@ public  LinearLayout linear_tarikh_az_picker;
         btnPlusN.setOnClickListener(this);
         btnMinesN.setOnClickListener(this);
 
-        tvStart.setOnClickListener(this);
-        tvEnd.setOnClickListener(this);
+        linearLayout_mabda.setOnClickListener(this);
+        linearLayout_maghsad.setOnClickListener(this);
         txtOption.setOnClickListener(this);
 
         btntwo.setOnClickListener(this);
@@ -494,7 +494,7 @@ public  LinearLayout linear_tarikh_az_picker;
                    // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                 }
                 break;
-            case R.id.tvEnd:
+            case R.id.linearLayout_maghsad:
 
                 Intent i3 = new Intent(getActivity(), GetAirportMaghsadActivity.class);
                 // Bundle bundle = getActivity().getIntent().getExtras();
@@ -506,7 +506,7 @@ public  LinearLayout linear_tarikh_az_picker;
 
                 startActivityForResult(i3, 2);
                 break;
-            case R.id.tvStart:
+            case R.id.linearLayout_mabda:
 
 
                 Intent intent = new Intent(getActivity(), GetAirportMabdaActivity.class);

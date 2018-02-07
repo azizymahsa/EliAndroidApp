@@ -60,7 +60,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult;
     public static int countNafar = 1;
-    LinearLayout btn_add_room,llRaft,llBargasht;
+    LinearLayout btn_add_room, llRaft, llBargasht;
     CardView cvRoom;
     public ListView listRoomItem;
     HotelCountRoomAdapter mAdapter;
@@ -89,7 +89,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
-        Utility.sendTag("H",true,false);
+        Utility.sendTag("H", true, false);
         geo = Prefs.getBoolean("geo", false);
         //	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
 
@@ -152,26 +152,23 @@ public class HotelFragment extends Fragment implements OnClickListener,
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() + 1);
 
 
-
-        if (Prefs.getString("bargashtfa","null").equals("null")){
+        if (Prefs.getString("bargashtfa", "null").equals("null")) {
             tvBargasht.setText(persianCalendar.getPersianLongDate());
 
-        }else{
+        } else {
 
-            tvBargasht.setText(Prefs.getString("bargashtfa","null"));
-            bargasht=Prefs.getString("bargasht","null");
+            tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
+            bargasht = Prefs.getString("bargasht", "null");
 
         }
 
 
-
-
-        if (Prefs.getString("raftfa","null").equals("null")){
+        if (Prefs.getString("raftfa", "null").equals("null")) {
             tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
 
-        }else{
-            tvRaft.setText(Prefs.getString("raftfa","null"));
-            raft=Prefs.getString("raft","null");
+        } else {
+            tvRaft.setText(Prefs.getString("raftfa", "null"));
+            raft = Prefs.getString("raft", "null");
         }
 
         month = persianCalendarDatePicker.getPersianMonth();
@@ -281,7 +278,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                     tvRaft.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
-                    raft = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;
+                    raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
                     Log.e("GGGGGGG", raft);
 
                 } catch (ParseException e) {
@@ -305,7 +302,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 geo = true;
                 tvBargasht.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
-                bargasht = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;
+                bargasht = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
 
 
                 Prefs.putString("bargasht", bargasht);
@@ -346,8 +343,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     }//end oncreat
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         Prefs.putBoolean("geo", geo);
         try {
@@ -415,7 +411,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     sendStartTimer();
                     Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
 
-                    intent.putExtra("CheckIn",raft);
+                    intent.putExtra("CheckIn", raft);
                     intent.putExtra("CheckOut", bargasht);
                     intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
                     intent.putExtra("CheckInFa", tvRaft.getText().toString());
@@ -424,8 +420,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
                     Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
                     Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
-                    intent.putExtra("Geo",geo);
-
+                    intent.putExtra("Geo", geo);
 
 
                     startActivity(intent);
@@ -438,23 +433,22 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                 break;
             case R.id.llRaft:
-                if (geo){
+                if (geo) {
                     datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                }else{
+                } else {
                     datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
                 }
 
 
-
                 break;
             case R.id.llBargasht:
 
-                if (geo){
+                if (geo) {
                     datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                }else{
+                } else {
                     datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
 
                 }
@@ -569,10 +563,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
         if (view.getTag().equals("DatepickerdialogBargasht")) {
             tvBargasht.setText(persianCalendar.getPersianLongDate());
             bargasht = date_server(year, monthOfYear, dayOfMonth);
-            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());
-            Prefs.putString("bargasht",bargasht);
-
-
+            Prefs.putString("bargashtfa", persianCalendar.getPersianLongDate());
+            Prefs.putString("bargasht", bargasht);
 
 
         }
@@ -584,26 +576,32 @@ public class HotelFragment extends Fragment implements OnClickListener,
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
             tvRaft.setText(persianCalendar.getPersianLongDate());
-            tvBargasht.setText(persianCalendar.getPersianLongDate());
+         //   tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
-            Log.e("time1", ((int)((persianCalendarDatePicker2.getTime().getTime()/(24*60*60*1000)))+""));
-            Log.e("time11", ((int)((persianCalendar.getTime().getTime()/(24*60*60*1000)))+""));
 
-            if (((int)((persianCalendarDatePicker2.getTime().getTime()/(24*60*60*1000)))<((int)((persianCalendar.getTime().getTime()/(24*60*60*1000)))))){
-                Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
+            if (!Utility.campareDate(raft,bargasht)){
+                tvBargasht.setText(persianCalendar.getPersianLongDate());
+                datePickerDialog2.initialize(this, year_, month, day);
+                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+
             }
 
 
-           /* datePickerDialog2.initialize(this, year_, month, day);
-            datePickerDialog2.setMinDate(persianCalendarDatePicker2);*/
 
 
-            Prefs.putString("bargashtfa",persianCalendar.getPersianLongDate());
 
-            Prefs.putString("raft",raft);
-            Prefs.putString("raftfa",persianCalendar.getPersianLongDate());
+
+
+
+
+
+
+            Prefs.putString("bargashtfa", persianCalendar.getPersianLongDate());
+
+            Prefs.putString("raft", raft);
+            Prefs.putString("raftfa", persianCalendar.getPersianLongDate());
 
 
         }

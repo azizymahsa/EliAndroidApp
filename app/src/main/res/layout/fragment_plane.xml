@@ -257,7 +257,7 @@
                                 android:id="@+id/tarikh_be"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginRight="65dp"
+                                android:layout_marginRight="60dp"
                                 android:layout_weight="80"
                                 android:background="#fff"
                                 android:gravity="right"
@@ -273,7 +273,7 @@
                                 android:id="@+id/tarikh_az"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginRight="5dp"
                                 android:layout_weight="50"
                                 android:background="#fff"
                                 android:gravity="right"
@@ -334,10 +334,11 @@
                                 android:id="@+id/linear_tarikh_az_picker"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginRight="10dp"
                                 android:layout_weight="100"
                                 android:gravity="right"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:layout_marginRight="5dp"
+                                >
 
                                 <TextView
                                     android:id="@+id/tarikh_az_picker"

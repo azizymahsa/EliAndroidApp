@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -689,6 +690,32 @@ public class Utility extends Activity {
             } catch (Exception ee) {
             }
 
+        }
+        public static boolean campareDate(String Depart,String Return){
+
+
+
+
+            try {
+
+                DateFormat formatter;
+                Date date;
+                Date date2;
+                formatter = new SimpleDateFormat("yyyy/MM/dd");
+                date = (Date) formatter.parse(Depart);
+                date2 = (Date) formatter.parse(Return);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                //shart kamtar az emruz
+                if (date2.getTime() < date.getTime()) {
+                    return true;
+                }
+
+            } catch (Exception e) {
+                return false;
+            }
+
+            return false;
         }
 
 
