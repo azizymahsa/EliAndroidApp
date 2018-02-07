@@ -105,7 +105,7 @@ import java.util.Map;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 //this class just me send request of insurance and set sum of passenger but there is problem of ui
-public class PassengerInsuranceActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnItemSelectedListener {
+public class PassengerInsuranceActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnItemSelectedListener,View.OnFocusChangeListener   {
 
 
     public static boolean flag;
@@ -295,15 +295,22 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
         llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
 
-
-        txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
+        txtnameP.setOnFocusChangeListener(this);
+        txtfamilyP.setOnFocusChangeListener(this);
+        txtmobileP.setOnFocusChangeListener(this);
+        txtkodemeliP.setOnFocusChangeListener(this);
+        txtemeliP.setOnFocusChangeListener(this);
+        txtfamilym.setOnFocusChangeListener(this);
+        txtnumber_passport.setOnFocusChangeListener(this);
+        txtnamem.setOnFocusChangeListener(this);
+      /*  txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
         txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
         txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
         txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
         txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
         txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
         txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
-        txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
+        txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));*/
 
         txt_shomare_factor.setOnClickListener(this);
         txtmahale_eghamat.setOnClickListener(this);
@@ -1195,7 +1202,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             flagMosafer=flagMosafer+"F";
                             errorMessage=errorMessage+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
                         }
-                    if(RqPartner_Mobile != null && RqPartner_Mobile.length()>4 && RqPartner_Mobile.trim().matches("[0-9]+")){
+                    if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
@@ -1204,7 +1211,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         errorMessage=errorMessage+"\n"+"لطفا موبایل را درست وارد کنید";
                     }
                     if(RqPartner_NationalCode != null)
-                        if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.trim().matches("[0-9]+")){
+                        if( RqPartner_NationalCode.length()==10 && RqPartner_NationalCode.trim().matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         }else{
@@ -1577,7 +1584,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             DatePickerDialog dialog = null;
-            if(flag){
+            if(flag){//tavalodm
                 Calendar c = Calendar.getInstance();
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
@@ -1590,14 +1597,14 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 }else if(RengAge.contains("بزرگسال")){
                     dialog = new DatePickerDialog(getActivity(), this, year-30, month, day);
                 }
-
-
+                // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+///////////////setmin
                 if(RengAge.contains("کودک")){
                     System.out.println("koodak");
                     //c = Calendar.getInstance();
                     c.add(Calendar.YEAR, -12); // subtract 2 years from now
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    c.add(Calendar.YEAR, 12); // add 4 years to min date to have 2 years after now
+                    c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
 
                 }else if(RengAge.contains("نوزاد")){
@@ -1607,16 +1614,27 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                     c.add(Calendar.YEAR, 2); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                }
-
+                }else{
+                    c.add(Calendar.YEAR, -120);
+                    dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+                    c.add(Calendar.YEAR, 108);
+                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());}
+                ///////end setMin
             }else{//expPasport
                 Calendar c = Calendar.getInstance();
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
-                dialog = new DatePickerDialog(getActivity(), this, year+1, month, day);//1997/12/23
+                dialog = new DatePickerDialog(getActivity(), this, year, month+6, day);//1997/12/23
 
-
+                c.add(Calendar.MONTH, 6);
+                dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+                c.add(Calendar.YEAR, 6);
+                dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+                //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+		 	   /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		 	    Date mDate;*/
+                // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
             }
 
             return  dialog;
@@ -1861,6 +1879,197 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             }
         }
         return null;
+    }
+
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        switch (v.getId()){
+
+
+//مسافر
+            case R.id.txtmahale_eghamat:
+                if(hasFocus){
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txtmahale_eghamat.getText().toString() != null && txtmahale_eghamat.getText().toString().length()>1){
+                        ((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
+                        //flagMosafer=flagMosafer+"T";
+                    }else{
+                        //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
+                        txtmahale_eghamat.setError("لطفا محل اقامت را وارد کنید ");
+                    }
+                }
+                break;
+            case R.id.txtmeliyatm:
+                if(hasFocus){
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length()>1){
+                        ((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
+                        //flagMosafer=flagMosafer+"T";
+                    }else{
+                        //((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
+                        txtmeliyatm.setError("لطفا ملیت را وارد کنید ");
+                    }}
+                break;
+            case R.id.txttavalodm:
+                if(hasFocus){//txtTitleCountM
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txttavalodm.getText().toString() != null && txttavalodm.getText().toString().length()>4){
+                        ((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
+                        //flagMosafer=flagMosafer+"T";
+                    }else{
+                        //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
+                        txttavalodm.setError("لطفا تاریخ تولد را وارد کنید ");
+                    }
+                }
+                break;
+
+            case R.id.txtnamem:
+                if(hasFocus){
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txtnamem.getText().toString() != null)
+                        if( txtnamem.getText().toString().length()>1 && txtnamem.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$")){
+                            ((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
+                            //flagMosafer=flagMosafer+"T";
+                        }else{
+                            //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
+                            txtnamem.setError("لطفا نام را انگلیسی وارد کنید ");
+                        }
+                }
+                break;
+            case R.id.txtfamilym:
+                if(hasFocus){
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txtfamilym.getText().toString() != null)
+                        if( txtfamilym.getText().toString().length()>1 && txtfamilym.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$") ){
+                            ((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
+                            //flagMosafer=flagMosafer+"T";
+                        }else{
+                            //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
+                            txtfamilym.setError("لطفا نام خانوادگی را انگلیسی وارد کنید ");
+                        }
+                }
+                break;
+            case R.id.txtexp_passport:
+                if(hasFocus){
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txtexp_passport.getText().toString() != null && txtexp_passport.getText().toString().length()>4){
+                        ((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+
+                    }else{
+                        //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
+                        txtexp_passport.setError("لطفا انقضاء پاسپورت را وارد کنید ");
+                    }}
+                break;
+            case R.id.txtnumber_passport:
+                if(hasFocus){
+                    System.out.println("t");
+                }else {
+                    System.out.println("f");
+                    if (txtnumber_passport.getText().toString().trim().length() > 6 && txtnumber_passport.getText().toString().trim().length() < 10 && (txtnumber_passport.getText().toString().trim().substring(0, 1).matches("^[a-zA-Z]+$")) && txtnumber_passport.getText().toString().trim().substring(1, txtnumber_passport.getText().toString().length() - 1).matches("[0-9]+")) {
+                        ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+
+                    } else {
+                        //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+                        txtnumber_passport.setError("لطفا شماره پاسپورت را صحیح وارد کنید ");
+                    }
+                    if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
+                    } else {
+                        //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+                        txtnumber_passport.setError("لطفا شماره پاسپورت را وارد کنید ");
+                    }
+                }
+                break;
+
+            //خریدار
+            case R.id.txtemeliP:
+                if(hasFocus){
+                    System.out.println("t");
+                }else {
+                    System.out.println("f");
+                    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                    if (txtemeliP.getText().toString().matches(emailPattern) && txtemeliP.getText().toString().length() > 0) {
+                        //if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
+                        ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
+
+                    } else {
+                        //((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
+                        txtemeliP.setError("لطفا ایمیل را وارد کنید ");
+                    }
+                }
+                break;
+            case R.id.txtnameP:
+                if(hasFocus){
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txtnameP.getText().toString() != null)
+                        if( txtnameP.getText().toString().length()>2 && !(txtnameP.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+                            ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
+
+                        }else{
+                            //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
+                            txtnameP.setError("لطفا نام را فارسی وارد کنید ");
+                        }}
+                break;
+            case R.id.txtfamilyP:
+                if(hasFocus){
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txtfamilyP.getText().toString() != null)
+                        if( txtfamilyP.getText().toString().length()>2 && !(txtfamilyP.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+                            ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
+
+                        }else{
+                            //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+                            txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
+                        }
+                }
+                break;
+
+            case R.id.txtmobileP:
+                if(hasFocus){
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txtmobileP.getText().toString() != null && txtmobileP.getText().toString().length()==11 && txtmobileP.getText().toString().trim().matches("[0-9]+")){
+                        ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
+
+                    }else{
+                        //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
+                        txtmobileP.setError("لطفا شماره موبایل را وارد کنید ");
+                    }}
+                break;
+            case R.id.txtkodemeliP:
+                if(hasFocus){
+                    System.out.println("t");
+                }else{
+                    System.out.println("f");
+                    if(txtkodemeliP.getText().toString() != null)
+                        if( txtkodemeliP.getText().toString().length()==10 &&  txtkodemeliP.getText().toString().trim().matches("[0-9]+")){
+                            ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
+
+                        }else{
+                            //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
+                            txtkodemeliP.setError("لطفا کد ملی را وارد کنید ");
+                        }
+                }
+                break;
+        }
+
     }
 }
 

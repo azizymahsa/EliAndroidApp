@@ -1355,7 +1355,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             flagMosafer=flagMosafer+"F";
                             errorMessage=errorMessage+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
                         }
-                    if(RqPartner_Mobile != null && RqPartner_Mobile.length()>4 && RqPartner_Mobile.trim().matches("[0-9]+")){
+                    if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
@@ -1364,7 +1364,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         errorMessage=errorMessage+"\n"+"لطفا موبایل را درست وارد کنید";
                     }
                     if(RqPartner_NationalCode != null)
-                        if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.trim().matches("[0-9]+")){
+                        if( RqPartner_NationalCode.length()==10 && RqPartner_NationalCode.trim().matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         }else{
@@ -1842,7 +1842,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     //c = Calendar.getInstance();
                     c.add(Calendar.YEAR, -12); // subtract 2 years from now
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    c.add(Calendar.YEAR, 12); // add 4 years to min date to have 2 years after now
+                    c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
 
                 }else if(RengAge.contains("نوزاد")){
@@ -1852,20 +1852,29 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                     c.add(Calendar.YEAR, 2); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                }
+                }else{
+                    c.add(Calendar.YEAR, -120);
+                    dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+                    c.add(Calendar.YEAR, 108);
+                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());}
                 ///////end setMin
             }else{//expPasport
                 Calendar c = Calendar.getInstance();
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
-                dialog = new DatePickerDialog(getActivity(), this, year+1, month, day);//1997/12/23
+                dialog = new DatePickerDialog(getActivity(), this, year, month+6, day);//1997/12/23
 
+                c.add(Calendar.MONTH, 6);
+                dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+                c.add(Calendar.YEAR, 6);
+                dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+                //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
 		 	   /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		 	    Date mDate;*/
                 // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
             }
-            //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+
             return  dialog;
         }
 
@@ -2422,7 +2431,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         }else{
                             //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                             txtnameP.setError("لطفا نام را فارسی وارد کنید ");
-                        }}
+                        }
+                }
                 break;
             case R.id.txtfamilyP:
                 if(hasFocus){
@@ -2436,7 +2446,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         }else{
                             //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
                             txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
-                        }}
+                        }
+                }
                 break;
 
             case R.id.txtmobileP:
@@ -2444,7 +2455,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     System.out.println("t");
                 }else{
                     System.out.println("f");
-                    if(txtmobileP.getText().toString() != null && txtmobileP.getText().toString().length()>9 && txtmobileP.getText().toString().trim().matches("[0-9]+")){
+                    if(txtmobileP.getText().toString() != null && txtmobileP.getText().toString().length()==11 && txtmobileP.getText().toString().trim().matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     }else{
@@ -2458,7 +2469,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 }else{
                     System.out.println("f");
                     if(txtkodemeliP.getText().toString() != null)
-                        if( txtkodemeliP.getText().toString().length()>9 &&  txtkodemeliP.getText().toString().length()<12 && txtkodemeliP.getText().toString().trim().matches("[0-9]+")){
+                        if( txtkodemeliP.getText().toString().length()==10 &&  txtkodemeliP.getText().toString().trim().matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                         }else{

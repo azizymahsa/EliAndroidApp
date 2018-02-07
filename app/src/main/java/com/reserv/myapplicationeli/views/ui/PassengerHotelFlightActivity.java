@@ -1338,7 +1338,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "لطفا نام خانوادگی را درست وارد کنید";
                         }
-                    if (RqPartner_Mobile != null && RqPartner_Mobile.length() > 4 && RqPartner_Mobile.trim().matches("[0-9]+")) {
+                    if (RqPartner_Mobile != null && RqPartner_Mobile.length() == 11 && RqPartner_Mobile.trim().matches("[0-9]+")) {
                         ((EditText) findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
@@ -1347,7 +1347,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         errorMessage = errorMessage + "\n" + "لطفا موبایل را درست وارد کنید";
                     }
                     if (RqPartner_NationalCode != null)
-                        if (RqPartner_NationalCode.length() > 1 && RqPartner_NationalCode.trim().matches("[0-9]+")) {
+                        if (RqPartner_NationalCode.length() ==10 && RqPartner_NationalCode.trim().matches("[0-9]+")) {
                             ((EditText) findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
@@ -1795,80 +1795,87 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     }
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-        public String RengAge;
-
+        public String  RengAge ;
         public DatePickerFragment(String RengAge) {
-            this.RengAge = RengAge;
+            this.RengAge=RengAge;
         }
-
         public DatePickerFragment() {
             //this.RengAge=RengAge;
         }
-
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             DatePickerDialog dialog = null;
-            if (flag) {//tavalodm
+            if(flag){//tavalodm
                 Calendar c = Calendar.getInstance();
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
-                if (RengAge.contains("کودک")) {
-                    dialog = new DatePickerDialog(getActivity(), this, year - 12, month, day);
-                } else if (RengAge.contains("نوزاد")) {
-                    dialog = new DatePickerDialog(getActivity(), this, year - 2, month, day);
-                } else if (RengAge.contains("بزرگسال")) {
-                    dialog = new DatePickerDialog(getActivity(), this, year - 30, month, day);
+                if(RengAge.contains("کودک")){
+                    dialog = new DatePickerDialog(getActivity(), this, year-12, month, day);
+                }else if(RengAge.contains("نوزاد")){
+                    dialog = new DatePickerDialog(getActivity(), this, year-2, month, day);
+                }else if(RengAge.contains("بزرگسال")){
+                    dialog = new DatePickerDialog(getActivity(), this, year-30, month, day);
                 }
                 // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
 ///////////////setmin
-                if (RengAge.contains("کودک")) {
+                if(RengAge.contains("کودک")){
                     System.out.println("koodak");
                     //c = Calendar.getInstance();
                     c.add(Calendar.YEAR, -12); // subtract 2 years from now
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    c.add(Calendar.YEAR, 12); // add 4 years to min date to have 2 years after now
+                    c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
 
-                } else if (RengAge.contains("نوزاد")) {
+                }else if(RengAge.contains("نوزاد")){
                     System.out.println("Nozad");
                     //c = Calendar.getInstance();
                     c.add(Calendar.YEAR, -2); // subtract 2 years from now
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                     c.add(Calendar.YEAR, 2); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                }
+                }else{
+                    c.add(Calendar.YEAR, -120);
+                    dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+                    c.add(Calendar.YEAR, 108);
+                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());}
                 ///////end setMin
-            } else {//expPasport
+            }else{//expPasport
                 Calendar c = Calendar.getInstance();
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
-                dialog = new DatePickerDialog(getActivity(), this, year + 1, month, day);//1997/12/23
+                dialog = new DatePickerDialog(getActivity(), this, year, month+6, day);//1997/12/23
 
+                c.add(Calendar.MONTH, 6);
+                dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+                c.add(Calendar.YEAR, 6);
+                dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+                //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
 		 	   /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		 	    Date mDate;*/
                 // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
             }
-            //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-            return dialog;
+
+            return  dialog;
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            String sMonth = String.valueOf(month + 1);
-            String sDay = String.valueOf(day);
-            if (sMonth.length() == 1)
-                sMonth = "0" + sMonth;
+            String sMonth=String.valueOf(month+1);
+            String sDay=String.valueOf(day);
+            if(sMonth.length()==1)
+                sMonth="0"+sMonth;
 
-            if (sDay.length() == 1)
-                sDay = "0" + sDay;
-            if (flag) {
-                txttavalodm.setText(year + "/" + sMonth + "/" + sDay);
-            } else {
+            if(sDay.length()==1)
+                sDay = "0"+sDay;
+            if(flag){
+                txttavalodm.setText(year+"/" +sMonth +"/"+ sDay);
+            }else{
 
-                txtexp_passport.setText(year + "/" + sMonth + "/" + sDay);
+                txtexp_passport.setText(year+"/" + sMonth +"/" + sDay);
             }
+
 
 
         }
@@ -2416,7 +2423,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     System.out.println("t");
                 } else {
                     System.out.println("f");
-                    if (txtmobileP.getText().toString() != null && txtmobileP.getText().toString().length() > 9 && txtmobileP.getText().toString().trim().matches("[0-9]+")) {
+                    if (txtmobileP.getText().toString() != null && txtmobileP.getText().toString().length() == 11 && txtmobileP.getText().toString().trim().matches("[0-9]+")) {
                         ((EditText) findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     } else {
@@ -2431,7 +2438,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 } else {
                     System.out.println("f");
                     if (txtkodemeliP.getText().toString() != null)
-                        if (txtkodemeliP.getText().toString().length() > 9 && txtkodemeliP.getText().toString().length() < 12 && txtkodemeliP.getText().toString().trim().matches("[0-9]+")) {
+                        if (txtkodemeliP.getText().toString().length() == 10 && txtkodemeliP.getText().toString().trim().matches("[0-9]+")) {
                             ((EditText) findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                         } else {
