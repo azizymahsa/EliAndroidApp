@@ -37,6 +37,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -55,6 +56,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -1058,7 +1060,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 
 
-				String data =OrderToJson();
+				String data =OrderToJsonPurchase();//Purchase
 
 
 				HttpClient client = new DefaultHttpClient();
@@ -1216,7 +1218,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}//end on pos excute
 
 	}//end async
-	public String OrderToJson() {
+	public String OrderToJsonPurchase() {
 		JSONObject jsone = new JSONObject();
 		JSONObject manJson = new JSONObject();
 
@@ -1298,7 +1300,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			identityJson.put("Password", "123qwe!@#QWE");
 			identityJson.put("TermianlId", "Mobile");
 			identityJson.put("UserName", "EligashtMlb");
-			identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
+			identityJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
 			headerJson.put("identity",identityJson);
 
 			jsone.put("request",headerJson);
@@ -1327,7 +1329,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			identityJson.put("Password", "123qwe!@#QWE");
 			identityJson.put("TermianlId", "Mobile");
 			identityJson.put("UserName", "EligashtMlb");
-			identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
+			//identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
 			manJson.put("identity",identityJson);
 			//manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
 
@@ -1372,7 +1374,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			identityJson.put("Password", "123qwe!@#QWE");
 			identityJson.put("TermianlId", "Mobile");
 			identityJson.put("UserName", "EligashtMlb");
-			identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
+			//identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
 			manJson.put("identity",identityJson);
 			//manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
 			jsone.put("request",manJson);
@@ -1638,6 +1640,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				flag = false;
 				break;
 			case R.id.btn_nextm:
+				LinearLayout mainLayout;
+				mainLayout = (LinearLayout)findViewById(R.id.linear_list_khadamat);
+
+				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+				///////////////
 				txtexp_passport.setScroller(new Scroller(this));
 				ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
 				scrolMosafer.fullScroll(ScrollView.FOCUS_UP);

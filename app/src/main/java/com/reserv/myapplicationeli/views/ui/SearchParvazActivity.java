@@ -1522,7 +1522,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				identityJson.put("Password", "123qwe!@#QWE");
 				identityJson.put("TermianlId", "Mobile");
 				identityJson.put("UserName", "EligashtMlb");
-				identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
+			//	identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
 
 				// jsoneIde.put("identity",identityJson);//{"identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}}
 
@@ -1545,7 +1545,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				identityJson.put("Password", "123qwe!@#QWE");
 				identityJson.put("TermianlId", "Mobile");
 				identityJson.put("UserName", "EligashtMlb");
-				identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
+				//identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
 
 				jsoneIde.put("identity", identityJson);
 

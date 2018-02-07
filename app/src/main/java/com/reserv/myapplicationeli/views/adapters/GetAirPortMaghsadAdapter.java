@@ -97,7 +97,7 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 
 			holder.AirportName = (TextView) convertView.findViewById(R.id.text1);
 			holder.CityName = (TextView) convertView.findViewById(R.id.text2);
-			
+			holder.txtIcon = (TextView) convertView.findViewById(R.id.txtIcon);
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
 			convertView.setTag(holder);
 		} else {
@@ -106,7 +106,8 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 		//cursor.moveToPosition(position);
 		final Country current=data.get(position);
 		holder.AirportName.setText(current.getAirportName()+ "");
-		
+		holder.CityName.setVisibility(View.GONE);
+		holder.txtIcon.setVisibility(View.GONE);
 		holder.CityName.setText(current.getCityName());
 		
 		holder.CityName.setTag(current.getCityName());
@@ -162,7 +163,7 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 	static class ViewHolder {
 		TextView AirportName;
 		TextView CityName;
-		
+		TextView txtIcon;
 		
 	}
 

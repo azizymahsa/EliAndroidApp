@@ -69,7 +69,8 @@
 					android:gravity="right"
 					android:text="3h 45 m ,ترکیش ایر "
 					android:textColor="#0e874e"
-					android:textSize="11dp" />
+					android:textSize="11dp"
+					android:textAppearance="@style/fontello_plan"/>
 
 				<TextView
 					android:id="@+id/lblArrivalAirportR"
