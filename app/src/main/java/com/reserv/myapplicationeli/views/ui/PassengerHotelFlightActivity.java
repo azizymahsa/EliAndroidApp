@@ -382,7 +382,19 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             }
         });
-
+        //////////////login user
+        try{
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
+                txtnameP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
+                txtfamilyP.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+                txtmobileP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMobile());
+                txtkodemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserNationalCode());
+                txtemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
+            }
+        }catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        //////////////
     }//end oncreate
     //AsyncFetchGetPreFactorDetails
 
@@ -1074,6 +1086,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             headerJson.put("identity", identityJson);
 
             jsone.put("request", headerJson);
@@ -1103,6 +1116,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             manJson.put("identity", identityJson);
             //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);
@@ -1146,6 +1160,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             manJson.put("identity", identityJson);
             //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);

@@ -62,6 +62,7 @@ import com.reserv.myapplicationeli.lost.service.ServicePreFactorModel;
 import com.reserv.myapplicationeli.models.hotel.api.Errors;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
@@ -367,10 +368,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
         spinnerMosafer.setAdapter(dataAdapter);
-        ////////////////////////////////
 
-
-        // new AsyncFetch().execute();
         sum = Prefs.getInt("SumPass", 0);
         btn_pardakht_factor.setOnClickListener(new OnClickListener() {
             @Override
@@ -379,18 +377,23 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 Prefs.putString("PaymentUrl", paymentUrl);
                 Utility.openUrlCustomTab(PassengerHotelActivity.this, paymentUrl);
 
-/*
-                String url = "http://foyr.com";
-                Intent launchGoogleChrome = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                launchGoogleChrome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                launchGoogleChrome.setPackage("com.android.chrome");
-                launchGoogleChrome.putExtra("com.android.chrome.EXTRA_OPEN_NEW_INCOGNITO_TAB", true);*/
+
             }
         });
-
+        //////////////login user
+        try{
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
+                txtnameP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
+                txtfamilyP.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+                txtmobileP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMobile());
+                txtkodemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserNationalCode());
+                txtemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
+            }
+        }catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        //////////////
     }//end oncreate
-    //AsyncFetchGetPreFactorDetails
-
 
     private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
         ProgressDialog pdLoading = new ProgressDialog(PassengerHotelActivity.this);
@@ -1088,6 +1091,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             headerJson.put("identity", identityJson);
 
             jsone.put("request", headerJson);
@@ -1118,6 +1122,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             manJson.put("identity", identityJson);
             //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);
@@ -1161,6 +1166,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             manJson.put("identity", identityJson);
             //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);

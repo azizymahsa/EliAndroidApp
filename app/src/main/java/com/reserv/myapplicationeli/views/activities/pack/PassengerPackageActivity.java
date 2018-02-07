@@ -66,6 +66,7 @@ import com.reserv.myapplicationeli.models.model.pack.PackageRoomNoToRequest;
 import com.reserv.myapplicationeli.models.model.pack.PartnerList;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
+import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
@@ -342,7 +343,19 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 Utility.openUrlCustomTab(PassengerPackageActivity.this, paymentUrl);
             }
         });
-
+        //////////////login user
+        try{
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
+                txtnameP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
+                txtfamilyP.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+                txtmobileP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMobile());
+                txtkodemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserNationalCode());
+                txtemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
+            }
+        }catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        //////////////
     }
 
     private void setupGenderSpinner() {
@@ -2021,6 +2034,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             headerJson.put("identity", identityJson);
 
             jsone.put("request", headerJson);
@@ -2050,6 +2064,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             identityJson.put("UserName", "EligashtMlb");
             manJson.put("identity", identityJson);
             //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
@@ -2095,6 +2110,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             manJson.put("identity", identityJson);
             //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);

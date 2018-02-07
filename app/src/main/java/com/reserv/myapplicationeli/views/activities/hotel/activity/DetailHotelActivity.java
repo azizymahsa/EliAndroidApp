@@ -456,8 +456,10 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
         map = googleMap;
-        map.getUiSettings().setScrollGesturesEnabled(false);
 
+        map.getUiSettings().setTiltGesturesEnabled(false);
+        map.getUiSettings().setScrollGesturesEnabled(false);
+        map.getUiSettings().setZoomGesturesEnabled(false);
 
     }
 
