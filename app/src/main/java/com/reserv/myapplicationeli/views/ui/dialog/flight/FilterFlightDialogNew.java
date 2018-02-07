@@ -1,6 +1,7 @@
 package com.reserv.myapplicationeli.views.ui.dialog.flight;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,7 +12,11 @@ import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.hotel.adapter.FilterModel;
 import com.reserv.myapplicationeli.models.model.ModelCheckBox;
 import com.reserv.myapplicationeli.views.adapters.hotel.FilterAdapter;
+import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelTypeModel;
 
 import java.util.ArrayList;
@@ -211,74 +216,100 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
             case R.id.btnOk:
                 // activity.startActivity(new Intent(activity, ProfileActivity.class));
                 // arrayTrue
-
+                String flagSelect="";
                 if (noStop.isChecked()) {
                     noStop_ = true;
-
+                    flagSelect=flagSelect+"T";
 
                 } else {
                     noStop_ = false;
-
+                    flagSelect=flagSelect+"F";
 
                 }
                 if (oneStop.isChecked()) {
                     oneStop_ = true;
-
+                    flagSelect=flagSelect+"T";
                 } else {
                     oneStop_ = false;
+                    flagSelect=flagSelect+"F";
                 }
                 if (twoStopMore.isChecked()) {
                     twoStopMore_ = true;
-
+                    flagSelect=flagSelect+"T";
 
                 } else {
                     twoStopMore_ = false;
+                    flagSelect=flagSelect+"F";
                 }
 
                 if (economiF.isChecked()) {
                     economiF_ = true;
+                    flagSelect=flagSelect+"T";
                 } else {
                     economiF_ = false;
                 }
 
                 if (businessF.isChecked()) {
                     businessF_ = true;
-
+                    flagSelect=flagSelect+"T";
 
                 } else {
                     businessF_ = false;
+                    flagSelect=flagSelect+"F";
                 }
                 if (ferstF.isChecked()) {
                     ferstF_ = true;
+                    flagSelect=flagSelect+"T";
                 } else {
                     ferstF_ = false;
+                    flagSelect=flagSelect+"F";
                 }
-                //========
-                if (remove.isChecked()) {
-                    if (filter.isEmpty()) {
-                        filter.add(new FilterModelّFlight(false, false, false, remove_, false, false, false));
-                    } else {
-                        filter.set(0, new FilterModelّFlight(false, false, false, true, false, false, false));
-                    }
-                } else {
+                //////////////////////////
 
-                    if (filter.isEmpty()) {
-                        filter.add(new FilterModelّFlight(noStop_, oneStop_, twoStopMore_, false, economiF_, businessF_, ferstF_));
+                for (int r = 0; r < modelCheckBoxes.size(); r++) {
 
-                    } else {
-                        filter.set(0, new FilterModelّFlight(noStop_, oneStop_, twoStopMore_, false, economiF_, businessF_, ferstF_));
+                    if (modelCheckBoxes.get(r).isCheck()) {
+                        flagSelect=flagSelect+"T";
 
                     }
                 }
+                /////////////////////////////////
+                Log.e("GGG", flagSelect);
+                if(!flagSelect.contains("T")){
+                    AlertDialogPassenger AlertDialogPassengerFlight =  new AlertDialogPassenger(activity);
+                    AlertDialogPassengerFlight.setText("گزینه ای برای فیلتر انتخاب نشده است ");
+                    Log.e("GGGGGGGRaftELSE", flagSelect);
+
+                }else{
+                    //========
+                    Log.e("GGGGGGGRaft", flagSelect);
+                    if (remove.isChecked()) {
+                        if (filter.isEmpty()) {
+                            filter.add(new FilterModelّFlight(false, false, false, remove_, false, false, false));
+                        } else {
+                            filter.set(0, new FilterModelّFlight(false, false, false, true, false, false, false));
+                        }
+                    } else {
+
+                        if (filter.isEmpty()) {
+                            filter.add(new FilterModelّFlight(noStop_, oneStop_, twoStopMore_, false, economiF_, businessF_, ferstF_));
+
+                        } else {
+                            filter.set(0, new FilterModelّFlight(noStop_, oneStop_, twoStopMore_, false, economiF_, businessF_, ferstF_));
+
+                        }
+                    }
 
 
-                //  }
+                    //  }
 
 
-                filterFlightDialogListenerArray.onReturnValueFlightNew(filter, modelCheckBoxes);
+                    filterFlightDialogListenerArray.onReturnValueFlightNew(filter, modelCheckBoxes);
 
 
-                dialog.cancel();
+                    dialog.cancel();
+                }
+
 
                 break;
             case R.id.btnDeletFilter:

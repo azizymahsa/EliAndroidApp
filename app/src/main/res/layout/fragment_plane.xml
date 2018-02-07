@@ -135,6 +135,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
                         android:gravity="right"
                         android:text=" مقصد : "
                         android:textColor="#ffffff"
@@ -258,15 +259,15 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginRight="65dp"
                                 android:layout_weight="80"
-
                                 android:background="#fff"
                                 android:gravity="right"
                                 android:text="تاریخ برگشت "
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/text_size_12dp"
+                                android:layout_marginTop="15dp"
                                 android:textStyle="bold"
-                                android:layout_marginTop="5dp"
-                                />
+                                android:textAppearance="@style/IrsansBold"/>
+
 
                             <TextView
                                 android:id="@+id/tarikh_az"
@@ -279,8 +280,9 @@
                                 android:text="تاریخ رفت"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/text_size_12dp"
+                                android:layout_marginTop="15dp"
                                 android:textStyle="bold"
-                                android:layout_marginTop="5dp"
+                                android:textAppearance="@style/IrsansBold"
                                 />
 
                         </LinearLayout>
@@ -396,7 +398,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="110dp"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="3dp"
                         android:orientation="vertical">
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -563,7 +565,7 @@
             </LinearLayout>
 
 
-            <!--        </LinearLayout>-->
+    <!--        </LinearLayout>-->
             <!--////////////////////////////////////////////////end tedad nafarat////////////////////////////////////////////////////////////////////////////////////// -->
         </LinearLayout>
     </LinearLayout>
@@ -629,4 +631,3 @@
     </LinearLayout>
 
 </RelativeLayout>
-
