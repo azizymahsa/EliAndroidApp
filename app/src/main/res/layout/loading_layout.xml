@@ -27,8 +27,8 @@
         />
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/tv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
