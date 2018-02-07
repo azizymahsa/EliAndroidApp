@@ -41,6 +41,7 @@ import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
@@ -92,10 +93,11 @@ public  LinearLayout linear_tarikh_az_picker;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;*/
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_plane, container, false);
         Utility.sendTag("F",true,false);
+        Geo = Prefs.getBoolean("geo", false);
+
 
         linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
         linear_tarikh_az_picker= (LinearLayout) rootView.findViewById(R.id.linear_tarikh_az_picker);
@@ -189,9 +191,9 @@ public  LinearLayout linear_tarikh_az_picker;
             picker_be_format=persianCalendarDatePicker.getPersianLongDate();
         }else{
 
-            tarikh_be_picker.setText(Prefs.getString("bargashtfa","null"));
-            picker_be_format=Prefs.getString("bargashtfa","null");
-            bargasht=Prefs.getString("bargasht","null");
+            tarikh_be_picker.setText(Prefs.getString("bargashtfa","null").replaceAll("/","-"));
+            picker_be_format=Prefs.getString("bargashtfa","null").replaceAll("/","-");
+            bargasht=Prefs.getString("bargasht","null").replaceAll("/","-");
 
         }
 
@@ -203,9 +205,9 @@ public  LinearLayout linear_tarikh_az_picker;
             picker_az_format=persianCalendarDatePicker.getPersianLongDate();
 
         }else{
-            tarikh_az_picker.setText(Prefs.getString("raftfa","null"));
-            picker_az_format=Prefs.getString("raftfa","null");
-            raft=Prefs.getString("raft","null");
+            tarikh_az_picker.setText(Prefs.getString("raftfa","null").replaceAll("/","-"));
+            picker_az_format=Prefs.getString("raftfa","null").replaceAll("/","-");
+            raft=Prefs.getString("raft","null").replaceAll("/","-");
         }
 //////////////////////end recent date
 
@@ -311,7 +313,7 @@ public  LinearLayout linear_tarikh_az_picker;
                     datePickerDialogGregorian2.setMinDate(cal);
 
 
-                    tarikh_az_picker.setText(Utility.dateShowViewFlight(year+"-"+ (monthOfYear+1)+"-"+ dayOfMonth));
+                    tarikh_az_picker.setText(DateUtil.getLongStringDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, "yyyy-MM-dd", false));
 
                     raft =year+"-"+ (monthOfYear+1)+"-"+ dayOfMonth;
                     Log.e("GGGGGGG", raft);
@@ -336,11 +338,11 @@ public  LinearLayout linear_tarikh_az_picker;
                 Log.e("GGGGGGGBar", year+"=="+(monthOfYear+1)+"=="+dayOfMonth);
                 Geo=true;
 
-                tarikh_be_picker.setText(Utility.dateShowViewFlight(year+"-"+ (monthOfYear+1)+"-"+ dayOfMonth));
+                tarikh_be_picker.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
                 bargasht =year+"-"+( monthOfYear+1)+"-"+ dayOfMonth;
 
                 Prefs.putString("bargasht",bargasht);
-                Prefs.putString("bargashtfa",Utility.dateShowView(year + "/" +( monthOfYear + 1 )+ "/" + dayOfMonth));
+                Prefs.putString("bargashtfa",DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
 
             }
@@ -369,6 +371,8 @@ public  LinearLayout linear_tarikh_az_picker;
 
     @Override
     public void onResume() {
+        Prefs.putBoolean("geo",Geo);
+
         Log.e("DEBUG", "onResume of PlanFragment");
         super.onResume();
         if(Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "") .length()>1) {
@@ -382,6 +386,12 @@ public  LinearLayout linear_tarikh_az_picker;
         }//return rootView;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Prefs.putBoolean("geo", Geo);
+
+    }
 
     @Override
     public void onDestroyView() {
@@ -412,7 +422,7 @@ public  LinearLayout linear_tarikh_az_picker;
                         txtCountB.setText(String.valueOf(btnPlusBIntVal));//}
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(getActivity(), "Some error :(", 2000).show();
+                      //  Toast.makeText(getActivity(), "Some error :(", 2000).show();
                     }
                 }
                 break;
@@ -425,7 +435,7 @@ public  LinearLayout linear_tarikh_az_picker;
                     txtCountB.setText(String.valueOf(btnMinesBIntVal));//}
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getActivity(), "Some errors :(", 2000).show();
+                 //   Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                 }
                 break;
 
@@ -440,7 +450,7 @@ public  LinearLayout linear_tarikh_az_picker;
                         txtCountK.setText(String.valueOf(btnPlisKIntVal));//}
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(getActivity(), "Some errors :(", 2000).show();
+                      //  Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                     }
                 }
                 break;
@@ -453,7 +463,7 @@ public  LinearLayout linear_tarikh_az_picker;
                     txtCountK.setText(String.valueOf(btnMinesKIntVal));//}
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getActivity(), "Some errors :(", 2000).show();
+                   // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                 }
                 break;
 
@@ -468,7 +478,7 @@ public  LinearLayout linear_tarikh_az_picker;
                         txtCountN.setText(String.valueOf(presentIntVal3));//}
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(getActivity(), "Some errors :(", 2000).show();
+                       // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                     }
                 }
                 break;
@@ -481,7 +491,7 @@ public  LinearLayout linear_tarikh_az_picker;
                     txtCountN.setText(String.valueOf(presentIntVal4));//}
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getActivity(), "Some errors :(", 2000).show();
+                   // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                 }
                 break;
             case R.id.tvEnd:
@@ -611,7 +621,7 @@ public  LinearLayout linear_tarikh_az_picker;
 
                             picker_be_format=Prefs.getString("bargashtfa","null");
                             bargasht=Prefs.getString("bargasht","null");
-                            intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
+                            intent1.putExtra("Value-ArrivalDate", bargasht.replace("/","-"));//2017-11-29
                         }
 
                         if (Prefs.getString("raftfa","null").equals("null")){
@@ -621,7 +631,7 @@ public  LinearLayout linear_tarikh_az_picker;
 
                             picker_az_format=Prefs.getString("raftfa","null");
                             raft=Prefs.getString("raft","null");
-                            intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
+                            intent1.putExtra("Value-DepartureDate",  raft.replace("/","-"));//2017-11-24
                         }
                         //////////////////////end recent date
 

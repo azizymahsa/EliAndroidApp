@@ -45,9 +45,11 @@ import com.reserv.myapplicationeli.models.model.PinModelHeader;
 import com.reserv.myapplicationeli.models.model.SearchParvazModelExp;
 import com.reserv.myapplicationeli.models.model.SolarCalendar;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.tools.datetools.JalaliCalendar;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.reserv.myapplicationeli.views.adapters.ExpandableListAdapter;
 import com.reserv.myapplicationeli.views.adapters.SearchParvazPinAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
@@ -155,10 +157,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	public static final int CONNECTION_TIMEOUT = 10000;
 	public static final int READ_TIMEOUT = 15000;
 	public static String globalResultUniqID;
-	public String DdateF;
-	public String AdateF;
-	public String Ddate;
-	public String Adate;
+	public String RaftF;
+	public String BargashtF;
+	public String Raft;
+	public String Bargasht;
 	public TextView txtDateOnvan;
 	public LinearLayout linear_expand ;
 	public  SearchParvazPinAdapter searchParvazPinAdapter;
@@ -184,7 +186,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		rlRoot = findViewById(R.id.rlRoot);
 		iconFilter = findViewById(R.id.iconFilter);
 
-		new AsyncFetch().execute();
+
 		txtBack = (FancyButton) findViewById(R.id.txtBack);
 		txtBack.setOnClickListener(this);
 		txtBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -242,18 +244,22 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 			txtCityBargasht.setText(maghsadf + "");
 
-			DdateF = extras.getString("Value-DepartureDate-format");
-			AdateF = extras.getString("Value-ArrivalDate-format");
+			RaftF = extras.getString("Value-DepartureDate-format");
+			BargashtF = extras.getString("Value-ArrivalDate-format");
 
-			Ddate = extras.getString("Value-DepartureDate");
-			Adate = extras.getString("Value-ArrivalDate");
+			Raft = extras.getString("Value-DepartureDate");
+			Bargasht = extras.getString("Value-ArrivalDate");
 
 			txtDateOnvan = (TextView) findViewById(R.id.txtDateOnvan);
-			txtDateOnvan.setText(DdateF + "  -  " + AdateF);
+			if (getIntent().getExtras().getBoolean("Geo")) {
+				txtDateOnvan.setText( BargashtF+ "  -  " + RaftF);
+			}else {
+				txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
+			}
 
 			System.out.println("txtCityBargasht" + maghsadf + "txtCityRaft" + mabdaf);
 		}
-
+		new AsyncFetch().execute();
 
 		//expandin list
 		// get the listview
@@ -393,7 +399,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		boolean foundFirst = true;
 		boolean foundBis = true;
 		boolean foundEc = true;
-	this. filterAirlines = arrayTrue;
+		this. filterAirlines = arrayTrue;
 
 
 		this.filterModels = type;
@@ -1509,7 +1515,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				COUNT_N = Integer.parseInt(infCount);
 
 				System.out.println("YYYYYYYYYYYYYYYYYYYYYYY");
-				System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Ddate" + Ddate + "Adate" + Adate);
+				System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
 
 				//identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}
 				identityJson.put("Password", "123qwe!@#QWE");
@@ -1520,8 +1526,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 				manJson.put("DepartureAirportcode", mabdaf);
 				manJson.put("ArrivalAirportcode", maghsadf);
-				manJson.put("DepartureDate", Ddate);
-				manJson.put("ArrivalDate", Adate);
+				manJson.put("DepartureDate", Raft);
+				manJson.put("ArrivalDate", Bargasht);
 				manJson.put("OneWay", flagWay); // اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
 				manJson.put("CabinClassCode", "all");
 
@@ -2397,9 +2403,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			case R.id.txtRuzeBad:
 
 				//"2017-12-24"
+
 				try {
 
-					String str_date = Ddate;//2018-01-16
+					String str_date = Raft;//2018-01-16
 					DateFormat formatter;
 					Date date;
 					formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -2410,40 +2417,60 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 					System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
 
 
-					Date dateRaft = (Date) formatter.parse(Ddate);
-					Date dateBargasht = (Date) formatter.parse(Adate);
+					Date dateRaft = (Date) formatter.parse(Raft);
+					Date dateBargasht = (Date) formatter.parse(Bargasht);
 					if (dateBargasht.after(dateRaft)) {
 						///
 						///
 						SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
-						//  txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
+						//  txtDateOnvan.setText(BargashtF + "  -  " + dfm.format(cal.getTime()));
 						/////////////////////////////
-						SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");//2017/03/24 11:49
+						SimpleDateFormat format3 = new SimpleDateFormat("yyyy-MM-dd");//2017/03/24 11:49
 						String formatted3 = format3.format(cal.getTime());
+						String[] dateSplite=formatted3.split("-");
 
-						String dayM=formatted3.substring(8, 10);//02
-						String monthM=formatted3.substring(5, 7);//01
-						String yearM=formatted3.substring(0, 4);//1396
+						String dayM=dateSplite[2];
+						String monthM=dateSplite[1];
+						String yearM=dateSplite[0];
 
-
-						String  dateShamsi= SolarCalendar.calSolarCalendar(Integer.parseInt(yearM),Integer.parseInt(monthM),Integer.parseInt(dayM));
+						String  dateShamsi= com.reserv.myapplicationeli.tools.datetools.SolarCalendar.calSolarCalendar(Integer.parseInt(yearM),Integer.parseInt(monthM),Integer.parseInt(dayM));
 						System.out.println("dateShamsi:"+yearM+monthM+dayM+"   "+dateShamsi);
-						String dayMF=dateShamsi.substring(8, 10);//02
-						String monthMF=dateShamsi.substring(5, 7);//01
-						String yearMF=dateShamsi.substring(0, 4);//1396
 
+						String[] dateSplite2=dateShamsi.split("/");//shamsi
+
+						String dayMF=dateSplite2[2];
+						String monthMF=dateSplite2[1];
+						String yearMF=dateSplite2[0];
+                      /*  String dayMF=dateShamsi.substring(8, 10);//02
+                        String monthMF=dateShamsi.substring(5, 7);//01
+                        String yearMF=dateShamsi.substring(0, 4);//1396
+*/
 						PersianCalendar persianCalendar = new PersianCalendar();
 						persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
 						/////////////////////
-						//   txtDateOnvan.setText(dfm.format(cal.getTime()) + "  -  " + AdateF);
-						txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
+						//   txtDateOnvan.setText(dfm.format(cal.getTime()) + "  -  " + BargashtF);
 						///
-						Ddate = formatter.format(cal.getTime());
+						RaftF=persianCalendar.getPersianLongDate();
+						Raft = formatter.format(cal.getTime());
+						if (getIntent().getExtras().getBoolean("Geo")) {
+
+							txtDateOnvan.setText( DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false)+ " - " + DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
+
+						}else{
+							txtDateOnvan.setText( RaftF + "  -  " + BargashtF);
+
+
+						}
 						callApiDateNext();
 					} else {
 						Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
 								Toast.LENGTH_SHORT).show();
 					}
+
+
+
+
+
 
 				} catch (java.text.ParseException e) {
 					System.out.println("Exception :" + e);
@@ -2458,7 +2485,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				//"2017-12-24"
 				try {
 
-					String str_date = Ddate;//"11-June-07";
+					String str_date = Raft;//"11-June-07";
 					DateFormat formatter;
 					Date date;
 					formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -2469,7 +2496,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 					System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
 					//shart kamtar az emruz
 					if (System.currentTimeMillis() <= date.getTime()) {
-						Ddate = formatter.format(cal.getTime());
+						Raft = formatter.format(cal.getTime());
 
 						///onvan
 						SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
@@ -2489,8 +2516,17 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						PersianCalendar persianCalendar = new PersianCalendar();
 						persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
 						/////////////////////
-						// txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
-						txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + AdateF);
+						// txtDateOnvan.setText(BargashtF + "  -  " + dfm.format(cal.getTime()));
+
+						if (getIntent().getExtras().getBoolean("Geo")) {
+
+							//	tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
+							txtDateOnvan.setText(DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false) + "  -  " + DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
+						}else{
+							//tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+							//txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + BargashtF);
+							txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + BargashtF);
+						}
 						///
 						callApiDateNext();
 					} else {
