@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,8 +123,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		lblFlightArrivalTimeR.setText(item.FlightArrivalTimeR+"");
 		lblDepurtureAirportR.setText(item.DepartureCityNameFa+" , "+item.DepartureAirportNameFaR);
 		lblArrivalAirportR.setText(item.ArrivalCityNameFa+" , "+item.ArrivalAirportNameFaR);
-		lblFlightNumberR.setText(item.AirlineCode+item.FlightNumberR+" , "+ item.AirlineNameFaR);
+		if(item.OperatingAirlineNameEn.contains("null") ){
+			lblFlightNumberR.setText(item.AirlineCode+item.FlightNumberR+" , "+ item.AirlineNameFaR );
 
+		}else{
+			String text = "<font color=#aaaaaa>"+"By: " + item.OperatingAirlineNameEn+"</font> "+
+					"<font color=#0e874e>"+item.AirlineCode+item.FlightNumberR+" , "+ item.AirlineNameFaR+"</font>";
+			lblFlightNumberR.setText(Html.fromHtml(text));
+			//lblFlightNumberR.setText("Operated By: " + item.OperatingAirlineNameEn+" , "+item.AirlineCode+item.FlightNumberR+" , "+ item.AirlineNameFaR );
+		}
+        System.out.println("item.OperatingAirlineNameEn:"+item.OperatingAirlineNameEn);
 		int size=this.dataExpandingList.get(groupPosition).Items.size();
 		int childSize=childPosition+1;
 		System.out.println(size +"ggg"+childPosition);
@@ -236,8 +245,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
 		LinearLayout linearKol = (LinearLayout) convertView.findViewById(R.id.linearKol);
 		//final int[] flag = {0};
-		Animation scaleUp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
-		linearKol.startAnimation(scaleUp);
+	//	Animation scaleUp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
+		//linearKol.startAnimation(scaleUp);
 
 		txtPin.setTag(item2.IsPin);
 
@@ -288,10 +297,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 		if (isExpanded){
 			btnExpand.setText(_context.getString(R.string.icon_exp_up));
-			linearKol.clearAnimation();
+			//linearKol.clearAnimation();
 
 		}else{
 			btnExpand.setText(_context.getString(R.string.icon_exp_down));
+			//linearKol.clearAnimation();
 		/*	Animation scaleUpp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
 			linearKol.startAnimation(scaleUpp);*/
 		}

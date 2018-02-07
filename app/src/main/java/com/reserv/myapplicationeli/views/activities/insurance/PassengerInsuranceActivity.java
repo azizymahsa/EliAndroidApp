@@ -60,6 +60,7 @@ import com.reserv.myapplicationeli.lost.service.ServicePreFactorAdapter;
 import com.reserv.myapplicationeli.lost.service.ServicePreFactorModel;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
@@ -336,7 +337,19 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         txtSumKhadamat.setOnClickListener(this);
         txttavalodm.setOnClickListener(this);
         txtnamem.setOnClickListener(this);
-
+        //////////////login user
+        try{
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
+                txtnameP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
+                txtfamilyP.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+                txtmobileP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMobile());
+                txtkodemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserNationalCode());
+                txtemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
+            }
+        }catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+        //////////////
     }
 
     private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
@@ -984,6 +997,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             headerJson.put("identity", identityJson);
 
             jsone.put("request", headerJson);
@@ -1014,6 +1028,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             manJson.put("identity", identityJson);
             jsone.put("request", manJson);
 
@@ -1048,6 +1063,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             manJson.put("identity", identityJson);
             jsone.put("request", manJson);
 

@@ -1205,6 +1205,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 						flightSegment.setFltDurationH(jPricedIfdgtinerary.getString("FltDurationH"));
 						flightSegment.setFltDurationM(jPricedIfdgtinerary.getString("FltDurationM"));
 						flightSegment.setIsDepartureSegment(jPricedIfdgtinerary.getBoolean("IsDepartureSegment"));
+						flightSegment.setOperatingAirlineNameEn(jPricedIfdgtinerary.getString("OperatingAirlineNameEn"));
 						//List<flightSegment> SegmentList ;
 						SegmentList.add(flightSegment);
 
@@ -1521,6 +1522,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				identityJson.put("Password", "123qwe!@#QWE");
 				identityJson.put("TermianlId", "Mobile");
 				identityJson.put("UserName", "EligashtMlb");
+				identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
 
 				// jsoneIde.put("identity",identityJson);//{"identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}}
 
@@ -1543,6 +1545,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				identityJson.put("Password", "123qwe!@#QWE");
 				identityJson.put("TermianlId", "Mobile");
 				identityJson.put("UserName", "EligashtMlb");
+				identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
 
 				jsoneIde.put("identity", identityJson);
 
@@ -1828,6 +1831,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 							item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
 							item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
+							item.OperatingAirlineNameEn = SegmentList.get(j).getOperatingAirlineNameEn();
 							parentItem.Items.add(item);
 
 						}
@@ -1890,6 +1894,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 							item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
 							item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
+							item.OperatingAirlineNameEn = SegmentList.get(j).getOperatingAirlineNameEn();
 							parentItem.Items.add(item);
 
 						}
@@ -1915,113 +1920,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 	}//end expanding listdata
 
-	private void fitertwoStopMore() {
-		//if(SegmentListtrueAkhari.size()>3){//more two tavaghof
-		List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
 
-		if (dataExpandingListFilter != null) {
-			linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
-			linear_expand.setVisibility(View.VISIBLE);
-			LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-			linear_no_result.setVisibility(View.GONE);
-			try {
-				System.out.println("flightsListFilter.size():" + flightsListFilter.size());
-
-				for (int i = 0; i < dataExpandingListFilter.size(); i++) {
-
-					System.out.println("HEADER I=" + i);
-					//SegmentListtrueAkhari.get(i).
-					if (dataExpandingListFilter.get(i).getHeader().SegmentTrueCount > 2) {//more two tavaghof
-						//if(dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("اکونومی")){
-						System.out.println("more two tavaghof 3 " + i);
-						//header
-
-						ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
-
-						HeaderExpandingPlan header = new HeaderExpandingPlan();
-						header = dataExpandingListFilter.get(i).getHeader();
-
-						parentItem.setHeader(header);
-						parentItem.setItems(dataExpandingListFilter.get(i).getItems());
-
-						dataExpandingListFilterTrue.add(parentItem);
-					}//endif
-				}//endfor
-				if (dataExpandingListFilterTrue.size() > 0) {
-					dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
-					dataExpandingListFilter = dataExpandingListFilterTrue;
-				}
-
-			} catch (Exception e) {
-
-				System.out.println(e.getMessage());
-
-			}
-
-		}
-		if (dataExpandingListFilter.size() == 0 || dataExpandingListFilter == null) {
-			linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
-			linear_expand.setVisibility(View.GONE);
-			LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-			txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
-			linear_no_result.setVisibility(View.VISIBLE);
-		}
-
-	}//endfitertwoStopMore
-
-	private void filterOneStopData() {
-
-		List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
-
-		if (dataExpandingListFilter != null) {
-			LinearLayout linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
-			linear_expand.setVisibility(View.VISIBLE);
-			LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-			linear_no_result.setVisibility(View.GONE);
-			try {
-				System.out.println("flightsListFilter.size():" + flightsListFilter.size());
-
-				for (int i = 0; i < dataExpandingListFilter.size(); i++) {
-
-					System.out.println("HEADER I=" + i);
-					//SegmentListtrueAkhari.get(i).
-					if (dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 2) {//yek tavaghof
-
-						System.out.println("yek tavaghof 2 " + i);
-						//header
-
-						ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
-
-						HeaderExpandingPlan header = new HeaderExpandingPlan();
-						header = dataExpandingListFilter.get(i).getHeader();
-
-						parentItem.setHeader(header);
-						parentItem.setItems(dataExpandingListFilter.get(i).getItems());
-
-						dataExpandingListFilterTrue.add(parentItem);
-					}//endif
-				}//endfor
-				if (dataExpandingListFilterTrue.size() > 0) {
-					dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
-					dataExpandingListFilter = dataExpandingListFilterTrue;
-				}
-
-			} catch (Exception e) {
-
-				System.out.println(e.getMessage());
-
-			}
-
-		}
-		if (dataExpandingListFilter.size() == 0 || dataExpandingListFilter ==null) {
-			LinearLayout linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
-			linear_expand.setVisibility(View.GONE);
-			LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-			txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
-			linear_no_result.setVisibility(View.VISIBLE);
-		}
-
-	}//filterOneStop
 
 	private void getAirLine() {
 		//	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
@@ -2254,7 +2153,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				, String AirlineCode
 				, String CabinClassNameFa, int RemainSeats, boolean IsCharter, String AirlineNameEa, int SegmentTrueCount,String FltDateDayOfWeekTrue,String FltDateDayOfWeekFalse,int SegmentFalseCount,String FlightNumberR
 				,String FlightNumberB
-		,boolean IsPin) {
+		,boolean IsPin
+				) {
 			this.ArrivalCityNameFaR = ArrivalCityNameFaR;
 			this.FlightArrivalTimeR = FlightArrivalTimeR;
 
@@ -2323,7 +2223,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 		public String DepartureCityNameFa;
 		public String ArrivalCityNameFa;
-
+		public  String OperatingAirlineNameEn;
 
 		public ItemExpandingPlan(String DepartureAirportNameFaR, String FlightTimeR,
 								 String ArrivalAirportNameFaR, String FlightArrivalTimeR,
@@ -2333,7 +2233,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								 String AirlineNameFaB, String FlightNumberB
 				, String flGUID
 								 //nerkh
-				, long AdlCost, long Taxes, long TotalFare) {
+				, long AdlCost, long Taxes, long TotalFare,String OperatingAirlineNameEn ) {
 
 			this.DepartureAirportNameFaR = DepartureAirportNameFaR;
 			this.FlightTimeR = FlightTimeR;
@@ -2346,6 +2246,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			this.AdlBaseFare = AdlBaseFare;
 			this.Taxes = Taxes;
 			this.TotalFare = TotalFare;
+			this.OperatingAirlineNameEn = OperatingAirlineNameEn;
 
 
 		}
