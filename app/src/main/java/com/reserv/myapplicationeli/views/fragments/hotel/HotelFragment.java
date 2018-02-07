@@ -581,7 +581,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
 
-            if (!Utility.campareDate(raft,bargasht)){
+            if (Utility.campareDate(raft,bargasht)){
                 tvBargasht.setText(persianCalendar.getPersianLongDate());
                 datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
