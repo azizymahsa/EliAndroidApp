@@ -107,7 +107,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		TextView txtTotalFareCost = (TextView) convertView.findViewById(R.id.txtTotalFareCost);
 
 
-
 		Button btnSelect = (Button) convertView.findViewById(R.id.btnSelect);
 		/*YoYo.with(Techniques.SlideInDown)
 				.duration(500)
