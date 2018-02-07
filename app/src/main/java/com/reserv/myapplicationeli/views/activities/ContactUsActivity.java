@@ -23,9 +23,13 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnticipateInterpolator;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -33,6 +37,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.gun0912.tedpermission.PermissionListener;
@@ -85,12 +90,12 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     private Handler progressBarHandler = new Handler();
     ArrayList<HashMap<String, String>> mylist = null;
     AboutAdapter mAdapter;
-    TextView txtPhone,txtAddres,txtSocialFollow;
+    TextView txtPhone,txtAddres,txtSocialFollow,textView15;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
     private GoogleMap map;
     ExpandableWeightLayout expandableLayout;
     public ImageView txtInstagram,txtAparat,txtTweeter,txtPintrest,txtLinkdin,txtGoogleP,txtFacebook,txtTelegram;
-   // private TextView tvTitle, tvArrow;
+    // private TextView tvTitle, tvArrow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,10 +106,14 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         //tvArrow = findViewById(R.id.tvArrow);
         expandableLayout = findViewById(R.id.expandableLayout);
 
+
         btnBack = (FancyButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
+
+        textView15= (TextView) findViewById(R.id.textView15);
+        textView15.setOnClickListener(this);
 
         txtPhone = (TextView) findViewById(R.id.txtPhone);
         txtPhone.setOnClickListener(this);
@@ -134,7 +143,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
 
         initMap();
-         new GetContactUsAsync().execute();
+        new GetContactUsAsync().execute();
 // add PhoneStateListener
 
 
@@ -152,7 +161,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.txtInstagram:
-                Uri uri = Uri.parse("http://www.aparat.com/eligasht");
+                Uri uri = Uri.parse("https://instagram.com/eligashtco/");
                 Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
 
                 likeIng.setPackage("com.instagram.android");
@@ -161,7 +170,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                     startActivity(likeIng);
                 } catch (ActivityNotFoundException e) {
                     startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("http://www.aparat.com/eligasht")));
+                            Uri.parse("https://instagram.com/eligashtco/")));
                 }
                 break;
             case R.id.txtAparat:
@@ -180,9 +189,9 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
             case R.id.txtPintrest:
 
                 try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("pinterest://www.pinterest.com/eligasht")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.pinterest.com/eligasht/")));
                 } catch (Exception e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.pinterest.com/eligasht")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.pinterest.com/eligasht/")));
                 }
                 break;
             case R.id.txtLinkdin:
@@ -199,26 +208,37 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.txtTelegram:
 
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/eligashtco")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/eligashtco")));
                 break;
             case R.id.btnBack:
 
                 finish();
                 break;
             case R.id.txtSocialFollow:
-               // expandableLayout.setDuration(1000);
-               // expandableLayout.setInterpolator(new AnticipateInterpolator());
+                // expandableLayout.setDuration(1000);
+                // expandableLayout.setInterpolator(new AnticipateInterpolator());
 
                 //new AlertDialog(this, "شبکه های اجتماعی ما");
                 if (expandableLayout.isExpanded()) {
 
                     expandableLayout.collapse();
-                  //  tvArrow.setText(getString(R.string.icon_arrow_up));
-
+                    //  tvArrow.setText(getString(R.string.icon_arrow_up));
+                    YoYo.with(Techniques.SlideOutUp)
+                            .duration(600)
+                            .playOn(expandableLayout);
+                    textView15.setScroller(new Scroller(this));
+                    ScrollView layout_scroll=(ScrollView)findViewById(R.id.layout_scroll);
+                    layout_scroll.fullScroll(ScrollView.FOCUS_DOWN);
                 } else {
-                    expandableLayout.expand();
-                  //  tvArrow.setText(getString(R.string.icon_arrow_down));
 
+                    expandableLayout.expand();
+                    //  tvArrow.setText(getString(R.string.icon_arrow_down));
+                    YoYo.with(Techniques.SlideInDown)
+                            .duration(600)
+                            .playOn(expandableLayout);
+                    textView15.setScroller(new Scroller(this));
+                    ScrollView layout_scroll=(ScrollView)findViewById(R.id.layout_scroll);
+                    layout_scroll.fullScroll(ScrollView.FOCUS_DOWN);
                 }
 
                 break;
@@ -297,14 +317,13 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
 
         map = googleMap;
+        // map.getUiSettings().setScrollGesturesEnabled(false);
+        map.getUiSettings().setTiltGesturesEnabled(false);
         map.getUiSettings().setScrollGesturesEnabled(false);
-        // Add a marker in Sydney, Australia, and move the camera.
-    /*    LatLng sydney = new LatLng(-34, 151);
-        map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        map.ca(CameraUpdateFactory.newLatLng(sydney));
-*/
+        map.getUiSettings().setZoomGesturesEnabled(false);
 
-        LatLng location=new LatLng(35.737643,51.4107692);
+
+        LatLng location=new LatLng(35.737595,51.413388);
 
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
         map.addMarker(new MarkerOptions().position(location).title("الی گشت"));
@@ -454,7 +473,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 }
                 System.out.println("Image:"+GetAirportsResult.getString("Address"));//r\n\t\
                 txtAddres.setText(GetAirportsResult.getString("Address").replaceAll("\t","").replaceAll("\r"," ").replaceAll("\n"," "));
-                 txtPhone.setText(""+GetAirportsResult.getString("PhoneNumber"));
+                txtPhone.setText(""+GetAirportsResult.getString("PhoneNumber"));
 
 
                 //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
@@ -471,3 +490,4 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
 
 }
+

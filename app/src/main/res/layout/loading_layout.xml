@@ -27,16 +27,16 @@
         />
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/tv"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/tvLoading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         />
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/tvLoading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="رزرواسیون آنلاین هتل \n با بیش از 200000 هتل در سراسر دنیا"

@@ -40,6 +40,8 @@ import com.reserv.myapplicationeli.models.hotel.api.getComment.call.GetCommentRe
 import com.reserv.myapplicationeli.models.hotel.api.getComment.call.Request;
 import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 import com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.UserRequest;
+import com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.response.SearchNotes;
+import com.reserv.myapplicationeli.tools.Prefs;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.views.activities.AboutActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity;
@@ -235,6 +237,26 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
             try {
                 Log.e("onon", userEntranceRequest.entranceResponse.UserEntranceServiceResult.CanEnter+"" );
                 Utility.sendTag("Splash",true,true);
+                for (SearchNotes searchNotes :userEntranceRequest.entranceResponse.UserEntranceServiceResult.SearchNotes){
+                    if (searchNotes.Section.equals("H")){
+                        Prefs.putString("H",searchNotes.Notes.get(0));
+
+                    }
+
+                    if (searchNotes.Section.equals("F")){
+                        Prefs.putString("F",searchNotes.Notes.get(0));
+
+                    }
+                    if (searchNotes.Section.equals("FH")){
+                        Prefs.putString("FH",searchNotes.Notes.get(0));
+
+                    }
+                    if (searchNotes.Section.equals("P")){
+                        Prefs.putString("P",searchNotes.Notes.get(0));
+
+                    }
+
+                }
 
 
                 startActivity(new Intent(SplashFragment.this, MainActivity.class));

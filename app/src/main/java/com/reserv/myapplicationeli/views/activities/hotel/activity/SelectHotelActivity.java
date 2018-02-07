@@ -82,7 +82,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private HotelAvailApi availApi;
     private List<Rooms> rooms = new ArrayList<>();
     RelativeLayout rlLoading, rlRoot;
-    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
+    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort,tvLoading;
     Window window;
     RelativeLayout elNotFound;
     LottieAnimationView lottieAnimationView;
@@ -110,6 +110,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         //InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
         list = findViewById(R.id.lvHoteResult);
+        tvLoading = findViewById(R.id.tvLoading);
         llBottom = findViewById(R.id.llBottom);
         llSort = findViewById(R.id.llSort);
         tvAlert = findViewById(R.id.tvAlert);
@@ -133,6 +134,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnHome.setOnClickListener(this);
         notiRecive();
         lottieAnimationView = findViewById(R.id.animation_view);
+        tvLoading.setText(Prefs.getString("H",""));
         lottieAnimationView.setAnimation("circle-l.json");
         lottieAnimationView.playAnimation();
 
