@@ -27,6 +27,7 @@
     <dimen name="_10dp">10dp</dimen>
     <dimen name="_32dp">25dp</dimen>
     <dimen name="_27dp">27dp</dimen>
+    <dimen name="toolbar_height_70dp">70dp</dimen>
 
 
 
