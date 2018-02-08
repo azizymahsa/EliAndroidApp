@@ -88,7 +88,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private String culture;
     private String roomList;
     private String cityName,PreferedAir;
-    private TextView toolbar_title;
+    private TextView toolbar_title,tvLoading;
     private TextView toolbar_date;
     private FancyButton btnBack;
     private ViewGroup layout_sort;
@@ -110,6 +110,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_pack);
         OneSignal.sendTag("position", "isPackageSearch");
+        Utility.setAnimLoading(this);
 
 
         Window window = getWindow();
@@ -239,6 +240,9 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         llFilter = findViewById(R.id.llFilter);
         btn_previous_day = findViewById(R.id.btnLastDays);
         btn_next_day = findViewById(R.id.btnNextDays);
+        tvLoading = findViewById(R.id.tvLoading);
+        tvLoading.setText(Prefs.getString("P",""));
+
         layout_availabel_date = findViewById(R.id.layout_availabel_date);
         error_layout = findViewById(R.id.elNotFound);
         txt_error = findViewById(R.id.tvAlert);

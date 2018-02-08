@@ -58,7 +58,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         holder.tvDate.setText(item.getFltDate());
         holder.tvOutTime.setText(item.getFltTime());
         holder.tvInTime.setText(item.getFltCheckinTime());
-        holder.tvNumber.setText(item.getAirlineCode()+","+item.getFltNumber());
+        holder.tvNumber.setText(item.getAirlineCode()+" "+item.getFltNumber());
         holder.tvAirLineName.setText(item.getAirlineNameEn());
         // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);

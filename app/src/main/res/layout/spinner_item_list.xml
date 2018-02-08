@@ -13,5 +13,5 @@
             android:layout_marginRight="12sp"
             android:textAlignment="center"
             android:textColor="@color/TextColor"
-            android:textSize="@dimen/text_message" />
+            android:textSize="@dimen/_13dp_normal_textSize" />
 </LinearLayout>

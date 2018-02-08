@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/tvANRaft1_1"
-            android:layout_width="30dp"
+            android:layout_width="@dimen/_30dp"
             android:gravity="left"
 
             android:layout_height="wrap_content"
@@ -31,20 +31,19 @@
             android:text="IKA"
 
             android:textColor="@color/text_color_4d"
-            android:textSize="12dp" />
+            android:textSize="@dimen/_12dp_normal_textSize" />
 
         <ImageView
             android:id="@+id/ivArrow"
 
-            android:layout_width="200dp"
-            android:layout_height="14dp"
+            android:layout_width="@dimen/_200dp_fh"
+            android:layout_height="@dimen/_14dp"
             android:scaleType="fitXY"
             android:gravity="right"
             android:padding="4dp"
             android:src="@drawable/gray_line"
             android:text=" "
             android:textColor="#486b6b"
-            android:textSize="10dip"
             android:visibility="visible"
             android:rotation="180"
             android:layout_gravity="center"/>
@@ -52,13 +51,13 @@
         <TextView
             android:id="@+id/tvANRaft1_2"
 
-            android:layout_width="30dp"
+            android:layout_width="@dimen/_30dp"
             android:gravity="left"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="12dp" />
+            android:textSize="@dimen/_12dp_normal_textSize" />
 
     </LinearLayout>
 </LinearLayout>

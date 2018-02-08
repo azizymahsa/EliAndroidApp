@@ -14,27 +14,26 @@
         xmlns:fancy="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        >
+        android:layout_height="@dimen/toolbar_height_70dp"        >
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/toolbar_height_70dp"
             android:background="@color/toolbar_color"/>
 
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/toolbar_bottom_width_50dp"
+            android:layout_height="@dimen/toolbar_bottom_width_50dp"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="200dp"
             fancy:fb_textColor="#FFFFFF"
 
             android:layout_gravity="right|center"
-            fancy:fb_textSize="20dp"
+            fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
             fancy:fb_text=" "
             android:gravity="right"
             />
@@ -52,8 +51,9 @@
                 android:textSize="@dimen/toolbar_title_16dp"
                 android:textAppearance="@style/IrsansBold"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
 
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/_5dp_margin"
                 />
             <TextView
                 android:id="@+id/tvCount"
@@ -63,6 +63,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_12dp"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
 
                 android:layout_marginTop="15dp"
@@ -71,14 +72,16 @@
 
 
             <TextView
+                android:layout_below="@+id/tvTitle"
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/toolbar_desc_12dp"
+
+
                 android:ellipsize="end"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -96,24 +99,28 @@
 
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnHome"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/toolbar_bottom_width_50dp"
+                    android:layout_height="@dimen/toolbar_bottom_width_50dp"
                     android:layout_gravity="right"
                     android:gravity="right"
                     fancy:fb_defaultColor="@android:color/transparent"
                     fancy:fb_focusColor="@color/focusColor"
 
-                    fancy:fb_radius="6dp"
+                    fancy:fb_radius="200dp"
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp" />
+                    fancy:fb_textSize="25dp"
+                    />
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:src="@drawable/e_logo"
-                 />
+                    android:id="@+id/txt_hom"
+                    android:layout_width="@dimen/_30dp"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_marginTop="@dimen/_15dp_margin"
+                    android:layout_marginLeft="@dimen/_15dp_margin"
+                    android:background="@drawable/e_logo"
+                    />
+
 
 
             </RelativeLayout>
@@ -223,6 +230,7 @@
             android:background="@drawable/shadow3"/>
         <LinearLayout
             android:id="@+id/llFilter"
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
@@ -270,8 +278,8 @@
                         android:text="@string/icon_arrow_left"
                         android:textAppearance="@style/IconFonts"
                         android:gravity="center"
-                        android:textSize="26dp"
-                        android:layout_marginLeft="5dp"
+                        android:textSize="@dimen/_25dp_normal_iconSize"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
                         android:textColor="#4d4d4d"/>
                     <TextView
                         android:layout_toRightOf="@+id/tvNextDay"
@@ -281,7 +289,7 @@
                         android:gravity="center"
 
                         android:text="روز قبل"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_14dp_txtSize"
                         />
 
 
@@ -319,8 +327,8 @@
                         android:gravity="center"
 
                         android:text="روز بعد"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="14dp"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
+                        android:textSize="@dimen/_14dp_txtSize"
                         />
                     <TextView
 
@@ -328,7 +336,7 @@
                         android:layout_height="match_parent"
                         android:text="@string/icon_arrow_right"
                         android:textAppearance="@style/IconFonts"
-                        android:textSize="26dp"
+                        android:textSize="@dimen/_25dp_normal_iconSize"
                         android:gravity="center"
 
                         android:textColor="#4d4d4d"
@@ -343,7 +351,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:id="@+id/llBottom"
 
@@ -355,11 +362,11 @@
                     android:id="@+id/tvFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="#4d4d4d"
                     android:gravity="center"
                     android:text="فیلتر کردن"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="14dp"
+                    android:layout_marginLeft="@dimen/_5dp_margin"
+                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textColor="#4d4d4d"
                     />
                 <TextView
                     android:id="@+id/tvFilterIcon"
@@ -369,9 +376,10 @@
                     android:text="@string/icon_filter"
                     android:textAppearance="@style/IconFonts"
                     android:gravity="center"
-                    android:textSize="26dp"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="#4d4d4d" />
+                    android:textSize="@dimen/_25dp_normal_iconSize"
+                    android:layout_marginLeft="@dimen/_5dp_margin"
+                    android:textColor="#4d4d4d"
+                    />
             </LinearLayout>
 
             <View
@@ -393,11 +401,11 @@
                     android:id="@+id/tvSort"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="#4d4d4d"
                     android:gravity="center"
                     android:text="مرتب کردن"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="14dp"
+                    android:layout_marginLeft="@dimen/_5dp_margin"
+                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textColor="#4d4d4d"
                     />
                 <TextView
                     android:id="@+id/tvSortIcon"
@@ -406,8 +414,8 @@
                     android:text="@string/icon_sort"
                     android:textAppearance="@style/IconFonts"
                     android:gravity="center"
-                    android:textSize="26dp"
-                    android:layout_marginLeft="5dp"
+                    android:textSize="@dimen/_25dp_normal_iconSize"
+                    android:layout_marginLeft="@dimen/_5dp_margin"
                     android:textColor="#4d4d4d" />
 
             </LinearLayout>

@@ -18,20 +18,20 @@
 
         <TextView
             android:id="@+id/tvANRaft3_1_bargasht"
-            android:layout_width="30dp"
+            android:layout_width="@dimen/_30dp"
             android:gravity="left"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="12dp" />
+            android:textSize="@dimen/_12dp_normal_textSize" />
 
         <ImageView
             android:id="@+id/ivArrow55"
 
-            android:layout_width="50dp"
-            android:layout_height="14dp"
+            android:layout_width="@dimen/_50dp_fh"
+            android:layout_height="@dimen/_14dp"
             android:scaleType="fitXY"
             android:gravity="right"
             android:padding="4dp"
@@ -43,13 +43,13 @@
         <TextView
             android:id="@+id/tvANRaft3_2_bargasht"
 
-            android:layout_width="30dp"
+            android:layout_width="@dimen/_30dp"
             android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="12dp" />
+            android:textSize="@dimen/_12dp_normal_textSize" />
 
     </LinearLayout>
 
@@ -64,8 +64,8 @@
         <ImageView
             android:id="@+id/ivArrow77"
 
-            android:layout_width="50dp"
-            android:layout_height="14dp"
+            android:layout_width="@dimen/_50dp_fh"
+            android:layout_height="@dimen/_14dp"
             android:scaleType="fitXY"
             android:gravity="right"
             android:padding="4dp"
@@ -78,13 +78,13 @@
         <TextView
             android:id="@+id/tvANRaft3_3_bargasht"
 
-            android:layout_width="30dp"
+            android:layout_width="@dimen/_30dp"
             android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="12dp" />
+            android:textSize="@dimen/_12dp_normal_textSize" />
 
     </LinearLayout>
 
@@ -98,8 +98,8 @@
         <ImageView
             android:id="@+id/ivArrow66"
 
-            android:layout_width="50dp"
-            android:layout_height="14dp"
+            android:layout_width="@dimen/_50dp_fh"
+            android:layout_height="@dimen/_14dp"
             android:scaleType="fitXY"
             android:gravity="right"
             android:padding="4dp"
@@ -112,13 +112,13 @@
         <TextView
             android:id="@+id/tvANRaft3_4_bargasht"
 
-            android:layout_width="30dp"
+            android:layout_width="@dimen/_30dp"
             android:gravity="left"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="12dp" />
+            android:textSize="@dimen/_12dp_normal_textSize" />
 
     </LinearLayout>
 

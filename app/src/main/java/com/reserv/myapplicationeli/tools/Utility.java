@@ -43,6 +43,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.mohamadamin.persianmaterialdatetimepicker.Utils;
 import com.onesignal.OneSignal;
 import com.reserv.myapplicationeli.R;
@@ -717,6 +718,13 @@ public class Utility extends Activity {
             }
 
         }
+        public static void setAnimLoading(Activity activity){
+            LottieAnimationView lottieAnimationView = activity.findViewById(R.id.animation_view);
+            lottieAnimationView.setAnimation("circle-l.json");
+            lottieAnimationView.playAnimation();
+
+
+    }
 
 
 }

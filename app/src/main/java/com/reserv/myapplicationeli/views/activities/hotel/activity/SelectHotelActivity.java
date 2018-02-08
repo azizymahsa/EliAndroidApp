@@ -82,10 +82,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private HotelAvailApi availApi;
     private List<Rooms> rooms = new ArrayList<>();
     RelativeLayout rlLoading, rlRoot;
-    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort,tvLoading;
+    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
     Window window;
     RelativeLayout elNotFound;
-    LottieAnimationView lottieAnimationView;
+    com.hanks.htextview.typer.TyperTextView tvLoading;
 
 
 
@@ -133,10 +133,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnLastDays.setOnClickListener(this);
         btnHome.setOnClickListener(this);
         notiRecive();
-        lottieAnimationView = findViewById(R.id.animation_view);
         tvLoading.setText(Prefs.getString("H",""));
-        lottieAnimationView.setAnimation("circle-l.json");
-        lottieAnimationView.playAnimation();
+
+ Utility.setAnimLoading(this);
 
 
 

@@ -32,7 +32,7 @@
         android:layout_marginBottom="10dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/_60dp_hight"
             android:orientation="horizontal"
             android:background="#1234"
             android:gravity="center"
@@ -63,7 +63,7 @@
                         android:layout_height="match_parent"
                         android:text="0"
                         android:gravity="center"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_14dp_txtSize"
                         android:layout_marginRight="5dp"
                         android:layout_marginLeft="5dp"
                         android:textColor="#55223344"
@@ -86,7 +86,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="20"
                     android:background="@drawable/like_background"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/tvLike"
@@ -97,16 +98,16 @@
                         android:gravity="center"
                         android:text="0"
                         android:textColor="#55223344"
-                        android:textSize="14dp" />
+                        android:textSize="@dimen/_14dp_txtSize" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="@string/icon_like"
                         android:textAppearance="@style/IconFonts"
                         android:textColor="#55223344"
-                        android:textSize="@dimen/_20dp"
+                        android:textSize="@dimen/_25dp_normal_iconSize"
 
                         />
                 </LinearLayout>
@@ -143,7 +144,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
-                android:textSize="@dimen/_25dp"
+                android:textSize="@dimen/_25dp_normal_iconSize"
                 android:gravity="center"
                 android:textAppearance="@style/IconFonts"
                 android:text="@string/icon_message"
@@ -178,7 +179,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="8dp"
-                android:textSize="12dp"
+                android:textSize="@dimen/_12dp_normal_textSize"
                 android:textColor="#87223344"
                 android:ellipsize="end"
                 android:maxLines="2"

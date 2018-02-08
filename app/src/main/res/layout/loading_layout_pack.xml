@@ -18,21 +18,40 @@
         style="@style/AVLoadingIndicatorView"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:indicatorColor="@color/white"
         app:indicatorName="BallSpinFadeLoaderIndicator"
-        android:layout_below="@+id/tv"
+        android:layout_below="@+id/tvLoading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="@dimen/toolbar_height_70dp"
+        android:layout_height="@dimen/toolbar_height_70dp"
+        android:layout_below="@+id/tvLoading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        />
+
+
+
+
     <TextView
-        android:id="@+id/tv"
+        xmlns:app="http://schemas.android.com/tools"
+
+        android:id="@+id/tvLoading"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="رزرواسیون آنلاین هتل \n با بیش از 200000 هتل در سراسر دنیا"
-        android:textSize="16dp"
+        android:textSize="@dimen/_16dp_txtSize"
         android:textColor="@color/white"
         android:gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        app:charIncrease="3"
+        app:typerSpeed="80"/>
+
 
 </RelativeLayout>

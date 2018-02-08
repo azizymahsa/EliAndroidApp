@@ -95,7 +95,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 					data.add(fishData);
 				}
 			}
-			mAdapter = new GetAirPortHotelAdapter(GetAirportHotelActivity.this, data, GetAirportHotelActivity.this,getIntent().getExtras().getInt("type"));
+			mAdapter = new GetAirPortHotelAdapter(GetAirportHotelActivity.this, data, GetAirportHotelActivity.this,getIntent().getExtras().getInt("type"),getIntent().getExtras().getString("position"));
 			//mAdapter.setAdapter(mAdapter);
 			mAdapter.setData(data);
 			listAirPort.setAdapter(mAdapter);
@@ -337,7 +337,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 
 						////
 						listAirPort = (ListView) findViewById(R.id.listAirPort);
-						mAdapter = new GetAirPortHotelAdapter(GetAirportHotelActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportHotelActivity.this, getIntent().getExtras().getInt("type"));
+						mAdapter = new GetAirPortHotelAdapter(GetAirportHotelActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportHotelActivity.this, getIntent().getExtras().getInt("type"),getIntent().getExtras().getString("position"));
 						//mAdapter.setAdapter(mAdapter);
 						mAdapter.setData(data);
 						listAirPort.setAdapter(mAdapter);

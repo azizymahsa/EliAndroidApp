@@ -163,7 +163,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	public String BargashtF;
 	public String Raft;
 	public String Bargasht;
-	public TextView txtDateOnvan;
+	public TextView txtDateOnvan,tvLoading;
 	public LinearLayout linear_expand ;
 	public  SearchParvazPinAdapter searchParvazPinAdapter;
 	public static RecyclerView recyclerViewFlight;
@@ -174,7 +174,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_parvaz);
-		OneSignal.sendTag("position", "isSearchFlight");
+		Utility.setAnimLoading(this);
+
 		window = getWindow();
 		linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
 		Bundle bundle = this.getIntent().getExtras();
@@ -225,6 +226,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		txticon.setOnClickListener(this);
 
 		txtCityBargashtt = (TextView) findViewById(R.id.txtCityBargashtt);
+		tvLoading = (TextView) findViewById(R.id.tvLoading);
+		tvLoading.setText(Prefs.getString("F",""));
+
 		txtCityBargashtt.setOnClickListener(this);
 
 		txtCityBargasht = (TextView) findViewById(R.id.txtCityBargasht);

@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -74,7 +75,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     public ViewGroup view;
     public ViewGroup layout_room;
     public Spinner spn_cities;
-    public AVLoadingIndicatorView prg_cities;
     public Button btnSearchPackage;
     public LinearLayout btn_return_date;
     public LinearLayout btn_depart_date,linear_picker_depart,linear_picker_return;
@@ -100,6 +100,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     TextView txt_return_date;
     TextView txt_depart_date;
     boolean geo = false;
+    LottieAnimationView lottieAnimationView;
 
     public static PackageFragment instance() {
         PackageFragment fragment = new PackageFragment();
@@ -197,7 +198,6 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
 
         layout_room = (ViewGroup) view.findViewById(R.id.layout_room);
         spn_cities = (Spinner) view.findViewById(R.id.spn_cities);
-        prg_cities = (AVLoadingIndicatorView) view.findViewById(R.id.prg_cities);
         btnSearchPackage = (Button) view.findViewById(R.id.btnSearchPackage);
         btn_return_date = (LinearLayout) view.findViewById(R.id.btn_return_date);
         btn_depart_date = (LinearLayout) view.findViewById(R.id.btn_depart_date);
@@ -209,7 +209,8 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
         linear_picker_depart = view.findViewById(R.id.linear_picker_depart);
         linear_picker_return = view.findViewById(R.id.linear_picker_return);
 
-
+         lottieAnimationView = view.findViewById(R.id.animation_view);
+        lottieAnimationView.setAnimation("circle-l.json");
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy/MM/dd");
         departureFrom = currentDateTime;
         departureTo = currentDateTime;
@@ -348,12 +349,14 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
 
     private void showLoading() {
         spn_cities.setVisibility(View.GONE);
-        prg_cities.setVisibility(View.VISIBLE);
+        lottieAnimationView.playAnimation();
+
     }
 
     private void hideLoading() {
-        prg_cities.setVisibility(View.GONE);
         spn_cities.setVisibility(View.VISIBLE);
+        lottieAnimationView.setVisibility(View.GONE);
+
     }
 
     @Override

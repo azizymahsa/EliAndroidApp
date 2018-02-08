@@ -71,5 +71,31 @@
     <dimen name="_30dp">30dp</dimen>
     <dimen name="_15dp">15dp</dimen>
  <dimen name="_150dp">150dp</dimen>
+    <dimen name="_20dp_normal_textSize">20dp</dimen>
+ <dimen name="_15dp_normal_textSize">15dp</dimen>
+ <dimen name="_12dp_normal_textSize">12dp</dimen>
+ <dimen name="_25dp_normal_iconSize">25dp</dimen>
+ <dimen name="_16dp_normal_textSize">16dp</dimen>
+ <dimen name="_4dp_normal_margin">4dp</dimen>
+ <dimen name="_15dp_normal_margin">15dp</dimen>
+ <dimen name="_50dp_normal">50dp</dimen>
+    <dimen name="_200dp_normal">200dp</dimen>
+ <dimen name="_250dp_normal">250dp</dimen>
+    <dimen name="_30dp_normal_iconSize">30dp</dimen>
+    <dimen name="_35dp_normal">35dp</dimen>
+ <dimen name="_16dp_exit_menu_textSize">16dp</dimen>
+ <dimen name="_8dp_normal_margin">8dp</dimen>
+    <dimen name="_180dp">180dp</dimen>
+ <dimen name="_13dp_normal_textSize">13dp</dimen>
+ <dimen name="_62dp">62dp</dimen>
+    <dimen name="_18dp_normal_textSize">18dp</dimen>
+    <dimen name="_100dp_normal">100dp</dimen>
+    <dimen name="_200dp_fh">200dp</dimen>
+    <dimen name="_80dp_fh">80dp</dimen>
+    <dimen name="_50dp_fh">50dp</dimen>
+    <dimen name="_30dp_fh">30dp</dimen>
+    <dimen name="_200dp_p">200dp</dimen>
+    <dimen name="_20dp_margin_p">20dp</dimen>
+    <dimen name="_7dp_margin_p">7dp</dimen>
 
 </resources>

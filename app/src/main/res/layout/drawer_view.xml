@@ -8,36 +8,39 @@
     android:orientation="vertical">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rlHedaer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="25"
         android:background="@drawable/background_menu"
         android:gravity="center"
+        android:orientation="vertical"
 >
         <ImageView
             android:id="@+id/ivUser"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/toolbar_height_70dp"
+            android:layout_height="0dp"
+            android:layout_weight="100"
             android:src="@drawable/user_sidemenu"
-           android:layout_centerInParent="true"
+            android:layout_gravity="center"
+
             />
 
         <RelativeLayout
             android:id="@+id/rlUser"
 
-            android:layout_below="@+id/ivUser"
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="30">
 
             <TextView
                 android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="ورود به حساب کاربری"
-                android:textSize="@dimen/_12dp_txtSize"
+                android:textSize="@dimen/_12dp_normal_textSize"
                 android:textColor="#ffffff"
                 android:textAppearance="@style/IrsansBold"
                 android:gravity="center"
@@ -48,19 +51,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="@dimen/_10dp_margin"
                 android:gravity="center"
                 android:text="@string/icon_arrow_up"
                 android:textAppearance="@style/IconFonts"
                 android:textColor="@color/white"
-                android:textSize="18dp"
+                android:textSize="@dimen/_20dp_normal_textSize"
                 android:layout_marginLeft="10dp"/>
 
         </RelativeLayout>
 
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,7 +116,7 @@
                         android:text="خریدهای قبلی من"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2e"
-                        android:textSize="12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <TextView
                         android:id="@+id/tv1"
@@ -125,7 +128,7 @@
                         android:text="@string/contract"
                         android:textAppearance="@style/IconMenu"
                         android:textColor="@color/text_color_2e"
-                        android:textSize="25dp"
+                        android:textSize="@dimen/_30dp_normal_iconSize"
                         android:textStyle="bold" />
 
 
@@ -157,7 +160,7 @@
                         android:text="مشخصات من"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2e"
-                        android:textSize="12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <TextView
                         android:id="@+id/tv2"
@@ -169,7 +172,7 @@
                         android:text="@string/userlogin"
                         android:textAppearance="@style/IconMenu"
                         android:textColor="@color/text_color_2e"
-                        android:textSize="30dp" />
+                        android:textSize="@dimen/_30dp_normal_iconSize"/>
 
                 </RelativeLayout>
 
@@ -223,7 +226,7 @@
                 android:text="بلیط هواپیما"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
                 android:id="@+id/tv3"
@@ -235,7 +238,7 @@
                 android:text="@string/bigplane"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
-                android:textSize="30dp"
+                android:textSize="@dimen/_30dp_normal_iconSize"
                 android:textStyle="bold" />
 
 
@@ -267,7 +270,7 @@
                 android:text="رزرو هتل"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
                 android:id="@+id/tv4"
@@ -279,7 +282,7 @@
                 android:text="@string/hotel"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
-                android:textSize="30dp" />
+                android:textSize="@dimen/_30dp_normal_iconSize"/>
 
         </RelativeLayout>
 
@@ -309,7 +312,7 @@
                 android:text="بلیط هواپیما + رزرو هتل"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
                 android:id="@+id/tv5"
@@ -321,7 +324,7 @@
                 android:text="@string/tour"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
-                android:textSize="30dp" />
+                android:textSize="@dimen/_30dp_normal_iconSize"/>
 
         </RelativeLayout>
 
@@ -354,7 +357,7 @@
                 android:text="تور مسافرتی"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
                 android:id="@+id/tv6"
@@ -366,7 +369,7 @@
                 android:text="@string/packages"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
-                android:textSize="30dp" />
+                android:textSize="@dimen/_30dp_normal_iconSize"/>
 
         </RelativeLayout>
 
@@ -397,7 +400,7 @@
                 android:text="بیمه مسافرتی"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
                 android:id="@+id/tv7"
@@ -409,7 +412,7 @@
                 android:text="@string/insurance"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
-                android:textSize="30dp" />
+                android:textSize="@dimen/_30dp_normal_iconSize"/>
 
         </RelativeLayout>
 
@@ -439,7 +442,7 @@
                 android:text="(به زودی) "
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/red"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
             <TextView
                 android:id="@+id/tvTrain"
                 android:layout_width="wrap_content"
@@ -450,7 +453,7 @@
                 android:text="قطار خارجی "
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
                 android:id="@+id/tv11"
@@ -462,7 +465,7 @@
                 android:text="@string/train"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
-                android:textSize="30dp" />
+                android:textSize="@dimen/_30dp_normal_iconSize"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -491,7 +494,7 @@
                 android:text=" شرایط و قوانین "
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
                 android:id="@+id/tv8"
@@ -503,7 +506,7 @@
                 android:text="@string/terms"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
-                android:textSize="25dp" />
+                android:textSize="@dimen/_30dp_normal_iconSize"/>
 
         </RelativeLayout>
 
@@ -533,7 +536,7 @@
                 android:text=" تماس با ما "
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
                 android:id="@+id/tv9"
@@ -545,7 +548,7 @@
                 android:text="@string/contactus"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
-                android:textSize="25dp" />
+                android:textSize="@dimen/_30dp_normal_iconSize"/>
 
         </RelativeLayout>
 
@@ -576,7 +579,7 @@
                 android:text="درباره ما "
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
-                android:textSize="12dp" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
                 android:id="@+id/tv10"
@@ -588,7 +591,7 @@
                 android:text="@string/aboutus"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
-                android:textSize="30dp" />
+                android:textSize="@dimen/_30dp_normal_iconSize"/>
 
         </RelativeLayout>
 
@@ -603,15 +606,15 @@
             <Button
                 android:id="@+id/btnExit"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="@dimen/_35dp_normal"
                 android:layout_gravity="center"
                 android:layout_marginLeft="31dp"
                 android:layout_marginRight="31dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/_8dp_normal_margin"
                 android:background="@drawable/btngravity_big"
                 android:text="خروج"
                 android:textColor="#FFFFFF"
-                android:textSize="@dimen/_16dp_txtSize"
+                android:textSize="@dimen/_16dp_exit_menu_textSize"
                 android:textStyle="bold"
                 />
 

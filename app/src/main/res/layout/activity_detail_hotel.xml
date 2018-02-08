@@ -40,30 +40,18 @@
             android:orientation="vertical">
 
             <FrameLayout
-                android:id="@+id/hListView2"
+                android:id="@+id/flViewPager"
 
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="@dimen/_200dp_normal">
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/intro_view_pager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-                <com.wang.avi.AVLoadingIndicatorView
 
-                    android:id="@+id/avi1"
-                    style="@style/AVLoadingIndicatorView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/tv"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:visibility="visible"
-                    app:indicatorColor="@color/app_base_color"
-                    app:indicatorName="BallSpinFadeLoaderIndicator"
 
-                    />
 
 
             </FrameLayout>
@@ -73,7 +61,7 @@
                 android:id="@+id/cvHotel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/hListView2"
+                android:layout_below="@+id/flViewPager"
                 android:layout_gravity="center"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
@@ -81,6 +69,7 @@
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="3dp"
                 card_view:cardElevation="3dp"
+                android:visibility="gone"
 
                 >
 
@@ -91,23 +80,24 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                  >
 
                     <TextView
                         android:id="@+id/tvHotelName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ivHotelPic"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/_10dp_margin"
                         android:textAppearance="@style/IrsansBold"
-                        android:textColor="#000000"
-                        android:textSize="18dp"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_18dp_normal_textSize"
                         android:textStyle="bold"
                         android:layout_marginRight="3dp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="@dimen/_30dp"
                         android:gravity="right"
                         android:orientation="horizontal">
 
@@ -115,11 +105,11 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="12"
-                            android:gravity="center"
+                            android:gravity="center|top"
                             android:text="@string/icon_location"
                             android:textAppearance="@style/IconFonts"
-                            android:textColor="#606060"
-                            android:textSize="20dp" />
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_25dp_normal_iconSize" />
 
                         <TextView
                             android:id="@+id/tvAdress"
@@ -131,8 +121,8 @@
                             android:gravity="center|left"
                             android:maxLines="1"
                             android:text="dfsdf"
-                            android:textColor="@color/textColorR"
-                            android:textSize="12dp" />
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_14dp_txtSize" />
 
                         <TextView
                             android:id="@+id/tvCityName"
@@ -143,13 +133,13 @@
                             android:ellipsize="end"
                             android:gravity="center|right"
                             android:maxLines="1"
-                            android:textColor="#606060"
-                            android:textSize="12dp" />
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_14dp_txtSize" />
 
                         <ImageView
                             android:id="@+id/ivImage"
-                            android:layout_width="60dp"
-                            android:layout_height="10dp"
+                            android:layout_width="@dimen/_60dp_hight"
+                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
                             android:layout_gravity="center"
                             android:src="@drawable/rating_start" />
 
@@ -178,7 +168,7 @@
                                 android:gravity="center"
                                 android:text="نظرات"
                                 android:textAppearance="@style/IrsansBold"
-                                android:textSize="10dp" />
+                                android:textSize="@dimen/_10dp_textSize" />
 
                             <View
                                 android:id="@+id/vComment"
@@ -204,7 +194,7 @@
                                 android:gravity="center"
                                 android:text="نقشه"
                                 android:textAppearance="@style/IrsansBold"
-                                android:textSize="10dp" />
+                                android:textSize="@dimen/_10dp_textSize" />
 
                             <View
                                 android:id="@+id/vMap"
@@ -230,7 +220,7 @@
                                 android:gravity="center"
                                 android:text="امکانات"
                                 android:textAppearance="@style/IrsansBold"
-                                android:textSize="10dp" />
+                                android:textSize="@dimen/_10dp_textSize"/>
 
                             <View
                                 android:id="@+id/vEmakanat"
@@ -257,7 +247,7 @@
                                 android:gravity="center"
                                 android:text="انتخاب و رزرو اتاق"
                                 android:textAppearance="@style/IrsansBold"
-                                android:textSize="10dp" />
+                                android:textSize="@dimen/_10dp_textSize" />
 
                             <View
                                 android:id="@+id/vRezerv"
@@ -273,30 +263,7 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:id="@+id/llLoading"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:gravity="center"
-            >
 
-                    <com.wang.avi.AVLoadingIndicatorView
-
-                        android:id="@+id/avi2"
-                        style="@style/AVLoadingIndicatorView"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/tv"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:visibility="visible"
-                        app:indicatorColor="@color/app_base_color"
-                        app:indicatorName="BallSpinFadeLoaderIndicator"
-
-                        />
-
-                </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -332,7 +299,7 @@
                             android:id="@+id/map"
                             android:name="com.google.android.gms.maps.SupportMapFragment"
                             android:layout_width="match_parent"
-                            android:layout_height="250dp" />
+                            android:layout_height="@dimen/_250dp_normal" />
 
                     </FrameLayout>
 
@@ -354,7 +321,8 @@
                 android:layout_marginTop="5dp"
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="3dp"
-                card_view:cardElevation="1dp">
+                card_view:cardElevation="1dp"
+              >
                 <LinearLayout
                     android:id="@+id/llDynamic"
 
@@ -409,8 +377,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cvHotel"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/_5dp_margin"
                 android:orientation="vertical"
+                android:visibility="gone"
 
 
                 >
@@ -423,7 +392,7 @@
                     android:layout_height="40dp"
                     android:layout_below="@+id/tv"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_10dp_margin"
                     android:visibility="gone"
                     app:indicatorColor="@color/app_base_color"
                     app:indicatorName="BallSpinFadeLoaderIndicator"
@@ -440,7 +409,7 @@
                     android:text="نظری ارسال نشده!"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/text_color_2e"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/_16dp_txtSize"
                     android:visibility="gone" />
 
 
@@ -473,10 +442,10 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="@dimen/_100dp_normal"
                             android:layout_marginLeft="7dp"
                             android:layout_marginRight="7dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/_5dp_margin"
                             android:gravity="right"
                             android:orientation="horizontal">
 
@@ -497,7 +466,7 @@
                                     android:text="از مجموع 12 رای ثبت شده"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="@color/text_color_2e"
-                                    android:textSize="10dp"
+                                    android:textSize="@dimen/_10dp_textSize"
                                     />
 
                                 <LinearLayout
@@ -553,7 +522,7 @@
                                     android:text="از مجموع 12 رای ثبت شده"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="@color/text_color_2e"
-                                    android:textSize="12dp" />
+                                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                             </LinearLayout>
@@ -567,8 +536,8 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="7dp"
                         android:layout_marginRight="7dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="right"
+                        android:layout_marginTop="@dimen/_5dp_margin"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <RelativeLayout
@@ -601,13 +570,14 @@
                                 android:id="@+id/tvSortComment"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_marginRight="5dp"
+                                android:layout_marginRight="@dimen/_5dp_margin"
+                                android:layout_centerInParent="true"
                                 android:gravity="center"
-                                android:padding="5dp"
+                                android:padding="@dimen/_5dp_margin"
                                 android:text="مفیدترین نظرات"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/text_color_2e"
-                                android:textSize="14dp" />
+                                android:textSize="@dimen/_12dp_normal_textSize" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -617,7 +587,7 @@
                                 android:text="@string/icon_sort"
                                 android:textAppearance="@style/IconFonts"
                                 android:textColor="@color/text_color_2e"
-                                android:textSize="@dimen/_20dp"
+                                android:textSize="@dimen/icon_size_25dp"
 
                                 />
 
@@ -631,11 +601,11 @@
                             android:layout_height="match_parent"
                             android:layout_weight="100"
                             android:gravity="right|center"
-                            android:padding="5dp"
+                            android:padding="3dp"
                             android:text="نظرات کاربران-  15 نظر"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
-                            android:textSize="14dp" />
+                            android:textSize="@dimen/_14dp_txtSize" />
 
                     </LinearLayout>
 
@@ -644,7 +614,7 @@
                         android:layout_width="match_parent"
 
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/_5dp_margin"
 
                         android:divider="@null"
                         android:dividerHeight="0dp" />
@@ -671,7 +641,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_margin="@dimen/_5dp_margin"
                             android:background="@drawable/background_hotel_detail"
                             android:padding="5dp">
 
@@ -822,5 +792,28 @@
 
         />
 
+    <RelativeLayout
+        android:id="@+id/rlLoading2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ad000000"
+        android:visibility="gone"
+       >
 
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="@dimen/toolbar_height_70dp"
+            android:layout_height="@dimen/toolbar_height_70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_fileName="circle-l.json"
+
+            />
+
+
+    </RelativeLayout>
 </RelativeLayout>

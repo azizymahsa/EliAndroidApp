@@ -4,4 +4,6 @@
     <integer name="paddingTop_spinner">5</integer>
     <integer name="text_justified_size">19</integer>
     <integer name="gallery">700</integer>
+    <integer name="text12">20</integer>
+
 </resources>

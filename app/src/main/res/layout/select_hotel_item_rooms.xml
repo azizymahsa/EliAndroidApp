@@ -34,7 +34,7 @@
                 android:gravity="left|center"
                 android:text="1 X STANDARD ROOM"
                 android:textColor="#253e96"
-                android:textSize="13dp"
+                android:textSize="@dimen/_13dp_normal_textSize"
                 android:textAppearance="@style/IrsansBold"
                 android:textStyle="bold"
                 android:maxLines="1"
@@ -58,12 +58,12 @@
                     android:layout_toRightOf="@+id/title"
                     android:gravity="left|center"
                     android:textColor="@color/green"
-                    android:textSize="12dp"
+                    android:textSize="@dimen/_13dp_normal_textSize"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14dp"
+                    android:textSize="@dimen/_13dp_normal_textSize"
                     android:text="ریال"
                     android:gravity="right"
                     android:layout_marginRight="5dp"
@@ -73,7 +73,7 @@
                     android:id="@+id/tvPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14dp"
+                    android:textSize="@dimen/_13dp_normal_textSize"
                     android:text="10,450,000"
                     android:gravity="right"
                     android:textAppearance="@style/IrsansBold"
@@ -88,9 +88,10 @@
                 android:background="#000000"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/_30dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+               >
 
 
                 <TextView
@@ -98,7 +99,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="100"
-                    android:textSize="10dp"
+                    android:textSize="@dimen/_10dp_textSize"
                     android:text="غیر قابل استرداد و غیر قابل تغییر"
                     android:textColor="#c61a1f"
                     android:gravity="center|left"
@@ -132,7 +133,7 @@
                         android:gravity="center"
                         android:text="قوانین هتل"
                         android:textColor="@color/blue"
-                        android:textSize="12dp"
+                        android:textSize="@dimen/_12dp_normal_textSize"
                         android:layout_toLeftOf="@+id/tv2"
                         android:layout_marginRight="5dp"
 
@@ -145,49 +146,10 @@
                         android:textAppearance="@style/IconFonts"
                         android:text="@string/icon_info"
                         android:textColor="@color/blue"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/_20dp_normal_textSize"
                         android:layout_alignParentRight="true"
                         />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignEnd="@+id/tv2"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignRight="@+id/tv2"
-                        android:layout_marginTop="49dp"
-                        android:orientation="horizontal">
-
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="100"
-                            android:gravity="left"
-                            android:text="فقط اتاق"
-                            android:textColor="#000000"
-                            android:textSize="16dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="100"
-                            android:gravity="right"
-                            android:text="10,450,000"
-                            android:textSize="14dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="right"
-                            android:text="IRR"
-                            android:textColor="@color/green"
-                            android:textSize="14dp" />
-
-
-                    </LinearLayout>
 
                 </RelativeLayout>
 

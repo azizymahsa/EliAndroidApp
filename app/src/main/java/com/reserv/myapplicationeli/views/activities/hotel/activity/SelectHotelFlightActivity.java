@@ -88,7 +88,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     private HotelFlightSearch hotelFlightSearch;
     private List<Rooms> rooms = new ArrayList<>();
     RelativeLayout rlLoading, rlRoot;
-    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
+    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort,tvLoading;
     Window window;
     RelativeLayout elNotFound;
     FancyButton btnNextDays, btnLastDays;
@@ -108,6 +108,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_hotel_flight);
+        Utility.setAnimLoading(this);
+
 
         window = getWindow();
         notiRecive();
@@ -115,6 +117,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         llBottom = findViewById(R.id.llBottom);
         llSort = findViewById(R.id.llSort);
         tvAlert = findViewById(R.id.tvAlert);
+        tvLoading = findViewById(R.id.tvLoading);
         tvTitle = findViewById(R.id.tvTitle);
         tvCount = findViewById(R.id.tvCount);
         btnBack = findViewById(R.id.btnBack);
@@ -140,6 +143,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         llSort.setOnClickListener(this);
         adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, this);
         list.setAdapter(adapter);
+        tvLoading.setText(Prefs.getString("FH",""));
 
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));

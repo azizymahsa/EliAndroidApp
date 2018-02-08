@@ -187,8 +187,9 @@
                     android:gravity="center|right"
                     android:padding="5dp"
                     android:text="تاریخ ورود به هتل	"
-                    android:textAppearance="@style/IrsansBold"
+                    android:textAppearance="@style/IconFonts3"
                     android:textColor="#4d4d4d"
+                    android:textStyle="bold"
 
                     android:textSize="12dp" />
                 <TextView

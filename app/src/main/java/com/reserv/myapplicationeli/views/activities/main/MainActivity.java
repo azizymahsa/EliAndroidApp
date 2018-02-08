@@ -23,6 +23,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static TextView txt_name;
     ExpandableWeightLayout expandableLayout;
     ImageView ivUser;
-    RelativeLayout rlHedaer;
     CountDownTimer countDownTimer;
     private BroadcastReceiver sendFinish;
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnExit;
     private boolean doubleBackToExitPressedOnce = false;
     private int TIME_INTERVAL = 2000;
+    LinearLayout rlHedaer;
 
 
     @Override

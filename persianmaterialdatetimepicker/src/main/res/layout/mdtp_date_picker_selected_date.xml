@@ -74,10 +74,10 @@
         android:id="@+id/date_picker_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="@dimen/mdtp_date_picker_header_text_size"
         android:textColor="#fff"
         android:layout_gravity="center"
-        android:layout_marginTop="-8dp"
+        android:layout_marginTop="@dimen/_8dp"
         />
 
 </LinearLayout>

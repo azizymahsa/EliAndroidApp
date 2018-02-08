@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -122,7 +123,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
     // RecyclerView lvComments;
 
-    RelativeLayout rlLoading, rlRoot;
+    RelativeLayout rlLoading, rlRoot,rlLoading2;
     AddComment addComment;
 
     RoomsAdapter roomsAdapter;
@@ -157,13 +158,15 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     boolean isComment = true;
     CircleProgressView circleView;
     NonScrollRecyclerView lvComments;
+    CardView cvHotel;
+    FrameLayout flViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
-        OneSignal.sendTag("position", "isDetailHotel");
         InitUi.Toolbar(this, false, R.color.toolbar_color, "جزئیات هتل");
+
         window = getWindow();
 
         initView();
@@ -202,6 +205,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     public void initView() {
         //window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
         rlLoading = findViewById(R.id.rlLoading);
+        flViewPager = findViewById(R.id.flViewPager);
+        cvHotel = findViewById(R.id.cvHotel);
         rlRoot = findViewById(R.id.rlRoot);
         llEmakanatClick = findViewById(R.id.llEmakanatClick);
         ivLoading = findViewById(R.id.ivLoading);
@@ -213,7 +218,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         lvComments = findViewById(R.id.lvComments);
         tvCityName = findViewById(R.id.tvCityName);
         llDynamic = findViewById(R.id.llDynamic);
-        llLoading = findViewById(R.id.llLoading);
         tvAlertComment = findViewById(R.id.tvAlertComment);
         llCommentContent = findViewById(R.id.llCommentContent);
         aviComment = findViewById(R.id.aviComment);
@@ -237,6 +241,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvCommentCount = findViewById(R.id.tvCommentCount);
         tvVoteCount = findViewById(R.id.tvVoteCount);
         tvRecommendedPercent = findViewById(R.id.tvRecommendedPercent);
+        rlLoading2 = findViewById(R.id.rlLoading2);
         avi1 = findViewById(R.id.avi1);
         llEmakanatClick.setOnClickListener(this);
         llMapClick.setOnClickListener(this);
@@ -273,6 +278,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 svDetail.fullScroll(View.FOCUS_UP);
             }
         });*/
+
+        Utility.setAnimLoading(this);
+
     }
 
     @Override
@@ -474,7 +482,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
     private class GetRoomsAsync extends AsyncTask<String, Void, String> {
 
-        protected void onPreExecute() {
+        protected void onPreExecute()
+        {
+            rlLoading2.setVisibility(View.VISIBLE);
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
@@ -580,8 +590,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         @Override
         protected void onPostExecute(String result) {
-            avi1.setVisibility(View.GONE);
-            llLoading.setVisibility(View.GONE);
+            rlLoading2.setVisibility(View.GONE);
+
             //new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
@@ -597,6 +607,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
          /*   new InitUi().Loading(rlLoading, rlRoot, false);
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));*/
             try {
+                cvHotel.setVisibility(View.VISIBLE);
+
+
+                YoYo.with(Techniques.FadeIn)
+                        .duration(600)
+                        .playOn(cvHotel);
+
 
                 tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
                 tvTitle.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
@@ -701,7 +718,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                         textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT));
-                        textView.setTextSize(12);
+                        textView.setTextSize(getResources().getInteger(R.integer.text12));
                         textView.setGravity(Gravity.CENTER);
                         textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
                         llPolicy.addView(textView);
@@ -725,6 +742,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                 }
+
+                flViewPager.setVisibility(View.VISIBLE);
+
+                YoYo.with(Techniques.FadeIn)
+                        .duration(600)
+                        .playOn(flViewPager);
+
 
 
                 new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager);
@@ -785,7 +809,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
-        textView.setTextSize(12);
+        textView.setTextSize(getResources().getInteger(R.integer.text12));
         textView.setGravity(Gravity.CENTER);
         textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
         linearLayout.addView(textView);

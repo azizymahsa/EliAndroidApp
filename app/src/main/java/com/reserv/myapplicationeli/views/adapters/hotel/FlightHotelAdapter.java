@@ -323,8 +323,10 @@ public class FlightHotelAdapter extends BaseAdapter {
 
 
 //selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime+"-"+
-        holder.tvRaftTime.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightTime+" ,"+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
-        holder.tvBargashtTime.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime+" ,"+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
+
+
+        holder.tvRaftTime.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
+        holder.tvBargashtTime.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
 
 
         holder.tvRaftTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationM + "دقیقه");

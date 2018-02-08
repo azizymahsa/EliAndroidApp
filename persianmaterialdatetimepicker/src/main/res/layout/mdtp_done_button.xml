@@ -16,7 +16,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/done_background"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
+    android:layout_height="@dimen/_56dp"
     android:orientation="horizontal"
     android:background="@android:color/transparent"
     android:gravity="end|right"
@@ -39,7 +39,7 @@
             android:layout_marginLeft="16dp"
             android:textColor="@color/mdtp_accent_color_dark"
             android:maxLines="1"
-            android:textSize="12sp"/>
+            android:textSize="@dimen/mdtp_day_number_size"/>
     </LinearLayout>
 
 
@@ -68,7 +68,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
         style="@style/mdtp_ActionButton.Text"
-        android:text="@string/mdtp_cancel" />
+        android:text="@string/mdtp_cancel"
+        android:textSize="@dimen/mdtp_day_number_size"/>
 
     <Button
         android:id="@+id/ok"
@@ -77,5 +78,6 @@
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         style="@style/mdtp_ActionButton.Text"
-        android:text="@string/mdtp_ok" />
+        android:text="@string/mdtp_ok"
+        android:textSize="@dimen/mdtp_day_number_size"/>
 </LinearLayout>

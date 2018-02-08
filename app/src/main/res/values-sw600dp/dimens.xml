@@ -5,13 +5,13 @@
 
     <dimen name="circle_60dp">100dp</dimen>
     <dimen name="_12dp">15dp</dimen>
-    <dimen name="_25dp">25dp</dimen>
-    <dimen name="_10dp_margin">10dp</dimen>
-    <dimen name="toolbar_title_16dp">16dp</dimen>
-    <dimen name="toolbar_desc_12dp">12dp</dimen>
+    <dimen name="_25dp">35dp</dimen>
+    <dimen name="_10dp_margin">20dp</dimen>
+    <dimen name="toolbar_title_16dp">20dp</dimen>
+    <dimen name="toolbar_desc_12dp">14dp</dimen>
     <dimen name="margin_5dp">5dp</dimen>
-    <dimen name="toolbar_height_70dp">80dp</dimen>
-    <dimen name="toolbar_bottom_width_50dp">50dp</dimen>
+    <dimen name="toolbar_height_70dp">90dp</dimen>
+    <dimen name="toolbar_bottom_width_50dp">90dp</dimen>
     <dimen name="text_size_12dp">12dp</dimen>
     <dimen name="icon_size_25dp">25dp</dimen>
     <dimen name="text_size">20dp</dimen>
@@ -22,30 +22,30 @@
     <dimen name="_11dp">20dp</dimen>
     <dimen name="_50dp">70dip</dimen>
     <dimen name="_135">250dp</dimen>
-    <dimen name="_10dp">40dp</dimen>
+    <dimen name="_10dp">15dp</dimen>
     <dimen name="_32dp">50dp</dimen>
     <dimen name="_27dp">50dp</dimen>
 
 
 
     <dimen name="_200dp">400dp</dimen>
-    <dimen name="_10dp_marging">10dp</dimen>
+    <dimen name="_10dp_marging">15dp</dimen>
     <dimen name="_12dp_marginTop">12dp</dimen>
-    <dimen name="_14dp_txtSize">18dp</dimen>
+    <dimen name="_14dp_txtSize">20dp</dimen>
     <dimen name="_2dp_padding">2dp</dimen>
     <dimen name="_2dp_margin">2dp</dimen>
     <dimen name="_18dp_margin">18dp</dimen>
     <dimen name="_4dp_margin">4dp</dimen>
-    <dimen name="_15dp_margin">15dp</dimen>
+    <dimen name="_15dp_margin">25dp</dimen>
     <dimen name="_14dp_padding">14dp</dimen>
     <dimen name="_5sp_padding">5dp</dimen>
     <dimen name="_10dp_padding">10dp</dimen>
     <dimen name="_1dp_width">1dp</dimen>
     <dimen name="_1dp_margin">1dp</dimen>
-    <dimen name="_5dp_padding">5dp</dimen>
-    <dimen name="_5dp_margin">5dp</dimen>
+    <dimen name="_5dp_padding">8dp</dimen>
+    <dimen name="_5dp_margin">8dp</dimen>
     <dimen name="_10dp_textSize">14dp</dimen>
-    <dimen name="_60dp_hight">60dp</dimen>
+    <dimen name="_60dp_hight">70dp</dimen>
     <dimen name="_50dp_width">50dp</dimen>
     <dimen name="_6dp_radius">6dp</dimen>
     <dimen name="_25dp_txtSize">25dp</dimen>
@@ -58,15 +58,47 @@
     <dimen name="_3dp_padding">3dp</dimen>
     <dimen name="_25dp_width">25dp</dimen>
     <dimen name="_25dp_height">25dp</dimen>
-    <dimen name="_16dp_txtSize">16dp</dimen>
+    <dimen name="_16dp_txtSize">24dp</dimen>
     <dimen name="text_message">14dp</dimen>
     <dimen name="_17dp_textsize">17dp</dimen>
     <dimen name="_32Plan">50dp</dimen>
     <dimen name="_25dp_margin">25dp</dimen>
     <dimen name="_21dp_margin">21dp</dimen>
-    <dimen name="_40dp">40dp</dimen>
-    <dimen name="_30dp">30dp</dimen>
-    <dimen name="_15dp">15dp</dimen>
-    <dimen name="_150dp">150dp</dimen>
+    <dimen name="_40dp">50dp</dimen>
+    <dimen name="_30dp">60dp</dimen>
+    <dimen name="_15dp">25dp</dimen>
+
+
+    <dimen name="_150dp">250dp</dimen>
+
+
+
+
+    <dimen name="_20dp_normal_textSize">30dp</dimen>
+    <dimen name="_15dp_normal_textSize">20dp</dimen>
+    <dimen name="_12dp_normal_textSize">18dp</dimen>
+    <dimen name="_25dp_normal_iconSize">30dp</dimen>
+    <dimen name="_16dp_normal_textSize">24dp</dimen>
+    <dimen name="_4dp_normal_margin">16dp</dimen>
+    <dimen name="_15dp_normal_margin">25dp</dimen>
+    <dimen name="_50dp_normal">70dp</dimen>
+    <dimen name="_200dp_normal">300dp</dimen>
+    <dimen name="_250dp_normal">350dp</dimen>
+    <dimen name="_30dp_normal_iconSize">40dp</dimen>
+    <dimen name="_35dp_normal">40dp</dimen>
+    <dimen name="_16dp_exit_menu_textSize">20dp</dimen>
+    <dimen name="_8dp_normal_margin">12dp</dimen>
+    <dimen name="_180dp">250</dimen>
+    <dimen name="_13dp_normal_textSize">16dp</dimen>
+    <dimen name="_62dp">82dp</dimen>
+    <dimen name="_18dp_normal_textSize">28dp</dimen>
+    <dimen name="_100dp_normal">140dp</dimen>
+    <dimen name="_200dp_fh">400dp</dimen>
+    <dimen name="_80dp_fh">200dp</dimen>
+    <dimen name="_50dp_fh">100dp</dimen>
+    <dimen name="_30dp_fh">80dp</dimen>
+    <dimen name="_200dp_p">350dp</dimen>
+    <dimen name="_20dp_margin_p">110dp</dimen>
+    <dimen name="_7dp_margin_p">97dp</dimen>
 
 </resources>

@@ -17,15 +17,25 @@
         style="@style/AVLoadingIndicatorView"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:indicatorColor="@color/white"
         app:indicatorName="BallSpinFadeLoaderIndicator"
-        android:layout_below="@+id/tv"
+        android:layout_below="@+id/tvLoading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/tvLoading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        />
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/tvLoading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="رزرواسیون آنلاین بلیط هواپیما \n با بیش از 900 ایرلاین در 70 کشور"

@@ -10,6 +10,6 @@
         android:gravity="center"
         android:padding="13sp"
         android:textColor="@color/TextColor"
-        android:textSize="@dimen/text_message" />
+        android:textSize="@dimen/_13dp_normal_textSize" />
 
 </LinearLayout>

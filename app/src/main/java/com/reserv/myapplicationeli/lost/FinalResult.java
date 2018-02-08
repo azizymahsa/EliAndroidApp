@@ -65,6 +65,7 @@ public class FinalResult extends BaseActivity {
         setContentView(R.layout.activity_final_result);
 
         init_view();
+        Utility.setAnimLoading(this);
 
         try {
             InitUi.Toolbar(this, false, R.color.toolbar_color, "تایید نهایی فاکتور");

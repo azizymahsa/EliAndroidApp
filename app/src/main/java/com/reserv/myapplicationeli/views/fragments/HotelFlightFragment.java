@@ -401,6 +401,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 //	new FilterHotelDialog(getActivity());
                 Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent2.putExtra("type", 1);
+                intent2.putExtra("position", "HF");
 
                 startActivity(intent2);
                 break;
@@ -467,6 +468,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 //	new FilterHotelDialog(getActivity());
                 Intent intent = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent.putExtra("type", 2);
+                intent.putExtra("position", "HF");
+
 
                 startActivity(intent);
 

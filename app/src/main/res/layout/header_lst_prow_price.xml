@@ -14,7 +14,7 @@
         android:maxLines="1"
         android:background="#faf4f4"
         android:layout_gravity="center"
-        android:textColor="#393268"
-        android:textSize="12sp"
+        android:textColor="@color/text_color_4d"
+        android:textSize="@dimen/_12dp_normal_textSize"
         android:gravity="center"/>
 </LinearLayout>

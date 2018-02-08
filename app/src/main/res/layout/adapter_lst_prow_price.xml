@@ -22,7 +22,7 @@
             android:text="اتاق استاندارد با تخت یکنفره"
             android:layout_gravity="center"
             android:textColor="@color/blue"
-            android:textSize="12sp"
+            android:textSize="@dimen/_12dp_normal_textSize"
             android:gravity="center"/>
 
         <LinearLayout
@@ -43,8 +43,8 @@
 
                 <com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox
                     android:id="@+id/chk_prow_price"
-                    android:layout_width="20sp"
-                    android:layout_height="20sp"
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
                     android:layout_marginBottom="12sp"
                     android:layout_gravity="center"
                     app:color_unchecked_stroke="#818181"
@@ -64,7 +64,7 @@
                         android:layout_marginRight="5sp"
                         android:textColor="@color/green"
                         android:gravity="center"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_13dp_normal_textSize"
                         android:textAppearance="@style/IrsansBold"/>
                     <TextView
                         android:id="@+id/total_price"
@@ -73,7 +73,7 @@
                         android:layout_gravity="center"
                         android:textColor="#000"
                         android:text="31,850000"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/_13dp_normal_textSize"
                         android:gravity="center"
                         android:textAppearance="@style/IrsansBold"/>
 
@@ -97,7 +97,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="0.4"
                         android:layout_height="wrap_content"
-                        android:textSize="12dp"
+                        android:textSize="@dimen/_12dp_normal_textSize"
                         android:gravity="center"/>
 
                     <TextView
@@ -108,7 +108,7 @@
                         android:gravity="right"
                         android:padding="5sp"
                         android:text="هر نفر بزرگسال"
-                        android:textSize="12dp"/>
+                        android:textSize="@dimen/_12dp_normal_textSize"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                         android:layout_weight="0.4"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textSize="12dp"/>
+                        android:textSize="@dimen/_12dp_normal_textSize"/>
                     <TextView
                         android:id="@+id/text_w_child"
                         android:layout_width="0dp"
@@ -129,7 +129,7 @@
                         android:gravity="right"
                         android:text=" کودک با تخت"
                         android:padding="6sp"
-                        android:textSize="12dp"/>
+                        android:textSize="@dimen/_12dp_normal_textSize"/>
 
                 </LinearLayout>
 
@@ -143,7 +143,7 @@
                         android:layout_weight="0.4"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textSize="12dp"/>
+                        android:textSize="@dimen/_12dp_normal_textSize"/>
                     <TextView
                         android:id="@+id/text_n_child"
                         android:layout_width="0dp"
@@ -152,7 +152,7 @@
                         android:gravity="right"
                         android:text="کودک بدون تخت"
                         android:padding="6sp"
-                        android:textSize="12dp"/>
+                        android:textSize="@dimen/_12dp_normal_textSize"/>
 
                 </LinearLayout>
 
@@ -166,7 +166,7 @@
                         android:layout_weight="0.4"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textSize="12dp"/>
+                        android:textSize="@dimen/_12dp_normal_textSize"/>
                     <TextView
                         android:id="@+id/text_infant"
                         android:layout_width="0dp"
@@ -175,7 +175,7 @@
                         android:gravity="right"
                         android:text="هر نفر نوزاد"
                         android:padding="6sp"
-                        android:textSize="12dp"/>
+                        android:textSize="@dimen/_12dp_normal_textSize"/>
 
                 </LinearLayout>
 

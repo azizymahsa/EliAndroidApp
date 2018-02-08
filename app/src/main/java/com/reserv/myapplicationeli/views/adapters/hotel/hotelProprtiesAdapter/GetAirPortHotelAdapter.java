@@ -33,13 +33,15 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 	public static String GET_FRAGMENT = null;
 	Activity activity;
 	int type;
+	String position_;
 	LinearLayout llContentLayout;
 
 	 // create constructor to innitilize context and data sent from MainActivity
-    public GetAirPortHotelAdapter(Context context, List<Country> data, String value_Maghsad_City, String value_Maghsad_Airport, String value_Maghsad_Airport_Code, Activity activity,int type){
+    public GetAirPortHotelAdapter(Context context, List<Country> data, String value_Maghsad_City, String value_Maghsad_Airport, String value_Maghsad_Airport_Code, Activity activity,int type,String position_){
     	this.activity=activity;
         this.context=context;
         this.type=type;
+        this.position_=position_;
         inflater= LayoutInflater.from(context);
         this.data=data;
         myInflater = LayoutInflater.from(context);
@@ -64,10 +66,11 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 		notifyDataSetChanged();
     }
 
-	public GetAirPortHotelAdapter(GetAirportHotelActivity getAirportHotelActivity, List<Country> data, GetAirportHotelActivity getAirportHotelActivity1, int type) {
+	public GetAirPortHotelAdapter(GetAirportHotelActivity getAirportHotelActivity, List<Country> data, GetAirportHotelActivity getAirportHotelActivity1, int type,String position_) {
 		this.activity=getAirportHotelActivity1;
 		this.context=getAirportHotelActivity;
 		this.type=type;
+		this.position_=position_;
 		inflater= LayoutInflater.from(context);
 		this.data=data;
 		myInflater = LayoutInflater.from(context);
@@ -120,11 +123,19 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 			holder.AirportName = (TextView) convertView.findViewById(R.id.text1);
 			holder.CityName = (TextView) convertView.findViewById(R.id.text2);
 			holder.llContentLayout = (LinearLayout) convertView.findViewById(R.id.llContentLayout);
+			holder.llLayoutSubTitle = (LinearLayout) convertView.findViewById(R.id.llLayoutSubTitle);
 
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
+		}
+		if (position_.equals("HF")){
+
+			holder.llLayoutSubTitle.setVisibility(View.GONE);
+		}else{
+			holder.llLayoutSubTitle.setVisibility(View.VISIBLE);
+
 		}
 		//cursor.moveToPosition(position);
 		final Country current=data.get(position);
@@ -178,7 +189,7 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 	static class ViewHolder {
 		TextView AirportName;
 		TextView CityName;
-		LinearLayout llContentLayout;
+		LinearLayout llContentLayout,llLayoutSubTitle;
 		
 		
 	}

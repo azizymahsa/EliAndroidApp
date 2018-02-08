@@ -78,8 +78,8 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         }
         holder.txtDescription.setText(item.getDescription()+ "");
 
-        holder.txtDescription.setLineSpacing(10);
-        holder.txtSectionName.setLineSpacing(10);
+        holder.txtDescription.setLineSpacing(15);
+        holder.txtSectionName.setLineSpacing(15);
         //	holder.iv_imageAddress.setBackgroundResource();
 
         if(item.getImageAddress() != "null"){

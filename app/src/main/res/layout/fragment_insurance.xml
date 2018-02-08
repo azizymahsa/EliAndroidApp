@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
->
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,27 +42,41 @@
                 android:visibility="gone"/>
 
         </FrameLayout>
+
+
+
+
+
+
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
             android:orientation="vertical">
+
             <android.support.v7.widget.CardView
+                android:id="@+id/cvDate"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:layout_marginRight="@dimen/_10dp_margin"
                 android:layout_marginLeft="@dimen/_10dp_margin"
-                android:layout_marginTop="@dimen/_10dp">
+                android:layout_marginRight="@dimen/_10dp_margin"
+                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_weight="0.8"
+                card_view:cardBackgroundColor="#ffffff">
 
                 <LinearLayout
+                    android:id="@+id/llBargasht"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/linear_picker_during_travel"
+                        android:id="@+id/linear_picker"
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -70,18 +84,19 @@
                         android:visibility="visible">
 
                         <TextView
+                            android:id="@+id/tarikh_be"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginTop="@dimen/_15dp"
+
+                            android:layout_marginRight="@dimen/_4dp_normal_margin"
+                            android:layout_marginTop="@dimen/_15dp_normal_margin"
                             android:gravity="right"
                             android:text="مدت سفر"
-                            android:textSize="@dimen/text_size_12dp"
-                            android:textColor="@color/text_color_2"
-                            android:textStyle="bold"
-                            android:layout_marginRight="6dp"
                             android:textAppearance="@style/IrsansBold"
-                            />
+                            android:textColor="@color/text_color_2"
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:id="@+id/layout_during_travel"
@@ -92,28 +107,27 @@
                             <TextView
                                 android:id="@+id/txt_during_trip"
                                 android:layout_width="0dp"
-                                android:layout_weight="0.8"
                                 android:layout_height="match_parent"
-                                android:text="انتخاب کنید"
                                 android:layout_marginRight="@dimen/_2dp_margin"
+                                android:layout_weight="0.8"
                                 android:background="#fff"
-                                android:gravity="center|right"
-                                android:textSize="@dimen/text_size_12dp"
+                                android:gravity="right|center"
+                                android:text="انتخاب کنید"
                                 android:textColor="@color/text_color_2"
-                                android:textStyle="bold"
-                                android:paddingRight="@dimen/_5dp_padding"/>
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:textStyle="bold" />
+
                             <TextView
                                 android:layout_width="0dp"
-                                android:layout_weight="0.2"
                                 android:layout_height="match_parent"
-                                android:textAppearance="@style/IconFonts"
-                                android:text="@string/icon_calander"
+                                android:layout_weight="0.2"
                                 android:gravity="center"
+                                android:text="@string/icon_calander"
+                                android:textAppearance="@style/IconFonts"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/icon_size_25dp" />
+                                android:textSize="@dimen/_25dp_normal_iconSize" />
 
                         </LinearLayout>
-
 
 
                         <!-- android:text="اطلاعات مالی" -->
@@ -121,27 +135,25 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/linear_picker_depart_date"
+                        android:id="@+id/llRaft"
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tarikh_az"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_2dp_margin"
-                            android:layout_marginRight="6dp"
-                            android:layout_marginTop="@dimen/_15dp_margin"
+                            android:layout_marginRight="@dimen/_4dp_normal_margin"
+                            android:layout_marginTop="@dimen/_15dp_normal_margin"
+
                             android:gravity="right"
-
                             android:text="تاریخ شروع سفر"
-                            android:textColor="@color/text_color_2"
-                            android:textSize="@dimen/text_size_12dp"
-                            android:textStyle="bold"
                             android:textAppearance="@style/IrsansBold"
-
-                            />
+                            android:textColor="@color/text_color_2"
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:id="@+id/layout_depart_date"
@@ -152,25 +164,25 @@
                             <TextView
                                 android:id="@+id/txt_start_date"
                                 android:layout_width="0dp"
-                                android:layout_weight="0.8"
                                 android:layout_height="match_parent"
-                                android:text="انتخاب کنید"
                                 android:layout_marginRight="@dimen/_2dp_margin"
+                                android:layout_weight="0.8"
                                 android:background="#fff"
                                 android:gravity="right|center"
-                                android:textSize="@dimen/text_size_12dp"
+                                android:text="انتخاب کنید"
                                 android:textColor="@color/text_color_2"
-                                android:textStyle="bold"
-                                />
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:textStyle="bold" />
+
                             <TextView
                                 android:layout_width="0dp"
-                                android:layout_weight="0.2"
                                 android:layout_height="match_parent"
-                                android:textAppearance="@style/IconFonts"
-                                android:text="@string/icon_calander"
+                                android:layout_weight="0.2"
                                 android:gravity="center"
+                                android:text="@string/icon_calander"
+                                android:textAppearance="@style/IconFonts"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/icon_size_25dp" />
+                                android:textSize="@dimen/_25dp_normal_iconSize"/>
 
                         </LinearLayout>
 
@@ -187,7 +199,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.8"
-                android:layout_margin="@dimen/_10dp_margin">
+                android:layout_marginLeft="@dimen/_10dp_margin"
+                android:layout_marginRight="@dimen/_10dp_margin"
+                android:layout_marginTop="@dimen/_10dp_margin">
                 <LinearLayout
                     android:id="@+id/layout_passenger"
                     android:layout_width="match_parent"
@@ -201,44 +215,42 @@
                         android:layout_height="match_parent"
                         android:text="تعداد مسافران"
                         android:gravity="center"
+                        android:textSize="@dimen/_12dp_normal_textSize"
                         android:textColor="@color/text_color_2"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btnSearchInsurance"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40dp"
                     android:layout_gravity="center"
-
-                    android:layout_marginLeft="@dimen/_10dp"
-                    android:layout_marginRight="@dimen/_10dp"
-                    android:layout_marginTop="@dimen/_10dp"
-
+                    android:layout_marginLeft="@dimen/_10dp_margin"
+                    android:layout_marginRight="@dimen/_10dp_margin"
+                    android:layout_marginTop="@dimen/_10dp_margin"
                     android:background="@drawable/btngravity_big"
                     android:text="جستجو"
                     android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_16dp_txtSize"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
-
+                    android:textSize="@dimen/_16dp_normal_textSize"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
 
         </LinearLayout>
+
+
+
+
+
 
 
     </LinearLayout>

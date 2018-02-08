@@ -29,7 +29,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:visibility="visible"
-                app:indicatorColor="@color/color_hotel"
+                app:indicatorColor="@color/app_base_color"
                 app:indicatorName="BallSpinFadeLoaderIndicator" />
 
 
@@ -44,7 +44,7 @@
             <LinearLayout
                 android:id="@+id/RelativeLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="@dimen/_60dp_hight"
                 android:layout_gravity="top"
                 android:background="@drawable/shadow2"
                 android:orientation="vertical">
@@ -67,30 +67,27 @@
                         android:gravity="center|left"
                         android:maxLines="1"
                         android:textColor="@color/white"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_15dp_normal_textSize"
                         android:paddingTop="5sp"
                         android:paddingRight="5sp"
                         android:paddingLeft="8dp"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="20"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
+
 
                         <TextView
                             android:id="@+id/txt_lable_hotel"
-                            android:layout_width="62dp"
+                            android:layout_width="@dimen/_62dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:maxLines="1"
                             android:textColor="@color/white"
-                            android:textSize="10dp"
+                            android:textSize="@dimen/_10dp_textSize"
                             android:text="هتل"
                             android:background="@color/green"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="8dp"
-                     />
-                    </LinearLayout>
+                            android:layout_marginTop="5dp"
+
+                            />
 
 
 
@@ -121,7 +118,7 @@
                             android:text="@string/icon_location2"
                             android:textAppearance="@style/IconFonts"
                             android:textColor="@color/white"
-                            android:textSize="15dp" />
+                            android:textSize="@dimen/_15dp_normal_textSize" />
 
                         <TextView
                             android:id="@+id/txt_location_full_name"
@@ -130,7 +127,7 @@
                             android:layout_marginLeft="5dp"
                             android:gravity="left|center"
                             android:textColor="@color/white"
-                            android:textSize="10dp" />
+                            android:textSize="@dimen/_10dp_textSize" />
 
                         <TextView
                             android:id="@+id/txt_city"
@@ -139,7 +136,7 @@
                             android:layout_marginLeft="5dp"
                             android:gravity="right|center"
                             android:textColor="@color/white"
-                            android:textSize="10dp"
+                            android:textSize="@dimen/_10dp_textSize"
 
                             />
 
@@ -147,9 +144,10 @@
                             android:id="@+id/rating"
                             android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:layout_height="16dp"
+                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
                             android:layout_alignParentRight="true"
                             android:scaleType="fitEnd"
+                            android:textSize="@dimen/_10dp_textSize"
                            android:layout_gravity="right"
                             android:src="@drawable/_2star"
                             android:layout_marginRight="5dp"
@@ -164,7 +162,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="@dimen/_60dp_hight"
                 android:layout_gravity="bottom"
                 android:background="@drawable/shadow_down">
 
@@ -176,7 +174,7 @@
                     android:padding="5sp"
                     android:text="از 18 دی تا 22 دی"
                     android:textColor="@color/white"
-                    android:textSize="10dp" />
+                    android:textSize="@dimen/_10dp_textSize" />
 
             </FrameLayout>
 

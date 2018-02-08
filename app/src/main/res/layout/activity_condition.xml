@@ -10,7 +10,7 @@
     <RelativeLayout
        android:id="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="208dp"
+        android:layout_height="@dimen/_200dp"
         android:background="@drawable/about_us_back">
 
         <LinearLayout
@@ -23,10 +23,10 @@
                 android:id="@+id/btnBack"
                 style="@style/fancy_toolbar"
                 android:layout_gravity="right"
-                fancy:fb_textSize="20dp"
+                fancy:fb_textSize="@dimen/_20dp_normal_textSize"
                 android:visibility="visible"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/_50dp_normal"
+                android:layout_height="@dimen/_50dp_normal"
                 fancy:fb_radius="200dp" />
 
         </LinearLayout>
@@ -224,20 +224,20 @@
                 android:gravity="center">
 
                 <View
-                    android:layout_width="50dp"
+                    android:layout_width="@dimen/_50dp_normal"
                     android:layout_height="1dp"
                     android:background="#2e3192"/>
                 <TextView
                     android:id="@+id/textView11"
-                    android:layout_width="180dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="شرایط و قوانین استفاده از سرویس‌ها و خدمات الی گشت"
                     android:gravity="center"
                     android:textColor="#2e3192"
-                    android:textSize="@dimen/_14dp" />
+                    android:textSize="@dimen/_14dp_txtSize" />
                 <View
-                    android:layout_width="50dp"
+                    android:layout_width="@dimen/_50dp_normal"
                     android:layout_height="1dp"
                     android:background="#2e3192"/>
             </LinearLayout>
@@ -248,8 +248,7 @@
             android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1000"
+
                 android:layout_margin="@dimen/_12dp"
                 android:padding="5dp"
                 android:singleLine="false"

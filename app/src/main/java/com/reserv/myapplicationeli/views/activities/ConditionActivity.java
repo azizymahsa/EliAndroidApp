@@ -72,7 +72,7 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         textView12.setTextSize(1,14);
         textView12.setTextColor(Color.parseColor("#4b494b"));
         textView12.setText(R.string.condition);
-        textView12.setLineSpacing(10);
+        textView12.setLineSpacing(15);
 
         btnBack = (FancyButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
