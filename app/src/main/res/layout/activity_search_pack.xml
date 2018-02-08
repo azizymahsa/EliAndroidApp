@@ -18,12 +18,12 @@
 
             xmlns:fancy="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_height_70dp"        >
+            android:layout_height="@dimen/_60dp_hight"        >
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/toolbar_height_70dp"
+                android:layout_height="@dimen/_60dp_hight"
                 android:background="@color/toolbar_color"/>
 
 

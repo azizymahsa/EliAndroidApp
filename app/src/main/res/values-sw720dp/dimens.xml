@@ -44,7 +44,7 @@
     <dimen name="_5dp_padding">8dp</dimen>
     <dimen name="_5dp_margin">8dp</dimen>
     <dimen name="_10dp_textSize">14dp</dimen>
-    <dimen name="_60dp_hight">90dp</dimen>
+    <dimen name="_60dp_hight">100dp</dimen>
     <dimen name="_50dp_width">50dp</dimen>
     <dimen name="_6dp_radius">6dp</dimen>
     <dimen name="_25dp_txtSize">25dp</dimen>

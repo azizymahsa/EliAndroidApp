@@ -40,7 +40,7 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_5dp_padding">5dp</dimen>
     <dimen name="_5dp_margin">5dp</dimen>
     <dimen name="_10dp_textSize">14dp</dimen>
-    <dimen name="_60dp_hight">60dp</dimen>
+    <dimen name="_60dp_hight">62dp</dimen>
     <dimen name="_50dp_width">50dp</dimen>
     <dimen name="_6dp_radius">6dp</dimen>
     <dimen name="_25dp_txtSize">25dp</dimen>
