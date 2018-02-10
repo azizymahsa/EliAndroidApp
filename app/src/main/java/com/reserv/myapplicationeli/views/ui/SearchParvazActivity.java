@@ -264,6 +264,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				} else {
 					txtDateOnvan.setText( RaftF );
 				}
+				Bargasht=Raft;
 			}else {
 				if (getIntent().getExtras().getBoolean("Geo")) {
 					txtDateOnvan.setText(BargashtF + "  -  " + RaftF);

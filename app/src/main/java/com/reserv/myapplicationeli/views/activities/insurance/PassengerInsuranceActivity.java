@@ -148,14 +148,18 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     public int countB;
     public int countK;
     public int countN;
-    public int sum;
-    private int counter = 2;
+
     private LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight;
     private boolean FlagTab=false;
     private boolean FlagMosaferan=true;
-
+    List<String> alRoom;
     private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
     RelativeLayout rlLoading;
+
+    public JSONArray jsonObj = null;
+    public int sum=0;
+    int counter = 2;
+    int rooms;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -429,12 +429,13 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 
                             txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                            imgCount.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Otagh.value()));
                             txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
                         }
                     }
                     counter--;
                     //xtTitleCountM.setText(" اطلاعات مسافر " + counter);
-                    imgCount.setText(counter+"");
+                    //  imgCount.setText(counter+"");
                     ///////////////////
                 } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
                     ////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
@@ -442,7 +443,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerPackageActivity.this);
                         CursorManager cursorM=items_Table.getMosaferById(counter-1);
                         if(cursorM != null){
-                            for (int i = 0; i < cursorM.getCount(); i++) {
+                            for (int i = 0; i < cursorM.getCount(); i++){
 
                                 txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
                                 txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
@@ -453,13 +454,14 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                                 txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
                                 txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                                imgCount.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Otagh.value()));
                                 txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
                             }
 
                         }
                         counter--;
                         //txtTitleCountM.setText(" اطلاعات مسافر " + counter);
-                        imgCount.setText(counter+"");
+                        // imgCount.setText(counter+"");
                     }else{
                         //////////////////////
                         linear_mosaferan.setVisibility(View.GONE);
@@ -1205,13 +1207,14 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
                     txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
+                    imgCount.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Otagh.value()));
                     //txtTitleCountM.setText(" اطلاعات مسافر " + counter);
                     System.out.println("InsertMosaferGet:"+cursorM.getString(PassengerMosaferItems_Table.Columns.ID.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
                 }
             }
             counter--;
 
-            imgCount.setText(counter+"");
+            // imgCount.setText(counter+"");
             ///////////////////
         }else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
             ////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
@@ -1231,6 +1234,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
                         txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
                         txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
+                        imgCount.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Otagh.value()));
                         System.out.println("InsertMosaferGet:"+cursorM.getString(PassengerMosaferItems_Table.Columns.ID.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
 
                     }
@@ -1238,7 +1242,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 }
                 counter--;
                 //txtTitleCountM.setText(" اطلاعات مسافر " + counter);
-                imgCount.setText(counter+"");
+                //  imgCount.setText(counter+"");
             }else{
                 //////////////////////
                 linear_mosaferan.setVisibility(View.GONE);
