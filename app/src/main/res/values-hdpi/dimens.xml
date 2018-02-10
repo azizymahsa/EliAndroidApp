@@ -69,5 +69,9 @@
     <dimen name="_30dp">30dp</dimen>
     <dimen name="_15dp">15dp</dimen>
     <dimen name="_150dp">150dp</dimen>
+    <dimen name="_110Plandp">110dp</dimen>
+    <dimen name="_125dpF">122dp</dimen>
+    <dimen name="_15dpF">15dip</dimen>
+    <dimen name="_20dpF">20dp</dimen>
 
 </resources>
