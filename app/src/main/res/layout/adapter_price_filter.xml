@@ -16,7 +16,7 @@
         android:text="ریال"
         android:padding="@dimen/_5sp_padding"
         android:textColor="@color/green"
-        android:textSize="14sp"/>
+        android:textSize="@dimen/_13dp_normal_textSize"/>
 
 
     <TextView
@@ -26,12 +26,12 @@
         android:text="1000,000"
         android:padding="@dimen/_5sp_padding"
         android:textColor="@color/gray_dark"
-        android:textSize="14sp"/>
+        android:textSize="@dimen/_13dp_normal_textSize"/>
 
     <cn.refactor.library.SmoothCheckBox
         android:id="@+id/chk_price_filter"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/_25dp_normal_iconSize"
+        android:layout_height="@dimen/_25dp_normal_iconSize"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="@dimen/_5dp_margin"
         app:color_checked="@color/app_base_color" />

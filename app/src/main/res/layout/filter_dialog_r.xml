@@ -7,44 +7,26 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/alert_header_background"
-        android:gravity="center"
+        android:layout_height="@dimen/_50dp"
+        android:padding="10dp"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:background="@drawable/alert_header_background"
+        android:text="پیغام"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16dp_txtSize"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textAppearance="@style/IrsansBold"
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:gravity="center|right"
-            android:text="فیلتر"
-            android:textAppearance="@style/IrsansBold"
-            android:textColor="@android:color/white"
-            android:textSize="16dp"
-
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:gravity="center|right"
-            android:text="@string/icon_filter"
-            android:textAppearance="@style/IconFonts"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:visibility="gone"/>
-
-    </LinearLayout>
+        />
 
     <ScrollView
         android:id="@+id/scrollViewObject"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="@dimen/_400dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -68,7 +50,7 @@
                 android:orientation="horizontal"
                 android:padding="6dip"
                 android:textColor="#000000"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14dp_txtSize"
 
 
                 />
@@ -103,12 +85,12 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="تخفیف ویژه"
-                            android:textSize="14dp" />
+                            android:textSize="@dimen/_14dp_txtSize" />
 
                         <cn.refactor.library.SmoothCheckBox
                             android:id="@+id/bestOff"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="@dimen/_25dp_normal_iconSize"
+                            android:layout_height="@dimen/_25dp_normal_iconSize"
                             android:layout_margin="5dp"
                             app:color_checked="@color/app_base_color" />
                     </LinearLayout>
@@ -124,12 +106,12 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="بیشترین فروش"
-                            android:textSize="14dp" />
+                            android:textSize="@dimen/_14dp_txtSize" />
 
                         <cn.refactor.library.SmoothCheckBox
                             android:id="@+id/bestSeler"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="@dimen/_25dp_normal_iconSize"
+                            android:layout_height="@dimen/_25dp_normal_iconSize"
                             android:layout_margin="5dp"
                             app:color_checked="@color/app_base_color" />
                     </LinearLayout>
@@ -150,7 +132,7 @@
                     android:padding="@dimen/margin_5dp"
                     android:text="درجه مکان اقامتی"
                     android:textAppearance="@style/IrsansBold"
-                    android:textSize="14dp" />
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -169,12 +151,12 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="2 ستاره"
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_14dp_txtSize" />
 
                         <cn.refactor.library.SmoothCheckBox
                             android:id="@+id/star2"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="@dimen/_25dp_normal_iconSize"
+                            android:layout_height="@dimen/_25dp_normal_iconSize"
                             android:layout_margin="5dp"
                             app:color_checked="@color/app_base_color" />
                     </LinearLayout>
@@ -190,12 +172,12 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="1 ستاره"
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_14dp_txtSize" />
 
                         <cn.refactor.library.SmoothCheckBox
                             android:id="@+id/star1"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="@dimen/_25dp_normal_iconSize"
+                            android:layout_height="@dimen/_25dp_normal_iconSize"
                             android:layout_margin="5dp"
                             app:color_checked="@color/app_base_color" />
                     </LinearLayout>
@@ -220,12 +202,12 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="4 ستاره"
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_14dp_txtSize" />
 
                         <cn.refactor.library.SmoothCheckBox
                             android:id="@+id/star4"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="@dimen/_25dp_normal_iconSize"
+                            android:layout_height="@dimen/_25dp_normal_iconSize"
                             android:layout_margin="5dp"
                             app:color_checked="@color/app_base_color" />
                     </LinearLayout>
@@ -241,12 +223,12 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="3 ستاره"
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_14dp_txtSize" />
 
                         <cn.refactor.library.SmoothCheckBox
                             android:id="@+id/star3"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="@dimen/_25dp_normal_iconSize"
+                            android:layout_height="@dimen/_25dp_normal_iconSize"
                             android:layout_margin="5dp"
                             app:color_checked="@color/app_base_color" />
                     </LinearLayout>
@@ -265,12 +247,12 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="5 ستاره"
-                        android:textSize="12dp" />
+                        android:textSize="@dimen/_14dp_txtSize" />
 
                     <cn.refactor.library.SmoothCheckBox
                         android:id="@+id/star5"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="@dimen/_25dp_normal_iconSize"
+                        android:layout_height="@dimen/_25dp_normal_iconSize"
                         android:layout_margin="5dp"
                         app:color_checked="@color/app_base_color" />
                 </LinearLayout>
@@ -289,7 +271,7 @@
                     android:padding="@dimen/margin_5dp"
                     android:text="نوع مکان اقامتی"
                     android:textAppearance="@style/IrsansBold"
-                    android:textSize="14dp" />
+                    android:textSize="@dimen/_14dp_txtSize" />
 
 
                 <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
@@ -309,7 +291,7 @@
                     android:padding="@dimen/margin_5dp"
                     android:text="موقعیت مکان اقامتی"
                     android:textAppearance="@style/IrsansBold"
-                    android:textSize="14dp" />
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/lvLocationTypes"
@@ -327,7 +309,7 @@
                     android:padding="@dimen/margin_5dp"
                     android:text="امکانات مکان اقامتی"
                     android:textAppearance="@style/IrsansBold"
-                    android:textSize="14dp" />
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/lvFacilitiesTypes"
@@ -346,7 +328,7 @@
                     android:padding="@dimen/margin_5dp"
                     android:text="قیمت"
                     android:textAppearance="@style/IrsansBold"
-                    android:textSize="14dp" />
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/lvPrice"
@@ -378,12 +360,12 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="حذف فیلتر"
-                        android:textSize="14dp" />
+                        android:textSize="@dimen/_14dp_txtSize" />
 
                     <cn.refactor.library.SmoothCheckBox
                         android:id="@+id/Remove"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="@dimen/_25dp_normal_iconSize"
+                        android:layout_height="@dimen/_25dp_normal_iconSize"
                         android:layout_margin="5dp"
                         app:color_checked="@color/app_base_color" />
                 </LinearLayout>
@@ -403,11 +385,15 @@
         android:layout_marginBottom="@dimen/_10dp_margin"
         android:layout_marginTop="10dp"
         >
+
+
+
+
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnDeletFilter"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_40dp"
             android:layout_gravity="center"
             android:elevation="1dp"
             android:paddingBottom="1dp"
@@ -416,14 +402,14 @@
             fancy:fb_radius="100dp"
             fancy:fb_text="حذف فیلتر"
             fancy:fb_textColor="#4d4d4d"
-            fancy:fb_textSize="14dp"
+            fancy:fb_textSize="@dimen/_14dp_txtSize"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnOk"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_40dp"
             android:layout_gravity="center"
             android:elevation="1dp"
             android:paddingBottom="1dp"
@@ -432,11 +418,17 @@
             fancy:fb_radius="100dp"
             fancy:fb_text="اعمال فیلتر"
             fancy:fb_textColor="#4d4d4d"
-            fancy:fb_textSize="14dp"
+            fancy:fb_textSize="@dimen/_14dp_txtSize"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
     </LinearLayout>
+
+
+
+
+
+
 
 
 

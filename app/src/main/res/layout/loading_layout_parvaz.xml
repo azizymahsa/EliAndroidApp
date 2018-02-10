@@ -48,7 +48,7 @@
         android:textSize="@dimen/_16dp_txtSize"
         android:textColor="@color/white"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_50dp"
         app:charIncrease="3"
         app:typerSpeed="80"/>
 

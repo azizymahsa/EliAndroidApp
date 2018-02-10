@@ -5,36 +5,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center">
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/alert_header_background"
+        android:layout_height="@dimen/_50dp"
+        android:padding="10dp"
         android:orientation="horizontal"
-        android:gravity="center">
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="مرتب سازی"
-            android:textColor="@android:color/white"
-            android:textSize="16dp"
-            android:gravity="center|right"
-            android:layout_margin="5dp"
-            android:textAppearance="@style/IrsansBold"
+        android:background="@drawable/alert_header_background"
+        android:text="پیغام"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16dp_txtSize"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textAppearance="@style/IrsansBold"
 
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textAppearance="@style/IconFonts"
-            android:textColor="@android:color/white"
-            android:text="@string/icon_sort"
-            android:textSize="25dp"
-            android:gravity="center|right"
-            android:layout_margin="5dp"
-            android:visibility="gone"/>
-
-    </LinearLayout>
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,8 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="بر اساس بیشترین قیمت"
-            android:textSize="12dp"
-            android:textColor="@color/textColorR"
+            android:textSize="@dimen/_14dp_txtSize"
+            android:textColor="@color/text_color_4d"
             android:textAppearance="@style/IrsansBold"
             android:gravity="center"
             android:padding="@dimen/_10dp_margin"/>
@@ -63,8 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="بر اساس کمترین قیمت"
-            android:textSize="12dp"
-            android:textColor="@color/textColorR"
+            android:textSize="@dimen/_14dp_txtSize"
+            android:textColor="@color/text_color_4d"
             android:textAppearance="@style/IrsansBold"
             android:gravity="center"
             android:padding="@dimen/_10dp_margin"/>

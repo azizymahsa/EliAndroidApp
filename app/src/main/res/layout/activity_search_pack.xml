@@ -147,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbarLayout"
-            android:layout_marginTop="120sp"
+            android:layout_marginTop="@dimen/_60dp_margin_package"
             android:background="@drawable/bg_banafash_with_stroke"
             android:gravity="center"
             android:paddingBottom="3sp"
@@ -214,7 +214,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8"
+            android:layout_weight="11"
             android:background="@color/hotel_detail_background"
             android:orientation="horizontal"
             android:gravity="center"

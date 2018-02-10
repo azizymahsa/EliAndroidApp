@@ -65,7 +65,7 @@
                             android:text="شماره پیش فاکتور صادر شده"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
-                            android:textSize="12dp"
+                            android:textSize="@dimen/_12dp_normal_textSize"
 
                             />
 
@@ -78,7 +78,7 @@
                             android:text=""
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/green"
-                            android:textSize="25dp"
+                            android:textSize="@dimen/_25dp_txtSize"
 
                             />
 
@@ -118,7 +118,7 @@
                             android:text="اطلاعات پرداخت"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
-                            android:textSize="12dp"
+                            android:textSize="@dimen/_12dp_normal_textSize"
 
                             />
 
@@ -144,8 +144,7 @@
                                 android:padding="5dp"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/red"
-                                android:textSize="12dp"
-
+                                android:textSize="@dimen/_12dp_normal_textSize"
                                 />
 
                             <RelativeLayout
@@ -165,7 +164,7 @@
                                     android:text="ریال"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="@color/green"
-                                    android:textSize="14dp"
+                                    android:textSize="@dimen/_13dp_normal_textSize"
 
 
                                     />
@@ -181,7 +180,7 @@
                                     android:text="sdfksdfkj"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="#000000"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/_13dp_normal_textSize"
 
 
                                     />
@@ -194,7 +193,7 @@
                                     android:text="مبلغ"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="#000000"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/_13dp_normal_textSize"
 
 
                                     />
@@ -234,7 +233,7 @@
                                     android:text="شماره پیگیری"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="#000000"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/_14dp_txtSize"
 
 
                                     />
@@ -248,7 +247,7 @@
                                     android:text="شماره پیگیری"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="#000000"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/_14dp_txtSize"
 
 
                                     />
@@ -319,7 +318,7 @@
                                 android:gravity="center"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/red"
-                                android:textSize="18dp"
+                                android:textSize="@dimen/_18dp_normal_textSize"
 
 
                                 />
@@ -332,7 +331,7 @@
                                 android:layout_marginTop="5dp"
                                 android:gravity="center"
                                 android:textColor="@color/green"
-                                android:textSize="25dp"
+                                android:textSize="@dimen/_25dp_txtSize"
                                 android:visibility="gone"
 
 
@@ -376,7 +375,7 @@
                     android:gravity="center"
                     android:text="پیگیر کار شما هستیم، لطفا منتظر تماس کارشناسان ما باشید"
                     android:textColor="@color/text_color_4d"
-                    android:textSize="12dp"
+                    android:textSize="@dimen/_12dp_normal_textSize"
                     android:visibility="gone" />
 
             </LinearLayout>
@@ -385,7 +384,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/_60dp_hight"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="20dp"
             android:gravity="center"
@@ -394,7 +393,7 @@
             <Button
                 android:id="@+id/btnRPayment"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -419,8 +418,8 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/toolbar_height_70dp"
+            android:layout_height="@dimen/toolbar_height_70dp"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"

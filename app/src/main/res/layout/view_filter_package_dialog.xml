@@ -7,39 +7,21 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/alert_header_background"
-        android:gravity="center"
+        android:layout_height="@dimen/_50dp"
+        android:padding="10dp"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:background="@drawable/alert_header_background"
+        android:text="پیغام"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16dp_txtSize"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textAppearance="@style/IrsansBold"
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:gravity="center|right"
-            android:text="فیلتر"
-            android:textAppearance="@style/IrsansBold"
-            android:textColor="@android:color/white"
-            android:textSize="16dp"
-
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:gravity="center|right"
-            android:text="@string/icon_filter"
-            android:textAppearance="@style/IconFonts"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:visibility="gone"/>
-
-    </LinearLayout>
+        />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -59,7 +41,7 @@
                 android:padding="@dimen/margin_5dp"
                 android:text="درجه مکان اقامتی"
                 android:textAppearance="@style/IrsansBold"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp_txtSize" />
 
 
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
@@ -83,7 +65,7 @@
                 android:padding="@dimen/margin_5dp"
                 android:text="نوع مکان اقامتی"
                 android:textAppearance="@style/IrsansBold"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp_txtSize" />
 
 
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
@@ -107,7 +89,7 @@
                 android:padding="@dimen/margin_5dp"
                 android:text="موقعیت مکان اقامتی"
                 android:textAppearance="@style/IrsansBold"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp_txtSize" />
 
 
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
@@ -129,7 +111,7 @@
                 android:padding="@dimen/margin_5dp"
                 android:text="امکانات مکان اقامتی"
                 android:textAppearance="@style/IrsansBold"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp_txtSize" />
 
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
                 android:id="@+id/rcl_amenity"
@@ -149,7 +131,7 @@
                 android:padding="@dimen/margin_5dp"
                 android:text="قیمت"
                 android:textAppearance="@style/IrsansBold"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp_txtSize" />
 
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
                 android:id="@+id/rcl_price"
@@ -180,7 +162,7 @@
             android:id="@+id/btnDeletFilter"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_40dp"
             android:layout_gravity="center"
             android:elevation="1dp"
             android:paddingBottom="1dp"
@@ -189,14 +171,14 @@
             fancy:fb_radius="100dp"
             fancy:fb_text="حذف فیلتر"
             fancy:fb_textColor="#4d4d4d"
-            fancy:fb_textSize="14dp"
+            fancy:fb_textSize="@dimen/_14dp_txtSize"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnOk"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_40dp"
             android:layout_gravity="center"
             android:elevation="1dp"
             android:paddingBottom="1dp"
@@ -205,7 +187,7 @@
             fancy:fb_radius="100dp"
             fancy:fb_text="اعمال فیلتر"
             fancy:fb_textColor="#4d4d4d"
-            fancy:fb_textSize="14dp"
+            fancy:fb_textSize="@dimen/_14dp_txtSize"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 

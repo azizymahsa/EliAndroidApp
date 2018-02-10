@@ -18,7 +18,7 @@ import retrofit2.http.POST;
  */
 
 public class UserEntranceRequest extends BaseAPI {
-    public final static String ACTION_NAME = "Common/StaticDataService.svc/UserEntranceService";
+    public final static String ACTION_NAME = "Common/StaticDataService.svc/MobileAppStartupService";
     public UserEntranceResponse entranceResponse;
     UserRequest userRequest;
 

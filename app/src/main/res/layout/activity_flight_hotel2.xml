@@ -21,8 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="@dimen/_30dp"
-            android:layout_marginRight="@dimen/_30dp"
+            android:layout_marginBottom="@dimen/_30dp_margin"
+            android:layout_marginRight="@dimen/_30dp_margin"
             android:layout_marginTop="@dimen/_30dp"
             >
 

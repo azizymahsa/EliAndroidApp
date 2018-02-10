@@ -20,14 +20,15 @@
 
 		<LinearLayout
 			android:id="@+id/fronttop"
-			style="@style/MyListFrontContentRe"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="@dimen/_68dp_f"
 			android:background="#ffffff"
 			android:gravity="center"
-			android:minHeight="40dp"
+			android:minHeight="@dimen/_68dp_f"
 			android:orientation="horizontal"
-			android:tag="front" >
+			android:tag="front"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp">
 
 			<!--  <ImageView
                  android:layout_width="wrap_content"
@@ -39,10 +40,11 @@
 			<LinearLayout
 				android:id="@+id/linearLayout1"
 				android:layout_width="0dip"
-				android:layout_height="match_parent"
+				android:layout_height="@dimen/_68dp_f"
+				android:layout_weight="0.83"
+
 				android:layout_gravity="right"
 				android:layout_marginRight="3dip"
-				android:layout_weight="0.83"
 				android:gravity="right"
 				android:orientation="vertical" >
 
@@ -52,10 +54,11 @@
 
 					android:id="@+id/lblDepurtureAirportR"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
+					android:layout_height="0dp"
+					android:layout_weight="100"
 
 					android:gravity="right"
-					android:textSize="11dp"
+					android:textSize="@dimen/_10dp_textSize"
 					android:text="استانبول"
 					android:textColor="#003399"
 					/>
@@ -63,30 +66,34 @@
 				<TextView
 					android:id="@+id/lblFlightNumberR"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginBottom="5dp"
-					android:layout_marginTop="7dp"
-					android:gravity="right"
+					android:layout_height="0dp"
+					android:layout_weight="100"
+					android:gravity="right|center"
+
 					android:text="3h 45 m ,ترکیش ایر "
 					android:textColor="#0e874e"
-					android:textSize="11dp"
+					android:textSize="@dimen/_10dp_textSize"
+
 					android:textAppearance="@style/fontello_plan"/>
 
 				<TextView
 					android:id="@+id/lblArrivalAirportR"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="3dp"
-					android:gravity="right"
+					android:layout_height="0dp"
+					android:layout_weight="100"
+					android:gravity="right|bottom"
 					android:text="استانبول"
 					android:textColor="#003399"
-					android:textSize="11dp" />
+					android:textSize="@dimen/_10dp_textSize"
+
+					/>
 
 			</LinearLayout>
 			<LinearLayout
 
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
+				android:layout_width="0dip"
+				android:layout_height="@dimen/_68dp_f"
+				android:layout_weight="0.05"
 				android:layout_above="@+id/linearLayout1"
 				android:layout_gravity="right"
 				android:layout_marginRight="1dip"
@@ -95,11 +102,10 @@
 
 				<TextView
 					android:id="@+id/s1"
-					android:layout_width="8dp"
-					android:layout_height="68dp"
+					android:layout_width="@dimen/_8dp_f"
+					android:layout_height="@dimen/_68dp_f"
 					android:layout_marginRight="2dp"
 					android:layout_marginLeft="2dp"
-					android:layout_marginTop="3dp"
 					android:background="@drawable/blb"
 					android:gravity="right"
 					android:text=""
@@ -111,11 +117,10 @@
 			<LinearLayout
 				android:id="@+id/linearLayout2"
 				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
+				android:layout_height="@dimen/_68dp_f"
 				android:layout_above="@+id/linearLayout1"
 				android:layout_gravity="right"
 				android:layout_marginRight="0dip"
-				android:layout_weight="0.06"
 				android:gravity="right"
 				android:orientation="vertical" >
 
@@ -128,7 +133,7 @@
 					android:text="11:40 AM"
 					android:textColor="#003399"
 					android:textAppearance="@style/IrsansBold"
-					android:textSize="10dp" />
+					android:textSize="@dimen/_10dp_textSize" />
 
 				<TextView
 
@@ -149,7 +154,7 @@
 					android:text="2:40 AM"
 					android:textColor="#003399"
 					android:textAppearance="@style/IrsansBold"
-					android:textSize="10dp" />
+					android:textSize="@dimen/_10dp_textSize" />
 
 			</LinearLayout>
 
@@ -172,7 +177,7 @@
 				android:text="جدول نرخ"
 				android:paddingRight="24dp"
 				android:textColor="#595959"
-				android:textSize="14dp"
+				android:textSize="@dimen/_14dp_txtSize"
 				android:textStyle="bold" />
 
 			<LinearLayout
@@ -187,7 +192,7 @@
 					android:layout_marginLeft="10dp"
 					android:layout_marginRight="2dp"
 					android:text="ریال"
-					android:textSize="12dp"/>
+					android:textSize="@dimen/_13dp_normal_textSize"/>
 
 				<TextView
 					android:id="@+id/txtAdlCostP"
@@ -196,7 +201,7 @@
 					android:layout_gravity="center_vertical"
 					android:text="12,000,000"
 					android:textColor="#000000"
-					android:textSize="12dp"
+					android:textSize="@dimen/_13dp_normal_textSize"
 					android:textStyle="bold" />
 
 				<TextView
@@ -208,7 +213,7 @@
 					android:text="قیمت پایه"
 					android:textColor="#aaaaaa"
 					android:paddingRight="24dp"
-					android:textSize="12dp" />
+					android:textSize="@dimen/_12dp_normal_textSize" />
 
 			</LinearLayout>
 			<View
@@ -226,7 +231,7 @@
 					android:layout_gravity="center_vertical"
 					android:layout_marginLeft="10dp"
 					android:layout_marginRight="2dp"
-					android:textSize="12dp"
+					android:textSize="@dimen/_13dp_normal_textSize"
 					android:text="ریال" />
 
 				<TextView
@@ -236,7 +241,7 @@
 					android:layout_gravity="center_vertical"
 					android:text="12,000,000"
 					android:textColor="#000000"
-					android:textSize="12dp"
+					android:textSize="@dimen/_13dp_normal_textSize"
 					android:textStyle="bold" />
 
 				<TextView
@@ -248,7 +253,7 @@
 					android:text=" مالیات"
 					android:textColor="#aaaaaa"
 					android:paddingRight="20dp"
-					android:textSize="12dp" />
+					android:textSize="@dimen/_12dp_normal_textSize"  />
 
 			</LinearLayout>
 			<View
@@ -267,7 +272,7 @@
 					android:layout_marginLeft="10dp"
 					android:layout_marginRight="2dp"
 					android:text="ریال"
-					android:textSize="12dp"
+					android:textSize="@dimen/_13dp_normal_textSize"
 					android:textColor="#24b574" />
 
 				<TextView
@@ -277,7 +282,7 @@
 					android:layout_gravity="center_vertical"
 					android:text="12,000,000"
 					android:textColor="#000000"
-					android:textSize="12dp"
+					android:textSize="@dimen/_13dp_normal_textSize"
 					android:textStyle="bold" />
 
 				<TextView
@@ -289,7 +294,7 @@
 					android:paddingRight="24dp"
 					android:text="قابل پرداخت "
 					android:textColor="#aaaaaa"
-					android:textSize="12dp"
+					android:textSize="@dimen/_12dp_normal_textSize"
 					android:textStyle="bold" />
 
 			</LinearLayout>
@@ -309,16 +314,17 @@
 
 			<Button
 				android:id="@+id/btnSelect"
-				style="?android:attr/buttonStyleSmall"
-				android:layout_width="123dp"
-				android:layout_height="28dp"
+				android:layout_width="@dimen/_123dp"
+				android:layout_height="@dimen/_28dp_f"
 				android:layout_margin="10dp"
 				android:layout_marginLeft="14dp"
 				android:layout_marginRight="14dp"
 				android:background="@drawable/btn_plan_select"
 				android:text="انتخاب و رزرو"
 				android:textColor="#fff"
-				android:visibility="visible" />
+				android:visibility="visible"
+				android:textSize="@dimen/_12dp_normal_textSize"
+				/>
 			<View
 				android:layout_width="match_parent"
 				android:layout_height="1dp"

@@ -21,13 +21,13 @@
 			xmlns:fancy="http://schemas.android.com/apk/res-auto"
 			android:id="@+id/toolbarLayout"
 			android:layout_width="match_parent"
-			android:layout_height="60dp"
+			android:layout_height="@dimen/_60dp_hight"
 			>
 
 			<android.support.v7.widget.Toolbar
 				android:id="@+id/toolbar"
 				android:layout_width="match_parent"
-				android:layout_height="60dp"
+				android:layout_height="@dimen/_60dp_hight"
 				android:background="@color/toolbar_color"/>
 
 
@@ -47,17 +47,24 @@
                 />-->
 			<mehdi.sakout.fancybuttons.FancyButton
 				android:id="@+id/txtBack"
-				style="@style/fancy_toolbar"
-				android:layout_gravity="right"
-				fancy:fb_textSize="20dp"
-				android:visibility="visible"/>
+				android:layout_width="@dimen/toolbar_bottom_width_50dp"
+				android:layout_height="@dimen/toolbar_bottom_width_50dp"
+				fancy:fb_defaultColor="@android:color/transparent"
+				fancy:fb_focusColor="@color/focusColor"
+				fancy:fb_radius="200dp"
+				fancy:fb_textColor="#FFFFFF"
+
+				android:layout_gravity="right|center"
+				fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
+				fancy:fb_text=" "
+				android:gravity="right"/>
 			<RelativeLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_gravity="center">
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
+					android:layout_height="wrap_content"
 					android:layout_gravity="center"
 					android:orientation="horizontal"
 					android:layout_marginRight="50dp"
@@ -66,7 +73,7 @@
 					android:id="@+id/txtCityBargashtt"
 					android:layout_width="0dp"
 					android:layout_weight="0.5"
-					android:layout_height="50dp"
+					android:layout_height="wrap_content"
 					android:layout_centerHorizontal="true"
 					android:gravity="right|center"
 					android:layout_gravity="center"
@@ -75,8 +82,7 @@
 					android:text="tvTitle"
 					android:visibility="visible"
 					android:textColor="#FFFFFF"
-					android:textSize="17dp"
-
+					android:textSize="@dimen/toolbar_title_16dp"
 					 />
 					<mehdi.sakout.fancybuttons.FancyButton
 						android:id="@+id/txticon"
@@ -95,12 +101,12 @@
 						fancy:fb_radius="6dp"
 						fancy:fb_text="تهرااان "
 						fancy:fb_textColor="#FFFFFF"
-						fancy:fb_textSize="17dp" />
+						fancy:fb_textSize="@dimen/icon_size_25dp" />
 					<TextView
 						android:id="@+id/txtCityRaft"
 						android:layout_width="0dp"
 						android:layout_weight="0.5"
-						android:layout_height="50dp"
+						android:layout_height="wrap_content"
 						android:layout_centerHorizontal="true"
 						android:gravity="left|center"
 						android:layout_gravity="center"
@@ -109,7 +115,7 @@
 						android:text="tvTitle"
 						android:visibility="visible"
 						android:textColor="#FFFFFF"
-						android:textSize="17dp"
+						android:textSize="@dimen/toolbar_title_16dp"
 						/>
 				</LinearLayout>
 				<TextView
@@ -137,7 +143,11 @@
 					android:text="asdasd"
 					android:layout_marginTop="2dp"
 					android:textColor="@android:color/white"
-					android:textSize="12dp" />
+					android:textSize="@dimen/toolbar_desc_12dp"
+					android:maxLines="1"
+
+
+					android:ellipsize="end"/>
 
 				<RelativeLayout
 					android:layout_width="wrap_content"
@@ -162,11 +172,13 @@
 						fancy:fb_textSize="25dp" />
 
 					<ImageView
-						android:layout_width="50dp"
-						android:layout_height="match_parent"
-						android:padding="10dp"
-						android:src="@drawable/e_logo"
-						android:visibility="visible"/>
+						android:id="@+id/txt_hom"
+						android:layout_width="@dimen/_30dp"
+						android:layout_height="@dimen/_30dp"
+						android:layout_marginTop="@dimen/_15dp_margin"
+						android:layout_marginLeft="@dimen/_15dp_margin"
+						android:background="@drawable/e_logo"
+						/>
 
 
 				</RelativeLayout>
@@ -327,7 +339,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
-				android:layout_weight="10"
+				android:layout_weight="7"
 				android:background="@color/hotel_detail_background"
 				android:orientation="horizontal"
 				android:gravity="center"
