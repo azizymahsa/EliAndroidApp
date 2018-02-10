@@ -14,7 +14,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="@dimen/_210dp"
             app:contentScrim="@color/toolbar_color"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
@@ -25,13 +25,13 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:paddingTop="60dp"
+                android:paddingTop="@dimen/_60dp_hight"
                 app:layout_collapseMode="parallax">
 
                 <ImageView
                     android:id="@+id/img_profile"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="@dimen/_80dp_ci"
+                    android:layout_height="@dimen/_80dp_ci"
                     android:layout_gravity="center"
                     android:src="@drawable/user_profile" />
                 <TextView
@@ -42,6 +42,7 @@
                     android:textColor="@color/white"
                     android:padding="@dimen/_5sp_padding"
                     android:gravity="center"
+                    android:textSize="@dimen/_12dp_normal_textSize"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:textAppearance="@style/IrsansBold"/>
@@ -61,7 +62,7 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="50sp"
+            android:layout_height="@dimen/_50dp"
             android:background="@color/white"
             android:layoutDirection="rtl"
             app:tabSelectedTextColor="@color/colorPrimaryDark"
@@ -89,12 +90,12 @@
         <Button
             android:id="@+id/btnSaveInfo"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="@dimen/_40dp"
             android:layout_gravity="center|bottom"
             android:background="@drawable/btngravity_big"
             android:text="ثبت و ذخیره اطلاعات"
             android:textColor="#FFFFFF"
-            android:textSize="@dimen/_16dp_txtSize"
+            android:textSize="@dimen/_16dp_normal_textSize"
             android:textStyle="bold"
 
             />

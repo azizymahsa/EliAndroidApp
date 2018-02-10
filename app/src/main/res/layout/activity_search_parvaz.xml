@@ -327,7 +327,7 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
-				android:layout_weight="8"
+				android:layout_weight="10"
 				android:background="@color/hotel_detail_background"
 				android:orientation="horizontal"
 				android:gravity="center"
@@ -371,18 +371,18 @@
 							android:text="@string/icon_arrow_left"
 							android:textAppearance="@style/IconFonts"
 							android:gravity="center"
-							android:textSize="26dp"
 							android:layout_marginLeft="5dp"
-							android:textColor="#4d4d4d" />
+							android:textColor="#4d4d4d"
+							android:textSize="@dimen/_25dp_normal_iconSize" />
 						<TextView
 							android:layout_toRightOf="@+id/tvNextDay"
 							android:id="@+id/txtRuzeGhabl"
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
-							android:textColor="@color/textColorR"
 							android:gravity="center"
 							android:text="روز قبل"
-							android:textSize="14dp"
+							android:textColor="@color/text_color_4d"
+							android:textSize="@dimen/_14dp_txtSize"
 							/>
 
 
@@ -414,12 +414,11 @@
 							android:id="@+id/txtRuzeBad"
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
-							android:textColor="@color/textColorR"
 							android:gravity="center"
 							android:text="روز بعد"
 							android:layout_marginLeft="5dp"
-							android:textSize="14dp"
-							/>
+							android:textColor="@color/text_color_4d"
+							android:textSize="@dimen/_14dp_txtSize"							/>
 						<TextView
 
 							android:layout_width="wrap_content"
@@ -427,8 +426,8 @@
 							android:text="@string/icon_arrow_right"
 							android:textAppearance="@style/IconFonts"
 							android:gravity="center"
-							android:textSize="26dp"
 							android:textColor="#4d4d4d"
+							android:textSize="@dimen/_25dp_normal_iconSize"
 							android:layout_toRightOf="@+id/txtRuzeBad"/>
 
 
@@ -451,12 +450,11 @@
 						android:id="@+id/txtFilter"
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textColor="@color/textColorR"
 						android:gravity="center"
 						android:text="فیلتر کردن"
 						android:layout_marginLeft="5dp"
-						android:textSize="14dp"
-						/>
+						android:textColor="@color/text_color_4d"
+						android:textSize="@dimen/_14dp_txtSize"						/>
 					<TextView
 						android:id="@+id/iconFilter"
 
@@ -465,9 +463,9 @@
 						android:text="@string/icon_filter"
 						android:textAppearance="@style/IconFonts"
 						android:gravity="center"
-						android:textSize="26dp"
 						android:layout_marginLeft="5dp"
-						android:textColor="#4d4d4d" />
+						android:textColor="#4d4d4d"
+						android:textSize="@dimen/_25dp_normal_iconSize" />
 				</LinearLayout>
 
 				<View
@@ -489,12 +487,11 @@
 						android:id="@+id/lblMoratabSazi"
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:textColor="@color/textColorR"
 						android:gravity="center"
 						android:text="مرتب کردن"
 						android:layout_marginLeft="5dp"
-						android:textSize="14dp"
-						/>
+						android:textColor="@color/text_color_4d"
+						android:textSize="@dimen/_14dp_txtSize"						/>
 					<TextView
 						android:id="@+id/tvSortIcon"
 						android:layout_width="wrap_content"
@@ -502,9 +499,9 @@
 						android:text="@string/icon_sort"
 						android:textAppearance="@style/IconFonts"
 						android:gravity="center"
-						android:textSize="26dp"
 						android:layout_marginLeft="5dp"
-						android:textColor="#4d4d4d" />
+						android:textColor="#4d4d4d"
+						android:textSize="@dimen/_25dp_normal_iconSize" />
 
 				</LinearLayout>
 

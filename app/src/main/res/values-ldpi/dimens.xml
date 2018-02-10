@@ -104,5 +104,10 @@
     <dimen name="_125dpF">122dp</dimen>
     <dimen name="_15dpF">15dip</dimen>
  <dimen name="_20dpF">20dp</dimen>
+    <dimen name="_30dp_f_h">30dp</dimen>
+    <dimen name="_210dp">210dp</dimen>
+    <dimen name="_80dp_ci">80dp</dimen>
+    <dimen name="_24dp_textSize">24dp</dimen>
+
 
 </resources>
