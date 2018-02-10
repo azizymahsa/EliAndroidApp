@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -93,7 +94,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     TextView txtPhone,txtAddres,txtSocialFollow,textView15;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
     private GoogleMap map;
-    ExpandableWeightLayout expandableLayout;
+    ExpandableRelativeLayout expandableLayout;
     public ImageView txtInstagram,txtAparat,txtTweeter,txtPintrest,txtLinkdin,txtGoogleP,txtFacebook,txtTelegram;
     // private TextView tvTitle, tvArrow;
     @Override
@@ -223,22 +224,22 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
                     expandableLayout.collapse();
                     //  tvArrow.setText(getString(R.string.icon_arrow_up));
-                    YoYo.with(Techniques.SlideOutUp)
+                  /*  YoYo.with(Techniques.SlideOutUp)
                             .duration(600)
                             .playOn(expandableLayout);
                     textView15.setScroller(new Scroller(this));
                     ScrollView layout_scroll=(ScrollView)findViewById(R.id.layout_scroll);
-                    layout_scroll.fullScroll(ScrollView.FOCUS_DOWN);
+                    layout_scroll.fullScroll(ScrollView.FOCUS_DOWN);*/
                 } else {
 
                     expandableLayout.expand();
                     //  tvArrow.setText(getString(R.string.icon_arrow_down));
-                    YoYo.with(Techniques.SlideInDown)
+                  /*  YoYo.with(Techniques.SlideInDown)
                             .duration(600)
                             .playOn(expandableLayout);
                     textView15.setScroller(new Scroller(this));
                     ScrollView layout_scroll=(ScrollView)findViewById(R.id.layout_scroll);
-                    layout_scroll.fullScroll(ScrollView.FOCUS_DOWN);
+                    layout_scroll.fullScroll(ScrollView.FOCUS_DOWN);*/
                 }
 
                 break;

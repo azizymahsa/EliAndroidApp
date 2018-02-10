@@ -57,7 +57,7 @@
                 android:paddingBottom="10dp"
                 android:textColorHint="@color/dark_blue"
                 android:background="@null"
-                android:textSize="15dp"
+                android:textSize="@dimen/_14dp_txtSize"
                 android:imeOptions="actionNext"
                 android:textColor="@color/dark_blue"
                 android:singleLine="true"
@@ -70,7 +70,7 @@
                 android:textAppearance="@style/User_pass_login"
                 android:text="@string/icon_user_login"
                 android:gravity="center|left|bottom"
-                android:textSize="@dimen/_24dp_textSize"
+                android:textSize="@dimen/_25dp_normal_iconSize"
                 android:paddingLeft="8dp"
                 android:paddingBottom="13dp"
                 android:textColor="@color/light_blue"
@@ -100,7 +100,7 @@
                 android:paddingBottom="10dp"
                 android:textColorHint="@color/dark_blue"
                 android:background="@null"
-               android:textSize="15dp"
+                android:textSize="@dimen/_14dp_txtSize"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:inputType="textPassword"
@@ -112,7 +112,7 @@
                 android:textAppearance="@style/User_pass_login"
                 android:text="@string/icon_pass_login"
                 android:gravity="center|bottom|left"
-                android:textSize="@dimen/_24dp_textSize"
+                android:textSize="@dimen/_25dp_normal_iconSize"
                 android:paddingLeft="8dp"
                 android:paddingBottom="13dp"
 
@@ -142,7 +142,7 @@
                 android:textAppearance="@style/User_pass_login"
                 android:text="@string/icon_forget_login"
                 android:gravity="right|center"
-                android:textSize="@dimen/_24dp_textSize"
+                android:textSize="@dimen/_25dp_normal_iconSize"
                 android:paddingRight="10dp"
                 android:textColor="@color/light_blue"/>
             <TextView
@@ -152,7 +152,7 @@
                 android:gravity="right|center"
                 android:layout_marginRight="40dp"
                 android:textColor="@color/dark_blue"
-                android:textSize="15dp"/>
+                android:textSize="@dimen/_14dp_txtSize"/>
 
 
         </LinearLayout>
@@ -170,7 +170,7 @@
                 android:gravity="right"
                 android:paddingRight="40dp"
                 android:textColor="@color/dark_blue"
-                android:textSize="15dp"
+                android:textSize="@dimen/_14dp_txtSize"
                 android:textAppearance="@style/IrsansBold"/>
 
         </LinearLayout>
@@ -197,9 +197,10 @@
             fancy:fb_radius="0dp"
             fancy:fb_text="ورود"
             fancy:fb_textColor="#FFFFFF"
-            fancy:fb_textSize="16dp"
+            fancy:fb_textSize="@dimen/_16dp_normal_textSize"
             android:gravity="center"
             android:layout_marginTop="3dp"
+            android:paddingBottom="1dp"
             />
 
 

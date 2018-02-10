@@ -100,5 +100,7 @@
     <dimen name="_200dp_p">350dp</dimen>
     <dimen name="_20dp_margin_p">110dp</dimen>
     <dimen name="_7dp_margin_p">97dp</dimen>
+    <dimen name="_50dp_about">100dp</dimen>
+    <dimen name="_250dp_about">450dp</dimen>
 
 </resources>

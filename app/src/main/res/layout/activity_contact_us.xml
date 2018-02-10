@@ -164,7 +164,8 @@
         android:layout_below="@+id/llLayout"
         android:id="@+id/layout_scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:fillViewport="true">
         <!-- <ScrollView
           xmlns:android="http://schemas.android.com/apk/res/android"
           android:layout_width="fill_parent"
@@ -172,13 +173,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <android.support.v7.widget.CardView
 
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/_50dp_about"
                 android:layout_gravity="center"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="10dp"
@@ -187,41 +188,41 @@
                 android:background="@color/hotel_detail_background"
                 android:orientation="horizontal">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     >
 
                     <TextView
                         android:id="@+id/txtPhone"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="100"
                         android:layout_height="wrap_content"
 
-                        android:layout_centerInParent="true"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="021-8540"
                         android:textColor="#2e3192"
-                        android:textSize="@dimen/_25dp" />
+                        android:textSize="@dimen/_25dp"
+                        />
 
                     <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
 
-                        android:layout_weight="1"
-                        android:layout_marginTop="15dp"
+
+                        app:srcCompat="@drawable/contact_us"
                         android:layout_marginRight="10dp"
-                        android:layout_gravity="center"
-                        android:layout_alignParentRight="true"
-                        app:srcCompat="@drawable/contact_us" />
+                        />
 
 
-                </RelativeLayout>
+                </LinearLayout>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
-
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="@dimen/_50dp_about"
                 android:layout_gravity="center"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="10dp"
@@ -230,30 +231,31 @@
                 android:background="@color/hotel_detail_background"
                 android:orientation="horizontal">
 
-              <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    >
 
                     <TextView
                         android:id="@+id/txtAddres"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="135"
+                        android:layout_weight="100"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="تهران -خیابان خالد اسلامبولی کوچه 23 پلاک 7"
                         android:textColor="#aaaaaa"
-                        android:textSize="@dimen/_14dp"
+                        android:textSize="@dimen/_12dp_normal_textSize"
                         />
 
                     <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
+
+                        app:srcCompat="@drawable/location_about"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:layout_alignParentRight="true"
-                        app:srcCompat="@drawable/location_about" />
+                        />
 
                 </LinearLayout>
 
@@ -261,7 +263,7 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/cvViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_250dp_about"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
@@ -285,7 +287,7 @@
                     <FrameLayout
                         android:id="@+id/flMap"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:visibility="visible"
                         >
 
@@ -293,7 +295,7 @@
                             android:name="com.google.android.gms.maps.SupportMapFragment"
                             android:id="@+id/map"
                             android:layout_width="match_parent"
-                            android:layout_height="250dp" />
+                            android:layout_height="match_parent" />
 
                     </FrameLayout>
 
@@ -310,7 +312,7 @@
             <android.support.v7.widget.CardView
 
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_50dp_about"
                 android:layout_gravity="center"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="10dp"
@@ -320,198 +322,36 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/txtSocialFollow"
-                        android:layout_width="355dp"
+                        android:layout_width="match_parent"
                         android:layout_gravity="center"
                         android:layout_height="0dp"
                         android:layout_weight="50"
                         android:gravity="center"
                         android:text="ما را در شبکه های اجتماعی دنبال کنید ...  "
                         android:textColor="#2e3192"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/_12dp_normal_textSize"
                         android:padding="10dp"/>
 
-                    <com.github.aakira.expandablelayout.ExpandableWeightLayout
-                        android:id="@+id/expandableLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="140"
-                        app:ael_duration="700"
-                        app:ael_interpolator="anticipateOvershoot">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:orientation="vertical"
-                            android:background="@drawable/background_strock_white_light"
-                            android:gravity="center"
-                            >
-
-
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <ImageView
-                                    android:id="@+id/txtTelegram"
-                                    android:layout_width="0dp"
-                                    android:layout_marginLeft="30dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginRight="15dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_weight="50"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:src="@drawable/telegram"
-                                    android:text="  " />
-
-                                <ImageView
-                                    android:id="@+id/txtFacebook"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginRight="15dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="50"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:src="@drawable/facebook"
-                                    android:text=" " />
-
-                                <ImageView
-                                    android:id="@+id/txtGoogleP"
-                                    android:layout_width="0dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginRight="15dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_weight="50"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:src="@drawable/google_plus"
-                                    android:text=" "/>
-
-                                <ImageView
-                                    android:id="@+id/txtInstagram"
-                                    android:layout_width="0dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginRight="30dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_weight="50"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:src="@drawable/instagram"
-                                    android:text=" "/>
-
-                            </LinearLayout>
-
-
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <ImageView
-                                    android:id="@+id/txtLinkdin"
-                                    android:layout_marginLeft="30dp"
-                                    android:layout_marginTop="1dp"
-                                    android:layout_marginRight="15dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="50"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:src="@drawable/linkdine"
-                                    android:text=" "/>
-
-                                <ImageView
-
-                                    android:id="@+id/txtPintrest"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginTop="1dp"
-                                    android:layout_marginRight="15dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="50"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:src="@drawable/pintrest"
-                                    android:text=" " />
-                                <ImageView
-                                    android:id="@+id/txtTweeter"
-                                    android:layout_width="0dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginTop="1dp"
-                                    android:layout_marginRight="15dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_weight="50"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:src="@drawable/tweeter"
-                                    android:text=" " />
-
-                                <ImageView
-                                    android:id="@+id/txtAparat"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginTop="1dp"
-                                    android:layout_marginRight="30dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="50"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:src="@drawable/aparat"
-                                    android:text=" "/>
-                            </LinearLayout>
-
-
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="2dp"
-                                android:layout_marginBottom="5dp"
-                                android:background="#aaaaaa"
-                                android:visibility="gone"
-                                />
-
-                        </LinearLayout>
-
-
-
-
-
-                    </com.github.aakira.expandablelayout.ExpandableWeightLayout>
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+
            <!-- //////////////////////////////Expanding social/////////////////////////////////-->
 
             <!--//////////////////////////////////////////////////////////////////-->
             <android.support.v7.widget.CardView
-
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="0dp"
                 android:layout_gravity="center"
+                android:layout_weight="100"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -823,6 +663,153 @@
             </LinearLayout>
         </LinearLayout>
             </android.support.v7.widget.CardView>
+            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                android:id="@+id/expandableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+
+                app:ael_duration="700"
+                app:ael_interpolator="anticipateOvershoot"
+                android:visibility="gone">
+
+
+
+
+
+
+
+            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/background_strock_white_light"
+                android:gravity="center"
+                >
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/txtTelegram"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@drawable/telegram"
+                        android:text="  " />
+
+                    <ImageView
+                        android:id="@+id/txtFacebook"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_width="@dimen/_50dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@drawable/facebook"
+                        android:text=" " />
+
+                    <ImageView
+                        android:id="@+id/txtGoogleP"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@drawable/google_plus"
+                        android:text=" "/>
+
+                    <ImageView
+                        android:id="@+id/txtInstagram"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@drawable/instagram"
+                        android:text=" "/>
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/txtLinkdin"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="1dp"
+                        android:gravity="center"
+                        android:src="@drawable/linkdine"
+                        android:text=" " />
+
+                    <ImageView
+
+                        android:id="@+id/txtPintrest"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_width="@dimen/_50dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@drawable/pintrest"
+                        android:text=" " />
+                    <ImageView
+                        android:id="@+id/txtTweeter"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@drawable/tweeter"
+                        android:text=" " />
+
+                    <ImageView
+                        android:id="@+id/txtAparat"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_width="@dimen/_50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@drawable/aparat"
+                        android:text=" "/>
+                </LinearLayout>
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#aaaaaa"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>

@@ -523,13 +523,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             if (filterModel.isRemove()) {
                 remove = true;
 
-                search="";
+               // search="";
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
                 adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
                 tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
                 adapter.notifyDataSetChanged();
+                selectHotelModelArrayListFilter.clear();
+                searchIn = "";
             }
 
 

@@ -33,12 +33,13 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/_200dp"
+        android:layout_height="@dimen/_200dp"
         android:orientation="vertical"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
         app:lottie_fileName="e-splash.json"
+        android:layout_centerInParent="true"
        />
     <com.wang.avi.AVLoadingIndicatorView
 

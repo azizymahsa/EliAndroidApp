@@ -51,7 +51,7 @@
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="12dp" />
+            android:textSize="@dimen/_12dp_normal_textSize" />
 
     </LinearLayout>
 
