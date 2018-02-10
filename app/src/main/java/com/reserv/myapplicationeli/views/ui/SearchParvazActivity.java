@@ -1805,8 +1805,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 								" ", " ",
 								" ", " ",
-
-								flightsList.get(i).getAdlCost().getAmount(),
+								flightsList.get(i).getTotalFare().getAmount(),
+								//flightsList.get(i).getAdlCost().getAmount(),
 								flightsList.get(i).getFlightGUID()
 								, SegmentList.get(0).getAirlineNameFa()
 								, SegmentList.get(0).getAirlineCode()
@@ -1869,7 +1869,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 								SegmentListFalseAvali.get(0).getDepartureCityNameFa(), SegmentListFalseAvali.get(0).getFlightArrivalTime(),
 								SegmentListFalseAkhari.get(SegmentListFalseAkhari.size() - 1).getArrivalCityNameFa(), SegmentListFalseAkhari.get(0).getFlightTime(),
 
-								flightsList.get(i).getAdlCost().getAmount(),
+								//flightsList.get(i).getAdlCost().getAmount(),
+								flightsList.get(i).getTotalFare().getAmount(),
 								flightsList.get(i).getFlightGUID()
 								, SegmentList.get(0).getAirlineNameFa()
 								, SegmentList.get(0).getAirlineCode()
