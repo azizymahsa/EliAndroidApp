@@ -104,5 +104,6 @@
     <dimen name="_125dpF">122dp</dimen>
     <dimen name="_15dpF">15dip</dimen>
  <dimen name="_20dpF">20dp</dimen>
+    <dimen name="_260dp_f">250dp</dimen>
 
 </resources>

@@ -257,10 +257,19 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			Bargasht = extras.getString("Value-ArrivalDate");
 
 			txtDateOnvan = (TextView) findViewById(R.id.txtDateOnvan);
-			if (getIntent().getExtras().getBoolean("Geo")) {
-				txtDateOnvan.setText( BargashtF+ "  -  " + RaftF);
+			String flagWay = extras.getString("Value-Flag-Two");
+			if(flagWay.trim().equals("1")){
+				if (getIntent().getExtras().getBoolean("Geo")) {
+					txtDateOnvan.setText( RaftF );
+				} else {
+					txtDateOnvan.setText( RaftF );
+				}
 			}else {
-				txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
+				if (getIntent().getExtras().getBoolean("Geo")) {
+					txtDateOnvan.setText(BargashtF + "  -  " + RaftF);
+				} else {
+					txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
+				}
 			}
 
 			System.out.println("txtCityBargasht" + maghsadf + "txtCityRaft" + mabdaf);

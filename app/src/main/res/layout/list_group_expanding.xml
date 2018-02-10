@@ -110,10 +110,10 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="20"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_weight="20"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -139,11 +139,12 @@
 
                             android:layout_height="match_parent"
                             android:layout_marginLeft="1dp"
-                            android:textAppearance="@style/IrsansBold"
                             android:gravity="center"
                             android:text="TK898"
+                            android:textAppearance="@style/fontello_plan"
                             android:textColor="#003399"
-                            android:textSize="@dimen/text_size_12dp" />
+                            android:textSize="@dimen/_14dp_txtSize"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -173,34 +174,30 @@
                         android:layout_gravity="right|center_vertical"
                         android:layout_weight="2"
                         android:text="یکشنبه,21:05"
-                        android:textAppearance="@style/IrsansBold"
+                        android:textAppearance="@style/fontello_plan"
                         android:textColor="#003399"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_14dp_txtSize"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <ImageView
+                <ImageView
 
-                        android:layout_width="260dp"
-                        android:layout_height="18dp"
-                        android:layout_gravity="right"
-                        android:layout_marginRight="0dp"
+                    android:layout_width="260dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="0dp"
 
-                        android:src="@drawable/gray_line"
-                        android:gravity="right"
-                        android:text=" "
-                        android:scaleType="fitXY"
-                        android:textColor="#486b6b"
-                        android:textSize="10dip"
-                        android:visibility="visible"
-                        android:padding="4dp"/>
-                  <!--  android:layout_alignParentRight="true"-->
-                </RelativeLayout>
-
+                    android:gravity="right"
+                    android:padding="4dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/gray_line"
+                    android:text=" "
+                    android:textColor="#486b6b"
+                    android:textSize="10dip"
+                    android:visibility="visible" />
+                <!--  android:layout_alignParentRight="true"-->
 
 
                 <LinearLayout
@@ -242,9 +239,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_weight="2"
-
                         android:layout_gravity="right|center_vertical"
+
+                        android:layout_weight="2"
 
                         android:text="استانبول  "
                         android:textColor="#000"
@@ -256,8 +253,8 @@
                     android:id="@+id/linearBargashtOne"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="3dp">
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="15dp">
 
                     <!-- <TextView
                          android:id="@+id/textView1"
@@ -275,14 +272,14 @@
                         <TextView
                             android:id="@+id/num_flight_b"
                             android:layout_width="90dp"
-
                             android:layout_height="match_parent"
                             android:layout_marginLeft="1dp"
-                            android:textAppearance="@style/IrsansBold"
                             android:gravity="center"
                             android:text="TK898"
+                            android:textAppearance="@style/fontello_plan"
                             android:textColor="#003399"
-                            android:textSize="@dimen/text_size_12dp" />
+                            android:textSize="@dimen/_14dp_txtSize"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -299,7 +296,7 @@
 
                         android:text="5"
                         android:textColor="#aaa"
-                        android:textSize="@dimen/_10dp" />
+                        android:textSize="@dimen/_10dp_textSize" />
 
                     <TextView
 
@@ -307,36 +304,36 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_weight="2"
-
                         android:layout_gravity="right|center_vertical"
-                        android:textAppearance="@style/IrsansBold"
+
+                        android:layout_weight="2"
                         android:text="یکشنبه,21:05"
+                        android:textAppearance="@style/fontello_plan"
                         android:textColor="#003399"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_14dp_txtSize"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/linearBargashtTwo"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right">
+
                     <ImageView
 
-                        android:layout_width="260dp"
-                        android:layout_height="18dp"
+                        android:layout_width="@dimen/_260dp_f"
+                        android:layout_height="@dimen/_14dp"
                         android:layout_gravity="center"
-                        android:layout_marginRight="0dp"
-                        android:src="@drawable/gray_line"
                         android:gravity="center"
-
-                        android:text=" "
+                        android:padding="4dp"
                         android:scaleType="fitXY"
+                        android:src="@drawable/gray_line"
                         android:textColor="#486b6b"
-                        android:textSize="10dip"
-                        android:visibility="visible"
-                        android:padding="4dp"/>
+                        android:visibility="visible" />
                 </RelativeLayout>
+
                 <LinearLayout
                     android:id="@+id/linearBargashtTree"
                     android:layout_width="match_parent"
@@ -371,9 +368,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_weight="2"
-
                         android:layout_gravity="right|center_vertical"
+
+                        android:layout_weight="2"
 
                         android:text="تهران  "
                         android:textColor="#000"

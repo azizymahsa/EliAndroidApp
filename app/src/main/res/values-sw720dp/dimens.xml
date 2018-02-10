@@ -109,5 +109,6 @@
     <dimen name="_125dpF">190dp</dimen>
     <dimen name="_15dpF">15dip</dimen>
     <dimen name="_20dpF">24dp</dimen>
+    <dimen name="_260dp_f">580dp</dimen>
 
 </resources>
