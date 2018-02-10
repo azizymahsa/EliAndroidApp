@@ -1,5 +1,7 @@
 package com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request;
 
+import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
+
 /**
  * Created by Reza.nejati on 2/4/2018.
  */
@@ -14,8 +16,10 @@ public class UserEntranceRequest {
     public final int DeviceOSType ;
     public final String OperatorName;
     public final String Brand;
+    public final String Culture;
+    public final Identity identity;
 
-    public UserEntranceRequest(String IMEI, String IMSI, String SDKVersion, String deviceName, String deviceProduct, int appVersion, int deviceOSType, String operatorName, String brand) {
+    public UserEntranceRequest(String IMEI, String IMSI, String SDKVersion, String deviceName, String deviceProduct, int appVersion, int deviceOSType, String operatorName, String brand, String culture, Identity identity) {
         this.IMEI = IMEI;
         this.IMSI = IMSI;
         this.SDKVersion = SDKVersion;
@@ -25,5 +29,7 @@ public class UserEntranceRequest {
         DeviceOSType = deviceOSType;
         OperatorName = operatorName;
         Brand = brand;
+        Culture = culture;
+        this.identity = identity;
     }
 }

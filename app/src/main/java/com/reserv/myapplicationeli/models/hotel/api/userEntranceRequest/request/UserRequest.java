@@ -5,9 +5,9 @@ package com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request
  */
 
 public class UserRequest {
-    public final UserEntranceRequest UserEntranceRequest;
+    public final UserEntranceRequest request;
 
-    public UserRequest(com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.UserEntranceRequest userEntranceRequest) {
-        UserEntranceRequest = userEntranceRequest;
+    public UserRequest(UserEntranceRequest request) {
+        this.request = request;
     }
 }

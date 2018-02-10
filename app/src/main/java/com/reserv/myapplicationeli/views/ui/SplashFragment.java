@@ -136,10 +136,7 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
                                     model = android.os.Build.MODEL;
                                     brand = Build.BRAND;
                                     product =Build.PRODUCT;
-                                    startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                                    finish();
-
-                                    //  new GetCommentAsync().execute();
+                                    new GetCommentAsync().execute();
 
                                 } else {
 
@@ -220,10 +217,12 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
             try {
                 userEntranceRequest=new UserEntranceRequest(new UserRequest
                         (new com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.
-                                UserEntranceRequest(deviceId,deviceSubscriberID,sdkVersion,model,product, BuildConfig.VERSION_CODE,2,operator,brand)));
+                                UserEntranceRequest(deviceId,deviceSubscriberID,sdkVersion,model,product, BuildConfig.VERSION_CODE,2,operator,brand,"fa-IR",new Identity("EligashtMlb",
+                                "123qwe!@#QWE", "Mobile"))));
                 Log.e("ggg", new Gson().toJson(new UserRequest
                         (new com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.
-                                UserEntranceRequest(deviceId,deviceSubscriberID,sdkVersion,model,product, BuildConfig.VERSION_CODE,2,operator,brand))) );
+                                UserEntranceRequest(deviceId,deviceSubscriberID,sdkVersion,model,product, BuildConfig.VERSION_CODE,2,operator,brand,"fa-IR",new Identity("EligashtMlb",
+                                "123qwe!@#QWE", "Mobile")))) );
 
 
             } catch (Exception e) {
@@ -238,9 +237,12 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
             avi.setVisibility(View.GONE);
 
             try {
-                Log.e("onon", userEntranceRequest.entranceResponse.UserEntranceServiceResult.CanEnter+"" );
+
+
+
+                Log.e("onon", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter+"" );
                 Utility.sendTag("Splash",true,true);
-                for (SearchNotes searchNotes :userEntranceRequest.entranceResponse.UserEntranceServiceResult.SearchNotes){
+                for (SearchNotes searchNotes :userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes){
                     if (searchNotes.Section.equals("H")){
                         Prefs.putString("H",searchNotes.Notes.get(0));
 
@@ -260,15 +262,23 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
                     }
 
                 }
+                if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter){
 
 
-                startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                finish();
+                    startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                    finish();
+                }else{
+
+                    alert();
+                }
+
+
 
             } catch (Exception e) {
                 //   Toast.makeText(SplashFragment.this, "ارتباط با سرور مقدور نمی باشد", Toast.LENGTH_SHORT).show();
 
                 alert();
+
 
             }
         }

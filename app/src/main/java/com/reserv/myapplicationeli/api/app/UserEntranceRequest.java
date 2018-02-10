@@ -5,9 +5,7 @@ import android.util.Log;
 
 import com.reserv.myapplicationeli.base.BaseAPI;
 import com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.UserRequest;
-import com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.response.UserEntranceResponse;
-import com.reserv.myapplicationeli.models.hotel.getprefactor.call.RequestPrefactor;
-import com.reserv.myapplicationeli.models.hotel.getprefactor.response.GetPrefactorResponse;
+import com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.response.UserEntranceResponseN;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -19,13 +17,13 @@ import retrofit2.http.POST;
 
 public class UserEntranceRequest extends BaseAPI {
     public final static String ACTION_NAME = "Common/StaticDataService.svc/MobileAppStartupService";
-    public UserEntranceResponse entranceResponse;
+    public UserEntranceResponseN entranceResponse;
     UserRequest userRequest;
 
     public interface GetUser {
         @RawRes
         @POST(UserEntranceRequest.ACTION_NAME)
-        Call<UserEntranceResponse> get_user(
+        Call<UserEntranceResponseN> get_user(
                 @Body UserRequest userRequest
         );
     }
@@ -44,7 +42,7 @@ public class UserEntranceRequest extends BaseAPI {
     protected void execute() {
 
         GetUser getUser = retrofit.create(GetUser.class);
-        Call<UserEntranceResponse> call = getUser.get_user(userRequest);
+        Call<UserEntranceResponseN> call = getUser.get_user(userRequest);
         try {
             entranceResponse = call.execute().body();
 

@@ -837,8 +837,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected String doInBackground(String... params) {
             try {
-                addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "fa-IR", new ReviewComment(0, comment,
+                addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
+                        "123qwe!@#QWE", "Mobile"), "fa-IR", new ReviewComment(0, comment,
                         0, 1, "Developer@eligasht.com", userName, title, 0))));
 
 

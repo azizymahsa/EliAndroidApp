@@ -39,7 +39,6 @@
             android:gravity="center"
             android:textAppearance="@style/IrsansBold"
             android:textSize="@dimen/_12dp_normal_textSize"
-            android:text="شرایط کنسلی هتل"
             android:padding="14dp"
             android:textColor="#2e3192"
             />

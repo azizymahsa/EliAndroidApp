@@ -1,7 +1,5 @@
 package com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.response;
 
-import android.widget.ListView;
-
 import java.util.List;
 
 /**
@@ -9,13 +7,9 @@ import java.util.List;
  */
 
 public class UserEntranceServiceResult {
-    public final boolean CanEnter;
-    public final String MinAppVersion;
-    public final List<SearchNotes> SearchNotes;
+    public final UserEntranceResponse UserEntranceResponseN;
 
-    public UserEntranceServiceResult(boolean canEnter, String minAppVersion, List<SearchNotes> searchNotes) {
-        CanEnter = canEnter;
-        MinAppVersion = minAppVersion;
-        SearchNotes = searchNotes;
+    public UserEntranceServiceResult(UserEntranceResponse userEntranceResponseN) {
+        UserEntranceResponseN = userEntranceResponseN;
     }
 }
