@@ -94,6 +94,10 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="_7dp_margin_p">7dp</dimen>
     <dimen name="_50dp_about">50dp</dimen>
     <dimen name="_250dp_about">250dp</dimen>
+    <dimen name="_110Plandp">160dp</dimen>
+    <dimen name="_125dpF">122dp</dimen>
+    <dimen name="_15dpF">15dip</dimen>
+    <dimen name="_20dpF">22dp</dimen>
 
 
 </resources>

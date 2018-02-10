@@ -103,4 +103,9 @@
     <dimen name="_50dp_about">100dp</dimen>
     <dimen name="_250dp_about">450dp</dimen>
 
+    <dimen name="_110Plandp">180dp</dimen>
+    <dimen name="_125dpF">180dp</dimen>
+    <dimen name="_15dpF">15dip</dimen>
+    <dimen name="_20dpF">23dp</dimen>
+
 </resources>

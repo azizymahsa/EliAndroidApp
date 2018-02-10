@@ -96,7 +96,7 @@
                         android:gravity="right"
                         android:text="مبدا  : "
                         android:textColor="#ffffff"
-                        android:textSize="15dip" />
+                        android:textSize="@dimen/_15dpF" />
 
                     <TextView
                         android:id="@+id/tvStart"
@@ -105,7 +105,7 @@
                         android:gravity="right"
                         android:text=" انتخاب کنید "
                         android:textColor="#fff"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/_20dpF"
                         android:textStyle="bold"
                         tools:ignore="SpUsage" />
 
@@ -116,7 +116,7 @@
                         android:gravity="right"
                         android:text="  "
                         android:textColor="#fff"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_14dp"
                       />
                 </LinearLayout>
 
@@ -139,7 +139,7 @@
                         android:gravity="right"
                         android:text=" مقصد : "
                         android:textColor="#ffffff"
-                        android:textSize="15dip" />
+                        android:textSize="@dimen/_15dpF" />
 
                     <TextView
                         android:id="@+id/tvEnd"
@@ -148,7 +148,7 @@
                         android:gravity="right"
                         android:text=" انتخاب کنید "
                         android:textColor="#fff"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/_20dpF"
                         android:textStyle="bold" />
 
                     <TextView
@@ -159,7 +159,7 @@
                         android:gravity="right"
                         android:text=" "
                         android:textColor="#fff"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_14dp"
                      />
                 </LinearLayout>
 
@@ -379,7 +379,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
 
-                android:layout_height="125dp"
+                android:layout_height="@dimen/_125dpF"
                 android:background="#fff"
                 android:orientation="vertical">
 
@@ -398,8 +398,8 @@
                     android:background="@color/hotel_detail_background">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:layout_marginTop="3dp"
+                        android:layout_height="@dimen/_110Plandp"
+                        android:layout_marginTop="2dp"
                         android:orientation="vertical">
                         <LinearLayout
                             android:layout_width="match_parent"
