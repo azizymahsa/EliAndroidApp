@@ -124,5 +124,6 @@
     <dimen name="_18dp_one">18dp</dimen>
     <dimen name="_18dp_ff">25dp</dimen>
     <dimen name="_400dp">800dp</dimen>
+    <dimen name="_10dp_margin_123">14dp</dimen>
 
 </resources>

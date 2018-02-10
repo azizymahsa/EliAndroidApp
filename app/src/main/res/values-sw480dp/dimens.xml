@@ -125,4 +125,5 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_18dp_one">18dp</dimen>
     <dimen name="_18dp_ff">18dp</dimen>
     <dimen name="_400dp">400dp</dimen>
+    <dimen name="_10dp_margin_123">10dp</dimen>
 </resources>

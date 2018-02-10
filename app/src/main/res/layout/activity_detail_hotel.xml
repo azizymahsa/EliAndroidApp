@@ -379,7 +379,6 @@
                 android:layout_below="@+id/cvHotel"
                 android:layout_marginTop="@dimen/_5dp_margin"
                 android:orientation="vertical"
-                android:visibility="gone"
 
 
                 >
@@ -421,6 +420,10 @@
                     android:orientation="vertical"
                     android:focusable="false"
                     android:visibility="gone"
+
+
+
+
 
                     >
 
@@ -533,7 +536,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40dp"
                         android:layout_marginLeft="7dp"
                         android:layout_marginRight="7dp"
                         android:layout_marginTop="@dimen/_5dp_margin"
@@ -543,7 +546,7 @@
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="60"
+                            android:layout_weight="65"
                             android:background="@drawable/comment_background"
                             android:gravity="center"
                             android:orientation="horizontal">
@@ -577,7 +580,8 @@
                                 android:text="مفیدترین نظرات"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/text_color_2e"
-                                android:textSize="@dimen/_12dp_normal_textSize" />
+                                android:textSize="@dimen/_10dp_textSize"
+                                />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -588,6 +592,8 @@
                                 android:textAppearance="@style/IconFonts"
                                 android:textColor="@color/text_color_2e"
                                 android:textSize="@dimen/icon_size_25dp"
+                                android:layout_marginRight="@dimen/_10dp_margin"
+
 
                                 />
 

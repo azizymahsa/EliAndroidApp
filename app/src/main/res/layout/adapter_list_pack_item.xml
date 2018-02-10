@@ -273,18 +273,39 @@
             </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
 
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_below="@+id/rcl_price"
+    >
+
+    <Button
+        android:id="@+id/packageBooking"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40dp"
+        android:layout_weight="100"
+        android:layout_gravity="center|bottom"
+        android:background="@drawable/btngravity_big"
+        android:text="@string/reserve_package"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_16dp_normal_textSize"
+        android:layout_marginRight="@dimen/_20dp"/>
+        <Button
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40dp"
+        android:layout_weight="100"
+        android:layout_gravity="center|bottom"
+        android:text="خدمات قابل ارائه"
+        android:textColor="@color/text_color_2e"
+        android:textSize="@dimen/_16dp_normal_textSize"
+        android:background="@drawable/background_strock_select_package"
+        />
 
 
-                <Button
-                    android:layout_below="@+id/rcl_price"
-                    android:id="@+id/packageBooking"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp"
-                    android:layout_gravity="center|bottom"
-                    android:background="@drawable/btngravity_big"
-                    android:text="@string/reserve_package"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_16dp_normal_textSize"/>
+</LinearLayout>
+
+
 
         </RelativeLayout>
 

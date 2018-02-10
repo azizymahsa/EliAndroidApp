@@ -136,7 +136,10 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
                                     model = android.os.Build.MODEL;
                                     brand = Build.BRAND;
                                     product =Build.PRODUCT;
-                                    new GetCommentAsync().execute();
+                                    startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                                    finish();
+
+                                    //  new GetCommentAsync().execute();
 
                                 } else {
 

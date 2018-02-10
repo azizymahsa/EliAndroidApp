@@ -461,7 +461,7 @@
                <TextView
                     android:id="@+id/btnExpand"
                     android:layout_width="0dp"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.04"
                     android:layout_height="25dp"
                    android:gravity="center"
                    android:textSize="@dimen/text_size_12dp"
@@ -500,8 +500,8 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="2"
+                android:layout_gravity="center|right"
+                android:layout_weight="1"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp">
 
@@ -522,7 +522,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:textAppearance="@style/IrsansBold"
-                    android:gravity="left"
+                    android:gravity="right"
                     android:text="10,000,000"
                     android:textColor="#000000"
                     android:textSize="@dimen/_13dp_normal_textSize"
