@@ -1047,6 +1047,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 			}
 			try {
 
+
 				// Setup HttpURLConnection class to send and receive data from php and mysql
 				conn = (HttpURLConnection) url.openConnection();
 				conn.setReadTimeout(READ_TIMEOUT);
@@ -1438,7 +1439,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 					linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
 					linear_expand.setVisibility(View.GONE);
 					LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-					txtNoResult.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+					txtNoResult.setText("خطا در دریافت اطلاعات الی گشت ");
 					linear_no_result.setVisibility(View.VISIBLE);
 				//}
 
@@ -1849,7 +1850,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 							item.flGUID = flightsList.get(i).getFlightGUID();
 
 
-							item.AdlBaseFare = flightsList.get(i).getAdlBaseFare().getAmount();
+							item.AdlBaseFare = flightsList.get(i).getBaseFare().getAmount();
 							item.Taxes = flightsList.get(i).getTaxes().getAmount();
 							item.TotalFare = flightsList.get(i).getTotalFare().getAmount();
 
@@ -1913,7 +1914,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 							item.flGUID = flightsList.get(i).getFlightGUID();
 
 
-							item.AdlBaseFare = flightsList.get(i).getAdlBaseFare().getAmount();
+							item.AdlBaseFare = flightsList.get(i).getBaseFare().getAmount();
 							item.Taxes = flightsList.get(i).getTaxes().getAmount();
 							item.TotalFare = flightsList.get(i).getTotalFare().getAmount();
 

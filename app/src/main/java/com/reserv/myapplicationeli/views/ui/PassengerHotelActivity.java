@@ -644,7 +644,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
 
 
             }
@@ -808,7 +808,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 new AsyncFetchGetPreFactorDetails().execute();
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
             }
 
 
@@ -1008,7 +1008,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             } catch (JSONException e) {
                // Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
             }
 
         }//end on pos excute
@@ -1752,6 +1752,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 System.out.println("insert:"+"sum:"+sum);
                             }
                             db.closeDB();
+                            linear_mosaferan.clearFocus();
                             //insert mosafer
                         }/*else if(){
 

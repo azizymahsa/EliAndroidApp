@@ -289,7 +289,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
 			/* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
 			 btnAddsabad.setOnClickListener(this);*/
-
 		btn_saler= (ImageView) findViewById(R.id.btn_saler);
 		btn_mosaferan=(ImageView)findViewById(R.id.btn_mosaferan);
 		btn_khadamat=(ImageView)findViewById(R.id.btn_khadamat);
@@ -818,7 +817,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
 
@@ -988,7 +987,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
 				//new AlertDialog(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
@@ -1210,7 +1209,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
 				//new AlertDialog(PassengerActivity.this,"در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
@@ -1832,6 +1831,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						System.out.println("insert:"+"sum:"+sum);
 					}
 					db.closeDB();
+					linear_mosaferan.clearFocus();
 					//insert mosafer
 
 				}

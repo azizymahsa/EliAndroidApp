@@ -928,6 +928,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 System.out.println("insert:"+"sum:"+sum);
                             }
                             db.closeDB();
+                            linear_mosaferan.clearFocus();
                             //insert mosafer
                         }/*else if(){
 
@@ -1952,7 +1953,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerPackageActivity.this,PassengerPackageActivity.this);
-                AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
             }
 
 
@@ -2100,7 +2101,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 }
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerPackageActivity.this,PassengerPackageActivity.this);
-                AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");            }
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");            }
         }
     }
 
