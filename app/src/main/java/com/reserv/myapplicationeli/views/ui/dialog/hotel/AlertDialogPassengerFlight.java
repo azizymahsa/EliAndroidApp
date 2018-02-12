@@ -44,7 +44,7 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
 
         Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
         tvAlert.setTextSize(2,12);
-        tvAlert.setLineSpacing(5);
+        tvAlert.setLineSpacing(25);
         tvAlert.setTypeFace(typeface);
 
       //  btnOk.setCustomTextFont("fonts/iran_sans_bold.ttf");

@@ -169,7 +169,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_passenger);
+		setContentView(R.layout.activity_flight_passenger);
 
 		data=new ArrayList<PurchaseFlightResult>();
 		btnBack = (FancyButton) findViewById(R.id.btnBack);

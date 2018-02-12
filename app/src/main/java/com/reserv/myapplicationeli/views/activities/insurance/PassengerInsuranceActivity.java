@@ -164,7 +164,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger_pack);
+        setContentView(R.layout.activity_passenger_insurance);
 
         initViews();
         setupGenderSpinner();
