@@ -169,7 +169,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     public JSONArray jsonObj = null;
     public int sum=0;
     int counter = 2;
-    int rooms;
+    int rooms=0;
+    int room=0;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -204,7 +205,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
         rooms=alRoom.size();
         imgCount = (TextView) findViewById(R.id.imgCount);
-        imgCount.setText("اتاق "+getCounter(rooms));
+        imgCount.setText("اتاق "+getCounter(room));
         imgCount.setOnClickListener(this);
     }
 
@@ -737,15 +738,15 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                             // for(int i=0 ; i < alRoom.size(); i++){
                                             for (PackageRoomNoToRequest packageRoomNoToRequest : packageRoomNoToRequestList) {
 
-                                                if (packageRoomNoToRequest.getPassengerType().equals("adl") && packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(rooms-1))) {
+                                                if (packageRoomNoToRequest.getPassengerType().equals("adl") && packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(room))) {
                                                     countB += 1;
                                                 }
 
-                                                if (packageRoomNoToRequest.getPassengerType().equals("chl")&& packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(rooms-1))) {
+                                                if (packageRoomNoToRequest.getPassengerType().equals("chl")&& packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(room))) {
                                                     countK += 1;
                                                 }
 
-                                                if (packageRoomNoToRequest.getPassengerType().equals("inf")&& packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(rooms-1))) {
+                                                if (packageRoomNoToRequest.getPassengerType().equals("inf")&& packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(room))) {
                                                     countN += 1;
                                                 }
                                             }
@@ -753,6 +754,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                         }
                                         sum = countB + countK + countN;
                                         rooms=rooms-1;
+                                        room=room+1;
                                     }
 
                                     System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
@@ -766,7 +768,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 System.out.println("gender:"+Gender);
                                 //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 if(counter-1 ==1){
-                                    db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(rooms+1),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
                                 }else{
                                     db.insertData(counter-1,txtTitleCountM.getText().toString() ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
@@ -791,17 +793,17 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 if(countB!=0){
 
                                     txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-                                    imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    imgCount.setText("اتاق "+getCounter(room));
                                 }
                                 else if(countK!=0){
 
                                     txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
-                                    imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    imgCount.setText("اتاق "+getCounter(room));
                                 }
                                 else if(countN!=0){
 
                                     txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
-                                    imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    imgCount.setText("اتاق "+getCounter(room));
                                 }
 
 
@@ -831,15 +833,15 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                         // for(int i=0 ; i < alRoom.size(); i++){
                                         for (PackageRoomNoToRequest packageRoomNoToRequest : packageRoomNoToRequestList) {
 
-                                            if (packageRoomNoToRequest.getPassengerType().equals("adl") && packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(rooms-1))) {
+                                            if (packageRoomNoToRequest.getPassengerType().equals("adl") && packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(room))) {
                                                 countB += 1;
                                             }
 
-                                            if (packageRoomNoToRequest.getPassengerType().equals("chl")&& packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(rooms-1))) {
+                                            if (packageRoomNoToRequest.getPassengerType().equals("chl")&& packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(room ))) {
                                                 countK += 1;
                                             }
 
-                                            if (packageRoomNoToRequest.getPassengerType().equals("inf")&& packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(rooms-1))) {
+                                            if (packageRoomNoToRequest.getPassengerType().equals("inf")&& packageRoomNoToRequest.getRoom_No()==Integer.parseInt(alRoom.get(room ))) {
                                                 countN += 1;
                                             }
                                         }
@@ -847,6 +849,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                     }
                                     sum = countB + countK + countN;
                                     rooms=rooms-1;
+                                room=room+1;
                                     //}
 
                                     System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
@@ -859,7 +862,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 System.out.println("gender:"+Gender);
                                 //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 if(counter-1 ==1){
-                                    db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(rooms+1),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
                                 }else{
                                     db.insertData(counter-1,txtTitleCountM.getText().toString() ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
@@ -869,38 +872,38 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 if(countB>=1) {
                                     System.out.println("countB:"+countB);
                                     txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (بزرگسال) ");
-                                    imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    imgCount.setText("اتاق "+getCounter(room));
                                     countB--;
                                 }else if(countK>=1) {
                                     System.out.println("countK:"+countK);
                                     txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (کودک) ");
-                                    imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    imgCount.setText("اتاق "+getCounter(room));
                                     countK--;
                                 }else if(countN>=1) {
                                     System.out.println("countN:"+countN);
                                     txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (نوزاد) ");
-                                    imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    imgCount.setText("اتاق "+getCounter(room));
                                     countN--;
                                 }
                                 if(countB!=0){
 
                                     txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-                                    imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    imgCount.setText("اتاق "+getCounter(room));
                                 }
                                 else if(countK!=0){
 
                                     txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
-                                    imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    imgCount.setText("اتاق "+getCounter(room));
                                 }
                                 else if(countN!=0){
 
                                     txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
-                                    imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    imgCount.setText("اتاق "+getCounter(room));
                                 }else if(countB + countK + countN==0){
 
                                     if(rooms-1>=0){
                                         txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-                                        imgCount.setText("اتاق "+getCounter(rooms-1));
+                                        imgCount.setText("اتاق "+getCounter(room+1));
                                         txttavalodm.setText("");
                                         txtnamem.setText("");
                                         txtfamilym.setText("");
@@ -928,7 +931,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 System.out.println("insert:"+"sum:"+sum);
                             }
                             db.closeDB();
-                            linear_mosaferan.clearFocus();
                             //insert mosafer
                         }/*else if(){
 
@@ -948,6 +950,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         new AsyncFetch().execute();
 
                     }
+
                 }
                 break;
 
@@ -2072,7 +2075,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
                 } else {
-
+                    try{
                     JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
 
                     Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
@@ -2098,6 +2101,9 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     //mAdapter.setAdapter(mAdapter);
                     mAdapter.setData(data);
                     listKhadamat.setAdapter(mAdapter);
+                    }catch ( Exception e){
+                        e.getMessage();
+                    }
                 }
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerPackageActivity.this,PassengerPackageActivity.this);
