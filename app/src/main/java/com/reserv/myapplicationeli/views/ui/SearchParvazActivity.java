@@ -227,7 +227,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 		txtCityBargashtt = (TextView) findViewById(R.id.txtCityBargashtt);
 		tvLoading = (TextView) findViewById(R.id.tvLoading);
-		tvLoading.setText(Prefs.getString("F",""));
+		Utility.loadingText(tvLoading,Prefs.getString("F",""));
+
 
 		txtCityBargashtt.setOnClickListener(this);
 

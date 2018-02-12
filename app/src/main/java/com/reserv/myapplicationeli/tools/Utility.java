@@ -12,9 +12,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Timer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -29,11 +31,15 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 
 
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -44,11 +50,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.mohamadamin.persianmaterialdatetimepicker.Utils;
 import com.onesignal.OneSignal;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.base.GlobalApplication;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -262,7 +271,7 @@ public class Utility extends Activity {
 
     public static void showKeyboard(Context context) {
         /*((InputMethodManager) context
-				.getSystemService(Context.INPUT_METHOD_SERVICE))
+                .getSystemService(Context.INPUT_METHOD_SERVICE))
 				.toggleSoftInput(InputMethodManager.SHOW_FORCED,
 						InputMethodManager.HIDE_IMPLICIT_ONLY);*/
     }
@@ -655,11 +664,11 @@ public class Utility extends Activity {
     public static void sendTag(String position, boolean online, boolean splash) {
         boolean login;
 
-        if (splash){
+        if (splash) {
 
 
-         int numberOfEntry= Prefs.getInt("numberOfEntry",0);
-             Prefs.putInt("numberOfEntry",numberOfEntry+1);
+            int numberOfEntry = Prefs.getInt("numberOfEntry", 0);
+            Prefs.putInt("numberOfEntry", numberOfEntry + 1);
 
         }
 
@@ -678,53 +687,291 @@ public class Utility extends Activity {
         }
 
 
+        try {
 
-            try {
 
-
-                JSONObject tags = new JSONObject();
-                tags.put("Position", position);
-                tags.put("Online", online);
-                tags.put("Login", login);
-                tags.put("NumberOfEntry", Prefs.getInt("numberOfEntry",0));
-                OneSignal.sendTags(tags);
-            } catch (Exception ee) {
-            }
-
+            JSONObject tags = new JSONObject();
+            tags.put("Position", position);
+            tags.put("Online", online);
+            tags.put("Login", login);
+            tags.put("NumberOfEntry", Prefs.getInt("numberOfEntry", 0));
+            OneSignal.sendTags(tags);
+        } catch (Exception ee) {
         }
-        public static boolean campareDate(String Depart,String Return){
+
+    }
+
+    public static boolean campareDate(String Depart, String Return) {
 
 
+        try {
 
-
-            try {
-
-                DateFormat formatter;
-                Date date;
-                Date date2;
-                formatter = new SimpleDateFormat("yyyy/MM/dd");
-                date = (Date) formatter.parse(Depart);
-                date2 = (Date) formatter.parse(Return);
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(date);
-                if (date2.getTime() < date.getTime()) {
-                    return true;
-                }else {
-                    return false;
-                }
-
-            } catch (Exception e) {
+            DateFormat formatter;
+            Date date;
+            Date date2;
+            formatter = new SimpleDateFormat("yyyy/MM/dd");
+            date = (Date) formatter.parse(Depart);
+            date2 = (Date) formatter.parse(Return);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            if (date2.getTime() < date.getTime()) {
+                return true;
+            } else {
                 return false;
             }
 
+        } catch (Exception e) {
+            return false;
         }
-        public static void setAnimLoading(Activity activity){
-            LottieAnimationView lottieAnimationView = activity.findViewById(R.id.animation_view);
-            lottieAnimationView.setAnimation("circle-l.json");
-            lottieAnimationView.playAnimation();
+
+    }
+
+    public static void setAnimLoading(Activity activity) {
+        LottieAnimationView lottieAnimationView = activity.findViewById(R.id.animation_view);
+        lottieAnimationView.setAnimation("circle-l.json");
+        lottieAnimationView.playAnimation();
 
 
     }
 
+    public static void loadingText(final TextView typeWriter, final String json) {
+        final Handler handler1 = new Handler();
+        Runnable characterAdder = null;
+        try {
+
+            final JSONArray jsonObj = new JSONArray(json);
+            Log.e("teeeeeeeeeeeeeest",jsonObj.toString());
+
+            typeWriter.setText(jsonObj.getString(0));
+
+            for ( int i = 1; i < jsonObj.length(); i++) {
+                Log.e("piiccc12345","ok");
+
+                final int finalI = i;
+                final Runnable finalCharacterAdder = characterAdder;
+                final int finalI1 = i;
+                characterAdder = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Log.e("onStart2", jsonObj.toString());
+
+                        if (finalI1 <= jsonObj.length()) {
+                            YoYo.with(Techniques.SlideOutLeft)
+                                    .duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+                                @Override
+                                public void onAnimationStart(Animator animation) {
+
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    try {
+                                        typeWriter.setText(jsonObj.getString(finalI));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    YoYo.with(Techniques.SlideInRight)
+                                            .duration(500)
+                                            .playOn(typeWriter);
+                                }
+
+                                @Override
+                                public void onAnimationCancel(Animator animation) {
+
+                                }
+
+                                @Override
+                                public void onAnimationRepeat(Animator animation) {
+
+                                }
+                            })
+                                    .playOn(typeWriter);
+                            handler1.postDelayed(finalCharacterAdder, 3000);
+
+                        }else{
+                            handler1.removeCallbacks(finalCharacterAdder);
+
+                        }
+
+                    }
+                };
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        handler1.postDelayed(characterAdder, 3000);
+
+
+
+
+
+        new CountDownTimer(12000, 3) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                Log.e("onFinish","ok");
+
+                final Handler handler1 = new Handler();
+                Runnable characterAdder = null;
+                try {
+
+                    final JSONArray jsonObj = new JSONArray(json);
+                    YoYo.with(Techniques.SlideOutLeft)
+                            .duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            try {
+                                typeWriter.setText(jsonObj.getString(0));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            YoYo.with(Techniques.SlideInRight)
+                                    .duration(500)
+                                    .playOn(typeWriter);
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    })
+                            .playOn(typeWriter);
+
+                    for ( int i = 1; i < jsonObj.length(); i++) {
+
+                        final int finalI = i;
+                        final Runnable finalCharacterAdder = characterAdder;
+                        final int finalI1 = i;
+                        characterAdder = new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Log.e("onStart1","ok");
+
+                                if (finalI1 <= jsonObj.length()) {
+                                    YoYo.with(Techniques.SlideOutLeft)
+                                            .duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+                                        @Override
+                                        public void onAnimationStart(Animator animation) {
+
+                                        }
+
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            try {
+                                                typeWriter.setText(jsonObj.getString(finalI));
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            YoYo.with(Techniques.SlideInRight)
+                                                    .duration(500)
+                                                    .playOn(typeWriter);
+                                        }
+
+                                        @Override
+                                        public void onAnimationCancel(Animator animation) {
+
+                                        }
+
+                                        @Override
+                                        public void onAnimationRepeat(Animator animation) {
+
+                                        }
+                                    })
+                                            .playOn(typeWriter);
+                                    handler1.postDelayed(finalCharacterAdder, 3000);
+
+                                }else{
+                                    handler1.removeCallbacks(finalCharacterAdder);
+
+                                }
+
+                            }
+                        };
+
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                handler1.postDelayed(characterAdder, 3000);
+            }
+        }.start();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    public void startText(final TextView typeWriter, String json){
+
+    }
 
 }
+
+/*   YoYo.with(Techniques.SlideOutLeft)
+                                .duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                try {
+                                    typeWriter.setText(jsonObj.getString(finalI));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                YoYo.with(Techniques.SlideInRight)
+                                        .duration(500)
+                                        .playOn(typeWriter);
+                            }
+
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
+
+                            }
+                        })
+                                .playOn(typeWriter);*/

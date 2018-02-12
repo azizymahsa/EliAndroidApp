@@ -1,7 +1,9 @@
 package com.reserv.myapplicationeli.views.adapters.pack;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.pack.LstHotelAmenity;
 import com.reserv.myapplicationeli.models.model.pack.LstProwHotel;
@@ -21,6 +24,7 @@ import com.reserv.myapplicationeli.models.model.pack.filter.PlaceFilter;
 import com.reserv.myapplicationeli.models.model.pack.filter.PriceFilter;
 import com.reserv.myapplicationeli.tools.StreamList;
 import com.reserv.myapplicationeli.tools.ValidationTools;
+import com.reserv.myapplicationeli.views.activities.pack.PackageServicesActivity;
 import com.reserv.myapplicationeli.views.components.stickyheaders.Section;
 import com.reserv.myapplicationeli.views.viewholders.PRowXferRowHolder;
 
@@ -131,6 +135,15 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
 //        Glide.with(context)
 //                .load("http://www.eligasht.com/Content/AirLine/" + item.getXferList().getXFlightsList().get(0).getAirlineCode() + ".png")
 //                .into(holder.img_airLine);
+
+        holder.btnServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, PackageServicesActivity.class);
+              intent.putExtra("services",new Gson().toJson(item.getLstProwServices()));
+                context.startActivity(intent);
+            }
+        });
 
         holder.btn_package_booking.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -40,6 +40,7 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
     public CardView list_pack;
 
     public Button btn_package_booking;
+    public Button btnServices;
     // public TextView date_depart;
     // public TextView date_arrive;
 
@@ -62,6 +63,7 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
         this.time_arive_go = itemView.findViewById(R.id.time_ariv_go);
         this.time_arive_back = itemView.findViewById(R.id.time_arrive_back);
         this.list_pack = itemView.findViewById(R.id.crd_pack);
+        this.btnServices = itemView.findViewById(R.id.btnServices);
 
 
         //this.date_depart = itemView.findViewById(R.id.date_go);

@@ -10,7 +10,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.reserv.myapplicationeli"
-        manifestPlaceholders = [onesignal_app_id: "270b4b08-04ea-4e4f-a22e-824a0bed3017",
+        manifestPlaceholders = [onesignal_app_id               : "270b4b08-04ea-4e4f-a22e-824a0bed3017",
                                 // Project number pulled from dashboard, local value is ignored.
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 17
@@ -38,7 +38,6 @@ android {
     }
 
 
-   
 }
 
 dependencies {
@@ -47,7 +46,8 @@ dependencies {
     compile project(':persianmaterialdatetimepicker')
     compile project(':library')
     compile project(':CircleProgressView')
-    compile project(':CircleProgressView')
+       compile project(':library3')
+
     //compile project(':library2')
     compile 'com.android.support:support-core-utils:26.1.0'
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -123,6 +123,15 @@ dependencies {
     compile 'com.onesignal:OneSignal:[3.7.1, 3.99.99]'
     compile "com.hanks:htextview-base:0.1.2"
     compile "com.hanks:htextview-typer:0.1.2"
+	
+	compile 'it.sephiroth.android.library.horizontallistview:hlistview:1.2.2'
+
+    compile ('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
+        exclude module: 'support-v4'
+    }
+    compile 'com.squareup.picasso:picasso:2.5.2'
+	
+	
 }
 apply plugin: 'com.google.gms.google-services'
 

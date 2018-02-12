@@ -37,7 +37,7 @@ values-xhdpi            4.65”  720x1280 xhdpi -->
     <dimen name="_2dp_margin">2dp</dimen>
     <dimen name="_18dp_margin">18dp</dimen>
     <dimen name="_4dp_margin">4dp</dimen>
-    <dimen name="_15dp_margin">15dp</dimen>
+    <dimen name="_15dp_margin">18dp</dimen>
     <dimen name="_14dp_padding">14dp</dimen>
     <dimen name="_5sp_padding">5dp</dimen>
     <dimen name="_10dp_padding">10dp</dimen>
@@ -119,4 +119,7 @@ values-xhdpi            4.65”  720x1280 xhdpi -->
     <dimen name="_18dp_ff">18dp</dimen>
     <dimen name="_400dp">400dp</dimen>
     <dimen name="_10dp_margin_123">10dp</dimen>
+    <dimen name="_35dp">35dp</dimen>
+    <dimen name="_5dp_margin_f_g">5dp</dimen>
+    <dimen name="_10dp_margin_f_g">10dp</dimen>
 </resources>

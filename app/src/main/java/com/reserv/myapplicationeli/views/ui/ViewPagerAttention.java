@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -33,11 +34,12 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class ViewPagerAttention {
     private Activity activity;
-    private ViewPager viewPager;
+    private AutoScrollViewPager viewPager;
     private int[] images;
     private int[] Title;
     private int[] messagesTitle;
@@ -48,6 +50,8 @@ public class ViewPagerAttention {
     String brandId;
     int like;
     int currentPage = 0;
+    Gson gson;
+    String list;
 
 
 
@@ -55,38 +59,20 @@ public class ViewPagerAttention {
         this.activity = activity;
         this.layout = layout;
 
-
+        gson= new Gson();
         this.indiactor = indiactor;
         this.imageModels = imageModels;
-        viewPager = (ViewPager) activity.findViewById(layout);
+        viewPager = (AutoScrollViewPager) activity.findViewById(layout);
         //indicator = (CirclePageIndicator) activity.findViewById(indiactor);
         viewPager.setAdapter(new IntroAdapter());
         viewPager.setPageMargin(0);
         viewPager.setOffscreenPageLimit(1);
-       // indicator.setViewPager(viewPager);
+        viewPager.setInterval(4000);
+        viewPager.startAutoScroll();
+        list=  gson.toJson(imageModels);
 
+        // indicator.setViewPager(viewPager);
 
-
-
-
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == imageModels.size()-1) {
-                    currentPage = 0;
-                }
-                viewPager.setCurrentItem(currentPage++, true);
-            }
-        };
-
-       Timer timer = new Timer(); // This will create a new Thread
-        timer .schedule(new TimerTask() { // task to be scheduled
-
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 500, 3000);
 
 
        /* indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -180,7 +166,8 @@ public class ViewPagerAttention {
                 @Override
                 public void onClick(View v) {
                     Intent intent =new Intent(activity, ImageViewActivity.class);
-                    intent.putExtra("pic",imageModels.get(position).getImage());
+                    intent.putExtra("pic",position);
+                    intent.putExtra("list",list);
                     activity.startActivity(intent);
                 }
             });

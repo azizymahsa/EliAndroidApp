@@ -278,27 +278,31 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_below="@+id/rcl_price"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
     >
 
     <Button
         android:id="@+id/packageBooking"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_40dp"
+        android:layout_height="@dimen/_30dp"
         android:layout_weight="100"
         android:layout_gravity="center|bottom"
         android:background="@drawable/btngravity_big"
         android:text="@string/reserve_package"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/_16dp_normal_textSize"
-        android:layout_marginRight="@dimen/_20dp"/>
+        android:textSize="@dimen/_12dp_normal_textSize"
+        android:layout_marginRight="@dimen/_20dp"
+        />
         <Button
+            android:id="@+id/btnServices"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_40dp"
+            android:layout_height="@dimen/_30dp"
         android:layout_weight="100"
         android:layout_gravity="center|bottom"
         android:text="خدمات قابل ارائه"
         android:textColor="@color/text_color_2e"
-        android:textSize="@dimen/_16dp_normal_textSize"
+            android:textSize="@dimen/_12dp_normal_textSize"
         android:background="@drawable/background_strock_select_package"
         />
 

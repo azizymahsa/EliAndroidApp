@@ -85,7 +85,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
     Window window;
     RelativeLayout elNotFound;
-    com.hanks.htextview.typer.TyperTextView tvLoading;
+    TextView tvLoading;
 
 
 
@@ -133,9 +133,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnLastDays.setOnClickListener(this);
         btnHome.setOnClickListener(this);
         notiRecive();
-        tvLoading.setText(Prefs.getString("H",""));
+        Utility.loadingText(tvLoading,Prefs.getString("H",""));
 
- Utility.setAnimLoading(this);
+
+        Utility.setAnimLoading(this);
 
 
 

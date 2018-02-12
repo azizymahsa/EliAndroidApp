@@ -244,20 +244,20 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
                 Utility.sendTag("Splash",true,true);
                 for (SearchNotes searchNotes :userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes){
                     if (searchNotes.Section.equals("H")){
-                        Prefs.putString("H",searchNotes.Notes.get(0));
+                        Prefs.putString("H",new Gson().toJson(searchNotes.Notes));
 
                     }
 
                     if (searchNotes.Section.equals("F")){
-                        Prefs.putString("F",searchNotes.Notes.get(0));
+                        Prefs.putString("F",new Gson().toJson(searchNotes.Notes));
 
                     }
                     if (searchNotes.Section.equals("FH")){
-                        Prefs.putString("FH",searchNotes.Notes.get(0));
+                        Prefs.putString("FH",new Gson().toJson(searchNotes.Notes));
 
                     }
                     if (searchNotes.Section.equals("P")){
-                        Prefs.putString("P",searchNotes.Notes.get(0));
+                        Prefs.putString("P",new Gson().toJson(searchNotes.Notes));
 
                     }
 

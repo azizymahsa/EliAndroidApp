@@ -920,6 +920,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
             try {
                 circleView.setDecimalFormat(new DecimalFormat("0.0"));
+                Typeface face = Typeface.createFromAsset(getAssets(),"fonts/iran_sans_normal.ttf");
+               circleView.setTextTypeface(face);
 
                 circleView.setMaxValue(10);
                 //circleView.setUnitVisible(false);

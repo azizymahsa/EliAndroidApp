@@ -109,7 +109,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_pack);
-        OneSignal.sendTag("position", "isPackageSearch");
         Utility.setAnimLoading(this);
 
 
@@ -241,7 +240,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         btn_previous_day = findViewById(R.id.btnLastDays);
         btn_next_day = findViewById(R.id.btnNextDays);
         tvLoading = findViewById(R.id.tvLoading);
-        tvLoading.setText(Prefs.getString("P",""));
+        Utility.loadingText(tvLoading,Prefs.getString("P",""));
+
 
         layout_availabel_date = findViewById(R.id.layout_availabel_date);
         error_layout = findViewById(R.id.elNotFound);

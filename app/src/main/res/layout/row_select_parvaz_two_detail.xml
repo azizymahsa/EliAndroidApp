@@ -27,9 +27,8 @@
 			android:minHeight="@dimen/_68dp_f"
 			android:orientation="horizontal"
 			android:tag="front"
-			android:layout_marginTop="10dp"
-			android:layout_marginBottom="10dp"
-			android:layout_marginRight="@dimen/_10dp_margin_123"
+			android:layout_marginTop="@dimen/_10dp_margin"
+			android:layout_marginBottom="@dimen/_10dp_margin"
 			>
 
 			<!--  <ImageView
@@ -42,12 +41,12 @@
 			<LinearLayout
 				android:id="@+id/linearLayout1"
 				android:layout_width="0dip"
-				android:layout_height="@dimen/_68dp_f"
-				android:layout_weight="0.83"
+				android:layout_height="match_parent"
+				android:layout_weight="80"
 
 				android:layout_gravity="right"
 				android:layout_marginRight="3dip"
-				android:gravity="right"
+				android:gravity="right|top"
 				android:orientation="vertical" >
 
 
@@ -57,7 +56,7 @@
 					android:id="@+id/lblDepurtureAirportR"
 					android:layout_width="match_parent"
 					android:layout_height="0dp"
-					android:layout_weight="100"
+					android:layout_weight="350"
 
 					android:gravity="right"
 					android:textSize="@dimen/_10dp_textSize"
@@ -69,7 +68,7 @@
 					android:id="@+id/lblFlightNumberR"
 					android:layout_width="match_parent"
 					android:layout_height="0dp"
-					android:layout_weight="100"
+					android:layout_weight="350"
 					android:gravity="right|center"
 
 					android:text="3h 45 m ,ترکیش ایر "
@@ -82,7 +81,7 @@
 					android:id="@+id/lblArrivalAirportR"
 					android:layout_width="match_parent"
 					android:layout_height="0dp"
-					android:layout_weight="100"
+					android:layout_weight="350"
 					android:gravity="right|bottom"
 					android:text="استانبول"
 					android:textColor="#003399"
@@ -92,18 +91,9 @@
 					/>
 
 			</LinearLayout>
-			<LinearLayout
 
-				android:layout_width="0dip"
-				android:layout_height="@dimen/_68dp_f"
-				android:layout_weight="0.03"
-				android:layout_above="@+id/linearLayout1"
-				android:layout_gravity="right"
-				android:layout_marginRight="1dip"
-				android:gravity="right"
-				android:orientation="vertical" >
 
-				<TextView
+				<ImageView
 					android:id="@+id/s1"
 					android:layout_width="@dimen/_8dp_f"
 					android:layout_height="@dimen/_68dp_f"
@@ -111,27 +101,25 @@
 					android:layout_marginLeft="2dp"
 					android:background="@drawable/blb"
 					android:gravity="right"
-					android:text=""
-					android:textColor="#486b6b"
-					android:textSize="12dip" />
+					android:src="@drawable/blb"
+					android:scaleType="fitXY"/>
 
-			</LinearLayout>
 
 			<LinearLayout
 				android:id="@+id/linearLayout2"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
 				android:layout_height="@dimen/_68dp_f"
+				android:layout_weight="10"
 				android:layout_above="@+id/linearLayout1"
 				android:layout_gravity="left"
-				android:gravity="right"
 				android:orientation="vertical" >
 
 				<TextView
 					android:id="@+id/lblFlightTimeR"
-					android:layout_width="match_parent"
+					android:layout_width="wrap_content"
 					android:layout_height="0dp"
-					android:layout_weight="100"
-					android:layout_gravity="center"
+					android:layout_weight="350"
+					android:layout_gravity="center|left"
 					android:gravity="center"
 					android:text="11:40 AM"
 					android:textColor="#003399"
@@ -140,9 +128,9 @@
 
 				<TextView
 
-					android:layout_width="match_parent"
+					android:layout_width="wrap_content"
 					android:layout_height="0dp"
-					android:layout_weight="350"
+					android:layout_weight="550"
 					android:gravity="right"
 					android:text=" 11:50 AM "
 					android:textColor="#486b6b"
@@ -151,10 +139,10 @@
 
 				<TextView
 					android:id="@+id/lblFlightArrivalTimeR"
-					android:layout_width="match_parent"
+					android:layout_width="wrap_content"
 					android:layout_height="0dp"
-					android:layout_weight="100"
-					android:layout_gravity="center"
+					android:layout_weight="350"
+					android:layout_gravity="center|left"
 					android:gravity="center"
 					android:text="11:40 AM"
 					android:textColor="#003399"

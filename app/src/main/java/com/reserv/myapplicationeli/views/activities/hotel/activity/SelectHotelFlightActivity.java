@@ -143,7 +143,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         llSort.setOnClickListener(this);
         adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, this);
         list.setAdapter(adapter);
-        tvLoading.setText(Prefs.getString("FH",""));
+        Utility.loadingText(tvLoading,Prefs.getString("FH",""));
+
 
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
