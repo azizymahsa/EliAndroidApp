@@ -906,7 +906,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerInsuranceActivity.this,PassengerInsuranceActivity.this);
-                AlertDialogPassengerFlight.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
             }
 
         }//end on pos excute
@@ -1472,6 +1472,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             System.out.println("insert:"+"sum:"+sum);
                         }
                         db.closeDB();
+                        linear_mosaferan.clearFocus();
                         //insert mosafer
 
                     }

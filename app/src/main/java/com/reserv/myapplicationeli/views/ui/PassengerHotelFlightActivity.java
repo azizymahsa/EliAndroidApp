@@ -638,7 +638,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             } catch (JSONException e) {
                 //Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassenger.setText("خطا در دریافت اطلاعات الی گشت ");
             }
 
 
@@ -803,7 +803,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassenger.setText("خطا در دریافت اطلاعات الی گشت ");
             }
 
 
@@ -1001,7 +1001,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassenger.setText("خطا در دریافت اطلاعات الی گشت ");
             }
 
         }//end on pos excute
@@ -1744,6 +1744,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                 System.out.println("insert:"+"sum:"+sum);
                             }
                             db.closeDB();
+                            linear_mosaferan.clearFocus();
                             //insert mosafer
                         }/*else if(){
 
