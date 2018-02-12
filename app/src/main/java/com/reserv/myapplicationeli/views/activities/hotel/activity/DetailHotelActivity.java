@@ -753,7 +753,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager);
                 tvCityName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CityName + "، " + getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CountryName);
-
+                Log.e("star", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating+"");
 
                 switch (getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating) {
 

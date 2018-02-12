@@ -788,7 +788,7 @@ public class Utility extends Activity {
                                 }
                             })
                                     .playOn(typeWriter);
-                            handler1.postDelayed(finalCharacterAdder, 3000);
+                            handler1.postDelayed(finalCharacterAdder, 4000);
 
                         }else{
                             handler1.removeCallbacks(finalCharacterAdder);
@@ -805,13 +805,13 @@ public class Utility extends Activity {
             e.printStackTrace();
         }
 
-        handler1.postDelayed(characterAdder, 3000);
+        handler1.postDelayed(characterAdder, 4000);
 
 
 
 
 
-        new CountDownTimer(12000, 3) {
+        new CountDownTimer(16000, 3) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -902,7 +902,7 @@ public class Utility extends Activity {
                                         }
                                     })
                                             .playOn(typeWriter);
-                                    handler1.postDelayed(finalCharacterAdder, 3000);
+                                    handler1.postDelayed(finalCharacterAdder, 4000);
 
                                 }else{
                                     handler1.removeCallbacks(finalCharacterAdder);
@@ -919,7 +919,7 @@ public class Utility extends Activity {
                     e.printStackTrace();
                 }
 
-                handler1.postDelayed(characterAdder, 3000);
+                handler1.postDelayed(characterAdder, 4000);
             }
         }.start();
 

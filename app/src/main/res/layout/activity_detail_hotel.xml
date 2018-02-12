@@ -494,7 +494,7 @@
                                         CircleProgressView:cpv_showUnit="true"
                                         CircleProgressView:cpv_spinColor="@color/text_color_2e"
                                         CircleProgressView:cpv_textColor="@color/text_color_2e"
-                                        CircleProgressView:cpv_textScale="1"
+                                        CircleProgressView:cpv_textScale="0.8"
                                         CircleProgressView:cpv_unit="/10"
 
 
