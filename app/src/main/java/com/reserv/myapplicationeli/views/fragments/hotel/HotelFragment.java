@@ -154,7 +154,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
-            tvBargasht.setText(persianCalendar.getPersianLongDate());
+            tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
 
         } else {
 
@@ -165,7 +165,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
         if (Prefs.getString("raftfa", "null").equals("null")) {
-            tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
+            tvRaft.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
 
         } else {
             tvRaft.setText(Prefs.getString("raftfa", "null"));
@@ -316,7 +316,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
-            tvBargasht.setText(persianCalendar.getPersianLongDate());
+            tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
 
         } else {
 
@@ -327,7 +327,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
         if (Prefs.getString("raftfa", "null").equals("null")) {
-            tvRaft.setText(persianCalendarDatePicker.getPersianLongDate());
+            tvRaft.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
 
         } else {
             tvRaft.setText(Prefs.getString("raftfa", "null"));
@@ -582,9 +582,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
         if (view.getTag().equals("DatepickerdialogBargasht")) {
-            tvBargasht.setText(persianCalendar.getPersianLongDate());
+            tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
             bargasht = date_server(year, monthOfYear, dayOfMonth);
-            Prefs.putString("bargashtfa", persianCalendar.getPersianLongDate());
+            Prefs.putString("bargashtfa",tvBargasht.getText().toString());
             Prefs.putString("bargasht", bargasht);
 
 
@@ -597,7 +597,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            tvRaft.setText(persianCalendar.getPersianLongDate());
+            tvRaft.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
             //  tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
@@ -605,8 +605,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
             if (Utility.campareDate(raft,bargasht)){
-                tvBargasht.setText(persianCalendar.getPersianLongDate());
-                //     datePickerDialog2.initialize(this, year_, month, day);
+                tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+                 datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
             }
 
@@ -615,10 +615,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
 
-            Prefs.putString("bargashtfa", persianCalendar.getPersianLongDate());
+            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
 
             Prefs.putString("raft", raft);
-            Prefs.putString("raftfa", persianCalendar.getPersianLongDate());
+            Prefs.putString("raftfa",tvRaft.getText().toString());
 
 
         }

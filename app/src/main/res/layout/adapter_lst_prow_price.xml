@@ -13,24 +13,43 @@
         android:layout_margin="5sp"
         >
 
-        <TextView
-            android:id="@+id/txt_hr_room_list"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/color_strok_item_package"
             android:padding="10sp"
-            android:background="@color/hotel_detail_background"
-            android:text="اتاق استاندارد با تخت یکنفره"
-            android:layout_gravity="center"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/_12dp_normal_textSize"
-            android:gravity="center"/>
+
+            >
+            <TextView
+                android:id="@+id/txt_hr_room_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="اتاق استاندارد با تخت یکنفره"
+                android:layout_gravity="center"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/txt_hr_room_list2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:gravity="center"/>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background_strock_gray"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
             <LinearLayout
                 android:id="@+id/layout_total_price"
                 android:layout_width="0dp"

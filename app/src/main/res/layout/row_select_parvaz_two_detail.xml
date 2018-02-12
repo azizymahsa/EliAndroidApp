@@ -58,7 +58,7 @@
 					android:layout_height="0dp"
 					android:layout_weight="350"
 
-					android:gravity="right"
+					android:gravity="right|top"
 					android:textSize="@dimen/_10dp_textSize"
 					android:text="استانبول"
 					android:textColor="#003399"
@@ -68,12 +68,13 @@
 					android:id="@+id/lblFlightNumberR"
 					android:layout_width="match_parent"
 					android:layout_height="0dp"
-					android:layout_weight="350"
+					android:layout_weight="450"
 					android:gravity="right|center"
 
 					android:text="3h 45 m ,ترکیش ایر "
 					android:textColor="#0e874e"
 					android:textSize="@dimen/_10dp_textSize"
+					android:paddingTop="2dp"
 
 					android:textAppearance="@style/fontello_plan"/>
 
@@ -96,13 +97,14 @@
 				<ImageView
 					android:id="@+id/s1"
 					android:layout_width="@dimen/_8dp_f"
-					android:layout_height="@dimen/_68dp_f"
+					android:layout_height="match_parent"
 					android:layout_marginRight="2dp"
 					android:layout_marginLeft="2dp"
-					android:background="@drawable/blb"
 					android:gravity="right"
 					android:src="@drawable/blb"
-					android:scaleType="fitXY"/>
+					android:scaleType="fitXY"
+					android:paddingTop="3dp"
+					android:paddingBottom="3dp"/>
 
 
 			<LinearLayout
@@ -111,7 +113,7 @@
 				android:layout_height="@dimen/_68dp_f"
 				android:layout_weight="10"
 				android:layout_above="@+id/linearLayout1"
-				android:layout_gravity="left"
+				android:layout_gravity="left|top"
 				android:orientation="vertical" >
 
 				<TextView
@@ -119,18 +121,19 @@
 					android:layout_width="wrap_content"
 					android:layout_height="0dp"
 					android:layout_weight="350"
-					android:layout_gravity="center|left"
-					android:gravity="center"
+					android:gravity="center|top"
 					android:text="11:40 AM"
 					android:textColor="#003399"
 					android:textAppearance="@style/fontello_plan"
-					android:textSize="@dimen/_10dp_textSize" />
+					android:textSize="@dimen/_10dp_textSize"
+					android:paddingTop="3dp"
+					/>
 
 				<TextView
 
 					android:layout_width="wrap_content"
 					android:layout_height="0dp"
-					android:layout_weight="550"
+					android:layout_weight="450"
 					android:gravity="right"
 					android:text=" 11:50 AM "
 					android:textColor="#486b6b"
@@ -142,12 +145,13 @@
 					android:layout_width="wrap_content"
 					android:layout_height="0dp"
 					android:layout_weight="350"
-					android:layout_gravity="center|left"
-					android:gravity="center"
+					android:gravity="center|bottom"
 					android:text="11:40 AM"
 					android:textColor="#003399"
 					android:textAppearance="@style/fontello_plan"
-					android:textSize="@dimen/_10dp_textSize" />
+					android:textSize="@dimen/_10dp_textSize"
+					android:paddingBottom="3dp"
+					/>
 
 			</LinearLayout>
 

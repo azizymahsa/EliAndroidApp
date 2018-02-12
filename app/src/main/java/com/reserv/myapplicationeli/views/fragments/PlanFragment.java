@@ -176,9 +176,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() + 1);
         ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
-        tarikh_az_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+        tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
         picker_az_format = persianCalendarDatePicker.getPersianLongDate();
-        tarikh_be_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+        tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
         picker_be_format = persianCalendarDatePicker.getPersianLongDate();
         month = persianCalendarDatePicker.getPersianMonth();//9
         year_ = persianCalendarDatePicker.getPersianYear();//1396
@@ -187,7 +187,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         //////////////recent date
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
 
-            tarikh_be_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+            tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
             picker_be_format = persianCalendarDatePicker.getPersianLongDate();
         } else {
 
@@ -199,7 +199,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
 
         if (Prefs.getString("raftfa", "null").equals("null")) {
-            tarikh_az_picker.setText(persianCalendarDatePicker.getPersianLongDate());
+            tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
             picker_az_format = persianCalendarDatePicker.getPersianLongDate();
 
         } else {
@@ -293,13 +293,13 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 Geo = true;
 
 
-                Log.e("GGGGGGGRaft", year + "==" + (monthOfYear + 1) + "==" + dayOfMonth);
+                Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
 
 
-                String str_date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;//2018-01-16
+                String str_date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;//2018-01-16
                 DateFormat formatter;
                 Date date;
-                formatter = new SimpleDateFormat("yyyy-MM-dd");
+                formatter = new SimpleDateFormat("yyyy/MM/dd");
                 try {
                     date = (Date) formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
@@ -307,9 +307,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     datePickerDialogGregorian2.setMinDate(cal);
 
 
-                    tarikh_az_picker.setText(DateUtil.getLongStringDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, "yyyy-MM-dd", false));
+                    tarikh_az_picker.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
-                    raft = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                    raft = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;
                     Log.e("GGGGGGG", raft);
 
                 } catch (ParseException e) {
@@ -695,13 +695,13 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
         Log.e("salam", date_server(year_, month, day));
         if (view.getTag().equals("DatepickerdialogBargasht")) {
-            tarikh_be_picker.setText(persianCalendar.getPersianLongDate());
+            tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
 
             bargasht = date_server(year, monthOfYear, dayOfMonth);//2018-02-9
 
 
             picker_be_format = persianCalendar.getPersianLongDate();//جمعه 20 بهمن 1396
-            Prefs.putString("bargashtfa", persianCalendar.getPersianLongDate());//پنج‌شنبه 19 بهمن 1396
+            Prefs.putString("bargashtfa", tarikh_be_picker.getText().toString());//پنج‌شنبه 19 بهمن 1396
             Prefs.putString("bargasht", bargasht);//2018-02-11
 
         }
@@ -712,11 +712,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            tarikh_az_picker.setText(persianCalendar.getPersianLongDate());
             picker_az = date_server(year, monthOfYear, dayOfMonth);//bayad in bashe
             picker_az_format = persianCalendar.getPersianLongDate();
 
-            tarikh_be_picker.setText(persianCalendar.getPersianLongDate());
+            tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
             picker_be = date_server(year, monthOfYear, dayOfMonth);//bayad en bashe
             picker_be_format = persianCalendar.getPersianLongDate();
 
@@ -726,10 +725,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             datePickerDialog2.initialize(this, year_, month, day);
             datePickerDialog2.setMinDate(persianCalendarDatePicker2);
 
-            Prefs.putString("bargashtfa", persianCalendar.getPersianLongDate());//چهارشنبه 18 بهمن 1396
+            Prefs.putString("bargashtfa",  tarikh_be_picker.getText().toString());//چهارشنبه 18 بهمن 1396
 
             Prefs.putString("raft", raft);//2018-02-7
-            Prefs.putString("raftfa", persianCalendar.getPersianLongDate());//چهارشنبه 18 بهمن 1396
+            Prefs.putString("raftfa",tarikh_az_picker.getText().toString());//چهارشنبه 18 بهمن 1396
         }
     }
 

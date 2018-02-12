@@ -19,7 +19,8 @@ public class InsuranceRowHolder extends RecyclerView.ViewHolder {
     public TextView txtPlan;
     public TextView txtTitle;
     public TextView txtPrice;
-    public Button btnBuy;
+    public TextView btn_buy;
+    public Button btn_details;
 //    public Button btnDetail;
     public LinearLayout root_layout;
     public Button btn_insurance_booking;
@@ -31,7 +32,8 @@ public class InsuranceRowHolder extends RecyclerView.ViewHolder {
         txtPlan = itemView.findViewById(R.id.txt_plan);
         txtPrice = itemView.findViewById(R.id.txt_price);
         txtTitle = itemView.findViewById(R.id.txt_title);
-        btnBuy = itemView.findViewById(R.id.btn_buy);
+        btn_buy = itemView.findViewById(R.id.btn_buy);
+        btn_details = itemView.findViewById(R.id.btn_details);
 //        btnDetail = itemView.findViewById(R.id.btn_details);
         root_layout = itemView.findViewById(R.id.layout_root);
         btn_insurance_booking = itemView.findViewById(R.id.btn_buy);

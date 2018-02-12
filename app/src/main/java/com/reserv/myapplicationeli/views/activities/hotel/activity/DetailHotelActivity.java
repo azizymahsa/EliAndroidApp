@@ -468,6 +468,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         map.getUiSettings().setTiltGesturesEnabled(false);
         map.getUiSettings().setScrollGesturesEnabled(false);
         map.getUiSettings().setZoomGesturesEnabled(false);
+        map.getUiSettings().setZoomControlsEnabled(true);
+
 
     }
 
@@ -485,6 +487,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected void onPreExecute()
         {
             rlLoading2.setVisibility(View.VISIBLE);
+            Utility.disableEnableControls(false,rlRoot);
+
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
@@ -591,6 +595,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected void onPostExecute(String result) {
             rlLoading2.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
+
 
             //new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -623,7 +629,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
                         Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
 
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 17));
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
                 map.addMarker(new MarkerOptions().position(location).title(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName));
                 for (ImageHotel imageHotel : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelImages) {
                     imageModels.add(new ImageModel(imageHotel.HotelImagesURL));
@@ -778,6 +784,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     case 5:
                         ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._5star));
 
+                        break;
+                    case -1:
+                        ivImage.setVisibility(View.GONE);
                         break;
                 }
                 if (roomsModels.isEmpty()) {

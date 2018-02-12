@@ -98,14 +98,43 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="horizontal"
+                        android:layout_marginRight="3dp">
+
+                        <TextView
+                            android:id="@+id/tvCityName"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/ivHotelPic"
+                            android:layout_weight="100"
+                            android:ellipsize="end"
+                            android:gravity="center|right"
+                            android:maxLines="21"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_14dp_txtSize" />
+
+                        <ImageView
+                            android:id="@+id/ivImage"
+                            android:layout_width="@dimen/_60dp_hight"
+                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
+                            android:layout_gravity="center"
+                            android:src="@drawable/rating_start" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="right"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="12"
+                            android:layout_weight="8"
                             android:gravity="center|top"
                             android:text="@string/icon_location"
                             android:textAppearance="@style/IconFonts"
@@ -120,34 +149,14 @@
                             android:layout_weight="100"
                             android:ellipsize="end"
                             android:gravity="center|left"
-                            android:maxLines="1"
-                            android:text="dfsdf"
+                            android:maxLines="3"
                             android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_14dp_txtSize" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
-                        <TextView
-                            android:id="@+id/tvCityName"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_below="@+id/ivHotelPic"
-                            android:layout_weight="100"
-                            android:ellipsize="end"
-                            android:gravity="center|right"
-                            android:maxLines="1"
-                            android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_14dp_txtSize" />
 
-                        <ImageView
-                            android:id="@+id/ivImage"
-                            android:layout_width="@dimen/_60dp_hight"
-                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
-                            android:layout_gravity="center"
-                            android:src="@drawable/rating_start" />
 
 
                     </LinearLayout>
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -495,7 +504,7 @@
                                         CircleProgressView:cpv_spinColor="@color/text_color_2e"
                                         CircleProgressView:cpv_textColor="@color/text_color_2e"
                                         CircleProgressView:cpv_textScale="0.8"
-                                        CircleProgressView:cpv_unit="/10"
+                                        CircleProgressView:cpv_unit="/۱۰"
 
 
                                         CircleProgressView:cpv_unitColor="@color/colorPrimary"

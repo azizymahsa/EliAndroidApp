@@ -513,7 +513,32 @@ public class Utility extends Activity {
 
 
     }
+    public static String dateShowPolicy(String time) {
 
+        String[] splite = time.split(" ");
+        String[] dateSplite = splite[0].split("/");
+
+        //String outputPattern = "dd-MMM-yyyy h:mm a";
+
+
+        String inputPattern = "yyyy/MM/dd HH:mm";
+        String outputPattern = "dd MMM";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+
+
+    }
 
     public static String dateShowView(String time) {
 

@@ -259,10 +259,9 @@ public class DateUtil {
             return "";
         }
         try {
-            return  getStringDayOfWeek(dateTime,format,isPersian) + "  " +
-                    getDayOfMonth(dateTime,format,isPersian) + "  " +
-                    getStringMonth(dateTime,format,isPersian) + "  " +
-                    getYear(dateTime,format,isPersian);
+            return  getStringDayOfWeek(dateTime,format,isPersian) + " " +
+                    getDayOfMonth(dateTime,format,isPersian) + " " +
+                    getStringMonth(dateTime,format,isPersian) + " " ;
         }
         catch (NullPointerException e) {
             e.printStackTrace();

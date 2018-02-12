@@ -35,6 +35,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         public TextView totalPrice;
         public TextView total_price;
         public TextView txt_hr_room_list;
+        public TextView txt_hr_room_list2;
         public SmoothCheckBox chk_prow_price;
 
         public ItemViewHolder(View itemView) {
@@ -46,6 +47,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
             totalPrice = itemView.findViewById(R.id.total_price);
             //    total_price = itemView.findViewById(R.id.total_price);
             txt_hr_room_list = itemView.findViewById(R.id.txt_hr_room_list);
+            txt_hr_room_list2 = itemView.findViewById(R.id.txt_hr_room_list2);
             chk_prow_price = itemView.findViewById(R.id.chk_prow_price);
         }
     }
@@ -113,7 +115,8 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         }
 
         holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice())));
-        holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF() +"\n" + item.getHServiceF() + "(" + item.getHService() +")");
+        holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF());
+        holder.txt_hr_room_list2.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList(): item.getHServiceF() + "(" + item.getHService() +")");
 
         holder.chk_prow_price.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override

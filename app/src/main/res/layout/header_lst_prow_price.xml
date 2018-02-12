@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="10sp"
         android:maxLines="1"
-        android:background="#faf4f4"
+        android:background="@drawable/color_strok_item_package2"
         android:layout_gravity="center"
         android:textColor="@color/text_color_4d"
         android:textSize="@dimen/_12dp_normal_textSize"

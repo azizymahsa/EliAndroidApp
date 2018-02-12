@@ -28,9 +28,9 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@drawable/logo_e"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="icon, label">
+        android:supportsRtl="false"
+        tools:replace="android:supportsRtl,icon, label">
         <activity
             android:name=".views.ui.SplashFragment"
             android:exported="true"
@@ -112,7 +112,6 @@
         <activity
             android:name=".views.activities.ConditionActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".views.activities.insurance.AddPassengerActivity"
             android:screenOrientation="portrait"
@@ -174,7 +173,8 @@
                 <!-- android:scheme="http" /> -->
             </intent-filter>
         </activity>
-        <activity android:name=".views.activities.pack.PackageServicesActivity"></activity>
+        <activity android:name=".views.activities.pack.PackageServicesActivity" />
+        <activity android:name=".views.activities.insurance.InsurnaceDetailsActivity"></activity>
     </application>
 
 </manifest>

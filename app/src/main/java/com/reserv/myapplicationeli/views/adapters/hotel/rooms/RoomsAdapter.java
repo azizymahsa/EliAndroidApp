@@ -185,10 +185,10 @@ public class RoomsAdapter extends BaseAdapter {
 
               alertDialogPolicy.setText("اتاق"+getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                       getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo()+": کنسل کردن از "+
-                      getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                              getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate()+" تا "+
-                      getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                              getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()+" شامل "+
+                     Utility.dateShowPolicy( getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate())+" تا "+
+                     Utility.dateShowPolicy( getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate())+" شامل "+
                       getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                               getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount()+" "+getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                       getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency()+" جریمه می شود.");

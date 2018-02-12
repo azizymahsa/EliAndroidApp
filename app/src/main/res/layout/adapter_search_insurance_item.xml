@@ -1,130 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:id="@+id/layout_root"
-    >
+    android:orientation="vertical">
 
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/crd_in_plan"
+    <android.support.v7.widget.CardView
+        android:id="@+id/crd_in_plan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/hotel_detail_background"
+        card_view:cardBackgroundColor="#ffffff"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="2dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/hotel_detail_background"
-            card_view:cardBackgroundColor="#ffffff"
-            card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="2dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10dp_padding">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/_10dp_padding"
-                    android:orientation="horizontal">
+                    android:layout_weight="0.7"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_5sp_padding">
+
+                    <TextView
+                        android:id="@+id/txt_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/_10dp_padding"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textSize="@dimen/_14dp_txtSize" />
+
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="0.7"
-                        android:padding="@dimen/_5sp_padding"
-                       android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/txt_title"
-                            android:layout_width="match_parent"
+
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:paddingRight="@dimen/_10dp_padding"
-                            android:textSize="@dimen/_14dp_txtSize"
-                            android:textAppearance="@style/IrsansBold"/>
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="0.5"
+                            android:gravity="right|center"
+                            android:paddingRight="5dp"
+                            android:text="ریال"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/green"
+                            android:textSize="@dimen/_13dp_normal_textSize" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/txt_price"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-
-                                android:layout_width="0dp"
-                                android:layout_weight="0.5"
-                                android:layout_height="wrap_content"
-                                android:text="ریال"
-                                android:gravity="right|center"
-                                android:textColor="@color/green"
-                                android:layout_marginTop="5dp"
-                                android:paddingRight="5dp"
-                                android:textSize="@dimen/_13dp_normal_textSize"
-                                android:textAppearance="@style/IrsansBold"/>
-
-                            <TextView
-                                android:id="@+id/txt_price"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="left|center"
-                                android:layout_marginTop="5dp"
-                                android:paddingRight="@dimen/_25dp"
-                                android:textSize="@dimen/_13dp_normal_textSize"
-                                android:textAppearance="@style/IrsansBold"/>
-                        </LinearLayout>
-
-
+                            android:layout_marginTop="5dp"
+                            android:gravity="left|center"
+                            android:paddingRight="@dimen/_25dp"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textSize="@dimen/_13dp_normal_textSize" />
                     </LinearLayout>
-                   <TextView
-                       android:id="@+id/txt_plan"
-                       android:layout_width="0dp"
-                       android:layout_weight="0.3"
-                       android:layout_height="@dimen/_60dp_hight"
-                       android:textSize="16sp"
-                       android:gravity="center"/>
+
 
                 </LinearLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.1"
-                    android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btn_buy"
-                        android:layout_width="@dimen/_100dp_normal"
-                        android:layout_height="@dimen/_25dp"
-                        android:text="خرید بیمه"
-                        android:textSize="@dimen/_14dp_txtSize"
-                        android:gravity="center"
-                        android:background="@drawable/btngravity_big"
-                        android:textColor="#fff"
-                        android:layout_alignParentLeft="true"
-                       android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"/>
-                    <!--<Button-->
-                        <!--android:id="@+id/btn_details"-->
-                        <!--android:layout_width="98dp"-->
-                        <!--android:layout_height="25dp"-->
-                        <!--android:text="جزییات"-->
-                        <!--android:textSize="@dimen/_12dp"-->
-                        <!--android:gravity="center"-->
-                        <!--android:background="@drawable/background_strock_banafsh"-->
-                        <!--android:textColor="@color/titlebackgroundcolor"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:layout_marginRight="@dimen/_12dp"-->
-                        <!--android:layout_marginBottom="10dp"/>-->
-
-                </RelativeLayout>
+                <TextView
+                    android:id="@+id/txt_plan"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_60dp_hight"
+                    android:layout_weight="0.3"
+                    android:gravity="center"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btn_buy"
+                    android:layout_width="@dimen/_100dp_normal"
+                    android:layout_height="@dimen/_25dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/btngravity_big"
+                    android:gravity="center"
+                    android:text="خرید بیمه"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_14dp_txtSize" />
+
+                <Button
+                    android:id="@+id/btn_details"
+                    android:layout_width="@dimen/_100dp_normal"
+                    android:layout_height="@dimen/_25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:background="@drawable/background_strock_select_insurance"
+                    android:gravity="center"
+                    android:text="جزئیات"
+                    android:textColor="@color/titlebackgroundcolor"
+                    android:textSize="@dimen/_14dp_txtSize" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
 
 
 

@@ -2,6 +2,7 @@ package com.reserv.myapplicationeli.views.ui.dialog.hotel;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -40,10 +41,11 @@ public class AlertDialogPolicy implements View.OnClickListener {
         avi = (AVLoadingIndicatorView) dialogView.findViewById(R.id.avi);
         tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
 
-      /*  Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
+       /* Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_normal.ttf");
         tvAlert.setTextSize(2,12);
-        tvAlert.setLineSpacing(5);
-        tvAlert.setTypeFace(typeface);*/
+        tvAlert.setLineSpacing(30);
+        tvAlert.setTypeFace(typeface);
+        tvAlert.setTextColor(ContextCompat.getColor(activity,R.color.text_color_4d));*/
 
         btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);

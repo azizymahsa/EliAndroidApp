@@ -67,7 +67,7 @@
                 android:maxLines="1"
                 android:text="Istanbul,Turkey "
                 android:textColor="#fff"
-                android:textSize="@dimen/_15dp_normal_textSize" />
+                android:textSize="@dimen/_12dp_normal_textSize" />
         </LinearLayout>
 
 

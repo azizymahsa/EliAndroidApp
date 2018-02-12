@@ -35,6 +35,7 @@ import com.reserv.myapplicationeli.models.model.insurance.call.InsuranceListReq;
 import com.reserv.myapplicationeli.models.model.insurance.call.InsuranceRequestModel;
 import com.reserv.myapplicationeli.models.model.insurance.response.InsuranceRes;
 import com.reserv.myapplicationeli.models.model.pack.ChildModel;
+import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.adapters.insurance.InsurancPlanAdapter;
@@ -59,7 +60,6 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     private int passCount;
     private RecyclerView rclTravelInsurance;
     private RecyclerView rclInsurancePlans;
-    private ProgressBar prg;
     private TextView txt;
     private ClientService service;
     private String departureDate;
@@ -75,6 +75,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     private RelativeLayout error_layout;
     private TextView txt_error;
     private FancyButton btnOk;
+    private RelativeLayout rlLoading2,rlRoot;
 
 
     @SuppressLint("NewApi")
@@ -82,7 +83,6 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_insurance);
-        OneSignal.sendTag("position", "isInsuranceSearch");
 
         Window window = getWindow();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -221,7 +221,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     }
 
     private void showText() {
-        prg.setVisibility(View.GONE);
+        rlLoading2.setVisibility(View.GONE);
         rclTravelInsurance.setVisibility(View.GONE);
         rclInsurancePlans.setVisibility(View.GONE);
         txt.setVisibility(View.VISIBLE);
@@ -232,7 +232,8 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         rclInsurancePlans = findViewById(R.id.rclInsurancePlans);
         btnOk = findViewById(R.id.btnOk);
 
-        prg = findViewById(R.id.prg);
+        rlLoading2 = findViewById(R.id.rlLoading2);
+        rlRoot = findViewById(R.id.rlRoot);
         txt = findViewById(R.id.txt);
         rclTravelInsurance.setLayoutManager(new LinearLayoutManager(this));
         rclInsurancePlans.setLayoutManager(new LinearLayoutManager(this));
@@ -243,17 +244,22 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         error_layout.setVisibility(View.GONE);
 
         btnOk.setOnClickListener(this);
+        Utility.setAnimLoading(this);
+
     }
 
     private void showLoading(){
-        prg.setVisibility(View.VISIBLE);
+        Utility.disableEnableControls(false,rlRoot);
+        rlLoading2.setVisibility(View.VISIBLE);
         rclTravelInsurance.setVisibility(View.GONE);
         rclInsurancePlans.setVisibility(View.GONE);
         txt.setVisibility(View.GONE);
     }
 
     private void hideLoading(){
-        prg.setVisibility(View.GONE);
+        Utility.disableEnableControls(true,rlRoot);
+
+        rlLoading2.setVisibility(View.GONE);
         txt.setVisibility(View.GONE);
     }
 

@@ -34,6 +34,8 @@
                 android:text="ferwer"
                 android:gravity="right|center"
                 android:layout_marginRight="5dp"
+                android:textColor="@color/text_color_2e"
+
 
                 />
             <TextView
@@ -42,7 +44,7 @@
                 android:textSize="@dimen/_25dp_normal_iconSize"
                 android:layout_weight="8"
                 android:textAppearance="@style/IconFonts"
-                android:textColor="@color/text_color_4d"
+                android:textColor="@color/green"
                 android:text="@string/icon_check"
                 android:gravity="center"
 

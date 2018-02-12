@@ -193,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/RelativeLayoutHotel"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                   >
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -206,7 +206,6 @@
                             android:id="@+id/title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="false"
                             android:gravity="left|center"
                             android:text="1 X STANDARD ROOM"
                             android:textColor="#253e96"

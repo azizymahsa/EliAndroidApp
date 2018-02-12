@@ -25,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
-            android:orientation="vertical"
-           >
+            android:orientation="vertical">
+
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
                 android:id="@+id/rcl_hotels"
                 android:layout_width="match_parent"
@@ -34,11 +34,12 @@
                 android:visibility="visible">
 
             </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+
             <TextView
                 android:id="@+id/TextView01"
-                android:layout_below="@+id/rcl_hotels"
                 android:layout_width="10dp"
                 android:layout_height="11dp"
+                android:layout_below="@+id/rcl_hotels"
                 android:layout_gravity="right"
                 android:layout_marginBottom="1dp"
                 android:layout_marginLeft="8dp"
@@ -48,62 +49,63 @@
                 android:gravity="center"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <LinearLayout
-                android:layout_below="@+id/TextView01"
                 android:id="@+id/fronttop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/TextView01"
+                android:layout_marginTop="5dp"
                 android:background="#ffffff"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="مشخصات پرواز"
-                    android:gravity="center"
-                    android:textColor="@color/dark_blue"
                     android:background="@color/hotel_detail_background"
-                    android:textSize="@dimen/_14dp_txtSize"/>
+                    android:gravity="center"
+                    android:text="مشخصات پرواز"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/_14dp_txtSize" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/txt_airline_go"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="iranair"
                         android:layout_centerHorizontal="true"
                         android:gravity="center"
                         android:paddingRight="10dp"
-                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:text="iranair"
                         android:textColor="@color/text_color_4d"
-                        />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_toLeftOf="@+id/iv"
                         android:layout_centerVertical="true"
-                        android:paddingRight="10dp"
+                        android:layout_toLeftOf="@+id/iv"
                         android:gravity="right"
-                        >
+                        android:orientation="vertical"
+                        android:paddingRight="10dp">
+
                         <TextView
                             android:id="@+id/time_ariv_go"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="12:20"
                             android:gravity="center"
+                            android:text="12:20"
+                            android:textAppearance="@style/IconFonts3"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textAppearance="@style/IconFonts3"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                         <TextView
@@ -111,13 +113,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/time_deprt_go"
+                            android:layout_marginLeft="@dimen/_20dp_margin_p"
                             android:gravity="center"
                             android:text="tehran"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:layout_marginLeft="@dimen/_20dp_margin_p"
-                            android:textColor="@color/text_color_4d"/>
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
                     </LinearLayout>
-
 
 
                     <ImageView
@@ -129,76 +130,78 @@
                         android:src="@drawable/gray_line" />
 
                     <LinearLayout
-                        android:layout_toRightOf="@+id/iv"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/iv"
                         android:orientation="vertical"
                         android:paddingLeft="10dp">
+
                         <TextView
                             android:id="@+id/time_deprt_go"
-                            android:layout_below="@+id/time_ariv_go"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="6:20"
+                            android:layout_below="@+id/time_ariv_go"
                             android:gravity="center"
+                            android:text="6:20"
 
 
+                            android:textAppearance="@style/IconFonts3"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textAppearance="@style/IconFonts3"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
                         <TextView
                             android:id="@+id/country_deprt_go"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_12dp_normal_textSize"
                             android:layout_below="@+id/time_deprt_go"
-                            android:text="siraz"
                             android:gravity="right"
+                            android:text="siraz"
                             android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize"
 
                             />
                     </LinearLayout>
 
 
-
-
-
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10dp_margin"
-                    >
+                    android:layout_marginTop="@dimen/_10dp_margin">
+
                     <TextView
                         android:id="@+id/txt_airline_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="iranair"
                         android:layout_centerHorizontal="true"
                         android:gravity="center"
                         android:paddingRight="10dp"
-                        android:textSize="@dimen/_12dp_normal_textSize"
-                        android:textColor="@color/text_color_4d"/>
+                        android:text="iranair"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_toLeftOf="@+id/iv2"
                         android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/iv2"
+                        android:orientation="vertical"
                         android:paddingRight="10dp">
+
                         <TextView
                             android:id="@+id/time_arrive_back"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="12:20"
                             android:gravity="center"
+                            android:text="12:20"
 
+                            android:textAppearance="@style/IconFonts3"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textAppearance="@style/IconFonts3"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
                         <TextView
                             android:id="@+id/country_arive_back"
                             android:layout_width="wrap_content"
@@ -206,11 +209,9 @@
                             android:layout_below="@+id/time_drt_back"
                             android:gravity="center"
                             android:text="tehran"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textColor="@color/text_color_4d"/>
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
                     </LinearLayout>
-
-
 
 
                     <ImageView
@@ -219,41 +220,40 @@
                         android:layout_height="@dimen/_8dp_normal_margin"
                         android:layout_centerInParent="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/gray_line"/>
+                        android:src="@drawable/gray_line" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_toRightOf="@+id/iv2"
                         android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/iv2"
+                        android:orientation="vertical"
                         android:paddingLeft="10dp">
 
                         <TextView
                             android:id="@+id/time_drt_back"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="6:20"
                             android:gravity="center"
+                            android:text="6:20"
 
 
+                            android:textAppearance="@style/IconFonts3"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textAppearance="@style/IconFonts3"/>
-
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                         <TextView
                             android:id="@+id/country_depart_back"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-
                             android:layout_below="@+id/time_drt_back"
-                            android:text="siraz"
+
                             android:gravity="right"
+                            android:text="siraz"
                             android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize"
 
                             />
                     </LinearLayout>
@@ -264,51 +264,49 @@
 
             <com.reserv.myapplicationeli.views.components.SimpleRecycleView
                 android:id="@+id/rcl_price"
-                android:layout_below="@+id/fronttop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:layout_marginTop="10dp">
+                android:layout_below="@+id/fronttop"
+                android:layout_marginTop="10dp"
+                android:visibility="visible">
 
             </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_below="@+id/rcl_price"
-    android:layout_marginLeft="7dp"
-    android:layout_marginRight="7dp"
-    >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rcl_price"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/packageBooking"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_30dp"
-        android:layout_weight="100"
-        android:layout_gravity="center|bottom"
-        android:background="@drawable/btngravity_big"
-        android:text="@string/reserve_package"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/_12dp_normal_textSize"
-        android:layout_marginRight="@dimen/_20dp"
-        />
-        <Button
-            android:id="@+id/btnServices"
-        android:layout_width="0dp"
-            android:layout_height="@dimen/_30dp"
-        android:layout_weight="100"
-        android:layout_gravity="center|bottom"
-        android:text="خدمات قابل ارائه"
-        android:textColor="@color/text_color_2e"
-            android:textSize="@dimen/_12dp_normal_textSize"
-        android:background="@drawable/background_strock_select_package"
-        />
+                <Button
+                    android:id="@+id/packageBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginRight="@dimen/_20dp"
+                    android:layout_weight="100"
+                    android:background="@drawable/btn_package"
+                    android:text="@string/reserve_package"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
+
+                <Button
+                    android:id="@+id/btnServices"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_gravity="center|bottom"
+                    android:layout_weight="100"
+                    android:background="@drawable/background_strock_select_package"
+                    android:text="خدمات قابل ارائه"
+                    android:textColor="@color/text_color_2e"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
-</LinearLayout>
-
+            </LinearLayout>
 
 
         </RelativeLayout>

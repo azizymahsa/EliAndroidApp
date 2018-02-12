@@ -1,17 +1,21 @@
 package com.reserv.myapplicationeli.views.adapters.insurance;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.google.gson.Gson;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.insurance.TravelInsurance_;
 import com.reserv.myapplicationeli.tools.Utility;
+import com.reserv.myapplicationeli.views.activities.insurance.InsurnaceDetailsActivity;
 import com.reserv.myapplicationeli.views.viewholders.InsuranceRowHolder;
 
 import java.util.ArrayList;
@@ -81,6 +85,15 @@ public class TravelInsurancAdapter extends RecyclerView.Adapter<InsuranceRowHold
                     listener.onClickTravelInsurancItem(feedItemList.get(position));
                     return;
                 }
+            }
+        });
+        holder.btn_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,InsurnaceDetailsActivity.class);
+                intent.putExtra("details", new Gson().toJson(item.getTravelInsuranceCoverages()));
+                context.startActivity(intent);
+
             }
         });
 

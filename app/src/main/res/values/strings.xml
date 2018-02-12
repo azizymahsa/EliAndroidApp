@@ -140,7 +140,7 @@
     <string name="icon_user_login">&#xe618;</string>
     <string name="icon_pass_login">&#xe619;</string>
     <string name="icon_forget_login">&#xe612;</string>
-    <string name="icon_check">&#xe916;</string>
+    <string name="icon_check">&#xe5ca;</string>
 
     <string name="searchFlight">جستجوی پرواز</string>
     <string name="search_package">جستجوی  تور</string>
