@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.reserv.myapplicationeli.views.activities.transfer.TransferActivity">
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/toolbarLayout"
+        android:background="@drawable/shadow" />
+
+
+    <LinearLayout
+        android:layout_below="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:text="فرودگاه مقصد"
+            android:gravity="center"
+            android:textColor="@color/text_color_4d"
+            android:textAppearance="@style/IrsansBold"
+            android:textSize="@dimen/_14dp_txtSize"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:text="انتخاب کنید"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:textSize="@dimen/_12dp_normal_textSize"
+            android:textColor="@color/text_color_2e"
+            android:background="@drawable/color_strok_item_insurance"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:text="هتل"
+            android:gravity="center"
+            android:textColor="@color/text_color_4d"
+            android:textAppearance="@style/IrsansBold"
+            android:textSize="@dimen/_14dp_txtSize"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:text="انتخاب کنید"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:textSize="@dimen/_12dp_normal_textSize"
+            android:textColor="@color/text_color_2e"
+            android:background="@drawable/color_strok_item_insurance"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="انتخاب کنید"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:textColor="@color/text_color_2e"
+                android:background="@drawable/color_strok_item_insurance"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="تاریخ رفت"
+                android:gravity="center"
+                android:textColor="@color/text_color_4d"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="انتخاب کنید"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:textColor="@color/text_color_2e"
+                android:background="@drawable/color_strok_item_insurance"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="تاریخ برگشت"
+                android:gravity="center"
+                android:textColor="@color/text_color_4d"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="انتخاب کنید"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:textColor="@color/text_color_2e"
+                android:background="@drawable/color_strok_item_insurance"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="ساعت رفت"
+                android:gravity="center"
+                android:textColor="@color/text_color_4d"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="انتخاب کنید"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:textColor="@color/text_color_2e"
+                android:background="@drawable/color_strok_item_insurance"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="ساعت برگشت"
+                android:gravity="center"
+                android:textColor="@color/text_color_4d"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize"
+                /></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="انتخاب کنید"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:textColor="@color/text_color_2e"
+                android:background="@drawable/color_strok_item_insurance"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="شماره پرواز رفت"
+
+                android:gravity="center"
+                android:textColor="@color/text_color_4d"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            android:layout_marginBottom="@dimen/_10dp_margin"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="انتخاب کنید"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:textColor="@color/text_color_2e"
+                android:background="@drawable/color_strok_item_insurance"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="شماره پرواز برگشت"
+
+                android:gravity="center"
+                android:textColor="@color/text_color_4d"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize" /></LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

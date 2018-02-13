@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/CircleProgressView/CircleProgressView.iml" filepath="$PROJECT_DIR$/CircleProgressView/CircleProgressView.iml" />
       <module fileurl="file://$PROJECT_DIR$/EligashtAndroidApp.iml" filepath="$PROJECT_DIR$/EligashtAndroidApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/connectionbuddy/connectionbuddy.iml" filepath="$PROJECT_DIR$/connectionbuddy/connectionbuddy.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/library3/library3.iml" filepath="$PROJECT_DIR$/library3/library3.iml" />
       <module fileurl="file://$PROJECT_DIR$/lottie/lottie.iml" filepath="$PROJECT_DIR$/lottie/lottie.iml" />

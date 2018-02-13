@@ -32,7 +32,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by Reza.nejati on 1/2/2018.
  */
 
-public class BaseActivity extends AppCompatActivity  {
+public class BaseActivity extends Base  {
     private BroadcastReceiver sendStartTimer;
 
 
@@ -83,29 +83,6 @@ public class BaseActivity extends AppCompatActivity  {
         }
     }
 
-    public void needShowAlertDialog(String message, boolean canelable) {
-        if(mAlertDialog!= null && mAlertDialog.isShowing()){
-            return;
-        }
-        mAlertDialog = new AlertDialog.Builder(this).create();
-        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.alert_dialog_net, null);
-        mAlertDialog.setCancelable(canelable);
-        FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
-        TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("iran_sans_normal.ttf");
-        tvAlert.setText(message);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAlertDialog.dismiss();
-            }
-        });
-
-        mAlertDialog.setView(view);
-        mAlertDialog.setCancelable(true);
-        mAlertDialog.show();
-    }
 
 }

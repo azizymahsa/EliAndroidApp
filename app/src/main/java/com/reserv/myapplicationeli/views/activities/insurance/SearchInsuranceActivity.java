@@ -38,6 +38,7 @@ import com.reserv.myapplicationeli.models.model.pack.ChildModel;
 import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.reserv.myapplicationeli.views.adapters.insurance.InsurancPlanAdapter;
 import com.reserv.myapplicationeli.views.adapters.insurance.TravelInsurancAdapter;
 import com.reserv.myapplicationeli.views.ui.InitUi;
@@ -139,7 +140,15 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
                         || response.body() == null
                         || response.body().getShowInsuranceResult() == null) {
                     showText();
-                    txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                    if (!Utility.isNetworkAvailable(SearchInsuranceActivity.this)){
+
+                        txt_error.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+
+                    }else{
+
+                        txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
+
+                    }
                     error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }

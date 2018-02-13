@@ -179,7 +179,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             e.printStackTrace();
         }*/
         try {
-            jsonObj = new JSONArray(Prefs.getString("Rooms", "dd"));
+            jsonObj = new JSONArray(Prefs.getString("Rooms", "[{\"CountB\":1,\"CountK\":0,\"CountN\":0,\"childModels\":[]}]"));
+            Log.e("testroom2", jsonObj.toString());
             rooms=jsonObj.length();
 
 

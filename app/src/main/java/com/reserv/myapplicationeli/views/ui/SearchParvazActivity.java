@@ -52,6 +52,7 @@ import com.reserv.myapplicationeli.tools.datetools.JalaliCalendar;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelFlightActivity;
+import com.reserv.myapplicationeli.views.activities.insurance.SearchInsuranceActivity;
 import com.reserv.myapplicationeli.views.adapters.ExpandableListAdapter;
 import com.reserv.myapplicationeli.views.adapters.SearchParvazPinAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
@@ -1439,8 +1440,18 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 					linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
 					linear_expand.setVisibility(View.GONE);
 					LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-					txtNoResult.setText("خطا در دریافت اطلاعات الی گشت ");
 					linear_no_result.setVisibility(View.VISIBLE);
+
+				if (!Utility.isNetworkAvailable(SearchParvazActivity.this)){
+
+					txtNoResult.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+
+				}else{
+
+					txtNoResult.setText("خطا در دریافت اطلاعات از الی گشت");
+
+				}
+
 				//}
 
 			}

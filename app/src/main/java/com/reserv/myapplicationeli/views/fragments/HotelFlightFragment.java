@@ -323,9 +323,30 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         } else {
 
             tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
-            bargasht = Prefs.getString("bargasht", "null");
+            bargasht = Prefs.getString("bargasht", "null").replaceAll("-","/");
 
 
+
+
+
+            Log.e("testdate", bargasht );
+
+            String[] dateSplite2=bargasht.split("/");
+
+            String dayMF=dateSplite2[2];
+            String monthMF=dateSplite2[1];
+            String yearMF=dateSplite2[0];
+            String[] dateSplite3= com.reserv.myapplicationeli.tools.datetools.SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
+
+            String dayMF1=dateSplite3[2];
+            String monthMF1=dateSplite3[1];
+            String yearMF1=dateSplite3[0];
+
+
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
+            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+            datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
 
 
         }
@@ -336,11 +357,36 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
         } else {
             tvRaft.setText(Prefs.getString("raftfa", "null"));
-            raft = Prefs.getString("raft", "null");
+            raft = Prefs.getString("raft", "null").replaceAll("-","/");
+            Log.e("testdate", raft );
+
+            String[] dateSplite2=raft.split("/");
+
+            String dayMF=dateSplite2[2];
+            String monthMF=dateSplite2[1];
+            String yearMF=dateSplite2[0];
+            String[] dateSplite3= com.reserv.myapplicationeli.tools.datetools.SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
+
+            String dayMF1=dateSplite3[2];
+            String monthMF1=dateSplite3[1];
+            String yearMF1=dateSplite3[0];
+
+
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
+            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+            datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
+
+            //   datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+
+
+
+
 
 
 
         }
+
 //=====================================================================================================
 
 
@@ -360,7 +406,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             Gson gson;
 
             gson = new GsonBuilder().create();
-            roomsSelected = gson.fromJson(Prefs.getString("Rooms", "dd"), new TypeToken<List<ModelRowCountRoom>>() {
+            roomsSelected = gson.fromJson(Prefs.getString("Rooms", "[{\"CountB\":1,\"CountK\":0,\"CountN\":0,\"childModels\":[]}]"), new TypeToken<List<ModelRowCountRoom>>() {
             }.getType());
 
             Log.e("1243intent", Prefs.getString("Rooms", "dd"));

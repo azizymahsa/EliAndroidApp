@@ -1428,7 +1428,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                 } else if (availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
+                    tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد!");
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
@@ -1551,8 +1551,17 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             } catch (Exception e) {
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
-                tvAlert.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
                 llFilter.setVisibility(View.GONE);
+                if (!Utility.isNetworkAvailable(SelectHotelActivity.this)){
+
+                    tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+
+                }else{
+
+                    tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
+
+                }
+
             }
 
 

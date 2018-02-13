@@ -161,7 +161,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger);
-        Prefs.getString("Rooms", "dd");
+        Prefs.getString("Rooms", "[{\"CountB\":1,\"CountK\":0,\"CountN\":0,\"childModels\":[]}]");
       //  JSONArray jsonObj = null;
        /* try {
             jsonObj = new JSONArray(Prefs.getString("Rooms", "dd"));

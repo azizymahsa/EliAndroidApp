@@ -47,6 +47,7 @@ dependencies {
     compile project(':library')
     compile project(':CircleProgressView')
     compile project(':library3')
+    compile project(':connectionbuddy')
 
     //compile project(':library2')
     compile 'com.android.support:support-core-utils:26.1.0'
@@ -130,7 +131,11 @@ dependencies {
         exclude module: 'support-v4'
     }
     compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.pwittchen:reactivenetwork-rx2:0.12.3'
+    //compile 'com.github.pwittchen:networkevents:2.1.6'
+    compile 'com.novoda:merlin:1.1.5'
 
+    // compile 'com.laimiux.rxnetwork:rxnetwork:0.0.4'
 
 }
 apply plugin: 'com.google.gms.google-services'

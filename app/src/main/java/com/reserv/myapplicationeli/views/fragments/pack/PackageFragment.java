@@ -594,7 +594,7 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
 
 
 
-            Prefs.putString("bargashtfa",departureFrom);
+            Prefs.putString("bargashtfa",txt_return_date.getText().toString());
 
             Prefs.putString("raft",  departureFrom);
             Prefs.putString("raftfa",  txt_depart_date.getText().toString());

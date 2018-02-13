@@ -2,8 +2,10 @@ package com.reserv.myapplicationeli.views.ui;
 
 import android.Manifest;
 import android.animation.Animator;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -12,6 +14,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -24,6 +28,8 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieComposition;
 import com.airbnb.lottie.model.layer.Layer;
 import com.bumptech.glide.Glide;
+import com.github.pwittchen.reactivenetwork.library.rx2.Connectivity;
+import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
 import com.google.gson.Gson;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -50,16 +56,24 @@ import com.reserv.myapplicationeli.views.adapters.hotel.comment.CommentModel;
 import com.reserv.myapplicationeli.views.ui.dialog.app.InternetAlert;
 import com.reserv.myapplicationeli.views.ui.dialog.app.SplashDialog;
 import com.wang.avi.AVLoadingIndicatorView;
+import com.zplesac.connectionbuddy.activities.ConnectionBuddyActivity;
+import com.zplesac.connectionbuddy.models.ConnectivityEvent;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class SplashFragment extends BaseActivity implements SplashDialog.TryDialogListener {
 
+public class SplashFragment extends ConnectionBuddyActivity implements SplashDialog.TryDialogListener {
+    boolean isShow = true;
     private Runnable runnable, runnable2;
     private Handler handler, handler2;
     private ImageView ivSplash, ivLoading;
@@ -73,16 +87,19 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
     String model;
     String brand;
     String product;
+    private BroadcastReceiver sendDetailFinish;
+    InternetAlert internetAlert;
+    boolean isConnect;
 
     @Override
     public void onReturnValue() {
         deviceId = Utility.getDeviceID(SplashFragment.this);
         deviceSubscriberID = Utility.getSubscriberID(SplashFragment.this);
-        operator =Utility.getMyOperator(SplashFragment.this);
+        operator = Utility.getMyOperator(SplashFragment.this);
         sdkVersion = android.os.Build.VERSION.SDK_INT + "";
         model = android.os.Build.MODEL;
         brand = Build.BRAND;
-        product =Build.PRODUCT;
+        product = Build.PRODUCT;
         new GetCommentAsync().execute();
     }
 
@@ -103,7 +120,11 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
         }
 
 
-        //
+
+
+        internetAlert = new InternetAlert(SplashFragment.this);
+
+
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
         avi = findViewById(R.id.avi);
@@ -126,21 +147,37 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
                             @Override
                             public void onPermissionGranted() {
 
+                       /*         ReactiveNetwork.observeNetworkConnectivity(SplashFragment.this)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(new Consumer<Connectivity>() {
+                                            @Override
+                                            public void accept(final Connectivity connectivity) {
+                                                Log.e("testt", connectivity.getState().toString());
+                                                if (connectivity.getState().toString().equals("DISCONNECTED")) {
+                                                    try{internetAlert.isShow();}
+                                                    catch (Exception e){}
 
 
-                                if (Utility.isNetworkAvailable(SplashFragment.this)) {
-                                    deviceId = Utility.getDeviceID(SplashFragment.this);
-                                    deviceSubscriberID = Utility.getSubscriberID(SplashFragment.this);
-                                    operator =Utility.getMyOperator(SplashFragment.this);
-                                    sdkVersion = android.os.Build.VERSION.SDK_INT + "";
-                                    model = android.os.Build.MODEL;
-                                    brand = Build.BRAND;
-                                    product =Build.PRODUCT;
+
+                                                } else if (connectivity.getState().toString().equals("CONNECTED")){
+                                                    try{    internetAlert.isCancel();
+                                                        new GetCommentAsync().execute();}
+                                                    catch (Exception e){}
+
+
+                                                }
+
+                                            }
+                                        });*/
+
+                                if (isConnect) {
+
                                     new GetCommentAsync().execute();
 
                                 } else {
 
-                                    new InternetAlert(SplashFragment.this);
+                                    internetAlert.isShow();
                                 }
                             }
 
@@ -150,7 +187,7 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
                             }
                         })
                         .setDeniedMessage("If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
-                        .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)
+                        .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)
                         .check();
 
 
@@ -207,22 +244,30 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
     private class GetCommentAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
+            internetAlert.isCancel();
+
             avi.setVisibility(View.VISIBLE);
 
-
+            deviceId = Utility.getDeviceID(SplashFragment.this);
+            deviceSubscriberID = Utility.getSubscriberID(SplashFragment.this);
+            operator = Utility.getMyOperator(SplashFragment.this);
+            sdkVersion = android.os.Build.VERSION.SDK_INT + "";
+            model = android.os.Build.MODEL;
+            brand = Build.BRAND;
+            product = Build.PRODUCT;
         }
 
         @Override
         protected String doInBackground(String... params) {
             try {
-                userEntranceRequest=new UserEntranceRequest(new UserRequest
+                userEntranceRequest = new UserEntranceRequest(new UserRequest
                         (new com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.
-                                UserEntranceRequest(deviceId,deviceSubscriberID,sdkVersion,model,product, BuildConfig.VERSION_CODE,2,operator,brand,"fa-IR",new Identity("EligashtMlb",
+                                UserEntranceRequest(deviceId, deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_CODE, 2, operator, brand, "fa-IR", new Identity("EligashtMlb",
                                 "123qwe!@#QWE", "Mobile"))));
                 Log.e("ggg", new Gson().toJson(new UserRequest
                         (new com.reserv.myapplicationeli.models.hotel.api.userEntranceRequest.request.
-                                UserEntranceRequest(deviceId,deviceSubscriberID,sdkVersion,model,product, BuildConfig.VERSION_CODE,2,operator,brand,"fa-IR",new Identity("EligashtMlb",
-                                "123qwe!@#QWE", "Mobile")))) );
+                                UserEntranceRequest(deviceId, deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_CODE, 2, operator, brand, "fa-IR", new Identity("EligashtMlb",
+                                "123qwe!@#QWE", "Mobile")))));
 
 
             } catch (Exception e) {
@@ -239,39 +284,37 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
             try {
 
 
-
-                Log.e("onon", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter+"" );
-                Utility.sendTag("Splash",true,true);
-                for (SearchNotes searchNotes :userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes){
-                    if (searchNotes.Section.equals("H")){
-                        Prefs.putString("H",new Gson().toJson(searchNotes.Notes));
-
-                    }
-
-                    if (searchNotes.Section.equals("F")){
-                        Prefs.putString("F",new Gson().toJson(searchNotes.Notes));
+                Log.e("onon", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter + "");
+                Utility.sendTag("Splash", true, true);
+                for (SearchNotes searchNotes : userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes) {
+                    if (searchNotes.Section.equals("H")) {
+                        Prefs.putString("H", new Gson().toJson(searchNotes.Notes));
 
                     }
-                    if (searchNotes.Section.equals("FH")){
-                        Prefs.putString("FH",new Gson().toJson(searchNotes.Notes));
+
+                    if (searchNotes.Section.equals("F")) {
+                        Prefs.putString("F", new Gson().toJson(searchNotes.Notes));
 
                     }
-                    if (searchNotes.Section.equals("P")){
-                        Prefs.putString("P",new Gson().toJson(searchNotes.Notes));
+                    if (searchNotes.Section.equals("FH")) {
+                        Prefs.putString("FH", new Gson().toJson(searchNotes.Notes));
+
+                    }
+                    if (searchNotes.Section.equals("P")) {
+                        Prefs.putString("P", new Gson().toJson(searchNotes.Notes));
 
                     }
 
                 }
-                if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter){
+                if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
 
 
                     startActivity(new Intent(SplashFragment.this, MainActivity.class));
                     finish();
-                }else{
+                } else {
 
                     alert();
                 }
-
 
 
             } catch (Exception e) {
@@ -283,7 +326,44 @@ public class SplashFragment extends BaseActivity implements SplashDialog.TryDial
             }
         }
     }
-    public void alert(){
-        new SplashDialog(SplashFragment.this,this);
+
+    public void alert() {
+        new SplashDialog(SplashFragment.this, this);
     }
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(context));
+    }
+
+    @Override
+    public void onConnectionChange(ConnectivityEvent event) {
+        // device has active internet connection
+
+        Log.e("splashsplash", "onConnectionChange: ");
+        try {
+            JSONObject jsonObj = new JSONObject(new Gson().toJson(event));
+            JSONObject getAirportsResult = jsonObj.getJSONObject("state");
+
+
+            if (getAirportsResult.getString("value").equals("1")){
+
+                isConnect=true;
+                internetAlert.isCancel();
+                new GetCommentAsync().execute();
+            }else{
+
+
+                isConnect=false;
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+
 }

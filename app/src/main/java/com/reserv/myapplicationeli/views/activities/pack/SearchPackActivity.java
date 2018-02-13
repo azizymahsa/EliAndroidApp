@@ -45,6 +45,7 @@ import com.reserv.myapplicationeli.tools.Utility;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelActivity;
+import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.pack.LstAvailableDateAdapter;
 import com.reserv.myapplicationeli.views.adapters.pack.PRowXferAdapter;
@@ -186,7 +187,15 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (searchXPackageResult == null) {
                     rcl_package.showText();
-                    txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                    if (!Utility.isNetworkAvailable(SearchPackActivity.this)){
+
+                        txt_error.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+
+                    }else{
+
+                        txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
+
+                    }
                     error_layout.setVisibility(View.VISIBLE);
                     return;
                 }

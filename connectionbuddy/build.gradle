@@ -1,0 +1,111 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'com.jfrog.bintray'
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 15
+        versionName "2.0.0-beta1"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dependencies {
+        compile "com.android.support:support-v4:25.1.0"
+        compile 'com.android.support:support-annotations:25.1.0'
+    }
+
+    lintOptions {
+        // if true, stop the gradle build if errors are found
+        abortOnError true
+        // if true, don't include source code lines in the error output
+        noLines false
+        // if true, show all locations for an error, do not truncate lists, etc.
+        showAll true
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'android-connectionbuddy'
+
+    publishedGroupId = 'com.zplesac'
+    libraryName = 'android-connectionbuddy'
+    artifact = 'connectionbuddy'     // Has to be same as your library module name
+
+    libraryDescription = 'Utility library for handling connectivity change events.'
+
+    // Your github repo link
+    siteUrl = 'https://github.com/zplesac/android_connectionbuddy'
+    gitUrl = 'https://github.com/zplesac/android_connectionbuddy.git'
+
+    libraryVersion = '2.0.0-beta1'
+
+    developerId = 'zplesac'
+    developerName = 'Zeljko Plesac'
+    developerEmail = 'zeljko.plesac@gmail.com'
+
+    licenseName = 'Apache-2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0'
+    allLicenses = ["Apache-2.0"]
+}
+
+group = publishedGroupId
+version = libraryVersion
+
+bintray {
+
+    if (project.rootProject.file('local.properties').exists()) {
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+        user = properties.getProperty("bintray.user")
+        key = properties.getProperty("bintray.apikey")
+
+        configurations = ['archives']
+        pkg {
+            repo = bintrayRepo
+            name = bintrayName
+            desc = libraryDescription
+            websiteUrl = siteUrl
+            vcsUrl = gitUrl
+            licenses = ["Apache-2.0"]
+            publish = true
+            publicDownloadNumbers = true
+            dryRun = false
+            version {
+                name = libraryVersion
+                desc = libraryDescription
+                released = new Date()
+                gpg {
+                    sign = true //Determines whether to GPG sign the files. The default is false
+                    passphrase = properties.getProperty("bintray.gpg.password")
+                    //Optional. The passphrase for GPG signing'
+                }
+            }
+        }
+    }
+
+}
+
+
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}

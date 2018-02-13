@@ -34,6 +34,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 
 import com.reserv.myapplicationeli.api.hotel.comment.AddComment;
+import com.reserv.myapplicationeli.base.Base;
 import com.reserv.myapplicationeli.base.BaseActivity;
 
 import com.reserv.myapplicationeli.tools.WebUserTools;
@@ -61,7 +62,7 @@ import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
 import mehdi.sakout.fancybuttons.FancyButton;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends Base implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle, tvArrow;

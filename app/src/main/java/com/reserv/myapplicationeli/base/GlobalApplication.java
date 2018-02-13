@@ -22,6 +22,8 @@ import com.reserv.myapplicationeli.notification.GetNotification;
 import com.reserv.myapplicationeli.views.ui.font.CustomViewWithTypefaceSupport;
 import com.reserv.myapplicationeli.views.ui.font.TextField;
 import com.reserv.myapplicationeli.views.activities.IDM_Activity;
+import com.zplesac.connectionbuddy.ConnectionBuddy;
+import com.zplesac.connectionbuddy.ConnectionBuddyConfiguration;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -42,6 +44,8 @@ public class GlobalApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		ConnectionBuddyConfiguration networkInspectorConfiguration = new ConnectionBuddyConfiguration.Builder(this).build();
+		ConnectionBuddy.getInstance().init(networkInspectorConfiguration);
 		OneSignal.startInit(this)
 				.inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
 				.unsubscribeWhenNotificationsAreDisabled(true)

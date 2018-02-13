@@ -325,7 +325,7 @@ public class Utility extends Activity {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting() && activeNetworkInfo.isAvailable();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting() && activeNetworkInfo.isAvailable() ;
 
     }
 
@@ -522,7 +522,7 @@ public class Utility extends Activity {
 
 
         String inputPattern = "yyyy/MM/dd HH:mm";
-        String outputPattern = "dd MMM";
+        String outputPattern = "MMM dd HH:mm";
         SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
         SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
 

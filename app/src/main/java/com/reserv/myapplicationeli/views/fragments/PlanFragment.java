@@ -184,30 +184,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         year_ = persianCalendarDatePicker.getPersianYear();//1396
         day = persianCalendarDatePicker.getPersianDay();//24
 
-        //////////////recent date
-        if (Prefs.getString("bargashtfa", "null").equals("null")) {
 
-            tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
-            picker_be_format = persianCalendarDatePicker.getPersianLongDate();
-        } else {
-
-            tarikh_be_picker.setText(Prefs.getString("bargashtfa", "null").replaceAll("/", "-"));
-            picker_be_format = Prefs.getString("bargashtfa", "null").replaceAll("/", "-");
-            bargasht = Prefs.getString("bargasht", "null").replaceAll("/", "-");
-
-        }
-
-
-        if (Prefs.getString("raftfa", "null").equals("null")) {
-            tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
-            picker_az_format = persianCalendarDatePicker.getPersianLongDate();
-
-        } else {
-            tarikh_az_picker.setText(Prefs.getString("raftfa", "null").replaceAll("/", "-"));
-            picker_az_format = Prefs.getString("raftfa", "null").replaceAll("/", "-");
-            raft = Prefs.getString("raft", "null").replaceAll("/", "-");
-        }
-//////////////////////end recent date
 
 ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
@@ -358,7 +335,88 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
         }//return rootView;
 
+        if (Prefs.getString("bargashtfa", "null").equals("null")) {
 
+            tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+            picker_be_format = persianCalendarDatePicker.getPersianLongDate();
+        } else {
+
+            tarikh_be_picker.setText(Prefs.getString("bargashtfa", "null").replaceAll("/", "-"));
+            picker_be_format = Prefs.getString("bargashtfa", "null").replaceAll("/", "-");
+            bargasht = Prefs.getString("bargasht", "null").replaceAll("/", "-");
+
+            Log.e("testdate", bargasht );
+
+            String[] dateSplite2=bargasht.split("-");
+
+            String dayMF=dateSplite2[2];
+            String monthMF=dateSplite2[1];
+            String yearMF=dateSplite2[0];
+            String[] dateSplite3= com.reserv.myapplicationeli.tools.datetools.SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
+
+            String dayMF1=dateSplite3[2];
+            String monthMF1=dateSplite3[1];
+            String yearMF1=dateSplite3[0];
+
+
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
+            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+            datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
+
+
+
+
+
+        }
+
+
+        if (Prefs.getString("raftfa", "null").equals("null")) {
+            tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+            picker_az_format = persianCalendarDatePicker.getPersianLongDate();
+
+        } else {
+            tarikh_az_picker.setText(Prefs.getString("raftfa", "null").replaceAll("/", "-"));
+            picker_az_format = Prefs.getString("raftfa", "null").replaceAll("/", "-");
+            raft = Prefs.getString("raft", "null").replaceAll("/", "-");
+
+
+
+
+
+            String[] dateSplite2=raft.split("-");
+
+            String dayMF=dateSplite2[2];
+            String monthMF=dateSplite2[1];
+            String yearMF=dateSplite2[0];
+            String[] dateSplite3= com.reserv.myapplicationeli.tools.datetools.SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
+
+            String dayMF1=dateSplite3[2];
+            String monthMF1=dateSplite3[1];
+            String yearMF1=dateSplite3[0];
+
+
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
+            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+            datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
         return rootView;
     }//end oncreat
 
@@ -712,23 +770,29 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            picker_az = date_server(year, monthOfYear, dayOfMonth);//bayad in bashe
-            picker_az_format = persianCalendar.getPersianLongDate();
-
             tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
-            picker_be = date_server(year, monthOfYear, dayOfMonth);//bayad en bashe
-            picker_be_format = persianCalendar.getPersianLongDate();
-
+            //  tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
-            datePickerDialog2.initialize(this, year_, month, day);
-            datePickerDialog2.setMinDate(persianCalendarDatePicker2);
 
-            Prefs.putString("bargashtfa",  tarikh_be_picker.getText().toString());//چهارشنبه 18 بهمن 1396
 
-            Prefs.putString("raft", raft);//2018-02-7
-            Prefs.putString("raftfa",tarikh_az_picker.getText().toString());//چهارشنبه 18 بهمن 1396
+            if (Utility.campareDate(raft.replaceAll("-","/"),bargasht.replaceAll("-","/"))){
+                tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+                datePickerDialog2.initialize(this, year_, month, day);
+                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+            }
+
+
+
+
+
+
+            Prefs.putString("bargashtfa", tarikh_be_picker.getText().toString());
+
+            Prefs.putString("raft", raft);
+            Prefs.putString("raftfa",tarikh_az_picker.getText().toString());
+
         }
     }
 

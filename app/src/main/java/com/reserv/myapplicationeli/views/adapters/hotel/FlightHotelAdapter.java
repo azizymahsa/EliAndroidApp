@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -145,8 +147,9 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Animation scaleUp = AnimationUtils.loadAnimation(activity, R.anim.anim_list);
-        holder.cvHotel.startAnimation(scaleUp);
+        YoYo.with(Techniques.FadeIn)
+                .duration(300)
+                .playOn(holder.cvHotel);
 
         String imageUri = "https://cdn.elicdn.com" + selectHotelModelArrayList.get(position).getImageUrl();
         DisplayImageOptions options = new DisplayImageOptions.Builder()
