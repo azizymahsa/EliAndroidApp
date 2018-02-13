@@ -18,7 +18,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class AlertDialogPassenger implements View.OnClickListener {
     android.app.AlertDialog dialog;
-    JustifiedTextView tvAlert;
+    com.reserv.myapplicationeli.tools.JustifiedTextView tvAlert;
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
@@ -37,12 +37,12 @@ public class AlertDialogPassenger implements View.OnClickListener {
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
         avi = (AVLoadingIndicatorView) dialogView.findViewById(R.id.avi);
-        tvAlert = (JustifiedTextView) dialogView.findViewById(R.id.tvAlert);
+        tvAlert = (com.reserv.myapplicationeli.tools.JustifiedTextView) dialogView.findViewById(R.id.tvAlert);
 
-        Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_normal.ttf");
+     /*   Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
         tvAlert.setTextSize(2,12);
-        tvAlert.setLineSpacing(15);
-        tvAlert.setTypeFace(typeface);
+        tvAlert.setLineSpacing(5);
+        tvAlert.setTypeFace(typeface);*/
 
       //  btnOk.setCustomTextFont("fonts/iran_sans_bold.ttf");
        // btnOk.setText(activity.getString(R.string.icon_close));

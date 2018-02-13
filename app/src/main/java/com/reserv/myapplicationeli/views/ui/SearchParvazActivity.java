@@ -68,6 +68,7 @@ import com.reserv.myapplicationeli.views.ui.dialog.flight.FilterFlightDialogNew;
 import com.reserv.myapplicationeli.views.ui.dialog.flight.FilterModelّFlight;
 import com.reserv.myapplicationeli.views.ui.dialog.flight.SortFlightDialog;
 import com.reserv.myapplicationeli.views.ui.dialog.flight.StringAirLines;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelDialog;
 
 
@@ -156,6 +157,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	// HashMap<String,HashMap<String,HeaderExpandingPlan>> listDataHeaderExpanding;
 	List<String> listDataHeaderExpanding;
 	HashMap<String, HashMap<String, ItemExpandingPlan>> listDataChildExpanding;
+
 	//HashMap<String, HashMap<String, ItemExpanding>> listDataChildExpanding;
 	public static final int CONNECTION_TIMEOUT = 10000;
 	public static final int READ_TIMEOUT = 15000;
@@ -1427,11 +1429,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 				showDataExpanding();
 
-             /*   listAirPort = (ListView)findViewById(R.id.listAirPort);
-                mAdapter = new GetAirPortMabdaAdapter(SearchParvazActivity.this, data);
-                //mAdapter.setAdapter(mAdapter);
-                mAdapter.setData(data);
-                listAirPort.setAdapter(mAdapter);*/
+					//dakheli khareji
+					new AsyncCheckFlight().execute();
 
 				getAirLine();}
 			} catch (JSONException e) {//d/sfdsf
@@ -1526,6 +1525,209 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 		}
 
 	}//end asynTask
+	private class AsyncCheckFlight extends AsyncTask<String, String, String> {
+		HttpURLConnection conn;
+		URL url = null;
+		private ListView listAirPort;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+				window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
+			}
+
+
+			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
+
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			try {
+
+
+				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetIsDomestic");
+
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return e.toString();
+			}
+			try {
+
+				// Setup HttpURLConnection class to send and receive data from php and mysql
+				conn = (HttpURLConnection) url.openConnection();
+				conn.setReadTimeout(READ_TIMEOUT);
+				conn.setConnectTimeout(CONNECTION_TIMEOUT);
+				// conn.setRequestMethod("GET");
+				conn.setRequestMethod("POST");
+				// setDoOutput to true as we recieve data from json file
+				conn.setDoOutput(true);
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return e1.toString();
+			}
+
+			try {
+
+				int response_code = conn.getResponseCode();
+
+				String serial = null;
+
+				JSONObject errorObj = new JSONObject();
+
+				try {
+					errorObj.put("Success", false);
+
+					Class<?> c = Class.forName("android.os.SystemProperties");
+					Method get = c.getMethod("get", String.class);
+					serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
+				} catch (Exception ignored) {
+				}
+
+
+				String data = OrderToJsonCheckFlight();
+
+
+				HttpClient client = new DefaultHttpClient();
+
+
+				HttpPost post = new HttpPost();
+				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetIsDomestic");
+				post.setHeader("Content-Type", "application/json; charset=UTF-8");
+				post.setHeader("Accept", "application/json; charset=UTF-8");
+
+
+				StringEntity se = null;
+				try {
+					se = new StringEntity(data, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				post.setEntity(se);
+				ByteArrayOutputStream os = new ByteArrayOutputStream();
+				//{"GetAirportWithParentsResult":{"Errors":[],"List":[{"Key":"IST|Istanbul, Turkey (IST-All Airports)","Value":"استانبول ( همه فرودگاه ها ),نزدیک استانبول, ترکیه"},{"Key":"IST|Istan
+				//try {
+				//HashMap<String, String> airport = null;
+				//mylist = new ArrayList<HashMap<String, String>>();
+				HttpResponse res = client.execute(post);
+				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
+
+
+				return (retSrc);
+
+
+			} catch (IOException e) {
+				e.printStackTrace();
+				return e.toString();
+			} finally {
+				conn.disconnect();
+			}
+
+
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+				window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+			}
+			//this method will be running on UI thread
+System.out.println("result:"+result);
+			//	avi.setVisibility(View.INVISIBLE);
+			List<Country> data = new ArrayList<Country>();
+
+
+			try {
+
+
+
+
+////////////////////////////
+				JSONObject jsonObj = new JSONObject(result);
+
+				//JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
+				/////////////////////////////////////
+				String GetError = "";
+				JSONArray jError = null;
+
+				// Getting JSON Array node
+				JSONObject GetAirportsResult = jsonObj.getJSONObject("GetIsDomesticResult");//Error
+				if (!GetAirportsResult.getString("Errors").equals("null")) {
+					jError = GetAirportsResult.getJSONArray("Errors");//
+					JSONObject jPricedItinerary = jError.getJSONObject(0);
+					GetError = jPricedItinerary.getString("Message");
+				}
+				if (GetError.length() > 1) {
+					AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
+					AlertDialogPassenger.setText(GetError);
+
+				} else {
+////////////////////////////////
+					/*JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
+
+					for (int i = 0; i < jArray.length(); i++) {
+						JSONObject json_data = jArray.getJSONObject(i);
+*/
+						boolean IsDemostic =GetAirportsResult.getBoolean("IsDomestic");//false khareji true dakheli
+						if(IsDemostic)
+							Prefs.putBoolean("IsDemostic",true);
+						else
+							Prefs.putBoolean("IsDemostic",false);
+
+					//}
+
+
+
+
+				}
+
+			} catch (JSONException e) {
+				AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
+				AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
+			}
+
+		}
+
+	}
+	private String OrderToJsonCheckFlight() {
+		JSONObject jsone = new JSONObject();
+		JSONObject manJson = new JSONObject();
+
+
+		try {
+
+			Bundle extras = getIntent().getExtras();
+			String maghsadf="IST";
+			String mabdaf="THR";
+			if (extras != null) {
+				 maghsadf = extras.getString("Value-Maghsad-Airport-Code");
+				 mabdaf = extras.getString("Value-Mabda-Airport-Code");
+			}
+
+			manJson.put("UserName", "EligashtMlb");
+			manJson.put("Password", "123qwe!@#QWE");
+			manJson.put("TermianlId", "Mobile");
+			manJson.put("Code",mabdaf);//inja esme forudgah mikhore
+			manJson.put("ToCode",maghsadf);
+
+			jsone.put("request", manJson);
+
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return jsone.toString();
+	}
 
 	public String OrderToJson() {
 		JSONObject jsone = new JSONObject();
