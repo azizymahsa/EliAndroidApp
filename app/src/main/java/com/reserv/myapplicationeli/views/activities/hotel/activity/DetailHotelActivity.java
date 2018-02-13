@@ -142,7 +142,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     TextView tvHotelName, tvCityName, tvAdress, tvAlert, tvAlertError;
     ImageView ivImage;
     LinearLayout llDynamic, llLoading, llComment, llEmkanat;
-    AVLoadingIndicatorView avi1, aviComment;
+    AVLoadingIndicatorView  aviComment;
     FancyButton btnSendComment, btnSortComment, btnOk;
 
     ImageView ivLoading;
@@ -242,7 +242,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvVoteCount = findViewById(R.id.tvVoteCount);
         tvRecommendedPercent = findViewById(R.id.tvRecommendedPercent);
         rlLoading2 = findViewById(R.id.rlLoading2);
-        avi1 = findViewById(R.id.avi1);
+       // avi1 = findViewById(R.id.avi1);
         llEmakanatClick.setOnClickListener(this);
         llMapClick.setOnClickListener(this);
         llRezervClick.setOnClickListener(this);
@@ -561,7 +561,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 //  setListViewHeightBasedOnChildren(lvRooms);
             } catch (Exception e) {
-                avi1.setVisibility(View.GONE);
+                //avi1.setVisibility(View.GONE);
                 llLoading.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlertError.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
@@ -799,7 +799,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             } catch (Exception e) {
                 Toast.makeText(DetailHotelActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_SHORT).show();
                 finish();
-                avi1.setVisibility(View.GONE);
+              //  avi1.setVisibility(View.GONE);
                 llLoading.setVisibility(View.GONE);
             }
 

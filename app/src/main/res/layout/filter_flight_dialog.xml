@@ -46,14 +46,14 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="100"
+                android:layout_weight="90"
                 android:gravity="center">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textSize="@dimen/_12dp_normal_textSize"
                     android:text="دو توقف و بیشتر"
                     android:gravity="center"/>
 
@@ -67,14 +67,14 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="80"
+                android:layout_weight="60"
                 android:gravity="center">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textSize="@dimen/_12dp_normal_textSize"
                     android:text="یک توقف"
                     android:gravity="center"/>
 
@@ -89,13 +89,13 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="80"
+                android:layout_weight="70"
                 android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textSize="@dimen/_12dp_normal_textSize"
                     android:text="بدون توقف"
                     android:gravity="center"/>
 
@@ -143,7 +143,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textSize="@dimen/_12dp_normal_textSize"
                     android:text="فرست کلاس "
                     android:gravity="center"/>
                 <cn.refactor.library.SmoothCheckBox
@@ -162,7 +162,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textSize="@dimen/_12dp_normal_textSize"
                     android:text="بیزنس کلاس "
                     android:gravity="center"/>
                 <cn.refactor.library.SmoothCheckBox
@@ -176,13 +176,13 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="100"
+                android:layout_weight="80"
                 android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textSize="@dimen/_12dp_normal_textSize"
                     android:text="اکونومی "
                     android:gravity="center"/>
                 <cn.refactor.library.SmoothCheckBox

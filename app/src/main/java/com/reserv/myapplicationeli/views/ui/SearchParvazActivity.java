@@ -1439,7 +1439,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 					linear_expand = (LinearLayout) findViewById(R.id.linear_expand);
 					linear_expand.setVisibility(View.GONE);
 					LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-					txtNoResult.setText("خطا در دریافت اطلاعات الی گشت ");
+					txtNoResult.setText("خطا در دریافت اطلاعات از الی گشت ");
 					linear_no_result.setVisibility(View.VISIBLE);
 				//}
 

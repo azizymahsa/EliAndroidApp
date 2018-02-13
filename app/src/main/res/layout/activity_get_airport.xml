@@ -41,7 +41,7 @@
             android:gravity="center"
             android:hint="جست و جو"
             android:layout_marginLeft="20dp"
-            android:padding="6dip"
+            android:padding="0dip"
             android:textColor="#000000"
             android:textSize="@dimen/_14dp_txtSize"
             android:maxLines="1"

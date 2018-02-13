@@ -130,7 +130,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     ExpandableRelativeLayout expandableLayout;
     String paymentUrl;
     private boolean FlagTab = false;
-    RelativeLayout rlLoading;
+    RelativeLayout rlLoading,rlRoot;
 
     GetKhadmatHotelFlightAdapter mAdapter;
     //ScrollView myScrollView;
@@ -248,6 +248,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
         rlLoading = findViewById(R.id.rlLoading);
+        rlRoot = findViewById(R.id.rlRoot);
 
         txt_hom = (ImageView) findViewById(R.id.txt_hom);
         textView4 = (ImageView) findViewById(R.id.textView4);
@@ -413,7 +414,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
     private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
-        ProgressDialog pdLoading = new ProgressDialog(PassengerHotelFlightActivity.this);
+       // ProgressDialog pdLoading = new ProgressDialog(PassengerHotelFlightActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -423,6 +424,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             super.onPreExecute();
 
             rlLoading.setVisibility(View.VISIBLE);
+            Utility.disableEnableControls(false,rlRoot);
 
         }
 
@@ -520,6 +522,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
             rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -639,7 +642,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             } catch (JSONException e) {
                 //Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText("خطا در دریافت اطلاعات الی گشت ");
+                AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
             }
 
 
@@ -652,7 +655,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     //end AsyncFetchGetPreFactorDetails
     //AsyncFetchPishFactor
     private class AsyncFetchPishFactor extends AsyncTask<String, String, String> {
-        ProgressDialog pdLoading = new ProgressDialog(PassengerHotelFlightActivity.this);
+       // ProgressDialog pdLoading = new ProgressDialog(PassengerHotelFlightActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -662,7 +665,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             super.onPreExecute();
 
             rlLoading.setVisibility(View.VISIBLE);
-
+            Utility.disableEnableControls(false,rlRoot);
         }
 
         @Override
@@ -758,6 +761,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
             rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
             try {
 
 ////////////////////////////
@@ -804,7 +808,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText("خطا در دریافت اطلاعات الی گشت ");
+                AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
             }
 
 
@@ -814,7 +818,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
     //het khadamat
     private class AsyncFetch extends AsyncTask<String, String, String> {
-        ProgressDialog pdLoading = new ProgressDialog(PassengerHotelFlightActivity.this);
+      //  ProgressDialog pdLoading = new ProgressDialog(PassengerHotelFlightActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -824,7 +828,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             super.onPreExecute();
 
             rlLoading.setVisibility(View.VISIBLE);
-
+            Utility.disableEnableControls(false,rlRoot);
         }
 
         @Override
@@ -920,6 +924,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         protected void onPostExecute(String result) {
             FlagMosaferan = false;
             rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
             List<PurchaseFlightResult> data = new ArrayList<PurchaseFlightResult>();
 
 
@@ -1002,7 +1007,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText("خطا در دریافت اطلاعات الی گشت ");
+                AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
             }
 
         }//end on pos excute

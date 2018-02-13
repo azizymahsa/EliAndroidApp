@@ -106,7 +106,7 @@
 							fancy:fb_radius="6dp"
 							fancy:fb_text="تهرااان "
 							fancy:fb_textColor="#FFFFFF"
-							fancy:fb_textSize="@dimen/icon_size_25dp" />
+							fancy:fb_textSize="@dimen/toolbar_title_16dp" />
 						<TextView
 							android:id="@+id/txtCityRaft"
 							android:layout_width="0dp"

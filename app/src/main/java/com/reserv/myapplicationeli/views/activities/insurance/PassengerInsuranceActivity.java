@@ -906,7 +906,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerInsuranceActivity.this,PassengerInsuranceActivity.this);
-                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
             }
 
         }//end on pos excute

@@ -1,15 +1,19 @@
 package com.reserv.myapplicationeli.views.adapters;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +23,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,20 +34,41 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
+import com.reserv.myapplicationeli.models.Country;
 import com.reserv.myapplicationeli.models.model.PinModelDetail;
 import com.reserv.myapplicationeli.models.model.PinModelHeader;
+import com.reserv.myapplicationeli.views.ui.GetAirportMabdaActivity;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -57,6 +83,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	List<PinModelDetail> pinModelDetails;
 	List<PinModelHeader> pinModelHeaders;
 	ImageLoader imageLoader;
+
+	public static final int CONNECTION_TIMEOUT = 10000;
+	public static final int READ_TIMEOUT = 15000;
+
 	public ExpandableListAdapter(Context context,List<SearchParvazActivity.ParentItemExpandingPlan> dataList,SearchParvazPinAdapter searchParvazPinAdapter) {
 		this._context = context;
 
@@ -114,9 +144,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 		//nerkh
-		txtAdlCostP.setText( item.AdlBaseFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)) : "It");//    String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
-		txtTaxes.setText(item.Taxes > 0 ? String.valueOf(NumberFormat.getInstance().format(item.Taxes)) : "It");//String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
-		txtTotalFareCost.setText(item.TotalFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.TotalFare)) : "It");//String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
+		txtAdlCostP.setText( item.AdlBaseFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)) : "IT");//    String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
+		txtTaxes.setText(item.Taxes > 0 ? String.valueOf(NumberFormat.getInstance().format(item.Taxes)) : "IT");//String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
+		txtTotalFareCost.setText(item.TotalFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.TotalFare)) : "IT");//String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
 
 		lblFlightTimeR.setText(item.FlightTimeR+"");
 		lblFlightArrivalTimeR.setText(item.FlightArrivalTimeR+"");
@@ -152,7 +182,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 			@Override
 			public void onClick(View v) {
+				/////////inja biyam Api call Konam
 
+				//////////////////////////////
 				Intent i4 = new Intent(_context,PassengerActivity.class);
 
 				i4.putExtra("Flight_GUID",item.flGUID+"");//current.getCityName()
@@ -496,6 +528,199 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
 		return true;
+	}
+/*	private class AsyncFetch extends AsyncTask<String, String, String> {
+		HttpURLConnection conn;
+		URL url = null;
+		private ListView listAirPort;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			//avi.setVisibility(View.VISIBLE);
+
+
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			try {
+
+
+				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/HotelFlight/HotelFlightService.svc/GetAirportByCode");
+
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return e.toString();
+			}
+			try {
+
+				// Setup HttpURLConnection class to send and receive data from php and mysql
+				conn = (HttpURLConnection) url.openConnection();
+				conn.setReadTimeout(READ_TIMEOUT);
+				conn.setConnectTimeout(CONNECTION_TIMEOUT);
+				// conn.setRequestMethod("GET");
+				conn.setRequestMethod("POST");
+				// setDoOutput to true as we recieve data from json file
+				conn.setDoOutput(true);
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return e1.toString();
+			}
+
+			try {
+
+				int response_code = conn.getResponseCode();
+
+				String serial = null;
+
+				JSONObject errorObj = new JSONObject();
+
+				try {
+					errorObj.put("Success", false);
+
+					Class<?> c = Class.forName("android.os.SystemProperties");
+					Method get = c.getMethod("get", String.class);
+					serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
+				} catch (Exception ignored) {
+				}
+
+
+				String data = OrderToJson();
+
+
+				HttpClient client = new DefaultHttpClient();
+
+
+				HttpPost post = new HttpPost();
+				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/HotelFlight/HotelFlightService.svc/GetAirportByCode");
+				post.setHeader("Content-Type", "application/json; charset=UTF-8");
+				post.setHeader("Accept", "application/json; charset=UTF-8");
+
+
+				StringEntity se = null;
+				try {
+					se = new StringEntity(data, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				post.setEntity(se);
+				ByteArrayOutputStream os = new ByteArrayOutputStream();
+				//{"GetAirportWithParentsResult":{"Errors":[],"List":[{"Key":"IST|Istanbul, Turkey (IST-All Airports)","Value":"استانبول ( همه فرودگاه ها ),نزدیک استانبول, ترکیه"},{"Key":"IST|Istan
+				//try {
+				HashMap<String, String> airport = null;
+				mylist = new ArrayList<HashMap<String, String>>();
+				HttpResponse res = client.execute(post);
+				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
+
+
+				return (retSrc);
+
+
+			} catch (IOException e) {
+				e.printStackTrace();
+				return e.toString();
+			} finally {
+				conn.disconnect();
+			}
+
+
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+
+			//this method will be running on UI thread
+
+		//	avi.setVisibility(View.INVISIBLE);
+			List<Country> data = new ArrayList<Country>();
+
+
+			try {
+
+
+
+
+////////////////////////////
+					JSONObject jsonObj = new JSONObject(result);
+
+					//JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
+					/////////////////////////////////////
+					String GetError = "";
+					JSONArray jError = null;
+					// Getting JSON Array node
+					JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportByCodeResult");//Error
+					if (!GetAirportsResult.getString("Errors").equals("null")) {
+						jError = GetAirportsResult.getJSONArray("Errors");//
+						JSONObject jPricedItinerary = jError.getJSONObject(0);
+						GetError = jPricedItinerary.getString("Message");
+					}
+					if (GetError.length() > 1) {
+						AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(_context);
+						AlertDialogPassenger.setText(GetError);
+
+					} else {
+////////////////////////////////
+						JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
+
+						for (int i = 0; i < jArray.length(); i++) {
+							JSONObject json_data = jArray.getJSONObject(i);
+							Country fishData = new Country();
+							fishData.setCityName(json_data.getString("IsDemostic"));//false khareji true dakheli
+							*//*fishData.setAirportName(json_data.getString("AirportName"));
+							fishData.setAirportCode(json_data.getString("AirportCode"));
+							fishData.setAirportID(json_data.getString("AirportID"));
+							fishData.setParentId(json_data.getString("ParentId"));*//*
+
+							data.add(fishData);
+						}
+
+
+
+
+						////
+					*//*	listAirPort = (ListView) findViewById(R.id.listAirPort);
+						mAdapter = new GetAirPortMabdaAdapter(this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, this);
+
+						mAdapter.setData(data);
+						listAirPort.setAdapter(mAdapter);*//*
+					}
+
+			} catch (JSONException e) {
+				AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(_context);
+				AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+			}
+
+		}
+
+	}*///end asynTask
+
+	private String OrderToJson() {
+		JSONObject jsone = new JSONObject();
+		JSONObject manJson = new JSONObject();
+
+
+		try {
+
+
+
+			manJson.put("UserName", "EligashtMlb");
+			manJson.put("Password", "123qwe!@#QWE");
+			manJson.put("TermianlId", "Mobile");
+			manJson.put("Code","");//inja esme forudgah mikhore
+
+			jsone.put("request", manJson);
+
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return jsone.toString();
 	}
 
 }
