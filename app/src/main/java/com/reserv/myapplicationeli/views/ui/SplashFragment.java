@@ -90,6 +90,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     private BroadcastReceiver sendDetailFinish;
     InternetAlert internetAlert;
     boolean isConnect;
+    boolean request=true;
 
     @Override
     public void onReturnValue() {
@@ -172,8 +173,13 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                                         });*/
 
                                 if (isConnect) {
+                                    request=true;
+                                    if (request){
 
-                                    new GetCommentAsync().execute();
+                                        new GetCommentAsync().execute();
+
+                                    }
+
 
                                 } else {
 
@@ -244,6 +250,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     private class GetCommentAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
+            request=false;
             internetAlert.isCancel();
 
             avi.setVisibility(View.VISIBLE);
@@ -339,17 +346,21 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     public void onConnectionChange(ConnectivityEvent event) {
         // device has active internet connection
 
-        Log.e("splashsplash", "onConnectionChange: ");
         try {
             JSONObject jsonObj = new JSONObject(new Gson().toJson(event));
             JSONObject getAirportsResult = jsonObj.getJSONObject("state");
 
+            Log.e("test", getAirportsResult.getString("value"));
+
 
             if (getAirportsResult.getString("value").equals("1")){
-
+                request=false;
                 isConnect=true;
                 internetAlert.isCancel();
-                new GetCommentAsync().execute();
+                if (request){
+                    new GetCommentAsync().execute();
+
+                }
             }else{
 
 

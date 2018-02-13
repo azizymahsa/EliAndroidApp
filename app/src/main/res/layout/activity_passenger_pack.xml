@@ -3,6 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rlRoot"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff">
@@ -1630,7 +1631,7 @@
 
                     <TextView
                         android:id="@+id/tvPrice"
-                        android:layout_width="160dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
@@ -1675,23 +1676,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ad000000"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
 
-        <com.wang.avi.AVLoadingIndicatorView
-
-            android:id="@+id/avi1"
-            style="@style/AVLoadingIndicatorView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/tv"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="@dimen/toolbar_height_70dp"
+            android:layout_height="@dimen/toolbar_height_70dp"
+            android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:visibility="visible"
-            app:indicatorColor="@color/toolbar_color"
-            app:indicatorName="BallSpinFadeLoaderIndicator"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_fileName="circle-l.json"
 
             />
+
+
     </RelativeLayout>
 </RelativeLayout>

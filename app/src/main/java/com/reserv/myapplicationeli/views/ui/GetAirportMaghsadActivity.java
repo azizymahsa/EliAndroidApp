@@ -400,7 +400,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 				manJson.put("UserName", "EligashtMlb");
 				manJson.put("Password", "123qwe!@#QWE");
 				manJson.put("TermianlId", "Mobile");
-				manJson.put("CityCode",GetAirportMaghsadActivity.searchText);
+				manJson.put("Code",GetAirportMaghsadActivity.searchText);
 				//manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
 				jsone.put("request",manJson);
 		

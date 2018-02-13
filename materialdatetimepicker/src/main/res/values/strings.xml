@@ -20,7 +20,7 @@
 
     <!-- Label forf date or time [CHAR LIMIT=30] -->
     <string name="gmdtp_done_label">Done</string>
-    <string name="gmdtp_ok">@android:string/ok</string>
+    <string name="gmdtp_ok">تائید</string>
     <string name="gmdtp_cancel">@android:string/cancel</string>
     <!--
          Content description for the hour selector in the time picker, which displays

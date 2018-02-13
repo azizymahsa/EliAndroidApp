@@ -2,6 +2,7 @@ package com.reserv.myapplicationeli.views.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,10 @@ import android.widget.TextView;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.models.model.PurchaseFlightResult;
+import com.reserv.myapplicationeli.views.activities.transfer.TransferActivity;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.PassengerHotelActivity;
+import com.reserv.myapplicationeli.views.ui.PassengerHotelFlightActivity;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -142,48 +145,63 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 
 
 
+				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false")){
+					Intent intent=	new Intent(context, TransferActivity.class);
 
+					intent.putExtra("ArrialAirportCode",current.getExcursionDta().ArrialAirportCode);
+					intent.putExtra("ArrivalFltDate",current.getExcursionDta().ArrivalFltDate);
+					intent.putExtra("ArrivalFltNo",current.getExcursionDta().ArrivalFltNo);
+					intent.putExtra("ArrivalFltTime",current.getExcursionDta().ArrivalFltTime);
+					intent.putExtra("CityID",current.getExcursionDta().CityID);
+					intent.putExtra("DepartureFltDate",current.getExcursionDta().DepartureFltDate);
+					intent.putExtra("DepartureFltNo",current.getExcursionDta().DepartureFltNo);
+					intent.putExtra("DepartureFltTime",current.getExcursionDta().DepartureFltTime);
+					intent.putExtra("HotelID",current.getExcursionDta().HotelID);
+					intent.putExtra("HotelNameEn",current.getExcursionDta().HotelNameEn);
+					intent.putExtra("ArrialAirportName",current.getExcursionDta().ArrialAirportName);
 
-/*//////////////////////////////////CHANGE////////////////////////////////////////////////*/
-				String buttonText =  holder.txtAdd.getText().toString();
-
-
-
-				if (current.isFlag()){
-
-					current.setFlag(false);
-					holder.btnAddsabad.setBackgroundResource(R.drawable.blue_button);
-					holder.img_khadmat_row.setVisibility(View.GONE);
-					holder.txtAdd.setText("افزودن به سبد خرید");
-
+					context.startActivity(intent);
 
 				}else{
 
-					current.setFlag(true);
+					if (current.isFlag()){
 
-					holder.btnAddsabad.setBackgroundResource(R.drawable.green_button);
-					holder.img_khadmat_row.setVisibility(View.VISIBLE);
-					holder.txtAdd.setText("اضافه شد");
-
-				}
-				notifyDataSetChanged();
+						current.setFlag(false);
+						holder.btnAddsabad.setBackgroundResource(R.drawable.blue_button);
+						holder.img_khadmat_row.setVisibility(View.GONE);
+						holder.txtAdd.setText("افزودن به سبد خرید");
 
 
-				sumSelectId="";
-				for (int i =0 ;i<data.size();i++){
-					if(data.get(i).isFlag()) {
-						sumGheymat = sumGheymat + data.get(i).getServiceTotalPrice();
-						if(sumSelectId.length()>2) {
+					}else{
 
-							sumSelectId = sumSelectId + "|" + data.get(i).getSelectID();
-						}else {
-							sumSelectId = data.get(i).getSelectID();//avalin bar
+						current.setFlag(true);
+
+						holder.btnAddsabad.setBackgroundResource(R.drawable.green_button);
+						holder.img_khadmat_row.setVisibility(View.VISIBLE);
+						holder.txtAdd.setText("اضافه شد");
+
+					}
+					notifyDataSetChanged();
+
+
+					sumSelectId="";
+					for (int i =0 ;i<data.size();i++){
+						if(data.get(i).isFlag()) {
+							sumGheymat = sumGheymat + data.get(i).getServiceTotalPrice();
+							if(sumSelectId.length()>2) {
+
+								sumSelectId = sumSelectId + "|" + data.get(i).getSelectID();
+							}else {
+								sumSelectId = data.get(i).getSelectID();//avalin bar
+							}
 						}
 					}
+					//	Toast.makeText(v.getContext(),sumSelectId,Toast.LENGTH_SHORT).show();
+					Prefs.putString("Select_ID_khadamat",sumSelectId);
+					PassengerHotelFlightActivity.updateTotalInfos(sumGheymat);
 				}
-				//	Toast.makeText(v.getContext(),sumSelectId,Toast.LENGTH_SHORT).show();
-				Prefs.putString("Select_ID_khadamat",sumSelectId);
-				PassengerHotelActivity.updateTotalInfos(sumGheymat);
+
+
 
 
 
@@ -195,6 +213,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 		});
 
 		return convertView;
+
 	}
 
 	static class ViewHolder {

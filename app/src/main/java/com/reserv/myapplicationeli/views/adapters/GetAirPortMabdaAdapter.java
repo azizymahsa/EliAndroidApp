@@ -125,6 +125,7 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 						recentCity_table.insertData(current.getAirportName(),current.getCityName(),current.getAirportCode(),1);//mabda
 
 						Prefs.putString("Value-Mabda-City",current.getCityName());
+						Prefs.putString("Value-Mabda-City2",current.getCityName());
 						Prefs.putString("Value-Mabda-Airport",current.getAirportName());
 						Prefs.putString("Value-Mabda-Airport-Code",current.getAirportCode());
 
@@ -149,6 +150,7 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 						recentCity_table.insertData(current.getAirportName(),current.getCityName(),current.getAirportCode(),1);//mabda
 
 						Prefs.putString("Value-Mabda-City",current.getCityName());
+						Prefs.putString("Value-Mabda-City2",current.getCityName());
 						Prefs.putString("Value-Mabda-Airport",current.getAirportName());
 						Prefs.putString("Value-Mabda-Airport-Code",current.getAirportCode());
 

@@ -1,5 +1,7 @@
 package com.reserv.myapplicationeli.models.model;
 
+import com.reserv.myapplicationeli.views.activities.transfer.ExcursionDta;
+
 public class PurchaseFlightResult {
 	private String CityEn;
 	private String CityFa;
@@ -26,6 +28,7 @@ public class PurchaseFlightResult {
 	private String ServiceTypeID;
 	
 	private String ServiceTypeImgURL;
+	private ExcursionDta excursionDta;
 	
 	private long ServiceTotalPrice;
 	boolean flag;
@@ -163,5 +166,13 @@ public class PurchaseFlightResult {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
+	}
+
+	public ExcursionDta getExcursionDta() {
+		return excursionDta;
+	}
+
+	public void setExcursionDta(ExcursionDta excursionDta) {
+		this.excursionDta = excursionDta;
 	}
 }

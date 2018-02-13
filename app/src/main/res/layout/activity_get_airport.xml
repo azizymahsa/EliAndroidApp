@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/tools"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     android:orientation="vertical">
 
@@ -41,22 +42,26 @@
             android:gravity="center"
             android:hint="جست و جو"
             android:layout_marginLeft="20dp"
-            android:padding="6dip"
+            android:padding="0dip"
             android:textColor="#000000"
             android:textSize="@dimen/_14dp_txtSize"
             android:maxLines="1"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:gravity="center"
-            android:text="@string/icon_search"
-            android:textAppearance="@style/IconFonts"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_25dp_normal_iconSize" />
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/toolbar_bottom_width_50dp"
+            android:layout_height="@dimen/toolbar_bottom_width_50dp"
+            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="200dp"
+            fancy:fb_textColor="#FFFFFF"
+
+            android:layout_gravity="right|center"
+            fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
+            fancy:fb_text=" "
+            android:gravity="right"
+            />
 
     </LinearLayout>
     <View

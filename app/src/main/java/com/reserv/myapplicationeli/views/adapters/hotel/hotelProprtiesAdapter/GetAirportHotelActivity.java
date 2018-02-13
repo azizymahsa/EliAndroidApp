@@ -362,7 +362,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 				manJson.put("UserName", "EligashtMlb");
 				manJson.put("Password", "123qwe!@#QWE");
 				manJson.put("TermianlId", "Mobile");
-				manJson.put("CityCode", GetAirportHotelActivity.searchText);
+				manJson.put("Code", GetAirportHotelActivity.searchText);
 				//manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
 				jsone.put("request",manJson);
 		

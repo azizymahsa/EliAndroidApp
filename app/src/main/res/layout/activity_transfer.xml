@@ -36,12 +36,12 @@
             android:textSize="@dimen/_14dp_txtSize"
             />
         <TextView
+            android:id="@+id/tvDepurtureAirport"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="100"
             android:text="انتخاب کنید"
             android:gravity="center"
-            android:layout_marginTop="10dp"
             android:padding="2dp"
             android:textSize="@dimen/_12dp_normal_textSize"
             android:textColor="@color/text_color_2e"
@@ -61,12 +61,13 @@
             android:textSize="@dimen/_14dp_txtSize"
             />
         <TextView
+            android:id="@+id/tvHotel"
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="100"
             android:text="انتخاب کنید"
             android:gravity="center"
-            android:layout_marginTop="10dp"
             android:padding="2dp"
             android:textSize="@dimen/_12dp_normal_textSize"
             android:textColor="@color/text_color_2e"
@@ -84,6 +85,7 @@
             android:layout_marginRight="@dimen/_30dp"
             >
             <TextView
+                android:id="@+id/tvDepurtureDate"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -116,6 +118,9 @@
             android:layout_marginRight="@dimen/_30dp"
             >
             <TextView
+                android:id="@+id/tvReturnDate"
+
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -127,6 +132,7 @@
                 android:background="@drawable/color_strok_item_insurance"
                 />
             <TextView
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -147,6 +153,7 @@
             android:layout_marginRight="@dimen/_30dp"
             >
             <TextView
+                android:id="@+id/tvDepurtureTime"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -178,6 +185,8 @@
             android:layout_marginRight="@dimen/_30dp"
             >
             <TextView
+                android:id="@+id/tvReturnTime"
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -208,6 +217,8 @@
             android:layout_marginRight="@dimen/_30dp"
             >
             <TextView
+                android:id="@+id/tvDepurtureFlt"
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -219,6 +230,7 @@
                 android:background="@drawable/color_strok_item_insurance"
                 />
             <TextView
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -240,6 +252,8 @@
             android:layout_marginBottom="@dimen/_10dp_margin"
             >
             <TextView
+                android:id="@+id/tvReturnFlt"
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -251,6 +265,7 @@
                 android:background="@drawable/color_strok_item_insurance"
                 />
             <TextView
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -260,7 +275,25 @@
                 android:textColor="@color/text_color_4d"
                 android:textAppearance="@style/IrsansBold"
                 android:textSize="@dimen/_14dp_txtSize" /></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="vertical">
 
+            <Button
+                android:id="@+id/searchHotel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40dp"
+                android:layout_gravity="center"
+
+                android:background="@drawable/btngravity_big"
+                android:text="محاسبه قیمت"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_16dp_normal_textSize"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

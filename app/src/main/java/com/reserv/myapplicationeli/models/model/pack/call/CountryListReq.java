@@ -9,18 +9,18 @@ import com.reserv.myapplicationeli.models.hotel.api.hotelAvail.call.Identity;
 
 public class CountryListReq extends Identity {
 
-    private String CityCode;
+    private String Code;
 
     public CountryListReq(String userName, String password, String termianlId,String cityCode ) {
         super(userName, password, termianlId);
-        this.CityCode = cityCode;
+        this.Code = cityCode;
     }
 
     public String getCityCode() {
-        return CityCode;
+        return Code;
     }
 
     public void setCityCode(String cityCode) {
-        CityCode = cityCode;
+        Code = cityCode;
     }
 }

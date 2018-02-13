@@ -68,6 +68,7 @@ import com.reserv.myapplicationeli.tools.WebUserTools;
 import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
+import com.reserv.myapplicationeli.views.activities.transfer.ExcursionDta;
 import com.reserv.myapplicationeli.views.adapters.GetHotelKhadmatAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
@@ -152,7 +153,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     private boolean FlagMosaferan=true;
     private boolean FlagTab=false;
     private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
-    RelativeLayout rlLoading;
+    RelativeLayout rlLoading,rlRoot;
 
     //ExpandableLayoutListView lvFactor;
     @SuppressLint("WrongViewCast")
@@ -248,7 +249,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
         rlLoading = findViewById(R.id.rlLoading);
-
+        rlRoot = findViewById(R.id.rlRoot);
 
         txt_hom = (ImageView) findViewById(R.id.txt_hom);
         textView4 = (ImageView) findViewById(R.id.textView4);
@@ -410,7 +411,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     }//end oncreate
 
     private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
-        ProgressDialog pdLoading = new ProgressDialog(PassengerHotelActivity.this);
+       // ProgressDialog pdLoading = new ProgressDialog(PassengerHotelActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -421,7 +422,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             //this method will be running on UI thread
             rlLoading.setVisibility(View.VISIBLE);
-
+            Utility.disableEnableControls(false,rlRoot);
         }
 
         @Override
@@ -521,6 +522,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             //List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
 
             rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -646,7 +648,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
 
 
             }
@@ -671,6 +673,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             super.onPreExecute();
 
             rlLoading.setVisibility(View.VISIBLE);
+            Utility.disableEnableControls(false,rlRoot);
         }
 
         @Override
@@ -766,6 +769,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
             rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -810,7 +814,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 new AsyncFetchGetPreFactorDetails().execute();
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
             }
 
 
@@ -820,7 +824,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
     //het khadamat
     private class AsyncFetch extends AsyncTask<String, String, String> {
-        ProgressDialog pdLoading = new ProgressDialog(PassengerHotelActivity.this);
+       // ProgressDialog pdLoading = new ProgressDialog(PassengerHotelActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -830,6 +834,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             super.onPreExecute();
 
             rlLoading.setVisibility(View.VISIBLE);
+            Utility.disableEnableControls(false,rlRoot);
 
         }
 
@@ -931,6 +936,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             List<PurchaseFlightResult> data = new ArrayList<PurchaseFlightResult>();
 
             rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(result);
@@ -953,6 +959,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 // Extract data from json and store into ArrayList as class objects
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject json_data = jArray.getJSONObject(i);
+                    JSONObject excursionDta = json_data.getJSONObject("ExcursionDta");
 
                     PurchaseFlightResult fishData = new PurchaseFlightResult();
                     fishData.setCityEn(json_data.getString("CityEn"));
@@ -982,6 +989,20 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                     fishData.setServiceTotalPrice(json_data.getLong("ServiceTotalPrice"));
                     fishData.setSelectID(json_data.getString("SelectID"));
+
+
+
+
+
+                    fishData.setExcursionDta(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
+                            excursionDta.getString("ArrialAirportName"),
+                            excursionDta.getString("ArrivalFltDate")
+                            ,excursionDta.getString("ArrivalFltNo"),
+                            excursionDta.getString("ArrivalFltTime"),
+                            excursionDta.getString("CityID"),excursionDta.getString("DepartureFltDate"),
+                            excursionDta.getString("DepartureFltNo"),excursionDta.getString("DepartureFltTime"),
+                            excursionDta.getString("HotelID"),excursionDta.getString("HotelNameEn")));
+
                     data.add(fishData);
                 }
 
@@ -1010,7 +1031,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             } catch (JSONException e) {
                // Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
             }
 
         }//end on pos excute

@@ -83,7 +83,7 @@
     <item format="float" name="gmdtp_numbers_radius_multiplier_inner" translatable="false" type="string">0.60</item>
     <item format="float" name="gmdtp_numbers_radius_multiplier_normal" translatable="false" type="string">0.81</item>
     <item format="float" name="gmdtp_numbers_radius_multiplier_outer" translatable="false" type="string">0.83</item>
-    <string name="gmdtp_ok">@android:string/ok</string>
+    <string name="gmdtp_ok">تائید</string>
     <item format="float" name="gmdtp_selection_radius_multiplier" translatable="false" type="string">0.16</item>
     <item format="float" name="gmdtp_text_size_multiplier_inner" translatable="false" type="string">0.11</item>
     <item format="float" name="gmdtp_text_size_multiplier_normal" translatable="false" type="string">0.12</item>

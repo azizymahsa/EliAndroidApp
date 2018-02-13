@@ -164,7 +164,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     private boolean FlagTab=false;
     private boolean FlagMosaferan=true;
     private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
-    RelativeLayout rlLoading;
+    RelativeLayout rlLoading,rlRoot;
 
     public JSONArray jsonObj = null;
     public int sum=0;
@@ -211,6 +211,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
     private void initViews() {
         rlLoading = findViewById(R.id.rlLoading);
+        rlRoot = findViewById(R.id.rlRoot);
         btnBack = (FancyButton) findViewById(R.id.btnBack);
         txt_hom = (ImageView) findViewById(R.id.txt_hom);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -1566,6 +1567,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         protected void onPreExecute() {
             super.onPreExecute();
             rlLoading.setVisibility(View.VISIBLE);
+            Utility.disableEnableControls(false,rlRoot);
             //this method will be running on UI thread
           //  needShowProgressDialog();
 
@@ -1666,6 +1668,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             //{"PurchaseServiceResult":{"Errors":null,"ResultText":"Temp Contract Saved Successfully!","SuccessResult":782528}}
             //List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
             rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
          //   needHideProgressDialog();
             try {
 ////////////////////////////
@@ -1815,6 +1818,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             //this method will be running on UI thread
           //  needShowProgressDialog();
             rlLoading.setVisibility(View.VISIBLE);
+            Utility.disableEnableControls(false,rlRoot);
         }
 
         @Override
@@ -1909,6 +1913,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         protected void onPostExecute(String resultPishfactor) {
 
             rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
            // needHideProgressDialog();
             try {
 ////////////////////////////
@@ -1956,7 +1961,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerPackageActivity.this,PassengerPackageActivity.this);
-                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
             }
 
 
@@ -1974,6 +1979,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         protected void onPreExecute() {
             super.onPreExecute();
             rlLoading.setVisibility(View.VISIBLE);
+            Utility.disableEnableControls(false,rlRoot);
         }
 
         @Override
@@ -2063,6 +2069,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         protected void onPostExecute(String result) {
             FlagMosaferan=false;
             rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
             try {
                 JSONObject jsonObj = new JSONObject(result);
                 JSONObject GetError = null;
@@ -2107,7 +2114,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 }
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerPackageActivity.this,PassengerPackageActivity.this);
-                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");            }
+                AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");            }
         }
     }
 

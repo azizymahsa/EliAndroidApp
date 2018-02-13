@@ -162,7 +162,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	private boolean FlagMosaferan=true;
 
 	private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
-	RelativeLayout rlLoading;
+	RelativeLayout rlLoading,rlRoot;
 
 
 	@SuppressLint("WrongViewCast")
@@ -228,7 +228,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		});
 
 		rlLoading = findViewById(R.id.rlLoading);
-
+		rlRoot = findViewById(R.id.rlRoot);
 
 
 		txt_hom = (ImageView) findViewById(R.id.txt_hom);
@@ -339,7 +339,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
 		llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
 		llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
-
+		Utility.setAnimLoading(this);
 
 		//////////////////////////
 		// Spinner element
@@ -597,7 +597,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 			rlLoading.setVisibility(View.VISIBLE);
-
+		//	rlLoading2.setVisibility(View.VISIBLE);
+			Utility.disableEnableControls(false,rlRoot);
 		}
 
 		@Override
@@ -697,6 +698,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			//List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
 			System.out.println("resultPishfactor:"+resultPishfactor);
 			rlLoading.setVisibility(View.GONE);
+			Utility.disableEnableControls(true,rlRoot);
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -817,7 +819,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
+				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
 
@@ -839,6 +841,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			//this method will be running on UI thread
 			rlLoading.setVisibility(View.VISIBLE);
+			Utility.disableEnableControls(false,rlRoot);
 		}
 
 		@Override
@@ -935,6 +938,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 			rlLoading.setVisibility(View.GONE);
+			Utility.disableEnableControls(true,rlRoot);
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(resultPishfactor);
@@ -987,7 +991,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
+				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
 				//new AlertDialog(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
@@ -1008,7 +1012,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			super.onPreExecute();
 
 			rlLoading.setVisibility(View.VISIBLE);
-
+			Utility.disableEnableControls(false,rlRoot);
 		}
 
 		@Override
@@ -1106,6 +1110,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			//this method will be running on UI thread
 
+			Utility.disableEnableControls(true,rlRoot);
 			rlLoading.setVisibility(View.GONE);
 			try {
 ////////////////////////////
@@ -1209,7 +1214,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات الی گشت ");
+				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
 				//new AlertDialog(PassengerActivity.this,"در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
