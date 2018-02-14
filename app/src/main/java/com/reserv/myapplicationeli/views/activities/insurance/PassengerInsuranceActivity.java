@@ -903,7 +903,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     txtTitle.setText(" تایید و پرداخت پیش فاکتور    ");
                     FlagTab=true;
                     new AsyncFetchGetPreFactorDetails().execute();
-                    mAdapter = new GetHotelKhadmatAdapter(PassengerInsuranceActivity.this, data, PassengerInsuranceActivity.this);
+                    mAdapter = new GetHotelKhadmatAdapter(PassengerInsuranceActivity.this, data, PassengerInsuranceActivity.this,0);
                     //mAdapter.setAdapter(mAdapter);
                     mAdapter.setData(data);
                     listKhadamat.setAdapter(mAdapter);

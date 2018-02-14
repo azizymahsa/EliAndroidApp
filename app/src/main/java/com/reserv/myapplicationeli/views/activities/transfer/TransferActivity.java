@@ -792,6 +792,8 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         protected void onPostExecute(String result) {
             try {
                 rlLoading2.setVisibility(View.GONE);
+                finish();
+                Prefs.putLong("Tprice",12000000);
 
 
                 if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors != null) {

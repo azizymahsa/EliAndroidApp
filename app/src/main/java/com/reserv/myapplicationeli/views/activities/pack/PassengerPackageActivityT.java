@@ -725,7 +725,7 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 				/*((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 				txtTitle.setText(" افزودن خدمات به سبد خرید");
 */
-                    mAdapter = new GetHotelKhadmatAdapter(PassengerPackageActivityT.this, data, PassengerPackageActivityT.this);
+                    mAdapter = new GetHotelKhadmatAdapter(PassengerPackageActivityT.this, data, PassengerPackageActivityT.this,0);
                     //mAdapter.setAdapter(mAdapter);
                     mAdapter.setData(data);
                     listKhadamat.setAdapter(mAdapter);
