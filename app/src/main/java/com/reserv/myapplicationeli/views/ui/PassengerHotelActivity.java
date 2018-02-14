@@ -272,6 +272,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         txtnamem.setOnFocusChangeListener(this);
         txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
         imgCount = (TextView) findViewById(R.id.imgCount);
+        linear_code_meli = (LinearLayout) findViewById(R.id.linear_code_meli);
+        linear_code_meli.setVisibility(View.GONE);
         imgCount.setOnClickListener(this);
         imgCount.setText("اتاق "+getCounter(room));
 

@@ -579,20 +579,21 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
 
-                if (tvDepurtureFlt.getText().toString().contains("وارد نمایید")) {
+                if (tvDepurtureFlt.getText().toString().equals("وارد نمایید")) {
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable)tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                 //    tvDepurtureFlt.setError("شماره پرواز رفت را انتخاب کنید");
 
 
-                }else if (tvDepurtureFlt.getText().length()!=6&&!tvDepurtureFlt.getText().toString().contains("وارد نمایید")){
+                }else if (tvDepurtureFlt.getText().length()!=5){
                     GradientDrawable drawable = (GradientDrawable)tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
                   //  Toast.makeText(this, "شماره پرواز رفت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
 
                     splashDialog.seeText( "شماره پرواز رفت را به درستی وارد نمایید");
+                    splashDialog.setBtnText();
                     splashDialog.showAlert();
                 }else{
                     GradientDrawable drawable = (GradientDrawable)tvDepurtureFlt.getBackground();
@@ -601,14 +602,14 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
 
-                if (tvReturnFlt.getText().toString().contains("وارد نمایید")) {
+                if (tvReturnFlt.getText().toString().equals("وارد نمایید")) {
                     GradientDrawable drawable = (GradientDrawable)tvReturnFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
                   //  tvReturnFlt.setError("شماره پرواز برگشت را وارد نمایید");
 
 
-                }else if (tvReturnFlt.getText().length()!=6&&!tvReturnFlt.getText().toString().contains("وارد نمایید")){
+                }else if (tvReturnFlt.getText().length()!=5){
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable)tvReturnFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
@@ -617,6 +618,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                  //   AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
                     splashDialog.seeText( "شماره پرواز برگشت را به درستی وارد نمایید");
                     splashDialog.showAlert();
+                    splashDialog.setBtnText();
 
 
                 }else{

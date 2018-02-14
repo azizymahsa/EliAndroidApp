@@ -320,6 +320,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         btn_taeed_khadamat.setOnClickListener(PassengerHotelFlightActivity.this);
 
         linear_code_meli=(LinearLayout)findViewById(R.id.linear_code_meli);
+        linear_code_meli.setVisibility(View.GONE);
         linear_code_meli.setOnClickListener(this);
 
         linear_number_passport=(LinearLayout)findViewById(R.id.linear_number_passport);

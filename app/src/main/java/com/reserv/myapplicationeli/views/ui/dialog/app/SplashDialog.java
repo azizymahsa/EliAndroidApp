@@ -51,11 +51,11 @@ public void seeText(String message){
     tvAlert.setText(message);
 }
 public void showAlert(){
-    btnOk.setText("باشه!");
 
+    dialog.show();
 }
     public void setBtnText(){
-        dialog.show();
+        btnOk.setText("باشه!");
 
     }
     @Override
