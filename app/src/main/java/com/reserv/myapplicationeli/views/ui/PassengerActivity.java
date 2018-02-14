@@ -1250,15 +1250,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_saler.setVisibility(View.GONE);
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_pish_factor.setVisibility(View.GONE);
+
+
+
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 					FlagTab=true;
-					/*myScrollView.setSmoothScrollingEnabled(false);
-				myScrollView.setOnTouchListener(new View.OnTouchListener() {
-					@Override
-					public boolean onTouch(View v, MotionEvent event) {
-						return true;
-					}
-				});*/
+
 
 					((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
@@ -1268,6 +1265,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					//mAdapter.setAdapter(mAdapter);
 					mAdapter.setData(data);
 					listKhadamat.setAdapter(mAdapter);
+					if(linear_code_meli.getVisibility()==View.VISIBLE){
+						listKhadamat.setVisibility(View.GONE);
+					}
 				}
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
@@ -2041,7 +2041,15 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}
 
 	}
+	@Override
+	public void onResume(){
+		super.onResume();
 
+		mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this);
+		mAdapter.setData(data);
+		listKhadamat.setAdapter(mAdapter);
+
+	}
 	public String getCounter(int i) {
 		String s="";
 		switch (i) {

@@ -98,7 +98,7 @@
     <style name="tahoma" parent="android:TextAppearance">
         <item name="fontPath">fonts/Tahoma.ttf</item></style>
     <style name="traffic" parent="android:TextAppearance">
-        <item name="fontPath">fonts/traffic.ttf</item></style>
+        <item name="fontPath">fonts/mitra.ttf</item></style>
 
 
 
