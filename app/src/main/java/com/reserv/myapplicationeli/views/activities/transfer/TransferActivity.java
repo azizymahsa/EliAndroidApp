@@ -810,10 +810,12 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
             } catch (Exception e) {
                 if (!Utility.isNetworkAvailable(TransferActivity.this)){
-                    Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خارج می باشد", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(TransferActivity.this,"خطا در دریافت اطلاعات از الی گشت", Toast.LENGTH_SHORT).show();
+
                 }
 
-                Toast.makeText(TransferActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
 
