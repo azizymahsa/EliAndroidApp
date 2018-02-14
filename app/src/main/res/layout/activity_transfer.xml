@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="100"
-            android:text="هتل"
+            android:text="نام هتل"
             android:gravity="center"
             android:textColor="@color/text_color_4d"
             android:textAppearance="@style/IrsansBold"
@@ -216,18 +216,22 @@
             android:layout_marginLeft="@dimen/_30dp"
             android:layout_marginRight="@dimen/_30dp"
             >
-            <TextView
+            <EditText
                 android:id="@+id/tvDepurtureFlt"
 
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
-                android:text="انتخاب کنید"
+                android:hint="وارد نمایید"
                 android:gravity="center"
                 android:padding="2dp"
                 android:textSize="@dimen/_12dp_normal_textSize"
                 android:textColor="@color/text_color_2e"
                 android:background="@drawable/color_strok_item_insurance"
+                android:textColorHint="@color/text_color_2e"
+                android:maxLines="1"
+                android:imeOptions="actionNext"
+
                 />
             <TextView
 
@@ -251,18 +255,21 @@
             android:layout_marginRight="@dimen/_30dp"
             android:layout_marginBottom="@dimen/_10dp_margin"
             >
-            <TextView
+            <EditText
                 android:id="@+id/tvReturnFlt"
 
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
-                android:text="انتخاب کنید"
+                android:hint="وارد نمایید"
                 android:gravity="center"
                 android:padding="2dp"
                 android:textSize="@dimen/_12dp_normal_textSize"
                 android:textColor="@color/text_color_2e"
+                android:textColorHint="@color/text_color_2e"
                 android:background="@drawable/color_strok_item_insurance"
+                android:maxLines="1"
+                android:imeOptions="actionNext"
                 />
             <TextView
 
@@ -282,7 +289,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/searchHotel"
+                android:id="@+id/btnCal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40dp"
                 android:layout_gravity="center"
@@ -295,5 +302,28 @@
 
         </LinearLayout>
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rlLoading2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ad000000"
+        android:visibility="gone"
+        >
 
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="@dimen/toolbar_height_70dp"
+            android:layout_height="@dimen/toolbar_height_70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_fileName="circle-l.json"
+
+            />
+
+
+    </RelativeLayout>
 </RelativeLayout>

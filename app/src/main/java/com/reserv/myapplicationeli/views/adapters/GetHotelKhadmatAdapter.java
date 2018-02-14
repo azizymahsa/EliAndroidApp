@@ -131,6 +131,11 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 			holder.imageView1.setBackgroundResource(R.drawable.ic_transfer_forudgahi);
 
 		holder.btnAddsabad.setTag(current.getServiceID());
+		if(current.getServiceNameEn().contains("Airport Transfer")){
+			holder.txtAdd.setText("محاسبه قیمت");
+			holder.txtServiceTotalPrice.setText("");
+
+		}
 		holder.btnAddsabad.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -160,7 +165,12 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 					intent.putExtra("HotelNameEn",current.getExcursionDta().HotelNameEn);
 					intent.putExtra("ArrialAirportName",current.getExcursionDta().ArrialAirportName);
 
+					intent.putExtra("ServiceID",current.getSelectID());
+					intent.putExtra("PassengerList",current.getExcursionDta().PassengerList);
+					intent.putExtra("BookingCode",current.getBookingCode());
 					context.startActivity(intent);
+
+
 
 				}else{
 
@@ -198,7 +208,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 					}
 					//	Toast.makeText(v.getContext(),sumSelectId,Toast.LENGTH_SHORT).show();
 					Prefs.putString("Select_ID_khadamat",sumSelectId);
-					PassengerHotelFlightActivity.updateTotalInfos(sumGheymat);
+					PassengerHotelActivity.updateTotalInfos(sumGheymat);
 				}
 
 

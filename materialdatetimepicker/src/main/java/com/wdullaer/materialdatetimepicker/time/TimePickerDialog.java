@@ -25,6 +25,7 @@ import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
@@ -101,6 +102,7 @@ public class TimePickerDialog extends DialogFragment implements
 
     private Button mCancelButton;
     private Button mOkButton;
+    private Button gswitch_type;
     private TextView mHourView;
     private TextView mHourSpaceView;
     private TextView mMinuteView;
@@ -199,8 +201,8 @@ public class TimePickerDialog extends DialogFragment implements
         mDismissOnPause = false;
         mEnableSeconds = false;
         mEnableMinutes = true;
-        mOkResid = R.string.gmdtp_ok;
-        mCancelResid = R.string.gmdtp_cancel;
+        mOkResid = R.string.gmdtp_okFa;
+        mCancelResid = R.string.gmdtp_cancelfa;
     }
 
     /**
@@ -545,8 +547,12 @@ public class TimePickerDialog extends DialogFragment implements
                 tryVibrate();
             }
         });
+        Typeface typeface= Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_bold.ttf");
 
         mOkButton = (Button) view.findViewById(R.id.ok);
+        mOkButton.setTypeface(typeface);
+        gswitch_type = (Button) view.findViewById(R.id.gswitch_type);
+        gswitch_type.setVisibility(View.GONE);
         mOkButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -560,7 +566,7 @@ public class TimePickerDialog extends DialogFragment implements
             }
         });
         mOkButton.setOnKeyListener(keyboardListener);
-        mOkButton.setTypeface(TypefaceHelper.get(context, "Roboto-Medium"));
+        mOkButton.setTypeface(typeface);
         if(mOkString != null) mOkButton.setText(mOkString);
         else mOkButton.setText(mOkResid);
 
@@ -572,8 +578,8 @@ public class TimePickerDialog extends DialogFragment implements
                 if (getDialog() != null) getDialog().cancel();
             }
         });
-        mCancelButton.setTypeface(TypefaceHelper.get(context, "Roboto-Medium"));
-        if(mCancelString != null) mCancelButton.setText(mCancelString);
+        mCancelButton.setTypeface(typeface);
+        if(mCancelString != null) mCancelButton.setText("ا");
         else mCancelButton.setText(mCancelResid);
         mCancelButton.setVisibility(isCancelable() ? View.VISIBLE : View.GONE);
 

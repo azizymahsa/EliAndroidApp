@@ -184,7 +184,11 @@
             android:name="com.novoda.merlin.service.MerlinService"
             android:exported="false" />
 
-        <activity android:name=".views.activities.transfer.TransferActivity"></activity>
+        <activity
+            android:name=".views.activities.transfer.TransferActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".views.activities.transfer.GetHotelActivity"></activity>
     </application>
 
 </manifest>

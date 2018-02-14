@@ -353,7 +353,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
 
         if (Prefs.getString("raftfa", "null").equals("null")) {
-            tvRaft.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+            tvRaft.setText(persianCalendarDatePicker.getPersianWeekDayName()+" "+persianCalendarDatePicker.getPersianDay()+" "+persianCalendarDatePicker.getPersianMonthName());
 
         } else {
             tvRaft.setText(Prefs.getString("raftfa", "null"));
@@ -653,9 +653,13 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
 
             if (Utility.campareDate(raft,bargasht)){
+              //  persianCalendar.set(year, month, day+1);
+
                 tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
               datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+             //   bargasht = date_server(year, monthOfYear, dayOfMonth+1);
+
             }
 
 

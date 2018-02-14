@@ -258,7 +258,7 @@
                         android:layout_marginTop="@dimen/_15dp_normal_margin"
 
                         android:gravity="right"
-                        android:text="تاریخ برگشت"
+                        android:text="تاریخ رفت"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2"
                         android:textSize="@dimen/_12dp_normal_textSize"

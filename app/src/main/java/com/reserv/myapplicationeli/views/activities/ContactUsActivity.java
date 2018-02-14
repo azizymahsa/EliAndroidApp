@@ -101,7 +101,6 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
-        OneSignal.sendTag("position", "isContactUs");
 
 
         //tvArrow = findViewById(R.id.tvArrow);

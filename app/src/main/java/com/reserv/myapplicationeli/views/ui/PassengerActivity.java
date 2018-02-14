@@ -100,6 +100,7 @@ import com.reserv.myapplicationeli.tools.db.local.PassengerMosaferItems_Table;
 import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.views.activities.ContactUsActivity;
+import com.reserv.myapplicationeli.views.activities.transfer.ExcursionDta;
 import com.reserv.myapplicationeli.views.adapters.GetKhadmatAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView;
 import com.reserv.myapplicationeli.views.components.Header;
@@ -260,6 +261,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txtfamilym.setOnFocusChangeListener(this);
 
 		txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
+		txtnumber_passport= (EditText) findViewById(R.id.txtnumber_passport);
 		txt_NationalCode_m.setOnClickListener(this);
 		txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
@@ -859,8 +861,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 
 			} catch (JSONException e) {
-				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
+				AlertDialogPassengerFlight alertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+				alertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
 
@@ -1197,6 +1199,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					// Extract data from json and store into ArrayList as class objects
 					for (int i = 0; i < jArray.length(); i++) {
 						JSONObject json_data = jArray.getJSONObject(i);
+						JSONObject excursionDta = json_data.getJSONObject("ExcursionDta");
 
 						PurchaseFlightResult fishData = new PurchaseFlightResult();
 						fishData.setCityEn(json_data.getString("CityEn"));
@@ -1226,6 +1229,27 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 						fishData.setServiceTotalPrice(json_data.getLong("ServiceTotalPrice"));
 						fishData.setSelectID(json_data.getString("SelectID"));
+
+
+
+
+
+
+						fishData.setBookingCode(jsonResult.getString("BookingCode"));
+
+
+
+						fishData.setExcursionDta(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
+								excursionDta.getString("ArrialAirportName"),
+								excursionDta.getString("ArrivalFltDate")
+								,excursionDta.getString("ArrivalFltNo"),
+								excursionDta.getString("ArrivalFltTime"),
+								excursionDta.getString("CityID"),excursionDta.getString("DepartureFltDate"),
+								excursionDta.getString("DepartureFltNo"),excursionDta.getString("DepartureFltTime"),
+								excursionDta.getString("HotelID"),excursionDta.getString("HotelNameEn"),excursionDta.getString("PassengerList")));
+
+
+
 						fishData.setFlag(false);
 						data.add(fishData);
 					}

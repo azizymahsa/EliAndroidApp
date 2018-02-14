@@ -10,7 +10,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.reserv.myapplicationeli"
-        manifestPlaceholders = [onesignal_app_id               : "270b4b08-04ea-4e4f-a22e-824a0bed3017",
+        manifestPlaceholders = [onesignal_app_id               : "e9eccbf1-b5b1-4be7-a500-29350ca37531",
                                 // Project number pulled from dashboard, local value is ignored.
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 17

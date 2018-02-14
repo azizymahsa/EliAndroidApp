@@ -398,9 +398,10 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     public void onReturnValue(ArrayList<FilterModel> type, String search, ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
                               ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, ArrayList<FilterPriceModel> filterHotelPriceModel,
                               ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
-        boolean remove =false;
-        list.setVisibility(View.VISIBLE);
         elNotFound.setVisibility(View.GONE);
+        list.setVisibility(View.VISIBLE);
+        btnOk.setVisibility(View.VISIBLE);
+        boolean remove = false;
 
         this.filterModels = type;
         this.searchIn = search;
@@ -539,17 +540,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         }
 
         if (selectHotelModelArrayListFilter.isEmpty()) {
-            if (!remove){
-                //   Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
-                elNotFound.setVisibility(View.VISIBLE);
-                tvAlert.setText("هیچ موردی یافت نشد");
-                list.setVisibility(View.GONE);
-                btnOk.setVisibility(View.GONE);
-                tvCount.setText("(" + 0 + "مورد یافت شد" + ")");
 
-            }else{
-
-            }
 
             isFilter = false;
             ///Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
@@ -570,7 +561,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
 
             if (selectHotelModelArrayListFilter.size()==selectHotelModelArrayList.size()){
+                if (!remove){
+                    elNotFound.setVisibility(View.VISIBLE);
+                    tvAlert.setText("نتیجه ای برای فیلتر شما حاصل نشد!");
+                    list.setVisibility(View.GONE);
+                    btnOk.setVisibility(View.GONE);
 
+                }
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             }

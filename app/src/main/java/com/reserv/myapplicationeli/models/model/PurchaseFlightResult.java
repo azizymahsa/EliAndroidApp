@@ -29,8 +29,21 @@ public class PurchaseFlightResult {
 	
 	private String ServiceTypeImgURL;
 	private ExcursionDta excursionDta;
-	
+
+
+	private String BookingCode;
+
+
 	private long ServiceTotalPrice;
+
+	public String getBookingCode() {
+		return BookingCode;
+	}
+
+	public void setBookingCode(String bookingCode) {
+		BookingCode = bookingCode;
+	}
+
 	boolean flag;
 	private String SelectID; 
 	public String getCityEn() {

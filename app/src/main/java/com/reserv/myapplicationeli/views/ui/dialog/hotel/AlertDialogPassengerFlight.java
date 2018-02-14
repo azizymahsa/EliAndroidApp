@@ -42,10 +42,10 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
         avi = (AVLoadingIndicatorView) dialogView.findViewById(R.id.avi);
         tvAlert = (JustifiedTextView) dialogView.findViewById(R.id.tvAlert);
 
-        Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
+      /*  Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
         tvAlert.setTextSize(2,12);
         tvAlert.setLineSpacing(25);
-        tvAlert.setTypeFace(typeface);
+        tvAlert.setTypeFace(typeface);*/
 
       //  btnOk.setCustomTextFont("fonts/iran_sans_bold.ttf");
        // btnOk.setText(activity.getString(R.string.icon_close));

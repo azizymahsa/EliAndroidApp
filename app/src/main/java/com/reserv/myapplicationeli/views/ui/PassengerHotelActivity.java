@@ -989,6 +989,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                     fishData.setServiceTotalPrice(json_data.getLong("ServiceTotalPrice"));
                     fishData.setSelectID(json_data.getString("SelectID"));
+                    fishData.setBookingCode(jsonResult.getString("BookingCode"));
 
 
 
@@ -1001,7 +1002,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             excursionDta.getString("ArrivalFltTime"),
                             excursionDta.getString("CityID"),excursionDta.getString("DepartureFltDate"),
                             excursionDta.getString("DepartureFltNo"),excursionDta.getString("DepartureFltTime"),
-                            excursionDta.getString("HotelID"),excursionDta.getString("HotelNameEn")));
+                            excursionDta.getString("HotelID"),excursionDta.getString("HotelNameEn"),excursionDta.getString("PassengerList")));
 
                     data.add(fishData);
                 }

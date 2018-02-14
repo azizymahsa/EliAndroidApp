@@ -392,6 +392,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                               ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,
                               ArrayList<FilterPriceModel> filterHotelPriceModel, ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
 
+        elNotFound.setVisibility(View.GONE);
+        list.setVisibility(View.VISIBLE);
+        btnOk.setVisibility(View.VISIBLE);
+        boolean remove = false;
 
         this.filterModels = type;
         this.searchIn = search;
@@ -503,6 +507,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
             if (filterModel.isRemove()) {
+                remove=true;
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
@@ -534,6 +539,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
             if (selectHotelModelArrayListFilter.size() == selectHotelModelArrayList.size()) {
+                if (!remove){
+                    elNotFound.setVisibility(View.VISIBLE);
+                    tvAlert.setText("نتیجه ای برای فیلتر شما حاصل نشد!");
+                    list.setVisibility(View.GONE);
+                    btnOk.setVisibility(View.GONE);
+
+                }
 
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));

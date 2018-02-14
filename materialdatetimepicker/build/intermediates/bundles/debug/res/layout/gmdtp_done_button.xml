@@ -41,7 +41,7 @@
             android:maxLines="1"
             android:textStyle="bold"
             android:textSize="12sp"
-            android:visibility="gone"/>
+ />
     </LinearLayout>
 
     <!--<com.eligasht.reservation.widget.TextView-->
@@ -72,7 +72,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
         style="@style/mdtp_ActionButton.Text"
-        android:text="انصراف" />
+        android:text="Cancel" />
 
     <Button
         android:id="@+id/ok"
@@ -81,5 +81,5 @@
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         style="@style/mdtp_ActionButton.Text"
-        android:text="تائید" />
+        android:text="ok" />
 </LinearLayout>

@@ -150,7 +150,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         //=================================================================================================
         PersianCalendar persianCalendar = new PersianCalendar();
 
-        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() + 1);
+        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), (persianCalendarDatePicker.getPersianDay()+1));
 
 
 
@@ -304,6 +304,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 //=====================================================================================================
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
+
             tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
 
         } else {
@@ -341,7 +342,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
         if (Prefs.getString("raftfa", "null").equals("null")) {
-            tvRaft.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+            tvRaft.setText(persianCalendarDatePicker.getPersianWeekDayName()+" "+persianCalendarDatePicker.getPersianDay()+" "+persianCalendarDatePicker.getPersianMonthName());
 
         } else {
             tvRaft.setText(Prefs.getString("raftfa", "null"));

@@ -20,8 +20,10 @@
 
     <!-- Label forf date or time [CHAR LIMIT=30] -->
     <string name="gmdtp_done_label">Done</string>
-    <string name="gmdtp_ok">تائید</string>
+    <string name="gmdtp_ok">OK</string>
+    <string name="gmdtp_okFa">تائید</string>
     <string name="gmdtp_cancel">@android:string/cancel</string>
+    <string name="gmdtp_cancelfa">انصراف</string>
     <!--
          Content description for the hour selector in the time picker, which displays
          selectable hours of the day along the inside edge of a circle, as in an analog clock.

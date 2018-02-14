@@ -557,6 +557,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                     }
                 } catch (Exception e) {
+                    rlLoading2.setVisibility(View.GONE);
                 }
 
 
@@ -565,6 +566,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 //avi1.setVisibility(View.GONE);
                // llLoading.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
+                rlLoading2.setVisibility(View.GONE);
                 tvAlertError.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
             }
 

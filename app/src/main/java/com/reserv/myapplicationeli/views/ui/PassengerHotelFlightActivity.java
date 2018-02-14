@@ -982,16 +982,20 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     fishData.setServiceTotalPrice(json_data.getLong("ServiceTotalPrice"));
                     fishData.setSelectID(json_data.getString("SelectID"));
 
+                    fishData.setBookingCode(jsonResult.getString("BookingCode"));
+
+
+
 
 
                     fishData.setExcursionDta(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
                             excursionDta.getString("ArrialAirportName"),
                             excursionDta.getString("ArrivalFltDate")
-                    ,excursionDta.getString("ArrivalFltNo"),
+                            ,excursionDta.getString("ArrivalFltNo"),
                             excursionDta.getString("ArrivalFltTime"),
                             excursionDta.getString("CityID"),excursionDta.getString("DepartureFltDate"),
                             excursionDta.getString("DepartureFltNo"),excursionDta.getString("DepartureFltTime"),
-                            excursionDta.getString("HotelID"),excursionDta.getString("HotelNameEn")));
+                            excursionDta.getString("HotelID"),excursionDta.getString("HotelNameEn"),excursionDta.getString("PassengerList")));
                     data.add(fishData);
                 }
 

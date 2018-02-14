@@ -173,7 +173,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
         PersianCalendar persianCalendar = new PersianCalendar();
 
-        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() + 1);
+        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
         tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());

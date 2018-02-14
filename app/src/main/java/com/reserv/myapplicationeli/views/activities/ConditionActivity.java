@@ -63,7 +63,6 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condition);
-        OneSignal.sendTag("position", "isCondition");
 
 
         textView12= (JustifiedTextView) findViewById(R.id.textView12);

@@ -22,13 +22,14 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class SplashDialog implements View.OnClickListener {
     android.app.AlertDialog dialog;
-    TextView tvAlert;
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
     Activity activity;
     FancyButton btnOk;
+    TextView tvAlert;
     TryDialogListener filterHotelDialogListener;
+
 
 
     public SplashDialog(final Activity activity,TryDialogListener filterHotelDialogListener) {
@@ -39,20 +40,33 @@ public class SplashDialog implements View.OnClickListener {
         dialogView = inflater.inflate(R.layout.alert_dialog_splash, null);
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
+        tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
 
         btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(false);
-        dialog.show();
     }
+public void seeText(String message){
+    tvAlert.setText(message);
+}
+public void showAlert(){
+    btnOk.setText("باشه!");
 
+}
+    public void setBtnText(){
+        dialog.show();
+
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
                 dialog.cancel();
-                filterHotelDialogListener.onReturnValue();
+                try {
+                    filterHotelDialogListener.onReturnValue();
+
+                }catch (Exception e){}
 
                 break;
 

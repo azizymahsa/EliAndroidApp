@@ -16,9 +16,9 @@ public class ExcursionDta {
     public final String DepartureFltTime;
     public final String HotelID;
     public final String HotelNameEn;
+    public final String PassengerList;
 
-
-    public ExcursionDta(String arrialAirportCode, String arrialAirportName, String arrivalFltDate, String arrivalFltNo, String arrivalFltTime, String cityID, String departureFltDate, String departureFltNo, String departureFltTime, String hotelID, String hotelNameEn) {
+    public ExcursionDta(String arrialAirportCode, String arrialAirportName, String arrivalFltDate, String arrivalFltNo, String arrivalFltTime, String cityID, String departureFltDate, String departureFltNo, String departureFltTime, String hotelID, String hotelNameEn, String passengerList) {
         ArrialAirportCode = arrialAirportCode;
         ArrialAirportName = arrialAirportName;
         ArrivalFltDate = arrivalFltDate;
@@ -30,5 +30,6 @@ public class ExcursionDta {
         DepartureFltTime = departureFltTime;
         HotelID = hotelID;
         HotelNameEn = hotelNameEn;
+        PassengerList = passengerList;
     }
 }

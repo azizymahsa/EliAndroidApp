@@ -612,7 +612,7 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
         month = monthOfYear;
         day = dayOfMonth;
 
-        String currentDateTime = year + "-" + monthOfYear + 1 + "-" + dayOfMonth;//2018-01-16;
+        String currentDateTime = year + "/" +( monthOfYear + 1 )+ "/" + dayOfMonth;//2018-01-16;
 
         if (view.getTag().equals("DepartureToGregorian")) {
             txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", false));

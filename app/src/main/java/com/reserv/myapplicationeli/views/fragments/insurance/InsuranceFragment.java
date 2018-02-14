@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class InsuranceFragment extends Fragment implements View.OnClickListener, NumberPickerDialog.NumberPickerListener,
         TimePickerDialog.OnTimeSetListener,
-        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     public ViewGroup view;
     public ViewGroup layout_passenger;
@@ -90,6 +91,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     private ClientService service;
     private Button btnSearchInsurance;
     private int accomodationDays;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogDepartgGregorian;
+
 
     public static InsuranceFragment instance() {
         InsuranceFragment fragment = new InsuranceFragment();
@@ -237,6 +240,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
 
 
+
         datePickerDialogDepart = DatePickerDialog.newInstance(
                 this,
                 currentYear,
@@ -249,8 +253,21 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         persianCalendarDatePicker.setPersianDate(currentYear, currentMonth, currentDay);
 
         datePickerDialogDepart.setMinDate(persianCalendarDatePicker);
-
-        Gson gson = new GsonBuilder().create();
+        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogDepartgGregorian.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+        datePickerDialogDepart.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogDepartgGregorian.show(getActivity().getFragmentManager(), "DepartureFromGregorian");
+            }
+        });
+        datePickerDialogDepartgGregorian.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
+            }
+        });
+        datePickerDialogDepartgGregorian.setOnDateSetListener(this);
 
         layout_depart_date.setOnClickListener(this);
         layout_duringTrip.setOnClickListener(this);
@@ -377,6 +394,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             datePickerDialogDepart.initialize(this, year_, month, day);
 
         }
+        Log.e("packagetest2", departureDate);
+
     }
 
     AlertDialog mAlertDialog ;
@@ -408,4 +427,15 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         mAlertDialog.setCancelable(true);
         mAlertDialog.show();
     }
-}
+
+    @Override
+    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+        year_ = year;
+        month = monthOfYear;
+        day = dayOfMonth;
+        String currentDateTime = year + "-" +( monthOfYear + 1 )+ "-" + dayOfMonth;//2018-01-16;
+        txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", false));
+        departureDate = currentDateTime;
+        Log.e("packagetest1", departureDate);
+        }
+    }

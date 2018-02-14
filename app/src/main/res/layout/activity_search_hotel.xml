@@ -98,7 +98,7 @@
                 android:id="@+id/llHome"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_60dp_hight"
-                android:layout_gravity="left|center"
+                android:layout_gravity="left"
                 >
 
                 <mehdi.sakout.fancybuttons.FancyButton
@@ -117,9 +117,9 @@
                     android:id="@+id/txt_hom"
                     android:layout_width="@dimen/_30dp"
                     android:layout_height="@dimen/_30dp"
-                    android:layout_marginTop="@dimen/_15dp_margin"
-                    android:layout_marginLeft="@dimen/_15dp_margin"
+
                     android:background="@drawable/e_logo"
+                    android:layout_centerInParent="true"
                     />
 
 
