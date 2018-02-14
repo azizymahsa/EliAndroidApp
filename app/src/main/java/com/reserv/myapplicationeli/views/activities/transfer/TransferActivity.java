@@ -492,7 +492,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         }
         if (ValidationTools.isEmptyOrNull(AirPortCode)) {
             if (Prefs.getString("Value-Mabda-Airport-Code2", "").equals(""))
-                AirPortCode = Prefs.getString("Value-Mabda-Airport-Code2", "");
+                AirPortCode = Prefs.getString("Value-Maghsad-Airport-Code2", "");
 
         }
         if (ValidationTools.isEmptyOrNull(Hotelcode)) {
@@ -686,12 +686,11 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
                 if (cal) {
-                    if (Prefs.getString("IST", "H").equals("H")) {
-                        DepurtureAirport = Prefs.getString("Value-Maghsad-Airport-Code2", "");
+                    DepurtureAirport = tvDepurtureAirport.getText().toString();
 
-                    }
                     if (Prefs.getString("IST", "H").equals("H")) {
-                        AirPortCode = Prefs.getString("Value-Mabda-Airport-Code2", "");
+                        AirPortCode = Prefs.getString("Value-Maghsad-Airport-Code2", "");
+                        Log.e("okok", "ffsdf" );
 
                     }
 
@@ -701,7 +700,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     ReturnTime = tvReturnTime.getText().toString();
                     DepurtureFlt = tvDepurtureFlt.getText().toString();
                     ReturnFlt = tvReturnFlt.getText().toString();
-                    ReturnDate = tvReturnDate.getText().toString();
+                    ReturnDate =bargasht;
                     new GetPriceAsync().execute();
                     break;
                 }
