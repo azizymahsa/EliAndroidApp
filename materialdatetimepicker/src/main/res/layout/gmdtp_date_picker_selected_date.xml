@@ -37,7 +37,8 @@
         <TextView
             android:id="@+id/date_picker_month"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="30"
             android:duplicateParentState="true"
             android:gravity="center_horizontal|bottom"
             android:includeFontPadding="false"
@@ -48,7 +49,8 @@
         <TextView
             android:id="@+id/date_picker_day"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="100"
             android:layout_gravity="center"
             android:layout_marginBottom="-10dip"
             android:layout_marginTop="-10dip"
@@ -57,18 +59,22 @@
             android:includeFontPadding="false"
             android:textColor="@color/mdtp_date_picker_selector"
             android:textSize="@dimen/gmdtp_selected_date_day_size"
-            tools:text="15"/>
+            tools:text="15"
+            />
+        <com.wdullaer.materialdatetimepicker.AccessibleTextView
+            android:id="@+id/date_picker_year"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal|top"
+            android:includeFontPadding="false"
+            android:textColor="@color/mdtp_date_picker_selector"
+            android:textSize="@dimen/gmdtp_selected_date_year_size"
+            tools:text="2015"
+            android:visibility="gone"/>
     </com.wdullaer.materialdatetimepicker.AccessibleLinearLayout>
 
-    <com.wdullaer.materialdatetimepicker.AccessibleTextView
-        android:id="@+id/date_picker_year"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal|top"
-        android:includeFontPadding="false"
-        android:textColor="@color/mdtp_date_picker_selector"
-        android:textSize="@dimen/gmdtp_selected_date_year_size"
-        tools:text="2015" />
+
 
 </LinearLayout>

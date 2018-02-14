@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.reserv.myapplicationeli.R;
@@ -90,6 +91,7 @@ public class TravelInsurancAdapter extends RecyclerView.Adapter<InsuranceRowHold
         holder.btn_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(context, "45435", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context,InsurnaceDetailsActivity.class);
                 intent.putExtra("details", new Gson().toJson(item.getTravelInsuranceCoverages()));
                 context.startActivity(intent);

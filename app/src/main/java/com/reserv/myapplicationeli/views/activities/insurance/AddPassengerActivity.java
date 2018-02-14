@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -26,6 +27,7 @@ import com.reserv.myapplicationeli.base.BaseActivity;
 import com.reserv.myapplicationeli.contracts.PassengerContract;
 import com.reserv.myapplicationeli.models.model.insurance.BirthDateList;
 import com.reserv.myapplicationeli.presenters.PassengerPresenter;
+import com.reserv.myapplicationeli.tools.Prefs;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.adapters.insurance.PassengerAdapter;
@@ -33,6 +35,7 @@ import com.reserv.myapplicationeli.views.components.SimpleRecycleView;
 import com.reserv.myapplicationeli.views.ui.InitUi;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -44,7 +47,7 @@ public class AddPassengerActivity extends BaseActivity implements
         View.OnClickListener,
         PassengerContract.View,
         TimePickerDialog.OnTimeSetListener,
-        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     public SimpleRecycleView rcl_add_passenger;
     public ImageView btn_add;
@@ -58,6 +61,7 @@ public class AddPassengerActivity extends BaseActivity implements
     int year_;
     int day;
     private BirthDateList currentPassenger;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogDepartgGregorian;
 
     @SuppressLint("NewApi")
     @Override
@@ -67,10 +71,8 @@ public class AddPassengerActivity extends BaseActivity implements
         InitUi.Toolbar(this, false, R.color.toolbar_color, "اطلاعات مسافر");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
-
-
 
 
         initViews();
@@ -119,6 +121,29 @@ public class AddPassengerActivity extends BaseActivity implements
         );
         datePickerDialogBirthDay.setYearRange(1330, currentYear);
         datePickerDialogBirthDay.setTitle("لطفا تاریخ تولد خود را انتخاب نمایید");
+        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        datePickerDialogDepartgGregorian.setYearRange(1940, year);
+
+
+        datePickerDialogBirthDay.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogDepartgGregorian.show(getFragmentManager(), "DepartureFromGregorian");
+            }
+        });
+
+        datePickerDialogDepartgGregorian.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                datePickerDialogBirthDay.show(getSupportFragmentManager(), "DepartureFrom");
+            }
+        });
+        datePickerDialogDepartgGregorian.setOnDateSetListener(this);
+
 
         btn_add.setOnClickListener(this);
         btn_remove.setOnClickListener(this);
@@ -175,9 +200,23 @@ public class AddPassengerActivity extends BaseActivity implements
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Prefs.putBoolean("pasGe", false);
+    }
+
+    @Override
     public void onSetBirthDayPassenger(BirthDateList passenger) {
-        currentPassenger = passenger;
-        datePickerDialogBirthDay.show(getSupportFragmentManager(), "BirthDay");
+        if (Prefs.getBoolean("pasGe", false)) {
+            datePickerDialogDepartgGregorian.show(getFragmentManager(), "DepartureFromGregorian");
+            currentPassenger = passenger;
+
+        } else {
+            datePickerDialogBirthDay.show(getSupportFragmentManager(), "BirthDay");
+
+            currentPassenger = passenger;
+        }
+
     }
 
 
@@ -232,10 +271,11 @@ public class AddPassengerActivity extends BaseActivity implements
     }
 
 
-
     //shamsi
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+        Prefs.putBoolean("pasGe", false);
+
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
@@ -245,10 +285,34 @@ public class AddPassengerActivity extends BaseActivity implements
 
 
         if (view.getTag().equals("BirthDay")) {
-
-            passengerPresenter.setBirthday(currentPassenger, currentDateTime);
+            passengerPresenter.setBirthday(currentPassenger, currentDateTime,false);
             datePickerDialogBirthDay.initialize(this, year_, month, day);
 
         }
+    }
+
+    @Override
+    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+        Prefs.putBoolean("pasGe", true);
+        year_ = year;
+        month = monthOfYear;
+        day = dayOfMonth;
+
+
+
+
+
+
+        year_ = year;
+        month = monthOfYear;
+        day = dayOfMonth;
+        long milis = DateUtil.getMiliSecondGregorianDateTime(year + "-" + (monthOfYear) + "-" + dayOfMonth, "yyyy-MM-dd");
+
+        String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
+
+
+        passengerPresenter.setBirthday(currentPassenger, currentDateTime,true);
+
+
     }
 }

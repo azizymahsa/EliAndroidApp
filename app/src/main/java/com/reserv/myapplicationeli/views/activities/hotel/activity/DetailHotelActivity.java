@@ -625,6 +625,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                 tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                tvHotelName.setVisibility(View.GONE);
                 tvTitle.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
 
                 tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);

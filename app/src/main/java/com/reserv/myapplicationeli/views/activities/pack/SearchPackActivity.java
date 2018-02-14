@@ -279,6 +279,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         layout_sort.setOnClickListener(this);
         btn_previous_day.setOnClickListener(this);
         btn_next_day.setOnClickListener(this);
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
     }
 
 

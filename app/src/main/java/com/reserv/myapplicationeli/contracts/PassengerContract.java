@@ -30,7 +30,7 @@ public interface PassengerContract {
     interface Presenter {
         void addPassengers();
         void removePassengers();
-        void setBirthday(BirthDateList birthDateList, String date);
+        void setBirthday(BirthDateList birthDateList, String date,boolean geo);
         ArrayList<BirthDateList> getPassengers();
         int getPassengersCount();
         PassengerRowHolder createViewHolder(ViewGroup parent, int viewType);

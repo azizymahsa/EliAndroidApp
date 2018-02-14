@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.contracts.PassengerContract;
 import com.reserv.myapplicationeli.models.model.insurance.BirthDateList;
+import com.reserv.myapplicationeli.tools.Prefs;
 import com.reserv.myapplicationeli.tools.ValidationTools;
 import com.reserv.myapplicationeli.tools.datetools.DateUtil;
 import com.reserv.myapplicationeli.views.viewholders.PassengerRowHolder;
@@ -23,6 +24,7 @@ public class PassengerPresenter implements PassengerContract.Presenter{
 
     private final PassengerContract.View mView;
     private ArrayList<BirthDateList> passengers;
+    boolean geo;
 
 
     public PassengerPresenter(PassengerContract.View mView) {
@@ -73,9 +75,10 @@ public class PassengerPresenter implements PassengerContract.Presenter{
     }
 
     @Override
-    public void setBirthday(BirthDateList passenger, String date) {
+    public void setBirthday(BirthDateList passenger, String date,boolean geo) {
         passengers.get(passengers.indexOf(passenger)).setBirthDate(date);
         mView.notifyDataSetChange();
+        this.geo=geo;
 
     }
 
@@ -106,10 +109,17 @@ public class PassengerPresenter implements PassengerContract.Presenter{
         final BirthDateList passenger = getPassengers().get(position);
         holder.txt_passenger_title.setText("مسافر" + " " + getStringPosition(position));
         if(!ValidationTools.isEmptyOrNull(passenger.getBirthDate())){
-            String birthDay = DateUtil.getLongStringDate(passenger.getBirthDate(),"yyyy-MM-dd",true);
-            holder.txt_birthday.setText(birthDay);
+            if (geo){
+                String birthDay = DateUtil.getLongStringDateInsurance(passenger.getBirthDate(),"yyyy-MM-dd",false);
+                holder.txt_birthday.setText(birthDay);
+
+            }else{
+                String birthDay = DateUtil.getLongStringDateInsurance(passenger.getBirthDate(),"yyyy-MM-dd",true);
+                holder.txt_birthday.setText(birthDay);
+
+            }
         }else {
-            holder.txt_birthday.setText("تاریخ تولد خود را انتخاب کنید");
+            holder.txt_birthday.setText("تاریخ تولد را انتخاب کنید");
         }
         holder.layout_birthday.setOnClickListener(new View.OnClickListener() {
             @Override

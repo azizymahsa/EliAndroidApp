@@ -286,6 +286,8 @@ public class DatePickerDialog extends DialogFragment implements
         mYearView = (TextView) view.findViewById(R.id.date_picker_year);
         mYearView.setOnClickListener(this);
         final Button switchType = (Button) view.findViewById(R.id.gswitch_type);
+        final com.wdullaer.materialdatetimepicker.AccessibleTextView date_picker_year = (com.wdullaer.materialdatetimepicker.AccessibleTextView) view.findViewById(R.id.date_picker_year);
+        date_picker_year.setVisibility(View.VISIBLE);
 
         int listPosition = -1;
         int listPositionOffset = 0;

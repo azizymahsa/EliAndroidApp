@@ -287,6 +287,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         txtTitle = (TextView) findViewById(R.id.tvTitle);
         txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
         btn_next_partnerInfo = (LinearLayout) findViewById(R.id.btn_next_partnerInfo);
+        linear_code_meli = (LinearLayout) findViewById(R.id.linear_code_meli);
+        linear_code_meli.setVisibility(View.GONE);
         btn_nextm = (LinearLayout) findViewById(R.id.btn_nextm);
         btn_taeed_khadamat = (LinearLayout) findViewById(R.id.btn_taeed_khadamat);
         btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);

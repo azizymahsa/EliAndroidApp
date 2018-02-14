@@ -579,14 +579,14 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
 
-                if (tvDepurtureFlt.getText().toString().equals("وارد نمایید")) {
+                if (tvDepurtureFlt.getHint().toString().equals("وارد نمایید")) {
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable)tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                 //    tvDepurtureFlt.setError("شماره پرواز رفت را انتخاب کنید");
 
 
-                }else if (tvDepurtureFlt.getText().length()!=5){
+                }else if (tvDepurtureFlt.getText().length()<4){
                     GradientDrawable drawable = (GradientDrawable)tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
@@ -602,14 +602,14 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
 
-                if (tvReturnFlt.getText().toString().equals("وارد نمایید")) {
+                if (tvReturnFlt.getHint().toString().equals("وارد نمایید")) {
                     GradientDrawable drawable = (GradientDrawable)tvReturnFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
                   //  tvReturnFlt.setError("شماره پرواز برگشت را وارد نمایید");
 
 
-                }else if (tvReturnFlt.getText().length()!=5){
+                }else if (tvReturnFlt.getText().length()<4){
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable)tvReturnFlt.getBackground();
                     drawable.setStroke(4, Color.RED);

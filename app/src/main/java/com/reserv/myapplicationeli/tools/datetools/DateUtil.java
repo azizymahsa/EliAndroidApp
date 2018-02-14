@@ -261,7 +261,23 @@ public class DateUtil {
         try {
             return  getStringDayOfWeek(dateTime,format,isPersian) + " " +
                     getDayOfMonth(dateTime,format,isPersian) + " " +
-                    getStringMonth(dateTime,format,isPersian) + " " ;
+                    getStringMonth(dateTime,format,isPersian) ;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public static String getLongStringDateInsurance(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
+            return "";
+        }
+        try {
+            return
+                    getDayOfMonth(dateTime,format,isPersian) + " " +
+                    getStringMonth(dateTime,format,isPersian) + " "
+                    + " " +
+                    getYear(dateTime,format,isPersian);
         }
         catch (NullPointerException e) {
             e.printStackTrace();

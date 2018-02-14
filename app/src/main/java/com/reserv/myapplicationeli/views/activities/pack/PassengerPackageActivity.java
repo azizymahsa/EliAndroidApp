@@ -316,7 +316,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
         llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
         llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
-
+        linear_code_meli = (LinearLayout) findViewById(R.id.linear_code_meli);
+        linear_code_meli.setVisibility(View.GONE);
 
         btn_saler.setOnClickListener(this);
         btn_mosaferan.setOnClickListener(this);

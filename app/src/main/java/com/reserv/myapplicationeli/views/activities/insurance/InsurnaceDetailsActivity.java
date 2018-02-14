@@ -35,12 +35,25 @@ public class InsurnaceDetailsActivity extends AppCompatActivity {
         try {
             JSONArray jsonObj = new JSONArray(getIntent().getExtras().getString("details"));
             Log.e("testttt", jsonObj.toString() );
-            for (int i = 0; i < jsonObj.length(); i++) {
-                arrayList.add(new DetailsModel(jsonObj.getJSONObject(i).getString("TravelInsuranceCoverageTile").toString(),jsonObj.getJSONObject(i).getString("TravelInsuranceCoverageVal").toString()));
+
+            if (getIntent().getExtras().getBoolean("plan")){
+                for (int i = 0; i < jsonObj.length(); i++) {
+                    arrayList.add(new DetailsModel(jsonObj.getJSONObject(i).getString("TitleFa").toString(),jsonObj.getJSONObject(i).getString("CoverLimit").toString()));
 
 
+                }
+                lvDetails.setAdapter(new InsurnaceDetailAdapter(this,arrayList));
+
+            }else{
+                for (int i = 0; i < jsonObj.length(); i++) {
+                    arrayList.add(new DetailsModel(jsonObj.getJSONObject(i).getString("TravelInsuranceCoverageTile").toString(),jsonObj.getJSONObject(i).getString("TravelInsuranceCoverageVal").toString()));
+
+
+                }
+                lvDetails.setAdapter(new InsurnaceDetailAdapter(this,arrayList));
             }
-            lvDetails.setAdapter(new InsurnaceDetailAdapter(this,arrayList));
+
+
 
         } catch (JSONException e) {
             e.printStackTrace();
