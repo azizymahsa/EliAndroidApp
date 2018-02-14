@@ -121,7 +121,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
     public static TextView txtSumKhadamat;
-    public LinearLayout linear_number_passport,linear_code_meli,linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo, btn_nextm, btn_taeed_khadamat;
+    public LinearLayout linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo, btn_nextm, btn_taeed_khadamat;
     private Handler progressBarHandler = new Handler();
     public ListView list_airport, listKhadamat;
     ArrayList<HashMap<String, String>> mylist = null;
@@ -319,12 +319,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         btn_taeed_khadamat = (LinearLayout) findViewById(R.id.btn_taeed_khadamat);
         btn_taeed_khadamat.setOnClickListener(PassengerHotelFlightActivity.this);
 
-        linear_code_meli=(LinearLayout)findViewById(R.id.linear_code_meli);
-        linear_code_meli.setVisibility(View.GONE);
-        linear_code_meli.setOnClickListener(this);
 
-        linear_number_passport=(LinearLayout)findViewById(R.id.linear_number_passport);
-        linear_number_passport.setOnClickListener(this);
 
         btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);
         btn_pardakht_factor.setOnClickListener(PassengerHotelFlightActivity.this);
@@ -434,14 +429,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             System.out.println("Error " + e.getMessage());
         }
         //////////////
-        boolean checkDomestic=Prefs.getBoolean("IsDemostic",false);
-        if(checkDomestic){
-            linear_code_meli.setVisibility(View.VISIBLE);
-            linear_number_passport.setVisibility(View.GONE);
-        }else{
-            linear_code_meli.setVisibility(View.GONE);
-            linear_number_passport.setVisibility(View.VISIBLE);
-        }
+
     }//end oncreate
     //AsyncFetchGetPreFactorDetails
 
@@ -1394,7 +1382,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     String errorMessage = "";
                     String flagMosafer = "T";
                     ///Validate
-                    if (RqPartner_Email.trim().length() > 6) {
+                    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                    if ( RqPartner_Email.trim().matches(emailPattern) &&  RqPartner_Email.trim().length() > 0) {
                         ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
@@ -1471,11 +1460,11 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         txtTitle.setText(" اطلاعات مسافران ");
                         //((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
                         //((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
-
+                        Gensiyat = "";
                         ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
                         ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     }
-                    Gensiyat = "";
+
                 } catch (Exception e) {
                     System.out.println("Exception ::" + e);
                 }
@@ -1523,7 +1512,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     String errorMessagePartner="";
                     ///Validate
-                    if(linear_code_meli.getVisibility()==View.VISIBLE){
+                  //  if(linear_code_meli.getVisibility()==View.VISIBLE){
                         if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
                             ((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
@@ -1532,8 +1521,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             flagMosafer=flagMosafer+"F";
                             errorMessagePartner=errorMessagePartner+"\n"+"لطفا کد ملی را درست وارد کنید";
                         }
-                    }
-                    if(linear_number_passport.getVisibility()==View.VISIBLE){
+                  //  }
+                   // if(linear_number_passport.getVisibility()==View.VISIBLE){
                         if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
@@ -1542,7 +1531,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             flagMosafer=flagMosafer+"F";
                             errorMessagePartner=errorMessagePartner+"\n"+"لطفا شماره پاسپورت را درست وارد کنید";
                         }
-                    }
+                   // }
                     if(Nationality != null && Nationality.length()>1){
                         ((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
@@ -1807,7 +1796,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                 System.out.println("insert:"+"sum:"+sum);
                             }
                             db.closeDB();
-                            //insert mosafer
+                            btnzan.setChecked(false);
+                            btnmard.setChecked(false);
+                            Gensiyat="";
+                            linear_mosaferan.clearFocus();
                         }/*else if(){
 
                             }*/

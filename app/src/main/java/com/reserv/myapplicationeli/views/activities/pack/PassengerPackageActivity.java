@@ -136,7 +136,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
     public static TextView txtSumKhadamat;
-    public LinearLayout linear_number_passport,linear_code_meli,btn_taeed_khadamat, btn_nextm, linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo;
+    public LinearLayout btn_taeed_khadamat, btn_nextm, linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo;
     private Handler progressBarHandler = new Handler();
     public ListView list_airport;
     public ListView listKhadamat;
@@ -516,7 +516,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     String errorMessage="";
                     String flagMosafer="T";
                     ///Validate
-                    if( RqPartner_Email.trim().length()>6 ){
+                    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                    if ( RqPartner_Email.trim().matches(emailPattern) &&  RqPartner_Email.trim().length() > 0) {
                         ((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
@@ -593,12 +594,12 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         linear_pish_factor.setVisibility(View.GONE);
                         linear_mosaferan.setVisibility(View.VISIBLE);
                         txtTitle.setText(" اطلاعات مسافران ");
-
+                        Gensiyat="";
 
                         ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
                         ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     }
-                    Gensiyat="";
+
                 }catch (Exception e) {
                     System.out.println("Exception ::"+e);
                 }
@@ -646,7 +647,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     String errorMessagePartner="";
                     ///Validate
-                    if(linear_code_meli.getVisibility()==View.VISIBLE){
+                 //   if(linear_code_meli.getVisibility()==View.VISIBLE){
                         if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
                             ((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
@@ -655,7 +656,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             flagMosafer=flagMosafer+"F";
                             errorMessagePartner=errorMessagePartner+"\n"+"لطفا کد ملی را درست وارد کنید";
                         }
-                    }
+                 //   }
                     ///Validate
                     if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -945,7 +946,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 System.out.println("insert:"+"sum:"+sum);
                             }
                             db.closeDB();
-                            //insert mosafer
+                            btnzan.setChecked(false);
+                            btnmard.setChecked(false);
+                            Gensiyat="";
+                            linear_mosaferan.clearFocus();
                         }/*else if(){
 
                             }*/

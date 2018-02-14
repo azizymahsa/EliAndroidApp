@@ -1600,7 +1600,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					String errorMessage="";
 					String flagMosafer="T";
 					///Validate
-					if( RqPartner_Email.trim().length()>6 ){
+					String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+					if ( RqPartner_Email.trim().matches(emailPattern) &&  RqPartner_Email.trim().length() > 0) {
 						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
 						flagMosafer=flagMosafer+"T";
 					}else{
@@ -1677,11 +1678,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						txtTitle.setText(" اطلاعات مسافران ");
 						//((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
 						//((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
-
+						Gensiyat="";
 						((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 						((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 					}
-					Gensiyat="";
+
 				}catch (Exception e) {
 					System.out.println("Exception ::"+e);
 				}
