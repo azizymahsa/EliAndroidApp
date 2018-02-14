@@ -792,21 +792,19 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         protected void onPostExecute(String result) {
             try {
                 rlLoading2.setVisibility(View.GONE);
-                Log.e("wer", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
 
-/*
 
-                if (airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.Errors != null) {
-                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();
+                if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors != null) {
+                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();
 
                 } else {
                     Log.e("wer", new Gson().toJson(airportTransportServicePrice.airportTransportRespone.toString()));
+                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();
                    // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.TransferAvailabilityRoundtripResults.get(0).TotalPrice.Amount, Toast.LENGTH_SHORT).show();
                    // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.TransferAvailabilityRoundtripResults.get(0).TotalPrice.Amount, Toast.LENGTH_SHORT).show();
 
                 }
 
-*/
 
             } catch (Exception e) {
 
