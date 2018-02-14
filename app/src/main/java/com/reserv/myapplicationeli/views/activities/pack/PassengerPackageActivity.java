@@ -130,7 +130,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
     public ImageView btn_saler, btn_mosaferan, btn_khadamat, btn_pish_factor;
     public Button btnAddsabad, btn_pardakht_factor;
-    public EditText txtnamem, txtfamilym,txt_NationalCode_m;
+    public EditText txtnamem, txtfamilym;
     public static TextView txttavalodm;
     public EditText txtnumber_passport, txtnameP;
     public static TextView txtexp_passport;
@@ -298,11 +298,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         txtnameP = (EditText) findViewById(R.id.txtnameP);
         txtfamilyP = (EditText) findViewById(R.id.txtfamilyP);
 
-      /*  txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
-        txt_NationalCode_m.setOnClickListener(this);
-        txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
-        txt_NationalCode_m.setOnFocusChangeListener(this);*/
 
         txtmobileP = (EditText) findViewById(R.id.txtmobileP);
         txtkodemeliP = (EditText) findViewById(R.id.txtkodemeliP);
@@ -332,12 +327,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         txtnumber_passport.setOnClickListener(this);
         txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
-       /* txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
-        txt_NationalCode_m.setOnClickListener(this);
-        txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
-        txt_NationalCode_m.setOnFocusChangeListener(this);
-*/
+
+
         txtfamilym.setOnClickListener(this);
        // imgCount.setOnClickListener(this);
         txtnamem.setOnClickListener(this);
@@ -636,7 +627,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     String RqPassenger_LastNameEn=txtfamilym.getText().toString();
                     String RqPassenger_LastNameFa= "عزیزی";
                     String RqPassenger_Mobile= "0235588456";
-                    String RqPassenger_NationalCode= "";//codemeli
+                    String RqPassenger_NationalCode="";//codemeli
                     String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
                     String RqPassenger_PassNo=txtnumber_passport.getText().toString();
                     String RqPassenger_Tel= "25548632";
@@ -647,16 +638,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     String errorMessagePartner="";
                     ///Validate
-                 //   if(linear_code_meli.getVisibility()==View.VISIBLE){
-                       /* if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
-                            ((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
-                            flagMosafer=flagMosafer+"T";
-                        } else{
 
-                            flagMosafer=flagMosafer+"F";
-                            errorMessagePartner=errorMessagePartner+"\n"+"لطفا کد ملی را درست وارد کنید";
-                        }*/
-                 //   }
                     ///Validate
                     if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -942,13 +924,15 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                     txtfamilym.setText("");
                                     txtexp_passport.setText("");
                                     txtnumber_passport.setText("");
+                                    btnzan.setChecked(false);
+                                    btnmard.setChecked(false);
+                                    txtnamem.setFocusable(true);
+                                    Gensiyat="";
                                 }
                                 System.out.println("insert:"+"sum:"+sum);
                             }
                             db.closeDB();
-                            btnzan.setChecked(false);
-                            btnmard.setChecked(false);
-                            Gensiyat="";
+
                             linear_mosaferan.clearFocus();
                         }/*else if(){
 
@@ -2437,25 +2421,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }
                 }
                 break;
-            case R.id.txt_NationalCode_m:
-                if(hasFocus){
-                    System.out.println("t");
-                }else {
-                    System.out.println("f");
-                    if (txt_NationalCode_m.getText().toString().trim().length() > 6 && txt_NationalCode_m.getText().toString().trim().length() == 10 &&  txt_NationalCode_m.getText().toString().trim().matches("[0-9]+")) {
-                        ((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
 
-                    } else {
-                        //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-                        txtnumber_passport.setError("لطفا کدملی را صحیح وارد کنید ");
-                    }
-                    if (txtnumber_passport.getText().toString() != null && txtnumber_passport.getText().toString().length() == 10) {
-                    } else {
-                        //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-                        txtnumber_passport.setError("لطفا کدملی را صحیح وارد کنید ");
-                    }
-                }
-                break;
             //خریدار
             case R.id.txtemeliP:
                 if(hasFocus){
