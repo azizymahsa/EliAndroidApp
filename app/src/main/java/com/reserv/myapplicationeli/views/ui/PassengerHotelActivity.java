@@ -70,6 +70,7 @@ import com.reserv.myapplicationeli.tools.db.local.PassengerPartnerInfo_Table;
 import com.reserv.myapplicationeli.tools.db.main.CursorManager;
 import com.reserv.myapplicationeli.views.activities.transfer.ExcursionDta;
 import com.reserv.myapplicationeli.views.adapters.GetHotelKhadmatAdapter;
+import com.reserv.myapplicationeli.views.adapters.GetKhadmatHotelFlightAdapter;
 import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassengerFlight;
@@ -129,7 +130,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     ExpandableRelativeLayout expandableLayout;
     public TextView imgCount;
     String paymentUrl;
-
+    List<PurchaseFlightResult> data=null;
     GetHotelKhadmatAdapter mAdapter;
     //ScrollView myScrollView;
     private EditText searchtxt;
@@ -938,7 +939,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             //this method will be running on UI thread
 
 
-            List<PurchaseFlightResult> data = new ArrayList<PurchaseFlightResult>();
+            data = new ArrayList<PurchaseFlightResult>();
 
             rlLoading.setVisibility(View.GONE);
             Utility.disableEnableControls(true,rlRoot);
@@ -1030,7 +1031,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                 txtTitle.setText("افزودن خدمات به سبد خرید");
 
-                mAdapter = new GetHotelKhadmatAdapter(PassengerHotelActivity.this, data, PassengerHotelActivity.this);
+                mAdapter = new GetHotelKhadmatAdapter(PassengerHotelActivity.this, data, PassengerHotelActivity.this,0);
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);
                 listKhadamat.setAdapter(mAdapter);
@@ -2208,7 +2209,16 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         // TODO Auto-generated method stub
 
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        long gheymatKh=Prefs.getLong("Tprice",0);
+        System.out.println("wwwTPRICE:"+gheymatKh);
+        mAdapter = new GetHotelKhadmatAdapter(PassengerHotelActivity.this, data, PassengerHotelActivity.this,gheymatKh);
+        mAdapter.setData(data);
+        listKhadamat.setAdapter(mAdapter);
 
+    }
     public static void updateTotalInfos(long serviceTotalPrice) {
         // TODO Auto-generated method stub
         //GET_PRICE_KHADAMAT=GET_PRICE_KHADAMAT+serviceTotalPrice;

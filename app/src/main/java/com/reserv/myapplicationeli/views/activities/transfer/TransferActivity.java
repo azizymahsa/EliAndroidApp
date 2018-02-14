@@ -792,8 +792,9 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         protected void onPostExecute(String result) {
             try {
                 rlLoading2.setVisibility(View.GONE);
-
-                Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount(), Toast.LENGTH_SHORT).show();
+                finish();
+                Prefs.putLong("Tprice",Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
+                Log.e("test", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount())+"");
 
                 if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors != null) {
                     Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();

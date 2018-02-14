@@ -1271,7 +1271,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 					txtTitle.setText(" افزودن خدمات به سبد خرید");
 
-					mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this);
+					mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this,0);
 					//mAdapter.setAdapter(mAdapter);
 					mAdapter.setData(data);
 					listKhadamat.setAdapter(mAdapter);
@@ -2059,8 +2059,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	@Override
 	public void onResume(){
 		super.onResume();
+		long gheymatKh=Prefs.getLong("Tprice",0);
 
-		mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this);
+		mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this,gheymatKh);
 		mAdapter.setData(data);
 		listKhadamat.setAdapter(mAdapter);
 

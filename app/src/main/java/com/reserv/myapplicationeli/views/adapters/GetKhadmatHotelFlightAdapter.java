@@ -39,16 +39,18 @@ public class GetKhadmatHotelFlightAdapter extends BaseAdapter {
 	public String value_Maghsad_Airport_Code;
 	List<String> selectId = new ArrayList<String>();
 	List<Long> gheymat = new ArrayList<Long>();
-
+public long Tprice=0;
+public long sumTprice=0;
 	//public List<StrictMath> SegmentListtrueAvali = new ArrayList<FlightSegmentTrue>();
 	public Activity activity;
 
 	// create constructor to innitilize context and data sent from MainActivity
-	public GetKhadmatHotelFlightAdapter(Context context, List<PurchaseFlightResult> data, Activity activity){
+	public GetKhadmatHotelFlightAdapter(Context context, List<PurchaseFlightResult> data, Activity activity,long Tprice){
 		this.context=context;
 		this.activity=activity;
 		inflater= LayoutInflater.from(context);
 		this.data=data;
+		this.Tprice=Tprice;
 		myInflater = LayoutInflater.from(activity);
 
 
@@ -133,26 +135,38 @@ public class GetKhadmatHotelFlightAdapter extends BaseAdapter {
 			holder.imageView1.setBackgroundResource(R.drawable.ic_transfer_forudgahi);
 
 		holder.btnAddsabad.setTag(current.getServiceID());
-		if(current.getServiceNameEn().contains("Airport Transfer")){
+		if(current.getServiceNameEn().contains("Airport Transfer")&& current.getServiceTotalPrice()==0){
 			holder.txtAdd.setText("محاسبه قیمت");
-			holder.txtServiceTotalPrice.setText("");
+			if(Tprice==0) {
+				holder.txtServiceTotalPrice.setText("");
+			}else if(Tprice >0){
+				if(current.getServiceTotalPrice()>0){
+					System.out.println(Tprice+"");
+				}else {
+					current.setServiceTotalPrice(Tprice);
+					holder.txtServiceTotalPrice.setText(NumberFormat.getInstance().format(current.getServiceTotalPrice()));
+					current.setFlag(false);
+					holder.btnAddsabad.setBackgroundResource(R.drawable.blue_button);
+					holder.img_khadmat_row.setVisibility(View.GONE);
+					holder.txtAdd.setText("افزودن به سبد خرید");
 
+
+					notifyDataSetChanged();
+
+				}
+			}
 		}
 		holder.btnAddsabad.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				//tick_round_button
 
-
-
-				//
 				String sumSelectId= Prefs.getString("Select_ID_khadamat", "");
 				long sumGheymat=0;
 
 
 
-				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false")){
+				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false") && Tprice==0){
 					Intent intent=	new Intent(context, TransferActivity.class);
 
 					intent.putExtra("ArrialAirportCode",current.getExcursionDta().ArrialAirportCode);

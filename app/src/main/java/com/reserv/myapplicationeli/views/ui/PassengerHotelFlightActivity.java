@@ -153,7 +153,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     //int count;
     //change for Prefactor=========================================================================
     LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight;
-
+    List<PurchaseFlightResult> data=null;
     private com.rey.material.widget.RadioButton btnzan, btnmard, btnzanS, btnmardS;
     private int defaultRooms=1;
 
@@ -942,7 +942,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             FlagMosaferan = false;
             rlLoading.setVisibility(View.GONE);
             Utility.disableEnableControls(true,rlRoot);
-            List<PurchaseFlightResult> data = new ArrayList<PurchaseFlightResult>();
+             data = new ArrayList<PurchaseFlightResult>();
 
 
             try {
@@ -1033,7 +1033,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                 txtTitle.setText("افزودن خدمات به سبد خرید");
 
-                mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this);
+                mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this,0);
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);
                 listKhadamat.setAdapter(mAdapter);
@@ -1950,7 +1950,16 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         }
 
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        long gheymatKh=Prefs.getLong("Tprice",0);
+System.out.println("wwwTPRICE:"+gheymatKh);
+        mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this,gheymatKh);
+        mAdapter.setData(data);
+        listKhadamat.setAdapter(mAdapter);
 
+    }
     public String getCounter(int i) {
         String s = "";
         switch (i) {

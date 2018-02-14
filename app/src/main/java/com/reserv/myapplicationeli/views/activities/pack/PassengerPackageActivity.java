@@ -2123,7 +2123,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     new AsyncFetchGetPreFactorDetails().execute();
                     FlagTab=true;
-                    mAdapter = new GetHotelKhadmatAdapter(PassengerPackageActivity.this, data, PassengerPackageActivity.this);
+                    mAdapter = new GetHotelKhadmatAdapter(PassengerPackageActivity.this, data, PassengerPackageActivity.this,0);
                     //mAdapter.setAdapter(mAdapter);
                     mAdapter.setData(data);
                     listKhadamat.setAdapter(mAdapter);
