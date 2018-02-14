@@ -134,9 +134,10 @@ public Activity activity;
 			holder.imageView1.setBackgroundResource(R.drawable.ic_transfer_forudgahi);
 
 		holder.btnAddsabad.setTag(current.getServiceID());
-		if(current.getServiceNameEn().contains("Airport Transfer")){
+		if(current.getServiceNameEn().contains("Airport Transfer")&& current.getServiceTotalPrice()==0){
 			holder.txtAdd.setText("محاسبه قیمت");
 			holder.txtServiceTotalPrice.setText("");
+
 
 		}
 		holder.btnAddsabad.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +154,11 @@ public Activity activity;
 
 
 
-				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false")){
+				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false") && current.getServiceTotalPrice()==0){
+
+					//holder.txtAdd.setText("محاسبه قیمت");
+					//holder.txtServiceTotalPrice.setText("");
+
 					Intent intent=	new Intent(context, TransferActivity.class);
 
 					intent.putExtra("ArrialAirportCode",current.getExcursionDta().ArrialAirportCode);
@@ -211,6 +216,8 @@ public Activity activity;
 					}
 					//	Toast.makeText(v.getContext(),sumSelectId,Toast.LENGTH_SHORT).show();
 					Prefs.putString("Select_ID_khadamat",sumSelectId);
+
+					//Prefs.getLong("TPrice",0)
 					PassengerActivity.updateTotalInfos(sumGheymat);
 				}
 

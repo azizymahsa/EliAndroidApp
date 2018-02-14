@@ -1886,17 +1886,18 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 								txtfamilym.setText("");
 								txtexp_passport.setText("");
 								txtnumber_passport.getText().clear();
-								//txtnumber_passport.setText("");
-
+								btnzan.setChecked(false);
+								btnmard.setChecked(false);
+								txtnamem.setFocusable(true);
+								Gensiyat="";
 							}
 							System.out.println("insert:"+"sum:"+sum);
 						}
 						db.closeDB();
 						//	txtnamem.setFocusable(true);
 						//insert mosafer
-						btnzan.setChecked(false);
-						btnmard.setChecked(false);
-						Gensiyat="";
+
+
 						linear_mosaferan.clearFocus();
 
 					}
