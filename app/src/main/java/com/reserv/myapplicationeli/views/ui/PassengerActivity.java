@@ -171,6 +171,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_flight_passenger);
+		Prefs.putString("IST","F");
 
 		data=new ArrayList<PurchaseFlightResult>();
 		btnBack = (FancyButton) findViewById(R.id.btnBack);
@@ -636,6 +637,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	protected void onDestroy() {
 		super.onDestroy();
 		Prefs.getBoolean("IsDemostic",true);
+		Prefs.getLong("TPrice",0);
+
 
 	}
 	//AsyncFetchGetPreFactorDetails

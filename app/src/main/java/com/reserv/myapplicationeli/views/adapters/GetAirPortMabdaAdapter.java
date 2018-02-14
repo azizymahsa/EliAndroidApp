@@ -133,11 +133,13 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 						Prefs.putString("Value-Maghsad-Airport",value_Maghsad_Airport);
 						Prefs.putString("Value-Maghsad-Airport-Code",value_Maghsad_Airport_Code);
 						Prefs.putString("Value-Maghsad-Airport-Code2",value_Maghsad_Airport_Code);
-
+						Log.e("okokok3", value_Maghsad_Airport_Code);
+						Log.e("okokok4",current.getAirportCode());
 						//get
 						//Prefs.getString("Value-Mabda-Airport","");
 
-
+						Prefs.putString("Value-Maghsad-Airport-Code2",value_Maghsad_Airport_Code);
+						Prefs.putString("Value-Maghsad-Airport-Code2",current.getAirportCode());
 
 						activity.finish();
 					}
@@ -159,6 +161,11 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 						Prefs.putString("Value-Maghsad-City",value_Maghsad_City);
 						Prefs.putString("Value-Maghsad-Airport",value_Maghsad_Airport);
 						Prefs.putString("Value-Maghsad-Airport-Code",value_Maghsad_Airport_Code);
+						Prefs.putString("Value-Maghsad-Airport-Code2",value_Maghsad_Airport_Code);
+						Log.e("okokok1", value_Maghsad_Airport_Code);
+						Log.e("okokok2",current.getAirportCode());
+						Prefs.putString("Value-Maghsad-Airport-Code2",value_Maghsad_Airport_Code);
+						Prefs.putString("Value-Maghsad-Airport-Code2",current.getAirportCode());
 
 						activity.finish();
 					//	Toast.makeText(v.getContext(),current.getCityName()+" "+current.getAirportName(),Toast.LENGTH_SHORT).show();

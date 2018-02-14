@@ -164,7 +164,9 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger);
         Prefs.getString("Rooms", "dd");
-      //  JSONArray jsonObj = null;
+        Prefs.putString("IST","HF");
+
+        //  JSONArray jsonObj = null;
        /* try {
             jsonObj = new JSONArray(Prefs.getString("Rooms", "dd"));
             rooms = jsonObj.length();

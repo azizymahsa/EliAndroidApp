@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,6 +80,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     Button btnCal;
     RelativeLayout rlLoading2;
     SplashDialog splashDialog;
+    LinearLayout llRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +106,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         tvReturnFlt = findViewById(R.id.tvReturnFlt);
         btnCal = findViewById(R.id.btnCal);
         rlLoading2 = findViewById(R.id.rlLoading2);
+        llRoot = findViewById(R.id.llRoot);
 
         tvDepurtureAirport.setOnClickListener(this);
         tvHotel.setOnClickListener(this);
@@ -118,6 +121,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         Utility.setAnimLoading(this);
         tvDepurtureFlt.clearFocus();
         tvReturnFlt.clearFocus();
+        llRoot.clearFocus();
 
     }
 
@@ -460,6 +464,15 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvHotel.setClickable(true);
             tvHotel.setEnabled(true);
         }
+        if (Prefs.getString("IST", "H").equals("H")) {
+            tvDepurtureDate.setText("انتخاب کنید");
+            tvDepurtureDate.setClickable(true);
+            tvDepurtureDate.setEnabled(true);
+            tvReturnDate.setText("انتخاب کنید");
+            tvReturnDate.setClickable(true);
+            tvReturnDate.setEnabled(true);
+
+        }
 
 
     }
@@ -468,6 +481,8 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onResume() {
         super.onResume();
+        llRoot.clearFocus();
+
         if (ValidationTools.isEmptyOrNull(DepurtureAirport)) {
             tvDepurtureAirport.setText(Prefs.getString("Value-Mabda-City2", "انتخاب کنید"));
 
@@ -476,7 +491,8 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvHotel.setText(Prefs.getString("HotelName", "انتخاب کنید"));
         }
         if (ValidationTools.isEmptyOrNull(AirPortCode)) {
-            AirPortCode = Prefs.getString("Value-Mabda-Airport-Code2", "");
+            if (Prefs.getString("Value-Mabda-Airport-Code2", "").equals(""))
+                AirPortCode = Prefs.getString("Value-Mabda-Airport-Code2", "");
 
         }
         if (ValidationTools.isEmptyOrNull(Hotelcode)) {
@@ -586,7 +602,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     Log.e("test1", tvDepurtureFlt.getHint().toString());
 
 
-                } else if (tvDepurtureFlt.getText().toString().length() >= 6) {
+                } else if (tvDepurtureFlt.getText().toString().length() >= 8) {
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                     Log.e("test2", tvDepurtureFlt.getText().toString().length() + "");
@@ -612,7 +628,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     //  tvReturnFlt.setError("شماره پرواز برگشت را وارد نمایید");
 
 
-                } else if (tvReturnFlt.getText().toString().length() >= 6) {
+                } else if (tvReturnFlt.getText().toString().length() >= 8) {
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable) tvReturnFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
@@ -670,7 +686,15 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
                 if (cal) {
-                    DepurtureAirport = tvDepurtureAirport.getText().toString();
+                    if (Prefs.getString("IST", "H").equals("H")) {
+                        DepurtureAirport = Prefs.getString("Value-Maghsad-Airport-Code2", "");
+
+                    }
+                    if (Prefs.getString("IST", "H").equals("H")) {
+                        AirPortCode = Prefs.getString("Value-Mabda-Airport-Code2", "");
+
+                    }
+
                     DepurtureDate = raft;
                     ReturnAirportDate = bargasht;
                     DepurtureTime = tvDepurtureTime.getText().toString();
@@ -792,11 +816,12 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         protected void onPostExecute(String result) {
             try {
                 rlLoading2.setVisibility(View.GONE);
-                finish();
-                Prefs.putLong("Tprice",Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
-                Log.e("test", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount())+"");
+                Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
+                Log.e("test", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()) + "");
 
-                if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors != null) {
+
+                finish();
+                         /*   if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors != null) {
                     Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();
 
                 } else {
@@ -807,15 +832,20 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                    // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.TransferAvailabilityRoundtripResults.get(0).TotalPrice.Amount, Toast.LENGTH_SHORT).show();
 
                 }
-
+*/
 
             } catch (Exception e) {
-                if (!Utility.isNetworkAvailable(TransferActivity.this)){
+                finish();
+                Prefs.getLong("TPrice",0);
+
+                Toast.makeText(TransferActivity.this, "خطا در دریافت اطلاعات", Toast.LENGTH_SHORT).show();
+
+              /*  if (!Utility.isNetworkAvailable(TransferActivity.this)){
                     Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خارج می باشد", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(TransferActivity.this,"خطا در دریافت اطلاعات از الی گشت", Toast.LENGTH_SHORT).show();
 
-                }
+                }*/
 
 
             }
