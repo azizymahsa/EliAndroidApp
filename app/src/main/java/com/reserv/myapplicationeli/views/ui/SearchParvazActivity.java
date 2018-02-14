@@ -1640,17 +1640,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 				window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
 			}
 			//this method will be running on UI thread
-System.out.println("result:"+result);
+			System.out.println("result:"+result);
 			//	avi.setVisibility(View.INVISIBLE);
 			List<Country> data = new ArrayList<Country>();
 
 
 			try {
 
-
-
-
-////////////////////////////
 				JSONObject jsonObj = new JSONObject(result);
 
 				//JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");

@@ -75,6 +75,7 @@ import com.reserv.myapplicationeli.views.components.Header;
 import com.reserv.myapplicationeli.views.ui.CountrycodeActivity;
 import com.reserv.myapplicationeli.views.ui.NationalitycodeActivity;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
+import com.reserv.myapplicationeli.views.ui.PassengerHotelFlightActivity;
 import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassengerFlight;
@@ -121,13 +122,13 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
     public ImageView btn_saler, btn_mosaferan, btn_khadamat, btn_pish_factor;
     public Button btnAddsabad, btn_pardakht_factor;
-    public EditText txtnamem, txtfamilym;
+    public EditText txtnamem, txtfamilym,txt_NationalCode_m;
     public static TextView txttavalodm;
     public EditText txtnumber_passport, txtnameP;
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
     public static TextView txtSumKhadamat;
-    public LinearLayout btn_taeed_khadamat, btn_nextm, linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo;
+    public LinearLayout linear_number_passport,linear_code_meli,btn_taeed_khadamat, btn_nextm, linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo;
     private Handler progressBarHandler = new Handler();
     public ListView list_airport;
     public ListView listKhadamat;
@@ -274,6 +275,14 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         imgCount = (TextView) findViewById(R.id.imgCount);
         txtfamilym = (EditText) findViewById(R.id.txtfamilym);
         txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
+        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
+        txt_NationalCode_m.setOnClickListener(this);
+        txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
+        txt_NationalCode_m.setOnFocusChangeListener(this);
+
         txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
         txtTitle = (TextView) findViewById(R.id.tvTitle);
         txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
@@ -1311,20 +1320,33 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
                     String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
                     String RqPassenger_Birthdate= txttavalodm.getText().toString();
-                    String RqPassenger_Email= "mohebbi@eligasht.com";
+                    String RqPassenger_Email= "mahsa.azizi@eligasht.com";
                     String RqPassenger_FirstNameEn= txtnamem.getText().toString();
-                    String RqPassenger_FirstNameFa= "مریم";
+                    String RqPassenger_FirstNameFa= "مهسا";
                     String RqPassenger_LastNameEn=txtfamilym.getText().toString();
-                    String RqPassenger_LastNameFa= "محبی";
+                    String RqPassenger_LastNameFa= "عزیزی";
                     String RqPassenger_Mobile= "0235588456";
-                    String RqPassenger_NationalCode= "0062532148";//codemeli
+                    String RqPassenger_NationalCode= txt_NationalCode_m.getText().toString();//codemeli
                     String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
                     String RqPassenger_PassNo=txtnumber_passport.getText().toString();
                     String RqPassenger_Tel= "25548632";
 
+
+
                     String flagMosafer="T";
 
                     String errorMessagePartner="";
+                    ///Validate
+                    if(linear_code_meli.getVisibility()==View.VISIBLE){
+                        if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
+                            ((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
+                            flagMosafer=flagMosafer+"T";
+                        } else{
+
+                            flagMosafer=flagMosafer+"F";
+                            errorMessagePartner=errorMessagePartner+"\n"+"لطفا کد ملی را درست وارد کنید";
+                        }
+                    }
                     ///Validate
                     if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -2023,7 +2045,25 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     }
                 }
                 break;
+            case R.id.txt_NationalCode_m:
+                if(hasFocus){
+                    System.out.println("t");
+                }else {
+                    System.out.println("f");
+                    if (txt_NationalCode_m.getText().toString().trim().length() > 6 && txt_NationalCode_m.getText().toString().trim().length() == 10 &&  txt_NationalCode_m.getText().toString().trim().matches("[0-9]+")) {
+                        ((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
 
+                    } else {
+                        //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+                        txtnumber_passport.setError("لطفا کدملی را صحیح وارد کنید ");
+                    }
+                    if (txtnumber_passport.getText().toString() != null && txtnumber_passport.getText().toString().length() == 10) {
+                    } else {
+                        //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+                        txtnumber_passport.setError("لطفا کدملی را صحیح وارد کنید ");
+                    }
+                }
+                break;
             //خریدار
             case R.id.txtemeliP:
                 if(hasFocus){

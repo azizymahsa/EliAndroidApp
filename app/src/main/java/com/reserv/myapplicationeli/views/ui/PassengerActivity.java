@@ -263,7 +263,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
 		txtnumber_passport= (EditText) findViewById(R.id.txtnumber_passport);
 		txt_NationalCode_m.setOnClickListener(this);
-		txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
+		txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
 		txt_NationalCode_m.setOnFocusChangeListener(this);
 
@@ -415,7 +415,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}catch (Exception e) {
 			System.out.println("Error " + e.getMessage());
 		}
- 		//////////////
+		//////////////
 
 	}//end oncreate
 
@@ -444,25 +444,25 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("t");
 				}else{
 					System.out.println("f");
-				if(txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length()>1){
-					((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
-					//flagMosafer=flagMosafer+"T";
-				}else{
-					//((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
-					txtmeliyatm.setError("لطفا ملیت را وارد کنید ");
-				}}
+					if(txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length()>1){
+						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
+						//flagMosafer=flagMosafer+"T";
+					}else{
+						//((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
+						txtmeliyatm.setError("لطفا ملیت را وارد کنید ");
+					}}
 				break;
 			case R.id.txttavalodm:
 				if(hasFocus){//txtTitleCountM
 					System.out.println("t");
 				}else{
 					System.out.println("f");
-				if(txttavalodm.getText().toString() != null && txttavalodm.getText().toString().length()>4){
-					((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
-					//flagMosafer=flagMosafer+"T";
-				}else{
-					//((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
-					txttavalodm.setError("لطفا تاریخ تولد را وارد کنید ");
+					if(txttavalodm.getText().toString() != null && txttavalodm.getText().toString().length()>4){
+						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
+						//flagMosafer=flagMosafer+"T";
+					}else{
+						//((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
+						txttavalodm.setError("لطفا تاریخ تولد را وارد کنید ");
 					}
 				}
 				break;
@@ -472,14 +472,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("t");
 				}else{
 					System.out.println("f");
-				if(txtnamem.getText().toString() != null)
-					if( txtnamem.getText().toString().length()>1 && txtnamem.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$")){
-						((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
-						//flagMosafer=flagMosafer+"T";
-					}else{
-						//((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-						txtnamem.setError("لطفا نام را انگلیسی وارد کنید ");
-					}
+					if(txtnamem.getText().toString() != null)
+						if( txtnamem.getText().toString().length()>1 && txtnamem.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$")){
+							((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
+							//flagMosafer=flagMosafer+"T";
+						}else{
+							//((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
+							txtnamem.setError("لطفا نام را انگلیسی وارد کنید ");
+						}
 				}
 				break;
 			case R.id.txtfamilym:
@@ -487,14 +487,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("t");
 				}else{
 					System.out.println("f");
-				if(txtfamilym.getText().toString() != null)
-					if( txtfamilym.getText().toString().length()>1 && txtfamilym.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$") ){
-						((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
-						//flagMosafer=flagMosafer+"T";
-					}else{
-						//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-						txtfamilym.setError("لطفا نام خانوادگی را انگلیسی وارد کنید ");
-					}
+					if(txtfamilym.getText().toString() != null)
+						if( txtfamilym.getText().toString().length()>1 && txtfamilym.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$") ){
+							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
+							//flagMosafer=flagMosafer+"T";
+						}else{
+							//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
+							txtfamilym.setError("لطفا نام خانوادگی را انگلیسی وارد کنید ");
+						}
 				}
 				break;
 			case R.id.txtexp_passport:
@@ -502,13 +502,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("t");
 				}else{
 					System.out.println("f");
-				if(txtexp_passport.getText().toString() != null && txtexp_passport.getText().toString().length()>4){
-					((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+					if(txtexp_passport.getText().toString() != null && txtexp_passport.getText().toString().length()>4){
+						((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 
-				}else{
-					//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
-					txtexp_passport.setError("لطفا انقضاء پاسپورت را وارد کنید ");
-				}}
+					}else{
+						//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
+						txtexp_passport.setError("لطفا انقضاء پاسپورت را وارد کنید ");
+					}}
 				break;
 			case R.id.txtnumber_passport:
 				if(hasFocus){
@@ -570,28 +570,28 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("t");
 				}else{
 					System.out.println("f");
-				if(txtnameP.getText().toString() != null)
-					if( txtnameP.getText().toString().length()>2 && !(txtnameP.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$"))){
-						((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
+					if(txtnameP.getText().toString() != null)
+						if( txtnameP.getText().toString().length()>2 && !(txtnameP.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+							((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
 
-					}else{
-						//((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-						txtnameP.setError("لطفا نام را فارسی وارد کنید ");
-					}}
+						}else{
+							//((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
+							txtnameP.setError("لطفا نام را فارسی وارد کنید ");
+						}}
 				break;
 			case R.id.txtfamilyP:
 				if(hasFocus){
 					System.out.println("t");
 				}else{
 					System.out.println("f");
-				if(txtfamilyP.getText().toString() != null)
-					if( txtfamilyP.getText().toString().length()>2 && !(txtfamilyP.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$"))){
-						((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
+					if(txtfamilyP.getText().toString() != null)
+						if( txtfamilyP.getText().toString().length()>2 && !(txtfamilyP.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+							((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
 
-					}else{
-						//((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-						txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
-					}}
+						}else{
+							//((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+							txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
+						}}
 				break;
 
 			case R.id.txtmobileP:
@@ -599,13 +599,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("t");
 				}else{
 					System.out.println("f");
-				if(txtmobileP.getText().toString() != null && txtmobileP.getText().toString().length()==11 && txtmobileP.getText().toString().trim().matches("[0-9]+")){
-					((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
+					if(txtmobileP.getText().toString() != null && txtmobileP.getText().toString().length()==11 && txtmobileP.getText().toString().trim().matches("[0-9]+")){
+						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
 
-				}else{
-					//((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
-					txtmobileP.setError("لطفا شماره موبایل را وارد کنید ");
-				}}
+					}else{
+						//((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
+						txtmobileP.setError("لطفا شماره موبایل را وارد کنید ");
+					}}
 				break;
 			case R.id.txtkodemeliP:
 				if(hasFocus){
@@ -613,14 +613,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}else{
 					System.out.println("f");
 
-				if(txtkodemeliP.getText().toString() != null)
-					if( txtkodemeliP.getText().toString().length()==10  && txtkodemeliP.getText().toString().trim().matches("[0-9]+")){
-						((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
+					if(txtkodemeliP.getText().toString() != null)
+						if( txtkodemeliP.getText().toString().length()==10  && txtkodemeliP.getText().toString().trim().matches("[0-9]+")){
+							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
 
-					}else{
-						//((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
-						txtkodemeliP.setError("لطفا کد ملی را وارد کنید ");
-					}
+						}else{
+							//((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
+							txtkodemeliP.setError("لطفا کد ملی را وارد کنید ");
+						}
 				}
 				break;
 		}
@@ -640,7 +640,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 			rlLoading.setVisibility(View.VISIBLE);
-		//	rlLoading2.setVisibility(View.VISIBLE);
+			//	rlLoading2.setVisibility(View.VISIBLE);
 			Utility.disableEnableControls(false,rlRoot);
 		}
 
@@ -1158,20 +1158,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			try {
 ////////////////////////////
 				JSONObject jsonObj = new JSONObject(result);
-				///////////
-				/*String GetError="";
-				JSONArray jError=null;
 
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("SearchFlightsResult");
-
-				if(!GetAirportsResult.getString("Errors").equals("null")){
-					jError=GetAirportsResult.getJSONArray("Errors");//
-					JSONObject jPricedItinerary = jError.getJSONObject(0);
-					GetError = jPricedItinerary.getString("Message");
-
-				}
-				if (GetError.length()>1) {*/
-				///////////
 				String GetError="";
 				JSONArray jError=null;
 				// Getting JSON Array node
@@ -1184,8 +1171,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				if (GetError.length()>1) {
 					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
 					AlertDialogPassengerFlight.setText(""+"  "+GetError);
-					//new AlertDialog(PassengerActivity.this,"لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز");
-					//Toast.makeText(PassengerActivity.this, "لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز", Toast.LENGTH_LONG).show();
+
 				}else{
 
 
@@ -1260,6 +1246,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_pish_factor.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
+					FlagTab=true;
 					/*myScrollView.setSmoothScrollingEnabled(false);
 				myScrollView.setOnTouchListener(new View.OnTouchListener() {
 					@Override
@@ -1675,11 +1662,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						partnerInfo_Table.dropTable();
 						partnerInfo_Table.openDB();
 
-
-
-
 						partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
-
 
 						partnerInfo_Table.closeDB();
 						////////////////
@@ -1721,200 +1704,204 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				if(FlagMosaferan){
-				String Gender= Gensiyat;
-				String Nationality=txtmahale_eghamat.getText().toString();// "ir";
-				String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
-				String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-				String RqPassenger_Birthdate= txttavalodm.getText().toString();
-				String RqPassenger_Email= "mahsa.azizi@eligasht.com";
-				String RqPassenger_FirstNameEn= txtnamem.getText().toString();
-				String RqPassenger_FirstNameFa= "مهسا";
-				String RqPassenger_LastNameEn=txtfamilym.getText().toString();
-				String RqPassenger_LastNameFa= "عزیزی";
-				String RqPassenger_Mobile= "0235588456";
-				String RqPassenger_NationalCode= txt_NationalCode_m.getText().toString();//codemeli
-				String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
-				String RqPassenger_PassNo=txtnumber_passport.getText().toString();
-				String RqPassenger_Tel= "25548632";
+					String Gender= Gensiyat;
+					String Nationality=txtmahale_eghamat.getText().toString();// "ir";
+					String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
+					String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+					String RqPassenger_Birthdate= txttavalodm.getText().toString();
+					String RqPassenger_Email= "mahsa.azizi@eligasht.com";
+					String RqPassenger_FirstNameEn= txtnamem.getText().toString();
+					String RqPassenger_FirstNameFa= "مهسا";
+					String RqPassenger_LastNameEn=txtfamilym.getText().toString();
+					String RqPassenger_LastNameFa= "عزیزی";
+					String RqPassenger_Mobile= "0235588456";
+					String RqPassenger_NationalCode= txt_NationalCode_m.getText().toString();//codemeli
+					String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
+					String RqPassenger_PassNo=txtnumber_passport.getText().toString();
+					String RqPassenger_Tel= "25548632";
 
+					String flagMosafer="T";
 
+					String errorMessagePartner="";
+					///Validate
+					if(linear_code_meli.getVisibility()==View.VISIBLE){
+						if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
+							((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
+							flagMosafer=flagMosafer+"T";
+						} else{
 
-				String flagMosafer="T";
-
-				String errorMessagePartner="";
-				///Validate
-				if(linear_code_meli.getVisibility()==View.VISIBLE){
-					if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
-						((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
-						flagMosafer=flagMosafer+"T";
-					} else{
-
-						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+"لطفا کد ملی را درست وارد کنید";
+							flagMosafer=flagMosafer+"F";
+							errorMessagePartner=errorMessagePartner+"\n"+"لطفا کد ملی را درست وارد کنید";
+						}
 					}
-				}
-				if(linear_number_passport.getVisibility()==View.VISIBLE){
-					if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
-						((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
-						flagMosafer=flagMosafer+"T";
-					}else{
-						//((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+"لطفا شماره پاسپورت را درست وارد کنید";
-					}
-				}
-				if(Nationality != null && Nationality.length()>1){
-					((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
-					flagMosafer=flagMosafer+"T";
-				}else{
-					//((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
-					flagMosafer=flagMosafer+"F";
-					errorMessagePartner=errorMessagePartner+"\n"+"لطفا محل اقامت را انتخاب  کنید";
-				}
-				if(Nationality_ID != null && Nationality_ID.length()>1){
-					((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
-					flagMosafer=flagMosafer+"T";
-				}else{
-					//((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
-					flagMosafer=flagMosafer+"F";
-					errorMessagePartner=errorMessagePartner+"\n"+"لطفا ملیت را انتخاب کنید";
-				}
-				if(RqPassenger_Birthdate != null && RqPassenger_Birthdate.length()>4){
-					((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
-					flagMosafer=flagMosafer+"T";
-				}else{
-					//((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
-					flagMosafer=flagMosafer+"F";
-					errorMessagePartner=errorMessagePartner+"\n"+"لطفا تاریخ تولد را انتخاب کنید";
-				}
-				////////////////////////////////////
-				if(txtTitleCountM.getText().toString().contains("کودک")){
-
-				}else if(txtTitleCountM.getText().toString().contains("نوزاد")){
-
-				}
-				/////////////////////////////////
-				if(RqPassenger_FirstNameEn != null)
-					if( RqPassenger_FirstNameEn.length()>1 && RqPassenger_FirstNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")){
-						((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
-						flagMosafer=flagMosafer+"T";
-					}else{
-						//((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام را درست وارد کنید";
-					}
-				if(RqPassenger_LastNameEn != null)
-					if( RqPassenger_LastNameEn.length()>1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$") ){
-						((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
-						flagMosafer=flagMosafer+"T";
-					}else{
-						//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
-					}
-				if(RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length()>4){
-					((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
-					flagMosafer=flagMosafer+"T";
-				}else{
-					//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
-					flagMosafer=flagMosafer+"F";
-					errorMessagePartner=errorMessagePartner+"\n"+"لطفا انقضا پاسپورت را انتخاب کنید";
-				}
-				if (Gensiyat.contains("true") || Gensiyat.contains("false")){
-					flagMosafer=flagMosafer+"T";
-				}else{
-					flagMosafer=flagMosafer+"F";
-					errorMessagePartner=errorMessagePartner+"\n"+"لطفا جنسیت را انتخاب کنید";
-				}
-				///endValidate
-
-
-				if(flagMosafer.contains("F")){
-					//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
-					AlertDialogPassenger AlertDialogPassengerFlight =  new AlertDialogPassenger(PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(""+"  "+errorMessagePartner);
-					//Toast.makeText(this,errorMessagePartner,2000).show();
-				}else{
-					PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerActivity.this);
-
-					//db.dropTable();
-					db.openDB();
-
-
-					if(sum>0){
-						System.out.println("gender:"+Gender);
-						//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-						if(counter-1 ==1){
-							db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )","",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-
+					if(linear_number_passport.getVisibility()==View.VISIBLE){
+						if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
+							((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+							flagMosafer=flagMosafer+"T";
 						}else{
-							db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+							//((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+							flagMosafer=flagMosafer+"F";
+							errorMessagePartner=errorMessagePartner+"\n"+"لطفا شماره پاسپورت را درست وارد کنید";
 						}
-						System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
-						if(countB>=1) {
-							System.out.println("countB:"+countB);
-							//txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
-							//imgCount.setText(counter+"");
-							countB--;
-						}else if(countK>=1) {
-							System.out.println("countK:"+countK);
-							//txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
-							//imgCount.setText(counter+"");
-							countK--;
-						}else if(countN>=1) {
-							System.out.println("countN:"+countN);
-							//txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
-							//imgCount.setText(counter+"");
-							countN--;
-						}
-						if(countB!=0){
-
-							txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-							imgCount.setText(counter+"");
-						}
-						else if(countK!=0){
-
-							txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
-							imgCount.setText(counter+"");
-						}
-						else if(countN!=0){
-
-							txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
-							imgCount.setText(counter+"");
-						}
-
-
-						System.out.println("counterMosafer:"+getCounter(counter)+counter);
-
-						counter++;
-						sum--;
-						///pak kardan data haye mosafere ghabli:
-						if(sum>0){
-							//counter--;
-
-							txttavalodm.setText("");
-							txtnamem.setText("");
-							txtfamilym.setText("");
-							txtexp_passport.setText("");
-							txtnumber_passport.setText("");
-						}
-						System.out.println("insert:"+"sum:"+sum);
 					}
-					db.closeDB();
-					linear_mosaferan.clearFocus();
-					//insert mosafer
+					if(Nationality != null && Nationality.length()>1){
+						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
+						flagMosafer=flagMosafer+"T";
+					}else{
+						//((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
+						flagMosafer=flagMosafer+"F";
+						errorMessagePartner=errorMessagePartner+"\n"+"لطفا محل اقامت را انتخاب  کنید";
+					}
+					if(Nationality_ID != null && Nationality_ID.length()>1){
+						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
+						flagMosafer=flagMosafer+"T";
+					}else{
+						//((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
+						flagMosafer=flagMosafer+"F";
+						errorMessagePartner=errorMessagePartner+"\n"+"لطفا ملیت را انتخاب کنید";
+					}
+					if(RqPassenger_Birthdate != null && RqPassenger_Birthdate.length()>4){
+						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
+						flagMosafer=flagMosafer+"T";
+					}else{
+						//((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
+						flagMosafer=flagMosafer+"F";
+						errorMessagePartner=errorMessagePartner+"\n"+"لطفا تاریخ تولد را انتخاب کنید";
+					}
+					////////////////////////////////////
+					if(txtTitleCountM.getText().toString().contains("کودک")){
 
+					}else if(txtTitleCountM.getText().toString().contains("نوزاد")){
+
+					}
+					/////////////////////////////////
+					if(RqPassenger_FirstNameEn != null)
+						if( RqPassenger_FirstNameEn.length()>1 && RqPassenger_FirstNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")){
+							((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
+							flagMosafer=flagMosafer+"T";
+						}else{
+							//((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
+							flagMosafer=flagMosafer+"F";
+							errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام را درست وارد کنید";
+						}
+					if(RqPassenger_LastNameEn != null)
+						if( RqPassenger_LastNameEn.length()>1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$") ){
+							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
+							flagMosafer=flagMosafer+"T";
+						}else{
+							//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
+							flagMosafer=flagMosafer+"F";
+							errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
+						}
+					if(RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length()>4){
+						((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+						flagMosafer=flagMosafer+"T";
+					}else{
+						//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
+						flagMosafer=flagMosafer+"F";
+						errorMessagePartner=errorMessagePartner+"\n"+"لطفا انقضا پاسپورت را انتخاب کنید";
+					}
+					if (Gensiyat.contains("true") || Gensiyat.contains("false")){
+						flagMosafer=flagMosafer+"T";
+					}else{
+						flagMosafer=flagMosafer+"F";
+						errorMessagePartner=errorMessagePartner+"\n"+"لطفا جنسیت را انتخاب کنید";
+					}
+					///endValidate
+
+
+					if(flagMosafer.contains("F")){
+						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
+						AlertDialogPassenger AlertDialogPassengerFlight =  new AlertDialogPassenger(PassengerActivity.this);
+						AlertDialogPassengerFlight.setText(""+"  "+errorMessagePartner);
+						//Toast.makeText(this,errorMessagePartner,2000).show();
+					}else{
+						PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerActivity.this);
+
+						//db.dropTable();
+						db.openDB();
+
+
+						if(sum>0){
+							System.out.println("gender:"+Gender);
+							//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+							if(counter-1 ==1){
+								db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )","",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+
+							}else{
+								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+							}
+							System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
+							if(countB>=1) {
+								System.out.println("countB:"+countB);
+								//txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+								//imgCount.setText(counter+"");
+								countB--;
+							}else if(countK>=1) {
+								System.out.println("countK:"+countK);
+								//txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+								//imgCount.setText(counter+"");
+								countK--;
+							}else if(countN>=1) {
+								System.out.println("countN:"+countN);
+								//txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+								//imgCount.setText(counter+"");
+								countN--;
+							}
+							if(countB!=0){
+
+								txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
+								imgCount.setText(counter+"");
+							}
+							else if(countK!=0){
+
+								txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
+								imgCount.setText(counter+"");
+							}
+							else if(countN!=0){
+
+								txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
+								imgCount.setText(counter+"");
+							}
+
+
+							System.out.println("counterMosafer:"+getCounter(counter)+counter);
+
+							counter++;
+							sum--;
+							///pak kardan data haye mosafere ghabli:
+							if(sum>0){
+								//counter--;
+								txtnamem.setFocusable(true);
+								txttavalodm.setText("");
+								txtnamem.setText("");
+								txtfamilym.setText("");
+								txtexp_passport.setText("");
+								txtnumber_passport.getText().clear();
+								//txtnumber_passport.setText("");
+
+							}
+							System.out.println("insert:"+"sum:"+sum);
+						}
+						db.closeDB();
+						//	txtnamem.setFocusable(true);
+						//insert mosafer
+						btnzan.setChecked(false);
+						btnmard.setChecked(false);
+						Gensiyat="";
+						linear_mosaferan.clearFocus();
+
+					}
+
+
+					//call api saler
+					if(sum==0){
+						System.out.println("APICALL:"+"sum:"+sum);
+						System.out.println("insert:");
+						new AsyncFetch().execute();
+
+					}
 				}
-
-
-				//call api saler
-				if(sum==0){
-					System.out.println("APICALL:"+"sum:"+sum);
-					System.out.println("insert:");
-					new AsyncFetch().execute();
-
-				}
-}
 				break;
 
 			case R.id.btn_taeed_khadamat:
@@ -2051,31 +2038,31 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		switch (i) {
 			case 1:
 				s= "اول";
-			break;
+				break;
 			case 2:
 				s= "دوم";
-			break;
+				break;
 			case 3:
 				s= "سوم";
-			break;
+				break;
 			case 4:
 				s= "چهارم";
-			break;
+				break;
 			case 5:
 				s= "پنجم";
-			break;
+				break;
 			case 6:
 				s= "ششم";
-			break;
+				break;
 			case 7:
 				s= "هفتم";
-			break;
+				break;
 			case 8:
 				s= "هشتم";
-			break;
+				break;
 			case 9:
 				s="نهم";
-			break;
+				break;
 			default:
 
 				System.out.println("Unknown result");
@@ -2149,7 +2136,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					c.add(Calendar.YEAR, -120);
 					dialog.getDatePicker().setMinDate(c.getTimeInMillis());
 					c.add(Calendar.YEAR, 108);
-				dialog.getDatePicker().setMaxDate(c.getTimeInMillis());}
+					dialog.getDatePicker().setMaxDate(c.getTimeInMillis());}
 				///////end setMin
 			}else{//expPasport
 				Calendar c = Calendar.getInstance();

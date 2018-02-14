@@ -29,6 +29,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.api.hotel.hotelFlight.HotelFlightSearch;
 import com.reserv.myapplicationeli.base.BaseActivity;
+import com.reserv.myapplicationeli.models.Country;
 import com.reserv.myapplicationeli.models.HotelAR;
 import com.reserv.myapplicationeli.models.RquestHF;
 import com.reserv.myapplicationeli.models.hotel.FilterPriceModel;
@@ -51,6 +52,8 @@ import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.hotel.FlightHotelAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.LazyResoultHotelAdapter;
 import com.reserv.myapplicationeli.views.ui.InitUi;
+import com.reserv.myapplicationeli.views.ui.SearchParvazActivity;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelDialog;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.SortDialog;
@@ -59,6 +62,24 @@ import net.sourceforge.barbecue.BarcodeException;
 import net.sourceforge.barbecue.BarcodeImageHandler;
 import net.sourceforge.barbecue.linear.code128.Code128Barcode;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -92,7 +113,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     Window window;
     RelativeLayout elNotFound;
     FancyButton btnNextDays, btnLastDays;
-
+    public static final int CONNECTION_TIMEOUT = 10000;
+    public static final int READ_TIMEOUT = 15000;
     int maxPrice, minPrice;
 
     LinearLayout llBottom, llSort,llFilter;
@@ -135,10 +157,10 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         btnHome.setOnClickListener(this);
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
-       // ivImage = findViewById(R.id.ivImage);
+        // ivImage = findViewById(R.id.ivImage);
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
-       // ivImage.setImageResource(R.drawable.flight_h);
+        // ivImage.setImageResource(R.drawable.flight_h);
         llBottom.setOnClickListener(this);
         llSort.setOnClickListener(this);
         adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, this);
@@ -525,7 +547,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             if (filterModel.isRemove()) {
                 remove = true;
 
-               // search="";
+                // search="";
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
@@ -618,7 +640,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
 
-    }else if (filterModel.isBestOff()) {
+        }else if (filterModel.isBestOff()) {
             for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
 
                 if (selectHotelModel.isOff()) {
@@ -1303,7 +1325,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
 
-        }
+    }
 
 
     public void price_filter(ArrayList<FilterPriceModel> filterHotelPriceModel) {
@@ -1420,8 +1442,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         protected void onPreExecute() {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this
-                        ,R.color.hf));
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this,R.color.hf));
             }
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 
@@ -1451,8 +1472,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this
-                        ,R.color.colorPrimaryDark));
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this,R.color.colorPrimaryDark));
             }
 
 
@@ -1598,25 +1618,212 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
+                tvAlert.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
 
                 list.setVisibility(View.GONE);
                 btnOk.setVisibility(View.VISIBLE);
-                if (!Utility.isNetworkAvailable(SelectHotelFlightActivity.this)){
 
-                    tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+            }
+            //dakheli khareji
+            new AsyncCheckFlight().execute();
 
-                }else{
+        }
 
-                    tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
+    }
+    private class AsyncCheckFlight extends AsyncTask<String, String, String> {
+        HttpURLConnection conn;
+        URL url = null;
+        private ListView listAirPort;
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this,R.color.hf));
+            }
+            new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+
+
+                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetIsDomestic");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+
+                // Setup HttpURLConnection class to send and receive data from php and mysql
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(READ_TIMEOUT);
+                conn.setConnectTimeout(CONNECTION_TIMEOUT);
+                // conn.setRequestMethod("GET");
+                conn.setRequestMethod("POST");
+                // setDoOutput to true as we recieve data from json file
+                conn.setDoOutput(true);
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                String serial = null;
+
+                JSONObject errorObj = new JSONObject();
+
+                try {
+                    errorObj.put("Success", false);
+
+                    Class<?> c = Class.forName("android.os.SystemProperties");
+                    Method get = c.getMethod("get", String.class);
+                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
+                } catch (Exception ignored) {
                 }
 
+
+                String data = OrderToJsonCheckFlight();
+
+
+                HttpClient client = new DefaultHttpClient();
+
+
+                HttpPost post = new HttpPost();
+                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetIsDomestic");
+                post.setHeader("Content-Type", "application/json; charset=UTF-8");
+                post.setHeader("Accept", "application/json; charset=UTF-8");
+
+
+                StringEntity se = null;
+                try {
+                    se = new StringEntity(data, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                post.setEntity(se);
+                ByteArrayOutputStream os = new ByteArrayOutputStream();
+                //{"GetAirportWithParentsResult":{"Errors":[],"List":[{"Key":"IST|Istanbul, Turkey (IST-All Airports)","Value":"استانبول ( همه فرودگاه ها ),نزدیک استانبول, ترکیه"},{"Key":"IST|Istan
+                //try {
+                //HashMap<String, String> airport = null;
+                //mylist = new ArrayList<HashMap<String, String>>();
+                HttpResponse res = client.execute(post);
+                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
+
+
+                return (retSrc);
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
             }
 
 
         }
 
-    }
+        @Override
+        protected void onPostExecute(String result) {
+            System.out.println("request:"+result);
+            new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
 
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this,R.color.colorPrimaryDark));
+            }
+            //this method will be running on UI thread
+            System.out.println("result:"+result);
+            //	avi.setVisibility(View.INVISIBLE);
+            List<Country> data = new ArrayList<Country>();
+
+
+            try {
+
+
+
+
+////////////////////////////
+                JSONObject jsonObj = new JSONObject(result);
+
+                //JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
+                /////////////////////////////////////
+                String GetError = "";
+                JSONArray jError = null;
+
+                // Getting JSON Array node
+                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetIsDomesticResult");//Error
+                if (!GetAirportsResult.getString("Errors").equals("null")) {
+                    jError = GetAirportsResult.getJSONArray("Errors");//
+                    JSONObject jPricedItinerary = jError.getJSONObject(0);
+                    GetError = jPricedItinerary.getString("Message");
+                }
+                if (GetError.length() > 1) {
+                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SelectHotelFlightActivity.this);
+                    AlertDialogPassenger.setText(GetError);
+
+                } else {
+////////////////////////////////
+					/*JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
+
+					for (int i = 0; i < jArray.length(); i++) {
+						JSONObject json_data = jArray.getJSONObject(i);
+*/
+                    boolean IsDemostic =GetAirportsResult.getBoolean("IsDomestic");//false khareji true dakheli
+                    if(IsDemostic)
+                        Prefs.putBoolean("IsDemostic",true);
+                    else
+                        Prefs.putBoolean("IsDemostic",false);
+
+                    //}
+
+
+
+
+                }
+
+            } catch (JSONException e) {
+                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SelectHotelFlightActivity.this);
+                AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
+            }
+
+
+        }
+    }
+    private String OrderToJsonCheckFlight() {
+        JSONObject jsone = new JSONObject();
+        JSONObject manJson = new JSONObject();
+
+
+        try {
+
+            manJson.put("UserName", "EligashtMlb");
+            manJson.put("Password", "123qwe!@#QWE");
+            manJson.put("TermianlId", "Mobile");
+            manJson.put("Code", Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));//inja esme forudgah mikhore
+            manJson.put("ToCode",Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
+
+            jsone.put("request", manJson);
+
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("request:"+jsone.toString());
+        return jsone.toString();
+    }
 
 }
