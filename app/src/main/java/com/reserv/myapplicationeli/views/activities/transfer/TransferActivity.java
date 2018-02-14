@@ -79,6 +79,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     Button btnCal;
     RelativeLayout rlLoading2;
     SplashDialog splashDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +89,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         initCalenndar();
         InitUi.Toolbar(this, false, R.color.toolbar_color, "محاسبه قیمت");
 
-        splashDialog=  new SplashDialog(TransferActivity.this, null);
+        splashDialog = new SplashDialog(TransferActivity.this, null);
 
     }
 
@@ -491,7 +492,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         super.onDestroy();
         Prefs.putString("HotelName", "انتخاب کنید");
         Prefs.putString("Value-Mabda-Airport-Code2", "");
-       Prefs.putString("Value-Mabda-City2", "انتخاب کنید");
+        Prefs.putString("Value-Mabda-City2", "انتخاب کنید");
 
     }
 
@@ -546,129 +547,127 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
                 if (tvDepurtureAirport.getText().toString().contains("انتخاب")) {
                     cal = false;
-                    GradientDrawable drawable = (GradientDrawable)tvDepurtureAirport.getBackground();
+                    GradientDrawable drawable = (GradientDrawable) tvDepurtureAirport.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke wid
-                   // tvDepurtureAirport.setError("فرودگاه مقصد را انتخاب کنید");
-                }else{
-                    GradientDrawable drawable = (GradientDrawable)tvDepurtureAirport.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                    // tvDepurtureAirport.setError("فرودگاه مقصد را انتخاب کنید");
+                } else {
+                    GradientDrawable drawable = (GradientDrawable) tvDepurtureAirport.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
 
                 if (tvDepurtureTime.getText().toString().contains("انتخاب")) {
                     cal = false;
-                    GradientDrawable drawable = (GradientDrawable)tvDepurtureTime.getBackground();
+                    GradientDrawable drawable = (GradientDrawable) tvDepurtureTime.getBackground();
                     drawable.setStroke(4, Color.RED); // se
-                   // tvDepurtureTime.setError("ساعت رفت را انتخاب کنید");
+                    // tvDepurtureTime.setError("ساعت رفت را انتخاب کنید");
 
-                }else{
-                    GradientDrawable drawable = (GradientDrawable)tvDepurtureTime.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                } else {
+                    GradientDrawable drawable = (GradientDrawable) tvDepurtureTime.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
 
                 if (tvReturnTime.getText().toString().contains("انتخاب")) {
-                  //  tvReturnTime.setError("ساعت برگشت را انتخاب کنید");
-                    GradientDrawable drawable = (GradientDrawable)tvReturnTime.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                    //  tvReturnTime.setError("ساعت برگشت را انتخاب کنید");
+                    GradientDrawable drawable = (GradientDrawable) tvReturnTime.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                     cal = false;
 
-                }else{
-                    GradientDrawable drawable = (GradientDrawable)tvReturnTime.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                } else {
+                    GradientDrawable drawable = (GradientDrawable) tvReturnTime.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
 
 
-
-
-                if (tvDepurtureFlt.getHint().toString().equals("وارد نمایید")) {
+                if (ValidationTools.isEmptyOrNull(tvDepurtureFlt.getText().toString())) {
                     cal = false;
-                    GradientDrawable drawable = (GradientDrawable)tvDepurtureFlt.getBackground();
+                    GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
-                //    tvDepurtureFlt.setError("شماره پرواز رفت را انتخاب کنید");
+                    //    tvDepurtureFlt.setError("شماره پرواز رفت را انتخاب کنید");
+                    Log.e("test1", tvDepurtureFlt.getHint().toString());
 
 
-                }else if (tvDepurtureFlt.getText().length()<4){
-                    GradientDrawable drawable = (GradientDrawable)tvDepurtureFlt.getBackground();
+                } else if (tvDepurtureFlt.getText().toString().length() >= 6) {
+                    GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
+                    Log.e("test2", tvDepurtureFlt.getText().toString().length() + "");
+
                     cal = false;
-                  //  Toast.makeText(this, "شماره پرواز رفت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(this, "شماره پرواز رفت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
 
-                    splashDialog.seeText( "شماره پرواز رفت را به درستی وارد نمایید");
+                    splashDialog.seeText("شماره پرواز رفت را به درستی وارد نمایید");
                     splashDialog.setBtnText();
                     splashDialog.showAlert();
-                }else{
-                    GradientDrawable drawable = (GradientDrawable)tvDepurtureFlt.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                } else {
+                    GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
+                    Log.e("test4", tvDepurtureFlt.getText().toString() + "");
+
                 }
 
 
-
-                if (tvReturnFlt.getHint().toString().equals("وارد نمایید")) {
-                    GradientDrawable drawable = (GradientDrawable)tvReturnFlt.getBackground();
+                if (ValidationTools.isEmptyOrNull(tvReturnFlt.getText().toString())) {
+                    GradientDrawable drawable = (GradientDrawable) tvReturnFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
-                  //  tvReturnFlt.setError("شماره پرواز برگشت را وارد نمایید");
+                    //  tvReturnFlt.setError("شماره پرواز برگشت را وارد نمایید");
 
 
-                }else if (tvReturnFlt.getText().length()<4){
+                } else if (tvReturnFlt.getText().toString().length() >= 6) {
                     cal = false;
-                    GradientDrawable drawable = (GradientDrawable)tvReturnFlt.getBackground();
+                    GradientDrawable drawable = (GradientDrawable) tvReturnFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
-                   // tvReturnFlt.setError("شماره پرواز برگشت را به درستی وارد نمایید");
-                //    Toast.makeText(this, "شماره پرواز برگشت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
-                 //   AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
-                    splashDialog.seeText( "شماره پرواز برگشت را به درستی وارد نمایید");
+                    // tvReturnFlt.setError("شماره پرواز برگشت را به درستی وارد نمایید");
+                    //    Toast.makeText(this, "شماره پرواز برگشت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
+                    //   AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
+                    splashDialog.seeText("شماره پرواز برگشت را به درستی وارد نمایید");
                     splashDialog.showAlert();
                     splashDialog.setBtnText();
 
 
-                }else{
-                    GradientDrawable drawable = (GradientDrawable)tvReturnFlt.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                } else {
+                    GradientDrawable drawable = (GradientDrawable) tvReturnFlt.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
-
-
-
-
 
 
                 if (tvReturnDate.getText().toString().contains("انتخاب")) {
                     cal = false;
-                  //  tvReturnDate.setError("شماره پرواز برگشت را وارد نمایید");
-                    GradientDrawable drawable = (GradientDrawable)tvReturnDate.getBackground();
+                    //  tvReturnDate.setError("شماره پرواز برگشت را وارد نمایید");
+                    GradientDrawable drawable = (GradientDrawable) tvReturnDate.getBackground();
                     drawable.setStroke(4, Color.RED);
-                }else{
-                    GradientDrawable drawable = (GradientDrawable)tvReturnDate.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                } else {
+                    GradientDrawable drawable = (GradientDrawable) tvReturnDate.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
 
 
                 if (tvDepurtureDate.getText().toString().contains("انتخاب")) {
-                    GradientDrawable drawable = (GradientDrawable)tvDepurtureDate.getBackground();
+                    GradientDrawable drawable = (GradientDrawable) tvDepurtureDate.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
-                   // tvDepurtureDate.setError("تاریخ برگشت را انتخاب کنید");
+                    // tvDepurtureDate.setError("تاریخ برگشت را انتخاب کنید");
 
-                }else{
-                    GradientDrawable drawable = (GradientDrawable)tvDepurtureDate.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                } else {
+                    GradientDrawable drawable = (GradientDrawable) tvDepurtureDate.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
                 if (tvReturnTime.getText().toString().contains("انتخاب")) {
-                   // tvReturnTime.setError("تاریخ رفت را انتخاب کنید");
-                    GradientDrawable drawable = (GradientDrawable)tvReturnTime.getBackground();
+                    // tvReturnTime.setError("تاریخ رفت را انتخاب کنید");
+                    GradientDrawable drawable = (GradientDrawable) tvReturnTime.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
-                }else{
-                    GradientDrawable drawable = (GradientDrawable)tvReturnTime.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                } else {
+                    GradientDrawable drawable = (GradientDrawable) tvReturnTime.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
                 if (tvHotel.getText().toString().contains("انتخاب")) {
-                  //  tvHotel.setError("نام هتل را انتخاب کنید");
-                    GradientDrawable drawable = (GradientDrawable)tvHotel.getBackground();
+                    //  tvHotel.setError("نام هتل را انتخاب کنید");
+                    GradientDrawable drawable = (GradientDrawable) tvHotel.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
-                }else{
-                    GradientDrawable drawable = (GradientDrawable)tvHotel.getBackground();
-                    drawable.setStroke(4, ContextCompat.getColor(this,R.color.text_color));
+                } else {
+                    GradientDrawable drawable = (GradientDrawable) tvHotel.getBackground();
+                    drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
                 if (cal) {
                     DepurtureAirport = tvDepurtureAirport.getText().toString();
@@ -793,11 +792,25 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         protected void onPostExecute(String result) {
             try {
                 rlLoading2.setVisibility(View.GONE);
+                Log.e("wer", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
 
-                Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();
+/*
+
+                if (airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.Errors != null) {
+                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Log.e("wer", new Gson().toJson(airportTransportServicePrice.airportTransportRespone.toString()));
+                   // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.TransferAvailabilityRoundtripResults.get(0).TotalPrice.Amount, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.TransferAvailabilityRoundtripResults.get(0).TotalPrice.Amount, Toast.LENGTH_SHORT).show();
+
+                }
+
+*/
 
             } catch (Exception e) {
 
+                Toast.makeText(TransferActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
 

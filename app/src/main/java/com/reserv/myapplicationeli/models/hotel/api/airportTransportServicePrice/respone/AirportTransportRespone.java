@@ -5,9 +5,22 @@ package com.reserv.myapplicationeli.models.hotel.api.airportTransportServicePric
  */
 
 public class AirportTransportRespone {
-    public final AirportTransportServicePriceResult AirportTransportServicePriceResult;
 
-    public AirportTransportRespone(com.reserv.myapplicationeli.models.hotel.api.airportTransportServicePrice.respone.AirportTransportServicePriceResult airportTransportServicePriceResult) {
-        AirportTransportServicePriceResult = airportTransportServicePriceResult;
+        private AirportTransportServicePriceResult AirportTransportServicePriceResult;
+
+    public AirportTransportServicePriceResult getAirportTransportServicePriceResult ()
+    {
+        return AirportTransportServicePriceResult;
+    }
+
+    public void setAirportTransportServicePriceResult (AirportTransportServicePriceResult AirportTransportServicePriceResult)
+    {
+        this.AirportTransportServicePriceResult = AirportTransportServicePriceResult;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "ClassPojo [AirportTransportServicePriceResult = "+AirportTransportServicePriceResult+"]";
     }
 }

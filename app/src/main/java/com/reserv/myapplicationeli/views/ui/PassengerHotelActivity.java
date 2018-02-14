@@ -282,12 +282,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         txtfamilym.setOnFocusChangeListener(this);
         txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
 
-        txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
+       /* txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
         txt_NationalCode_m.setOnClickListener(this);
         txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
         txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
         txt_NationalCode_m.setOnFocusChangeListener(this);
-
+*/
         txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
         txtnumber_passport.setOnClickListener(this);
         txtnumber_passport.setOnFocusChangeListener(this);
@@ -1501,7 +1501,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     String RqPassenger_LastNameEn=txtfamilym.getText().toString();
                     String RqPassenger_LastNameFa= "عزیزی";
                     String RqPassenger_Mobile= "0235588456";
-                    String RqPassenger_NationalCode= txt_NationalCode_m.getText().toString();//codemeli
+                    String RqPassenger_NationalCode= "";//codemeli
                     String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
                     String RqPassenger_PassNo=txtnumber_passport.getText().toString();
                     String RqPassenger_Tel= "25548632";
@@ -1513,14 +1513,14 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     String errorMessagePartner="";
                     ///Validate
               //      if(linear_code_meli.getVisibility()==View.VISIBLE){
-                        if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
+                      /*  if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
                             ((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         } else{
 
                             flagMosafer=flagMosafer+"F";
                             errorMessagePartner=errorMessagePartner+"\n"+"لطفا کد ملی را درست وارد کنید";
-                        }
+                        }*/
                   //  }
                     ///Validate
                     if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
