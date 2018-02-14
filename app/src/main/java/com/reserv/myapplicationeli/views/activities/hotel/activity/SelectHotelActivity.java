@@ -421,8 +421,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4()
                     || filterModel.isStar5()) && (filterModel.isBestSeler() || filterModel.isBestOff())) {
 
-                isBestOff_and_isStar(filterModel);
-                isBestSell_and_isStar(filterModel);
+              /*  isBestOff_and_isStar(filterModel);
+                isBestSell_and_isStar(filterModel);*/
                 type_location_filter(filterHotelTypeModels, 0, false, false);
                 //todo change this
 
@@ -1267,15 +1267,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                 }
 
-                if (isFilter) {
 
-                    selectHotelModelArrayListFilter.clear();
-                    selectHotelModelArrayListFilter = selectHotelModels;
-                }
 
 
             }
+            if (isFilter) {
 
+                selectHotelModelArrayListFilter.clear();
+                selectHotelModelArrayListFilter = selectHotelModels;
+            }
 
         }
 

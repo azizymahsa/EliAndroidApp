@@ -360,7 +360,7 @@
                                 android:textColor="@color/text_color_2e"
                                 android:textSize="@dimen/_12dp_normal_textSize"
                                 android:layout_marginTop="@dimen/_15dp_margin"
-                                android:textAppearance="@style/IconFonts2"/>
+                                android:textAppearance="@style/tahoma"/>
 
 
                         </RelativeLayout>
@@ -445,7 +445,7 @@
                                     android:textColor="@color/text_color_2e"
                                     android:textSize="@dimen/_12dp_normal_textSize"
                                     android:layout_marginTop="@dimen/_15dp_margin"
-                                    android:textAppearance="@style/IconFonts2"/>
+                                    android:textAppearance="@style/tahoma"/>
                             </RelativeLayout>
 
 

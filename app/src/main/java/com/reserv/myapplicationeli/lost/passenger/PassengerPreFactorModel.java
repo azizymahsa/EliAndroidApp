@@ -11,13 +11,15 @@ public class PassengerPreFactorModel {
     String RqPassenger_Birthdate;
     String RqPassenger_PassNo;
     String RqPassenger_name;
+    String National_Code;
 
-    public PassengerPreFactorModel(String gender, String nationality, String rqPassenger_Birthdate, String rqPassenger_PassNo, String rqPassenger_name) {
+    public PassengerPreFactorModel(String gender, String nationality, String rqPassenger_Birthdate, String rqPassenger_PassNo, String rqPassenger_name, String national_Code) {
         Gender = gender;
         Nationality = nationality;
         RqPassenger_Birthdate = rqPassenger_Birthdate;
         RqPassenger_PassNo = rqPassenger_PassNo;
         RqPassenger_name = rqPassenger_name;
+        National_Code = national_Code;
     }
 
     public String getGender() {
@@ -58,6 +60,14 @@ public class PassengerPreFactorModel {
 
     public void setRqPassenger_name(String rqPassenger_name) {
         RqPassenger_name = rqPassenger_name;
+    }
+
+    public String getNational_Code() {
+        return National_Code;
+    }
+
+    public void setNational_Code(String national_Code) {
+        National_Code = national_Code;
     }
 }
 

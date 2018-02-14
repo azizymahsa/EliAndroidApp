@@ -318,14 +318,14 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         txtfamilym.setOnFocusChangeListener(this);
         txtnumber_passport.setOnFocusChangeListener(this);
         txtnamem.setOnFocusChangeListener(this);
-      /*  txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
+        txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
         txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
         txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
         txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
         txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
         txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
         txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
-        txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));*/
+        txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
 
         txt_shomare_factor.setOnClickListener(this);
         txtmahale_eghamat.setOnClickListener(this);
@@ -531,9 +531,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 
                 for (int i = 0; i < jArray3.length(); i++) {
-                    passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"), jArray3.getJSONObject(i).getString("Nationality"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"), jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_name")));
+                    passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
+                            jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
+                            jArray3.getJSONObject(i).getString("RqPassenger_name"),jArray3.getJSONObject(i).getString("RqPassenger_NationalCode")));
 
                 }
                 if (!passengerPreFactorModels.isEmpty()) {
@@ -1054,6 +1054,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Prefs.getBoolean("IsDemostic",true);
+
+    }
     public String OrderToJsonPishFactor() {
 
         JSONObject jsone = new JSONObject();
@@ -1172,7 +1178,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                     }
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
-                    finish();
+                    Prefs.putBoolean("BACK_HOME", true);
+                    //	myScrollView.setOnTouchListener(null);
+                    Intent intent2 = new Intent("sendFinish");
+
+                    LocalBroadcastManager.getInstance(PassengerInsuranceActivity.this).sendBroadcast(intent2);
+
                 }
                 break;
             case R.id.btn_next_partnerInfo:

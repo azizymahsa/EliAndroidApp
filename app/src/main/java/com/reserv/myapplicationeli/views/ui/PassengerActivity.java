@@ -632,6 +632,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	}
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Prefs.getBoolean("IsDemostic",true);
+
+	}
 	//AsyncFetchGetPreFactorDetails
 	private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
 		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
@@ -808,7 +814,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				for (int i = 0; i < jArray3.length(); i++) {
 					passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
 							jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
-							jArray3.getJSONObject(i).getString("RqPassenger_name")));
+							jArray3.getJSONObject(i).getString("RqPassenger_name"),jArray3.getJSONObject(i).getString("RqPassenger_NationalCode")));
 
 				}
 				if (!passengerPreFactorModels.isEmpty()) {
@@ -1018,7 +1024,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
 					AlertDialogPassengerFlight.setText("خطایی رخ داده است !");
 					//Toast.makeText(PassengerActivity.this, "خطایی رخ داده است !", Toast.LENGTH_LONG).show();
-					finish();
+					Prefs.putBoolean("BACK_HOME", true);
+					//	myScrollView.setOnTouchListener(null);
+					Intent intent = new Intent("sendFinish");
+
+					LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);
 
 				}
 				// sfsfs
@@ -1539,7 +1549,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
 
-					finish();
+					Prefs.putBoolean("BACK_HOME", true);
+					//	myScrollView.setOnTouchListener(null);
+					Intent intent = new Intent("sendFinish");
+
+					LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);
+
 				}
 
 				/*if (linear_pish_factor.getVisibility() == View.VISIBLE) {
@@ -2297,7 +2312,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 		}else if(linear_saler.getVisibility() == View.VISIBLE) {
 
-			finish();
+			Prefs.putBoolean("BACK_HOME", true);
+			//	myScrollView.setOnTouchListener(null);
+			Intent intent = new Intent("sendFinish");
+
+			LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);
+
 		}
 	}
 	@Override

@@ -24,6 +24,7 @@ import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
@@ -289,6 +290,7 @@ public class DatePickerDialog extends DialogFragment implements
         final com.wdullaer.materialdatetimepicker.AccessibleTextView date_picker_year = (com.wdullaer.materialdatetimepicker.AccessibleTextView) view.findViewById(R.id.date_picker_year);
         date_picker_year.setVisibility(View.VISIBLE);
 
+
         int listPosition = -1;
         int listPositionOffset = 0;
         int currentView = mDefaultView;
@@ -363,6 +365,8 @@ public class DatePickerDialog extends DialogFragment implements
             }
         });
         okButton.setTypeface(TypefaceHelper.get(activity,"Roboto-Medium"));
+        mSelectedDayTextView.setTypeface(TypefaceHelper.get(activity,"Roboto-Medium"));
+        mYearView.setTypeface(TypefaceHelper.get(activity,"Roboto-Medium"));
         if(mOkString != null) okButton.setText(mOkString);
         else okButton.setText(mOkResid);
 

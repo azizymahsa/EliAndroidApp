@@ -482,7 +482,14 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                     }
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
-                    finish();
+                    //	myScrollView.setOnTouchListener(null);
+                    Prefs.putBoolean("BACK_HOME", true);
+                    //	myScrollView.setOnTouchListener(null);
+                    Intent intent2 = new Intent("sendFinish");
+
+                    LocalBroadcastManager.getInstance(PassengerPackageActivity.this).sendBroadcast(intent2);
+
+
                 }
                 break;
             case R.id.btn_next_partnerInfo:
@@ -1261,7 +1268,12 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             }
         } else if (linear_saler.getVisibility() == View.VISIBLE) {
 
-            finish();
+            Prefs.putBoolean("BACK_HOME", true);
+            //	myScrollView.setOnTouchListener(null);
+            Intent intent = new Intent("sendFinish");
+
+            LocalBroadcastManager.getInstance(PassengerPackageActivity.this).sendBroadcast(intent);
+
         }
     }
 
@@ -1557,6 +1569,12 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         return null;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Prefs.getBoolean("IsDemostic",true);
+
+    }
 
     //AsyncFetchGetPreFactorDetails
     private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
@@ -1732,9 +1750,9 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
                 for (int i = 0; i < jArray3.length(); i++) {
-                    passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"), jArray3.getJSONObject(i).getString("Nationality"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"), jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_name")));
+                    passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
+                            jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
+                            jArray3.getJSONObject(i).getString("RqPassenger_name"),jArray3.getJSONObject(i).getString("RqPassenger_NationalCode")));
 
                 }
                 if (!passengerPreFactorModels.isEmpty()) {

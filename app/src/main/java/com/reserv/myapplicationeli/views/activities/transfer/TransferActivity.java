@@ -793,13 +793,15 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             try {
                 rlLoading2.setVisibility(View.GONE);
 
+                Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount(), Toast.LENGTH_SHORT).show();
 
                 if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors != null) {
                     Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Log.e("wer", new Gson().toJson(airportTransportServicePrice.airportTransportRespone.toString()));
-                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();
+                    Prefs.putLong("Tprice",Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
+                    Log.e("test", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount())+"");
+                   // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount(), Toast.LENGTH_SHORT).show();
                    // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.TransferAvailabilityRoundtripResults.get(0).TotalPrice.Amount, Toast.LENGTH_SHORT).show();
                    // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.TransferAvailabilityRoundtripResults.get(0).TotalPrice.Amount, Toast.LENGTH_SHORT).show();
 
@@ -807,6 +809,9 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
             } catch (Exception e) {
+                if (!Utility.isNetworkAvailable(TransferActivity.this)){
+                    Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خ", Toast.LENGTH_SHORT).show();
+                }
 
                 Toast.makeText(TransferActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
 

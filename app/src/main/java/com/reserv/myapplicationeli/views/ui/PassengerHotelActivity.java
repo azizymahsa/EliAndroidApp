@@ -517,6 +517,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
         }//end doin background
 
+
         @Override
         protected void onPostExecute(String resultPishfactor) {
 
@@ -588,9 +589,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
                 for (int i = 0; i < jArray3.length(); i++) {
-                    passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"), jArray3.getJSONObject(i).getString("Nationality"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"), jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
-                            jArray3.getJSONObject(i).getString("RqPassenger_name")));
+                    passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
+                            jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
+                            jArray3.getJSONObject(i).getString("RqPassenger_name"),jArray3.getJSONObject(i).getString("RqPassenger_NationalCode")));
 
                 }
                 if (!passengerPreFactorModels.isEmpty()) {
@@ -1224,6 +1225,13 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Prefs.getBoolean("IsDemostic",true);
+
+    }
+
+    @Override
     public void onClick(View v) {
         Fragment fragment2;
 
@@ -1313,7 +1321,11 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }
                 }else if(linear_saler.getVisibility() == View.VISIBLE) {
 
-                    finish();
+                    Prefs.putBoolean("BACK_HOME", true);
+                    //	myScrollView.setOnTouchListener(null);
+                    Intent intent = new Intent("sendFinish");
+
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 }
 
 				/*if (linear_pish_factor.getVisibility() == View.VISIBLE) {
@@ -2160,7 +2172,11 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             }
         } else if (linear_saler.getVisibility() == View.VISIBLE) {
 
-            finish();
+            Prefs.putBoolean("BACK_HOME", true);
+            //	myScrollView.setOnTouchListener(null);
+            Intent intent = new Intent("sendFinish");
+
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
         }
     }
     @Override

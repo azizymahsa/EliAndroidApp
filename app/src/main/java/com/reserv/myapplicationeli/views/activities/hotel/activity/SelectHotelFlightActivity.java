@@ -1314,14 +1314,18 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
                 }
 
-                if (isFilter) {
-
-                    selectHotelModelArrayListFilter.clear();
-                    selectHotelModelArrayListFilter = selectHotelModels;
-                }
 
 
-            }}
+
+            }
+
+
+            if (isFilter) {
+
+                selectHotelModelArrayListFilter.clear();
+                selectHotelModelArrayListFilter = selectHotelModels;
+            }
+        }
 
 
 

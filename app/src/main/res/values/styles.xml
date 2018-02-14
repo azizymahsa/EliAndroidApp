@@ -96,7 +96,7 @@
     <style name="fontello_plan" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
     <style name="tahoma" parent="android:TextAppearance">
-        <item name="fontPath">fonts/Tahoma.ttf</item></style>
+        <item name="fontPath">fonts/Roboto-Medium.ttf</item></style>
     <style name="traffic" parent="android:TextAppearance">
         <item name="fontPath">fonts/mitra.ttf</item></style>
 

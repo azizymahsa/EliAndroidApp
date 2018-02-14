@@ -176,8 +176,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                     needShowAlertDialog("شهری برای نمایش وجود ندارد", true);
                     return;
                 }
-try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
-    spn_cities.setAdapter(citySpinnerAdapter);}catch (Exception e){}
+                try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
+                    spn_cities.setAdapter(citySpinnerAdapter);}catch (Exception e){}
 
             }
 
@@ -209,7 +209,7 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
         linear_picker_depart = view.findViewById(R.id.linear_picker_depart);
         linear_picker_return = view.findViewById(R.id.linear_picker_return);
 
-         lottieAnimationView = view.findViewById(R.id.animation_view);
+        lottieAnimationView = view.findViewById(R.id.animation_view);
         lottieAnimationView.setAnimation("circle-l.json");
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy/MM/dd");
         departureFrom = currentDateTime;
@@ -569,7 +569,7 @@ try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
             txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
-        //    txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            //    txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
             departureFrom = currentDateTime;
             PersianCalendar persianCalendarDatePicker = new PersianCalendar();
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);

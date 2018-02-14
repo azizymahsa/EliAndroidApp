@@ -48,14 +48,19 @@
                     android:id="@+id/tvOff"
                     android:layout_width="@dimen/_50dp_normal"
                     android:layout_height="@dimen/_50dp_normal"
-                    android:layout_alignBottom="@+id/ivIsBestseler"
-                    android:layout_alignParentEnd="true"
+                    android:text="پر فروش"
                     android:background="@drawable/off"
-                    android:gravity="center"
-                    android:text="35%  تخفیف"
-                    android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_14dp_txtSize" />
+                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="@dimen/_14dp_txtSize"
+
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:src="@drawable/best_seller"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="20dp"
+                    />
                 <TextView
                     android:id="@+id/ivIsBestseler"
                     android:layout_width="@dimen/_50dp_normal"
@@ -71,7 +76,9 @@
                     android:src="@drawable/best_seller"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="20dp"
+                    android:visibility="gone"
+              />
             </RelativeLayout>
 
 

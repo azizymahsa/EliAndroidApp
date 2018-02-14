@@ -64,6 +64,7 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
         this.time_arive_back = itemView.findViewById(R.id.time_arrive_back);
         this.list_pack = itemView.findViewById(R.id.crd_pack);
         this.btnServices = itemView.findViewById(R.id.btnServices);
+    //    this.txt_count = itemView.findViewById(R.id.txt_count);
 
 
         //this.date_depart = itemView.findViewById(R.id.date_go);

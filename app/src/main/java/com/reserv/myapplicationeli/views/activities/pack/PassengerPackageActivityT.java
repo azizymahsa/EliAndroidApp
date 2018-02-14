@@ -1,3 +1,4 @@
+/*
 package com.reserv.myapplicationeli.views.activities.pack;
 
 import android.annotation.SuppressLint;
@@ -220,8 +221,10 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 
         btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);
         btn_pardakht_factor.setOnClickListener(this);
-            /* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
-             btnAddsabad.setOnClickListener(this);*/
+            */
+/* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
+             btnAddsabad.setOnClickListener(this);*//*
+
 
         btn_saler = (ImageView) findViewById(R.id.btn_saler);
         btn_mosaferan = (ImageView) findViewById(R.id.btn_mosaferan);
@@ -305,12 +308,14 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
             public void onClick(View v) {
 
                 Utility.openUrlCustomTab(PassengerPackageActivityT.this, paymentUrl);
+*/
 /*
                 String url = "http://foyr.com";
                 Intent launchGoogleChrome = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 launchGoogleChrome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 launchGoogleChrome.setPackage("com.android.chrome");
-                launchGoogleChrome.putExtra("com.android.chrome.EXTRA_OPEN_NEW_INCOGNITO_TAB", true);*/
+                launchGoogleChrome.putExtra("com.android.chrome.EXTRA_OPEN_NEW_INCOGNITO_TAB", true);*//*
+
             }
         });
 
@@ -435,7 +440,9 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
 
-/*         if (!ErrorInApi(jsonObj)){*/
+*/
+/*         if (!ErrorInApi(jsonObj)){*//*
+
                 Log.e("jsonObj", jsonObj.toString());
 
                 // Getting JSON Array node
@@ -504,7 +511,8 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                 }
 
 
-             /*   //for Services=============================================================================
+             */
+/*   //for Services=============================================================================
                 final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
                 recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerPackageActivityT.this, 1));
                 recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerPackageActivityT.this));
@@ -521,7 +529,8 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                     llDetailService.setVisibility(View.VISIBLE);
                     recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
 
-                }*/
+                }*//*
+
                 //for flight==================================================================================
                 final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
                 recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerPackageActivityT.this, 1));
@@ -697,7 +706,9 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                 }else{
 
 
-			/*	JSONArray jArray = GetAirportsResult.getJSONArray("Services");*/
+			*/
+/*	JSONArray jArray = GetAirportsResult.getJSONArray("Services");*//*
+
                     JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
 
                     Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
@@ -713,18 +724,22 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_pish_factor.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.VISIBLE);
-					/*myScrollView.setSmoothScrollingEnabled(false);
+					*/
+/*myScrollView.setSmoothScrollingEnabled(false);
 				myScrollView.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View v, MotionEvent event) {
 						return true;
 					}
-				});*/
+				});*//*
+
 
 //				((ImageView) findViewById(R.id.btn_khadamat)).setBackgroundResource(R.drawable.khadamat_passenger_on);
-				/*((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+				*/
+/*((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 				txtTitle.setText(" افزودن خدمات به سبد خرید");
-*/
+*//*
+
                     mAdapter = new GetHotelKhadmatAdapter(PassengerPackageActivityT.this, data, PassengerPackageActivityT.this);
                     //mAdapter.setAdapter(mAdapter);
                     mAdapter.setData(data);
@@ -827,13 +842,19 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 
 
 
-		/*	headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
-*//*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
+		*/
+/*	headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
+*//*
+*/
+/*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
 			headerJson.put("Checkout", getIntent().getExtras().get("Checkin"));*//*
+*/
+/*
 			headerJson.put("Checkin", getIntent().getExtras().getString("CheckIn"));
 			headerJson.put("Checkout", getIntent().getExtras().getString("CheckOut"));
 
-*/
+*//*
+
 
 
             identityJson.put("Password", "123qwe!@#QWE");
@@ -880,7 +901,8 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
         return jsone.toString();
     }
     public String OrderToJsonPishFactor() {
-			/* public class PurchaseServiceReq
+			*/
+/* public class PurchaseServiceReq
 			    {
 			        public string RqBaseID { get; set; } // "782528"  => شماره پیش فاکتور
 			        public string ServiceStr { get; set; } // I1515:1877300|S1303:1877300|S1304:1877300     => کد سرویس2: کد مسافر1 ،کد مسافر2 کد سرویس: کد مسافر1 ،کد مسافر2 |
@@ -888,7 +910,8 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 			        public string InsCoverageXML { get; set; }
 			        public string InsPrcieXML { get; set; }
 			        public int InsPlanCode { get; set; }
-			    }*/
+			    }*//*
+
         JSONObject jsone = new JSONObject();
         JSONObject manJson = new JSONObject();
         JSONObject identityJson = new JSONObject();
@@ -1043,14 +1066,16 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                     String RqPartner_NationalCode = txtkodemeliP.getText().toString();
                     String RqPartner_Tel = "21587632";
 
-					/*String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+					*/
+/*String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 					String RqPartner_Email= "mohebbi@eligasht.com";
 					String RqPartner_FirstNameFa= "مریم";
 					String RqPartner_Gender= "Female";
 					String RqPartner_LastNameFa= "محبی";
 					String RqPartner_Mobile= "0235884";
 					String RqPartner_NationalCode= "0062532148";
-					String RqPartner_Tel= "21587632";*/
+					String RqPartner_Tel= "21587632";*//*
+
 
                     String flagMosafer = "T";
                     ///Validate
@@ -1148,7 +1173,8 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                 String RqPassenger_PassNo = txtnumber_passport.getText().toString();
                 String RqPassenger_Tel = "25548632";
 
-				/*String Gender= "Female";
+				*/
+/*String Gender= "Female";
 				String Nationality= "ir";
 				String Nationality_ID= "iran";
 				String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
@@ -1162,7 +1188,8 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 				String RqPassenger_NationalCode= "0062532148";
 				String RqPassenger_PassExpDate= "2018/08/23";
 				String RqPassenger_PassNo= "d1234567";
-				String RqPassenger_Tel= "25548632";*/
+				String RqPassenger_Tel= "25548632";*//*
+
 
                 String flagMosafer = "T";
                 ///Validate
@@ -1338,7 +1365,8 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                 ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
                 txtTitle.setText(" مشخصات خریدار ");
                 //myScrollView.setOnTouchListener(null);
-				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
+				*/
+/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
 					linear_pish_factor.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 
@@ -1356,7 +1384,8 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 
 					txtTitle.setText("مرحله 1/4:  مشخصات خریدار را وارد کنید");
 					((Button)findViewById(R.id.btn_mosaferan)).setBackgroundResource(R.drawable.mosaferan_passenger_off);
-				}*/
+				}*//*
+
                 break;
             case R.id.btn_mosaferan:
                 linear_saler.setVisibility(View.GONE);
@@ -1381,13 +1410,15 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                 linear_list_khadamat.setVisibility(View.VISIBLE);
                 linear_pish_factor.setVisibility(View.GONE);
 
-			/*	myScrollView.setSmoothScrollingEnabled(false); // disable scrolling
+			*/
+/*	myScrollView.setSmoothScrollingEnabled(false); // disable scrolling
 				myScrollView.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View v, MotionEvent event) {
 						return true;
 					}
-				});*/
+				});*//*
+
                 //myScrollView.setVisibility(View.GONE);
 
                 ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
@@ -1455,8 +1486,10 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
                 int day = c.get(Calendar.DAY_OF_MONTH);
                 dialog = new DatePickerDialog(getActivity(), this, year + 1, month, day);//1997/12/23
 
-		 	   /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		 	    Date mDate;*/
+		 	   */
+/* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		 	    Date mDate;*//*
+
                 // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
             }
             //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
@@ -1567,9 +1600,11 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
 
     @Override
     public void searchTextChanged(String searchText) {
-			/*this.searchText = searchText;
+			*/
+/*this.searchText = searchText;
 			if(searchText.length()>2)
-			new AsyncFetch().execute();*/
+			new AsyncFetch().execute();*//*
+
         //mAdapter.setData(searchText);
 
     }
@@ -1791,14 +1826,16 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
     }
 
 
-    /**************************************************************
+    */
+/**************************************************************
      * getting from com.google.zxing.client.android.encode.QRCodeEncoder
      *
      * See the sites below
      * http://code.google.com/p/zxing/
      * http://code.google.com/p/zxing/source/browse/trunk/android/src/com/google/zxing/client/android/encode/EncodeActivity.java
      * http://code.google.com/p/zxing/source/browse/trunk/android/src/com/google/zxing/client/android/encode/QRCodeEncoder.java
-     */
+     *//*
+
 
     private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
@@ -1867,4 +1904,4 @@ public class PassengerPackageActivityT extends BaseActivity implements Header.on
     }
 
 
-}
+}*/

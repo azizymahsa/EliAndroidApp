@@ -141,7 +141,7 @@
                             android:layout_marginLeft="1dp"
                             android:gravity="center"
                             android:text="TK898"
-                            android:textAppearance="@style/fontello_plan"
+                            android:textAppearance="@style/tahoma"
                             android:textColor="#003399"
                             android:textSize="@dimen/_14dp_txtSize"
                             android:textStyle="bold" />
@@ -278,7 +278,7 @@
                             android:textColor="#003399"
                             android:textSize="@dimen/_14dp_txtSize"
                             android:textStyle="bold"
-                            android:textAppearance="@style/fontello_plan"
+                            android:textAppearance="@style/tahoma"
                             />
 
 

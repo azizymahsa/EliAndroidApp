@@ -14,6 +14,7 @@ import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.reserv.myapplicationeli.R;
 import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorAdapter;
 import com.reserv.myapplicationeli.lost.hotel.HotelPreFactorModel;
@@ -52,10 +53,22 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
 
         holder.setIsRecyclable(false);
         holder.tvBrithDay.setText(item.getRqPassenger_Birthdate());
-        holder.tvPassNo.setText(item.getRqPassenger_PassNo());
         holder.tvNationality.setText(item.getNationality());
         holder.tvGender.setText(item.getGender().contains("false") ? "زن" : "مرد");//item.getGender());
         holder.tvPassangerName.setText(item.getRqPassenger_name());
+        if (Prefs.getBoolean("IsDemostic", true)) {
+            holder. tvPass.setText("کد ملی");
+            holder.tvPassNo.setText(item.getNational_Code());
+
+        } else {
+
+            holder. tvPass.setText("شماره پاسپورت");
+            holder.tvPassNo.setText(item.getRqPassenger_PassNo());
+
+
+        }
+
+
         // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);
         // holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2));
@@ -69,7 +82,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
             }
 
             @Override
-            public void onPreClose(){
+            public void onPreClose() {
                 createRotateAnimator(holder.tvArrow, 180f, 0f).start();
                 expandState.put(position, false);
             }
@@ -94,7 +107,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvBrithDay, tvPassNo, tvNationality, tvGender,tvArrow,tvPassangerName;
+        public TextView tvBrithDay, tvPassNo, tvNationality, tvGender, tvArrow, tvPassangerName,tvPass;
         RelativeLayout buttonLayout;
         //  public RelativeLayout tvArrow;
         /**
@@ -106,6 +119,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         public ViewHolder(View v) {
             super(v);
             tvBrithDay = (TextView) v.findViewById(R.id.tvBrithDay);
+            tvPass = (TextView) v.findViewById(R.id.tvPass);
             tvPassNo = (TextView) v.findViewById(R.id.tvPassNo);
             tvNationality = (TextView) v.findViewById(R.id.tvNationality);
             tvGender = (TextView) v.findViewById(R.id.tvGender);

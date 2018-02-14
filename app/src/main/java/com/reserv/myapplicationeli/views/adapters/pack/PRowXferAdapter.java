@@ -123,7 +123,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
         if (item.getXferList().getXFlightsList().get(0).getAvailable().equals("Available") || item.getXferList().getXFlightsList().get(0).getAvailable().equals("")) {
 
         } else {
-            holder.txt_count.setText(item.getXferList().getXFlightsList().get(0).getAvailable());
+          //  holder.txt_count.setText(item.getXferList().getXFlightsList().get(0).getAvailable());
         }
         holder.country_depart_go.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getDepartureCityName()) ? item.getXferList().getXFlightsList().get(0).getDepartureCityName() : item.getXferList().getXFlightsList().get(0).getDepartureCityName()));
         holder.country_arive_go.setText( (ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getArrivalCityName()) ? item.getXferList().getXFlightsList().get(0).getArrivalCityName() : item.getXferList().getXFlightsList().get(0).getArrivalCityName()));
