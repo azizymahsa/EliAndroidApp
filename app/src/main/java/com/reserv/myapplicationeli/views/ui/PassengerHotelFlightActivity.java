@@ -1820,6 +1820,23 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                 }
+                if(FlagTab){
+                    linear_saler.setVisibility(View.GONE);
+                    linear_mosaferan.setVisibility(View.GONE);
+                    linear_list_khadamat.setVisibility(View.VISIBLE);
+                    linear_pish_factor.setVisibility(View.GONE);
+
+
+
+                    ((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+                    ((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+                    ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+
+                    ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+                    ((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+                    ((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
+                    txtTitle.setText(" افزودن خدمات به سبد خرید");
+                }
                 break;
 
             case R.id.btn_taeed_khadamat:
