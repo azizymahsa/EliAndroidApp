@@ -131,7 +131,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM;
 	public static TextView txtSumKhadamat;
 	public TextView imgCount;
-	public LinearLayout linear_number_passport,linear_code_meli,btn_taeed_khadamat,btn_nextm,linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo;
+	public LinearLayout linear_expdate,linear_number_passport,linear_code_meli,btn_taeed_khadamat,btn_nextm,linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo;
 	private Handler progressBarHandler = new Handler();
 	public ListView list_airport;
 	public NonScrollListView listKhadamat;
@@ -297,6 +297,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		linear_number_passport=(LinearLayout)findViewById(R.id.linear_number_passport);
 		linear_number_passport.setOnClickListener(this);
 
+		linear_expdate=(LinearLayout)findViewById(R.id.linear_expdate);
+		linear_expdate.setOnClickListener(this);
+
 		btn_pardakht_factor=(Button)findViewById(R.id.btn_pardakht_factor);
 		btn_pardakht_factor.setOnClickListener(this);
 
@@ -362,9 +365,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		if(checkDomestic){
 			linear_code_meli.setVisibility(View.VISIBLE);
 			linear_number_passport.setVisibility(View.GONE);
+			linear_expdate.setVisibility(View.GONE);
 		}else{
 			linear_code_meli.setVisibility(View.GONE);
 			linear_number_passport.setVisibility(View.VISIBLE);
+			linear_expdate.setVisibility(View.VISIBLE);
 		}
 		//////////////////////////
 		// Spinner element
@@ -1793,13 +1798,15 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
 						}
-					if(RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length()>4){
-						((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
-						flagMosafer=flagMosafer+"T";
-					}else{
-						//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
-						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+"لطفا انقضا پاسپورت را انتخاب کنید";
+					if(linear_expdate.getVisibility()==View.VISIBLE){
+						if(RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length()>4){
+							((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+							flagMosafer=flagMosafer+"T";
+						}else{
+							//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
+							flagMosafer=flagMosafer+"F";
+							errorMessagePartner=errorMessagePartner+"\n"+"لطفا انقضا پاسپورت را انتخاب کنید";
+						}
 					}
 					if (Gensiyat.contains("true") || Gensiyat.contains("false")){
 						flagMosafer=flagMosafer+"T";
