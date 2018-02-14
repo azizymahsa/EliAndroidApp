@@ -68,7 +68,7 @@
 					android:textColor="#0e874e"
 					android:textSize="@dimen/_10dp_textSize"
 					android:paddingTop="2dp"
-					android:textAppearance="@style/tahoma"/>
+					android:textAppearance="@style/i"/>
 
 				<TextView
 					android:id="@+id/lblArrivalAirportR"

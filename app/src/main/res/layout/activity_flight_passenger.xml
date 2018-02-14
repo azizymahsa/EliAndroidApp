@@ -189,7 +189,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -1247,7 +1247,7 @@
                 android:background="#ffffff"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -1281,8 +1281,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:scaleType="fitXY"
-                         />
+                        android:scaleType="fitXY" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
