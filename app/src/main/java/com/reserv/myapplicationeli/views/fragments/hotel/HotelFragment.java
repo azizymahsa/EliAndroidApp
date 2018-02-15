@@ -98,7 +98,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
         //listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 
-        lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
+       // lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
         tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
         //  lblRoomCount.setOnClickListener(this);
         tarikh_be.setOnClickListener(this);
