@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.ui.dialog.hotel;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,8 +41,9 @@ public class AlertDialogPassenger implements View.OnClickListener {
 
         Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
         tvAlert.setTextSize(2,12);
-        tvAlert.setLineSpacing(5);
+        tvAlert.setLineSpacing(25);
         tvAlert.setTypeFace(typeface);
+        tvAlert.setTextColor(Color.parseColor("#2e3192"));
 
        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);

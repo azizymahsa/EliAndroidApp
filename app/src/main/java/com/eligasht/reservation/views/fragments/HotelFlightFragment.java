@@ -99,7 +99,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         //listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 
 
-        lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
+      //  lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
         tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
         tvMabda = (TextView) rootView.findViewById(R.id.tvMabda);
         tvMabdaEn = (TextView) rootView.findViewById(R.id.tvMabdaEn);

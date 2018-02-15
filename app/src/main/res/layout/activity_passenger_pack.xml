@@ -655,6 +655,18 @@
                         <TextView
                             android:id="@+id/imgCount"
                             android:layout_width="80dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|center"
+                            android:layout_margin="5dp"
+                            android:layout_marginTop="0dp"
+                            android:background="@drawable/background_strock_blue"
+                            android:gravity="center"
+                            android:text=" اتاق اول "
+                            android:textColor="#fff"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+                        <!-- <TextView
+                            android:id="@+id/imgCount"
+                            android:layout_width="80dp"
                             android:layout_height="@dimen/_35dp_normal"
                             android:layout_gravity="right"
                             android:layout_margin="5dp"
@@ -663,7 +675,7 @@
                             android:gravity="center"
                             android:text=" اتاق اول "
                             android:textColor="#fff"
-                            android:textSize="@dimen/_12dp_normal_textSize" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />-->
                     </LinearLayout>
 
                     <LinearLayout
