@@ -6,6 +6,21 @@
                 {
                     "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-fr-rCA\\values-fr-rCA.xml",
                     "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,166,292,415,532,654,774,880,980,1083,1181",
+                        "endColumns": "60,125,122,116,121,119,105,99,102,97,103",
+                        "endOffsets": "161,287,410,527,649,769,875,975,1078,1176,1280"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-fr-rCA\\values-fr-rCA.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-fr-rCA\\values-fr-rCA.xml",
+                    "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
                         "startOffsets": "105,188,249,375,498,615,737,857,963,1063,1166,1264",

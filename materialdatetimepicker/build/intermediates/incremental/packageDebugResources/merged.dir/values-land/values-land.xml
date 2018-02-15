@@ -7,6 +7,5 @@
     <dimen name="gmdtp_selected_date_month_size">30dp</dimen>
     <dimen name="gmdtp_selected_date_year_size">30dp</dimen>
     <dimen name="gmdtp_time_picker_height">270dip</dimen>
-    <dimen name="mdtp_dialog_height">200dip</dimen>
     <dimen name="mdtp_left_side_width">240dip</dimen>
 </resources>

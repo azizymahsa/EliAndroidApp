@@ -6,6 +6,21 @@
                 {
                     "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-ur-rPK\\values-ur-rPK.xml",
                     "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,166,271,385,496,618,728,826,919,1012,1102",
+                        "endColumns": "60,104,113,110,121,109,97,92,92,89,99",
+                        "endOffsets": "161,266,380,491,613,723,821,914,1007,1097,1197"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ur-rPK\\values-ur-rPK.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-ur-rPK\\values-ur-rPK.xml",
+                    "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
                         "startOffsets": "105,186,247,352,466,577,699,809,907,1000,1093,1183",

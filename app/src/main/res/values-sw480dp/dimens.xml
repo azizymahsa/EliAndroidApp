@@ -17,7 +17,7 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="icon_size_25dp">25dp</dimen>
     <dimen name="text_size">19dp</dimen>
     <dimen name="_aboutdp">14dp</dimen>
-    <dimen name="_14dp">18dp</dimen>
+    <dimen name="_14dp">14dp</dimen>
 
 
 

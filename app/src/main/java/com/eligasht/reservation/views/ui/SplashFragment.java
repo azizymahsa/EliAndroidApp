@@ -23,6 +23,7 @@ import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.reservation.models.hotel.api.userEntranceRequest.request.UserEntranceRequest;
+import com.eligasht.reservation.views.ui.dialog.app.UpdateAlert;
 import com.farsitel.bazaar.IUpdateCheckService;
 import com.google.gson.Gson;
 import com.gun0912.tedpermission.PermissionListener;
@@ -45,6 +46,7 @@ import com.zplesac.connectionbuddy.models.ConnectivityEvent;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -68,18 +70,21 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     private BroadcastReceiver sendDetailFinish;
     InternetAlert internetAlert;
     boolean isConnect;
-int req=0;
+    boolean isStop = false;
+    int req = 0;
     SplashDialog splashDialog;
     private static final String TAG = "UpdateCheck";
+    String packageName;
 
     @Override
     public void onReturnValue() {
 
         new GetCommentAsync().execute();
     }
+
     IUpdateCheckService service;
-  //  UpdateServiceConnection connection;
-  UpdateServiceConnection connection;
+    //  UpdateServiceConnection connection;
+    UpdateServiceConnection connection;
 
     private enum DOWNLOAD_TYPE {
         NONE, MAP, SOFTWARE
@@ -97,8 +102,7 @@ int req=0;
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
         }
 
-        splashDialog=  new SplashDialog(SplashFragment.this, this);
-
+        splashDialog = new SplashDialog(SplashFragment.this, this);
 
 
         internetAlert = new InternetAlert(SplashFragment.this);
@@ -149,11 +153,10 @@ int req=0;
 
                                             }
                                         });*/
-                                         req++;
+                                req++;
 
                                 if (isConnect) {
                                     new GetCommentAsync().execute();
-
 
 
                                 } else {
@@ -187,7 +190,6 @@ int req=0;
 
 
     }
-
 
 
     // =========================================================================
@@ -235,10 +237,10 @@ int req=0;
         protected String doInBackground(String... params) {
             try {
                 userEntranceRequest = new com.eligasht.reservation.api.app.UserEntranceRequest(new UserRequest
-                        (new UserEntranceRequest(deviceId,Prefs.getString("loginId",null), deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_CODE, 2, operator, brand, "fa-IR", new Identity("EligashtMlb",
+                        (new UserEntranceRequest(deviceId, Prefs.getString("loginId", null), deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_CODE, 2, operator, brand, "fa-IR", new Identity("EligashtMlb",
                                 "123qwe!@#QWE", "Mobile"))));
                 Log.e("ggg", new Gson().toJson(new UserRequest
-                        (new UserEntranceRequest(deviceId,Prefs.getString("loginId",null), deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_CODE, 2, operator, brand, "fa-IR", new Identity("EligashtMlb",
+                        (new UserEntranceRequest(deviceId, Prefs.getString("loginId", null), deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_CODE, 2, operator, brand, "fa-IR", new Identity("EligashtMlb",
                                 "123qwe!@#QWE", "Mobile")))));
 
             } catch (Exception e) {
@@ -252,66 +254,81 @@ int req=0;
             //  new InitUi().Loading(rlLoading,rlRoot,false);
             avi.setVisibility(View.GONE);
 
-            try {
+            //    try {
 
-                if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors!=null){
-                    splashDialog.seeText(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors.get(0).getDetailedMessage());
-                    splashDialog.showAlert();
+            if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors != null) {
+                splashDialog.seeText(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors.get(0).getDetailedMessage());
+                splashDialog.showAlert();
 
+            } else {
+
+
+            /*    if (Float.valueOf(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion) > Float.valueOf(BuildConfig.VERSION_NAME)) {
+                    Log.e("test", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion);
                 }else{
-                    Log.e("onon", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter + "");
-                    Utility.sendTag("Splash", true, true);
-                    Prefs.putString("loginId",userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID);
-                    for (SearchNotes searchNotes : userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes) {
-                        if (searchNotes.Section.equals("H")) {
-                            Prefs.putString("H", new Gson().toJson(searchNotes.Notes));
+                    Log.e("test2", BuildConfig.VERSION_NAME);
 
-                        }
+                }*/
 
-                        if (searchNotes.Section.equals("F")) {
-                            Prefs.putString("F", new Gson().toJson(searchNotes.Notes));
-
-                        }
-                        if (searchNotes.Section.equals("FH")) {
-                            Prefs.putString("FH", new Gson().toJson(searchNotes.Notes));
-
-                        }
-                        if (searchNotes.Section.equals("P")) {
-                            Prefs.putString("P", new Gson().toJson(searchNotes.Notes));
-
-                        }
+//                Log.e("onon", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter + "");
+                Utility.sendTag("Splash", true, true);
+                Prefs.putString("loginId", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID);
+                for (SearchNotes searchNotes : userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes) {
+                    if (searchNotes.Section.equals("H")) {
+                        Prefs.putString("H", new Gson().toJson(searchNotes.Notes));
 
                     }
-                    if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
 
+                    if (searchNotes.Section.equals("F")) {
+                        Prefs.putString("F", new Gson().toJson(searchNotes.Notes));
 
-                        startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                        finish();
-                    } else {
-                        if (Double.valueOf(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion )<=
-                                Double.valueOf(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion)){
+                    }
+                    if (searchNotes.Section.equals("FH")) {
+                        Prefs.putString("FH", new Gson().toJson(searchNotes.Notes));
 
+                    }
+                    if (searchNotes.Section.equals("P")) {
+                        Prefs.putString("P", new Gson().toJson(searchNotes.Notes));
 
-
-
-
-                        }
-
-                        splashDialog.showAlert();
                     }
 
                 }
+                if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
+                    if (!isStop) {
+                        startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                        finish();
+                    }else{
+                        new UpdateAlert(SplashFragment.this,packageName, false);
+
+
+                    }
+
+
+                } else {
+                    try {
+                        if (Integer.valueOf(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion) > Integer.valueOf(BuildConfig.VERSION_CODE)) {
+                            new UpdateAlert(SplashFragment.this, packageName, true);
+
+                        }
+                    } catch (Exception e) {
+                        splashDialog.showAlert();
+                    }
+
+
+                }
+
+            }
 
 
 
-
+/*
             } catch (Exception e) {
                 //   Toast.makeText(SplashFragment.this, "ارتباط با سرور مقدور نمی باشد", Toast.LENGTH_SHORT).show();
 
                 splashDialog.showAlert();
 
 
-            }
+            }*/
         }
     }
 
@@ -333,18 +350,18 @@ int req=0;
             Log.e("test", getAirportsResult.getString("value"));
 
 
-            if (getAirportsResult.getString("value").equals("1")){
-                isConnect=true;
+            if (getAirportsResult.getString("value").equals("1")) {
+                isConnect = true;
                 internetAlert.isCancel();
-                if (req==1){
+                if (req == 1) {
                     new GetCommentAsync().execute();
 
                 }
 
-            }else{
+            } else {
 
 
-                isConnect=false;
+                isConnect = false;
             }
 
 
@@ -353,8 +370,8 @@ int req=0;
         }
 
 
-
     }
+
     class UpdateServiceConnection implements ServiceConnection {
         public void onServiceConnected(ComponentName name, IBinder boundService) {
             service = IUpdateCheckService.Stub
@@ -362,8 +379,13 @@ int req=0;
             try {
                 final PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
                 long vCode = service.getVersionCode(pInfo.packageName);
-                if (vCode!=-1){
-                 //   new UpdateAlertDialog(AttentionActivity.this,pInfo.packageName,false);
+                packageName = pInfo.packageName;
+                Log.e(TAG, pInfo.packageName+"12");
+
+                if (vCode != -1) {
+                    isStop = true;
+                    Log.e(TAG, pInfo.packageName);
+
                 }
 
             } catch (Exception e) {
@@ -375,6 +397,7 @@ int req=0;
             service = null;
         }
     }
+
     private void initService() {
         Log.i(TAG, "initService()");
         connection = new UpdateServiceConnection();
@@ -383,15 +406,17 @@ int req=0;
                     "com.farsitel.bazaar.service.UpdateCheckService.BIND");
             i.setPackage("com.farsitel.bazaar");
             boolean ret = bindService(i, connection, Context.BIND_AUTO_CREATE);
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 
-    /** This is our function to un-binds this activity from our service. */
+    /**
+     * This is our function to un-binds this activity from our service.
+     */
     private void releaseService() {
         unbindService(connection);
         connection = null;
     }
-
 
 
     @Override

@@ -6,6 +6,21 @@
                 {
                     "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-te-rIN\\values-te-rIN.xml",
                     "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,166,275,393,504,627,743,844,937,1035,1133",
+                        "endColumns": "60,108,117,110,122,115,100,92,97,97,101",
+                        "endOffsets": "161,270,388,499,622,738,839,932,1030,1128,1230"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-te-rIN\\values-te-rIN.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-te-rIN\\values-te-rIN.xml",
+                    "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
                         "startOffsets": "105,191,252,361,479,590,713,829,930,1023,1121,1219",

@@ -116,7 +116,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnLastBuy = findViewById(R.id.btnLastBuy);
 
         //tvTitle.setText(getString(R.string.searchFlight));
-        initUser();
+
 
 
         //onClick===================================================================================
@@ -136,6 +136,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnExit.setOnClickListener(this);
         btnLastBuy.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
+        initUser();
         addFragment(getString(R.string.searchFlight), new PlanFragment());
 
       /*  switch (Prefs.getInt("type", 0)) {
@@ -296,28 +297,8 @@ public class MainActivity extends Base implements View.OnClickListener {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        try {
-            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
-                txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
-                btnExit.setVisibility(View.VISIBLE);
-                tvArrow.setVisibility(View.VISIBLE);
-                rlUser.setClickable(true);
-
-
-            } else {
-                txt_name.setText("ورود به حساب کاربری");
-                btnExit.setVisibility(View.GONE);
-                tvArrow.setVisibility(View.INVISIBLE);
-                rlUser.setClickable(false);
-
-            }
-        } catch (Exception e) {
-            txt_name.setText("ورود به حساب کاربری");
-            btnExit.setVisibility(View.GONE);
-
-
-        }
-
+       
+            initUser();
     }
 
     public void onDestroy() {
@@ -423,6 +404,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 btnExit.setVisibility(View.VISIBLE);
                 tvArrow.setVisibility(View.VISIBLE);
                 rlUser.setClickable(true);
+              //  expandableLayout.setVisibility(View.VISIBLE);
 
                 Prefs.putString("userId",WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
 
@@ -433,14 +415,23 @@ public class MainActivity extends Base implements View.OnClickListener {
                 rlUser.setClickable(false);
                 Prefs.putString("userId","-1");
 
+                if (expandableLayout.isExpanded()) {
 
+                    expandableLayout.collapse();
+
+                }
+              //  expandableLayout.setVisibility(View.GONE);
             }
         } catch (Exception e) {
             txt_name.setText("ورود به حساب کاربری");
             btnExit.setVisibility(View.GONE);
-
+         //   expandableLayout.setVisibility(View.GONE);
             Prefs.putString("userId","-1");
+            if (expandableLayout.isExpanded()) {
 
+                expandableLayout.collapse();
+
+            }
         }
 
 

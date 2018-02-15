@@ -5,7 +5,7 @@
     values-ldpi             2.7” 240x320 ldpi-->
 
 
- <dimen name="circle_60dp">60dp</dimen>
+ <dimen name="circle_60dp">30dp</dimen>
     <dimen name="_12dp">10dp</dimen>
     <dimen name="_25dp">25dp</dimen>
     <dimen name="_10dp_margin">10dp</dimen>
@@ -18,7 +18,7 @@
    <dimen name="icon_size_25dp">25dp</dimen>
     <dimen name="text_size">15dp</dimen>
     <dimen name="_aboutdp">12dp</dimen>
-    <dimen name="_14dp">18dp</dimen>
+    <dimen name="_14dp">14dp</dimen>
     <dimen name="_260">260dp</dimen>
     <dimen name="_20dp">20dp</dimen>
     <dimen name="_11dp">11dp</dimen>

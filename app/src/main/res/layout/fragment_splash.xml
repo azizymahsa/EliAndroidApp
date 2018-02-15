@@ -62,6 +62,7 @@
         android:text="نسخه 1.0"
         android:textSize="10dp"
         android:gravity="center"
+        android:visibility="gone"
         />
 
 </RelativeLayout>
