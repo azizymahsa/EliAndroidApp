@@ -483,7 +483,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							//flagMosafer=flagMosafer+"T";
 						}else{
 							//((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-							txtnamem.setError("لطفا نام را انگلیسی وارد کنید ");
+							txtnamem.setError("لطفا نام را اصلاح کنید ");
 						}
 				}
 				break;
@@ -498,7 +498,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							//flagMosafer=flagMosafer+"T";
 						}else{
 							//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-							txtfamilym.setError("لطفا نام خانوادگی را انگلیسی وارد کنید ");
+							txtfamilym.setError("لطفا نام خانوادگی را اصلاح کنید ");
 						}
 				}
 				break;
@@ -581,7 +581,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 						}else{
 							//((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-							txtnameP.setError("لطفا نام را فارسی وارد کنید ");
+							txtnameP.setError("لطفا نام اصلاح وارد کنید ");
 						}}
 				break;
 			case R.id.txtfamilyP:
@@ -595,7 +595,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 						}else{
 							//((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-							txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
+							txtfamilyP.setError("لطفا نام خانوادگی را اصلاح کنید ");
 						}}
 				break;
 
@@ -1475,7 +1475,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			case R.id.btnBack:
 
-				if (linear_pish_factor.getVisibility() == View.VISIBLE) {
+			/*	if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 					linear_pish_factor.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 
@@ -1555,36 +1555,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);
 
-				}
-
-				/*if (linear_pish_factor.getVisibility() == View.VISIBLE) {
-					linear_pish_factor.setVisibility(View.GONE);
-					linear_list_khadamat.setVisibility(View.VISIBLE);
-
-
-					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
-					txtTitle.setText(" افزودن خدمات به سبد خرید");
-				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
-					linear_list_khadamat.setVisibility(View.GONE);
-					linear_mosaferan.setVisibility(View.VISIBLE);
-						//myScrollView.setOnTouchListener(null);
-
-					txtTitle.setText("اطلاعات مسافران");
-					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
-					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
-				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
-					linear_mosaferan.setVisibility(View.GONE);
-					linear_saler.setVisibility(View.VISIBLE);
-					//	myScrollView.setOnTouchListener(null);
-
-
-					txtTitle.setText(" مشخصات خریدار ");
-					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-				}else if(linear_saler.getVisibility() == View.VISIBLE) {
-					finish();
 				}*/
+
+
 				break;
 			case R.id.btn_next_partnerInfo:
 
@@ -1633,7 +1606,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						}else{
 							//((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
-							errorMessage=errorMessage+"\n"+"لطفا نام را درست وارد کنید";
+							errorMessage=errorMessage+"\n"+"لطفا نام را اصلاح کنید";
 						}
 					//if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
 					if(RqPartner_LastNameFa != null)
@@ -1643,7 +1616,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						}else{
 							//((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
-							errorMessage=errorMessage+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
+							errorMessage=errorMessage+"\n"+"لطفا نام خانوادگی را اصلاح کنید";
 						}
 					if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
 						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1803,7 +1776,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						}else{
 							//((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
-							errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام را درست وارد کنید";
+							errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام را اصلاح کنید";
 						}
 					if(RqPassenger_LastNameEn != null)
 						if( RqPassenger_LastNameEn.length()>1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$") ){
@@ -1812,7 +1785,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						}else{
 							//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
-							errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
+							errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام خانوادگی را اصلاح کنید";
 						}
 					if(linear_expdate.getVisibility()==View.VISIBLE){
 						if(RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length()>4){
@@ -2252,7 +2225,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public void onBackPressed() {
 
 
-		if (linear_pish_factor.getVisibility() == View.VISIBLE) {
+		/*if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 			linear_pish_factor.setVisibility(View.GONE);
 			linear_list_khadamat.setVisibility(View.VISIBLE);
 
@@ -2336,7 +2309,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);
 
-		}
+		}*/
 	}
 	@Override
 	public void searchTextChanged(String searchText) {

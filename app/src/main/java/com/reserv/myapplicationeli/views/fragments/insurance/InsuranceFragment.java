@@ -296,6 +296,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
                 Intent intent = new Intent(getActivity(), AddPassengerActivity.class);
                 intent.putExtra("BirthDateList", gson.toJson(passengers));
+                Prefs.putString("BirthDateListInsuranc",gson.toJson(passengers));//mahsa
                 startActivityForResult(intent, ADD_PASSENGER_REQUEST);
                 break;
 
@@ -327,6 +328,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 }
                 Intent _intent = new Intent(getActivity(), SearchInsuranceActivity.class);
                 _intent.putExtra("BirthDateList" , gson.toJson(passengers));
+                Prefs.putString("BirthDateListInsuranc",gson.toJson(passengers));//mahsa
                 _intent.putExtra("DepartureDate", departureDate);
                 _intent.putExtra("Culture", "fa-IR");
                 _intent.putExtra("CountryCode", country.getCountryCode());
@@ -356,7 +358,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
             txt_count_passenger.setText(ValidationTools.isEmptyOrNull(passengers) ? "تعداد مسافران" : passengers.size() + " مسافر ");
 
-            // here you have list if passenger selected
         }
     }
 
