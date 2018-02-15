@@ -1478,7 +1478,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			case R.id.btnBack:
 
-			/*	if (linear_pish_factor.getVisibility() == View.VISIBLE) {
+				if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 					linear_pish_factor.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 
@@ -1518,7 +1518,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					///////////////////
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
 					////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
-					if(counter>1) {
+				/*	if(counter>1) {
 						PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
 						CursorManager cursorM=items_Table.getMosaferById(counter-1);
 						if(cursorM != null){
@@ -1540,7 +1540,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						counter--;
 						//txtTitleCountM.setText(" اطلاعات مسافر " + counter);
 						imgCount.setText(counter+"");
-					}else{
+					}else{*/
 						//////////////////////
 						linear_mosaferan.setVisibility(View.GONE);
 						linear_saler.setVisibility(View.VISIBLE);
@@ -1549,7 +1549,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						txtTitle.setText(" مشخصات خریدار ");
 						((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
 						((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-					}
+					//}
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
 
 					Prefs.putBoolean("BACK_HOME", true);
@@ -1558,7 +1558,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);
 
-				}*/
+				}
 
 
 				break;
@@ -2228,7 +2228,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public void onBackPressed() {
 
 
-		/*if (linear_pish_factor.getVisibility() == View.VISIBLE) {
+		if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 			linear_pish_factor.setVisibility(View.GONE);
 			linear_list_khadamat.setVisibility(View.VISIBLE);
 
@@ -2270,7 +2270,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			///////////////////
 		}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
 			////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
-			if(counter>1) {
+		/*	if(counter>1) {
 				PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
 				CursorManager cursorM=items_Table.getMosaferById(counter-1);
 				if(cursorM != null){
@@ -2292,9 +2292,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				}
 				counter--;
-				//txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+
 				imgCount.setText(counter+"");
-			}else{
+			}else{*/
 				//////////////////////
 				linear_mosaferan.setVisibility(View.GONE);
 				linear_saler.setVisibility(View.VISIBLE);
@@ -2303,7 +2303,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				txtTitle.setText(" مشخصات خریدار ");
 				((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
 				((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-			}
+		//	}
 		}else if(linear_saler.getVisibility() == View.VISIBLE) {
 
 			Prefs.putBoolean("BACK_HOME", true);
@@ -2312,7 +2312,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);
 
-		}*/
+		}
 	}
 	@Override
 	public void searchTextChanged(String searchText) {
