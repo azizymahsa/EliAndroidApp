@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text=" استانبول "
+                android:text="انتخاب کنید"
                 android:textColor="#fff"
                 android:textSize="@dimen/_20dp_normal_textSize"
                 android:textStyle="bold" />
@@ -65,7 +65,7 @@
                 android:ellipsize="end"
                 android:gravity="right"
                 android:maxLines="1"
-                android:text="Istanbul,Turkey "
+                android:text=""
                 android:textColor="#fff"
                 android:textSize="@dimen/_12dp_normal_textSize" />
         </LinearLayout>

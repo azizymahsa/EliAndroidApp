@@ -48,7 +48,8 @@
                     card_view:cardBackgroundColor="#ffffff"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardElevation="1dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                   >
 
 
                     <LinearLayout
@@ -62,7 +63,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="شماره پیش فاکتور صادر شده"
+                            android:text="شماره پیش فاکتور"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_12dp_normal_textSize"
@@ -100,7 +101,9 @@
                     card_view:cardBackgroundColor="#ffffff"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardElevation="1dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+
+                    >
 
 
                     <LinearLayout
@@ -154,7 +157,7 @@
                                 android:gravity="center"
                                 android:orientation="horizontal"
                                 android:padding="5dp"
-                                android:visibility="gone">
+                                >
 
                                 <TextView
                                     android:id="@+id/tvRial"
@@ -207,20 +210,9 @@
                                 android:gravity="center"
                                 android:orientation="horizontal"
                                 android:padding="5dp"
-                                android:visibility="gone">
-
-                                <TextView
-                                    android:id="@+id/tvNumberFa"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="left|center"
-                                    android:text="ریال"
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="@color/green"
-                                    android:textSize="14dp"
+                              >
 
 
-                                    />
 
                                 <TextView
                                     android:id="@+id/tvNumberPeygiri"
@@ -228,7 +220,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="10dp"
-                                    android:layout_toRightOf="@+id/tvNumberFa"
                                     android:gravity="left|center"
                                     android:text="شماره پیگیری"
                                     android:textAppearance="@style/IrsansBold"
@@ -274,7 +265,9 @@
                     card_view:cardBackgroundColor="#ffffff"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardElevation="1dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+
+                    >
 
                     <RelativeLayout
                         android:id="@+id/rlStatus"
@@ -318,7 +311,8 @@
                                 android:gravity="center"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/red"
-                                android:textSize="@dimen/_18dp_normal_textSize"
+                                android:textSize="@dimen/_20dp_normal_textSize"
+                                android:maxLines="3"
 
 
                                 />
@@ -331,8 +325,8 @@
                                 android:layout_marginTop="5dp"
                                 android:gravity="center"
                                 android:textColor="@color/green"
-                                android:textSize="@dimen/_25dp_txtSize"
-                                android:visibility="gone"
+                                android:textSize="@dimen/_20dp_normal_textSize"
+
 
 
                                 />
@@ -347,8 +341,7 @@
                                 android:gravity="center"
                                 android:text="جزئیات قرار داد به ایمیل example@example.com ارسال شد"
                                 android:textColor="#ff9e3e"
-                                android:textSize="10dp"
-                                android:visibility="gone"
+                                android:textSize="@dimen/_12dp_normal_textSize"
 
                                 />
 
@@ -376,19 +369,23 @@
                     android:text="پیگیر کار شما هستیم، لطفا منتظر تماس کارشناسان ما باشید"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_12dp_normal_textSize"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+              />
 
             </LinearLayout>
 
         </ScrollView>
 
         <LinearLayout
+            android:id="@+id/llButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60dp_hight"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="20dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone"
+           >
 
             <Button
                 android:id="@+id/btnRPayment"
@@ -402,7 +399,7 @@
                 android:text="پرداخت مجدد"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_16dp_txtSize"
-                android:visibility="gone" />
+             />
 
         </LinearLayout>
 

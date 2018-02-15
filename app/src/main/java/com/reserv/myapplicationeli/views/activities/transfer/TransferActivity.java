@@ -2,12 +2,15 @@ package com.reserv.myapplicationeli.views.activities.transfer;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -48,6 +51,7 @@ import com.reserv.myapplicationeli.views.ui.InitUi;
 import com.reserv.myapplicationeli.views.ui.PassengerActivity;
 import com.reserv.myapplicationeli.views.ui.SplashFragment;
 import com.reserv.myapplicationeli.views.ui.dialog.app.SplashDialog;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
@@ -122,7 +126,56 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         tvDepurtureFlt.clearFocus();
         tvReturnFlt.clearFocus();
         llRoot.clearFocus();
+        tvDepurtureFlt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                if (ValidationTools.isEmptyOrNull(tvDepurtureFlt.getText().toString())){
+                    Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf");
+                    tvDepurtureFlt.setTypeface(t);
+                }else{
+                    Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+                    tvDepurtureFlt.setTypeface(t);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        tvReturnFlt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                if (ValidationTools.isEmptyOrNull(tvReturnFlt.getText().toString())){
+                    Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf");
+                    tvReturnFlt.setTypeface(t);
+                }else{
+                    Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+                    tvReturnFlt.setTypeface(t);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     public void initCalenndar() {
@@ -364,7 +417,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     public void initValues() {
 
         DepurtureAirport = getIntent().getExtras().getString("ArrialAirportName");
-        ReturnAirportDate = getIntent().getExtras().getString("ArrivalFltDate");
 
         ReturnFlt = getIntent().getExtras().getString("ArrivalFltNo");
 
@@ -372,6 +424,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
         DepurtureTime = getIntent().getExtras().getString("DepartureFltTime");
         ReturnTime = getIntent().getExtras().getString("ArrivalFltTime");
+        ReturnAirportDate = getIntent().getExtras().getString("ArrivalFltDate");
         DepurtureDate = getIntent().getExtras().getString("DepartureFltDate");
         Hotel = getIntent().getExtras().getString("HotelNameEn");
         Log.e("hotelTest", Hotel);
@@ -379,6 +432,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         Log.e("hotelTest2", ReturnFlt);
         Log.e("hotelTest3", ReturnAirportDate);
         Log.e("hotelTest4", DepurtureTime);
+        Log.e("hotelTest4", DepurtureDate);
 
         CityId = getIntent().getExtras().getString("CityID");
 
@@ -401,7 +455,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         }
 
         if (!ValidationTools.isEmptyOrNull(ReturnAirportDate)) {
-            tvReturnDate.setText(Utility.dateShow(ReturnAirportDate));
+            tvReturnDate.setText(DateUtil.getLongStringDate(ReturnAirportDate, "yyyy/MM/dd", false));
             tvReturnDate.setClickable(false);
             tvReturnDate.setEnabled(false);
 
@@ -446,7 +500,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvReturnTime.setEnabled(true);
         }
         if (!ValidationTools.isEmptyOrNull(DepurtureDate)) {
-            tvDepurtureDate.setText(Utility.dateShow(DepurtureDate));
+            tvDepurtureDate.setText(DateUtil.getLongStringDate(DepurtureDate, "yyyy/MM/dd", false));
             tvDepurtureDate.setClickable(false);
             tvDepurtureDate.setEnabled(false);
 
@@ -480,9 +534,12 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void onResume() {
+        Utility.hideKeyboard(TransferActivity.this,tvDepurtureFlt);
+        Utility.hideKeyboard(TransferActivity.this,tvReturnFlt);
         super.onResume();
         llRoot.clearFocus();
-
+        tvDepurtureFlt.clearFocus();
+        tvReturnFlt.clearFocus();
         if (ValidationTools.isEmptyOrNull(DepurtureAirport)) {
             tvDepurtureAirport.setText(Prefs.getString("Value-Mabda-City2", "انتخاب کنید"));
 
@@ -815,29 +872,44 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         protected void onPostExecute(String result) {
             try {
                 rlLoading2.setVisibility(View.GONE);
-                Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
-                Log.e("test", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()) + "");
 
 
-                finish();
-                         /*   if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors != null) {
-                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).DetailedMessage, Toast.LENGTH_SHORT).show();
+             /*   if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors!=null){
+                    Prefs.putLong("Tprice",0);
 
-                } else {
-                    Prefs.putLong("Tprice",Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
-                    Log.e("test", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount())+"");
-                   // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount(), Toast.LENGTH_SHORT).show();
-                   // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.TransferAvailabilityRoundtripResults.get(0).TotalPrice.Amount, Toast.LENGTH_SHORT).show();
-                   // Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.TransferAvailabilityRoundtripResults.get(0).TotalPrice.Amount, Toast.LENGTH_SHORT).show();
+                    finish();
+                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).Message, Toast.LENGTH_SHORT).show();
+
+
+                }else{
+                    Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
+
+
+                    finish();
 
                 }
+
 */
+                 Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
+                Log.e("test", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
+
+
+                 finish();
+
+
 
             } catch (Exception e) {
+                Prefs.putLong("Tprice",0);
                 finish();
-                Prefs.getLong("TPrice",0);
+                if (Utility.isNetworkAvailable(TransferActivity.this)){
 
-                Toast.makeText(TransferActivity.this, "خطا در دریافت اطلاعات", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TransferActivity.this, "خطا در دریافت اطلاعات از الی گشت", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خارج می باشد", Toast.LENGTH_SHORT).show();
+                }
+
+
 
               /*  if (!Utility.isNetworkAvailable(TransferActivity.this)){
                     Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خارج می باشد", Toast.LENGTH_SHORT).show();

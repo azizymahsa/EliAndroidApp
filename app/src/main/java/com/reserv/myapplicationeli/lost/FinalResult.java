@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +57,7 @@ public class FinalResult extends BaseActivity {
     private ArrayList<AfterPaymentModel> afterPaymentModels = new ArrayList<>();
     String url;
     CardView cvStatus,cv2,cv1;
+    LinearLayout llButton;
 
 
 
@@ -95,6 +97,7 @@ public class FinalResult extends BaseActivity {
         tvPaymen = findViewById(R.id.tvPaymen);
         rlPrice = findViewById(R.id.rlPrice);
         tvPrice = findViewById(R.id.tvPrice);
+        llButton = findViewById(R.id.llButton);
         rlPeygiri = findViewById(R.id.rlPeygiri);
         rlStatus = findViewById(R.id.rlStatus);
         tvStatusFactor = findViewById(R.id.tvStatusFactor);
@@ -110,7 +113,7 @@ public class FinalResult extends BaseActivity {
         cvStatus = findViewById(R.id.cvStatus);
         cv2 = findViewById(R.id.cv2);
         cv1 = findViewById(R.id.cv1);
-        drawable = (GradientDrawable) rlStatus.getBackground();
+          drawable = (GradientDrawable) rlStatus.getBackground();
 
         btnRPayment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,9 +138,9 @@ public class FinalResult extends BaseActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                getPreFactor = new GetPreFactor(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""), factorId + "", new Identity("EligashtMlb",
+                getPreFactor = new GetPreFactor(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""), "847306", new Identity("EligashtMlb",
                         "123qwe!@#QWE", "Mobile"))));
-                Log.e("okokokok", new Gson().toJson(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""), factorId + "", new Identity("EligashtMlb",
+                Log.e("okokokok", new Gson().toJson(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""), "847306", new Identity("EligashtMlb",
                         "123qwe!@#QWE", "Mobile")))));
             } catch (Exception e) {
 
@@ -151,8 +154,8 @@ public class FinalResult extends BaseActivity {
             rlLoading.setVisibility(View.GONE);
 
 
-            try {
-
+          /*  try {
+*/
                 if (getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.errors != null) {
                     Toast.makeText(FinalResult.this, getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.errors.get(0).getDetailedMessage(), Toast.LENGTH_SHORT).show();
 
@@ -167,11 +170,13 @@ public class FinalResult extends BaseActivity {
                         drawable.setStroke(1, ContextCompat.getColor(FinalResult.this, R.color.red));
                         rlPeygiri.setVisibility(View.GONE);
                         tvPaymen.setText("مبلغی برای این سبد خرید پرداخت نشده است");
+                        rlPrice.setVisibility(View.GONE);
                         tvPaymen.setTextColor(ContextCompat.getColor(FinalResult.this, R.color.red));
                         tvFactor2.setVisibility(View.GONE);
                         cvStatus.setVisibility(View.VISIBLE);
                         cv2.setVisibility(View.VISIBLE);
                         cv1.setVisibility(View.VISIBLE);
+                        tvMail.setVisibility(View.GONE);
 
 
                         YoYo.with(Techniques.SlideInLeft)
@@ -184,9 +189,15 @@ public class FinalResult extends BaseActivity {
                                 .duration(800)
                                 .playOn(cv1);
                     }
+
+
+
+
+
                     if (getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.ContractNo <= 0
                             && getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.isEmpty() &&
                             getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.PreFactorBookingLogs.isEmpty()) {
+                        llButton.setVisibility(View.VISIBLE);
                         btnRPayment.setVisibility(View.VISIBLE);
                         YoYo.with(Techniques.SlideInUp)
                                 .duration(1000)
@@ -208,23 +219,47 @@ public class FinalResult extends BaseActivity {
                         }
                         lvLog.setAdapter(new AfterPaymentAdapter(FinalResult.this,afterPaymentModels));
                     }
-                    if(!getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.PreFactorBookingLogs.get(0).SuccessBooking){
+                    try{
+                        if(!getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.PreFactorBookingLogs.get(0).SuccessBooking){
 
-                        tvSuccses.setVisibility(View.VISIBLE);
-                    }
+                            tvSuccses.setVisibility(View.VISIBLE);
+                        }
+                    }catch (Exception e){}
+
+
+
+
+
+
+
                     if (!getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.isEmpty()){
                         rlPeygiri.setVisibility(View.VISIBLE);
                         rlPrice.setVisibility(View.VISIBLE);
-                        tvStatusFactor.setVisibility(View.GONE);
                         tvPrice.setText(getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.get(0).PaymentAmount);
                         tvNumberPeygiri.setText(getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.get(0).PaymentSaleReferenceId);
-                        ivImage.setImageResource(R.drawable.close);
-                        tvStatusFactor.setText("قرار داد با موفقیت ثبت شد");
-                        drawable.setStroke(1, ContextCompat.getColor(FinalResult.this, R.color.green));
-                        tvMail.setText(" ارسال شد"+getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPartner.get(0).RqPartner_Email +"جزئیات قرار داد به ایمیل  ");
+                        ivImage.setImageResource(R.drawable.white_check);
+                        tvMail.setText("جزئیات قرار داد به ایمیل"+getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPartner.get(0).RqPartner_Email +"ارسال شد");
+                        GradientDrawable  drawable = (GradientDrawable) rlStatus.getBackground();
+                        drawable.setStroke(4, ContextCompat.getColor(FinalResult.this, R.color.green));
+                        rlIv.setBackgroundColor(ContextCompat.getColor(FinalResult.this, R.color.green));
+                        tvStatusFactor.setTextColor( ContextCompat.getColor(FinalResult.this, R.color.green));
+                        tvPaymen.setTextColor( ContextCompat.getColor(FinalResult.this, R.color.green));
+                        tvPaymen.setText("قرار داد با موفقیت ثبت شد");
+                        tvStatusFactor.setText("قرار داد شما با شماره "+getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.ContractNo+" ثبت شد.");
 
+                        cv2.setVisibility(View.VISIBLE);
+                        cv1.setVisibility(View.VISIBLE);
+                        cvStatus.setVisibility(View.VISIBLE);
 
-
+                        YoYo.with(Techniques.SlideInLeft)
+                                .duration(800)
+                                .playOn(cvStatus);
+                        YoYo.with(Techniques.SlideInLeft)
+                                .duration(800)
+                                .playOn(cv2);
+                        YoYo.with(Techniques.SlideInLeft)
+                                .duration(800)
+                                .playOn(cv1);
 
                     }
 
@@ -236,10 +271,10 @@ public class FinalResult extends BaseActivity {
 
 
                 //  setListViewHeightBasedOnChildren(lvRooms);
-            } catch (Exception e) {
+            /*} catch (Exception e) {
 
             }
-
+*/
         }
 
     }

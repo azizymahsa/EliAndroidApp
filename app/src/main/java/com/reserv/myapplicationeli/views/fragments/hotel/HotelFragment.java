@@ -44,6 +44,7 @@ import com.reserv.myapplicationeli.views.activities.hotel.activity.SelectHotelAc
 import com.reserv.myapplicationeli.views.activities.main.MainActivity;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
 import java.text.DateFormat;
@@ -444,23 +445,28 @@ public class HotelFragment extends Fragment implements OnClickListener,
             case R.id.searchHotel:
                 // new CountTimeAlert(getActivity(),this);
                 try {
+                    if (txtCity.getText().toString().equals("انتخاب کنید")){
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
+                        AlertDialogPassenger.setText("لطفا مقصد سفر خود را انتخاب کنید ");
+                    }else{
+                        sendStartTimer();
+                        Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
 
-                    sendStartTimer();
-                    Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
-
-                    intent.putExtra("CheckIn", raft);
-                    intent.putExtra("CheckOut", bargasht);
-                    intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
-                    intent.putExtra("CheckInFa", tvRaft.getText().toString());
-                    intent.putExtra("Rooms", getRoomList(roomsSelected));
-                    intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
-                    intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
-                    Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-                    Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
-                    intent.putExtra("Geo", geo);
+                        intent.putExtra("CheckIn", raft);
+                        intent.putExtra("CheckOut", bargasht);
+                        intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
+                        intent.putExtra("CheckInFa", tvRaft.getText().toString());
+                        intent.putExtra("Rooms", getRoomList(roomsSelected));
+                        intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
+                        intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
+                        Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
+                        Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
+                        intent.putExtra("Geo", geo);
 
 
-                    startActivity(intent);
+                        startActivity(intent);
+                    }
+
                 } catch (Exception e) {
                     Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
                     Prefs.putBoolean("onTimer", false);

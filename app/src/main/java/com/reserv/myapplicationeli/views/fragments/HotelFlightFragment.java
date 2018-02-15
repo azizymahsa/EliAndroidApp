@@ -42,6 +42,7 @@ import com.reserv.myapplicationeli.views.activities.pack.AddRoomActivity;
 import com.reserv.myapplicationeli.views.adapters.HotelCountRoomAdapter;
 import com.reserv.myapplicationeli.views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity;
 import com.reserv.myapplicationeli.views.ui.dialog.app.CountTimeAlert;
+import com.reserv.myapplicationeli.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.reserv.myapplicationeli.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
 import java.text.DateFormat;
@@ -176,14 +177,12 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);
 
 
-
         datePickerDialog = DatePickerDialog.newInstance(
                 this,
                 persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay()
         );
-
 
 
         datePickerDialog2 = DatePickerDialog.newInstance(
@@ -271,7 +270,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                     tvRaft.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
-                    raft = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;
+                    raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
                     Log.e("GGGGGGG", raft);
 
                 } catch (ParseException e) {
@@ -295,7 +294,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 geo = true;
                 tvBargasht.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
-                bargasht = year + "/" + (monthOfYear + 1 )+ "/" + dayOfMonth;
+                bargasht = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
 
 
                 Prefs.putString("bargasht", bargasht);
@@ -307,82 +306,73 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         });
 
 
-
-
         datePickerDialog.setMinDate(persianCalendarDatePicker);
         datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
         datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
 
 
-
-
-
-        if (Prefs.getString("bargashtfa", "null").equals("null")) {
-            tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+        if (Prefs.getString("bargashtfa", "null").equals("null")||Prefs.getString("bargashtfa", "null")==null) {
+            tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
 
         } else {
 
             tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
-            bargasht = Prefs.getString("bargasht", "null").replaceAll("-","/");
+            bargasht = Prefs.getString("bargasht", "null").replaceAll("-", "/");
 
 
+            try {
+                Log.e("testdate", bargasht);
+
+                String[] dateSplite2 = bargasht.split("/");
+
+                String dayMF = dateSplite2[2];
+                String monthMF = dateSplite2[1];
+                String yearMF = dateSplite2[0];
+                String[] dateSplite3 = com.reserv.myapplicationeli.tools.datetools.SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
+
+                String dayMF1 = dateSplite3[2];
+                String monthMF1 = dateSplite3[1];
+                String yearMF1 = dateSplite3[0];
 
 
+                PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+                persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
+                Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+                datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
 
-            Log.e("testdate", bargasht );
-
-            String[] dateSplite2=bargasht.split("/");
-
-            String dayMF=dateSplite2[2];
-            String monthMF=dateSplite2[1];
-            String yearMF=dateSplite2[0];
-            String[] dateSplite3= com.reserv.myapplicationeli.tools.datetools.SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
-
-            String dayMF1=dateSplite3[2];
-            String monthMF1=dateSplite3[1];
-            String yearMF1=dateSplite3[0];
-
-
-            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-            persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-            datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
+            } catch (Exception e) {
+            }
 
 
         }
 
 
         if (Prefs.getString("raftfa", "null").equals("null")) {
-            tvRaft.setText(persianCalendarDatePicker.getPersianWeekDayName()+" "+persianCalendarDatePicker.getPersianDay()+" "+persianCalendarDatePicker.getPersianMonthName());
+            tvRaft.setText(persianCalendarDatePicker.getPersianWeekDayName() + " " + persianCalendarDatePicker.getPersianDay() + " " + persianCalendarDatePicker.getPersianMonthName());
 
         } else {
             tvRaft.setText(Prefs.getString("raftfa", "null"));
-            raft = Prefs.getString("raft", "null").replaceAll("-","/");
-            Log.e("testdate", raft );
+            raft = Prefs.getString("raft", "null").replaceAll("-", "/");
+            Log.e("testdate", raft);
 
-            String[] dateSplite2=raft.split("/");
+            String[] dateSplite2 = raft.split("/");
 
-            String dayMF=dateSplite2[2];
-            String monthMF=dateSplite2[1];
-            String yearMF=dateSplite2[0];
-            String[] dateSplite3= com.reserv.myapplicationeli.tools.datetools.SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
+            String dayMF = dateSplite2[2];
+            String monthMF = dateSplite2[1];
+            String yearMF = dateSplite2[0];
+            String[] dateSplite3 = com.reserv.myapplicationeli.tools.datetools.SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
 
-            String dayMF1=dateSplite3[2];
-            String monthMF1=dateSplite3[1];
-            String yearMF1=dateSplite3[0];
+            String dayMF1 = dateSplite3[2];
+            String monthMF1 = dateSplite3[1];
+            String yearMF1 = dateSplite3[0];
 
 
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
             Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-            datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
+            datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
 
             //   datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-
-
-
-
-
 
 
         }
@@ -417,9 +407,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         } catch (Exception e) {
         }
 
-        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
+        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "انتخاب کنید"));
         lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En-HF-Raft", ""));
-        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", "تهران"));
+        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", "انتخاب کنید"));
         tvMabdaEn.setText(Prefs.getString("Value-Hotel-City-En-HF-Source", ""));
     }
 
@@ -455,24 +445,32 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             case R.id.searchHotel:
                 //  new CountTimeAlert(getActivity(),this);
                 try {
-                    sendStartTimer();
+                    if (tvMabda.getText().toString().equals("انتخاب کنید") || txtCity.getText().toString().equals("انتخاب کنید")) {
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
+                        AlertDialogPassenger.setText("لطفا مبدا و مقصد را انتخاب کنید ");
+                    } else {
 
-                    Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);
+                        sendStartTimer();
 
-                    intent.putExtra("CheckInHF", raft);
-                    intent.putExtra("CheckOutHF", bargasht);
-                    intent.putExtra("CheckOutFaHF", tvBargasht.getText().toString());
-                    intent.putExtra("CheckInFaHF", tvRaft.getText().toString());
-                    intent.putExtra("Rooms", getRoomList(roomsSelected));
-                    intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
-                    intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
-                    intent.putExtra("Geo", geo);
+                        Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);
 
-                    Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-                    Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
+                        intent.putExtra("CheckInHF", raft);
+                        intent.putExtra("CheckOutHF", bargasht);
+                        intent.putExtra("CheckOutFaHF", tvBargasht.getText().toString());
+                        intent.putExtra("CheckInFaHF", tvRaft.getText().toString());
+                        intent.putExtra("Rooms", getRoomList(roomsSelected));
+                        intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
+                        intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
+                        intent.putExtra("Geo", geo);
+
+                        Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
+                        Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
 
 
-                    startActivity(intent);
+                        startActivity(intent);
+                    }
+
+
                 } catch (Exception e) {
                     Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
                 }
@@ -624,17 +622,16 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
         Log.e("salam", date_server(year_, month, day));
         if (view.getTag().equals("DatepickerdialogBargasht")) {
-            tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+            tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
             bargasht = date_server(year, monthOfYear, dayOfMonth);
-            Prefs.putString("bargashtfa",tvBargasht.getText().toString());
+            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
             Prefs.putString("bargasht", bargasht);
 
 
-            if (Utility.campareDate(raft,bargasht)){
+            if (Utility.campareDate(raft, bargasht)) {
                 tvRaft.setText(persianCalendar.getPersianLongDate());
 
             }
-
 
 
         }
@@ -645,41 +642,25 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            tvRaft.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
-          //  tvBargasht.setText(persianCalendar.getPersianLongDate());
+            tvRaft.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+            //  tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
 
 
-            if (Utility.campareDate(raft,bargasht)){
-              //  persianCalendar.set(year, month, day+1);
+            if (Utility.campareDate(raft, bargasht)) {
+                //  persianCalendar.set(year, month, day+1);
 
-                tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
-              datePickerDialog2.initialize(this, year_, month, day);
+                tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+                datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-             //   bargasht = date_server(year, monthOfYear, dayOfMonth+1);
+                //   bargasht = date_server(year, monthOfYear, dayOfMonth+1);
 
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            Prefs.putString("bargashtfa",tvBargasht.getText().toString());
+            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
 
             Prefs.putString("raft", raft);
             Prefs.putString("raftfa", tvRaft.getText().toString());
