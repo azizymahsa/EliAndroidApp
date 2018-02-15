@@ -9,14 +9,10 @@
     <dimen name="gmdtp_day_number_select_circle_radius">20dp</dimen>
     <dimen name="gmdtp_day_number_size">14sp</dimen>
     <dimen name="gmdtp_extra_time_label_margin">-50dp</dimen>
-    <dimen name="gmdtp_footer_height">60dip</dimen>
     <dimen name="gmdtp_header_height">120dip</dimen>
-    <dimen name="gmdtp_minimum_margin_sides">48dip</dimen>
-    <dimen name="gmdtp_minimum_margin_top_bottom">24dip</dimen>
     <dimen name="gmdtp_month_day_label_text_size">12sp</dimen>
     <dimen name="gmdtp_month_label_size">16sp</dimen>
     <dimen name="gmdtp_month_list_item_header_height">75dp</dimen>
-    <dimen name="gmdtp_month_select_circle_radius">36dp</dimen>
     <dimen name="gmdtp_picker_dimen">400dip</dimen>
     <dimen name="gmdtp_selected_calendar_layout_height">360dp</dimen>
     <dimen name="gmdtp_selected_date_day_size">150dp</dimen>
@@ -29,6 +25,4 @@
     <dimen name="gmdtp_time_picker_height">450dp</dimen>
     <dimen name="gmdtp_year_label_height">96dp</dimen>
     <dimen name="gmdtp_year_label_text_size">33dp</dimen>
-    <dimen name="mdtp_month_list_item_padding">20dp</dimen>
-    <dimen name="mdtp_month_list_item_size">18sp</dimen>
 </resources>

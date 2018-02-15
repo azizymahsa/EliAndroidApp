@@ -14,6 +14,21 @@
                     }
                 }
             ]
+        },
+        {
+            "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-th\\values-th.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-th\\values-th.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,190,251,357,469,581,697,808,899,988,1076,1159",
+                        "endColumns": "84,60,105,111,111,115,110,90,88,87,82,95",
+                        "endOffsets": "185,246,352,464,576,692,803,894,983,1071,1154,1250"
+                    }
+                }
+            ]
         }
     ]
 }

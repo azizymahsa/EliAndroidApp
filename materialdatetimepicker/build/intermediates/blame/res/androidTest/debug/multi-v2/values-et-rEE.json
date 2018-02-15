@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-et-rEE\\values-et-rEE.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-et-rEE\\values-et-rEE.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,139,221,282,391,509,622,743,859,952,1045,1141,1229",
+                        "endColumns": "33,81,60,108,117,112,120,115,92,92,95,87,100",
+                        "endOffsets": "134,216,277,386,504,617,738,854,947,1040,1136,1224,1325"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-et-rEE\\values-et-rEE.xml",
             "map": [
                 {

@@ -10,7 +10,6 @@
     <color name="mdtp_button_color">#928DC5</color>
     <color name="mdtp_button_selected">#33969696</color>
     <color name="mdtp_calendar_header">#928DC5</color>
-    <color name="mdtp_calendar_selected_date_text">#ffd1d2d4</color>
     <color name="mdtp_circle_background">@color/mdtp_background_color</color>
     <color name="mdtp_circle_background_dark_theme">#525252</color>
     <color name="mdtp_circle_color">#f5f5f5</color>
@@ -25,7 +24,6 @@
     <color name="mdtp_date_picker_text_normal_dark_theme">@color/gmdtp_white</color>
     <color name="mdtp_date_picker_view_animator">@android:color/white</color>
     <color name="mdtp_date_picker_view_animator_dark_theme">@color/mdtp_light_gray</color>
-    <color name="mdtp_done_disabled_dark">#bfbfbf</color>
     <color name="mdtp_done_text_color_dark_disabled">#888888</color>
     <color name="mdtp_done_text_color_dark_normal">#ffffff</color>
     <color name="mdtp_done_text_color_disabled">#cccccc</color>
@@ -33,10 +31,8 @@
     <color name="mdtp_light_gray">#424242</color>
     <color name="mdtp_line_background">#cccccc</color>
     <color name="mdtp_line_dark">#808080</color>
-    <color name="mdtp_neutral_pressed">#33999999</color>
     <color name="mdtp_numbers_text_color">#ff212121</color>
     <color name="mdtp_red">#928DC5</color>
-    <color name="mdtp_red_focused">@color/gmdtp_accent_color_dark</color>
     <color name="mdtp_transparent_black">#7f000000</color>
     <dimen name="gmdtp_ampm_label_size">16dp</dimen>
     <dimen name="gmdtp_ampm_left_padding">6dip</dimen>
@@ -46,21 +42,15 @@
     <dimen name="gmdtp_date_picker_view_animator_height">252dp</dimen>
     <dimen name="gmdtp_day_number_select_circle_radius">16dp</dimen>
     <dimen name="gmdtp_day_number_size">12sp</dimen>
-    <dimen name="gmdtp_done_button_height">42dp</dimen>
-    <dimen name="gmdtp_done_label_size">14sp</dimen>
     <dimen name="gmdtp_extra_time_label_margin">-30dp</dimen>
-    <dimen name="gmdtp_footer_height">48dip</dimen>
     <dimen name="gmdtp_header_height">96dip</dimen>
     <dimen name="gmdtp_material_button_height">48dp</dimen>
     <dimen name="gmdtp_material_button_minwidth">64dp</dimen>
     <dimen name="gmdtp_material_button_textpadding_horizontal">8dp</dimen>
     <dimen name="gmdtp_material_button_textsize">14sp</dimen>
-    <dimen name="gmdtp_minimum_margin_sides">48dip</dimen>
-    <dimen name="gmdtp_minimum_margin_top_bottom">24dip</dimen>
     <dimen name="gmdtp_month_day_label_text_size">12sp</dimen>
     <dimen name="gmdtp_month_label_size">14sp</dimen>
     <dimen name="gmdtp_month_list_item_header_height">56dp</dimen>
-    <dimen name="gmdtp_month_select_circle_radius">45dp</dimen>
     <dimen name="gmdtp_picker_dimen">270dip</dimen>
     <dimen name="gmdtp_selected_calendar_layout_height">155dp</dimen>
     <dimen name="gmdtp_selected_date_day_size">70dp</dimen>
@@ -80,7 +70,6 @@
     <string name="gmdtp_cancelfa">انصراف</string>
     <item format="float" name="gmdtp_circle_radius_multiplier" translatable="false" type="string">0.82</item>
     <item format="float" name="gmdtp_circle_radius_multiplier_24HourMode" translatable="false" type="string">0.85</item>
-    <string name="gmdtp_done_label">Done</string>
     <item format="float" name="gmdtp_numbers_radius_multiplier_inner" translatable="false" type="string">0.60</item>
     <item format="float" name="gmdtp_numbers_radius_multiplier_normal" translatable="false" type="string">0.81</item>
     <item format="float" name="gmdtp_numbers_radius_multiplier_outer" translatable="false" type="string">0.83</item>
@@ -133,7 +122,6 @@
         <item name="android:textColor">@color/mdtp_ampm_text_color</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="mdtp_day_of_week_label_condensed"/>
     <style name="mdtp_time_label">
         <item name="android:textSize">@dimen/gmdtp_time_label_size</item>
         <item name="android:textColor">@color/mdtp_numbers_text_color</item>

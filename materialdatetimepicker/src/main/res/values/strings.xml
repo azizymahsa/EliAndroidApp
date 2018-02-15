@@ -19,7 +19,6 @@
     <string name="mdtp_date_v1_monthyear">MMMM yyyy</string>
 
     <!-- Label forf date or time [CHAR LIMIT=30] -->
-    <string name="gmdtp_done_label">Done</string>
     <string name="gmdtp_ok">OK</string>
     <string name="gmdtp_okFa">تائید</string>
     <string name="gmdtp_cancel">@android:string/cancel</string>

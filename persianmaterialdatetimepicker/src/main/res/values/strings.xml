@@ -17,7 +17,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Label for button to confirm chosen date or time [CHAR LIMIT=30] -->
-    <string name="mdtp_done_label" msgid="7007948707597430919">"انجام شد"</string>
     <string name="mdtp_ok">تایید</string>
     <string name="mdtp_cancel">انصراف</string>
     <!--

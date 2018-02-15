@@ -24,7 +24,7 @@ public class PSpecialRoomRowHolder extends  RecyclerView.ViewHolder{
         super(itemView);
 
         adaultPrice = itemView.findViewById(R.id.price_adault);
-        childPrice = itemView.findViewById(R.id.price_child);
+       // childPrice = itemView.findViewById(R.id.price_child);
 //        infantPrice = itemView.findViewById(R.id.price_infant);
         totalPrice = itemView.findViewById(R.id.total_price);
         total_price = itemView.findViewById(R.id.total_price);

@@ -34,8 +34,6 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="mdtp_day_of_week_label_condensed" />
-
     <style name="mdtp_ActionButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/gmdtp_material_button_height</item>
