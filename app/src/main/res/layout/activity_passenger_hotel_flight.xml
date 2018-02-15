@@ -1062,7 +1062,7 @@
                 android:padding="10dp"
                 android:visibility="gone" >
 
-                <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/listKhadamat"
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
@@ -1258,14 +1258,14 @@
                             android:text="asdasdasd"
                             android:layout_gravity="center"
                             android:visibility="visible"/>
-                        <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                        <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
                             android:id="@+id/lvFactor"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center">
 
 
-                        </com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView>
+                        </com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView>
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>

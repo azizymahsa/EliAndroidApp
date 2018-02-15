@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#dddddd"
     >
-    <com.reserv.myapplicationeli.tools.persian.Calendar.persian.PersianDatePicker
+    <com.eligasht.reservation.tools.persian.Calendar.persian.PersianDatePicker
         android:id="@+id/persianDatePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

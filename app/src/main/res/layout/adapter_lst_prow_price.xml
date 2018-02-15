@@ -60,7 +60,7 @@
                 android:orientation="vertical"
                 android:gravity="center">
 
-                <com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox
+                <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
                     android:id="@+id/chk_prow_price"
                     android:layout_width="@dimen/_20dp"
                     android:layout_height="@dimen/_20dp"

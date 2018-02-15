@@ -27,13 +27,13 @@
             android:background="#ffffff"
             android:orientation="vertical">
 
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_hotels"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible">
 
-            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
 
             <TextView
                 android:id="@+id/TextView01"
@@ -262,7 +262,7 @@
 
             </LinearLayout>
 
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -270,7 +270,7 @@
                 android:layout_marginTop="10dp"
                 android:visibility="visible">
 
-            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
 
 
             <LinearLayout

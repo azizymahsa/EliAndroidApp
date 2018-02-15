@@ -244,7 +244,7 @@
 
 
 
-            <com.reserv.myapplicationeli.tools.JustifiedTextView
+            <com.eligasht.reservation.tools.JustifiedTextView
             android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -330,7 +330,7 @@
                                 android:paddingTop="@dimen/_10dp_padding"
                                 android:paddingBottom="@dimen/_10dp_padding"
                                 android:gravity="center|right"/>
-                            <com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox
+                            <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
                                 android:id="@+id/chB_woman"
                                 android:layout_width="@dimen/_20dp"
                                 android:layout_height="@dimen/_20dp"
@@ -350,7 +350,7 @@
                                 android:paddingBottom="@dimen/_10dp_padding"
                                 android:gravity="center|right"/>
 
-                            <com.reserv.myapplicationeli.views.components.smoothcheckbox.SmoothCheckBox
+                            <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
                                 android:id="@+id/chB_man"
                                 android:layout_width="@dimen/_20dp"
                                 android:layout_height="@dimen/_20dp"

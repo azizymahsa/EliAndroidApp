@@ -175,12 +175,12 @@
                 </LinearLayout>
 
             </LinearLayout>
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_child"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
 
 
 

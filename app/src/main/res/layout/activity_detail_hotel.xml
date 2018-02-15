@@ -10,7 +10,7 @@
 
     android:layout_height="match_parent"
     android:background="@color/hotel_detail_background"
-    tools:context="com.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity">
+    tools:context="com.eligasht.reservation.myapplicationeli.reserv.myapplicationeli.views.activities.hotel.activity.DetailHotelActivity">
 
 
     <include
@@ -626,7 +626,7 @@
 
                     </LinearLayout>
 
-                    <com.reserv.myapplicationeli.tools.NonScrollRecyclerView
+                    <com.eligasht.reservation.tools.NonScrollRecyclerView
                         android:id="@+id/lvComments"
                         android:layout_width="match_parent"
 
@@ -717,7 +717,7 @@
                 android:textSize="16dp"
                 android:visibility="gone" />
 
-            <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+            <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
                 android:id="@+id/lvRooms"
 
                 android:layout_width="match_parent"

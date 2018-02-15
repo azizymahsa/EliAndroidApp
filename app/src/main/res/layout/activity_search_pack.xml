@@ -170,7 +170,7 @@
 
 
 
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_available_date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -178,7 +178,7 @@
                 android:background="@color/gray_light"
                 android:visibility="visible">
 
-            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
 
 
         </LinearLayout>
@@ -204,12 +204,12 @@
             android:layout_weight="100">
 
 
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_package"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
          >
-            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
 
         </FrameLayout>
 

@@ -1207,7 +1207,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.reserv.myapplicationeli.views.adapters.hotel.rooms.NonScrollListView
+                    <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
                         android:id="@+id/listKhadamat"
                         android:layout_width="match_parent"
                         android:layout_height="350dp"

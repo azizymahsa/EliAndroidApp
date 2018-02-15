@@ -6,13 +6,13 @@
     android:orientation="vertical"
     android:padding="15sp"
     android:gravity="center"
-    tools:context="com.reserv.myapplicationeli.views.dialogs.SimpleRecycleDialog">
+    tools:context="com.eligasht.reservation.myapplicationeli.reserv.myapplicationeli.views.dialogs.SimpleRecycleDialog">
 
-    <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+    <com.eligasht.reservation.views.components.SimpleRecycleView
         android:id="@+id/rcl_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+    </com.eligasht.reservation.views.components.SimpleRecycleView>
 
 </LinearLayout>

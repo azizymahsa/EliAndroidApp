@@ -93,7 +93,7 @@
     <dimen name="_62dp">82dp</dimen>
     <dimen name="_18dp_normal_textSize">28dp</dimen>
     <dimen name="_100dp_normal">140dp</dimen>
-    <dimen name="_200dp_fh">420dp</dimen>
+    <dimen name="_200dp_fh">410dp</dimen>
     <dimen name="_80dp_fh">200dp</dimen>
     <dimen name="_50dp_fh">100dp</dimen>
     <dimen name="_30dp_fh">80dp</dimen>
@@ -130,7 +130,7 @@
     <dimen name="_10dp_margin_f_g">50dp</dimen>
     <dimen name="_100dp">250dp</dimen>
     <dimen name="_14dp_3">11dp</dimen>
-    <dimen name="_50dp_tablet">65dp</dimen>
+    <dimen name="_50dp_tablet">61dp</dimen>
     <dimen name="_30dp_">75dp</dimen>
     <dimen name="_80dp_fh_">180dp</dimen>
 

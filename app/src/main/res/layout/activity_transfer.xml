@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.reserv.myapplicationeli.views.activities.transfer.TransferActivity">
+    tools:context="com.eligasht.reservation.myapplicationeli.reserv.myapplicationeli.views.activities.transfer.TransferActivity">
     <include
         android:id="@+id/toolbarLayout"
         layout="@layout/toolbar"

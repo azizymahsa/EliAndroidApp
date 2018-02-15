@@ -44,13 +44,13 @@
                 android:textSize="@dimen/_14dp_txtSize" />
 
 
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_degree"
                 android:layoutDirection="rtl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -68,12 +68,12 @@
                 android:textSize="@dimen/_14dp_txtSize" />
 
 
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_hotel_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
 
             <View
                 android:layout_width="match_parent"
@@ -92,12 +92,12 @@
                 android:textSize="@dimen/_14dp_txtSize" />
 
 
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -113,7 +113,7 @@
                 android:textAppearance="@style/IrsansBold"
                 android:textSize="@dimen/_14dp_txtSize" />
 
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_amenity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -133,7 +133,7 @@
                 android:textAppearance="@style/IrsansBold"
                 android:textSize="@dimen/_14dp_txtSize" />
 
-            <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+            <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

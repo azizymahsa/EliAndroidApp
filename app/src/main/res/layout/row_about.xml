@@ -30,7 +30,7 @@
 
 
 
-        <com.reserv.myapplicationeli.tools.JustifiedTextView
+        <com.eligasht.reservation.tools.JustifiedTextView
         android:id="@+id/txtSectionName"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -40,7 +40,7 @@
         android:textColor="#000000"
         />
 
-    <com.reserv.myapplicationeli.tools.JustifiedTextView
+    <com.eligasht.reservation.tools.JustifiedTextView
         android:id="@+id/txtDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

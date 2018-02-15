@@ -6,6 +6,7 @@
     android:orientation="horizontal"
     android:gravity="left"
     android:id="@+id/linear_2"
+    android:visibility="gone"
 
     >
     <LinearLayout

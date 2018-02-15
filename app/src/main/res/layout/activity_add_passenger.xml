@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/pack_room_background"
     android:orientation="vertical"
-    tools:context=".views.activities.AddRoomActivity">
+    tools:context="com.eligasht.reservation.views.activities.AddRoomActivity">
 
 
     <include
@@ -98,14 +98,14 @@
 
         </LinearLayout>
 
-        <com.reserv.myapplicationeli.views.components.SimpleRecycleView
+        <com.eligasht.reservation.views.components.SimpleRecycleView
             android:background="@color/pack_room_background"
             android:id="@+id/rcl_add_passenger"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
 
-        </com.reserv.myapplicationeli.views.components.SimpleRecycleView>
+        </com.eligasht.reservation.views.components.SimpleRecycleView>
 
         <LinearLayout
             android:layout_width="match_parent"

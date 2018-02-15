@@ -9,7 +9,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.reserv.myapplicationeli"
+        applicationId "com.eligasht.reservation"
         manifestPlaceholders = [onesignal_app_id               : "e9eccbf1-b5b1-4be7-a500-29350ca37531",
                                 // Project number pulled from dashboard, local value is ignored.
                                 onesignal_google_project_number: "REMOTE"]
