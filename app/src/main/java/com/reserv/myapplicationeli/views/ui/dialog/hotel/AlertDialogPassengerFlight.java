@@ -2,6 +2,7 @@ package com.reserv.myapplicationeli.views.ui.dialog.hotel;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,7 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
         tvAlert.setTextSize(2,12);
         tvAlert.setLineSpacing(25);
         tvAlert.setTypeFace(typeface);
+        tvAlert.setTextColor(Color.parseColor("#2e3192"));
 
       //  btnOk.setCustomTextFont("fonts/iran_sans_bold.ttf");
        // btnOk.setText(activity.getString(R.string.icon_close));

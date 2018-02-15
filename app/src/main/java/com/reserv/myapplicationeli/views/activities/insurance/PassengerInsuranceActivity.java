@@ -284,7 +284,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         tvPrice = (TextView) findViewById(R.id.tvPrice);
         txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
         txttavalodm = (TextView) findViewById(R.id.txttavalodm);
-        txttavalodm.setOnClickListener(this);
+        //txttavalodm.setOnClickListener(this);
         txtnamem = (EditText) findViewById(R.id.txtnamem);
         imgCount = (TextView) findViewById(R.id.imgCount);
         txtfamilym = (EditText) findViewById(R.id.txtfamilym);
@@ -361,7 +361,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         txt_hom.setOnClickListener(this);
         txtMore.setOnClickListener(this);
         txtSumKhadamat.setOnClickListener(this);
-        txttavalodm.setOnClickListener(this);
+       // txttavalodm.setOnClickListener(this);
         txtnamem.setOnClickListener(this);
         //////////////login user
         try{
@@ -1317,11 +1317,11 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     System.out.println("Exception ::"+e);
                 }
                 break;
-            case R.id.txttavalodm:
+            /*case R.id.txttavalodm:
                 DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString()+"");
                 newFragment2.show(getFragmentManager(), "datePicker");
                 flag = true;
-                break;
+                break;*/
             case  R.id.txtexp_passport:
                 DialogFragment newFragment3 = new DatePickerFragment("");
                 newFragment3.show(getFragmentManager(), "datePicker");
