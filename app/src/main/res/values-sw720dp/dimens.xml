@@ -95,7 +95,7 @@
     <dimen name="_62dp">92dp</dimen>
     <dimen name="_18dp_normal_textSize">30dp</dimen>
     <dimen name="_100dp_normal">140dp</dimen>
-    <dimen name="_200dp_fh">400dp</dimen>
+    <dimen name="_200dp_fh">420dp</dimen>
     <dimen name="_80dp_fh">200dp</dimen>
     <dimen name="_50dp_fh">100dp</dimen>
     <dimen name="_30dp_fh">80dp</dimen>
@@ -131,5 +131,9 @@
     <dimen name="_5dp_margin_f_g">0dp</dimen>
     <dimen name="_10dp_margin_f_g">50dp</dimen>
     <dimen name="_100dp">250dp</dimen>
+    <dimen name="_14dp_3">14dp</dimen>
+    <dimen name="_50dp_tablet">75dp</dimen>
+    <dimen name="_30dp_">75dp</dimen>
+    <dimen name="_80dp_fh_">150dp</dimen>
 
 </resources>

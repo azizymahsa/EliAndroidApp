@@ -361,7 +361,18 @@
                                 android:textSize="@dimen/_12dp_normal_textSize"
                                 android:layout_marginTop="@dimen/_15dp_margin"
                                 android:textAppearance="@style/tahoma"/>
-
+                            <TextView
+                                android:id="@+id/tvBargashtTime1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_20dp"
+                                android:layout_gravity="center|left"
+                                android:layout_alignParentRight="true"
+                                android:text="رفت به استانبول"
+                                android:textColor="@color/text_color_2e"
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:layout_marginTop="@dimen/_15dp_margin"
+                                android:textAppearance="@style/tahoma"
+                                android:layout_marginRight="@dimen/_50dp_tablet"/>
 
                         </RelativeLayout>
 
@@ -446,6 +457,18 @@
                                     android:textSize="@dimen/_12dp_normal_textSize"
                                     android:layout_marginTop="@dimen/_15dp_margin"
                                     android:textAppearance="@style/tahoma"/>
+                                <TextView
+                                    android:id="@+id/tvBargashtTime2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_20dp"
+                                    android:layout_gravity="center|left"
+                                    android:layout_alignParentRight="true"
+                                    android:text="رفت به استانبول"
+                                    android:textColor="@color/text_color_2e"
+                                    android:textSize="@dimen/_12dp_normal_textSize"
+                                    android:layout_marginTop="@dimen/_15dp_margin"
+                                    android:textAppearance="@style/tahoma"
+                                    android:layout_marginRight="@dimen/_50dp_tablet"/>
                             </RelativeLayout>
 
 

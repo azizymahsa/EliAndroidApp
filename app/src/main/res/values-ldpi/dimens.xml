@@ -126,5 +126,9 @@
     <dimen name="_5dp_margin_f_g">5dp</dimen>
     <dimen name="_10dp_margin_f_g">10dp</dimen>
     <dimen name="_100dp">100dp</dimen>
+    <dimen name="_14dp_3">11dp</dimen>
+    <dimen name="_50dp_tablet">0dp</dimen>
+    <dimen name="_30dp_">30dp</dimen>
+    <dimen name="_80dp_fh_">80dp</dimen>
 
 </resources>

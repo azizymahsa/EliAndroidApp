@@ -14,7 +14,7 @@
         android:padding="10dp"
         android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
-        android:text="پیغام"
+        android:text="انتخاب فیلتر"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_txtSize"
         android:gravity="center"

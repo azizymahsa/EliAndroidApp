@@ -31,7 +31,7 @@
             android:id="@+id/ivArrow55"
 
             android:layout_width="@dimen/_50dp_fh"
-            android:layout_height="@dimen/_14dp"
+            android:layout_height="@dimen/_14dp_3"
             android:scaleType="fitXY"
             android:gravity="right"
             android:padding="4dp"
@@ -65,7 +65,7 @@
             android:id="@+id/ivArrow77"
 
             android:layout_width="@dimen/_50dp_fh"
-            android:layout_height="@dimen/_14dp"
+            android:layout_height="@dimen/_14dp_3"
             android:scaleType="fitXY"
             android:gravity="right"
             android:padding="4dp"
@@ -99,7 +99,7 @@
             android:id="@+id/ivArrow66"
 
             android:layout_width="@dimen/_50dp_fh"
-            android:layout_height="@dimen/_14dp"
+            android:layout_height="@dimen/_14dp_3"
             android:scaleType="fitXY"
             android:gravity="right"
             android:padding="4dp"

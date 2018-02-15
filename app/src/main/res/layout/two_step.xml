@@ -31,8 +31,8 @@
         <ImageView
             android:id="@+id/ivArrow11"
 
-            android:layout_width="@dimen/_80dp_fh"
-            android:layout_height="14dp"
+            android:layout_width="@dimen/_80dp_fh_"
+            android:layout_height="@dimen/_12dp"
             android:scaleType="fitXY"
             android:gravity="right"
             android:padding="4dp"
@@ -67,7 +67,7 @@
         <ImageView
             android:id="@+id/ivArrow"
 
-            android:layout_width="@dimen/_80dp_fh"
+            android:layout_width="@dimen/_80dp_fh_"
             android:layout_height="@dimen/_12dp"
             android:scaleType="fitXY"
 

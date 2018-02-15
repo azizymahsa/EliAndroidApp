@@ -140,6 +140,8 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvANRaft3_2_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_2_bargasht);
             holder.tvANRaft3_3_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_3_bargasht);
             holder.tvANRaft3_4_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_4_bargasht);
+            holder.tvBargashtTime2 = (TextView) convertView.findViewById(R.id.tvBargashtTime2);
+            holder.tvBargashtTime1 = (TextView) convertView.findViewById(R.id.tvBargashtTime1);
 
 
             convertView.setTag(holder);
@@ -331,7 +333,8 @@ public class FlightHotelAdapter extends BaseAdapter {
         holder.tvRaftTime.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
         holder.tvBargashtTime.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
 
-
+        holder.tvBargashtTime1.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightArrivalTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightArrivalTime);
+        holder.tvBargashtTime2.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightArrivalTime);
         holder.tvRaftTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationM + "دقیقه");
         holder.tvBargashtTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationM + "دقیقه");
 
@@ -421,7 +424,7 @@ public class FlightHotelAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines,nonStop,ivIsBestseler,txt_lable_hotel;
+        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines,nonStop,ivIsBestseler,txt_lable_hotel,tvBargashtTime2,tvBargashtTime1;
         ImageView ivHotelPic, ivRate, ivLogo;
         CardView cvHotel;
         LinearLayout linear_1, linear_2,linear_3;
