@@ -132,6 +132,6 @@
     <dimen name="_14dp_3">11dp</dimen>
     <dimen name="_50dp_tablet">65dp</dimen>
     <dimen name="_30dp_">75dp</dimen>
-    <dimen name="_80dp_fh_">150dp</dimen>
+    <dimen name="_80dp_fh_">180dp</dimen>
 
 </resources>
