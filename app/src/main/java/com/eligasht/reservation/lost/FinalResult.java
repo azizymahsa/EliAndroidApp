@@ -93,7 +93,7 @@ public class FinalResult extends BaseActivity {
         rlStatus = findViewById(R.id.rlStatus);
         tvStatusFactor = findViewById(R.id.tvStatusFactor);
         tvPeygiri = findViewById(R.id.tvPeygiri);
-       // rlIv = findViewById(R.id.rlIv);
+      rlIv = findViewById(R.id.rlIv);
         btnRPayment = findViewById(R.id.btnRPayment);
         rlLoading = findViewById(R.id.rlLoading);
         ivImage = findViewById(R.id.ivImage);
@@ -154,8 +154,8 @@ public class FinalResult extends BaseActivity {
 
                     if (getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.ContractNo <= 0) {
                         rlStatus.setVisibility(View.VISIBLE);
-                     //   rlIv.setVisibility(View.VISIBLE);
-                      //  rlIv.setBackgroundColor(ContextCompat.getColor(FinalResult.this, R.color.red));
+                       rlIv.setVisibility(View.VISIBLE);
+                       rlIv.setBackgroundColor(ContextCompat.getColor(FinalResult.this, R.color.red));
                         ivImage.setImageResource(R.drawable.close);
                         tvStatusFactor.setText("قرار داد ثبت نشد");
                         drawable.setStroke(1, ContextCompat.getColor(FinalResult.this, R.color.red));
@@ -165,7 +165,7 @@ public class FinalResult extends BaseActivity {
                         tvPaymen.setTextColor(ContextCompat.getColor(FinalResult.this, R.color.red));
                         tvFactor2.setVisibility(View.GONE);
                         cvStatus.setVisibility(View.VISIBLE);
-                       // cv2.setVisibility(View.VISIBLE);
+                     cv2.setVisibility(View.VISIBLE);
                         cv1.setVisibility(View.VISIBLE);
                         tvMail.setVisibility(View.GONE);
 
@@ -173,9 +173,9 @@ public class FinalResult extends BaseActivity {
                         YoYo.with(Techniques.SlideInLeft)
                                 .duration(800)
                                 .playOn(cvStatus);
-                      /*  YoYo.with(Techniques.SlideInLeft)
+                        YoYo.with(Techniques.SlideInLeft)
                                 .duration(800)
-                                .playOn(cv2);*/
+                                .playOn(cv2);
                         YoYo.with(Techniques.SlideInLeft)
                                 .duration(800)
                                 .playOn(cv1);
@@ -229,10 +229,10 @@ public class FinalResult extends BaseActivity {
                         tvPrice.setText(Utility.priceFormat(getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.get(0).PaymentAmount));
                         tvNumberPeygiri.setText(getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.get(0).PaymentSaleReferenceId);
                         ivImage.setImageResource(R.drawable.white_check);
-                        tvMail.setText("مدارک مورد نیاز به ایمیل"+getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPartner.get(0).RqPartner_Email +"ارسال شد");
+                        tvMail.setText("مدارک مورد نیاز به ایمیل "+getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPartner.get(0).RqPartner_Email +" ارسال شد");
                         GradientDrawable  drawable = (GradientDrawable) rlStatus.getBackground();
                         drawable.setStroke(4, ContextCompat.getColor(FinalResult.this, R.color.green));
-                       // rlIv.setBackgroundColor(ContextCompat.getColor(FinalResult.this, R.color.green));
+                      rlIv.setBackgroundColor(ContextCompat.getColor(FinalResult.this, R.color.green));
                         tvStatusFactor.setTextColor( ContextCompat.getColor(FinalResult.this, R.color.green));
                         tvPaymen.setTextColor( ContextCompat.getColor(FinalResult.this, R.color.green));
                         tvPaymen.setText("قرار داد با موفقیت ثبت شد");

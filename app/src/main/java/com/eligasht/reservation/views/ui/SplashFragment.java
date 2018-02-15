@@ -149,7 +149,7 @@ int req=0;
 
                                             }
                                         });*/
-                       req++;
+                                         req++;
 
                                 if (isConnect) {
                                     new GetCommentAsync().execute();
@@ -288,6 +288,11 @@ int req=0;
                         startActivity(new Intent(SplashFragment.this, MainActivity.class));
                         finish();
                     } else {
+                        if (Double.valueOf(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion )>
+                                Double.valueOf(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion)){
+
+
+                        }
 
                         splashDialog.showAlert();
                     }
