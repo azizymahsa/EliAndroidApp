@@ -415,7 +415,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 linearMeliyat.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnBack:
-                if (linear_pish_factor.getVisibility() == View.VISIBLE) {
+               /* if (linear_pish_factor.getVisibility() == View.VISIBLE) {
                     linear_pish_factor.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.VISIBLE);
@@ -490,7 +490,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     LocalBroadcastManager.getInstance(PassengerPackageActivity.this).sendBroadcast(intent2);
 
 
-                }
+                }*/
                 break;
             case R.id.btn_next_partnerInfo:
 
@@ -1206,7 +1206,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     @Override
     public void onBackPressed() {
 
-
+/*
         if (linear_pish_factor.getVisibility() == View.VISIBLE) {
             linear_pish_factor.setVisibility(View.GONE);
             linear_list_khadamat.setVisibility(View.GONE);
@@ -1287,7 +1287,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             LocalBroadcastManager.getInstance(PassengerPackageActivity.this).sendBroadcast(intent);
 
-        }
+        }*/
     }
 
     @Override
@@ -2401,7 +2401,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnamem.setError("لطفا نام را انگلیسی وارد کنید ");
+                            txtnamem.setError("لطفا نام را درست وارد کنید ");
                         }
                 }
                 break;
@@ -2416,7 +2416,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilym.setError("لطفا نام خانوادگی را انگلیسی وارد کنید ");
+                            txtfamilym.setError("لطفا نام خانوادگی را درست وارد کنید ");
                         }
                 }
                 break;
@@ -2481,7 +2481,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                         }else{
                             //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnameP.setError("لطفا نام را فارسی وارد کنید ");
+                            txtnameP.setError("لطفا نام را درست وارد کنید ");
                         }}
                 break;
             case R.id.txtfamilyP:
@@ -2495,7 +2495,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                         }else{
                             //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
+                            txtfamilyP.setError("لطفا نام خانوادگی را درست وارد کنید ");
                         }}
                 break;
 

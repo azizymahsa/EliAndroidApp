@@ -1249,7 +1249,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 break;
 
             case R.id.btnBack:
-                if (linear_pish_factor.getVisibility() == View.VISIBLE) {
+               /* if (linear_pish_factor.getVisibility() == View.VISIBLE) {
                     linear_pish_factor.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.VISIBLE);
 
@@ -1331,35 +1331,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 }
-
-				/*if (linear_pish_factor.getVisibility() == View.VISIBLE) {
-					linear_pish_factor.setVisibility(View.GONE);
-					linear_list_khadamat.setVisibility(View.VISIBLE);
-
-
-					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
-					txtTitle.setText(" افزودن خدمات به سبد خرید");
-				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
-					linear_list_khadamat.setVisibility(View.GONE);
-					linear_mosaferan.setVisibility(View.VISIBLE);
-						//myScrollView.setOnTouchListener(null);
-
-					txtTitle.setText("اطلاعات مسافران");
-					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
-					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
-				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
-					linear_mosaferan.setVisibility(View.GONE);
-					linear_saler.setVisibility(View.VISIBLE);
-					//	myScrollView.setOnTouchListener(null);
-
-
-					txtTitle.setText(" مشخصات خریدار ");
-					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-				}else if(linear_saler.getVisibility() == View.VISIBLE) {
-					finish();
-				}*/
+*/
 
                 break;
             case R.id.btn_next_partnerInfo:
@@ -2130,7 +2102,7 @@ System.out.println("wwwTPRICE:"+gheymatKh);
     @Override
     public void onBackPressed() {
 
-        if (linear_pish_factor.getVisibility() == View.VISIBLE) {
+      /*  if (linear_pish_factor.getVisibility() == View.VISIBLE) {
             linear_pish_factor.setVisibility(View.GONE);
             linear_list_khadamat.setVisibility(View.VISIBLE);
 
@@ -2215,7 +2187,7 @@ System.out.println("wwwTPRICE:"+gheymatKh);
             Intent intent = new Intent("sendFinish");
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-        }
+        }*/
     }
 
     @Override
@@ -2569,7 +2541,7 @@ System.out.println("wwwTPRICE:"+gheymatKh);
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnamem.setError("لطفا نام را انگلیسی وارد کنید ");
+                            txtnamem.setError("لطفا نام را درست وارد کنید ");
                         }
                 }
                 break;
@@ -2584,7 +2556,7 @@ System.out.println("wwwTPRICE:"+gheymatKh);
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilym.setError("لطفا نام خانوادگی را انگلیسی وارد کنید ");
+                            txtfamilym.setError("لطفا نام خانوادگی را درست وارد کنید ");
                         }
                 }
                 break;
@@ -2649,7 +2621,7 @@ System.out.println("wwwTPRICE:"+gheymatKh);
 
                         }else{
                             //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnameP.setError("لطفا نام را فارسی وارد کنید ");
+                            txtnameP.setError("لطفا نام را درست وارد کنید ");
                         }}
                 break;
             case R.id.txtfamilyP:
@@ -2663,7 +2635,7 @@ System.out.println("wwwTPRICE:"+gheymatKh);
 
                         }else{
                             //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
+                            txtfamilyP.setError("لطفا نام خانوادگی را درست وارد کنید ");
                         }}
                 break;
 

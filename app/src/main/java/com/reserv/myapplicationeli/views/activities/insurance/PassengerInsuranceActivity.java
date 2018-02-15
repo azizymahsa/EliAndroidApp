@@ -158,6 +158,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     RelativeLayout rlLoading;
 
     public JSONArray jsonObj = null;
+    public JSONArray jsonObjBDate = null;
     public int sum=0;
     int counter = 2;
     int rooms;
@@ -169,7 +170,20 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
         initViews();
         setupGenderSpinner();
+/////////////////////////Get date list
+       // Prefs.getInt( "BirthDateListInsuranc","");
+        try {//[{"BirthDate":"1951-03-22","PassNo":1},{"BirthDate":"1951-04-10","PassNo":2}]
+            jsonObjBDate = new JSONArray(Prefs.getString("BirthDateListInsuranc",""));
+            Log.e("testroom2", jsonObjBDate.toString());//[{"BirthDate":"1951-03-22","PassNo":1},{"BirthDate":"1951-04-10","PassNo":2}]
+            int countDate=jsonObjBDate.length();
+            String birthDate = jsonObjBDate.getJSONObject(0).getString("BirthDate");
+            ((TextView)findViewById(R.id.txttavalodm)).setText(birthDate+"");
+            System.out.println("BIRTHDATE:"+birthDate);
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //////////////////////////////
         sum = Prefs.getInt("PassCount", 1);
 
         countB = sum;
@@ -1113,7 +1127,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 break;
 
             case R.id.btnBack:
-                if (linear_pish_factor.getVisibility() == View.VISIBLE) {
+               /* if (linear_pish_factor.getVisibility() == View.VISIBLE) {
                     linear_pish_factor.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.VISIBLE);
@@ -1184,7 +1198,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                     LocalBroadcastManager.getInstance(PassengerInsuranceActivity.this).sendBroadcast(intent2);
 
-                }
+                }*/
                 break;
             case R.id.btn_next_partnerInfo:
                 try{
@@ -1450,6 +1464,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                                 db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
                             }else{
+
                                 db.insertData(counter-1,txtTitleCountM.getText().toString(),imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                             }
                             System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
@@ -1473,6 +1488,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                                 txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
                                 imgCount.setText(counter+"");
+
+                                //jsonObjBDate.getJSONObject(0).getString("BirthDate");
                             }
                             else if(countK!=0){
 
@@ -1488,13 +1505,19 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                             System.out.println("counterMosafer:"+getCounter(counter)+counter);
 
-                            counter++;
+
                             sum--;
                             ///pak kardan data haye mosafere ghabli:
                             if(sum>0){
                                 //counter--;
-
-                                txttavalodm.setText("");
+                                try {
+                                    txttavalodm.setText(jsonObjBDate.getJSONObject(counter-1).getString("BirthDate")+"");
+                                    RqPassenger_Birthdate=jsonObjBDate.getJSONObject(counter-1).getString("BirthDate");
+                                    System.out.println("BIRTHDATECounter:"+jsonObjBDate.getJSONObject(counter).getString("BirthDate")+" =="+(counter));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                               // txttavalodm.setText("");
                                 txtnamem.setText("");
                                 txtfamilym.setText("");
                                 txtexp_passport.setText("");
@@ -1503,7 +1526,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                                 btnmard.setChecked(false);
                                 Gensiyat="";
                                 txtnamem.setFocusable(true);
+
                             }
+                            counter++;
                             System.out.println("insert:"+"sum:"+sum);
                         }
                         db.closeDB();
@@ -1745,7 +1770,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     @Override
     public void onBackPressed() {
 
-        if (linear_pish_factor.getVisibility() == View.VISIBLE) {
+       /* if (linear_pish_factor.getVisibility() == View.VISIBLE) {
             linear_pish_factor.setVisibility(View.GONE);
             linear_list_khadamat.setVisibility(View.GONE);
 
@@ -1818,7 +1843,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         } else if (linear_saler.getVisibility() == View.VISIBLE) {
 
             finish();
-        }
+        }*/
     }
 
     @Override
@@ -2021,7 +2046,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnamem.setError("لطفا نام را انگلیسی وارد کنید ");
+                            txtnamem.setError("لطفا نام را درست وارد کنید ");
                         }
                 }
                 break;
@@ -2036,7 +2061,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilym.setError("لطفا نام خانوادگی را انگلیسی وارد کنید ");
+                            txtfamilym.setError("لطفا نام خانوادگی را درست وارد کنید ");
                         }
                 }
                 break;
@@ -2101,7 +2126,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                         }else{
                             //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnameP.setError("لطفا نام را فارسی وارد کنید ");
+                            txtnameP.setError("لطفا نام را درست وارد کنید ");
                         }}
                 break;
             case R.id.txtfamilyP:
@@ -2115,7 +2140,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                         }else{
                             //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
+                            txtfamilyP.setError("لطفا نام خانوادگی را درست وارد کنید ");
                         }
                 }
                 break;
