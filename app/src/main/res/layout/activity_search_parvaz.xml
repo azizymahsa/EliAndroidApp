@@ -95,7 +95,7 @@
 						<mehdi.sakout.fancybuttons.FancyButton
 							android:id="@+id/txticon"
 							android:layout_width="0dp"
-							android:layout_weight="0.2"
+							android:layout_weight="0.1"
 							android:layout_height="wrap_content"
 
 							android:layout_gravity="center"
@@ -105,7 +105,7 @@
 							fancy:fb_defaultColor="@android:color/transparent"
 							fancy:fb_focusColor="@color/focusColor"
 							fancy:fb_radius="6dp"
-							fancy:fb_text="تهرااان "
+							fancy:fb_text=" "
 							fancy:fb_textColor="#FFFFFF"
 							fancy:fb_textSize="@dimen/toolbar_title_16dp" />
 						<TextView
@@ -148,6 +148,7 @@
 						android:textColor="@android:color/white"
 						android:textSize="@dimen/toolbar_desc_12dp"
 						android:maxLines="1"
+                        android:layout_marginTop="@dimen/_10dp_title"
 
 
 						android:ellipsize="end"/>
@@ -179,7 +180,10 @@
 					android:layout_alignParentLeft="true"
 					android:layout_alignParentStart="true"
 					android:layout_alignParentTop="true"
-					android:gravity="left">
+					android:gravity="left"
+					android:paddingLeft="@dimen/_10dp_title"
+
+					>
 
 					<mehdi.sakout.fancybuttons.FancyButton
 						android:id="@+id/btnHome"
@@ -193,7 +197,9 @@
 						fancy:fb_radius="6dp"
 						fancy:fb_text=" "
 						fancy:fb_textColor="#FFFFFF"
-						fancy:fb_textSize="25dp" />
+						fancy:fb_textSize="25dp"
+
+						/>
 
 					<ImageView
 						android:id="@+id/txt_hom"
@@ -201,6 +207,7 @@
 						android:layout_height="@dimen/_30dp"
 						android:background="@drawable/e_logo"
 						android:layout_centerInParent="true"
+
 						/>
 
 
