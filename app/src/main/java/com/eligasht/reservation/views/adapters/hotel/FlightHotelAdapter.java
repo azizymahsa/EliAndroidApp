@@ -323,10 +323,11 @@ public class FlightHotelAdapter extends BaseAdapter {
 
 
         holder.tvRaftTime.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
-        holder.tvBargashtTime.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
+        holder.tvBargashtTime.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime+" "+selectHotelModelArrayList.get(position).getFlights().get(1).FlightNumber);
 
         holder.tvBargashtTime1.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightArrivalTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
-        holder.tvBargashtTime2.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
+        holder.tvBargashtTime2.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime+" "+selectHotelModelArrayList.get(position).getFlights().get(1).FlightNumber);
+
         holder.tvRaftTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationM + "دقیقه");
         holder.tvBargashtTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationM + "دقیقه");
 

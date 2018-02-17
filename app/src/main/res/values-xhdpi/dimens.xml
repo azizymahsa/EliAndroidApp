@@ -91,7 +91,7 @@ values-xhdpi            4.65”  720x1280 xhdpi -->
     <dimen name="_10dp_margin_f_g">10dp</dimen>
     <dimen name="_100dp">100dp</dimen>
     <dimen name="_14dp_3">14dp</dimen>
-    <dimen name="_50dp_tablet">50dp</dimen>
+    <dimen name="_50dp_tablet">5dp</dimen>
     <dimen name="_80dp_fh_">80dp</dimen>
     <dimen name="_14dp_2">12dp</dimen>
 </resources>

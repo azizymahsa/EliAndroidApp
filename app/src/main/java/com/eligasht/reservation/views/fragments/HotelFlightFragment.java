@@ -99,7 +99,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         //listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 
 
-      //  lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
+        //  lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
         tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
         tvMabda = (TextView) rootView.findViewById(R.id.tvMabda);
         tvMabdaEn = (TextView) rootView.findViewById(R.id.tvMabdaEn);
@@ -310,7 +310,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
 
 
-        if (Prefs.getString("bargashtfa", "null").equals("null")||Prefs.getString("bargashtfa", "null")==null) {
+        if (Prefs.getString("bargashtfa", "null").equals("null") || Prefs.getString("bargashtfa", "null") == null) {
             tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
 
         } else {
@@ -479,23 +479,29 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 break;
             case R.id.llRaft:
-                if (geo) {
-                    datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+                try {
+                    if (geo) {
+                        datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                } else {
-                    datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+                    } else {
+                        datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
+                    }
+                } catch (Exception e) {
                 }
 
 
                 break;
             case R.id.llBargasht:
-                if (geo) {
-                    datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+                try {
+                    if (geo) {
+                        datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                } else {
-                    datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+                    } else {
+                        datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
 
+                    }
+                } catch (Exception e) {
                 }
 
 

@@ -394,18 +394,23 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.linear_picker_depart:
-                if (geo){
+                try{
 
-                    datePickerDialogDepartgGregorian.show(getActivity().getFragmentManager(), "DepartureFromGregorian");
+                    if (geo){
 
-                }else{
-                    datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
+                        datePickerDialogDepartgGregorian.show(getActivity().getFragmentManager(), "DepartureFromGregorian");
 
-                }
+                    }else{
+                        datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
+
+                    }
+
+                }catch (Exception e){}
+
                 break;
 
             case R.id.linear_picker_return:
-                if (geo){
+                try{  if (geo){
 
                     datePickerDialogReturnGregorian.show(getActivity().getFragmentManager(), "DepartureToGregorian");
 
@@ -413,7 +418,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 }else{
                     datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DepartureTo");
 
-                }
+                }}catch (Exception e){}
+
 
                 break;
         }

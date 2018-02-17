@@ -31,7 +31,7 @@
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
         android:textSize="@dimen/_12dp_normal_textSize"
-        android:text="آیا مایل به بروزرسانی نرم افزار هستید؟"
+        android:text="نرم افزار الی گشت نیاز به بروز رستانب دارد،آیا مایل به بروزرسانی نرم افزار هستید؟"
         />
 
 

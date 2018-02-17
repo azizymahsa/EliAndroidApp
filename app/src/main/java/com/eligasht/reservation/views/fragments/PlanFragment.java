@@ -404,6 +404,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
 
 
+            datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
 
         }
@@ -597,23 +598,27 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 break;
             // case R.id.tarikh_be_picker:
             case R.id.linear_picker:
-                if (Geo) {
+                try{ if (Geo) {
                     datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
 
                 } else {
                     datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
 
-                }
+                }}catch (Exception e){}
+
+
                 break;
             //case R.id.tarikh_az_picker:
             case R.id.linear_tarikh_az_picker:
-                if (Geo) {
+                try{ if (Geo) {
                     datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
 
                 } else {
                     datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
                 }
+                }catch (Exception e){}
+
 
 
                 break;

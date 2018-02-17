@@ -13,7 +13,7 @@
             android:padding="10dp"
             android:orientation="horizontal"
             android:background="@drawable/alert_header_background"
-            android:text="پیغام"
+            android:text="قطع ارتباط"
             android:textColor="@color/white"
             android:textSize="@dimen/_16dp_txtSize"
             android:gravity="center"
@@ -22,16 +22,30 @@
 
             />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/IconFonts"
+        android:textSize="@dimen/_25dp_normal_iconSize"
+        android:layout_marginTop="10dp"
+        android:text="@string/nowifi"
+        android:textColor="@color/text_color_4d"
+
+
+        />
 
 
     <TextView
         android:id="@+id/tvAlert"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
         android:textSize="@dimen/_12dp_normal_textSize"
         android:text="اینترنت شما قطع و یا از دسترس خارج می باشد، برای استفاده از امکانات این نرم افزار سرویس اینترنت خود را بررسی نمایید!"
+        android:textColor="@color/text_color_4d"
+        android:layout_marginTop="10dp"
         />
 
 

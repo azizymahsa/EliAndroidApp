@@ -84,7 +84,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     private static final String TAG = "UpdateCheck";
     String packageName;
     UpdateAlert updateAlert;
-    int DeviceOSType;
+    String DeviceOSType;
 
     @Override
     public void onReturnValue() {
@@ -245,7 +245,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                 model = null;
                 brand =null;
                 product =null;
-            //    DeviceOSType=null;
+            DeviceOSType=null;
 
             }else{
                 deviceId = Utility.getDeviceID(SplashFragment.this);
@@ -255,7 +255,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                 model = android.os.Build.MODEL;
                 brand = Build.BRAND;
                 product = Build.PRODUCT;
-                DeviceOSType = 2;
+                DeviceOSType = "2";
             }
 
 
@@ -291,6 +291,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
                 } else {
                     Utility.sendTag("Splash", true, true);
+                    Log.e("loginId", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID+"");
                     Prefs.putString("loginId", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID);
                     for (SearchNotes searchNotes : userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes) {
                         if (searchNotes.Section.equals("H")) {
