@@ -100,5 +100,6 @@
     <dimen name="_50dp_tablet">61dp</dimen>
     <dimen name="_80dp_fh_">180dp</dimen>
     <dimen name="_14dp_2">15dp</dimen>
+    <dimen name="_32_normal_flight">40dp</dimen>
 
 </resources>
