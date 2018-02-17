@@ -1120,6 +1120,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", "fa-IR");
+            headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
             headerJson.put("Type", "H");
             headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
             headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
@@ -1132,7 +1133,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
-            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
+
             headerJson.put("identity", identityJson);
 
             jsone.put("request", headerJson);

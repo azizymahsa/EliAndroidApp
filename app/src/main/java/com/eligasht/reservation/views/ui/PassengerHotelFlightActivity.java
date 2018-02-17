@@ -1119,6 +1119,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", "fa-IR");
+            headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
             headerJson.put("Type", "HF");
 
             headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
@@ -1133,7 +1134,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
-            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
+
             headerJson.put("identity", identityJson);
 
             jsone.put("request", headerJson);

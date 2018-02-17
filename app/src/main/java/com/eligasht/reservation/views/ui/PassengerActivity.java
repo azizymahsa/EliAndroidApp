@@ -1358,11 +1358,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			headerJson.put("Culture", "fa-IR");
 			headerJson.put("Type", "F");
+			headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
 
 			identityJson.put("Password", "123qwe!@#QWE");
 			identityJson.put("TermianlId", "Mobile");
 			identityJson.put("UserName", "EligashtMlb");
-			identityJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
+
 			headerJson.put("identity",identityJson);
 
 			jsone.put("request",headerJson);
