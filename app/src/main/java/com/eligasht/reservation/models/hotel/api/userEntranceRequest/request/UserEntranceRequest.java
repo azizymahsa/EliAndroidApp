@@ -13,14 +13,14 @@ public class UserEntranceRequest {
     public final String SDKVersion;
     public final String DeviceName;
     public final String DeviceProduct;
-    public final int AppVersion;
+    public final String AppVersion;
     public final int DeviceOSType ;
     public final String OperatorName;
     public final String Brand;
     public final String Culture;
     public final Identity identity;
 
-    public UserEntranceRequest(String IMEI, String ID, String IMSI, String SDKVersion, String deviceName, String deviceProduct, int appVersion, int deviceOSType, String operatorName, String brand, String culture, Identity identity) {
+    public UserEntranceRequest(String IMEI, String ID, String IMSI, String SDKVersion, String deviceName, String deviceProduct, String appVersion, int deviceOSType, String operatorName, String brand, String culture, Identity identity) {
         this.IMEI = IMEI;
         this.ID = ID;
         this.IMSI = IMSI;

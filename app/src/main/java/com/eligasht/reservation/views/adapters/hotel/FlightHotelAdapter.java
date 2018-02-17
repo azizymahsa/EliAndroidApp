@@ -39,16 +39,15 @@ public class FlightHotelAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private ViewHolder holder;
     ImageLoader imageLoader;
-    Context context;
     Activity activity;
 
-    public FlightHotelAdapter(ArrayList<SelectFlightHotelModel> selectHotelModelArrayList, Context context, Activity activity) {
+    public FlightHotelAdapter(ArrayList<SelectFlightHotelModel> selectHotelModelArrayList, Activity activity) {
         this.activity = activity;
         this.selectHotelModelArrayList = selectHotelModelArrayList;
-        this.context = context;
-        inflater = LayoutInflater.from(context);
+        this.activity = activity;
+        inflater = LayoutInflater.from(activity);
         imageLoader = ImageLoader.getInstance();
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(activity));
 
 
     }

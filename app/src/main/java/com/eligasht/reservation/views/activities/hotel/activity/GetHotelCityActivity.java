@@ -47,6 +47,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 
 public class GetHotelCityActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -57,6 +59,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
     public ListView listCityHotel;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
+    FancyButton btnBack;
 
     GetHotelCityAdapter mAdapter;
     private EditText searchtxt;
@@ -67,6 +70,10 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_city_hotel);
         avLoadingIndicatorView = findViewById(R.id.avi);
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnBack.setText(getString(R.string.search_back_right));
+        btnBack.setOnClickListener(this);
 
         //////////////////show recent
         ListView listAirPort = (ListView) findViewById(R.id.listCityHotel);
@@ -339,7 +346,11 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
-
+        switch (v.getId()){
+            case R.id.btnBack:
+                finish();
+                break;
+        }
     }
 
     @Override

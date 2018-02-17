@@ -5,7 +5,6 @@
     //  values-hdpi             3.7” 480x854 hdpi-->
 
 
-    <dimen name="circle_60dp">60dp</dimen>
     <dimen name="_12dp">10dp</dimen>
     <dimen name="_25dp">25dp</dimen>
     <dimen name="_10dp_margin">10dp</dimen>
@@ -19,26 +18,17 @@
     <dimen name="text_size">9dp</dimen>
     <dimen name="_aboutdp">12dp</dimen>
     <dimen name="_14dp">18dp</dimen>
-    <dimen name="_260">260dp</dimen>
     <dimen name="_20dp">20dp</dimen>
     <dimen name="_11dp">11dp</dimen>
     <dimen name="_50dp">50dip</dimen>
-    <dimen name="_135">135dp</dimen>
     <dimen name="_10dp">10dp</dimen>
-    <dimen name="_32dp">25dp</dimen>
-    <dimen name="_27dp">27dp</dimen>
 
 
     <dimen name="_200dp">200dp</dimen>
     <dimen name="_10dp_marging">10dp</dimen>
-    <dimen name="_12dp_marginTop">12dp</dimen>
     <dimen name="_14dp_txtSize">14dp</dimen>
-    <dimen name="_2dp_padding">2dp</dimen>
     <dimen name="_2dp_margin">2dp</dimen>
-    <dimen name="_18dp_margin">18dp</dimen>
-    <dimen name="_4dp_margin">4dp</dimen>
     <dimen name="_15dp_margin">20dp</dimen>
-    <dimen name="_14dp_padding">14dp</dimen>
     <dimen name="_5sp_padding">5dp</dimen>
     <dimen name="_10dp_padding">10dp</dimen>
     <dimen name="_1dp_width">1dp</dimen>
@@ -47,23 +37,10 @@
     <dimen name="_5dp_margin">5dp</dimen>
     <dimen name="_10dp_textSize">10dp</dimen>
     <dimen name="_60dp_hight">60dp</dimen>
-    <dimen name="_50dp_width">50dp</dimen>
-    <dimen name="_6dp_radius">6dp</dimen>
     <dimen name="_25dp_txtSize">25dp</dimen>
     <dimen name="_12dp_txtSize">14dp</dimen>
-    <dimen name="_44dp_margin">44dp</dimen>
-    <dimen name="_1dp_height">1dp</dimen>
-    <dimen name="_44dp_height">44dp</dimen>
-    <dimen name="_20dp_width">20dp</dimen>
-    <dimen name="_20dp_height">20dp</dimen>
-    <dimen name="_3dp_padding">3dp</dimen>
-    <dimen name="_25dp_width">25dp</dimen>
-    <dimen name="_25dp_height">25dp</dimen>
     <dimen name="_16dp_txtSize">16dp</dimen>
     <dimen name="text_message">14dp</dimen>
-    <dimen name="_17dp_textsize">17dp</dimen>
-    <dimen name="_32Plan">32dp</dimen>
-    <dimen name="_25dp_margin">25dp</dimen>
     <dimen name="_21dp_margin">21dp</dimen>
     <dimen name="_40dp">40dp</dimen>
     <dimen name="_30dp">30dp</dimen>
@@ -86,21 +63,14 @@
     <dimen name="_180dp">180dp</dimen>
     <dimen name="_13dp_normal_textSize">13dp</dimen>
     <dimen name="_62dp">62dp</dimen>
-    <dimen name="_18dp_normal_textSize">18dp</dimen>
     <dimen name="_100dp_normal">100dp</dimen>
     <dimen name="_200dp_fh">200dp</dimen>
-    <dimen name="_80dp_fh">80dp</dimen>
     <dimen name="_50dp_fh">50dp</dimen>
     <dimen name="_30dp_fh">30dp</dimen>
     <dimen name="_200dp_p">200dp</dimen>
     <dimen name="_20dp_margin_p">20dp</dimen>
-    <dimen name="_7dp_margin_p">7dp</dimen>
     <dimen name="_50dp_about">50dp</dimen>
     <dimen name="_250dp_about">250dp</dimen>
-    <dimen name="_110Plandp">110dp</dimen>
-    <dimen name="_125dpF">122dp</dimen>
-    <dimen name="_15dpF">15dip</dimen>
-    <dimen name="_20dpF">20dp</dimen>
     <dimen name="_30dp_f_h">30dp</dimen>
     <dimen name="_210dp">210dp</dimen>
     <dimen name="_80dp_ci">80dp</dimen>
@@ -115,17 +85,15 @@
     <dimen name="_28dp_f">28dp</dimen>
     <dimen name="_40dp_f">40dp</dimen>
     <dimen name="_30dp_margin">30dp</dimen>
-    <dimen name="_18dp_one">18dp</dimen>
     <dimen name="_18dp_ff">18dp</dimen>
     <dimen name="_400dp">400dp</dimen>
-    <dimen name="_10dp_margin_123">10dp</dimen>
     <dimen name="_35dp">35dp</dimen>
     <dimen name="_5dp_margin_f_g">5dp</dimen>
     <dimen name="_10dp_margin_f_g">10dp</dimen>
     <dimen name="_100dp">100dp</dimen>
     <dimen name="_14dp_3">11dp</dimen>
     <dimen name="_50dp_tablet">0dp</dimen>
-    <dimen name="_30dp_">30dp</dimen>
     <dimen name="_80dp_fh_">80dp</dimen>
+    <dimen name="_14dp_2">12dp</dimen>
 
 </resources>

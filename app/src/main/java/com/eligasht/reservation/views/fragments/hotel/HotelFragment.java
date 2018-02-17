@@ -197,6 +197,28 @@ public class HotelFragment extends Fragment implements OnClickListener,
             @Override
             public void onCalendarChanged(boolean isGregorian) {
                 datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+            /*    Log.e("caltes", datePickerDialog.getSelectedDay().getYear()+"");
+
+
+
+                String str_date = datePickerDialog.getSelectedDay().getYear() + "/" + (datePickerDialog.getSelectedDay().getMonth()) + "/" + datePickerDialog.getSelectedDay().getDay();//2018-01-16
+                DateFormat formatter;
+                Date date;
+                formatter = new SimpleDateFormat("yyyy/MM/dd");
+                try {
+                    date = (Date) formatter.parse(str_date);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    datePickerDialogGregorian1.initialize(HotelFragment.this,cal.getTime().getYear(),cal.getTime().getMonth(),cal.getTime().getDay());
+                    Log.e("caltes1", cal.getTime().getYear()+"");
+                    Log.e("caltes2", cal.getTime().getMonth()+"");
+                    Log.e("caltes3", cal.getTime().getDay()+"");
+
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }*/
+
             }
         });
 
@@ -665,6 +687,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
         Intent intent = new Intent("sendStartTimer");
         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
     }
+
+
 
     //Gregorian==============================================Gregorian=============================Gregorian
 

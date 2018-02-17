@@ -47,6 +47,8 @@ import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 
 public class GetAirportMabdaActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -61,12 +63,17 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     GetAirPortMabdaAdapter mAdapter;
     private EditText searchtxt;
     AVLoadingIndicatorView avi;
+    FancyButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_airport);
         avi = findViewById(R.id.avi);
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnBack.setText(getString(R.string.search_back_right));
+        btnBack.setOnClickListener(this);
 
         //////////////////show recent
         ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
@@ -400,6 +407,11 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnBack:
+                finish();
+                break;
+        }
         // TODO Auto-generated method stub
 
     }

@@ -31,7 +31,7 @@
             android:id="@+id/ivArrow11"
 
             android:layout_width="@dimen/_80dp_fh_"
-            android:layout_height="@dimen/_14dp"
+            android:layout_height="@dimen/_14dp_2"
             android:scaleType="fitXY"
 
 
@@ -67,7 +67,7 @@
             android:id="@+id/ivArrow"
 
             android:layout_width="@dimen/_80dp_fh_"
-            android:layout_height="@dimen/_14dp"
+            android:layout_height="@dimen/_14dp_2"
             android:scaleType="fitXY"
 
 

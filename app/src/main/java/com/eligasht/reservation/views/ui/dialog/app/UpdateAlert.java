@@ -21,7 +21,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
  * Created by Reza.nejati on 1/27/2018.
  */
 
-public class UpdateAlert implements View.OnClickListener {
+public class UpdateAlert  {
     android.app.AlertDialog dialog;
     TextView tvAlert;
     View dialogView;
@@ -36,10 +36,9 @@ public class UpdateAlert implements View.OnClickListener {
     SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1, hotel, boutique, apartment, resort;
 
 
-    public UpdateAlert(final Activity activity, final String packageName, final boolean force) {
+    public UpdateAlert(final Activity activity, final String packageName) {
         this.activity = activity;
         this.packageName = packageName;
-        this.force = force;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_update, null);
@@ -51,16 +50,8 @@ public class UpdateAlert implements View.OnClickListener {
 
         dialog = builder.create();
         dialog.setCancelable(false);
-        try {
-            dialog.show();
-
-        }catch (Exception e){}
-        if (force){
-            dialog.setCancelable(true);
-            btnExit.setVisibility(View.GONE);
 
 
-        }
         btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnExit.setCustomTextFont("fonts/iran_sans_normal.ttf");
 /*        btnOk.setOnClickListener(this);
@@ -83,42 +74,45 @@ public class UpdateAlert implements View.OnClickListener {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse("bazaar://details?id=" + packageName));
                     intent.setPackage("com.farsitel.bazaar");
-                    Log.e("teeest",  packageName);
                     activity.startActivity(intent);
                 } catch (Exception e) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + packageName));
+                        activity.startActivity(intent);
+                    }catch (Exception e2){}
+
 
                 }
             }
         });
     }
+    public void show(){
+        try {
+            dialog.show();
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnOk:
-                //dialog.cancel();
-                try {
+        }catch (Exception e){}
+    }
 
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("bazaar://details?id=" + packageName));
-                    intent.setPackage("com.farsitel.bazaar");
-                Log.e("teeest",  packageName);
-                    activity.startActivity(intent);
-                } catch (Exception e) {
+    public void cancel(){
+        try {
+            dialog.cancel();
 
-                }
+        }catch (Exception e){}
+    }
+    public void isForce(boolean force){
 
-                break;
-            case R.id.btnExit:
-                dialog.cancel();
-                if (!force){
-                    activity.startActivity(new Intent(activity, MainActivity.class));
-                    activity.finish();
-                }
+        if (force){
 
-                break;
+            dialog.setCancelable(false);
+            btnExit.setVisibility(View.GONE);
+            tvAlert.setText("نسخه نرم افزار شما پشتیبانی نمی شود، لطفا نرم افزار خود را بروز رسانی کنید.");
+            btnOk.setText("بروز رسانی");
+
 
         }
     }
+
+
 }
 

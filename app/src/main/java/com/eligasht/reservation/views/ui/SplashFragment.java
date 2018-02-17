@@ -16,13 +16,17 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.eligasht.reservation.api.VersionChecker;
 import com.eligasht.reservation.models.hotel.api.userEntranceRequest.request.UserEntranceRequest;
+import com.eligasht.reservation.tools.Version;
 import com.eligasht.reservation.views.ui.dialog.app.UpdateAlert;
 import com.farsitel.bazaar.IUpdateCheckService;
 import com.google.gson.Gson;
@@ -48,6 +52,7 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -70,11 +75,16 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     private BroadcastReceiver sendDetailFinish;
     InternetAlert internetAlert;
     boolean isConnect;
-    boolean isStop = false;
+    boolean isUpdate = false;
+    boolean isForceUpdate = false;
+    boolean isGooglePlay = false;
+    boolean isBazar = false;
     int req = 0;
     SplashDialog splashDialog;
     private static final String TAG = "UpdateCheck";
     String packageName;
+    UpdateAlert updateAlert;
+    int DeviceOSType;
 
     @Override
     public void onReturnValue() {
@@ -101,8 +111,40 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
         }
-
         splashDialog = new SplashDialog(SplashFragment.this, this);
+        final PackageInfo pInfo;
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            updateAlert = new UpdateAlert(SplashFragment.this, pInfo.packageName);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+
+/*
+        try {
+         String ver=   new VersionChecker().execute().get();
+         if (ver!=null||!TextUtils.isEmpty(ver)){
+             Version a = new Version(BuildConfig.VERSION_NAME);
+             Version b = new Version(ver);
+             if (a.compareTo(b)==-1){
+                 isGooglePlay=true;
+                 isStop=true;
+                 Log.e("teeeest123",  a.compareTo(b)+"");
+             }
+         }
+
+
+
+
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }*/
 
 
         internetAlert = new InternetAlert(SplashFragment.this);
@@ -129,38 +171,10 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         .setPermissionListener(new PermissionListener() {
                             @Override
                             public void onPermissionGranted() {
-
-                       /*         ReactiveNetwork.observeNetworkConnectivity(SplashFragment.this)
-                                        .subscribeOn(Schedulers.io())
-                                        .observeOn(AndroidSchedulers.mainThread())
-                                        .subscribe(new Consumer<Connectivity>() {
-                                            @Override
-                                            public void accept(final Connectivity connectivity) {
-                                                Log.e("testt", connectivity.getState().toString());
-                                                if (connectivity.getState().toString().equals("DISCONNECTED")) {
-                                                    try{internetAlert.isShow();}
-                                                    catch (Exception e){}
-
-
-
-                                                } else if (connectivity.getState().toString().equals("CONNECTED")){
-                                                    try{    internetAlert.isCancel();
-                                                        new GetCommentAsync().execute();}
-                                                    catch (Exception e){}
-
-
-                                                }
-
-                                            }
-                                        });*/
                                 req++;
-
                                 if (isConnect) {
                                     new GetCommentAsync().execute();
-
-
                                 } else {
-
                                     internetAlert.isShow();
                                 }
                             }
@@ -223,24 +237,39 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
             internetAlert.isCancel();
 
             avi.setVisibility(View.VISIBLE);
+            if(!Prefs.getString("loginId","null").equals("null")){
+                deviceId = null;
+                deviceSubscriberID = null;
+                operator = null;
+                sdkVersion =null;
+                model = null;
+                brand =null;
+                product =null;
+            //    DeviceOSType=null;
 
-            deviceId = Utility.getDeviceID(SplashFragment.this);
-            deviceSubscriberID = Utility.getSubscriberID(SplashFragment.this);
-            operator = Utility.getMyOperator(SplashFragment.this);
-            sdkVersion = android.os.Build.VERSION.SDK_INT + "";
-            model = android.os.Build.MODEL;
-            brand = Build.BRAND;
-            product = Build.PRODUCT;
+            }else{
+                deviceId = Utility.getDeviceID(SplashFragment.this);
+                deviceSubscriberID = Utility.getSubscriberID(SplashFragment.this);
+                operator = Utility.getMyOperator(SplashFragment.this);
+                sdkVersion = android.os.Build.VERSION.SDK_INT + "";
+                model = android.os.Build.MODEL;
+                brand = Build.BRAND;
+                product = Build.PRODUCT;
+                DeviceOSType = 2;
+            }
+
+
+
         }
 
         @Override
         protected String doInBackground(String... params) {
             try {
                 userEntranceRequest = new com.eligasht.reservation.api.app.UserEntranceRequest(new UserRequest
-                        (new UserEntranceRequest(deviceId, Prefs.getString("loginId", null), deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_CODE, 2, operator, brand, "fa-IR", new Identity("EligashtMlb",
+                        (new UserEntranceRequest(deviceId, Prefs.getString("loginId", null), deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_NAME, DeviceOSType, operator, brand, "fa-IR", new Identity("EligashtMlb",
                                 "123qwe!@#QWE", "Mobile"))));
                 Log.e("ggg", new Gson().toJson(new UserRequest
-                        (new UserEntranceRequest(deviceId, Prefs.getString("loginId", null), deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_CODE, 2, operator, brand, "fa-IR", new Identity("EligashtMlb",
+                        (new UserEntranceRequest(deviceId, Prefs.getString("loginId", null), deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_NAME, DeviceOSType, operator, brand, "fa-IR", new Identity("EligashtMlb",
                                 "123qwe!@#QWE", "Mobile")))));
 
             } catch (Exception e) {
@@ -254,84 +283,117 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
             //  new InitUi().Loading(rlLoading,rlRoot,false);
             avi.setVisibility(View.GONE);
 
-            //    try {
+            try {
 
-            if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors != null) {
-                splashDialog.seeText(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors.get(0).getDetailedMessage());
-                splashDialog.showAlert();
-
-            } else {
-
-
-            /*    if (Float.valueOf(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion) > Float.valueOf(BuildConfig.VERSION_NAME)) {
-                    Log.e("test", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion);
-                }else{
-                    Log.e("test2", BuildConfig.VERSION_NAME);
-
-                }*/
-
-//                Log.e("onon", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter + "");
-                Utility.sendTag("Splash", true, true);
-                Prefs.putString("loginId", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID);
-                for (SearchNotes searchNotes : userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes) {
-                    if (searchNotes.Section.equals("H")) {
-                        Prefs.putString("H", new Gson().toJson(searchNotes.Notes));
-
-                    }
-
-                    if (searchNotes.Section.equals("F")) {
-                        Prefs.putString("F", new Gson().toJson(searchNotes.Notes));
-
-                    }
-                    if (searchNotes.Section.equals("FH")) {
-                        Prefs.putString("FH", new Gson().toJson(searchNotes.Notes));
-
-                    }
-                    if (searchNotes.Section.equals("P")) {
-                        Prefs.putString("P", new Gson().toJson(searchNotes.Notes));
-
-                    }
-
-                }
-                if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
-                    if (!isStop) {
-                        startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                        finish();
-                    }else{
-                        new UpdateAlert(SplashFragment.this,packageName, false);
-
-
-                    }
-
+                if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors != null) {
+                    splashDialog.seeText(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors.get(0).getDetailedMessage());
+                    splashDialog.showAlert();
 
                 } else {
-                    try {
-                        if (Integer.valueOf(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion) > Integer.valueOf(BuildConfig.VERSION_CODE)) {
-                            new UpdateAlert(SplashFragment.this, packageName, true);
+                    Utility.sendTag("Splash", true, true);
+                    Prefs.putString("loginId", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID);
+                    for (SearchNotes searchNotes : userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes) {
+                        if (searchNotes.Section.equals("H")) {
+                            ArrayList<String> strings = new ArrayList<>();
+
+                            for (int i = 0; i < 10; i++) {
+                                for (String s : searchNotes.Notes) {
+                                    strings.add(new String(s));
+                                }
+
+                            }
+
+
+                            Prefs.putString("H", new Gson().toJson(strings));
 
                         }
-                    } catch (Exception e) {
-                        splashDialog.showAlert();
-                    }
 
+                        if (searchNotes.Section.equals("F")) {
+                            ArrayList<String> strings = new ArrayList<>();
+
+                            for (int i = 0; i < 10; i++) {
+                                for (String s : searchNotes.Notes) {
+                                    strings.add(new String(s));
+                                }
+
+                            }
+                            Prefs.putString("F", new Gson().toJson(strings));
+
+                        }
+                        if (searchNotes.Section.equals("FH")) {
+                            ArrayList<String> strings = new ArrayList<>();
+
+                            for (int i = 0; i < 10; i++) {
+                                for (String s : searchNotes.Notes) {
+                                    strings.add(new String(s));
+                                }
+
+                            }
+                            Prefs.putString("FH", new Gson().toJson(strings));
+
+                        }
+                        if (searchNotes.Section.equals("P")) {
+                            ArrayList<String> strings = new ArrayList<>();
+
+                            for (int i = 0; i < 10; i++) {
+                                for (String s : searchNotes.Notes) {
+                                    strings.add(new String(s));
+                                }
+
+                            }
+                            Prefs.putString("P", new Gson().toJson(strings));
+
+                        }
+
+                    }
+                    if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
+                        if (!isUpdate) {
+                            startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                            finish();
+                        } else {
+                            updateAlert.show();
+                            updateAlert.isForce(false);
+
+
+                        }
+
+
+                    } else {
+                        try {
+                            Version a = new Version(BuildConfig.VERSION_NAME);
+                            Version b = new Version(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion);
+
+                            if (a.compareTo(b) == -1) {
+
+                                updateAlert.show();
+                                updateAlert.isForce(true);
+                            }
+
+
+                        } catch (Exception e) {
+                            splashDialog.showAlert();
+                        }
+
+
+                    }
 
                 }
 
-            }
 
-
-
-/*
             } catch (Exception e) {
-                //   Toast.makeText(SplashFragment.this, "ارتباط با سرور مقدور نمی باشد", Toast.LENGTH_SHORT).show();
 
                 splashDialog.showAlert();
 
 
-            }*/
+            }
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 
     @Override
     protected void attachBaseContext(Context context) {
@@ -379,12 +441,10 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
             try {
                 final PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
                 long vCode = service.getVersionCode(pInfo.packageName);
-                packageName = pInfo.packageName;
-                Log.e(TAG, pInfo.packageName+"12");
+
 
                 if (vCode != -1) {
-                    isStop = true;
-                    Log.e(TAG, pInfo.packageName);
+                    isUpdate = true;
 
                 }
 

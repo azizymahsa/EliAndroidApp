@@ -94,7 +94,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     RelativeLayout rlLoading, rlRoot;
     TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort,tvLoading;
     Window window;
-    RelativeLayout elNotFound;
+    RelativeLayout elNotFound,rlEr;
     FancyButton btnNextDays, btnLastDays;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -140,13 +140,14 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         btnHome.setOnClickListener(this);
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
+        rlEr = findViewById(R.id.rlEr);
         // ivImage = findViewById(R.id.ivImage);
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
         // ivImage.setImageResource(R.drawable.flight_h);
         llBottom.setOnClickListener(this);
         llSort.setOnClickListener(this);
-        adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, this);
+        adapter = new FlightHotelAdapter(selectHotelModelArrayList, this);
         list.setAdapter(adapter);
         Utility.loadingText(tvLoading,Prefs.getString("FH",""));
 
@@ -406,6 +407,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         elNotFound.setVisibility(View.GONE);
         list.setVisibility(View.VISIBLE);
         btnOk.setVisibility(View.VISIBLE);
+        rlEr.setVisibility(View.VISIBLE);
         boolean remove = false;
 
         this.filterModels = type;
@@ -418,7 +420,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         selectHotelModelArrayListFilter = new ArrayList<>();
         selectHotelModelArrayListFilter1 = new ArrayList<>();
 
-
         for (FilterModel filterModel : filterModels) {
 
             Log.e("test", filterModel.isStar3() + "===" + filterModel.isRemove());
@@ -427,9 +428,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             top_filter(filterModel, filterHotelTypeModels);
             star_filter(filterModel, filterHotelTypeModels);
             facilities_filter(filterHotelFacilitiesModels);
-            price_filter(filterHotelPriceModel);
             location_filter(filterHotelLocationModels);
-
+            price_filter(filterHotelPriceModel);
 
             if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4()
                     || filterModel.isStar5()) && (filterModel.isBestSeler() || filterModel.isBestOff())) {
@@ -437,7 +437,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 isBestOff_and_isStar(filterModel);
                 isBestSell_and_isStar(filterModel);
                 type_location_filter(filterHotelTypeModels, 0, false, false);
-
                 //todo change this
 
                 selectHotelModelArrayListFilter = new ArrayList<>();
@@ -450,7 +449,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
                     type_location_filter(filterHotelTypeModels, 0, false, false);
 
-                }
+                }/*else
 
 
                 if (!(filterModel.isBestSeler() || filterModel.isBestOff())) {
@@ -458,7 +457,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     type_location_filter(filterHotelTypeModels, 0, false, false);
 
                 }
-
+*/
             }
 
 
@@ -534,7 +533,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
-                adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
+                adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this);
                 tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
                 adapter.notifyDataSetChanged();
                 selectHotelModelArrayListFilter.clear();
@@ -552,7 +551,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
 
-            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
+            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this);
             tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
 
 
@@ -560,7 +559,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
         } else {
             isFilter = true;
-            adapter = new FlightHotelAdapter(selectHotelModelArrayListFilter, SelectHotelFlightActivity.this, SelectHotelFlightActivity.this);
+            adapter = new FlightHotelAdapter(selectHotelModelArrayListFilter, SelectHotelFlightActivity.this);
             tvCount.setText("(" + selectHotelModelArrayListFilter.size() + "مورد یافت شد" + ")");
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
@@ -571,6 +570,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     tvAlert.setText("نتیجه ای برای فیلتر شما حاصل نشد!");
                     list.setVisibility(View.GONE);
                     btnOk.setVisibility(View.GONE);
+                    rlEr.setVisibility(View.GONE);
 
                 }
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
@@ -685,6 +685,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 }
             }
         } else if (stars) {
+            ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
 
 
             for (FilterModel filterModel : filterModels) {
@@ -692,7 +693,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         || filterModel.isStar5())) {
 
 
-                    ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
                     for (int i = 0; i < filterHotelTypeModels.size(); i++) {
                         if (filterHotelTypeModels.get(i).isCheck()) {
                             for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
@@ -717,11 +717,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
                     }
-                    selectHotelModelArrayListFilter.clear();
-                    selectHotelModelArrayListFilter = selectHotelModels;
+
                 }
             }
-
+            selectHotelModelArrayListFilter.clear();
+            selectHotelModelArrayListFilter = selectHotelModels;
 
         } else if (isBestseler) {
             ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
@@ -1605,10 +1605,18 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
-                tvAlert.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+                if (!Utility.isNetworkAvailable(SelectHotelFlightActivity.this)){
 
+                    tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+
+                }else{
+
+                    tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
+
+                }
                 list.setVisibility(View.GONE);
                 btnOk.setVisibility(View.VISIBLE);
+                rlEr.setVisibility(View.VISIBLE);
 
             }
             //dakheli khareji

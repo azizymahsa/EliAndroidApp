@@ -23,13 +23,7 @@
         android:visibility="gone"
         />
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gif"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
 
-        />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"

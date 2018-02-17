@@ -3,75 +3,15 @@
 
     <!--  <string name="app_name">Slider Menu</string> -->
 
-    <string name="hello_world">Hello world!</string>
-    <string name="drawer_open">Slider Menu Opened</string>
-    <string name="drawer_close">Slider Menu Closed</string>
     <!--  <option menu> -->
-    <string name="option_kala">بروزرسانی کالا :\n 1394/11/10 </string>
-    <string name="option_mojudi">بروزرسانی موجودی :\n 1394/11/10 </string>
     <!-- Nav Drawer Menu Items -->
-    <string-array name="nav_drawer_items">
-        <item>خرید های من</item>
-        <item>لیست هتل</item>
-        <item>شارژ اعتبار</item>
-        <item>مدیریت مالی</item>
-        <item>استرداد بلیط</item>
-        <item>قوانین و مقررات</item>
-        <item>تماس با ما </item>
-        <item>خروج از حساب کاربری</item>
-        <!--  <item >راهنما</item>
-         <item >امنیت</item>
-         <item >پروفایل</item>
-         <item >غیرفعال سازی</item>
-         <item > عنوان</item> -->
-    </string-array>
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
-    <array name="nav_drawer_icons">
-        <item>@drawable/ic_home</item>
-        <item>@drawable/sefaresh_giri</item>
-        <item>@drawable/darkhast_no</item>
-        <item>@drawable/cartabl</item>
-        <item>@drawable/gozareshat</item>
-        <item>@drawable/naghshe</item>
-        <item>@drawable/namayesh_moshtari</item>
-        <item>@drawable/modiriyat_payam</item>
-        <!--  <item>@drawable/rahnama</item>
-         <item>@drawable/amniyat</item>
-         <item>@drawable/profile</item>
-         <item>@drawable/gheyrefaal</item>
-         <item>@drawable/transparent</item> -->
-    </array>
 
     <!-- Content Description -->
-    <string name="desc_list_item_icon">Item Icon</string>
     <!-- pakhsh////////////////////////////////////////////////////////////////////////////////////////// -->
-    <string name="LatinAppName">Pakhsh_New</string>
     <string name="app_name">Eligasht</string>
-    <string name="updating">در حال بروز رسانی...</string>
-    <string name="download">دانلود</string>
-    <string name="updating_connecting">در حال ارتباط با سرور</string>
-    <string name="updating_connected"> ارتباط با موفقیت برقرار شد</string>
-    <string name="updating_networkUnAvailable">شبکه قطع است</string>
-    <string name="updating_serverUnAvailable">ارتباط با سرور برقرار نشد</string>
-    <string name="updating_receiveData">در حال دریافت اطلاعات</string>
-    <string name="updating_finishedSuccessful">بروزرسانی با موفقیت به پایان رسید</string>
-    <string name="updating_finishedSuccessfulJavayez">دریافت جوایز درخواست با موفقیت به پایان رسید</string>
-    <string name="updating_finishFailedUpdating">متاسفانه بروزرسانی با خطا مواجه شده است. </string>
-    <string name="updating_finishFailedSending">متاسفانه ارسال اطلاعات با خطا مواجه شده است. </string>
-    <string name="updating_updateNeeded">نسخه جدید نرم افزار موجود است. لطفا ابتدا نرم افزار را بروزرسانی فرمائید </string>
-    <string name="send_SMS_Sending">در حال ارسال پیامک درخواست فعال سازی</string>
-    <string name="send_SMS_Sent">پیامک درخواست فعال سازی ارسال شد</string>
-    <string name="send_SMS_Failed">متاسفانه ارسال پیامک درخواست فعال سازی با خطا مواجه شد</string>
-    <string name="send_activation_checking">در حال بررسی وضعیت فعال سازی</string>
-    <string name="sending_fetching">در حال بررسی درخواست ها</string>
-    <string name="sending_data">در حال ارسال اطلاعات</string>
-    <string name="activation_checking_failed">متاسفانه فعال سازی با مشکل مواجه شده است</string>
-    <string name="activation_successfull">نرم افزار شما با موفقیت فعال شد</string>
-    <string name="sending_successfullyFinished">اطلاعات با موفقیت ارسال شد</string>
-    <string name="sending_sendRequests">در حال ارسال اطلاعات</string>
-    <string name="Cancel">انصراف</string>
     <string name="accept">تایید</string>
     <string name="condition">وب‌سایت الی گشت طبق قوانین جمهوری اسلامی ایران، قوانین جرایم اینترنتی و مجموعه‌ی قوانین و مقررات تجارت الکترونیکی فعالیت می‌کند.
 خدمات و محتوای عرضه شده توسط وب‌سایت الی گشت جهت استفاده‌ در این وب‌سایت تولید می‌شوند. هر گونه سوءاستفاده از اطلاعات، متن‌ها، عکس‌ها، نقشه‌ها، طرح‌ها، لوگو و... از این وب‌سایت پیگرد قانونی دارد و هیچ فرد حقیقی یا حقوقی اجازه‌ی سوء استفاده از مطالب این وب‌سایت را ندارد. ذکر مطالب این وب‌سایت در اینترنت، تنها با ذکر نام و نشانی اینترنتی وب‌سایت الی گشت و لینک به مطلب ذکر شده مجاز است و در رسانه‌های کاغذی، با کسب اجازه‌ی کتبی از مسئولان وب‌سایت.
@@ -99,37 +39,10 @@
 لازم به ذکر است که اگر پرواز رفت و برگشت از دو ایرلاین مختلف باشند، در صورت لغو پرواز رفت یا انصراف مسافر از پرواز به دلیل تاخیر بیش از دو ساعت، ممکن است لغو پرواز برگشت شامل جریمه‌ی کنسلی شود.
 خریدار حق تغییر قیمت بلیط، دست بردن در مفاد بلیط به هر طریق و هر شکل، و یا فروش مجدد بلیط با قیمتی بالاتر از مبلغ ذکر شده را ندارد.
 طبق قوانین سازمان هواپیمایی کشوری، همراه داشتن مجوز پزشک برای خانم‌های باردار، افراد مبتلا به بیماری‌های قلبی-عروقی، بیماری‌های تنفسی، صرع، آنمی شدید، دیابت ملیتوس کنترل نشده، کسانی که دیالیز می‌شوند یا کسانی که از داروهای تضعیف‌کننده‌ی سیستم ایمنی استفاده می‌نمایند و یا هرگونه بیماری که سبب منع سفر هوایی باشد، هنگام سوار شدن به هواپیما ضروری می‌باشد. همچنین لازم است که این مسافران، داروهای مورد نیاز خود را در طول سفر به همراه داشته باشند.</string>
-    <string name="retry">تلاش مجدد</string>
-    <string name="connectToWifi">اتصال به شبکه وایرلس</string>
-    <string name="connectToData">اتصال به شبکه موبایل</string>
-    <string name="send_amountError">متاسفانه مقدار برخی از اقلام درخواست شما از مقدار موجودی منطقی انبار بیشتر است.</string>
-    <string name="password_pattern_new1">لطفا رمز را وارد نمایید</string>
-    <string name="password_pattern_new2">لطفا رمز را تایید نمایید</string>
-    <string name="password_pattern_edit1">لطفا رمز جدید را وارد نمایید</string>
-    <string name="password_pattern_edit2">لطفا رمز جدید را تایید نمایید</string>
-    <string name="password_pattern_previous">لطفا رمز پیشین را وارد نمایید</string>
-    <string name="password_message_removed">رمز با موفقیت حذف گردید</string>
-    <string name="password_message_submitted">رمز با موفقیت ثبت گردید</string>
-    <string name="password_message_edited">رمز جدید با موفقیت ثبت گردید.</string>
-    <string name="Activation_Note">توجه:\n
-        - برای فعال سازی سیم کارت شما باید شارژ پولی جهت ارسال sms فعال سازی را داشته باشد. در صورتی که پیغام "ارسال پیامک فعال سازی با خطا مواجه شده است" و یا "پیام شما به سرور نرسیده لطفا میزان شارژ خود را بررسی نمایید."\n
-        - اینترنت شما باید فعال باشد. در صورت خطای مربوط به اتصال به سرور و یا خطای نامعلوم لطفا وضعیت اتصال خود را از طریق باز کردن سایت در browser بررسی نمایید.\n
-        - در صورتی که فعال سازی با خطا مواجه شد برای پیگیری، متن خطای نمایش داده شده را عینا به پشتیبانی سیستم اطلاع دهید.</string>
     <string name="icon_menu">&#xe901;</string>
-    <string name="icon_airplane">&#xe9af;</string>
-    <string name="icon_briefcase">&#xe902;</string>
     <string name="icon_bed">&#xe900;</string>
-    <string name="icon_umbrella">&#xe903;</string>
-    <string name="icon_globe">&#xf0b6;</string>
-    <string name="icon_arrow">&#xea40;</string>
     <string name="icon_location">&#xe90b;</string>
     <string name="icon_location2">&#xe90b;</string>
-    <string name="icon_salon">&#xf205;</string>
-    <string name="icon_restaurant">&#xf1fb;</string>
-    <string name="icon_tv">&#xf24b;</string>
-    <string name="icon_wifi">&#xf25e;</string>
-    <string name="icon_conditioning">&#xf10d;</string>
-    <string name="icon_drink">&#xf17e;</string>
     <string name="icon_info">&#xe906;</string>
     <string name="icon_pin">&#xe907;</string>
     <string name="icon_filter">&#xe90c;</string>
@@ -148,11 +61,9 @@
 
     <string name="reserve_package">رزرو پکیج</string>
     <string name="icon_calander">&#xe908;</string>
-    <string name="icon_search">&#xe909;</string>
     <string name="search_back_right">&#xea3c;</string>
     <string name="icon_plane">&#xe622;</string>
     <string name="arrow_left">&#xea40;</string>
-    <string name="icon_close">&#xe913;</string>
 
     <string name="icon_exp_up">&#xe801;</string>
     <string name="icon_exp_down">&#xe800;</string>
@@ -170,14 +81,12 @@
     <string name="aboutus">&#xe609;</string>
     <string name="bigplane">&#xe610;</string>
     <string name="contactus">&#xe611;</string>
-    <string name="forget">&#xe612;</string>
     <string name="hotel">&#xe613;</string>
     <string name="insurance">&#xe614;</string>
     <string name="packages">&#xe615;</string>
     <string name="terms">&#xe616;</string>
     <string name="tour">&#xe617;</string>
     <string name="userlogin">&#xe618;</string>
-    <string name="userpass">&#xe619;</string>
     <string name="icon_arrow_up">&#xe316;</string>
     <string name="icon_arrow_down">&#xe313;</string>
     <string name="contract">&#xe620;</string>
@@ -190,19 +99,6 @@
 
     <string name="no_results_found">نتیجه ای یافت نشد !</string>
     <string name="back_exit">لطفا برای خروج یکبار دیگر دکمه برگشت را فشار دهید</string>
-    <string-array name="requestStates">
-        <item>درخواست ارسال نشده است</item>
-        <item>برای سرور ارسال شده است</item>
-        <item>تایید شده است</item>
-        <item>فاکتور شده است</item>
-        <item>تحویل شده است</item>
-        <item>مرجوع شده است</item>
-    </string-array>
-    <string-array name="deliveryTypes">
-        <item>تحویل نشده است</item>
-        <item>تحویل شده است</item>
-        <item>مرجوع شده است</item>
-    </string-array>
 
     <!-- /////////////country code//////////////// -->
     <string-array name="country_names">

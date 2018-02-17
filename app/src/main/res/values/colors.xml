@@ -4,37 +4,19 @@
     <color name="colorPrimaryDark">#9075ed</color>
     <color name="colorAccent">#928DC5</color>
 
-    <color name="list_item_title">#fff</color>
     <!-- menu side color-->
-    <color name="list_background">#ffffff</color>
-    <color name="list_background_pressed">#992416</color>
-    <color name="list_divider">#737373</color>
-    <color name="counter_text_bg">#626262</color>
-    <color name="counter_text_color">#c5c4c4</color>
 
     <color name="TextColor">#0622ae</color>
-    <color name="MenuTextColor">#fff</color>
-    <color name="Text_Row">#000</color>
     <color name="color_strok">#ffff00</color>
     <color name="color_strokk">#000000</color>
-    <color name="color_strok_item_javayez">#6e92c6</color>
-    <color name="color_strok_javayez">#006600</color>
-    <color name="color_strok_select">#405acd</color>
-    <color name="color_strok_select_javayez_forje">#7ca1d4</color>
     <color name="list_selection">#FF8C00</color>
-    <color name="drawer_scrim">#7D000000</color>
     <color name="drawer_shadow">#96000000</color>
-    <color name="yellow">#FFF587</color>
-    <color name="SpinnerColor">#aab6f5</color>
     <color name="pressed_color">#4d90fe</color>
-    <color name="default_color">#ffffff</color>
     <color name="light_blue">#0071BC</color>
 
     <color name="titlebackgroundcolor">#3232CD</color>
-    <color name="titletextcolor">#FFFF00</color>
     <color name="focusColor">#2c000000</color>
     <color name="color_hotel">#E06F38</color>
-    <color name="color_hotel_dark">#ce6836</color>
     <color name="hotel_detail_background">#e6e6e6</color>
     <color name="blue">#4690ee</color>
     <color name="TRANSPARENT">#00ffffff</color>
@@ -42,24 +24,16 @@
     <color name="app_base_color">#928DC5</color>
     <color name="white">#fff</color>
     <color name="textColorR">#131313</color>
-    <color name="text_bottom_bar">#aaaaaa</color>
     <color name="text_color">#aaaaaa</color>
-    <color name="textColorRDark">#1e1e1e</color>
     <color name="green">#22b573</color>
     <color name="blue2">#B19CF9</color>
-    <color name="banafsh_flight">#ac5bc4</color>
 
     <color name="gray_light">#eeeeee</color>
     <color name="gray_normal">#a9a9a9</color>
     <color name="gray_dark">#687377</color>
-    <color name="add_room_color">#FF8C65FE</color>
-    <color name="add_room_color_dark">#6e47e1</color>
-    <color name="add_room_btn_confirm">#FF408FF7</color>
     <color name="pack_room_background">#FFFDFDFD</color>
     <color name="pack_room_text">#707070</color>
-    <color name="black1">#2e2e2e</color>
     <color name="red">#d61616</color>
-    <color name="red_filter">#47d61616</color>
     <color name="background_color_flight_button">#29aae3</color>
     <color name="text_color_2">#737585</color>
 
@@ -75,11 +49,7 @@
     <color name="mdtp_accent_color_dark">#706b9f</color>
 
 
-    <color name="banafsh_color">#9697c8</color>
-
-
     <color name="dark_blue">#2E3192</color>
-    <color name="menu_text">#aa84ff</color>
     <color name="toolbar_color">#9d80ff</color>
     <color name="title_background">#1234</color>
     <color name="red_border">#e9545a</color>

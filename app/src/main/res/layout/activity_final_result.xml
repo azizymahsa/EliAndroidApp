@@ -108,7 +108,7 @@
                                     android:textColor="@color/red"
                                     android:textSize="@dimen/_14dp_txtSize"
                                     android:maxLines="3"
-                                    android:layout_marginRight="15dp"
+                                    android:layout_marginRight="5dp"
 
 
                                     />

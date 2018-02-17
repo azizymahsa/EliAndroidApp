@@ -77,7 +77,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     RelativeLayout rlLoading, rlRoot;
     TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
     Window window;
-    RelativeLayout elNotFound;
+    RelativeLayout elNotFound,rlEr;
     TextView tvLoading;
 
 
@@ -122,6 +122,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         llFilter = findViewById(R.id.llFilter);
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
+        rlEr = findViewById(R.id.rlEr);
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
         btnHome.setOnClickListener(this);
@@ -383,11 +384,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     @Override
     public void onReturnValue(ArrayList<FilterModel> type, String search, ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
                               ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,
-                              ArrayList<FilterPriceModel> filterHotelPriceModel, ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
+                              ArrayList<FilterPriceModel> filterHotelPriceModel,
+                              ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
 
         elNotFound.setVisibility(View.GONE);
         list.setVisibility(View.VISIBLE);
         btnOk.setVisibility(View.VISIBLE);
+        rlEr.setVisibility(View.VISIBLE);
         boolean remove = false;
 
         this.filterModels = type;
@@ -429,7 +432,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                     type_location_filter(filterHotelTypeModels, 0, false, false);
 
-                }
+                }/*else
 
 
                 if (!(filterModel.isBestSeler() || filterModel.isBestOff())) {
@@ -437,7 +440,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     type_location_filter(filterHotelTypeModels, 0, false, false);
 
                 }
-
+*/
             }
 
 
@@ -537,6 +540,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     tvAlert.setText("نتیجه ای برای فیلتر شما حاصل نشد!");
                     list.setVisibility(View.GONE);
                     btnOk.setVisibility(View.GONE);
+                    rlEr.setVisibility(View.GONE);
 
                 }
 
@@ -623,7 +627,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             }
         }
 
-        if (!stars || !isOff || !isBestseler) {
+        if (!stars&& (!isOff || !isBestseler)) {
 
             if (selectHotelModelArrayListFilter.isEmpty()) {
 
@@ -652,17 +656,19 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             }
         } else if (stars) {
 
+            ArrayList<SelectHotelModel> selectHotelModels = new ArrayList<>();
 
             for (FilterModel filterModel : filterModels) {
+
                 if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4()
                         || filterModel.isStar5())) {
 
 
-                    ArrayList<SelectHotelModel> selectHotelModels = new ArrayList<>();
                     for (int i = 0; i < filterHotelTypeModels.size(); i++) {
                         if (filterHotelTypeModels.get(i).isCheck()) {
                             for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
-                                if (filterHotelTypeModels.get(i).getTitle().equals(selectHotelModelArrayListFilter.get(j).getTypeText()) && selectHotelModelArrayListFilter.get(j).getStar() == star) {
+                                if (filterHotelTypeModels.get(i).getTitle().equals(selectHotelModelArrayListFilter.get(j).getTypeText()) &&
+                                        selectHotelModelArrayListFilter.get(j).getStar() == star) {
                                     isFilter = true;
                                     selectHotelModels.add(new SelectHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
                                             selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
@@ -683,11 +689,12 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
                     }
-                    selectHotelModelArrayListFilter.clear();
-                    selectHotelModelArrayListFilter = selectHotelModels;
-                }
-            }
 
+                }
+
+            }
+            selectHotelModelArrayListFilter.clear();
+            selectHotelModelArrayListFilter = selectHotelModels;
 
         } else if (isBestseler) {
             ArrayList<SelectHotelModel> selectHotelModels = new ArrayList<>();
@@ -775,16 +782,16 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                 }
 
-                if (isFilter) {
 
-                    selectHotelModelArrayListFilter.clear();
-                    selectHotelModelArrayListFilter = selectHotelModels;
-                }
 
 
             }
 
+            if (isFilter) {
 
+                selectHotelModelArrayListFilter.clear();
+                selectHotelModelArrayListFilter = selectHotelModels;
+            }
         }
 
 
@@ -1554,9 +1561,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
             } catch (Exception e) {
+                llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
-                llFilter.setVisibility(View.GONE);
                 if (!Utility.isNetworkAvailable(SelectHotelActivity.this)){
 
                     tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
@@ -1566,6 +1573,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
 
                 }
+                list.setVisibility(View.GONE);
+                btnOk.setVisibility(View.VISIBLE);
+                rlEr.setVisibility(View.VISIBLE);
+
 
             }
 

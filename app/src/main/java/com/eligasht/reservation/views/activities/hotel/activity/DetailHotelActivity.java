@@ -171,7 +171,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         //flights
 
-        new GetRoomsAsync().execute();
 
 
     }
@@ -413,6 +412,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
+            new GetRoomsAsync().execute();
+
 
         } else {
             // TODO: 9/18/2016

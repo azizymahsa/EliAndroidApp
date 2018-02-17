@@ -1,7 +1,10 @@
 package com.eligasht.reservation.base;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 
 import com.google.gson.Gson;
 
@@ -13,6 +16,8 @@ import com.zplesac.connectionbuddy.models.ConnectivityEvent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Locale;
 
 
 /**
@@ -33,6 +38,15 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
     @Override
     protected void onStart() {
         super.onStart();
+        try{
+            String languageToLoad  = "en"; // your language
+            Locale locale = new Locale(languageToLoad);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        }catch (Exception e){}
 
         // Register for connectivity changes
         ConnectionBuddy.getInstance().registerForConnectivityEvents(this, this);
