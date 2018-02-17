@@ -422,6 +422,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 }
               //  expandableLayout.setVisibility(View.GONE);
             }
+            Log.e("initUser",  Prefs.getString("userId","-1") );
         } catch (Exception e) {
             txt_name.setText("ورود به حساب کاربری");
             btnExit.setVisibility(View.GONE);

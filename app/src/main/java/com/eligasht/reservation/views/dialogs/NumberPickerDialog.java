@@ -42,6 +42,7 @@ public class NumberPickerDialog implements View.OnClickListener {
         during_trip = new Integer[]{7, 15, 23, 31, 45, 60 , 90, 180, 365};
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(8);
+        numberPicker.setValue(0);
         numberPicker.setDisplayedValues(during_trip_string);
 
         btnOk = dialogView.findViewById(R.id.btnOk);

@@ -102,4 +102,5 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_50dp_tablet">5dp</dimen>
     <dimen name="_80dp_fh_">80dp</dimen>
     <dimen name="_14dp_2">12dp</dimen>
+    <dimen name="_32_normal_flight">32dp</dimen>
 </resources>

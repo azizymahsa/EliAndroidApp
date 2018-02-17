@@ -826,8 +826,11 @@ public class Utility extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        try{
+            handler1.postDelayed(characterAdder, 4000);
 
-        handler1.postDelayed(characterAdder, 4000);
+        }catch (Exception e){}
+
 
 
 

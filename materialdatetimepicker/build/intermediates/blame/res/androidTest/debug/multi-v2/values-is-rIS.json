@@ -14,21 +14,6 @@
                     }
                 }
             ]
-        },
-        {
-            "outputFile": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-is-rIS\\values-is-rIS.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\mahsa.azizi\\Desktop\\2018-02-15\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-is-rIS\\values-is-rIS.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,186,247,356,465,581,697,809,902,998,1090,1174",
-                        "endColumns": "80,60,108,108,115,115,111,92,95,91,83,95",
-                        "endOffsets": "181,242,351,460,576,692,804,897,993,1085,1169,1265"
-                    }
-                }
-            ]
         }
     ]
 }

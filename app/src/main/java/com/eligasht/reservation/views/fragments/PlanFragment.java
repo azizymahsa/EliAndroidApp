@@ -841,6 +841,22 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
                 lbl_forudgah_mabda.setText(endF);
                 lbl_forudgah_maghsad.setText(startF);
+
+                if(start.contains("مبدا") && end.contains("مقصد") ){
+                    tvStart.setText("شهر یا فرودگاه مبدا را انتخاب کنید ");
+                    tvEnd.setText("شهر یا فرودگاه مقصد را انتخاب کنید ");
+                }else if(start.contains("مبدا")){
+                    tvEnd.setText("شهر یا فرودگاه مقصد را انتخاب کنید ");
+                    lbl_forudgah_maghsad.setText("");
+
+                }else if(end.contains("مقصد") ){
+
+                    tvStart.setText("شهر یا فرودگاه مبدا را انتخاب کنید ");
+                    lbl_forudgah_mabda.setText("");
+                }
+
+
+
 /////////////////////////
                 String airportMaghsad = Prefs.getString("Value-Maghsad-Airport-Code", "");
                 String airPortMabda = Prefs.getString("Value-Mabda-Airport-Code", "");

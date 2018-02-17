@@ -22,7 +22,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     android:id="@+id/linearKol"
     android:orientation="vertical">
@@ -431,6 +431,7 @@
 
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
+
                     />
            <!--</RelativeLayout>-->
             </RelativeLayout>

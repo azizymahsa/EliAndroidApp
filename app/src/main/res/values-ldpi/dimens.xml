@@ -47,7 +47,7 @@
     <dimen name="_15dp">12dp</dimen>
     <dimen name="_150dp">120dp</dimen>
     <dimen name="_20dp_normal_textSize">15dp</dimen>
-    <dimen name="_15dp_normal_textSize">12dp</dimen>
+    <dimen name="_15dp_normal_textSize">10dp</dimen>
     <dimen name="_12dp_normal_textSize">10dp</dimen>
     <dimen name="_25dp_normal_iconSize">20dp</dimen>
     <dimen name="_16dp_normal_textSize">12dp</dimen>
@@ -95,5 +95,7 @@
     <dimen name="_50dp_tablet">5dp</dimen>
     <dimen name="_80dp_fh_">60dp</dimen>
     <dimen name="_14dp_2">6dp</dimen>
+    <dimen name="_32_normal_flight">32dp</dimen>
+
 
 </resources>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eligasht.reservation"
     android:versionCode="1"
-    android:versionName="1">
+    android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -178,6 +178,9 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.eligasht.reservation.views.activities.transfer.GetHotelActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".views.activities.login.RegisterLoginActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

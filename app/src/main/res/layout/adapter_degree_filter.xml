@@ -12,14 +12,6 @@
 
 
 
-
-    <cn.refactor.library.SmoothCheckBox
-        android:id="@+id/chk_degree_filter"
-        android:layout_width="@dimen/_25dp_normal_iconSize"
-        android:layout_height="@dimen/_25dp_normal_iconSize"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="@dimen/_5dp_margin"
-        app:color_checked="@color/app_base_color" />
     <TextView
         android:id="@+id/txt_place_filter"
         android:layout_width="wrap_content"
@@ -28,6 +20,15 @@
         android:padding="@dimen/_5sp_padding"
         android:textColor="@color/gray_dark"
         android:textSize="@dimen/_14dp_txtSize"/>
+
+    <cn.refactor.library.SmoothCheckBox
+        android:id="@+id/chk_degree_filter"
+        android:layout_width="@dimen/_25dp_normal_iconSize"
+        android:layout_height="@dimen/_25dp_normal_iconSize"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/_5dp_margin"
+        app:color_checked="@color/app_base_color" />
+
 
 
 </LinearLayout>

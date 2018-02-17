@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center">
     <LinearLayout
@@ -41,7 +41,7 @@
         app:np_selectedTextColor="@color/colorPrimary"
         app:np_textColor="#808080"
         app:np_value="3"
-        app:np_textSize="@dimen/_16dp_textSize"/>
+        app:np_textSize="@dimen/_16dp_normal_textSize"/>
 
 
 

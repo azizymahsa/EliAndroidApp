@@ -78,7 +78,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         loginListReq.setPassword(txtPassword.getText().toString());
 
         needShowProgressDialog();
-        Log.e(" request " ,new GsonBuilder().create().toJson(new LoginRequestModel(loginListReq)));
+       // Log.e(" request " ,new GsonBuilder().create().toJson(new LoginRequestModel(loginListReq)));
         Call<LoginRes> call = service.Login(new LoginRequestModel(loginListReq));
         call.enqueue(new Callback<LoginRes>() {
             @Override
@@ -111,7 +111,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
                 WebUserTools.getInstance().setUser(webUserLogin);
                 MainActivity.setUserName(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
-                Log.e("contract" , response.body().getLoginResult().getWebUserLogin().getPreviousContracts().get(0).getCntID() +"");
+              //  Log.e("contract" , response.body().getLoginResult().getWebUserLogin().getPreviousContracts().get(0).getCntID() +"");
                 Intent intent = new Intent(LogInActivity.this,ProfileActivity.class);
                 startActivity(intent);
                 finish();

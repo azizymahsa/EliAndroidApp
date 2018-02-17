@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -85,6 +86,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     String packageName;
     UpdateAlert updateAlert;
     String DeviceOSType;
+    TextView tvVer;
 
     @Override
     public void onReturnValue() {
@@ -152,11 +154,12 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
+        tvVer = findViewById(R.id.tvVer);
         avi = findViewById(R.id.avi);
         lottieAnimationView = findViewById(R.id.animation_view);
         lottieAnimationView.setAnimation("e-splash.json");
         lottieAnimationView.playAnimation();
-
+        tvVer.setText(BuildConfig.VERSION_NAME);
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -237,17 +240,17 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
             internetAlert.isCancel();
 
             avi.setVisibility(View.VISIBLE);
-            if(!Prefs.getString("loginId","null").equals("null")){
+            if (!Prefs.getString("loginId", "null").equals("null")) {
                 deviceId = null;
                 deviceSubscriberID = null;
                 operator = null;
-                sdkVersion =null;
+                sdkVersion = null;
                 model = null;
-                brand =null;
-                product =null;
-            DeviceOSType=null;
+                brand = null;
+                product = null;
+                DeviceOSType = null;
 
-            }else{
+            } else {
                 deviceId = Utility.getDeviceID(SplashFragment.this);
                 deviceSubscriberID = Utility.getSubscriberID(SplashFragment.this);
                 operator = Utility.getMyOperator(SplashFragment.this);
@@ -257,7 +260,6 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                 product = Build.PRODUCT;
                 DeviceOSType = "2";
             }
-
 
 
         }
@@ -291,7 +293,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
                 } else {
                     Utility.sendTag("Splash", true, true);
-                    Log.e("loginId", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID+"");
+                    Log.e("loginId", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID + "");
                     Prefs.putString("loginId", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID);
                     for (SearchNotes searchNotes : userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes) {
                         if (searchNotes.Section.equals("H")) {

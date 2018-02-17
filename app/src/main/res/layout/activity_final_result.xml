@@ -193,7 +193,12 @@
                             android:textSize="@dimen/_12dp_normal_textSize"
 
                             />
-
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/text_color_2e" />
                         <TextView
                             android:id="@+id/tvFactor"
                             android:layout_width="match_parent"

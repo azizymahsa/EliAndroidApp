@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     >
 
@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
+
         android:orientation="vertical">
 
 
@@ -105,7 +105,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text=" انتخاب کنید "
+                        android:text="شهر یا فرودگاه مبدا را انتخاب کنید "
                         android:textColor="#fff"
                         android:textSize="@dimen/_20dp_normal_textSize"
                         android:textStyle="bold"
@@ -152,7 +152,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text=" انتخاب کنید "
+                        android:text="شهر یا فرودگاه مقصد را انتخاب کنید "
                         android:textColor="#fff"
                         android:textSize="@dimen/_20dp_normal_textSize"
                         android:textStyle="bold" />
@@ -192,12 +192,12 @@
             android:layout_weight="50"
             android:orientation="vertical">
             <LinearLayout
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/_32_normal_flight"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.6"
 
-                android:background="#fff"
+
                 android:orientation="vertical">
 
                 <android.support.v7.widget.CardView
@@ -209,7 +209,7 @@
                     android:layout_marginRight="@dimen/_10dp_margin"
                     android:layout_marginBottom="3dp"
 
-                    card_view:cardBackgroundColor="#ffffff">
+                   >
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -363,7 +363,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.9"
-                android:background="#fff"
+
                 android:orientation="vertical"
                >
 
@@ -377,7 +377,7 @@
                     android:layout_marginRight="@dimen/_10dp_margin"
                     android:layout_marginTop="7dp"
                     android:layout_marginBottom="5dp"
-                    card_view:cardBackgroundColor="#ffffff"
+
 
                     android:background="@color/hotel_detail_background">
                     <LinearLayout

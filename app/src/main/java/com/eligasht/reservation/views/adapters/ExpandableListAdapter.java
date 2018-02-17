@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.eligasht.reservation.R;
 
@@ -25,6 +26,8 @@ import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -213,6 +216,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 		TextView num_flight_r = (TextView) convertView.findViewById(R.id.num_flight_r);
 		TextView num_flight_b = (TextView) convertView.findViewById(R.id.num_flight_b);
+		final AVLoadingIndicatorView avi=convertView.findViewById(R.id.avi);
 
 		TextView lblArrivalCityNameFaR = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaR);
 		TextView lblFlightArrivalTimeR = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeR);
@@ -420,7 +424,30 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				.build();
 		System.out.println("https://cdn.elicdn.com/Content/AirLine/MblSize/"+s+".png");
 
-		imageLoader.displayImage(imageUri,lblProductrow, options,null);
+		imageLoader.displayImage(imageUri, lblProductrow, options, new ImageLoadingListener() {
+			@Override
+			public void onLoadingStarted(String imageUri, View view) {
+
+			}
+
+			@Override
+			public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+				avi.setVisibility(View.GONE);
+
+			}
+
+			@Override
+			public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+				avi.setVisibility(View.GONE);
+
+			}
+
+			@Override
+			public void onLoadingCancelled(String imageUri, View view) {
+				avi.setVisibility(View.GONE);
+
+			}
+		});
 
 
 		/*lblProductrow.setImageResource();

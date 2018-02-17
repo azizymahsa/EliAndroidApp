@@ -1,0 +1,48 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\src\\main\\res\\values-zh-rHK\\strings.xml",
+                    "from": {
+                        "startLines": "29,23,28,19,27,20,25,21,22,26,24",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1773,1186,1660,828,1542,923,1378,1020,1102,1461,1285",
+                        "endColumns": "58,97,111,93,116,95,81,80,82,79,91",
+                        "endOffsets": "1827,1279,1767,917,1654,1014,1455,1096,1180,1536,1372"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,164,262,370,464,577,673,755,836,919,999",
+                        "endColumns": "58,97,107,93,112,95,81,80,82,79,91",
+                        "endOffsets": "159,257,365,459,572,668,750,831,914,994,1086"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\res\\merged\\release\\values-zh-rHK\\values-zh-rHK.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\EligashtAndroidApp\\materialdatetimepicker\\src\\main\\res\\values-zh-rHK\\strings.xml",
+                    "from": {
+                        "startLines": "29,23,28,19,27,20,25,21,22,26,24",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1773,1186,1660,828,1542,923,1378,1020,1102,1461,1285",
+                        "endColumns": "58,97,111,93,116,95,81,80,82,79,91",
+                        "endOffsets": "1827,1279,1767,917,1654,1014,1455,1096,1180,1536,1372"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,164,262,370,464,577,673,755,836,919,999",
+                        "endColumns": "58,97,107,93,112,95,81,80,82,79,91",
+                        "endOffsets": "159,257,365,459,572,668,750,831,914,994,1086"
+                    }
+                }
+            ]
+        }
+    ]
+}
