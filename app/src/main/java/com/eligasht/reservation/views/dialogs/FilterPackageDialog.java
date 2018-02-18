@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.model.pack.filter.AmenityFilter;
 import com.eligasht.reservation.models.model.pack.filter.DegreeFilter;
 import com.eligasht.reservation.models.model.pack.filter.HotelTypeFilter;

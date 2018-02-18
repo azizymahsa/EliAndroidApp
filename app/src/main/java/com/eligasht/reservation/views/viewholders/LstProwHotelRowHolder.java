@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.wang.avi.AVLoadingIndicatorView;
 
 /**

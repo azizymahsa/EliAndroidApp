@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ScrollView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.views.adapters.hotel.FilterHotelTypeAdapter;

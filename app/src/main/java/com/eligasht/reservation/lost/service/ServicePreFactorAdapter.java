@@ -14,7 +14,7 @@ import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 import com.eligasht.reservation.tools.Utility;
 

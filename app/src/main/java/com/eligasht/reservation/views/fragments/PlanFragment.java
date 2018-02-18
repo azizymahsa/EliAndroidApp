@@ -32,7 +32,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
@@ -250,6 +250,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             }
         });
 
+        datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
 //=====================================================================================================
 
@@ -404,7 +405,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
 
 
-            datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
 
 
         }

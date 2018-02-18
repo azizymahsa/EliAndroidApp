@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 import com.eligasht.reservation.base.Base;
 

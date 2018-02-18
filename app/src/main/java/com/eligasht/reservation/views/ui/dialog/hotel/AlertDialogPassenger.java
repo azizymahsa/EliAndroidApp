@@ -6,7 +6,7 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.tools.JustifiedTextView;
 import com.wang.avi.AVLoadingIndicatorView;
 

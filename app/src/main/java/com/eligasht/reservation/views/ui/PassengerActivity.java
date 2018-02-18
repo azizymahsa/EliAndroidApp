@@ -75,7 +75,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.lost.flight.FlightPreFactorAdapter;
 import com.eligasht.reservation.lost.flight.FlightPreFactorModel;
@@ -1358,11 +1358,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			headerJson.put("Culture", "fa-IR");
 			headerJson.put("Type", "F");
+			headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
 
 			identityJson.put("Password", "123qwe!@#QWE");
 			identityJson.put("TermianlId", "Mobile");
 			identityJson.put("UserName", "EligashtMlb");
-			identityJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
+
 			headerJson.put("identity",identityJson);
 
 			jsone.put("request",headerJson);
@@ -1713,6 +1714,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
 							((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
+							RqPassenger_PassNo=txt_NationalCode_m.getText().toString();
 						} else{
 
 							flagMosafer=flagMosafer+"F";

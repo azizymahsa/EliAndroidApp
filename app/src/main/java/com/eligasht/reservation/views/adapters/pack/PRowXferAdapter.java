@@ -10,7 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.google.gson.Gson;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.model.pack.LstHotelAmenity;
 import com.eligasht.reservation.models.model.pack.LstProwHotel;
 import com.eligasht.reservation.models.model.pack.LstProwPrice;

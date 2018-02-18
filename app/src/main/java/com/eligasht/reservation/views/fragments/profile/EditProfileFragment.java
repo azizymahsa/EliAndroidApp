@@ -15,7 +15,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.model.login.call.RegisterListReq;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.WebUserTools;
@@ -128,20 +128,24 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                     1
             );
         }else{
-            txt_birthday.setText(DateUtil.getLongStringDate(birthdayDate, "dd/MM/yyyy", true));
-            int day = DateUtil.getDayOfMonth(birthdayDate, "dd/MM/yyyy", true);
-            int year = DateUtil.getYear(birthdayDate, "dd/MM/yyyy", true);
-            int month = DateUtil.getMonth(birthdayDate, "dd/MM/yyyy", true) - 1;
-            datePickerDialogDepart = DatePickerDialog.newInstance(
-                    this,
-                    year,
-                    month,
-                    day
-            );
+            try{
+                txt_birthday.setText(DateUtil.getLongStringDate(birthdayDate, "dd/MM/yyyy", true));
+                int day = DateUtil.getDayOfMonth(birthdayDate, "dd/MM/yyyy", true);
+                int year = DateUtil.getYear(birthdayDate, "dd/MM/yyyy", true);
+                int month = DateUtil.getMonth(birthdayDate, "dd/MM/yyyy", true) - 1;
+                datePickerDialogDepart = DatePickerDialog.newInstance(
+                        this,
+                        year,
+                        month,
+                        day
+                );
+                datePickerDialogDepart.setYearRange(1330, currentYear);
+
+            }catch (Exception e){}
+
         }
 
 
-        datePickerDialogDepart.setYearRange(1330, currentYear);
 
 
         txt_arrow1.setText(getString(R.string.icon_arrow_up));

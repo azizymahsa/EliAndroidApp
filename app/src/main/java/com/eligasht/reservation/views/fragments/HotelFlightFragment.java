@@ -28,7 +28,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.model.ModelRowCountRoom;
 import com.eligasht.reservation.models.model.pack.ChildModel;
 import com.eligasht.reservation.tools.Utility;
@@ -92,7 +92,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_flight_hotel2, container, false);
-        //	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
+        // rootView = inflater.inflate(R.layout.fragment_plane, container, false);
         Utility.sendTag("HF", true, false);
         geo = Prefs.getBoolean("geo", false);
 
@@ -310,7 +310,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
 
 
-        if (Prefs.getString("bargashtfa", "null").equals("null") || Prefs.getString("bargashtfa", "null") == null) {
+        if (Prefs.getString("bargashtfa", "null").equals("null")||Prefs.getString("bargashtfa", "null")==null) {
             tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
 
         } else {
@@ -406,9 +406,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         } catch (Exception e) {
         }
 
-        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "انتخاب کنید"));
+        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "شهر یا فرودگاه مقصد را انتخاب کنید "));
         lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En-HF-Raft", ""));
-        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", "انتخاب کنید"));
+        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", "شهر یا فرودگاه مبدا را انتخاب کنید "));
         tvMabdaEn.setText(Prefs.getString("Value-Hotel-City-En-HF-Source", ""));
     }
 
@@ -433,7 +433,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         switch (v.getId()) {
 
             case R.id.linearLayout_mabda:
-                //	new FilterHotelDialog(getActivity());
+                // new FilterHotelDialog(getActivity());
                 Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent2.putExtra("type", 1);
                 intent2.putExtra("position", "HF");
@@ -444,7 +444,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             case R.id.searchHotel:
                 //  new CountTimeAlert(getActivity(),this);
                 try {
-                    if (tvMabda.getText().toString().equals("انتخاب کنید") || txtCity.getText().toString().equals("انتخاب کنید")) {
+                    if (tvMabda.getText().toString().contains("انتخاب کنید") || txtCity.getText().toString().contains("انتخاب کنید")) {
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
                         AlertDialogPassenger.setText("لطفا مبدا و مقصد را انتخاب کنید ");
                     } else {
@@ -479,29 +479,23 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 break;
             case R.id.llRaft:
-                try {
-                    if (geo) {
-                        datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+                if (geo) {
+                    datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                    } else {
-                        datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+                } else {
+                    datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
-                    }
-                } catch (Exception e) {
                 }
 
 
                 break;
             case R.id.llBargasht:
-                try {
-                    if (geo) {
-                        datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+                if (geo) {
+                    datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                    } else {
-                        datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
+                } else {
+                    datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
 
-                    }
-                } catch (Exception e) {
                 }
 
 
@@ -514,7 +508,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 break;
             case R.id.linearLayout_maghsad:
-                //	new FilterHotelDialog(getActivity());
+                // new FilterHotelDialog(getActivity());
                 Intent intent = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent.putExtra("type", 2);
                 intent.putExtra("position", "HF");
@@ -731,8 +725,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 String startF = "";
                 String endF = "";
 
-                start = tvMabda.getText().toString();
-                end = txtCity.getText().toString();
+                start = tvMabda.getText().toString();//رفت
+                end = txtCity.getText().toString();//برگشت
 
                 startF = tvMabdaEn.getText().toString();
                 endF = lbl_city_english.getText().toString();
@@ -742,6 +736,19 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 tvMabdaEn.setText(endF);
                 lbl_city_english.setText(startF);
+
+                if(start.contains("مبدا") && end.contains("مقصد") ){
+                    tvMabda.setText("شهر یا فرودگاه مبدا را انتخاب کنید ");
+                    txtCity.setText("شهر یا فرودگاه مقصد را انتخاب کنید ");
+                }else if(start.contains("مبدا")){
+                    txtCity.setText("شهر یا فرودگاه مقصد را انتخاب کنید ");
+                    lbl_city_english.setText("");
+
+                }else if(end.contains("مقصد") ){
+
+                    tvMabda.setText("شهر یا فرودگاه مبدا را انتخاب کنید ");
+                    tvMabdaEn.setText("");
+                }
 /////////////////////////
 
                 String m3 = Prefs.getString("Value-Hotel-City-Code-HF-Raft", "");
@@ -818,3 +825,4 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
 
 }
+

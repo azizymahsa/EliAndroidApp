@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.hotelFlight.HotelFlightSearch;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.Country;

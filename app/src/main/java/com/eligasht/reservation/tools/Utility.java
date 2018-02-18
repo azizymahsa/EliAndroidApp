@@ -51,7 +51,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.onesignal.OneSignal;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.base.GlobalApplication;
 
 import org.json.JSONArray;

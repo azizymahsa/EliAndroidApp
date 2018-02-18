@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 
 public class SimpleRecycleView<T extends RecyclerView.ViewHolder> extends LinearLayout {

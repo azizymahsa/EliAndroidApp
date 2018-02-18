@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.GsonBuilder;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
@@ -101,16 +101,20 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                 }
 
 
-                if(webUserLogin.getLoginStatus().toUpperCase().equals("DUP")){
+                               if(webUserLogin.getLoginStatus().toUpperCase().equals("DUP")){
                     Toast.makeText(RegisterLoginActivity.this, " ایمیل وارد شده در حال حاضر در سیستم وجود دارد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
+/*
 
                 WebUserTools.getInstance().setUser(webUserLogin);
                 MainActivity.setUserName(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+*/
 
-                Intent intent = new Intent(RegisterLoginActivity.this,SuccessResetPassActivity.class);
+             /*   Intent intent = new Intent(RegisterLoginActivity.this,SuccessResetPassActivity.class);
                 startActivity(intent);
+                finish();*/
+                Toast.makeText(RegisterLoginActivity.this, "لینک فعال سازی به ایمیل شما ارسال شده است.", Toast.LENGTH_SHORT).show();
                 finish();
             }
 

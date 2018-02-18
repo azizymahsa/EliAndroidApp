@@ -12,7 +12,7 @@ import android.view.View;
 
 
 import com.eligasht.reservation.base.GlobalApplication;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.tools.ExceptionHandler;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.db.local.Config_Table;

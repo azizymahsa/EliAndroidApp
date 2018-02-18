@@ -11,7 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.google.gson.Gson;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.model.insurance.InsurancePlan_;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.insurance.InsurnaceDetailsActivity;

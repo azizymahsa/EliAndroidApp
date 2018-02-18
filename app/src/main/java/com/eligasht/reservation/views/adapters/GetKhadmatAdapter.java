@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.model.PurchaseFlightResult;
 import com.eligasht.reservation.views.activities.transfer.TransferActivity;
 import com.eligasht.reservation.views.ui.PassengerActivity;

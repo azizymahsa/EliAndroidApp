@@ -15,7 +15,7 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 
 import android.os.Handler;

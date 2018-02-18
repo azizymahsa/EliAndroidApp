@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.hotelName.HotelNameApi;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;

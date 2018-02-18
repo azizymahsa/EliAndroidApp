@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 /**
  * Created by elham.bonyani on 1/6/2018.

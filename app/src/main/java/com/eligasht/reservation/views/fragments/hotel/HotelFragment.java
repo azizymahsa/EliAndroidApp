@@ -26,7 +26,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.model.ModelRowCountRoom;
 import com.eligasht.reservation.models.model.pack.ChildModel;
 import com.eligasht.reservation.tools.Utility;
@@ -461,9 +461,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
             case R.id.searchHotel:
                 // new CountTimeAlert(getActivity(),this);
                 try {
-                    if (txtCity.getText().toString().equals("انتخاب کنید")){
+                    if (txtCity.getText().toString().contains("انتخاب کنید")){
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
-                        AlertDialogPassenger.setText("لطفا مقصد سفر خود را انتخاب کنید ");
+                        AlertDialogPassenger.setText("لطفا شهر سفر خود را انتخاب کنید ");
                     }else{
                         sendStartTimer();
                         Intent intent = new Intent(getActivity(), SelectHotelActivity.class);

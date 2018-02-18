@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.model.insurance.DetailsModel;
 import com.eligasht.reservation.views.adapters.insurance.InsurnaceDetailAdapter;
 import com.eligasht.reservation.views.ui.InitUi;

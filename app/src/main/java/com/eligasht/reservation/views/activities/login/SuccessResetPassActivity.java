@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.views.ui.InitUi;
@@ -42,14 +42,16 @@ public class SuccessResetPassActivity extends BaseActivity implements View.OnCli
 
     private void initViews() {
         btnBackHomeLog = findViewById(R.id.btnBackHomePage);
+        btnBackHomeLog.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnBackHomePage :
-                Intent intent = new Intent(this , LogInActivity.class);
-                startActivity(intent);
+               /* Intent intent = new Intent(this , LogInActivity.class);
+                startActivity(intent);*/
+               finish();
                 break;
         }
     }

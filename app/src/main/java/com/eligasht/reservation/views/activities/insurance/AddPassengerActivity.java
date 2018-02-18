@@ -20,7 +20,7 @@ import com.google.gson.reflect.TypeToken;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.contracts.PassengerContract;
 import com.eligasht.reservation.models.model.insurance.BirthDateList;
@@ -124,6 +124,7 @@ public class AddPassengerActivity extends BaseActivity implements
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
+        datePickerDialogDepartgGregorian.initialize(this,year - 50,0,1);
         datePickerDialogDepartgGregorian.setYearRange(1940, year);
 
 
@@ -141,6 +142,7 @@ public class AddPassengerActivity extends BaseActivity implements
             }
         });
         datePickerDialogDepartgGregorian.setOnDateSetListener(this);
+
 
 
         btn_add.setOnClickListener(this);

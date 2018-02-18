@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.base.GlobalApplication;
 import com.eligasht.reservation.views.components.SimpleRecycleView;
 

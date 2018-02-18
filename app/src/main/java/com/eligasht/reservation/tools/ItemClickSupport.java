@@ -3,7 +3,7 @@ package com.eligasht.reservation.tools;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 /**
  * Created by Reza.nejati on 2/4/2018.

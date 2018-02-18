@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarConstants;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;

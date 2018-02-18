@@ -7,7 +7,7 @@ import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

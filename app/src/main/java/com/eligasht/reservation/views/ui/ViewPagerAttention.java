@@ -15,7 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.views.activities.hotel.activity.ImageViewActivity;
 import com.eligasht.reservation.views.adapters.hotel.rooms.ImageModel;
 

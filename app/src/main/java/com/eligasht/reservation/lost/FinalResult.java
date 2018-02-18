@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.gson.Gson;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.api.app.GetPreFactor;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.hotel.getprefactor.call.RequestPre;

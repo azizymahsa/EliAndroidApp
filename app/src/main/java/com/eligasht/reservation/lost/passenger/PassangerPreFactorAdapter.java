@@ -15,7 +15,7 @@ import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.tvPassangerName.setText(item.getRqPassenger_name());
         if (Prefs.getBoolean("IsDemostic", true)) {
             holder. tvPass.setText("کد ملی");
-            holder.tvPassNo.setText(item.getNational_Code());
+            holder.tvPassNo.setText(item.getRqPassenger_PassNo());
 
         } else {
 

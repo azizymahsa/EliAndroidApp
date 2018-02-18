@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 /**
  * Created by elham.bonyani on 1/4/2018.

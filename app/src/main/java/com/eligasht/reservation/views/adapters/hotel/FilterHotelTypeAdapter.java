@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 

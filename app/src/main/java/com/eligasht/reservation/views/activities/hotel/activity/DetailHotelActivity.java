@@ -44,7 +44,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 import com.eligasht.reservation.api.hotel.GetHotelDetail;
 import com.eligasht.reservation.api.hotel.comment.AddComment;
@@ -281,7 +281,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 }
 
                 YoYo.with(Techniques.FadeIn)
-                        .duration(600)
+                        .duration(400)
                         .playOn(lvRooms);
 
                 vEmakanat.setVisibility(View.INVISIBLE);
@@ -299,7 +299,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 tvAlert.setVisibility(View.GONE);
 
                 YoYo.with(Techniques.FadeIn)
-                        .duration(600)
+                        .duration(400)
                         .playOn(flMap);
 
                 vEmakanat.setVisibility(View.INVISIBLE);
@@ -315,7 +315,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 tvAlert.setVisibility(View.GONE);
                 llDynamic.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.FadeIn)
-                        .duration(600)
+                        .duration(400)
                         .playOn(llDynamic);
                 vEmakanat.setVisibility(View.VISIBLE);
                 vMap.setVisibility(View.INVISIBLE);
@@ -336,7 +336,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 llComment.setVisibility(View.VISIBLE);
                 llDynamic.setVisibility(View.GONE);
                 YoYo.with(Techniques.FadeIn)
-                        .duration(600)
+                        .duration(400)
                         .playOn(llComment);
                 vEmakanat.setVisibility(View.INVISIBLE);
                 vMap.setVisibility(View.INVISIBLE);
@@ -526,7 +526,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     roomsAdapter.notifyDataSetChanged();
                     new GetHoldDetailAsync().execute();
                     YoYo.with(Techniques.FadeIn)
-                            .duration(600)
+                            .duration(400)
                             .playOn(lvRooms);
 
 
@@ -601,7 +601,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                 YoYo.with(Techniques.FadeIn)
-                        .duration(600)
+                        .duration(400)
                         .playOn(cvHotel);
 
 
@@ -737,7 +737,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 flViewPager.setVisibility(View.VISIBLE);
 
                 YoYo.with(Techniques.FadeIn)
-                        .duration(600)
+                        .duration(400)
                         .playOn(flViewPager);
 
 

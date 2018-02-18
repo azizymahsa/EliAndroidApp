@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.model.login.call.EmailContractReq;
 import com.eligasht.reservation.tools.WebUserTools;
@@ -58,15 +58,16 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
         email = view.findViewById(R.id.contract_email);
 
         //set data of login for contracts
-        num_contract.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getCntID()+"");
-        date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getDateFa());
-        path.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getPathNames());
-        depart_date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getDeparture());
-        login_date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getCheckDate());
-        sum_price.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getFinalPrice()+"");
-        remained_price.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getRemained()+"");
-        follower.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getFollowerName()+"");
-        email.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
+        try{  num_contract.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getCntID()+"");
+            date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getDateFa());
+            path.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getPathNames());
+            depart_date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getDeparture());
+            login_date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getCheckDate());
+            sum_price.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getFinalPrice()+"");
+            remained_price.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getRemained()+"");
+            follower.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getFollowerName()+"");
+            email.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());}catch (Exception e){}
+
 
     }
 

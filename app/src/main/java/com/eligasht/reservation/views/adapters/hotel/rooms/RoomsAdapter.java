@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.getHotelPolicy.GetHotelPolicyApi;
 import com.eligasht.reservation.api.hotel.getHotelRoom.GetHoldRoom;
 import com.eligasht.reservation.models.hotel.api.holdSelectedRoom.call.HoldSelectedRoomRequest;

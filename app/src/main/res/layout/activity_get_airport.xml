@@ -24,7 +24,7 @@
             android:layout_height="@dimen/_30dp"
             android:visibility="invisible"
             app:indicatorColor="#ffffff"
-            app:indicatorName="BallSpinFadeLoaderIndicator"
+            app:indicatorName="BallPulseIndicator"
             android:layout_below="@+id/ivSplash"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"

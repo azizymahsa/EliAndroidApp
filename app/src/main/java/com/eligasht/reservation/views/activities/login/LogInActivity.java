@@ -12,10 +12,11 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.gson.GsonBuilder;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
@@ -50,6 +51,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
     private ImageView eLogo;
     private LinearLayout layoutResetPassword;
     private ClientService service;
+    RelativeLayout llHome;
 
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +109,10 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                     return;
                 }
 
+                if(webUserLogin.getLoginStatus().equals("ACT")){
+                    Toast.makeText(LogInActivity.this, "لینک فعال سازی به ایمیل شما ارسال شده است.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
 
                 WebUserTools.getInstance().setUser(webUserLogin);
@@ -133,6 +139,8 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         btnRegister = findViewById(R.id.btn_register);
         btnLogin = findViewById(R.id.btnLogIn);
         txtEmail = findViewById(R.id.txt_email);
+        llHome = findViewById(R.id.llHome);
+        llHome.setVisibility(View.GONE);
        // eLogo = findViewById(R.id.e_logo);
         layoutResetPassword = findViewById(R.id.layout_reset_password);
         txtPassword = findViewById(R.id.txt_password);

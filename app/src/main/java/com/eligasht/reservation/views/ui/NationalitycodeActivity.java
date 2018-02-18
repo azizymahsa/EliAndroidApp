@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.views.adapters.NationalityListArrayAdapter;
 
 public class NationalitycodeActivity extends ListActivity {

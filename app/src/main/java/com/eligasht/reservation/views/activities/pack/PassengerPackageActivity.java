@@ -51,7 +51,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.lost.flight.FlightPreFactorAdapter;
 import com.eligasht.reservation.lost.flight.FlightPreFactorModel;
@@ -2222,7 +2222,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             headerJson.put("PackXfer_IDs", Prefs.getString("PackXfer_IDs", "12"));
             headerJson.put("Flt_IDs", Prefs.getString("Flt_IDs", "12"));
             headerJson.put("Rooms", Prefs.getString("Rooms", "12"));
-
+            headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//purches
 
 
 		/*	headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
@@ -2237,7 +2237,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
-            identityJson.put("RequestorID ", Prefs.getString("userId","-1"));//purches
+
             headerJson.put("identity", identityJson);
 
             jsone.put("request", headerJson);

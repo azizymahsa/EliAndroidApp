@@ -18,7 +18,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 /**
  * Created by Reza.nejati on 1/3/2018.

@@ -17,7 +17,7 @@ import android.telephony.TelephonyManager;
 import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.notification.GetNotification;
 import com.eligasht.reservation.views.ui.font.CustomViewWithTypefaceSupport;
 import com.eligasht.reservation.views.ui.font.TextField;

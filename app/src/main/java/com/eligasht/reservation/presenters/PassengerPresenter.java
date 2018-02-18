@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.contracts.PassengerContract;
 import com.eligasht.reservation.models.model.insurance.BirthDateList;
 import com.eligasht.reservation.tools.ValidationTools;

@@ -34,7 +34,7 @@ import android.widget.Toast;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.Country;
 import com.eligasht.reservation.models.model.ModelCheckBox;
@@ -2683,10 +2683,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 	public void onResume() {
 		Log.e("DEBUG", "onResume of SearchParvazActivity");
 		super.onResume();
-		if (Prefs.getBoolean("BACK_HOME", true)) {
+	/*	if (Prefs.getBoolean("BACK_HOME", true)) {
 			this.finish();
 		}
-		Prefs.putBoolean("BACK_HOME", false);
+		Prefs.putBoolean("BACK_HOME", false);*/
 	}
 
 	@Override

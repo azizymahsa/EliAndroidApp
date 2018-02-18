@@ -33,8 +33,8 @@ import com.farsitel.bazaar.IUpdateCheckService;
 import com.google.gson.Gson;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.eligasht.reservation.BuildConfig;
-import com.eligasht.reservation.R;
+import com.eligasht.BuildConfig;
+import com.eligasht.R;
 
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.hotel.api.userEntranceRequest.request.UserRequest;
@@ -77,9 +77,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     InternetAlert internetAlert;
     boolean isConnect;
     boolean isUpdate = false;
-    boolean isForceUpdate = false;
-    boolean isGooglePlay = false;
-    boolean isBazar = false;
+
     int req = 0;
     SplashDialog splashDialog;
     private static final String TAG = "UpdateCheck";
@@ -299,7 +297,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         if (searchNotes.Section.equals("H")) {
                             ArrayList<String> strings = new ArrayList<>();
 
-                            for (int i = 0; i < 10; i++) {
+                            for (int i = 0; i < 8; i++) {
                                 for (String s : searchNotes.Notes) {
                                     strings.add(new String(s));
                                 }
@@ -314,7 +312,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         if (searchNotes.Section.equals("F")) {
                             ArrayList<String> strings = new ArrayList<>();
 
-                            for (int i = 0; i < 10; i++) {
+                            for (int i = 0; i < 8; i++) {
                                 for (String s : searchNotes.Notes) {
                                     strings.add(new String(s));
                                 }
@@ -326,7 +324,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         if (searchNotes.Section.equals("FH")) {
                             ArrayList<String> strings = new ArrayList<>();
 
-                            for (int i = 0; i < 10; i++) {
+                            for (int i = 0; i < 8; i++) {
                                 for (String s : searchNotes.Notes) {
                                     strings.add(new String(s));
                                 }
@@ -338,7 +336,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         if (searchNotes.Section.equals("P")) {
                             ArrayList<String> strings = new ArrayList<>();
 
-                            for (int i = 0; i < 10; i++) {
+                            for (int i = 0; i < 8; i++) {
                                 for (String s : searchNotes.Notes) {
                                     strings.add(new String(s));
                                 }
@@ -350,19 +348,32 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
                     }
                     if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
+
                         if (!isUpdate) {
-                            startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                            finish();
+                            try {
+                                Version a = new Version(BuildConfig.VERSION_NAME);
+                                Version b = new Version(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion);
+
+                                if (a.compareTo(b) == -1) {
+
+                                    updateAlert.show();
+                                    updateAlert.isForce(true);
+                                }else{
+                                    startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                                    finish();
+                                }
+
+
+                            } catch (Exception e) {
+                                splashDialog.showAlert();
+                            }
+
+
                         } else {
-                            updateAlert.show();
-                            updateAlert.isForce(false);
 
 
-                        }
 
 
-                    } else {
-                        try {
                             Version a = new Version(BuildConfig.VERSION_NAME);
                             Version b = new Version(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion);
 
@@ -370,12 +381,19 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
                                 updateAlert.show();
                                 updateAlert.isForce(true);
+                            }else{
+                                updateAlert.show();
+                                updateAlert.isForce(false);
                             }
 
 
-                        } catch (Exception e) {
-                            splashDialog.showAlert();
+
                         }
+
+
+                    } else {
+                        splashDialog.showAlert();
+
 
 
                     }

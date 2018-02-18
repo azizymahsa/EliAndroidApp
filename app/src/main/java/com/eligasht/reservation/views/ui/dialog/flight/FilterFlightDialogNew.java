@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 import com.eligasht.reservation.models.model.ModelCheckBox;
 import com.eligasht.reservation.views.adapters.hotel.FilterAdapter;

@@ -90,6 +90,8 @@
                     android:layout_marginRight="10dp"
                     android:maxLines="1"
                     android:gravity="center"
+                    android:layout_marginTop="@dimen/_10dp_title"
+
                     />
             </LinearLayout>
 
@@ -99,6 +101,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_60dp_hight"
                 android:layout_gravity="left"
+                android:layout_marginRight="@dimen/_10dp_title"
+
                 >
 
                 <mehdi.sakout.fancybuttons.FancyButton

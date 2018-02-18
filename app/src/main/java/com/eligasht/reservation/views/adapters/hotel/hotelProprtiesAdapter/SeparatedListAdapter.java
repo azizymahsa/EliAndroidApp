@@ -7,7 +7,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
-import com.eligasht.reservation.R;
+import com.eligasht.R;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
