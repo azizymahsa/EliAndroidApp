@@ -59,21 +59,21 @@
         android:id="@+id/llLayout"
         android:layout_width="match_parent"
         android:layout_height="28dp"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        android:background="#ffffff"
         android:layout_below="@+id/toolbar_container"
-        android:gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4">
 
         <ImageView
             android:id="@+id/btn_pish_factor"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
-            android:src="@drawable/factor_passenger_off"
             android:gravity="right|center_vertical"
+            android:src="@drawable/factor_passenger_off"
             android:text=""
             android:textColor="#808080"
             android:textSize="10dp" />
@@ -82,8 +82,8 @@
             android:id="@+id/btn_khadamat"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/khadamat_passenger_off"
             android:gravity="right|center_vertical"
+            android:src="@drawable/khadamat_passenger_off"
             android:text="  "
             android:textColor="#808080"
             android:textSize="10dp" />
@@ -92,8 +92,8 @@
             android:id="@+id/btn_mosaferan"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/mosaferan_passenger_off"
             android:gravity="right|center_vertical"
+            android:src="@drawable/mosaferan_passenger_off"
             android:text="  "
             android:textColor="#808080"
             android:textSize="10dp" />
@@ -103,12 +103,13 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:src="@drawable/saler_passenger"
             android:gravity="right|center_vertical"
+            android:src="@drawable/saler_passenger"
             android:text=""
             android:textColor="#33ccff"
             android:textSize="10dp" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/textLayout"
         android:layout_width="match_parent"
@@ -189,7 +190,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -617,7 +618,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <!-- ///////////////////////// -->
                 <ScrollView
@@ -950,11 +951,11 @@
                                 android:id="@+id/txt_NationalCode_m"
                                 android:layout_width="match_parent"
                                 android:layout_height="32dp"
-                                android:inputType="number"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="0.62"
                                 android:background="@drawable/background_strock_white"
                                 android:gravity="center|center_vertical"
+                                android:inputType="number"
 
                                 android:paddingRight="10dp"
                                 android:paddingTop="0dp"
@@ -1016,11 +1017,11 @@
                         <!-- expire pasport -->
 
                         <LinearLayout
+                            android:id="@+id/linear_expdate"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/toolbar_height_70dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
-                            android:id="@+id/linear_expdate"
                             android:layout_marginTop="10dp"
                             android:orientation="vertical">
 

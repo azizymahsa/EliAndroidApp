@@ -69,11 +69,15 @@ import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.eligasht.reservation.tools.datetools.SolarCalendar;
+import com.eligasht.reservation.views.activities.main.MainActivity;
+import com.eligasht.reservation.views.fragments.PlanFragment;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
@@ -101,7 +105,9 @@ import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class PassengerActivity extends BaseActivity implements Header.onSearchTextChangedListener,OnClickListener,OnItemSelectedListener,View.OnFocusChangeListener{
+public class PassengerActivity extends BaseActivity implements Header.onSearchTextChangedListener,OnClickListener,OnItemSelectedListener,View.OnFocusChangeListener,
+		com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,
+		com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener{
 
 	public static boolean flag;
 	public static final int CONNECTION_TIMEOUT = 10000;
@@ -152,7 +158,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
 	RelativeLayout rlLoading,rlRoot;
-
+	com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
 
 	@SuppressLint("WrongViewCast")
 	@Override
@@ -160,6 +166,37 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_flight_passenger);
 		Prefs.putString("IST","F");
+
+		PersianCalendar persianCalendarDatePicker = new PersianCalendar();
+		PersianCalendar persianCalendar = new PersianCalendar();
+		persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
+
+		datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+		datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+
+		datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+			@Override
+			public void onCalendarChanged(boolean isGregorian) {
+
+				int yearM = datePickerDialogGregorian1.getSelectedDay().getYear();//2018
+				int monthM = datePickerDialogGregorian1.getSelectedDay().getMonth();//2
+				int dayM = datePickerDialogGregorian1.getSelectedDay().getDay();//18
+				//convert to shamsi
+				String dateShamsi = SolarCalendar.calSolarCalendar(yearM, monthM, dayM + 1);
+
+				String[] dateSplite2 = dateShamsi.split("/");//shamsi
+
+				String dayMF = dateSplite2[2];
+				String monthMF = dateSplite2[1];
+				String yearMF = dateSplite2[0];
+
+
+				//datePickerDialog.initialize(PlanFragment.this, Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
+			//	datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+
+
+			}
+		});
 
 		data=new ArrayList<PurchaseFlightResult>();
 		btnBack = (FancyButton) findViewById(R.id.btnBack);
@@ -502,7 +539,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}else{
 						//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
 						txtexp_passport.setError("لطفا انقضاء پاسپورت را وارد کنید ");
-					}}
+					}
+				}
 				break;
 			case R.id.txtnumber_passport:
 				if(hasFocus){
@@ -629,6 +667,17 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 	}
+
+	@Override
+	public void onDateSet(com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+	}
+
+	@Override
+	public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+	}
+
 	//AsyncFetchGetPreFactorDetails
 	private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
 		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
@@ -1668,8 +1717,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 				break;
 			case R.id.txttavalodm:
-				DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString());
-				newFragment2.show(getFragmentManager(), "datePicker");
+				datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
+				/*DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString());
+				newFragment2.show(getFragmentManager(), "datePicker");*/
 				flag = true;
 				break;
 			case  R.id.txtexp_passport:

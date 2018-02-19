@@ -264,7 +264,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 			System.out.println("txtCityBargasht" + maghsadf + "txtCityRaft" + mabdaf);
 		}
-		new AsyncFetch().execute();
+
 
 		//expandin list
 		// get the listview
@@ -364,6 +364,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 		}
 		////////EndPin
+		new AsyncFetch().execute();
 	}//end oncreat======================================================================================
 	public static void updateAdapterPin( List<PinModelDetail> pinModelDetails,List<PinModelHeader> pinModelHeaders,Context activity) {
 		// TODO Auto-generated method stub
