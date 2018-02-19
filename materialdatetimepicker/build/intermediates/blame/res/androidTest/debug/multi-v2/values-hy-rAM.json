@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\New folder (3)\\New folder\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-hy-rAM\\values-hy-rAM.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\reza.nejati\\Desktop\\New folder (6)\\New folder (3)\\New folder\\EligashtAndroidApp\\materialdatetimepicker\\build\\intermediates\\bundles\\debug\\res\\values-hy-rAM\\values-hy-rAM.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,168,282,393,511,629,751,845,935,1029,1117",
+                        "endColumns": "62,113,110,117,117,121,93,89,93,87,101",
+                        "endOffsets": "163,277,388,506,624,746,840,930,1024,1112,1214"
+                    }
+                }
+            ]
+        }
+    ]
+}

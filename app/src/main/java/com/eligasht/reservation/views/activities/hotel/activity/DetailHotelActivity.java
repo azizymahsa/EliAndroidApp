@@ -102,6 +102,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
     // RecyclerView lvComments;
+    boolean updateGoogle=false;
 
     RelativeLayout rlLoading, rlRoot,rlLoading2;
     AddComment addComment;
@@ -281,7 +282,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 }
 
                 YoYo.with(Techniques.FadeIn)
-                        .duration(400)
+                        .duration(600)
                         .playOn(lvRooms);
 
                 vEmakanat.setVisibility(View.INVISIBLE);
@@ -292,20 +293,24 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case R.id.llMapClick:
-                flMap.setVisibility(View.VISIBLE);
-                lvRooms.setVisibility(View.GONE);
-                llDynamic.setVisibility(View.GONE);
-                llComment.setVisibility(View.GONE);
-                tvAlert.setVisibility(View.GONE);
+                if (updateGoogle){
+                    Toast.makeText(this, "سرویس Google Play شما نیاز به بروزرسانی دارد.", Toast.LENGTH_SHORT).show();
+                }else{
+                    flMap.setVisibility(View.VISIBLE);
+                    lvRooms.setVisibility(View.GONE);
+                    llDynamic.setVisibility(View.GONE);
+                    llComment.setVisibility(View.GONE);
+                    tvAlert.setVisibility(View.GONE);
 
-                YoYo.with(Techniques.FadeIn)
-                        .duration(400)
-                        .playOn(flMap);
+                    YoYo.with(Techniques.FadeIn)
+                            .duration(400)
+                            .playOn(flMap);
 
-                vEmakanat.setVisibility(View.INVISIBLE);
-                vMap.setVisibility(View.VISIBLE);
-                vRezerv.setVisibility(View.INVISIBLE);
-                vComment.setVisibility(View.INVISIBLE);
+                    vEmakanat.setVisibility(View.INVISIBLE);
+                    vMap.setVisibility(View.VISIBLE);
+                    vRezerv.setVisibility(View.INVISIBLE);
+                    vComment.setVisibility(View.INVISIBLE);}
+
 
                 break;
             case R.id.llEmakanatClick:
@@ -412,12 +417,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
-            new GetRoomsAsync().execute();
 
 
         } else {
             // TODO: 9/18/2016
         }
+        new GetRoomsAsync().execute();
 
 
     }
@@ -429,9 +434,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             if (isAvailable == ConnectionResult.SUCCESS) {
                 return true;
             } else if (GooglePlayServicesUtil.isUserRecoverableError(isAvailable)) {
-                Dialog dialog = GooglePlayServicesUtil.getErrorDialog(isAvailable,
+
+                updateGoogle=true;
+            /*    Dialog dialog = GooglePlayServicesUtil.getErrorDialog(isAvailable,
                         this, GPS_ERRORDIALOG_REQUEST);
-                dialog.show();
+                dialog.show();*/
             } else {
                 Toast.makeText(this, "امکان دسترسی وجود ندارد", Toast.LENGTH_SHORT).show();
             }
@@ -538,7 +545,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                     }
                 } catch (Exception e) {
-                    rlLoading2.setVisibility(View.GONE);
                 }
 
 
@@ -611,11 +617,14 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
                 Log.e("test", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
-                LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
-                        Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
 
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
-                map.addMarker(new MarkerOptions().position(location).title(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName));
+                try{
+                    LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
+                            Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
+                    map.addMarker(new MarkerOptions().position(location).title(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName));
+                }catch (Exception e){}
+
                 for (ImageHotel imageHotel : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelImages) {
                     imageModels.add(new ImageModel(imageHotel.HotelImagesURL));
                     Log.e("image", imageHotel.HotelImagesURL);

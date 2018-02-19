@@ -30,7 +30,7 @@
         android:layout_height="@dimen/toolbar_height_70dp"
         android:layout_below="@+id/tvLoading"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         />

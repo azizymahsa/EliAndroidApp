@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.eligasht.reservation.myapplicationeli.reserv.myapplicationeli.views.activities.pack.PackageServicesActivity">
+>
 
 
     <include
@@ -20,7 +20,9 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbarLayout"
         android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:dividerHeight="0dp"
+        android:layout_marginTop="@dimen/_5dp_margin"
+        />
 
 
 </RelativeLayout>

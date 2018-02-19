@@ -36,14 +36,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="12sp">
+      >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_purple"
                 android:orientation="horizontal"
-                android:layout_marginLeft="25sp">
+                android:layout_marginLeft="10dp">
 
                 <ImageView
                     android:id="@+id/btn_remove"
@@ -92,7 +92,8 @@
                 android:textColor="@color/TextColor"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textAppearance="@style/IrsansBold"/>
+                android:textAppearance="@style/IrsansBold"
+                android:layout_marginRight="10dp"/>
 
 
 

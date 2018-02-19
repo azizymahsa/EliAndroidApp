@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.gson.Gson;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.pack.LstHotelAmenity;
@@ -73,8 +75,9 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
     public void onBindViewHolder(PRowXferRowHolder holder, final int position) {
         final PRowXfer item = filtertemList.get(position);
 
-        Animation scaleUp = AnimationUtils.loadAnimation(context, R.anim.anim_list);
-        holder.list_pack .startAnimation(scaleUp);
+        YoYo.with(Techniques.FadeIn)
+                .duration(300)
+                .playOn( holder.list_pack);
 
         if(item.getLstProwPriceAdapter() == null){
             List<String> list = StreamList.convertAll(item.getLstProwPrices(), new StreamList.Function<LstProwPrice, String>() {

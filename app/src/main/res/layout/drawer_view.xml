@@ -12,7 +12,7 @@
         android:id="@+id/rlHedaer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="25"
+        android:layout_weight="23"
         android:background="@drawable/background_menu"
         android:gravity="center"
         android:orientation="vertical"
@@ -24,6 +24,7 @@
             android:layout_weight="100"
             android:src="@drawable/user_sidemenu"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
 
             />
 

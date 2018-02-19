@@ -47,8 +47,9 @@
             android:id="@+id/txt_hom"
             android:layout_width="@dimen/_30dp"
             android:layout_height="@dimen/_30dp"
-            android:layout_marginTop="@dimen/_15dp_margin"
-            android:layout_marginLeft="@dimen/_15dp_margin"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/_10dp_margin"
+
             android:background="@drawable/e_logo"
             />
 
@@ -190,7 +191,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -618,7 +619,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <!-- ///////////////////////// -->
                 <ScrollView

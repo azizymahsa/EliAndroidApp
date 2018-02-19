@@ -45,19 +45,7 @@
                 fancy:fb_text=" "
                 android:gravity="right"
                 />-->
-			<mehdi.sakout.fancybuttons.FancyButton
-				android:id="@+id/txtBack"
-				android:layout_width="@dimen/toolbar_bottom_width_50dp"
-				android:layout_height="@dimen/toolbar_bottom_width_50dp"
-				fancy:fb_defaultColor="@android:color/transparent"
-				fancy:fb_focusColor="@color/focusColor"
-				fancy:fb_radius="200dp"
-				fancy:fb_textColor="#FFFFFF"
 
-				android:layout_gravity="right|center"
-				fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
-				fancy:fb_text=" "
-				android:gravity="right"/>
 			<RelativeLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -215,7 +203,19 @@
 			</RelativeLayout>
 
 
+			<mehdi.sakout.fancybuttons.FancyButton
+				android:id="@+id/txtBack"
+				android:layout_width="@dimen/toolbar_bottom_width_50dp"
+				android:layout_height="@dimen/toolbar_bottom_width_50dp"
+				fancy:fb_defaultColor="@android:color/transparent"
+				fancy:fb_focusColor="@color/focusColor"
+				fancy:fb_radius="200dp"
+				fancy:fb_textColor="#FFFFFF"
 
+				android:layout_gravity="right|center"
+				fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
+				fancy:fb_text=" "
+				android:gravity="right"/>
 
 
 
@@ -308,8 +308,8 @@
 								/>
 
 							<ImageView
-								android:layout_width="wrap_content"
-								android:layout_height="match_parent"
+								android:layout_width="100dp"
+								android:layout_height="100dp"
 								android:src="@drawable/alert"
 								android:layout_centerInParent="true"/>
 

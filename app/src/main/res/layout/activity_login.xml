@@ -55,11 +55,11 @@
                android:hint="ایمیل"
                 android:gravity="right|center|bottom"
                 android:paddingBottom="10dp"
-                android:textColorHint="@color/dark_blue"
+                android:textColorHint="@color/text_color_2e"
                 android:background="@null"
                 android:textSize="@dimen/_14dp_txtSize"
                 android:imeOptions="actionNext"
-                android:textColor="@color/dark_blue"
+                android:textColor="@color/text_color_2e"
                 android:singleLine="true"
                 android:inputType="textEmailAddress"
                 />
@@ -73,14 +73,14 @@
                 android:textSize="@dimen/_25dp_normal_iconSize"
                 android:paddingLeft="8dp"
                 android:paddingBottom="13dp"
-                android:textColor="@color/light_blue"
+                android:textColor="@color/text_color_2e"
              />
 
         </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/dark_blue"
+            android:background="@color/text_color_2e"
             android:layout_marginRight="45dp"
             android:layout_marginLeft="45dp"
            />
@@ -98,13 +98,13 @@
                 android:hint="کلمه عبور"
                 android:gravity="right|center|bottom"
                 android:paddingBottom="10dp"
-                android:textColorHint="@color/dark_blue"
+                android:textColorHint="@color/text_color_2e"
                 android:background="@null"
                 android:textSize="@dimen/_14dp_txtSize"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:inputType="textPassword"
-                android:textColor="@color/dark_blue"/>
+                android:textColor="@color/text_color_2e"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="0.2"
@@ -116,7 +116,7 @@
                 android:paddingLeft="8dp"
                 android:paddingBottom="13dp"
 
-                android:textColor="@color/light_blue" />
+                android:textColor="@color/text_color_2e" />
 
 
         </LinearLayout>
@@ -125,7 +125,7 @@
             android:layout_height="1dp"
             android:layout_marginRight="45dp"
             android:layout_marginLeft="45dp"
-            android:background="@color/dark_blue"/>
+            android:background="@color/text_color_2e"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -144,14 +144,14 @@
                 android:gravity="right|center"
                 android:textSize="@dimen/_25dp_normal_iconSize"
                 android:paddingRight="10dp"
-                android:textColor="@color/light_blue"/>
+                android:textColor="@color/text_color_2e"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="فراموشی کلمه عبور"
                 android:gravity="right|center"
                 android:layout_marginRight="40dp"
-                android:textColor="@color/dark_blue"
+                android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_14dp_txtSize"/>
 
 
@@ -169,7 +169,7 @@
                 android:text="ثبت نام"
                 android:gravity="right"
                 android:paddingRight="40dp"
-                android:textColor="@color/dark_blue"
+                android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_14dp_txtSize"
                 android:textAppearance="@style/IrsansBold"/>
 

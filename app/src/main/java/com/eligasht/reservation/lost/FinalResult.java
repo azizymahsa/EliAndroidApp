@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.google.gson.Gson;
 import com.eligasht.R;
 import com.eligasht.reservation.api.app.GetPreFactor;
@@ -35,9 +36,11 @@ import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import java.util.ArrayList;
 import java.util.List;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 public class FinalResult extends BaseActivity {
     private String factorId;
-    TextView tvFactor, tvFactor2, tvPaymen, tvPrice, tvPeygiri, tvStatusFactor, tvSuccses, tvNumberPeygiri, tvMail;
+    TextView tvFactor, tvFactor2, tvPaymen, tvPrice, tvPeygiri, tvStatusFactor, tvSuccses, tvNumberPeygiri, tvMail,tvAlert;
     GetPreFactor getPreFactor;
     RelativeLayout rlPrice, rlPeygiri, rlStatus, rlIv, rlLoading;
     ImageView ivImage;
@@ -49,6 +52,9 @@ public class FinalResult extends BaseActivity {
     String url;
     CardView cvStatus, cv2, cv1;
     LinearLayout llButton;
+    LinearLayout llBottom, llSort, llFilter;
+    FancyButton btnOk, btnBack, btnHome;
+    RelativeLayout elNotFound;
 
 
     @Override
@@ -90,8 +96,11 @@ public class FinalResult extends BaseActivity {
         rlPeygiri = findViewById(R.id.rlPeygiri);
         rlStatus = findViewById(R.id.rlStatus);
         tvStatusFactor = findViewById(R.id.tvStatusFactor);
+        btnOk = findViewById(R.id.btnOk);
+        elNotFound = findViewById(R.id.elNotFound);
         tvPeygiri = findViewById(R.id.tvPeygiri);
         rlIv = findViewById(R.id.rlIv);
+        tvAlert = findViewById(R.id.tvAlert);
         btnRPayment = findViewById(R.id.btnRPayment);
         rlLoading = findViewById(R.id.rlLoading);
         ivImage = findViewById(R.id.ivImage);
@@ -119,6 +128,7 @@ public class FinalResult extends BaseActivity {
     private class GetRoomsAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
+            elNotFound.setVisibility(View.GONE);
             rlLoading.setVisibility(View.VISIBLE);
 
 
@@ -127,9 +137,9 @@ public class FinalResult extends BaseActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                getPreFactor = new GetPreFactor(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""), factorId + "", new Identity("EligashtMlb",
+                getPreFactor = new GetPreFactor(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""),  factorId+"", new Identity("EligashtMlb",
                         "123qwe!@#QWE", "Mobile"))));
-                Log.e("okokokok", new Gson().toJson(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""), factorId + "", new Identity("EligashtMlb",
+                Log.e("okokokok", new Gson().toJson(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""), factorId+"", new Identity("EligashtMlb",
                         "123qwe!@#QWE", "Mobile")))));
             } catch (Exception e) {
 
@@ -141,12 +151,13 @@ public class FinalResult extends BaseActivity {
         protected void onPostExecute(String result) {
             //  new InitUi().Loading(rlLoading,rlRoot,false);
             rlLoading.setVisibility(View.GONE);
+            elNotFound.setVisibility(View.GONE);
 
 
-          /*  try {
-*/
+            try {
             if (getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.errors != null) {
-                Toast.makeText(FinalResult.this, getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.errors.get(0).getDetailedMessage(), Toast.LENGTH_SHORT).show();
+                elNotFound.setVisibility(View.VISIBLE);
+                tvAlert.setText(getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.errors.get(0).getDetailedMessage());
 
             } else {
 
@@ -251,10 +262,20 @@ public class FinalResult extends BaseActivity {
 
 
             //  setListViewHeightBasedOnChildren(lvRooms);
-            /*} catch (Exception e) {
+            } catch (Exception e) {
+                llFilter.setVisibility(View.GONE);
+                elNotFound.setVisibility(View.VISIBLE);
+                if (!Utility.isNetworkAvailable(FinalResult.this)) {
+
+                    tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+
+                } else {
+
+                    tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
+
+                }
 
             }
-*/
         }
 
     }

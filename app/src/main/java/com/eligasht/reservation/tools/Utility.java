@@ -779,7 +779,7 @@ public class Utility extends Activity {
                         Log.e("onStart2", jsonObj.toString());
 
                         if (finalI1 <= jsonObj.length()) {
-                            YoYo.with(Techniques.SlideOutLeft)
+                            YoYo.with(Techniques.SlideOutDown)
                                     .duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
                                 @Override
                                 public void onAnimationStart(Animator animation) {
@@ -794,7 +794,7 @@ public class Utility extends Activity {
                                         e.printStackTrace();
                                     }
 
-                                    YoYo.with(Techniques.SlideInRight)
+                                    YoYo.with(Techniques.SlideInDown)
                                             .duration(500)
                                             .playOn(typeWriter);
                                 }

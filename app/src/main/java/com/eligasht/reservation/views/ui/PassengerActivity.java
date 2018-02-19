@@ -1717,9 +1717,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 				break;
 			case R.id.txttavalodm:
-				datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
-				/*DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString());
-				newFragment2.show(getFragmentManager(), "datePicker");*/
+				//datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
+				DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString());
+				newFragment2.show(getFragmentManager(), "datePicker");
 				flag = true;
 				break;
 			case  R.id.txtexp_passport:

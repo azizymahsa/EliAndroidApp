@@ -331,29 +331,32 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
             picker_be_format = persianCalendarDatePicker.getPersianLongDate();
         } else {
+            try{
+                tarikh_be_picker.setText(Prefs.getString("bargashtfa", "null").replaceAll("/", "-"));
+                picker_be_format = Prefs.getString("bargashtfa", "null").replaceAll("/", "-");
+                bargasht = Prefs.getString("bargasht", "null").replaceAll("/", "-");
 
-            tarikh_be_picker.setText(Prefs.getString("bargashtfa", "null").replaceAll("/", "-"));
-            picker_be_format = Prefs.getString("bargashtfa", "null").replaceAll("/", "-");
-            bargasht = Prefs.getString("bargasht", "null").replaceAll("/", "-");
+                Log.e("testdate", bargasht );
 
-            Log.e("testdate", bargasht );
+                String[] dateSplite2=bargasht.split("-");
 
-            String[] dateSplite2=bargasht.split("-");
+                String dayMF=dateSplite2[2];
+                String monthMF=dateSplite2[1];
+                String yearMF=dateSplite2[0];
+                String[] dateSplite3= SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
 
-            String dayMF=dateSplite2[2];
-            String monthMF=dateSplite2[1];
-            String yearMF=dateSplite2[0];
-            String[] dateSplite3= SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
-
-            String dayMF1=dateSplite3[2];
-            String monthMF1=dateSplite3[1];
-            String yearMF1=dateSplite3[0];
+                String dayMF1=dateSplite3[2];
+                String monthMF1=dateSplite3[1];
+                String yearMF1=dateSplite3[0];
 
 
-            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-            persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-            datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
+                PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+                persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
+                Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+                datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
+
+
+            }catch (Exception e){}
 
 
 
@@ -367,31 +370,34 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             picker_az_format = persianCalendarDatePicker.getPersianLongDate();
 
         } else {
-            tarikh_az_picker.setText(Prefs.getString("raftfa", "null").replaceAll("/", "-"));
-            picker_az_format = Prefs.getString("raftfa", "null").replaceAll("/", "-");
-            raft = Prefs.getString("raft", "null").replaceAll("/", "-");
+            try{
+                tarikh_az_picker.setText(Prefs.getString("raftfa", "null").replaceAll("/", "-"));
+                picker_az_format = Prefs.getString("raftfa", "null").replaceAll("/", "-");
+                raft = Prefs.getString("raft", "null").replaceAll("/", "-");
 
 
 
 
 
-            String[] dateSplite2=raft.split("-");
+                String[] dateSplite2=raft.split("-");
 
-            String dayMF=dateSplite2[2];
-            String monthMF=dateSplite2[1];
-            String yearMF=dateSplite2[0];
-            String[] dateSplite3= SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
+                String dayMF=dateSplite2[2];
+                String monthMF=dateSplite2[1];
+                String yearMF=dateSplite2[0];
+                String[] dateSplite3= SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
 
-            String dayMF1=dateSplite3[2];
-            String monthMF1=dateSplite3[1];
-            String yearMF1=dateSplite3[0];
+                String dayMF1=dateSplite3[2];
+                String monthMF1=dateSplite3[1];
+                String yearMF1=dateSplite3[0];
 
 
-            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-            persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-            datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
+                PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+                persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
+                Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+                datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
 
+
+            }catch (Exception e){}
 
 
 

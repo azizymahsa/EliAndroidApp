@@ -24,7 +24,6 @@
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="200dp"
             fancy:fb_textColor="#FFFFFF"
-
             android:layout_gravity="right|center"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
             fancy:fb_text=" "
@@ -38,8 +37,7 @@
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="200dp"
             fancy:fb_textColor="#FFFFFF"
-
-            android:layout_gravity="right"
+            android:layout_gravity="right|center"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
             fancy:fb_text=" "
             />

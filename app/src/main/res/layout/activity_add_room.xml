@@ -36,20 +36,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="12sp">
+      >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/background_purple"
             android:orientation="horizontal"
-            android:layout_marginLeft="25sp">
+            android:layout_marginLeft="10dp">
             <ImageView
                 android:id="@+id/btn_remove"
                 android:layout_width="50sp"
                 android:layout_height="30sp"
                 android:padding="3sp"
-                app:srcCompat="@drawable/ic_remove_black_24dp"
+                android:src="@drawable/ic_remove_black_24dp"
                 android:tint="@color/colorPrimaryDark"/>
 
 
@@ -61,7 +61,7 @@
                 android:id="@+id/btn_add"
                 android:layout_width="50sp"
                 android:layout_height="30sp"
-                app:srcCompat="@drawable/ic_add_black_24dp"
+                android:src="@drawable/ic_add_black_24dp"
                 android:padding="3sp"
                 android:tint="@color/colorPrimaryDark"/>
 
@@ -91,7 +91,8 @@
             android:textColor="@color/TextColor"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textAppearance="@style/IrsansBold"/>
+            android:textAppearance="@style/IrsansBold"
+            android:layout_marginRight="10dp"/>
 
 
 
@@ -119,8 +120,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_21dp_margin"
-            android:layout_marginRight="@dimen/_21dp_margin"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="@dimen/_5dp_margin"
             android:background="@drawable/btngravity_big"
             android:shadowColor="@color/drawer_shadow"
@@ -130,7 +131,8 @@
             android:text="@string/accept"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/_16dp_txtSize"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_5dp_margin"/>
 
     </LinearLayout>
     </LinearLayout>
