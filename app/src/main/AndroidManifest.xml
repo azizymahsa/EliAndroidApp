@@ -178,6 +178,8 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.eligasht.reservation.views.activities.transfer.GetHotelActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".views.activities.login.RegisterLoginActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

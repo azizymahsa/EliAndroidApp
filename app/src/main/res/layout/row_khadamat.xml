@@ -171,7 +171,7 @@
         </RelativeLayout>-->
         <RelativeLayout
             android:id="@+id/btnAddsabad"
-            android:layout_width="130dp"
+            android:layout_width="@dimen/_130_khadmatdp"
             android:layout_height="23dp"
             android:background="@drawable/blue_button">
 

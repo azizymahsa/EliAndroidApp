@@ -26,7 +26,7 @@
 
     <dimen name="_200dp">200dp</dimen>
     <dimen name="_10dp_marging">10dp</dimen>
-    <dimen name="_14dp_txtSize">14dp</dimen>
+    <dimen name="_14dp_txtSize">10dp</dimen>
     <dimen name="_2dp_margin">2dp</dimen>
     <dimen name="_15dp_margin">20dp</dimen>
     <dimen name="_5sp_padding">5dp</dimen>
@@ -42,7 +42,7 @@
     <dimen name="_16dp_txtSize">16dp</dimen>
     <dimen name="text_message">14dp</dimen>
     <dimen name="_21dp_margin">21dp</dimen>
-    <dimen name="_40dp">40dp</dimen>
+    <dimen name="_40dp">30dp</dimen>
     <dimen name="_30dp">30dp</dimen>
     <dimen name="_15dp">15dp</dimen>
     <dimen name="_150dp">150dp</dimen>
@@ -95,7 +95,14 @@
     <dimen name="_50dp_tablet">0dp</dimen>
     <dimen name="_80dp_fh_">80dp</dimen>
     <dimen name="_14dp_2">12dp</dimen>
-    <dimen name="_32_normal_flight">32dp</dimen>
+    <dimen name="_32_normal_flight">16dp</dimen>
     <dimen name="_10dp_title">0dp</dimen>
+    <dimen name="_130_khadmatdp">130dp</dimen>
+    <dimen name="_15_flight_dp">1dp</dimen>
+    <dimen name="_10_flight_dp">1dp</dimen>
+    <dimen name="_3_flight_dp">0dp</dimen>
+    <dimen name="_7_flight_dp">1dp</dimen>
+    <dimen name="_5_flight_dp">0dp</dimen>
+    <dimen name="_50_flight_dp">35dp</dimen>
 
 </resources>

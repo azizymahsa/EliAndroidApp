@@ -123,7 +123,17 @@ public class JalaliCalendar extends Calendar {
 
     }
 
+    public String getJalaliDateString(int year, int month, int day) {
 
+
+        YearMonthDate gMyDate = new YearMonthDate(year, month, day);
+        YearMonthDate jDate = gregorianToJalali(gMyDate);
+
+        jDay = jDate.date;
+        jMonth = jDate.month + 1;
+        jYear = jDate.year;
+        return jDay+"/"+jMonth+"/"+jYear;
+    }
     public void getJalaliDate(int year, int month, int day) {
 
         //  Calendar gCal = Calendar.getInstance();

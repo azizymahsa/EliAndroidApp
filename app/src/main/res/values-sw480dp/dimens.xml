@@ -104,4 +104,11 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_14dp_2">12dp</dimen>
     <dimen name="_32_normal_flight">32dp</dimen>
     <dimen name="_10dp_title">0dp</dimen>
+    <dimen name="_130_khadmatdp">130dp</dimen>
+    <dimen name="_15_flight_dp">15dp</dimen>
+    <dimen name="_10_flight_dp">10dp</dimen>
+    <dimen name="_3_flight_dp">3dp</dimen>
+    <dimen name="_7_flight_dp">7dp</dimen>
+    <dimen name="_5_flight_dp">5dp</dimen>
+    <dimen name="_50_flight_dp">50dp</dimen>
 </resources>
