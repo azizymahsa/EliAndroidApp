@@ -71,50 +71,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="100"
-                        android:gravity="center">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="تخفیف ویژه"
-                            android:textSize="@dimen/_14dp_txtSize" />
-
-                        <cn.refactor.library.SmoothCheckBox
-                            android:id="@+id/bestOff"
-                            android:layout_width="@dimen/_25dp_normal_iconSize"
-                            android:layout_height="@dimen/_25dp_normal_iconSize"
-                            android:layout_margin="5dp"
-                            app:color_checked="@color/app_base_color" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="100"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="بیشترین فروش"
-                            android:textSize="@dimen/_14dp_txtSize" />
-
-                        <cn.refactor.library.SmoothCheckBox
-                            android:id="@+id/bestSeler"
-                            android:layout_width="@dimen/_25dp_normal_iconSize"
-                            android:layout_height="@dimen/_25dp_normal_iconSize"
-                            android:layout_margin="5dp"
-                            app:color_checked="@color/app_base_color" />
-                    </LinearLayout>
+            >
+                    <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
+                        android:id="@+id/lvBestOff"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
 
                 </LinearLayout>
@@ -134,128 +95,11 @@
                     android:textAppearance="@style/IrsansBold"
                     android:textSize="@dimen/_14dp_txtSize" />
 
-                <LinearLayout
+
+                <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
+                    android:id="@+id/lvStar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="100"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="2 ستاره"
-                            android:textSize="@dimen/_14dp_txtSize" />
-
-                        <cn.refactor.library.SmoothCheckBox
-                            android:id="@+id/star2"
-                            android:layout_width="@dimen/_25dp_normal_iconSize"
-                            android:layout_height="@dimen/_25dp_normal_iconSize"
-                            android:layout_margin="5dp"
-                            app:color_checked="@color/app_base_color" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="100"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="1 ستاره"
-                            android:textSize="@dimen/_14dp_txtSize" />
-
-                        <cn.refactor.library.SmoothCheckBox
-                            android:id="@+id/star1"
-                            android:layout_width="@dimen/_25dp_normal_iconSize"
-                            android:layout_height="@dimen/_25dp_normal_iconSize"
-                            android:layout_margin="5dp"
-                            app:color_checked="@color/app_base_color" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="100"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="4 ستاره"
-                            android:textSize="@dimen/_14dp_txtSize" />
-
-                        <cn.refactor.library.SmoothCheckBox
-                            android:id="@+id/star4"
-                            android:layout_width="@dimen/_25dp_normal_iconSize"
-                            android:layout_height="@dimen/_25dp_normal_iconSize"
-                            android:layout_margin="5dp"
-                            app:color_checked="@color/app_base_color" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="100"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="3 ستاره"
-                            android:textSize="@dimen/_14dp_txtSize" />
-
-                        <cn.refactor.library.SmoothCheckBox
-                            android:id="@+id/star3"
-                            android:layout_width="@dimen/_25dp_normal_iconSize"
-                            android:layout_height="@dimen/_25dp_normal_iconSize"
-                            android:layout_margin="5dp"
-                            app:color_checked="@color/app_base_color" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="5 ستاره"
-                        android:textSize="@dimen/_14dp_txtSize" />
-
-                    <cn.refactor.library.SmoothCheckBox
-                        android:id="@+id/star5"
-                        android:layout_width="@dimen/_25dp_normal_iconSize"
-                        android:layout_height="@dimen/_25dp_normal_iconSize"
-                        android:layout_margin="5dp"
-                        app:color_checked="@color/app_base_color" />
-                </LinearLayout>
+                    android:layout_height="wrap_content"/>
 
 
                 <View

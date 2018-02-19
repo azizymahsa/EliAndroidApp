@@ -10,7 +10,6 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50dp"
-            android:padding="10dp"
             android:orientation="horizontal"
             android:background="@drawable/alert_header_background"
             android:text="قطع ارتباط"

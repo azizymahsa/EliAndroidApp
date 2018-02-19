@@ -17,6 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
+import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
+import com.eligasht.reservation.views.adapters.hotel.LazyResoultHotelAdapter;
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -77,37 +80,39 @@ import java.util.Set;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class SelectHotelFlightActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener {
+public class SelectHotelFlightActivity extends BaseActivity implements View.OnClickListener, FilterHotelDialog.FilterHotelDialogListenerArray, SortDialog.SortHotelDialogListener {
     private ListView list;
     private FlightHotelAdapter adapter;
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayListFilter = new ArrayList<>();
-    private ArrayList<SelectFlightHotelModel> selectHotelModelArrayListFilter1 = new ArrayList<>();
-    private ArrayList<FilterModel> filterModels = new ArrayList<>();
     private ArrayList<FilterHotelTypeModel> filterHotelTypeModel = new ArrayList<>();
     private ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels = new ArrayList<>();
     private ArrayList<FilterPriceModel> filterHotelPriceModels = new ArrayList<>();
     private ArrayList<FilterHotelTypeModel> filterHotelLocationModels = new ArrayList<>();
+    private ArrayList<FilterHotelTypeModel> filterHotelBestOffModels = new ArrayList<>();
+    private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
+    private ArrayList<FilterModel> filterModels = new ArrayList<>();
+
 
     private HotelFlightSearch hotelFlightSearch;
     private List<Rooms> rooms = new ArrayList<>();
     RelativeLayout rlLoading, rlRoot;
-    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort,tvLoading;
+    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading;
     Window window;
-    RelativeLayout elNotFound,rlEr;
+    RelativeLayout elNotFound, rlEr;
     FancyButton btnNextDays, btnLastDays;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     int maxPrice, minPrice;
 
-    LinearLayout llBottom, llSort,llFilter;
+    LinearLayout llBottom, llSort, llFilter;
     FancyButton btnOk, btnBack, btnHome;
-    ImageView ivLoading,ivImage;
+    ImageView ivLoading, ivImage;
 
     String raft, bargasht;
     String raftFa, bargashtFa;
     boolean isFilter = false;
-    String flightId,searchIn;
+    String flightId, searchIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +154,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         llSort.setOnClickListener(this);
         adapter = new FlightHotelAdapter(selectHotelModelArrayList, this);
         list.setAdapter(adapter);
-        Utility.loadingText(tvLoading,Prefs.getString("FH",""));
+        Utility.loadingText(tvLoading, Prefs.getString("FH", ""));
 
 
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -183,7 +188,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                     i.putExtra("type", 1);
 
                     startActivity(i);
-                }else{
+                } else {
                     Intent i = new Intent(SelectHotelFlightActivity.this, DetailHotelActivity.class);
                     i.putExtra("HotelId", selectHotelModelArrayListFilter.get(position).geteHotelId());
                     i.putExtra("ResultUniqID", selectHotelModelArrayListFilter.get(position).getResultUniqID());
@@ -225,7 +230,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.llBottom:
-                new FilterHotelDialog(SelectHotelFlightActivity.this, filterModels, this, filterHotelTypeModel, filterHotelFacilitiesModels, filterHotelPriceModels,searchIn,filterHotelLocationModels);
+                new FilterHotelDialog(SelectHotelFlightActivity.this, filterModels, this, filterHotelTypeModel,
+                        filterHotelFacilitiesModels, filterHotelPriceModels, searchIn, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels);
 
 
                 break;
@@ -282,36 +288,36 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         /////////////////////////////
                         SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd");//2017/03/24 11:49
                         String formatted3 = format3.format(cal.getTime());
-                        String[] dateSplite=formatted3.split("/");
+                        String[] dateSplite = formatted3.split("/");
 
-                        String dayM=dateSplite[2];
-                        String monthM=dateSplite[1];
-                        String yearM=dateSplite[0];
+                        String dayM = dateSplite[2];
+                        String monthM = dateSplite[1];
+                        String yearM = dateSplite[0];
 
-                        String  dateShamsi= SolarCalendar.calSolarCalendar(Integer.parseInt(yearM),Integer.parseInt(monthM),Integer.parseInt(dayM));
-                        System.out.println("dateShamsi:"+yearM+monthM+dayM+"   "+dateShamsi);
+                        String dateShamsi = SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
+                        System.out.println("dateShamsi:" + yearM + monthM + dayM + "   " + dateShamsi);
 
-                        String[] dateSplite2=dateShamsi.split("/");
+                        String[] dateSplite2 = dateShamsi.split("/");
 
-                        String dayMF=dateSplite2[2];
-                        String monthMF=dateSplite2[1];
-                        String yearMF=dateSplite2[0];
+                        String dayMF = dateSplite2[2];
+                        String monthMF = dateSplite2[1];
+                        String yearMF = dateSplite2[0];
                       /*  String dayMF=dateShamsi.substring(8, 10);//02
                         String monthMF=dateShamsi.substring(5, 7);//01
                         String yearMF=dateShamsi.substring(0, 4);//1396
 */
                         PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
+                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
                         /////////////////////
                         //   txtDateOnvan.setText(dfm.format(cal.getTime()) + "  -  " + AdateF);
                         ///
-                        raftFa=persianCalendar.getPersianLongDate();
+                        raftFa = persianCalendar.getPersianLongDate();
                         raft = formatter.format(cal.getTime());
                         if (getIntent().getExtras().getBoolean("Geo")) {
 
-                            tvDate.setText(DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " - " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
+                            tvDate.setText(DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false) + " - " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
 
-                        }else{
+                        } else {
                             tvDate.setText(raftFa + " - " + bargashtFa);
 
 
@@ -325,10 +331,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 } catch (java.text.ParseException e) {
                     System.out.println("Exception :" + e);
                 }
-
-
-
-
 
 
                 break;
@@ -359,28 +361,28 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                         /////////////////////////////
                         SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd");//2017/03/24 11:49
                         String formatted3 = format3.format(cal.getTime());
-                        String[] dateSplite=formatted3.split("/");
+                        String[] dateSplite = formatted3.split("/");
 
-                        String dayM=dateSplite[2];
-                        String monthM=dateSplite[1];
-                        String yearM=dateSplite[0];
-                        String  dateShamsi= com.eligasht.reservation.models.model.SolarCalendar.calSolarCalendar(Integer.parseInt(yearM),Integer.parseInt(monthM),Integer.parseInt(dayM));
-                        String[] dateSplite2=dateShamsi.split("/");
+                        String dayM = dateSplite[2];
+                        String monthM = dateSplite[1];
+                        String yearM = dateSplite[0];
+                        String dateShamsi = com.eligasht.reservation.models.model.SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
+                        String[] dateSplite2 = dateShamsi.split("/");
 
-                        String dayMF=dateSplite2[2];
-                        String monthMF=dateSplite2[1];
-                        String yearMF=dateSplite2[0];
+                        String dayMF = dateSplite2[2];
+                        String monthMF = dateSplite2[1];
+                        String yearMF = dateSplite2[0];
                         PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF)-1, Integer.parseInt(dayMF));
+                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
                         /////////////////////
                         // txtDateOnvan.setText(AdateF + "  -  " + dfm.format(cal.getTime()));
-                        raftFa=persianCalendar.getPersianLongDate();
+                        raftFa = persianCalendar.getPersianLongDate();
                         raft = formatter.format(cal.getTime());
                         if (getIntent().getExtras().getBoolean("Geo")) {
 
-                            tvDate.setText(DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false)+ " - " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
+                            tvDate.setText(DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false) + " - " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
 
-                        }else{
+                        } else {
                             tvDate.setText(raftFa + " - " + bargashtFa);
 
 
@@ -397,990 +399,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
                 break;
-        }
-    }
-
-    @Override
-    public void onReturnValue(ArrayList<FilterModel> type, String search, ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
-                              ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, ArrayList<FilterPriceModel> filterHotelPriceModel,
-                              ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
-        elNotFound.setVisibility(View.GONE);
-        list.setVisibility(View.VISIBLE);
-        btnOk.setVisibility(View.VISIBLE);
-        rlEr.setVisibility(View.VISIBLE);
-        boolean remove = false;
-
-        this.filterModels = type;
-        this.searchIn = search;
-        this.filterHotelTypeModel = filterHotelTypeModels;
-        this.filterHotelPriceModels = filterHotelPriceModel;
-        this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
-        this.filterHotelLocationModels = filterHotelLocationModels;
-
-        selectHotelModelArrayListFilter = new ArrayList<>();
-        selectHotelModelArrayListFilter1 = new ArrayList<>();
-
-        for (FilterModel filterModel : filterModels) {
-
-            Log.e("test", filterModel.isStar3() + "===" + filterModel.isRemove());
-
-
-            top_filter(filterModel, filterHotelTypeModels);
-            star_filter(filterModel, filterHotelTypeModels);
-            facilities_filter(filterHotelFacilitiesModels);
-            location_filter(filterHotelLocationModels);
-            price_filter(filterHotelPriceModel);
-
-            if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4()
-                    || filterModel.isStar5()) && (filterModel.isBestSeler() || filterModel.isBestOff())) {
-
-                isBestOff_and_isStar(filterModel);
-                isBestSell_and_isStar(filterModel);
-                type_location_filter(filterHotelTypeModels, 0, false, false);
-                //todo change this
-
-                selectHotelModelArrayListFilter = new ArrayList<>();
-                selectHotelModelArrayListFilter = selectHotelModelArrayListFilter1;
-
-
-            } else {
-                if (!(filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4()
-                        || filterModel.isStar5())) {
-
-                    type_location_filter(filterHotelTypeModels, 0, false, false);
-
-                }/*else
-
-
-                if (!(filterModel.isBestSeler() || filterModel.isBestOff())) {
-
-                    type_location_filter(filterHotelTypeModels, 0, false, false);
-
-                }
-*/
-            }
-
-
-            if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4() || filterModel.isStar5() || filterModel.isBestSeler() || filterModel.isBestOff())
-                    || filterHotelTypeModels.size() > 0) {
-
-                if (search != null) {
-                    ArrayList<SelectFlightHotelModel> selectHotelModelArrayListFilter3 = new ArrayList<>();
-
-                    if (selectHotelModelArrayListFilter.isEmpty()){
-
-
-                        for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                            if (selectHotelModel.getName().toLowerCase().contains(search.toLowerCase())) {
-                                selectHotelModelArrayListFilter3.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                                        selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                        selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                                        selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                        selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                                        selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                        selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-                            }
-
-                            //    }
-                /*    }
-                        for (Iterator<SelectHotelModel> it = selectHotelModelArrayListFilter3.iterator(); it.hasNext(); ) {
-                            if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
-                                it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
-                            }*/
-                        }
-
-                        selectHotelModelArrayListFilter.clear();
-                        selectHotelModelArrayListFilter=selectHotelModelArrayListFilter3;
-
-                    }else{
-                        for (Iterator<SelectFlightHotelModel> it = selectHotelModelArrayListFilter.iterator(); it.hasNext(); ) {
-                            if (!it.next().getName().toLowerCase().contains(search.toLowerCase())) {
-                                it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
-                            }
-
-
-                        }
-                    }
-
-
-                }
-            } else {
-                if (search != null) {
-                    for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                        if (selectHotelModel.getName().toLowerCase().contains(search.toLowerCase())) {
-                            selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                                    selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                    selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                                    selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                    selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                                    selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                    selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(),
-                                    selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-                        }
-
-                    }
-                }
-
-            }
-
-
-            if (filterModel.isRemove()) {
-                remove = true;
-
-                // search="";
-                tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-                tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-
-                adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this);
-                tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
-                adapter.notifyDataSetChanged();
-                selectHotelModelArrayListFilter.clear();
-                searchIn = "";
-            }
-
-
-        }
-
-        if (selectHotelModelArrayListFilter.isEmpty()) {
-
-
-            isFilter = false;
-            ///Toast.makeText(this, "موردی یافت نشد", Toast.LENGTH_SHORT).show();
-            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-
-            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this);
-            tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
-
-
-
-
-        } else {
-            isFilter = true;
-            adapter = new FlightHotelAdapter(selectHotelModelArrayListFilter, SelectHotelFlightActivity.this);
-            tvCount.setText("(" + selectHotelModelArrayListFilter.size() + "مورد یافت شد" + ")");
-            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
-            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
-
-            if (selectHotelModelArrayListFilter.size()==selectHotelModelArrayList.size()){
-                if (!remove){
-                    elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("نتیجه ای برای فیلتر شما حاصل نشد!");
-                    list.setVisibility(View.GONE);
-                    btnOk.setVisibility(View.GONE);
-                    rlEr.setVisibility(View.GONE);
-
-                }
-                tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-                tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-            }
-        }
-        list.setAdapter(adapter);
-
-        adapter.notifyDataSetChanged();
-
-
-    }
-
-    public void top_filter(FilterModel filterModel, ArrayList<FilterHotelTypeModel> filterHotelTypeModels) {
-
-
-        if (filterModel.isBestSeler() && filterModel.isBestOff()) {
-            for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                if (selectHotelModel.isBestSell()&&selectHotelModel.isOff()) {
-                    selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                            selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                            selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(), selectHotelModel.getLocations()));
-                }
-
-
-            }
-            type_location_filter(filterHotelTypeModels, 0, true, true);
-
-        } else if (filterModel.isBestSeler()) {
-            for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                if (selectHotelModel.isBestSell()) {
-                    selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                            selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                            selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(), selectHotelModel.getLocations()));
-                }
-
-
-            }
-            type_location_filter(filterHotelTypeModels, 0, false, true);
-
-
-
-        }else if (filterModel.isBestOff()) {
-            for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                if (selectHotelModel.isOff()) {
-                    selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                            selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                            selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                            selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-
-                }
-
-            }
-            type_location_filter(filterHotelTypeModels, 0, true, false);
-
-        }
-
-
-    }
-
-    public void type_location_filter(ArrayList<FilterHotelTypeModel> filterHotelTypeModels, int star, boolean isOff, boolean isBestseler) {
-        boolean stars = true;
-
-        for (FilterModel filterModel : filterModels) {
-            if (!(filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4()
-                    || filterModel.isStar5())) {
-                stars = false;
-
-            }
-        }
-
-        if (!stars || !isOff || !isBestseler) {
-
-            if (selectHotelModelArrayListFilter.isEmpty()) {
-
-                for (int i = 0; i < filterHotelTypeModels.size(); i++) {
-                    if (filterHotelTypeModels.get(i).isCheck()) {
-                        for (int j = 0; j < selectHotelModelArrayList.size(); j++) {
-                            if (filterHotelTypeModels.get(i).getTitle().equals(selectHotelModelArrayList.get(j).getTypeText())) {
-
-                                selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
-                                        selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
-                                        selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
-                                        selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
-                                        selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
-                                        selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
-                                        selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
-                                        selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(), selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount(),selectHotelModelArrayList.get(j).getLocations()));
-
-                            }
-
-                        }
-                    }
-
-
-                }
-            }
-        } else if (stars) {
-            ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
-
-
-            for (FilterModel filterModel : filterModels) {
-                if ((filterModel.isStar1() || filterModel.isStar2() || filterModel.isStar3() || filterModel.isStar4()
-                        || filterModel.isStar5())) {
-
-
-                    for (int i = 0; i < filterHotelTypeModels.size(); i++) {
-                        if (filterHotelTypeModels.get(i).isCheck()) {
-                            for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
-                                if (filterHotelTypeModels.get(i).getTitle().equals(selectHotelModelArrayListFilter.get(j).getTypeText()) && selectHotelModelArrayListFilter.get(j).getStar() == star) {
-                                    isFilter = true;
-                                    selectHotelModels.add(new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
-                                            selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
-                                            selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
-                                            selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
-                                            selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
-                                            selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
-                                            selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
-                                            selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText()
-                                            , selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount(),selectHotelModelArrayListFilter.get(j).getLocations()));
-
-                                }
-
-                            }
-
-
-                        }
-
-
-                    }
-
-                }
-            }
-            selectHotelModelArrayListFilter.clear();
-            selectHotelModelArrayListFilter = selectHotelModels;
-
-        } else if (isBestseler) {
-            ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
-            for (int i = 0; i < filterHotelTypeModels.size(); i++) {
-                if (filterHotelTypeModels.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
-                        if (filterHotelTypeModels.get(i).getTitle().equals(selectHotelModelArrayListFilter.get(j).getTypeText()) && selectHotelModelArrayListFilter.get(j).isBestSell()) {
-                            selectHotelModels.add(new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
-                                    selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
-                                    selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
-                                    selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
-                                    selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
-                                    selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
-                                    selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
-                                    selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount(),selectHotelModelArrayListFilter.get(j).getLocations()));
-
-                        }
-
-                    }
-
-
-                }
-
-
-            }
-            selectHotelModelArrayListFilter.clear();
-            selectHotelModelArrayListFilter = selectHotelModels;
-
-
-        } else if (isOff) {
-
-            ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
-            for (int i = 0; i < filterHotelTypeModels.size(); i++) {
-                if (filterHotelTypeModels.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
-                        if (filterHotelTypeModels.get(i).getTitle().equals(selectHotelModelArrayListFilter.get(j).getTypeText()) && selectHotelModelArrayListFilter.get(j).isOff()) {
-                            selectHotelModels.add(new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
-                                    selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
-                                    selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
-                                    selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
-                                    selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
-                                    selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
-                                    selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
-                                    selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount(),selectHotelModelArrayListFilter.get(j).getLocations()));
-
-                        }
-
-                    }
-
-
-                }
-
-
-            }
-            selectHotelModelArrayListFilter.clear();
-            selectHotelModelArrayListFilter = selectHotelModels;
-
-
-        } else {
-
-
-            boolean isFilter = false;
-            ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
-            for (int i = 0; i < filterHotelTypeModels.size(); i++) {
-                if (filterHotelTypeModels.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
-                        if (filterHotelTypeModels.get(i).getTitle().equals(selectHotelModelArrayListFilter.get(j).getTypeText())) {
-                            isFilter = true;
-                            selectHotelModels.add(new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
-                                    selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
-                                    selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
-                                    selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
-                                    selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
-                                    selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
-                                    selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
-                                    selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),
-                                    selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount(),selectHotelModelArrayListFilter.get(j).getLocations()));
-
-                        }
-
-                    }
-
-
-                }
-
-                if (isFilter) {
-
-                    selectHotelModelArrayListFilter.clear();
-                    selectHotelModelArrayListFilter = selectHotelModels;
-                }
-
-
-            }
-
-
-        }
-
-
-    }
-
-    public void star_filter(FilterModel filterModel, ArrayList<FilterHotelTypeModel> filterHotelTypeModels) {
-
-
-        if (filterModel.isStar1()) {
-            for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                if (selectHotelModel.getStar() == 1) {
-                    selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                }
-
-            }
-            type_location_filter(filterHotelTypeModels, 1, false, false);
-
-        }
-        if (filterModel.isStar2()) {
-            for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                if (selectHotelModel.getStar() == 2) {
-                    selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                }
-
-            }
-            type_location_filter(filterHotelTypeModels, 2, false, false);
-
-
-        }
-        if (filterModel.isStar3()) {
-            for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                if (selectHotelModel.getStar() == 3) {
-                    selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                }
-
-            }
-            type_location_filter(filterHotelTypeModels, 3, false, false);
-
-
-        }
-        if (filterModel.isStar4()) {
-            for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                if (selectHotelModel.getStar() == 4) {
-                    selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                }
-
-            }
-
-            type_location_filter(filterHotelTypeModels, 4, false, false);
-
-        }
-        if (filterModel.isStar5()) {
-            for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                if (selectHotelModel.getStar() == 5) {
-                    selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                            selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                            selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                            selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                }
-
-            }
-
-            type_location_filter(filterHotelTypeModels, 5, false, false);
-
-        }
-
-    }
-
-    public void isBestOff_and_isStar(FilterModel filterModel) {
-        if (filterModel.isBestOff()) {
-
-
-            if (filterModel.isStar1()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 1 && selectHotelModel.isOff()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(),
-                                selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(),
-                                selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                                selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff()
-                                , selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-            }
-            //===============================================================================
-            if (filterModel.isStar2()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 2 && selectHotelModel.isOff()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                                selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(),
-                                selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                                selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-            }
-            //===============================================================================
-            if (filterModel.isStar3()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 3 && selectHotelModel.isOff()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-
-
-            }
-
-
-            //================================================================================
-            if (filterModel.isStar4()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 4 && selectHotelModel.isOff()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                                selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(),
-                                selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                                selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-
-            }
-            //===============================================================================
-
-            if (filterModel.isStar5()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 5 && selectHotelModel.isOff()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-
-            }
-
-
-            //===============================================================================
-
-
-        }
-
-
-    }
-
-    public void isBestSell_and_isStar(FilterModel filterModel) {
-        if (filterModel.isBestSeler()) {
-
-
-            if (filterModel.isStar1()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 1 && selectHotelModel.isBestSell()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                                selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(),
-                                selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                                selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-
-
-            }
-            //===============================================================================
-            if (filterModel.isStar2()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 2 && selectHotelModel.isBestSell()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                                selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(),
-                                selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                                selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-
-
-            }
-            //===============================================================================
-            if (filterModel.isStar3()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 3 && selectHotelModel.isBestSell()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(), selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-
-
-            }
-
-
-            //================================================================================
-            if (filterModel.isStar4()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 4 && selectHotelModel.isBestSell()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(),
-                                selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(),
-                                selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                                selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(),
-                                selectHotelModel.getTypeText(), selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-
-            }
-            //===============================================================================
-
-            if (filterModel.isStar5()) {
-                for (SelectFlightHotelModel selectHotelModel : selectHotelModelArrayList) {
-
-                    if (selectHotelModel.getStar() == 5 && selectHotelModel.isBestSell()) {
-
-
-                        selectHotelModelArrayListFilter1.add(new SelectFlightHotelModel(selectHotelModel.getName(), selectHotelModel.getCity(), selectHotelModel.getTitle(),
-                                selectHotelModel.getBoard(), selectHotelModel.getPrice(), selectHotelModel.getImageUrl(), selectHotelModel.getLocation(),
-                                selectHotelModel.getOldPrice(), selectHotelModel.getStar(),
-                                selectHotelModel.geteHotelId(), selectHotelModel.getResultUniqID(),
-                                selectHotelModel.isBestSell(), selectHotelModel.isOff(), selectHotelModel.getOff(), selectHotelModel.getTypeText(),
-                                selectHotelModel.getFacilities(), selectHotelModel.getDiff(), selectHotelModel.getFlights(), selectHotelModel.getArrRout(), selectHotelModel.getDepRout(), selectHotelModel.getAmount(),selectHotelModel.getLocations()));
-
-                    }
-
-
-                }
-
-            }
-
-
-            //===============================================================================
-
-
-        }
-
-
-    }
-
-
-    public void facilities_filter(ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels) {
-
-        if (selectHotelModelArrayListFilter.isEmpty()) {
-
-            for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
-                if (filterHotelFacilitiesModels.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayList.size(); j++) {
-
-                        for (int k = 0; k < selectHotelModelArrayList.get(j).getFacilities().size(); k++) {
-
-                            if (filterHotelFacilitiesModels.get(i).getTitle().contains(selectHotelModelArrayList.get(j).getFacilities().get(k).Title)) {
-
-                                selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
-                                        selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
-                                        selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
-                                        selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
-                                        selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
-                                        selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
-                                        selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
-                                        selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
-                                        selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount(),selectHotelModelArrayList.get(j).getLocations()));
-
-                            }
-                        }
-
-                    }
-                }
-
-
-            }
-            Set<SelectFlightHotelModel> hs = new HashSet<>();
-            hs.addAll(selectHotelModelArrayListFilter);
-            selectHotelModelArrayListFilter.clear();
-            selectHotelModelArrayListFilter.addAll(hs);
-            hs.size();
-
-
-        } else {
-            boolean isFilter = false;
-
-            ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
-
-
-            for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
-                if (filterHotelFacilitiesModels.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayList.size(); j++) {
-
-                        for (int k = 0; k < selectHotelModelArrayList.get(j).getFacilities().size(); k++) {
-
-                            if (filterHotelFacilitiesModels.get(i).getTitle().contains(selectHotelModelArrayList.get(j).getFacilities().get(k).Title)) {
-                                isFilter = true;
-
-                                selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
-                                        selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
-                                        selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
-                                        selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
-                                        selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
-                                        selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
-                                        selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
-                                        selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                        selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
-                                        selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount(),selectHotelModelArrayList.get(j).getLocations()));
-
-                            }
-                        }
-
-
-                    }
-                }
-
-
-            }
-            Set<SelectFlightHotelModel> hs = new HashSet<>();
-            hs.addAll(selectHotelModelArrayListFilter);
-            selectHotelModelArrayListFilter.clear();
-            selectHotelModelArrayListFilter.addAll(hs);
-            hs.size();
-            if (isFilter) {
-
-                selectHotelModelArrayListFilter.clear();
-                selectHotelModelArrayListFilter = selectHotelModels;
-            }
-
-
-        }
-
-
-    }
-    public void location_filter(ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
-
-
-        if (selectHotelModelArrayListFilter.isEmpty()) {
-
-            for (int i = 0; i < filterHotelLocationModels.size(); i++) {
-                if (filterHotelLocationModels.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayList.size(); j++) {
-                        if (filterHotelLocationModels.get(i).getTitle().equals(selectHotelModelArrayList.get(j).getLocation())) {
-
-                            selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
-                                    selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
-                                    selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
-                                    selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
-                                    selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
-                                    selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
-                                    selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
-                                    selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                    selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(), selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount(),selectHotelModelArrayList.get(j).getLocations()));
-
-                        }
-
-                    }
-                }
-
-
-            }
-
-
-        } else {
-            boolean isFilter = false;
-
-
-            ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
-            for (int i = 0; i < filterHotelLocationModels.size(); i++) {
-                if (filterHotelLocationModels.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
-                        if (filterHotelLocationModels.get(i).getTitle().equals(selectHotelModelArrayListFilter.get(j).getLocation())) {
-                            isFilter = true;
-                            selectHotelModels.add(new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
-                                    selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
-                                    selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
-                                    selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
-                                    selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
-                                    selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
-                                    selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
-                                    selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(), selectHotelModelArrayListFilter.get(j).getDiff(),
-                                    selectHotelModelArrayListFilter.get(j).getFlights(), selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount(), selectHotelModelArrayListFilter.get(j).getLocations()));
-
-                        }
-
-                    }
-
-
-                }
-
-
-
-
-            }
-
-
-            if (isFilter) {
-
-                selectHotelModelArrayListFilter.clear();
-                selectHotelModelArrayListFilter = selectHotelModels;
-            }
-        }
-
-
-
-    }
-
-
-    public void price_filter(ArrayList<FilterPriceModel> filterHotelPriceModel) {
-
-
-        if (selectHotelModelArrayListFilter.isEmpty()) {
-
-            for (int i = 0; i < filterHotelPriceModel.size(); i++) {
-                if (filterHotelPriceModel.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayList.size(); j++) {
-                        if (filterHotelPriceModel.get(i).getX() == selectHotelModelArrayList.get(j).getDiff()) {
-
-                            selectHotelModelArrayListFilter.add(new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
-                                    selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
-                                    selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
-                                    selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
-                                    selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
-                                    selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
-                                    selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
-                                    selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                                    selectHotelModelArrayList.get(j).getFacilities(), selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
-                                    selectHotelModelArrayList.get(j).getArrRout(), selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount(),selectHotelModelArrayList.get(j).getLocations()));
-
-                        }
-
-                    }
-                }
-
-
-            }
-        } else {
-
-
-            boolean isFilter = false;
-            ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
-            for (int i = 0; i < filterHotelPriceModel.size(); i++) {
-                if (filterHotelPriceModel.get(i).isCheck()) {
-                    for (int j = 0; j < selectHotelModelArrayListFilter.size(); j++) {
-                        if (filterHotelPriceModel.get(i).getX() == selectHotelModelArrayList.get(j).getDiff()) {
-                            isFilter = true;
-                            selectHotelModels.add(new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
-                                    selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
-                                    selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
-                                    selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
-                                    selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
-                                    selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
-                                    selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
-                                    selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                                    selectHotelModelArrayListFilter.get(j).getFacilities(),
-                                    selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(),
-                                    selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount(),selectHotelModelArrayListFilter.get(j).getLocations()));
-
-                        }
-
-                    }
-                }
-
-
-            }
-            if (isFilter) {
-
-                selectHotelModelArrayListFilter.clear();
-                selectHotelModelArrayListFilter = selectHotelModels;
-
-
-            }
-
-
         }
     }
 
@@ -1423,13 +441,406 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         }
     }
 
+    @Override
+    public void onReturnValue(ArrayList<FilterModel> type, String search, ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
+                              ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,
+                              ArrayList<FilterPriceModel> filterHotelPriceModel,
+                              ArrayList<FilterHotelTypeModel> filterHotelLocationModels, ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
+            , ArrayList<FilterStarModel> filterHotelStarsModels, boolean remove) {
+
+        elNotFound.setVisibility(View.GONE);
+        list.setVisibility(View.VISIBLE);
+        btnOk.setVisibility(View.VISIBLE);
+        rlEr.setVisibility(View.VISIBLE);
+
+        this.filterModels = type;
+        this.searchIn = search;
+        this.filterHotelTypeModel = filterHotelTypeModels;
+        this.filterHotelPriceModels = filterHotelPriceModel;
+        this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
+        this.filterHotelLocationModels = filterHotelLocationModels;
+        this.filterHotelBestOffModels = filterHotelBestOffModels;
+        this.filterHotelStarsModels = filterHotelStarsModels;
+
+
+        selectHotelModelArrayListFilter = new ArrayList<>();
+
+
+        selectHotelModelArrayListFilter = best_0ff(filterHotelBestOffModels);
+        selectHotelModelArrayListFilter = star(filterHotelStarsModels);
+        selectHotelModelArrayListFilter = type(filterHotelTypeModels);
+        selectHotelModelArrayListFilter = location(filterHotelLocationModels);
+        selectHotelModelArrayListFilter = facility(filterHotelFacilitiesModels);
+        selectHotelModelArrayListFilter = price(filterHotelPriceModel);
+        if (search != null) {
+            selectHotelModelArrayListFilter =  searchText(search);
+        }
+
+        if (selectHotelModelArrayListFilter.size() == selectHotelModelArrayList.size()) {
+            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this);
+            list.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            elNotFound.setVisibility(View.VISIBLE);
+            list.setVisibility(View.GONE);
+            btnOk.setVisibility(View.GONE);
+            rlEr.setVisibility(View.GONE);
+            tvAlert.setText("نتیجه ای برای جستجوی شما یافت نشد");
+        } else {
+            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
+            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
+            adapter = new FlightHotelAdapter(selectHotelModelArrayListFilter, SelectHotelFlightActivity.this);
+            list.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+
+        }
+
+        if (remove) {
+            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this);
+            list.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            searchIn="";
+
+        }
+
+
+    }
+
+
+    public ArrayList<SelectFlightHotelModel> best_0ff(ArrayList<FilterHotelTypeModel> filterHotelBestOffModels) {
+        ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
+        if (selectHotelModelArrayListFilter.isEmpty()) {
+            selectHotelModels = selectHotelModelArrayList;
+        } else {
+            selectHotelModels = selectHotelModelArrayListFilter;
+
+
+        }
+        ArrayList<SelectFlightHotelModel> filter = new ArrayList<>();
+
+        for (int i = 0; i < selectHotelModels.size(); i++) {
+
+            if (filterHotelBestOffModels.get(0).isCheck() && filterHotelBestOffModels.get(1).isCheck()) {
+                if (selectHotelModels.get(i).isBestSell() || selectHotelModels.get(i).isOff()) {
+                    filter.add(Add_To(i));
+                }
+
+
+            } else if (filterHotelBestOffModels.get(1).isCheck()) {
+                if (selectHotelModels.get(i).isOff()) {
+                    filter.add(Add_To(i));
+                }
+
+
+            } else if (filterHotelBestOffModels.get(0).isCheck()) {
+                if (selectHotelModels.get(i).isBestSell()) {
+                    filter.add(Add_To(i));
+                }
+
+
+            }
+
+
+        }
+
+        if (filter.isEmpty()) {
+            return selectHotelModels;
+
+
+        } else {
+            return filter;
+
+        }
+    }
+
+    public ArrayList<SelectFlightHotelModel> star(ArrayList<FilterStarModel> selectStarModels) {
+        ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
+        if (selectHotelModelArrayListFilter.isEmpty()) {
+            selectHotelModels = selectHotelModelArrayList;
+        } else {
+            selectHotelModels = selectHotelModelArrayListFilter;
+
+
+        }
+        ArrayList<SelectFlightHotelModel> filter = new ArrayList<>();
+
+        for (int j = 0; j < selectStarModels.size(); j++) {
+            if (selectStarModels.get(j).isCheck()) {
+                for (int i = 0; i < selectHotelModels.size(); i++) {
+
+                    if (selectStarModels.get(j).getStar() == selectHotelModels.get(i).getStar()) {
+                        filter.add(Add_To(i));
+
+
+                    }
+
+
+                }
+
+
+            }
+        }
+        if (filter.isEmpty()) {
+            return selectHotelModels;
+
+
+        } else {
+            return filter;
+
+        }
+
+
+    }
+
+    public ArrayList<SelectFlightHotelModel> type(ArrayList<FilterHotelTypeModel> filterHotelTypeModel) {
+        ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
+        if (selectHotelModelArrayListFilter.isEmpty()) {
+            selectHotelModels = selectHotelModelArrayList;
+        } else {
+            selectHotelModels = selectHotelModelArrayListFilter;
+
+
+        }
+        ArrayList<SelectFlightHotelModel> filter = new ArrayList<>();
+
+        for (int j = 0; j < filterHotelTypeModel.size(); j++) {
+            if (filterHotelTypeModel.get(j).isCheck()) {
+                for (int i = 0; i < selectHotelModels.size(); i++) {
+
+                    if (filterHotelTypeModel.get(j).getTitle().equals(selectHotelModels.get(i).getTypeText())) {
+                        filter.add(Add_To(i));
+
+
+                    }
+
+
+                }
+
+
+            }
+        }
+        if (filter.isEmpty()) {
+            return selectHotelModels;
+
+
+        } else {
+            return filter;
+
+        }
+
+
+    }
+
+    public ArrayList<SelectFlightHotelModel> price(ArrayList<FilterPriceModel> filterPriceModels) {
+        ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
+        if (selectHotelModelArrayListFilter.isEmpty()) {
+            selectHotelModels = selectHotelModelArrayList;
+        } else {
+            selectHotelModels = selectHotelModelArrayListFilter;
+
+
+        }
+        ArrayList<SelectFlightHotelModel> filter = new ArrayList<>();
+
+        for (int j = 0; j < filterPriceModels.size(); j++) {
+            if (filterPriceModels.get(j).isCheck()) {
+                for (int i = 0; i < selectHotelModels.size(); i++) {
+
+                    if (filterPriceModels.get(j).getX() == selectHotelModels.get(i).getDiff()) {
+                        filter.add(Add_To(i));
+
+
+                    }
+
+
+                }
+
+
+            }
+        }
+        if (filter.isEmpty()) {
+            return selectHotelModels;
+
+
+        } else {
+            return filter;
+
+        }
+
+
+    }
+
+
+    public ArrayList<SelectFlightHotelModel> location(ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
+        ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
+        if (selectHotelModelArrayListFilter.isEmpty()) {
+            selectHotelModels = selectHotelModelArrayList;
+        } else {
+            selectHotelModels = selectHotelModelArrayListFilter;
+
+
+        }
+        ArrayList<SelectFlightHotelModel> filter = new ArrayList<>();
+
+        for (int j = 0; j < filterHotelLocationModels.size(); j++) {
+            if (filterHotelLocationModels.get(j).isCheck()) {
+                for (int i = 0; i < selectHotelModels.size(); i++) {
+
+                    if (filterHotelLocationModels.get(j).getTitle().equals(selectHotelModels.get(i).getLocation())) {
+                        filter.add(Add_To(i));
+
+
+                    }
+
+
+                }
+
+
+            }
+        }
+        if (filter.isEmpty()) {
+            return selectHotelModels;
+
+
+        } else {
+            return filter;
+
+        }
+
+
+    }
+
+    public ArrayList<SelectFlightHotelModel> facility(ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels) {
+        ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
+        if (selectHotelModelArrayListFilter.isEmpty()) {
+            selectHotelModels = selectHotelModelArrayList;
+        } else {
+            selectHotelModels = selectHotelModelArrayListFilter;
+
+
+        }
+        ArrayList<SelectFlightHotelModel> filter = new ArrayList<>();
+
+
+        for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
+            if (filterHotelFacilitiesModels.get(i).isCheck()) {
+                for (int j = 0; j < selectHotelModels.size(); j++) {
+                    for (int k = 0; k < selectHotelModels.get(j).getFacilities().size(); k++) {
+                        if (filterHotelFacilitiesModels.get(i).getTitle().contains(selectHotelModels.get(j).getFacilities().get(k).Title)) {
+                            filter.add(Add_To(i));
+
+                        }
+                    }
+                }
+            }
+        }
+
+
+        if (filter.isEmpty()) {
+            return selectHotelModels;
+
+
+        } else {
+
+            ArrayList<SelectFlightHotelModel> result = new ArrayList<SelectFlightHotelModel>();
+            Set<String> titles = new HashSet<>();
+
+            for (SelectFlightHotelModel item : filter) {
+                if (titles.add(item.getName())) {
+                    result.add(item);
+                }
+            }
+
+
+            return result;
+
+        }
+
+
+    }
+
+    public ArrayList<SelectFlightHotelModel> searchText(String text) {
+        ArrayList<SelectFlightHotelModel> selectHotelModels = new ArrayList<>();
+        if (selectHotelModelArrayListFilter.isEmpty()) {
+            selectHotelModels = selectHotelModelArrayList;
+        } else {
+            selectHotelModels = selectHotelModelArrayListFilter;
+
+
+        }
+        ArrayList<SelectFlightHotelModel> filter = new ArrayList<>();
+        for (int i = 0; i < selectHotelModels.size(); i++) {
+
+            if (selectHotelModels.get(i).getName().toLowerCase().contains(text.toLowerCase())) {
+                filter.add(Add_To(i));
+
+            }
+
+        }
+
+        if (filter.isEmpty()) {
+            return selectHotelModels;
+
+
+        } else {
+            return filter;
+
+        }
+
+
+    }
+
+
+    public SelectFlightHotelModel Add_To(int j) {
+
+
+        SelectFlightHotelModel selectHotelModel;
+
+        if (selectHotelModelArrayListFilter.isEmpty()) {
+
+            selectHotelModel = new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
+                    selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
+                    selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
+                    selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
+                    selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
+                    selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
+                    selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
+                    selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
+                    selectHotelModelArrayListFilter.get(j).getFacilities(),
+                    selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(),
+                    selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount(), selectHotelModelArrayListFilter.get(j).getLocations());
+
+
+        } else {
+
+            selectHotelModel = new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
+                    selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
+                    selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
+                    selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
+                    selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
+                    selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
+                    selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
+                    selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
+                    selectHotelModelArrayListFilter.get(j).getFacilities(),
+                    selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(),
+                    selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(), selectHotelModelArrayListFilter.get(j).getAmount(), selectHotelModelArrayListFilter.get(j).getLocations());
+        }
+
+
+        return selectHotelModel;
+    }
+
 
     private class GetHotelAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this,R.color.hf));
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.hf));
             }
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 
@@ -1459,16 +870,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this,R.color.colorPrimaryDark));
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.colorPrimaryDark));
             }
-
 
 
             selectHotelModelArrayList.clear();
             selectHotelModelArrayListFilter.clear();
 
             try {
-                if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors!=null) {
+                if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors != null) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText(hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors.get(0).DetailedMessage);
                     list.setVisibility(View.GONE);
@@ -1476,7 +886,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
                     list.setVisibility(View.GONE);
 
-                }else if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
+                } else if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
                     list.setVisibility(View.GONE);
@@ -1484,7 +894,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
                     list.setVisibility(View.GONE);
 
-                }else{
+                } else {
 
                     maxPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MaxPrice;
                     minPrice = hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.MinPrice;
@@ -1560,7 +970,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
                     }
 
+                    filterHotelStarsModels.add(new FilterStarModel("1 ستاره", false, 1));
+                    filterHotelStarsModels.add(new FilterStarModel("2 ستاره", false, 2));
+                    filterHotelStarsModels.add(new FilterStarModel("3 ستاره", false, 3));
+                    filterHotelStarsModels.add(new FilterStarModel("4 ستاره", false, 4));
+                    filterHotelStarsModels.add(new FilterStarModel("5 ستاره", false, 5));
+                    filterHotelStarsModels.add(new FilterStarModel("بدون ستاره", false, -1));
 
+                    filterHotelBestOffModels.add(new FilterHotelTypeModel("بیشترین فروش", false));
+                    filterHotelBestOffModels.add(new FilterHotelTypeModel("تخفیف ویژه", false));
                     for (Facilities facilities : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Facilities) {
 
                         filterHotelFacilitiesModels.add(new FilterHotelTypeModel(facilities.Title, false));
@@ -1600,16 +1018,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
                 }
 
 
-
             } catch (Exception e) {
                 llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
-                if (!Utility.isNetworkAvailable(SelectHotelFlightActivity.this)){
+                if (!Utility.isNetworkAvailable(SelectHotelFlightActivity.this)) {
 
                     tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
 
-                }else{
+                } else {
 
                     tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
 
@@ -1625,6 +1042,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
         }
 
     }
+
     private class AsyncCheckFlight extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
         URL url = null;
@@ -1635,7 +1053,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             super.onPreExecute();
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this,R.color.hf));
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.hf));
             }
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 
@@ -1732,22 +1150,20 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
         @Override
         protected void onPostExecute(String result) {
-            System.out.println("request:"+result);
+            System.out.println("request:" + result);
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this,R.color.colorPrimaryDark));
+                window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.colorPrimaryDark));
             }
             //this method will be running on UI thread
-            System.out.println("result:"+result);
+            System.out.println("result:" + result);
             //	avi.setVisibility(View.INVISIBLE);
             List<Country> data = new ArrayList<Country>();
 
 
             try {
-
-
 
 
 ////////////////////////////
@@ -1771,20 +1187,18 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
                 } else {
 ////////////////////////////////
-					/*JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
+                    /*JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
 
 					for (int i = 0; i < jArray.length(); i++) {
 						JSONObject json_data = jArray.getJSONObject(i);
 */
-                    boolean IsDemostic =GetAirportsResult.getBoolean("IsDomestic");//false khareji true dakheli
-                    if(IsDemostic)
-                        Prefs.putBoolean("IsDemostic",true);
+                    boolean IsDemostic = GetAirportsResult.getBoolean("IsDomestic");//false khareji true dakheli
+                    if (IsDemostic)
+                        Prefs.putBoolean("IsDemostic", true);
                     else
-                        Prefs.putBoolean("IsDemostic",false);
+                        Prefs.putBoolean("IsDemostic", false);
 
                     //}
-
-
 
 
                 }
@@ -1796,7 +1210,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
 
 
         }
+
     }
+
     private String OrderToJsonCheckFlight() {
         JSONObject jsone = new JSONObject();
         JSONObject manJson = new JSONObject();
@@ -1808,7 +1224,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             manJson.put("Password", "123qwe!@#QWE");
             manJson.put("TermianlId", "Mobile");
             manJson.put("Code", Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));//inja esme forudgah mikhore
-            manJson.put("ToCode",Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
+            manJson.put("ToCode", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
 
             jsone.put("request", manJson);
 
@@ -1817,7 +1233,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements FilterHot
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("request:"+jsone.toString());
+        System.out.println("request:" + jsone.toString());
         return jsone.toString();
     }
 

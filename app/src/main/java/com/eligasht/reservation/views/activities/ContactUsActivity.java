@@ -219,36 +219,8 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
                 break;
             case R.id.txtPhone:
-
-                new TedPermission(ContactUsActivity.this)
-                        .setPermissionListener(new PermissionListener() {
-                            @Override
-                            public void onPermissionGranted() {
-
-
-                                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                                callIntent.setData(Uri.parse("tel:"+"۰۲۱-۸۵۴۰"));
-
-                                startActivity(callIntent);
-
-
-
-                            }
-
-                            @Override
-                            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-
-                            }
-                        })
-                        .setDeniedMessage("If you reject permission,you can not call, Please turn on permissions at [Setting] > [Permission]")
-                        .setPermissions( Manifest.permission.CALL_PHONE)
-                        .check();
-
-
-
-
-
-
+                Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "۰۲۱-۸۵۴۰", null));
+                startActivity(intent2);
 
 
 

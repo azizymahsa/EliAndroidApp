@@ -51,34 +51,34 @@
                     android:visibility="gone"
 
 
+
+
                     >
 
                     <RelativeLayout
                         android:id="@+id/rlStatus"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="150dp"
                         android:background="@drawable/background_prefactor"
                         android:orientation="vertical"
                         >
                         <RelativeLayout
                             android:id="@+id/rlIv"
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
+                            android:layout_height="50dp"
                             android:background="@color/red">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
+                            <ImageView
+                                android:id="@+id/ivImage"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/white_check"
                                 android:layout_centerInParent="true"
-                                android:text="نتیجه ثبت رزرو"
-                                android:gravity="center"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/_12dp_normal_textSize"
-                                android:textAppearance="@style/IrsansBold"
-
-
-
                                 />
+
+
+
+
 
 
                         </RelativeLayout>
@@ -89,37 +89,24 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:orientation="vertical"
+                            android:layout_below="@+id/rlIv"
+
 
                             >
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_50dp"
-                                android:orientation="horizontal"
-                                android:gravity="center">
+                            <TextView
+                                android:id="@+id/tvStatusFactor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
 
-                                <TextView
-                                    android:id="@+id/tvStatusFactor"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="5dp"
-
-                                    android:gravity="center|right"
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="@color/red"
-                                    android:textSize="@dimen/_14dp_txtSize"
-                                    android:maxLines="3"
-                                    android:layout_marginRight="5dp"
+                                android:gravity="center"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textColor="@color/red"
+                                android:textSize="@dimen/_14dp_txtSize"
+                                android:maxLines="3"
 
 
-                                    />
-                                <ImageView
-                                    android:id="@+id/ivImage"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    />
 
-
-                            </LinearLayout>
+                                />
 
 
 
@@ -131,10 +118,11 @@
                                 android:layout_marginTop="5dp"
                                 android:gravity="center"
                                 android:textColor="@color/green"
-                                android:textSize="@dimen/_20dp_normal_textSize"
-
-                                android:text="sdfsdf"
+                                android:textSize="@dimen/_16dp_normal_textSize"
                                 android:visibility="gone"
+
+
+
 
                                 />
 
@@ -148,6 +136,8 @@
                                 android:gravity="center"
                                 android:textColor="#ff9e3e"
                                 android:textSize="@dimen/_12dp_normal_textSize"
+                                android:visibility="gone"
+
 
                                 />
 
@@ -168,12 +158,12 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:layout_marginTop="10dp"
                     card_view:cardBackgroundColor="#ffffff"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardElevation="1dp"
                     android:visibility="gone"
-                   >
+
+                    >
 
 
                     <LinearLayout
@@ -189,16 +179,12 @@
                             android:padding="5dp"
                             android:text="شماره پیش فاکتور"
                             android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/_12dp_normal_textSize"
+                            android:background="@color/text_color_2e"
 
                             />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@color/text_color_2e" />
+
                         <TextView
                             android:id="@+id/tvFactor"
                             android:layout_width="match_parent"
@@ -226,7 +212,6 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:layout_marginTop="10dp"
                     card_view:cardBackgroundColor="#ffffff"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardElevation="1dp"
@@ -243,24 +228,20 @@
 
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="اطلاعات پرداخت"
                             android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/_12dp_normal_textSize"
+                            android:background="@color/text_color_2e"
 
                             />
 
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@color/text_color_2e" />
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -309,7 +290,6 @@
                                     android:layout_marginRight="10dp"
                                     android:layout_toRightOf="@+id/tvRial"
                                     android:gravity="left|center"
-                                    android:text="sdfksdfkj"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/_13dp_normal_textSize"
@@ -350,7 +330,6 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="10dp"
                                     android:gravity="left|center"
-                                    android:text="شماره پیگیری"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/_14dp_txtSize"
@@ -395,8 +374,8 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:text="پیگیر کار شما هستیم، لطفا منتظر تماس کارشناسان ما باشید"
-                    android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_12dp_normal_textSize"
+                    android:textColor="@color/text_color_2e"
+                    android:textSize="@dimen/_10dp_textSize"
                     android:visibility="gone"
               />
 

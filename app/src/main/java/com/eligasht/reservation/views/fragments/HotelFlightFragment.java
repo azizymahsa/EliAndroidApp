@@ -651,11 +651,14 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             if (Utility.campareDate(raft, bargasht)) {
                 //  persianCalendar.set(year, month, day+1);
 
-                tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+                tvBargasht.setText(persianCalendarDatePicker2.getPersianWeekDayName() + " " + persianCalendarDatePicker2.getPersianDay() + " " + persianCalendarDatePicker2.getPersianMonthName());
                 datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
                 //   bargasht = date_server(year, monthOfYear, dayOfMonth+1);
 
+            }else{
+
+                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
             }
 
 

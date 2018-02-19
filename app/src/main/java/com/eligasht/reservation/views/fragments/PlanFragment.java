@@ -776,8 +776,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
                 datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-            }
+            } else{
 
+                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+            }
 
 
 

@@ -617,7 +617,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
         geo = false;
-
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
@@ -625,45 +624,53 @@ public class HotelFragment extends Fragment implements OnClickListener,
         persianCalendar.set(year, month, day);
 
 
+        Log.e("salam", date_server(year_, month, day));
         if (view.getTag().equals("DatepickerdialogBargasht")) {
-            tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+            tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
             bargasht = date_server(year, monthOfYear, dayOfMonth);
-            Prefs.putString("bargashtfa",tvBargasht.getText().toString());
+            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
             Prefs.putString("bargasht", bargasht);
 
 
+            if (Utility.campareDate(raft, bargasht)) {
+                tvRaft.setText(persianCalendar.getPersianLongDate());
+
+            }
 
 
         }
 
 
         if (view.getTag().equals("DatepickerdialogRaft")) {
+
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            tvRaft.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+            tvRaft.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
             //  tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
 
 
-            if (Utility.campareDate(raft,bargasht)){
-                tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
-                 datePickerDialog2.initialize(this, year_, month, day);
+            if (Utility.campareDate(raft, bargasht)) {
+                //  persianCalendar.set(year, month, day+1);
+
+                tvBargasht.setText(persianCalendarDatePicker2.getPersianWeekDayName() + " " + persianCalendarDatePicker2.getPersianDay() + " " + persianCalendarDatePicker2.getPersianMonthName());
+                datePickerDialog2.initialize(this, year_, month, day);
+                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
+                //   bargasht = date_server(year, monthOfYear, dayOfMonth+1);
+
+            }else{
+
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
             }
-
-
-
-
 
 
             Prefs.putString("bargashtfa", tvBargasht.getText().toString());
 
             Prefs.putString("raft", raft);
-            Prefs.putString("raftfa",tvRaft.getText().toString());
-
+            Prefs.putString("raftfa", tvRaft.getText().toString());
 
         }
     }

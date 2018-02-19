@@ -10,6 +10,7 @@ import android.widget.ScrollView;
 import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
+import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.views.adapters.hotel.FilterHotelTypeAdapter;
 import com.eligasht.reservation.views.adapters.hotel.PriceFilterAdapter;
 
@@ -17,13 +18,15 @@ import java.util.ArrayList;
 
 import cn.refactor.library.SmoothCheckBox;
 import mehdi.sakout.fancybuttons.FancyButton;
+
+import com.eligasht.reservation.views.adapters.hotel.StarFilterAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 
 /**
  * Created by Reza.nejati on 1/7/2018.
  */
 
-public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.OnCheckedChangeListener {
+public class FilterHotelDialog implements View.OnClickListener {
     android.app.AlertDialog dialog;
     View dialogView;
     LayoutInflater inflater;
@@ -31,31 +34,28 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
     Context activity;
     FancyButton btnOk, btnDeletFilter;
     FilterHotelDialogListenerArray filterHotelDialogListenerArray;
-    SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1;
     ArrayList<FilterModel> filter;
-    EditText searchtxt;
-    boolean star1_;
-    boolean star2_;
-    boolean star3_;
-    boolean star4_;
-    boolean star5_;
-    boolean bestSeler_;
-    boolean bestOff_;
-    boolean remove_;
-    NonScrollListView lvHotelTypes, lvFacilitiesTypes,lvPrice,lvLocationTypes;
-    FilterHotelTypeAdapter filterHotelTypeAdapter, filterHotelFacilitiesAdapter,filterHotelLocationAdapter;
+
+    NonScrollListView lvHotelTypes, lvFacilitiesTypes,lvPrice,lvLocationTypes,lvBestOff,lvStar;
+    FilterHotelTypeAdapter filterHotelTypeAdapter, filterHotelFacilitiesAdapter,filterHotelLocationAdapter,lvBestOffAdapter;
     ArrayList<FilterHotelTypeModel> filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelLocationModels;
     ArrayList<FilterPriceModel> filterHotelPriceModel;
+    private ArrayList<FilterHotelTypeModel> filterHotelBestOffModels = new ArrayList<>();
+    private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     PriceFilterAdapter priceFilterAdapter;
+    StarFilterAdapter starFilterAdapter;
     String search;
     ScrollView scrollViewObject;
+    EditText searchtxt;
 
+    boolean remove=false;
 
 
     public FilterHotelDialog(final Context activity, ArrayList<FilterModel> filter,
                              FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
                              final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,
-                             String search,final ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
+                             String search, final ArrayList<FilterHotelTypeModel> filterHotelLocationModels, final ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
+            , final ArrayList<FilterStarModel> filterHotelStarsModels) {
         this.activity = activity;
         this.filter = filter;
         this.search = search;
@@ -63,9 +63,12 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
         this.filterHotelPriceModel = filterHotelPriceModel;
         this.filterHotelLocationModels = filterHotelLocationModels;
-
         this.filterHotelTypeModels = filterHotelTypeModels;
         this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
+        this.filterHotelStarsModels = filterHotelStarsModels;
+        this.filterHotelBestOffModels = filterHotelBestOffModels;
+
+
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.filter_dialog_r, null);
@@ -76,28 +79,66 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         scrollViewObject = (ScrollView) dialogView.findViewById(R.id.scrollViewObject);
         btnDeletFilter = (FancyButton) dialogView.findViewById(R.id.btnDeletFilter);
         searchtxt = (EditText) dialogView.findViewById(R.id.searchtxt);
-        bestSeler = (SmoothCheckBox) dialogView.findViewById(R.id.bestSeler);
-        bestOff = (SmoothCheckBox) dialogView.findViewById(R.id.bestOff);
-        Remove = (SmoothCheckBox) dialogView.findViewById(R.id.Remove);
-        star1 = (SmoothCheckBox) dialogView.findViewById(R.id.star1);
-        star2 = (SmoothCheckBox) dialogView.findViewById(R.id.star2);
-        star3 = (SmoothCheckBox) dialogView.findViewById(R.id.star3);
-        star4 = (SmoothCheckBox) dialogView.findViewById(R.id.star4);
-        star5 = (SmoothCheckBox) dialogView.findViewById(R.id.star5);
         searchtxt.setText(search);
         lvHotelTypes = (NonScrollListView) dialogView.findViewById(R.id.lvHotelTypes);
         lvFacilitiesTypes = (NonScrollListView) dialogView.findViewById(R.id.lvFacilitiesTypes);
         lvLocationTypes = (NonScrollListView) dialogView.findViewById(R.id.lvLocationTypes);
         lvPrice = (NonScrollListView) dialogView.findViewById(R.id.lvPrice);
+        lvBestOff = (NonScrollListView) dialogView.findViewById(R.id.lvBestOff);
+        lvStar = (NonScrollListView) dialogView.findViewById(R.id.lvStar);
+
         filterHotelTypeAdapter = new FilterHotelTypeAdapter(filterHotelTypeModels, activity);
         filterHotelFacilitiesAdapter = new FilterHotelTypeAdapter(filterHotelFacilitiesModels, activity);
         filterHotelLocationAdapter = new FilterHotelTypeAdapter(filterHotelLocationModels, activity);
         priceFilterAdapter = new PriceFilterAdapter(filterHotelPriceModel, activity);
-        lvPrice.setAdapter(priceFilterAdapter);
+        lvBestOffAdapter=new FilterHotelTypeAdapter(filterHotelBestOffModels, activity);
+        starFilterAdapter=new StarFilterAdapter(filterHotelStarsModels, activity);
 
+
+
+        lvPrice.setAdapter(priceFilterAdapter);
         lvHotelTypes.setAdapter(filterHotelTypeAdapter);
         lvLocationTypes.setAdapter(filterHotelLocationAdapter);
         lvFacilitiesTypes.setAdapter(filterHotelFacilitiesAdapter);
+        lvBestOff.setAdapter(lvBestOffAdapter);
+        lvStar.setAdapter(starFilterAdapter);
+
+
+
+        lvStar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (filterHotelStarsModels.get(position).isCheck()) {
+                    filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), false,filterHotelStarsModels.get(position).getStar()));
+
+                } else {
+                    filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), true,filterHotelStarsModels.get(position).getStar()));
+
+
+                }
+                starFilterAdapter.notifyDataSetChanged();
+
+            }
+        });
+
+        lvBestOff.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (filterHotelBestOffModels.get(position).isCheck()) {
+                    filterHotelBestOffModels.set(position, new FilterHotelTypeModel(filterHotelBestOffModels.get(position).getTitle(), false));
+
+                } else {
+                    filterHotelBestOffModels.set(position, new FilterHotelTypeModel(filterHotelBestOffModels.get(position).getTitle(), true));
+
+
+                }
+                lvBestOffAdapter.notifyDataSetChanged();
+
+            }
+        });
+
+
+
         lvHotelTypes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -106,7 +147,6 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
                 } else {
                     filterHotelTypeModels.set(position, new FilterHotelTypeModel(filterHotelTypeModels.get(position).getTitle(), true));
-                    Remove.setChecked(false);
 
 
                 }
@@ -123,7 +163,6 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
                 } else {
                     filterHotelLocationModels.set(position, new FilterHotelTypeModel(filterHotelLocationModels.get(position).getTitle(), true));
-                    Remove.setChecked(false);
 
 
                 }
@@ -140,7 +179,6 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
                 } else {
                     filterHotelFacilitiesModels.set(position, new FilterHotelTypeModel(filterHotelFacilitiesModels.get(position).getTitle(), true));
-                    Remove.setChecked(false);
 
 
                 }
@@ -156,7 +194,6 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
                 } else {
                     filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(),filterHotelPriceModel.get(position).getX(), true));
-                    Remove.setChecked(false);
 
 
                 }
@@ -165,15 +202,6 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         });
 
 
-        Remove.setOnCheckedChangeListener(this);
-        star1.setOnCheckedChangeListener(this);
-        star2.setOnCheckedChangeListener(this);
-        star3.setOnCheckedChangeListener(this);
-        star4.setOnCheckedChangeListener(this);
-        star5.setOnCheckedChangeListener(this);
-
-        bestOff.setOnCheckedChangeListener(this);
-        bestSeler.setOnCheckedChangeListener(this);
 
 
         btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
@@ -183,117 +211,6 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         dialog = builder.create();
         dialog.setCancelable(true);
 
-        for (FilterModel filterModel : filter) {
-            if (filterModel.isStar1()) {
-                star1.setChecked(true);
-                star1_ = true;
-
-            } else {
-                star1_ = false;
-                star1.setChecked(false);
-
-            }
-            //========
-
-
-            if (filterModel.isStar2()) {
-                star2.setChecked(true);
-                star2_ = true;
-
-            } else {
-                star2_ = false;
-                star2.setChecked(false);
-
-            }
-
-            //========
-
-            if (filterModel.isStar3()) {
-                star3.setChecked(true);
-                star3_ = true;
-
-
-            } else {
-                star3_ = false;
-
-                star3.setChecked(false);
-
-            }
-            //========
-
-
-            if (filterModel.isStar4()) {
-                star4.setChecked(true);
-                star4_ = true;
-
-
-            } else {
-                star4_ = false;
-                star4.setChecked(false);
-
-            }
-            //========
-
-            if (filterModel.isStar5()) {
-                star5.setChecked(true);
-                star5_ = true;
-
-
-            } else {
-                star5_ = false;
-                star5.setChecked(false);
-
-            }
-            //========
-
-            if (filterModel.isBestOff()) {
-                bestOff.setChecked(true);
-                bestOff_ = true;
-
-
-            } else {
-                bestOff_ = false;
-                bestOff.setChecked(false);
-
-            }
-            //========
-
-            if (filterModel.isBestSeler()) {
-                bestSeler.setChecked(true);
-                bestSeler_ = true;
-
-
-            } else {
-                bestSeler_ = false;
-                bestSeler.setChecked(false);
-
-            }
-
-
-            //========
-            if (filterModel.isRemove()) {
-                Remove.setChecked(true);
-                remove_ = true;
-
-
-            } else {
-                Remove.setChecked(false);
-                remove_ = false;
-
-            }
-        }
-
-       /* scrollViewObject.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                scrollViewObject.fullScroll(ScrollView.FOCUS_UP);
-            }
-        }, 600);*/
-      /*  scrollViewObject.setFocusable(false);
-        lvHotelTypes.setFocusable(false);
-        lvFacilitiesTypes.setFocusable(false);
-        lvPrice.setFocusable(false);
-        lvLocationTypes.setFocusable(false);*/
         dialog.show();
     }
 
@@ -304,91 +221,9 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
                 // activity.startActivity(new Intent(activity, ProfileActivity.class));
 
 
-                if (star1.isChecked()) {
-                    star1_ = true;
-                } else {
-                    star1_ = false;
-                }
 
-                //========
-                if (star2.isChecked()) {
-                    star2_ = true;
-
-                } else {
-                    star2_ = false;
-                }
-
-
-                //========
-
-                if (star3.isChecked()) {
-                    star3_ = true;
-
-
-                } else {
-                    star3_ = false;
-                }
-
-
-                //========
-
-
-                if (star4.isChecked()) {
-                    star4_ = true;
-                } else {
-                    star4_ = false;
-                }
-
-                //========
-
-                if (star5.isChecked()) {
-                    star5_ = true;
-                } else {
-                    star5_ = false;
-                }
-
-
-                //========
-
-                if (bestSeler.isChecked()) {
-                    bestSeler_ = true;
-                } else {
-                    bestSeler_ = false;
-                }
-                //========
-
-                if (bestOff.isChecked()) {
-                    bestOff_ = true;
-                } else {
-                    bestOff_ = false;
-                }
-
-
-                //========
-
-
-                //========
-                if (Remove.isChecked()) {
-                    if (filter.isEmpty()) {
-                        filter.add(new FilterModel(false, false, false, false, false, false, false, false));
-
-
-                    } else {
-                        filter.set(0, new FilterModel(false, false, false, false, false, false, false, false));
-
-                    }
-                } else {
-                    if (filter.isEmpty()) {
-                        filter.add(new FilterModel(star1_, star2_, star3_, star4_, star5_, bestSeler_, bestOff_, false));
-
-                    } else {
-                        filter.set(0, new FilterModel(star1_, star2_, star3_, star4_, star5_, bestSeler_, bestOff_, false));
-
-                    }
-                }
-
-
-                filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelPriceModel,filterHotelLocationModels);
+                filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,
+                        filterHotelPriceModel,filterHotelLocationModels,filterHotelBestOffModels,filterHotelStarsModels,false);
 
 
                 dialog.cancel();
@@ -396,12 +231,22 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
 
                 break;
             case R.id.btnDeletFilter:
+                remove=true;
                 for (int i = 0; i < filterHotelTypeModels.size(); i++) {
                     filterHotelTypeModels.set(i, new FilterHotelTypeModel(filterHotelTypeModels.get(i).getTitle(), false));
 
 
                 }
+                for (int i = 0; i < filterHotelBestOffModels.size(); i++) {
+                    filterHotelBestOffModels.set(i, new FilterHotelTypeModel(filterHotelBestOffModels.get(i).getTitle(), false));
 
+
+                }
+                for (int i = 0; i < filterHotelStarsModels.size(); i++) {
+                    filterHotelStarsModels.set(i, new FilterStarModel(filterHotelStarsModels.get(i).getTitle(), false,filterHotelStarsModels.get(i).getStar()));
+
+
+            }
                 for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
                     filterHotelFacilitiesModels.set(i, new FilterHotelTypeModel(filterHotelFacilitiesModels.get(i).getTitle(), false));
 
@@ -422,6 +267,8 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
                 filterHotelFacilitiesAdapter.notifyDataSetChanged();
                 priceFilterAdapter.notifyDataSetChanged();
                 filterHotelLocationAdapter.notifyDataSetChanged();
+                lvBestOffAdapter.notifyDataSetChanged();
+                starFilterAdapter.notifyDataSetChanged();
                 if (filter.isEmpty()) {
                     filter.add(new FilterModel(false, false, false, false, false, false, false, true));
 
@@ -430,7 +277,8 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
                     filter.set(0, new FilterModel(false, false, false, false, false, false, false, true));
 
                 }
-                filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelPriceModel,filterHotelLocationModels);
+                filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,
+                        filterHotelPriceModel,filterHotelLocationModels,filterHotelBestOffModels,filterHotelStarsModels,remove);
 
                 dialog.cancel();
 
@@ -439,94 +287,14 @@ public class FilterHotelDialog implements View.OnClickListener, SmoothCheckBox.O
         }
     }
 
-    @Override
-    public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-
-        switch (checkBox.getId()) {
-            case R.id.Remove:
-                if (isChecked) {
-
-                    bestSeler.setChecked(false);
-                    bestOff.setChecked(false);
-                    star5.setChecked(false);
-                    star4.setChecked(false);
-                    star3.setChecked(false);
-                    star2.setChecked(false);
-                    star1.setChecked(false);
-
-
-                    for (int i = 0; i < filterHotelTypeModels.size(); i++) {
-                        filterHotelTypeModels.set(i, new FilterHotelTypeModel(filterHotelTypeModels.get(i).getTitle(), false));
-
-
-                    }
-
-                    for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
-                        filterHotelFacilitiesModels.set(i, new FilterHotelTypeModel(filterHotelFacilitiesModels.get(i).getTitle(), false));
-
-
-                    }
-
-                    for (int i = 0; i < filterHotelPriceModel.size(); i++) {
-                        filterHotelPriceModel.set(i, new FilterPriceModel(filterHotelPriceModel.get(i).getDiff(),filterHotelPriceModel.get(i).getX(), false));
-
-
-                    }
-                    filterHotelTypeAdapter.notifyDataSetChanged();
-                    filterHotelFacilitiesAdapter.notifyDataSetChanged();
-                    priceFilterAdapter.notifyDataSetChanged();
-
-
-                }
-                break;
-
-
-            case R.id.bestSeler:
-                if (isChecked) {
-                    Remove.setChecked(false);
-                }
-                break;
-            case R.id.bestOff:
-                if (isChecked) {
-                    Remove.setChecked(false);
-
-                }
-                break;
-            case R.id.star2:
-                if (isChecked) {
-                    Remove.setChecked(false);
-
-                }
-                break;
-            case R.id.star3:
-                if (isChecked) {
-                    Remove.setChecked(false);
-
-                }
-                break;
-            case R.id.star4:
-                if (isChecked) {
-                    Remove.setChecked(false);
-
-                }
-                break;
-            case R.id.star5:
-                if (isChecked) {
-                    Remove.setChecked(false);
-
-                }
-                break;
-
-        }
-
-    }
 
 
     public interface FilterHotelDialogListenerArray {
         public void onReturnValue(ArrayList<FilterModel> type, String search,
                                   ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
                                   ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,
-                                  ArrayList<FilterPriceModel> filterHotelPriceModel,ArrayList<FilterHotelTypeModel> filterHotelLocationModels);
+                                  ArrayList<FilterPriceModel> filterHotelPriceModel,ArrayList<FilterHotelTypeModel> filterHotelLocationModels, ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
+                ,ArrayList<FilterStarModel> filterHotelStarsModels,boolean remove);
     }
 
 }

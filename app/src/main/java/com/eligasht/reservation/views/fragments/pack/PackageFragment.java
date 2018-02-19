@@ -588,6 +588,9 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                         dayMin
                 );
                 datePickerDialogReturn.setMinDate(persianCalendarDatePicker);
+            }else{
+                datePickerDialogReturn.setMinDate(persianCalendarDatePicker);
+
             }
 
 
@@ -650,6 +653,12 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
             datePickerDialogReturnGregorian.setMinDate(persianCalendarDatePicker2);
+
+
+
+
+
+
 
             Prefs.putString("bargashtfa",departureFrom);
 

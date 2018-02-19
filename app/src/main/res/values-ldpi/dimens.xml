@@ -39,7 +39,7 @@
     <dimen name="_60dp_hight">50dp</dimen>
     <dimen name="_25dp_txtSize">20dp</dimen>
     <dimen name="_12dp_txtSize">12dp</dimen>
-    <dimen name="_16dp_txtSize">14dp</dimen>
+    <dimen name="_16dp_txtSize">12dp</dimen>
     <dimen name="text_message">12dp</dimen>
     <dimen name="_21dp_margin">18dp</dimen>
     <dimen name="_40dp">30dp</dimen>
