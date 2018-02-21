@@ -874,11 +874,22 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 }
 
 */
-                 Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
-                Log.e("test", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
+                if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors!=null){
+                    Prefs.putLong("Tprice",0);
+
+                    finish();
+                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).Message, Toast.LENGTH_SHORT).show();
 
 
-                 finish();
+                }else{
+
+                    Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
+                    Log.e("test", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
+                    finish();
+
+                }
+
+
 
 
 

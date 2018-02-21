@@ -47,8 +47,8 @@
             android:id="@+id/txt_hom"
             android:layout_width="@dimen/_30dp"
             android:layout_height="@dimen/_30dp"
-            android:layout_marginTop="@dimen/_15dp_margin"
-            android:layout_marginLeft="@dimen/_15dp_margin"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/_10dp_margin"
             android:background="@drawable/e_logo"
             />
 
@@ -1363,7 +1363,7 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:layout_marginRight="14dp"
-                    android:padding="5dp"
+                    android:padding="2dp"
                     android:scaleType="fitXY" />
             </RelativeLayout>
 
@@ -1661,10 +1661,9 @@
                 android:id="@+id/btn_pardakht_factor"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35dp_normal"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginBottom="10dp"
+
+                android:layout_marginTop="5dp"
                 android:background="@drawable/btngravity_big"
                 android:text="ثبت و پرداخت"
                 android:textColor="#ffff"

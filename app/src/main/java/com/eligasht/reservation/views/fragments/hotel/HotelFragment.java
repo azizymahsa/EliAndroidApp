@@ -496,30 +496,47 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                 break;
             case R.id.llRaft:
-                try {
-                    if (geo) {
-                        datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                    } else {
-                        datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
 
-                    }
+                        if (geo) {
+                            if (!datePickerDialogGregorian1.isAdded()){
 
-                }catch (Exception e){}
+                                datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
+
+                            }
+
+                        } else {
+                            if(!datePickerDialog.isAdded()){
+                                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
+
+                            }
+
+                        }
+
+
+
 
 
 
                 break;
             case R.id.llBargasht:
-                try {
-                    if (geo) {
-                        datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
 
-                    } else {
+
+                if (geo) {
+                    if (!datePickerDialogGregorian2.isAdded()){
+
+                        datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
+
+                    }
+
+                } else {
+                    if(!datePickerDialog2.isAdded()){
                         datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
 
                     }
-                }catch (Exception e){}
+
+                }
+
 
 
 

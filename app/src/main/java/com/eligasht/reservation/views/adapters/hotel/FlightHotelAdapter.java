@@ -2,6 +2,7 @@ package com.eligasht.reservation.views.adapters.hotel;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -11,10 +12,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
+import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -29,6 +34,8 @@ import com.eligasht.reservation.tools.Utility;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
+
+import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
  * Created by Reza.nejati on 1/14/2018.
@@ -96,6 +103,8 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.ivIsBestseler = (TextView) convertView.findViewById(R.id.ivIsBestseler);
             holder.txt_lable_hotel = (TextView) convertView.findViewById(R.id.txt_lable_hotel);
             holder.avi2 = (AVLoadingIndicatorView) convertView.findViewById(R.id.avi2);
+            holder.btnChange = (FancyButton) convertView.findViewById(R.id.btnChange);
+            holder.rlListItem = (RelativeLayout) convertView.findViewById(R.id.rlListItem);
 
 
 
@@ -140,6 +149,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        holder.btnChange.setCustomTextFont("fonts/iran_sans_normal.ttf");
 
         YoYo.with(Techniques.FadeIn)
                 .duration(300)
@@ -161,6 +171,32 @@ public class FlightHotelAdapter extends BaseAdapter {
      /*   AQuery aQuery=new AQuery(v);
         aQuery.id(holder.imgPhoto).image(item.getImageUrl().toString());
 */
+        holder.btnChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, SearchParvazActivity.class);
+                intent.putExtra("isChangeFlight",true);
+                intent.putExtra("FlightId",selectHotelModelArrayList.get(position).getFlightId());
+                intent.putExtra("SearchKey",selectHotelModelArrayList.get(position).getResultUniqID());
+                activity.startActivityForResult(intent, 155);
+
+
+            }
+        });
+        holder.rlListItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(activity, DetailHotelActivity.class);
+                i.putExtra("HotelId", selectHotelModelArrayList.get(position).geteHotelId());
+                i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
+                i.putExtra("FlightID", selectHotelModelArrayList.get(position).getFlightId());
+                i.putExtra("CheckInHF", activity.getIntent().getExtras().getString("CheckInHF"));
+                i.putExtra("CheckOutHF", activity.getIntent().getExtras().getString("CheckOutHF"));
+                i.putExtra("type", 1);
+
+                activity.startActivity(i);
+            }
+        });
 
         holder.name.setText(selectHotelModelArrayList.get(position).getName());
         holder.location.setText(selectHotelModelArrayList.get(position).getLocation() + " " + selectHotelModelArrayList.get(position).getName());
@@ -425,6 +461,8 @@ public class FlightHotelAdapter extends BaseAdapter {
         TextView tvANRaft3_1, tvANRaft3_2, tvANRaft3_3,tvANRaft3_4;
         TextView tvANRaft1_1, tvANRaft1_2;
         AVLoadingIndicatorView avi2;
+        FancyButton btnChange;
+        RelativeLayout rlListItem;
 
         LinearLayout linear_1_bargasht, linear_2_bargasht,linear_3_bargasht;
         TextView tvANRaft2_1_bargasht, tvANRaft2_2_bargasht, tvANRaft2_3_bargasht;

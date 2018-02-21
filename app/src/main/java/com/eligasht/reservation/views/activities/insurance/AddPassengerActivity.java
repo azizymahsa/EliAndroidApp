@@ -208,11 +208,15 @@ public class AddPassengerActivity extends BaseActivity implements
     @Override
     public void onSetBirthDayPassenger(BirthDateList passenger) {
         if (Prefs.getBoolean("pasGe", false)) {
-            datePickerDialogDepartgGregorian.show(getFragmentManager(), "DepartureFromGregorian");
-            currentPassenger = passenger;
+            if (!datePickerDialogDepartgGregorian.isAdded()){
+                datePickerDialogDepartgGregorian.show(getFragmentManager(), "DepartureFromGregorian");
+                currentPassenger = passenger;
+            }
+
 
         } else {
-            datePickerDialogBirthDay.show(getSupportFragmentManager(), "BirthDay");
+            if (!datePickerDialogBirthDay.isAdded()){
+            datePickerDialogBirthDay.show(getSupportFragmentManager(), "BirthDay");}
 
             currentPassenger = passenger;
         }

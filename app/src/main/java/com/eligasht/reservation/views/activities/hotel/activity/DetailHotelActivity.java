@@ -20,6 +20,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -42,6 +43,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
+import com.melnykov.fab.FloatingActionButton;
+import com.melnykov.fab.ObservableScrollView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.eligasht.R;
@@ -96,84 +99,67 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
     private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount,tvRecommendedPercent;
-    NonScrollListView lvRooms;
+    private  NonScrollListView lvRooms;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
-    // RecyclerView lvComments;
     boolean updateGoogle=false;
-
-    RelativeLayout rlLoading, rlRoot,rlLoading2;
-    AddComment addComment;
-
-    RoomsAdapter roomsAdapter;
-    GetRoomsList getRoomsList;
-    Window window;
-    LinearLayout llEmakanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel, llInformation, llPolicy;
-    FrameLayout flMap;
-    View vEmakanat, vMap, vRezerv, vComment;
+    private RelativeLayout rlLoading, rlRoot,rlLoading2;
+    private AddComment addComment;
+    private RoomsAdapter roomsAdapter;
+    private GetRoomsList getRoomsList;
+    private Window window;
+    private LinearLayout llEmakanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel, llInformation, llPolicy;
+    private FrameLayout flMap;
+    private View vEmakanat, vMap, vRezerv, vComment;
     private GoogleMap map;
     private View mapView;
-    MapView mMapView;
+    private MapView mMapView;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
-    String eHotelId;
-    String offerIds;
-    GetHotelDetail getHotelDetail;
-    TextView tvHotelName, tvCityName, tvAdress, tvAlert, tvAlertError;
-    ImageView ivImage;
-    LinearLayout llDynamic, llLoading, llComment, llEmkanat;
-    AVLoadingIndicatorView  aviComment;
-    FancyButton btnSendComment, btnSortComment, btnOk;
-
-    ImageView ivLoading;
-    EditText etComment;
-    AddCommnetDialog addCommnetDialog;
-    String comment, userName, title;
-    CommentAdapterRecycle commentAdapter;
-    TextView tvSortComment;
+    private String eHotelId;
+    private String offerIds;
+    private GetHotelDetail getHotelDetail;
+    private TextView tvHotelName, tvCityName, tvAdress, tvAlert, tvAlertError;
+    private ImageView ivImage;
+    private LinearLayout llDynamic, llLoading, llComment, llEmkanat;
+    private AVLoadingIndicatorView  aviComment;
+    private FancyButton btnSendComment, btnSortComment, btnOk;
+    private ImageView ivLoading;
+    private EditText etComment;
+    private AddCommnetDialog addCommnetDialog;
+    private String comment, userName, title;
+    private CommentAdapterRecycle commentAdapter;
+    private TextView tvSortComment;
     boolean isNew = false;
-    ScrollView svDetail;
-    RelativeLayout elNotFound;
-    GetComment getComment;
-    boolean isComment = true;
-    CircleProgressView circleView;
-    NonScrollRecyclerView lvComments;
-    CardView cvHotel;
-    FrameLayout flViewPager;
+    private ScrollView svDetail;
+    private RelativeLayout elNotFound;
+    private GetComment getComment;
+    private boolean isComment = true;
+    private CircleProgressView circleView;
+    private NonScrollRecyclerView lvComments;
+    private CardView cvHotel;
+    private FrameLayout flViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "جزئیات هتل");
-
         window = getWindow();
-
         initView();
         initMap();
         try {
             if (getIntent().getExtras().getString("Type").equals("Pakage")) {
-
                 llRezervClick.setVisibility(View.GONE);
                 lvRooms.setVisibility(View.GONE);
                 vComment.setVisibility(View.GONE);
                 tvAlert.setVisibility(View.GONE);
-
                 llDynamic.setVisibility(View.VISIBLE);
-
                 vEmakanat.setVisibility(View.VISIBLE);
-
             }
-
         } catch (Exception e) {
         }
-
-
-        //flights
-
-
-
     }
 
     @Override
@@ -183,7 +169,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void initView() {
-        //window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
         rlLoading = findViewById(R.id.rlLoading);
         flViewPager = findViewById(R.id.flViewPager);
         cvHotel = findViewById(R.id.cvHotel);
@@ -252,13 +237,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         svDetail.setFocusable(false);
         tvSortComment.setText("جدیدترین نظرات");
         rlLoading2.setOnClickListener(this);
-       /* svDetail.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                // Ready, move up
-                svDetail.fullScroll(View.FOCUS_UP);
-            }
-        });*/
+
 
         Utility.setAnimLoading(this);
 

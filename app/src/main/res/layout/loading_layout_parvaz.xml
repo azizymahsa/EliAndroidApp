@@ -20,7 +20,7 @@
         android:visibility="gone"
         app:indicatorColor="@color/white"
         app:indicatorName="BallSpinFadeLoaderIndicator"
-        android:layout_below="@+id/tvLoading"
+        android:layout_below="@+id/flLoading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         />
@@ -28,7 +28,7 @@
         android:id="@+id/animation_view"
         android:layout_width="@dimen/toolbar_height_70dp"
         android:layout_height="@dimen/toolbar_height_70dp"
-        android:layout_below="@+id/tvLoading"
+        android:layout_below="@+id/flLoading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         app:lottie_autoPlay="true"
@@ -38,18 +38,26 @@
 
 
 
-    <TextView
-        xmlns:app="http://schemas.android.com/tools"
+    <FrameLayout
+        android:id="@+id/flLoading"
 
-        android:id="@+id/tvLoading"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_16dp_txtSize"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/_50dp"
-/>
+        android:layout_marginTop="@dimen/_50dp">
+        <TextView
+
+            android:id="@+id/tvLoading"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="4"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16dp_txtSize" />
+    </FrameLayout>
+
+
 
 
 </RelativeLayout>

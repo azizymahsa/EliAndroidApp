@@ -72,7 +72,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     public Spinner spn_cities;
     public Button btnSearchPackage;
     public LinearLayout btn_return_date;
-    public LinearLayout btn_depart_date,linear_picker_depart,linear_picker_return;
+    public LinearLayout btn_depart_date, linear_picker_depart, linear_picker_return;
     private final int ADD_ROOM_REQUEST = 100;
     private ClientService service;
     DatePickerDialog datePickerDialogDepart, datePickerDialogReturn;
@@ -136,7 +136,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         view = (ViewGroup) inflater.inflate(R.layout.fragment_package, null);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         view.setLayoutParams(layoutParams);
-        Utility.sendTag("P",true,false);
+        Utility.sendTag("P", true, false);
 
         initViews();
         initParam();
@@ -150,10 +150,12 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             txt_count_child.setText(String.valueOf(getCountChild(roomsSelected)));
             txt_count_room.setText(String.valueOf(getCountRooms(roomsSelected)));
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
         return view;
     }
+
     //send request to server for get cities os spinner
     private void getCities() {
         showLoading();
@@ -171,8 +173,11 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                     needShowAlertDialog("شهری برای نمایش وجود ندارد", true);
                     return;
                 }
-                try{  citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
-                    spn_cities.setAdapter(citySpinnerAdapter);}catch (Exception e){}
+                try {
+                    citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
+                    spn_cities.setAdapter(citySpinnerAdapter);
+                } catch (Exception e) {
+                }
 
             }
 
@@ -215,32 +220,26 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy/MM/dd", true) - 1;
 
 
-
-        if (Prefs.getString("bargashtfa","null").equals("null")){
+        if (Prefs.getString("bargashtfa", "null").equals("null")) {
             txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
 
-        }else{
-            txt_return_date.setText(Prefs.getString("bargashtfa","null"));
+        } else {
+            txt_return_date.setText(Prefs.getString("bargashtfa", "null"));
 
-            departureTo=Prefs.getString("bargasht","null");
+            departureTo = Prefs.getString("bargasht", "null");
 
         }
 
 
-
-
-        if (Prefs.getString("raftfa","null").equals("null")){
+        if (Prefs.getString("raftfa", "null").equals("null")) {
             txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
 
 
-        }else{
-            txt_depart_date.setText(Prefs.getString("raftfa","null"));
+        } else {
+            txt_depart_date.setText(Prefs.getString("raftfa", "null"));
 
-            departureFrom=Prefs.getString("raft","null");
+            departureFrom = Prefs.getString("raft", "null");
         }
-
-
-
 
 
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
@@ -285,9 +284,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         });
 
 
-
-
-
         datePickerDialogDepartgGregorian.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
@@ -301,11 +297,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DepartureTo");
             }
         });
-
-
-
-
-
 
 
         datePickerDialogReturnGregorian.setOnDateSetListener(this);
@@ -331,7 +322,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
-
 
 
         datePickerDialogReturn.setTitle("تاریخ برگشت را انتخاب نمایید");
@@ -394,31 +384,41 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.linear_picker_depart:
-                try{
 
-                    if (geo){
-
+                if (geo) {
+                    if (!datePickerDialogDepartgGregorian.isAdded()) {
                         datePickerDialogDepartgGregorian.show(getActivity().getFragmentManager(), "DepartureFromGregorian");
 
-                    }else{
+                    }
+
+
+                } else {
+                    if (!datePickerDialogDepart.isAdded()) {
                         datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
 
                     }
 
-                }catch (Exception e){}
+                }
+
 
                 break;
 
             case R.id.linear_picker_return:
-                try{  if (geo){
+                if (geo) {
+                    if (!datePickerDialogReturnGregorian.isAdded()){
+                        datePickerDialogReturnGregorian.show(getActivity().getFragmentManager(), "DepartureToGregorian");
 
-                    datePickerDialogReturnGregorian.show(getActivity().getFragmentManager(), "DepartureToGregorian");
+                    }
 
 
-                }else{
-                    datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DepartureTo");
 
-                }}catch (Exception e){}
+                } else {
+                    if (!datePickerDialogReturn.isAdded()){
+                        datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DepartureTo");
+
+                    }
+
+                }
 
 
                 break;
@@ -520,7 +520,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     AlertDialog mAlertDialog;
 
     public void needShowAlertDialog(String message, boolean canelable) {
-        if (mAlertDialog != null && mAlertDialog.isShowing()) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+  /*      if (mAlertDialog != null && mAlertDialog.isShowing()) {
             return;
         }
         mAlertDialog = new AlertDialog.Builder(getActivity()).create();
@@ -541,7 +542,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
         mAlertDialog.setView(view);
         mAlertDialog.setCancelable(true);
-        mAlertDialog.show();
+        mAlertDialog.show();*/
     }
 
     //Shamsi
@@ -560,7 +561,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
             departureTo = currentDateTime;
 
-            Prefs.putString("bargashtfa",txt_return_date.getText().toString());
+            Prefs.putString("bargashtfa", txt_return_date.getText().toString());
             Prefs.putString("bargasht", departureTo);
         }
 
@@ -576,8 +577,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);
 
 
-
-            if (Utility.campareDate(departureFrom,departureTo)){
+            if (Utility.campareDate(departureFrom, departureTo)) {
                 txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
                 //     datePickerDialog2.initialize(this, year_, month, day);
 
@@ -588,20 +588,16 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                         dayMin
                 );
                 datePickerDialogReturn.setMinDate(persianCalendarDatePicker);
-            }else{
+            } else {
                 datePickerDialogReturn.setMinDate(persianCalendarDatePicker);
 
             }
 
 
+            Prefs.putString("bargashtfa", txt_return_date.getText().toString());
 
-
-
-
-            Prefs.putString("bargashtfa",txt_return_date.getText().toString());
-
-            Prefs.putString("raft",  departureFrom);
-            Prefs.putString("raftfa",  txt_depart_date.getText().toString());
+            Prefs.putString("raft", departureFrom);
+            Prefs.putString("raftfa", txt_depart_date.getText().toString());
         }
     }
 
@@ -616,12 +612,12 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         month = monthOfYear;
         day = dayOfMonth;
 
-        String currentDateTime = year + "/" +( monthOfYear + 1 )+ "/" + dayOfMonth;//2018-01-16;
+        String currentDateTime = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;//2018-01-16;
 
         if (view.getTag().equals("DepartureToGregorian")) {
             txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", false));
             departureTo = currentDateTime;
-            Prefs.putString("bargashtfa",txt_return_date.getText().toString());
+            Prefs.putString("bargashtfa", txt_return_date.getText().toString());
             Prefs.putString("bargasht", departureTo);
         }
 
@@ -645,7 +641,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             }
 
 
-            datePickerDialogReturnGregorian.initialize(  this,
+            datePickerDialogReturnGregorian.initialize(this,
                     year_Min,
                     monthMin,
                     dayMin);
@@ -655,15 +651,10 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             datePickerDialogReturnGregorian.setMinDate(persianCalendarDatePicker2);
 
 
+            Prefs.putString("bargashtfa", departureFrom);
 
-
-
-
-
-            Prefs.putString("bargashtfa",departureFrom);
-
-            Prefs.putString("raft",  departureFrom);
-            Prefs.putString("raftfa",  txt_depart_date.getText().toString());
+            Prefs.putString("raft", departureFrom);
+            Prefs.putString("raftfa", txt_depart_date.getText().toString());
 
 
         }

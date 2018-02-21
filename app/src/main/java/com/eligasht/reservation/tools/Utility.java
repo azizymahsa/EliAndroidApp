@@ -776,7 +776,7 @@ public class Utility extends Activity {
 
                     @Override
                     public void run() {
-                        Log.e("onStart2", jsonObj.toString());
+                        Log.d("onStart2", jsonObj.toString());
 
                         if (finalI1 <= jsonObj.length()) {
                             YoYo.with(Techniques.SlideOutDown)

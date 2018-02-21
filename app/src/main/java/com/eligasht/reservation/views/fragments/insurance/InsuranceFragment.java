@@ -299,7 +299,10 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.layout_depart_date:
-                datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
+                if (!datePickerDialogDepart.isAdded()){
+                    datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
+
+                }
                 break;
             case R.id.btnSearchInsurance :
                 if(country == null){

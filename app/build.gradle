@@ -113,6 +113,11 @@ dependencies {
     compile project(':CircleProgressView')
     compile project(':library3')
     compile project(':connectionbuddy')
+    //compile 'com.github.tony19:logback-android-classic:1.1.1-3'
+    compile 'com.scalified:fab:1.1.3'
+
+    compile 'com.melnykov:floatingactionbutton:1.3.0'
+
 
 }
 apply plugin: 'com.google.gms.google-services'

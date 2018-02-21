@@ -1,6 +1,8 @@
 package com.eligasht.reservation.models.hotel.adapter;
 
 import com.eligasht.reservation.models.hotel.api.flightHotelRequest.FltList;
+import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities;
+import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations;
 
 import java.util.ArrayList;
 
@@ -32,8 +34,9 @@ public class SelectFlightHotelModel {
      String DepRout;
      String Amount;
     ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> Locations;
+    String FlightId;
 
-    public SelectFlightHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff, ArrayList<FltList> flights, String arrRout, String depRout, String amount, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> locations) {
+    public SelectFlightHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff, ArrayList<FltList> flights, String arrRout, String depRout, String amount, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> locations, String flightId) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -56,6 +59,7 @@ public class SelectFlightHotelModel {
         DepRout = depRout;
         Amount = amount;
         Locations = locations;
+        FlightId = flightId;
     }
 
     public String getName() {
@@ -232,5 +236,13 @@ public class SelectFlightHotelModel {
 
     public void setLocations(ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> locations) {
         Locations = locations;
+    }
+
+    public String getFlightId() {
+        return FlightId;
+    }
+
+    public void setFlightId(String flightId) {
+        FlightId = flightId;
     }
 }

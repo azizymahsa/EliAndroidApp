@@ -737,7 +737,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                     tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
 
-                    textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 300, 150));
+                    textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128,  getResources().getInteger(R.integer._300), getResources().getInteger(R.integer._150)));
                 } else {
                     txt_shomare_factor.setText("خطایی رخ داده است !");
                 }
