@@ -1,5 +1,9 @@
 package com.eligasht.reservation.models.hotel.api.hotelPolicy.test;
 
+import com.eligasht.reservation.models.hotel.api.Errors;
+
+import java.util.ArrayList;
+
 /**
  * Created by Reza.nejati on 1/21/2018.
  */
@@ -8,7 +12,7 @@ public class GetHotelPolicyResult {
 
         private HCancellationPolicies[] HCancellationPolicies;
 
-        private String Error;
+        private ArrayList<com.eligasht.reservation.models.hotel.api.Errors> Errors;
 
         public HCancellationPolicies[] getHCancellationPolicies ()
         {
@@ -20,20 +24,18 @@ public class GetHotelPolicyResult {
         this.HCancellationPolicies = HCancellationPolicies;
     }
 
-    public String getError ()
-    {
-        return Error;
+    public ArrayList<com.eligasht.reservation.models.hotel.api.Errors> getErrors() {
+        return Errors;
     }
 
-    public void setError (String Error)
-    {
-        this.Error = Error;
+    public void setErrors(ArrayList<com.eligasht.reservation.models.hotel.api.Errors> errors) {
+        Errors = errors;
     }
 
     @Override
     public String toString()
     {
-        return "ClassPojo [HCancellationPolicies = "+HCancellationPolicies+", Errors = "+Error+"]";
+        return "ClassPojo [HCancellationPolicies = ";
     }
 }
 

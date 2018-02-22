@@ -129,19 +129,17 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
             holder.txt_lable_hotel.setText("هتل آپارتمان");
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
 
-        }else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")) {
+        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
             holder.txt_lable_hotel.setText("بوتیک هتل");
 
 
-
-        }else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")) {
+        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
             holder.txt_lable_hotel.setText("ریزورت هتل");
 
 
-
-        }else{
+        } else {
             holder.txt_lable_hotel.setVisibility(View.GONE);
 
         }
@@ -150,27 +148,41 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         switch (selectHotelModelArrayList.get(position).getStar()) {
 
             case 1:
+                holder.ivRate.setVisibility(View.VISIBLE);
                 //todo change this
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._1star));
 
                 break;
             case 2:
+                holder.ivRate.setVisibility(View.VISIBLE);
+
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._2star));
 
                 break;
             case 3:
+                holder.ivRate.setVisibility(View.VISIBLE);
+
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._3star));
 
                 break;
             case 4:
+                holder.ivRate.setVisibility(View.VISIBLE);
+
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._4star));
 
                 break;
 
             case 5:
+                holder.ivRate.setVisibility(View.VISIBLE);
+
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._5star));
 
                 break;
+            case -1:
+                holder.ivRate.setVisibility(View.GONE);
+
+                break;
+
 
         }
 

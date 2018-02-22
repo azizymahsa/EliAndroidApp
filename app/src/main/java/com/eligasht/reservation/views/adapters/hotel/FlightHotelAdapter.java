@@ -424,25 +424,38 @@ public class FlightHotelAdapter extends BaseAdapter {
         switch (selectHotelModelArrayList.get(position).getStar()) {
 
             case 1:
+                holder.ivRate.setVisibility(View.VISIBLE);
+
                 //todo change this
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._1star));
 
                 break;
             case 2:
+                holder.ivRate.setVisibility(View.VISIBLE);
+
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._2star));
 
                 break;
             case 3:
+                holder.ivRate.setVisibility(View.VISIBLE);
+
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._3star));
 
                 break;
             case 4:
+                holder.ivRate.setVisibility(View.VISIBLE);
+
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._4star));
 
                 break;
 
             case 5:
+                holder.ivRate.setVisibility(View.VISIBLE);
+
                 holder.ivRate.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable._5star));
+                break;
+            case -1:
+                holder.ivRate.setVisibility(View.GONE);
 
                 break;
 

@@ -110,5 +110,6 @@
     <dimen name="_7_flight_dp">7dp</dimen>
     <dimen name="_5_flight_dp">5dp</dimen>
     <dimen name="_50_flight_dp">50dp</dimen>
+    <dimen name="_100dp_image">150dp</dimen>
 
 </resources>

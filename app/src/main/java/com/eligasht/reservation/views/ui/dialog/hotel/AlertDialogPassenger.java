@@ -39,17 +39,21 @@ public class AlertDialogPassenger implements View.OnClickListener {
         avi = (AVLoadingIndicatorView) dialogView.findViewById(R.id.avi);
         tvAlert = (JustifiedTextView) dialogView.findViewById(R.id.tvAlert);
 
-        Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
-        tvAlert.setTextSize(2,12);
+        Typeface typeface = Typeface.createFromAsset(activity.getAssets(), "fonts/iran_sans_bold.ttf");
+        tvAlert.setTextSize(2, 12);
         tvAlert.setLineSpacing(25);
         tvAlert.setTypeFace(typeface);
         tvAlert.setTextColor(Color.parseColor("#2e3192"));
 
-       btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
-        dialog.show();
+        try {
+            dialog.show();
+
+        } catch (Exception e) {
+        }
     }
 
     public void setText(String text) {

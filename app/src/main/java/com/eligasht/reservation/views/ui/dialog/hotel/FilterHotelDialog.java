@@ -79,6 +79,7 @@ public class FilterHotelDialog implements View.OnClickListener {
         scrollViewObject = (ScrollView) dialogView.findViewById(R.id.scrollViewObject);
         btnDeletFilter = (FancyButton) dialogView.findViewById(R.id.btnDeletFilter);
         searchtxt = (EditText) dialogView.findViewById(R.id.searchtxt);
+
         searchtxt.setText(search);
         lvHotelTypes = (NonScrollListView) dialogView.findViewById(R.id.lvHotelTypes);
         lvFacilitiesTypes = (NonScrollListView) dialogView.findViewById(R.id.lvFacilitiesTypes);
@@ -211,7 +212,7 @@ public class FilterHotelDialog implements View.OnClickListener {
         dialog = builder.create();
         dialog.setCancelable(true);
 
-        dialog.show();
+      //  dialog.show();
     }
 
     @Override
@@ -232,6 +233,7 @@ public class FilterHotelDialog implements View.OnClickListener {
                 break;
             case R.id.btnDeletFilter:
                 remove=true;
+                search="";
                 for (int i = 0; i < filterHotelTypeModels.size(); i++) {
                     filterHotelTypeModels.set(i, new FilterHotelTypeModel(filterHotelTypeModels.get(i).getTitle(), false));
 
@@ -287,7 +289,11 @@ public class FilterHotelDialog implements View.OnClickListener {
         }
     }
 
-
+public void show(){
+        if (!dialog.isShowing()){
+            dialog.show();
+        }
+}
 
     public interface FilterHotelDialogListenerArray {
         public void onReturnValue(ArrayList<FilterModel> type, String search,

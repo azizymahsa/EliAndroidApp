@@ -16,7 +16,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class AlertDialogPolicy implements View.OnClickListener {
     android.app.AlertDialog dialog;
-    TextView tvAlert;
+    TextView tvAlert,tvTitle;
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
@@ -36,6 +36,7 @@ public class AlertDialogPolicy implements View.OnClickListener {
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
         avi = (AVLoadingIndicatorView) dialogView.findViewById(R.id.avi);
         tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
+        tvTitle = (TextView) dialogView.findViewById(R.id.tvTitle);
 
        /* Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_normal.ttf");
         tvAlert.setTextSize(2,12);
@@ -55,6 +56,11 @@ public class AlertDialogPolicy implements View.OnClickListener {
         tvAlert.setText(text);
         avi.setVisibility(View.GONE);
 
+    }
+    public void setTitle(String text){
+
+
+        tvTitle.setText(text);
     }
 
     @Override

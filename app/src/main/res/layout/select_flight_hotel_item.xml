@@ -166,15 +166,21 @@
                         android:maxLines="1"
 
                         />
-                    <ImageView
-                        android:id="@+id/ivRate"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_16dp_exit_menu_textSize"
+                        android:layout_height="@dimen/_100dp_image"
                         android:layout_alignParentRight="true"
-                        android:scaleType="fitEnd"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/_4star"
-                        />
+
+                        >
+                        <ImageView
+                            android:id="@+id/ivRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
+                            android:scaleType="fitEnd"
+                            />
+
+                    </LinearLayout>
 
 
                 </RelativeLayout>

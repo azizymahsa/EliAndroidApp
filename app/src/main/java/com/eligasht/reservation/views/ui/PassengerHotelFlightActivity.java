@@ -811,7 +811,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                 txtTitle.setText("تایید و پرداخت پیش فاکتور ");
                 //myScrollView.setOnTouchListener(null);
-
                 linear_saler.setVisibility(View.GONE);
                 linear_mosaferan.setVisibility(View.GONE);
                 linear_list_khadamat.setVisibility(View.GONE);

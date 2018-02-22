@@ -124,7 +124,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private ImageView ivImage;
     private LinearLayout llDynamic, llLoading, llComment, llEmkanat;
     private AVLoadingIndicatorView  aviComment;
-    private FancyButton btnSendComment, btnSortComment, btnOk;
+    private FancyButton btnSendComment, btnSortComment, btnOk,btnComment;
     private ImageView ivLoading;
     private EditText etComment;
     private AddCommnetDialog addCommnetDialog;
@@ -217,6 +217,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         btnOk.setOnClickListener(this);
 
         flMap = findViewById(R.id.flMap);
+        btnComment = findViewById(R.id.btnComment);
 
         vEmakanat = findViewById(R.id.vEmakanat);
         vMap = findViewById(R.id.vMap);
@@ -229,6 +230,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         lvRooms.setAdapter(roomsAdapter);
         btnSendComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
         lvRooms.setFocusable(false);
         llComment.setFocusable(false);
         svDetail.setFocusable(false);

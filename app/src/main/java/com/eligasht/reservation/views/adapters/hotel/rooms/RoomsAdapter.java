@@ -26,6 +26,7 @@ import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.PolicyReque
 import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.RequestPolicy;
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
 import com.eligasht.reservation.tools.Utility;
+import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerHotelActivity;
 import com.eligasht.reservation.views.ui.PassengerHotelFlightActivity;
@@ -34,7 +35,9 @@ import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPolicy;
 import java.util.ArrayList;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+
 import com.eligasht.reservation.models.hotel.api.holdSelectedRoom.call.RoomRequest;
+import com.google.gson.Gson;
 
 /**
  * Created by Reza.nejati on 1/6/2018.
@@ -56,13 +59,12 @@ public class RoomsAdapter extends BaseAdapter {
     String offerIds;
     GetHoldRoom getHoldRoom;
     String flightId;
-    RelativeLayout rlLoading,rlRoot;
+    RelativeLayout rlLoading, rlRoot;
     Window window;
     AlertDialogPolicy alertDialogPolicy;
 
 
-
-    public RoomsAdapter(ArrayList<RoomsModel> roomsModels, Activity context, RelativeLayout rlRoot, RelativeLayout rlLoading,Window window) {
+    public RoomsAdapter(ArrayList<RoomsModel> roomsModels, Activity context, RelativeLayout rlRoot, RelativeLayout rlLoading, Window window) {
         this.roomsModels = roomsModels;
         this.context = context;
         this.rlRoot = rlRoot;
@@ -104,18 +106,17 @@ public class RoomsAdapter extends BaseAdapter {
         }
         holder.tvBoard.setText(roomsModels.get(position).getBoard());
         holder.tvTitle.setText(roomsModels.get(position).getTitle());
-        holder.tvPrice.setText(Utility.priceFormat(roomsModels.get(position).getPrice())+"");
+        holder.tvPrice.setText(Utility.priceFormat(roomsModels.get(position).getPrice()) + "");
         holder.tvDesc.setText(roomsModels.get(position).getDesc());
-
 
 
         holder.btnPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EHotelId=roomsModels.get(position).getHotelId();
-                OfferId=roomsModels.get(position).getOfferId();
-                SearchKey=roomsModels.get(position).getSearchKey();
-                 alertDialogPolicy =  new AlertDialogPolicy(context);
+                EHotelId = roomsModels.get(position).getHotelId();
+                OfferId = roomsModels.get(position).getOfferId();
+                SearchKey = roomsModels.get(position).getSearchKey();
+                alertDialogPolicy = new AlertDialogPolicy(context);
                 new GetHotelPolicyAsync().execute();
             }
         });
@@ -134,13 +135,12 @@ public class RoomsAdapter extends BaseAdapter {
         });
 
 
-
         return convertView;
     }
 
 
-    public class ViewHolder{
-        TextView tvBoard,tvTitle,tvPrice,tvDesc;
+    public class ViewHolder {
+        TextView tvBoard, tvTitle, tvPrice, tvDesc;
         FancyButton btnPolicy;
         CardView llSelectHotel;
 
@@ -149,7 +149,9 @@ public class RoomsAdapter extends BaseAdapter {
     private class GetHotelPolicyAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
-
+            alertDialogPolicy.setTitle("قوانین هتل");
+            Log.e("okoktesttest", new Gson().toJson(new PolicyRequest(new RequestPolicy(new IdentityRooms("EligashtMlb",
+                    "123qwe!@#QWE", "Mobile"), EHotelId, OfferId, SearchKey, "fa-IR", false))));
 
 
         }
@@ -158,7 +160,7 @@ public class RoomsAdapter extends BaseAdapter {
         protected String doInBackground(String... params) {
             try {
                 getHotelPolicyApi = new GetHotelPolicyApi(new PolicyRequest(new RequestPolicy(new IdentityRooms("EligashtMlb",
-                        "123qwe!@#QWE", "Mobile"),EHotelId,OfferId,SearchKey,"fa-IR",false)));
+                        "123qwe!@#QWE", "Mobile"), EHotelId, OfferId, SearchKey, "fa-IR", false)));
 
 
             } catch (Exception e) {
@@ -171,60 +173,61 @@ public class RoomsAdapter extends BaseAdapter {
         protected void onPostExecute(String result) {
 
 
-            try{
+            try {
 
-                Log.e("testtest",  getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies()[0].getKey()+"");
+                if (getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getErrors()!=null){
+                    alertDialogPolicy.setText(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getErrors().get(0).DetailedMessage);
 
-
-              alertDialogPolicy.setText("اتاق"+getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                      getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo()+": کنسل کردن از "+
-                     Utility.dateShowPolicy( getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate())+" تا "+
-                     Utility.dateShowPolicy( getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate())+" شامل "+
-                      getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                              getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount()+" "+getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                      getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency()+" جریمه می شود.");
+                }else if(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().length==0){
+                    alertDialogPolicy.setText("نتیجه ای برای جستجو شما حاصل نشد.");
 
 
-            /*    JSONObject jsonObject= new JSONObject(getHotelPolicyApi.getHotelPolicyResponse.GetHotelPolicyResult.toString());
+                }else{
 
-                JSONArray jArray = jsonObject.getJSONArray("HCancellationPolicies");
-
-
-                for (int i =0 ; i<jArray.length();i++){
-                    Log.e("test",  jArray.getJSONObject(i).getString("Key"));
-
-
+                    alertDialogPolicy.setText("اتاق" + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() + ": کنسل کردن از " +
+                            Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate()) + " تا " +
+                            Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()) + " شامل " +
+                            getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount() + " " + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() + " جریمه می شود.");
 
                 }
 
 
 
 
-*/
+            } catch (Exception e) {
+                if (!Utility.isNetworkAvailable(context)) {
 
-            }catch (Exception e){
+                    alertDialogPolicy.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
 
+                } else {
+
+                    alertDialogPolicy.setText("خطا در دریافت اطلاعات از الی گشت");
+
+                }
 
             }
 
         }
 
     }
+
     private class GetHoldRoomAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
 
 
-
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(context,R.color.status_loading));
+                window.setStatusBarColor(ContextCompat.getColor(context, R.color.status_loading));
             }
 
 
-            new InitUi().Loading(context,rlLoading, rlRoot, true,R.drawable.hotel_loading);
+            new InitUi().Loading(context, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 
 
         }
@@ -247,48 +250,46 @@ public class RoomsAdapter extends BaseAdapter {
         protected void onPostExecute(String result) {
             //  new InitUi().Loading(rlLoading,rlRoot,false);
 
-            new InitUi().Loading(context,rlLoading, rlRoot, false,R.drawable.hotel_loading);
+            new InitUi().Loading(context, rlLoading, rlRoot, false, R.drawable.hotel_loading);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(context,R.color.colorPrimaryDark));
+                window.setStatusBarColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
             }
             try {
 
 
             /*    if (Prefs.getLong("time",0)>=50000){*/
-                    if (context.getIntent().getExtras().getInt("type") == 1) {
-                        flightId = context.getIntent().getExtras().getString("FlightID");
+                if (context.getIntent().getExtras().getInt("type") == 1) {
+                    flightId = context.getIntent().getExtras().getString("FlightID");
 
-                        Intent intent = new Intent(context, PassengerHotelFlightActivity.class);
-                        intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
-                        intent.putExtra("FlightGuID", flightId);
-                        intent.putExtra("CheckIn", context.getIntent().getExtras().getString("CheckInHF"));
-                        intent.putExtra("CheckOut", context.getIntent().getExtras().getString("CheckOutHF"));
-                        intent.putExtra("flightId", context.getIntent().getExtras().getString("ResultUniqID"));
+                    Intent intent = new Intent(context, PassengerHotelFlightActivity.class);
+                    intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
+                    intent.putExtra("FlightGuID", flightId);
+                    intent.putExtra("CheckIn", context.getIntent().getExtras().getString("CheckInHF"));
+                    intent.putExtra("CheckOut", context.getIntent().getExtras().getString("CheckOutHF"));
+                    intent.putExtra("flightId", context.getIntent().getExtras().getString("ResultUniqID"));
 
-                        context.startActivity(intent);
-                        context.finish();
-                    }
-                    //hotel
-                    if (context.getIntent().getExtras().getInt("type") == 2) {
-                        flightId = "";
+                    context.startActivity(intent);
+                    context.finish();
+                }
+                //hotel
+                if (context.getIntent().getExtras().getInt("type") == 2) {
+                    flightId = "";
 
-                        Intent intent = new Intent(context, PassengerHotelActivity.class);
-                        intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
-                        intent.putExtra("FlightGuID", context.getIntent().getExtras().getString("ResultUniqID"));
-                        intent.putExtra("CheckIn", context.getIntent().getExtras().getString("CheckIn"));
-                        intent.putExtra("CheckOut", context.getIntent().getExtras().getString("CheckOut"));
+                    Intent intent = new Intent(context, PassengerHotelActivity.class);
+                    intent.putExtra("HotelOfferId", getHoldRoom.holdSelectRoomResponse.HoldSelectedRoomResult.OfferId);
+                    intent.putExtra("FlightGuID", context.getIntent().getExtras().getString("ResultUniqID"));
+                    intent.putExtra("CheckIn", context.getIntent().getExtras().getString("CheckIn"));
+                    intent.putExtra("CheckOut", context.getIntent().getExtras().getString("CheckOut"));
 
-                        context.startActivity(intent);
-                        context.finish();
+                    context.startActivity(intent);
+                    context.finish();
 
 
-                    }
+                }
             /*    }else{
                     sendDetailFinish();
                 }*/
-
-
 
 
             } catch (Exception e) {

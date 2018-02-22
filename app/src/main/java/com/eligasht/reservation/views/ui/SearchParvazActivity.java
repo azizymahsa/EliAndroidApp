@@ -133,7 +133,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
 
     public TextView txtCityBargasht, txtCityRaft, txtCityBargashtt;
-    public FancyButton txtBack, btnHome, txticon;
+    public FancyButton txtBack, btnHome;
 
     public List<ParentItemExpandingPlan> dataExpandingList;
     public List<ParentItemExpandingPlan> dataExpandingListFilter = new ArrayList<>();
@@ -161,7 +161,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     public String BargashtF;
     public String Raft;
     public String Bargasht;
-    public TextView txtDateOnvan, tvLoading;
+    public TextView txtDateOnvan, tvLoading,txticon,tvChangeFlight;
     public LinearLayout linear_expand;
     public SearchParvazPinAdapter searchParvazPinAdapter;
     public static RecyclerView recyclerViewFlight;
@@ -170,6 +170,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     boolean isChangeFlight;
     String searchKey;
     String FlightId;
+    LinearLayout llNextLastDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,6 +198,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         txtBack.setText(getString(R.string.search_back_right));
 
         btnHome = (FancyButton) findViewById(R.id.btnHome);
+        txticon = (TextView) findViewById(R.id.txticon);
         btnHome.setOnClickListener(this);
         /*btnHome.setCustomTextFont("fonts/icomoon.ttf");
 		btnHome.setText(getString(R.string.search_back_right));
@@ -211,6 +213,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 
         btn_no_Result = (Button) findViewById(R.id.btn_no_Result);
+        llNextLastDays = (LinearLayout) findViewById(R.id.llNextLastDays);
         btn_no_Result.setOnClickListener(this);
 
         txtRuzeGhabl = (TextView) findViewById(R.id.txtRuzeGhabl);
@@ -222,11 +225,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         txtCityRaft = (TextView) findViewById(R.id.txtCityRaft);
         txtCityRaft.setOnClickListener(this);
 
-        txticon = (FancyButton) findViewById(R.id.txticon);
-        txticon.setOnClickListener(this);
+
 
         txtCityBargashtt = (TextView) findViewById(R.id.txtCityBargashtt);
         tvLoading = (TextView) findViewById(R.id.tvLoading);
+        tvChangeFlight = (TextView) findViewById(R.id.tvChangeFlight);
         Utility.loadingText(tvLoading, Prefs.getString("F", ""));
 
 
@@ -243,8 +246,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             //txtCityRaft.setCustomTextFont("fonts/iran_sans_normal.ttf");
             txtCityRaft.setText(mabdaf);//sdfsdf
 
-            txticon.setCustomTextFont("fonts/fontello-all-icons.ttf");
-            txticon.setText(getString(R.string.icon_plane));//sdfsdf
 
             //txtCityBargashtt.setCustomTextFont("fonts/iran_sans_normal.ttf");
             txtCityBargashtt.setText(maghsadf);//sdfsdf
@@ -284,6 +285,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             FlightId = getIntent().getExtras().getString("FlightId");
             searchKey = getIntent().getExtras().getString("SearchKey");
             isChangeFlight = true;
+
+            txticon.setVisibility(View.GONE);
+            txtCityRaft.setVisibility(View.GONE);
+            txtDateOnvan.setVisibility(View.GONE);
+            llNextLastDays.setVisibility(View.GONE);
+            txtCityBargashtt.setVisibility(View.GONE);
+            tvChangeFlight.setVisibility(View.VISIBLE);
+            tvChangeFlight.setText("تغییر پرواز");
         } else {
             isChangeFlight = false;
             FlightId="";
@@ -1208,7 +1217,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                             flightSegment.setArrivalAirportCode(jPricedIfdgtinerary.getString("ArrivalAirportCode"));
                             flightSegment.setArrivalAirportNameEn(jPricedIfdgtinerary.getString("ArrivalAirportNameEn"));
                             flightSegment.setArrivalAirportNameFa(jPricedIfdgtinerary.getString("ArrivalAirportNameFa"));
-                            flightSegment.setArrivalCityCode(jPricedIfdgtinerary.getString("ArrivalCityCode"));
+                          //  flightSegment.setArrivalCityCode(jPricedIfdgtinerary.getString("ArrivalCityCode"));
                             flightSegment.setArrivalCityNameEn(jPricedIfdgtinerary.getString("ArrivalCityNameEn"));
 
                             flightSegment.setArrivalCityNameFa(jPricedIfdgtinerary.getString("ArrivalCityNameFa"));
@@ -2722,7 +2731,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
-
+            Log.e("teschange", new Gson().toJson(new ChangeFlightApiRequest(new Request(FlightId,
+                    searchKey, "fa-IR", new Identity("EligashtMlb",
+                    "123qwe!@#QWE", "Mobile")))));
         }
 
         @Override
