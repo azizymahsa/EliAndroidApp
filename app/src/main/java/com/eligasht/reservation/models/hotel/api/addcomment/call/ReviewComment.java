@@ -1,5 +1,7 @@
 package com.eligasht.reservation.models.hotel.api.addcomment.call;
 
+import java.util.ArrayList;
+
 /**
  * Created by Reza.nejati on 1/25/2018.
  */
@@ -12,9 +14,11 @@ public class ReviewComment {
     public final String SubmitEmail;
     public final String SubmitName;
     public final String Title;
-    public final int WebUserID;
+    public final String WebUserID;
+    public final ArrayList<ReviewScores> ReviewScores;
 
-    public ReviewComment(int agcUserID, String content, int reviewCommentID, int reviewID, String submitEmail, String submitName, String title, int webUserID) {
+    public ReviewComment(int agcUserID, String content, int reviewCommentID, int reviewID, String submitEmail, String submitName,
+                         String title, String webUserID, ArrayList<com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewScores> reviewScores) {
         AgcUserID = agcUserID;
         Content = content;
         ReviewCommentID = reviewCommentID;
@@ -23,5 +27,6 @@ public class ReviewComment {
         SubmitName = submitName;
         Title = title;
         WebUserID = webUserID;
+        ReviewScores = reviewScores;
     }
 }

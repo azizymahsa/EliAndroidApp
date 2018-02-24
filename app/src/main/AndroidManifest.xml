@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eligasht"
-    android:versionCode="4"
+    android:versionCode="5"
     android:versionName="1.0.4">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -180,7 +180,10 @@
         <activity
             android:name=".reservation.views.activities.login.SuccessResetPassActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".reservation.views.activities.hotel.activity.CommentActivity"></activity>
+        <activity android:name=".reservation.views.activities.hotel.activity.CommentActivity"
+            android:screenOrientation="portrait"
+
+            />
     </application>
 
 </manifest>

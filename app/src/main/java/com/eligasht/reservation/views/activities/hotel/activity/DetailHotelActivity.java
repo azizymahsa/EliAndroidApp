@@ -125,9 +125,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private ImageView ivImage;
     private LinearLayout llDynamic, llLoading, llComment, llEmkanat;
     private AVLoadingIndicatorView  aviComment;
-    private FancyButton btnSendComment, btnSortComment, btnOk,btnComment;
+    private FancyButton  btnSortComment, btnOk,btnComment,btnOneComment;
     private ImageView ivLoading;
-    private EditText etComment;
     private AddCommnetDialog addCommnetDialog;
     private String comment, userName, title;
     private CommentAdapterRecycle commentAdapter;
@@ -191,8 +190,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         btnSortComment = findViewById(R.id.btnSortComment);
         vComment = findViewById(R.id.vComment);
         llCommentClick = findViewById(R.id.llCommentClick);
-        btnSendComment = findViewById(R.id.btnSendComment);
-        etComment = findViewById(R.id.etComment);
         tvSortComment = findViewById(R.id.tvSortComment);
         btnOk = findViewById(R.id.btnOk);
         elNotFound = findViewById(R.id.elNotFound);
@@ -207,13 +204,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvCommentCount = findViewById(R.id.tvCommentCount);
         tvVoteCount = findViewById(R.id.tvVoteCount);
         tvRecommendedPercent = findViewById(R.id.tvRecommendedPercent);
+        btnOneComment = findViewById(R.id.btnOneComment);
         rlLoading2 = findViewById(R.id.rlLoading2);
        // avi1 = findViewById(R.id.avi1);
         llEmakanatClick.setOnClickListener(this);
         llMapClick.setOnClickListener(this);
         llRezervClick.setOnClickListener(this);
         llCommentClick.setOnClickListener(this);
-        btnSendComment.setOnClickListener(this);
         btnSortComment.setOnClickListener(this);
         btnOk.setOnClickListener(this);
 
@@ -230,9 +227,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         lvRooms = findViewById(R.id.lvRooms);
         roomsAdapter = new RoomsAdapter(roomsModels, this, rlRoot, rlLoading, window);
         lvRooms.setAdapter(roomsAdapter);
-        btnSendComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOneComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
         lvRooms.setFocusable(false);
         llComment.setFocusable(false);
         svDetail.setFocusable(false);
@@ -241,6 +238,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         svDetail.setFocusable(false);
         tvSortComment.setText("جدیدترین نظرات");
         rlLoading2.setOnClickListener(this);
+        btnOneComment.setOnClickListener(this);
 
 
         Utility.setAnimLoading(this);
@@ -337,20 +335,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                 break;
-            case R.id.btnSendComment:
 
-                if (TextUtils.isEmpty(etComment.getText())) {
-                    GradientDrawable drawable = (GradientDrawable) etComment.getBackground();
-                    drawable.setStroke(4, Color.RED); // set stroke width and stroke color
-                } else {
-                    comment = etComment.getText().toString();
-                    addCommnetDialog = new AddCommnetDialog(DetailHotelActivity.this, this);
-
-
-                }
-
-
-                break;
             case R.id.btnSortComment:
                 if (isNew) {
 
@@ -390,8 +375,18 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.btnComment:
                 Intent intent=new Intent(this,CommentActivity.class);
+                Log.e("HotelNname", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName );
                 intent.putExtra("HotelName",getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                intent.putExtra("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")));
                 startActivity(intent);
+                break;
+            case R.id.btnOneComment:
+                Intent intent2=new Intent(this,CommentActivity.class);
+                Log.e("HotelNname", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName );
+                intent2.putExtra("HotelName",getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                intent2.putExtra("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")));
+
+                startActivity(intent2);
                 break;
         }
 
@@ -454,7 +449,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     public void onReturnValue(String userName, String title) {
         this.userName = userName;
         this.title = title;
-        new AddCommentAsync().execute();
 
     }
 
@@ -818,55 +812,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    private class AddCommentAsync extends AsyncTask<String, Void, String> {
 
-        protected void onPreExecute() {
-            addCommnetDialog.onPost();
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                        "123qwe!@#QWE", "Mobile"), "fa-IR", new ReviewComment(0, comment,
-                        0, 1, "Developer@eligasht.com", userName, title, 0))));
-
-
-            } catch (Exception e) {
-
-            }
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            addCommnetDialog.onEx();
-            addCommnetDialog.setFinish(true);
-
-            try {
-
-
-                if (addComment.addCommentsResult.AddHotelReviewCommentsResult.errors != null) {
-                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewCommentsResult.errors.get(0).Message);
-
-
-                } else {
-
-                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewCommentsResult.ResultText);
-
-
-                }
-
-
-            } catch (Exception e) {
-                tvAlert.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
-
-            }
-
-        }
-
-    }
 
 
     private class GetCommentAsync extends AsyncTask<String, Void, String> {
@@ -947,6 +893,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {
 
                     tvAlertComment.setVisibility(View.VISIBLE);
+                    btnOneComment.setVisibility(View.VISIBLE);
                     llCommentContent.setVisibility(View.GONE);
                 }
 

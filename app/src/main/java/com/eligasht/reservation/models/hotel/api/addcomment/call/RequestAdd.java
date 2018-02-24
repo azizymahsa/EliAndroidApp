@@ -9,12 +9,12 @@ import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 public class RequestAdd {
     public final Identity identity;
     public final String Culture;
-    public final ReviewComment ReviewComment;
+    public final HotelReviewModel HotelReviewModel;
 
 
-    public RequestAdd(Identity identity, String culture, com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewComment reviewComment) {
+    public RequestAdd(Identity identity, String culture, com.eligasht.reservation.models.hotel.api.addcomment.call.HotelReviewModel hotelReviewModel) {
         this.identity = identity;
         Culture = culture;
-        ReviewComment = reviewComment;
+        HotelReviewModel = hotelReviewModel;
     }
 }

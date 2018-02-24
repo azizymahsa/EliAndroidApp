@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.reservation.api.VersionChecker;
 import com.eligasht.reservation.models.hotel.api.userEntranceRequest.request.UserEntranceRequest;
 import com.eligasht.reservation.tools.Version;
+import com.eligasht.reservation.views.activities.hotel.activity.CommentActivity;
 import com.eligasht.reservation.views.ui.dialog.app.UpdateAlert;
 import com.farsitel.bazaar.IUpdateCheckService;
 import com.google.gson.Gson;
@@ -121,8 +123,6 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
             e.printStackTrace();
         }
 
-
-
 /*
         try {
          String ver=   new VersionChecker().execute().get();
@@ -174,7 +174,9 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                             public void onPermissionGranted() {
                                 req++;
                                 if (isConnect) {
-                                    new GetCommentAsync().execute();
+                             //   new GetCommentAsync().execute();
+                                    startActivity(new Intent(SplashFragment.this, CommentActivity.class));
+                                    finish();
                                 } else {
                                     internetAlert.isShow();
                                 }
