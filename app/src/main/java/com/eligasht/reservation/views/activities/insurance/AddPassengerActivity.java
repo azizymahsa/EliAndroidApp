@@ -119,7 +119,7 @@ public class AddPassengerActivity extends BaseActivity implements
         );
         datePickerDialogBirthDay.setYearRange(1330, currentYear);
         datePickerDialogBirthDay.setTitle("لطفا تاریخ تولد خود را انتخاب نمایید");
-        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);

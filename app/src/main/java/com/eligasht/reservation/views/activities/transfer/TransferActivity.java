@@ -176,8 +176,8 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         year_ = persianCalendarDatePicker.getPersianYear();
         day = persianCalendarDatePicker.getPersianDay();
 
-        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
-        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
+        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
 
         // datePickerDialogGregorian2.setOnDateSetListener(this);
         //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);

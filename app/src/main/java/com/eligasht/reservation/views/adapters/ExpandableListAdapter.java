@@ -100,6 +100,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView lblDepurtureAirportR = (TextView) convertView.findViewById(R.id.lblDepurtureAirportR);
         TextView lblArrivalAirportR = (TextView) convertView.findViewById(R.id.lblArrivalAirportR);
         TextView lblFlightNumberR = (TextView) convertView.findViewById(R.id.lblFlightNumberR);
+        TextView lblFlightNumberRPersian = (TextView) convertView.findViewById(R.id.lblFlightNumberPersian);
 
         LinearLayout linearTableNerkh = (LinearLayout) convertView.findViewById(R.id.linearTableNerkh);//
         LinearLayout linearButton = (LinearLayout) convertView.findViewById(R.id.linearButton);
@@ -125,12 +126,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         lblDepurtureAirportR.setText(item.DepartureCityNameFa + " , " + item.DepartureAirportNameFaR);
         lblArrivalAirportR.setText(item.ArrivalCityNameFa + " , " + item.ArrivalAirportNameFaR);
         if (item.OperatingAirlineNameEn.contains("null")) {
-            lblFlightNumberR.setText(item.AirlineCode + item.FlightNumberR + " , " + item.AirlineNameFaR);
+            lblFlightNumberR.setText(item.AirlineCode + item.FlightNumberR );
+            lblFlightNumberRPersian.setText( item.AirlineNameFaR+" , " );
 
         } else {
             String text = "<font color=#aaaaaa>" + "By: " + item.OperatingAirlineNameEn + "</font> " +
-                    "<font color=#0e874e>" + item.AirlineCode + item.FlightNumberR + " , " + item.AirlineNameFaR + "</font>";
+                    "<font color=#0e874e>" + item.AirlineCode + item.FlightNumberR + "</font>";
             lblFlightNumberR.setText(Html.fromHtml(text));
+            lblFlightNumberRPersian.setText( item.AirlineNameFaR +" , " );
             //lblFlightNumberR.setText("Operated By: " + item.OperatingAirlineNameEn+" , "+item.AirlineCode+item.FlightNumberR+" , "+ item.AirlineNameFaR );
         }
         System.out.println("item.OperatingAirlineNameEn:" + item.OperatingAirlineNameEn);

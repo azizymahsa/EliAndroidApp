@@ -176,8 +176,8 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
 
 ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
-        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
+        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
 //RRRRRRRRRRRRRRRRRRRRR
         datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
         datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());

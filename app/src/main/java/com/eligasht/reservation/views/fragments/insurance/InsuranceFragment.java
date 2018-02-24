@@ -251,7 +251,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         persianCalendarDatePicker.setPersianDate(currentYear, currentMonth, currentDay);
 
         datePickerDialogDepart.setMinDate(persianCalendarDatePicker);
-        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
         datePickerDialogDepartgGregorian.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
         datePickerDialogDepart.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
             @Override
