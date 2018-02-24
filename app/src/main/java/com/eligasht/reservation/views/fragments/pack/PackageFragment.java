@@ -246,8 +246,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         persianCalendarDatePicker.setPersianDate(currentYear, currentMonth, currentDay);
 
         //milladi
-        datePickerDialogReturnGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
-        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog();
+        datePickerDialogReturnGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
+        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
         //milladi
         datePickerDialogReturnGregorian.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
         datePickerDialogDepartgGregorian.setMinDate(persianCalendarDatePicker.toGregorianCalendar());

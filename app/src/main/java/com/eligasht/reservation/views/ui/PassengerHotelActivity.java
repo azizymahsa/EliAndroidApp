@@ -42,12 +42,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.tools.datetools.DateUtil;
+import com.eligasht.reservation.tools.datetools.SolarCalendar;
+import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
@@ -89,9 +95,13 @@ import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +109,8 @@ import java.util.Map;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class PassengerHotelActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnItemSelectedListener,View.OnFocusChangeListener {
+public class PassengerHotelActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnItemSelectedListener,View.OnFocusChangeListener ,com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,
+        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener{
 
     public static boolean flag;
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -109,7 +120,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     public FancyButton btnBack;
     public ImageView btn_saler, btn_mosaferan, btn_khadamat, btn_pish_factor;
     public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
-    public Button btnAddsabad, btn_pardakht_factor;
+    public Button btnAddsabad,btn_pardakht_factor,txtSaler,txtMasaferan,txtKhadamat,txtPishfactor;
     public EditText txtnamem, txtfamilym;
     public static TextView txttavalodm;
     public EditText txtnumber_passport, txtnameP;
@@ -151,7 +162,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     private boolean FlagTab=false;
     private com.rey.material.widget.RadioButton btnzan,btnmard,btnzanS,btnmardS;
     RelativeLayout rlLoading,rlRoot;
-
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
+    com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
     //ExpandableLayoutListView lvFactor;
     @SuppressLint("WrongViewCast")
     @Override
@@ -159,7 +172,187 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger);
         Prefs.putString("IST","H");
+        PersianCalendar persianCalendarDatePicker = new PersianCalendar();
+        PersianCalendar persianCalendar = new PersianCalendar();
+        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
+//=====================================================================================================
+        //_____________________________________________________________________
+        datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
+                this,
+                persianCalendarDatePicker.getPersianYear(),
+                persianCalendarDatePicker.getPersianMonth(),
+                persianCalendarDatePicker.getPersianDay()
+        );
 
+        //datePickerDialog.setMinDate(persianCalendarDatePicker);
+
+
+        //______________________________________________________________________
+
+
+//=====================================================================================================
+        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
+        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+                String monthl=""+(monthOfYear+1);
+                String dayl=""+dayOfMonth;
+                if(Integer.toString(monthOfYear+1).length()==1){
+                    monthl="0"+(monthOfYear+1);
+                }
+                if(Integer.toString(dayOfMonth).length()==1){
+                    dayl="0"+dayOfMonth;
+                }
+                txttavalodm.setText(""+year+"/"+monthl+"/"+dayl);
+            }
+        });
+
+        datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+
+                int yearM = datePickerDialogGregorian1.getSelectedDay().getYear();//2018
+                int monthM = datePickerDialogGregorian1.getSelectedDay().getMonth();//2
+                int dayM = datePickerDialogGregorian1.getSelectedDay().getDay();//18
+                //convert to shamsi
+                String dateShamsi = SolarCalendar.calSolarCalendar(yearM, monthM, dayM + 1);
+
+                String[] dateSplite2 = dateShamsi.split("/");//shamsi
+
+                String dayMF = dateSplite2[2];
+                String monthMF = dateSplite2[1];
+                String yearMF = dateSplite2[0];
+
+
+                datePickerDialog.initialize(PassengerHotelActivity.this, Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
+                datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
+
+
+            }
+        });
+////////////
+        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
+        //	datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+        datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+                String month=""+monthOfYear+1;
+                String day=""+dayOfMonth;
+                if(Integer.toString(monthOfYear+1).length()==1){
+                    month="0"+(monthOfYear+1);
+                }
+                if(Integer.toString(dayOfMonth).length()==1){
+                    day="0"+dayOfMonth;
+                }
+                txtexp_passport.setText(""+year+"/"+month+"/"+day);
+
+            }
+        });
+
+        //=====================================================================================================
+
+
+//change button shamsi to milady (date picker)
+        datePickerDialog.setOnCalandarChangeListener(new com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                int yearSh = datePickerDialog.getSelectedDay().getYear();//1396
+                int monthSh = datePickerDialog.getSelectedDay().getMonth();//10
+                int daySh = datePickerDialog.getSelectedDay().getDay();//29
+                //convert to miladi
+                String[] dateSplite3 = date_server(yearSh, monthSh - 1, daySh - 1).split("-");
+
+
+                String dayMF1 = dateSplite3[2];
+                String monthMF1 = dateSplite3[1];
+                String yearMF1 = dateSplite3[0];
+
+                datePickerDialogGregorian1.initialize(PassengerHotelActivity.this, Integer.parseInt(yearMF1), Integer.parseInt(monthMF1), Integer.parseInt(dayMF1));
+
+                datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
+            }
+        });
+
+
+
+        txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
+        txtTitleCountM.setOnClickListener(this);
+
+        String RengAge=txtTitleCountM.getText().toString();
+
+///////////////setmin
+        //min max tavalod solar
+        if(RengAge.contains("کودک")){
+
+            String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+            int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
+            int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+            int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
+            PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
+            persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
+
+            datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
+
+
+            String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+            int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
+            int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-2;
+            int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
+
+            datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
+        }else if(RengAge.contains("نوزاد")){
+
+            String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+            int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
+            int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-2;
+            int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
+            PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
+            persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
+
+            datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
+
+
+            String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+            int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
+            int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true);
+            int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
+
+            datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
+        }else{
+            String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+            int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
+            int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-120;
+            int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
+            PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
+            persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
+
+            datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
+
+
+            String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+            int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
+            int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+            int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
+            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+            persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
+
+            datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
+
+        }
+//min max passport solar
+        PersianCalendar persianCalendar2 = new PersianCalendar();
+
+        persianCalendar2.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth()+6, persianCalendarDatePicker.getPersianDay() );
+        datePickerDialogGregorian2.setMinDate(persianCalendar2.toGregorianCalendar());
+        persianCalendar2.set(persianCalendarDatePicker.getPersianYear()+6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() );
+        datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
+        ///////end setMin
+///////////////////////////////
        /* JSONArray jsonObj = null;
         try {
             jsonObj = new JSONArray(Prefs.getString("Rooms", "dd"));
@@ -293,8 +486,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
         txtTitle = (TextView) findViewById(R.id.tvTitle);
         txtTitle.setOnClickListener(this);
-        txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
-        txtTitleCountM.setOnClickListener(this);
+
 
         btn_next_partnerInfo = (LinearLayout) findViewById(R.id.btn_next_partnerInfo);
         btn_next_partnerInfo.setOnClickListener(this);
@@ -310,15 +502,21 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             /* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
              btnAddsabad.setOnClickListener(this);*/
 
-        btn_saler = (ImageView) findViewById(R.id.btn_saler);
-        btn_mosaferan = (ImageView) findViewById(R.id.btn_mosaferan);
-        btn_khadamat = (ImageView) findViewById(R.id.btn_khadamat);
-        btn_pish_factor = (ImageView) findViewById(R.id.btn_pish_factor);
+        btn_saler= (ImageView) findViewById(R.id.btn_saler);
+        btn_mosaferan=(ImageView)findViewById(R.id.btn_mosaferan);
+        btn_khadamat=(ImageView)findViewById(R.id.btn_khadamat);
+        btn_pish_factor=(ImageView)findViewById(R.id.btn_pish_factor);
+
+        txtSaler= (Button) findViewById(R.id.txtSaler);
+        txtMasaferan=(Button)findViewById(R.id.txtMasaferan);
+        txtKhadamat=(Button)findViewById(R.id.txtKhadamat);
+        txtPishfactor=(Button)findViewById(R.id.txtPishfactor);
 
         btn_saler.setOnClickListener(this);
         btn_mosaferan.setOnClickListener(this);
         btn_khadamat.setOnClickListener(this);
         btn_pish_factor.setOnClickListener(this);
+        setAnimation();
 
         linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
         linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
@@ -1444,12 +1642,103 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                         Gensiyat="";
                     }
-
+                    setAnimation();
                 }catch (Exception e) {
                     System.out.println("Exception ::"+e);
                 }
                 break;
             case R.id.txttavalodm:
+
+                String RengAge=txtTitleCountM.getText().toString();
+
+///////////////setmin
+                if(RengAge.contains("کودک")){
+
+                    String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+                    int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
+                    int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+                    int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
+                    PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
+                    persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
+
+                    datePickerDialog.setMinDate(persianCalendarDatePicker1);
+                    datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
+
+
+                    String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+                    int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
+                    int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-2;
+                    int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
+                    PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+                    persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
+
+                    datePickerDialog.setYearRange(currentYear,currentYear2);
+                    datePickerDialog.setMaxDate(persianCalendarDatePicker2);
+                    datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
+
+                }else if(RengAge.contains("نوزاد")){
+
+                    String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+                    int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
+                    int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-2;
+                    int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
+                    PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
+                    persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
+
+                    datePickerDialog.setMinDate(persianCalendarDatePicker1);
+                    datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
+
+
+                    String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+                    int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
+                    int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true);
+                    int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
+                    PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+                    persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
+
+                    datePickerDialog.setYearRange(currentYear,currentYear2);
+                    datePickerDialog.setMaxDate(persianCalendarDatePicker2);
+                    datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
+                }else{
+
+                    String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+                    int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
+                    int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-120;
+                    int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
+                    PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
+                    persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
+
+                    datePickerDialog.setMinDate(persianCalendarDatePicker1);
+                    datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
+
+
+                    String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+                    int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
+                    int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+                    int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
+                    PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+                    persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
+
+                    datePickerDialog.setYearRange(currentYear,currentYear2);
+                    datePickerDialog.setMaxDate(persianCalendarDatePicker2);
+                    datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
+
+                }
+                ///////end setMin
+
+
+                datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
+				/*DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString());
+				newFragment2.show(getFragmentManager(), "datePicker");*/
+                flag = true;
+                break;
+            case  R.id.txtexp_passport:
+                datePickerDialogGregorian2.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
+				/*DialogFragment newFragment3 = new DatePickerFragment("");
+				newFragment3.show(getFragmentManager(), "datePicker");*/
+                flag = false;
+                break;
+       /*     case R.id.txttavalodm:
                 DialogFragment newFragment2 = new PassengerHotelActivity.DatePickerFragment(txtTitleCountM.getText().toString());
                 newFragment2.show(getFragmentManager(), "datePicker");
                 flag = true;
@@ -1458,7 +1747,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 DialogFragment newFragment3 = new PassengerHotelActivity.DatePickerFragment("");
                 newFragment3.show(getFragmentManager(), "datePicker");
                 flag = false;
-                break;
+                break;*/
             case R.id.btn_nextm:
                 LinearLayout mainLayout;
                 mainLayout = (LinearLayout)findViewById(R.id.linear_list_khadamat);
@@ -1784,12 +2073,11 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 }
                 if(FlagTab){
+                    setAnimation();
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.VISIBLE);
                     linear_pish_factor.setVisibility(View.GONE);
-
-
 
                     ((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
                     ((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
@@ -1807,7 +2095,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 //call api pishFactor
                 new AsyncFetchPishFactor().execute();
-
+                setAnimation();
                 //call api GetPreFactorDetails
 
                 break;
@@ -2625,7 +2913,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                         }else{
                             //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnameP.setError("لطفا نام را درست وارد کنید ");
+                            txtnameP.setError("لطفا نام را به فارسی وارد کنید ");
                         }
                 }
                 break;
@@ -2640,7 +2928,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                         }else{
                             //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilyP.setError("لطفا نام خانوادگی را درست وارد کنید ");
+                            txtfamilyP.setError("لطفا نام خانوادگی را به فارسی وارد کنید ");
                         }
                 }
                 break;
@@ -2676,5 +2964,95 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         }
 
     }
+    @Override
+    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
+
+        String str_date = year + "/" + (monthOfYear + 1) + "/" + (dayOfMonth-1);//2018-01-16
+        DateFormat formatter;
+        Date date;
+        formatter = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            date = (Date) formatter.parse(str_date);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            datePickerDialogGregorian2.setMinDate(cal);
+
+
+            txttavalodm.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
+            txttavalodm.setText(str_date);
+            //raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
+            //	Log.e("GGGGGGG", raft);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }//end dateset change
+    @Override
+    public void onDateSet(com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+	/*	String str_date = year + "/" + (monthOfYear + 1) + "/" + (dayOfMonth-1);//2018-01-16
+		DateFormat formatter;
+		Date date;
+		formatter = new SimpleDateFormat("yyyy/MM/dd");
+		try {
+			date = (Date) formatter.parse(str_date);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(date);
+			datePickerDialogGregorian2.setMinDate(cal);
+
+
+			txttavalodm.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
+			txttavalodm.setText(str_date);
+			//raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
+			//Log.e("GGGGGGG", raft);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}*/
+    }
+    public String date_server(int y, int m, int d) {//1396  9 25
+        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);//Mon Jan 15 12:38:00 GMT+03:30 2018
+
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");//01/15/2018
+        String formatted = format1.format(date.getTime());
+        String[] dateGrg = formatted.split("/");
+        int monthS = Integer.valueOf(dateGrg[0]);//1
+        long dayS = Long.valueOf(dateGrg[1]);//15
+        int yearS = Integer.valueOf(dateGrg[2]);//2018
+
+
+        return yearS + "-" + "0" + monthS + "-" + dayS;
+    }
+    private void setAnimation() {
+        YoYo.with(Techniques.BounceInRight)
+                .duration(600)
+                .playOn(btn_saler);
+        YoYo.with(Techniques.BounceInRight)
+                .duration(600)
+                .playOn(btn_mosaferan);
+        YoYo.with(Techniques.BounceInRight)
+                .duration(600)
+                .playOn(btn_khadamat);
+        YoYo.with(Techniques.BounceInRight)
+                .duration(600)
+                .playOn(btn_pish_factor);
+
+        YoYo.with(Techniques.BounceInRight)
+                .duration(600)
+                .playOn(txtSaler);
+        YoYo.with(Techniques.BounceInRight)
+                .duration(600)
+                .playOn(txtMasaferan);
+        YoYo.with(Techniques.BounceInRight)
+                .duration(600)
+                .playOn(txtKhadamat);
+        YoYo.with(Techniques.BounceInRight)
+                .duration(600)
+                .playOn(txtPishfactor);
+    }
 }

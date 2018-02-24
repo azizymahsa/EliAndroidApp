@@ -60,7 +60,7 @@
         android:id="@+id/llLayout"
         android:layout_width="match_parent"
         android:layout_height="28dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
         android:weightSum="4"
@@ -650,12 +650,12 @@
                             android:layout_weight="1.5"
                             android:gravity="right"
                             android:text="اطلاعات مسافر اول ( بزرگسال )"
-                            android:textSize="@dimen/_15dp_normal_textSize" />
+                            android:textSize="@dimen/_13dp_normal_textSize" />
 
                         <TextView
                             android:id="@+id/imgCount"
-                            android:layout_width="@dimen/_35dp_normal"
-                            android:layout_height="@dimen/_35dp_normal"
+                            android:layout_width="@dimen/_30dp_normal_iconSize"
+                            android:layout_height="@dimen/_30dp_normal_iconSize"
                             android:layout_gravity="right"
                             android:layout_margin="5dp"
                             android:layout_marginTop="0dp"
@@ -1022,7 +1022,7 @@
                         android:layout_marginRight="24dp"
                         android:text="اطلاعات بیشتر"
                         android:textColor="#000099"
-
+                        android:layout_marginTop="10dp"
                         android:textSize="@dimen/_15dp_normal_textSize"
                         android:textStyle="bold" />
                     <!-- code meliat -->

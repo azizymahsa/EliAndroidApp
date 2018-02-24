@@ -810,6 +810,314 @@
                     />
 
             </LinearLayout>
+            <android.support.v7.widget.CardView
+
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/hotel_detail_background"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="355dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="فرم ارسال پیام"
+                        android:textColor="#2e3192"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/hotel_detail_background"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_strock_about"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#aaaaaa"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="نام و نام خانوادگی"
+                            />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            app:srcCompat="@drawable/name" />
+
+
+                    </RelativeLayout>
+                    <!-- <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:layout_marginBottom="2dp"
+                         android:layout_marginLeft="14dp"
+                         android:layout_marginRight="14dp"
+                         android:layout_marginTop="4dp"
+                         android:background="@drawable/background_strock_about">
+
+                         <TextView
+                             android:id="@+id/textView16"
+                             android:layout_width="0dp"
+                             android:layout_weight="7"
+                             android:layout_height="match_parent"
+                             android:gravity="right|center_vertical"
+                             android:text="نام و نام خانوادگی"
+                             android:textColor="#aaaaaa" />
+
+                         <ImageView
+                             android:layout_width="5dp"
+                             android:layout_height="25dp"
+                             android:layout_marginTop="2dp"
+                             android:layout_weight="1"
+                             android:layout_margin="5dp"
+                             app:srcCompat="@drawable/name" />
+
+                     </LinearLayout>-->
+
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/background_strock_about">
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="0dp"
+                            android:layout_weight="7"
+                            android:layout_height="match_parent"
+                            android:gravity="right|center_vertical"
+                            android:text="ایمیل"
+                            android:textColor="#aaaaaa"/>
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            app:srcCompat="@drawable/email" />
+
+                    </LinearLayout>-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_strock_about"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#aaaaaa"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="ایمیل"
+                            />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            app:srcCompat="@drawable/email" />
+
+
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_strock_about"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#aaaaaa"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="شماره تماس"
+                            />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            app:srcCompat="@drawable/phone" />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_strock_about"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#aaaaaa"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="موضوع پیام"
+                            />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            app:srcCompat="@drawable/subject" />
+
+
+                    </RelativeLayout>
+
+                    <!--  <LinearLayout
+                          android:layout_width="match_parent"
+                          android:layout_height="130dp"
+                          android:layout_marginBottom="2dp"
+                          android:layout_marginLeft="14dp"
+                          android:layout_marginRight="14dp"
+                          android:layout_marginTop="4dp"
+                          android:background="@drawable/background_strock_about">
+
+                          <TextView
+                              android:id="@+id/textView11"
+                              android:layout_width="0dp"
+                              android:layout_weight="7"
+                              android:layout_height="match_parent"
+                              android:gravity="right|top"
+                              android:text="متن پیام"
+                              android:textColor="#aaaaaa"/>
+
+                          <ImageView
+                              android:layout_width="10dp"
+                              android:layout_height="25dp"
+                              android:layout_marginTop="2dp"
+                              android:layout_weight="1"
+                              android:layout_margin="5dp"
+                              app:srcCompat="@drawable/text" />
+
+                      </LinearLayout>-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/background_strock_about">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#aaaaaa"
+                            android:layout_centerInParent="true"
+                            android:gravity="top|center"
+                            android:text="متن پیام"
+                            />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            app:srcCompat="@drawable/text" />
+
+
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/sendh"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="14dp"
+
+                            android:background="@drawable/btngravity_big"
+                            android:text=" ارسال پیام"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
         </LinearLayout>
 
     </ScrollView>
