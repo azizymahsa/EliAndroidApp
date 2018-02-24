@@ -378,6 +378,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 Log.e("HotelNname", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName );
                 intent.putExtra("HotelName",getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
                 intent.putExtra("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")));
+                Log.e("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")) );
                 startActivity(intent);
                 break;
             case R.id.btnOneComment:
@@ -385,6 +386,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 Log.e("HotelNname", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName );
                 intent2.putExtra("HotelName",getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
                 intent2.putExtra("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")));
+                Log.e("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")) );
+
 
                 startActivity(intent2);
                 break;

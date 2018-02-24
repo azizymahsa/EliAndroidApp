@@ -99,10 +99,11 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             tvTitle.setText("ثبت نظر برای " + extras.getString("HotelName"));
-            hotelId=extras.getString("hotelId");
+            hotelId=extras.getString("HotelId");
+            Log.e("UserID",Prefs.getString("uesrId","-1"));
         }
 
-        if ( !Prefs.getString("uesrId","-1").equals("-1")){
+        if ( !Prefs.getString("userId","-1").equals("-1")){
             etMail.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
             etMail.setEnabled(false);
             etName.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+" "+WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
@@ -188,17 +189,19 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
 
                 }
-
-                if (TextUtils.isEmpty(etMail.getText())) {
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                if (etMail.getText().toString().matches(emailPattern) && TextUtils.isEmpty(etMail.getText())) {
+                    //if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
                     GradientDrawable drawable = (GradientDrawable) etMail.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
+
                 } else {
+                    //((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                     GradientDrawable drawable = (GradientDrawable) etMail.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
-
-
                 }
+
                 if (TextUtils.isEmpty(etTitle.getText())) {
                     GradientDrawable drawable = (GradientDrawable) etTitle.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color

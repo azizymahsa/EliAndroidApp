@@ -134,25 +134,27 @@
             android:orientation="horizontal"
             android:layout_marginTop="30dp"
            android:layout_marginBottom="10dp"
-            android:id="@+id/layout_reset_password">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="match_parent"
-                android:textAppearance="@style/User_pass_login"
-                android:text="@string/icon_forget_login"
-                android:gravity="right|center"
-                android:textSize="@dimen/_25dp_normal_iconSize"
-                android:paddingRight="10dp"
-                android:textColor="@color/text_color_2e"/>
+            android:id="@+id/layout_reset_password"
+            android:layout_marginRight="45dp"
+            android:gravity="right"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="فراموشی کلمه عبور"
                 android:gravity="right|center"
-                android:layout_marginRight="40dp"
                 android:textColor="@color/text_color_2e"
-                android:textSize="@dimen/_14dp_txtSize"/>
+                android:textSize="@dimen/_14dp_txtSize"
+                android:layout_marginRight="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="@style/User_pass_login"
+                android:text="@string/icon_forget_login"
+                android:gravity="center"
+                android:textSize="@dimen/_25dp_normal_iconSize"
+                android:textColor="@color/text_color_2e"/>
+
 
 
         </LinearLayout>
@@ -162,16 +164,19 @@
             android:layout_height="0dp"
             android:layout_weight="0.4"
             android:orientation="vertical"
+            android:layout_marginRight="45dp"
+
             android:gravity="right">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="ثبت نام"
                 android:gravity="right"
-                android:paddingRight="40dp"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_14dp_txtSize"
-                android:textAppearance="@style/IrsansBold"/>
+                android:textAppearance="@style/IrsansBold"
+                android:layout_marginLeft="45dp"
+                />
 
         </LinearLayout>
 

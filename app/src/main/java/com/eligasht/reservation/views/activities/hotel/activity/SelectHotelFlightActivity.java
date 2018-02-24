@@ -1189,8 +1189,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     GetError = jPricedItinerary.getString("Message");
                 }
                 if (GetError.length() > 1) {
-                    try{  AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SelectHotelFlightActivity.this);
-                        AlertDialogPassenger.setText(GetError);
+                    try{
+                      /*  AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SelectHotelFlightActivity.this);
+                        AlertDialogPassenger.setText(GetError);*/
                     }catch (Exception e){}
 
                 } else {

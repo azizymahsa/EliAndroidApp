@@ -123,6 +123,8 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
             e.printStackTrace();
         }
 
+        TelephonyManager telemamanger = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+
 /*
         try {
          String ver=   new VersionChecker().execute().get();
@@ -174,9 +176,9 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                             public void onPermissionGranted() {
                                 req++;
                                 if (isConnect) {
-                             //   new GetCommentAsync().execute();
-                                    startActivity(new Intent(SplashFragment.this, CommentActivity.class));
-                                    finish();
+                                new GetCommentAsync().execute();
+                                 /*   startActivity(new Intent(SplashFragment.this, CommentActivity.class));
+                                    finish();*/
                                 } else {
                                     internetAlert.isShow();
                                 }

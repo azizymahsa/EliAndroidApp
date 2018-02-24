@@ -136,7 +136,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnExit.setOnClickListener(this);
         btnLastBuy.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
-        initUser();
+
         addFragment(getString(R.string.searchFlight), new PlanFragment());
 
       /*  switch (Prefs.getInt("type", 0)) {
@@ -295,8 +295,8 @@ public class MainActivity extends Base implements View.OnClickListener {
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onResume() {
+        super.onResume();
        
             initUser();
     }
@@ -405,8 +405,10 @@ public class MainActivity extends Base implements View.OnClickListener {
                 tvArrow.setVisibility(View.VISIBLE);
                 rlUser.setClickable(true);
               //  expandableLayout.setVisibility(View.VISIBLE);
+                Log.e("initUser", "3");
 
                 Prefs.putString("userId",WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
+                Log.e("initUser11",WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
 
             } else {
                 txt_name.setText("ورود به حساب کاربری");
@@ -416,20 +418,18 @@ public class MainActivity extends Base implements View.OnClickListener {
                 Prefs.putString("userId","-1");
 
                 if (expandableLayout.isExpanded()) {
-
                     expandableLayout.collapse();
-
                 }
-              //  expandableLayout.setVisibility(View.GONE);
+                Log.e("initUser", "1");
+
             }
-            Log.e("initUser",  Prefs.getString("userId","-1") );
         } catch (Exception e) {
+            Log.e("initUser", "2");
+
             txt_name.setText("ورود به حساب کاربری");
             btnExit.setVisibility(View.GONE);
-         //   expandableLayout.setVisibility(View.GONE);
             Prefs.putString("userId","-1");
             if (expandableLayout.isExpanded()) {
-
                 expandableLayout.collapse();
 
             }
