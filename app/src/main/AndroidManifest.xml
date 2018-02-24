@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eligasht"
-    android:versionCode="5"
+    android:versionCode="4"
     android:versionName="1.0.4">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.eligasht.reservation.base.GlobalApplication"
+        android:name=".reservation.base.GlobalApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo_e"
         android:label="@string/app_name"
@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl,icon, label">
         <activity
-            android:name="com.eligasht.reservation.views.ui.SplashFragment"
+            android:name=".reservation.views.ui.SplashFragment"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -36,31 +36,31 @@
                 android:value="true" />
         </activity>
         <activity
-            android:name="com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity"
+            android:name=".reservation.views.activities.hotel.activity.SelectHotelActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.hotel.activity.GetHotelCityActivity"
+            android:name=".reservation.views.activities.hotel.activity.GetHotelCityActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.hotel.activity.GetHotelRoomCountActivity"
+            android:name=".reservation.views.activities.hotel.activity.GetHotelRoomCountActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.main.MainActivity"
+            android:name=".reservation.views.activities.main.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity"
+            android:name=".reservation.views.activities.hotel.activity.DetailHotelActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.eligasht.reservation.views.ui.PassengerHotelActivity"
+            android:name=".reservation.views.ui.PassengerHotelActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
@@ -69,81 +69,80 @@
             android:value="AIzaSyDCzLClp1-Wulmj8L2sUa6dVc-mar3pKEo" />
 
         <activity
-            android:name="com.eligasht.reservation.views.ui.PassengerActivity"
+            android:name=".reservation.views.ui.PassengerActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.eligasht.reservation.views.ui.SearchParvazActivity"
+            android:name=".reservation.views.ui.SearchParvazActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.ui.GetAirportMabdaActivity"
+            android:name=".reservation.views.ui.GetAirportMabdaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.ui.GetAirportMaghsadActivity"
+            android:name=".reservation.views.ui.GetAirportMaghsadActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.ui.CountrycodeActivity"
+            android:name=".reservation.views.ui.CountrycodeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.ui.NationalitycodeActivity"
+            android:name=".reservation.views.ui.NationalitycodeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.pack.SearchPackActivity"
+            android:name=".reservation.views.activities.pack.SearchPackActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.eligasht.reservation.views.activities.hotel.activity.ImageViewActivity" />
+        <activity android:name=".reservation.views.activities.hotel.activity.ImageViewActivity" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.eligasht.reservation.views.activities.AboutActivity"
+            android:name=".reservation.views.activities.hotel.activity.SelectHotelFlightActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.ContactUsActivity"
+            android:name=".reservation.views.activities.AboutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.ConditionActivity"
+            android:name=".reservation.views.activities.ContactUsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.insurance.AddPassengerActivity"
+            android:name=".reservation.views.activities.ConditionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reservation.views.activities.insurance.AddPassengerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.insurance.SearchInsuranceActivity"
+            android:name=".reservation.views.activities.insurance.SearchInsuranceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.AddRoomActivity"
+            android:name=".reservation.views.activities.AddRoomActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity"
+            android:name=".reservation.views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.ui.PassengerHotelFlightActivity"
+            android:name=".reservation.views.ui.PassengerHotelFlightActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.login.LogInActivity"
+            android:name=".reservation.views.activities.login.LogInActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.login.RegisterLoginActivity"
+            android:name=".reservation.views.activities.login.RegisterLoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.login.ResetPasswordActivity"
+            android:name=".reservation.views.activities.login.ResetPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.pack.AddRoomActivity"
+            android:name=".reservation.views.activities.pack.AddRoomActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.insurance.PassengerInsuranceActivity"
+            android:name=".reservation.views.activities.insurance.PassengerInsuranceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.pack.PassengerPackageActivity"
+            android:name=".reservation.views.activities.pack.PassengerPackageActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
-            android:name="com.eligasht.reservation.views.activities.login.ProfileActivity"
+            android:name=".reservation.views.activities.login.ProfileActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.eligasht.reservation.lost.FinalResult">
+        <activity android:name=".reservation.lost.FinalResult">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
 
@@ -161,10 +160,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.eligasht.reservation.views.activities.pack.PackageServicesActivity"
+            android:name=".reservation.views.activities.pack.PackageServicesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eligasht.reservation.views.activities.insurance.InsurnaceDetailsActivity"
+            android:name=".reservation.views.activities.insurance.InsurnaceDetailsActivity"
             android:screenOrientation="portrait" />
 
         <service
@@ -172,14 +171,16 @@
             android:exported="false" />
 
         <activity
-            android:name="com.eligasht.reservation.views.activities.transfer.TransferActivity"
+            android:name=".reservation.views.activities.transfer.TransferActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.eligasht.reservation.views.activities.transfer.GetHotelActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".reservation.views.activities.login.SuccessResetPassActivity"
-            android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".reservation.views.activities.transfer.GetHotelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reservation.views.activities.login.SuccessResetPassActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".reservation.views.activities.hotel.activity.CommentActivity"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ package com.eligasht.reservation.views.activities.hotel.activity;
  */
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
@@ -218,6 +219,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         flMap = findViewById(R.id.flMap);
         btnComment = findViewById(R.id.btnComment);
+        btnComment.setOnClickListener(this);
 
         vEmakanat = findViewById(R.id.vEmakanat);
         vMap = findViewById(R.id.vMap);
@@ -385,6 +387,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.btnOk:
                 finish();
+                break;
+            case R.id.btnComment:
+                Intent intent=new Intent(this,CommentActivity.class);
+                intent.putExtra("HotelName",getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                startActivity(intent);
                 break;
         }
 

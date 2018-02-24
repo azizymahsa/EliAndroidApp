@@ -462,10 +462,13 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
             try {
                 final PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
                 long vCode = service.getVersionCode(pInfo.packageName);
+                Log.e(TAG, pInfo.packageName);
+
 
 
                 if (vCode != -1) {
                     isUpdate = true;
+                    Log.e(TAG, "onServiceConnected: " );
 
                 }
 
