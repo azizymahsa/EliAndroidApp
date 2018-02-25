@@ -283,6 +283,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 
         txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
+        txtTitleCountM.setOnClickListener(this);
         String RengAge=txtTitleCountM.getText().toString();
 
 ///////////////setmin
@@ -500,6 +501,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
         setAnimation();
 
+        linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
         linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
         linear_pish_factor = (LinearLayout) findViewById(R.id.linear_pish_factor);
         linearMahaleeghamat = (LinearLayout) findViewById(R.id.linearMahaleeghamat);
@@ -546,7 +548,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         btn_taeed_khadamat.setOnClickListener(this);
         btn_nextm.setOnClickListener(this);
         btn_next_partnerInfo.setOnClickListener(this);
-        txtTitleCountM.setOnClickListener(this);
+
         txtTitle.setOnClickListener(this);
         txtexp_passport.setOnClickListener(this);
         txtnumber_passport.setOnClickListener(this);
@@ -800,7 +802,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                 }
 
-
+                setAnimation();
             } catch (JSONException e) {
                 Toast.makeText(PassengerInsuranceActivity.this, e.toString(), Toast.LENGTH_LONG).show();
 
@@ -1873,6 +1875,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                     txtTitle.setText(" مشخصات خریدار ");
+                    setAnimation();
                 }
                 break;
             case R.id.btn_mosaferan:
@@ -1889,6 +1892,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
                     txtTitle.setText("  اطلاعات مسافران ");
+                    setAnimation();
                 }
                 break;
             case R.id.btn_pish_factor:
@@ -2536,9 +2540,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         YoYo.with(Techniques.BounceInRight)
                 .duration(600)
                 .playOn(btn_mosaferan);
-        YoYo.with(Techniques.BounceInRight)
+       /* YoYo.with(Techniques.BounceInRight)
                 .duration(600)
-                .playOn(btn_khadamat);
+                .playOn(btn_khadamat);*/
         YoYo.with(Techniques.BounceInRight)
                 .duration(600)
                 .playOn(btn_pish_factor);

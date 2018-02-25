@@ -129,7 +129,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     public FancyButton btnBack;
     public ImageView txt_hom ;
     public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
-    public ImageView btn_saler, btn_mosaferan, btn_khadamat, btn_pish_factor;
+    public ImageView btn_saler, btn_mosaferan, btn_pish_factor;
     public Button btnAddsabad,btn_pardakht_factor,txtSaler,txtMasaferan,txtKhadamat,txtPishfactor;
     public EditText txtnamem, txtfamilym;
     public static TextView txttavalodm;
@@ -292,6 +292,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
         txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
+        txtTitleCountM.setOnClickListener(this);
         String RengAge=txtTitleCountM.getText().toString();
 
 ///////////////setmin
@@ -505,7 +506,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         btn_taeed_khadamat.setOnClickListener(this);
         btn_nextm.setOnClickListener(this);
         btn_next_partnerInfo.setOnClickListener(this);
-        txtTitleCountM.setOnClickListener(this);
+
         txtTitle.setOnClickListener(this);
         txtexp_passport.setOnClickListener(this);
         txtnumber_passport.setOnClickListener(this);
@@ -1235,7 +1236,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                 }
                 if(FlagTab){
-                    setAnimation();
+
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.GONE);
@@ -1247,6 +1248,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                     txtTitle.setText(" تایید و پرداخت پیش فاکتور    ");
+                    setAnimation();
                 }
                 break;
 
@@ -1273,6 +1275,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
                 ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                 txtTitle.setText(" مشخصات خریدار ");
+                    setAnimation();
                 }
                 break;
             case R.id.btn_mosaferan:
@@ -1289,6 +1292,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
                 txtTitle.setText("  اطلاعات مسافران ");
+                    setAnimation();
                 }
                 break;
             case R.id.btn_pish_factor:
@@ -1297,7 +1301,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_pish_factor.setVisibility(View.VISIBLE);
-                    setAnimation();
+
 
                     ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
                     ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
@@ -1305,6 +1309,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                     txtTitle.setText(" تایید و پرداخت پیش فاکتور    ");
+                    setAnimation();
                 }
                 break;
         }
@@ -2097,7 +2102,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                 }
 
-
+                setAnimation();
             } catch (JSONException e) {
                 Toast.makeText(PassengerPackageActivity.this, e.toString(), Toast.LENGTH_LONG).show();
 
@@ -2875,9 +2880,9 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         YoYo.with(Techniques.BounceInRight)
                 .duration(600)
                 .playOn(btn_mosaferan);
-        YoYo.with(Techniques.BounceInRight)
+       /* YoYo.with(Techniques.BounceInRight)
                 .duration(600)
-                .playOn(btn_khadamat);
+                .playOn(btn_khadamat);*/
         YoYo.with(Techniques.BounceInRight)
                 .duration(600)
                 .playOn(btn_pish_factor);

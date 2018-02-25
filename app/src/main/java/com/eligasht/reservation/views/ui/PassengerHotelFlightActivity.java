@@ -850,7 +850,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
 
                 }
-
+                setAnimation();
             } catch (JSONException e) {
                 //Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
@@ -1231,7 +1231,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);
                 listKhadamat.setAdapter(mAdapter);
-
+                setAnimation();
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
                 AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
@@ -2096,7 +2096,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                 //call api pishFactor
                 new AsyncFetchPishFactor().execute();
-                setAnimation();
+
                 //call api GetPreFactorDetails
                 break;
 
@@ -2125,6 +2125,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
                     txtTitle.setText(" مشخصات خریدار ");
+                    setAnimation();
                 }
                 //myScrollView.setOnTouchListener(null);
 				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
@@ -2162,6 +2163,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
                     txtTitle.setText("اطلاعات مسافران");
+                    setAnimation();
                 }
                 //.setOnTouchListener(null);
                 break;
@@ -2189,6 +2191,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
                     txtTitle.setText(" افزودن خدمات به سبد خرید");
+                    setAnimation();
                 }
                 break;
             case R.id.btn_pish_factor:
@@ -2205,6 +2208,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                     txtTitle.setText(" تایید و پرداخت پیش فاکتور ");
+                    setAnimation();
                 }
                 //myScrollView.setOnTouchListener(null);
                 break;

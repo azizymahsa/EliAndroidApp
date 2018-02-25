@@ -846,7 +846,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
 
                 }
-
+                setAnimation();
 
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
@@ -1231,7 +1231,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);
                 listKhadamat.setAdapter(mAdapter);
-
+                setAnimation();
             } catch (JSONException e) {
                // Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
@@ -2073,7 +2073,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 }
                 if(FlagTab){
-                    setAnimation();
+
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.VISIBLE);
@@ -2087,6 +2087,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     ((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
                     txtTitle.setText(" افزودن خدمات به سبد خرید");
+                    setAnimation();
                 }
                 break;
 
@@ -2095,7 +2096,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 //call api pishFactor
                 new AsyncFetchPishFactor().execute();
-                setAnimation();
+
                 //call api GetPreFactorDetails
 
                 break;
@@ -2125,6 +2126,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
                 ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
                 txtTitle.setText(" مشخصات خریدار ");
+                  setAnimation();
                 }
                 //myScrollView.setOnTouchListener(null);
 				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
@@ -2162,6 +2164,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
                     txtTitle.setText("اطلاعات مسافران");
+                    setAnimation();
                 }
                 //.setOnTouchListener(null);
                 break;
@@ -2189,6 +2192,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
                 txtTitle.setText(" افزودن خدمات به سبد خرید");
+                    setAnimation();
                 }
                 break;
             case R.id.btn_pish_factor:
@@ -2205,6 +2209,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                     txtTitle.setText(" تایید و پرداخت پیش فاکتور ");
+                    setAnimation();
                 }
                 //myScrollView.setOnTouchListener(null);
                 break;
