@@ -16,9 +16,9 @@ public class ReviewComment {
     public final String Title;
     public final String WebUserID;
     public final ArrayList<ReviewScores> ReviewScores;
+    public final String IsRecommended;
 
-    public ReviewComment(int agcUserID, String content, int reviewCommentID, int reviewID, String submitEmail, String submitName,
-                         String title, String webUserID, ArrayList<com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewScores> reviewScores) {
+    public ReviewComment(int agcUserID, String content, int reviewCommentID, int reviewID, String submitEmail, String submitName, String title, String webUserID, ArrayList<com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewScores> reviewScores, String isRecommended) {
         AgcUserID = agcUserID;
         Content = content;
         ReviewCommentID = reviewCommentID;
@@ -28,5 +28,6 @@ public class ReviewComment {
         Title = title;
         WebUserID = webUserID;
         ReviewScores = reviewScores;
+        IsRecommended = isRecommended;
     }
 }

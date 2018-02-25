@@ -32,6 +32,7 @@ import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewScores;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.WebUserTools;
+import com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertRating;
@@ -55,7 +56,13 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
     Float star;
     String hotelId;
     ArrayList<ReviewScores> reviewScores=new ArrayList<>();
+    ArrayList<ReviewComment> ReviewComment=new ArrayList<>();
     BubbleSeekBar ScoreParameterID1,ScoreParameterID2,ScoreParameterID3,ScoreParameterID4,ScoreParameterID5,ScoreParameterID6,ScoreParameterID7,ScoreParameterID8;
+    cn.refactor.library.SmoothCheckBox cbSubmitName,cbIsRecommended;
+    boolean isRecommended=false;
+    AddCommnetDialog addCommnetDialog;
+
+
 
 
     @Override
@@ -77,6 +84,8 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         etName = findViewById(R.id.etName);
         etMail = findViewById(R.id.etMail);
         etTitle = findViewById(R.id.etTitle);
+        cbSubmitName = findViewById(R.id.cbSubmitName);
+        cbIsRecommended = findViewById(R.id.cbIsRecommended);
         btnToComment = findViewById(R.id.btnToComment);
         rlRoot = findViewById(R.id.rlRoot);
         btnBack = findViewById(R.id.btnBack);
@@ -111,6 +120,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
         }
 
+        addCommnetDialog = new AddCommnetDialog(CommentActivity.this);
 
 
 
@@ -225,12 +235,22 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
 
                 if (isOk) {
+
+
+
                     name = etName.getText().toString();
                     mail = etMail.getText().toString();
                     title = etTitle.getText().toString();
                     message = etMessage.getText().toString();
+                    if (cbIsRecommended.isChecked()){
+                        isRecommended=true;
+                    }
+                    if (cbSubmitName.isChecked()){
+                        name="";
+                    }
+                    ReviewComment.add(new ReviewComment(0, message,
+                            0, 1, mail, name, title, Prefs.getString("uesrId","-1"),reviewScores,String.valueOf(isRecommended)));
                     new AddCommentAsync().execute();
-                 //addCommnetDialog = new AddCommnetDialog(DetailHotelActivity.this, this);
                 }
                 break;
             case R.id.btnBack:
@@ -288,9 +308,8 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
         protected void onPreExecute() {
             rlLoading.setVisibility(View.VISIBLE);
-            Log.e("requestTest",new Gson().toJson(new RequestAdd(new Identity("EligashtMlb",
-                    "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(new ReviewComment(0, message,
-                    0, 1, mail, name, title, Prefs.getString("uesrId","-1"),reviewScores),String.valueOf(star),hotelId,"0"))));
+            Log.e("requestTest",new Gson().toJson(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
+                    "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0")))));
 
         }
 
@@ -298,8 +317,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         protected String doInBackground(String... params) {
             try {
                 addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                        "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(new ReviewComment(0, message,
-                        0, 1, mail, name, title, Prefs.getString("uesrId","-1"),reviewScores),String.valueOf(star),hotelId,"0"))));
+                        "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0"))));
 
             } catch (Exception e) {
 
@@ -314,20 +332,28 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
             try {
 
 
-                if (addComment.addCommentsResult.AddHotelReviewCommentsResult.errors != null) {
-                    //   addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewCommentsResult.errors.get(0).Message);
+                if (addComment.addCommentsResult.AddHotelReviewResult.Errors != null) {
+                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.Errors.get(0).DetailedMessage,false);
 
 
                 } else {
 
-                    //  addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewCommentsResult.ResultText);
+                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.ResultText,true);
 
 
                 }
 
 
             } catch (Exception e) {
-                // tvAlert.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+                if (!Utility.isNetworkAvailable(CommentActivity.this)) {
+
+                    addCommnetDialog.setTitle("اینترنت شما قطع و یا از دسترس خارج می باشد",false);
+
+                } else {
+
+                    addCommnetDialog.setTitle("خطا در دریافت اطلاعات از الی گشت",false);
+
+                }
 
             }
 

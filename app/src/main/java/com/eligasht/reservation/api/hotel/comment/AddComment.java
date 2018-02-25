@@ -17,7 +17,7 @@ import retrofit2.http.POST;
 
 public class AddComment extends BaseAPI {
     private final String TAG = "__" + this.getClass().getSimpleName().toUpperCase().toString();
-    public final static String ACTION_NAME = "Hotel/HotelService.svc/AddHotelReviewComments";
+    public final static String ACTION_NAME = "Hotel/HotelService.svc/AddHotelReview";
     public AddCommentsResult addCommentsResult;
     RequsetAddComment requsetAddComment;
 

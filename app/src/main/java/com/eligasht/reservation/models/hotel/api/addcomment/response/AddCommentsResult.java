@@ -5,9 +5,9 @@ package com.eligasht.reservation.models.hotel.api.addcomment.response;
  */
 
 public class AddCommentsResult {
-    public final AddHotelReviewCommentsResult AddHotelReviewCommentsResult;
+    public final AddHotelReviewCommentsResult AddHotelReviewResult;
 
-    public AddCommentsResult(com.eligasht.reservation.models.hotel.api.addcomment.response.AddHotelReviewCommentsResult addHotelReviewCommentsResult) {
-        AddHotelReviewCommentsResult = addHotelReviewCommentsResult;
+    public AddCommentsResult(AddHotelReviewCommentsResult addHotelReviewResult) {
+        AddHotelReviewResult = addHotelReviewResult;
     }
 }

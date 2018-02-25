@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.activities.login;
 
 import android.annotation.SuppressLint;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -8,12 +9,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.model.Font;
 import com.google.gson.GsonBuilder;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
@@ -35,6 +38,7 @@ import com.eligasht.reservation.views.ui.InitUi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import uk.co.chrisjenx.calligraphy.CalligraphyUtils;
 
 
 /**
@@ -127,6 +131,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         btnSaveInfo = findViewById(R.id.btnSaveInfo);
 
         btnSaveInfo.setOnClickListener(this);
+
+
+
 
     }
 

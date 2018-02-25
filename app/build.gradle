@@ -122,6 +122,7 @@ dependencies {
     compile 'com.xw.repo:bubbleseekbar:3.10-lite'
     //compile 'com.github.ravindu1024:android-keyboardlistener:1.0.0'
 
+    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
 
 
 }

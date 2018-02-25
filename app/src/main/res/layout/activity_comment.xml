@@ -392,6 +392,7 @@
                     android:textSize="@dimen/_14dp_txtSize" />
 
                 <cn.refactor.library.SmoothCheckBox
+                    android:id="@+id/cbSubmitName"
                     android:layout_width="@dimen/_25dp_normal_iconSize"
                     android:layout_height="@dimen/_25dp_normal_iconSize"
                     android:layout_margin="3dp"
@@ -415,7 +416,7 @@
                     android:textSize="@dimen/_14dp_txtSize" />
 
                 <cn.refactor.library.SmoothCheckBox
-                    android:id="@+id/oneStop"
+                    android:id="@+id/cbIsRecommended"
                     android:layout_width="@dimen/_25dp_normal_iconSize"
                     android:layout_height="@dimen/_25dp_normal_iconSize"
                     android:layout_margin="3dp"

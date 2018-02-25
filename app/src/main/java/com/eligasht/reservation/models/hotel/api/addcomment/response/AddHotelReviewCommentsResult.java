@@ -9,11 +9,11 @@ import java.util.List;
  */
 
 public class AddHotelReviewCommentsResult {
-    public final List<Errors> errors;
+    public final List<Errors> Errors;
     public final String ResultText;
 
-    public AddHotelReviewCommentsResult(List<Errors> errors, String resultText) {
-        this.errors = errors;
+    public AddHotelReviewCommentsResult(List<com.eligasht.reservation.models.hotel.api.Errors> errors, String resultText) {
+        Errors = errors;
         ResultText = resultText;
     }
 }

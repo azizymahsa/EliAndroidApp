@@ -33,32 +33,23 @@ public class AddCommnetDialog implements View.OnClickListener {
     AVLoadingIndicatorView avi;
     AddComment addComment;
     String comment,userName,title;
-    boolean isFinish=false;
+    boolean isFinish;
     OnCommentDialogListenerArray OnCommentDialogListenerArray;
 
-    public AddCommnetDialog(final Activity activity,OnCommentDialogListenerArray OnCommentDialogListenerArray) {
+    public AddCommnetDialog(final Activity activity) {
         this.activity = activity;
-        this.comment = comment;
-        this.OnCommentDialogListenerArray = OnCommentDialogListenerArray;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_comment, null);
         builder.setView(dialogView);
         btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
         tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
-        etTitle = (EditText) dialogView.findViewById(R.id.etTitle);
-        etName = (EditText) dialogView.findViewById(R.id.etName);
-        avi = (AVLoadingIndicatorView) dialogView.findViewById(R.id.avi);
-        //tvAlert.setText(text);
-        //Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
-   /*     tvAlert.setTextSize(2,12);
-        tvAlert.setLineSpacing(5);
-        tvAlert.setTypeFace(typeface);*/
+
+
         btnOk.setCustomTextFont("iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
-        dialog.show();
 
     }
 
@@ -66,37 +57,17 @@ public class AddCommnetDialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
-                if (!isFinish){
-                    boolean isOk=true;
-
-                    if (TextUtils.isEmpty(etName.getText())){
-                        isOk=false;
-                        GradientDrawable drawable = (GradientDrawable)etName.getBackground();
-                        drawable.setStroke(4, Color.RED); // set stroke width and stroke color
-                    }
-                    if (TextUtils.isEmpty(etTitle.getText())){
-                        isOk=false;
-                        GradientDrawable drawable = (GradientDrawable)etTitle.getBackground();
-                        drawable.setStroke(4, Color.RED); // set stroke width and stroke color
-                    }
-
-
-                    if (isOk){
-
-                        userName=etName.getText().toString();
-                        title=etTitle.getText().toString();
-                        Utility.hideKeyboard(activity,etTitle);
-
-
-                        OnCommentDialogListenerArray.onReturnValue(userName,title);
-
-                    }
-
+                if (isFinish){
+                    dialog.cancel();
+                    activity.finish();
                 }else{
-
-                   dialog.cancel();
+                    dialog.cancel();
 
                 }
+
+
+
+
 
 
 
@@ -106,11 +77,11 @@ public class AddCommnetDialog implements View.OnClickListener {
     }
 
 
-    public void setTitle(String title) {
+    public void setTitle(String title,boolean isFinish) {
         this.title = title;
-        tvAlert.setVisibility(View.VISIBLE);
-
+        this.isFinish = isFinish;
         tvAlert.setText(title);
+        dialog.show();
 
     }
 
@@ -118,22 +89,8 @@ public class AddCommnetDialog implements View.OnClickListener {
         isFinish = finish;
     }
 
-    public void onPost(){
-    avi.setVisibility(View.VISIBLE);
-    etName.setVisibility(View.GONE);
-    etTitle.setVisibility(View.GONE);
-    btnOk.setEnabled(false);
-    btnOk.setClickable(false);
 
-}
-public void onEx(){
-    btnOk.setEnabled(true);
-    btnOk.setClickable(true);
-    avi.setVisibility(View.GONE);
 
-    btnOk.setText("بازگشت");
-    isFinish=true;
-}
     public interface OnCommentDialogListenerArray {
         public void onReturnValue(String userName,String title);
     }

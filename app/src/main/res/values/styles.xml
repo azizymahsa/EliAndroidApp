@@ -73,6 +73,8 @@
 
     <style name="IconCheck" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-check-and-close.ttf</item></style>
-
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">fonts/iran_sans_bold.ttf</item>
+    </style>
 
 </resources>
