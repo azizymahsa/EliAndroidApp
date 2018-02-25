@@ -2,6 +2,7 @@ package com.eligasht.reservation.views.adapters.hotel;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -10,10 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
+import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -76,6 +80,8 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
             holder.tvOff = (TextView) convertView.findViewById(R.id.tvOff);
             holder.txt_lable_hotel = (TextView) convertView.findViewById(R.id.txt_lable_hotel);
             holder.cvHotel = (CardView) convertView.findViewById(R.id.cvHotel);
+            holder.rlListItem = (RelativeLayout) convertView.findViewById(R.id.rlListItem);
+
 
             convertView.setTag(holder);
         } else {
@@ -107,6 +113,23 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         holder.title.setText(selectHotelModelArrayList.get(position).getTitle());
         holder.board.setText(selectHotelModelArrayList.get(position).getBoard());
         holder.tvPrice.setText(Utility.priceFormat(selectHotelModelArrayList.get(position).getPrice()));
+
+        holder.rlListItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(activity, DetailHotelActivity.class);
+                i.putExtra("HotelId", selectHotelModelArrayList.get(position).geteHotelId());
+                i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
+                i.putExtra("CheckIn", activity.getIntent().getExtras().getString("CheckIn"));
+                i.putExtra("CheckOut", activity.getIntent().getExtras().getString("CheckOut"));
+                i.putExtra("type", 2);
+
+                activity.startActivity(i);
+            }
+        });
+
+
 
 
         if (selectHotelModelArrayList.get(position).isOff()) {
@@ -194,6 +217,8 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         TextView name, location, title, board, tvPrice, tvOff, ivIsBestseler, txt_lable_hotel;
         ImageView ivHotelPic, ivRate;
         CardView cvHotel;
+        RelativeLayout rlListItem;
+
 
 
     }

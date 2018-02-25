@@ -161,33 +161,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         Log.e("raft", getIntent().getExtras().getString("CheckIn"));
         Log.e("bargasht", getIntent().getExtras().getString("CheckOut"));
         Log.e("cod", Prefs.getString("Value-Hotel-City-Code", ""));
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (selectHotelModelArrayListFilter.isEmpty()) {
-                    Intent i = new Intent(SelectHotelActivity.this, DetailHotelActivity.class);
-                    i.putExtra("HotelId", selectHotelModelArrayList.get(position).geteHotelId());
-                    i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
-                    i.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
-                    i.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
-                    i.putExtra("type", 2);
-
-
-                    startActivity(i);
-                } else {
-                    Intent i = new Intent(SelectHotelActivity.this, DetailHotelActivity.class);
-                    i.putExtra("HotelId", selectHotelModelArrayListFilter.get(position).geteHotelId());
-                    i.putExtra("ResultUniqID", selectHotelModelArrayListFilter.get(position).getResultUniqID());
-                    i.putExtra("CheckIn", getIntent().getExtras().getString("CheckIn"));
-                    i.putExtra("CheckOut", getIntent().getExtras().getString("CheckOut"));
-                    i.putExtra("type", 2);
-
-
-                    startActivity(i);
-                }
-            }
-        });
         btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

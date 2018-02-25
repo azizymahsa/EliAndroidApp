@@ -17,7 +17,9 @@
         card_view:cardElevation="2dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:id="@+id/rlListItem"
+
+        android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RelativeLayout
                 android:id="@+id/RelativeLayoutHotel"
