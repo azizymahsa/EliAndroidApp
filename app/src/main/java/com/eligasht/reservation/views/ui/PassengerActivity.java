@@ -1074,7 +1074,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				}
-
+				setAnimation();
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight alertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
 				alertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
@@ -1482,6 +1482,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					if(linear_code_meli.getVisibility()==View.VISIBLE){
 						listKhadamat.setVisibility(View.GONE);
 					}
+					setAnimation();
 				}
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
@@ -2202,6 +2203,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 					txtTitle.setText(" افزودن خدمات به سبد خرید");
 					setAnimation();
+
 				}
 				break;
 
@@ -2210,7 +2212,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				//call api pishFactor
 				new AsyncFetchPishFactor().execute();
-				setAnimation();
+
 
 				break;
 
