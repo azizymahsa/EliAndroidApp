@@ -117,7 +117,7 @@ public class RoomsAdapter extends BaseAdapter {
                 SearchKey = roomsModels.get(position).getSearchKey();
                 alertDialogPolicy = new AlertDialogPolicy(context);
                 alertDialogPolicy.setTitle("قوانین هتل");
-                alertDialogPolicy.setRoomName("("+roomsModels.get(position).getTitle()+")");
+                alertDialogPolicy.setRoomName(roomsModels.get(position).getTitle()+" : ");
                 new GetHotelPolicyAsync().execute();
             }
         });

@@ -114,5 +114,5 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_100dp_image">100dp</dimen>
     <dimen name="_10dpTabletSize">44dp</dimen>
     <dimen name="_5dpTabletSize">20dp</dimen>
-    <dimen name="_0dpTablet">24dp</dimen>
+    <dimen name="_0dpTablet">34dp</dimen>
 </resources>

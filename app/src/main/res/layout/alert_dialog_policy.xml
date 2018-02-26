@@ -33,7 +33,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="right">
-
+        <TextView
+            android:id="@+id/tvRoomName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12dp_normal_textSize"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="2222"
+            android:gravity="left"
+            android:textColor="@color/text_color_4d"
+            />
 
         <TextView
             android:id="@+id/tvAlert"
@@ -48,21 +62,7 @@
             android:layout_gravity="center"
             android:textColor="@color/text_color_4d"
             />
-        <TextView
-            android:id="@+id/tvRoomName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_12dp_normal_textSize"
-            android:padding="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:text="2222"
-            android:gravity="right"
-            android:textColor="@color/text_color_4d"
-            />
+
         <com.wang.avi.AVLoadingIndicatorView
 
             android:id="@+id/avi"
