@@ -240,7 +240,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvSortComment.setText("جدیدترین نظرات");
         rlLoading2.setOnClickListener(this);
 
-
         Utility.setAnimLoading(this);
 
     }

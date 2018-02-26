@@ -66,10 +66,8 @@
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="3dp"
                 card_view:cardElevation="3dp"
-                android:visibility="gone"
-
-                >
-
+                android:visibility="visible"
+                 >
 
                 <LinearLayout
                     android:id="@+id/llHotelName"
@@ -79,7 +77,6 @@
                     android:orientation="vertical"
                     android:padding="5dp"
                   >
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -92,7 +89,9 @@
                             android:layout_width="@dimen/_60dp_hight"
                             android:layout_height="@dimen/_16dp_exit_menu_textSize"
                             android:layout_gravity="center|right"
+                            android:gravity="right"
                             android:src="@drawable/rating_start"
+                            android:layout_marginRight="5dp"
                           />
                         <TextView
                             android:id="@+id/tvHotelName"
@@ -103,6 +102,7 @@
                             android:textSize="@dimen/_16dp_normal_textSize"
                             android:textStyle="bold"
                             android:text="sdfsdf"
+                            android:layout_marginRight="8dp"
                             android:gravity="right|center"/>
                         <TextView
                             android:id="@+id/tvCityName"
@@ -115,10 +115,8 @@
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_14dp_txtSize"
                             android:text="sdfsdf"
+                            android:layout_marginRight="8dp"
                             />
-
-
-
 
                     </LinearLayout>
 
@@ -132,10 +130,11 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="8"
-                            android:gravity="center|top"
+                           android:layout_marginLeft="0dp"
                             android:text="@string/icon_location"
                             android:textAppearance="@style/IconFonts"
                             android:textColor="@color/text_color_4d"
+                            android:gravity="left|top"
                             android:textSize="@dimen/_25dp_normal_iconSize" />
 
                         <TextView
@@ -158,6 +157,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
                         android:background="@drawable/background_hotel_detail"
                         android:orientation="horizontal">
 

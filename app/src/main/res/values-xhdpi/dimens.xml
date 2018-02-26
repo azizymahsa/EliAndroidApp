@@ -104,4 +104,7 @@ values-xhdpi            4.65”  720x1280 xhdpi -->
     <dimen name="_5_flight_dp">5dp</dimen>
     <dimen name="_50_flight_dp">50dp</dimen>
     <dimen name="_100dp_image">100dp</dimen>
+    <dimen name="_10dpTabletSize">10dp</dimen>
+    <dimen name="_5dpTabletSize">5dp</dimen>
+    <dimen name="_0dpTablet">1dp</dimen>
 </resources>

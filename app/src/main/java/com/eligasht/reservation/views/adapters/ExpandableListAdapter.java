@@ -109,17 +109,37 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txtTaxes = (TextView) convertView.findViewById(R.id.txtTaxes);
         TextView txtTotalFareCost = (TextView) convertView.findViewById(R.id.txtTotalFareCost);
 
+        TextView txtAdlCostPR = (TextView) convertView.findViewById(R.id.txtAdlCostPR);
+        TextView txtTaxesR = (TextView) convertView.findViewById(R.id.txtTaxesR);
+        TextView txtTotalFareCostR = (TextView) convertView.findViewById(R.id.txtTotalFareCostR);
 
         Button btnSelect = (Button) convertView.findViewById(R.id.btnSelect);
-        /*YoYo.with(Techniques.SlideInDown)
-				.duration(500)
-				.playOn(llCounter);*/
-
 
         //nerkh
-        txtAdlCostP.setText(item.AdlBaseFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)) : "IT");//    String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
-        txtTaxes.setText(item.Taxes > 0 ? String.valueOf(NumberFormat.getInstance().format(item.Taxes)) : "IT");//String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
-        txtTotalFareCost.setText(item.TotalFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.TotalFare)) : "IT");//String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
+        if(item.AdlBaseFare > 0){
+            txtAdlCostP.setText(String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)) );
+            txtAdlCostPR.setVisibility(View.VISIBLE);
+        }else{
+            txtAdlCostP.setText( "IT");//
+            txtAdlCostPR.setVisibility(View.GONE);
+        }
+      //  txtAdlCostP.setText(item.AdlBaseFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)) : "IT");//    String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
+       if(item.Taxes > 0){
+           txtTaxes.setText(String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
+           txtTaxesR.setVisibility(View.VISIBLE);
+       }else{
+           txtTaxes.setText( "IT");
+           txtTaxesR.setVisibility(View.GONE);
+       }
+        if(item.TotalFare > 0){
+            txtTotalFareCost.setText(String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
+            txtTotalFareCostR.setVisibility(View.VISIBLE);
+        }else{
+            txtTotalFareCost.setText( "IT");
+            txtTotalFareCostR.setVisibility(View.GONE);
+        }
+       //String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
+      //  txtTotalFareCost.setText(item.TotalFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.TotalFare)) : "IT");//String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
 
         lblFlightTimeR.setText(item.FlightTimeR + "");
         lblFlightArrivalTimeR.setText(item.FlightArrivalTimeR + "");

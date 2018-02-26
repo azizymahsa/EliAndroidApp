@@ -188,21 +188,25 @@
 				android:layout_height="wrap_content"
 				android:background="#d5d9dc"
 				android:text="جدول نرخ"
-				android:paddingRight="24dp"
+				android:paddingRight="@dimen/_10dpTabletSize"
 				android:textColor="#595959"
 				android:textSize="@dimen/_14dp_txtSize"
+				android:layout_marginRight="2dp"
+
 				android:textStyle="bold" />
 
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="30dp" >
+				android:layout_height="30dp"
+				android:layout_marginLeft="@dimen/_5dpTabletSize"
+				android:layout_marginRight="@dimen/_10dpTabletSize">
 
 				<TextView
-					android:id="@+id/textView1"
+					android:id="@+id/txtAdlCostPR"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_gravity="center_vertical"
-					android:layout_marginLeft="10dp"
+
 					android:layout_marginRight="2dp"
 					android:text="ریال"
 					android:textSize="@dimen/_13dp_normal_textSize"
@@ -226,7 +230,7 @@
 					android:gravity="right"
 					android:text="قیمت پایه"
 					android:textColor="#aaaaaa"
-					android:paddingRight="24dp"
+					android:layout_marginRight="2dp"
 					android:textSize="@dimen/_12dp_normal_textSize" />
 
 			</LinearLayout>
@@ -236,14 +240,16 @@
 				android:background="#e6e6e6" />
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="30dp" >
+				android:layout_height="30dp"
+				android:layout_marginLeft="@dimen/_5dpTabletSize"
+				android:layout_marginRight="@dimen/_10dpTabletSize">
 
 				<TextView
-					android:id="@+id/textView9"
+					android:id="@+id/txtTaxesR"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_gravity="center_vertical"
-					android:layout_marginLeft="10dp"
+
 					android:layout_marginRight="2dp"
 					android:textSize="@dimen/_13dp_normal_textSize"
 					android:text="ریال"
@@ -267,7 +273,7 @@
 					android:gravity="right"
 					android:text=" مالیات"
 					android:textColor="#aaaaaa"
-					android:paddingRight="20dp"
+					android:layout_marginLeft="2dp"
 					android:textSize="@dimen/_12dp_normal_textSize"  />
 
 			</LinearLayout>
@@ -277,14 +283,16 @@
 				android:background="#e6e6e6" />
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="30dp" >
+				android:layout_height="30dp"
+				android:layout_marginLeft="@dimen/_5dpTabletSize"
+				android:layout_marginRight="@dimen/_10dpTabletSize">
 
 				<TextView
-					android:id="@+id/textView10"
+					android:id="@+id/txtTotalFareCostR"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_gravity="center_vertical"
-					android:layout_marginLeft="10dp"
+
 					android:layout_marginRight="2dp"
 					android:text="ریال"
 					android:textSize="@dimen/_13dp_normal_textSize"
@@ -306,7 +314,7 @@
 					android:layout_height="wrap_content"
 					android:layout_gravity="center_vertical"
 					android:gravity="right"
-					android:paddingRight="24dp"
+					android:layout_marginRight="2dp"
 					android:text="قابل پرداخت "
 					android:textColor="#000000"
 					android:textSize="@dimen/_13dp_normal_textSize"
@@ -325,14 +333,16 @@
 			android:layout_height="wrap_content"
 			android:background="#fff"
 			android:orientation="vertical"
-			android:visibility="gone">
+			android:visibility="visible"
+			>
 
 			<Button
 				android:id="@+id/btnSelect"
 				android:layout_width="@dimen/_123dp"
 				android:layout_height="@dimen/_28dp_f"
-				android:layout_margin="10dp"
-				android:layout_marginLeft="14dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:layout_marginLeft="@dimen/_5dpTabletSize"
 				android:layout_marginRight="14dp"
 				android:background="@drawable/btn_plan_select"
 				android:text="انتخاب و رزرو"
@@ -349,4 +359,4 @@
 
 
 	</LinearLayout>
-</FrameLayout>    
+</FrameLayout>

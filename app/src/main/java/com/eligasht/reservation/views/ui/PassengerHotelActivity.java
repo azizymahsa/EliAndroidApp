@@ -925,18 +925,14 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 } catch (Exception ignored) {
                 }
 
-
                 String data = OrderToJsonPishFactor();
 
-
                 HttpClient client = new DefaultHttpClient();
-
 
                 HttpPost post = new HttpPost();
                 post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
-
 
                 StringEntity se = null;
                 try {
@@ -947,12 +943,10 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 post.setEntity(se);
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-
                 HashMap<String, String> airport = null;
                 mylist = new ArrayList<HashMap<String, String>>();
                 HttpResponse res = client.execute(post);
                 String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
 
                 return (retSrc);
 
@@ -963,19 +957,16 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 conn.disconnect();
             }
 
-
         }//end doin background
 
         @Override
         protected void onPostExecute(String resultPishfactor) {
-
 
             rlLoading.setVisibility(View.GONE);
             Utility.disableEnableControls(true,rlRoot);
             try {
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
-
 
                 // JSONObject jsonObj = new JSONObject(retSrc);
 
@@ -1087,19 +1078,15 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 } catch (Exception ignored) {
                 }
 
-
                 String data = OrderToJsonPurchase();//Purchase
                 Log.e("passssss", data);
 
-
                 HttpClient client = new DefaultHttpClient();
-
 
                 HttpPost post = new HttpPost();
                 post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
-
 
                 StringEntity se = null;
                 try {
@@ -1110,12 +1097,10 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 post.setEntity(se);
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-
                 HashMap<String, String> airport = null;
                 mylist = new ArrayList<HashMap<String, String>>();
                 HttpResponse res = client.execute(post);
                 String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
 
                 return (retSrc);
 
@@ -1126,14 +1111,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 conn.disconnect();
             }
 
-
         }//end doin background
 
         @Override
         protected void onPostExecute(String result) {
             FlagMosaferan=false;
             //this method will be running on UI thread
-
 
             data = new ArrayList<PurchaseFlightResult>();
 
@@ -1143,11 +1126,17 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(result);
 
-                // JSONObject jsonObj = new JSONObject(retSrc);
-
                 // Getting JSON Array node
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightHotelResult");//Error
 
+                JSONArray getError = GetAirportsResult.getJSONArray("Errors");
+                if(getError != null){
+                 JSONObject json_data = getError.getJSONObject(0);
+                 //   JSONObject message = json_data.getJSONObject("Message");
+                 String message= json_data.getString("Message");
+                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
+                 AlertDialogPassengerFlight.setText(message+"");
+                }else{
 				 /* JSONObject GetError = jsonObj.getJSONObject("Error");
 				  Toast.makeText(PassengerPackageActivityT.this,  Get, Toast.LENGTH_LONG).show();*/
 
@@ -1194,9 +1183,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     fishData.setBookingCode(jsonResult.getString("BookingCode"));
 
 
-
-
-
                     fishData.setExcursionDta(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
                             excursionDta.getString("ArrialAirportName"),
                             excursionDta.getString("ArrivalFltDate")
@@ -1231,7 +1217,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);
                 listKhadamat.setAdapter(mAdapter);
-                setAnimation();
+                setAnimation();}
             } catch (JSONException e) {
                // Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
@@ -1558,13 +1544,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     ///Validate
                     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                     if ( RqPartner_Email.trim().matches(emailPattern) &&  RqPartner_Email.trim().length() > 0) {
-                   // if( RqPartner_Email.trim().length()>6 ){
                         ((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
                         //((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+"لطفا ایمیل را درست وارد کنید";
+                        errorMessage=errorMessage+"\n"+" ایمیل با فرمت صحیح باشد(test@test.com)";
                     }
                     //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
                     //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.trim().matches("^[a-zA-Z]+$"))){
@@ -1575,7 +1560,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         }else{
                             //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+"لطفا نام را درست وارد کنید";
+                            errorMessage=errorMessage+"\n"+" نام حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
                         }
                     //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
                     if(RqPartner_LastNameFa != null)
@@ -1585,7 +1570,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         }else{
                             //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
+                            errorMessage=errorMessage+"\n"+" نام خانوادگی حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
                         }
                     if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1593,8 +1578,10 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+"لطفا موبایل را درست وارد کنید";
+                        errorMessage=errorMessage+"\n"+" موبایل با  فرمت صحیح وارد شود(مانند ...0912)";
                     }
+					/*if(RqPartner_NationalCode != null)
+						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.trim().matches("[0-9]+")){*/
                     if(RqPartner_NationalCode != null)
                         if( RqPartner_NationalCode.length()==10 && RqPartner_NationalCode.trim().matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1602,13 +1589,13 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         }else{
                             //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+"لطفا کد ملی را درست وارد کنید";
+                            errorMessage=errorMessage+"\n"+" کد ملی صحیح نمی باشد(10رقمی)";
                         }
                     if (Gensiyat.contains("true") || Gensiyat.contains("false")){
                         flagMosafer=flagMosafer+"T";
                     }else{
                         flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+"لطفا جنسیت را انتخاب کنید";
+                        errorMessage=errorMessage+"\n"+" جنسیت را انتخاب کنید";
                     }
                     //////////////////////////End Validate
                     if(flagMosafer.contains("F")){
@@ -1789,7 +1776,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا شماره پاسپورت را درست وارد کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" شماره پاسپورت را درست وارد کنید";
                     }
                     if(Nationality != null && Nationality.length()>1){
                         ((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1797,7 +1784,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا محل اقامت را انتخاب  کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" محل اقامت را انتخاب  کنید";
                     }
                     if(Nationality_ID != null && Nationality_ID.length()>1){
                         ((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1805,7 +1792,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا ملیت را انتخاب کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" ملیت را انتخاب کنید";
                     }
                     if(RqPassenger_Birthdate != null && RqPassenger_Birthdate.length()>4){
                         ((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1813,7 +1800,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا تاریخ تولد را انتخاب کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" تاریخ تولد را انتخاب کنید";
                     }
                     ////////////////////////////////////
                     if(txtTitleCountM.getText().toString().contains("کودک")){
@@ -1829,7 +1816,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         }else{
                             //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام را درست وارد کنید";
+                            errorMessagePartner=errorMessagePartner+"\n"+" نام حداقل 2 کاراکتر و حداکثر 100کاراکتر می باشد";
                         }
                     if(RqPassenger_LastNameEn != null)
                         if( RqPassenger_LastNameEn.length()>1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$") ){
@@ -1838,7 +1825,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         }else{
                             //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
+                            errorMessagePartner=errorMessagePartner+"\n"+" نام خانوادگی حداقل 2 کاراکتر و حداکثر 100کاراکتر می باشد";
                         }
                     if(RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length()>4){
                         ((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1846,13 +1833,13 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا انقضا پاسپورت را انتخاب کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" انقضا پاسپورت را انتخاب کنید";
                     }
                     if (Gensiyat.contains("true") || Gensiyat.contains("false")){
                         flagMosafer=flagMosafer+"T";
                     }else{
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا جنسیت را انتخاب کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" جنسیت را انتخاب کنید";
                     }
                     ///endValidate
 
@@ -2329,7 +2316,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     c.add(Calendar.YEAR, -120);
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                     c.add(Calendar.YEAR, 108);
-                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());}
+                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+                }
                 ///////end setMin
             }else{//expPasport
                 Calendar c = Calendar.getInstance();
