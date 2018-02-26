@@ -2520,7 +2520,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             headerJson.put("PackXfer_IDs", Prefs.getString("PackXfer_IDs", "12"));
             headerJson.put("Flt_IDs", Prefs.getString("Flt_IDs", "12"));
             headerJson.put("Rooms", Prefs.getString("Rooms", "12"));
-            headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//purches
+           // headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//purches
 
 
 		/*	headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));

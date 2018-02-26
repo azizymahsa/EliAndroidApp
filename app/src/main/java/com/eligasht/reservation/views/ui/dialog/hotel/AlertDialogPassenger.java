@@ -43,7 +43,7 @@ public class AlertDialogPassenger implements View.OnClickListener {
         tvAlert.setTextSize(2, 12);
         tvAlert.setLineSpacing(25);
         tvAlert.setTypeFace(typeface);
-        tvAlert.setTextColor(Color.parseColor("#2e3192"));
+        tvAlert.setTextColor(Color.parseColor("#4d4d4d"));
 
         btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);

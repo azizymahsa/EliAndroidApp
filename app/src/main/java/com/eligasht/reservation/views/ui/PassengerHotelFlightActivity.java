@@ -1313,11 +1313,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             detailsPartner.put("RqPartner_Mobile", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
             detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
             detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+            detailsPartner.put("WebUser_ID ", Prefs.getString("userId","-1"));//Purchase
 
             headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", "fa-IR");
-            headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
+           // headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
             headerJson.put("Type", "HF");
 
             headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));

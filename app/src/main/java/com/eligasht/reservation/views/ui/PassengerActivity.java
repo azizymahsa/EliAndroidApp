@@ -1568,12 +1568,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			detailsPartner.put("RqPartner_Mobile", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
 			detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
 			detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+			detailsPartner.put("WebUser_ID ", Prefs.getString("userId","-1"));//Purchase
 
 			headerJson.put("partnerInfo", detailsPartner);
 
 			headerJson.put("Culture", "fa-IR");
 			headerJson.put("Type", "F");
-			headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
+		//	headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
 
 			identityJson.put("Password", "123qwe!@#QWE");
 			identityJson.put("TermianlId", "Mobile");
