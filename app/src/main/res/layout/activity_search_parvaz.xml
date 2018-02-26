@@ -241,7 +241,7 @@
 				android:layout_height="0dp"
 				android:orientation="vertical"
 				android:layout_weight="100">
-				<LinearLayout
+				<RelativeLayout
 					android:id="@+id/linear_expand"
 					android:layout_below="@+id/toolbarLayout"
 
@@ -252,17 +252,28 @@
 					android:visibility="visible">
 
 
-					<ExpandableListView
+					<com.eligasht.reservation.tools.ExpandableListViewE
 						android:id="@+id/lvExp"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:cacheColorHint="#00000000"
 						android:divider="#ffffff"
 						android:groupIndicator="@null"
+						android:animateLayoutChanges="true"
+
+
+						/>
+					<com.scalified.fab.ActionButton
+						android:id="@+id/action_button"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentBottom="true"
+						android:layout_alignParentRight= "true"
+						android:layout_marginLeft="5dp"
+						android:layout_marginBottom="5dp"
 						/>
 
-
-				</LinearLayout>
+				</RelativeLayout>
 
 				<LinearLayout
 					android:id="@+id/linear_no_result"
@@ -354,19 +365,18 @@
 
 			</LinearLayout>
 			<View
-				android:id="@+id/view"
-				android:layout_below="@+id/toolbarLayout"
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:background="@drawable/shadow"/>
+				android:layout_width="wrap_content"
+				android:layout_height="2dp"
+				android:background="@drawable/shadow3"/>
 
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
 				android:layout_weight="7"
-				android:background="@color/hotel_detail_background"
 				android:orientation="horizontal"
 				android:gravity="center"
+				android:background="#ffffff"
+
 				>
 
 				<LinearLayout

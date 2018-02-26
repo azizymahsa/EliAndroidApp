@@ -2509,6 +2509,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", "fa-IR");
+            headerJson.put("WebUserID", Prefs.getString("userId","-1"));
             //	headerJson.put("Type", "P");
 
             headerJson.put("PackRow_ID", Prefs.getString("PackRow_ID", "12"));

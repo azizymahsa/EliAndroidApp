@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.activities.transfer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -11,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -107,9 +109,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         btnCal.setOnClickListener(this);
         rlLoading2.setOnClickListener(this);
         Utility.setAnimLoading(this);
-        tvDepurtureFlt.clearFocus();
-        tvReturnFlt.clearFocus();
-        llRoot.clearFocus();
+
         tvDepurtureFlt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -518,12 +518,10 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void onResume() {
+        super.onResume();
         Utility.hideKeyboard(TransferActivity.this,tvDepurtureFlt);
         Utility.hideKeyboard(TransferActivity.this,tvReturnFlt);
-        super.onResume();
-        llRoot.clearFocus();
-        tvDepurtureFlt.clearFocus();
-        tvReturnFlt.clearFocus();
+
         if (ValidationTools.isEmptyOrNull(DepurtureAirport)) {
             tvDepurtureAirport.setText(Prefs.getString("Value-Mabda-City2", "انتخاب کنید"));
 
@@ -541,7 +539,9 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
         }
 
-
+        tvDepurtureFlt.clearFocus();
+        tvReturnFlt.clearFocus();
+        llRoot.clearFocus();
     }
 
     @Override
@@ -874,35 +874,52 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 }
 
 */
-                if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors!=null){
+           /*     if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors!=null||!airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.isEmpty()){
                     Prefs.putLong("Tprice",0);
 
                     finish();
                     Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).Message, Toast.LENGTH_SHORT).show();
 
 
-                }else{
+                }else{*/
 
                     Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
                     Log.e("test", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
                     finish();
 
-                }
+              //  }
 
 
 
 
 
             } catch (Exception e) {
-                Prefs.putLong("Tprice",0);
-                finish();
-                if (Utility.isNetworkAvailable(TransferActivity.this)){
 
-                    Toast.makeText(TransferActivity.this, "خطا در دریافت اطلاعات از الی گشت", Toast.LENGTH_SHORT).show();
+                try{
+                    if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors!=null||!airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.isEmpty()){
+                        Prefs.putLong("Tprice",0);
 
-                }else{
-                    Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خارج می باشد", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).Message, Toast.LENGTH_SHORT).show();
+                        Prefs.putLong("Tprice",0);
+                        finish();
+
+                    }
+
+                }catch (Exception e2){
+                    Prefs.putLong("Tprice",0);
+                    finish();
+                    if (Utility.isNetworkAvailable(TransferActivity.this)){
+
+                        Toast.makeText(TransferActivity.this, "خطا در دریافت اطلاعات از الی گشت", Toast.LENGTH_SHORT).show();
+
+                    }else{
+                        Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خارج می باشد", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
+
+
+
 
 
 

@@ -10,6 +10,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +20,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.api.hotel.changeflight.LoadHotelFlightApi;
 import com.eligasht.reservation.api.hotel.comment.AddComment;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
@@ -27,6 +31,7 @@ import com.eligasht.reservation.models.hotel.api.addcomment.call.RequsetAddComme
 import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewComment;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.ChangeFlightApiRequest;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.Request;
+import com.eligasht.reservation.tools.OnDetectScrollListener;
 import com.eligasht.reservation.views.adapters.hotel.LazyResoultHotelAdapter;
 import com.google.gson.Gson;
 import com.melnykov.fab.FloatingActionButton;
@@ -91,7 +96,7 @@ import java.util.Set;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class SelectHotelFlightActivity extends BaseActivity implements View.OnClickListener, FilterHotelDialog.FilterHotelDialogListenerArray, SortDialog.SortHotelDialogListener {
-    private ListView list;
+    private com.eligasht.reservation.tools.ListView list;
     private FlightHotelAdapter adapter;
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayListFilter = new ArrayList<>();
@@ -132,7 +137,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_hotel_flight);
         Utility.setAnimLoading(this);
-
 
         window = getWindow();
         notiRecive();
@@ -197,8 +201,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         });
 
         new GetHotelAsync().execute();
+        Utility.init_floating(list,this);
 
-// TODO: 1/12/2018 change this
 
     }
 
@@ -907,7 +911,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
                 } else if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
+                    tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد!");
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 

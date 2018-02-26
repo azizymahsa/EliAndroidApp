@@ -53,6 +53,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.onesignal.OneSignal;
 import com.eligasht.R;
 import com.eligasht.reservation.base.GlobalApplication;
+import com.scalified.fab.ActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -852,9 +853,246 @@ public class Utility extends Activity {
 
     }
 
-    public void startText(final TextView typeWriter, String json){
+
+    public static void init_floating(final com.eligasht.reservation.tools.ListView list,Activity context){
+        final boolean[] isShow = {true};
+        final com.scalified.fab.ActionButton floatingActionButton = context.findViewById(R.id.action_button);
+        floatingActionButton.setShadowRadius(7.0f);
+
+        floatingActionButton.setShadowXOffset(1f);
+
+
+        floatingActionButton.setShadowYOffset(1f);
+        floatingActionButton.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.up));
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.smoothScrollToPosition(0);
+            }
+        });
+        floatingActionButton.setVisibility(View.GONE);
+        floatingActionButton.setButtonColor(ContextCompat.getColor(context,R.color.floating_button_color));
+        floatingActionButton.setButtonColorPressed(ContextCompat.getColor(context,R.color.focusColor));
+        if (context.getResources().getInteger(R.integer._300)==300){
+            floatingActionButton.setType(ActionButton.Type.DEFAULT);
+
+        }else {
+            floatingActionButton.setType(ActionButton.Type.MINI);
+
+        }
+        list.setOnDetectScrollListener(new OnDetectScrollListener() {
+            @Override
+            public void onUpScrolling() {
+
+            }
+
+            @Override
+            public void onDownScrolling() {
+                if (floatingActionButton.getVisibility()==View.GONE&& isShow[0]){
+
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                    Log.e("onUpScrolling", "onUpScrolling: 3333333333333" );
+
+                    YoYo.with(Techniques.SlideInUp).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+
+
+                        @Override
+                        public void onAnimationStart(android.animation.Animator animation) {
+
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(android.animation.Animator animation) {
+
+                           // floatingActionButton.show();
+                            isShow[0] =false;
+
+
+                        }
+
+                        @Override
+                        public void onAnimationCancel(android.animation.Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(android.animation.Animator animation) {
+
+                        }
+
+                    })
+                            .playOn(floatingActionButton);
+                }
+
+
+            }
+
+            @Override
+            public void onFirstVisibleItem() {
+
+                if (floatingActionButton.getVisibility()==View.VISIBLE&& !isShow[0]){
+                    Log.e("onUpScrolling", "onUpScrolling:44444444444" );
+
+                    isShow[0]=true;
+                    YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+
+
+                        @Override
+                        public void onAnimationStart(android.animation.Animator animation) {
+
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(android.animation.Animator animation) {
+
+
+
+                            floatingActionButton.setVisibility(View.GONE);
+
+                        }
+
+                        @Override
+                        public void onAnimationCancel(android.animation.Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(android.animation.Animator animation) {
+
+                        }
+
+                    })
+                            .playOn(floatingActionButton);
+
+                }
+            }
+        });
+
 
     }
+
+
+
+
+    public static void init_floating_flight(final com.eligasht.reservation.tools.ExpandableListViewE list,Activity context) {
+        final boolean[] isShow = {true};
+        final com.scalified.fab.ActionButton floatingActionButton = context.findViewById(R.id.action_button);
+        floatingActionButton.setShadowRadius(7.0f);
+
+        floatingActionButton.setShadowXOffset(1f);
+
+
+        floatingActionButton.setShadowYOffset(1f);
+        floatingActionButton.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.up));
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.smoothScrollToPosition(0);
+            }
+        });
+        floatingActionButton.setVisibility(View.GONE);
+        floatingActionButton.setButtonColor(ContextCompat.getColor(context, R.color.floating_button_color));
+        floatingActionButton.setButtonColorPressed(ContextCompat.getColor(context, R.color.focusColor));
+        if (context.getResources().getInteger(R.integer._300) == 300) {
+            floatingActionButton.setType(ActionButton.Type.DEFAULT);
+
+        } else {
+            floatingActionButton.setType(ActionButton.Type.MINI);
+
+        }
+        list.setOnDetectScrollListener(new OnDetectScrollListener() {
+            @Override
+            public void onUpScrolling() {
+
+            }
+
+            @Override
+            public void onDownScrolling() {
+                if (floatingActionButton.getVisibility() == View.GONE && isShow[0]) {
+
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                    Log.e("onUpScrolling", "onUpScrolling: 3333333333333");
+
+                    YoYo.with(Techniques.SlideInUp).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+
+
+                        @Override
+                        public void onAnimationStart(android.animation.Animator animation) {
+
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(android.animation.Animator animation) {
+
+                            // floatingActionButton.show();
+                            isShow[0] = false;
+
+
+                        }
+
+                        @Override
+                        public void onAnimationCancel(android.animation.Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(android.animation.Animator animation) {
+
+                        }
+
+                    })
+                            .playOn(floatingActionButton);
+                }
+
+
+            }
+
+            @Override
+            public void onFirstVisibleItem() {
+
+                if (floatingActionButton.getVisibility() == View.VISIBLE && !isShow[0]) {
+                    Log.e("onUpScrolling", "onUpScrolling:44444444444");
+
+                    isShow[0] = true;
+                    YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+
+
+                        @Override
+                        public void onAnimationStart(android.animation.Animator animation) {
+
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(android.animation.Animator animation) {
+
+
+                            floatingActionButton.setVisibility(View.GONE);
+
+                        }
+
+                        @Override
+                        public void onAnimationCancel(android.animation.Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(android.animation.Animator animation) {
+
+                        }
+
+                    })
+                            .playOn(floatingActionButton);
+
+                }
+            }
+        });
+    }
+
+
 
 }
 

@@ -49,6 +49,7 @@ import com.eligasht.reservation.views.dialogs.SortDialogPackage;
 import com.eligasht.reservation.views.ui.InitUi;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -170,7 +171,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (response == null || response.body() == null) {
                     rcl_package.showText();
-                    txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                    txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
                     error_layout.setVisibility(View.VISIBLE);
                 }
 
@@ -201,7 +202,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
                     rcl_package.showText();
-                    txt_error.setText("نتیجه ای یافت نشد !");
+                    txt_error.setText("نتیجه ای برای جستجو شما حاصل نشد!");
                     error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
@@ -411,6 +412,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 lstAvailableDates.addAll(pRowXfer.getLstAvailableDates());
             }
         }
+        Collections.reverse(lstAvailableDates);
 
         if (ValidationTools.isEmptyOrNull(lstAvailableDates)) {
             return;

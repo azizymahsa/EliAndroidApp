@@ -61,6 +61,7 @@
     <color name="status_loading">#c141fc</color>
     <color name="hf">#c141fc</color>
     <color name="strokeGray">#aaaaaa</color>
+    <color name="floating_button_color">#b194ff</color>
 
 
 </resources>

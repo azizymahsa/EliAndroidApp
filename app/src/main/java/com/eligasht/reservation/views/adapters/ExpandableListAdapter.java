@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.tools.ExpandableListViewE;
 import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -55,11 +56,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     boolean isChangeFlight;
     String searchKey;
     String FlightId;
-    ExpandableListView expListViewExpanding;
+    ExpandableListViewE expListViewExpanding;
 
     public ExpandableListAdapter(Activity context, List<SearchParvazActivity.ParentItemExpandingPlan> dataList,
                                  SearchParvazPinAdapter searchParvazPinAdapter,
-                                 boolean isChangeFlight,String searchKey, String FlightId,ExpandableListView expListViewExpanding) {
+                                 boolean isChangeFlight,String searchKey, String FlightId,ExpandableListViewE expListViewExpanding) {
         this._context = context;
         this.expListViewExpanding = expListViewExpanding;
 

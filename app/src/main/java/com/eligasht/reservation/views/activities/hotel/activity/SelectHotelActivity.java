@@ -64,7 +64,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener {
 
 
-    private ListView list;
+    private com.eligasht.reservation.tools.ListView list;
     private LazyResoultHotelAdapter adapter;
     private ArrayList<SelectHotelModel> selectHotelModelArrayList = new ArrayList<>();
     private ArrayList<SelectHotelModel> selectHotelModelArrayListFilter = new ArrayList<>();
@@ -173,6 +173,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
 // TODO: 1/12/2018 change this
+        Utility.init_floating(list,this);
 
 
     }

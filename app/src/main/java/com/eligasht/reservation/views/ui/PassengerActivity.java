@@ -2471,7 +2471,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
 
 				}else if(RengAge.contains("نوزاد")){
-					System.out.println("Nozad");
+					System.ou t.println("Nozad");
 					//c = Calendar.getInstance();
 					c.add(Calendar.YEAR, -2); // subtract 2 years from now
 					dialog.getDatePicker().setMinDate(c.getTimeInMillis());

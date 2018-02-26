@@ -200,7 +200,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
                 }
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                if (etMail.getText().toString().matches(emailPattern) && TextUtils.isEmpty(etMail.getText())) {
+                if (!etMail.getText().toString().matches(emailPattern) || TextUtils.isEmpty(etMail.getText())) {
                     //if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
                     GradientDrawable drawable = (GradientDrawable) etMail.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
@@ -248,8 +248,9 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     if (cbSubmitName.isChecked()){
                         name="";
                     }
+                    Log.e("test3333", Prefs.getString("userId","-1"));
                     ReviewComment.add(new ReviewComment(0, message,
-                            0, 1, mail, name, title, Prefs.getString("uesrId","-1"),reviewScores,String.valueOf(isRecommended)));
+                            0, 1, mail, name, title, Prefs.getString("userId","-1"),reviewScores,String.valueOf(isRecommended)));
                     new AddCommentAsync().execute();
                 }
                 break;

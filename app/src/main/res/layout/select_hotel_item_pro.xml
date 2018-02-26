@@ -33,6 +33,9 @@
             android:gravity="center"
             android:layout_marginTop="5dp"
             android:text="asdasd"
+            android:maxLines="1"
+            android:ellipsize="end"
+
 
 
             />

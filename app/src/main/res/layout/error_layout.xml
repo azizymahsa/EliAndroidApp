@@ -31,8 +31,7 @@
             android:textSize="16dp"
             android:textAppearance="@style/IrsansBold"
             android:gravity="center"
-            android:textColor="@color/toolbar_color"
-            android:visibility="visible"
+            android:textColor="@color/text_color_2e"
             />
 
         <ImageView

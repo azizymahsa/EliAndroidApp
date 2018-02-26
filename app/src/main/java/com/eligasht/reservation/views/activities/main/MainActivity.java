@@ -252,15 +252,12 @@ public class MainActivity extends Base implements View.OnClickListener {
                 try {
                     if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() == -1) {
                         startActivity(new Intent(this, LogInActivity.class));
-                        Prefs.putString("userId","-1");
                     } else {
                         startActivity(new Intent(this, ProfileActivity.class));
-                        Prefs.putString("userId",WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
 
                     }
                 } catch (Exception e) {
                     startActivity(new Intent(this, LogInActivity.class));
-                    Prefs.putString("userId","-1");
 
                 }
 
@@ -405,10 +402,9 @@ public class MainActivity extends Base implements View.OnClickListener {
                 tvArrow.setVisibility(View.VISIBLE);
                 rlUser.setClickable(true);
               //  expandableLayout.setVisibility(View.VISIBLE);
-                Log.e("initUser", "3");
 
                 Prefs.putString("userId",WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
-                Log.e("initUser11",WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
+                Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
 
             } else {
                 txt_name.setText("ورود به حساب کاربری");
@@ -420,15 +416,18 @@ public class MainActivity extends Base implements View.OnClickListener {
                 if (expandableLayout.isExpanded()) {
                     expandableLayout.collapse();
                 }
-                Log.e("initUser", "1");
+
+                Log.e("testtest22", "2222");
 
             }
         } catch (Exception e) {
-            Log.e("initUser", "2");
+
 
             txt_name.setText("ورود به حساب کاربری");
             btnExit.setVisibility(View.GONE);
-            Prefs.putString("userId","-1");
+            Prefs.putString("userId","1");
+            Log.e("testtest22", "3333");
+
             if (expandableLayout.isExpanded()) {
                 expandableLayout.collapse();
 

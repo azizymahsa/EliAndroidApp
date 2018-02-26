@@ -10,12 +10,12 @@
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/_50dp"
         android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
         android:text="امتیاز شما به این هتل"
         android:textColor="@color/white"
-        android:textSize="16dp"
+        android:textSize="@dimen/_16dp_normal_textSize"
         android:gravity="center"
 
         android:textAppearance="@style/IrsansBold"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 app:srb_numberOfStars="5"
                 app:srb_rating="3"
-                app:srb_starSize="40dp"
+                app:srb_starSize="@dimen/_40dp"
                 app:srb_stepSize="0.2"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"/>

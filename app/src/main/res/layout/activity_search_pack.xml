@@ -171,7 +171,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_5dp_margin"
                 android:background="@color/gray_light"
-                android:visibility="visible">
+                android:visibility="visible"
+                android:gravity="right"
+                android:layoutDirection="rtl">
 
             </com.eligasht.reservation.views.components.SimpleRecycleView>
 
@@ -207,14 +209,17 @@
             </com.eligasht.reservation.views.components.SimpleRecycleView>
 
         </FrameLayout>
-
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="@drawable/shadow3"/>
         <LinearLayout
             android:id="@+id/llFilter"
 
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="11"
-            android:background="@color/hotel_detail_background"
+            android:background="#ffff"
             android:orientation="horizontal"
             android:gravity="center"
             >

@@ -421,8 +421,8 @@
                     />
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnOneComment"
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/_100dp_image"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_gravity="center"
                     android:elevation="1dp"
                     android:paddingBottom="1dp"
@@ -562,8 +562,8 @@
                                     android:gravity="center">
                                     <mehdi.sakout.fancybuttons.FancyButton
                                         android:id="@+id/btnComment"
-                                        android:layout_width="100dp"
-                                        android:layout_height="30dp"
+                                        android:layout_width="@dimen/_100dp_image"
+                                        android:layout_height="@dimen/_30dp"
                                         android:layout_gravity="center"
                                         android:elevation="1dp"
                                         android:paddingBottom="1dp"
@@ -659,7 +659,6 @@
                             android:layout_weight="100"
                             android:gravity="right|center"
                             android:padding="3dp"
-                            android:text="نظرات کاربران-  15 نظر"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_14dp_txtSize" />

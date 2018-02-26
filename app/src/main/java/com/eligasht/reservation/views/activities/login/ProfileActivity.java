@@ -73,6 +73,18 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         setupPager();
         initParam();
         service = ServiceGenerator.createService(ClientService.class);
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf"));
+                }
+            }
+        }
 
     }
 
@@ -131,7 +143,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         btnSaveInfo = findViewById(R.id.btnSaveInfo);
 
         btnSaveInfo.setOnClickListener(this);
-
 
 
 

@@ -272,33 +272,42 @@
                             android:layout_toRightOf="@+id/tvRial"
 
                             />
-                        <mehdi.sakout.fancybuttons.FancyButton
-                            android:id="@+id/btnChange"
-                            android:layout_width="100dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:elevation="1dp"
-                            android:paddingBottom="1dp"
-                            fancy:fb_defaultColor="@color/text_color_2e"
-                            fancy:fb_focusColor="@color/focusColor"
-                            fancy:fb_radius="4dp"
-                            fancy:fb_text="تغییر پرواز"
-                            fancy:fb_textColor="@color/white"
-                            fancy:fb_textSize="@dimen/_14dp_txtSize"
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_strock_select_hf"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_alignParentRight="true"
-                            android:gravity="center|top"/>
+                            >
+                            <mehdi.sakout.fancybuttons.FancyButton
+                                android:id="@+id/btnChange"
+                                android:layout_width="@dimen/_100dp_image"
+                                android:layout_height="@dimen/_30dp"
+                                android:layout_gravity="center"
+                                android:elevation="1dp"
+                                android:paddingBottom="1dp"
+                                fancy:fb_defaultColor="@color/TRANSPARENT"
+                                fancy:fb_focusColor="@color/focusColor"
+                                fancy:fb_radius="4dp"
+                                fancy:fb_text="تغییر پرواز"
+                                fancy:fb_textColor="#0071bc"
+                                fancy:fb_textSize="@dimen/_14dp_txtSize"
+
+                                android:gravity="center|top"/>
+                        </RelativeLayout>
+
+
+
                     </RelativeLayout>
 
 
                 </LinearLayout>
-                <TextView
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#59333333"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"/>
+                    android:background="@drawable/blue_gradient_line"
+                />
 
 
                 <RelativeLayout

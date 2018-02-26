@@ -11,12 +11,12 @@
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/_50dp"
         android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
         android:text="پیغام"
         android:textColor="@color/white"
-        android:textSize="16dp"
+        android:textSize="@dimen/_16dp_normal_textSize"
         android:gravity="center"
 
         android:textAppearance="@style/IrsansBold"
@@ -30,7 +30,6 @@
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
         android:textSize="@dimen/_12dp_normal_textSize"
-        android:text="اینترنت شما قطع و یا از دسترس خارج می باشد، برای استفاده از امکانات این نرم افزار سرویس اینترنت خود را بررسی نمایید!"
         android:textColor="@color/text_color_4d"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -46,8 +45,8 @@
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/btnOk"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/_90dp"
+        android:layout_height="@dimen/_40dp"
         android:elevation="4dp"
         android:paddingBottom="1dp"
         fancy:fb_defaultColor="#1234"
@@ -55,7 +54,7 @@
         fancy:fb_radius="100dp"
         fancy:fb_text="باشه"
         fancy:fb_textColor="@color/text_color_4d"
-        fancy:fb_textSize="15dp"
+        fancy:fb_textSize="@dimen/_14dp_txtSize"
         android:layout_marginBottom="@dimen/_10dp_margin"/>
 
 

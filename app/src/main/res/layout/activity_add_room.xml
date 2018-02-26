@@ -118,21 +118,16 @@
         <Button
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_40dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="@dimen/_5dp_margin"
+            android:layout_marginLeft="@dimen/_10dp_margin"
+            android:layout_marginRight="@dimen/_10dp_margin"
+            android:layout_marginTop="@dimen/_10dp_margin"
             android:background="@drawable/btngravity_big"
-            android:shadowColor="@color/drawer_shadow"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="2"
-            android:text="@string/accept"
+            android:text="تائید"
             android:textColor="#FFFFFF"
-            android:textSize="@dimen/_16dp_txtSize"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_5dp_margin"/>
+            android:textSize="@dimen/_16dp_normal_textSize"
+            android:textStyle="bold"/>
 
     </LinearLayout>
     </LinearLayout>
