@@ -402,7 +402,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     }
 
     private void showList() {
-        pRowXferAdapter = new PRowXferAdapter(this, pRowXfers).setListener(this);
+        pRowXferAdapter = new PRowXferAdapter(this, pRowXfers,toolbar_date).setListener(this);
         rcl_package.showList(pRowXferAdapter);
 
         ArrayList<LstAvailableDate> lstAvailableDates = new ArrayList<>();

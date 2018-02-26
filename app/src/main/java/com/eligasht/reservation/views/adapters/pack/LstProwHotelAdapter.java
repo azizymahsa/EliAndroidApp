@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.eligasht.R;
@@ -28,10 +29,12 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
 
     private Context context;
     private ArrayList<LstProwHotel> feedItemList;
+    TextView Date;
 
-    public LstProwHotelAdapter(Context context, ArrayList<LstProwHotel> feedItemList) {
+    public LstProwHotelAdapter(Context context, ArrayList<LstProwHotel> feedItemList,TextView Date) {
         this.context = context;
         this.feedItemList = feedItemList;
+        this.Date = Date;
     }
 
     @Override
@@ -126,6 +129,7 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
                 i.putExtra("CheckOut", item.getCheckOut());
                 i.putExtra("Type", "Pakage");
                 i.putExtra("type", 2);
+                i.putExtra("DateTime", Date.getText().toString());
                 context.startActivity(i);
             }
         });

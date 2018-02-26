@@ -138,7 +138,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
         btnFilter.setOnClickListener(this);
         btnSort.setOnClickListener(this);
-        adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this);
+        adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this,tvDate);
         list.setAdapter(adapter);
 
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -398,7 +398,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             if (selectHotelModelArrayListFilter.size() == selectHotelModelArrayList.size() && !remove) {
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-                adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this);
+                adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this,tvDate);
                 list.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 elNotFound.setVisibility(View.VISIBLE);
@@ -411,7 +411,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 if (selectHotelModelArrayListFilter.isEmpty()) {
                     tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                     tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-                    adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this);
+                    adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this,tvDate);
                     list.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     elNotFound.setVisibility(View.VISIBLE);
@@ -423,7 +423,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                     tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
                     tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
-                    adapter = new LazyResoultHotelAdapter(selectHotelModelArrayListFilter, SelectHotelActivity.this, SelectHotelActivity.this);
+                    adapter = new LazyResoultHotelAdapter(selectHotelModelArrayListFilter, SelectHotelActivity.this, SelectHotelActivity.this,tvDate);
                     list.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
@@ -436,7 +436,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         if (remove) {
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-            adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this);
+            adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this,tvDate);
             list.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             searchIn="";

@@ -66,6 +66,8 @@
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="3dp"
                 card_view:cardElevation="3dp"
+                android:visibility="gone"
+
 
                  >
 
@@ -83,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:orientation="vertical"
-                        android:layout_marginRight="3dp">
+                       >
                         <ImageView
                             android:id="@+id/ivImage"
                             android:layout_width="@dimen/_60dp_hight"
@@ -165,7 +167,7 @@
                         android:gravity="center|right"
                         android:maxLines="1"
                         android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_14dp_txtSize"
+                        android:textSize="@dimen/_12dp_normal_textSize"
                         android:layout_marginRight="4dp"
 
                         />

@@ -37,9 +37,11 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
     ImageLoader imageLoader;
     Context context;
     Activity activity;
+    TextView DateTime;
 
-    public LazyResoultHotelAdapter(ArrayList<SelectHotelModel> selectHotelModelArrayList, Context context, Activity activity) {
+    public LazyResoultHotelAdapter(ArrayList<SelectHotelModel> selectHotelModelArrayList, Context context, Activity activity,TextView DateTime) {
         this.activity = activity;
+        this.DateTime = DateTime;
         this.selectHotelModelArrayList = selectHotelModelArrayList;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -123,6 +125,8 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 i.putExtra("ResultUniqID", selectHotelModelArrayList.get(position).getResultUniqID());
                 i.putExtra("CheckIn", activity.getIntent().getExtras().getString("CheckIn"));
                 i.putExtra("CheckOut", activity.getIntent().getExtras().getString("CheckOut"));
+                i.putExtra("DateTime", DateTime.getText().toString());
+
                 i.putExtra("type", 2);
 
                 activity.startActivity(i);

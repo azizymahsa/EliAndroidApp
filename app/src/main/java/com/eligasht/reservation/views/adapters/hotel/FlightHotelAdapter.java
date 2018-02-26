@@ -197,7 +197,6 @@ public class FlightHotelAdapter extends BaseAdapter {
                 i.putExtra("CheckOutHF", activity.getIntent().getExtras().getString("CheckOutHF"));
                 i.putExtra("DateTime", DateTime.getText().toString());
                 i.putExtra("type", 1);
-                Log.e("DateTime1111",  DateTime.getText().toString());
 
                 activity.startActivity(i);
             }

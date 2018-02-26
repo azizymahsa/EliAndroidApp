@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -43,13 +44,15 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
     private Context context;
     private ArrayList<PRowXfer> feedItemList;
     private ArrayList<PRowXfer> filtertemList;
+    TextView Date;
     private ListenerSearchPackAdapter listenerPackAdapter;
     private int type = 2;
 
-    public PRowXferAdapter(Context context, ArrayList<PRowXfer> NameItem) {
+    public PRowXferAdapter(Context context, ArrayList<PRowXfer> NameItem,TextView Date) {
 
         this.context = context;
         this.feedItemList = NameItem;
+        this.Date = Date;
         filtertemList = new ArrayList<>(feedItemList);
     }
 
@@ -104,7 +107,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
         }
 
         if(item.getLstProwHotelAdapter() == null){
-            item.setLstProwHotelAdapter(new LstProwHotelAdapter(context, item.getLstProwHotels()));
+            item.setLstProwHotelAdapter(new LstProwHotelAdapter(context, item.getLstProwHotels(),Date));
         }
 
 
