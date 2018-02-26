@@ -34,7 +34,9 @@ import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.PassengerHotelFlightActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
+import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertRating;
 import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -187,7 +189,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
                 break;
             case R.id.btnConfirm:
-
+                String errorMessage="";
                 boolean isOk = true;
                 if (TextUtils.isEmpty(etName.getText())) {
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
@@ -196,8 +198,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
-
-
+                    errorMessage=errorMessage+"\n"+"لطفا نام و نام خانوادگی درست وارد کنید";
                 }
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 if (!etMail.getText().toString().matches(emailPattern) || TextUtils.isEmpty(etMail.getText())) {
@@ -205,17 +206,21 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etMail.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
+                    errorMessage=errorMessage+"\n"+" ایمیل با فرمت صحیح باشد(test@test.com)";
 
                 } else {
                     //((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                     GradientDrawable drawable = (GradientDrawable) etMail.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
+
                 }
 
                 if (TextUtils.isEmpty(etTitle.getText())) {
                     GradientDrawable drawable = (GradientDrawable) etTitle.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
+                    errorMessage=errorMessage+"\n"+"لطفا عنوان را درست وارد کنید";
+
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etTitle.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
@@ -226,6 +231,8 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etMessage.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
+                    errorMessage=errorMessage+"\n"+"لطفا پیام را درست وارد کنید";
+
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etMessage.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
@@ -252,6 +259,9 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     ReviewComment.add(new ReviewComment(0, message,
                             0, 1, mail, name, title, Prefs.getString("userId","-1"),reviewScores,String.valueOf(isRecommended)));
                     new AddCommentAsync().execute();
+                }else{
+                    AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(CommentActivity.this);
+                    alertDialogPassenger.setText("" + "  " + errorMessage);
                 }
                 break;
             case R.id.btnBack:

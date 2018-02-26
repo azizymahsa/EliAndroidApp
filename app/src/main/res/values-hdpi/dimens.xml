@@ -109,5 +109,8 @@
     <dimen name="_10dp_margin_comment">0dp</dimen>
     <dimen name="_5dp_margin_comment">0dp</dimen>
     <dimen name="_210dp_height_comment">210dp</dimen>
+    <dimen name="_10dpTabletSize">10dp</dimen>
+    <dimen name="_5dpTabletSize">5dp</dimen>
+    <dimen name="_0dpTablet">1dp</dimen>
 
 </resources>

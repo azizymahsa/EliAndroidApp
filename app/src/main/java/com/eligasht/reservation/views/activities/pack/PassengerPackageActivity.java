@@ -591,9 +591,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         switch (v.getId()) {
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME",true);
-                Intent intent = new Intent("sendFinish");
+                /*Intent intent = new Intent("sendFinish");
 
-                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);*/
+                finish();
                 break;
             case R.id.txtMore:
                 linearMahaleeghamat.setVisibility(View.VISIBLE);
@@ -668,9 +669,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     //	myScrollView.setOnTouchListener(null);
                     Prefs.putBoolean("BACK_HOME", true);
                     //	myScrollView.setOnTouchListener(null);
-                    Intent intent2 = new Intent("sendFinish");
+                   /* Intent intent2 = new Intent("sendFinish");
 
-                    LocalBroadcastManager.getInstance(PassengerPackageActivity.this).sendBroadcast(intent2);
+                    LocalBroadcastManager.getInstance(PassengerPackageActivity.this).sendBroadcast(intent2);*/
+                   finish();
 
 
                 }
@@ -704,7 +706,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }else{
                         //((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+"لطفا ایمیل را درست وارد کنید";
+                        errorMessage=errorMessage+"\n"+" ایمیل با فرمت صحیح باشد(test@test.com)";
                     }
                     //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
                     //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.trim().matches("^[a-zA-Z]+$"))){
@@ -715,7 +717,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         }else{
                             //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+"لطفا نام را درست وارد کنید";
+                            errorMessage=errorMessage+"\n"+" نام حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
                         }
                     //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
                     if(RqPartner_LastNameFa != null)
@@ -725,7 +727,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         }else{
                             //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
+                            errorMessage=errorMessage+"\n"+" نام خانوادگی حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
                         }
                     if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -733,8 +735,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }else{
                         //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+"لطفا موبایل را درست وارد کنید";
+                        errorMessage=errorMessage+"\n"+" موبایل با  فرمت صحیح وارد شود(مانند ...0912)";
                     }
+					/*if(RqPartner_NationalCode != null)
+						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.trim().matches("[0-9]+")){*/
                     if(RqPartner_NationalCode != null)
                         if( RqPartner_NationalCode.length()==10 && RqPartner_NationalCode.trim().matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -742,13 +746,13 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         }else{
                             //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+"لطفا کد ملی را درست وارد کنید";
+                            errorMessage=errorMessage+"\n"+" کد ملی صحیح نمی باشد(10رقمی)";
                         }
                     if (Gensiyat.contains("true") || Gensiyat.contains("false")){
                         flagMosafer=flagMosafer+"T";
                     }else{
                         flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+"لطفا جنسیت را انتخاب کنید";
+                        errorMessage=errorMessage+"\n"+" جنسیت را انتخاب کنید";
                     }
                     //////////////////////////End Validate
                     if(flagMosafer.contains("F")){
@@ -935,7 +939,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }else{
                         //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا محل اقامت را انتخاب  کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" محل اقامت را انتخاب  کنید";
                     }
                     if(Nationality_ID != null && Nationality_ID.length()>1){
                         ((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -943,7 +947,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }else{
                         //((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا ملیت را انتخاب کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" ملیت را انتخاب کنید";
                     }
                     if(RqPassenger_Birthdate != null && RqPassenger_Birthdate.length()>4){
                         ((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -951,7 +955,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }else{
                         //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا تاریخ تولد را انتخاب کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" تاریخ تولد را انتخاب کنید";
                     }
                     ////////////////////////////////////
                     if(txtTitleCountM.getText().toString().contains("کودک")){
@@ -967,7 +971,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         }else{
                             //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام را درست وارد کنید";
+                            errorMessagePartner=errorMessagePartner+"\n"+" نام حداقل 2 کاراکتر و حداکثر 100کاراکتر می باشد ";
                         }
                     if(RqPassenger_LastNameEn != null)
                         if( RqPassenger_LastNameEn.length()>1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$") ){
@@ -976,7 +980,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         }else{
                             //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessagePartner=errorMessagePartner+"\n"+"لطفا نام خانوادگی را درست وارد کنید";
+                            errorMessagePartner=errorMessagePartner+"\n"+" نام خانوادگی حداقل 2 کاراکتر و حداکثر 100کاراکتر می باشد ";
                         }
                     if(RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length()>4){
                         ((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -984,13 +988,13 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }else{
                         //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا انقضا پاسپورت را انتخاب کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" انقضا پاسپورت را انتخاب کنید";
                     }
                     if (Gensiyat.contains("true") || Gensiyat.contains("false")){
                         flagMosafer=flagMosafer+"T";
                     }else{
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+"لطفا جنسیت را انتخاب کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+" جنسیت را انتخاب کنید";
                     }
                     ///endValidate
 
@@ -1562,9 +1566,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             Prefs.putBoolean("BACK_HOME", true);
             //	myScrollView.setOnTouchListener(null);
-            Intent intent = new Intent("sendFinish");
+            /*Intent intent = new Intent("sendFinish");
 
-            LocalBroadcastManager.getInstance(PassengerPackageActivity.this).sendBroadcast(intent);
+            LocalBroadcastManager.getInstance(PassengerPackageActivity.this).sendBroadcast(intent);*/
+            finish();
 
         }
     }

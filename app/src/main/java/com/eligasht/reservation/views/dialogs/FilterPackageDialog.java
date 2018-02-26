@@ -62,7 +62,7 @@ public class FilterPackageDialog implements View.OnClickListener {
                        ArrayList<AmenityFilter> amenityFiltersSelected);
     }
 
-    public FilterPackageDialog(Context context) {
+    public FilterPackageDialog(Context context){
 
         if(context == null){
             return;

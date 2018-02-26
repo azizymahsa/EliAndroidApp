@@ -116,4 +116,7 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_10dp_margin_comment">0dp</dimen>
     <dimen name="_5dp_margin_comment">0dp</dimen>
     <dimen name="_210dp_height_comment">210dp</dimen>
+    <dimen name="_10dpTabletSize">44dp</dimen>
+    <dimen name="_5dpTabletSize">20dp</dimen>
+    <dimen name="_0dpTablet">24dp</dimen>
 </resources>

@@ -109,18 +109,18 @@ public class RoomsAdapter extends BaseAdapter {
         holder.tvPrice.setText(Utility.priceFormat(roomsModels.get(position).getPrice()) + "");
         holder.tvDesc.setText(roomsModels.get(position).getDesc());
 
-
         holder.btnPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
                 EHotelId = roomsModels.get(position).getHotelId();
                 OfferId = roomsModels.get(position).getOfferId();
                 SearchKey = roomsModels.get(position).getSearchKey();
                 alertDialogPolicy = new AlertDialogPolicy(context);
+                alertDialogPolicy.setTitle("قوانین هتل");
+                alertDialogPolicy.setRoomName("("+roomsModels.get(position).getTitle()+")");
                 new GetHotelPolicyAsync().execute();
             }
         });
-
 
         holder.llSelectHotel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +149,7 @@ public class RoomsAdapter extends BaseAdapter {
     private class GetHotelPolicyAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
-            alertDialogPolicy.setTitle("قوانین هتل");
+           // alertDialogPolicy.setTitle("قوانین هتل");
             Log.e("okoktesttest", new Gson().toJson(new PolicyRequest(new RequestPolicy(new IdentityRooms("EligashtMlb",
                     "123qwe!@#QWE", "Mobile"), EHotelId, OfferId, SearchKey, "fa-IR", false))));
 
@@ -172,7 +172,6 @@ public class RoomsAdapter extends BaseAdapter {
         @Override
         protected void onPostExecute(String result) {
 
-
             try {
 
                 if (getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getErrors()!=null){
@@ -180,10 +179,7 @@ public class RoomsAdapter extends BaseAdapter {
 
                 }else if(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().length==0){
                     alertDialogPolicy.setText("نتیجه ای برای جستجو شما حاصل نشد.");
-
-
                 }else{
-
                     alertDialogPolicy.setText("اتاق" + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() + ": کنسل کردن از " +
                             Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
@@ -195,9 +191,6 @@ public class RoomsAdapter extends BaseAdapter {
                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() + " جریمه می شود.");
 
                 }
-
-
-
 
             } catch (Exception e) {
                 if (!Utility.isNetworkAvailable(context)) {

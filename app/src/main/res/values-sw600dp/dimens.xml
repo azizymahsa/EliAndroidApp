@@ -114,5 +114,8 @@
     <dimen name="_10dp_margin_comment">15dp</dimen>
     <dimen name="_5dp_margin_comment">8dp</dimen>
     <dimen name="_210dp_height_comment">350dp</dimen>
+    <dimen name="_10dpTabletSize">44dp</dimen>
+    <dimen name="_5dpTabletSize">20dp</dimen>
+    <dimen name="_0dpTablet">24dp</dimen>
 
 </resources>

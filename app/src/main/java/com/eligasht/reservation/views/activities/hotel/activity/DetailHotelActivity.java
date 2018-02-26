@@ -240,7 +240,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         rlLoading2.setOnClickListener(this);
         btnOneComment.setOnClickListener(this);
 
-
         Utility.setAnimLoading(this);
 
     }
