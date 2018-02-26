@@ -612,7 +612,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     }//end oncreate
 
     private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
-       // ProgressDialog pdLoading = new ProgressDialog(PassengerHotelActivity.this);
+        // ProgressDialog pdLoading = new ProgressDialog(PassengerHotelActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -986,7 +986,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     //get Error
                     JSONObject getError = jsonObj.getJSONObject("Errors");
                     String message = getError.getString("Message");
-                   // Toast.makeText(PassengerHotelActivity.this, message, Toast.LENGTH_LONG).show();
+                    // Toast.makeText(PassengerHotelActivity.this, message, Toast.LENGTH_LONG).show();
                     AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
                     AlertDialogPassengerFlight.setText(message);
                 }
@@ -1026,7 +1026,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
     //het khadamat
     private class AsyncFetch extends AsyncTask<String, String, String> {
-       // ProgressDialog pdLoading = new ProgressDialog(PassengerHotelActivity.this);
+        // ProgressDialog pdLoading = new ProgressDialog(PassengerHotelActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -1233,7 +1233,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 listKhadamat.setAdapter(mAdapter);
                 setAnimation();
             } catch (JSONException e) {
-               // Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                // Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
                 AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
             }
@@ -1316,10 +1316,10 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
             detailsPartner.put("WebUser_ID ", Prefs.getString("userId","-1"));//Purchase
 
+
             headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", "fa-IR");
-
             headerJson.put("Type", "H");
             headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
             headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
@@ -1407,7 +1407,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
-           // identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
+            // identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             manJson.put("identity", identityJson);
             //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);
@@ -1507,15 +1507,15 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         counter--;
 
                     }else{*/
-                        //////////////////////
-                        linear_mosaferan.setVisibility(View.GONE);
-                        linear_saler.setVisibility(View.VISIBLE);
+                    //////////////////////
+                    linear_mosaferan.setVisibility(View.GONE);
+                    linear_saler.setVisibility(View.VISIBLE);
 
 
-                        txtTitle.setText(" مشخصات خریدار ");
-                        ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-                        ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-                  //  }
+                    txtTitle.setText(" مشخصات خریدار ");
+                    ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+                    ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
+                    //  }
                 }else if(linear_saler.getVisibility() == View.VISIBLE) {
 
                     Prefs.putBoolean("BACK_HOME", true);
@@ -1559,7 +1559,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     ///Validate
                     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                     if ( RqPartner_Email.trim().matches(emailPattern) &&  RqPartner_Email.trim().length() > 0) {
-                   // if( RqPartner_Email.trim().length()>6 ){
+                        // if( RqPartner_Email.trim().length()>6 ){
                         ((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
@@ -1871,10 +1871,92 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                         //faghat yek otagh
                         if(jsonObj != null)
-                        if( jsonObj.length()==1){
-                            if(sum == 0) {
-                                try {
-                                    if(rooms==1){
+                            if( jsonObj.length()==1){
+                                if(sum == 0) {
+                                    try {
+                                        if(rooms==1){
+
+                                            countK = jsonObj.getJSONObject(room).getInt("CountK");
+                                            countB = jsonObj.getJSONObject(room).getInt("CountB");
+                                            countN = jsonObj.getJSONObject(room).getInt("CountN");
+                                            sum = countB + countK + countN;
+                                            rooms=rooms-1;
+                                            room=room+1;
+                                        }
+
+                                        System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
+
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+
+                                if(sum>0){
+                                    System.out.println("gender:"+Gender);
+                                    //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    if(counter-1 ==1){
+                                        db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+
+                                    }else{
+                                        db.insertData(counter-1,txtTitleCountM.getText().toString() ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    }
+                                    System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
+                                    if(countB>=1) {
+                                        System.out.println("countB:"+countB);
+                                        //  txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (بزرگسال) ");
+                                        //  imgCount.setText("اتاق "+getCounter(rooms+1));
+                                        countB--;
+                                    }else if(countK>=1) {
+                                        System.out.println("countK:"+countK);
+                                        // txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (کودک) ");
+                                        // imgCount.setText("اتاق "+getCounter(rooms+1));
+                                        countK--;
+                                    }else if(countN>=1) {
+                                        System.out.println("countN:"+countN);
+                                        // txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (نوزاد) ");
+                                        //  imgCount.setText("اتاق "+getCounter(rooms+1));
+                                        countN--;
+                                    }
+                                    if(countB!=0){
+
+                                        txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
+                                        imgCount.setText("اتاق "+getCounter(room));
+                                    }
+                                    else if(countK!=0){
+
+                                        txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
+                                        imgCount.setText("اتاق "+getCounter(room));
+                                    }
+                                    else if(countN!=0){
+
+                                        txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
+                                        imgCount.setText("اتاق "+getCounter(room));
+                                    }
+
+
+                                    System.out.println("counterMosafer:"+getCounter(counter)+counter);
+
+                                    counter++;
+                                    sum--;
+                                    ///pak kardan data haye mosafere ghabli:
+                                    if(sum>0){
+                                        //counter--;
+
+                                        txttavalodm.setText("");
+                                        txtnamem.setText("");
+                                        txtfamilym.setText("");
+                                        txtexp_passport.setText("");
+                                        txtnumber_passport.setText("");
+                                    }
+                                    System.out.println("insert:"+"sum:"+sum);
+                                }
+                            }else if (rooms>=0){
+
+                                if(sum == 0) {
+                                    try {
+                                        //if(rooms==1){
 
                                         countK = jsonObj.getJSONObject(room).getInt("CountK");
                                         countB = jsonObj.getJSONObject(room).getInt("CountB");
@@ -1882,181 +1964,99 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                         sum = countB + countK + countN;
                                         rooms=rooms-1;
                                         room=room+1;
+                                        //}
+
+                                        System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
+
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
 
-                                    System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
                                 }
 
-                            }
-
-                            if(sum>0){
-                                System.out.println("gender:"+Gender);
-                                //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-                                if(counter-1 ==1){
-                                    db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-
-                                }else{
-                                    db.insertData(counter-1,txtTitleCountM.getText().toString() ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-                                }
-                                System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
-                                if(countB>=1) {
-                                    System.out.println("countB:"+countB);
-                                    //  txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (بزرگسال) ");
-                                    //  imgCount.setText("اتاق "+getCounter(rooms+1));
-                                    countB--;
-                                }else if(countK>=1) {
-                                    System.out.println("countK:"+countK);
-                                    // txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (کودک) ");
-                                    // imgCount.setText("اتاق "+getCounter(rooms+1));
-                                    countK--;
-                                }else if(countN>=1) {
-                                    System.out.println("countN:"+countN);
-                                    // txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (نوزاد) ");
-                                    //  imgCount.setText("اتاق "+getCounter(rooms+1));
-                                    countN--;
-                                }
-                                if(countB!=0){
-
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
-                                }
-                                else if(countK!=0){
-
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
-                                }
-                                else if(countN!=0){
-
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
-                                }
-
-
-                                System.out.println("counterMosafer:"+getCounter(counter)+counter);
-
-                                counter++;
-                                sum--;
-                                ///pak kardan data haye mosafere ghabli:
                                 if(sum>0){
-                                    //counter--;
+                                    System.out.println("gender:"+Gender);
+                                    //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    if(counter-1 ==1){
+                                        db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
-                                    txttavalodm.setText("");
-                                    txtnamem.setText("");
-                                    txtfamilym.setText("");
-                                    txtexp_passport.setText("");
-                                    txtnumber_passport.setText("");
-                                }
-                                System.out.println("insert:"+"sum:"+sum);
-                            }
-                        }else if (rooms>=0){
+                                    }else{
+                                        db.insertData(counter-1,txtTitleCountM.getText().toString() ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                        System.out.println("InsertMosafercou:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn+" "+imgCount.getText().toString());
+                                    }
+                                    System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
+                                    if(countB>=1) {
+                                        System.out.println("countB:"+countB);
+                                        txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (بزرگسال) ");
+                                        imgCount.setText("اتاق "+getCounter(room));
+                                        countB--;
+                                    }else if(countK>=1) {
+                                        System.out.println("countK:"+countK);
+                                        txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (کودک) ");
+                                        imgCount.setText("اتاق "+getCounter(room));
+                                        countK--;
+                                    }else if(countN>=1) {
+                                        System.out.println("countN:"+countN);
+                                        txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (نوزاد) ");
+                                        imgCount.setText("اتاق "+getCounter(room));
+                                        countN--;
+                                    }
+                                    if(countB!=0){
 
-                            if(sum == 0) {
-                                try {
-                                    //if(rooms==1){
-
-                                    countK = jsonObj.getJSONObject(room).getInt("CountK");
-                                    countB = jsonObj.getJSONObject(room).getInt("CountB");
-                                    countN = jsonObj.getJSONObject(room).getInt("CountN");
-                                    sum = countB + countK + countN;
-                                    rooms=rooms-1;
-                                    room=room+1;
-                                    //}
-
-                                    System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
-
-                            if(sum>0){
-                                System.out.println("gender:"+Gender);
-                                //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-                                if(counter-1 ==1){
-                                    db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-
-                                }else{
-                                    db.insertData(counter-1,txtTitleCountM.getText().toString() ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-                                    System.out.println("InsertMosafercou:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn+" "+imgCount.getText().toString());
-                                }
-                                System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
-                                if(countB>=1) {
-                                    System.out.println("countB:"+countB);
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (بزرگسال) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
-                                    countB--;
-                                }else if(countK>=1) {
-                                    System.out.println("countK:"+countK);
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (کودک) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
-                                    countK--;
-                                }else if(countN>=1) {
-                                    System.out.println("countN:"+countN);
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (نوزاد) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
-                                    countN--;
-                                }
-                                if(countB!=0){
-
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
-                                }
-                                else if(countK!=0){
-
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
-                                }
-                                else if(countN!=0){
-
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
-                                }else if(countB + countK + countN==0){
-
-                                    if(rooms-1>=0){
                                         txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-                                        imgCount.setText("اتاق "+getCounter(room+1));
+                                        imgCount.setText("اتاق "+getCounter(room));
+                                    }
+                                    else if(countK!=0){
+
+                                        txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
+                                        imgCount.setText("اتاق "+getCounter(room));
+                                    }
+                                    else if(countN!=0){
+
+                                        txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
+                                        imgCount.setText("اتاق "+getCounter(room));
+                                    }else if(countB + countK + countN==0){
+
+                                        if(rooms-1>=0){
+                                            txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
+                                            imgCount.setText("اتاق "+getCounter(room+1));
+                                            txttavalodm.setText("");
+                                            txtnamem.setText("");
+                                            txtfamilym.setText("");
+                                            txtexp_passport.setText("");
+                                            txtnumber_passport.setText("");
+                                        }
+                                    }
+
+
+
+                                    System.out.println("counterMosafer:"+getCounter(counter)+counter);
+
+                                    counter++;
+                                    sum--;
+                                    ///pak kardan data haye mosafere ghabli:
+                                    if(sum>0){
+                                        //counter--;
+
                                         txttavalodm.setText("");
                                         txtnamem.setText("");
                                         txtfamilym.setText("");
                                         txtexp_passport.setText("");
                                         txtnumber_passport.setText("");
+                                        btnzan.setChecked(false);
+                                        btnmard.setChecked(false);
+                                        Gensiyat="";
+                                        txtnamem.setFocusable(true);
                                     }
+                                    System.out.println("insert:"+"sum:"+sum);
                                 }
+                                db.closeDB();
 
 
 
-                                System.out.println("counterMosafer:"+getCounter(counter)+counter);
-
-                                counter++;
-                                sum--;
-                                ///pak kardan data haye mosafere ghabli:
-                                if(sum>0){
-                                    //counter--;
-
-                                    txttavalodm.setText("");
-                                    txtnamem.setText("");
-                                    txtfamilym.setText("");
-                                    txtexp_passport.setText("");
-                                    txtnumber_passport.setText("");
-                                    btnzan.setChecked(false);
-                                    btnmard.setChecked(false);
-                                    Gensiyat="";
-                                    txtnamem.setFocusable(true);
-                                }
-                                System.out.println("insert:"+"sum:"+sum);
+                                linear_mosaferan.clearFocus();
                             }
-                            db.closeDB();
-
-
-
-                            linear_mosaferan.clearFocus();
-                        }
 
 
                         //call api saler
@@ -2115,19 +2115,19 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             case R.id.btn_saler:
                 if(FlagTab) {
-                linear_saler.setVisibility(View.VISIBLE);
-                linear_mosaferan.setVisibility(View.GONE);
-                linear_list_khadamat.setVisibility(View.GONE);
-                linear_pish_factor.setVisibility(View.GONE);
+                    linear_saler.setVisibility(View.VISIBLE);
+                    linear_mosaferan.setVisibility(View.GONE);
+                    linear_list_khadamat.setVisibility(View.GONE);
+                    linear_pish_factor.setVisibility(View.GONE);
 
-                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-                ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
-                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
-                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
-                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
-                txtTitle.setText(" مشخصات خریدار ");
-                  setAnimation();
+                    ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+                    ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+                    ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+                    ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+                    ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
+                    ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
+                    txtTitle.setText(" مشخصات خریدار ");
+                    setAnimation();
                 }
                 //myScrollView.setOnTouchListener(null);
 				/*if (linear_pish_factor.getVisibility() == View.VISIBLE){
@@ -2171,10 +2171,10 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 break;
             case R.id.btn_khadamat:
                 if(FlagTab) {
-                linear_saler.setVisibility(View.GONE);
-                linear_mosaferan.setVisibility(View.GONE);
-                linear_list_khadamat.setVisibility(View.VISIBLE);
-                linear_pish_factor.setVisibility(View.GONE);
+                    linear_saler.setVisibility(View.GONE);
+                    linear_mosaferan.setVisibility(View.GONE);
+                    linear_list_khadamat.setVisibility(View.VISIBLE);
+                    linear_pish_factor.setVisibility(View.GONE);
 
 			/*	myScrollView.setSmoothScrollingEnabled(false); // disable scrolling
 				myScrollView.setOnTouchListener(new View.OnTouchListener() {
@@ -2183,16 +2183,16 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 						return true;
 					}
 				});*/
-                //myScrollView.setVisibility(View.GONE);
+                    //myScrollView.setVisibility(View.GONE);
 
-                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-                ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
-                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+                    ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+                    ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+                    ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 
-                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
-                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
-                txtTitle.setText(" افزودن خدمات به سبد خرید");
+                    ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+                    ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+                    ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
+                    txtTitle.setText(" افزودن خدمات به سبد خرید");
                     setAnimation();
                 }
                 break;
@@ -2442,15 +2442,15 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 counter--;
 
             } else {*/
-                //////////////////////
-                linear_mosaferan.setVisibility(View.GONE);
-                linear_saler.setVisibility(View.VISIBLE);
+            //////////////////////
+            linear_mosaferan.setVisibility(View.GONE);
+            linear_saler.setVisibility(View.VISIBLE);
 
 
-                txtTitle.setText(" مشخصات خریدار ");
-                ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
-                ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-           // }
+            txtTitle.setText(" مشخصات خریدار ");
+            ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
+            ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
+            // }
         } else if (linear_saler.getVisibility() == View.VISIBLE) {
 
             Prefs.putBoolean("BACK_HOME", true);

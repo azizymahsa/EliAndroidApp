@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,11 +48,13 @@ public class FlightHotelAdapter extends BaseAdapter {
     private ViewHolder holder;
     ImageLoader imageLoader;
     Activity activity;
+    TextView DateTime;
 
-    public FlightHotelAdapter(ArrayList<SelectFlightHotelModel> selectHotelModelArrayList, Activity activity) {
+    public FlightHotelAdapter(ArrayList<SelectFlightHotelModel> selectHotelModelArrayList, Activity activity,TextView DateTime) {
         this.activity = activity;
         this.selectHotelModelArrayList = selectHotelModelArrayList;
         this.activity = activity;
+        this.DateTime = DateTime;
         inflater = LayoutInflater.from(activity);
         imageLoader = ImageLoader.getInstance();
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(activity));
@@ -192,7 +195,9 @@ public class FlightHotelAdapter extends BaseAdapter {
                 i.putExtra("FlightID", selectHotelModelArrayList.get(position).getFlightId());
                 i.putExtra("CheckInHF", activity.getIntent().getExtras().getString("CheckInHF"));
                 i.putExtra("CheckOutHF", activity.getIntent().getExtras().getString("CheckOutHF"));
+                i.putExtra("DateTime", DateTime.getText().toString());
                 i.putExtra("type", 1);
+                Log.e("DateTime1111",  DateTime.getText().toString());
 
                 activity.startActivity(i);
             }

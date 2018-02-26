@@ -33,7 +33,7 @@
     <dimen name="_1dp_margin">1dp</dimen>
     <dimen name="_5dp_padding">8dp</dimen>
     <dimen name="_5dp_margin">8dp</dimen>
-    <dimen name="_10dp_textSize">12dp</dimen>
+    <dimen name="_10dp_textSize">16dp</dimen>
     <dimen name="_60dp_hight">90dp</dimen>
     <dimen name="_25dp_txtSize">35dp</dimen>
     <dimen name="_12dp_txtSize">12dp</dimen>

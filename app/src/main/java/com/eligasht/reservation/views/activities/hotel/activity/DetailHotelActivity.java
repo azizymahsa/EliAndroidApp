@@ -130,7 +130,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private AddCommnetDialog addCommnetDialog;
     private String comment, userName, title;
     private CommentAdapterRecycle commentAdapter;
-    private TextView tvSortComment;
+    private TextView tvSortComment,tvDateDetail;
     boolean isNew = false;
     private ScrollView svDetail;
     private RelativeLayout elNotFound;
@@ -190,6 +190,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         btnSortComment = findViewById(R.id.btnSortComment);
         vComment = findViewById(R.id.vComment);
         llCommentClick = findViewById(R.id.llCommentClick);
+        tvDateDetail = findViewById(R.id.tvDateDetail);
         tvSortComment = findViewById(R.id.tvSortComment);
         btnOk = findViewById(R.id.btnOk);
         elNotFound = findViewById(R.id.elNotFound);
@@ -241,7 +242,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         btnOneComment.setOnClickListener(this);
 
         Utility.setAnimLoading(this);
-
+        tvDateDetail.setText(getIntent().getExtras().getString("DateTime"));
     }
 
     @Override

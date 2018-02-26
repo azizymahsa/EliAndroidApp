@@ -341,7 +341,6 @@
                 android:background="@drawable/background_strock_white_comment"
                 android:gravity="center|center_vertical"
                 android:hint="نام و نام خانوادگی"
-                android:maxLength="20"
                 android:singleLine="true"
                 android:textColor="#000000"
                 android:textColorHint="#c2c2c2"
