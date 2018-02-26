@@ -325,6 +325,8 @@
 
                         android:layout_width="@dimen/_260dp_f"
                         android:layout_height="@dimen/_18dp_ff"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:padding="4dp"
@@ -457,6 +459,7 @@
                     android:layout_height="match_parent"
                    android:gravity="center"
                    android:textSize="@dimen/text_size_12dp"
+                   android:layout_marginLeft="@dimen/_5dpTabletSize"
                    android:textAppearance="@style/Arrow"
                    android:textColor="#000"
                    android:text="@string/icon_exp_up"
