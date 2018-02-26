@@ -138,7 +138,6 @@
                             android:textColor="@color/text_color_4d"
                             android:gravity="center|top"
                             android:textSize="@dimen/_25dp_normal_iconSize"
-                            android:layout_marginLeft="2dp"
                             />
 
                         <TextView
