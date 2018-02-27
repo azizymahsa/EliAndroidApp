@@ -195,10 +195,11 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
+                    errorMessage=errorMessage+"\n"+"لطفا نام و نام خانوادگی درست وارد کنید";
+
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
-                    errorMessage=errorMessage+"\n"+"لطفا نام و نام خانوادگی درست وارد کنید";
                 }
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 if (!etMail.getText().toString().matches(emailPattern) || TextUtils.isEmpty(etMail.getText())) {
