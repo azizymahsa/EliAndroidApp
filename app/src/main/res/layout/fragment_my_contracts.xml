@@ -9,25 +9,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/btn_user_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:selectableItemBackground"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="12sp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="قراردادهای من"
-                android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/gray_dark"
-                android:textSize="@dimen/_12dp_normal_textSize" />
-        </LinearLayout>
 
         <ListView
             android:id="@+id/lvContract"

@@ -42,8 +42,7 @@ public class ContractAdapter extends BaseAdapter {
     private ArrayList<ContractModel> contractModels = new ArrayList<>();
 
 
-
-    public ContractAdapter(ProfileActivity context, ArrayList<ContractModel> contractModels ) {
+    public ContractAdapter(ProfileActivity context, ArrayList<ContractModel> contractModels) {
         this.contractModels = contractModels;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -89,8 +88,8 @@ public class ContractAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        try{
-            holder.num_contract.setText(contractModels.get(position).num_contract);
+        try {
+            holder.num_contract.setText(  "شماره قرار داد:"+ contractModels.get(position).num_contract);
             holder.date.setText(contractModels.get(position).date);
             holder.path.setText(contractModels.get(position).path);
             holder.depart_date.setText(contractModels.get(position).depart_date);
@@ -99,45 +98,43 @@ public class ContractAdapter extends BaseAdapter {
             holder.remained_price.setText(contractModels.get(position).remained_price);
             holder.follower.setText(contractModels.get(position).follower);
             holder.email.setText(contractModels.get(position).email);
-        }catch (Exception e){
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 
-        if (contractModels.get(position).getTicketIssue().equals("1")){
+        if (contractModels.get(position).getTicketIssue().equals("1")) {
             holder.ticket.setText("اقدام شده");
         }
 
-        if (contractModels.get(position).getTicketIssue().equals("1")){
+        if (contractModels.get(position).getTicketIssue().equals("1")) {
             holder.ticket.setText("تایید شده");
         }
 
 
-
-        if (contractModels.get(position).getHotelIssue().equals("1")){
+        if (contractModels.get(position).getHotelIssue().equals("1")) {
             holder.hotel.setText("اقدام شده");
         }
 
-        if (contractModels.get(position).getHotelConfirm().equals("1")){
+        if (contractModels.get(position).getHotelConfirm().equals("1")) {
             holder.hotel.setText("تایید شده");
         }
 
 
-
-        if (contractModels.get(position).getVisaIssue().equals("1")){
+        if (contractModels.get(position).getVisaIssue().equals("1")) {
             holder.visa.setText("اقدام شده");
         }
 
-        if (contractModels.get(position).getVisaConfirm().equals("1")){
+        if (contractModels.get(position).getVisaConfirm().equals("1")) {
             holder.visa.setText("تایید شده");
         }
 
 
-        if (contractModels.get(position).getDocuments().equals("1")){
+        if (contractModels.get(position).getDocuments().equals("1")) {
             holder.visa.setText("تحویل شده");
         }
 
-        if (contractModels.get(position).getDocuments().equals("1")){
+        if (contractModels.get(position).getDocuments().equals("1")) {
             holder.visa.setText("");
         }
         holder.btnSaveInfo.setOnClickListener(new View.OnClickListener() {
@@ -151,37 +148,24 @@ public class ContractAdapter extends BaseAdapter {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public class ViewHolder {
-         TextView num_contract;
-         TextView date;
-         TextView path;
-         TextView depart_date;
-         TextView login_date;
-         TextView sum_price;
-         TextView remained_price;
-         TextView follower;
-         TextView email;
-         TextView visa;
-         TextView ticket;
-         TextView hotel;
-         Button btnSaveInfo;
+        TextView num_contract;
+        TextView date;
+        TextView path;
+        TextView depart_date;
+        TextView login_date;
+        TextView sum_price;
+        TextView remained_price;
+        TextView follower;
+        TextView email;
+        TextView visa;
+        TextView ticket;
+        TextView hotel;
+        Button btnSaveInfo;
         TextView documents;
     }
 
-    public EmailContractReq getEmailContractReq(int pos){
+    public EmailContractReq getEmailContractReq(int pos) {
         EmailContractReq emailContractReq = new EmailContractReq();
         emailContractReq.setCulture("fa-IR");
         emailContractReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));

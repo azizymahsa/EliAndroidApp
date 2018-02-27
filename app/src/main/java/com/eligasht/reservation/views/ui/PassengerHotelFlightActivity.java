@@ -23,6 +23,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -2232,7 +2233,20 @@ System.out.println("wwwTPRICE:"+gheymatKh);
         mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this,gheymatKh);
         mAdapter.setData(data);
         listKhadamat.setAdapter(mAdapter);
+        final ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+        //scroll_partner.fullScroll(ScrollView.FOCUS_UP);
+        scroll_partner.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                scroll_partner.getViewTreeObserver().removeOnPreDrawListener(this);
+                scroll_partner.setScrollY(0);
+                return false;
+            }
+        });
+        scroll_partner.clearFocus();
+        txtemeliP.clearFocus();
 
+        txtemeliP.setCursorVisible(false);
     }
     public String getCounter(int i) {
         String s = "";

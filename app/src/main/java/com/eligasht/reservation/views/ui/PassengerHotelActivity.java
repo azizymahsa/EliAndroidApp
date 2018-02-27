@@ -23,6 +23,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -2514,6 +2515,20 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         mAdapter = new GetHotelKhadmatAdapter(PassengerHotelActivity.this, data, PassengerHotelActivity.this,gheymatKh);
         mAdapter.setData(data);
         listKhadamat.setAdapter(mAdapter);
+        final ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+        //scroll_partner.fullScroll(ScrollView.FOCUS_UP);
+        scroll_partner.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                scroll_partner.getViewTreeObserver().removeOnPreDrawListener(this);
+                scroll_partner.setScrollY(0);
+                return false;
+            }
+        });
+        scroll_partner.clearFocus();
+        txtemeliP.clearFocus();
+
+        txtemeliP.setCursorVisible(false);
 
     }
     public static void updateTotalInfos(long serviceTotalPrice) {
@@ -2855,7 +2870,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnamem.setError("لطفا نام را درست وارد کنید ");
+                            txtnamem.setError(" نام را  وارد کنید(به انگلیسی) ");
                         }
                 }
                 break;
@@ -2870,7 +2885,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilym.setError("لطفا نام خانوادگی را درست وارد کنید ");
+                            txtfamilym.setError(" نام خانوادگی را  وارد کنید(به انگلیسی) ");
                         }
                 }
                 break;
@@ -2936,7 +2951,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                         }else{
                             //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnameP.setError("لطفا نام را به فارسی وارد کنید ");
+                            txtnameP.setError(" نام را وارد کنید(به فارسی) ");
                         }
                 }
                 break;
@@ -2951,7 +2966,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                         }else{
                             //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilyP.setError("لطفا نام خانوادگی را به فارسی وارد کنید ");
+                            txtfamilyP.setError("لطفا نام خانوادگی را وارد کنید(به فارسی) ");
                         }
                 }
                 break;

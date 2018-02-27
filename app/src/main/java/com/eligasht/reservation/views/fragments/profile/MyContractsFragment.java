@@ -77,22 +77,23 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
                         WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getFinalPrice() + "",
                         WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getRemained() + "",
                         WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getFollowerName() + "",
-                        WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail()+"",
-                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getVisaConfirm()+"",
-                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getVisaIssue()+"",
-                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getTicketConfirm()+"",
-                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getTicketIssue()+"",
-                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getHotelConfirm()+"",
-                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getHotelIssue()+"",
-                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getCntDocDeliver()+"",
-                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getEncryptedCnt_ID()+""
-                        ));
+                        WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getVisaConfirm() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getVisaIssue() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getTicketConfirm() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getTicketIssue() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getHotelConfirm() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getHotelIssue() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getCntDocDeliver() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getEncryptedCnt_ID() + ""
+                ));
 
             }
 
-            lvContract.setAdapter(new ContractAdapter((ProfileActivity)getActivity(),contractModels));
+            lvContract.setAdapter(new ContractAdapter((ProfileActivity) getActivity(), contractModels));
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 
     @Override
@@ -101,7 +102,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    public boolean isValidForm(){
+    public boolean isValidForm() {
         // check validation and if all thigs are ok return true else return false;
         return true;
     }

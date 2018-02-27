@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +23,8 @@ import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox;
 import com.eligasht.reservation.views.dialogs.NumberPickerDialog;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
  * Created by elham.bonyani on 1/25/2018.
@@ -94,10 +97,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         edt_last_name_fa = view.findViewById(R.id.edt_last_name_fa);
         edt_code_meli = view.findViewById(R.id.edt_code_meli);
         edt_email_user_name = view.findViewById(R.id.edt_email_user_name);
-        chk_gender_man = (SmoothCheckBox)view.findViewById(R.id.chB_man);
-        chk_gender_woman = (SmoothCheckBox)view.findViewById(R.id.chB_woman);
+        chk_gender_man = (SmoothCheckBox) view.findViewById(R.id.chB_man);
+        chk_gender_woman = (SmoothCheckBox) view.findViewById(R.id.chB_woman);
         birthday_date = view.findViewById(R.id.edt_birthday);
-        txt_birthday =view.findViewById(R.id.txt_birthday);
+        txt_birthday = view.findViewById(R.id.txt_birthday);
 
         //set information of user
         birthdayDate = WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserBirthDayMiladi();
@@ -112,14 +115,13 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         edt_email_user_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
 
 
-
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "dd/MM/yyyy");
 
         int currentDay = DateUtil.getDayOfMonth(currentDateTime, "dd/MM/yyyy", true);
         int currentYear = DateUtil.getYear(currentDateTime, "dd/MM/yyyy", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "dd/MM/yyyy", true) - 1;
 
-        if(ValidationTools.isEmptyOrNull(birthdayDate)){
+        if (ValidationTools.isEmptyOrNull(birthdayDate)) {
             txt_birthday.setText("انتخاب کنید");
             datePickerDialogDepart = DatePickerDialog.newInstance(
                     this,
@@ -127,8 +129,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                     0,
                     1
             );
-        }else{
-            try{
+        } else {
+            try {
                 txt_birthday.setText(DateUtil.getLongStringDate(birthdayDate, "dd/MM/yyyy", true));
                 int day = DateUtil.getDayOfMonth(birthdayDate, "dd/MM/yyyy", true);
                 int year = DateUtil.getYear(birthdayDate, "dd/MM/yyyy", true);
@@ -141,11 +143,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                 );
                 datePickerDialogDepart.setYearRange(1330, currentYear);
 
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
 
         }
-
-
 
 
         txt_arrow1.setText(getString(R.string.icon_arrow_up));
@@ -186,7 +187,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
 
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -212,43 +212,44 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                     txt_arrow2.setText(getString(R.string.icon_arrow_down));
                 }
                 break;
-            case R.id.edt_birthday :
+            case R.id.edt_birthday:
                 datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "BirthDay");
                 break;
         }
     }
 
 
-    public boolean isValidForm(){
+    public boolean isValidForm() {
         // check validation and if all thigs are ok return true else return false;
-        if(birthdayDate == null){
-            Toast.makeText(getActivity(),"تاریخ تولد خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+        if (birthdayDate == null) {
+            Toast.makeText(getActivity(), "تاریخ تولد خود را وارد کنید.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(edt_name_fa.length() == 0){
-            Toast.makeText(getActivity(),"نام فارسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+        if (edt_name_fa.length() == 0) {
+            Toast.makeText(getActivity(), "نام فارسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(edt_name_En.length() == 0){
-            Toast.makeText(getActivity(),"نام انگلیسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+        if (edt_name_En.length() == 0) {
+            Toast.makeText(getActivity(), "نام انگلیسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(edt_last_name_fa.length() == 0){
-            Toast.makeText(getActivity(),"نام خانوادگی فارسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+        if (edt_last_name_fa.length() == 0) {
+            Toast.makeText(getActivity(), "نام خانوادگی فارسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(edt_last_name_En.length() == 0){
-            Toast.makeText(getActivity(),"نام خانوادگی انگلیسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+        if (edt_last_name_En.length() == 0) {
+            Toast.makeText(getActivity(), "نام خانوادگی انگلیسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(edt_mobile.length() == 0){
-            Toast.makeText(getActivity(),"شماره موبایل خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+        if (edt_mobile.length() == 0) {
+            Toast.makeText(getActivity(), "شماره موبایل خود را وارد کنید.", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
+
     //request for edit profile
-    public RegisterListReq getRegisterListReq(){
+    public RegisterListReq getRegisterListReq() {
         RegisterListReq registerListReq = new RegisterListReq();
         registerListReq.setWebUserFnameF(edt_name_fa.getText().toString());
         registerListReq.setWebUserFnameE(edt_name_En.getText().toString());
@@ -259,10 +260,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         registerListReq.setWebUserMobile(edt_mobile.getText().toString());
         registerListReq.setWebUserAddress(edt_address.getText().toString());
         registerListReq.setWebUserNationalCode(edt_code_meli.getText().toString());
-        if(chk_gender_man.isChecked()){
+        if (chk_gender_man.isChecked()) {
             registerListReq.setWebUserGender(true);
         }
-        if(chk_gender_woman.isChecked()){
+        if (chk_gender_woman.isChecked()) {
             registerListReq.setWebUserGender(false);
         }
         registerListReq.setWebUserBirthDayMiladi(birthdayDate);
@@ -273,6 +274,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
         return registerListReq;
     }
+
     public void setChecked(boolean checked) {
         isChecked = checked;
     }

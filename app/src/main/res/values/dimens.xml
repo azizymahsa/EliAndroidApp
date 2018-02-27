@@ -5,5 +5,11 @@
 	
 
     <dimen name="text_message">13sp</dimen>
+    <dimen name="_100dp_profile">100dp</dimen>
+    <dimen name="_m50_profile">-50dp</dimen>
+    <dimen name="_45_profile">45dp</dimen>
+    <dimen name="_40dp_password">40dp</dimen>
+    <dimen name="_title_password">15sp</dimen>
+    <dimen name="path_dim">50dp</dimen>
 
 </resources>

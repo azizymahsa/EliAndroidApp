@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fancy="http://schemas.android.com/tools"
+
     android:fillViewport="true">
 
     <LinearLayout
@@ -64,9 +64,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="10sp"
                     android:paddingLeft="12dp"
-                    android:paddingRight="12dp">
+                    android:paddingRight="12dp"
+                    android:paddingTop="10sp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -76,22 +76,22 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="نام (Fa)*"
-                            android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-
+                            android:gravity="center|right"
                             android:paddingBottom="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:text="نام (Fa)*"
+
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <EditText
                             android:id="@+id/edt_name_fa"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/background_strock_gray"
-                            android:textColor="@color/dark_blue"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:textColor="@color/dark_blue" />
 
 
                     </LinearLayout>
@@ -99,33 +99,31 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginBottom="15dp">
+                        android:layout_marginBottom="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="نام خانوادگی (Fa)*"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:paddingBottom="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <EditText
                             android:id="@+id/edt_last_name_fa"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/background_strock_gray"
-                            android:textColor="@color/dark_blue"
                             android:gravity="center"
                             android:imeOptions="actionDone"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:textColor="@color/dark_blue" />
 
 
                     </LinearLayout>
-
-
 
 
                 </LinearLayout>
@@ -186,9 +184,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:paddingBottom="@dimen/_12dp"
                     android:paddingLeft="@dimen/_12dp"
-                    android:paddingRight="@dimen/_12dp"
-                    android:paddingBottom="@dimen/_12dp">
+                    android:paddingRight="@dimen/_12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -198,22 +196,22 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="ایمیل - نام کاربری"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:paddingBottom="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <EditText
                             android:id="@+id/edt_email_user_name"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/background_strock_gray"
-                            android:textColor="@color/dark_blue"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:textColor="@color/dark_blue" />
 
 
                     </LinearLayout>
@@ -227,22 +225,22 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="نام(En)*"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:paddingBottom="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <EditText
                             android:id="@+id/edt_name_En"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/background_strock_gray"
-                            android:textColor="@color/dark_blue"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:textColor="@color/dark_blue" />
 
 
                     </LinearLayout>
@@ -255,22 +253,22 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="نام خانوادگی (En)*"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:paddingBottom="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <EditText
                             android:id="@+id/edt_last_name_En"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/background_strock_gray"
-                            android:textColor="@color/dark_blue"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:textColor="@color/dark_blue" />
 
                     </LinearLayout>
 
@@ -282,22 +280,22 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="کدملی"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:paddingBottom="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <EditText
                             android:id="@+id/edt_code_meli"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/background_strock_gray"
-                            android:textColor="@color/dark_blue"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:textColor="@color/dark_blue" />
 
                     </LinearLayout>
 
@@ -309,46 +307,48 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="جنسیت"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_40dp"
-                            android:orientation="horizontal"
-                            android:gravity="right">
+                            android:gravity="right"
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:gravity="center|right"
+                                android:paddingBottom="@dimen/_10dp_padding"
+                                android:paddingTop="@dimen/_10dp_padding"
                                 android:text="زن"
                                 android:textColor="@color/dark_blue"
-                                android:textSize="@dimen/_12dp_normal_textSize"
-                                android:paddingTop="@dimen/_10dp_padding"
-                                android:paddingBottom="@dimen/_10dp_padding"
-                                android:gravity="center|right"/>
+                                android:textSize="@dimen/_12dp_normal_textSize" />
+
                             <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
                                 android:id="@+id/chB_woman"
                                 android:layout_width="@dimen/_20dp"
                                 android:layout_height="@dimen/_20dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginLeft="@dimen/_5dp_margin"
+                                android:layout_gravity="center"
                                 android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="@dimen/_5dp_margin"
                                 android:layout_marginRight="10dp"
-                                app:color_checked="@color/app_base_color"
-                                android:layout_gravity="center"/>
+                                android:layout_marginTop="5dp"
+                                app:color_checked="@color/app_base_color" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:gravity="center|right"
+                                android:paddingBottom="@dimen/_10dp_padding"
+                                android:paddingTop="@dimen/_10dp_padding"
                                 android:text="مرد"
                                 android:textColor="@color/dark_blue"
-                                android:textSize="@dimen/_12dp_normal_textSize"
-                                android:paddingTop="@dimen/_10dp_padding"
-                                android:paddingBottom="@dimen/_10dp_padding"
-                                android:gravity="center|right"/>
+                                android:textSize="@dimen/_12dp_normal_textSize" />
 
                             <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
                                 android:id="@+id/chB_man"
@@ -362,6 +362,7 @@
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -370,24 +371,25 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="تلفن ثابت"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:paddingBottom="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <EditText
                             android:id="@+id/edt_home_phone"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/background_strock_gray"
-                            android:textColor="@color/dark_blue"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:textColor="@color/dark_blue" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -396,94 +398,98 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="موبایل*"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:paddingBottom="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <EditText
                             android:id="@+id/edt_mobile"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/background_strock_gray"
-                            android:textColor="@color/dark_blue"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:textColor="@color/dark_blue" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="5dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="تاریخ تولد*"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:paddingBottom="10dp"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
                         <LinearLayout
+                            android:id="@+id/edt_birthday"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:id="@+id/edt_birthday">
+                            android:orientation="horizontal">
+
                             <TextView
-                               android:id="@+id/txt_birthday"
+                                android:id="@+id/txt_birthday"
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
                                 android:layout_height="35dp"
-                                android:textColor="@color/dark_blue"
+                                android:layout_weight="1"
                                 android:gravity="right"
                                 android:singleLine="true"
-                                android:textSize="@dimen/_12dp_normal_textSize"
-                                android:text="انتخاب کنید" />
+                                android:text="انتخاب کنید"
+                                android:textColor="@color/dark_blue"
+                                android:textSize="@dimen/_12dp_normal_textSize" />
+
                             <TextView
                                 android:layout_width="0dp"
-                                android:layout_weight="0.2"
                                 android:layout_height="match_parent"
-                                android:textAppearance="@style/IconFonts"
-                                android:text="@string/icon_calander"
+                                android:layout_weight="0.2"
                                 android:gravity="center"
+                                android:text="@string/icon_calander"
+                                android:textAppearance="@style/IconFonts"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/icon_size_25dp" />
 
                         </LinearLayout>
 
 
-
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginBottom="45dp">
+                        android:layout_marginBottom="45dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
                             android:text="آدرس"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:paddingTop="@dimen/_10dp_padding"
-                            android:paddingBottom="@dimen/_10dp_padding"
-                            android:gravity="center|right"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <EditText
                             android:id="@+id/edt_address"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/background_strock_gray"
-                            android:textColor="@color/dark_blue"
                             android:gravity="center"
                             android:imeOptions="actionDone"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:textColor="@color/dark_blue" />
 
                     </LinearLayout>
 
@@ -493,8 +499,6 @@
 
             </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
         </android.support.v7.widget.CardView>
-
-
 
 
     </LinearLayout>
