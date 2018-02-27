@@ -133,7 +133,7 @@ public long sumTprice=0;
 			holder.imageView1.setBackgroundResource(R.drawable.ic_transfer_forudgahi);
 
 		holder.btnAddsabad.setTag(current.getServiceID());
-		if(current.getServiceNameEn().contains("Airport Transfer")&& current.getServiceTotalPrice()==0){
+		if(current.getServiceNameEn().contains("Airport Transfer")&& current.getServiceTotalPrice()==0&& Prefs.getString("Flag_First_Computing","F").equals("F")){
 			holder.txtAdd.setText("محاسبه قیمت");
 			if(Tprice==0) {
 				holder.txtServiceTotalPrice.setText("");
@@ -153,7 +153,31 @@ public long sumTprice=0;
 
 				}
 			}
+		}else{
+
+
+
+			if (current.isFlag()){
+
+				holder.btnAddsabad.setBackgroundResource(R.drawable.green_button);
+				holder.img_khadmat_row.setVisibility(View.VISIBLE);
+				holder.txtAdd.setText("اضافه شد");
+
+
+			}else{
+
+				holder.btnAddsabad.setBackgroundResource(R.drawable.blue_button);
+				holder.img_khadmat_row.setVisibility(View.GONE);
+				holder.txtAdd.setText("افزودن به سبد خرید");
+
+
+
+			}
+			notifyDataSetChanged();
+
+
 		}
+
 		holder.btnAddsabad.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -164,7 +188,7 @@ public long sumTprice=0;
 
 
 
-				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false") && Tprice==0){
+				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false") && Tprice==0 && Prefs.getString("Flag_First_Computing","F").equals("F")){
 					Intent intent=	new Intent(context, TransferActivity.class);
 
 					intent.putExtra("ArrialAirportCode",current.getExcursionDta().ArrialAirportCode);
