@@ -192,6 +192,7 @@
             android:visibility="visible">
 
             <ScrollView
+                android:id="@+id/scroll_partner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -216,11 +217,12 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
-                                android:gravity="right"
+                                android:gravity="right|center_vertical"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 
@@ -289,11 +291,12 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
-                                android:gravity="right"
+                                android:gravity="right|center_vertical"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 
@@ -402,11 +405,12 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
-                                android:gravity="right"
+                                android:gravity="right|center_vertical"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 
@@ -456,11 +460,12 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
-                                android:gravity="right"
+                                android:gravity="right|center_vertical"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 
@@ -510,11 +515,12 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
-                                android:gravity="right"
+                                android:gravity="right|center_vertical"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 

@@ -886,14 +886,16 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
                     Log.e("test", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
                     finish();
+                //flag first computing
+                Prefs.putString("Flag_First_Computing", "T");
 
               //  }
 
 
-
-
-
             } catch (Exception e) {
+                //flag first computing
+                Prefs.putString("Flag_First_Computing", "F");
+
 
                 try{
                     if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors!=null||!airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.isEmpty()){
