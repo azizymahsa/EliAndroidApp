@@ -114,7 +114,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private RelativeLayout rlLoading, rlRoot;
     private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading;
     private Window window;
-    private RelativeLayout elNotFound, rlEr;
+    private RelativeLayout elNotFound, rlEr,rlList;
     private FancyButton btnNextDays, btnLastDays;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -141,6 +141,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         window = getWindow();
         notiRecive();
         list = findViewById(R.id.lvHoteResult);
+        rlList = findViewById(R.id.rlList);
         btnFilter = findViewById(R.id.btnFilter);
         btnSort = findViewById(R.id.btnSort);
         tvAlert = findViewById(R.id.tvAlert);
@@ -436,6 +437,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
         elNotFound.setVisibility(View.GONE);
         list.setVisibility(View.VISIBLE);
+        rlList.setVisibility(View.VISIBLE);
         btnOk.setVisibility(View.VISIBLE);
         rlEr.setVisibility(View.VISIBLE);
 
@@ -470,6 +472,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             adapter.notifyDataSetChanged();
             elNotFound.setVisibility(View.VISIBLE);
             list.setVisibility(View.GONE);
+            rlList.setVisibility(View.GONE);
             btnOk.setVisibility(View.GONE);
             rlEr.setVisibility(View.GONE);
             tvAlert.setText("نتیجه ای برای جستجوی شما یافت نشد");
@@ -482,6 +485,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 adapter.notifyDataSetChanged();
                 elNotFound.setVisibility(View.VISIBLE);
                 list.setVisibility(View.GONE);
+                rlList.setVisibility(View.GONE);
                 btnOk.setVisibility(View.GONE);
                 rlEr.setVisibility(View.GONE);
                 tvAlert.setText("نتیجه ای برای جستجوی شما یافت نشد");
@@ -905,17 +909,17 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText(hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.Errors.get(0).DetailedMessage);
                     list.setVisibility(View.GONE);
+                    rlList.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
-                    list.setVisibility(View.GONE);
 
                 } else if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد!");
                     list.setVisibility(View.GONE);
+                    rlList.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
-                    list.setVisibility(View.GONE);
 
                 } else {
 
@@ -1045,6 +1049,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             } catch (Exception e) {
                 llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
+                rlList.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 if (!Utility.isNetworkAvailable(SelectHotelFlightActivity.this)) {
 
@@ -1055,7 +1060,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
 
                 }
-                list.setVisibility(View.GONE);
                 btnOk.setVisibility(View.VISIBLE);
                 rlEr.setVisibility(View.VISIBLE);
 

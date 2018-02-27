@@ -3,32 +3,66 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:id="@+id/layout_children"
-    android:paddingLeft="10sp"
-    android:paddingRight="10sp"
-    android:gravity="center_vertical">
 
-    <Spinner
-        android:id="@+id/spn_range"
-        android:layout_width="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@color/sorati"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/color_strok_item_add_room">
 
-    </Spinner>
 
-    <TextView
-        android:id="@+id/txt_child"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="کودک اول"
-        android:padding="8sp"
-        android:textColor="@color/TextColor"
-        />
+            <Spinner
+                android:id="@+id/spn_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/TRANSPARENT"
+
+                >
+
+            </Spinner>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color_2e"
+                android:textAppearance="@style/IconFonts"
+                android:text="@string/icon_arrow_down"
+                android:textSize="@dimen/icon_size_25dp"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txt_child"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="کودک اول"
+            android:padding="8sp"
+            android:textColor="@color/TextColor"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/text_color_4d"/>
 
 
 

@@ -218,10 +218,12 @@
 
 
         <RelativeLayout
+            android:id="@+id/rlList"
             android:layout_width="match_parent"
 
             android:layout_height="0dp"
-            android:layout_weight="100">
+            android:layout_weight="100"
+            >
 
             <com.eligasht.reservation.tools.ListView
                 android:id="@+id/lvHoteResult"

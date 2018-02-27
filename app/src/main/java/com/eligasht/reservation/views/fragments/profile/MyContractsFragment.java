@@ -6,12 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.model.login.call.EmailContractReq;
 import com.eligasht.reservation.tools.WebUserTools;
+import com.eligasht.reservation.views.activities.login.ProfileActivity;
+import com.eligasht.reservation.views.adapters.ContractAdapter;
+import com.eligasht.reservation.views.adapters.ContractModel;
+
+import java.util.ArrayList;
 
 /**
  * Created by elham.bonyani on 1/25/2018.
@@ -29,6 +35,8 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
     private TextView remained_price;
     private TextView follower;
     private TextView email;
+    ListView lvContract;
+    private ArrayList<ContractModel> contractModels = new ArrayList<>();
 
 
     public static MyContractsFragment instance() {
@@ -48,6 +56,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
 
     private void initViews() {
         num_contract = view.findViewById(R.id.contract_number);
+        lvContract = view.findViewById(R.id.lvContract);
         date = view.findViewById(R.id.contract_date);
         path = view.findViewById(R.id.contract_path);
         depart_date = view.findViewById(R.id.contract_depart_date);
@@ -58,17 +67,32 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
         email = view.findViewById(R.id.contract_email);
 
         //set data of login for contracts
-        try{  num_contract.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getCntID()+"");
-            date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getDateFa());
-            path.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getPathNames());
-            depart_date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getDeparture());
-            login_date.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getCheckDate());
-            sum_price.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getFinalPrice()+"");
-            remained_price.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getRemained()+"");
-            follower.setText(WebUserTools.getInstance().getUser().getPreviousContracts().get(0).getFollowerName()+"");
-            email.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());}catch (Exception e){}
+        try {
+            for (int i = 0; i < WebUserTools.getInstance().getUser().getPreviousContracts().size(); i++) {
+                contractModels.add(new ContractModel((WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getRqBaseID() + ""),
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getDateFa(),
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getPathNames()
+                        , WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getDeparture(),
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getCheckDate(),
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getFinalPrice() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getRemained() + "",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getFollowerName() + "",
+                        WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail()+"",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getVisaConfirm()+"",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getVisaIssue()+"",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getTicketConfirm()+"",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getTicketIssue()+"",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getHotelConfirm()+"",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getHotelIssue()+"",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getCntDocDeliver()+"",
+                        WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getEncryptedCnt_ID()+""
+                        ));
 
+            }
 
+            lvContract.setAdapter(new ContractAdapter((ProfileActivity)getActivity(),contractModels));
+
+        }catch (Exception e){}
     }
 
     @Override
@@ -83,13 +107,5 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
     }
 
     //request for send contract
-    public EmailContractReq getEmailContractReq(){
-        EmailContractReq emailContractReq = new EmailContractReq();
-        emailContractReq.setCulture("fa-IR");
-        emailContractReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
-        emailContractReq.setBody("");
-        emailContractReq.setEncryptedContractID(WebUserTools.getInstance().getUser().getWebUserProperties().getEncryptWebUserID());
-        emailContractReq.setRecieverEmail(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
-        return emailContractReq;
-    }
+
 }

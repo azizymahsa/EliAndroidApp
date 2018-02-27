@@ -77,7 +77,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     private HotelAvailApi availApi;
     private List<Rooms> rooms = new ArrayList<>();
-    RelativeLayout rlLoading, rlRoot;
+    RelativeLayout rlLoading, rlRoot,rlList;
     TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
     Window window;
     RelativeLayout elNotFound, rlEr;
@@ -106,6 +106,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         //InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
         list = findViewById(R.id.lvHoteResult);
+        rlList = findViewById(R.id.rlList);
         tvLoading = findViewById(R.id.tvLoading);
         btnFilter = findViewById(R.id.btnFilter);
         btnSort = findViewById(R.id.btnSort);
@@ -368,6 +369,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
         elNotFound.setVisibility(View.GONE);
         list.setVisibility(View.VISIBLE);
+        rlList.setVisibility(View.VISIBLE);
         btnOk.setVisibility(View.VISIBLE);
         rlEr.setVisibility(View.VISIBLE);
 
@@ -403,6 +405,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 adapter.notifyDataSetChanged();
                 elNotFound.setVisibility(View.VISIBLE);
                 list.setVisibility(View.GONE);
+                rlList.setVisibility(View.GONE);
                 btnOk.setVisibility(View.GONE);
                 rlEr.setVisibility(View.GONE);
                 tvAlert.setText("نتیجه ای برای جستجوی شما یافت نشد");
@@ -416,6 +419,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     adapter.notifyDataSetChanged();
                     elNotFound.setVisibility(View.VISIBLE);
                     list.setVisibility(View.GONE);
+                    rlList.setVisibility(View.GONE);
                     btnOk.setVisibility(View.GONE);
                     rlEr.setVisibility(View.GONE);
                     tvAlert.setText("نتیجه ای برای جستجوی شما یافت نشد");
@@ -887,12 +891,14 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText(availApi.hotelAvailModelResponse.HotelAvailResult.Errors.get(0).DetailedMessage);
                     list.setVisibility(View.GONE);
+                    rlList.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
                 } else if (availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد!");
                     list.setVisibility(View.GONE);
+                    rlList.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
                 } else {
@@ -1023,6 +1029,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             } catch (Exception e) {
                 llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
+                rlList.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 if (!Utility.isNetworkAvailable(SelectHotelActivity.this)) {
 

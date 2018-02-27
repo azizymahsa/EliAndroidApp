@@ -222,7 +222,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             public void onFailure(Call<PackageListRes> call, Throwable t) {
                 hideLoading();
                 rcl_package.showText();
-                txt_error.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد");
+                txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
                 error_layout.setVisibility(View.VISIBLE);
             }
         });

@@ -2,6 +2,7 @@ package com.eligasht.reservation.views.adapters.pack;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -17,6 +18,12 @@ import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 import com.eligasht.reservation.views.viewholders.LstProwHotelRowHolder;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 
@@ -31,7 +38,7 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
     private ArrayList<LstProwHotel> feedItemList;
     TextView Date;
 
-    public LstProwHotelAdapter(Context context, ArrayList<LstProwHotel> feedItemList,TextView Date) {
+    public LstProwHotelAdapter(Context context, ArrayList<LstProwHotel> feedItemList, TextView Date) {
         this.context = context;
         this.feedItemList = feedItemList;
         this.Date = Date;
@@ -46,34 +53,34 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
     }
 
     @Override
-    public void onBindViewHolder(LstProwHotelRowHolder holder, int position) {
+    public void onBindViewHolder(final LstProwHotelRowHolder holder, int position) {
         final LstProwHotel item = feedItemList.get(position);
-        if(item.getHTypeNameE().contains("Apartment") ){
+        if (item.getHTypeNameE().contains("Apartment")) {
             holder.lableHotelTilte.setVisibility(View.VISIBLE);
             holder.lableHotelTilte.setText("هتل آپارتمان");
 
-        }else if(item.getHTypeNameE().contains("Boutique")){
+        } else if (item.getHTypeNameE().contains("Boutique")) {
             holder.lableHotelTilte.setVisibility(View.GONE);
             holder.lableHotelTilte.setText("بوتیک هتل");
 
         }
-        if(item.getHTypeNameE().contains("Resort")) {
+        if (item.getHTypeNameE().contains("Resort")) {
             holder.lableHotelTilte.setVisibility(View.GONE);
             holder.lableHotelTilte.setText("ریزورت هتل");
 
-        }else{
+        } else {
 
             holder.lableHotelTilte.setVisibility(View.GONE);
 //            holder.lableHotelTilte.setText(item.getHTypeNameF());
         }
-        holder.txt_hotel_name.setText(ValidationTools.isEmptyOrNull(item.getHotelNameE()) ? item.getHotelNameE() : item.getHotelNameE() );
+        holder.txt_hotel_name.setText(ValidationTools.isEmptyOrNull(item.getHotelNameE()) ? item.getHotelNameE() : item.getHotelNameE());
         holder.txt_hotel_name.setEllipsize(TextUtils.TruncateAt.END);
         holder.txt_location_full_name.setText(ValidationTools.isEmptyOrNull(item.getLocationFullNameFa()) ? item.getLocationFullNameFa() : item.getLocationFullNameFa() + " ");
-        holder.txt_city_name.setText(ValidationTools.isEmptyOrNull(item.getCityPersianName()) ? item.getCityPersianName() : item.getCityPersianName()+ " ،");
+        holder.txt_city_name.setText(ValidationTools.isEmptyOrNull(item.getCityPersianName()) ? item.getCityPersianName() : item.getCityPersianName() + " ،");
 
         long checkin_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckIn());
         long checkout_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckOut());
-        long diferent_day = DateUtil.getTimeDifference(item.getCheckIn(),item.getCheckOut()).getDay();
+        long diferent_day = DateUtil.getTimeDifference(item.getCheckIn(), item.getCheckOut()).getDay();
 
 
         holder.txt_date.setText(" از " +
@@ -117,6 +124,41 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         Glide.with(context)
                 .load(imageUri)
                 .into(holder.ivBigImage);
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                // this will make circle, pass the width of image
+                .displayer(new RoundedBitmapDisplayer(3))
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .considerExifParams(true)
+                .build();
+
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
+
+        imageLoader.displayImage(imageUri, holder.ivBigImage, options, new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String imageUri, View view) {
+
+            }
+
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                holder.ivBigImage.setImageResource(R.drawable.not_found);
+
+            }
+
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+
+            }
+
+            @Override
+            public void onLoadingCancelled(String imageUri, View view) {
+
+            }
+        });
+
 
         holder.ivBigImage.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -69,7 +69,7 @@ public class AddPassengerActivity extends BaseActivity implements
         InitUi.Toolbar(this, false, R.color.toolbar_color, "اطلاعات مسافر");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.toolbar_color));
         }
 
 
@@ -119,7 +119,7 @@ public class AddPassengerActivity extends BaseActivity implements
         );
         datePickerDialogBirthDay.setYearRange(1330, currentYear);
         datePickerDialogBirthDay.setTitle("لطفا تاریخ تولد خود را انتخاب نمایید");
-        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
+        datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);

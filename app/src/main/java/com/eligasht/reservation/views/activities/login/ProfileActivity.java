@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.model.Font;
+import com.eligasht.reservation.models.model.login.call.EmailContractReq;
 import com.google.gson.GsonBuilder;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
@@ -115,6 +116,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     btnSaveInfo.setText("ثبت و ذخیره اطلاعات");
                     break;
                 case 1:
+                    btnSaveInfo.setVisibility(View.GONE);
                     btnSaveInfo.setText("ارسال مدارک");
                     break;
                 case 2:
@@ -157,7 +159,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         updateProfile();
                         break;
                     case 1:
-                        emailContractProfile();
+                     //   emailContractProfile();
                         break;
                     case 2:
                         changePasswordProfile();
@@ -210,7 +212,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     //request for updateProfile and get results
-    private void updateProfile() {
+ public void updateProfile() {
         if(!profilePagerAdapter.getEditProfileFragment().isValidForm()){
             return;
         }
@@ -257,13 +259,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     //request for send contracts and get result
-    private void emailContractProfile(){
+    public void emailContractProfile(EmailContractReq getEmailContractReq){
         if(!profilePagerAdapter.getMyContractsFragment().isValidForm()){
             return;
         }
         needShowProgressDialog();
-        Log.e(" requestContract " ,new GsonBuilder().create().toJson(new EmailContractRequestModel(profilePagerAdapter.getMyContractsFragment().getEmailContractReq())));
-        Call<EmailContractRes> call = service.emailContractProfile(new EmailContractRequestModel(profilePagerAdapter.getMyContractsFragment().getEmailContractReq()));
+        Log.e(" requestContract " ,new GsonBuilder().create().toJson(new EmailContractRequestModel(getEmailContractReq)));
+        Call<EmailContractRes> call = service.emailContractProfile(new EmailContractRequestModel(getEmailContractReq));
         call.enqueue(new Callback<EmailContractRes>() {
             @Override
             public void onResponse(Call<EmailContractRes> call, Response<EmailContractRes> response) {
@@ -283,7 +285,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 }
 
                 EmailContractResult emailContractResult = response.body().getEmailContractResult();
-                if(emailContractResult.getSuccessResult() == 1){
+                if(emailContractResult.getSuccessResult() == 0){
                     Toast.makeText(ProfileActivity.this, "درخواست شما با موفقیت انجام شد.", Toast.LENGTH_SHORT).show();
                 }
 
