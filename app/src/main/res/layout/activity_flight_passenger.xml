@@ -1474,7 +1474,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="14dp"
                         android:gravity="center"
-                        android:text="1445151"
+                        android:text=""
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#098d4e"
                         android:textSize="@dimen/_15dp_normal_textSize" />
