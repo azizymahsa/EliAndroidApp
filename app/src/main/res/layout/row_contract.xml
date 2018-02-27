@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,378 +12,402 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_height="@dimen/path_dim"
+                android:layout_margin="@dimen/_5dp_margin"
+                android:background="@drawable/path2"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/contract_number"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="30dp"
-                    android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="30dp"
-                    android:text="شماره قرارداد"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
-                    android:layout_marginRight="5dp"
-                    />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="25dp"
+                    android:gravity="right|center"
+                    android:text="شماره قرار داد"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_16dp_normal_textSize" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/contract_date"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
-                    android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:layout_gravity="center"
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="تاریخ"
+                    android:layout_weight="0.3"
                     android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:text="تاریخ"
+                     android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/contract_path"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
+                    android:layout_weight="1"
+
                     android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:gravity="right|center"
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="مسیر"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
                     android:layout_marginRight="5dp"
-                    />
-
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="مسیر"
+                     android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/contract_depart_date"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
                     android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="تاریخ شروع سفر"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
                     android:layout_marginRight="5dp"
-                    />
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="تاریخ شروع سفر"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/contract_login_date"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
                     android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
                     android:text="تاریخ ورود"
-                    android:gravity="center|right"
+                    android:textColor="@color/gray_dark"
                     android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
-                    android:layout_marginRight="5dp"
 
                     />
 
 
             </LinearLayout>
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
-
-                <TextView
-                    android:id="@+id/contract_total_price"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="30dp"
-                    android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="30dp"
-                    android:text="مبلغ نهایی"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
-                    android:layout_marginRight="5dp"
-                    />
-
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/contract_remained"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="right|center"
                     android:text=""
-                    android:textColor="@color/dark_blue"
+                    android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="مانده"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
                     android:layout_marginRight="5dp"
-                    />
-
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="مانده"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/contract_follower"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
                     android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="پیگیر"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
                     android:layout_marginRight="5dp"
-                    />
-
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="پیگیر"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/visa"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
                     android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="وضبعت ویزا"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
                     android:layout_marginRight="5dp"
-                    />
-
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="وضبعت ویزا"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/ticket"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
                     android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="وضبعت بلیط"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
                     android:layout_marginRight="5dp"
-                    />
-
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="وضبعت بلیط"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/hotel"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
                     android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="وضبعت هتل"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
                     android:layout_marginRight="5dp"
-                    />
-
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="وضبعت هتل"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/_5dp_margin">
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/documents"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
                     android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:layout_marginTop="@dimen/_7_flight_dp"
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="وضبعت مدارک"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
                     android:layout_marginRight="5dp"
-                    />
-
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="وضبعت مدارک"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="@dimen/_5dp_margin"
-                android:layout_marginTop="@dimen/_5dp_margin"
-                android:layout_marginRight="@dimen/_5dp_margin"
-                android:layout_marginBottom="@dimen/_15dp_margin">
+                android:layout_marginBottom="@dimen/_15dp_margin"
+
+                android:layout_marginTop="@dimen/_15dp_normal_textSize"
+
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/contract_email"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
                     android:text=""
-                    android:gravity="center"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"/>
+                    android:layout_marginTop="@dimen/_7_flight_dp"
+                    android:textColor="@color/text_color_4d"
+                    android:textSize="@dimen/_12dp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="30dp"
-                    android:text="ایمیل"
-                    android:gravity="center|right"
-                    android:textSize="@dimen/_12dp"
-                    android:textColor="@color/dark_blue"
                     android:layout_marginRight="5dp"
-         />
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="ایمیل"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp" />
 
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp"
+                android:background="#fafafa"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15dp_margin"
+                android:layout_marginBottom="@dimen/_15dp_margin"
+                android:layout_marginRight="@dimen/_20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/contract_total_price"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:text=""
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.3"
+                    android:gravity="center|right"
+                    android:text="مبلغ نهایی"
+
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_12dp" />
 
 
             </LinearLayout>

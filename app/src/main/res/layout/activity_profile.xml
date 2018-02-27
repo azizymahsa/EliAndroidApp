@@ -17,7 +17,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/_100dp_profile"
             android:background="#ffffff">
 
             <TextView
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="@dimen/_45_profile"
                 android:gravity="center"
                 android:padding="@dimen/_5sp_padding"
                 android:text="علی فرهادی"
@@ -46,7 +46,9 @@
             android:background="@color/white"
             android:layoutDirection="rtl"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:tabGravity="fill"
             app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabMaxWidth="0dp"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/colorPrimaryDark"
             app:tabTextColor="@color/gray_normal">
@@ -82,7 +84,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/_100dp_profile"
             android:clipChildren="false"
 
 
@@ -137,7 +139,7 @@
         android:layout_height="@dimen/_80dp_ci"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="-50dp"
+        android:layout_marginBottom="@dimen/_m50_profile"
         android:background="@drawable/circle"
         android:gravity="center"
         android:text="MM"

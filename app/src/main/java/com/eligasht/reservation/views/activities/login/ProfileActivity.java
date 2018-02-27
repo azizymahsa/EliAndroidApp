@@ -12,12 +12,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.model.Font;
+import com.eligasht.reservation.models.model.login.WebUser;
 import com.eligasht.reservation.models.model.login.call.EmailContractReq;
 import com.google.gson.GsonBuilder;
 import com.eligasht.R;
@@ -58,7 +60,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private ProfilePagerAdapter profilePagerAdapter;
     private ClientService service;
     private CoordinatorLayout coordinatorLayout;
-//
+
+    //
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +71,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
-
-
 
 
         initViews();
@@ -89,12 +90,17 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             }
         }
 
+
     }
 
+
     private void initParam() {
-        img_profile.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF().charAt(0) + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF().charAt(0));
+
+        img_profile.setText(String.valueOf(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameE().charAt(0) + "" + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameE().charAt(0)).toUpperCase());
+        //   img_profile.setText(img_profile.getText().toString().toUpperCase());
         txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
     }
+
 
     private void setupPager() {
         profilePagerAdapter = new ProfilePagerAdapter(this, getSupportFragmentManager());
@@ -115,13 +121,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
-            switch (tab.getPosition()){
+            switch (tab.getPosition()) {
                 case 0:
                     btnSaveInfo.setText("ثبت و ذخیره اطلاعات");
                     break;
                 case 1:
                     btnSaveInfo.setVisibility(View.GONE);
-                 //   btnSaveInfo.setText("ارسال مدارک");
+                    //   btnSaveInfo.setText("ارسال مدارک");
                     break;
                 case 2:
                     btnSaveInfo.setText("تغییر کلمه عبور");
@@ -151,7 +157,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         btnSaveInfo.setOnClickListener(this);
 
 
-
     }
 
     @Override
@@ -163,7 +168,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         updateProfile();
                         break;
                     case 1:
-                     //   emailContractProfile();
+                        //   emailContractProfile();
                         break;
                     case 2:
                         changePasswordProfile();
@@ -216,8 +221,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     //request for updateProfile and get results
- public void updateProfile() {
-        if(!profilePagerAdapter.getEditProfileFragment().isValidForm()){
+    public void updateProfile() {
+        if (!profilePagerAdapter.getEditProfileFragment().isValidForm()) {
             return;
         }
         needShowProgressDialog();
@@ -236,14 +241,14 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 }
 
 
-                if (!ValidationTools.isEmptyOrNull(response.body().getWebUserUpdateProfilerResult().getError())){
+                if (!ValidationTools.isEmptyOrNull(response.body().getWebUserUpdateProfilerResult().getError())) {
                     Toast.makeText(ProfileActivity.this, response.body().getWebUserUpdateProfilerResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 WebUserLogin webUserLogin = response.body().getWebUserUpdateProfilerResult().getWebUserLogin();
 
-                if(webUserLogin == null){
+                if (webUserLogin == null) {
                     Toast.makeText(ProfileActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -263,12 +268,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     //request for send contracts and get result
-    public void emailContractProfile(EmailContractReq getEmailContractReq){
-        if(!profilePagerAdapter.getMyContractsFragment().isValidForm()){
+    public void emailContractProfile(EmailContractReq getEmailContractReq) {
+        if (!profilePagerAdapter.getMyContractsFragment().isValidForm()) {
             return;
         }
         needShowProgressDialog();
-        Log.e(" requestContract " ,new GsonBuilder().create().toJson(new EmailContractRequestModel(getEmailContractReq)));
+        Log.e(" requestContract ", new GsonBuilder().create().toJson(new EmailContractRequestModel(getEmailContractReq)));
         Call<EmailContractRes> call = service.emailContractProfile(new EmailContractRequestModel(getEmailContractReq));
         call.enqueue(new Callback<EmailContractRes>() {
             @Override
@@ -283,13 +288,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 }
 
 
-                if(!ValidationTools.isEmptyOrNull(response.body().getEmailContractResult().getError())){
+                if (!ValidationTools.isEmptyOrNull(response.body().getEmailContractResult().getError())) {
                     Toast.makeText(ProfileActivity.this, response.body().getEmailContractResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 EmailContractResult emailContractResult = response.body().getEmailContractResult();
-                if(emailContractResult.getSuccessResult() == 0){
+                if (emailContractResult.getSuccessResult() == 0) {
                     Toast.makeText(ProfileActivity.this, "درخواست شما با موفقیت انجام شد.", Toast.LENGTH_SHORT).show();
                 }
 

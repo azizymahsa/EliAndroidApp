@@ -39,8 +39,7 @@
             android:name=".reservation.views.activities.hotel.activity.SelectHotelActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".reservation.views.activities.hotel.activity.GetHotelCityActivity"
             android:label="@string/app_name"
@@ -89,8 +88,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.activities.pack.SearchPackActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity android:name=".reservation.views.activities.hotel.activity.ImageViewActivity" />
         <activity
             android:name=".reservation.views.activities.hotel.activity.SelectHotelFlightActivity"
@@ -143,7 +141,8 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".reservation.views.activities.login.ProfileActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity android:name=".reservation.lost.FinalResult">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -182,7 +181,8 @@
         <activity
             android:name=".reservation.views.activities.login.SuccessResetPassActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".reservation.views.activities.hotel.activity.CommentActivity"
+        <activity
+            android:name=".reservation.views.activities.hotel.activity.CommentActivity"
             android:screenOrientation="portrait"
 
             />
