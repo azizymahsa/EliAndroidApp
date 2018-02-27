@@ -27,6 +27,7 @@ import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.InitUi;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,33 +41,31 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
     private EditText txtEmail;
     private EditText txtPass;
     private EditText txtConfirmPass;
-    private Button btnRegister;
+    private FancyButton btnRegister;
     private ClientService service;
 
 
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_register);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "ثبت نام");
+        setContentView(R.layout.activity_register_new);
+        InitUi.Toolbar(this, false, android.R.color.transparent, "");
         Window window = getWindow();
 
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
-
 
 
         initViews();
         service = ServiceGenerator.createService(ClientService.class);
-
+        findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
 
     }
 
     //request for register and get result
-    private void Register(){
+    private void Register() {
 
         RegisterListReq registerListReq = new RegisterListReq();
         registerListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
@@ -75,7 +74,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
         registerListReq.setPassword(txtPass.getText().toString());
 
         needShowProgressDialog();
-        Log.e(" request " ,new GsonBuilder().create().toJson(new RegisterRequestModel(registerListReq)));
+        Log.e(" request ", new GsonBuilder().create().toJson(new RegisterRequestModel(registerListReq)));
         Call<WebUserRegisterRes> call = service.Register(new RegisterRequestModel(registerListReq));
         call.enqueue(new Callback<WebUserRegisterRes>() {
             @Override
@@ -88,20 +87,20 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                     return;
                 }
 
-                if (response.body().getWebUserRegisterResult().getError()!=null){
+                if (response.body().getWebUserRegisterResult().getError() != null) {
                     Toast.makeText(RegisterLoginActivity.this, response.body().getWebUserRegisterResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 WebUserLogin webUserLogin = response.body().getWebUserRegisterResult().getWebUserLogin();
 
-                if(webUserLogin== null){
+                if (webUserLogin == null) {
                     Toast.makeText(RegisterLoginActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
-                               if(webUserLogin.getLoginStatus().toUpperCase().equals("DUP")){
+                if (webUserLogin.getLoginStatus().toUpperCase().equals("DUP")) {
                     Toast.makeText(RegisterLoginActivity.this, " ایمیل وارد شده در حال حاضر در سیستم وجود دارد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -142,29 +141,29 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnRegister:
-                if(txtEmail.length() == 0){
+                if (txtEmail.length() == 0) {
                     Toast.makeText(this, "لطفا ایمیل خود را وارد کنید", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(!ValidationTools.isEmailValid(txtEmail.getText().toString())){
+                if (!ValidationTools.isEmailValid(txtEmail.getText().toString())) {
                     Toast.makeText(this, "ایمیل وارد شده صحیح نمی باشد", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(txtPass.length() == 0){
+                if (txtPass.length() == 0) {
                     Toast.makeText(this, "لطفا رمز عبور خود را وارد کنید", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(txtConfirmPass.length() == 0){
+                if (txtConfirmPass.length() == 0) {
                     Toast.makeText(this, "لطفا تکرار رمز عبور را وارد کنید", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(!txtPass.getText().toString().equals(txtConfirmPass.getText().toString())){
+                if (!txtPass.getText().toString().equals(txtConfirmPass.getText().toString())) {
                     Toast.makeText(this, "رمز عبور و تکرار آن با هم مطابقت ندارد .", Toast.LENGTH_SHORT).show();
                     return;
                 }

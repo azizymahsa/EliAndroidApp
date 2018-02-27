@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -50,11 +52,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private ImageView img_profile;
+    private TextView img_profile;
     private TextView txt_name;
     private Button btnSaveInfo;
     private ProfilePagerAdapter profilePagerAdapter;
     private ClientService service;
+    private CoordinatorLayout coordinatorLayout;
 
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +66,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         InitUi.Toolbar(this, false, R.color.toolbar_color, "پروفایل من");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
-
-
 
 
         initViews();
@@ -89,7 +90,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initParam() {
-        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+ " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+        img_profile.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF().charAt(0) + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF().charAt(0));
+        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
     }
 
     private void setupPager() {
@@ -97,12 +99,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         viewPager.setAdapter(profilePagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(onTabSelectedListener);
-        try{
-            if (getIntent().getExtras().getBoolean("isLastBuy")){
+        try {
+            if (getIntent().getExtras().getBoolean("isLastBuy")) {
                 viewPager.setCurrentItem(1);
             }
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
 
     }
@@ -110,7 +113,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
-            switch (tab.getPosition()){
+            switch (tab.getPosition()) {
                 case 0:
                     btnSaveInfo.setText("ثبت و ذخیره اطلاعات");
                     break;
@@ -141,9 +144,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         txt_name = findViewById(R.id.txt_name);
         img_profile = findViewById(R.id.img_profile);
         btnSaveInfo = findViewById(R.id.btnSaveInfo);
-
+        coordinatorLayout = findViewById(R.id.coordinator);
         btnSaveInfo.setOnClickListener(this);
-
 
 
     }
@@ -152,7 +154,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSaveInfo:
-                switch (tabLayout.getSelectedTabPosition()){
+                switch (tabLayout.getSelectedTabPosition()) {
                     case 0:
                         updateProfile();
                         break;
@@ -169,7 +171,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     //request for changePassword to server and get results
     private void changePasswordProfile() {
-        if(!profilePagerAdapter.getChangePasswordFragment().isValidForm()){
+        if (!profilePagerAdapter.getChangePasswordFragment().isValidForm()) {
             return;
         }
 
@@ -189,13 +191,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 }
 
 
-                if(!ValidationTools.isEmptyOrNull(response.body().getWebUserChangePasswordResult().getError())){
+                if (!ValidationTools.isEmptyOrNull(response.body().getWebUserChangePasswordResult().getError())) {
                     Toast.makeText(ProfileActivity.this, response.body().getWebUserChangePasswordResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 EmailContractResult webUserChangePasswordResult = response.body().getWebUserChangePasswordResult();
-                if(webUserChangePasswordResult.getSuccessResult() == 1){
+                if (webUserChangePasswordResult.getSuccessResult() == 1) {
                     Toast.makeText(ProfileActivity.this, "درخواست شما با موفقیت انجام شد.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -211,7 +213,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     //request for updateProfile and get results
     private void updateProfile() {
-        if(!profilePagerAdapter.getEditProfileFragment().isValidForm()){
+        if (!profilePagerAdapter.getEditProfileFragment().isValidForm()) {
             return;
         }
         needShowProgressDialog();
@@ -230,14 +232,14 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 }
 
 
-                if (!ValidationTools.isEmptyOrNull(response.body().getWebUserUpdateProfilerResult().getError())){
+                if (!ValidationTools.isEmptyOrNull(response.body().getWebUserUpdateProfilerResult().getError())) {
                     Toast.makeText(ProfileActivity.this, response.body().getWebUserUpdateProfilerResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 WebUserLogin webUserLogin = response.body().getWebUserUpdateProfilerResult().getWebUserLogin();
 
-                if(webUserLogin == null){
+                if (webUserLogin == null) {
                     Toast.makeText(ProfileActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -257,12 +259,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     //request for send contracts and get result
-    private void emailContractProfile(){
-        if(!profilePagerAdapter.getMyContractsFragment().isValidForm()){
+    private void emailContractProfile() {
+        if (!profilePagerAdapter.getMyContractsFragment().isValidForm()) {
             return;
         }
         needShowProgressDialog();
-        Log.e(" requestContract " ,new GsonBuilder().create().toJson(new EmailContractRequestModel(profilePagerAdapter.getMyContractsFragment().getEmailContractReq())));
+        Log.e(" requestContract ", new GsonBuilder().create().toJson(new EmailContractRequestModel(profilePagerAdapter.getMyContractsFragment().getEmailContractReq())));
         Call<EmailContractRes> call = service.emailContractProfile(new EmailContractRequestModel(profilePagerAdapter.getMyContractsFragment().getEmailContractReq()));
         call.enqueue(new Callback<EmailContractRes>() {
             @Override
@@ -277,13 +279,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 }
 
 
-                if(!ValidationTools.isEmptyOrNull(response.body().getEmailContractResult().getError())){
+                if (!ValidationTools.isEmptyOrNull(response.body().getEmailContractResult().getError())) {
                     Toast.makeText(ProfileActivity.this, response.body().getEmailContractResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 EmailContractResult emailContractResult = response.body().getEmailContractResult();
-                if(emailContractResult.getSuccessResult() == 1){
+                if (emailContractResult.getSuccessResult() == 1) {
                     Toast.makeText(ProfileActivity.this, "درخواست شما با موفقیت انجام شد.", Toast.LENGTH_SHORT).show();
                 }
 
