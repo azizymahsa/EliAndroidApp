@@ -1381,6 +1381,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     protected void onDestroy() {
         super.onDestroy();
         Prefs.getBoolean("IsDemostic",true);
+        Prefs.putString("Flag_First_Computing","F");
+
     }
 
     public String OrderToJsonPishFactor() {
@@ -1855,7 +1857,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     }
                     ///endValidate
 
-
                     if (flagMosafer.contains("F")) {
                         //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
                         AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
@@ -1962,7 +1963,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                             if(sum == 0) {
                                 try {
-                                    //if(rooms==1){
 
                                     countK = jsonObj.getJSONObject(room).getInt("CountK");
                                     countB = jsonObj.getJSONObject(room).getInt("CountB");
@@ -1970,7 +1970,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     sum = countB + countK + countN;
                                     rooms=rooms-1;
                                     room=room+1;
-                                    //}
 
                                     System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
 
@@ -1983,7 +1982,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                             if(sum>0){
                                 System.out.println("gender:"+Gender);
-                                //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 if(counter-1 ==1){
                                     db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 

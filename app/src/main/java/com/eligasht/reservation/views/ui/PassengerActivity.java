@@ -848,7 +848,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		Prefs.getBoolean("IsDemostic",true);
 		Prefs.getLong("TPrice",0);
 
-
+		Prefs.putString("Flag_First_Computing","F");
 	}
 
 
