@@ -43,7 +43,6 @@ import retrofit2.Response;
 public class LogInActivity extends BaseActivity implements View.OnClickListener {
 
 
-
     private FancyButton btnLogin;
     private LinearLayout btnRegister;
     private EditText txtEmail;
@@ -62,7 +61,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
             window.setStatusBarColor(ContextCompat.getColor(LogInActivity.this
-                    ,R.color.colorPrimaryDark));
+                    , R.color.colorPrimaryDark));
         }
         initViews();
         service = ServiceGenerator.createService(ClientService.class);
@@ -71,7 +70,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
     }
 
     //request for login
-    private void Login(){
+    private void Login() {
 
         LoginListReq loginListReq = new LoginListReq();
         loginListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
@@ -80,7 +79,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         loginListReq.setPassword(txtPassword.getText().toString());
 
         needShowProgressDialog();
-       // Log.e(" request " ,new GsonBuilder().create().toJson(new LoginRequestModel(loginListReq)));
+        // Log.e(" request " ,new GsonBuilder().create().toJson(new LoginRequestModel(loginListReq)));
         Call<LoginRes> call = service.Login(new LoginRequestModel(loginListReq));
         call.enqueue(new Callback<LoginRes>() {
             @Override
@@ -93,23 +92,23 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                     return;
                 }
 
-                if (response.body().getLoginResult().getError()!=null){
+                if (response.body().getLoginResult().getError() != null) {
                     Toast.makeText(LogInActivity.this, response.body().getLoginResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 WebUserLogin webUserLogin = response.body().getLoginResult().getWebUserLogin();
-                if(webUserLogin == null){
+                if (webUserLogin == null) {
                     Toast.makeText(LogInActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
-                if(webUserLogin.getLoginStatus().equals("NO")){
+                if (webUserLogin.getLoginStatus().equals("NO")) {
                     Toast.makeText(LogInActivity.this, "ایمیل و یا رمز عبور شما اشتباه می باشد .", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(webUserLogin.getLoginStatus().equals("ACT")){
+                if (webUserLogin.getLoginStatus().equals("ACT")) {
                     Toast.makeText(LogInActivity.this, "لینک فعال سازی به ایمیل شما ارسال شده است.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -117,8 +116,8 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
                 WebUserTools.getInstance().setUser(webUserLogin);
                 MainActivity.setUserName(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
-              //  Log.e("contract" , response.body().getLoginResult().getWebUserLogin().getPreviousContracts().get(0).getCntID() +"");
-                Intent intent = new Intent(LogInActivity.this,ProfileActivity.class);
+                //  Log.e("contract" , response.body().getLoginResult().getWebUserLogin().getPreviousContracts().get(0).getCntID() +"");
+                Intent intent = new Intent(LogInActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -141,12 +140,12 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         txtEmail = findViewById(R.id.txt_email);
         llHome = findViewById(R.id.llHome);
         llHome.setVisibility(View.GONE);
-       // eLogo = findViewById(R.id.e_logo);
+        // eLogo = findViewById(R.id.e_logo);
         layoutResetPassword = findViewById(R.id.layout_reset_password);
         txtPassword = findViewById(R.id.txt_password);
 
         btnLogin.setCustomTextFont("fonts/iran_sans_normal.ttf");
-      //  eLogo.setVisibility(View.INVISIBLE);
+        //  eLogo.setVisibility(View.INVISIBLE);
 
 
         btnLogin.setOnClickListener(this);
@@ -157,28 +156,28 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_register :
-                Intent intent = new Intent(this,RegisterLoginActivity.class);
+        switch (v.getId()) {
+            case R.id.btn_register:
+                Intent intent = new Intent(this, RegisterLoginActivity.class);
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.layout_reset_password :
-                Intent _intent = new Intent(this,ResetPasswordActivity.class);
+            case R.id.layout_reset_password:
+                Intent _intent = new Intent(this, ResetPasswordActivity.class);
                 startActivity(_intent);
                 break;
 
             case R.id.btnLogIn:
-                if(txtEmail.length() == 0){
+                if (txtEmail.length() == 0) {
                     Toast.makeText(this, "لطفا ایمیل خود را وارد کنید", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(!ValidationTools.isEmailValid(txtEmail.getText().toString())){
+                if (!ValidationTools.isEmailValid(txtEmail.getText().toString())) {
                     Toast.makeText(this, "ایمیل وارد شده صحیح نمی باشد", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(txtPassword.length() == 0){
+                if (txtPassword.length() == 0) {
                     Toast.makeText(this, "لطفا رمز عبور خود را وارد کنید", Toast.LENGTH_SHORT).show();
                     return;
                 }

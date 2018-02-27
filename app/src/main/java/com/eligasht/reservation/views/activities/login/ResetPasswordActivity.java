@@ -33,7 +33,6 @@ import retrofit2.Response;
 public class ResetPasswordActivity extends BaseActivity implements View.OnClickListener {
 
 
-
     private ClientService service;
     private EditText email_reset_pass;
     private Button btnResetPassword;
@@ -47,20 +46,23 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
             window.setStatusBarColor(ContextCompat.getColor(ResetPasswordActivity.this
-                    ,R.color.colorPrimaryDark));
+                    , R.color.colorPrimaryDark));
         }
+
         initViews();
         service = ServiceGenerator.createService(ClientService.class);
+
+        findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
 
     }
 
     //request for remember password
-    private void RememberPass(){
+    private void RememberPass() {
         ResetPassRequestModel resetPassRequestModel = new ResetPassRequestModel();
         resetPassRequestModel.setRequest(email_reset_pass.getText().toString());
 
         needShowProgressDialog();
-        Log.e(" request " ,new GsonBuilder().create().toJson(resetPassRequestModel));
+        Log.e(" request ", new GsonBuilder().create().toJson(resetPassRequestModel));
         Call<WebUserRememberPasswordRes> call = service.ResetPassword(resetPassRequestModel);
         call.enqueue(new Callback<WebUserRememberPasswordRes>() {
             @Override
@@ -73,12 +75,12 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
                     return;
                 }
 
-                if (response.body().getWebUserRememberPasswordResult().getWebUserLogin() == null && response.body().getWebUserRememberPasswordResult().getError()!=null){
+                if (response.body().getWebUserRememberPasswordResult().getWebUserLogin() == null && response.body().getWebUserRememberPasswordResult().getError() != null) {
                     Toast.makeText(ResetPasswordActivity.this, response.body().getWebUserRememberPasswordResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Intent intent = new Intent(ResetPasswordActivity.this , SuccessResetPassActivity.class);
+                Intent intent = new Intent(ResetPasswordActivity.this, SuccessResetPassActivity.class);
                 startActivity(intent);
 
                 //do somethings !!
@@ -103,14 +105,14 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnResetPassword:
-                if(email_reset_pass.length() == 0){
+                if (email_reset_pass.length() == 0) {
                     Toast.makeText(this, "لطفا ایمیل خود را وارد کنید", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(!ValidationTools.isEmailValid(email_reset_pass.getText().toString())){
+                if (!ValidationTools.isEmailValid(email_reset_pass.getText().toString())) {
                     Toast.makeText(this, "ایمیل وارد شده صحیح نمی باشد", Toast.LENGTH_SHORT).show();
                     return;
                 }

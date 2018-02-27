@@ -51,11 +51,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private ImageView img_profile;
+    private TextView img_profile;
     private TextView txt_name;
     private Button btnSaveInfo;
     private ProfilePagerAdapter profilePagerAdapter;
     private ClientService service;
+    private CoordinatorLayout coordinatorLayout;
 
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         InitUi.Toolbar(this, false, R.color.toolbar_color, "پروفایل من");
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
 
 
@@ -90,7 +91,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initParam() {
-        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+ " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+        img_profile.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF().charAt(0) + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF().charAt(0));
+        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
     }
 
     private void setupPager() {
@@ -98,12 +100,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         viewPager.setAdapter(profilePagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(onTabSelectedListener);
-        try{
-            if (getIntent().getExtras().getBoolean("isLastBuy")){
+        try {
+            if (getIntent().getExtras().getBoolean("isLastBuy")) {
                 viewPager.setCurrentItem(1);
             }
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
 
     }
@@ -117,7 +120,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     break;
                 case 1:
                     btnSaveInfo.setVisibility(View.GONE);
-                    btnSaveInfo.setText("ارسال مدارک");
+                 //   btnSaveInfo.setText("ارسال مدارک");
                     break;
                 case 2:
                     btnSaveInfo.setText("تغییر کلمه عبور");
@@ -143,7 +146,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         txt_name = findViewById(R.id.txt_name);
         img_profile = findViewById(R.id.img_profile);
         btnSaveInfo = findViewById(R.id.btnSaveInfo);
-
+        coordinatorLayout = findViewById(R.id.coordinator);
         btnSaveInfo.setOnClickListener(this);
 
 
@@ -154,7 +157,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSaveInfo:
-                switch (tabLayout.getSelectedTabPosition()){
+                switch (tabLayout.getSelectedTabPosition()) {
                     case 0:
                         updateProfile();
                         break;
@@ -171,7 +174,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     //request for changePassword to server and get results
     private void changePasswordProfile() {
-        if(!profilePagerAdapter.getChangePasswordFragment().isValidForm()){
+        if (!profilePagerAdapter.getChangePasswordFragment().isValidForm()) {
             return;
         }
 
@@ -191,13 +194,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 }
 
 
-                if(!ValidationTools.isEmptyOrNull(response.body().getWebUserChangePasswordResult().getError())){
+                if (!ValidationTools.isEmptyOrNull(response.body().getWebUserChangePasswordResult().getError())) {
                     Toast.makeText(ProfileActivity.this, response.body().getWebUserChangePasswordResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 EmailContractResult webUserChangePasswordResult = response.body().getWebUserChangePasswordResult();
-                if(webUserChangePasswordResult.getSuccessResult() == 1){
+                if (webUserChangePasswordResult.getSuccessResult() == 1) {
                     Toast.makeText(ProfileActivity.this, "درخواست شما با موفقیت انجام شد.", Toast.LENGTH_SHORT).show();
                 }
             }
