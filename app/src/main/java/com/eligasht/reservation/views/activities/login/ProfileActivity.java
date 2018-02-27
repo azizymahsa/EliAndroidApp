@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -57,7 +58,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private ProfilePagerAdapter profilePagerAdapter;
     private ClientService service;
     private CoordinatorLayout coordinatorLayout;
-
+//
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
