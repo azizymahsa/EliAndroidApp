@@ -34,9 +34,6 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/toolbar_title_16dp" />
 
-
-
-
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
             style="@style/fancy_toolbar"
@@ -49,10 +46,8 @@
             android:layout_height="@dimen/_30dp"
             android:layout_gravity="center|left"
             android:layout_marginLeft="@dimen/_10dp_margin"
-
             android:background="@drawable/e_logo"
             />
-
 
     </FrameLayout>
 
@@ -193,13 +188,16 @@
                 android:id="@+id/linear_saler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="1dp"
+
                 android:orientation="vertical"
                 android:visibility="visible">
 
                 <ScrollView
+                    android:id="@+id/scroll_partner"
+
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -222,11 +220,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -295,11 +294,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -352,11 +352,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -408,11 +409,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -462,11 +464,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -516,14 +519,14 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
-
                                 <TextView
                                     android:id="@+id/lblemeli"
                                     android:layout_width="wrap_content"
@@ -548,6 +551,7 @@
                                 android:paddingTop="0dp"
                                 android:singleLine="true"
                                 android:text=""
+
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/_14dp" />
                         </LinearLayout>
@@ -682,11 +686,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -755,11 +760,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -814,11 +820,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -876,11 +883,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -932,11 +940,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 
@@ -986,11 +995,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:paddingTop="3dp"
                                     android:layout_width="257dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right|center"
                                     android:layout_weight="1.43"
-                                    android:gravity="right"
+                                    android:gravity="right|center_vertical"
                                     android:text="*"
                                     android:textColor="#ff0000" />
 

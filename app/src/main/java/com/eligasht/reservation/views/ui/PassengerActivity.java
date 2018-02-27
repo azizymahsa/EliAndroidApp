@@ -54,6 +54,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -176,6 +177,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_flight_passenger);
+
+		ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+		scroll_partner.fullScroll(ScrollView.FOCUS_UP);
+		scroll_partner.scrollTo(0,0);
+		scroll_partner.clearFocus();
 
 		txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
 		txtTitleCountM.setOnClickListener(this);
@@ -542,6 +548,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txtemeliP= (EditText)findViewById(R.id.txtemeliP);
 		txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
 		txtemeliP.setOnFocusChangeListener(this);
+		txtemeliP.clearFocus();
 
 		txtmeliyatm= (TextView)findViewById(R.id.txtmeliyatm);
 		txtmeliyatm.setOnClickListener(this);
@@ -609,11 +616,15 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		//////////////login user
 		try{
 			if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
-				txtnameP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
+
 				txtfamilyP.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
 				txtmobileP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMobile());
 				txtkodemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserNationalCode());
 				txtemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
+				txtnameP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
+				txtemeliP.clearFocus();
+
+				txtemeliP.setCursorVisible(false);
 			}
 		}catch (Exception e) {
 			System.out.println("Error " + e.getMessage());
@@ -681,7 +692,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							//flagMosafer=flagMosafer+"T";
 						}else{
 							//((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-							txtnamem.setError("لطفا نام را اصلاح کنید ");
+							txtnamem.setError("لطفا نام را وارد کنید(به انگلیسی) ");
 						}
 				}
 				break;
@@ -696,7 +707,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							//flagMosafer=flagMosafer+"T";
 						}else{
 							//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-							txtfamilym.setError("لطفا نام خانوادگی را اصلاح کنید ");
+							txtfamilym.setError("لطفا نام خانوادگی را وارد کنید(به انگلیسی) ");
 						}
 				}
 				break;
@@ -780,7 +791,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 						}else{
 							//((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-							txtnameP.setError("لطفا نام اصلاح وارد کنید ");
+							txtnameP.setError("لطفا نام را وارد کنید(به فارسی) ");
 						}}
 				break;
 			case R.id.txtfamilyP:
@@ -794,7 +805,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 						}else{
 							//((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-							txtfamilyP.setError("لطفا نام خانوادگی را اصلاح کنید ");
+							txtfamilyP.setError("لطفا نام خانوادگی را وارد کنید(به فارسی) ");
 						}}
 				break;
 
@@ -2034,7 +2045,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}else{
 						//((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
 						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+" محل اقامت را انتخاب  کنید";
+						errorMessagePartner=errorMessagePartner+"\n"+" محل اقامت را وارد  کنید";
 					}
 					if(Nationality_ID != null && Nationality_ID.length()>1){
 						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -2042,7 +2053,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}else{
 						//((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
 						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+" ملیت را انتخاب کنید";
+						errorMessagePartner=errorMessagePartner+"\n"+" ملیت را وارد کنید";
 					}
 					if(RqPassenger_Birthdate != null && RqPassenger_Birthdate.length()>4){
 						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -2050,7 +2061,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}else{
 						//((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
 						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+" تاریخ تولد را انتخاب کنید";
+						errorMessagePartner=errorMessagePartner+"\n"+" تاریخ تولد را وارد کنید";
 					}
 					////////////////////////////////////
 					if(txtTitleCountM.getText().toString().contains("کودک")){
@@ -2084,14 +2095,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						}else{
 							//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
-							errorMessagePartner=errorMessagePartner+"\n"+"لطفا انقضا پاسپورت را انتخاب کنید";
+							errorMessagePartner=errorMessagePartner+"\n"+" انقضا پاسپورت را وارد کنید";
 						}
 					}
 					if (Gensiyat.contains("true") || Gensiyat.contains("false")){
 						flagMosafer=flagMosafer+"T";
 					}else{
 						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+"لطفا جنسیت را انتخاب کنید";
+						errorMessagePartner=errorMessagePartner+"\n"+" جنسیت را وارد کنید";
 					}
 					///endValidate
 
@@ -2334,10 +2345,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			case R.id.txt_hom:
 				Prefs.putBoolean("BACK_HOME",true);
 				//	myScrollView.setOnTouchListener(null);
-				/*Intent intent = new Intent("sendFinish");
+				Intent intent = new Intent("sendFinish");
 
-				LocalBroadcastManager.getInstance(this).sendBroadcast(intent);*/
-				finish();
+				LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+				//finish();
 				//this.startActivity(i4);
 				break;
 		}
@@ -2380,6 +2391,20 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this,gheymatKh);
 		mAdapter.setData(data);
 		listKhadamat.setAdapter(mAdapter);
+		final ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+		//scroll_partner.fullScroll(ScrollView.FOCUS_UP);
+		scroll_partner.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+			@Override
+			public boolean onPreDraw() {
+				scroll_partner.getViewTreeObserver().removeOnPreDrawListener(this);
+				scroll_partner.setScrollY(0);
+				return false;
+			}
+		});
+		scroll_partner.clearFocus();
+		txtemeliP.clearFocus();
+
+		txtemeliP.setCursorVisible(false);
 
 	}
 	public String getCounter(int i) {
