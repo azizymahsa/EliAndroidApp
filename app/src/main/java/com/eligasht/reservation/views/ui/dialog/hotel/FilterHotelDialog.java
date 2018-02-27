@@ -69,6 +69,9 @@ public class FilterHotelDialog implements View.OnClickListener {
         this.filterHotelBestOffModels = filterHotelBestOffModels;
 
 
+
+
+        
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.filter_dialog_r, null);
