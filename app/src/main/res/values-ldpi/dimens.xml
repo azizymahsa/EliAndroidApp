@@ -117,5 +117,7 @@
     <dimen name="_95dp_image_passenger">95dp</dimen>
     <dimen name="_30dp_image_passenger">30dp</dimen>
     <dimen name="_28dp_image_height_passenger">28dp</dimen>
+    <dimen name="_10dp_khadamat">10dp</dimen>
+    <dimen name="_12_dp_khadamat">12dp</dimen>
 
 </resources>

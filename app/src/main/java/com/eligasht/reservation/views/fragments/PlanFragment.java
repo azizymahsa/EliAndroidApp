@@ -74,7 +74,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     ImageView ivImage;
     public LinearLayout linear_tarikh_az_picker;
     public static int countNafar = 1;
-
+    LinearLayout   llButton;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
@@ -88,6 +88,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         Utility.sendTag("F", true, false);
         Geo = Prefs.getBoolean("geo", false);
 
+           llButton= ((LinearLayout) rootView.findViewById(R.id.llButton));
 
         linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
         linear_tarikh_az_picker = (LinearLayout) rootView.findViewById(R.id.linear_tarikh_az_picker);
@@ -451,11 +452,16 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         if (isInRange(1, 8, btnPlusBIntVal))
                             btnPlusBIntVal = btnPlusBIntVal + 1;
                         txtCountB.setText(String.valueOf(btnPlusBIntVal));//}
+                        YoYo.with(Techniques.Shake)
+                                .duration(200)
+                                .playOn(txtCountB);
                     } catch (Exception e) {
                         e.printStackTrace();
                         //  Toast.makeText(getActivity(), "Some error :(", 2000).show();
                     }
                 }
+
+
                 break;
             case R.id.btnMinesB:
                 try {
@@ -464,10 +470,14 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     if (isInRange(2, 9, btnMinesBIntVal))
                         btnMinesBIntVal = btnMinesBIntVal - 1;
                     txtCountB.setText(String.valueOf(btnMinesBIntVal));//}
+                    YoYo.with(Techniques.Shake)
+                            .duration(200)
+                            .playOn(txtCountB);
                 } catch (Exception e) {
                     e.printStackTrace();
                     //   Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                 }
+
                 break;
 
             case R.id.btnPlusK:
@@ -479,6 +489,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         if (isInRange(0, 8, btnPlisKIntVal))
                             btnPlisKIntVal = btnPlisKIntVal + 1;
                         txtCountK.setText(String.valueOf(btnPlisKIntVal));//}
+                        YoYo.with(Techniques.Shake)
+                                .duration(200)
+                                .playOn(txtCountK);
                     } catch (Exception e) {
                         e.printStackTrace();
                         //  Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -492,6 +505,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     if (isInRange(1, 9, btnMinesKIntVal))
                         btnMinesKIntVal = btnMinesKIntVal - 1;
                     txtCountK.setText(String.valueOf(btnMinesKIntVal));//}
+                    YoYo.with(Techniques.Shake)
+                            .duration(200)
+                            .playOn(txtCountK);
                 } catch (Exception e) {
                     e.printStackTrace();
                     // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -507,6 +523,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         if (isInRange(0, 8, presentIntVal3))
                             presentIntVal3 = presentIntVal3 + 1;
                         txtCountN.setText(String.valueOf(presentIntVal3));//}
+                        YoYo.with(Techniques.Shake)
+                                .duration(200)
+                                .playOn(txtCountN);
                     } catch (Exception e) {
                         e.printStackTrace();
                         // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -520,6 +539,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     if (isInRange(1, 9, presentIntVal4))
                         presentIntVal4 = presentIntVal4 - 1;
                     txtCountN.setText(String.valueOf(presentIntVal4));//}
+                    YoYo.with(Techniques.Shake)
+                            .duration(200)
+                            .playOn(txtCountN);
                 } catch (Exception e) {
                     e.printStackTrace();
                     // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -556,16 +578,27 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 break;
             case R.id.btntwo:
                 flagOneTwo = 2;
-                ((LinearLayout) rootView.findViewById(R.id.llButton)).setBackgroundResource(R.drawable.raftobargasht_button);
-                // ((Button) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.raft_big);
+                llButton.setBackgroundResource(R.drawable.raftobargasht_button);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(llButton);
                 ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
                 ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
 
                 //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
                 linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
-
                 tarikh_be.setVisibility(View.VISIBLE);
                 linear_picker.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(linear_picker);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(tarikh_be);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(linear_picker);
+
                 //v.setBackgroundResource(R.drawable.btnwhite);
          /*((Button)rootView.findViewById(R.id.btnAward)).setBackgroundDrawable(R.drawable.background_back);
          ((Button)rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#E06F3"));
@@ -573,7 +606,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 break;
             case R.id.btnOne:
                 flagOneTwo = 1;
-                ((LinearLayout) rootView.findViewById(R.id.llButton)).setBackgroundResource(R.drawable.raft_button);
+                llButton.setBackgroundResource(R.drawable.raft_button);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(llButton);
                 //((Button) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.raft_big);
                 ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));
                 ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
@@ -583,6 +619,15 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
                 tarikh_be.setVisibility(View.INVISIBLE);
                 linear_picker.setVisibility(View.INVISIBLE);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(linear_picker);
+                YoYo.with(Techniques.Pulse)
+                        .duration(400)
+                        .playOn(tarikh_be);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(linear_picker);
                 break;
             // case R.id.tarikh_be_picker:
             case R.id.linear_picker:
