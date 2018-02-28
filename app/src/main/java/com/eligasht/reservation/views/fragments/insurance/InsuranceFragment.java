@@ -87,7 +87,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     int dayMin;
     Country country;
     private ClientService service;
-    private Button btnSearchInsurance;
+    private TextView btnSearchInsurance;
     private int accomodationDays;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogDepartgGregorian;
 

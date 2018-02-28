@@ -49,8 +49,8 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     public static boolean flag;
     public static TextView tarikh_az_picker;
     public static TextView tarikh_be_picker;
-    public TextView txtCountB, tvStart, tvEnd, txtCountK, txtCountN, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne;
-    public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN, searchPlan;
+    public TextView txtCountB, tvStart, tvEnd, txtCountK, txtCountN, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne,searchPlan;
+    public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN ;
     private LinearLayout linear_picker_title, linear_picker;
     public int flagOneTwo = 2;
     private static String picker_be = "2017-12-29";
@@ -117,7 +117,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         btnOne = (TextView) rootView.findViewById(R.id.btnOne);
 
 
-        searchPlan = (Button) rootView.findViewById(R.id.searchPlan);
+        searchPlan =  rootView.findViewById(R.id.searchPlan);
         txtBO = (TextView) rootView.findViewById(R.id.txtBO);
         txtKO = (TextView) rootView.findViewById(R.id.txtKO);
         txtNO = (TextView) rootView.findViewById(R.id.txtNO);

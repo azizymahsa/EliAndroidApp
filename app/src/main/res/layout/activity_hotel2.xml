@@ -348,26 +348,26 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:orientation="vertical">
+            android:layout_height="@dimen/_40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/_10dp_margin"
+            android:layout_marginRight="@dimen/_10dp_margin"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_shape"
+            android:gravity="center">
 
-            <Button
+            <TextView
                 android:id="@+id/searchHotel"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_10dp_margin"
-                android:layout_marginRight="@dimen/_10dp_margin"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:background="@drawable/btngravity_big"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
                 android:text="جستجو"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/_16dp_normal_textSize"
-                android:textStyle="bold" />
-
+                android:textColor="@color/white"
+                android:textSize="16sp" />
         </LinearLayout>
-
 
     </LinearLayout>
 

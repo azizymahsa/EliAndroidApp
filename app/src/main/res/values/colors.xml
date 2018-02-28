@@ -62,6 +62,8 @@
     <color name="hf">#c141fc</color>
     <color name="strokeGray">#aaaaaa</color>
     <color name="floating_button_color">#b194ff</color>
+    <color name="button_end_gradiant">#f26e7a</color>
+    <color name="button_start_gradiant">#f69043</color>
 
 
 </resources>

@@ -24,6 +24,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-7dp"
             android:background="#ffffff"
             android:orientation="vertical">
 
@@ -81,10 +82,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="30dp"
                         android:gravity="center"
                         android:paddingRight="10dp"
                         android:text="iranair"
-                        android:layout_marginBottom="30dp"
                         android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_12dp_normal_textSize" />
 
@@ -177,10 +178,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="30dp"
                         android:gravity="center"
                         android:paddingRight="10dp"
                         android:text="iranair"
-                        android:layout_marginBottom="30dp"
                         android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_12dp_normal_textSize" />
 
@@ -292,6 +293,7 @@
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_weight="100"
                     android:background="@drawable/btn_package"
+                    android:foreground="?attr/selectableItemBackground"
                     android:text="@string/reserve_package"
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/_12dp_normal_textSize" />
@@ -303,6 +305,7 @@
                     android:layout_gravity="center|bottom"
                     android:layout_weight="100"
                     android:background="@drawable/background_strock_select_package"
+                    android:foreground="?attr/selectableItemBackground"
                     android:text="خدمات قابل ارائه"
                     android:textColor="@color/text_color_2e"
                     android:textSize="@dimen/_12dp_normal_textSize" />
