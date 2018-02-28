@@ -82,7 +82,7 @@
     <dimen name="_80dp_ci">110dp</dimen>
     <dimen name="_24dp_textSize">28dp</dimen>
 
-    <dimen name="_260dp_f">565dp</dimen>
+    <dimen name="_260dp_f">525dp</dimen>
     <dimen name="_90dp">140dp</dimen>
     <dimen name="_60dp_margin_package">120dp</dimen>
     <dimen name="_68dp_f">128dp</dimen>
@@ -124,5 +124,7 @@
     <dimen name="_0dp_margin">15dp</dimen>
     <dimen name="_10dp_khadamat">11dp</dimen>
     <dimen name="_12_dp_khadamat">13dp</dimen>
+    <dimen name="_175dp_package">275dp</dimen>
+    <dimen name="_1dpPackage">2dp</dimen>
 
 </resources>
