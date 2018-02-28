@@ -121,5 +121,6 @@
     <dimen name="_95dp_image_passenger">150dp</dimen>
     <dimen name="_30dp_image_passenger">70dp</dimen>
     <dimen name="_28dp_image_height_passenger">48dp</dimen>
+    <dimen name="_0dp_margin">15dp</dimen>
 
 </resources>

@@ -113,6 +113,7 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="_95dp_image_passenger">95dp</dimen>
     <dimen name="_30dp_image_passenger">30dp</dimen>
     <dimen name="_28dp_image_height_passenger">28dp</dimen>
+    <dimen name="_0dp_margin">0dp</dimen>
 
 
 </resources>

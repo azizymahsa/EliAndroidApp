@@ -189,7 +189,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="50"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_0dp_margin">
             <LinearLayout
                 android:layout_marginTop="@dimen/_32_normal_flight"
                 android:layout_width="match_parent"
@@ -596,7 +597,8 @@
         android:orientation="horizontal"
         android:layout_centerInParent="true"
         android:layout_margin="@dimen/_11dp"
-        android:background="@drawable/raftobargasht_button">
+        android:background="@drawable/raftobargasht_button"
+    >
 
         <TextView
             android:id="@+id/btnOne"

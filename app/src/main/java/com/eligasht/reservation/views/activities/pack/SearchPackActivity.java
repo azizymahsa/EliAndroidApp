@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -280,11 +281,18 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnHome:
-                Intent intent = new Intent(this, MainActivity.class);
+     /*           Intent intent = new Intent(this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 startActivity(intent);
-                finish();
+                finish();*/
+
+                Intent intent = new Intent("sendFinish");
+
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+
+
                 break;
             case R.id.btnOk:
                 onBackPressed();

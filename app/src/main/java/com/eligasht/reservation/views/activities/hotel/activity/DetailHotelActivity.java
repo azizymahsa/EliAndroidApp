@@ -100,7 +100,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
     private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount,tvRecommendedPercent;
-    private  NonScrollListView lvRooms;
+    private NonScrollListView lvRooms;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private ArrayList<String> arrayStringList = new ArrayList<>();
@@ -734,6 +734,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         .duration(400)
                         .playOn(flViewPager);
 
+                Collections.reverse(imageModels);
 
 
                 new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager);
