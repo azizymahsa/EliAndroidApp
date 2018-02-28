@@ -115,4 +115,6 @@ values-xhdpi            4.65”  720x1280 xhdpi -->
     <dimen name="_30dp_image_passenger">30dp</dimen>
     <dimen name="_28dp_image_height_passenger">28dp</dimen>
     <dimen name="_0dp_margin">0dp</dimen>
+    <dimen name="_10dp_khadamat">10dp</dimen>
+    <dimen name="_12_dp_khadamat">12dp</dimen>
 </resources>

@@ -20,7 +20,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1.03"
             android:text="بیمه مسافرتی سامان"
-            android:textSize="12dp"
+            android:textSize="@dimen/_12_dp_khadamat"
             android:textColor="#000000" />
 
         <ImageView
@@ -49,7 +49,7 @@
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:text=" رداخت هزینه بستری شدن رداخت هزینه بستری شدن رداخت هزینه بستری شدن رداخت هزینه بستری شدنپرداخت هزینه بستری شدن"
-            android:textSize="10dp"
+            android:textSize="@dimen/_10dp_khadamat"
             android:textColor="#999999" />
 
     </LinearLayout>
