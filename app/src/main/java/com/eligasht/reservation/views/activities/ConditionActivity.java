@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -65,10 +66,10 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         textView12= (JustifiedTextView) findViewById(R.id.textView12);
         Typeface face = Typeface.createFromAsset(this.getAssets(),"fonts/iran_sans_normal.ttf");
         textView12.setTypeFace(face);
-        textView12.setTextSize(1,14);
-        textView12.setTextColor(Color.parseColor("#4b494b"));
+        textView12.setTextSize(1,16);
+        textView12.setTextColor(ContextCompat.getColor(ConditionActivity.this,R.color.gray_dark_2));
         textView12.setText(R.string.condition);
-        textView12.setLineSpacing(15);
+        textView12.setLineSpacing(30);
 
         btnBack = (FancyButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);

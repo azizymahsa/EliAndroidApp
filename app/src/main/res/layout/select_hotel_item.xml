@@ -19,8 +19,9 @@
         <RelativeLayout
             android:id="@+id/rlListItem"
 
-        android:layout_width="match_parent"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <RelativeLayout
                 android:id="@+id/RelativeLayoutHotel"
                 android:layout_width="match_parent"
@@ -32,10 +33,10 @@
                     style="@style/AVLoadingIndicatorView"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_centerInParent="true"
                     android:visibility="visible"
                     app:indicatorColor="@color/app_base_color"
-                    app:indicatorName="BallSpinFadeLoaderIndicator"
-                    android:layout_centerInParent="true"/>
+                    app:indicatorName="BallSpinFadeLoaderIndicator" />
 
                 <ImageView
                     android:id="@+id/ivHotelPic"
@@ -50,46 +51,44 @@
                     android:id="@+id/tvOff"
                     android:layout_width="@dimen/_50dp_normal"
                     android:layout_height="@dimen/_50dp_normal"
-                    android:text="پر فروش"
-                    android:background="@drawable/off"
-                    android:textColor="@color/white"
-                    android:textAppearance="@style/IrsansBold"
-                    android:textSize="@dimen/_14dp_txtSize"
-
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:src="@drawable/best_seller"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginBottom="20dp"
-                    />
+                    android:background="@drawable/off"
+                    android:gravity="center"
+
+                    android:padding="2dp"
+                    android:src="@drawable/best_seller"
+                    android:text="پر فروش"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14dp_txtSize" />
+
                 <TextView
                     android:id="@+id/ivIsBestseler"
                     android:layout_width="@dimen/_50dp_normal"
                     android:layout_height="@dimen/_50dp_normal"
-                    android:text="پر فروش"
-                    android:background="@drawable/best_seller_back"
-                    android:textColor="@color/white"
-                    android:textAppearance="@style/IrsansBold"
-                    android:textSize="@dimen/_14dp_txtSize"
-
-                    android:gravity="center"
-                    android:padding="2dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_marginBottom="20dp"
-                    android:visibility="gone"
-              />
-            </RelativeLayout>
+                    android:background="@drawable/best_seller_back"
+                    android:gravity="center"
 
+                    android:padding="2dp"
+                    android:text="پر فروش"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14dp_txtSize"
+                    android:visibility="gone" />
+            </RelativeLayout>
 
 
             <RelativeLayout
                 android:id="@+id/RelativeLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_60dp_hight"
@@ -101,39 +100,36 @@
                     android:id="@+id/linearLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="5dp"
-                    >
+                    android:orientation="horizontal">
 
 
                     <TextView
                         android:id="@+id/name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="100"
-                        android:gravity="center|left"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_15dp_normal_textSize"
                         android:layout_alignParentLeft="true"
+                        android:layout_weight="100"
                         android:ellipsize="end"
-                        android:maxLines="1"/>
+                        android:gravity="center|left"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
 
 
-                        <TextView
-                            android:id="@+id/txt_lable_hotel"
-                            android:layout_width="@dimen/_62dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:maxLines="1"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_10dp_textSize"
-                            android:text="هتل"
-                            android:background="@color/green"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            />
-
+                    <TextView
+                        android:id="@+id/txt_lable_hotel"
+                        android:layout_width="@dimen/_62dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/green"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="هتل"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10dp_textSize" />
 
 
                 </LinearLayout>
@@ -143,10 +139,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_15dp"
                     android:layout_below="@+id/linearLayout1"
-                    android:orientation="horizontal"
                     android:layout_marginLeft="8dp"
                     android:gravity="center"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tvLoc"
@@ -159,134 +154,132 @@
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
-                        android:layout_toRightOf="@+id/tvLoc"
                         android:id="@+id/location"
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
-                        android:gravity="left|center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10dp_textSize"
-                        android:text="jsdkf"
+                        android:layout_toRightOf="@+id/tvLoc"
                         android:ellipsize="end"
+                        android:gravity="left|center"
                         android:maxLines="1"
+                        android:text="jsdkf"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10dp_textSize" />
 
-                        />
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_100dp_image"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="8dp">
 
-                        >
                         <ImageView
                             android:id="@+id/ivRate"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_16dp_exit_menu_textSize"
-                            android:scaleType="fitEnd"
-                            />
+                            android:scaleType="fitEnd" />
 
                     </LinearLayout>
 
                 </RelativeLayout>
 
-            </RelativeLayout>
+        </RelativeLayout>
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/RelativeLayoutHotel"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/RelativeLayoutHotel"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="5dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
 
-
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="false"
-                        android:gravity="left|center"
-                        android:text="1 X STANDARD ROOM"
-                        android:textColor="#253e96"
-                        android:textSize="@dimen/_13dp_normal_textSize"
-                        android:textAppearance="@style/IrsansBold"
-                        android:textStyle="bold"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-
-                        />
-
-
-
-                </RelativeLayout>
                 <TextView
-                    android:id="@+id/board"
+                    android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="false"
-                    android:layout_toRightOf="@+id/title"
+                    android:ellipsize="end"
                     android:gravity="left|center"
-                    android:textColor="@color/green"
+                    android:maxLines="1"
+                    android:text="1 X STANDARD ROOM"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="#253e96"
                     android:textSize="@dimen/_13dp_normal_textSize"
-                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
 
                     />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/board"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="false"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/title"
+                android:gravity="left|center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_13dp_normal_textSize"
+
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tvRial"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/tvRial"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center"
-                        android:text="ریال"
-                        android:textColor="@color/green"
-                        android:textSize="@dimen/_13dp_normal_textSize"
-                        android:textAppearance="@style/IrsansBold"
+                    android:gravity="left|center"
+                    android:text="ریال"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_13dp_normal_textSize"
 
 
-                        />
+                    />
 
-                    <TextView
-                        android:id="@+id/tvPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="left|center"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/_13dp_normal_textSize"
-                        android:textAppearance="@style/IrsansBold"
-                        android:layout_toRightOf="@+id/tvRial"
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tvRial"
+                    android:gravity="left|center"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_13dp_normal_textSize"
 
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center|top"
-                        android:text="@string/icon_pin"
-                        android:textAppearance="@style/IconFonts"
-                        android:textColor="#737373  "
-                        android:textSize="20dp"
-                        android:visibility="invisible"
+                    />
 
-                        />
-                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center|top"
+                    android:text="@string/icon_pin"
+                    android:textAppearance="@style/IconFonts"
+                    android:textColor="#737373  "
+                    android:textSize="20dp"
+                    android:visibility="invisible"
+
+                    />
+            </RelativeLayout>
 
 
-            </LinearLayout>
+        </LinearLayout>
 
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
 
-</LinearLayout>
+    </LinearLayout>
