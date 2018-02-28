@@ -89,7 +89,7 @@ public class ContractAdapter extends BaseAdapter {
         }
 
         try {
-            holder.num_contract.setText(  "شماره قرار داد:"+ contractModels.get(position).num_contract);
+            holder.num_contract.setText(  "شماره قرار داد: "+ contractModels.get(position).num_contract);
             holder.date.setText(contractModels.get(position).date);
             holder.path.setText(contractModels.get(position).path);
             holder.depart_date.setText(contractModels.get(position).depart_date);
@@ -102,7 +102,6 @@ public class ContractAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-
         if (contractModels.get(position).getTicketIssue().equals("1")) {
             holder.ticket.setText("اقدام شده");
         }
@@ -110,7 +109,6 @@ public class ContractAdapter extends BaseAdapter {
         if (contractModels.get(position).getTicketIssue().equals("1")) {
             holder.ticket.setText("تایید شده");
         }
-
 
         if (contractModels.get(position).getHotelIssue().equals("1")) {
             holder.hotel.setText("اقدام شده");
