@@ -74,7 +74,7 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="_80dp_ci">80dp</dimen>
     <dimen name="_24dp_textSize">24dp</dimen>
 
-    <dimen name="_260dp_f">255dp</dimen>
+    <dimen name="_260dp_f">220dp</dimen>
     <dimen name="_90dp">90dp</dimen>
     <dimen name="_60dp_margin_package">60dp</dimen>
     <dimen name="_68dp_f">68dp</dimen>
@@ -116,6 +116,8 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="_0dp_margin">0dp</dimen>
     <dimen name="_10dp_khadamat">10dp</dimen>
     <dimen name="_12_dp_khadamat">12dp</dimen>
+    <dimen name="_175dp_package">175dp</dimen>
+    <dimen name="_1dpPackage">1dp</dimen>
 
 
 </resources>

@@ -120,14 +120,50 @@
                             android:textSize="@dimen/_12dp_normal_textSize" />
                     </LinearLayout>
 
-
-                    <ImageView
+                    <LinearLayout
                         android:id="@+id/iv"
+                        android:layout_width="@dimen/_200dp_p"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:textAppearance="@style/IconFonts"
+                            android:text="@string/plane"
+                            android:textColor="@color/gray_dark"
+                            android:gravity="right|center"
+                            android:rotation="180"/>
+                        <View
+                            android:layout_width="@dimen/_175dp_package"
+                            android:layout_height="@dimen/_1dpPackage"
+                            android:background="@color/gray_dark"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+
+                            android:gravity="center"
+                            android:text="@string/dot"
+                            android:textAppearance="@style/IconFonts"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="@dimen/_12dp_normal_textSize"/>
+
+
+                    </LinearLayout>
+
+                   <!-- <ImageView
+
                         android:layout_width="@dimen/_200dp_p"
                         android:layout_height="@dimen/_8dp_normal_margin"
                         android:layout_centerInParent="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/gray_line" />
+                        android:src="@drawable/gray_line" />-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -214,14 +250,49 @@
                     </LinearLayout>
 
 
-                    <ImageView
+                    <!--<ImageView
                         android:id="@+id/iv2"
                         android:layout_width="@dimen/_200dp_p"
                         android:layout_height="@dimen/_8dp_normal_margin"
                         android:layout_centerInParent="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/gray_line" />
+                        android:src="@drawable/gray_line" />-->
+                    <LinearLayout
+                        android:id="@+id/iv2"
+                        android:layout_width="@dimen/_200dp_p"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        >
 
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:textAppearance="@style/IconFonts"
+                            android:text="@string/plane"
+                            android:textColor="@color/gray_dark"
+                            android:gravity="right|center"
+                            android:rotation="180"/>
+                        <View
+                            android:layout_width="@dimen/_175dp_package"
+                            android:layout_height="@dimen/_1dpPackage"
+                            android:background="@color/gray_dark"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:textAppearance="@style/IconFonts"
+                            android:text="@string/dot"
+                            android:textColor="@color/gray_dark"
+                            android:gravity="center"/>
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
