@@ -95,10 +95,24 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
 
     private void initParam() {
+        try {
 
-        img_profile.setText(String.valueOf(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameE().charAt(0) + "" + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameE().charAt(0)).toUpperCase());
-        //   img_profile.setText(img_profile.getText().toString().toUpperCase());
-        txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+
+            try {
+                img_profile.setText(String.valueOf(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameE().charAt(0) + "" + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameE().charAt(0)).toUpperCase());
+            } catch (Exception e) {
+                img_profile.setText("");
+            }
+
+            try {
+                txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+            } catch (Exception e) {
+                txt_name.setText("");
+            }
+        } catch (Exception e) {
+
+        }
+
     }
 
 
@@ -124,6 +138,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             switch (tab.getPosition()) {
                 case 0:
                     btnSaveInfo.setText("ثبت و ذخیره اطلاعات");
+                    btnSaveInfo.setVisibility(View.VISIBLE);
                     break;
                 case 1:
                     btnSaveInfo.setVisibility(View.GONE);
@@ -131,6 +146,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     break;
                 case 2:
                     btnSaveInfo.setText("تغییر کلمه عبور");
+                    btnSaveInfo.setVisibility(View.VISIBLE);
+
                     break;
             }
         }
