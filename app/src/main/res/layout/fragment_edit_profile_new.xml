@@ -56,7 +56,7 @@
                         android:hint="لطفا نام  خود را وارد کنید"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:textColorHint="#454545"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -67,7 +67,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="نام"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
 
@@ -93,9 +93,9 @@
                         android:background="@android:color/transparent"
                         android:gravity="right|center_vertical"
                         android:hint="لطفا نام خاوادگی خود را وارد کنید"
-                        android:imeOptions="actionDone"
+                        android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:textColorHint="#454545"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -105,7 +105,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="نام خانوادگی"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
                 </LinearLayout>
@@ -165,7 +165,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
-                        android:textColorHint="#454545"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -175,7 +175,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="ایمیل"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
 
@@ -203,7 +203,7 @@
                         android:hint="لطفا نام  خود را وارد کنید"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:textColorHint="#454545"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -212,8 +212,8 @@
                         android:layout_weight=".6"
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
-                        android:text="نام"
-                        android:textColor="#d7d7d7"
+                        android:text="نام(En)*"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
                 </LinearLayout>
@@ -241,7 +241,7 @@
                         android:hint="لطفا نام خانوادگی خود را وارد کنید"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:textColorHint="#454545"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -251,7 +251,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="نام خانوادگی"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
                 </LinearLayout>
@@ -280,7 +280,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:singleLine="true"
-                        android:textColorHint="#454545"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -290,7 +290,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="کد ملی"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
                 </LinearLayout>
@@ -318,7 +318,8 @@
                         android:gravity="right|center"
                         android:hint="لطفا تاریخ تولد خود را وارد کنید"
                         android:singleLine="true"
-                        android:textColorHint="#454545"
+
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -328,7 +329,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="تاریخ تولد"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
                 </LinearLayout>
@@ -357,7 +358,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:singleLine="true"
-                        android:textColorHint="#454545"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -367,7 +368,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="تلفن ثابت"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
                 </LinearLayout>
@@ -396,7 +397,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:singleLine="true"
-                        android:textColorHint="#454545"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -406,7 +407,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="موبایل"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
                 </LinearLayout>
@@ -435,7 +436,7 @@
                         android:inputType="number"
                         android:singleLine="true"
                         android:text="لطفا آدرس خود را وارد کنید"
-                        android:textColorHint="#454545"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
@@ -445,7 +446,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="آدرس"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/text_size_12dp" />
 
                 </LinearLayout>
@@ -506,7 +507,7 @@
                             android:paddingBottom="@dimen/_10dp_padding"
                             android:paddingTop="@dimen/_10dp_padding"
                             android:text="مرد"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
@@ -526,7 +527,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="جنسیت"
-                        android:textColor="#d7d7d7"
+                        android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/text_size_12dp" />
 
                 </LinearLayout>
