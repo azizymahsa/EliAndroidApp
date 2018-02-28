@@ -65,7 +65,7 @@
     <dimen name="_62dp">62dp</dimen>
     <dimen name="_100dp_normal">100dp</dimen>
     <dimen name="_200dp_fh">180dp</dimen>
-    <dimen name="_50dp_fh">50dp</dimen>
+    <dimen name="_50dp_fh">30dp</dimen>
     <dimen name="_30dp_fh">30dp</dimen>
     <dimen name="_200dp_p">200dp</dimen>
     <dimen name="_20dp_margin_p">20dp</dimen>

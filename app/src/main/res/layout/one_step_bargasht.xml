@@ -68,13 +68,14 @@
         <TextView
             android:id="@+id/tvANRaft1_2_bargasht"
 
-            android:layout_width="@dimen/_30dp_fh"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_30dp"
             android:gravity="left"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="@dimen/_12dp_normal_textSize" />
+            android:textSize="@dimen/_12dp_normal_textSize"
+            android:layout_marginLeft="3dp" />
 
     </LinearLayout>
 </LinearLayout>
