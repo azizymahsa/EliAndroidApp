@@ -592,12 +592,21 @@ public class Utility extends Activity {
     }
 
     public static void openUrlCustomTab(Activity context, String url) {
-        Uri uri = Uri.parse(url);
+        try {
+            Uri uri = Uri.parse(url);
+            CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
+            intentBuilder.setToolbarColor(ContextCompat.getColor(context, R.color.toolbar_color));
+            intentBuilder.setSecondaryToolbarColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
+            CustomTabsIntent customTabsIntent = intentBuilder.build();
+            customTabsIntent.launchUrl(context, uri);
+
+        }catch (Exception e){
+            Toast.makeText(context, "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
+        }
+
 
 // create an intent builder
-        CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
-        intentBuilder.setToolbarColor(ContextCompat.getColor(context, R.color.toolbar_color));
-        intentBuilder.setSecondaryToolbarColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
+
 // Begin customizing
 // set toolbar colors
 
@@ -607,10 +616,9 @@ public class Utility extends Activity {
 //                android.R.anim.slide_out_right);
 
 // build custom tabs intent
-        CustomTabsIntent customTabsIntent = intentBuilder.build();
+
 
 // launch the url
-        customTabsIntent.launchUrl(context, uri);
 
     }
 

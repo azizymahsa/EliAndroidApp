@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -50,7 +53,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     List<PinModelDetail> pinModelDetails;
     List<PinModelHeader> pinModelHeaders;
     ImageLoader imageLoader;
-
+    public static Boolean shouldShowAnimation = false;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     boolean isChangeFlight;
@@ -60,7 +63,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     public ExpandableListAdapter(Activity context, List<SearchParvazActivity.ParentItemExpandingPlan> dataList,
                                  SearchParvazPinAdapter searchParvazPinAdapter,
-                                 boolean isChangeFlight,String searchKey, String FlightId,ExpandableListViewE expListViewExpanding) {
+                                 boolean isChangeFlight, String searchKey, String FlightId, ExpandableListViewE expListViewExpanding) {
         this._context = context;
         this.expListViewExpanding = expListViewExpanding;
 
@@ -92,9 +95,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.row_select_parvaz_two_detail, null);
+            convertView = infalInflater.inflate(R.layout.row_select_parvaz_two_detail, parent,false);
         }
-
         LinearLayout llCounter = (LinearLayout) convertView.findViewById(R.id.llCounter);
         TextView lblFlightTimeR = (TextView) convertView.findViewById(R.id.lblFlightTimeR);
         TextView lblFlightArrivalTimeR = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeR);
@@ -117,44 +119,44 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         Button btnSelect = (Button) convertView.findViewById(R.id.btnSelect);
 
         //nerkh
-        if(item.AdlBaseFare > 0){
-            txtAdlCostP.setText(String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)) );
+        if (item.AdlBaseFare > 0) {
+            txtAdlCostP.setText(String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
             txtAdlCostPR.setVisibility(View.VISIBLE);
-        }else{
-            txtAdlCostP.setText( "IT");//
+        } else {
+            txtAdlCostP.setText("IT");//
             txtAdlCostPR.setVisibility(View.GONE);
         }
-      //  txtAdlCostP.setText(item.AdlBaseFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)) : "IT");//    String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
-       if(item.Taxes > 0){
-           txtTaxes.setText(String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
-           txtTaxesR.setVisibility(View.VISIBLE);
-       }else{
-           txtTaxes.setText( "IT");
-           txtTaxesR.setVisibility(View.GONE);
-       }
-        if(item.TotalFare > 0){
+        //  txtAdlCostP.setText(item.AdlBaseFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)) : "IT");//    String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
+        if (item.Taxes > 0) {
+            txtTaxes.setText(String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
+            txtTaxesR.setVisibility(View.VISIBLE);
+        } else {
+            txtTaxes.setText("IT");
+            txtTaxesR.setVisibility(View.GONE);
+        }
+        if (item.TotalFare > 0) {
             txtTotalFareCost.setText(String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
             txtTotalFareCostR.setVisibility(View.VISIBLE);
-        }else{
-            txtTotalFareCost.setText( "IT");
+        } else {
+            txtTotalFareCost.setText("IT");
             txtTotalFareCostR.setVisibility(View.GONE);
         }
-       //String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
-      //  txtTotalFareCost.setText(item.TotalFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.TotalFare)) : "IT");//String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
+        //String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
+        //  txtTotalFareCost.setText(item.TotalFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.TotalFare)) : "IT");//String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
 
         lblFlightTimeR.setText(item.FlightTimeR + "");
         lblFlightArrivalTimeR.setText(item.FlightArrivalTimeR + "");
         lblDepurtureAirportR.setText(item.DepartureCityNameFa + " , " + item.DepartureAirportNameFaR);
         lblArrivalAirportR.setText(item.ArrivalCityNameFa + " , " + item.ArrivalAirportNameFaR);
         if (item.OperatingAirlineNameEn.contains("null")) {
-            lblFlightNumberR.setText(item.AirlineCode + item.FlightNumberR );
-            lblFlightNumberRPersian.setText( item.AirlineNameFaR+" , " );
+            lblFlightNumberR.setText(item.AirlineCode + item.FlightNumberR);
+            lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
 
         } else {
             String text = "<font color=#aaaaaa>" + "By: " + item.OperatingAirlineNameEn + "</font> " +
                     "<font color=#0e874e>" + item.AirlineCode + item.FlightNumberR + "</font>";
             lblFlightNumberR.setText(Html.fromHtml(text));
-            lblFlightNumberRPersian.setText( item.AirlineNameFaR +" , " );
+            lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
             //lblFlightNumberR.setText("Operated By: " + item.OperatingAirlineNameEn+" , "+item.AirlineCode+item.FlightNumberR+" , "+ item.AirlineNameFaR );
         }
         System.out.println("item.OperatingAirlineNameEn:" + item.OperatingAirlineNameEn);
@@ -247,7 +249,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_group_expanding, null);//list Group header//row_select_parvaz_two_header
+            convertView = infalInflater.inflate(R.layout.list_group_expanding, parent,false);//list Group header//row_select_parvaz_two_header
         }
 
 
@@ -285,9 +287,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
         LinearLayout linearKol = (LinearLayout) convertView.findViewById(R.id.linearKol);
         //final int[] flag = {0};
-        //	Animation scaleUp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
-        //linearKol.startAnimation(scaleUp);
-
+//        linearKol.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d("TAG", "onClick: ");
+//            }
+//        });
+        if (shouldShowAnimation) {
+            YoYo.with(Techniques.FadeIn)
+                    .duration(300)
+                    .playOn(linearKol);
+            Log.d("TAG", "getGroupView: inside adapter true");
+        } else{
+            Log.d("TAG", "getGroupView: inside adapter false");
+        }
         txtPin.setTag(item2.IsPin);
 
         txtPin.setOnClickListener(new View.OnClickListener() {
@@ -338,15 +351,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             expListViewExpanding.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
 
 
-
             //linearKol.clearAnimation();
 
         } else {
             btnExpand.setText(_context.getString(R.string.icon_exp_down));
 
             //linearKol.clearAnimation();
-		/*	Animation scaleUpp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
-			linearKol.startAnimation(scaleUpp);*/
+        /*	Animation scaleUpp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
+            linearKol.startAnimation(scaleUpp);*/
         }
 
         ///
@@ -399,8 +411,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             txttedad.setText("فقط" + item2.RemainSeats + "نفر");
             txttedad.setVisibility(View.VISIBLE);
         }
-	/*	if(item2.get(0).IsCharter)
-		    textCharter.setText("چارتر"+"");
+    /*	if(item2.get(0).IsCharter)
+            textCharter.setText("چارتر"+"");
 		else{
 			textCharter.setText("سیستمی"+"");
 			textCharter.setBackgroundResource(R.drawable.background_strock_green);
@@ -410,8 +422,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         //((Button)findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.purple_button_larg);
         //lblProductrow.setBackgroundResource(R.drawable.ir);
         String s = item2.AirlineCode;
-		/*if(s.toLowerCase().equals("ir"))
-			lblProductrow.setBackgroundResource(R.drawable.ir);
+        /*if(s.toLowerCase().equals("ir"))
+            lblProductrow.setBackgroundResource(R.drawable.ir);
 		else if(s.toLowerCase().equals("a3"))
 			lblProductrow.setBackgroundResource(R.drawable.a);
 		else if(s.toLowerCase().equals("af"))
@@ -561,6 +573,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 //end asynTask
+
 
 
 }

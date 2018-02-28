@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -319,7 +320,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
 
-
+//                Log.d("TAG", "onGroupClick: clicked");
 
 
                         /* Toast.makeText(getApplicationContext(),
@@ -335,6 +336,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             @Override
             public void onGroupExpand(int groupPosition) {
                 //Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "onGroupExpand: ");
             }
         });
 
@@ -343,7 +345,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-
+                Log.d("TAG", "onGroupCollapse: ");
                 //Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Collapsed",Toast.LENGTH_SHORT).show();
 
             }
@@ -355,8 +357,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-
-						/*Toast.makeText(SearchParvazActivity.this,
+                Log.d("TAG", "onChildClick: ");
+                        /*Toast.makeText(SearchParvazActivity.this,
                                  listDataHeaderExpanding.get(groupPosition)
 	     								+ " : "
 	     								+ listDataChildExpanding.get(listDataHeaderExpanding.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();*/
@@ -1496,6 +1498,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                             // Toast.makeText(getApplicationContext(),
                             // "Group Clicked " + listDataHeader.get(groupPosition),
                             // Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "onGroupClick: 1500");
+                            ExpandableListAdapter.shouldShowAnimation = false;
+
                             return false;
                         }
                     });
@@ -1535,6 +1540,19 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                             return false;
                         }
                     });
+                }
+            });
+
+            expListViewExpanding.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView absListView, int i) {
+
+                }
+
+                @Override
+                public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                    ExpandableListAdapter.shouldShowAnimation = true;
+
                 }
             });
         }
@@ -3112,6 +3130,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                             // Toast.makeText(getApplicationContext(),
                             // "Group Clicked " + listDataHeader.get(groupPosition),
                             // Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "onGroupClick: ");
                             return false;
                         }
                     });

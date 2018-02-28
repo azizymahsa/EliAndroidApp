@@ -217,7 +217,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="پیگیر"
+                    android:text="کارشناس فروش"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/_14dp_txtSize" />
 
