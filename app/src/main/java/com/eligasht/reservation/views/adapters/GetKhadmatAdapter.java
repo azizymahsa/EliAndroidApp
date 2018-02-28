@@ -146,7 +146,6 @@ public Activity activity;
 					holder.img_khadmat_row.setVisibility(View.GONE);
 					holder.txtAdd.setText("افزودن به سبد خرید");
 
-
 					notifyDataSetChanged();
 
 				}

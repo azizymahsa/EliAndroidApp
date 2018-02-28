@@ -1780,7 +1780,25 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				break;
 			case R.id.btn_next_partnerInfo:
+				if(FlagTab){
+					linear_saler.setVisibility(View.GONE);
+					linear_mosaferan.setVisibility(View.VISIBLE);
+					linear_list_khadamat.setVisibility(View.GONE);
+					linear_pish_factor.setVisibility(View.GONE);
 
+
+
+					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
+					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+
+					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
+					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+					txtTitle.setText(" اطلاعات مسافران ");
+					setAnimation();
+
+				}else{
 				try{
 					//jadvale mosafer khali beshe
 
@@ -1894,6 +1912,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}catch (Exception e) {
 					System.out.println("Exception ::"+e);
 				}
+				}
 				break;
 			case R.id.txttavalodm:
 
@@ -1974,13 +1993,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 				///////end setMin
 
-
+				if (!datePickerDialogGregorian1.isAdded())
 				datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
 				/*DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString());
 				newFragment2.show(getFragmentManager(), "datePicker");*/
 				flag = true;
 				break;
 			case  R.id.txtexp_passport:
+				if (!datePickerDialogGregorian2.isAdded())
 				datePickerDialogGregorian2.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
 				/*DialogFragment newFragment3 = new DatePickerFragment("");
 				newFragment3.show(getFragmentManager(), "datePicker");*/

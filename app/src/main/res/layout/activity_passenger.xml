@@ -575,7 +575,7 @@
                     <LinearLayout
                         android:id="@+id/btn_next_partnerInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40dp"
+                        android:layout_height="@dimen/_35dp_normal"
                         android:layout_marginBottom="15dp"
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="24dp"
