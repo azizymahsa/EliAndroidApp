@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.pack.ChildAgeRange;
 import com.eligasht.reservation.models.model.pack.ChildModel;
@@ -68,6 +70,12 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildRowHolder> {
         holder.spn_range.setAdapter(childAgeRangeAdapter);
 
         holder.spn_range.setSelection(childAgeRanges.indexOf(childModel.getChildAgeRange()));
+
+
+
+        YoYo.with(Techniques.SlideInLeft)
+                .duration(500)
+                .playOn(holder.layout_child);
         holder.spn_range.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override

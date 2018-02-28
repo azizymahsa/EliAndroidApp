@@ -273,8 +273,8 @@
 
                             />
                         <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/_100dp_image"
+                            android:layout_height="@dimen/_30dp"
                             android:background="@drawable/background_strock_select_hf"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
@@ -282,19 +282,46 @@
                             >
                             <mehdi.sakout.fancybuttons.FancyButton
                                 android:id="@+id/btnChange"
-                                android:layout_width="@dimen/_100dp_image"
-                                android:layout_height="@dimen/_30dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:elevation="1dp"
                                 android:paddingBottom="1dp"
                                 fancy:fb_defaultColor="@color/TRANSPARENT"
                                 fancy:fb_focusColor="@color/focusColor"
                                 fancy:fb_radius="4dp"
-                                fancy:fb_text="تغییر پرواز"
+                                fancy:fb_text=" "
                                 fancy:fb_textColor="#0071bc"
                                 fancy:fb_textSize="@dimen/_14dp_txtSize"
 
                                 android:gravity="center|top"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="100"
+                                    android:gravity="center"
+
+                                    android:text="تغییر پرواز"
+                                    android:textColor="#0071bc"
+                                    android:textSize="@dimen/_12dp_normal_textSize"
+
+                        />
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="50"
+                                    android:textSize="@dimen/_20dp_normal_textSize"
+                                    android:textAppearance="@style/IconFonts"
+                                    android:text="@string/transfer"
+                                    android:textColor="#0071bc"
+                                    android:gravity="center"/>
+                            </LinearLayout>
+
                         </RelativeLayout>
 
 

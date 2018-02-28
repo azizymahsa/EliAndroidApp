@@ -189,7 +189,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="50"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_0dp_margin">
             <LinearLayout
                 android:layout_marginTop="@dimen/_32_normal_flight"
                 android:layout_width="match_parent"
@@ -229,7 +230,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="80"
                                 android:background="#fff"
-                                android:gravity="right"
+                                android:gravity="right|center"
                                 android:text="تاریخ برگشت "
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize"
@@ -249,7 +250,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="80"
                                 android:background="#fff"
-                                android:gravity="right"
+                                android:gravity="right|center"
                                 android:text="تاریخ رفت"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize"
@@ -596,7 +597,8 @@
         android:orientation="horizontal"
         android:layout_centerInParent="true"
         android:layout_margin="@dimen/_11dp"
-        android:background="@drawable/raftobargasht_button">
+        android:background="@drawable/raftobargasht_button"
+    >
 
         <TextView
             android:id="@+id/btnOne"
