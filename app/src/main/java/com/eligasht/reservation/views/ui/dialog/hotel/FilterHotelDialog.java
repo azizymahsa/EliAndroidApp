@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.ui.dialog.hotel;
 
 import android.content.Context;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,7 +27,7 @@ import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
  * Created by Reza.nejati on 1/7/2018.
  */
 
-public class FilterHotelDialog implements View.OnClickListener {
+public class FilterHotelDialog extends DialogFragment implements View.OnClickListener {
     android.app.AlertDialog dialog;
     View dialogView;
     LayoutInflater inflater;

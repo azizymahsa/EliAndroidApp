@@ -30,21 +30,40 @@
             android:text="IKA"
             android:textColor="@color/text_color_4d"
             android:textSize="@dimen/_12dp_normal_textSize" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
 
-        <ImageView
-            android:id="@+id/ivArrow"
+                android:textSize="15dp"
+                android:textAppearance="@style/IconFonts"
+                android:text="@string/dot"
+                android:textColor="@color/gray_dark"
+                android:gravity="center"/>
 
-            android:layout_width="@dimen/_200dp_fh"
-            android:layout_height="@dimen/_14dp"
-            android:scaleType="fitXY"
-            android:gravity="right"
-            android:padding="4dp"
-            android:src="@drawable/gray_line"
-            android:layout_gravity="center"
-            android:textColor="#486b6b"
-            android:textSize="10dip"
-            android:visibility="visible"
-            android:rotation="180"/>
+
+            <View
+                android:layout_width="@dimen/_200dp_fh"
+                android:layout_height="1dp"
+                android:background="@color/gray_dark"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:textSize="12dp"
+                android:textAppearance="@style/IconFonts"
+                android:text="@string/plane"
+                android:textColor="@color/gray_dark"
+                android:gravity="center"
+                android:layout_marginRight="3dp"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvANRaft1_2_bargasht"
