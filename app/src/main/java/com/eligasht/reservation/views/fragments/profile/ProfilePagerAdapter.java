@@ -25,7 +25,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
         changePasswordFragment = ChangePasswordFragment.instance();
     }
 
-    public EditProfileFragment getEditProfileFragment(){
+    public EditProfileFragment getEditProfileFragment() {
         return editProfileFragment;
     }
 
