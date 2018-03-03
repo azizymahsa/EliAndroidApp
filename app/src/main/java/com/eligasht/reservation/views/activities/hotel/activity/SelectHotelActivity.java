@@ -189,9 +189,14 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnFilter:
-                new FilterHotelDialog(SelectHotelActivity.this, filterModels, this, filterHotelTypeModel,
+              /*  new FilterHotelDialog(SelectHotelActivity.this, filterModels, this, filterHotelTypeModel,
+                        filterHotelFacilitiesModels, filterHotelPriceModels, searchIn, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels);
+*/
+                android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                FilterHotelDialog filterHotelDialog = FilterHotelDialog.newInstance(SelectHotelActivity.this, filterModels, SelectHotelActivity.this, filterHotelTypeModel,
                         filterHotelFacilitiesModels, filterHotelPriceModels, searchIn, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels);
 
+                filterHotelDialog.show(fm,"test");
 
                 break;
             case R.id.btnSort:
