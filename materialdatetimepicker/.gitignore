@@ -8,5 +8,6 @@
 /build
 /captures
 .externalNativeBuild
+compile-file-map.properties
 
 
