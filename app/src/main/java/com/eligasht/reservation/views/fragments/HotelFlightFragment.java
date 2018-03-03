@@ -60,8 +60,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener
 , com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener{
 
-    public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
-    public TextView txtCity, lbl_city_english, tvMabda, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, tvMabdaEn;
+    public static Button  btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
+    public TextView txtCity, lbl_city_english, tvMabda, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, tvMabdaEn ,searchHotel;
     public static int countNafar = 1;
     LinearLayout btn_add_room, llRoom;
     public ListView listRoomItem;
@@ -137,7 +137,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         citySearch.setOnClickListener(this);
         lbl_city_english.setOnClickListener(this);
 
-        searchHotel = (Button) rootView.findViewById(R.id.searchHotel);
+        searchHotel =  rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
         ivImage.setOnClickListener(this);
 

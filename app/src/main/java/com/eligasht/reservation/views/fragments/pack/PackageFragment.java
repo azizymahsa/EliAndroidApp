@@ -70,7 +70,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     public ViewGroup view;
     public ViewGroup layout_room;
     public Spinner spn_cities;
-    public Button btnSearchPackage;
+    public TextView btnSearchPackage;
     public LinearLayout btn_return_date;
     public LinearLayout btn_depart_date, linear_picker_depart, linear_picker_return;
     private final int ADD_ROOM_REQUEST = 100;
@@ -198,7 +198,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
         layout_room = (ViewGroup) view.findViewById(R.id.layout_room);
         spn_cities = (Spinner) view.findViewById(R.id.spn_cities);
-        btnSearchPackage = (Button) view.findViewById(R.id.btnSearchPackage);
+        btnSearchPackage =  view.findViewById(R.id.btnSearchPackage);
         btn_return_date = (LinearLayout) view.findViewById(R.id.btn_return_date);
         btn_depart_date = (LinearLayout) view.findViewById(R.id.btn_depart_date);
         txt_count_adult = (TextView) view.findViewById(R.id.txt_count_adult);

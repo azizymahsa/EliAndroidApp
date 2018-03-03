@@ -53,8 +53,8 @@ import java.util.List;
 public class HotelFragment extends Fragment implements OnClickListener,
         TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener {
 
-    public static Button searchHotel, btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
-    public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult;
+    public static Button  btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
+    public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult,searchHotel;
     public static int countNafar = 1;
     LinearLayout btn_add_room, llRaft, llBargasht;
     CardView cvRoom;
@@ -120,7 +120,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         citySearch.setOnClickListener(this);
         lbl_city_english.setOnClickListener(this);
 
-        searchHotel = (Button) rootView.findViewById(R.id.searchHotel);
+        searchHotel =  rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
 
 

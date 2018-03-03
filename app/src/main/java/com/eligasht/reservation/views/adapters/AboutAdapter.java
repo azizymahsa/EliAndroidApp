@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,9 +63,9 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         holder.txtSectionName.setTypeFace(face);
 
         holder.txtSectionName.setTextSize(2,18);
-        holder.txtDescription.setTextSize(1,14);
+        holder.txtDescription.setTextSize(1,16);
         holder.txtSectionName.setTextColor(Color.parseColor("#000000"));
-        holder.txtDescription.setTextColor(Color.parseColor("#4b494b"));
+        holder.txtDescription.setTextColor(ContextCompat.getColor(context,R.color.gray_dark_2));
         if(item.getSectionName().contains("گواهینامه ها")){
             String[] value_split = item.getSectionName().split("\\|");
             holder.txtSectionName.setText(value_split[1]+"");
@@ -73,7 +74,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         }
         holder.txtDescription.setText(item.getDescription()+ "");
 
-        holder.txtDescription.setLineSpacing(15);
+        holder.txtDescription.setLineSpacing(30);
         holder.txtSectionName.setLineSpacing(15);
         //	holder.iv_imageAddress.setBackgroundResource();
 

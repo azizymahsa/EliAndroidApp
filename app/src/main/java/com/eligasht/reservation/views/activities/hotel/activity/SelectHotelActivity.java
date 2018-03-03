@@ -190,7 +190,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         switch (v.getId()) {
             case R.id.btnFilter:
                 new FilterHotelDialog(SelectHotelActivity.this, filterModels, this, filterHotelTypeModel,
-                        filterHotelFacilitiesModels, filterHotelPriceModels, searchIn, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels).show();
+                        filterHotelFacilitiesModels, filterHotelPriceModels, searchIn, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels);
 
 
                 break;

@@ -1,9 +1,12 @@
 package com.eligasht.reservation.views.ui.dialog.hotel;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -50,46 +53,26 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
     EditText searchtxt;
 
     boolean remove=false;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
+        View rootView = inflater.inflate(R.layout.filter_dialog_r, container,
+                false);
 
-    public FilterHotelDialog(final Context activity, ArrayList<FilterModel> filter,
-                             FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
-                             final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,
-                             String search, final ArrayList<FilterHotelTypeModel> filterHotelLocationModels, final ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
-            , final ArrayList<FilterStarModel> filterHotelStarsModels) {
-        this.activity = activity;
-        this.filter = filter;
-        this.search = search;
-        this.filterHotelDialogListenerArray = filterHotelDialogListenerArray;
-
-        this.filterHotelPriceModel = filterHotelPriceModel;
-        this.filterHotelLocationModels = filterHotelLocationModels;
-        this.filterHotelTypeModels = filterHotelTypeModels;
-        this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
-        this.filterHotelStarsModels = filterHotelStarsModels;
-        this.filterHotelBestOffModels = filterHotelBestOffModels;
-
-
-
-
-        
-        builder = new android.app.AlertDialog.Builder(activity);
-        inflater = LayoutInflater.from(activity);
-        dialogView = inflater.inflate(R.layout.filter_dialog_r, null);
-        // filter.add(new FilterModel(false, false, false, false, false, false, false, false, false, false, false));
 
         builder.setView(dialogView);
-        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
-        scrollViewObject = (ScrollView) dialogView.findViewById(R.id.scrollViewObject);
-        btnDeletFilter = (FancyButton) dialogView.findViewById(R.id.btnDeletFilter);
-        searchtxt = (EditText) dialogView.findViewById(R.id.searchtxt);
+        btnOk = (FancyButton) rootView.findViewById(R.id.btnOk);
+        scrollViewObject = (ScrollView) rootView.findViewById(R.id.scrollViewObject);
+        btnDeletFilter = (FancyButton) rootView.findViewById(R.id.btnDeletFilter);
+        searchtxt = (EditText) rootView.findViewById(R.id.searchtxt);
 
         searchtxt.setText(search);
-        lvHotelTypes = (NonScrollListView) dialogView.findViewById(R.id.lvHotelTypes);
-        lvFacilitiesTypes = (NonScrollListView) dialogView.findViewById(R.id.lvFacilitiesTypes);
-        lvLocationTypes = (NonScrollListView) dialogView.findViewById(R.id.lvLocationTypes);
-        lvPrice = (NonScrollListView) dialogView.findViewById(R.id.lvPrice);
-        lvBestOff = (NonScrollListView) dialogView.findViewById(R.id.lvBestOff);
+        lvHotelTypes = (NonScrollListView) rootView.findViewById(R.id.lvHotelTypes);
+        lvFacilitiesTypes = (NonScrollListView) rootView.findViewById(R.id.lvFacilitiesTypes);
+        lvLocationTypes = (NonScrollListView) rootView.findViewById(R.id.lvLocationTypes);
+        lvPrice = (NonScrollListView) rootView.findViewById(R.id.lvPrice);
+        lvBestOff = (NonScrollListView) rootView.findViewById(R.id.lvBestOff);
         lvStar = (NonScrollListView) dialogView.findViewById(R.id.lvStar);
 
         filterHotelTypeAdapter = new FilterHotelTypeAdapter(filterHotelTypeModels, activity);
@@ -107,8 +90,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         lvFacilitiesTypes.setAdapter(filterHotelFacilitiesAdapter);
         lvBestOff.setAdapter(lvBestOffAdapter);
         lvStar.setAdapter(starFilterAdapter);
-
-
 
         lvStar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -206,15 +187,54 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             }
         });
 
-
-
-
         btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnDeletFilter.setCustomTextFont("fonts/iran_sans_normal.ttf");
         btnOk.setOnClickListener(this);
         btnDeletFilter.setOnClickListener(this);
+        // Do something else
+        return rootView;
+    }
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        builder = new android.app.AlertDialog.Builder(activity);
+
         dialog = builder.create();
         dialog.setCancelable(true);
+
+
+        return builder.create();
+
+    }
+    public FilterHotelDialog(final Context activity, ArrayList<FilterModel> filter,
+                             FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
+                             final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,
+                             String search, final ArrayList<FilterHotelTypeModel> filterHotelLocationModels, final ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
+            , final ArrayList<FilterStarModel> filterHotelStarsModels) {
+        this.activity = activity;
+        this.filter = filter;
+        this.search = search;
+        this.filterHotelDialogListenerArray = filterHotelDialogListenerArray;
+
+        this.filterHotelPriceModel = filterHotelPriceModel;
+        this.filterHotelLocationModels = filterHotelLocationModels;
+        this.filterHotelTypeModels = filterHotelTypeModels;
+        this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
+        this.filterHotelStarsModels = filterHotelStarsModels;
+        this.filterHotelBestOffModels = filterHotelBestOffModels;
+
+
+
+
+        
+
+      //  inflater = LayoutInflater.from(activity);
+       // dialogView = inflater.inflate(R.layout.filter_dialog_r, null);
+        // filter.add(new FilterModel(false, false, false, false, false, false, false, false, false, false, false));
+
+
+
+
+
 
       //  dialog.show();
     }
@@ -293,11 +313,11 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         }
     }
 
-public void show(){
-        if (!dialog.isShowing()){
+/*public void show(){
+      *//*  if (!dialog.isShowing()){
             dialog.show();
-        }
-}
+        }*//*
+}*/
 
     public interface FilterHotelDialogListenerArray {
         public void onReturnValue(ArrayList<FilterModel> type, String search,

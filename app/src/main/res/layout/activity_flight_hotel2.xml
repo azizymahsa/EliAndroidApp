@@ -16,6 +16,7 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/banafsh_jahan" />
+
         <RelativeLayout
             android:id="@+id/txtOption"
             android:layout_width="wrap_content"
@@ -23,8 +24,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/_30dp_margin"
             android:layout_marginRight="@dimen/_30dp_margin"
-            android:layout_marginTop="@dimen/_30dp"
-            >
+            android:layout_marginTop="@dimen/_30dp">
 
             <ImageView
 
@@ -33,6 +33,7 @@
                 android:layout_centerInParent="true"
 
                 android:src="@drawable/line_white" />
+
             <ImageView
                 android:id="@+id/ivImage"
                 android:layout_width="30dp"
@@ -46,31 +47,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_centerInParent="true"
-            android:orientation="vertical"
             android:layout_marginRight="@dimen/_5dp_margin"
             android:layout_toLeftOf="@+id/txtOption"
-            >
+            android:gravity="center"
+            android:orientation="vertical">
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="20"
-                />
+                android:layout_weight="20" />
 
             <LinearLayout
                 android:id="@+id/linearLayout_maghsad"
 
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="100"
                 android:layout_gravity="right|center"
-                android:layout_toLeftOf="@+id/ivHotel"
-                android:gravity="right|center"
-                android:orientation="vertical"
                 android:layout_marginTop="20dp"
-                >
-
+                android:layout_toLeftOf="@+id/ivHotel"
+                android:layout_weight="100"
+                android:gravity="right|center"
+                android:orientation="vertical">
 
 
                 <TextView
@@ -82,6 +80,7 @@
                     android:text="پرواز از :"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/_15dp_normal_textSize" />
+
                 <TextView
                     android:id="@+id/tvMabda"
                     android:layout_width="match_parent"
@@ -100,20 +99,19 @@
                     android:gravity="right"
                     android:text="Istanbul,Turkey "
                     android:textColor="#fff"
-                    android:textSize="@dimen/_12dp_normal_textSize"/>
+                    android:textSize="@dimen/_12dp_normal_textSize" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout_mabda"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="100"
                 android:layout_gravity="right|center"
-                android:layout_toLeftOf="@+id/ivHotel"
-                android:gravity="right"
-                android:orientation="vertical"
                 android:layout_marginBottom="10dp"
-                >
+                android:layout_toLeftOf="@+id/ivHotel"
+                android:layout_weight="100"
+                android:gravity="right"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -140,19 +138,15 @@
                     android:gravity="right"
                     android:text="Istanbul,Turkey "
                     android:textColor="#fff"
-                    android:textSize="@dimen/_12dp_normal_textSize"
-               />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
             </LinearLayout>
 
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="10"
-                />
+                android:layout_weight="10" />
         </LinearLayout>
-
-
 
 
     </RelativeLayout>
@@ -162,8 +156,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="50"
-        android:orientation="vertical"
->
+        android:orientation="vertical">
 
         <android.support.v7.widget.CardView
             android:id="@+id/cvDate"
@@ -289,7 +282,7 @@
                             android:text="@string/icon_calander"
                             android:textAppearance="@style/IconFonts"
                             android:textColor="@color/text_color_2"
-                            android:textSize="@dimen/_25dp_normal_iconSize"/>
+                            android:textSize="@dimen/_25dp_normal_iconSize" />
 
                     </LinearLayout>
 
@@ -373,9 +366,8 @@
                         android:padding="@dimen/_5dp_padding"
                         android:text="بزرگسال"
                         android:textColor="@color/text_color_2"
-                        android:textStyle="bold"
                         android:textSize="@dimen/_12dp_normal_textSize"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvAdult"
@@ -386,8 +378,7 @@
                         android:text="1"
                         android:textColor="@color/text_color_2"
                         android:textSize="@dimen/_12dp_normal_textSize"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -432,27 +423,28 @@
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:orientation="vertical"
+            android:layout_height="@dimen/_40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="@dimen/_10dp_margin"
-            android:layout_marginRight="@dimen/_10dp_margin">
+            android:layout_marginRight="@dimen/_10dp_margin"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_shape"
+            android:gravity="center">
 
-            <Button
+            <TextView
                 android:id="@+id/searchHotel"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:background="@drawable/btngravity_big"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
                 android:text="جستجو"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/_16dp_normal_textSize"
-                android:textStyle="bold" />
-
+                android:textColor="@color/white"
+                android:textSize="16sp" />
         </LinearLayout>
 
 
