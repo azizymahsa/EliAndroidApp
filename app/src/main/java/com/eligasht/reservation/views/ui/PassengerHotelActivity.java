@@ -1564,21 +1564,21 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     setAnimation();
 
                 }else{
-                try {
-                    //jadvale mosafer khali beshe
+                    try {
+                        //jadvale mosafer khali beshe
 
-                    PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelActivity.this);
-                    //   db.openDB();
-                    db.dropTable();
-                    ////////////////////////Validate
-                    String RqPartner_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-                    String RqPartner_Email = txtemeliP.getText().toString();
-                    String RqPartner_FirstNameFa = txtnameP.getText().toString();
-                    String RqPartner_Gender = Gensiyat;
-                    String RqPartner_LastNameFa = txtfamilyP.getText().toString();
-                    String RqPartner_Mobile = txtmobileP.getText().toString();
-                    String RqPartner_NationalCode = txtkodemeliP.getText().toString();
-                    String RqPartner_Tel = "21587632";
+                        PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelActivity.this);
+                        //   db.openDB();
+                        db.dropTable();
+                        ////////////////////////Validate
+                        String RqPartner_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+                        String RqPartner_Email = txtemeliP.getText().toString();
+                        String RqPartner_FirstNameFa = txtnameP.getText().toString();
+                        String RqPartner_Gender = Gensiyat;
+                        String RqPartner_LastNameFa = txtfamilyP.getText().toString();
+                        String RqPartner_Mobile = txtmobileP.getText().toString();
+                        String RqPartner_NationalCode = txtkodemeliP.getText().toString();
+                        String RqPartner_Tel = "21587632";
 
 					/*String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 					String RqPartner_Email= "mohebbi@eligasht.com";
@@ -1588,98 +1588,98 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 					String RqPartner_Mobile= "0235884";
 					String RqPartner_NationalCode= "0062532148";
 					String RqPartner_Tel= "21587632";*/
-                    String errorMessage="";
-                    String flagMosafer="T";
-                    ///Validate
-                    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                    if ( RqPartner_Email.trim().matches(emailPattern) &&  RqPartner_Email.trim().length() > 0) {
-                        ((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
-                        flagMosafer=flagMosafer+"T";
-                    }else{
-                        //((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
-                        flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+" ایمیل با فرمت صحیح باشد(test@test.com)";
-                    }
-                    //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
-                    //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.trim().matches("^[a-zA-Z]+$"))){
-                    if(RqPartner_FirstNameFa != null)
-                        if( RqPartner_FirstNameFa.length()>2 && !(RqPartner_FirstNameFa.toLowerCase().trim().matches("^[a-zA-Z]+$"))){
-                            ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
+                        String errorMessage="";
+                        String flagMosafer="T";
+                        ///Validate
+                        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                        if ( RqPartner_Email.trim().matches(emailPattern) &&  RqPartner_Email.trim().length() > 0) {
+                            ((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         }else{
-                            //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
+                            //((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+" نام حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
+                            errorMessage=errorMessage+"\n"+" ایمیل با فرمت صحیح باشد(test@test.com)";
                         }
-                    //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
-                    if(RqPartner_LastNameFa != null)
-                        if( RqPartner_LastNameFa.length()>2 && !(RqPartner_LastNameFa.toLowerCase().trim().matches("^[a-zA-Z]+$"))){
-                            ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
+                        //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
+                        //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.trim().matches("^[a-zA-Z]+$"))){
+                        if(RqPartner_FirstNameFa != null)
+                            if( RqPartner_FirstNameFa.length()>2 && !(RqPartner_FirstNameFa.toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+                                ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
+                                flagMosafer=flagMosafer+"T";
+                            }else{
+                                //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
+                                flagMosafer=flagMosafer+"F";
+                                errorMessage=errorMessage+"\n"+" نام حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
+                            }
+                        //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
+                        if(RqPartner_LastNameFa != null)
+                            if( RqPartner_LastNameFa.length()>2 && !(RqPartner_LastNameFa.toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+                                ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
+                                flagMosafer=flagMosafer+"T";
+                            }else{
+                                //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+                                flagMosafer=flagMosafer+"F";
+                                errorMessage=errorMessage+"\n"+" نام خانوادگی حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
+                            }
+                        if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
+                            ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         }else{
-                            //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+                            //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+" نام خانوادگی حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
+                            errorMessage=errorMessage+"\n"+" موبایل با  فرمت صحیح وارد شود(مانند ...0912)";
                         }
-                    if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
-                        ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
-                        flagMosafer=flagMosafer+"T";
-                    }else{
-                        //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
-                        flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+" موبایل با  فرمت صحیح وارد شود(مانند ...0912)";
-                    }
 					/*if(RqPartner_NationalCode != null)
 						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.trim().matches("[0-9]+")){*/
-                    if(RqPartner_NationalCode != null)
-                        if( RqPartner_NationalCode.length()==10 && RqPartner_NationalCode.trim().matches("[0-9]+")){
-                            ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
+                        if(RqPartner_NationalCode != null)
+                            if( RqPartner_NationalCode.length()==10 && RqPartner_NationalCode.trim().matches("[0-9]+")){
+                                ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
+                                flagMosafer=flagMosafer+"T";
+                            }else{
+                                //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
+                                flagMosafer=flagMosafer+"F";
+                                errorMessage=errorMessage+"\n"+" کد ملی صحیح نمی باشد(10رقمی)";
+                            }
+                        if (Gensiyat.contains("true") || Gensiyat.contains("false")){
                             flagMosafer=flagMosafer+"T";
                         }else{
-                            //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+" کد ملی صحیح نمی باشد(10رقمی)";
+                            errorMessage=errorMessage+"\n"+" جنسیت را انتخاب کنید";
                         }
-                    if (Gensiyat.contains("true") || Gensiyat.contains("false")){
-                        flagMosafer=flagMosafer+"T";
-                    }else{
-                        flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+" جنسیت را انتخاب کنید";
+                        //////////////////////////End Validate
+                        if (flagMosafer.contains("F")) {
+                            //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
+                            //Toast.makeText(this,errorMessage,2000).show();
+                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this);
+                            alertDialogPassenger.setText("" + "  " + errorMessage);
+                        } else {
+                            //insert partner
+                            PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerHotelActivity.this);
+
+                            partnerInfo_Table.dropTable();
+                            partnerInfo_Table.openDB();
+
+
+                            partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
+
+
+                            partnerInfo_Table.closeDB();
+                            ////////////////
+                            linear_saler.setVisibility(View.GONE);
+                            linear_pish_factor.setVisibility(View.GONE);
+                            linear_mosaferan.setVisibility(View.VISIBLE);
+                            txtTitle.setText(" اطلاعات مسافران ");
+                            //((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
+                            //((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
+                            Gensiyat = "";
+                            ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+                            ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+                            setAnimation();
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println("Exception ::" + e);
                     }
-                    //////////////////////////End Validate
-                    if (flagMosafer.contains("F")) {
-                        //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
-                        //Toast.makeText(this,errorMessage,2000).show();
-                        AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this);
-                        alertDialogPassenger.setText("" + "  " + errorMessage);
-                    } else {
-                        //insert partner
-                        PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerHotelActivity.this);
-
-                        partnerInfo_Table.dropTable();
-                        partnerInfo_Table.openDB();
-
-
-                        partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
-
-
-                        partnerInfo_Table.closeDB();
-                        ////////////////
-                        linear_saler.setVisibility(View.GONE);
-                        linear_pish_factor.setVisibility(View.GONE);
-                        linear_mosaferan.setVisibility(View.VISIBLE);
-                        txtTitle.setText(" اطلاعات مسافران ");
-                        //((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
-                        //((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
-                        Gensiyat = "";
-                        ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
-                        ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
-                        setAnimation();
-                    }
-
-                } catch (Exception e) {
-                    System.out.println("Exception ::" + e);
-                }
                 }
                 break;
            /* case R.id.txttavalodm:
@@ -1772,14 +1772,14 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 ///////end setMin
 
                 if (!datePickerDialogGregorian1.isAdded())
-                datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
+                    datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
 				/*DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString());
 				newFragment2.show(getFragmentManager(), "datePicker");*/
                 flag = true;
                 break;
             case  R.id.txtexp_passport:
                 if (!datePickerDialogGregorian2.isAdded())
-                datePickerDialogGregorian2.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
+                    datePickerDialogGregorian2.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
 				/*DialogFragment newFragment3 = new DatePickerFragment("");
 				newFragment3.show(getFragmentManager(), "datePicker");*/
                 flag = false;
@@ -2547,9 +2547,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             }
         });
         scroll_partner.clearFocus();
-        txtemeliP.clearFocus();
+        //txtemeliP.clearFocus();
 
-        txtemeliP.setCursorVisible(false);
+        // txtemeliP.setCursorVisible(false);
 
     }
     public static void updateTotalInfos(long serviceTotalPrice) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
- <!--values-ldpi             3.4” 240x432 ldpi
-    values-ldpi             3.3” 240x400 ldpi
-    values-ldpi             2.7” 240x320 ldpi-->
+    <!--values-ldpi             3.4” 240x432 ldpi
+       values-ldpi             3.3” 240x400 ldpi
+       values-ldpi             2.7” 240x320 ldpi-->
 
 
     <dimen name="_12dp">10dp</dimen>
@@ -13,7 +13,7 @@
     <dimen name="margin_5dp">5dp</dimen>
     <dimen name="toolbar_bottom_width_50dp">50dp</dimen>
     <dimen name="text_size_12dp">12dp</dimen>
-   <dimen name="icon_size_25dp">25dp</dimen>
+    <dimen name="icon_size_25dp">25dp</dimen>
     <dimen name="text_size">15dp</dimen>
     <dimen name="_aboutdp">12dp</dimen>
     <dimen name="_14dp">11dp</dimen>
@@ -47,24 +47,24 @@
     <dimen name="_40dp">30dp</dimen>
     <dimen name="_30dp">30dp</dimen>
     <dimen name="_15dp">15dp</dimen>
- <dimen name="_150dp">150dp</dimen>
+    <dimen name="_150dp">150dp</dimen>
     <dimen name="_20dp_normal_textSize">18dp</dimen>
- <dimen name="_15dp_normal_textSize">15dp</dimen>
- <dimen name="_12dp_normal_textSize">12dp</dimen>
- <dimen name="_25dp_normal_iconSize">12dp</dimen>
- <dimen name="_16dp_normal_textSize">16dp</dimen>
- <dimen name="_4dp_normal_margin">4dp</dimen>
- <dimen name="_15dp_normal_margin">15dp</dimen>
- <dimen name="_50dp_normal">50dp</dimen>
+    <dimen name="_15dp_normal_textSize">15dp</dimen>
+    <dimen name="_12dp_normal_textSize">12dp</dimen>
+    <dimen name="_25dp_normal_iconSize">12dp</dimen>
+    <dimen name="_16dp_normal_textSize">16dp</dimen>
+    <dimen name="_4dp_normal_margin">4dp</dimen>
+    <dimen name="_15dp_normal_margin">15dp</dimen>
+    <dimen name="_50dp_normal">50dp</dimen>
     <dimen name="_200dp_normal">200dp</dimen>
- <dimen name="_250dp_normal">250dp</dimen>
+    <dimen name="_250dp_normal">250dp</dimen>
     <dimen name="_30dp_normal_iconSize">30dp</dimen>
     <dimen name="_35dp_normal">35dp</dimen>
- <dimen name="_16dp_exit_menu_textSize">16dp</dimen>
- <dimen name="_8dp_normal_margin">8dp</dimen>
+    <dimen name="_16dp_exit_menu_textSize">16dp</dimen>
+    <dimen name="_8dp_normal_margin">8dp</dimen>
     <dimen name="_180dp">180dp</dimen>
- <dimen name="_13dp_normal_textSize">13dp</dimen>
- <dimen name="_62dp">62dp</dimen>
+    <dimen name="_13dp_normal_textSize">13dp</dimen>
+    <dimen name="_62dp">62dp</dimen>
     <dimen name="_100dp_normal">100dp</dimen>
     <dimen name="_200dp_fh">180dp</dimen>
     <dimen name="_50dp_fh">30dp</dimen>
@@ -123,5 +123,7 @@
     <dimen name="_175dp_package">175dp</dimen>
     <dimen name="_1dpPackage">1dp</dimen>
     <dimen name="_20dp_khadamat">20dp</dimen>
+    <dimen name="_15dp_khadamat">15dp</dimen>
+    <dimen name="_23dp_khadamat">23dp</dimen>
 
 </resources>
