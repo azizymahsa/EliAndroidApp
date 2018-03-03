@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,15 +29,17 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <FrameLayout
                 android:id="@+id/flViewPager"
+
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200dp_normal">
 
                 <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+
                     android:id="@+id/intro_view_pager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -73,16 +76,16 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
+                        android:gravity="right"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ivImage"
                             android:layout_width="@dimen/_60dp_hight"
                             android:layout_height="@dimen/_16dp_exit_menu_textSize"
-                            android:layout_gravity="center|end"
-                            android:layout_marginEnd="4dp"
-                            android:gravity="end"
+                            android:layout_gravity="center|right"
+                            android:layout_marginRight="4dp"
+                            android:gravity="right"
                             android:scaleType="fitEnd"
                             android:src="@drawable/rating_start"
 
@@ -92,8 +95,8 @@
                             android:id="@+id/tvHotelName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="4dp"
-                            android:gravity="end|center"
+                            android:layout_marginRight="4dp"
+                            android:gravity="right|center"
                             android:text="sdfsdf"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_4d"
@@ -104,9 +107,10 @@
                             android:id="@+id/tvCityName"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="4dp"
+                            android:layout_below="@+id/ivHotelPic"
+                            android:layout_marginRight="4dp"
                             android:ellipsize="end"
-                            android:gravity="center|end"
+                            android:gravity="center|right"
                             android:maxLines="1"
                             android:text="sdfsdf"
                             android:textColor="@color/text_color_4d"
@@ -117,12 +121,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
+                        android:gravity="right"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:gravity="center|top"
                             android:text="@string/icon_location"
                             android:textAppearance="@style/IconFonts"
@@ -132,10 +136,12 @@
                         <TextView
                             android:id="@+id/tvAdress"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="4dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="4dp"
                             android:layout_weight="100"
-                            android:gravity="center|start"
+                            android:ellipsize="end"
+                            android:gravity="center|left"
+                            android:maxLines="2"
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize"
 
@@ -148,9 +154,9 @@
                         android:id="@+id/tvDateDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
                         android:ellipsize="end"
-                        android:gravity="center|start"
+                        android:gravity="center|right"
                         android:maxLines="1"
                         android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_12dp_normal_textSize"
@@ -161,6 +167,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="4dp"
+
                         android:layout_marginRight="4dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/background_hotel_detail"
@@ -175,7 +182,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="0dp"
+                                android:layout_height="match_parent"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="نظرات"
@@ -201,7 +208,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="0dp"
+                                android:layout_height="match_parent"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="نقشه"
@@ -227,7 +234,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="0dp"
+                                android:layout_height="match_parent"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="امکانات"
@@ -254,7 +261,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="0dp"
+                                android:layout_height="match_parent"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="انتخاب و رزرو اتاق"
@@ -404,6 +411,7 @@
                     style="@style/AVLoadingIndicatorView"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_below="@+id/tv"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10dp_margin"
                     android:visibility="gone"
@@ -429,11 +437,12 @@
                     android:id="@+id/btnOneComment"
                     android:layout_width="@dimen/_100dp_image"
                     android:layout_height="@dimen/_30dp"
+                    android:layout_alignParentRight="true"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="10dp"
-                    app:elevation="1dp"
+                    android:elevation="1dp"
                     android:gravity="center|top"
                     android:paddingBottom="1dp"
                     android:visibility="gone"
@@ -458,7 +467,9 @@
 
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/cvHotel"
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="7dp"
@@ -476,7 +487,7 @@
                             android:layout_marginLeft="7dp"
                             android:layout_marginRight="7dp"
                             android:layout_marginTop="@dimen/_5dp_margin"
-                            android:gravity="end"
+                            android:gravity="right"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -563,10 +574,11 @@
                                         android:id="@+id/btnComment"
                                         android:layout_width="@dimen/_100dp_image"
                                         android:layout_height="@dimen/_30dp"
+                                        android:layout_alignParentRight="true"
                                         android:layout_gravity="center"
                                         android:layout_marginLeft="5dp"
                                         android:layout_marginRight="5dp"
-                                        app:elevation="1dp"
+                                        android:elevation="1dp"
                                         android:gravity="center|top"
                                         android:paddingBottom="1dp"
                                         fancy:fb_defaultColor="@color/blue"
@@ -604,11 +616,11 @@
                                 android:id="@+id/btnSortComment"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center"
-                                android:layout_marginStart="5dp"
-                                app:elevation="1dp"
+                                android:layout_marginLeft="5dp"
+                                android:elevation="1dp"
                                 android:paddingBottom="1dp"
                                 fancy:fb_defaultColor="@color/TRANSPARENT"
                                 fancy:fb_focusColor="@color/focusColor"
@@ -623,7 +635,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_centerInParent="true"
-                                android:layout_marginEnd="@dimen/_5dp_margin"
+                                android:layout_marginRight="@dimen/_5dp_margin"
                                 android:gravity="center"
                                 android:padding="@dimen/_5dp_margin"
                                 android:text="مفیدترین نظرات"
@@ -634,8 +646,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_marginEnd="@dimen/_10dp_margin"
-                                android:layout_toEndOf="@+id/tvSortComment"
+                                android:layout_marginRight="@dimen/_10dp_margin"
+                                android:layout_toRightOf="@+id/tvSortComment"
                                 android:gravity="center"
                                 android:text="@string/icon_sort"
                                 android:textAppearance="@style/IconFonts"
@@ -654,7 +666,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="100"
-                            android:gravity="end|center"
+                            android:gravity="right|center"
                             android:padding="3dp"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
@@ -665,8 +677,10 @@
                     <com.eligasht.reservation.tools.NonScrollRecyclerView
                         android:id="@+id/lvComments"
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5dp_margin"
+
                         android:divider="@null"
                         android:dividerHeight="0dp" />
 
@@ -693,6 +707,7 @@
 
             <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
                 android:id="@+id/lvRooms"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/cvHotel"
@@ -757,7 +772,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        app:elevation="4dp"
+                        android:elevation="4dp"
                         android:paddingBottom="1dp"
                         fancy:fb_defaultColor="@color/TRANSPARENT"
                         fancy:fb_focusColor="@color/focusColor"
@@ -805,7 +820,9 @@
             android:layout_marginTop="10dp"
             app:lottie_autoPlay="true"
             app:lottie_fileName="circle-l.json"
-            app:lottie_loop="true" />
+            app:lottie_loop="true"
+
+            />
 
 
     </RelativeLayout>

@@ -14,7 +14,6 @@
 
 
 
-
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,46 +33,20 @@
             android:textColor="@color/text_color_4d"
             android:textSize="@dimen/_12dp_normal_textSize" />
 
+        <ImageView
+            android:id="@+id/ivArrow"
 
-
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                android:textSize="12dp"
-                android:textAppearance="@style/IconFonts"
-                android:text="@string/dot"
-                android:textColor="@color/gray_dark"
-                android:gravity="center"/>
-
-
-            <View
-                android:layout_width="@dimen/_200dp_fh"
-                android:layout_height="1dp"
-                android:background="@color/gray_dark"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                android:textSize="12dp"
-                android:textAppearance="@style/IconFonts"
-                android:text="@string/plane"
-                android:textColor="@color/gray_dark"
-                android:gravity="center"
-                android:layout_marginRight="3dp"/>
-
-        </LinearLayout>
-
-
+            android:layout_width="@dimen/_200dp_fh"
+            android:layout_height="@dimen/_14dp"
+            android:scaleType="fitXY"
+            android:gravity="right"
+            android:padding="4dp"
+            android:src="@drawable/gray_line"
+            android:text=" "
+            android:textColor="#486b6b"
+            android:visibility="visible"
+            android:rotation="180"
+            android:layout_gravity="center"/>
 
         <TextView
             android:id="@+id/tvANRaft1_2"
@@ -84,8 +57,7 @@
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="@dimen/_12dp_normal_textSize"
-            android:layout_marginLeft="3dp"/>
+            android:textSize="@dimen/_12dp_normal_textSize" />
 
     </LinearLayout>
 </LinearLayout>

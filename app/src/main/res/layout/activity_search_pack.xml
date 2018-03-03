@@ -27,8 +27,8 @@
             android:id="@+id/btnBack"
             android:layout_width="@dimen/toolbar_bottom_width_50dp"
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
-            android:layout_gravity="end|center"
-            android:gravity="end"
+            android:layout_gravity="right|center"
+            android:gravity="right"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
 
@@ -57,14 +57,17 @@
                     android:layout_marginTop="@dimen/_5dp_margin"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="@android:color/white"
+
+
                     android:textSize="@dimen/toolbar_title_16dp" />
 
                 <TextView
                     android:id="@+id/tvCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
                     android:layout_marginTop="15dp"
+                    android:layout_toLeftOf="@+id/tvTitle"
                     android:gravity="center"
                     android:text="asfdasdasd"
                     android:textColor="@android:color/white"
@@ -88,9 +91,9 @@
 
             <RelativeLayout
                 android:id="@+id/llHome"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_60dp_hight"
-                android:layout_gravity="start">
+                android:layout_gravity="left">
 
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnHome"
@@ -98,6 +101,7 @@
                     android:layout_height="@dimen/_60dp_hight"
                     fancy:fb_defaultColor="@android:color/transparent"
                     fancy:fb_focusColor="@color/focusColor"
+
                     fancy:fb_radius="200dp"
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
@@ -108,7 +112,9 @@
                     android:layout_width="@dimen/_30dp"
                     android:layout_height="@dimen/_30dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/e_logo" />
+                    android:background="@drawable/e_logo"
+
+                    />
 
 
             </RelativeLayout>
@@ -136,9 +142,9 @@
                 android:id="@+id/rcl_available_date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
                 android:background="@color/gray_light"
-                android:gravity="end"
+                android:gravity="right"
+                android:layout_marginTop="5dp"
                 android:layoutDirection="rtl"
                 android:visibility="visible">
 
@@ -153,11 +159,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbarLayout2"
-        android:layout_marginTop="5dp"
         android:background="@drawable/bg_banafash_with_stroke"
         android:gravity="center"
         android:paddingBottom="3dp"
         android:paddingTop="3dp"
+        android:layout_marginTop="5dp"
         android:text="در تاریخ مذکور نتیجه ای یافت نشد، نزدیکترین تاریخ موجود به صورت زیر است:"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -218,10 +224,11 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="end"
-                        android:gravity="end"
+                        android:layout_gravity="right"
+                        android:gravity="right"
                         fancy:fb_defaultColor="@android:color/transparent"
                         fancy:fb_focusColor="@color/focusColor"
+
                         fancy:fb_radius="6dp"
                         fancy:fb_text=" "
                         fancy:fb_textColor="#FFFFFF"
@@ -232,7 +239,7 @@
                         android:id="@+id/tvNextDay"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_5dp_margin"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
                         android:gravity="center"
                         android:text="@string/icon_arrow_left"
                         android:textAppearance="@style/IconFonts"
@@ -242,9 +249,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_toEndOf="@+id/tvNextDay"
+                        android:layout_toRightOf="@+id/tvNextDay"
                         android:gravity="center"
                         android:text="روز قبل"
+
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_14dp_txtSize" />
 
@@ -262,8 +270,8 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="end"
-                        android:gravity="end"
+                        android:layout_gravity="right"
+                        android:gravity="right"
                         fancy:fb_defaultColor="@android:color/transparent"
                         fancy:fb_focusColor="@color/focusColor"
 
@@ -276,8 +284,9 @@
                         android:id="@+id/tvLastDays"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_5dp_margin"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
                         android:gravity="center"
+
                         android:text="روز بعد"
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_14dp_txtSize" />
@@ -286,10 +295,11 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_toEndOf="@+id/tvLastDays"
+                        android:layout_toRightOf="@+id/tvLastDays"
                         android:gravity="center"
                         android:text="@string/icon_arrow_right"
                         android:textAppearance="@style/IconFonts"
+
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_25dp_normal_iconSize" />
 
@@ -311,7 +321,7 @@
                     android:id="@+id/tvFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_5dp_margin"
+                    android:layout_marginLeft="@dimen/_5dp_margin"
                     android:gravity="center"
                     android:text="فیلتر کردن"
                     android:textColor="#4d4d4d"
@@ -322,7 +332,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_5dp_margin"
+                    android:layout_marginLeft="@dimen/_5dp_margin"
                     android:gravity="center"
                     android:text="@string/icon_filter"
                     android:textAppearance="@style/IconFonts"
@@ -347,7 +357,7 @@
                     android:id="@+id/tvSort"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_5dp_margin"
+                    android:layout_marginLeft="@dimen/_5dp_margin"
                     android:gravity="center"
                     android:text="مرتب کردن"
                     android:textColor="#4d4d4d"
@@ -357,14 +367,19 @@
                     android:id="@+id/tvSortIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_5dp_margin"
+                    android:layout_marginLeft="@dimen/_5dp_margin"
                     android:gravity="center"
                     android:text="@string/icon_sort"
                     android:textAppearance="@style/IconFonts"
                     android:textColor="#4d4d4d"
                     android:textSize="@dimen/_25dp_normal_iconSize" />
+
             </LinearLayout>
+
+
         </LinearLayout>
+
+
     </LinearLayout>
 
     <include

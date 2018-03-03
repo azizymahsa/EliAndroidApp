@@ -64,8 +64,8 @@
     <dimen name="_13dp_normal_textSize">13dp</dimen>
     <dimen name="_62dp">62dp</dimen>
     <dimen name="_100dp_normal">100dp</dimen>
-    <dimen name="_200dp_fh">180dp</dimen>
-    <dimen name="_50dp_fh">30dp</dimen>
+    <dimen name="_200dp_fh">200dp</dimen>
+    <dimen name="_50dp_fh">50dp</dimen>
     <dimen name="_30dp_fh">30dp</dimen>
     <dimen name="_200dp_p">200dp</dimen>
     <dimen name="_20dp_margin_p">20dp</dimen>
@@ -76,7 +76,7 @@
     <dimen name="_80dp_ci">80dp</dimen>
     <dimen name="_24dp_textSize">24dp</dimen>
 
-    <dimen name="_260dp_f">205dp</dimen>
+    <dimen name="_260dp_f">240dp</dimen>
     <dimen name="_90dp">90dp</dimen>
     <dimen name="_60dp_margin_package">60dp</dimen>
     <dimen name="_68dp_f">68dp</dimen>
@@ -93,7 +93,7 @@
     <dimen name="_100dp">100dp</dimen>
     <dimen name="_14dp_3">11dp</dimen>
     <dimen name="_50dp_tablet">5dp</dimen>
-    <dimen name="_80dp_fh_">60dp</dimen>
+    <dimen name="_80dp_fh_">80dp</dimen>
     <dimen name="_14dp_2">12dp</dimen>
     <dimen name="_32_normal_flight">16dp</dimen>
     <dimen name="_10dp_title">0dp</dimen>
@@ -118,7 +118,5 @@
     <dimen name="_0dp_margin">0dp</dimen>
     <dimen name="_10dp_khadamat">10dp</dimen>
     <dimen name="_12_dp_khadamat">12dp</dimen>
-    <dimen name="_175dp_package">175dp</dimen>
-    <dimen name="_1dpPackage">1dp</dimen>
 
 </resources>
