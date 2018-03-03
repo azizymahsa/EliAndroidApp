@@ -8,9 +8,19 @@ public class ChildModel {
 
     private ChildAgeRange childAgeRange = ChildAgeRange.F0T2;
     private String title;
+    boolean anim;
 
-    public ChildModel(String title) {
+    public ChildModel(String title, boolean anim) {
         this.title = title;
+        this.anim = anim;
+    }
+
+    public boolean isAnim() {
+        return anim;
+    }
+
+    public void setAnim(boolean anim) {
+        this.anim = anim;
     }
 
     public ChildModel() {
