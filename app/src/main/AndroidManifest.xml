@@ -186,6 +186,11 @@
             android:screenOrientation="portrait"
 
             />
+        <activity
+            android:name=".reservation.views.ui.GetCountriesForInsuranceActivity"
+            android:screenOrientation="portrait"
+
+            />
     </application>
 
 </manifest>

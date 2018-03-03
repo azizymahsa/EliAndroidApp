@@ -9,7 +9,6 @@
     android:visibility="gone"
 
 
-
     >
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,40 +29,21 @@
             android:textColor="@color/text_color_4d"
             android:textSize="@dimen/_12dp_normal_textSize" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/ivArrow11"
 
-                android:textSize="12dp"
-                android:textAppearance="@style/IconFonts"
-                android:text="@string/dot"
-                android:textColor="@color/gray_dark"
-                android:gravity="center"/>
+            android:layout_width="@dimen/_80dp_fh_"
+            android:layout_height="@dimen/_14dp_2"
+            android:scaleType="fitXY"
+            android:gravity="right"
+            android:padding="4dp"
+            android:src="@drawable/gray_line2"
+            android:textColor="#486b6b"
+            android:textSize="10dip"
+            android:visibility="visible"
+            android:layout_gravity="center"
+            />
 
-
-            <View
-                android:layout_width="@dimen/_80dp_fh_"
-                android:layout_height="1dp"
-                android:background="@color/gray_dark"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                android:textSize="12dp"
-                android:textAppearance="@style/IconFonts"
-                android:text="@string/plane"
-                android:textColor="@color/gray_dark"
-                android:gravity="center"
-                android:layout_marginRight="3dp"/>
-
-        </LinearLayout>
         <TextView
             android:id="@+id/tvANRaft2_2"
 
@@ -85,39 +65,20 @@
         android:orientation="horizontal">
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/ivArrow"
 
-                android:textSize="12dp"
-                android:textAppearance="@style/IconFonts"
-                android:text="@string/dot"
-                android:textColor="@color/gray_dark"
-                android:gravity="center"/>
+            android:layout_width="@dimen/_80dp_fh_"
+            android:layout_height="@dimen/_14dp_2"
+            android:scaleType="fitXY"
 
-
-            <View
-                android:layout_width="@dimen/_80dp_fh_"
-                android:layout_height="1dp"
-                android:background="@color/gray_dark"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                android:textSize="12dp"
-                android:textAppearance="@style/IconFonts"
-                android:text="@string/plane"
-                android:textColor="@color/gray_dark"
-                android:gravity="center"/>
-
-        </LinearLayout>
+            android:gravity="right"
+            android:padding="4dp"
+            android:src="@drawable/gray_line2"
+            android:layout_gravity="center"
+            android:textColor="#486b6b"
+            android:textSize="10dip"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/tvANRaft2_3"
@@ -128,9 +89,7 @@
             android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="@dimen/_12dp_normal_textSize"
-            android:layout_marginLeft="3dp"
-            />
+            android:textSize="@dimen/_12dp_normal_textSize"  />
 
     </LinearLayout>
 

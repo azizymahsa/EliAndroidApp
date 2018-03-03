@@ -170,19 +170,6 @@
             android:layout_below="@+id/textLayout">
 
 
-            <!-- <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="40dp"
-                 android:layout_margin="1dp"
-                 android:layout_weight="1.57"
-                 android:background="@drawable/top_box_passenger"
-                 android:orientation="vertical" >
-                 &lt;!&ndash; android:background="@drawable/top_box_passenger"&ndash;&gt;
-
-             </LinearLayout>-->
-            <!-- /////////////linear kharidar//////////// -->
-
-            <!-- linear layout mosferan -->
 
             <LinearLayout
                 android:id="@+id/linear_saler"
@@ -576,7 +563,7 @@
                         <LinearLayout
                             android:id="@+id/btn_next_partnerInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp_normal"
+                            android:layout_height="@dimen/_40dp"
                             android:layout_marginBottom="15dp"
                             android:layout_marginLeft="24dp"
                             android:layout_marginRight="24dp"
@@ -1194,22 +1181,6 @@
                                 android:textSize="@dimen/_14dp" />
                         </LinearLayout>
 
-                        <!--<Button
-                    android:id="@+id/btn_nextm"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/btngravity_big"
-                    android:text="تایید و گام بعدی"
-                    android:drawableLeft="@drawable/left_arrow_khadamat"
-                    android:paddingLeft="@dimen/_12dp"
-                    android:textAppearance="@style/IrsansBold"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11dp" />-->
                         <LinearLayout
                             android:id="@+id/btn_nextm"
                             android:layout_width="match_parent"
@@ -1797,31 +1768,6 @@
             </LinearLayout>
 
         </LinearLayout>
-        <!-- </LinearLayout> -->
-    <!--<RelativeLayout
-        android:id="@+id/rlLoading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ad000000"
-        android:visibility="gone">
-
-
-        <com.wang.avi.AVLoadingIndicatorView
-
-            android:id="@+id/avi1"
-            style="@style/AVLoadingIndicatorView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/tv"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:visibility="visible"
-            app:indicatorColor="@color/toolbar_color"
-            app:indicatorName="BallSpinFadeLoaderIndicator"
-
-            />
-    </RelativeLayout>-->
     <RelativeLayout
         android:id="@+id/rlLoading"
         android:layout_width="match_parent"

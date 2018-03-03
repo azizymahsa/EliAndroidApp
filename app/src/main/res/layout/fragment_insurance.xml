@@ -10,38 +10,73 @@
         android:orientation="vertical">
 
 
-        <FrameLayout
+        <RelativeLayout
+            android:id="@+id/citySearch"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:background="@drawable/banafsh_jahan"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_weight="0.5">
 
-            <AutoCompleteTextView
-                android:id="@+id/act_country"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_50dp"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/_10dp_marging"
-                android:background="@drawable/background_strock_city"
-                android:gravity="center"
-                android:hint="نام کشور را وارد نمایید"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textCursorDrawable="@drawable/color_cursor"
-                android:textSize="@dimen/_25dp_txtSize" />
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/banafsh_jahan" />
 
-            <ProgressBar
-                android:id="@+id/prg_country"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="25sp"
-                android:layout_height="25sp"
-                android:layout_gravity="center|left"
-                android:layout_margin="20sp"
-                android:visibility="gone" />
+            <ImageView
+                android:id="@+id/txtOption"
+                android:layout_width="@dimen/_50dp_normal"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/_30dp"
+                android:layout_marginRight="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/hotel_circle_icon" />
 
-        </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_mabda"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="right"
+                android:layout_toLeftOf="@+id/txtOption"
+                android:gravity="center|right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblProductID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="سفر به : "
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_15dp_normal_textSize" />
+
+                <TextView
+                    android:id="@+id/txtCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="کشور سفر را انتخاب کنید"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_20dp_normal_textSize"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/lbl_city_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
 
         <LinearLayout
