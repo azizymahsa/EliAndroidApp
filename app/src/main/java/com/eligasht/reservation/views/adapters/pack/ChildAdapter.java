@@ -73,15 +73,19 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildRowHolder> {
         holder.spn_range.setAdapter(childAgeRangeAdapter);
 
         holder.spn_range.setSelection(childAgeRanges.indexOf(childModel.getChildAgeRange()));
+/*
         if (childModels.get(position).isAnim()){
-          /*  Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
             holder.itemView.startAnimation(animation);
-            ModelRowCountRoom room2 = new ModelRowCountRoom();
-            room2.setCountB(getRooms().get(position).getCountB());
-            room2.setCountK(getRooms().get(position).getCountK());
-            room2.setAnim(false);
-            rooms.set(position,room2);*/
+            final ChildModel childModel2 = childModels.get(position);
+            childModel2.setTitle(childModels.get(position).getTitle());
+            childModel2.setAnim(false);
+      */
+/*      room2.setAnim(false);
+            rooms.set(position,room2);*//*
+
         }
+*/
 
         YoYo.with(Techniques.SlideInLeft)
                 .duration(500)
