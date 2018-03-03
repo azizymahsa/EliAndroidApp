@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.eligasht.R;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
-import com.eligasht.R;
 
 import java.util.List;
 
@@ -44,18 +44,16 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
     }
 
 
-
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final HotelPreFactorModel item = data.get(position);
 
-        String sum="";
-        sum=item.getAdult()+" بزرگسال";
-        if (Integer.valueOf(item.getChild())!=0){
-            sum=sum+" "+item.getChild()+" کودک";
+        String sum = "";
+        sum = item.getAdult() + " بزرگسال";
+        if (Integer.valueOf(item.getChild()) != 0) {
+            sum = sum + " " + item.getChild() + " کودک";
 
         }
-
 
 
         holder.setIsRecyclable(false);
@@ -64,10 +62,10 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
         holder.tvCheckOut.setText(item.getCheckIn());
         holder.tvCheckIn.setText(item.getCheckOut());
         holder.tvRoom.setText(item.getRoom());
-       // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
+        // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);
-       // holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2));
-       // holder.expandableLayout.setInterpolator(item.interpolator);
+        // holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2));
+        // holder.expandableLayout.setInterpolator(item.interpolator);
         holder.expandableLayout.setExpanded(expandState.get(position));
         holder.expandableLayout.setListener(new ExpandableLayoutListenerAdapter() {
             @Override
@@ -101,33 +99,33 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
         return data.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvHotelName,tvSum,tvCheckOut,tvCheckIn,tvArrow,tvNumAdult,tvRoom;
-        RelativeLayout buttonLayout;
-      //  public RelativeLayout tvArrow;
-        /**
-         * You must use the ExpandableLinearLayout in the recycler view.
-         * The ExpandableRelativeLayout doesn't work.
-         */
-        public ExpandableLinearLayout expandableLayout;
-
-        public ViewHolder(View v) {
-            super(v);
-            tvHotelName = (TextView) v.findViewById(R.id.tvHotelDetail);
-            tvSum = (TextView) v.findViewById(R.id.tvSum);
-            tvCheckOut = (TextView) v.findViewById(R.id.tvCheckOut);
-            tvCheckIn = (TextView) v.findViewById(R.id.tvCheckIn);
-            expandableLayout = (ExpandableLinearLayout) v.findViewById(R.id.expandableLayout);
-            tvArrow = (TextView) v.findViewById(R.id.tvArrow);
-            tvRoom = (TextView) v.findViewById(R.id.tvRoom);
-            buttonLayout = (RelativeLayout) v.findViewById(R.id.buttonLayout);
-        }
-    }
-
     public ObjectAnimator createRotateAnimator(final View target, final float from, final float to) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(target, "rotation", from, to);
         animator.setDuration(300);
         animator.setInterpolator(Utils.createInterpolator(Utils.LINEAR_INTERPOLATOR));
         return animator;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvHotelName, tvSum, tvCheckOut, tvCheckIn, tvArrow, tvNumAdult, tvRoom;
+        /**
+         * You must use the ExpandableLinearLayout in the recycler view.
+         * The ExpandableRelativeLayout doesn't work.
+         */
+        public ExpandableLinearLayout expandableLayout;
+        //  public RelativeLayout tvArrow;
+        RelativeLayout buttonLayout;
+
+        public ViewHolder(View v) {
+            super(v);
+            tvHotelName = v.findViewById(R.id.tvHotelDetail);
+            tvSum = v.findViewById(R.id.tvSum);
+            tvCheckOut = v.findViewById(R.id.tvCheckOut);
+            tvCheckIn = v.findViewById(R.id.tvCheckIn);
+            expandableLayout = v.findViewById(R.id.expandableLayout);
+            tvArrow = v.findViewById(R.id.tvArrow);
+            tvRoom = v.findViewById(R.id.tvRoom);
+            buttonLayout = v.findViewById(R.id.buttonLayout);
+        }
     }
 }

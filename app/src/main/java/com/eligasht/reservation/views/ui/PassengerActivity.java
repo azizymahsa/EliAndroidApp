@@ -547,8 +547,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txtkodemeliP.setOnFocusChangeListener(this);
 		txtemeliP= (EditText)findViewById(R.id.txtemeliP);
 		txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
-		//txtemeliP.setOnFocusChangeListener(this);
-		//txtemeliP.clearFocus();
+		txtemeliP.setOnFocusChangeListener(this);
+		txtemeliP.clearFocus();
 
 		txtmeliyatm= (TextView)findViewById(R.id.txtmeliyatm);
 		txtmeliyatm.setOnClickListener(this);
@@ -622,9 +622,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				txtkodemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserNationalCode());
 				txtemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
 				txtnameP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
-				//txtemeliP.clearFocus();
+				txtemeliP.clearFocus();
 
-				//txtemeliP.setCursorVisible(false);
+				txtemeliP.setCursorVisible(false);
 			}
 		}catch (Exception e) {
 			System.out.println("Error " + e.getMessage());
@@ -2421,9 +2421,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 		});
 		scroll_partner.clearFocus();
-		//txtemeliP.clearFocus();
+		txtemeliP.clearFocus();
 
-		//txtemeliP.setCursorVisible(false);
+		txtemeliP.setCursorVisible(false);
 
 	}
 	public String getCounter(int i) {

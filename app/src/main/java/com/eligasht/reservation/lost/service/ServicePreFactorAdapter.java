@@ -10,13 +10,12 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.eligasht.R;
+import com.eligasht.reservation.tools.Utility;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
-import com.eligasht.R;
-
-import com.eligasht.reservation.tools.Utility;
 
 import java.util.List;
 
@@ -56,11 +55,11 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         holder.tvTypeService.setText(item.getServiceType());
         holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice()));
 
-        if (item.getServiceNameFa().contains("بیمه")){
+        if (item.getServiceNameFa().contains("بیمه")) {
             holder.tvServiceCityUi.setText("کشور");
             holder.tvCityName.setVisibility(View.VISIBLE);
 
-        }else{
+        } else {
 
             holder.tvServiceCityUi.setVisibility(View.VISIBLE);
             holder.tvServiceCityUi.setText("شهر");
@@ -108,35 +107,35 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         return data.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvPrice,tvArrow,tvServiceCityUi;
-        RelativeLayout buttonLayout;
-        //  public RelativeLayout tvArrow;
-        /**
-         * You must use the ExpandableLinearLayout in the recycler view.
-         * The ExpandableRelativeLayout doesn't work.
-         */
-        public ExpandableLinearLayout expandableLayout;
-
-        public ViewHolder(View v) {
-            super(v);
-            tvServicName = (TextView) v.findViewById(R.id.tvServicName);
-            tvServiceFa = (TextView) v.findViewById(R.id.tvServiceFa);
-            tvCityName = (TextView) v.findViewById(R.id.tvCityName);
-            tvTypeService = (TextView) v.findViewById(R.id.tvTypeService);
-            tvPrice = (TextView) v.findViewById(R.id.tvPrice);
-            expandableLayout = (ExpandableLinearLayout) v.findViewById(R.id.expandableLayout);
-            tvArrow = (TextView) v.findViewById(R.id.tvArrow);
-            buttonLayout = (RelativeLayout) v.findViewById(R.id.buttonLayout);
-            tvServiceCityUi = (TextView) v.findViewById(R.id.tvServiceCityUi);
-        }
-    }
-
     public ObjectAnimator createRotateAnimator(final View target, final float from, final float to) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(target, "rotation", from, to);
         animator.setDuration(300);
         animator.setInterpolator(Utils.createInterpolator(Utils.LINEAR_INTERPOLATOR));
         return animator;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvPrice, tvArrow, tvServiceCityUi;
+        /**
+         * You must use the ExpandableLinearLayout in the recycler view.
+         * The ExpandableRelativeLayout doesn't work.
+         */
+        public ExpandableLinearLayout expandableLayout;
+        //  public RelativeLayout tvArrow;
+        RelativeLayout buttonLayout;
+
+        public ViewHolder(View v) {
+            super(v);
+            tvServicName = v.findViewById(R.id.tvServicName);
+            tvServiceFa = v.findViewById(R.id.tvServiceFa);
+            tvCityName = v.findViewById(R.id.tvCityName);
+            tvTypeService = v.findViewById(R.id.tvTypeService);
+            tvPrice = v.findViewById(R.id.tvPrice);
+            expandableLayout = v.findViewById(R.id.expandableLayout);
+            tvArrow = v.findViewById(R.id.tvArrow);
+            buttonLayout = v.findViewById(R.id.buttonLayout);
+            tvServiceCityUi = v.findViewById(R.id.tvServiceCityUi);
+        }
     }
 
 }

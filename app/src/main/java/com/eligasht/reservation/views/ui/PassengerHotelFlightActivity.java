@@ -2265,9 +2265,9 @@ System.out.println("wwwTPRICE:"+gheymatKh);
             }
         });
         scroll_partner.clearFocus();
-      //  txtemeliP.clearFocus();
+        txtemeliP.clearFocus();
 
-      //  txtemeliP.setCursorVisible(false);
+        txtemeliP.setCursorVisible(false);
     }
     public String getCounter(int i) {
         String s = "";
