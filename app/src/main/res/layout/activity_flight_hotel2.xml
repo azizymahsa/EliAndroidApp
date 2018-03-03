@@ -19,19 +19,17 @@
 
         <RelativeLayout
             android:id="@+id/txtOption"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/_30dp_margin"
-            android:layout_marginRight="@dimen/_30dp_margin"
+            android:layout_marginEnd="@dimen/_30dp_margin"
             android:layout_marginTop="@dimen/_30dp">
 
             <ImageView
-
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-
                 android:src="@drawable/line_white" />
 
             <ImageView
@@ -39,7 +37,6 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerInParent="true"
-
                 android:src="@drawable/arow_but" />
 
         </RelativeLayout>
@@ -48,8 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:layout_marginRight="@dimen/_5dp_margin"
-            android:layout_toLeftOf="@+id/txtOption"
+            android:layout_marginEnd="@dimen/_5dp_margin"
+            android:layout_toStartOf="@+id/txtOption"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -63,11 +60,10 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_gravity="right|center"
+                android:layout_gravity="end|center"
                 android:layout_marginTop="20dp"
-                android:layout_toLeftOf="@+id/ivHotel"
                 android:layout_weight="100"
-                android:gravity="right|center"
+                android:gravity="end|center"
                 android:orientation="vertical">
 
 
@@ -75,8 +71,7 @@
                     android:id="@+id/lblProductID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:gravity="right"
+                    android:gravity="start"
                     android:text="پرواز از :"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/_15dp_normal_textSize" />
@@ -85,7 +80,7 @@
                     android:id="@+id/tvMabda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="start"
                     android:text=" استانبول "
                     android:textColor="#fff"
                     android:textSize="@dimen/_20dp_normal_textSize"
@@ -93,10 +88,9 @@
 
                 <TextView
                     android:id="@+id/tvMabdaEn"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="start"
                     android:text="Istanbul,Turkey "
                     android:textColor="#fff"
                     android:textSize="@dimen/_12dp_normal_textSize" />
@@ -106,17 +100,17 @@
                 android:id="@+id/linearLayout_mabda"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_gravity="right|center"
+                android:layout_gravity="end|center"
                 android:layout_marginBottom="10dp"
                 android:layout_toLeftOf="@+id/ivHotel"
                 android:layout_weight="100"
-                android:gravity="right"
+                android:gravity="end"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="start"
                     android:text="پرواز به :"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/_15dp_normal_textSize" />
@@ -125,7 +119,7 @@
                     android:id="@+id/txtCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="start"
                     android:text=" استانبول "
                     android:textColor="#fff"
                     android:textSize="@dimen/_20dp_normal_textSize"
@@ -135,7 +129,7 @@
                     android:id="@+id/lbl_city_english"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="start"
                     android:text="Istanbul,Turkey "
                     android:textColor="#fff"
                     android:textSize="@dimen/_12dp_normal_textSize" />
@@ -187,11 +181,9 @@
                         android:id="@+id/tarikh_be"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-
-                        android:layout_marginRight="@dimen/_4dp_normal_margin"
+                        android:layout_marginEnd="@dimen/_4dp_normal_margin"
                         android:layout_marginTop="@dimen/_15dp_normal_margin"
-                        android:gravity="right"
+                        android:gravity="start"
                         android:text="تاریخ خروج از هتل "
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2"
@@ -208,10 +200,10 @@
                             android:id="@+id/tvBargasht"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginRight="@dimen/_2dp_margin"
+                            android:layout_marginStart="@dimen/_2dp_margin"
                             android:layout_weight="0.8"
                             android:background="#fff"
-                            android:gravity="right|center"
+                            android:gravity="start|center"
                             android:text="انتخاب کنید"
                             android:textColor="@color/text_color_2"
                             android:textSize="@dimen/_12dp_normal_textSize"
@@ -229,9 +221,6 @@
 
                     </LinearLayout>
 
-
-                    <!-- android:text="اطلاعات مالی" -->
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -243,12 +232,11 @@
 
                     <TextView
                         android:id="@+id/tarikh_az"
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_4dp_normal_margin"
+                        android:layout_marginEnd="@dimen/_4dp_normal_margin"
                         android:layout_marginTop="@dimen/_15dp_normal_margin"
-
-                        android:gravity="right"
+                        android:gravity="start"
                         android:text="تاریخ ورود به هتل"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2"
@@ -265,10 +253,10 @@
                             android:id="@+id/tvRaft"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginRight="@dimen/_2dp_margin"
+                            android:layout_marginStart="@dimen/_2dp_margin"
                             android:layout_weight="0.8"
                             android:background="#fff"
-                            android:gravity="right|center"
+                            android:gravity="start|center"
                             android:text="انتخاب کنید"
                             android:textColor="@color/text_color_2"
                             android:textSize="@dimen/_12dp_normal_textSize"
@@ -285,9 +273,6 @@
                             android:textSize="@dimen/_25dp_normal_iconSize" />
 
                     </LinearLayout>
-
-                    <!-- android:text="پیش نمایش" -->
-
                 </LinearLayout>
 
             </LinearLayout>

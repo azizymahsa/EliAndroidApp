@@ -4,20 +4,12 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent">
 
-
-    <!--
-        <ScrollView
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
 
         <RelativeLayout
             android:id="@+id/citySearch"
@@ -33,20 +25,18 @@
 
             <RelativeLayout
                 android:id="@+id/txtOption"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginBottom="@dimen/_30dp_margin"
-                android:layout_marginRight="@dimen/_30dp_margin"
+                android:layout_marginEnd="@dimen/_30dp_margin"
                 android:layout_marginTop="@dimen/_30dp"
                 android:scaleType="centerInside">
 
                 <ImageView
-
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-
                     android:src="@drawable/line_white" />
 
                 <ImageView
@@ -54,7 +44,6 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerInParent="true"
-
                     android:src="@drawable/arow_but" />
 
             </RelativeLayout>
@@ -64,8 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/txtOption"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/txtOption"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -78,27 +67,26 @@
                     android:id="@+id/linearLayout_mabda"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_gravity="right"
-                    android:layout_toLeftOf="@+id/txtOption"
+                    android:layout_gravity="end"
                     android:layout_weight="100"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/lblProductID"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:gravity="right"
+                        android:layout_marginEnd="2dp"
+                        android:gravity="end"
                         android:text="مبدا  : "
                         android:textColor="#ffffff"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
                         android:id="@+id/tvStart"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:text="شهر یا فرودگاه مبدا را انتخاب کنید "
                         android:textColor="#fff"
                         android:textSize="@dimen/_20dp_normal_textSize"
@@ -107,11 +95,11 @@
 
                     <TextView
                         android:id="@+id/lbl_forudgah_mabda"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:ellipsize="end"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:maxLines="1"
                         android:text="  "
                         android:textColor="#fff"
@@ -122,29 +110,27 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout_maghsad"
-
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_gravity="right"
-                    android:layout_toLeftOf="@+id/txtOption"
+                    android:layout_gravity="end"
                     android:layout_weight="100"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:gravity="right"
+                        android:layout_marginEnd="2dp"
+                        android:gravity="end"
                         android:text=" مقصد : "
                         android:textColor="#ffffff"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
                         android:id="@+id/tvEnd"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:text="شهر یا فرودگاه مقصد را انتخاب کنید "
                         android:textColor="#fff"
                         android:textSize="@dimen/_20dp_normal_textSize"
@@ -153,11 +139,11 @@
                     <TextView
                         android:id="@+id/lbl_forudgah_maghsad"
 
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:ellipsize="end"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:maxLines="1"
                         android:text=" "
                         android:textColor="#fff"
@@ -210,8 +196,6 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
-
                             android:orientation="horizontal">
 
                             <TextView
@@ -221,7 +205,7 @@
                                 android:layout_marginTop="@dimen/_15_flight_dp"
                                 android:layout_weight="80"
                                 android:background="#fff"
-                                android:gravity="right|center"
+                                android:gravity="start|center"
                                 android:text="تاریخ برگشت "
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/text_color_2"
@@ -235,14 +219,13 @@
 
                             <TextView
                                 android:id="@+id/tarikh_az"
-
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginRight="@dimen/_2dp_margin"
+                                android:layout_marginEnd="@dimen/_2dp_margin"
                                 android:layout_marginTop="@dimen/_15_flight_dp"
                                 android:layout_weight="80"
                                 android:background="#fff"
-                                android:gravity="right|center"
+                                android:gravity="start|center"
                                 android:text="تاریخ رفت"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/text_color_2"
@@ -267,24 +250,21 @@
                                 android:id="@+id/linear_picker"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginRight="0dp"
+                                android:layout_marginEnd="0dp"
                                 android:layout_weight="100"
-                                android:gravity="right"
+                                android:gravity="end"
                                 android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/tarikh_be_picker"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginEnd="10dp"
                                     android:layout_weight="0.8"
-
-                                    android:gravity="center|right"
+                                    android:gravity="center|start"
                                     android:text="انتخاب کنید"
                                     android:textColor="@color/text_color_2"
-                                    android:textSize="@dimen/_12dp_normal_textSize"
-
-                                    />
+                                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -304,18 +284,18 @@
                                 android:id="@+id/linear_tarikh_az_picker"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginRight="5dp"
+                                android:layout_marginEnd="5dp"
                                 android:layout_weight="100"
-                                android:gravity="right"
+                                android:gravity="end"
                                 android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/tarikh_az_picker"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginEnd="10dp"
                                     android:layout_weight="0.8"
-                                    android:gravity="center|right"
+                                    android:gravity="center|start"
                                     android:text="انتخاب کنید"
                                     android:textColor="@color/text_color_2"
                                     android:textSize="@dimen/_12dp_normal_textSize"
@@ -332,29 +312,19 @@
                                     android:textAppearance="@style/IconFonts"
                                     android:textColor="@color/text_color_2"
                                     android:textSize="@dimen/_25dp_normal_iconSize" />
-
-
                             </LinearLayout>
-
-
                         </LinearLayout>
-
-
                     </LinearLayout>
-
-
                 </android.support.v7.widget.CardView>
 
             </LinearLayout>
-            <!--////////////////////////////////////////////////Tedad nafarat//////////////////////////////////////////////////////////////////////-->
+
             <LinearLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-
                 android:orientation="vertical">
-
 
                 <android.support.v7.widget.CardView
 
@@ -380,8 +350,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginBottom="@dimen/_5_flight_dp"
-                            android:layout_marginLeft="14dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="14dp"
                             android:layout_marginTop="1dp"
                             android:layout_weight="100">
 
@@ -390,8 +360,8 @@
                                 android:layout_width="@dimen/_30dp_f_h"
                                 android:layout_height="@dimen/_30dp_f_h"
                                 android:layout_marginBottom="1dp"
-                                android:layout_marginLeft="22dp"
-                                android:layout_marginRight="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginStart="22dp"
                                 android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="@string/mines"
@@ -424,20 +394,19 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="1dp"
-                                android:gravity="right|center"
+                                android:gravity="start|center"
                                 android:text="بزرگسال"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
                         </LinearLayout>
-                        <!-- ///////////////koodak////////////////// -->
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginBottom="@dimen/_5_flight_dp"
-                            android:layout_marginLeft="14dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="14dp"
                             android:layout_weight="100">
 
                             <Button
@@ -445,8 +414,8 @@
                                 android:layout_width="@dimen/_30dp_f_h"
                                 android:layout_height="@dimen/_30dp_f_h"
                                 android:layout_marginBottom="1dp"
-                                android:layout_marginLeft="22dp"
-                                android:layout_marginRight="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginStart="22dp"
                                 android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="@string/mines"
@@ -479,20 +448,19 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="1dp"
-                                android:gravity="right|center"
+                                android:gravity="start|center"
                                 android:text="کودک"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
                         </LinearLayout>
-                        <!-- //////////////////////nozad/////////////////////// -->
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginBottom="@dimen/_5_flight_dp"
-                            android:layout_marginLeft="14dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="14dp"
                             android:layout_weight="100">
 
                             <Button
@@ -500,8 +468,8 @@
                                 android:layout_width="@dimen/_30dp_f_h"
                                 android:layout_height="@dimen/_30dp_f_h"
                                 android:layout_marginBottom="1dp"
-                                android:layout_marginLeft="22dp"
-                                android:layout_marginRight="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginStart="22dp"
                                 android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="@string/mines"
@@ -534,7 +502,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="1dp"
-                                android:gravity="right|center"
+                                android:gravity="start|center"
                                 android:text="نوزاد"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -549,7 +517,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_alignParentBottom="true"
                 android:layout_gravity="center"
                 android:layout_weight="0.4"
                 android:gravity="center"
@@ -566,23 +533,19 @@
 
                     <TextView
                         android:id="@+id/searchPlan"
-                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:background="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="جستجو"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
             </LinearLayout>
-            <!--        </LinearLayout>-->
-            <!--////////////////////////////////////////////////end tedad nafarat////////////////////////////////////////////////////////////////////////////////////// -->
         </LinearLayout>
     </LinearLayout>
-
-    <!-- </ScrollView>-->
 
     <LinearLayout
         android:id="@+id/llButton"
@@ -598,7 +561,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="100"
-
             android:gravity="center"
             android:text="رفت"
             android:textColor="#808080"
@@ -615,8 +577,6 @@
             android:textColor="#ffffff"
             android:textSize="@dimen/_15dp_normal_textSize"
             android:visibility="visible" />
-
-
     </LinearLayout>
 
 
