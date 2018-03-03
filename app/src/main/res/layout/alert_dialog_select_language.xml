@@ -72,8 +72,8 @@
             android:paddingBottom="@dimen/_10dp_padding"
             android:paddingTop="@dimen/_10dp_padding"
             android:text="انگلیسی"
-            android:textColor="@color/toolbar_color"
-            android:textSize="@dimen/_12dp_normal_textSize" />
+            android:textColor="@color/text_color_4d"
+            android:textSize="@dimen/_15dp_normal_textSize" />
 
         <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
             android:id="@+id/chB_english"
@@ -94,8 +94,8 @@
             android:paddingBottom="@dimen/_10dp_padding"
             android:paddingTop="@dimen/_10dp_padding"
             android:text="فارسی"
-            android:textColor="@color/toolbar_color"
-            android:textSize="@dimen/_12dp_normal_textSize" />
+            android:textColor="@color/text_color_4d"
+            android:textSize="@dimen/_15dp_normal_textSize" />
 
         <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
             android:id="@+id/chB_persian"
