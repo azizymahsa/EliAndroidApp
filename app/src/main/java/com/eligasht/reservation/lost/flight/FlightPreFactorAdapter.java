@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.eligasht.R;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
-import com.eligasht.R;
 
 import java.util.List;
 
@@ -48,8 +48,8 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
 
         final FlightPreFactorModel item = data.get(position);
         holder.setIsRecyclable(false);
-        holder.tvFlightDetail.setText(" " +item.getDepartureCityFa()+" ");
-        holder.tvFlightDetail2.setText(item.getFltTime()+" ");
+        holder.tvFlightDetail.setText(" " + item.getDepartureCityFa() + " ");
+        holder.tvFlightDetail2.setText(item.getFltTime() + " ");
         holder.tvFlightDetail3.setText(item.getFltDate());
 
 
@@ -58,7 +58,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         holder.tvDate.setText(item.getFltDate());
         holder.tvOutTime.setText(item.getFltTime());
         holder.tvInTime.setText(item.getFltCheckinTime());
-        holder.tvNumber.setText(item.getAirlineCode()+" "+item.getFltNumber());
+        holder.tvNumber.setText(item.getAirlineCode() + " " + item.getFltNumber());
         holder.tvAirLineName.setText(item.getAirlineNameEn());
         // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
         holder.expandableLayout.setInRecyclerView(true);
@@ -97,39 +97,39 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         return data.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvFlightDetail,tvArrAirport,tvDepAir,tvDate,tvOutTime,tvInTime,tvNumber,tvAirLineName,tvArrow,tvFlightDetail2,tvFlightDetail3;
-        RelativeLayout buttonLayout;
-        //  public RelativeLayout tvArrow;
-        /**
-         * You must use the ExpandableLinearLayout in the recycler view.
-         * The ExpandableRelativeLayout doesn't work.
-         */
-        public ExpandableLinearLayout expandableLayout;
-
-        public ViewHolder(View v) {
-            super(v);
-            tvFlightDetail = (TextView) v.findViewById(R.id.tvFlightDetail);
-            tvFlightDetail2 = (TextView) v.findViewById(R.id.tvFlightDetail2);
-            tvArrAirport = (TextView) v.findViewById(R.id.tvArrAirport);
-            tvDepAir = (TextView) v.findViewById(R.id.tvDepAir);
-            tvDate = (TextView) v.findViewById(R.id.tvDate);
-            tvOutTime = (TextView) v.findViewById(R.id.tvOutTime);
-            tvInTime = (TextView) v.findViewById(R.id.tvInTime);
-            tvNumber = (TextView) v.findViewById(R.id.tvNumber);
-            tvAirLineName = (TextView) v.findViewById(R.id.tvAirLineName);
-            expandableLayout = (ExpandableLinearLayout) v.findViewById(R.id.expandableLayout);
-            tvArrow = (TextView) v.findViewById(R.id.tvArrow);
-            tvFlightDetail3 = (TextView) v.findViewById(R.id.tvFlightDetail3);
-            buttonLayout = (RelativeLayout) v.findViewById(R.id.buttonLayout);
-        }
-    }
-
     public ObjectAnimator createRotateAnimator(final View target, final float from, final float to) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(target, "rotation", from, to);
         animator.setDuration(300);
         animator.setInterpolator(Utils.createInterpolator(Utils.LINEAR_INTERPOLATOR));
         return animator;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvFlightDetail, tvArrAirport, tvDepAir, tvDate, tvOutTime, tvInTime, tvNumber, tvAirLineName, tvArrow, tvFlightDetail2, tvFlightDetail3;
+        /**
+         * You must use the ExpandableLinearLayout in the recycler view.
+         * The ExpandableRelativeLayout doesn't work.
+         */
+        public ExpandableLinearLayout expandableLayout;
+        //  public RelativeLayout tvArrow;
+        RelativeLayout buttonLayout;
+
+        public ViewHolder(View v) {
+            super(v);
+            tvFlightDetail = v.findViewById(R.id.tvFlightDetail);
+            tvFlightDetail2 = v.findViewById(R.id.tvFlightDetail2);
+            tvArrAirport = v.findViewById(R.id.tvArrAirport);
+            tvDepAir = v.findViewById(R.id.tvDepAir);
+            tvDate = v.findViewById(R.id.tvDate);
+            tvOutTime = v.findViewById(R.id.tvOutTime);
+            tvInTime = v.findViewById(R.id.tvInTime);
+            tvNumber = v.findViewById(R.id.tvNumber);
+            tvAirLineName = v.findViewById(R.id.tvAirLineName);
+            expandableLayout = v.findViewById(R.id.expandableLayout);
+            tvArrow = v.findViewById(R.id.tvArrow);
+            tvFlightDetail3 = v.findViewById(R.id.tvFlightDetail3);
+            buttonLayout = v.findViewById(R.id.buttonLayout);
+        }
     }
 
 }
