@@ -220,12 +220,12 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
                                 android:gravity="right|center_vertical"
+                                android:paddingTop="3dp"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 
@@ -294,12 +294,12 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
                                 android:gravity="right|center_vertical"
+                                android:paddingTop="3dp"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 
@@ -408,12 +408,12 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
                                 android:gravity="right|center_vertical"
+                                android:paddingTop="3dp"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 
@@ -463,12 +463,12 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
                                 android:gravity="right|center_vertical"
+                                android:paddingTop="3dp"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 
@@ -518,12 +518,12 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:paddingTop="3dp"
                                 android:layout_width="257dp"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="right|center"
                                 android:layout_weight="1.43"
                                 android:gravity="right|center_vertical"
+                                android:paddingTop="3dp"
                                 android:text="*"
                                 android:textColor="#ff0000" />
 
@@ -1203,7 +1203,7 @@
             android:background="#ffffff"
             android:orientation="vertical"
             android:padding="10dp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <ScrollView
                 android:layout_width="match_parent"
