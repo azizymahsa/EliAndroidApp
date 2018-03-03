@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+
+        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60dp_hight">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60dp_hight"
+            android:background="@color/toolbar_color" />
+
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/toolbar_bottom_width_50dp"
+            android:layout_height="@dimen/toolbar_bottom_width_50dp"
+            android:layout_gravity="right|center"
+            android:gravity="right"
+            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_focusColor="@color/focusColor"
+
+            fancy:fb_radius="200dp"
+            fancy:fb_text=" "
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5dp_margin"
+                android:text="تماس با ما"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@android:color/white"
+
+                android:textSize="@dimen/toolbar_title_16dp" />
+
+            <TextView
+                android:id="@+id/tvCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="15dp"
+                android:layout_toLeftOf="@+id/tvTitle"
+                android:gravity="center"
+
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_12dp" />
+
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTitle"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/toolbar_desc_12dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="left">
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/btnHome"
+                    android:layout_width="@dimen/toolbar_bottom_width_50dp"
+                    android:layout_height="@dimen/toolbar_bottom_width_50dp"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    fancy:fb_defaultColor="@android:color/transparent"
+                    fancy:fb_focusColor="@color/focusColor"
+
+                    fancy:fb_radius="200dp"
+                    fancy:fb_text=" "
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textSize="25dp" />
+
+                <ImageView
+                    android:id="@+id/txt_hom"
+                    android:layout_width="@dimen/_30dp"
+                    android:layout_height="@dimen/_30dp"
+
+                    android:layout_marginLeft="@dimen/_15dp_margin"
+                    android:layout_marginTop="@dimen/_15dp_margin"
+                    android:background="@drawable/e_logo" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/dialog_opener"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/setting_margin"
+                android:layout_marginLeft="@dimen/setting_margin"
+                android:layout_marginRight="@dimen/setting_margin"
+                android:layout_marginStart="@dimen/setting_margin"
+                android:gravity="center"
+                android:text="انتخاب زبان"
+                android:textColor="#000"
+                android:textSize="@dimen/title_setting" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/setting_margin"
+                android:layout_marginLeft="@dimen/setting_margin"
+                android:layout_marginRight="@dimen/setting_margin"
+                android:layout_marginStart="@dimen/setting_margin"
+                android:layout_marginTop="@dimen/margin_top"
+                android:gravity="center"
+                android:text="تغییرات بعد از ریستارت برنامه اعمال می گردد"
+                android:textColor="#969292"
+                android:textSize="@dimen/detail_setting" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#bab6b6" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

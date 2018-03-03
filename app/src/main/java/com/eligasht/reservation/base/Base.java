@@ -1,15 +1,12 @@
 package com.eligasht.reservation.base;
 
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 
-import com.google.gson.Gson;
-
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.ui.dialog.app.InternetAlert;
-
+import com.google.gson.Gson;
 import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.interfaces.ConnectivityChangeListener;
 import com.zplesac.connectionbuddy.models.ConnectivityEvent;
@@ -38,15 +35,16 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
     @Override
     protected void onStart() {
         super.onStart();
-        try{
-            String languageToLoad  = "en"; // your language
+        try {
+            String languageToLoad = Prefs.getString("lang", "fa"); // your language
             Locale locale = new Locale(languageToLoad);
             Locale.setDefault(locale);
             Configuration config = new Configuration();
             config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
         // Register for connectivity changes
         ConnectionBuddy.getInstance().registerForConnectivityEvents(this, this);
@@ -72,10 +70,10 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
             JSONObject getAirportsResult = jsonObj.getJSONObject("state");
 
 
-            if (getAirportsResult.getString("value").equals("1")){
+            if (getAirportsResult.getString("value").equals("1")) {
 
                 internetAlert.isCancel();
-            }else{
+            } else {
 
                 internetAlert.isShow();
 

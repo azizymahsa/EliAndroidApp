@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@drawable/logo_e"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl,icon, label">
         <activity
@@ -53,10 +53,16 @@
         <activity
             android:name=".reservation.views.activities.main.MainActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".reservation.views.activities.hotel.activity.DetailHotelActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".reservation.views.activities.SettingsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
