@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ImageHotelItem"
     android:layout_width="match_parent"
@@ -41,10 +40,10 @@
                 android:layout_width="10dp"
                 android:layout_height="11dp"
                 android:layout_below="@+id/rcl_hotels"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:layout_marginBottom="1dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="1dp"
                 android:background="@drawable/pin_icon_for_items"
                 android:gravity="center"
@@ -84,7 +83,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="30dp"
                         android:gravity="center"
-                        android:paddingRight="10dp"
+                        android:paddingEnd="10dp"
                         android:text="iranair"
                         android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_12dp_normal_textSize" />
@@ -94,8 +93,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/iv"
-                        android:gravity="right"
+                        android:layout_toStartOf="@+id/iv"
+                        android:gravity="end"
                         android:orientation="vertical"
                         android:paddingRight="10dp">
 
@@ -114,8 +113,7 @@
                             android:id="@+id/country_ariv_go"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/time_deprt_go"
-                            android:layout_marginLeft="@dimen/_20dp_margin_p"
+                            android:layout_marginStart="@dimen/_20dp_margin_p"
                             android:gravity="center"
                             android:text="tehran"
                             android:textColor="@color/text_color_4d"
@@ -126,25 +124,24 @@
                         android:id="@+id/iv"
                         android:layout_width="@dimen/_200dp_p"
                         android:layout_height="20dp"
-                        android:gravity="center"
                         android:layout_centerInParent="true"
-                        >
+                        android:gravity="center">
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textAppearance="@style/IconFonts"
+                            android:gravity="end|center"
+                            android:rotation="180"
                             android:text="@string/plane"
+                            android:textAppearance="@style/IconFonts"
                             android:textColor="@color/gray_dark"
-                            android:gravity="right|center"
-                            android:rotation="180"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
                         <View
                             android:layout_width="@dimen/_175dp_package"
                             android:layout_height="@dimen/_1dpPackage"
-                            android:background="@color/gray_dark"/>
+                            android:background="@color/gray_dark" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -154,32 +151,23 @@
                             android:text="@string/dot"
                             android:textAppearance="@style/IconFonts"
                             android:textColor="@color/gray_dark"
-                            android:textSize="@dimen/_12dp_normal_textSize"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     </LinearLayout>
-
-                   <!-- <ImageView
-
-                        android:layout_width="@dimen/_200dp_p"
-                        android:layout_height="@dimen/_8dp_normal_margin"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/gray_line" />-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/iv"
+                        android:layout_toEndOf="@+id/iv"
                         android:orientation="vertical"
-                        android:paddingLeft="10dp">
+                        android:paddingStart="10dp">
 
                         <TextView
                             android:id="@+id/time_deprt_go"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/time_ariv_go"
                             android:gravity="center"
                             android:text="6:20"
 
@@ -192,8 +180,7 @@
                             android:id="@+id/country_deprt_go"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/time_deprt_go"
-                            android:gravity="right"
+                            android:gravity="end"
                             android:text="siraz"
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize"
@@ -216,7 +203,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="30dp"
                         android:gravity="center"
-                        android:paddingRight="10dp"
+                        android:paddingEnd="10dp"
                         android:text="iranair"
                         android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_12dp_normal_textSize" />
@@ -226,9 +213,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/iv2"
+                        android:layout_toStartOf="@+id/iv2"
                         android:orientation="vertical"
-                        android:paddingRight="10dp">
+                        android:paddingEnd="10dp">
 
                         <TextView
                             android:id="@+id/time_arrive_back"
@@ -245,65 +232,53 @@
                             android:id="@+id/country_arive_back"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/time_drt_back"
                             android:gravity="center"
                             android:text="tehran"
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize" />
                     </LinearLayout>
 
-
-                    <!--<ImageView
-                        android:id="@+id/iv2"
-                        android:layout_width="@dimen/_200dp_p"
-                        android:layout_height="@dimen/_8dp_normal_margin"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/gray_line" />-->
                     <LinearLayout
                         android:id="@+id/iv2"
                         android:layout_width="@dimen/_200dp_p"
                         android:layout_height="20dp"
-                        android:gravity="center"
                         android:layout_centerInParent="true"
-                        >
+                        android:gravity="center">
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
 
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textAppearance="@style/IconFonts"
+                            android:gravity="end|center"
+                            android:rotation="180"
                             android:text="@string/plane"
+                            android:textAppearance="@style/IconFonts"
                             android:textColor="@color/gray_dark"
-                            android:gravity="right|center"
-                            android:rotation="180"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
                         <View
                             android:layout_width="@dimen/_175dp_package"
                             android:layout_height="@dimen/_1dpPackage"
-                            android:background="@color/gray_dark"/>
+                            android:background="@color/gray_dark" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textAppearance="@style/IconFonts"
+                            android:gravity="center"
                             android:text="@string/dot"
+                            android:textAppearance="@style/IconFonts"
                             android:textColor="@color/gray_dark"
-                            android:gravity="center"/>
-
-
+                            android:textSize="@dimen/_12dp_normal_textSize" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/iv2"
+                        android:layout_toEndOf="@+id/iv2"
                         android:orientation="vertical"
-                        android:paddingLeft="10dp">
+                        android:paddingStart="10dp">
 
                         <TextView
                             android:id="@+id/time_drt_back"
@@ -322,14 +297,10 @@
                             android:id="@+id/country_depart_back"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/time_drt_back"
-
-                            android:gravity="right"
+                            android:gravity="end"
                             android:text="siraz"
                             android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-
-                            />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -361,7 +332,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_30dp"
                     android:layout_gravity="center|bottom"
-                    android:layout_marginRight="@dimen/_20dp"
+                    android:layout_marginEnd="@dimen/_20dp"
                     android:layout_weight="100"
                     android:background="@drawable/btn_package"
                     android:foreground="?attr/selectableItemBackground"
@@ -380,7 +351,6 @@
                     android:text="خدمات قابل ارائه"
                     android:textColor="@color/text_color_2e"
                     android:textSize="@dimen/_12dp_normal_textSize" />
-
 
             </LinearLayout>
 
