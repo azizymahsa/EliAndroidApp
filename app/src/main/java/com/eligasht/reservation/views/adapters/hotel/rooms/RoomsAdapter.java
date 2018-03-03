@@ -125,12 +125,12 @@ public class RoomsAdapter extends BaseAdapter {
         holder.llSelectHotel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                offerIds = roomsModels.get(position).getOfferId();
-                eHotelId = roomsModels.get(position).getHotelId();
-                Log.e("testdddd1", context.getIntent().getExtras().getString("ResultUniqID"));
+                try{
+                    offerIds = roomsModels.get(position).getOfferId();
+                    eHotelId = roomsModels.get(position).getHotelId();
+                    new GetHoldRoomAsync().execute();
+                }catch (Exception e){}
 
-
-                new GetHoldRoomAsync().execute();
             }
         });
 

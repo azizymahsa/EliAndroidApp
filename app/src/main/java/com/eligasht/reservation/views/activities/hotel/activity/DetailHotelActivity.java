@@ -99,14 +99,14 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
-    private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount,tvRecommendedPercent;
+    private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent;
     private NonScrollListView lvRooms;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
-    boolean updateGoogle=false;
-    private RelativeLayout rlLoading, rlRoot,rlLoading2;
+    boolean updateGoogle = false;
+    private RelativeLayout rlLoading, rlRoot, rlLoading2;
     private AddComment addComment;
     private RoomsAdapter roomsAdapter;
     private GetRoomsList getRoomsList;
@@ -124,13 +124,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private TextView tvHotelName, tvCityName, tvAdress, tvAlert, tvAlertError;
     private ImageView ivImage;
     private LinearLayout llDynamic, llLoading, llComment, llEmkanat;
-    private AVLoadingIndicatorView  aviComment;
-    private FancyButton  btnSortComment, btnOk,btnComment,btnOneComment;
+    private AVLoadingIndicatorView aviComment;
+    private FancyButton btnSortComment, btnOk, btnComment, btnOneComment;
     private ImageView ivLoading;
     private AddCommnetDialog addCommnetDialog;
     private String comment, userName, title;
     private CommentAdapterRecycle commentAdapter;
-    private TextView tvSortComment,tvDateDetail;
+    private TextView tvSortComment, tvDateDetail;
     boolean isNew = false;
     private ScrollView svDetail;
     private RelativeLayout elNotFound;
@@ -207,7 +207,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvRecommendedPercent = findViewById(R.id.tvRecommendedPercent);
         btnOneComment = findViewById(R.id.btnOneComment);
         rlLoading2 = findViewById(R.id.rlLoading2);
-       // avi1 = findViewById(R.id.avi1);
+        // avi1 = findViewById(R.id.avi1);
         llEmakanatClick.setOnClickListener(this);
         llMapClick.setOnClickListener(this);
         llRezervClick.setOnClickListener(this);
@@ -274,9 +274,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case R.id.llMapClick:
-                if (updateGoogle){
+                if (updateGoogle) {
                     Toast.makeText(this, "سرویس Google Play شما نیاز به بروزرسانی دارد.", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     flMap.setVisibility(View.VISIBLE);
                     lvRooms.setVisibility(View.GONE);
                     llDynamic.setVisibility(View.GONE);
@@ -290,7 +290,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     vEmakanat.setVisibility(View.INVISIBLE);
                     vMap.setVisibility(View.VISIBLE);
                     vRezerv.setVisibility(View.INVISIBLE);
-                    vComment.setVisibility(View.INVISIBLE);}
+                    vComment.setVisibility(View.INVISIBLE);
+                }
 
 
                 break;
@@ -337,56 +338,61 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 break;
 
             case R.id.btnSortComment:
-                if (isNew) {
+                try {
+                    if (isNew) {
 
 
-                    tvSortComment.setText("جدیدترین نظرات");
-                    isNew = false;
-                    Collections.sort(commentModels, new Comparator<CommentModel>() {
-                        public int compare(CommentModel o1, CommentModel o2) {
-                            if (o1.getDate() == null || o2.getDate() == null)
-                                return 0;
-                            return o2.getDate().compareTo(o1.getDate());
-                        }
-                    });
-                    commentAdapter.notifyDataSetChanged();
+                        tvSortComment.setText("جدیدترین نظرات");
+                        isNew = false;
+                        Collections.sort(commentModels, new Comparator<CommentModel>() {
+                            public int compare(CommentModel o1, CommentModel o2) {
+                                if (o1.getDate() == null || o2.getDate() == null)
+                                    return 0;
+                                return o2.getDate().compareTo(o1.getDate());
+                            }
+                        });
+                        commentAdapter.notifyDataSetChanged();
 
-                } else {
-
-
-                    isNew = true;
+                    } else {
 
 
-                    tvSortComment.setText("مفیدترین نظرات");
+                        isNew = true;
 
 
-                    Collections.sort(commentModels, new Comparator<CommentModel>() {
-                        @Override
-                        public int compare(CommentModel p1, CommentModel p2) {
-                            return p2.getLike() -p1.getLike(); // Ascending
-                        }
-                    });
-                    commentAdapter.notifyDataSetChanged();
+                        tvSortComment.setText("مفیدترین نظرات");
 
+
+                        Collections.sort(commentModels, new Comparator<CommentModel>() {
+                            @Override
+                            public int compare(CommentModel p1, CommentModel p2) {
+                                return p2.getLike() - p1.getLike(); // Ascending
+                            }
+                        });
+                        commentAdapter.notifyDataSetChanged();
+
+                    }
+                } catch (Exception e) {
                 }
+
+
                 break;
             case R.id.btnOk:
                 finish();
                 break;
             case R.id.btnComment:
-                Intent intent=new Intent(this,CommentActivity.class);
-                Log.e("HotelNname", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName );
-                intent.putExtra("HotelName",getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                Intent intent = new Intent(this, CommentActivity.class);
+                Log.e("HotelNname", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                intent.putExtra("HotelName", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
                 intent.putExtra("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")));
-                Log.e("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")) );
+                Log.e("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")));
                 startActivity(intent);
                 break;
             case R.id.btnOneComment:
-                Intent intent2=new Intent(this,CommentActivity.class);
-                Log.e("HotelNname", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName );
-                intent2.putExtra("HotelName",getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                Intent intent2 = new Intent(this, CommentActivity.class);
+                Log.e("HotelNname", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                intent2.putExtra("HotelName", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
                 intent2.putExtra("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")));
-                Log.e("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")) );
+                Log.e("HotelId", String.valueOf(getIntent().getExtras().getInt("HotelId")));
 
 
                 startActivity(intent2);
@@ -421,7 +427,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 return true;
             } else if (GooglePlayServicesUtil.isUserRecoverableError(isAvailable)) {
 
-                updateGoogle=true;
+                updateGoogle = true;
             /*    Dialog dialog = GooglePlayServicesUtil.getErrorDialog(isAvailable,
                         this, GPS_ERRORDIALOG_REQUEST);
                 dialog.show();*/
@@ -458,15 +464,14 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
     private class GetRoomsAsync extends AsyncTask<String, Void, String> {
 
-        protected void onPreExecute()
-        {
+        protected void onPreExecute() {
             rlLoading2.setVisibility(View.VISIBLE);
-         //   Utility.disableEnableControls(false,rlRoot);
+            //   Utility.disableEnableControls(false,rlRoot);
 
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this,R.color.blue2));
+                window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.blue2));
             }            ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
          /*   Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
             Log.e("test2", new Gson().toJson(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("EligashtMlb",
@@ -481,7 +486,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected String doInBackground(String... params) {
             try {
-                getRoomsList = new GetRoomsList(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("EligashtMlb","123qwe!@#QWE"
+                getRoomsList = new GetRoomsList(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("EligashtMlb", "123qwe!@#QWE"
                         , "Mobile"), "",
                         String.valueOf(getIntent().getExtras().getInt("HotelId")),
                         "", "", getIntent().getExtras().getString("ResultUniqID"),
@@ -522,7 +527,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                             .playOn(lvRooms);
 
 
-
                 }
                 try {
                     if (getIntent().getExtras().getString("Pakage").equals("Pakage")) {
@@ -536,7 +540,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 //  setListViewHeightBasedOnChildren(lvRooms);
             } catch (Exception e) {
                 //avi1.setVisibility(View.GONE);
-               // llLoading.setVisibility(View.GONE);
+                // llLoading.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 rlLoading2.setVisibility(View.GONE);
                 tvAlertError.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
@@ -570,13 +574,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected void onPostExecute(String result) {
             rlLoading2.setVisibility(View.GONE);
-           // Utility.disableEnableControls(true,rlRoot);
+            // Utility.disableEnableControls(true,rlRoot);
 
 
             //new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this,R.color.colorPrimaryDark));
+                window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.colorPrimaryDark));
             }
 
             ImageLoader imageLoader = ImageLoader.getInstance();
@@ -603,12 +607,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
                 Log.e("test", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
 
-                try{
+                try {
                     LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
                             Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
                     map.addMarker(new MarkerOptions().position(location).title(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName));
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
 
                 for (ImageHotel imageHotel : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelImages) {
                     imageModels.add(new ImageModel(imageHotel.HotelImagesURL));
@@ -621,22 +626,20 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                         arrayStringList.add(hotelProprties.Category);
-                        if (hotelProprties.CategoryID != 2){
+                        if (hotelProprties.CategoryID != 2) {
                             hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
 
 
-                        }else{
+                        } else {
 
-                            if (hotelProprties.PropertyDescription.equals("0")||hotelProprties.PropertyDescription.equals(" ")||
-                                    hotelProprties.PropertyDescription.equals("")||TextUtils.isEmpty(hotelProprties.PropertyDescription)){
+                            if (hotelProprties.PropertyDescription.equals("0") || hotelProprties.PropertyDescription.equals(" ") ||
+                                    hotelProprties.PropertyDescription.equals("") || TextUtils.isEmpty(hotelProprties.PropertyDescription)) {
 
-                            }else{
+                            } else {
                                 hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
 
                             }
                         }
-
-
 
 
                     }
@@ -715,7 +718,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         // nonScrollGridView.setNumColumns(2);
 
                         nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, DetailHotelActivity.this, null, true));
-                      nonScrollGridView.setFocusable(false);
+                        nonScrollGridView.setFocusable(false);
                         llPolicy.addView(nonScrollGridView);
 
                     }
@@ -739,7 +742,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager);
                 tvCityName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CityName + "، " + getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CountryName);
-                Log.e("star", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating+"");
+                Log.e("star", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating + "");
 
                 switch (getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating) {
 
@@ -779,8 +782,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             } catch (Exception e) {
                 Toast.makeText(DetailHotelActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_SHORT).show();
                 finish();
-              //  avi1.setVisibility(View.GONE);
-             //   llLoading.setVisibility(View.GONE);
+                //  avi1.setVisibility(View.GONE);
+                //   llLoading.setVisibility(View.GONE);
             }
 
         }
@@ -811,12 +814,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
         nonScrollGridView.setAdapter(new HotelProprtiesAdapter(hotelProprtiesModels, DetailHotelActivity.this, nonScrollGridView, false));
-       nonScrollGridView.setFocusable(false);
+        nonScrollGridView.setFocusable(false);
         linearLayout.addView(nonScrollGridView);
     }
-
-
-
 
 
     private class GetCommentAsync extends AsyncTask<String, Void, String> {
@@ -825,7 +825,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             aviComment.setVisibility(View.VISIBLE);
 
 
-          //  window.setStatusBarColor(getColor(R.color.blue2));
+            //  window.setStatusBarColor(getColor(R.color.blue2));
             ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
             Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
             Log.e("test2", getIntent().getExtras().getString("ResultUniqID"));
@@ -861,8 +861,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
             try {
                 circleView.setDecimalFormat(new DecimalFormat("0.0"));
-                Typeface face = Typeface.createFromAsset(getAssets(),"fonts/iran_sans_normal.ttf");
-               circleView.setTextTypeface(face);
+                Typeface face = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf");
+                circleView.setTextTypeface(face);
 
                 circleView.setMaxValue(10);
                 //circleView.setUnitVisible(false);
@@ -879,9 +879,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 }
 
 
-
-
-
                 lvComments.addItemDecoration(new DividerItemDecoration(DetailHotelActivity.this, 1));
                 lvComments.setLayoutManager(new LinearLayoutManager(DetailHotelActivity.this));
 
@@ -889,9 +886,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 lvComments.setAdapter(commentAdapter);
                 lvComments.setFocusable(false);
 
-                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount  + " کاربر امتیاز داده اند");
-                tvCommentCount.setText(" نظرات کاربران  ("+getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length + " نظر)");
-                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent+"% این هتل را پیشنهاد داده اند");
+                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount + " کاربر امتیاز داده اند");
+                tvCommentCount.setText(" نظرات کاربران  (" + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length + " نظر)");
+                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent + "% این هتل را پیشنهاد داده اند");
                 circleView.setValueAnimated(Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore));
                 Log.e("fer", Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore) + "");
                 if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {
