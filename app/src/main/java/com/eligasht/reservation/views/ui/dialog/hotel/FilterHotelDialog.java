@@ -1,6 +1,5 @@
 package com.eligasht.reservation.views.ui.dialog.hotel;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -27,13 +25,11 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 import com.eligasht.reservation.views.adapters.hotel.StarFilterAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 
 /**
  * Created by Reza.nejati on 1/7/2018.
  */
 
-@SuppressLint("ValidFragment")
 public class FilterHotelDialog extends DialogFragment implements View.OnClickListener {
     android.app.AlertDialog dialog;
     View dialogView;
@@ -44,9 +40,9 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
     FilterHotelDialogListenerArray filterHotelDialogListenerArray;
     ArrayList<FilterModel> filter;
 
-    NonScrollListView lvHotelTypes, lvFacilitiesTypes, lvPrice, lvLocationTypes, lvBestOff, lvStar;
-    FilterHotelTypeAdapter filterHotelTypeAdapter, filterHotelFacilitiesAdapter, filterHotelLocationAdapter, lvBestOffAdapter;
-    ArrayList<FilterHotelTypeModel> filterHotelTypeModels, filterHotelFacilitiesModels, filterHotelLocationModels;
+    NonScrollListView lvHotelTypes, lvFacilitiesTypes,lvPrice,lvLocationTypes,lvBestOff,lvStar;
+    FilterHotelTypeAdapter filterHotelTypeAdapter, filterHotelFacilitiesAdapter,filterHotelLocationAdapter,lvBestOffAdapter;
+    ArrayList<FilterHotelTypeModel> filterHotelTypeModels, filterHotelFacilitiesModels,filterHotelLocationModels;
     ArrayList<FilterPriceModel> filterHotelPriceModel;
     private ArrayList<FilterHotelTypeModel> filterHotelBestOffModels = new ArrayList<>();
     private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
@@ -56,27 +52,16 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
     ScrollView scrollViewObject;
     EditText searchtxt;
 
-    boolean remove = false;
-    public static FilterHotelDialog newInstance(final Context activity, ArrayList<FilterModel> filter,
-                                                FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
-                                                final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,
-                                                String search, final ArrayList<FilterHotelTypeModel> filterHotelLocationModels, final ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
-            , final ArrayList<FilterStarModel> filterHotelStarsModels) {
-        FilterHotelDialog ret = new FilterHotelDialog();
-        ret.initialize(activity,filter,filterHotelDialogListenerArray, filterHotelTypeModels, filterHotelFacilitiesModels, filterHotelPriceModel,
-                search, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels);
-        return ret;
-    }
-
+    boolean remove=false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.filter_dialog_r, container,
                 false);
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
 
+        builder.setView(dialogView);
         btnOk = (FancyButton) rootView.findViewById(R.id.btnOk);
         scrollViewObject = (ScrollView) rootView.findViewById(R.id.scrollViewObject);
         btnDeletFilter = (FancyButton) rootView.findViewById(R.id.btnDeletFilter);
@@ -88,14 +73,15 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         lvLocationTypes = (NonScrollListView) rootView.findViewById(R.id.lvLocationTypes);
         lvPrice = (NonScrollListView) rootView.findViewById(R.id.lvPrice);
         lvBestOff = (NonScrollListView) rootView.findViewById(R.id.lvBestOff);
-        lvStar = (NonScrollListView) rootView.findViewById(R.id.lvStar);
+        lvStar = (NonScrollListView) dialogView.findViewById(R.id.lvStar);
 
         filterHotelTypeAdapter = new FilterHotelTypeAdapter(filterHotelTypeModels, activity);
         filterHotelFacilitiesAdapter = new FilterHotelTypeAdapter(filterHotelFacilitiesModels, activity);
         filterHotelLocationAdapter = new FilterHotelTypeAdapter(filterHotelLocationModels, activity);
         priceFilterAdapter = new PriceFilterAdapter(filterHotelPriceModel, activity);
-        lvBestOffAdapter = new FilterHotelTypeAdapter(filterHotelBestOffModels, activity);
-        starFilterAdapter = new StarFilterAdapter(filterHotelStarsModels, activity);
+        lvBestOffAdapter=new FilterHotelTypeAdapter(filterHotelBestOffModels, activity);
+        starFilterAdapter=new StarFilterAdapter(filterHotelStarsModels, activity);
+
 
 
         lvPrice.setAdapter(priceFilterAdapter);
@@ -109,10 +95,10 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (filterHotelStarsModels.get(position).isCheck()) {
-                    filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), false, filterHotelStarsModels.get(position).getStar()));
+                    filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), false,filterHotelStarsModels.get(position).getStar()));
 
                 } else {
-                    filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), true, filterHotelStarsModels.get(position).getStar()));
+                    filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), true,filterHotelStarsModels.get(position).getStar()));
 
 
                 }
@@ -136,6 +122,7 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
 
             }
         });
+
 
 
         lvHotelTypes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -189,10 +176,10 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (filterHotelPriceModel.get(position).isCheck()) {
-                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(), filterHotelPriceModel.get(position).getX(), false));
+                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(),filterHotelPriceModel.get(position).getX(), false));
 
                 } else {
-                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(), filterHotelPriceModel.get(position).getX(), true));
+                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(),filterHotelPriceModel.get(position).getX(), true));
 
 
                 }
@@ -207,8 +194,50 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         // Do something else
         return rootView;
     }
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        builder = new android.app.AlertDialog.Builder(activity);
+
+        dialog = builder.create();
+        dialog.setCancelable(true);
 
 
+        return builder.create();
+
+    }
+    public FilterHotelDialog(final Context activity, ArrayList<FilterModel> filter,
+                             FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
+                             final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,
+                             String search, final ArrayList<FilterHotelTypeModel> filterHotelLocationModels, final ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
+            , final ArrayList<FilterStarModel> filterHotelStarsModels) {
+        this.activity = activity;
+        this.filter = filter;
+        this.search = search;
+        this.filterHotelDialogListenerArray = filterHotelDialogListenerArray;
+
+        this.filterHotelPriceModel = filterHotelPriceModel;
+        this.filterHotelLocationModels = filterHotelLocationModels;
+        this.filterHotelTypeModels = filterHotelTypeModels;
+        this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
+        this.filterHotelStarsModels = filterHotelStarsModels;
+        this.filterHotelBestOffModels = filterHotelBestOffModels;
+
+
+
+
+        
+
+      //  inflater = LayoutInflater.from(activity);
+       // dialogView = inflater.inflate(R.layout.filter_dialog_r, null);
+        // filter.add(new FilterModel(false, false, false, false, false, false, false, false, false, false, false));
+
+
+
+
+
+
+      //  dialog.show();
+    }
 
     @Override
     public void onClick(View v) {
@@ -217,17 +246,18 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 // activity.startActivity(new Intent(activity, ProfileActivity.class));
 
 
+
                 filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,
-                        filterHotelPriceModel, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels, false);
+                        filterHotelPriceModel,filterHotelLocationModels,filterHotelBestOffModels,filterHotelStarsModels,false);
 
 
-                dismiss();
+                dialog.cancel();
 
 
                 break;
             case R.id.btnDeletFilter:
-                remove = true;
-                search = "";
+                remove=true;
+                search="";
                 for (int i = 0; i < filterHotelTypeModels.size(); i++) {
                     filterHotelTypeModels.set(i, new FilterHotelTypeModel(filterHotelTypeModels.get(i).getTitle(), false));
 
@@ -239,10 +269,10 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
 
                 }
                 for (int i = 0; i < filterHotelStarsModels.size(); i++) {
-                    filterHotelStarsModels.set(i, new FilterStarModel(filterHotelStarsModels.get(i).getTitle(), false, filterHotelStarsModels.get(i).getStar()));
+                    filterHotelStarsModels.set(i, new FilterStarModel(filterHotelStarsModels.get(i).getTitle(), false,filterHotelStarsModels.get(i).getStar()));
 
 
-                }
+            }
                 for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
                     filterHotelFacilitiesModels.set(i, new FilterHotelTypeModel(filterHotelFacilitiesModels.get(i).getTitle(), false));
 
@@ -250,7 +280,7 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 }
 
                 for (int i = 0; i < filterHotelPriceModel.size(); i++) {
-                    filterHotelPriceModel.set(i, new FilterPriceModel(filterHotelPriceModel.get(i).getDiff(), filterHotelPriceModel.get(i).getX(), false));
+                    filterHotelPriceModel.set(i, new FilterPriceModel(filterHotelPriceModel.get(i).getDiff(),filterHotelPriceModel.get(i).getX(), false));
 
 
                 }
@@ -274,9 +304,9 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
 
                 }
                 filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,
-                        filterHotelPriceModel, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels, remove);
+                        filterHotelPriceModel,filterHotelLocationModels,filterHotelBestOffModels,filterHotelStarsModels,remove);
 
-            dismiss();
+                dialog.cancel();
 
                 break;
 
@@ -293,28 +323,9 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         public void onReturnValue(ArrayList<FilterModel> type, String search,
                                   ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
                                   ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,
-                                  ArrayList<FilterPriceModel> filterHotelPriceModel, ArrayList<FilterHotelTypeModel> filterHotelLocationModels, ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
-                , ArrayList<FilterStarModel> filterHotelStarsModels, boolean remove);
+                                  ArrayList<FilterPriceModel> filterHotelPriceModel,ArrayList<FilterHotelTypeModel> filterHotelLocationModels, ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
+                ,ArrayList<FilterStarModel> filterHotelStarsModels,boolean remove);
     }
 
-    private void initialize(final Context activity, ArrayList<FilterModel> filter,
-                            FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
-                            final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,
-                            String search, final ArrayList<FilterHotelTypeModel> filterHotelLocationModels, final ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
-            , final ArrayList<FilterStarModel> filterHotelStarsModels) {
-        this.activity = activity;
-        this.filter = filter;
-        this.search = search;
-        this.filterHotelDialogListenerArray = filterHotelDialogListenerArray;
-
-        this.filterHotelPriceModel = filterHotelPriceModel;
-        this.filterHotelLocationModels = filterHotelLocationModels;
-        this.filterHotelTypeModels = filterHotelTypeModels;
-        this.filterHotelFacilitiesModels = filterHotelFacilitiesModels;
-        this.filterHotelStarsModels = filterHotelStarsModels;
-        this.filterHotelBestOffModels = filterHotelBestOffModels;
-
-
-
-    }
 }
+

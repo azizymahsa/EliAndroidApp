@@ -177,7 +177,10 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 }
 
 
-                SearchXPackageResult searchXPackageResult = response.body().getSearchXPackageResult();
+                SearchXPackageResult searchXPackageResult = null;
+                if (response != null) {
+                    searchXPackageResult = response.body().getSearchXPackageResult();
+                }
 
                 if (searchXPackageResult == null) {
                     rcl_package.showText();

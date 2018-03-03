@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.eligasht.R;
-import com.eligasht.reservation.views.adapters.hotel.comment.CommentModel;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
+import com.eligasht.R;
+
+import com.eligasht.reservation.views.adapters.hotel.comment.CommentModel;
 
 import java.util.List;
 
@@ -52,12 +53,14 @@ public class CommentAdapterRecycle extends RecyclerView.Adapter<CommentAdapterRe
             public void onExpandStateChanged(TextView textView, boolean isExpanded) {
                 if (isExpanded) {
                     holder.expandable_text.setEllipsize(TextUtils.TruncateAt.END);
-                    Log.e("testExpand", "onExpandStateChanged: 1");
+                    Log.e("testExpand", "onExpandStateChanged: 1" );
+
+
 
 
                 } else {
                     holder.expandable_text.setEllipsize(TextUtils.TruncateAt.END);
-                    Log.e("testExpand", "onExpandStateChanged: 2");
+                    Log.e("testExpand", "onExpandStateChanged: 2" );
                 }
 
             }
@@ -76,16 +79,17 @@ public class CommentAdapterRecycle extends RecyclerView.Adapter<CommentAdapterRe
 
         public ViewHolder(View v) {
             super(v);
-            tvTitle = v.findViewById(R.id.tvTitle);
-            tvDate = v.findViewById(R.id.tvDate);
-            tvName = v.findViewById(R.id.tvName);
-            tvLike = v.findViewById(R.id.tvLike);
-            tvDislike = v.findViewById(R.id.tvDislike);
-            expandable_text = v.findViewById(R.id.expandable_text);
-            expand_text_view = v.findViewById(R.id.expand_text_view);
+            tvTitle = (TextView) v.findViewById(R.id.tvTitle);
+            tvDate = (TextView) v.findViewById(R.id.tvDate);
+            tvName = (TextView) v.findViewById(R.id.tvName);
+            tvLike = (TextView) v.findViewById(R.id.tvLike);
+            tvDislike = (TextView) v.findViewById(R.id.tvDislike);
+            expandable_text = (TextView) v.findViewById(R.id.expandable_text);
+            expand_text_view = (ExpandableTextView) v.findViewById(R.id.expand_text_view);
 
         }
     }
+
 
 
 }

@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,21 +42,6 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.tools.datetools.SolarCalendar;
-import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.ui.PassengerActivity;
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.lost.flight.FlightPreFactorAdapter;
@@ -73,9 +57,12 @@ import com.eligasht.reservation.models.model.pack.PackageRoomNoToRequest;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.WebUserTools;
+import com.eligasht.reservation.tools.datetools.DateUtil;
+import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.db.local.PassengerMosaferItems_Table;
 import com.eligasht.reservation.tools.db.local.PassengerPartnerInfo_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
+import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
@@ -83,6 +70,17 @@ import com.eligasht.reservation.views.ui.NationalitycodeActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -687,7 +685,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
                     ((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-                    ((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
+                    ((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
                     ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 
                     ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -801,9 +799,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                         ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
                         ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
-                        setAnimation();
                     }
-
+                    setAnimation();
                 }catch (Exception e) {
                     System.out.println("Exception ::"+e);
                 }

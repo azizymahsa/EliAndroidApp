@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.eligasht.R;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.R;
 
 import java.util.List;
 
@@ -55,12 +55,12 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.tvPassangerName.setText(item.getRqPassenger_name());
 
         if (Prefs.getBoolean("IsDemostic", true)) {
-            holder.tvPass.setText("کد ملی");
+            holder. tvPass.setText("کد ملی");
             holder.tvPassNo.setText(item.getRqPassenger_PassNo());
 
         } else {
 
-            holder.tvPass.setText("شماره پاسپورت");
+            holder. tvPass.setText("شماره پاسپورت");
             holder.tvPassNo.setText(item.getRqPassenger_PassNo());
 
 
@@ -104,34 +104,34 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         return data.size();
     }
 
-    public ObjectAnimator createRotateAnimator(final View target, final float from, final float to) {
-        ObjectAnimator animator = ObjectAnimator.ofFloat(target, "rotation", from, to);
-        animator.setDuration(300);
-        animator.setInterpolator(Utils.createInterpolator(Utils.LINEAR_INTERPOLATOR));
-        return animator;
-    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvBrithDay, tvPassNo, tvNationality, tvGender, tvArrow, tvPassangerName, tvPass;
+        public TextView tvBrithDay, tvPassNo, tvNationality, tvGender, tvArrow, tvPassangerName,tvPass;
+        RelativeLayout buttonLayout;
+        //  public RelativeLayout tvArrow;
         /**
          * You must use the ExpandableLinearLayout in the recycler view.
          * The ExpandableRelativeLayout doesn't work.
          */
         public ExpandableLinearLayout expandableLayout;
-        //  public RelativeLayout tvArrow;
-        RelativeLayout buttonLayout;
 
         public ViewHolder(View v) {
             super(v);
-            tvBrithDay = v.findViewById(R.id.tvBrithDay);
-            tvPass = v.findViewById(R.id.tvPass);
-            tvPassNo = v.findViewById(R.id.tvPassNo);
-            tvNationality = v.findViewById(R.id.tvNationality);
-            tvGender = v.findViewById(R.id.tvGender);
-            tvPassangerName = v.findViewById(R.id.tvPassangerName);
-            expandableLayout = v.findViewById(R.id.expandableLayout);
-            tvArrow = v.findViewById(R.id.tvArrow);
-            buttonLayout = v.findViewById(R.id.buttonLayout);
+            tvBrithDay = (TextView) v.findViewById(R.id.tvBrithDay);
+            tvPass = (TextView) v.findViewById(R.id.tvPass);
+            tvPassNo = (TextView) v.findViewById(R.id.tvPassNo);
+            tvNationality = (TextView) v.findViewById(R.id.tvNationality);
+            tvGender = (TextView) v.findViewById(R.id.tvGender);
+            tvPassangerName = (TextView) v.findViewById(R.id.tvPassangerName);
+            expandableLayout = (ExpandableLinearLayout) v.findViewById(R.id.expandableLayout);
+            tvArrow = (TextView) v.findViewById(R.id.tvArrow);
+            buttonLayout = (RelativeLayout) v.findViewById(R.id.buttonLayout);
         }
+    }
+
+    public ObjectAnimator createRotateAnimator(final View target, final float from, final float to) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(target, "rotation", from, to);
+        animator.setDuration(300);
+        animator.setInterpolator(Utils.createInterpolator(Utils.LINEAR_INTERPOLATOR));
+        return animator;
     }
 }

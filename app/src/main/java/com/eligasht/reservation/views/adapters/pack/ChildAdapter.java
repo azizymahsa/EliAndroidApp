@@ -5,14 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
-import com.eligasht.reservation.models.model.ModelRowCountRoom;
 import com.eligasht.reservation.models.model.pack.ChildAgeRange;
 import com.eligasht.reservation.models.model.pack.ChildModel;
 import com.eligasht.reservation.tools.ValidationTools;
@@ -73,15 +70,8 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildRowHolder> {
         holder.spn_range.setAdapter(childAgeRangeAdapter);
 
         holder.spn_range.setSelection(childAgeRanges.indexOf(childModel.getChildAgeRange()));
-        if (childModels.get(position).isAnim()){
-          /*  Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
-            holder.itemView.startAnimation(animation);
-            ModelRowCountRoom room2 = new ModelRowCountRoom();
-            room2.setCountB(getRooms().get(position).getCountB());
-            room2.setCountK(getRooms().get(position).getCountK());
-            room2.setAnim(false);
-            rooms.set(position,room2);*/
-        }
+
+
 
         YoYo.with(Techniques.SlideInLeft)
                 .duration(500)

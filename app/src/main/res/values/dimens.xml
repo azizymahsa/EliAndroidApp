@@ -11,12 +11,6 @@
     <dimen name="_40dp_password">40dp</dimen>
     <dimen name="_title_password">15sp</dimen>
     <dimen name="path_dim">50dp</dimen>
-    <dimen name="icon_size_toolbar">25dp</dimen>
-    <dimen name="size_toolbar_name">20sp</dimen>
-    <dimen name="setting_margin">20dp</dimen>
-    <dimen name="margin_top">5dp</dimen>
-    <dimen name="title_setting">15sp</dimen>
-    <dimen name="detail_setting">12sp</dimen>
 
 
 </resources>

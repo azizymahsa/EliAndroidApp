@@ -53,16 +53,10 @@
         <activity
             android:name=".reservation.views.activities.main.MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".reservation.views.activities.hotel.activity.DetailHotelActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
-
-        <activity
-            android:name=".reservation.views.activities.SettingsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -189,6 +183,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.activities.hotel.activity.CommentActivity"
+            android:screenOrientation="portrait"
+
+            />
+        <activity
+            android:name=".reservation.views.ui.GetCountriesForInsuranceActivity"
             android:screenOrientation="portrait"
 
             />

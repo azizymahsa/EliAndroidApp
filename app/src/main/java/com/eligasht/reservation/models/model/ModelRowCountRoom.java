@@ -12,7 +12,6 @@ public class ModelRowCountRoom {
 	private int CountK;
 	//kochik
 	private int CountN;
-	private boolean Anim;
 	private ArrayList<ChildModel> childModels;
 
 	public void addChildModel(ChildModel childModel) {
@@ -29,13 +28,7 @@ public class ModelRowCountRoom {
 		return childModels;
 	}
 
-	public boolean isAnim() {
-		return Anim;
-	}
 
-	public void setAnim(boolean anim) {
-		Anim = anim;
-	}
 
 	public int getCountB() {
 		return CountB;

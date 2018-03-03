@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="change_language">تغییر زبان</string>
-    <string-array name="lang_c">
-        <item>انگلیسی</item>
-        <item>فارسی</item>
-    </string-array>
-</resources>

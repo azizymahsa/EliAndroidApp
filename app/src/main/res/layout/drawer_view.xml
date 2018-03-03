@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     android:orientation="vertical">
 
@@ -21,10 +21,10 @@
             android:id="@+id/ivUser"
             android:layout_width="@dimen/toolbar_height_70dp"
             android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
             android:layout_weight="100"
             android:src="@drawable/user_sidemenu"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
 
             />
 
@@ -40,11 +40,11 @@
                 android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:text="ورود به حساب کاربری"
-                android:textAppearance="@style/IrsansBold"
-                android:textColor="#ffffff"
                 android:textSize="@dimen/_12dp_normal_textSize"
+                android:textColor="#ffffff"
+                android:textAppearance="@style/IrsansBold"
+                android:gravity="center"
                 />
 
             <TextView
@@ -52,13 +52,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10dp"
                 android:layout_marginRight="@dimen/_10dp_margin"
                 android:gravity="center"
                 android:text="@string/icon_arrow_up"
                 android:textAppearance="@style/IconFonts"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_20dp_normal_textSize" />
+                android:textSize="@dimen/_20dp_normal_textSize"
+                android:layout_marginLeft="10dp"/>
 
         </RelativeLayout>
 
@@ -95,14 +95,14 @@
                         android:id="@+id/btnLastBuy"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="right"
                         fancy:fb_defaultColor="@android:color/transparent"
                         fancy:fb_focusColor="#d7d7d7"
                         fancy:fb_radius="6dp"
-
-                        fancy:fb_text=" "
                         fancy:fb_textColor="#FFFFFF"
+
+                        android:layout_gravity="right"
                         fancy:fb_textSize="25dp"
+                        fancy:fb_text=" "
                         />
 
                     <TextView
@@ -143,14 +143,14 @@
                     <mehdi.sakout.fancybuttons.FancyButton
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="right"
                         fancy:fb_defaultColor="@android:color/transparent"
                         fancy:fb_focusColor="#d7d7d7"
                         fancy:fb_radius="6dp"
-
-                        fancy:fb_text=" "
                         fancy:fb_textColor="#FFFFFF"
+
+                        android:layout_gravity="right"
                         fancy:fb_textSize="25dp"
+                        fancy:fb_text=" "
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -198,21 +198,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="70">
+            android:layout_weight="70"
+            android:layout_marginTop="2dp">
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btnFlight"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="#d7d7d7"
                 fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
                 fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
                 />
 
             <TextView
@@ -253,14 +253,14 @@
                 android:id="@+id/btnHotel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="#d7d7d7"
                 fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
                 fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -295,14 +295,14 @@
                 android:id="@+id/btnHotelFlight"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="#d7d7d7"
                 fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
                 fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -340,14 +340,14 @@
                 android:id="@+id/btnPackage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="#d7d7d7"
                 fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
                 fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -383,14 +383,14 @@
                 android:id="@+id/btnInsurance"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="#d7d7d7"
                 fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
                 fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -425,14 +425,14 @@
                 android:id="@+id/btnGhatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="#d7d7d7"
                 fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
                 fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -477,14 +477,14 @@
                 android:id="@+id/btn_condition"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="#d7d7d7"
                 fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
                 fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -511,69 +511,23 @@
 
         </RelativeLayout>
 
-
-        //change lang
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="70">
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btn_setting"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                fancy:fb_defaultColor="@android:color/transparent"
-                fancy:fb_focusColor="#d7d7d7"
-                fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
-                fancy:fb_textColor="#FFFFFF"
-                fancy:fb_textSize="25dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@+id/tv8"
-                android:gravity="center"
-                android:text="تنظیمات"
-                android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/text_color_2e"
-                android:textSize="@dimen/_12dp_normal_textSize" />
-
-            <TextView
-                android:id="@+id/tv8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="@string/terms"
-                android:textAppearance="@style/IconMenu"
-                android:textColor="@color/text_color_2e"
-                android:textSize="@dimen/_30dp_normal_iconSize" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="70">
-
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btnContactUs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="#d7d7d7"
                 fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
-                fancy:fb_textSize="25dp" />
 
+                android:layout_gravity="right"
+                fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -608,14 +562,14 @@
                 android:id="@+id/btnAbout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="#d7d7d7"
                 fancy:fb_radius="6dp"
-
-                fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
+
+                android:layout_gravity="right"
                 fancy:fb_textSize="25dp"
+                fancy:fb_text=" "
                 />
             <TextView
                 android:layout_width="wrap_content"

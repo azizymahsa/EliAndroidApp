@@ -29,10 +29,11 @@ public class GetHotelActivity extends BaseActivity {
     ListView listAirPort;
     EditText searchtxt;
     HotelNameApi hotelNameApi;
-    ArrayList<HotelCityModel> hotelCityModels = new ArrayList<>();
+    ArrayList<HotelCityModel> hotelCityModels= new ArrayList<>();
     GetCityHotelAdapter getCityHotelAdapter;
     String search;
     AVLoadingIndicatorView avLoadingIndicatorView;
+
 
 
     @Override
@@ -42,13 +43,14 @@ public class GetHotelActivity extends BaseActivity {
         initViews();
 
 
+
     }
 
     public void initViews() {
         btnBack = findViewById(R.id.btnBack);
         listAirPort = findViewById(R.id.listAirPort);
         searchtxt = findViewById(R.id.searchtxt);
-        avLoadingIndicatorView = findViewById(R.id.avi);
+avLoadingIndicatorView= findViewById(R.id.avi);
 
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
@@ -71,7 +73,7 @@ public class GetHotelActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
                 String d = s.toString().trim();
                 if (d.length() > 1) {
-                    search = d;
+                    search=d;
 
                     new GetNameAsync().execute();
 
@@ -79,6 +81,8 @@ public class GetHotelActivity extends BaseActivity {
 
             }
         });
+
+
 
 
     }
@@ -110,16 +114,16 @@ public class GetHotelActivity extends BaseActivity {
 
 
             try {
-                for (Hotels hotels : hotelNameApi.hotelAjaxResult.GetHotelAjaxResult.Hotels) {
-                    hotelCityModels.add(new HotelCityModel(hotels.HotelID, hotels.HotelNameEn, hotels.HotelNameFa));
-                    Log.e("hotelid", hotels.HotelID);
-
-                }
-                getCityHotelAdapter.notifyDataSetChanged();
-
-            } catch (Exception e) {
+            for (Hotels hotels : hotelNameApi.hotelAjaxResult.GetHotelAjaxResult.Hotels) {
+                hotelCityModels.add(new HotelCityModel(hotels.HotelID, hotels.HotelNameEn, hotels.HotelNameFa));
+                Log.e("hotelid", hotels.HotelID);
 
             }
+            getCityHotelAdapter.notifyDataSetChanged();
+
+        } catch (Exception e) {
+
+        }
 
 
            /*
