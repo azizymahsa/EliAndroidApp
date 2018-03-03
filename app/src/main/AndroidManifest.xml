@@ -142,7 +142,7 @@
         <activity
             android:name=".reservation.views.activities.login.ProfileActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".reservation.lost.FinalResult">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />

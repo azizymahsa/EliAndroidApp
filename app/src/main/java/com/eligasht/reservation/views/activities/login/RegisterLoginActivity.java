@@ -133,6 +133,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
         txtPass = findViewById(R.id.edit_pass);
         txtConfirmPass = findViewById(R.id.edit_confirm_pass);
         btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setCustomTextFont("fonts/iran_sans_normal.ttf");
 
         btnRegister.setOnClickListener(this);
 

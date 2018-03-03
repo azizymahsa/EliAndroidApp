@@ -116,7 +116,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private RelativeLayout rlLoading, rlRoot;
     private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading;
     private Window window;
-    private RelativeLayout elNotFound, rlEr,rlList;
+    private RelativeLayout elNotFound, rlEr, rlList;
     private FancyButton btnNextDays, btnLastDays;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -173,7 +173,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         // ivImage.setImageResource(R.drawable.flight_h);
         btnFilter.setOnClickListener(this);
         btnSort.setOnClickListener(this);
-        adapter = new FlightHotelAdapter(selectHotelModelArrayList, this,tvDate);
+        adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, tvDate);
         list.setAdapter(adapter);
         Utility.loadingText(tvLoading, Prefs.getString("FH", ""));
 
@@ -204,7 +204,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         });
 
         new GetHotelAsync().execute();
-        Utility.init_floating(list,this);
+        Utility.init_floating(list, this);
 
 
     }
@@ -473,7 +473,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         if (selectHotelModelArrayListFilter.size() == selectHotelModelArrayList.size() && !remove) {
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this,tvDate);
+            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
             list.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             elNotFound.setVisibility(View.VISIBLE);
@@ -486,7 +486,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             if (selectHotelModelArrayListFilter.isEmpty()) {
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-                adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this,tvDate);
+                adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
                 list.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 elNotFound.setVisibility(View.VISIBLE);
@@ -499,7 +499,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
-                adapter = new FlightHotelAdapter(selectHotelModelArrayListFilter, SelectHotelFlightActivity.this,tvDate);
+                adapter = new FlightHotelAdapter(selectHotelModelArrayListFilter, SelectHotelFlightActivity.this, tvDate);
                 list.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
@@ -512,7 +512,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         if (remove) {
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this,tvDate);
+            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
             list.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             searchIn = "";
@@ -1203,10 +1203,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     GetError = jPricedItinerary.getString("Message");
                 }
                 if (GetError.length() > 1) {
-                    try{
+                    try {
                       /*  AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SelectHotelFlightActivity.this);
                         AlertDialogPassenger.setText(GetError);*/
-                    }catch (Exception e){}
+                    } catch (Exception e) {
+                    }
 
                 } else {
 ////////////////////////////////
@@ -1396,12 +1397,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
 
                     }
-                    adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this,tvDate);
+                    adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
                     list.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-
-
-
 
 
                 }

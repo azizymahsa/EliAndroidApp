@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:layoutDirection="ltr">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/_10_flight_dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10dp"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="10sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/_10dp"
+                    android:gravity="center"
+                    android:text="اطلاعات پایه"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_title_password" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edt_name_fa"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center_vertical"
+                        android:hint="لطفا نام  خود را وارد کنید"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="نام"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e8e8e8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/edt_last_name_fa"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center_vertical"
+                        android:hint="لطفا نام خاوادگی خود را وارد کنید"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="نام خانوادگی"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/_20dp"
+                    android:background="#e8e8e8" />
+
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_margin="@dimen/_10_flight_dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10dp"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="10sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/_10dp"
+                    android:gravity="center"
+                    android:text="سایر مشخصات"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_title_password" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edt_email_user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center_vertical"
+                        android:hint="لطفا ایمیل خود را وارد کنید"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="ایمیل"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e8e8e8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/edt_name_En"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center"
+                        android:hint="لطفا نام  خود را وارد کنید"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="نام(En)*"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="#e8e8e8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/edt_last_name_En"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center"
+                        android:hint="لطفا نام خانوادگی خود را وارد کنید"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="نام خانوادگی"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/_20dp"
+                    android:background="#e8e8e8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/edt_code_meli"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center"
+                        android:hint="لطفا کد ملی خود را وارد کنید"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="کد ملی"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="#e8e8e8" />
+
+                <LinearLayout
+                    android:id="@+id/edt_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/txt_birthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center"
+                        android:hint="لطفا تاریخ تولد خود را وارد کنید"
+                        android:singleLine="true"
+
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="تاریخ تولد"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="#e8e8e8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/edt_home_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center"
+                        android:hint="لطفا تلفن ثابت خود را وارد کنید"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="تلفن ثابت"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="#e8e8e8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/edt_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center"
+                        android:hint="لطفا موبایل خود را وارد کنید"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="موبایل"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="#e8e8e8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/edt_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right|center"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:text="لطفا آدرس خود را وارد کنید"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="آدرس"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_size_12dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="#e8e8e8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_weight=".2"
+                        android:background="@android:color/transparent"
+
+
+                        android:gravity="right|center"
+
+                        android:orientation="horizontal"
+
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
+                            android:text="زن"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
+                        <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
+                            android:id="@+id/chB_woman"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/_5dp_margin"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            app:color_checked="@color/app_base_color" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
+                            android:text="مرد"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
+                        <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
+                            android:id="@+id/chB_man"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            app:color_checked="@color/app_base_color" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".6"
+                        android:gravity="center|right"
+                        android:paddingTop="@dimen/_10dp_padding"
+                        android:text="جنسیت"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/text_size_12dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/_40dp"
+                    android:background="#e8e8e8" />
+
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
