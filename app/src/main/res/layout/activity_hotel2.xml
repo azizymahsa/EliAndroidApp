@@ -21,9 +21,9 @@
             android:id="@+id/txtOption"
             android:layout_width="@dimen/_50dp_normal"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/_30dp"
-            android:layout_marginRight="@dimen/_20dp"
+            android:layout_marginEnd="@dimen/_20dp"
             android:layout_marginTop="@dimen/_30dp"
             android:scaleType="centerInside"
             android:src="@drawable/hotel_circle_icon" />
@@ -34,16 +34,16 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150dp"
             android:layout_centerInParent="true"
-            android:layout_gravity="right"
-            android:layout_toLeftOf="@+id/txtOption"
-            android:gravity="center|right"
+            android:layout_gravity="end"
+            android:layout_toStartOf="@+id/txtOption"
+            android:gravity="center|end"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/lblProductID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:text="سفر به : "
                 android:textColor="#ffffff"
                 android:textSize="@dimen/_15dp_normal_textSize" />
@@ -52,7 +52,7 @@
                 android:id="@+id/txtCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:text="شهر سفر را انتخاب کنید"
                 android:textColor="#fff"
                 android:textSize="@dimen/_20dp_normal_textSize"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:gravity="right"
+                android:gravity="end"
                 android:maxLines="1"
                 android:text=""
                 android:textColor="#fff"
@@ -108,11 +108,9 @@
                         android:id="@+id/tarikh_be"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-
-                        android:layout_marginRight="@dimen/_4dp_normal_margin"
+                        android:layout_marginEnd="@dimen/_4dp_normal_margin"
                         android:layout_marginTop="@dimen/_15dp_normal_margin"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:text="تاریخ خروج از هتل "
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2"
@@ -129,10 +127,10 @@
                             android:id="@+id/tvBargasht"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginRight="@dimen/_2dp_margin"
+                            android:layout_marginEnd="@dimen/_2dp_margin"
                             android:layout_weight="0.8"
                             android:background="#fff"
-                            android:gravity="right|center"
+                            android:gravity="end|center"
                             android:text="انتخاب کنید"
                             android:textColor="@color/text_color_2"
                             android:textSize="@dimen/_12dp_normal_textSize"
@@ -149,10 +147,6 @@
                             android:textSize="@dimen/_25dp_normal_iconSize" />
 
                     </LinearLayout>
-
-
-                    <!-- android:text="اطلاعات مالی" -->
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -166,10 +160,10 @@
                         android:id="@+id/tarikh_az"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_4dp_normal_margin"
+                        android:layout_marginEnd="@dimen/_4dp_normal_margin"
                         android:layout_marginTop="@dimen/_15dp_normal_margin"
 
-                        android:gravity="right"
+                        android:gravity="end"
                         android:text="تاریخ ورود به هتل"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2"
@@ -186,10 +180,10 @@
                             android:id="@+id/tvRaft"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginRight="@dimen/_2dp_margin"
+                            android:layout_marginEnd="@dimen/_2dp_margin"
                             android:layout_weight="0.8"
                             android:background="#fff"
-                            android:gravity="right|center"
+                            android:gravity="end|center"
                             android:text="انتخاب کنید"
                             android:textColor="@color/text_color_2"
                             android:textSize="@dimen/_12dp_normal_textSize"
@@ -203,12 +197,9 @@
                             android:text="@string/icon_calander"
                             android:textAppearance="@style/IconFonts"
                             android:textColor="@color/text_color_2"
-                            android:textSize="@dimen/_25dp_normal_iconSize"/>
+                            android:textSize="@dimen/_25dp_normal_iconSize" />
 
                     </LinearLayout>
-
-                    <!-- android:text="پیش نمایش" -->
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -244,7 +235,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:gravity="center"
                         android:padding="@dimen/_5sp_padding"
                         android:text="کودک"
@@ -287,9 +277,8 @@
                         android:padding="@dimen/_5dp_padding"
                         android:text="بزرگسال"
                         android:textColor="@color/text_color_2"
-                        android:textStyle="bold"
                         android:textSize="@dimen/_12dp_normal_textSize"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvAdult"
@@ -300,9 +289,7 @@
                         android:text="1"
                         android:textColor="@color/text_color_2"
                         android:textSize="@dimen/_12dp_normal_textSize"
-                        android:textStyle="bold"
-                        />
-
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <View
