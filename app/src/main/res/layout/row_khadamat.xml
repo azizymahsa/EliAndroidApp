@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="@dimen/_20dp_khadamat"
         android:layout_gravity="right" >
 
         <TextView

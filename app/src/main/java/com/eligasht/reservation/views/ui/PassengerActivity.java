@@ -1786,10 +1786,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_list_khadamat.setVisibility(View.GONE);
 					linear_pish_factor.setVisibility(View.GONE);
 
-
-
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
-					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1907,8 +1905,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						Gensiyat="";
 						((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
 						((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
+						setAnimation();
 					}
-					setAnimation();
+
 				}catch (Exception e) {
 					System.out.println("Exception ::"+e);
 				}
