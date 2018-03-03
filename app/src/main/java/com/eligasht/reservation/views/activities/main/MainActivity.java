@@ -24,16 +24,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.aakira.expandablelayout.ExpandableWeightLayout;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
-
 import com.eligasht.reservation.base.Base;
-
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.AboutActivity;
 import com.eligasht.reservation.views.activities.ConditionActivity;
 import com.eligasht.reservation.views.activities.ContactUsActivity;
+import com.eligasht.reservation.views.activities.SettingsActivity;
 import com.eligasht.reservation.views.activities.login.LogInActivity;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;
 import com.eligasht.reservation.views.dialogs.LogOutAlert;
@@ -43,31 +40,37 @@ import com.eligasht.reservation.views.fragments.hotel.HotelFragment;
 import com.eligasht.reservation.views.fragments.insurance.InsuranceFragment;
 import com.eligasht.reservation.views.fragments.pack.PackageFragment;
 import com.eligasht.reservation.views.ui.InitUi;
-
+import com.github.aakira.expandablelayout.ExpandableWeightLayout;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends Base implements View.OnClickListener {
-    private FancyButton btnMenu;
-    private DrawerLayout drawerLayout;
-    private TextView tvTitle, tvArrow;
-    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy;
     public static String GET_FRAGMENT = null;
-    private FragmentManager manager;
-    RelativeLayout rlUser;
     private static TextView txt_name;
+    RelativeLayout rlUser;
     ExpandableWeightLayout expandableLayout;
     ImageView ivUser;
     CountDownTimer countDownTimer;
-    private BroadcastReceiver sendFinish;
-    private BroadcastReceiver sendStartTimer, sendDetailFinish;
     int TotalTime = 2000000;
     Button btnExit;
+    LinearLayout rlHedaer;
+    private FancyButton btnMenu;
+    private DrawerLayout drawerLayout;
+    private TextView tvTitle, tvArrow;
+    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting;
+    private FragmentManager manager;
+    private BroadcastReceiver sendFinish;
+    private BroadcastReceiver sendStartTimer, sendDetailFinish;
     private boolean doubleBackToExitPressedOnce = false;
     private int TIME_INTERVAL = 2000;
-    LinearLayout rlHedaer;
 
+    public static void setUserName(String name) {
+        if (txt_name != null) {
+            txt_name.setText(name);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +80,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         Prefs.putString("raftfa", "null");
         Prefs.putString("bargasht", "null");
         Prefs.putString("bargashtfa", "null");
-        Prefs.putString("Flag_First_Computing","F");
+        Prefs.putString("Flag_First_Computing", "F");
         manager = getSupportFragmentManager();
         sendDetailFinish();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -113,15 +116,15 @@ public class MainActivity extends Base implements View.OnClickListener {
         ivUser = findViewById(R.id.ivUser);
         rlHedaer = findViewById(R.id.rlHedaer);
         btnExit = findViewById(R.id.btnExit);
-
+        btnSetting = findViewById(R.id.btn_setting);
         btnLastBuy = findViewById(R.id.btnLastBuy);
 
         //tvTitle.setText(getString(R.string.searchFlight));
 
 
-
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
+        btnSetting.setOnClickListener(this);
         btnHotel.setOnClickListener(this);
         btnPackage.setOnClickListener(this);
 //        btnTour.setOnClickListener(this);
@@ -166,12 +169,6 @@ public class MainActivity extends Base implements View.OnClickListener {
         }
 */
 
-    }
-
-    public static void setUserName(String name) {
-        if (txt_name != null) {
-            txt_name.setText(name);
-        }
     }
 
     @Override
@@ -288,6 +285,14 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
 
+            case R.id.btn_setting:
+
+
+                Intent intent4 = new Intent(this, SettingsActivity.class);
+                intent4.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent4);
+                break;
+
         }
 
     }
@@ -295,8 +300,8 @@ public class MainActivity extends Base implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-       
-            initUser();
+
+        initUser();
     }
 
     public void onDestroy() {
@@ -402,17 +407,17 @@ public class MainActivity extends Base implements View.OnClickListener {
                 btnExit.setVisibility(View.VISIBLE);
                 tvArrow.setVisibility(View.VISIBLE);
                 rlUser.setClickable(true);
-              //  expandableLayout.setVisibility(View.VISIBLE);
+                //  expandableLayout.setVisibility(View.VISIBLE);
 
-                Prefs.putString("userId",WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
-                Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
+                Prefs.putString("userId", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
+                Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
 
             } else {
                 txt_name.setText("ورود به حساب کاربری");
                 btnExit.setVisibility(View.GONE);
                 tvArrow.setVisibility(View.INVISIBLE);
                 rlUser.setClickable(false);
-                Prefs.putString("userId","-1");
+                Prefs.putString("userId", "-1");
 
                 if (expandableLayout.isExpanded()) {
                     expandableLayout.collapse();
@@ -426,7 +431,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
             txt_name.setText("ورود به حساب کاربری");
             btnExit.setVisibility(View.GONE);
-            Prefs.putString("userId","1");
+            Prefs.putString("userId", "1");
             Log.e("testtest22", "3333");
 
             if (expandableLayout.isExpanded()) {
