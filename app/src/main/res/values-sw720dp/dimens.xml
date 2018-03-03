@@ -117,10 +117,12 @@
     <dimen name="_30dp_image_passenger">70dp</dimen>
     <dimen name="_28dp_image_height_passenger">48dp</dimen>
     <dimen name="_0dp_margin">15dp</dimen>
-    <dimen name="_10dp_khadamat">13dp</dimen>
+    <dimen name="_10dp_khadamat">15dp</dimen>
     <dimen name="_12_dp_khadamat">17dp</dimen>
     <dimen name="_175dp_package">275dp</dimen>
     <dimen name="_1dpPackage">2dp</dimen>
     <dimen name="_20dp_khadamat">28dp</dimen>
+    <dimen name="_15dp_khadamat">20dp</dimen>
+    <dimen name="_23dp_khadamat">30dp</dimen>
 
 </resources>
