@@ -220,9 +220,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.btnFilter:
                 android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-
-                FilterHotelDialog filterHotelDialog =  new FilterHotelDialog(SelectHotelFlightActivity.this, filterModels, SelectHotelFlightActivity.this, filterHotelTypeModel,
+                FilterHotelDialog filterHotelDialog = FilterHotelDialog.newInstance(SelectHotelFlightActivity.this, filterModels, SelectHotelFlightActivity.this, filterHotelTypeModel,
                         filterHotelFacilitiesModels, filterHotelPriceModels, searchIn, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels);
+
                 filterHotelDialog.show(fm,"test");
 
 
@@ -1047,9 +1047,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         }
                     });
                     adapter.notifyDataSetChanged();
-                    filterHotelDialog = new FilterHotelDialog(SelectHotelFlightActivity.this, filterModels, SelectHotelFlightActivity.this, filterHotelTypeModel,
+                 /*   filterHotelDialog = new FilterHotelDialog(SelectHotelFlightActivity.this, filterModels, SelectHotelFlightActivity.this, filterHotelTypeModel,
                             filterHotelFacilitiesModels, filterHotelPriceModels, searchIn, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels);
-
+*/
                 }
 
             } catch (Exception e) {

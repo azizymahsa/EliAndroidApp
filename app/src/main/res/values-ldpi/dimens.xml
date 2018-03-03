@@ -122,5 +122,6 @@
     <dimen name="_12_dp_khadamat">12dp</dimen>
     <dimen name="_175dp_package">175dp</dimen>
     <dimen name="_1dpPackage">1dp</dimen>
+    <dimen name="_20dp_khadamat">20dp</dimen>
 
 </resources>
