@@ -1203,7 +1203,7 @@
             android:background="#ffffff"
             android:orientation="vertical"
             android:padding="10dp"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -1220,6 +1220,8 @@
                         android:id="@+id/listKhadamat"
                         android:layout_width="match_parent"
                         android:layout_height="350dp"
+                        android:divider="@null"
+                        android:dividerHeight="0dp"
                         android:isScrollContainer="false"
                         android:listSelector="@drawable/list_selector"
                         android:visibility="visible" />
@@ -1237,8 +1239,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:scaleType="fitXY"
-                    />
+                    android:scaleType="fitXY" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1256,7 +1257,7 @@
                         android:text="ریال"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#23b574"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_15dp_khadamat" />
 
                     <TextView
                         android:id="@+id/txtSumKhadamat"
@@ -1269,7 +1270,7 @@
                         android:text="10,000,000"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_15dp_khadamat" />
 
 
                     <TextView
@@ -1280,12 +1281,70 @@
                         android:gravity="right"
                         android:text="جمع کل خدمات: "
                         android:textAppearance="@style/IrsansBold"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_15dp_khadamat" />
                 </LinearLayout>
 
 
             </RelativeLayout>
+            <!--    <LinearLayout
+                android:id="@+id/linearSum"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="@dimen/_12dp"
+                android:layout_weight="20">
 
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:gravity="right"
+                    android:text="ریال"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="#23b574"
+                    android:textSize="@dimen/_15dp_normal_textSize" />
+
+                <TextView
+                    android:id="@+id/txtSumKhadamat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_weight="9.60"
+                    android:gravity="left"
+                    android:text="10,000,000"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="164dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:text="جمع کل خدمات: "
+                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="@dimen/_15dp_normal_textSize" />
+            </LinearLayout>-->
+
+            <!-- <Button
+                 android:id="@+id/btn_taeed_khadamat"
+                 android:layout_width="match_parent"
+                 android:layout_height="32dp"
+                 android:background="@drawable/btngravity_big"
+                 android:drawableLeft="@drawable/left_arrow_khadamat"
+                 android:paddingLeft="@dimen/_12dp"
+                 android:textAppearance="@style/IrsansBold"
+                 android:layout_marginTop="5dp"
+                 android:layout_marginLeft="8dp"
+                 android:layout_marginRight="8dp"
+                 android:text="تایید و گام بعدی"
+                 android:textColor="#ffff"
+                 android:textSize="11dp" />-->
             <LinearLayout
                 android:id="@+id/btn_taeed_khadamat"
                 android:layout_width="match_parent"

@@ -2547,9 +2547,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             }
         });
         scroll_partner.clearFocus();
-        txtemeliP.clearFocus();
+        //txtemeliP.clearFocus();
 
-        txtemeliP.setCursorVisible(false);
+       // txtemeliP.setCursorVisible(false);
 
     }
     public static void updateTotalInfos(long serviceTotalPrice) {
