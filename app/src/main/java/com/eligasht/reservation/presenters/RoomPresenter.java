@@ -1,14 +1,21 @@
 package com.eligasht.reservation.presenters;
 
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.contracts.InfoRoomsContract;
 import com.eligasht.reservation.models.model.ModelRowCountRoom;
+import com.eligasht.reservation.models.model.login.Contract;
 import com.eligasht.reservation.models.model.pack.ChildModel;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.views.adapters.pack.ChildAdapter;
@@ -24,8 +31,9 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
 
     private final InfoRoomsContract.View mView;
     private ArrayList<ModelRowCountRoom> rooms;
-
-
+    private int lastPosition = -1;
+    boolean animation = true;
+Context context;
     public RoomPresenter(InfoRoomsContract.View mView) {
         this.mView = mView;
 
@@ -170,6 +178,23 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
 
             }
         });
+        if (position > lastPosition) {
+          /*  Animation animation = AnimationUtils.loadAnimation(parent.getContext(), android.R.anim.slide_in_left);
+            holder.itemView.startAnimation(animation);
+            lastPosition = position;*/
+        }
+
+  /*      if (position > lastPosition)
+        {
+            Log.e("lastPosition", lastPosition+"=="+position+" ");
+            YoYo.with(Techniques.SlideInRight)
+                    .duration(300)
+                    .playOn(holder.card_room);
+            lastPosition = position;
+        }*/
+
+
+// If the bound view wasn't previously displayed on screen, it's animated
 
     }
 
@@ -197,6 +222,8 @@ public class RoomPresenter implements InfoRoomsContract.Presenter{
             default:
                 return "";
         }
+
+
     }
 
 }
