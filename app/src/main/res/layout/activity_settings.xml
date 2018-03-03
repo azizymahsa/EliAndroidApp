@@ -199,7 +199,6 @@
 
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -227,7 +226,6 @@
                 android:layout_marginLeft="@dimen/_10_flight_dp"
                 android:layout_marginRight="@dimen/_10_flight_dp"
                 android:src="@drawable/ic_attach_money_black_24dp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -275,7 +273,6 @@
 
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -303,7 +300,6 @@
                 android:layout_marginLeft="@dimen/_10_flight_dp"
                 android:layout_marginRight="@dimen/_10_flight_dp"
                 android:src="@drawable/ic_home_black_24dp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
