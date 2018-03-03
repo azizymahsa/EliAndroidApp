@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:minHeight="@dimen/_400dp"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50dp"
-        android:padding="10dp"
-        android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"
         android:text="انتخاب فیلتر"
+        android:textAppearance="@style/IrsansBold"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_txtSize"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        android:textAppearance="@style/IrsansBold"
 
         />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -46,11 +46,12 @@
 
             <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_degree"
-                android:layoutDirection="rtl"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl">
 
             </com.eligasht.reservation.views.components.SimpleRecycleView>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -98,6 +99,7 @@
                 android:layout_height="wrap_content">
 
             </com.eligasht.reservation.views.components.SimpleRecycleView>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -116,7 +118,7 @@
             <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_amenity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <View
                 android:layout_width="match_parent"
@@ -136,7 +138,7 @@
             <com.eligasht.reservation.views.components.SimpleRecycleView
                 android:id="@+id/rcl_price"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
 
             <View
@@ -145,25 +147,25 @@
                 android:background="#000000" />
 
 
-
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginBottom="@dimen/_10dp_margin"
         android:layout_marginTop="10dp"
-        >
+        android:orientation="horizontal">
+
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnDeletFilter"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
             android:layout_height="@dimen/_40dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.5"
             android:elevation="1dp"
             android:paddingBottom="1dp"
             fancy:fb_defaultColor="#1234"
@@ -171,15 +173,16 @@
             fancy:fb_radius="100dp"
             fancy:fb_text="حذف فیلتر"
             fancy:fb_textColor="#4d4d4d"
-            fancy:fb_textSize="@dimen/_14dp_txtSize"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            fancy:fb_textSize="@dimen/_14dp_txtSize" />
+
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnOk"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
             android:layout_height="@dimen/_40dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.5"
             android:elevation="1dp"
             android:paddingBottom="1dp"
             fancy:fb_defaultColor="#1234"
@@ -187,9 +190,7 @@
             fancy:fb_radius="100dp"
             fancy:fb_text="اعمال فیلتر"
             fancy:fb_textColor="#4d4d4d"
-            fancy:fb_textSize="@dimen/_14dp_txtSize"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            fancy:fb_textSize="@dimen/_14dp_txtSize" />
 
     </LinearLayout>
 </LinearLayout>
