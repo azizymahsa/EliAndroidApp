@@ -170,12 +170,12 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             public void onResponse(Call<CityListRes> call, Response<CityListRes> response) {
                 hideLoading();
                 if (response == null || response.body() == null) {
-                    needShowAlertDialog("خطا در ارتباط", true);
+                    needShowAlertDialog(getString(R.string.error_in_connection), true);
                     return;
                 }
 
                 if (response.body().getGetHotelListResult() == null || response.body().getGetHotelListResult().getCities() == null) {
-                    needShowAlertDialog("شهری برای نمایش وجود ندارد", true);
+                    needShowAlertDialog(getString(R.string.there_is_no_city_to_show), true);
                     return;
                 }
                 try {
@@ -189,7 +189,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             public void onFailure(Call<CityListRes> call, Throwable t) {
                 try {
                     hideLoading();
-                    needShowAlertDialog("خطا در ارتباط", true);
+                    needShowAlertDialog(getString(R.string.error_in_connection), true);
                 } catch (Exception e) {
                 }
             }
@@ -316,7 +316,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         txtCity.setOnClickListener(this);
 
 
-        datePickerDialogReturn.setTitle("تاریخ برگشت را انتخاب نمایید");
+        datePickerDialogReturn.setTitle(getString(R.string.select_return_date));
 
     }
 
@@ -348,19 +348,19 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
             case R.id.btnSearchPackage:
                 if (hotelCity == null) {
-                    Toast.makeText(getActivity(), "ابتدا شهر مورد نظر را انتخاب نمایید", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.select_destination_city_first, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (txt_depart_date.getText().toString().equals("انتخاب کنید") && txt_return_date.getText().toString().equals("انتخاب کنید")) {
-                    Toast.makeText(getActivity(), "تاریخ رفت و برگشت را انتخاب کنید", Toast.LENGTH_SHORT).show();
+                if (txt_depart_date.getText().toString().equals(getString(R.string.please_select_one)) && txt_return_date.getText().toString().equals(getString(R.string.please_select_one))) {
+                    Toast.makeText(getActivity(), R.string.select_departure_and_return_date, Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    if (txt_depart_date.getText().toString().equals("انتخاب کنید")) {
-                        Toast.makeText(getActivity(), "تاریخ رفت ", Toast.LENGTH_SHORT).show();
+                    if (txt_depart_date.getText().toString().equals(getString(R.string.please_select_one))) {
+                        Toast.makeText(getActivity(), getString(R.string.departure_date), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (txt_return_date.getText().toString().equals("انتخاب کنید")) {
-                        Toast.makeText(getActivity(), "تاریخ برگشت ", Toast.LENGTH_SHORT).show();
+                    if (txt_return_date.getText().toString().equals(getString(R.string.please_select_one))) {
+                        Toast.makeText(getActivity(), R.string.return_date, Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }

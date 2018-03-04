@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="ورود به حساب کاربری"
+                android:text="@string/login"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/_12dp_normal_textSize"
@@ -114,7 +114,7 @@
                         android:layout_toLeftOf="@+id/tv1"
 
                         android:gravity="center"
-                        android:text="خریدهای قبلی من"
+                        android:text="@string/my_old_purchases"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2e"
                         android:textSize="@dimen/_12dp_normal_textSize" />
@@ -158,7 +158,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_toLeftOf="@+id/tv2"
                         android:gravity="center"
-                        android:text="مشخصات من"
+                        android:text="@string/my_information"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2e"
                         android:textSize="@dimen/_12dp_normal_textSize" />
@@ -224,7 +224,7 @@
                 android:layout_toLeftOf="@+id/tv3"
                 android:layout_toStartOf="@+id/tv3"
                 android:gravity="center"
-                android:text="بلیط هواپیما"
+                android:text="@string/plane_ticket"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -268,7 +268,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv4"
                 android:gravity="center"
-                android:text="رزرو هتل"
+                android:text="@string/hotel_reservation"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -310,7 +310,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv5"
                 android:gravity="center"
-                android:text="بلیط هواپیما + رزرو هتل"
+                android:text="@string/hotel_reservation_and_plane_ticket"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -355,7 +355,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv6"
                 android:gravity="center"
-                android:text="تور مسافرتی"
+                android:text="@string/travel_tour"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -398,7 +398,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv7"
                 android:gravity="center"
-                android:text="بیمه مسافرتی"
+                android:text="@string/travel_insurance"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -440,7 +440,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/tvTrain"
                 android:gravity="center"
-                android:text="(به زودی) "
+                android:text="@string/soon"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/red"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -451,7 +451,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv11"
                 android:gravity="center"
-                android:text="قطار خارجی "
+                android:text="@string/train"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -492,7 +492,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv8"
                 android:gravity="center"
-                android:text=" شرایط و قوانین "
+                android:text="@string/terms_and_conditions"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -537,7 +537,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv8"
                 android:gravity="center"
-                android:text="تنظیمات"
+                android:text="@string/settings"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -580,7 +580,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv9"
                 android:gravity="center"
-                android:text=" تماس با ما "
+                android:text="@string/contact_us"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -623,7 +623,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv10"
                 android:gravity="center"
-                android:text="درباره ما "
+                android:text="@string/about_us"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />
@@ -659,7 +659,7 @@
                 android:layout_marginRight="31dp"
                 android:layout_marginTop="@dimen/_8dp_normal_margin"
                 android:background="@drawable/btngravity_big"
-                android:text="خروج"
+                android:text="@string/exit"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_12dp_normal_textSize"
                 android:textStyle="bold"

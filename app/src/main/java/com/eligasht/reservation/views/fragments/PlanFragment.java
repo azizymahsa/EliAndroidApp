@@ -250,7 +250,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             }
         });
 
-        datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
+        datePickerDialog2.setTitle(getString(R.string.select_return_date));
 
 //=====================================================================================================
 
@@ -733,7 +733,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         startActivity(intent1);
                     } else {//default
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
-                        AlertDialogPassenger.setText("لطفا مبدا و مقصد را انتخاب کنید ");
+                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin));
                        /* System.out.println("default");
                         intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
                         intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
@@ -756,7 +756,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     }
 
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.something_went_wron), Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -884,16 +884,16 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 lbl_forudgah_mabda.setText(endF);
                 lbl_forudgah_maghsad.setText(startF);
 
-                if (start.contains("مبدا") && end.contains("مقصد")) {
-                    tvStart.setText("شهر یا فرودگاه مبدا را انتخاب کنید ");
-                    tvEnd.setText("شهر یا فرودگاه مقصد را انتخاب کنید ");
-                } else if (start.contains("مبدا")) {
-                    tvEnd.setText("شهر یا فرودگاه مقصد را انتخاب کنید ");
+                if (start.contains(getString(R.string.origin)) && end.contains(getString(R.string.destination))) {
+                    tvStart.setText(getString(R.string.select_origin_city_or_airport));
+                    tvEnd.setText(getString(R.string.select_destination_city_or_airport));
+                } else if (start.contains(getString(R.string.origin))) {
+                    tvEnd.setText(getString(R.string.select_destination_city_or_airport));
                     lbl_forudgah_maghsad.setText("");
 
-                } else if (end.contains("مقصد")) {
+                } else if (end.contains(getString(R.string.destination))) {
 
-                    tvStart.setText("شهر یا فرودگاه مبدا را انتخاب کنید ");
+                    tvStart.setText(getString(R.string.select_origin_city_or_airport));
                     lbl_forudgah_mabda.setText("");
                 }
 

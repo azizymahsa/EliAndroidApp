@@ -115,6 +115,7 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements He
                         if (ValidationTools.isEmptyOrNull(input)) {
                             return;
                         }
+
                         getCountries(input);
 
                     }
