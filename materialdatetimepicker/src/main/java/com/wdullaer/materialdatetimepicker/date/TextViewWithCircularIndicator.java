@@ -36,12 +36,9 @@ import com.wdullaer.materialdatetimepicker.R;
 public class TextViewWithCircularIndicator extends TextView {
 
     private static final int SELECTED_CIRCLE_ALPHA = 255;
-
-    Paint mCirclePaint = new Paint();
-
-    private int mCircleColor;
     private final String mItemIsSelectedText;
-
+    Paint mCirclePaint = new Paint();
+    private int mCircleColor;
     private boolean mDrawCircle;
 
     public TextViewWithCircularIndicator(Context context, AttributeSet attrs) {
@@ -50,6 +47,12 @@ public class TextViewWithCircularIndicator extends TextView {
         mItemIsSelectedText = context.getResources().getString(R.string.mdtp_item_is_selected);
 
         init();
+    }
+
+    public static CharSequence getEnglishChar(CharSequence charSequence) {
+        String number = String.valueOf(charSequence);
+        return number.replace("۱", "1").replace("۲", "2").replace("۳", "3").replace("۴", "4").replace("۵", "5").replace("۶", "6").replace("۷", "7").replace("۸", "8").replace("۹", "9")
+                .replace("۰", "0");
     }
 
     private void init() {
@@ -107,9 +110,10 @@ public class TextViewWithCircularIndicator extends TextView {
     public CharSequence getContentDescription() {
         CharSequence itemText = getText();
         if (mDrawCircle) {
-            return String.format(mItemIsSelectedText, itemText);
+            return getEnglishChar(String.format(mItemIsSelectedText, itemText));
         } else {
-            return itemText;
+            return getEnglishChar(itemText);
         }
     }
+
 }

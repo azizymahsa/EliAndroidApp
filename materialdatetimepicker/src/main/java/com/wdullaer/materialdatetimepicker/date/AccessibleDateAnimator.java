@@ -45,9 +45,11 @@ public class AccessibleDateAnimator extends ViewAnimator {
                     DateUtils.FORMAT_SHOW_WEEKDAY;
 
             String dateString = DateUtils.formatDateTime(getContext(), mDateMillis, flags);
-            event.getText().add(dateString);
+            event.getText().add(DatePickerDialog.toEnglishString(dateString));
             return true;
         }
         return super.dispatchPopulateAccessibilityEvent(event);
     }
+
+
 }

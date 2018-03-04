@@ -56,17 +56,16 @@ import java.util.Locale;
  * within the specified month.
  */
 public abstract class MonthView extends View {
-    private static final String TAG = "MonthView";
+    /**
+     * This sets the height of this week in pixels
+     */
+    public static final String VIEW_PARAMS_HEIGHT = "height";
 
     /**
      * These params can be passed into the view to control how it appears.
      * {@link #VIEW_PARAMS_WEEK} is the only required field, though the default
      * values are unlikely to fit most layouts correctly.
      */
-    /**
-     * This sets the height of this week in pixels
-     */
-    public static final String VIEW_PARAMS_HEIGHT = "height";
     /**
      * This specifies the position (or weeks since the epoch) of this week.
      */
@@ -100,9 +99,6 @@ public abstract class MonthView extends View {
      */
     public static final String VIEW_PARAMS_SHOW_WK_NUM = "show_wk_num";
     public static final String VIEW_PARAMS_END_SELECTED_DAY = "selected_end_day";
-
-    protected static int DEFAULT_HEIGHT = 32;
-    protected static int MIN_HEIGHT = 10;
     protected static final int DEFAULT_SELECTED_DAY = -1;
     protected static final int DEFAULT_WEEK_START = Calendar.SUNDAY;
     protected static final int DEFAULT_NUM_DAYS = 7;
@@ -110,9 +106,10 @@ public abstract class MonthView extends View {
     protected static final int DEFAULT_FOCUS_MONTH = -1;
     protected static final int DEFAULT_NUM_ROWS = 6;
     protected static final int MAX_NUM_ROWS = 6;
-
+    private static final String TAG = "MonthView";
     private static final int SELECTED_CIRCLE_ALPHA = 255;
-
+    protected static int DEFAULT_HEIGHT = 32;
+    protected static int MIN_HEIGHT = 10;
     protected static int DAY_SEPARATOR_WIDTH = 1;
     protected static int MINI_DAY_NUMBER_TEXT_SIZE;
     protected static int MONTH_LABEL_TEXT_SIZE;
@@ -122,32 +119,25 @@ public abstract class MonthView extends View {
 
     // used for scaling to the device density
     protected static float mScale = 0;
-
+    protected final Calendar mDayLabelCalendar;
+    private final Formatter mFormatter;
+    private final StringBuilder mStringBuilder;
+    private final Calendar mCalendar;
+    private final MonthViewTouchHelper mTouchHelper;
     protected DatePickerController mController;
-
     // affects the padding on the sides of this view
     protected int mEdgePadding = 0;
-
-    private String mDayOfWeekTypeface;
-    private String mMonthTitleTypeface;
-
     protected Paint mMonthNumPaint;
     protected Paint mMonthTitlePaint;
     protected Paint mSelectedCirclePaint;
     protected Paint mMonthDayLabelPaint;
-
-    private final Formatter mFormatter;
-    private final StringBuilder mStringBuilder;
-
     // The Julian day of the first day displayed by this item
     protected int mFirstJulianDay = -1;
     // The month of the first day in this week
     protected int mFirstMonth = -1;
     // The month of the last day in this week
     protected int mLastMonth = -1;
-
     protected int mMonth;
-
     protected int mYear;
     // Quick reference to the width of this view, matches parent
     protected int mWidth;
@@ -170,19 +160,9 @@ public abstract class MonthView extends View {
     protected int mSelectedLeft = -1;
     // The right edge of the selected day
     protected int mSelectedRight = -1;
-
-    private final Calendar mCalendar;
-    protected final Calendar mDayLabelCalendar;
-    private final MonthViewTouchHelper mTouchHelper;
-
     protected int mNumRows = DEFAULT_NUM_ROWS;
-
     // Optional listener for handling day click actions
     protected OnDayClickListener mOnDayClickListener;
-
-    // Whether to prevent setting the accessibility delegate
-    private boolean mLockAccessibilityDelegate;
-
     protected int mDayTextColor;
     protected int mSelectedDayTextColor;
     protected int mMonthDayTextColor;
@@ -191,6 +171,11 @@ public abstract class MonthView extends View {
     protected int mDisabledDayTextColor;
     protected int mMonthTitleColor;
     protected Paint mRangeCirclePaint;
+    private String mDayOfWeekTypeface;
+    private String mMonthTitleTypeface;
+    // Whether to prevent setting the accessibility delegate
+    private boolean mLockAccessibilityDelegate;
+    private int mDayOfWeekStart = 0;
 
     public MonthView(Context context) {
         this(context, null, null);
@@ -225,7 +210,7 @@ public abstract class MonthView extends View {
         mMonthTitleColor = ContextCompat.getColor(context, R.color.gmdtp_white);
 
         mStringBuilder = new StringBuilder(50);
-        mFormatter = new Formatter(mStringBuilder, Locale.getDefault());
+        mFormatter = new Formatter(mStringBuilder, Locale.ENGLISH);
 
         MINI_DAY_NUMBER_TEXT_SIZE = res.getDimensionPixelSize(R.dimen.gmdtp_day_number_size);
         MONTH_LABEL_TEXT_SIZE = res.getDimensionPixelSize(R.dimen.gmdtp_month_label_size);
@@ -346,8 +331,6 @@ public abstract class MonthView extends View {
         drawMonthNums(canvas);
     }
 
-    private int mDayOfWeekStart = 0;
-
     /**
      * Sets all the parameters for displaying this week. The only required
      * parameter is the week number. Other parameters have a default value and
@@ -466,7 +449,7 @@ public abstract class MonthView extends View {
 
     @NonNull
     private String getMonthAndYearString() {
-        Locale locale = Locale.getDefault();
+        Locale locale = Locale.ENGLISH;
         String pattern = "MMMM yyyy";
 
         if(Build.VERSION.SDK_INT < 18) pattern = getContext().getResources().getString(R.string.mdtp_date_v1_monthyear);
@@ -494,7 +477,7 @@ public abstract class MonthView extends View {
             int calendarDay = (i + mWeekStart) % mNumDays;
             mDayLabelCalendar.set(Calendar.DAY_OF_WEEK, calendarDay);
             String weekString = getWeekDayLabel(mDayLabelCalendar);
-            canvas.drawText(weekString, x, y, mMonthDayLabelPaint);
+            canvas.drawText(DatePickerDialog.toEnglishString(weekString), x, y, mMonthDayLabelPaint);
         }
     }
 
@@ -516,8 +499,8 @@ public abstract class MonthView extends View {
 
             final int startX = (int)(x - dayWidthHalf);
             final int stopX = (int)(x + dayWidthHalf);
-            final int startY = (int)(y - yRelativeToDay);
-            final int stopY = (int)(startY + mRowHeight);
+            final int startY = y - yRelativeToDay;
+            final int stopY = startY + mRowHeight;
 
             drawMonthDay(canvas, mYear, mMonth, dayNumber, x, y, startX, stopX, startY, stopY);
 
@@ -638,7 +621,7 @@ public abstract class MonthView extends View {
      * @return The weekday label
      */
     private String getWeekDayLabel(Calendar day) {
-        Locale locale = Locale.getDefault();
+        Locale locale = Locale.ENGLISH;
 
         // Localised short version of the string is not available on API < 18
         if(Build.VERSION.SDK_INT < 18) {
@@ -711,6 +694,13 @@ public abstract class MonthView extends View {
         }
         mTouchHelper.setFocusedVirtualView(day.day);
         return true;
+    }
+
+    /**
+     * Handles callbacks when the user clicks on a time object.
+     */
+    public interface OnDayClickListener {
+        void onDayClick(MonthView view, CalendarDay day);
     }
 
     /**
@@ -829,12 +819,5 @@ public abstract class MonthView extends View {
 
             return date;
         }
-    }
-
-    /**
-     * Handles callbacks when the user clicks on a time object.
-     */
-    public interface OnDayClickListener {
-        void onDayClick(MonthView view, CalendarDay day);
     }
 }

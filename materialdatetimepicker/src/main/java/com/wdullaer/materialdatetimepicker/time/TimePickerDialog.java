@@ -47,7 +47,6 @@ import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.HapticFeedbackController;
 import com.wdullaer.materialdatetimepicker.R;
-import com.wdullaer.materialdatetimepicker.TypefaceHelper;
 import com.wdullaer.materialdatetimepicker.Utils;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout.OnValueSelectedListener;
 
@@ -62,8 +61,12 @@ import java.util.Locale;
  */
 public class TimePickerDialog extends DialogFragment implements
         OnValueSelectedListener, TimePickerController {
+    public static final int HOUR_INDEX = 0;
+    public static final int MINUTE_INDEX = 1;
+    public static final int SECOND_INDEX = 2;
+    public static final int AM = 0;
+    public static final int PM = 1;
     private static final String TAG = "TimePickerDialog";
-
     private static final String KEY_INITIAL_TIME = "initial_time";
     private static final String KEY_IS_24_HOUR_VIEW = "is_24_hour_view";
     private static final String KEY_TITLE = "dialog_title";
@@ -84,13 +87,6 @@ public class TimePickerDialog extends DialogFragment implements
     private static final String KEY_OK_STRING = "ok_string";
     private static final String KEY_CANCEL_RESID = "cancel_resid";
     private static final String KEY_CANCEL_STRING = "cancel_string";
-
-    public static final int HOUR_INDEX = 0;
-    public static final int MINUTE_INDEX = 1;
-    public static final int SECOND_INDEX = 2;
-    public static final int AM = 0;
-    public static final int PM = 1;
-
     // Delay before starting the pulse animation, in ms.
     private static final int PULSE_ANIMATOR_DELAY = 300;
 
@@ -155,21 +151,6 @@ public class TimePickerDialog extends DialogFragment implements
     private String mSecondPickerDescription;
     private String mSelectSeconds;
 
-    /**
-     * The callback interface used to indicate the user is done filling in
-     * the time (they clicked on the 'Set' button).
-     */
-    public interface OnTimeSetListener {
-
-        /**
-         * @param view The view associated with this listener.
-         * @param hourOfDay The hour that was set.
-         * @param minute The minute that was set.
-         * @param second The second that was set
-         */
-        void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second);
-    }
-
     public TimePickerDialog() {
         // Empty constructor required for dialog fragment.
     }
@@ -184,6 +165,33 @@ public class TimePickerDialog extends DialogFragment implements
     public static TimePickerDialog newInstance(OnTimeSetListener callback,
             int hourOfDay, int minute, boolean is24HourMode) {
         return TimePickerDialog.newInstance(callback, hourOfDay, minute, 0, is24HourMode);
+    }
+
+    private static int getValFromKeyCode(int keyCode) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_0:
+                return 0;
+            case KeyEvent.KEYCODE_1:
+                return 1;
+            case KeyEvent.KEYCODE_2:
+                return 2;
+            case KeyEvent.KEYCODE_3:
+                return 3;
+            case KeyEvent.KEYCODE_4:
+                return 4;
+            case KeyEvent.KEYCODE_5:
+                return 5;
+            case KeyEvent.KEYCODE_6:
+                return 6;
+            case KeyEvent.KEYCODE_7:
+                return 7;
+            case KeyEvent.KEYCODE_8:
+                return 8;
+            case KeyEvent.KEYCODE_9:
+                return 9;
+            default:
+                return -1;
+        }
     }
 
     public void initialize(OnTimeSetListener callback,
@@ -205,23 +213,15 @@ public class TimePickerDialog extends DialogFragment implements
         mCancelResid = R.string.gmdtp_cancelfa;
     }
 
-    /**
-     * Set a title. NOTE: this will only take effect with the next onCreateView
-     */
-    public void setTitle(String title) {
-        mTitle = title;
-    }
-
     public String getTitle() {
         return mTitle;
     }
 
     /**
-     * Set a dark or light theme. NOTE: this will only take effect for the next onCreateView.
+     * Set a title. NOTE: this will only take effect with the next onCreateView
      */
-    public void setThemeDark(boolean dark) {
-        mThemeDark = dark;
-        mThemeDarkChanged = true;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
     /**
@@ -236,17 +236,17 @@ public class TimePickerDialog extends DialogFragment implements
         }
     }
 
-    /**
-     * Set the accent color of this dialog
-     * @param color the accent color you want
-     */
-    public void setAccentColor(@ColorInt int color) {
-        mAccentColor = Color.argb(255, Color.red(color), Color.green(color), Color.blue(color));;
-    }
-
     @Override
     public boolean isThemeDark() {
         return mThemeDark;
+    }
+
+    /**
+     * Set a dark or light theme. NOTE: this will only take effect for the next onCreateView.
+     */
+    public void setThemeDark(boolean dark) {
+        mThemeDark = dark;
+        mThemeDarkChanged = true;
     }
 
     @Override
@@ -257,6 +257,15 @@ public class TimePickerDialog extends DialogFragment implements
     @Override
     public int getAccentColor() {
         return mAccentColor;
+    }
+
+    /**
+     * Set the accent color of this dialog
+     *
+     * @param color the accent color you want
+     */
+    public void setAccentColor(@ColorInt int color) {
+        mAccentColor = Color.argb(255, Color.red(color), Color.green(color), Color.blue(color));
     }
 
     /**
@@ -695,7 +704,7 @@ public class TimePickerDialog extends DialogFragment implements
         TextView timePickerHeader = (TextView) view.findViewById(R.id.time_picker_header);
         if (!mTitle.isEmpty()) {
             timePickerHeader.setVisibility(TextView.VISIBLE);
-            timePickerHeader.setText(mTitle.toUpperCase(Locale.getDefault()));
+            timePickerHeader.setText(mTitle.toUpperCase(Locale.ENGLISH));
         }
 
         // Set the theme at the end so that the initialize()s above don't counteract the theme.
@@ -982,7 +991,7 @@ public class TimePickerDialog extends DialogFragment implements
         if (value == 60) {
             value = 0;
         }
-        CharSequence text = String.format(Locale.getDefault(), "%02d", value);
+        CharSequence text = String.format(Locale.ENGLISH, "%02d", value);
         Utils.tryAccessibilityAnnounce(mTimePicker, text);
         mMinuteView.setText(text);
         mMinuteSpaceView.setText(text);
@@ -992,7 +1001,7 @@ public class TimePickerDialog extends DialogFragment implements
         if(value == 60) {
             value = 0;
         }
-        CharSequence text = String.format(Locale.getDefault(), "%02d", value);
+        CharSequence text = String.format(Locale.ENGLISH, "%02d", value);
         Utils.tryAccessibilityAnnounce(mTimePicker, text);
         mSecondView.setText(text);
         mSecondSpaceView.setText(text);
@@ -1273,33 +1282,6 @@ public class TimePickerDialog extends DialogFragment implements
         }
     }
 
-    private static int getValFromKeyCode(int keyCode) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_0:
-                return 0;
-            case KeyEvent.KEYCODE_1:
-                return 1;
-            case KeyEvent.KEYCODE_2:
-                return 2;
-            case KeyEvent.KEYCODE_3:
-                return 3;
-            case KeyEvent.KEYCODE_4:
-                return 4;
-            case KeyEvent.KEYCODE_5:
-                return 5;
-            case KeyEvent.KEYCODE_6:
-                return 6;
-            case KeyEvent.KEYCODE_7:
-                return 7;
-            case KeyEvent.KEYCODE_8:
-                return 8;
-            case KeyEvent.KEYCODE_9:
-                return 9;
-            default:
-                return -1;
-        }
-    }
-
     /**
      * Get the currently-entered time, as integer values of the hours, minutes and seconds typed.
      * @param enteredZeros A size-2 boolean array, which the caller should initialize, and which
@@ -1378,8 +1360,8 @@ public class TimePickerDialog extends DialogFragment implements
             char amChar;
             char pmChar;
             for (int i = 0; i < Math.max(mAmText.length(), mPmText.length()); i++) {
-                amChar = mAmText.toLowerCase(Locale.getDefault()).charAt(i);
-                pmChar = mPmText.toLowerCase(Locale.getDefault()).charAt(i);
+                amChar = mAmText.toLowerCase(Locale.ENGLISH).charAt(i);
+                pmChar = mPmText.toLowerCase(Locale.ENGLISH).charAt(i);
                 if (amChar != pmChar) {
                     KeyEvent[] events = kcm.getEvents(new char[]{amChar, pmChar});
                     // There should be 4 events: a down and up for both AM and PM.
@@ -1620,6 +1602,27 @@ public class TimePickerDialog extends DialogFragment implements
         }
     }
 
+    public void notifyOnDateListener() {
+        if (mCallback != null) {
+            mCallback.onTimeSet(mTimePicker, mTimePicker.getHours(), mTimePicker.getMinutes(), mTimePicker.getSeconds());
+        }
+    }
+
+    /**
+     * The callback interface used to indicate the user is done filling in
+     * the time (they clicked on the 'Set' button).
+     */
+    public interface OnTimeSetListener {
+
+        /**
+         * @param view      The view associated with this listener.
+         * @param hourOfDay The hour that was set.
+         * @param minute    The minute that was set.
+         * @param second    The second that was set
+         */
+        void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second);
+    }
+
     /**
      * Simple node class to be used for traversal to check for legal times.
      * mLegalKeys represents the keys that can be typed to get to the node.
@@ -1665,12 +1668,6 @@ public class TimePickerDialog extends DialogFragment implements
                 return processKeyUp(keyCode);
             }
             return false;
-        }
-    }
-
-    public void notifyOnDateListener() {
-        if (mCallback != null) {
-            mCallback.onTimeSet(mTimePicker, mTimePicker.getHours(), mTimePicker.getMinutes(), mTimePicker.getSeconds());
         }
     }
 }
