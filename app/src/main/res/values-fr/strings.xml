@@ -48,11 +48,46 @@
     <string name="soon">(به زودی)</string>
     <string name="train">قطار خارجی</string>
     <string name="terms_and_conditions">شرایط و قوانین</string>
-    <string name="setting">تنظیمات</string>
     <string name="contact_us">تماس با ما</string>
     <string name="about_us">درباره ما</string>
     <string name="exit">خروج</string>
     <string name="settings">تنظیمات</string>
+    <string name="travel_duration">مدت سفر</string>
+    <string name="enter_current_password">کلمه عبور فعلی را وارد کنید</string>
+    <string name="current_password">کلمه عبور فعلی</string>
+    <string name="new_password">کلمه عبور جدید</string>
+    <string name="re_enter_password">تکرار کلمه عبور</string>
+    <string name="basic_information">اطلاعات پایه</string>
+    <string name="please_enter_your_name">لطفا نام خود را وارد کنید</string>
+    <string name="name">نام</string>
+    <string name="please_enter_your_family_name">لطفا نام خاوادگی خود را وارد کنید</string>
+    <string name="family_name">نام خانوادگی</string>
+    <string name="other_information">سایر مشخصات</string>
+    <string name="please_enter_your_email_address">لطفا ایمیل خود را وارد کنید</string>
+    <string name="mail">ایمیل</string>
+    <string name="please_enter_your_national_code">لطفا کد ملی خود را وارد کنید</string>
+    <string name="national_code">کد ملی</string>
+    <string name="please_enter_your_birth_date">لطفا تاریخ تولد خود را وارد کنید</string>
+    <string name="birth_date">تاریخ تولد</string>
+    <string name="please_enter_your_phone_number">لطفا تلفن ثابت خود را وارد کنید</string>
+    <string name="phone">تلفن ثابت</string>
+    <string name="mobile">موبایل</string>
+    <string name="please_enter_your_address">لطفا آدرس خود را وارد کنید</string>
+    <string name="address">آدرس</string>
+    <string name="female">زن</string>
+    <string name="male">مرد</string>
+    <string name="sex">جنسیت</string>
+    <string name="departure_from">پرواز از :</string>
+    <string name="istanbul">استانبول</string>
+    <string name="departure_to">پرواز به :</string>
+    <string name="origin_colon">مبدا :</string>
+    <string name="destination_colon">مقصد :</string>
+    <string name="newborn">نوزاد</string>
+    <string name="departure">رفت</string>
+    <string name="departure_and_return">رفت و برگشت</string>
+    <string name="name_en">نام(En)*</string>
+    <string name="please_enter_your_mobile_number">لطفا موبایل خود را وارد کنید</string>
+
     <string-array name="lang_c">
         <item>انگلیسی</item>
         <item>فارسی</item>
