@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.eligasht.R;
+
 /**
  * Created by elham.bonyani on 1/25/2018.
  */
@@ -60,13 +62,13 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "ویرایش پروفایل";
+                return context.getString(R.string.edit_profile);
             case 1:
-                return " قراردادهای من";
+                return context.getString(R.string.my_contracts);
             case 2:
-                return " تغییر کلمه عبور";
+                return context.getString(R.string.change_password);
             default:
-                return "ویرایش پروفایل";
+                return context.getString(R.string.edit_profile);
         }
     }
 }

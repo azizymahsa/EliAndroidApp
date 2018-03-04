@@ -117,7 +117,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         int currentMonth = DateUtil.getMonth(currentDateTime, "dd/MM/yyyy", true) - 1;
 
         if (ValidationTools.isEmptyOrNull(birthdayDate)) {
-            txt_birthday.setText("انتخاب کنید");
+            txt_birthday.setText(getString(R.string.please_select_one));
             datePickerDialogDepart = DatePickerDialog.newInstance(
                     this,
                     currentYear - 66,
@@ -192,27 +192,27 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     public boolean isValidForm() {
         // check validation and if all thigs are ok return true else return false;
         if (birthdayDate == null) {
-            Toast.makeText(getActivity(), "تاریخ تولد خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.enter_your_birth_date, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (edt_name_fa.length() == 0) {
-            Toast.makeText(getActivity(), "نام فارسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.enter_your_name_in_persian, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (edt_name_En.length() == 0) {
-            Toast.makeText(getActivity(), "نام انگلیسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.enter_your_name_in_english, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (edt_last_name_fa.length() == 0) {
-            Toast.makeText(getActivity(), "نام خانوادگی فارسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.enter_your_family_name_in_persian, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (edt_last_name_En.length() == 0) {
-            Toast.makeText(getActivity(), "نام خانوادگی انگلیسی خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.enter_your_family_name_in_english, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (edt_mobile.length() == 0) {
-            Toast.makeText(getActivity(), "شماره موبایل خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.enter_your_mobile_number, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

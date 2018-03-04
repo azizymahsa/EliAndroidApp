@@ -251,7 +251,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
             }
         });
-        datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
+        datePickerDialog2.setTitle(getString(R.string.select_return_date));
 
 
 
@@ -465,9 +465,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
             case R.id.searchHotel:
                 // new CountTimeAlert(getActivity(),this);
                 try {
-                    if (txtCity.getText().toString().contains("انتخاب کنید")){
+                    if (txtCity.getText().toString().contains(getString(R.string.please_select_one))){
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
-                        AlertDialogPassenger.setText("لطفا شهر سفر خود را انتخاب کنید ");
+                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_city));
                     }else{
                         sendStartTimer();
                         Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
@@ -488,7 +488,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     }
 
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.something_went_wron, Toast.LENGTH_SHORT).show();
                     Prefs.putBoolean("onTimer", false);
 
                 }

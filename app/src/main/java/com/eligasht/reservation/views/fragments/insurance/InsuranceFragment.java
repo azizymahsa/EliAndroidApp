@@ -194,7 +194,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         layout_passenger.setOnClickListener(this);
         btnSearchInsurance.setOnClickListener(this);
         txtCity.setOnClickListener(this);
-        datePickerDialogDepart.setTitle("تاریخ شروع سفر را انتخاب نمایید");
+        datePickerDialogDepart.setTitle(getString(R.string.please_select_start_trip_date));
     }
 
     private void showLoading() {
@@ -231,25 +231,25 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 break;
             case R.id.btnSearchInsurance:
                 if (country == null) {
-                    Toast.makeText(getActivity(), "لطفا کشور را انتخاب کنید", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.select_destination_country, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (txt_depart_date.getText().toString().equals("انتخاب کنید") && txt_during_trip.getText().toString().equals("انتخاب کنید")) {
-                    Toast.makeText(getActivity(), "تاریخ رفت ومدت سفر را انتخاب کنید", Toast.LENGTH_SHORT).show();
+                if (txt_depart_date.getText().toString().equals(getString(R.string.please_select_one)) && txt_during_trip.getText().toString().equals(getString(R.string.please_select_one))) {
+                    Toast.makeText(getActivity(), R.string.select_departure_date_and_travel_duration, Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    if (txt_depart_date.getText().toString().equals("انتخاب کنید")) {
-                        Toast.makeText(getActivity(), "تاریخ رفت ", Toast.LENGTH_SHORT).show();
+                    if (txt_depart_date.getText().toString().equals(getString(R.string.please_select_one))) {
+                        Toast.makeText(getActivity(), R.string.departure_date, Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (txt_during_trip.getText().toString().equals("انتخاب کنید")) {
-                        Toast.makeText(getActivity(), "مدت سفر را انتخاب کنید ", Toast.LENGTH_SHORT).show();
+                    if (txt_during_trip.getText().toString().equals(getString(R.string.please_select_one))) {
+                        Toast.makeText(getActivity(), R.string.select_travel_duration, Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
 
                 if (ValidationTools.isEmptyOrNull(passengers)) {
-                    Toast.makeText(getActivity(), "لطفا تاریخ تولد مسافران خود را وارد نمایید .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.please_specify_traverels_birth_date, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -283,7 +283,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             passengers = gson.fromJson(bundle.getString("BirthDateList"), new TypeToken<List<BirthDateList>>() {
             }.getType());
 
-            txt_count_passenger.setText(ValidationTools.isEmptyOrNull(passengers) ? "تعداد مسافران" : passengers.size() + " مسافر ");
+            txt_count_passenger.setText(ValidationTools.isEmptyOrNull(passengers) ? getString(R.string.number_of_passengers) : passengers.size() + getString(R.string.passenger));
 
         }
     }
