@@ -65,7 +65,7 @@ public class GetCitiesForPackActivity extends BaseActivity implements Header.onS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_city_for_pack);
         avi = findViewById(R.id.avi);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "شهر مقصد را انتخاب کنید");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.SelectDepartCity));
         btnBack = findViewById(R.id.btnBack);
         listAirPort = findViewById(R.id.listAirPort);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");

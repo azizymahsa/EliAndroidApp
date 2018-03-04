@@ -89,7 +89,7 @@ public class ContractAdapter extends BaseAdapter {
         }
 
         try {
-            holder.num_contract.setText(  "شماره قرار داد: "+ contractModels.get(position).num_contract);
+            holder.num_contract.setText(  context.getString(R.string.contract_code)+ contractModels.get(position).num_contract);
             holder.date.setText(contractModels.get(position).date);
             holder.path.setText(contractModels.get(position).path);
             holder.depart_date.setText(contractModels.get(position).depart_date);
@@ -103,33 +103,33 @@ public class ContractAdapter extends BaseAdapter {
         }
 
         if (contractModels.get(position).getTicketIssue().equals("1")) {
-            holder.ticket.setText("اقدام شده");
+            holder.ticket.setText(R.string.working_on_it);
         }
 
         if (contractModels.get(position).getTicketIssue().equals("1")) {
-            holder.ticket.setText("تایید شده");
+            holder.ticket.setText(R.string.approved);
         }
 
         if (contractModels.get(position).getHotelIssue().equals("1")) {
-            holder.hotel.setText("اقدام شده");
+            holder.hotel.setText(R.string.working_on_it);
         }
 
         if (contractModels.get(position).getHotelConfirm().equals("1")) {
-            holder.hotel.setText("تایید شده");
+            holder.hotel.setText(R.string.approved);
         }
 
 
         if (contractModels.get(position).getVisaIssue().equals("1")) {
-            holder.visa.setText("اقدام شده");
+            holder.visa.setText(R.string.working_on_it);
         }
 
         if (contractModels.get(position).getVisaConfirm().equals("1")) {
-            holder.visa.setText("تایید شده");
+            holder.visa.setText(R.string.approved);
         }
 
 
         if (contractModels.get(position).getDocuments().equals("1")) {
-            holder.visa.setText("تحویل شده");
+            holder.visa.setText(R.string.delivered);
         }
 
         if (contractModels.get(position).getDocuments().equals("1")) {

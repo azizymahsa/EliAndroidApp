@@ -14,7 +14,7 @@
         android:layout_height="@dimen/_50dp"
         android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
-        android:text="پیغام"
+        android:text="@string/alert"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_normal_textSize"
         android:gravity="center"
@@ -52,7 +52,7 @@
         fancy:fb_defaultColor="#1234"
         fancy:fb_focusColor="@color/focusColor"
         fancy:fb_radius="100dp"
-        fancy:fb_text="باشه"
+        fancy:fb_text="@string/IrOK"
         fancy:fb_textColor="@color/text_color_4d"
         fancy:fb_textSize="@dimen/_14dp_txtSize"
         android:layout_marginBottom="@dimen/_10dp_margin"/>

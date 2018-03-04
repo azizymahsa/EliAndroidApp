@@ -45,7 +45,7 @@ public class ImageViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_view);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "نمایش عکس");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.ShowPicture));
         imageLoader = ImageLoader.getInstance();
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(ImageViewActivity.this));
 

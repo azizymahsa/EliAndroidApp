@@ -381,7 +381,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             System.out.println("bargasgt:" + item2.FltDateDayOfWeekFalse);
             lblArrivalCityNameFaB.setText("" + GetDayWeek(item2.FltDateDayOfWeekFalse) + " , " + item2.FlightTimeB);
             int tavaghofB = item2.SegmentFalseCount - 1;
-            lblFlightArrivalTimeB.setText((tavaghofB == 0) ? "بدون توقف" : tavaghofB + " توقف ");//count bargasht
+            lblFlightArrivalTimeB.setText((tavaghofB == 0) ? _context.getString(R.string.none_stop) : tavaghofB + _context.getString(R.string.stop));//count bargasht
         }
         //raft
         txtArrivelTrueLast.setText(item2.DepartureCityNameFaR);
@@ -394,7 +394,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         System.out.println("raft:" + item2.FltDateDayOfWeek);
         lblArrivalCityNameFaR.setText("" + GetDayWeek(item2.FltDateDayOfWeek) + " , " + item2.FlightArrivalTimeR);
         int tavaghofR = item2.SegmentTrueCount - 1;
-        lblFlightArrivalTimeR.setText((tavaghofR == 0) ? "بدون توقف" : tavaghofR + " توقف ");//count raft
+        lblFlightArrivalTimeR.setText((tavaghofR == 0) ? _context.getString(R.string.none_stop) : tavaghofR + _context.getString(R.string.stop));//count raft
 
         lblAdlCost.setText(item2.AdlCost + "");
         lblAdlCost.setText(String.valueOf(NumberFormat.getInstance().format(item2.AdlCost)));
@@ -404,11 +404,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         txt_economi.setText(item2.CabinClassNameFa);
 
         if (item2.RemainSeats == 0) {
-            txttedad.setText("نفر" + item2.RemainSeats + "فقط");
+            txttedad.setText(_context.getString(R.string.people) + item2.RemainSeats + _context.getString(R.string.just));
             txttedad.setVisibility(View.INVISIBLE);
 
         } else {
-            txttedad.setText("فقط" + item2.RemainSeats + "نفر");
+            txttedad.setText(_context.getString(R.string.just) + item2.RemainSeats + _context.getString(R.string.people));
             txttedad.setVisibility(View.VISIBLE);
         }
     /*	if(item2.get(0).IsCharter)
@@ -545,19 +545,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private String GetDayWeek(String fltDateDayOfWeekFalse) {
         if (fltDateDayOfWeekFalse.contains("Saturday")) {
-            return "شنبه";
+            return _context.getString(R.string.saturday);
         } else if (fltDateDayOfWeekFalse.contains("Sunday")) {
-            return "یکشنبه";
+            return _context.getString(R.string.sunday);
         } else if (fltDateDayOfWeekFalse.contains("Monday")) {
-            return "دوشنبه";
+            return _context.getString(R.string.monday);
         } else if (fltDateDayOfWeekFalse.contains("Tuesday")) {
-            return "سه شنبه";
+            return _context.getString(R.string.tuesday);
         } else if (fltDateDayOfWeekFalse.contains("Wednesday")) {
-            return "چهارشنبه";
+            return _context.getString(R.string.wednesday);
         } else if (fltDateDayOfWeekFalse.contains("Thursday")) {
-            return "پنجشنبه";
+            return _context.getString(R.string.thursday);
         } else if (fltDateDayOfWeekFalse.contains("Friday")) {
-            return "جمعه";
+            return _context.getString(R.string.friday);
         }
 
         return "";

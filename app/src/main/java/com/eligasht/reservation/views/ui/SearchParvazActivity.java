@@ -293,7 +293,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             llNextLastDays.setVisibility(View.GONE);
             txtCityBargashtt.setVisibility(View.GONE);
             tvChangeFlight.setVisibility(View.VISIBLE);
-            tvChangeFlight.setText("تغییر پرواز");
+            tvChangeFlight.setText(R.string.ChangeFlight);
         } else {
             isChangeFlight = false;
             FlightId="";
@@ -934,7 +934,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
         linear_expand.setVisibility(View.VISIBLE);
         LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-        txtNoResult.setText("هیچ موردی یافت نشد");
+        txtNoResult.setText(R.string.NoResult);
         linear_no_result.setVisibility(View.GONE);
 
         if (dataExpandingListFilter.isEmpty() || !foundFirst || !foundEc || !foundBis) {
@@ -948,7 +948,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
             linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("هیچ موردی یافت نشد");
+            txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
 
             if (FlagRemove) {
@@ -960,7 +960,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
                 linear_expand.setVisibility(View.VISIBLE);
                 linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-                txtNoResult.setText("هیچ موردی یافت نشد");
+                txtNoResult.setText(R.string.NoResult);
                 linear_no_result.setVisibility(View.GONE);
             }
             /////////////////
@@ -976,7 +976,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.VISIBLE);
             linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("هیچ موردی یافت نشد");
+            txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.GONE);
         }
 
@@ -1459,11 +1459,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                 if (!Utility.isNetworkAvailable(SearchParvazActivity.this)){
 
-                    txtNoResult.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                    txtNoResult.setText(R.string.InternetError);
 
                 }else{
 
-                    txtNoResult.setText("خطا در دریافت اطلاعات از الی گشت");
+                    txtNoResult.setText(R.string.ErrorServer);
 
                 }
 
@@ -1715,11 +1715,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     //}
 
 
+
                 }
 
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
-                AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
+                AlertDialogPassenger.setText(getString(R.string.ErrorServer));
             }
 
         }
@@ -1948,7 +1949,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
             LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
+            txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
 
@@ -2001,7 +2002,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
             LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
+            txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
 
@@ -2181,7 +2182,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             linear_expand.setVisibility(View.GONE);
             LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
+            txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
 
@@ -2278,7 +2279,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
             LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
+            txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
 
@@ -2333,7 +2334,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
             LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
+            txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
 
@@ -2632,7 +2633,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         }
                         callApiDateNext();
                     } else {
-                        Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
+                        Toast.makeText(getApplicationContext(),R.string.datePickerError,
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -2695,7 +2696,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         ///
                         callApiDateNext();
                     } else {
-                        Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.DatePickerError2, Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -3092,11 +3093,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                 if (!Utility.isNetworkAvailable(SearchParvazActivity.this)) {
 
-                    txtNoResult.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                    txtNoResult.setText(R.string.InternetError);
 
                 } else {
 
-                    txtNoResult.setText("خطا در دریافت اطلاعات از الی گشت");
+                    txtNoResult.setText(R.string.ErrorServer);
 
                 }
 
