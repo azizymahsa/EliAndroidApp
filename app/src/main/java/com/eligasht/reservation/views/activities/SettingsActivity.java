@@ -15,6 +15,7 @@ import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.dialogs.SelectLanguageDialog;
+import com.eligasht.reservation.views.ui.InitUi;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -24,19 +25,14 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class SettingsActivity extends BaseActivity implements View.OnClickListener, SelectLanguageDialog.LanguageClick {
     int tab;
-    private FancyButton btnBack;
     private View dialogOpener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        btnBack = findViewById(R.id.btnBack);
+        InitUi.Toolbar(this, false, R.color.toolbar_color, "تنظیمات");
         dialogOpener = findViewById(R.id.dialog_opener);
-        btnBack.setCustomTextFont("fonts/icomoon.ttf");
-        btnBack.setText(getString(R.string.search_back_right));
-        btnBack.setVisibility(View.VISIBLE);
-        btnBack.setOnClickListener(this);
         dialogOpener.setOnClickListener(this);
 
 
@@ -45,9 +41,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnBack:
-                finish();
-                break;
+
             case R.id.dialog_opener:
                 openDialog();
                 break;

@@ -32,7 +32,6 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
 
     private final InfoRoomsContract.View mView;
     private ArrayList<ModelRowCountRoom> rooms;
-    boolean animation = false;
     Context context;
     RoomRowHolder holder;
 
@@ -85,20 +84,25 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
         if (getRoomsCount() == 1) {
             return;
         }
-        animation=true;
-        Animation animations = AnimationUtils.loadAnimation(context, android.R.anim.slide_out_right);
-        holder.itemView.startAnimation(animations);
-        Handler handle = new Handler();
-        handle.postDelayed(new Runnable() {
+        if (getRoomsCount()!=1){
+            Animation animations = AnimationUtils.loadAnimation(context, android.R.anim.slide_out_right);
+            holder.itemView.startAnimation(animations);
+            Handler handle = new Handler();
+            handle.postDelayed(new Runnable() {
 
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                rooms.remove(getRoomsCount() - 1);
-                mView.notifyDataSetChange();
-                mView.setRoomsCount(getRoomsCount());
-            }
-        }, 400);
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+
+                    if (getRoomsCount()!=1) {
+                        rooms.remove(getRoomsCount() - 1);
+                        mView.notifyDataSetChange();
+                        mView.setRoomsCount(getRoomsCount());
+                    }
+                }
+            }, 400);
+
+        }
 
     }
 
@@ -186,6 +190,12 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
                 room.setCountK(room.getCountK() - 1);
                 holder.txt_child.setText(String.valueOf(room.getCountK()));
                 if (!ValidationTools.isEmptyOrNull(room.getChildModels())) {
+
+
+
+
+
+
                     room.getChildModels().remove(room.getChildModels().size() - 1);
                     ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
                     holder.rcl_child.showList(childAdapter);

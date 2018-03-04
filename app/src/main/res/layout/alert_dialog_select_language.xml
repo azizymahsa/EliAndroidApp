@@ -71,7 +71,7 @@
             android:gravity="center|right"
             android:paddingBottom="@dimen/_10dp_padding"
             android:paddingTop="@dimen/_10dp_padding"
-            android:text="انگلیسی"
+            android:text="English"
             android:textColor="@color/text_color_4d"
             android:textSize="@dimen/_15dp_normal_textSize" />
 

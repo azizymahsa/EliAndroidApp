@@ -549,7 +549,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
-                android:text="@string/terms"
+                android:text="@string/setting"
                 android:textAppearance="@style/IconMenu"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_30dp_normal_iconSize" />
@@ -653,7 +653,7 @@
             <Button
                 android:id="@+id/btnExit"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35dp_normal"
+                android:layout_height="@dimen/_30dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="31dp"
                 android:layout_marginRight="31dp"
@@ -661,7 +661,7 @@
                 android:background="@drawable/btngravity_big"
                 android:text="خروج"
                 android:textColor="#FFFFFF"
-                android:textSize="@dimen/_16dp_exit_menu_textSize"
+                android:textSize="@dimen/_12dp_normal_textSize"
                 android:textStyle="bold"
                 />
 

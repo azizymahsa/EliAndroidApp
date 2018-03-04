@@ -30,6 +30,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildRowHolder> {
     private  Context context;
     private ArrayList<ChildModel> childModels;
     private ArrayList<ChildAgeRange> childAgeRanges;
+    int lastPos;
 
     public ChildAdapter(Context context,ArrayList<ChildModel> childModels) {
         this.childModels = childModels;
@@ -73,19 +74,21 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildRowHolder> {
         holder.spn_range.setAdapter(childAgeRangeAdapter);
 
         holder.spn_range.setSelection(childAgeRanges.indexOf(childModel.getChildAgeRange()));
-/*
-        if (childModels.get(position).isAnim()){
+/*        if (childModels.get(position).isAnim()){
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
             holder.itemView.startAnimation(animation);
             final ChildModel childModel2 = childModels.get(position);
             childModel2.setTitle(childModels.get(position).getTitle());
             childModel2.setAnim(false);
-      */
-/*      room2.setAnim(false);
-            rooms.set(position,room2);*//*
 
-        }
-*/
+            childModels.set(position,childModel2);
+            lastPos=position;
+        }*/
+
+
+
+
+
 
         YoYo.with(Techniques.SlideInLeft)
                 .duration(500)
