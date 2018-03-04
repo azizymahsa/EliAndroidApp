@@ -61,7 +61,7 @@
                             android:layout_weight="0.5"
                             android:gravity="right|center"
                             android:paddingRight="5dp"
-                            android:text="ریال"
+                            android:text="@string/curency"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/green"
                             android:textSize="@dimen/_13dp_normal_textSize" />
@@ -105,7 +105,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/btngravity_big"
                     android:gravity="center"
-                    android:text="خرید بیمه"
+                    android:text="@string/BuyInsurance"
                     android:textColor="#fff"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -118,7 +118,7 @@
                     android:layout_marginRight="@dimen/_12dp"
                     android:background="@drawable/background_strock_select_insurance"
                     android:gravity="center"
-                    android:text="جزئیات"
+                    android:text="@string/Detail"
                     android:textColor="@color/titlebackgroundcolor"
                     android:textSize="@dimen/_14dp_txtSize" />
 

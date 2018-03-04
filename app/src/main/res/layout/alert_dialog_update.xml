@@ -13,7 +13,7 @@
         android:padding="10dp"
         android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
-        android:text="به روز رسانی"
+        android:text="@string/Update"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_txtSize"
         android:gravity="center"
@@ -33,7 +33,7 @@
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
         android:textSize="@dimen/_12dp_normal_textSize"
-        android:text="نرم افزار الی گشت نیاز به بروز رستانی دارد،آیا مایل به بروزرسانی نرم افزار هستید؟"
+        android:text="@string/UpdateAlert"
         />
 
 

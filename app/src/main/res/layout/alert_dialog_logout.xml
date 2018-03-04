@@ -13,7 +13,7 @@
         android:padding="10dp"
         android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
-        android:text="پیغام"
+        android:text="@string/alert"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_txtSize"
         android:gravity="center"
@@ -31,7 +31,7 @@
         android:gravity="center"
         android:textAppearance="@style/IrsansBold"
         android:textSize="@dimen/_12dp_normal_textSize"
-        android:text="آیا برای خروج اطمینان دارید؟"
+        android:text="@string/ExitAlert"
         />
 
 
@@ -57,7 +57,7 @@
             fancy:fb_defaultColor="#1234"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="100dp"
-            fancy:fb_text="خیر"
+            fancy:fb_text="@string/CancelAlert"
             fancy:fb_textColor="#4d4d4d"
             fancy:fb_textSize="@dimen/_14dp_txtSize"
             android:layout_marginLeft="5dp"
@@ -73,7 +73,7 @@
             fancy:fb_defaultColor="#1234"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="100dp"
-            fancy:fb_text="بله"
+            fancy:fb_text="@string/OkAlert"
             fancy:fb_textColor="#4d4d4d"
             fancy:fb_textSize="@dimen/_14dp_txtSize"
             android:layout_marginLeft="5dp"

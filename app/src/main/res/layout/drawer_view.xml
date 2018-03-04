@@ -451,7 +451,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@+id/tv11"
                 android:gravity="center"
-                android:text="@string/train"
+                android:text="@string/trains"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_12dp_normal_textSize" />

@@ -269,7 +269,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
             }
         });
-        datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
+        datePickerDialog2.setTitle(getResources().getString(R.string.select_return_date));
 
 
 //=====================================================================================================

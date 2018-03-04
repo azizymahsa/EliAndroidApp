@@ -57,16 +57,17 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         final LstProwHotel item = feedItemList.get(position);
         if (item.getHTypeNameE().contains("Apartment")) {
             holder.lableHotelTilte.setVisibility(View.VISIBLE);
-            holder.lableHotelTilte.setText("هتل آپارتمان");
+            holder.lableHotelTilte.setText(context.getString(R.string.ApartmenHotel));
 
         } else if (item.getHTypeNameE().contains("Boutique")) {
-            holder.lableHotelTilte.setVisibility(View.GONE);
-            holder.lableHotelTilte.setText("بوتیک هتل");
+            holder.lableHotelTilte.setVisibility(View.VISIBLE);
+            holder.lableHotelTilte.setText(context.getString(R.string.BoutiqueHotel));
 
         }
         if (item.getHTypeNameE().contains("Resort")) {
-            holder.lableHotelTilte.setVisibility(View.GONE);
-            holder.lableHotelTilte.setText("ریزورت هتل");
+            holder.lableHotelTilte.setVisibility(View.VISIBLE);
+            holder.lableHotelTilte.setText(context.getString(R.string.ResortHotel));
+
 
         } else {
 
@@ -83,12 +84,12 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         long diferent_day = DateUtil.getTimeDifference(item.getCheckIn(), item.getCheckOut()).getDay();
 
 
-        holder.txt_date.setText(" از " +
+        holder.txt_date.setText(context.getString(R.string.from) +
                 DateUtil.getShortStringDateFromMilis(String.valueOf(checkin_milis), "yyyy-MM-dd", true) +
-                " تا " +
+                context.getString(R.string.to) +
                 DateUtil.getShortStringDateFromMilis(String.valueOf(checkout_milis), "yyyy-MM-dd", true) +
                 " - " +
-                diferent_day + " شب ");
+                diferent_day + context.getString(R.string.night));
 
         try {
             switch (Integer.parseInt(item.getHotelStarRating().split("\\*")[0])) {

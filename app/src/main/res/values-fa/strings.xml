@@ -115,9 +115,8 @@
     <string name="travel_tour">تور مسافرتی</string>
     <string name="travel_insurance">بیمه مسافرتی</string>
     <string name="soon">(به زودی)</string>
-    <string name="train">قطار خارجی</string>
+    <string name="trains">قطار خارجی</string>
     <string name="terms_and_conditions">شرایط و قوانین</string>
-    <string name="setting">تنظیمات</string>
     <string name="contact_us">تماس با ما</string>
     <string name="about_us">درباره ما</string>
     <string name="exit">خروج</string>
@@ -127,13 +126,89 @@
     <string name="my_old_purchases">خریدهای قبلی من</string>
     <string name="my_information">مشخصات من</string>
     <string name="plane_ticket">بلیط هواپیما</string>
+    <string name="AlertInternetError">اینترنت شما قطع و یا از دسترس خارج می باشد، برای استفاده از امکانات این نرم افزار سرویس اینترنت خود را بررسی نمایید!</string>
+    <string name="Data">اینترنت همراه</string>
+    <string name="wifi">اینترنت Wifi</string>
+    <string name="NoInternet">قطع ارتباط</string>
+    <string name="alert">پیغام</string>
+    <string name="ExitAlert">آیا برای خروج اطمینان دارید؟</string>
+    <string name="CancelAlert">خیر</string>
+    <string name="OkAlert">بلی</string>
+    <string name="SplashServerError">ارتباط با سرور مقدور نمی باشد</string>
+    <string name="Try">تلاش مجدد</string>
+    <string name="Update">به روز رسانی</string>
+    <string name="UpdateAlert">نرم افزار الی گشت نیاز به بروز رستانی دارد،آیا مایل به بروزرسانی نرم افزار هستید؟</string>
+    <string name="SelectFilter">انتخاب فیلتر</string>
+    <string name="Stop">توقف</string>
+    <string name="TwoStopAndMore">دو توقف و بیشتر</string>
+    <string name="Economi">اکونومی</string>
+    <string name="Business">بیزنس کلاس</string>
+    <string name="first">فرست کلاس</string>
+    <string name="AirLine">ایرلاین</string>
+    <string name="FilterConfirm">اعمال فیلتر</string>
+    <string name="RemoveFilter">حذف فیلتر</string>
+    <string name="FilterError">گزینه ای برای فیلتر انتخاب نشده است</string>
+    <string name="SortFilter">مرتب کردن</string>
+    <string name="SortMax">بر اساس بیشترین قیمت</string>
+    <string name="SortMin">بر اساس کمترین قیمت</string>
+    <string name="EditInput">لطفا موارد زیر را اصلاح کنید</string>
+    <string name="UserRating">امتیاز شما به این هتل</string>
+    <string name="back">بازگشت</string>
+    <string name="SearchHotel">جست و جو نام هتل</string>
+    <string name="StarRateHotel">درجه مکان اقامتی</string>
+    <string name="HotelType">نوع مکان اقامتی</string>
+    <string name="LocationType">موقعیت مکان اقامتی</string>
+    <string name="FacilitiType">امکانات مکان اقامتی</string>
+    <string name="Price">قیمت</string>
+    <string name="SearchCity">جست و جو</string>
+    <string name="BuyInsurance">خرید بیمه</string>
+    <string name="Detail">جزئیات</string>
+    <string name="from">از</string>
+    <string name="night">شب</string>
+    <string name="Nothing">ندارد</string>
+    <string name="Adult">نفر بزرگسال</string>
+    <string name="ChildPackage">نفر کودک</string>
+    <string name="BabyPackage">نفر نوزاد</string>
+    <string name="OfferTo">پیشنهاد برای</string>
+    <string name="ServicesPackage">خدمات قابل ارائه</string>
+    <string name="InfoAirline">مشخصات پرواز</string>
 
 
-
-
-
-
-
+    <string name="travel_duration">مدت سفر</string>
+    <string name="enter_current_password">کلمه عبور فعلی را وارد کنید</string>
+    <string name="current_password">کلمه عبور فعلی</string>
+    <string name="new_password">کلمه عبور جدید</string>
+    <string name="re_enter_password">تکرار کلمه عبور</string>
+    <string name="basic_information">اطلاعات پایه</string>
+    <string name="please_enter_your_name">لطفا نام خود را وارد کنید</string>
+    <string name="name">نام</string>
+    <string name="please_enter_your_family_name">لطفا نام خاوادگی خود را وارد کنید</string>
+    <string name="family_name">نام خانوادگی</string>
+    <string name="other_information">سایر مشخصات</string>
+    <string name="please_enter_your_email_address">لطفا ایمیل خود را وارد کنید</string>
+    <string name="mail">ایمیل</string>
+    <string name="please_enter_your_national_code">لطفا کد ملی خود را وارد کنید</string>
+    <string name="national_code">کد ملی</string>
+    <string name="please_enter_your_birth_date">لطفا تاریخ تولد خود را وارد کنید</string>
+    <string name="birth_date">تاریخ تولد</string>
+    <string name="please_enter_your_phone_number">لطفا تلفن ثابت خود را وارد کنید</string>
+    <string name="phone">تلفن ثابت</string>
+    <string name="mobile">موبایل</string>
+    <string name="please_enter_your_address">لطفا آدرس خود را وارد کنید</string>
+    <string name="address">آدرس</string>
+    <string name="female">زن</string>
+    <string name="male">مرد</string>
+    <string name="sex">جنسیت</string>
+    <string name="departure_from">پرواز از :</string>
+    <string name="istanbul">استانبول</string>
+    <string name="departure_to">پرواز به :</string>
+    <string name="origin_colon">مبدا :</string>
+    <string name="destination_colon">مقصد :</string>
+    <string name="newborn">نوزاد</string>
+    <string name="departure">رفت</string>
+    <string name="departure_and_return">رفت و برگشت</string>
+    <string name="name_en">نام(En)*</string>
+    <string name="please_enter_your_mobile_number">لطفا موبایل خود را وارد کنید</string>
 
 
 
