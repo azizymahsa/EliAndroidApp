@@ -195,6 +195,11 @@
             android:screenOrientation="portrait"
 
             />
+        <activity
+            android:name=".reservation.views.ui.GetCitiesForPackActivity"
+            android:screenOrientation="portrait"
+
+            />
     </application>
 
 </manifest>
