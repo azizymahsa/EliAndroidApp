@@ -216,18 +216,18 @@ public class FlightHotelAdapter extends BaseAdapter {
 
 
         if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")) {
-            holder.txt_lable_hotel.setText("هتل آپارتمان");
+            holder.txt_lable_hotel.setText(R.string.ApartmenHotel);
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
 
         }else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
-            holder.txt_lable_hotel.setText("بوتیک هتل");
+            holder.txt_lable_hotel.setText(R.string.BoutiqueHotel);
 
 
 
         }else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
-            holder.txt_lable_hotel.setText("ریزورت هتل");
+            holder.txt_lable_hotel.setText(R.string.ResortHotel);
 
 
 
@@ -244,7 +244,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         String[] strings = selectHotelModelArrayList.get(position).getDepRout().split("→");
         switch (strings.length) {
             case 0:
-                waitRaft = "بدون توقف";
+                waitRaft = activity.getString(R.string.NonStop);
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
@@ -253,18 +253,18 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
-                waitRaft = "بدون توقف";
+                waitRaft = activity.getString(R.string.NonStop);
 
                 break;
             case 2:
-                waitRaft = "بدون توقف";
+                waitRaft = activity.getString(R.string.NonStop);
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
 
                 break;
             case 3:
-                waitRaft = "یک توقف";
+                waitRaft = activity.getString(R.string.OneStop);
                 holder.linear_2.setVisibility(View.VISIBLE);
                 holder.tvANRaft2_1.setText(strings[0]);
                 holder.tvANRaft2_2.setText(strings[1]);
@@ -272,7 +272,7 @@ public class FlightHotelAdapter extends BaseAdapter {
 
                 break;
             case 4:
-                waitRaft = "دو توقف";
+                waitRaft = activity.getString(R.string.TwoStop);
                 holder.linear_3.setVisibility(View.VISIBLE);
                 holder.tvANRaft3_1.setText(strings[0]);
                 holder.tvANRaft3_2.setText(strings[1]);

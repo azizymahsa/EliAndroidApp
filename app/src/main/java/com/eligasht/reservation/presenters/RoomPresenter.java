@@ -34,6 +34,8 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
     private ArrayList<ModelRowCountRoom> rooms;
     Context context;
     RoomRowHolder holder;
+    ChildAdapter childAdapter;
+
 
     public RoomPresenter(InfoRoomsContract.View mView) {
         this.mView = mView;
@@ -140,7 +142,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
         holder.room_title.setText("اتاق" + " " + getStringPosition(position));
 
         if (!ValidationTools.isEmptyOrNull(room.getChildModels())) {
-            ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
+             childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
             holder.rcl_child.showList(childAdapter);
 
 
@@ -176,9 +178,10 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
                 room.setCountK(room.getCountK() + 1);
                 holder.txt_child.setText(String.valueOf(room.getCountK()));
                 room.addChildModel(new ChildModel("کودک" + " " + getStringPosition(room.getChildModels().size()), true));
-                ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
+                childAdapter.notifyDataSetChanged();
+              /*  ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
                 holder.rcl_child.showList(childAdapter);
-
+*/
             }
         });
 
@@ -196,8 +199,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
 
 
                     room.getChildModels().remove(room.getChildModels().size() - 1);
-                    ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
-                    holder.rcl_child.showList(childAdapter);
+                    childAdapter.notifyDataSetChanged();
 
 
                 }

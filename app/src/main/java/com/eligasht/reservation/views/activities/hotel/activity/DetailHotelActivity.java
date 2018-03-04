@@ -133,7 +133,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "جزئیات هتل");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.DetailHotel));
         window = getWindow();
         initView();
         initMap();
@@ -263,7 +263,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.llMapClick:
                 if (updateGoogle) {
-                    Toast.makeText(this, "سرویس Google Play شما نیاز به بروزرسانی دارد.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.GoogleUpdateError, Toast.LENGTH_SHORT).show();
                 } else {
                     flMap.setVisibility(View.VISIBLE);
                     lvRooms.setVisibility(View.GONE);
@@ -330,7 +330,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     if (isNew) {
 
 
-                        tvSortComment.setText("جدیدترین نظرات");
+                        tvSortComment.setText(R.string.NewComment);
                         isNew = false;
                         Collections.sort(commentModels, new Comparator<CommentModel>() {
                             public int compare(CommentModel o1, CommentModel o2) {
@@ -347,7 +347,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         isNew = true;
 
 
-                        tvSortComment.setText("مفیدترین نظرات");
+                        tvSortComment.setText(R.string.BenefitComment);
 
 
                         Collections.sort(commentModels, new Comparator<CommentModel>() {
@@ -420,7 +420,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         this, GPS_ERRORDIALOG_REQUEST);
                 dialog.show();*/
             } else {
-                Toast.makeText(this, "امکان دسترسی وجود ندارد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.AccessError, Toast.LENGTH_SHORT).show();
             }
         } catch (Exception ex) {
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -673,16 +673,16 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 for (Map.Entry<String, ArrayList<HotelProprtiesModels>> entry : myMap.entrySet()) {
                     String key = entry.getKey();
                     ArrayList<HotelProprtiesModels> value = entry.getValue();
-                    if (key.contains("امکانات")) {
+                    if (key.contains(getString(R.string.Possibilities))) {
                         add_view(key, value, llEmkanat);
 
                     }
-                    if (key.contains("اطراف")) {
+                    if (key.contains(getString(R.string.Around))) {
 
                         add_view(key, value, llAroundHotel);
 
                     }
-                    if (key.contains("قوانین")) {
+                    if (key.contains(getString(R.string.Policy))) {
 
                         //add_view(key, value, llPolicy);
                         TextView textView = new TextView(DetailHotelActivity.this);
@@ -768,7 +768,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
             } catch (Exception e) {
-                Toast.makeText(DetailHotelActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailHotelActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
                 finish();
                 //  avi1.setVisibility(View.GONE);
                 //   llLoading.setVisibility(View.GONE);
@@ -874,9 +874,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 lvComments.setAdapter(commentAdapter);
                 lvComments.setFocusable(false);
 
-                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount + " کاربر امتیاز داده اند");
-                tvCommentCount.setText(" نظرات کاربران  (" + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length + " نظر)");
-                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent + "% این هتل را پیشنهاد داده اند");
+                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount + getString(R.string.UserRate));
+                tvCommentCount.setText(getString(R.string.CommentUser) + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length + getString(R.string.Comment));
+                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent + getString(R.string.RecomandUser));
                 circleView.setValueAnimated(Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore));
                 Log.e("fer", Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore) + "");
                 if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {

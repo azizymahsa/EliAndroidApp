@@ -172,7 +172,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (response == null || response.body() == null) {
                     rcl_package.showText();
-                    txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
+                    txt_error.setText(R.string.ErrorServer);
                     error_layout.setVisibility(View.VISIBLE);
                 }
 
@@ -183,11 +183,11 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     rcl_package.showText();
                     if (!Utility.isNetworkAvailable(SearchPackActivity.this)){
 
-                        txt_error.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                        txt_error.setText(R.string.InternetError);
 
                     }else{
 
-                        txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
+                        txt_error.setText(R.string.ErrorServer);
 
                     }
                     error_layout.setVisibility(View.VISIBLE);
@@ -203,7 +203,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
                     rcl_package.showText();
-                    txt_error.setText("نتیجه ای برای جستجو شما حاصل نشد!");
+                    txt_error.setText(R.string.NoResult);
                     error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
@@ -223,7 +223,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             public void onFailure(Call<PackageListRes> call, Throwable t) {
                 hideLoading();
                 rcl_package.showText();
-                txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
+                txt_error.setText(R.string.ErrorServer);
                 error_layout.setVisibility(View.VISIBLE);
             }
         });
@@ -302,11 +302,11 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.llSort:
                 if (ValidationTools.isEmptyOrNull(pRowXfers)) {
-                    Toast.makeText(this, "موردی یافت نشد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.PackgeNoFound, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (pRowXfers.size() == 1) {
-                    Toast.makeText(this, "فقط یه مورد جهت نمایش وجود دارد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.OnlyOne, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 SortDialogPackage dialogPackage = new SortDialogPackage(this, this);
@@ -316,7 +316,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 long _departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
 
                 if (_departMilis + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo, "yyyy/MM/dd")) {
-                    Toast.makeText(this, "تاریخ رفت نمی تواند بعد از تاریخ برگشت باشد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.datePickerError, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long milis = _departMilis + 86400000;
@@ -326,7 +326,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             case R.id.btnLastDays:
                 long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
                 if (departMilis <= System.currentTimeMillis()) {
-                    Toast.makeText(this, "تاریخ رفت نمی تواند قبل از امروز باشد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.DatePickerError2, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long _milis = departMilis - 86400000;

@@ -67,7 +67,7 @@ public class AddPassengerActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_passenger);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "اطلاعات مسافر");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.PassengerSpec));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.toolbar_color));
@@ -119,7 +119,7 @@ public class AddPassengerActivity extends BaseActivity implements
                 1
         );
         datePickerDialogBirthDay.setYearRange(1330, currentYear);
-        datePickerDialogBirthDay.setTitle("لطفا تاریخ تولد خود را انتخاب نمایید");
+        datePickerDialogBirthDay.setTitle(getString(R.string.Brithday));
         datePickerDialogDepartgGregorian = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -239,7 +239,7 @@ public class AddPassengerActivity extends BaseActivity implements
                 break;
             case R.id.btn_confirm:
                 if (!isValidPassengers(passengerPresenter.getPassengers())) {
-                    Toast.makeText(this, "لطفا تاریخ تولد مسافران را وارد نمایید .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.brithdayError, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Gson gson = new GsonBuilder().create();

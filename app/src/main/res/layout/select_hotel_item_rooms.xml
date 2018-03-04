@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:gravity="right"
-                    android:text="ریال"
+                    android:text="@string/curency"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/green"
                     android:textSize="@dimen/_13dp_normal_textSize" />

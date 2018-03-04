@@ -153,17 +153,17 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         }
 
         if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")) {
-            holder.txt_lable_hotel.setText("هتل آپارتمان");
+            holder.txt_lable_hotel.setText(R.string.ApartmenHotel);
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
 
         } else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
-            holder.txt_lable_hotel.setText("بوتیک هتل");
+            holder.txt_lable_hotel.setText(R.string.BoutiqueHotel);
 
 
         } else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
-            holder.txt_lable_hotel.setText("ریزورت هتل");
+            holder.txt_lable_hotel.setText(R.string.ResortHotel);
 
 
         } else {

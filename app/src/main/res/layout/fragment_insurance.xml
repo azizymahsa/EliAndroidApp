@@ -31,7 +31,7 @@
                 android:layout_marginRight="@dimen/_20dp"
                 android:layout_marginTop="@dimen/_30dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/hotel_circle_icon" />
+                android:src="@drawable/insurance_circle" />
 
 
             <LinearLayout

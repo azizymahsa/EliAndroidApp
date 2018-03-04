@@ -5,4 +5,141 @@
         <item>انگلیسی</item>
         <item>فارسی</item>
     </string-array>
+
+
+
+    <string name="datePickerError">تاریخ رفت بزرگتر از تاریخ برگشت می باشد</string>
+    <string name="departTo">از تاریخ:</string>
+    <string name="departFrom">تا تاریخ:</string>
+    <string name="DatePickerError2">قبل از تاریخ امروز را نمی توان انتخاب کرد</string>
+    <string name="NoResult">نتیجه ای برای جستجو شما حاصل نشد!</string>
+    <string name="off">% تخفیف</string>
+    <string name="_1star">1 ستاره</string>
+    <string name="_2star">2 ستاره</string>
+    <string name="_3star">3 ستاره</string>
+    <string name="_4star">4 ستاره</string>
+    <string name="_5star">5 ستاره</string>
+    <string name="WithoutStar">بدون ستاره</string>
+    <string name="BestSell">بیشترین فروش</string>
+    <string name="BestOff">تخفیف ویژه</string>
+    <string name="InternetError">اینترنت شما قطع و یا از دسترس خارج می باشد</string>
+    <string name="ErrorServer">خطا در دریافت اطلاعات از الی گشت</string>
+    <string name="Sort">مرتب کردن</string>
+    <string name="Filter">فیلتر کردن</string>
+    <string name="NextDay">روز بعد</string>
+    <string name="LastDay">روز قبل</string>
+    <string name="curency">ریال</string>
+    <string name="ApartmenHotel">هتل آپارتمان</string>
+    <string name="BoutiqueHotel">بوتیک هتل</string>
+    <string name="ResortHotel">ریزورت هتل</string>
+    <string name="NonStop">بدون توقف</string>
+    <string name="OneStop">یک توقف</string>
+    <string name="TwoStop">دو توقف</string>
+    <string name="DetailHotel">جزئیات هتل</string>
+    <string name="GoogleUpdateError">سرویس Google Play شما نیاز به بروزرسانی دارد.</string>
+    <string name="NewComment">جدیدترین نظرات</string>
+    <string name="BenefitComment">مفیدترین نظرات</string>
+    <string name="AccessError">امکان دسترسی وجود ندارد</string>
+    <string name="UserRate">کاربر امتیاز داده اند</string>
+    <string name="Comment">نظر)</string>
+    <string name="CommentUser">نظرات کاربران  (</string>
+    <string name="RecomandUser">% این هتل را پیشنهاد داده اند</string>
+    <string name="Possibilities">امکانات</string>
+    <string name="Around">اطراف</string>
+    <string name="Policy">قوانین</string>
+    <string name="ReservRoom">انتخاب و رزرو اتاق</string>
+    <string name="NoComment">نظری ارسال نشده!</string>
+    <string name="ConfirmComment">ثبت نظر</string>
+    <string name="ErrorRoom">اتاقی یافت نشد!</string>
+    <string name="Comments">نظرات</string>
+    <string name="Map">نقشه</string>
+    <string name="HotelPolicy">قوانین هتل</string>
+    <string name="cancel">: کنسل کردن از</string>
+    <string name="to">تا</string>
+    <string name="Contains">شامل</string>
+    <string name="penalty">جریمه می شود.</string>
+    <string name="RoomError">تعداد نباید بیشتر از ۹ نفر باشد .</string>
+    <string name="InformationRoom">اطلاعات اتاق</string>
+    <string name="room">اتاق</string>
+    <string name="confirm">تائید</string>
+    <string name="ServicesInformation">مشخصات خدمات</string>
+    <string name="PackgeNoFound">موردی یافت نشد .</string>
+    <string name="OnlyOne">فقط یه مورد جهت نمایش وجود دارد .</string>
+    <string name="PackageError">در تاریخ مذکور نتیجه ای یافت نشد، نزدیکترین تاریخ موجود به صورت زیر است:</string>
+    <string name="PassengerSpec">اطلاعات مسافر</string>
+    <string name="Brithday">لطفا تاریخ تولد خود را انتخاب نمایید</string>
+    <string name="brithdayError">لطفا تاریخ تولد مسافران را وارد نمایید .</string>
+    <string name="Passanger">مسافر</string>
+
+
+
+
+
+    <string name="change_language">تغییر زبان</string>
+    <string name="select_return_date">تاریخ برگشت را انتخاب نمایید</string>
+    <string name="please_select_one">انتخاب کنید</string>
+    <string name="please_select_destination_city">لطفا شهر سفر خود را انتخاب کنید</string>
+    <string name="something_went_wron">خطایی رخ داده است</string>
+    <string name="please_select_start_trip_date">تاریخ شروع سفر را انتخاب نمایید</string>
+    <string name="select_destination_country">لطفا کشور را انتخاب کنید</string>
+    <string name="select_departure_date_and_travel_duration">تاریخ رفت و مدت سفر را انتخاب کنید</string>
+    <string name="departure_date">تاریخ رفت</string>
+    <string name="select_travel_duration">مدت سفر را انتخاب کنید</string>
+    <string name="passenger">مسافر</string>
+    <string name="number_of_passengers">تعداد مسافران</string>
+    <string name="error_in_connection">خطا در ارتباط</string>
+    <string name="there_is_no_city_to_show">شهری برای نمایش وجود ندارد</string>
+    <string name="return_date">تاریخ برگشت</string>
+    <string name="select_departure_and_return_date">تاریخ رفت و برگشت را انتخاب کنید</string>
+    <string name="select_destination_city_first">ابتدا شهر مورد نظر را انتخاب نمایید</string>
+    <string name="enter_your_password">رمز عبور خود را وارد کنید.</string>
+    <string name="re_enter_your_password">تکرار رمز عبور را وارد کنید</string>
+    <string name="enter_your_new_password">پسورد جدید خود را وارد کنید.</string>
+    <string name="enter_your_birth_date">تاریخ تولد خود را وارد کنید.</string>
+    <string name="enter_your_name_in_persian">نام فارسی خود را وارد کنید.</string>
+    <string name="enter_your_name_in_english">نام انگلیسی خود را وارد کنید.</string>
+    <string name="enter_your_family_name_in_persian">نام خانوادگی فارسی خود را وارد کنید.</string>
+    <string name="enter_your_family_name_in_english">نام خانوادگی انگلیسی خود را وارد کنید.</string>
+    <string name="enter_your_mobile_number">شماره موبایل خود را وارد کنید.</string>
+    <string name="edit_profile">ویرایش پروفایل</string>
+    <string name="my_contracts">قراردادهای من</string>
+    <string name="change_password">تغییر کلمه عبور</string>
+    <string name="select_destination_city_or_airport">شهر یا فرودگاه مقصد را انتخاب کنید</string>
+    <string name="select_origin_city_or_airport">شهر یا فرودگاه مبدا را انتخاب کنید</string>
+    <string name="destination">مقصد</string>
+    <string name="origin">مبدا</string>
+    <string name="travel_to">سفر به :</string>
+    <string name="checkout_date">تاریخ خروج از هتل</string>
+    <string name="checkin_date">تاریخ ورود به هتل</string>
+    <string name="baby">کودک</string>
+    <string name="adault">بزرگسال</string>
+    <string name="search">جستجو</string>
+    <string name="login">ورود به حساب کاربری</string>
+    <string name="hotel_reservation">رزرو هتل</string>
+    <string name="hotel_reservation_and_plane_ticket">بلیط هواپیما + رزرو هتل</string>
+    <string name="travel_tour">تور مسافرتی</string>
+    <string name="travel_insurance">بیمه مسافرتی</string>
+    <string name="soon">(به زودی)</string>
+    <string name="train">قطار خارجی</string>
+    <string name="terms_and_conditions">شرایط و قوانین</string>
+    <string name="setting">تنظیمات</string>
+    <string name="contact_us">تماس با ما</string>
+    <string name="about_us">درباره ما</string>
+    <string name="exit">خروج</string>
+    <string name="settings">تنظیمات</string>
+    <string name="please_specify_traverels_birth_date">لطفا تاریخ تولد مسافران خود را وارد نمایید .</string>
+    <string name="please_select_destination_and_origin">لطفا مبدا و مقصد را انتخاب کنید</string>
+    <string name="my_old_purchases">خریدهای قبلی من</string>
+    <string name="my_information">مشخصات من</string>
+    <string name="plane_ticket">بلیط هواپیما</string>
+
+
+
+
+
+
+
+
+
+
 </resources>

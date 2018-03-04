@@ -277,7 +277,7 @@
                         android:layout_height="match_parent"
                         android:layout_toRightOf="@+id/tvNextDay"
                         android:gravity="center"
-                        android:text="روز قبل"
+                        android:text="@string/LastDay"
 
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_14dp_txtSize" />
@@ -313,7 +313,7 @@
                         android:layout_marginLeft="@dimen/_5dp_margin"
                         android:gravity="center"
 
-                        android:text="روز بعد"
+                        android:text="@string/NextDay"
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_14dp_txtSize" />
 
@@ -366,7 +366,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/_5dp_margin"
                         android:gravity="center"
-                        android:text="فیلتر کردن"
+                        android:text="@string/Filter"
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_14dp_txtSize" />
 
@@ -423,7 +423,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/_5dp_margin"
                         android:gravity="center"
-                        android:text="مرتب کردن"
+                        android:text="@string/Sort"
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_14dp_txtSize" />
 
