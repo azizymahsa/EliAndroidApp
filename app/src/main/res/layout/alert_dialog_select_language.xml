@@ -15,7 +15,7 @@
         android:background="@drawable/alert_header_background"
         android:gravity="center"
         android:orientation="horizontal"
-        android:text="انتخاب زبان برنامه"
+        android:text="@string/SelectLanguage"
         android:textAppearance="@style/IrsansBold"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_txtSize"
@@ -71,7 +71,7 @@
             android:gravity="center|right"
             android:paddingBottom="@dimen/_10dp_padding"
             android:paddingTop="@dimen/_10dp_padding"
-            android:text="English"
+            android:text="@string/English"
             android:textColor="@color/text_color_4d"
             android:textSize="@dimen/_15dp_normal_textSize" />
 
@@ -93,7 +93,7 @@
             android:gravity="center|right"
             android:paddingBottom="@dimen/_10dp_padding"
             android:paddingTop="@dimen/_10dp_padding"
-            android:text="فارسی"
+            android:text="@string/Persian"
             android:textColor="@color/text_color_4d"
             android:textSize="@dimen/_15dp_normal_textSize" />
 
@@ -120,7 +120,7 @@
         fancy:fb_defaultColor="#1234"
         fancy:fb_focusColor="@color/focusColor"
         fancy:fb_radius="100dp"
-        fancy:fb_text="باشه"
+        fancy:fb_text="@string/IrOK"
         fancy:fb_textColor="#4d4d4d"
         fancy:fb_textSize="@dimen/_14dp_txtSize" />
 

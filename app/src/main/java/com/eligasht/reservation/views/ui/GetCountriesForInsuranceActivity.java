@@ -130,7 +130,7 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements He
             public void onResponse(Call<CountryListRes> call, Response<CountryListRes> response) {
                 if (response == null || response.body() == null) {
                     searchtxt.setText("");
-                    needShowAlertDialog("خطا در ارتباط", true);
+                    needShowAlertDialog(getString(R.string.ErrorServer), true);
                     return;
                 }
 
@@ -152,7 +152,7 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements He
             public void onFailure(Call<CountryListRes> call, Throwable t) {
                 try {
                     searchtxt.setText("");
-                    needShowAlertDialog("خطا در ارتباط", true);
+                    needShowAlertDialog(getString(R.string.ErrorServer), true);
                 } catch (Exception e) {
                 }
 

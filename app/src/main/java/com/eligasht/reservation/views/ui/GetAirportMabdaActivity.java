@@ -373,7 +373,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 }
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
-                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassenger.setText(getString(R.string.ErrorServer));
             }
 
         }

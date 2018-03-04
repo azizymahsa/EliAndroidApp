@@ -71,7 +71,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "ارسال نظر");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.PostComment));
         init_view();
         new AlertRating(this, this,star);
     }
@@ -109,7 +109,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         btnBack.setOnClickListener(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            tvTitle.setText("ثبت نظر برای " + extras.getString("HotelName"));
+            tvTitle.setText(getString(R.string.CommentFor) + extras.getString("HotelName"));
             hotelId=extras.getString("HotelId");
             Log.e("UserID",Prefs.getString("uesrId","-1"));
         }

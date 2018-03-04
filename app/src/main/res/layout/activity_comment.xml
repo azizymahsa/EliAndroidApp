@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="امکانات هتل"
+                    android:text="@string/FacilityHotelComment"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize"
                     android:layout_marginTop="@dimen/_10dp_margin_comment"/>
@@ -73,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="دسترسی به نقاط مهم"
+                    android:text="@string/AccessToImportant"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize"
                     android:layout_marginTop="@dimen/_10dp_margin_comment"/>
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="کیفیت خواب"
+                    android:text="@string/Sleep"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize"
                     android:layout_marginTop="@dimen/_10dp_margin_comment"/>
@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="ارزش در برابر قیمت"
+                    android:text="@string/ValuePrice"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize"
                     android:layout_marginTop="@dimen/_10dp_margin_comment"/>
@@ -161,7 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="وضعیت خدمات"
+                    android:text="@string/ServiceStatus"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize"
                     android:layout_marginTop="@dimen/_10dp_margin_comment"/>
@@ -190,7 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="وضعیت نظافت"
+                    android:text="@string/CleaningStatus"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize"
                     android:layout_marginTop="@dimen/_10dp_margin_comment"/>
@@ -219,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="خوشرویی کارکنان"
+                    android:text="@string/Admiration"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize"
                     android:layout_marginTop="@dimen/_10dp_margin_comment"/>
@@ -249,7 +249,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="کیفیت غذا و پذیرایی"
+                    android:text="@string/QualityOfFood"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize"
                     android:layout_marginTop="@dimen/_10dp_margin_comment"/>
@@ -297,7 +297,7 @@
                     fancy:fb_focusColor="@color/focusColor"
                     fancy:fb_textColor="#ffff"
                     fancy:fb_textSize="@dimen/_14dp_txtSize"
-                    fancy:fb_text="مرحله بعد"
+                    fancy:fb_text="@string/NextStep"
 
                     />
 
@@ -368,7 +368,7 @@
                 android:layout_marginTop="@dimen/_10dp_margin"
                 android:background="@drawable/background_strock_white_comment"
                 android:gravity="center|center_vertical"
-                android:hint="عنوان پیام"
+                android:hint="@string/TitleComment"
                 android:maxLength="20"
                 android:singleLine="true"
                 android:textColor="#000000"
@@ -383,7 +383,7 @@
                 android:layout_marginTop="@dimen/_10dp_margin"
                 android:background="@drawable/background_strock_white_comment"
                 android:gravity="center|top"
-                android:hint="نظر شما"
+                android:hint="@string/YourComment"
                 android:imeOptions="normal"
                 android:paddingTop="3dp"
                 android:textColor="#000000"
@@ -413,7 +413,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="مایل به نمایش نام نیستم"
+                    android:text="@string/HiddenName"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -437,7 +437,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="این هتل را برای دیگران پیشنهاد میکنم"
+                    android:text="@string/RecomandHotel"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -473,7 +473,7 @@
                 fancy:fb_focusColor="@color/focusColor"
                 fancy:fb_textColor="#ffff"
                 fancy:fb_textSize="@dimen/_14dp_txtSize"
-                fancy:fb_text="ثبت نظر"
+                fancy:fb_text="@string/ConfirmComment"
 
                 />
 

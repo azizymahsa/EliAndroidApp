@@ -392,7 +392,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 }
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this);
-                AlertDialogPassenger.setText("در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمی باشد ");
+                AlertDialogPassenger.setText(getString(R.string.ErrorServer));
             }
 
         }
