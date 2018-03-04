@@ -32,6 +32,12 @@ public class AccessibleTextView extends TextView {
         super(context, attrs);
     }
 
+    public static CharSequence getEnglishChar(CharSequence charSequence) {
+        String number = String.valueOf(charSequence);
+        return number.replace("۱", "1").replace("۲", "2").replace("۳", "3").replace("۴", "4").replace("۵", "5").replace("۶", "6").replace("۷", "7").replace("۸", "8").replace("۹", "9")
+                .replace("۰", "0");
+    }
+
     @Override
     public void onInitializeAccessibilityEvent(AccessibilityEvent event) {
         super.onInitializeAccessibilityEvent(event);
@@ -43,4 +49,18 @@ public class AccessibleTextView extends TextView {
         super.onInitializeAccessibilityNodeInfo(info);
         info.setClassName(Button.class.getName());
     }
+
+    @Override
+    public void setText(CharSequence text, BufferType type) {
+        try {
+            String txt = (String) text;
+            super.setText(getEnglishChar(txt), type);
+        } catch (Exception e) {
+            super.setText(text, type);
+        }
+
+
+    }
+
+
 }
