@@ -84,7 +84,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
         if (getRoomsCount() == 1) {
             return;
         }
-        if (getRoomsCount()!=1){
+        if (getRoomsCount() != 1) {
             Animation animations = AnimationUtils.loadAnimation(context, android.R.anim.slide_out_right);
             holder.itemView.startAnimation(animations);
             Handler handle = new Handler();
@@ -94,7 +94,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
                 public void run() {
                     // TODO Auto-generated method stub
 
-                    if (getRoomsCount()!=1) {
+                    if (getRoomsCount() != 1) {
                         rooms.remove(getRoomsCount() - 1);
                         mView.notifyDataSetChange();
                         mView.setRoomsCount(getRoomsCount());
@@ -128,8 +128,8 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
     }
 
     @Override
-    public void bindViewHolder(final RoomRowHolder holder, int position) {
-        this.holder=holder;
+    public void bindViewHolder(final RoomRowHolder holder, final int position) {
+        this.holder = holder;
         if (ValidationTools.isEmptyOrNull(getRooms())) {
             return;
         }
@@ -142,6 +142,8 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
         if (!ValidationTools.isEmptyOrNull(room.getChildModels())) {
             ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
             holder.rcl_child.showList(childAdapter);
+
+
         }
         holder.btn_adt_mines.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +175,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
                 }
                 room.setCountK(room.getCountK() + 1);
                 holder.txt_child.setText(String.valueOf(room.getCountK()));
-                room.addChildModel(new ChildModel("کودک" + " " + getStringPosition(room.getChildModels().size()),true));
+                room.addChildModel(new ChildModel("کودک" + " " + getStringPosition(room.getChildModels().size()), true));
                 ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
                 holder.rcl_child.showList(childAdapter);
 
@@ -193,25 +195,24 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
 
 
 
-
-
-
                     room.getChildModels().remove(room.getChildModels().size() - 1);
                     ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
                     holder.rcl_child.showList(childAdapter);
+
+
                 }
 
             }
         });
 
-        if (rooms.get(position).isAnim()){
+        if (rooms.get(position).isAnim()) {
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
             holder.itemView.startAnimation(animation);
             ModelRowCountRoom room2 = new ModelRowCountRoom();
             room2.setCountB(getRooms().get(position).getCountB());
             room2.setCountK(getRooms().get(position).getCountK());
             room2.setAnim(false);
-            rooms.set(position,room2);
+            rooms.set(position, room2);
         }
 
     }

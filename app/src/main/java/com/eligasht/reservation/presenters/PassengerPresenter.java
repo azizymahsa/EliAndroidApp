@@ -1,11 +1,15 @@
 package com.eligasht.reservation.presenters;
 
 
+import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.eligasht.R;
 import com.eligasht.reservation.contracts.PassengerContract;
@@ -25,6 +29,8 @@ public class PassengerPresenter implements PassengerContract.Presenter {
     private final PassengerContract.View mView;
     private ArrayList<BirthDateList> passengers;
     boolean geo;
+    Context context;
+    PassengerRowHolder holder;
 
 
     public PassengerPresenter(PassengerContract.View mView) {
@@ -69,9 +75,38 @@ public class PassengerPresenter implements PassengerContract.Presenter {
         if(getPassengersCount() == 1){
             return;
         }
-        passengers.remove(getPassengersCount() - 1);
-        mView.notifyDataSetChange();
-        mView.setPassengersCount(getPassengersCount());
+
+
+
+
+
+
+
+
+        if (getPassengersCount()!=1){
+            Animation animations = AnimationUtils.loadAnimation(context, android.R.anim.slide_out_right);
+            holder.card_passenger.startAnimation(animations);
+            Handler handle = new Handler();
+            handle.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+
+                    if (getPassengersCount()!=1) {
+
+                        passengers.remove(getPassengersCount() - 1);
+                        mView.notifyDataSetChange();
+                        mView.setPassengersCount(getPassengersCount());
+                    }
+                }
+            }, 400);
+
+        }
+
+
+
+
     }
 
     @Override
@@ -99,11 +134,13 @@ public class PassengerPresenter implements PassengerContract.Presenter {
         PassengerRowHolder mh = new PassengerRowHolder(view);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
+        this.context=parent.getContext();
         return mh;
     }
 
     @Override
     public void bindViewHolder(PassengerRowHolder holder, int position) {
+        this.holder=holder;
         if (ValidationTools.isEmptyOrNull(getPassengers())) {
             return;
         }
@@ -131,6 +168,19 @@ public class PassengerPresenter implements PassengerContract.Presenter {
                 }
             }
         });
+
+        if (passenger.isAnim()){
+
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            holder.card_passenger.startAnimation(animation);
+
+            BirthDateList passenger2= getPassengers().get(position);
+            passenger2.setAnim(false);
+
+
+
+        }
+
 
     }
 

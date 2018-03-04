@@ -74,25 +74,18 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildRowHolder> {
         holder.spn_range.setAdapter(childAgeRangeAdapter);
 
         holder.spn_range.setSelection(childAgeRanges.indexOf(childModel.getChildAgeRange()));
-/*        if (childModels.get(position).isAnim()){
+        if (childModels.get(position).isAnim()){
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
             holder.itemView.startAnimation(animation);
-            final ChildModel childModel2 = childModels.get(position);
-            childModel2.setTitle(childModels.get(position).getTitle());
-            childModel2.setAnim(false);
 
-            childModels.set(position,childModel2);
+            childModel.setAnim(false);
             lastPos=position;
-        }*/
+        }
 
 
 
 
 
-
-        YoYo.with(Techniques.SlideInLeft)
-                .duration(500)
-                .playOn(holder.layout_child);
         holder.spn_range.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
