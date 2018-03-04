@@ -66,7 +66,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         holder.txtDescription.setTextSize(1,16);
         holder.txtSectionName.setTextColor(Color.parseColor("#000000"));
         holder.txtDescription.setTextColor(ContextCompat.getColor(context,R.color.gray_dark_2));
-        if(item.getSectionName().contains("گواهینامه ها")){
+        if(item.getSectionName().contains(context.getString(R.string.lisences))){
             String[] value_split = item.getSectionName().split("\\|");
             holder.txtSectionName.setText(value_split[1]+"");
         }else{

@@ -27,7 +27,7 @@
                     android:layout_gravity="right"
                     android:layout_marginRight="25dp"
                     android:gravity="right|center"
-                    android:text="شماره قرار داد"
+                    android:text="@string/contract_code"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
@@ -56,7 +56,7 @@
                     android:layout_height="30dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="تاریخ"
+                    android:text="@string/date"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -87,7 +87,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="مسیر"
+                    android:text="@string/route"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -117,7 +117,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="تاریخ شروع سفر"
+                    android:text="@string/start_trip_date"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -147,7 +147,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="تاریخ ورود"
+                    android:text="@string/enter_date"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp"
 
@@ -180,7 +180,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="مانده"
+                    android:text="@string/remain"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -210,7 +210,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="کارشناس فروش"
+                    android:text="@string/sales_person"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -240,7 +240,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="وضعیت ویزا"
+                    android:text="@string/visa_status"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -270,7 +270,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="وضعیت بلیط"
+                    android:text="@string/ticket_status"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -300,7 +300,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="وضعیت هتل"
+                    android:text="@string/hotel_status"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -330,7 +330,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="وضعیت مدارک"
+                    android:text="@string/document_status"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -363,7 +363,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
-                    android:text="ایمیل"
+                    android:text="@string/mail"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/text_size_12dp" />
 
@@ -401,7 +401,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.3"
                     android:gravity="center|right"
-                    android:text="مبلغ نهایی"
+                    android:text="@string/total_cost"
 
                     android:textColor="@color/green"
                     android:textSize="@dimen/_15dp_normal_textSize" />
@@ -415,7 +415,7 @@
                 android:layout_height="@dimen/_40dp"
                 android:layout_gravity="center|bottom"
                 android:background="@drawable/btngravity_big"
-                android:text="ارسال مدارک"
+                android:text="@string/send_documents"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_15dp_normal_textSize"
                 android:textStyle="bold"
