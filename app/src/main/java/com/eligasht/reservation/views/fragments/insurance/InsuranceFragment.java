@@ -62,7 +62,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class InsuranceFragment extends Fragment implements View.OnClickListener, NumberPickerDialog.NumberPickerListener,
         TimePickerDialog.OnTimeSetListener,
-        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     public ViewGroup view;
     public ViewGroup layout_passenger;
@@ -132,7 +132,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         view = (ViewGroup) inflater.inflate(R.layout.fragment_insurance, null);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         view.setLayoutParams(layoutParams);
-        Utility.sendTag("I",true,false);
+        Utility.sendTag("I", true, false);
 
         initViews();
         initParam();
@@ -167,12 +167,13 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         @Override
         public void afterTextChanged(Editable editable) {
             String input = act_country.getText().toString();
-            if(ValidationTools.isEmptyOrNull(input)){
+            if (ValidationTools.isEmptyOrNull(input)) {
                 return;
             }
             getCountries(input);
         }
     };
+
     //send request to server for get cities
     private void getCountries(String cityCode) {
         showLoading();
@@ -181,21 +182,22 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             @Override
             public void onResponse(Call<CountryListRes> call, Response<CountryListRes> response) {
                 hideLoading();
-                if (response == null || response.body() == null){
+                if (response == null || response.body() == null) {
                     act_country.setText("");
                     needShowAlertDialog("خطا در ارتباط", true);
                     return;
                 }
 
-                if( response.body().getCountryAjaxResult() == null || ValidationTools.isEmptyOrNull(response.body().getCountryAjaxResult().getCountries())) {
+                if (response.body().getCountryAjaxResult() == null || ValidationTools.isEmptyOrNull(response.body().getCountryAjaxResult().getCountries())) {
                     return;
                 }
                 try {
-                    CountryAutoAdapter adapter = new CountryAutoAdapter(getActivity(),0,0, response.body().getCountryAjaxResult().getCountries());
+                    CountryAutoAdapter adapter = new CountryAutoAdapter(getActivity(), 0, 0, response.body().getCountryAjaxResult().getCountries());
                     act_country.setThreshold(0);
                     act_country.setAdapter(adapter);
                     act_country.showDropDown();
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
 
 
             }
@@ -206,7 +208,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                     hideLoading();
                     act_country.setText("");
                     needShowAlertDialog("خطا در ارتباط", true);
-            }catch (Exception e){}
+                } catch (Exception e) {
+                }
 
             }
         });
@@ -236,7 +239,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
 
         txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
-
 
 
         datePickerDialogDepart = DatePickerDialog.newInstance(
@@ -294,18 +296,18 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
                 Intent intent = new Intent(getActivity(), AddPassengerActivity.class);
                 intent.putExtra("BirthDateList", gson.toJson(passengers));
-                Prefs.putString("BirthDateListInsuranc",gson.toJson(passengers));//mahsa
+                Prefs.putString("BirthDateListInsuranc", gson.toJson(passengers));//mahsa
                 startActivityForResult(intent, ADD_PASSENGER_REQUEST);
                 break;
 
             case R.id.layout_depart_date:
-                if (!datePickerDialogDepart.isAdded()){
+                if (!datePickerDialogDepart.isAdded()) {
                     datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
 
                 }
                 break;
-            case R.id.btnSearchInsurance :
-                if(country == null){
+            case R.id.btnSearchInsurance:
+                if (country == null) {
                     Toast.makeText(getActivity(), "لطفا کشور را انتخاب کنید", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -323,13 +325,13 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                     }
                 }
 
-                if(ValidationTools.isEmptyOrNull(passengers)){
+                if (ValidationTools.isEmptyOrNull(passengers)) {
                     Toast.makeText(getActivity(), "لطفا تاریخ تولد مسافران خود را وارد نمایید .", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent _intent = new Intent(getActivity(), SearchInsuranceActivity.class);
-                _intent.putExtra("BirthDateList" , gson.toJson(passengers));
-                Prefs.putString("BirthDateListInsuranc",gson.toJson(passengers));//mahsa
+                _intent.putExtra("BirthDateList", gson.toJson(passengers));
+                Prefs.putString("BirthDateListInsuranc", gson.toJson(passengers));//mahsa
                 _intent.putExtra("DepartureDate", departureDate);
                 _intent.putExtra("Culture", "fa-IR");
                 _intent.putExtra("CountryCode", country.getCountryCode());
@@ -342,7 +344,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     }
 
     @Override
-    public void onReturnValue(String type,int duration) {
+    public void onReturnValue(String type, int duration) {
         txt_during_trip.setText(type);
         accomodationDays = duration;
     }
@@ -363,15 +365,10 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     }
 
 
-
-
-
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
 
     }
-
-
 
 
     //shamsi
@@ -391,6 +388,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             dayMin = dayOfMonth;
             txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
             departureDate = currentDateTime;
+            departureDate = Utility.convertNumbersToEnglish(departureDate);
+
             PersianCalendar persianCalendarDatePicker = new PersianCalendar();
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);
             datePickerDialogDepart.initialize(this, year_, month, day);
@@ -400,17 +399,18 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
     }
 
-    AlertDialog mAlertDialog ;
+    AlertDialog mAlertDialog;
+
     //for show dialog
     public void needShowAlertDialog(String message, boolean canelable) {
-        if(getActivity() == null){
+        if (getActivity() == null) {
             return;
         }
-        if(mAlertDialog!= null && mAlertDialog.isShowing()){
+        if (mAlertDialog != null && mAlertDialog.isShowing()) {
             return;
         }
         mAlertDialog = new AlertDialog.Builder(getActivity()).create();
-        final LayoutInflater layoutInflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.alert_dialog_net, null);
         mAlertDialog.setCancelable(canelable);
         FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
@@ -435,9 +435,10 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
-        String currentDateTime = year + "-" +( monthOfYear + 1 )+ "-" + dayOfMonth;//2018-01-16;
+        String currentDateTime = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;//2018-01-16;
         txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", false));
         departureDate = currentDateTime;
+        departureDate = Utility.convertNumbersToEnglish(departureDate);
         Log.e("packagetest1", departureDate);
-        }
     }
+}

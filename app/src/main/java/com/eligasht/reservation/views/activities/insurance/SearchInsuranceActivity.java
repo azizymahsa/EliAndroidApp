@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
@@ -103,6 +104,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
             long _milis = DateUtil.getMiliSecondGregorianDateTime(departureDate,"yyyy-MM-dd") + (accomodationDays * 86400000L);
             returnDate = DateUtil.getDateTime(String.valueOf(_milis),"yyyy-MM-dd");
+            returnDate=Utility.convertNumbersToEnglish(returnDate);
         }
 
         showInsurance();
@@ -125,6 +127,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
 
         Call<InsuranceRes> call = service.showInsurance(new InsuranceRequestModel(insuranceListReq));
+        Log.e("reqin", new Gson().toJson(new InsuranceRequestModel(insuranceListReq)) );
         call.enqueue(new Callback<InsuranceRes>() {
             @Override
             public void onResponse(Call<InsuranceRes> call, Response<InsuranceRes> response) {

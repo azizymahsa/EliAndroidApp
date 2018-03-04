@@ -2,6 +2,7 @@ package com.eligasht.reservation.presenters;
 
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,7 @@ public class PassengerPresenter implements PassengerContract.Presenter {
 
     @Override
     public void setBirthday(BirthDateList passenger, String date,boolean geo) {
+        Log.e("date", date);
         passengers.get(passengers.indexOf(passenger)).setBirthDate(date);
         mView.notifyDataSetChange();
         this.geo=geo;

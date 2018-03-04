@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eligasht.reservation.tools.Utility;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -289,7 +290,7 @@ public class AddPassengerActivity extends BaseActivity implements
 
 
         if (view.getTag().equals("BirthDay")) {
-            passengerPresenter.setBirthday(currentPassenger, currentDateTime,false);
+            passengerPresenter.setBirthday(currentPassenger, Utility.convertNumbersToEnglish(currentDateTime) ,false);
             datePickerDialogBirthDay.initialize(this, year_, month, day);
 
         }
@@ -315,7 +316,7 @@ public class AddPassengerActivity extends BaseActivity implements
         String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
 
 
-        passengerPresenter.setBirthday(currentPassenger, currentDateTime,true);
+        passengerPresenter.setBirthday(currentPassenger, Utility.convertNumbersToEnglish(currentDateTime),true);
 
 
     }

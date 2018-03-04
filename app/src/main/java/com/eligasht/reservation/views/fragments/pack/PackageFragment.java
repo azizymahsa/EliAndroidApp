@@ -560,6 +560,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         if (view.getTag().equals("DepartureTo")) {
             txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
             departureTo = currentDateTime;
+            departureTo = Utility.convertNumbersToEnglish(departureTo);
 
             Prefs.putString("bargashtfa", txt_return_date.getText().toString());
             Prefs.putString("bargasht", departureTo);
@@ -573,6 +574,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
             //    txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
             departureFrom = currentDateTime;
+            departureFrom = Utility.convertNumbersToEnglish(departureFrom);
+
             PersianCalendar persianCalendarDatePicker = new PersianCalendar();
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);
 
@@ -617,6 +620,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         if (view.getTag().equals("DepartureToGregorian")) {
             txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", false));
             departureTo = currentDateTime;
+            departureTo = Utility.convertNumbersToEnglish(departureTo);
+
             Prefs.putString("bargashtfa", txt_return_date.getText().toString());
             Prefs.putString("bargasht", departureTo);
         }
@@ -629,6 +634,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", false));
             txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", false));
             departureFrom = currentDateTime;
+            departureFrom = Utility.convertNumbersToEnglish(departureFrom);
+
             Calendar cal = Calendar.getInstance();
             DateFormat formatter;
             Date date;
