@@ -17,6 +17,7 @@ import com.eligasht.reservation.views.activities.IDM_Activity;
 import com.eligasht.reservation.views.ui.font.CustomViewWithTypefaceSupport;
 import com.eligasht.reservation.views.ui.font.TextField;
 import com.onesignal.OneSignal;
+import com.orhanobut.hawk.Hawk;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.ConnectionBuddyConfiguration;
@@ -115,7 +116,7 @@ public class GlobalApplication extends Application {
                 .unsubscribeWhenNotificationsAreDisabled(true)
                 .setNotificationReceivedHandler(new GetNotification())
                 .init();
-
+        Hawk.init(this).build();
         mInstance = this;
         applicationContext = getApplicationContext();
         applicationHandler = new Handler(applicationContext.getMainLooper());
