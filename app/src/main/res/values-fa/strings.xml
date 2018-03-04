@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="change_language">تغییر زبان</string>
-    <string-array name="lang_c">
-        <item>انگلیسی</item>
-        <item>فارسی</item>
-    </string-array>
+
 
 
 
@@ -54,7 +50,7 @@
     <string name="Comments">نظرات</string>
     <string name="Map">نقشه</string>
     <string name="HotelPolicy">قوانین هتل</string>
-    <string name="cancel">: کنسل کردن از</string>
+    <string name="cancel_f">: کنسل کردن از</string>
     <string name="to">تا</string>
     <string name="Contains">شامل</string>
     <string name="penalty">جریمه می شود.</string>

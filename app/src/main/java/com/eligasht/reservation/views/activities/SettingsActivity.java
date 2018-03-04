@@ -9,15 +9,12 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.dialogs.SelectLanguageDialog;
 import com.eligasht.reservation.views.ui.InitUi;
-
-import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
  * Created by Ahmad.nemati on 3/3/2018.
@@ -48,38 +45,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    private void dialogChooser() {
 
-        if (getTypeOfLanguage().equals("en"))
-            tab = 0;
-        else
-            tab = 1;
-
-        new MaterialDialog.Builder(this)
-                .title("انتخاب زبان")
-                .items(R.array.lang_c)
-                .itemsCallbackSingleChoice(tab, new MaterialDialog.ListCallbackSingleChoice() {
-                    @Override
-                    public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-                        if (which == tab)
-                            return true;
-
-                        else {
-                            if (which == 1)
-                                Prefs.putString("lang", "fa");
-                            else
-                                Prefs.putString("lang", "en");
-
-                        }
-
-                        return true;
-                    }
-                })
-                .positiveText("تایید")
-                .show();
-
-
-    }
 
     private void openDialog() {
         SelectLanguageDialog selectLanguageDialog = new SelectLanguageDialog(this, this);
