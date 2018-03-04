@@ -188,6 +188,9 @@
             android:name=".reservation.views.activities.login.SuccessResetPassActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".reservation.views.ui.GetCountriesForInsuranceActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".reservation.views.activities.hotel.activity.CommentActivity"
             android:screenOrientation="portrait"
 

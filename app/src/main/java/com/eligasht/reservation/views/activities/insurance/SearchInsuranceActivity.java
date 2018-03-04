@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
@@ -116,19 +117,33 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         InsuranceListReq insuranceListReq = new InsuranceListReq();
         insuranceListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
         insuranceListReq.setCountryCode(countryCode);
+        Log.d("TAG", "showInsurance: "+countryCode);
         insuranceListReq.setDepartureDate(departureDate);
+        Log.d("TAG", "showInsurance: "+departureDate);
+
         insuranceListReq.setAccomodationDays(accomodationDays);
+        Log.d("TAG", "showInsurance: "+accomodationDays);
+
         insuranceListReq.setReturnDate(returnDate);
+        Log.d("TAG", "showInsurance: "+returnDate);
+
         insuranceListReq.setPassCount(passCount);
+        Log.d("TAG", "showInsurance: "+passCount);
+
         insuranceListReq.setBirthDateList(birthDateLists);
+        Log.d("TAG", "showInsurance: "+birthDateLists);
+
         insuranceListReq.setCulture(culture);
+        Log.d("TAG", "showInsurance: "+culture);
 
 
         Call<InsuranceRes> call = service.showInsurance(new InsuranceRequestModel(insuranceListReq));
+
         call.enqueue(new Callback<InsuranceRes>() {
             @Override
             public void onResponse(Call<InsuranceRes> call, Response<InsuranceRes> response) {
                 hideLoading();
+                Log.d("TAG", "onResponse: ");
                 if (response == null
                         || response.body() == null
                         || response.body().getShowInsuranceResult() == null) {
@@ -199,6 +214,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
             @Override
             public void onFailure(Call<InsuranceRes> call, Throwable t) {
+                Log.d("TAG", "onFailure: " + t.getStackTrace().toString());
                 hideLoading();
                 showText();
                 txt_error.setText(t.getMessage());

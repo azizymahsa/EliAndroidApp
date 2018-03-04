@@ -23,6 +23,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.orhanobut.hawk.Hawk;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
@@ -69,7 +70,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
     public ViewGroup view;
     public ViewGroup layout_room;
-    public Spinner spn_cities;
+    public TextView txtCity;
     public TextView btnSearchPackage;
     public LinearLayout btn_return_date;
     public LinearLayout btn_depart_date, linear_picker_depart, linear_picker_return;
@@ -174,8 +175,9 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                     return;
                 }
                 try {
-                    citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
-                    spn_cities.setAdapter(citySpinnerAdapter);
+                    Hawk.put("PackCityData",response.body().getGetHotelListResult());
+//                    citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
+//                    spn_cities.setAdapter(citySpinnerAdapter);
                 } catch (Exception e) {
                 }
 
@@ -197,7 +199,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     private void initViews() {
 
         layout_room = (ViewGroup) view.findViewById(R.id.layout_room);
-        spn_cities = (Spinner) view.findViewById(R.id.spn_cities);
+        txtCity = view.findViewById(R.id.txtCity);
         btnSearchPackage =  view.findViewById(R.id.btnSearchPackage);
         btn_return_date = (LinearLayout) view.findViewById(R.id.btn_return_date);
         btn_depart_date = (LinearLayout) view.findViewById(R.id.btn_depart_date);
@@ -310,18 +312,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         linear_picker_return.setOnClickListener(this);
         linear_picker_depart.setOnClickListener(this);
 
-        spn_cities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-                hotelCity = (HotelCity) spn_cities.getSelectedItem();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
 
 
         datePickerDialogReturn.setTitle("تاریخ برگشت را انتخاب نمایید");
@@ -333,13 +323,13 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     }
 
     private void showLoading() {
-        spn_cities.setVisibility(View.GONE);
+        txtCity.setVisibility(View.GONE);
         lottieAnimationView.playAnimation();
 
     }
 
     private void hideLoading() {
-        spn_cities.setVisibility(View.VISIBLE);
+        txtCity.setVisibility(View.VISIBLE);
         lottieAnimationView.setVisibility(View.GONE);
 
     }
