@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.eligasht.reservation.views.ui.GetCitiesForPackActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -86,7 +87,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     private HotelCity hotelCity;
     private String departureFrom;
     private String departureTo;
-    private CitySpinnerAdapter citySpinnerAdapter;
     int month;
     int year_;
     int day;
@@ -106,6 +106,9 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onResume() {
         super.onResume();
+        hotelCity = Hawk.get("Value-Insurance-City", null);
+        if (hotelCity != null && txtCity != null)
+            txtCity.setText(hotelCity.getCityNameFa());
     }
 
     @Override
@@ -175,9 +178,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                     return;
                 }
                 try {
-                    Hawk.put("PackCityData",response.body().getGetHotelListResult());
-//                    citySpinnerAdapter = new CitySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, response.body().getGetHotelListResult().getCities());
-//                    spn_cities.setAdapter(citySpinnerAdapter);
+                    Hawk.put("PackCityData", response.body().getGetHotelListResult());
                 } catch (Exception e) {
                 }
 
@@ -200,7 +201,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
         layout_room = (ViewGroup) view.findViewById(R.id.layout_room);
         txtCity = view.findViewById(R.id.txtCity);
-        btnSearchPackage =  view.findViewById(R.id.btnSearchPackage);
+        btnSearchPackage = view.findViewById(R.id.btnSearchPackage);
         btn_return_date = (LinearLayout) view.findViewById(R.id.btn_return_date);
         btn_depart_date = (LinearLayout) view.findViewById(R.id.btn_depart_date);
         txt_count_adult = (TextView) view.findViewById(R.id.txt_count_adult);
@@ -311,7 +312,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         btnSearchPackage.setOnClickListener(this);
         linear_picker_return.setOnClickListener(this);
         linear_picker_depart.setOnClickListener(this);
-
+        txtCity.setOnClickListener(this);
 
 
         datePickerDialogReturn.setTitle("تاریخ برگشت را انتخاب نمایید");
@@ -345,7 +346,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.btnSearchPackage:
-                if (citySpinnerAdapter == null) {
+                if (hotelCity == null) {
                     Toast.makeText(getActivity(), "ابتدا شهر مورد نظر را انتخاب نمایید", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -395,22 +396,22 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
             case R.id.linear_picker_return:
                 if (geo) {
-                    if (!datePickerDialogReturnGregorian.isAdded()){
+                    if (!datePickerDialogReturnGregorian.isAdded()) {
                         datePickerDialogReturnGregorian.show(getActivity().getFragmentManager(), "DepartureToGregorian");
 
                     }
 
 
-
                 } else {
-                    if (!datePickerDialogReturn.isAdded()){
+                    if (!datePickerDialogReturn.isAdded()) {
                         datePickerDialogReturn.show(getActivity().getSupportFragmentManager(), "DepartureTo");
 
                     }
 
                 }
-
-
+                break;
+            case R.id.txtCity:
+                startActivity(new Intent(getActivity(), GetCitiesForPackActivity.class));
                 break;
         }
     }
@@ -536,6 +537,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     }
 
     //Shamsi
+//Shamsi
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
         geo = false;

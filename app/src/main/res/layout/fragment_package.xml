@@ -12,35 +12,82 @@
         android:orientation="vertical">
 
 
-        <FrameLayout
+        <RelativeLayout
+            android:id="@+id/citySearch"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:background="@drawable/banafsh_jahan"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <Spinner
-                android:id="@+id/spn_cities"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/_10dp_marging"
-                android:background="@null" />
-
+            android:layout_weight="0.5">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animation_view"
                 android:layout_width="@dimen/toolbar_height_70dp"
                 android:layout_height="@dimen/toolbar_height_70dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_centerInParent="true"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/banafsh_jahan" />
 
-        </FrameLayout>
+            <ImageView
+                android:id="@+id/txtOption"
+                android:layout_width="@dimen/_50dp_normal"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/_30dp"
+                android:layout_marginRight="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/hotel_circle_icon" />
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout_mabda"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="right"
+                android:layout_toLeftOf="@+id/txtOption"
+                android:gravity="center|right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblProductID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="سفر به : "
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_15dp_normal_textSize" />
+
+                <TextView
+                    android:id="@+id/txtCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="شهر سفر را انتخاب کنید"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_20dp_normal_textSize"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/lbl_city_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
