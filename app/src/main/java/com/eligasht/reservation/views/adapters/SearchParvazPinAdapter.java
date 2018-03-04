@@ -101,11 +101,11 @@ public class SearchParvazPinAdapter extends RecyclerView.Adapter<SearchParvazPin
             holder.txt_economi.setText(item2.getTxt_economi());
 
             if(item2.getRemainSeats() ==0){
-                holder. txttedad.setText("نفر"+item2.getRemainSeats()+"فقط");
+                holder. txttedad.setText(context.getString(R.string.people)+item2.getRemainSeats()+context.getString(R.string.just));
                 holder.txttedad.setVisibility(View.INVISIBLE);
 
             }else{
-                holder.txttedad.setText("فقط"+item2.getRemainSeats()+"نفر");
+                holder.txttedad.setText(context.getString(R.string.just)+item2.getRemainSeats()+context.getString(R.string.people));
                 holder. txttedad.setVisibility(View.VISIBLE);
             }
 /////////////////////////////////////////////////////////////
