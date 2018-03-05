@@ -82,7 +82,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="1dp"
                             android:gravity="right"
-                            android:text="بزرگسال"
+                            android:text="@string/Adult"
                             android:textColor="@color/pack_room_text"
                             android:textSize="16dp"
                             android:textAppearance="@style/IrsansBold"/>
@@ -137,7 +137,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="1dp"
                             android:gravity="right"
-                            android:text="کودک"
+                            android:text="@string/Child"
                             android:textColor="@color/pack_room_text"
                             android:textSize="16dp"
                             android:textAppearance="@style/IrsansBold"/>
