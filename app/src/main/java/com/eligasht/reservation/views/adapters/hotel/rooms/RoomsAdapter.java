@@ -25,6 +25,7 @@ import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.PolicyRequest;
 import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.RequestPolicy;
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.eligasht.reservation.views.ui.InitUi;
@@ -180,15 +181,21 @@ public class RoomsAdapter extends BaseAdapter {
                 }else if(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().length==0){
                     alertDialogPolicy.setText(context.getResources().getString(R.string.NoResult));
                 }else{
-                    alertDialogPolicy.setText("اتاق" + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() +": "+
+
+
+                    alertDialogPolicy.setText(context.getString(R.string.room) + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() +" : "+
                             Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate()) + context.getString(R.string.to) +
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate())+" "+ context.getString(R.string.to)+" "+
                             Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()) + context.getString(R.string.Contains) +
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()) + " " + context.getString(R.string.Contains)+" "+
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount() + " " + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() + context.getString(R.string.penalty));
+                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() +" "+context.getString(R.string.penalty));
+
+
+
+
 
                 }
 

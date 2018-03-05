@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/gswitch_type"
-            android:text="SOLAR CAL"
+            android:text="تقویم شمسی"
             android:layout_gravity="left|center_vertical"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
