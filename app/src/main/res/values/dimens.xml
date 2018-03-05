@@ -18,6 +18,7 @@
     <dimen name="title_setting">15sp</dimen>
     <dimen name="detail_setting">12sp</dimen>
     <dimen name="bottom_tab">11dp</dimen>
+    <dimen name="_50dp_normal_im">50dp</dimen>
 
 
 </resources>

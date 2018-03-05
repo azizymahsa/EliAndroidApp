@@ -60,7 +60,7 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_16dp_normal_textSize">16dp</dimen>
     <dimen name="_4dp_normal_margin">8dp</dimen>
     <dimen name="_15dp_normal_margin">15dp</dimen>
-    <dimen name="_50dp_normal">50dp</dimen>
+    <dimen name="_50dp_normal">70dp</dimen>
     <dimen name="_200dp_normal">200dp</dimen>
     <dimen name="_250dp_normal">250dp</dimen>
     <dimen name="_30dp_normal_iconSize">30dp</dimen>
@@ -130,4 +130,5 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_20dp_khadamat">28dp</dimen>
     <dimen name="_15dp_khadamat">20dp</dimen>
     <dimen name="_23dp_khadamat">30dp</dimen>
+    <dimen name="_50dp_normal_im">50dp</dimen>
 </resources>

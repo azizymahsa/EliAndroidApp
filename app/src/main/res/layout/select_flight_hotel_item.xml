@@ -46,7 +46,7 @@
                 <TextView
                     android:id="@+id/tvOff"
                     android:layout_width="@dimen/_50dp_normal"
-                    android:layout_height="@dimen/_50dp_normal"
+                    android:layout_height="@dimen/_50dp_normal_im"
                     android:background="@drawable/off"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
@@ -60,7 +60,7 @@
                 <TextView
                     android:id="@+id/ivIsBestseler"
                     android:layout_width="@dimen/_50dp_normal"
-                    android:layout_height="@dimen/_50dp_normal"
+                    android:layout_height="@dimen/_50dp_normal_im"
                     android:text="پر فروش"
                     android:background="@drawable/best_seller_back"
                     android:textColor="@color/white"
@@ -306,7 +306,7 @@
                                     android:layout_weight="100"
                                     android:gravity="center"
 
-                                    android:text="تغییر پرواز"
+                                    android:text="@string/change_flight"
                                     android:textColor="#0071bc"
                                     android:textSize="@dimen/_12dp_normal_textSize"
 
