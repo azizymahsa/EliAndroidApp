@@ -166,8 +166,7 @@
     <string name="OfferTo">پیشنهاد برای</string>
     <string name="ServicesPackage">خدمات قابل ارائه</string>
     <string name="InfoAirline">مشخصات پرواز</string>
-
-
+    <string name="SelectLanguage">انتخاب زبان برنامه</string>
     <string name="travel_duration">مدت سفر</string>
     <string name="enter_current_password">کلمه عبور فعلی را وارد کنید</string>
     <string name="current_password">کلمه عبور فعلی</string>
@@ -203,23 +202,12 @@
     <string name="departure_and_return">رفت و برگشت</string>
     <string name="name_en">نام(En)*</string>
     <string name="please_enter_your_mobile_number">لطفا موبایل خود را وارد کنید</string>
-
     <string name="searchFlight">جستجوی پرواز</string>
     <string name="search_package">جستجوی تور</string>
     <string name="search_hotel">جستجوی هتل</string>
     <string name="Persian">فارسی</string>
     <string name="English">English</string>
     <string name="IrOK">باشه</string>
-
-
-
-
-
-
-
-
-
-
     <string name="Child">کودک</string>
     <string name="Please_choose_a_gender">لطفا جنسیت را انتخاب کنید</string>
     <string name="man">مرد</string>
@@ -252,7 +240,6 @@
     <string name="Enter_the_correct_mobile_format">موبایل با  فرمت صحیح وارد شود(مانند ...0912)</string>
     <string name="The_national_code_is_not_correct">کد ملی صحیح نمی باشد(10رقمی)</string>
     <string name="child">کودک</string>
-    <!-- <string name="The_national_code_is_not_correct">کد ملی صحیح نمی باشد(10رقمی)</string>-->
     <string name="Enter_the_passport_number_correctly">شماره پاسپورت را درست وارد کنید</string>
     <string name="Enter_the_place_of_residence">محل اقامت را وارد  کنید</string>
     <string name="Enter_your_nationality">ملیت را وارد کنید</string>
@@ -303,4 +290,67 @@
     <string name="Available_services">خدمات قابل ارائه</string>
     <string name="The_amount_payable">مبلغ قابل پرداخت:</string>
     <string name="Registration_and_payment">ثبت و پرداخت</string>
+    <string name="app_name">الی گشت</string>
+    <string name="accept">تایید</string>
+    <string name="contract_code">شماره قرار داد:</string>
+    <string name="calculate_price">محاسبه قیمت</string>
+    <string name="add_to_shoping_cart">افزودن به سبد خرید</string>
+    <string name="PostComment">ارسال نظر</string>
+    <string name="CommentFor">ثبت نظر برای</string>
+    <string name="FacilityHotelComment">امکانات هتل</string>
+    <string name="AccessToImportant">دسترسی به نقاط مهم</string>
+    <string name="Sleep">کیفیت خواب</string>
+    <string name="ValuePrice">ارزش در برابر قیمت</string>
+    <string name="ServiceStatus">وضعیت خدمات</string>
+    <string name="CleaningStatus">وضعیت نظافت</string>
+    <string name="Admiration">خوشرویی کارکنان</string>
+    <string name="QualityOfFood">کیفیت غذا و پذیرایی</string>
+    <string name="NextStep">مرحله بعد</string>
+    <string name="TitleComment">عنوان پیام</string>
+    <string name="YourComment">نظر شما</string>
+    <string name="RecomandHotel">این هتل را برای دیگران پیشنهاد میکنم</string>
+    <string name="HiddenName">مایل به نمایش نام نیستم</string>
+    <string name="ShowPicture">نمایش عکس</string>
+    <string name="BackToLastPage">بازگشت به صفحه قبل</string>
+    <string name="ChangeFlight">تغییر پرواز</string>
+    <string name="SelectDepartCity">شهر مقصد را انتخاب کنید</string>
+    <string name="lisences">گواهینامه ها</string>
+    <string name="day_">روز _</string>
+    <string name="rial_">ریال )</string>
+    <string name="day">روز</string>
+    <string name="space_rial_space">ریال</string>
+    <string name="amount_">تعداد )</string>
+    <string name="approved">تایید شده</string>
+    <string name="delivered">تحویل شده</string>
+    <string name="working_on_it">اقدام شده</string>
+    <string name="date">تاریخ</string>
+    <string name="route">مسیر</string>
+    <string name="start_trip_date">تاریخ شروع سفر</string>
+    <string name="enter_date">تاریخ ورود</string>
+    <string name="remain">مانده</string>
+    <string name="sales_person">کارشناس فروش</string>
+    <string name="visa_status">وضعیت ویزا</string>
+    <string name="ticket_status">وضعیت بلیط</string>
+    <string name="hotel_status">وضعیت هتل</string>
+    <string name="document_status">وضعیت مدارک</string>
+    <string name="total_cost">مبلغ نهایی</string>
+    <string name="send_documents">ارسال مدارک</string>
+    <string name="stop">توقف</string>
+    <string name="none_stop">بدون توقف</string>
+    <string name="just">فقط</string>
+    <string name="people">نفر</string>
+    <string name="saturday">شنبه</string>
+    <string name="sunday">یکشنبه</string>
+    <string name="monday">دوشنبه</string>
+    <string name="tuesday">سه شنبه</string>
+    <string name="wednesday">چهارشنبه</string>
+    <string name="thursday">پنجشنبه</string>
+    <string name="friday">جمعه</string>
+    <string name="costs_table">جدول نرخ</string>
+    <string name="base_price">قیمت پایه</string>
+    <string name="tax">مالیات</string>
+    <string name="payable">قابل پرداخت</string>
+    <string name="select_and_reserve">انتخاب و رزرو</string>
+    <string name="added">اضافه شد</string>
+    <string name="total_added_price">مجموع قیمت اضافه شده</string>
 </resources>
