@@ -404,6 +404,19 @@
     <string name="six_months">6 ماه</string>
     <string name="one_year">یکسال</string>
     <string name="select">انتخاب</string>
+    <string name="_0">0 تا 2 سال</string>
+    <string name="_1">2 تا 3 سال</string>
+    <string name="_2">3 تا 4 سال</string>
+    <string name="_3">4 تا 5 سال</string>
+    <string name="_4">5 تا 6 سال</string>
+    <string name="_5">6 تا 7 سال</string>
+    <string name="_6">7 تا 8 سال</string>
+    <string name="_7">8 تا 9 سال</string>
+    <string name="_8">9 تا 10 سال</string>
+    <string name="_9">10 تا 11 سال</string>
+    <string name="_10">11 تا 12 سال</string>
+    <string name="_11">12 سال</string>
+    <string name="_12">2 سال</string>
 
 
 </resources>

@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import com.eligasht.R;
 import com.eligasht.reservation.contracts.PassengerContract;
 import com.eligasht.reservation.models.model.insurance.BirthDateList;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.viewholders.PassengerRowHolder;
@@ -145,7 +146,18 @@ public class PassengerPresenter implements PassengerContract.Presenter {
             return;
         }
         final BirthDateList passenger = getPassengers().get(position);
-        holder.txt_passenger_title.setText(context.getString(R.string.Passanger)+ " " + getStringPosition(position));
+
+
+        if (Prefs.getString("lang","fa").equals("fa")){
+            holder.txt_passenger_title.setText(context.getString(R.string.Passanger)+ " " + getStringPosition(position));
+
+        }
+
+        if (Prefs.getString("lang","fa").equals("en")){
+            holder.txt_passenger_title.setText(getStringPosition(position)+ " " + context.getString(R.string.Passanger));
+
+        }
+
         if(!ValidationTools.isEmptyOrNull(passenger.getBirthDate())){
             if (geo){
                 String birthDay = DateUtil.getLongStringDateInsurance(passenger.getBirthDate(),"yyyy-MM-dd",false);

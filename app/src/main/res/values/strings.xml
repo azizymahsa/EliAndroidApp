@@ -2284,5 +2284,18 @@
     <string name="irsans.ttf">fonts/times.ttf</string>
     <string name="mitra.ttf">fonts/times.ttf</string>
     <string name="select">choose</string>
+    <string name="_0">0 to 2 years</string>
+    <string name="_1">2 to 3 years</string>
+    <string name="_2">3 to 4 years</string>
+    <string name="_3">4 to 5 years</string>
+    <string name="_4">5 to 6 years</string>
+    <string name="_5">6 to 7 years</string>
+    <string name="_6">7 to 8 years</string>
+    <string name="_7">8 to 9 years</string>
+    <string name="_8">9 to 10 years</string>
+    <string name="_9">10 to 11 years</string>
+    <string name="_10">11 to 12 years</string>
+    <string name="_11">12 years</string>
+    <string name="_12">2 years</string>
 </resources>
 

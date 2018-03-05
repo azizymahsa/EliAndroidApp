@@ -18,6 +18,7 @@ import com.eligasht.reservation.contracts.InfoRoomsContract;
 import com.eligasht.reservation.models.model.ModelRowCountRoom;
 import com.eligasht.reservation.models.model.login.Contract;
 import com.eligasht.reservation.models.model.pack.ChildModel;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.views.adapters.pack.ChildAdapter;
 import com.eligasht.reservation.views.viewholders.RoomRowHolder;
@@ -138,7 +139,19 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
         final ModelRowCountRoom room = getRooms().get(position);
         holder.txt_adult.setText(String.valueOf(room.getCountB()));
         holder.txt_child.setText(String.valueOf(room.getCountK()));
-        holder.room_title.setText(context.getString(R.string.room) + " " + getStringPosition(position));
+
+
+        if(Prefs.getString("lang","fa").equals("fa")){
+            holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
+
+
+
+        }
+        if(Prefs.getString("lang","fa").equals("en")){
+            holder.room_title.setText(context.getString(R.string.room) + " " + getStringPosition(position));
+
+
+        }
 
         if (!ValidationTools.isEmptyOrNull(room.getChildModels())) {
             ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
@@ -176,7 +189,18 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
                 }
                 room.setCountK(room.getCountK() + 1);
                 holder.txt_child.setText(String.valueOf(room.getCountK()));
-                room.addChildModel(new ChildModel(context.getString(R.string.BabyPackage) + " " + getStringPosition(room.getChildModels().size()), true));
+
+                if(Prefs.getString("lang","fa").equals("fa")){
+                    room.addChildModel(new ChildModel(context.getString(R.string.BabyPackage) + " " + getStringPosition(room.getChildModels().size()), true));
+
+
+                }
+                if(Prefs.getString("lang","fa").equals("en")){
+                    room.addChildModel(new ChildModel(getStringPosition(room.getChildModels().size())+ " " + context.getString(R.string.BabyPackage), true));
+
+
+                }
+
               //  childAdapter.notifyDataSetChanged();
                 ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
                 holder.rcl_child.showList(childAdapter);
