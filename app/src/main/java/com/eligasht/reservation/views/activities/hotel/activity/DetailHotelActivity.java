@@ -87,13 +87,15 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
+    private static final int GPS_ERRORDIALOG_REQUEST = 9001;
+    boolean updateGoogle = false;
+    boolean isNew = false;
     private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent;
     private NonScrollListView lvRooms;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
-    boolean updateGoogle = false;
     private RelativeLayout rlLoading, rlRoot, rlLoading2;
     private AddComment addComment;
     private RoomsAdapter roomsAdapter;
@@ -105,7 +107,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private GoogleMap map;
     private View mapView;
     private MapView mMapView;
-    private static final int GPS_ERRORDIALOG_REQUEST = 9001;
     private String eHotelId;
     private String offerIds;
     private GetHotelDetail getHotelDetail;
@@ -119,7 +120,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private String comment, userName, title;
     private CommentAdapterRecycle commentAdapter;
     private TextView tvSortComment, tvDateDetail;
-    boolean isNew = false;
     private ScrollView svDetail;
     private RelativeLayout elNotFound;
     private GetComment getComment;
@@ -449,6 +449,47 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
     }
 
+    public void add_view(String key, ArrayList<HotelProprtiesModels> hotelProprtiesModels, LinearLayout linearLayout) {
+
+        TextView textView = new TextView(DetailHotelActivity.this);
+
+
+        if (key.contains("اطراف")) {
+            //  textView.setText(R.string.ar);
+
+
+        }
+        if (key.contains("قوانین")) {
+            textView.setText(R.string.HotelPolicy);
+        }
+        if (key.contains("اطلاعات")) {
+
+
+        }
+
+
+        Typeface t = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.iran_sans_bold_ttf));
+        textView.setTypeface(t);
+        textView.setPadding(10, 10, 10, 10);
+
+        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        textView.setTextSize(getResources().getInteger(R.integer.text12));
+        textView.setGravity(Gravity.CENTER);
+        textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
+        linearLayout.addView(textView);
+
+
+        NonScrollGridView nonScrollGridView = new NonScrollGridView(DetailHotelActivity.this);
+        nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        // nonScrollGridView.setNumColumns(2);
+
+
+        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(hotelProprtiesModels, DetailHotelActivity.this, nonScrollGridView, false));
+        nonScrollGridView.setFocusable(false);
+        linearLayout.addView(nonScrollGridView);
+    }
 
     private class GetRoomsAsync extends AsyncTask<String, Void, String> {
 
@@ -538,7 +579,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         }
 
     }
-
 
     private class GetHoldDetailAsync extends AsyncTask<String, Void, String> {
 
@@ -688,7 +728,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         TextView textView = new TextView(DetailHotelActivity.this);
                         textView.setText(key);
 
-                        Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
+                        Typeface t = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.iran_sans_bold_ttf));
                         textView.setTypeface(t);
                         textView.setPadding(10, 10, 10, 10);
 
@@ -777,52 +817,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         }
 
     }
-
-    public void add_view(String key, ArrayList<HotelProprtiesModels> hotelProprtiesModels, LinearLayout linearLayout) {
-
-        TextView textView = new TextView(DetailHotelActivity.this);
-
-
-        if (key.contains("اطراف")) {
-          //  textView.setText(R.string.ar);
-
-
-        }
-        if (key.contains("قوانین")) {
-            textView.setText(R.string.HotelPolicy);
-        }
-        if (key.contains("اطلاعات")) {
-
-
-        }
-
-
-
-
-
-        Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
-        textView.setTypeface(t);
-        textView.setPadding(10, 10, 10, 10);
-
-        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        textView.setTextSize(getResources().getInteger(R.integer.text12));
-        textView.setGravity(Gravity.CENTER);
-        textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
-        linearLayout.addView(textView);
-
-
-        NonScrollGridView nonScrollGridView = new NonScrollGridView(DetailHotelActivity.this);
-        nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        // nonScrollGridView.setNumColumns(2);
-
-
-        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(hotelProprtiesModels, DetailHotelActivity.this, nonScrollGridView, false));
-        nonScrollGridView.setFocusable(false);
-        linearLayout.addView(nonScrollGridView);
-    }
-
 
     private class GetCommentAsync extends AsyncTask<String, Void, String> {
 

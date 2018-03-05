@@ -23,10 +23,10 @@ import java.util.ArrayList;
  */
 
 public class InsurnaceDetailAdapter  extends BaseAdapter {
+    Context context;
     private LayoutInflater inflater;
     private ViewHolder holder;
     private ArrayList<DetailsModel> arrayList = new ArrayList<>();
-    Context context;
 
 
 
@@ -56,16 +56,16 @@ public class InsurnaceDetailAdapter  extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.details_item, null);
             holder =new ViewHolder();
-            holder.tvPrice = (TextView) convertView.findViewById(R.id.tvPrice);
-            holder.tvTitle = (JustifiedTextView) convertView.findViewById(R.id.tvTitle);
-            holder.cv1 = (CardView) convertView.findViewById(R.id.cv1);
+            holder.tvPrice = convertView.findViewById(R.id.tvPrice);
+            holder.tvTitle = convertView.findViewById(R.id.tvTitle);
+            holder.cv1 = convertView.findViewById(R.id.cv1);
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Typeface face = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_bold.ttf");
-        Typeface face2 = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_normal.ttf");
+        Typeface face = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.iran_sans_bold_ttf));
+        Typeface face2 = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.iran_sans_normal_ttf));
         holder.tvPrice.setText(arrayList.get(position).getPrice());
         holder.tvTitle.setText(arrayList.get(position).getTitle());
         holder.tvPrice.setTypeface(face);

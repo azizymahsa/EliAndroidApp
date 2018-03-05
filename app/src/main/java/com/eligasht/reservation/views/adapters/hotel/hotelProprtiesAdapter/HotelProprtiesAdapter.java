@@ -10,7 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.eligasht.R;
-
 import com.eligasht.reservation.views.ui.NonScrollGridView;
 
 import java.util.ArrayList;
@@ -20,12 +19,12 @@ import java.util.ArrayList;
  */
 
 public class HotelProprtiesAdapter extends BaseAdapter {
-    private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
-    private LayoutInflater inflater;
-    private ViewHolder holder;
     Activity context;
     NonScrollGridView nonScrollGridView;
     boolean isPolicy;
+    private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
+    private LayoutInflater inflater;
+    private ViewHolder holder;
 
 
     public HotelProprtiesAdapter(ArrayList<HotelProprtiesModels> hotelProprtiesModels, Activity context, NonScrollGridView nonScrollGridView, boolean isPolicy) {
@@ -64,8 +63,8 @@ public class HotelProprtiesAdapter extends BaseAdapter {
 
             }
             holder = new ViewHolder();
-            holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-            holder.tvImage = (TextView) convertView.findViewById(R.id.tvImage);
+            holder.tvTitle = convertView.findViewById(R.id.tvTitle);
+            holder.tvImage = convertView.findViewById(R.id.tvImage);
 
 
             convertView.setTag(holder);
@@ -80,7 +79,7 @@ public class HotelProprtiesAdapter extends BaseAdapter {
         }else{
             if (hotelProprtiesModels.get(position).getCategoryID() == 1) {
                 try {
-                    Typeface t = Typeface.createFromAsset(context.getAssets(), "fonts/Facility.ttf");
+                    Typeface t = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.Facility));
                     holder.tvImage.setTypeface(t);
                     String icon = hotelProprtiesModels.get(position).getImage().substring(1);
                     icon = "&#" + icon + ";";

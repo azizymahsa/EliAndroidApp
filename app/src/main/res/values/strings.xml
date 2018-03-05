@@ -2241,8 +2241,14 @@
     <string name="text5">Select Office</string>
     <string name="text6">Select this section to select Office</string>
     <string name="your_time_has_expired">Your time has expired</string>
-    <string name="change_flight">Change flight</string>
+    <string name="change_fligfontht">Change flight</string>
     <string name="class_flight">Flight class</string>
-    <!--azizi-->
+    <!--fonts-->
+
+    <string name="Facility">fonts/Roboto-Medium.ttf</string>
+    <string name="iran_sans_bold.ttf">fonts/Roboto-Medium.ttf</string>
+    <string name="iran_sans_normal.ttf">fonts/Roboto-Medium.ttf</string>
+    <string name="irsans.ttf">fonts/Roboto-Medium.ttf</string>
+    <string name="mitra.ttf">fonts/Roboto-Medium.ttf</string>
 </resources>
 

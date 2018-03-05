@@ -40,7 +40,7 @@ public class GlobalApplication extends Application {
 
     public static void setGlobalTypeFace(Context context) {
         globalTypeFace = Typeface.createFromAsset(context.getAssets(),
-                "fonts/mitra.ttf");
+                context.getResources().getString(R.string.mitra_ttf));
     }
 
     public static void setLocale(Context context) {
