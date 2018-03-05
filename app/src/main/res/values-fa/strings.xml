@@ -353,4 +353,10 @@
     <string name="select_and_reserve">انتخاب و رزرو</string>
     <string name="added">اضافه شد</string>
     <string name="total_added_price">مجموع قیمت اضافه شده</string>
+    <string name="text1">انتخاب زبان</string>
+    <string name="text2">تغییرات بعد از ریستارت برنامه اعمال می گردد</string>
+    <string name="text3">انتخاب واحد</string>
+    <string name="text4">برای انتخاب واحد این قسمت را انتخاب کنید</string>
+    <string name="text5">انتخاب آفیس</string>
+    <string name="text6">برای انتخاب آفیس این قسمت را انتخاب کنید</string>
 </resources>

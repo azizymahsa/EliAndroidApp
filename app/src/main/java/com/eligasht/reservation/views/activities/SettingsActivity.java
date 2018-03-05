@@ -12,9 +12,9 @@ import android.view.View;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.tools.Prefs;
-import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.dialogs.SelectLanguageDialog;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SplashFragment;
 
 /**
  * Created by Ahmad.nemati on 3/3/2018.
@@ -69,7 +69,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mStartActivity = new Intent(SettingsActivity.this, MainActivity.class);
+                Intent mStartActivity = new Intent(SettingsActivity.this, SplashFragment.class);
                 int mPendingIntentId = 123456;
                 PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
                         PendingIntent.FLAG_CANCEL_CURRENT);

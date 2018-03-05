@@ -2234,6 +2234,12 @@
     <string name="Available_services">Available services</string>
     <string name="The_amount_payable">payable amount:</string>
     <string name="Registration_and_payment">approve and pay</string>
+    <string name="text1">Select Language</string>
+    <string name="text2">Changes will be applied after the restoration of the program</string>
+    <string name="text3">Select Unit</string>
+    <string name="text4">Select this item to select the unit</string>
+    <string name="text5">Select Office</string>
+    <string name="text6">Select this section to select Office</string>
     <!--azizi-->
 </resources>
 
