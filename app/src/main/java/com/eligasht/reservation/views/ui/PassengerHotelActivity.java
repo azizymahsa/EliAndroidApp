@@ -1811,8 +1811,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     String RqPassenger_PassNo=txtnumber_passport.getText().toString();
                     String RqPassenger_Tel= "25548632";
 
-
-
                     String flagMosafer="T";
 
                     String errorMessagePartner="";

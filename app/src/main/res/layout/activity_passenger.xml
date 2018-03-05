@@ -131,6 +131,7 @@
             android:background="@drawable/transparentt"
             android:gravity="left|center_vertical"
             android:text="@string/payment"
+            android:textAllCaps="false"
             android:textColor="#aaaaaa"
             android:textSize="@dimen/_10dp_textSize"  />
 
@@ -141,6 +142,7 @@
             android:background="@drawable/transparentt"
             android:gravity="left|center_vertical"
             android:text="@string/servis"
+            android:textAllCaps="false"
             android:textColor="#aaaaaa"
             android:textSize="@dimen/_10dp_textSize"  />
 
@@ -151,6 +153,7 @@
             android:background="@drawable/transparentt"
             android:gravity="left|center_vertical"
             android:text="@string/passenger"
+            android:textAllCaps="false"
             android:textColor="#aaaaaa"
             android:textSize="@dimen/_10dp_textSize"  />
 
@@ -162,6 +165,7 @@
             android:background="@drawable/transparentt"
             android:gravity="center|left"
             android:text="@string/partner"
+            android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="@dimen/_10dp_textSize" />
     </LinearLayout>
