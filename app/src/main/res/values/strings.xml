@@ -2305,5 +2305,6 @@
     <string name="return_hour">Return hour</string>
     <string name="one_way">One way  flight number </string>
     <string name="round_flight">Round trip flight number</string>
+    <string name="enter_value">Enter number</string>
 </resources>
 

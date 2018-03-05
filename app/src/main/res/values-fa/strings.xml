@@ -425,6 +425,7 @@
     <string name="return_hour">ساعت برگشت</string>
     <string name="one_way">شماره پرواز رفت</string>
     <string name="round_flight">شماره پرواز برگشت</string>
+    <string name="enter_value">وارد نمایید</string>
 
 
 </resources>
