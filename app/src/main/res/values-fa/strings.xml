@@ -132,7 +132,7 @@
     <string name="SplashServerError">ارتباط با سرور مقدور نمی باشد</string>
     <string name="Try">تلاش مجدد</string>
     <string name="Update">به روز رسانی</string>
-    <string name="UpdateAlert">نرم افزار الی گشت نیاز به بروز رستانی دارد،آیا مایل به بروزرسانی نرم افزار هستید؟</string>
+    <string name="UpdateAlert">نرم افزار الی گشت نیاز به بروز رسانی دارد،آیا مایل به بروزرسانی نرم افزار هستید؟</string>
     <string name="SelectFilter">انتخاب فیلتر</string>
     <string name="Stop">توقف</string>
     <string name="TwoStopAndMore">دو توقف و بیشتر</string>
