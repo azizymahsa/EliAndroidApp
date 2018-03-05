@@ -770,7 +770,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         flagMosafer=flagMosafer+"T";
                     }else{
                         flagMosafer=flagMosafer+"F";
-                        errorMessage=errorMessage+"\n"+R.string.Please_choose_a_gender;
+                        errorMessage=errorMessage+"\n"+getString(R.string.Please_choose_a_gender);
                     }
                     //////////////////////////End Validate
                     if(flagMosafer.contains("F")){

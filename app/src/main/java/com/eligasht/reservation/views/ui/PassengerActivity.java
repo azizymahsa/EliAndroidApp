@@ -1877,7 +1877,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							flagMosafer=flagMosafer+"T";
 						}else{
 							flagMosafer=flagMosafer+"F";
-							errorMessage=errorMessage+"\n"+R.string.Please_choose_a_gender;
+							errorMessage=errorMessage+"\n"+getString(R.string.Enter_your_gender);
 						}
 						//////////////////////////End Validate
 						if(flagMosafer.contains("F")){
@@ -1899,7 +1899,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							linear_saler.setVisibility(View.GONE);
 							linear_pish_factor.setVisibility(View.GONE);
 							linear_mosaferan.setVisibility(View.VISIBLE);
-							txtTitle.setText(R.string.passneger_info);
+							txtTitle.setText(getString(R.string.passneger_info));
 							//((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
 							//((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
 							Gensiyat="";
@@ -2121,7 +2121,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						flagMosafer=flagMosafer+"T";
 					}else{
 						flagMosafer=flagMosafer+"F";
-						errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.Enter_your_gender);
+						errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.Please_choose_a_gender);
 					}
 					///endValidate
 
