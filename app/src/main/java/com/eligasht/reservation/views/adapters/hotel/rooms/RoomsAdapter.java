@@ -181,7 +181,7 @@ public class RoomsAdapter extends BaseAdapter {
                     alertDialogPolicy.setText(context.getResources().getString(R.string.NoResult));
                 }else{
                     alertDialogPolicy.setText("اتاق" + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() + context.getString(R.string.cancel) +
+                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() +": "+
                             Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate()) + context.getString(R.string.to) +
                             Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
