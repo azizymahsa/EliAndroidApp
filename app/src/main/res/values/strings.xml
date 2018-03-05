@@ -2007,7 +2007,7 @@
     <string name="AlertInternetError">Your internet connection is interrupted or out of reach. To use the features of this software check your internet service!</string>
     <string name="Data">4G/3G</string>
     <string name="wifi">Wifi</string>
-    <string name="NoInternet">Log-out</string>
+    <string name="NoInternet">Connection lost</string>
     <string name="alert">Alert</string>
     <string name="ExitAlert">Are you sure you want to leave?</string>
     <string name="CancelAlert">No</string>
@@ -2240,7 +2240,9 @@
     <string name="text4">Select this item to select the unit</string>
     <string name="text5">Select Office</string>
     <string name="text6">Select this section to select Office</string>
-    <string name="your_time_has_expired">زمان شما به پایان رسید.</string>
+    <string name="your_time_has_expired">Your time has expired</string>
+    <string name="change_flight">Change flight</string>
+    <string name="class_flight">Flight class</string>
     <!--azizi-->
 </resources>
 

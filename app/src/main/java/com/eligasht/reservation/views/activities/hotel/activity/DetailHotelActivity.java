@@ -225,7 +225,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         llDynamic.setFocusable(false);
         llCommentContent.setFocusable(false);
         svDetail.setFocusable(false);
-        tvSortComment.setText("جدیدترین نظرات");
+        tvSortComment.setText(R.string.NewComment);
         rlLoading2.setOnClickListener(this);
         btnOneComment.setOnClickListener(this);
 
@@ -531,7 +531,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 // llLoading.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 rlLoading2.setVisibility(View.GONE);
-                tvAlertError.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+                tvAlertError.setText(R.string.ErrorServer);
             }
 
 
@@ -673,16 +673,16 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 for (Map.Entry<String, ArrayList<HotelProprtiesModels>> entry : myMap.entrySet()) {
                     String key = entry.getKey();
                     ArrayList<HotelProprtiesModels> value = entry.getValue();
-                    if (key.contains(getString(R.string.Possibilities))) {
+                    if (key.contains("امکانات")) {
                         add_view(key, value, llEmkanat);
 
                     }
-                    if (key.contains(getString(R.string.Around))) {
+                    if (key.contains("اطراف")) {
 
                         add_view(key, value, llAroundHotel);
 
                     }
-                    if (key.contains(getString(R.string.Policy))) {
+                    if (key.contains("قوانین")) {
 
                         //add_view(key, value, llPolicy);
                         TextView textView = new TextView(DetailHotelActivity.this);
@@ -781,7 +781,24 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     public void add_view(String key, ArrayList<HotelProprtiesModels> hotelProprtiesModels, LinearLayout linearLayout) {
 
         TextView textView = new TextView(DetailHotelActivity.this);
-        textView.setText(key);
+
+
+        if (key.contains("اطراف")) {
+          //  textView.setText(R.string.ar);
+
+
+        }
+        if (key.contains("قوانین")) {
+            textView.setText(R.string.HotelPolicy);
+        }
+        if (key.contains("اطلاعات")) {
+
+
+        }
+
+
+
+
 
         Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
         textView.setTypeface(t);
