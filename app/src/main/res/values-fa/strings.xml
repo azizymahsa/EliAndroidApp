@@ -405,6 +405,17 @@
     <string name="one_year">یکسال</string>
     <string name="select">انتخاب</string>
     <string name="my_profile">پروفایل من</string>
+    <string name="text20">در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد</string>
+    <string name="text21">در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد</string>
+    <string name="text22">ایمیل وارد شده در حال حاضر در سیستم وجود دارد .</string>
+    <string name="text24">لینک فعال سازی به ایمیل شما ارسال شده است.</string>
+    <string name="text25">در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد</string>
+    <string name="text26">لطفا ایمیل خود را وارد کنید</string>
+    <string name="text27">ایمیل وارد شده صحیح نمی باشد</string>
+    <string name="text28">لطفا رمز عبور خود را وارد کنید</string>
+    <string name="text29">لطفا تکرار رمز عبور را وارد کنید</string>
+    <string name="text30">رمز عبور و تکرار آن با هم مطابقت ندارد .</string>
+    <string name="text40">نام و نام خانوادگی</string>
 
 
 </resources>
