@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,12 +45,10 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     card_view:cardBackgroundColor="#ffffff"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardElevation="1dp"
-                    android:visibility="gone"
-
-
 
 
                     >
@@ -60,8 +58,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:background="@drawable/background_prefactor"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
+
                         <RelativeLayout
                             android:id="@+id/rlIv"
                             android:layout_width="match_parent"
@@ -72,13 +70,8 @@
                                 android:id="@+id/ivImage"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/white_check"
                                 android:layout_centerInParent="true"
-                                />
-
-
-
-
+                                android:src="@drawable/white_check" />
 
 
                         </RelativeLayout>
@@ -87,27 +80,26 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_below="@+id/rlIv"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:layout_below="@+id/rlIv"
 
 
                             >
+
                             <TextView
                                 android:id="@+id/tvStatusFactor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
 
                                 android:gravity="center"
+                                android:maxLines="3"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/red"
                                 android:textSize="@dimen/_16dp_txtSize"
-                                android:maxLines="3"
-
 
 
                                 />
-
 
 
                             <TextView
@@ -120,8 +112,6 @@
                                 android:textColor="@color/green"
                                 android:textSize="@dimen/_16dp_normal_textSize"
                                 android:visibility="gone"
-
-
 
 
                                 />
@@ -149,6 +139,7 @@
 
 
                 </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv1"
                     android:layout_width="match_parent"
@@ -158,10 +149,10 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
+                    android:visibility="gone"
                     card_view:cardBackgroundColor="#ffffff"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardElevation="1dp"
-                    android:visibility="gone"
 
                     >
 
@@ -175,13 +166,13 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@color/text_color_2e"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="شماره پیش فاکتور"
+                            android:text="@string/pre_factor_number"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_12dp_normal_textSize"
-                            android:background="@color/text_color_2e"
 
                             />
 
@@ -212,10 +203,10 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
+                    android:visibility="gone"
                     card_view:cardBackgroundColor="#ffffff"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardElevation="1dp"
-                    android:visibility="gone"
 
                     >
 
@@ -230,17 +221,15 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@color/text_color_2e"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="اطلاعات پرداخت"
+                            android:text="@string/payment_details"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_12dp_normal_textSize"
-                            android:background="@color/text_color_2e"
 
                             />
-
-
 
 
                         <LinearLayout
@@ -257,8 +246,7 @@
                                 android:padding="5dp"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/red"
-                                android:textSize="@dimen/_12dp_normal_textSize"
-                                />
+                                android:textSize="@dimen/_12dp_normal_textSize" />
 
                             <RelativeLayout
                                 android:id="@+id/rlPrice"
@@ -266,15 +254,14 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:orientation="horizontal"
-                                android:padding="5dp"
-                                >
+                                android:padding="5dp">
 
                                 <TextView
                                     android:id="@+id/tvRial"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="left|center"
-                                    android:text="ریال"
+                                    android:text="@string/Rial"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="@color/green"
                                     android:textSize="@dimen/_13dp_normal_textSize"
@@ -302,7 +289,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_toRightOf="@+id/tvPrice"
                                     android:gravity="left|center"
-                                    android:text="مبلغ"
+                                    android:text="@string/amount"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/_13dp_normal_textSize"
@@ -318,9 +305,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:orientation="horizontal"
-                                android:padding="5dp"
-                              >
-
+                                android:padding="5dp">
 
 
                                 <TextView
@@ -343,7 +328,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_toRightOf="@+id/tvNumberPeygiri"
                                     android:gravity="left|center"
-                                    android:text="شماره پیگیری"
+                                    android:text="@string/tracking_code"
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/_14dp_txtSize"
@@ -359,9 +344,6 @@
                 </android.support.v7.widget.CardView>
 
 
-
-
-
                 <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/lvLog"
                     android:layout_width="match_parent"
@@ -373,11 +355,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="پیگیر کار شما هستیم، لطفا منتظر تماس کارشناسان ما باشید"
+                    android:text="@string/our_specialists_will_call_you_soon"
                     android:textColor="@color/text_color_2e"
                     android:textSize="@dimen/_10dp_textSize"
-                    android:visibility="gone"
-              />
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -391,8 +372,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone"
-           >
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/btnRPayment"
@@ -403,21 +383,18 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/btngravity_big"
-                android:text="پرداخت مجدد"
+                android:text="@string/re_pay"
                 android:textColor="#FFFFFF"
-                android:textSize="@dimen/_16dp_txtSize"
-             />
+                android:textSize="@dimen/_16dp_txtSize" />
 
         </LinearLayout>
+
         <RelativeLayout
+            android:id="@+id/elNotFound"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/elNotFound"
             android:layout_below="@+id/toolbarLayout"
-            android:visibility="gone"
-            >
-
-
+            android:visibility="gone">
 
 
             <android.support.v7.widget.CardView
@@ -433,32 +410,33 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/tvAlert"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
                         android:layout_marginTop="10dp"
-                        android:textSize="16dp"
-                        android:textAppearance="@style/IrsansBold"
                         android:gravity="center"
+                        android:padding="10dp"
+                        android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2e"
-                        />
+                        android:textSize="16dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/alert"
-                        android:layout_centerInParent="true"/>
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/alert" />
 
                     <RelativeLayout
                         android:id="@+id/rlEr"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:background="@drawable/btngravity_big"
                         android:layout_alignParentBottom="true"
+                        android:background="@drawable/btngravity_big"
 
                         >
+
                         <mehdi.sakout.fancybuttons.FancyButton
                             android:id="@+id/btnOk"
                             android:layout_width="match_parent"
@@ -469,10 +447,9 @@
                             fancy:fb_defaultColor="@color/TRANSPARENT"
                             fancy:fb_focusColor="@color/focusColor"
                             fancy:fb_radius="0dp"
-                            fancy:fb_text="بازگشت"
+                            fancy:fb_text="@string/return_"
                             fancy:fb_textColor="#FFFFFF"
-                            fancy:fb_textSize="18dp"
-                            />
+                            fancy:fb_textSize="18dp" />
                     </RelativeLayout>
 
 
@@ -499,8 +476,8 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"
             app:lottie_fileName="circle-l.json"
+            app:lottie_loop="true"
 
             />
 

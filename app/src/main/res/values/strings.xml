@@ -2306,5 +2306,21 @@
     <string name="one_way">One way  flight number </string>
     <string name="round_flight">Round trip flight number</string>
     <string name="enter_value">Enter number</string>
+    <string name="approve_factor">Approve invoice</string>
+    <string name="contract_didnt_registred">Contract didn\'t registered</string>
+    <string name="no_money_has_been_payed_for_this_cart">No money has been payed for this cart</string>
+    <string name="needed_docs_to_mail">Needed documents has been sent to this</string>
+    <string name="has_been_sent">email address</string>
+    <string name="contract_has_been_registred_successfully">Contract has been registered successfully</string>
+    <string name="your_contract_with_number">Your contract with this number</string>
+    <string name="registred">has registered.</string>
+    <string name="your_internet_connection_is_lost">You are not connected to the internet</string>
+    <string name="pre_factor_number">Invoice number</string>
+    <string name="payment_details">Payment details</string>
+    <string name="amount">Amount</string>
+    <string name="tracking_code">Tracking code</string>
+    <string name="our_specialists_will_call_you_soon">Please wait for us to call you</string>
+    <string name="re_pay">Re pay</string>
+    <string name="return_">return</string>
 </resources>
 
