@@ -21,14 +21,13 @@ import com.eligasht.reservation.views.ui.SplashFragment;
  */
 
 public class SettingsActivity extends BaseActivity implements View.OnClickListener, SelectLanguageDialog.LanguageClick {
-    int tab;
     private View dialogOpener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "تنظیمات");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getResources().getString(R.string.settings));
         dialogOpener = findViewById(R.id.dialog_opener);
         dialogOpener.setOnClickListener(this);
 
@@ -44,7 +43,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 break;
         }
     }
-
 
 
     private void openDialog() {
