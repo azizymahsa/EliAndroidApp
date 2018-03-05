@@ -3,6 +3,7 @@ package com.eligasht.reservation.views.dialogs;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eligasht.R;
@@ -17,8 +18,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class SelectLanguageDialog implements View.OnClickListener {
     // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
-    public SmoothCheckBox chk_persian;
-    public SmoothCheckBox chk_english;
+    public LinearLayout england, iran;
     android.app.AlertDialog dialog;
     TextView tvAlert;
     View dialogView;
@@ -27,6 +27,7 @@ public class SelectLanguageDialog implements View.OnClickListener {
     Activity activity;
     FancyButton btnMobileData, btnWifi, accept;
     private LanguageClick listener;
+    String lang = "";
 
     public SelectLanguageDialog(final Activity activity, LanguageClick listener) {
         this.activity = activity;
@@ -40,8 +41,8 @@ public class SelectLanguageDialog implements View.OnClickListener {
         tvAlert = dialogView.findViewById(R.id.tvAlert);
         accept = dialogView.findViewById(R.id.accept);
         accept.setOnClickListener(this);
-        chk_persian = dialogView.findViewById(R.id.chB_persian);
-        chk_english = dialogView.findViewById(R.id.chB_english);
+        england = dialogView.findViewById(R.id.england);
+        iran = dialogView.findViewById(R.id.iran);
         btnMobileData.setCustomTextFont("iran_sans_normal.ttf");
         accept.setCustomTextFont("iran_sans_normal.ttf");
         btnWifi.setCustomTextFont("iran_sans_normal.ttf");
@@ -49,25 +50,31 @@ public class SelectLanguageDialog implements View.OnClickListener {
         btnWifi.setOnClickListener(this);
         dialogView.findViewById(R.id.txt_english).setOnClickListener(this);
         dialogView.findViewById(R.id.txt_persian).setOnClickListener(this);
+        if (Prefs.getString("lang", "fa").equals("fa")) {
+            england.setBackgroundResource(R.color.white);
+            iran.setBackgroundResource(R.drawable.stroke_pruple);
+            lang = "fa";
+        } else {
+            england.setBackgroundResource(R.drawable.stroke_pruple);
+            iran.setBackgroundResource(R.color.white);
+            lang = "en";
+        }
 
-        if (Prefs.getString("lang", "fa").equals("fa"))
-            chk_persian.setChecked(true, true);
-        else
-            chk_english.setChecked(true, true);
-
-        chk_persian.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+        england.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-                if (isChecked)
-                    chk_english.setChecked(false, true);
+            public void onClick(View view) {
+                england.setBackgroundResource(R.drawable.stroke_pruple);
+                iran.setBackgroundResource(R.color.white);
+                lang = "en";
             }
         });
 
-        chk_english.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+        iran.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-                if (isChecked)
-                    chk_persian.setChecked(false, true);
+            public void onClick(View view) {
+                england.setBackgroundResource(R.color.white);
+                iran.setBackgroundResource(R.drawable.stroke_pruple);
+                lang = "fa";
             }
         });
         dialog = builder.create();
@@ -98,17 +105,19 @@ public class SelectLanguageDialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.accept:
-                if (chk_persian.isChecked())
+                if (lang.equals("fa"))
                     listener.onLanguageCLick("fa");
                 else
                     listener.onLanguageCLick("en");
                 dialog.dismiss();
                 break;
             case R.id.txt_persian:
-                chk_persian.setChecked(true, true);
+                england.setBackgroundResource(R.color.white);
+                iran.setBackgroundResource(R.drawable.stroke_pruple);
                 break;
             case R.id.txt_english:
-                chk_english.setChecked(true, true);
+                england.setBackgroundResource(R.drawable.stroke_pruple);
+                iran.setBackgroundResource(R.color.white);
                 break;
 
         }
