@@ -92,7 +92,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "پروفایل من");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.my_profile));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));

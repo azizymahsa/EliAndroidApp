@@ -2284,5 +2284,6 @@
     <string name="irsans.ttf">fonts/times.ttf</string>
     <string name="mitra.ttf">fonts/times.ttf</string>
     <string name="select">choose</string>
+    <string name="my_profile">My Profile</string>
 </resources>
 
