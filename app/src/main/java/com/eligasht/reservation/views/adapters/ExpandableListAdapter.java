@@ -178,7 +178,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         btnSelect.setTag(childPosition);
 
         if (isChangeFlight) {
-            btnSelect.setText("تغییر پرواز");
+            btnSelect.setText(R.string.change_flight);
         }
         btnSelect.setOnClickListener(new View.OnClickListener() {
 
@@ -327,8 +327,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             pinModelHeaders = new ArrayList<>();
 
             PinModelHeader pinModelHeader = new PinModelHeader(item2.isPin() + "", item2.DepartureCityNameFaB, item2.ArrivalCityNameFaB, item2.DepartureCityNameFaR, item2.ArrivalCityNameFaR, item2.AirlineCode + item2.FlightNumberR + "", item2.AirlineCode + item2.FlightNumberB + ""
-                    , "" + GetDayWeek(item2.FltDateDayOfWeek) + " , " + item2.FlightArrivalTimeR, item2.SegmentTrueCount + " توقف ",
-                    GetDayWeek(item2.FltDateDayOfWeekFalse) + " , " + item2.FlightTimeB, item2.SegmentFalseCount + " توقف ", item2.AdlCost + "", item2.AirlineCode, item2.CabinClassNameFa, "نفر" + item2.RemainSeats + "فقط", item2.SegmentFalseCount, item2.RemainSeats);
+                    , "" + GetDayWeek(item2.FltDateDayOfWeek) + " , " + item2.FlightArrivalTimeR, item2.SegmentTrueCount + _context.getString(R.string.stop),
+                    GetDayWeek(item2.FltDateDayOfWeekFalse) + " , " + item2.FlightTimeB, item2.SegmentFalseCount + _context.getString(R.string.stop), item2.AdlCost + "", item2.AirlineCode, item2.CabinClassNameFa, _context.getString(R.string.person) + item2.RemainSeats + _context.getString(R.string.only), item2.SegmentFalseCount, item2.RemainSeats);
             pinModelHeaders.add(pinModelHeader);
             //
             pinModelDetails = new ArrayList<>();
