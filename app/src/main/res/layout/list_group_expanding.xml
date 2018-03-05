@@ -515,7 +515,7 @@
                 android:background="@drawable/background_strock_blue_dark_economi"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:text="اکونومی"
+                android:text="@string/Economi"
                 android:textColor="#003399"
                 android:textSize="@dimen/_10dp_textSize" />
 
@@ -539,7 +539,7 @@
                 android:layout_height="wrap_content"
                 android:background="#f5eeff"
                 android:gravity="right"
-                android:text="ریال"
+                android:text="@string/Rial"
                 android:textColor="#0e874e"
 
                 android:textAppearance="@style/IrsansBold"

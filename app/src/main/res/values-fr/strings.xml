@@ -129,6 +129,9 @@
     <string name="add_to_shoping_cart">افزودن به سبد خرید</string>
     <string name="added">اضافه شد</string>
     <string name="total_added_price">مجموع قیمت اضافه شده</string>
+    <string name="person">نفر</string>
+    <string name="only">فقط</string>
+
 
     <string-array name="lang_c">
         <item>انگلیسی</item>
