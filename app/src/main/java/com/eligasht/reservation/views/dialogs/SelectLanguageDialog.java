@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox;
@@ -70,6 +72,9 @@ public class SelectLanguageDialog implements View.OnClickListener {
                 england.setBackgroundResource(R.drawable.stroke_pruple);
                 iran.setBackgroundResource(R.color.white);
                 lang = "en";
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(england);
             }
         });
 
@@ -79,6 +84,9 @@ public class SelectLanguageDialog implements View.OnClickListener {
                 england.setBackgroundResource(R.color.white);
                 iran.setBackgroundResource(R.drawable.stroke_pruple);
                 lang = "fa";
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(iran);
             }
         });
         dialog = builder.create();
@@ -120,10 +128,16 @@ public class SelectLanguageDialog implements View.OnClickListener {
             case R.id.txt_persian:
                 england.setBackgroundResource(R.color.white);
                 iran.setBackgroundResource(R.drawable.stroke_pruple);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(iran);
                 break;
             case R.id.txt_english:
                 england.setBackgroundResource(R.drawable.stroke_pruple);
                 iran.setBackgroundResource(R.color.white);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(england);
                 break;
 
         }
