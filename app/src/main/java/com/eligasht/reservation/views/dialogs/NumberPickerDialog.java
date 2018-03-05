@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -36,7 +37,7 @@ public class NumberPickerDialog implements View.OnClickListener {
         dialogView = inflater.inflate(R.layout.alert_dialog_number_picker, null);
         numberPicker = dialogView.findViewById(R.id.number_picker);
         builder.setView(dialogView);
-        numberPicker = (com.shawnlin.numberpicker.NumberPicker) dialogView.findViewById(R.id.number_picker);
+        numberPicker = dialogView.findViewById(R.id.number_picker);
         numberPicker.setOnClickListener(this);
         during_trip_string = new String[]{" 7 روز", "15 روز", "23 روز", "31 روز", "45 روز", "2 ماه", "3 ماه", "6 ماه", "یکسال"};
         during_trip = new Integer[]{7, 15, 23, 31, 45, 60 , 90, 180, 365};
@@ -46,7 +47,7 @@ public class NumberPickerDialog implements View.OnClickListener {
         numberPicker.setDisplayedValues(during_trip_string);
 
         btnOk = dialogView.findViewById(R.id.btnOk);
-        Typeface type = Typeface.createFromAsset(activity.getAssets(), "fonts/iran_sans_normal.ttf");
+        Typeface type = Typeface.createFromAsset(activity.getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         numberPicker.setTypeface(type);
         numberPicker.setDividerColorResource(R.color.colorPrimary);
         numberPicker.setSelectedTextColorResource(R.color.colorPrimary);
@@ -54,7 +55,7 @@ public class NumberPickerDialog implements View.OnClickListener {
         numberPicker.setSelectedTextSize(R.dimen._16dp_txtSize);
 
         btnOk.setText("انتخاب");
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         // numberPicker.setOnClickListener(this);
         dialog = builder.create();

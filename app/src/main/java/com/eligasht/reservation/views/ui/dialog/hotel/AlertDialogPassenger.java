@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.eligasht.R;
 import com.eligasht.reservation.tools.JustifiedTextView;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -45,7 +46,7 @@ public class AlertDialogPassenger implements View.OnClickListener {
         tvAlert.setTypeFace(typeface);
         tvAlert.setTextColor(Color.parseColor("#4d4d4d"));
 
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);

@@ -9,26 +9,18 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
-import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
-import com.eligasht.reservation.views.adapters.hotel.FlightHotelAdapter;
-import com.google.gson.Gson;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.hotelAvail.HotelAvailApi;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
+import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
@@ -46,6 +38,9 @@ import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
+import com.google.gson.Gson;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -64,6 +59,19 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener {
 
 
+    RelativeLayout rlLoading, rlRoot, rlList;
+    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
+    Window window;
+    RelativeLayout elNotFound, rlEr;
+    TextView tvLoading;
+    int maxPrice, minPrice;
+    LinearLayout llFilter;
+    FancyButton btnOk, btnBack, btnHome;
+    ImageView ivLoading;
+    boolean isFilter = false;
+    FancyButton btnNextDays, btnLastDays;
+    String raft, bargasht;
+    String raftFa, bargashtFa, searchIn;
     private com.eligasht.reservation.tools.ListView list;
     private LazyResoultHotelAdapter adapter;
     private ArrayList<SelectHotelModel> selectHotelModelArrayList = new ArrayList<>();
@@ -77,26 +85,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     private HotelAvailApi availApi;
     private List<Rooms> rooms = new ArrayList<>();
-    RelativeLayout rlLoading, rlRoot,rlList;
-    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
-    Window window;
-    RelativeLayout elNotFound, rlEr;
-    TextView tvLoading;
-
-
-    int maxPrice, minPrice;
-
     private FancyButton btnFilter, btnSort;
-    LinearLayout llFilter;
-    FancyButton btnOk, btnBack, btnHome;
-    ImageView ivLoading;
-    boolean isFilter = false;
-    FancyButton btnNextDays, btnLastDays;
-
-    String raft, bargasht;
-    String raftFa, bargashtFa, searchIn;
     //TextView tvAlert;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +153,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         Log.e("bargasht", getIntent().getExtras().getString("CheckOut"));
         Log.e("cod", Prefs.getString("Value-Hotel-City-Code", ""));
 
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,15 +223,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     DateFormat formatter;
                     Date date;
                     formatter = new SimpleDateFormat("yyyy/MM/dd");
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     cal.add(Calendar.DATE, 1);
                     System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
 
 
-                    Date dateRaft = (Date) formatter.parse(raft);
-                    Date dateBargasht = (Date) formatter.parse(bargasht);
+                    Date dateRaft = formatter.parse(raft);
+                    Date dateBargasht = formatter.parse(bargasht);
                     if (dateBargasht.after(dateRaft)) {
                         ///
                         ///
@@ -310,7 +300,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     DateFormat formatter;
                     Date date;
                     formatter = new SimpleDateFormat("yyyy/MM/dd");
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     cal.add(Calendar.DATE, -1);

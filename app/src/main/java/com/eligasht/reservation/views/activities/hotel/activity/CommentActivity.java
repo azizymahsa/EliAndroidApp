@@ -1,23 +1,19 @@
 package com.eligasht.reservation.views.activities.hotel.activity;
 
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -32,9 +28,8 @@ import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewScores;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.WebUserTools;
-import com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox;
 import com.eligasht.reservation.views.ui.InitUi;
-import com.eligasht.reservation.views.ui.PassengerHotelFlightActivity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertRating;
@@ -103,8 +98,8 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         btnToComment.setOnClickListener(this);
         btnConfirm.setOnClickListener(this);
         rlLoading.setOnClickListener(this);
-        btnToComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnConfirm.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnToComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnConfirm.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setOnClickListener(this);
         Bundle extras = getIntent().getExtras();
@@ -315,6 +310,55 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+        if (llComment.getVisibility() == View.VISIBLE) {
+            YoYo.with(Techniques.FadeOut).duration(200).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+
+
+                @Override
+                public void onAnimationStart(android.animation.Animator animation) {
+
+
+                }
+
+                @Override
+                public void onAnimationEnd(android.animation.Animator animation) {
+
+
+                    svRating.setVisibility(View.VISIBLE);
+                    llComment.setVisibility(View.GONE);
+                    YoYo.with(Techniques.FadeIn)
+                            .duration(200)
+                            .playOn(svRating);
+
+
+                }
+
+                @Override
+                public void onAnimationCancel(android.animation.Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(android.animation.Animator animation) {
+
+                }
+
+            })
+                    .playOn(llComment);
+
+
+        } else if (svRating.getVisibility() == View.VISIBLE) {
+            new AlertRating(this, this, star);
+
+        } else {
+            super.onBackPressed();
+        }
+
+
+    }
 
     private class AddCommentAsync extends AsyncTask<String, Void, String> {
 
@@ -370,57 +414,6 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
             }
 
         }
-
-    }
-
-
-    @Override
-    public void onBackPressed() {
-
-        if (llComment.getVisibility() == View.VISIBLE) {
-            YoYo.with(Techniques.FadeOut).duration(200).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
-
-
-                @Override
-                public void onAnimationStart(android.animation.Animator animation) {
-
-
-                }
-
-                @Override
-                public void onAnimationEnd(android.animation.Animator animation) {
-
-
-                    svRating.setVisibility(View.VISIBLE);
-                    llComment.setVisibility(View.GONE);
-                    YoYo.with(Techniques.FadeIn)
-                            .duration(200)
-                            .playOn(svRating);
-
-
-                }
-
-                @Override
-                public void onAnimationCancel(android.animation.Animator animation) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(android.animation.Animator animation) {
-
-                }
-
-            })
-                    .playOn(llComment);
-
-
-        } else if (svRating.getVisibility() == View.VISIBLE) {
-            new AlertRating(this, this, star);
-
-        } else {
-            super.onBackPressed();
-        }
-
 
     }
 }

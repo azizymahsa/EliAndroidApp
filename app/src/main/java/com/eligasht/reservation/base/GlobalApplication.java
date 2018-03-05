@@ -14,6 +14,7 @@ import android.telephony.TelephonyManager;
 import com.eligasht.R;
 import com.eligasht.reservation.notification.GetNotification;
 import com.eligasht.reservation.views.activities.IDM_Activity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.font.CustomViewWithTypefaceSupport;
 import com.eligasht.reservation.views.ui.font.TextField;
 import com.onesignal.OneSignal;
@@ -108,7 +109,7 @@ public class GlobalApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        SingletonContext.getInstance().setContext(this);
         ConnectionBuddyConfiguration networkInspectorConfiguration = new ConnectionBuddyConfiguration.Builder(this).build();
         ConnectionBuddy.getInstance().init(networkInspectorConfiguration);
         OneSignal.startInit(this)
@@ -120,13 +121,7 @@ public class GlobalApplication extends Application {
         mInstance = this;
         applicationContext = getApplicationContext();
         applicationHandler = new Handler(applicationContext.getMainLooper());
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/iran_sans_normal.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .addCustomViewWithSetTypeface(CustomViewWithTypefaceSupport.class)
-                .addCustomStyle(TextField.class, R.attr.textFieldStyle)
-                .build()
-        );
+
 
         new Prefs.Builder()
                 .setContext(this)
@@ -143,6 +138,14 @@ public class GlobalApplication extends Application {
                 .build();
 
         setLocale(this);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath(getResources().getString(R.string.iran_sans_normal_ttf))
+                .setFontAttrId(R.attr.fontPath)
+                .addCustomViewWithSetTypeface(CustomViewWithTypefaceSupport.class)
+                .addCustomStyle(TextField.class, R.attr.textFieldStyle)
+                .build()
+        );
 
 
     }

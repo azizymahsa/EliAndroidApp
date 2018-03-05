@@ -2244,11 +2244,11 @@
     <string name="change_fligfontht">Change flight</string>
     <string name="class_flight">Flight class</string>
     <!--fonts-->
-
-    <string name="Facility">fonts/Roboto-Medium.ttf</string>
-    <string name="iran_sans_bold.ttf">fonts/Roboto-Medium.ttf</string>
-    <string name="iran_sans_normal.ttf">fonts/Roboto-Medium.ttf</string>
-    <string name="irsans.ttf">fonts/Roboto-Medium.ttf</string>
-    <string name="mitra.ttf">fonts/Roboto-Medium.ttf</string>
+    <string name="change_flight">Change flight</string>
+    <string name="Facility">fonts/himalaya.ttf</string>
+    <string name="iran_sans_bold.ttf">fonts/himalaya.ttf</string>
+    <string name="iran_sans_normal.ttf">fonts/himalaya.ttf</string>
+    <string name="irsans.ttf">fonts/himalaya.ttf</string>
+    <string name="mitra.ttf">fonts/himalaya.ttf</string>
 </resources>
 

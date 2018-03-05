@@ -1,9 +1,6 @@
 package com.eligasht.reservation.views.ui.dialog.hotel;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -11,8 +8,7 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.comment.AddComment;
-import com.eligasht.reservation.tools.Utility;
-
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -42,11 +38,11 @@ public class AddCommnetDialog implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_comment, null);
         builder.setView(dialogView);
-        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
-        tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
+        btnOk = dialogView.findViewById(R.id.btnOk);
+        tvAlert = dialogView.findViewById(R.id.tvAlert);
 
 
-        btnOk.setCustomTextFont("iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
@@ -92,6 +88,6 @@ public class AddCommnetDialog implements View.OnClickListener {
 
 
     public interface OnCommentDialogListenerArray {
-        public void onReturnValue(String userName,String title);
+        void onReturnValue(String userName, String title);
     }
 }

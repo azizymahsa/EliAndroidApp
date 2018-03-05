@@ -28,6 +28,7 @@ import com.eligasht.reservation.views.activities.insurance.AddPassengerActivity;
 import com.eligasht.reservation.views.activities.insurance.SearchInsuranceActivity;
 import com.eligasht.reservation.views.dialogs.NumberPickerDialog;
 import com.eligasht.reservation.views.ui.GetCountriesForInsuranceActivity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -53,6 +54,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         TimePickerDialog.OnTimeSetListener,
         com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
+    private final int ADD_PASSENGER_REQUEST = 101;
     public ViewGroup view;
     public ViewGroup layout_passenger;
     public ViewGroup layout_depart_date;
@@ -62,11 +64,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     LinearLayout layout_duringTrip;
     TextView txt_during_trip;
     TextView txt_count_passenger;
-    private ArrayList<BirthDateList> passengers;
-    private final int ADD_PASSENGER_REQUEST = 101;
-    private Gson gson;
-    private String departureDate;
-    private TextView txt_depart_date;
     DatePickerDialog datePickerDialogDepart;
     int month;
     int year_;
@@ -75,11 +72,15 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     int year_Min;
     int dayMin;
     Country country;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogDepartgGregorian;
+    AlertDialog mAlertDialog;
+    private ArrayList<BirthDateList> passengers;
+    private Gson gson;
+    private String departureDate;
+    private TextView txt_depart_date;
     private ClientService service;
     private TextView btnSearchInsurance;
     private int accomodationDays;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogDepartgGregorian;
-
 
     public static InsuranceFragment instance() {
         InsuranceFragment fragment = new InsuranceFragment();
@@ -109,11 +110,13 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         super.onStop();
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
     }
+
+
+    //send request to server for get cities
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -132,9 +135,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         return view;
     }
 
-
-    //send request to server for get cities
-
     private void initParam() {
     }
 
@@ -145,7 +145,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         btnSearchInsurance = view.findViewById(R.id.btnSearchInsurance);
         txtCity = view.findViewById(R.id.txtCity);
 
-        layout_passenger = (ViewGroup) view.findViewById(R.id.layout_passenger);
+        layout_passenger = view.findViewById(R.id.layout_passenger);
         txt_depart_date = view.findViewById(R.id.txt_start_date);
         layout_depart_date = view.findViewById(R.id.layout_depart_date);
         gson = new GsonBuilder().create();
@@ -273,7 +273,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         accomodationDays = duration;
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -288,17 +287,10 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         }
     }
 
-
-
-
-
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
 
     }
-
-
-
 
     //shamsi
     @Override
@@ -328,8 +320,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
     }
 
-    AlertDialog mAlertDialog;
-
     //for show dialog
     public void needShowAlertDialog(String message, boolean canelable) {
         if (getActivity() == null) {
@@ -342,10 +332,10 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         final LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.alert_dialog_net, null);
         mAlertDialog.setCancelable(canelable);
-        FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
-        TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
+        FancyButton btnOk = view.findViewById(R.id.btnOk);
+        TextView tvAlert = view.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.irsans_ttf));
         tvAlert.setText(message);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

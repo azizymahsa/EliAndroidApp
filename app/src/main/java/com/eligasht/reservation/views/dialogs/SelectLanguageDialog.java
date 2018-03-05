@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -42,9 +43,9 @@ public class SelectLanguageDialog implements View.OnClickListener {
         accept.setOnClickListener(this);
         chk_persian = dialogView.findViewById(R.id.chB_persian);
         chk_english = dialogView.findViewById(R.id.chB_english);
-        btnMobileData.setCustomTextFont("iran_sans_normal.ttf");
-        accept.setCustomTextFont("iran_sans_normal.ttf");
-        btnWifi.setCustomTextFont("iran_sans_normal.ttf");
+        btnMobileData.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        accept.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnWifi.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnMobileData.setOnClickListener(this);
         btnWifi.setOnClickListener(this);
         dialogView.findViewById(R.id.txt_english).setOnClickListener(this);
