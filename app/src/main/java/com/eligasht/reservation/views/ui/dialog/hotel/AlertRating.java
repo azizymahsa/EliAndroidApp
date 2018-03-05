@@ -1,14 +1,13 @@
 package com.eligasht.reservation.views.ui.dialog.hotel;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.BounceInterpolator;
 import android.widget.TextView;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -38,9 +37,9 @@ public class AlertRating implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_rating, null);
         builder.setView(dialogView);
-        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
-        btnExit = (FancyButton) dialogView.findViewById(R.id.btnExit);
-        rbRating = (SimpleRatingBar) dialogView.findViewById(R.id.rbRating);
+        btnOk = dialogView.findViewById(R.id.btnOk);
+        btnExit = dialogView.findViewById(R.id.btnExit);
+        rbRating = dialogView.findViewById(R.id.rbRating);
         if (star!=null){
            // rbRating.setRating(star);
             SimpleRatingBar.AnimationBuilder animationBuilder = rbRating.getAnimationBuilder()
@@ -57,8 +56,8 @@ public class AlertRating implements View.OnClickListener {
         }
 
 
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnExit.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnExit.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnExit.setOnClickListener(this);
         btnOk.setOnClickListener(this);
 
@@ -89,7 +88,7 @@ public class AlertRating implements View.OnClickListener {
         }
     }
     public interface RatingHotelDialogListener{
-        public void onReturnValue(int type,Float rate);
+        void onReturnValue(int type, Float rate);
     }
 
 }

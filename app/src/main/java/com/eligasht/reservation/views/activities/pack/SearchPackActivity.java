@@ -16,9 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
@@ -41,13 +38,16 @@ import com.eligasht.reservation.models.model.pack.response.PackageListRes;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.adapters.pack.LstAvailableDateAdapter;
 import com.eligasht.reservation.views.adapters.pack.PRowXferAdapter;
 import com.eligasht.reservation.views.components.SimpleRecycleView;
 import com.eligasht.reservation.views.dialogs.FilterPackageDialog;
 import com.eligasht.reservation.views.dialogs.SortDialogPackage;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -257,8 +257,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
-        rcl_available_date = (SimpleRecycleView) findViewById(R.id.rcl_available_date);
-        rcl_package = (SimpleRecycleView) findViewById(R.id.rcl_package);
+        rcl_available_date = findViewById(R.id.rcl_available_date);
+        rcl_package = findViewById(R.id.rcl_package);
         rcl_package.setLayoutManager(new LinearLayoutManager(this));
         rcl_available_date.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rcl_available_date.hideLoading();
@@ -273,7 +273,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         layout_sort.setOnClickListener(this);
         btn_previous_day.setOnClickListener(this);
         btn_next_day.setOnClickListener(this);
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
     }
 
 

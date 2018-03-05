@@ -46,14 +46,16 @@
         <item name="fontPath">fonts/icomoon.ttf</item></style>
 
     <style name="IrsansBold" parent="android:TextAppearance">
-        <item name="fontPath">fonts/iran_sans_bold.ttf</item></style>
+        <item name="fontPath">@string/iran_sans_bold.ttf</item>
+    </style>
     <style name="IconFonts3" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
     <style name="Arrow" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello_up_and_down.ttf</item></style>
 
     <style name="fontello_flight" parent="android:TextAppearance">
-        <item name="fontPath">fonts/iran_sans_normal.ttf</item></style>
+        <item name="fontPath">@string/iran_sans_normal.ttf</item>
+    </style>
 
     <style name="fontello_plan" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
@@ -74,7 +76,7 @@
     <style name="IconCheck" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-check-and-close.ttf</item></style>
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:fontFamily">fonts/iran_sans_bold.ttf</item>
+        <item name="android:fontFamily">@string/iran_sans_bold.ttf</item>
     </style>
 
 </resources>

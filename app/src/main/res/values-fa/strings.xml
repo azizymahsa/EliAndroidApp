@@ -386,4 +386,13 @@
 
 
 
+
+
+    <string name="Facility">fonts/Facility.ttf</string>
+    <string name="iran_sans_bold.ttf">fonts/iran_sans_bold.ttf</string>
+    <string name="iran_sans_normal.ttf">fonts/iran_sans_normal.ttf</string>
+    <string name="irsans.ttf">fonts/irsans.ttf</string>
+    <string name="mitra.ttf">fonts/mitra.ttf</string>
+
+
 </resources>

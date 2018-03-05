@@ -1903,13 +1903,13 @@
     <string name="ErrorServer">Error getting information from Eligasht</string>
     <string name="Sort">Sort</string>
     <string name="Filter">Filter</string>
-    <string name="NextDay">Next Day</string>
-    <string name="LastDay">Last Day</string>
+    <string name="NextDay">Next\nDay</string>
+    <string name="LastDay">Previous Day</string>
     <string name="curency">$</string>
     <string name="ApartmenHotel">Apartment of Hotel</string>
     <string name="BoutiqueHotel">Boutique of Hotel</string>
     <string name="ResortHotel">Hotel Reservation</string>
-    <string name="NonStop">Non stop</string>
+    <string name="NonStop">non stop</string>
     <string name="OneStop">One Stop</string>
     <string name="TwoStop">Two Stop</string>
     <string name="DetailHotel">Hotel Detail</string>
@@ -1959,18 +1959,18 @@
     <string name="passenger">Passenger</string>
     <string name="number_of_passengers">Number of passengers</string>
     <string name="error_in_connection">Error in Connection</string>
-    <string name="there_is_no_city_to_show">There is no city to show</string>
+    <string name="there_is_no_city_to_show">there is no city to show</string>
     <string name="return_date">Return date</string>
     <string name="select_departure_and_return_date">Choose the departure date</string>
-    <string name="select_destination_city_first">Select destination city</string>
-    <string name="enter_your_password">Enter your password</string>
-    <string name="re_enter_your_password">Confirm your password</string>
-    <string name="enter_your_new_password">Enter your new password.</string>
-    <string name="enter_your_birth_date">Enter your birth date.</string>
-    <string name="enter_your_name_in_persian">Eenter your name in persian.</string>
-    <string name="enter_your_name_in_english">Enter your name in english.</string>
-    <string name="enter_your_family_name_in_persian">Enter your family name in persian.</string>
-    <string name="enter_your_family_name_in_english">Enter your family name in english.</string>
+    <string name="select_destination_city_first">select destination city</string>
+    <string name="enter_your_password">enter your password.</string>
+    <string name="re_enter_your_password">re enter password</string>
+    <string name="enter_your_new_password">enter your new password.</string>
+    <string name="enter_your_birth_date">enter your birth date.</string>
+    <string name="enter_your_name_in_persian">enter your name in persian.</string>
+    <string name="enter_your_name_in_english">enter your name in english.</string>
+    <string name="enter_your_family_name_in_persian">enter your family name in persian.</string>
+    <string name="enter_your_family_name_in_english">enter your family name in english.</string>
     <string name="enter_your_mobile_number">Enter Your Mobile Number.</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="my_contracts">My Contracts</string>
@@ -1989,7 +1989,7 @@
     <string name="hotel_reservation">Hotel Reservation</string>
 
     <!--nemati-->
-    <string name="hotel_reservation_and_plane_ticket">Plane Ticket + hotel reservation</string>
+    <string name="hotel_reservation_and_plane_ticket">Ticket + Hotel</string>
     <string name="travel_tour">Travel Tour</string>
     <string name="travel_insurance">Travel Insurance</string>
     <string name="soon">(Coming Soon)</string>
@@ -2241,7 +2241,7 @@
     <string name="text5">Select Office</string>
     <string name="text6">Select this section to select Office</string>
     <string name="your_time_has_expired">Your time has expired</string>
-    <string name="change_flight">Change flight</string>
+    <string name="change_fligfontht">Change flight</string>
     <string name="class_flight">Flight class</string>
     <string name="cities_all_over_the_world">Cities all over the world</string>
     <string name="confirmed_airlines">Confirmed airlines</string>
@@ -2267,5 +2267,12 @@
     <string name="register">Register</string>
     <string name="login_">Login</string>
     <!--azizi-->
+    <!--fonts-->
+    <string name="change_flight">Change flight</string>
+    <string name="Facility">fonts/himalaya.ttf</string>
+    <string name="iran_sans_bold.ttf">fonts/himalaya.ttf</string>
+    <string name="iran_sans_normal.ttf">fonts/himalaya.ttf</string>
+    <string name="irsans.ttf">fonts/himalaya.ttf</string>
+    <string name="mitra.ttf">fonts/himalaya.ttf</string>
 </resources>
 

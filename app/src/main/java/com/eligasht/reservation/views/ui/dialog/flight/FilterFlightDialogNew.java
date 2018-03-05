@@ -8,10 +8,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.eligasht.R;
-
 import com.eligasht.reservation.models.model.ModelCheckBox;
 import com.eligasht.reservation.views.adapters.hotel.FilterAdapter;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
 import java.util.ArrayList;
@@ -24,11 +24,9 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 
 public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckBox.OnCheckedChangeListener {
-    android.app.AlertDialog dialog;
-
     public ArrayList<ModelCheckBox> arrayTrue = new ArrayList<>();
-    private ArrayList<ModelCheckBox> modelCheckBoxes = new ArrayList<>();
-
+    public ArrayList<ModelCheckBox> filterAirlines = new ArrayList<>();
+    android.app.AlertDialog dialog;
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
@@ -52,7 +50,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
 
     ListView lv;
     FilterAdapter adapter;
-    public ArrayList<ModelCheckBox> filterAirlines = new ArrayList<>();
+    private ArrayList<ModelCheckBox> modelCheckBoxes = new ArrayList<>();
 
 
     public FilterFlightDialogNew(final Context activity, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray, ArrayList<ModelCheckBox> filterAirlines) {
@@ -67,30 +65,30 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
         //  filter.add(new FilterModelّFlight(false, false, false, false, false, false, false));
 
         builder.setView(dialogView);
-        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
-        btnDeletFilter = (FancyButton) dialogView.findViewById(R.id.btnDeletFilter);
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnDeletFilter.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk = dialogView.findViewById(R.id.btnOk);
+        btnDeletFilter = dialogView.findViewById(R.id.btnDeletFilter);
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnDeletFilter.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         btnDeletFilter.setOnClickListener(this);
 
-        noStop = (SmoothCheckBox) dialogView.findViewById(R.id.noStop);
-        oneStop = (SmoothCheckBox) dialogView.findViewById(R.id.oneStop);
-        twoStopMore = (SmoothCheckBox) dialogView.findViewById(R.id.twoStopMore);
+        noStop = dialogView.findViewById(R.id.noStop);
+        oneStop = dialogView.findViewById(R.id.oneStop);
+        twoStopMore = dialogView.findViewById(R.id.twoStopMore);
 
-        remove = (SmoothCheckBox) dialogView.findViewById(R.id.Remove);
+        remove = dialogView.findViewById(R.id.Remove);
 
-        economiF = (SmoothCheckBox) dialogView.findViewById(R.id.economiF);
-        businessF = (SmoothCheckBox) dialogView.findViewById(R.id.businessF);
-        ferstF = (SmoothCheckBox) dialogView.findViewById(R.id.ferstF);
-
-
-        boutique = (SmoothCheckBox) dialogView.findViewById(R.id.boutique);
-        resort = (SmoothCheckBox) dialogView.findViewById(R.id.resort);
-        txtTavaghof = (TextView) dialogView.findViewById(R.id.txtTavaghof);
+        economiF = dialogView.findViewById(R.id.economiF);
+        businessF = dialogView.findViewById(R.id.businessF);
+        ferstF = dialogView.findViewById(R.id.ferstF);
 
 
-        lv = (ListView) dialogView.findViewById(R.id.listView1);
+        boutique = dialogView.findViewById(R.id.boutique);
+        resort = dialogView.findViewById(R.id.resort);
+        txtTavaghof = dialogView.findViewById(R.id.txtTavaghof);
+
+
+        lv = dialogView.findViewById(R.id.listView1);
        /* modelItems = new ModelCheckBox[5];
         modelItems[0] = new ModelCheckBox("pizza", 0);
         modelItems[1] = new ModelCheckBox("burger", 1);
@@ -404,7 +402,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
 
 
     public interface FilterFlightDialogListenerArray {
-        public void onReturnValueFlightNew(ArrayList<FilterModelّFlight> type, ArrayList<ModelCheckBox> arrayTrue);
+        void onReturnValueFlightNew(ArrayList<FilterModelّFlight> type, ArrayList<ModelCheckBox> arrayTrue);
     }
 
 }

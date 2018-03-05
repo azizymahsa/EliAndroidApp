@@ -12,22 +12,17 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.model.Font;
-import com.eligasht.reservation.models.model.login.WebUser;
-import com.eligasht.reservation.models.model.login.call.EmailContractReq;
-import com.google.gson.GsonBuilder;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.login.WebUserLogin;
 import com.eligasht.reservation.models.model.login.call.ChangePasswordRequestModel;
+import com.eligasht.reservation.models.model.login.call.EmailContractReq;
 import com.eligasht.reservation.models.model.login.call.EmailContractRequestModel;
 import com.eligasht.reservation.models.model.login.call.RegisterRequestModel;
 import com.eligasht.reservation.models.model.login.response.EmailContractRes;
@@ -38,11 +33,12 @@ import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.fragments.profile.ProfilePagerAdapter;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import uk.co.chrisjenx.calligraphy.CalligraphyUtils;
 
 
 /**
@@ -60,78 +56,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private ProfilePagerAdapter profilePagerAdapter;
     private ClientService service;
     private CoordinatorLayout coordinatorLayout;
-
-    //
-    @SuppressLint("NewApi")
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "پروفایل من");
-        Window window = getWindow();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-        }
-
-
-        initViews();
-        setupPager();
-        initParam();
-        service = ServiceGenerator.createService(ClientService.class);
-        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
-        int tabsCount = vg.getChildCount();
-        for (int j = 0; j < tabsCount; j++) {
-            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
-            int tabChildsCount = vgTab.getChildCount();
-            for (int i = 0; i < tabChildsCount; i++) {
-                View tabViewChild = vgTab.getChildAt(i);
-                if (tabViewChild instanceof TextView) {
-                    ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf"));
-                }
-            }
-        }
-
-
-    }
-
-
-    private void initParam() {
-        try {
-
-
-            try {
-                img_profile.setText(String.valueOf(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameE().charAt(0) + "" + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameE().charAt(0)).toUpperCase());
-            } catch (Exception e) {
-                img_profile.setText("");
-            }
-
-            try {
-                txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
-            } catch (Exception e) {
-                txt_name.setText("");
-            }
-        } catch (Exception e) {
-
-        }
-
-    }
-
-
-    private void setupPager() {
-        profilePagerAdapter = new ProfilePagerAdapter(this, getSupportFragmentManager());
-        viewPager.setAdapter(profilePagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setOnTabSelectedListener(onTabSelectedListener);
-        try {
-            if (getIntent().getExtras().getBoolean("isLastBuy")) {
-                viewPager.setCurrentItem(1);
-            }
-
-        } catch (Exception e) {
-        }
-
-
-    }
-
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
@@ -163,6 +87,74 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         }
     };
 
+    //
+    @SuppressLint("NewApi")
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
+        InitUi.Toolbar(this, false, R.color.toolbar_color, "پروفایل من");
+        Window window = getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        }
+
+
+        initViews();
+        setupPager();
+        initParam();
+        service = ServiceGenerator.createService(ClientService.class);
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf)));
+                }
+            }
+        }
+
+
+    }
+
+    private void initParam() {
+        try {
+
+
+            try {
+                img_profile.setText(String.valueOf(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameE().charAt(0) + "" + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameE().charAt(0)).toUpperCase());
+            } catch (Exception e) {
+                img_profile.setText("");
+            }
+
+            try {
+                txt_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+            } catch (Exception e) {
+                txt_name.setText("");
+            }
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void setupPager() {
+        profilePagerAdapter = new ProfilePagerAdapter(this, getSupportFragmentManager());
+        viewPager.setAdapter(profilePagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setOnTabSelectedListener(onTabSelectedListener);
+        try {
+            if (getIntent().getExtras().getBoolean("isLastBuy")) {
+                viewPager.setCurrentItem(1);
+            }
+
+        } catch (Exception e) {
+        }
+
+
+    }
 
     private void initViews() {
         viewPager = findViewById(R.id.view_pager);
