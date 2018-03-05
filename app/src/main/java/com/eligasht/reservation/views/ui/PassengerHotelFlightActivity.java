@@ -285,7 +285,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 ///////////////setmin
         //min max tavalod solar
-        if(RengAge.contains("کودک")){
+        if(RengAge.contains(getString(R.string.Child))){
 
             String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
@@ -305,7 +305,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
 
             datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
-        }else if(RengAge.contains("نوزاد")){
+        }else if(RengAge.contains(getString(R.string.baby))){
 
             String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
@@ -456,7 +456,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         textView4 = (ImageView) findViewById(R.id.textView4);
         tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
         imgCount = (TextView) findViewById(R.id.imgCount);
-        imgCount.setText("اتاق "+getCounter(room));
+        imgCount.setText(getString(R.string.room)+getCounter(room));
         expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
         txt_hom.setOnClickListener(PassengerHotelFlightActivity.this);
 
@@ -581,9 +581,9 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-        categories.add("لطفا جنسیت را انتخاب کنید");
-        categories.add("مرد");
-        categories.add("زن");
+        categories.add(getString(R.string.Please_choose_a_gender));
+        categories.add(getString(R.string.man));
+        categories.add(getString(R.string.Female));
 
 
         // Creating adapter for spinner
@@ -758,7 +758,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 paymentUrl = jFact.getString("OnlinePaymentURL");
 
 
-                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + getString(R.string.Rial));
 
 //for hotel==========================================================================================
                 final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
@@ -855,7 +855,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             } catch (JSONException e) {
                 //Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
+                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli));
             }
 
 
@@ -1002,14 +1002,14 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128,  getResources().getInteger(R.integer._300), getResources().getInteger(R.integer._150)));
 
                 } else {
-                    txt_shomare_factor.setText("خطایی رخ داده است !");
+                    txt_shomare_factor.setText(getString(R.string.An_error_has_occurred));
                 }
                 // sfsfs
 
                 // Setup and Handover data to recyclerview
                 ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-                txtTitle.setText("تایید و پرداخت پیش فاکتور ");
+                txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
                 //myScrollView.setOnTouchListener(null);
                 linear_saler.setVisibility(View.GONE);
                 linear_mosaferan.setVisibility(View.GONE);
@@ -1020,7 +1020,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
+                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli));
             }
 
 
@@ -1226,7 +1226,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                 ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
                 ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-                txtTitle.setText("افزودن خدمات به سبد خرید");
+                txtTitle.setText(getString(R.string.Add_to_cart_services));
 
                 mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this,0);
                 //mAdapter.setAdapter(mAdapter);
@@ -1235,7 +1235,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 setAnimation();
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
+                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli));
             }
 
         }//end on pos excute
@@ -1452,13 +1452,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     ((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
                     ((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
-                    txtTitle.setText(" افزودن خدمات به سبد خرید");
+                    txtTitle.setText(getString(R.string.Add_to_cart_services));
                 }else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.VISIBLE);
 
 
-                    txtTitle.setText("  اطلاعات مسافران ");
+                    txtTitle.setText(getString(R.string.passneger_info));
                     ((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
                     ((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
                     ////////////////////bazyabi atelaate akharin mosafer
@@ -1482,7 +1482,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         }
                     }
                     counter--;
-                    //xtTitleCountM.setText(" اطلاعات مسافر " + counter);
+                    //xtTitleCountM.setText(getString(R.string.info_passenger) + counter);
                     //  imgCount.setText(counter+"");
                     ///////////////////
                 }else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
@@ -1515,7 +1515,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     linear_saler.setVisibility(View.VISIBLE);
 
 
-                    txtTitle.setText(" مشخصات خریدار ");
+                    txtTitle.setText(getString(R.string.Buyer_Specifications));
                     ((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
                     ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                     // }
@@ -1546,7 +1546,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                     ((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-                    txtTitle.setText(" اطلاعات مسافران ");
+                    txtTitle.setText(getString(R.string.Traveler_info));
                     setAnimation();
 
                 }else{
@@ -1584,7 +1584,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         }else{
                             //((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+" ایمیل با فرمت صحیح باشد(test@test.com)";
+                            errorMessage=errorMessage+"\n"+getString(R.string.Email_format_is_correct);
                         }
                         //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
                         //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.trim().matches("^[a-zA-Z]+$"))){
@@ -1595,7 +1595,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             }else{
                                 //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                                 flagMosafer=flagMosafer+"F";
-                                errorMessage=errorMessage+"\n"+" نام حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
+                                errorMessage=errorMessage+"\n"+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                             }
                         //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
                         if(RqPartner_LastNameFa != null)
@@ -1605,7 +1605,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             }else{
                                 //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
                                 flagMosafer=flagMosafer+"F";
-                                errorMessage=errorMessage+"\n"+" نام خانوادگی حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد ";
+                                errorMessage=errorMessage+"\n"+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                             }
                         if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1613,7 +1613,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         }else{
                             //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+" موبایل با  فرمت صحیح وارد شود(مانند ...0912)";
+                            errorMessage=errorMessage+"\n"+getString(R.string.Enter_the_correct_mobile_format);
                         }
 					/*if(RqPartner_NationalCode != null)
 						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.trim().matches("[0-9]+")){*/
@@ -1624,13 +1624,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             }else{
                                 //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
                                 flagMosafer=flagMosafer+"F";
-                                errorMessage=errorMessage+"\n"+" کد ملی صحیح نمی باشد(10رقمی)";
+                                errorMessage=errorMessage+"\n"+getString(R.string.The_national_code_is_not_correct);
                             }
                         if (Gensiyat.contains("true") || Gensiyat.contains("false")){
                             flagMosafer=flagMosafer+"T";
                         }else{
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+" جنسیت را انتخاب کنید";
+                            errorMessage=errorMessage+"\n"+R.string.Please_choose_a_gender;
                         }
                         //////////////////////////End Validate
                         if (flagMosafer.contains("F")) {
@@ -1654,7 +1654,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             linear_saler.setVisibility(View.GONE);
                             linear_pish_factor.setVisibility(View.GONE);
                             linear_mosaferan.setVisibility(View.VISIBLE);
-                            txtTitle.setText(" اطلاعات مسافران ");
+                            txtTitle.setText(getString(R.string.Traveler_info));
                             //((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
                             //((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
                             Gensiyat = "";
@@ -1683,7 +1683,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 String RengAge=txtTitleCountM.getText().toString();
 
 ///////////////setmin
-                if(RengAge.contains("کودک")){
+                if(RengAge.contains(getString(R.string.Child))){
 
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
@@ -1707,7 +1707,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     datePickerDialog.setMaxDate(persianCalendarDatePicker2);
                     datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
 
-                }else if(RengAge.contains("نوزاد")){
+                }else if(RengAge.contains(getString(R.string.baby))){
 
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
@@ -1811,7 +1811,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     }else{
                         //((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+" شماره پاسپورت را درست وارد کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.Enter_the_passport_number_correctly);
                     }
                     // }
                     if(Nationality != null && Nationality.length()>1){
@@ -1820,7 +1820,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     }else{
                         //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+" محل اقامت را وارد  کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.Enter_the_place_of_residence);
                     }
                     if(Nationality_ID != null && Nationality_ID.length()>1){
                         ((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1828,7 +1828,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     }else{
                         //((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+" ملیت را وارد کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.Enter_your_nationality);
                     }
                     if(RqPassenger_Birthdate != null && RqPassenger_Birthdate.length()>4){
                         ((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1836,12 +1836,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     }else{
                         //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+" تاریخ تولد را وارد کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.Enter_the_date_of_birth);
                     }
                     ////////////////////////////////////
-                    if (txtTitleCountM.getText().toString().contains("کودک")) {
+                    if (txtTitleCountM.getText().toString().contains(getString(R.string.Child))) {
 
-                    } else if (txtTitleCountM.getText().toString().contains("نوزاد")) {
+                    } else if (txtTitleCountM.getText().toString().contains(getString(R.string.baby))) {
 
                     }
                     /////////////////////////////////
@@ -1852,7 +1852,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         } else {
                             //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
-                            errorMessagePartner = errorMessagePartner + "\n" + " نام حداقل 2 کاراکتر و حداکثر 100کاراکتر می باشد";
+                            errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                         }
                     if (RqPassenger_LastNameEn != null)
                         if (RqPassenger_LastNameEn.length() > 1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")) {
@@ -1861,7 +1861,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         } else {
                             //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
-                            errorMessagePartner = errorMessagePartner + "\n" + " نام خانوادگی حداقل 2 کاراکتر و حداکثر 100کاراکتر می باشد";
+                            errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                         }
                     if (RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length() > 4) {
                         ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1869,13 +1869,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     } else {
                         //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
-                        errorMessagePartner = errorMessagePartner + "\n" + " انقضا پاسپورت را وارد کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.Enter_the_passport_expiration_date);
                     }
                     if (Gensiyat.contains("true") || Gensiyat.contains("false")) {
                         flagMosafer = flagMosafer + "T";
                     } else {
                         flagMosafer = flagMosafer + "F";
-                        errorMessagePartner = errorMessagePartner + "\n" + " جنسیت را انتخاب کنید";
+                        errorMessagePartner=errorMessagePartner+"\n"+getString(R.string.Enter_your_gender);
                     }
                     ///endValidate
 
@@ -1926,7 +1926,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                 System.out.println("gender:"+Gender);
                                 //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 if(counter-1 ==1){
-                                    db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    db.insertData(counter-1,getString(R.string.First_passenger_information) ,getString(R.string.room)+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
                                 }else{
                                     db.insertData(counter-1,txtTitleCountM.getText().toString() ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
@@ -1934,34 +1934,34 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                 System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
                                 if(countB>=1) {
                                     System.out.println("countB:"+countB);
-                                    //  txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (بزرگسال) ");
-                                    //  imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    //  txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.adult_));
+                                    //  imgCount.setText(getString(R.string.room)+getCounter(rooms+1));
                                     countB--;
                                 }else if(countK>=1) {
                                     System.out.println("countK:"+countK);
-                                    // txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (کودک) ");
-                                    // imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    // txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+" (کودک) ");
+                                    // imgCount.setText(getString(R.string.room)+getCounter(rooms+1));
                                     countK--;
                                 }else if(countN>=1) {
                                     System.out.println("countN:"+countN);
-                                    // txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (نوزاد) ");
-                                    //  imgCount.setText("اتاق "+getCounter(rooms+1));
+                                    // txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.baby));
+                                    //  imgCount.setText(getString(R.string.room)+getCounter(rooms+1));
                                     countN--;
                                 }
                                 if(countB!=0){
 
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
+                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.adult_));
+                                    imgCount.setText(getString(R.string.room)+getCounter(room));
                                 }
                                 else if(countK!=0){
 
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
+                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
+                                    imgCount.setText(getString(R.string.room)+getCounter(room));
                                 }
                                 else if(countN!=0){
 
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
+                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby));
+                                    imgCount.setText(getString(R.string.room)+getCounter(room));
                                 }
 
 
@@ -2005,7 +2005,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             if(sum>0){
                                 System.out.println("gender:"+Gender);
                                 if(counter-1 ==1){
-                                    db.insertData(counter-1,"اطلاعات مسافر اول ( بزرگسال )" ,"اتاق "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    db.insertData(counter-1,getString(R.string.First_passenger_information) ,getString(R.string.room)+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
                                 }else{
                                     db.insertData(counter-1,txtTitleCountM.getText().toString() ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
@@ -2014,39 +2014,39 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                 System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
                                 if(countB>=1) {
                                     System.out.println("countB:"+countB);
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (بزرگسال) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
+                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.adult_));
+                                    imgCount.setText(getString(R.string.room)+getCounter(room));
                                     countB--;
                                 }else if(countK>=1) {
                                     System.out.println("countK:"+countK);
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (کودک) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
+                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.child_));
+                                    imgCount.setText(getString(R.string.room)+getCounter(room));
                                     countK--;
                                 }else if(countN>=1) {
                                     System.out.println("countN:"+countN);
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter-1)+" (نوزاد) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
+                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.baby));
+                                    imgCount.setText(getString(R.string.room)+getCounter(room));
                                     countN--;
                                 }
                                 if(countB!=0){
 
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
+                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.adult_));
+                                    imgCount.setText(getString(R.string.room)+getCounter(room));
                                 }
                                 else if(countK!=0){
 
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (کودک) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
+                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.child_));
+                                    imgCount.setText(getString(R.string.room)+getCounter(room));
                                 }
                                 else if(countN!=0){
 
-                                    txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (نوزاد) ");
-                                    imgCount.setText("اتاق "+getCounter(room));
+                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.baby));
+                                    imgCount.setText(getString(R.string.room)+getCounter(room));
                                 }else if(countB + countK + countN==0){
 
                                     if(rooms-1>=0){
-                                        txtTitleCountM.setText(" اطلاعات مسافر " + getCounter(counter)+" (بزرگسال) ");
-                                        imgCount.setText("اتاق "+getCounter(room+1));
+                                        txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.adult_));
+                                        imgCount.setText(getString(R.string.room)+getCounter(room+1));
                                         txttavalodm.setText("");
                                         txtnamem.setText("");
                                         txtfamilym.setText("");
@@ -2109,7 +2109,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     ((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
-                    txtTitle.setText(" افزودن خدمات به سبد خرید");
+                    txtTitle.setText(getString(R.string.Add_to_cart_services));
                     setAnimation();
                 }
                 break;
@@ -2147,7 +2147,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#aaaaaa"));
-                    txtTitle.setText(" مشخصات خریدار ");
+                    txtTitle.setText(getString(R.string.Buyer_Specifications));
                     setAnimation();
                 }
                 //myScrollView.setOnTouchListener(null);
@@ -2185,7 +2185,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#aaaaaa"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
-                    txtTitle.setText("اطلاعات مسافران");
+                    txtTitle.setText(getString(R.string.Traveler_info));
                     setAnimation();
                 }
                 //.setOnTouchListener(null);
@@ -2213,7 +2213,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#aaaaaa"));
-                    txtTitle.setText(" افزودن خدمات به سبد خرید");
+                    txtTitle.setText(getString(R.string.Add_to_cart_services));
                     setAnimation();
                 }
                 break;
@@ -2230,7 +2230,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-                    txtTitle.setText(" تایید و پرداخت پیش فاکتور ");
+                    txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
                     setAnimation();
                 }
                 //myScrollView.setOnTouchListener(null);
@@ -2270,37 +2270,34 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         //  txtemeliP.setCursorVisible(false);
     }
     public String getCounter(int i) {
-        String s = "";
+        String s="";
         switch (i) {
-            case 0:
-                s= "اول";
-                break;
             case 1:
-                s = "اول";
+                s= getString(R.string.First);
                 break;
             case 2:
-                s = "دوم";
+                s= getString(R.string.Second);
                 break;
             case 3:
-                s = "سوم";
+                s= getString(R.string.Third);
                 break;
             case 4:
-                s = "چهارم";
+                s= getString(R.string.Fourth);
                 break;
             case 5:
-                s = "پنجم";
+                s= getString(R.string.Fifth);
                 break;
             case 6:
-                s = "ششم";
+                s= getString(R.string.Sixth);
                 break;
             case 7:
-                s = "هفتم";
+                s= getString(R.string.Seventh);
                 break;
             case 8:
-                s = "هشتم";
+                s= getString(R.string.Eighth);
                 break;
             case 9:
-                s = "نهم";
+                s=getString(R.string.ninth);
                 break;
             default:
 
@@ -2347,16 +2344,16 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
-                if(RengAge.contains("کودک")){
+                if(RengAge.contains(getString(R.string.Child))){
                     dialog = new DatePickerDialog(getActivity(), this, year-12, month, day);
-                }else if(RengAge.contains("نوزاد")){
+                }else if(RengAge.contains(getString(R.string.baby))){
                     dialog = new DatePickerDialog(getActivity(), this, year-2, month, day);
-                }else if(RengAge.contains("بزرگسال")){
+                }else if(RengAge.contains(getString(R.string.adult))){
                     dialog = new DatePickerDialog(getActivity(), this, year-30, month, day);
                 }
                 // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
 ///////////////setmin
-                if(RengAge.contains("کودک")){
+                if(RengAge.contains(getString(R.string.Child))){
                     System.out.println("koodak");
                     //c = Calendar.getInstance();
                     c.add(Calendar.YEAR, -12); // subtract 2 years from now
@@ -2364,7 +2361,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
 
-                }else if(RengAge.contains("نوزاد")){
+                }else if(RengAge.contains(getString(R.string.baby))){
                     System.out.println("Nozad");
                     //c = Calendar.getInstance();
                     c.add(Calendar.YEAR, -2); // subtract 2 years from now
@@ -2426,13 +2423,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
             ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
-            txtTitle.setText(" افزودن خدمات به سبد خرید");
+            txtTitle.setText(getString(R.string.Add_to_cart_services));
         } else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
             linear_list_khadamat.setVisibility(View.GONE);
             linear_mosaferan.setVisibility(View.VISIBLE);
 
 
-            txtTitle.setText("  اطلاعات مسافران ");
+            txtTitle.setText(getString(R.string.passneger_info));
             ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
             ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
             ////////////////////bazyabi atelaate akharin mosafer
@@ -2453,7 +2450,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     txtmeliyatm.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
                     txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
                     imgCount.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Otagh.value()));
-                    //txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+                    //txtTitleCountM.setText(getString(R.string.info_passenger) + counter);
                     System.out.println("InsertMosaferGet:" + cursorM.getString(PassengerMosaferItems_Table.Columns.ID.value()) + " " + cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()) + " " + cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
                 }
             }
@@ -2486,7 +2483,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                 }
                 counter--;
-                //txtTitleCountM.setText(" اطلاعات مسافر " + counter);
+                //txtTitleCountM.setText(getString(R.string.info_passenger) + counter);
                 // imgCount.setText(counter + "");
             } else {*/
             //////////////////////
@@ -2494,7 +2491,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             linear_saler.setVisibility(View.VISIBLE);
 
 
-            txtTitle.setText(" مشخصات خریدار ");
+            txtTitle.setText(getString(R.string.Buyer_Specifications));
             ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
             ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
             //  }
@@ -2522,9 +2519,9 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
-        if (item.contains("زن")) {
+        if (item.contains(getString(R.string.Female))) {
             Gensiyat = "false";
-        } else if (item.contains("مرد")) {
+        } else if (item.contains(getString(R.string.man))) {
             Gensiyat = "true";
         }
         // Showing selected spinner item
@@ -2577,7 +2574,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //flagMosafer=flagMosafer+"T";
                     } else {
                         ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
-                        txtmahale_eghamat.setError("لطفا محل اقامت را وارد کنید ");
+                        txtmahale_eghamat.setError(getString(R.string.Please_enter_your_residence));
                     }
                     break;
                 case R.id.txtmeliyatm:
@@ -2586,7 +2583,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //flagMosafer=flagMosafer+"T";
                     } else {
                         ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
-                        txtmeliyatm.setError("لطفا ملیت را وارد کنید ");
+                        txtmeliyatm.setError(getString(R.string.Please_enter_your_nationality));
                     }
                     break;
                 case R.id.txttavalodm:
@@ -2595,7 +2592,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //flagMosafer=flagMosafer+"T";
                     } else {
                         ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
-                        txttavalodm.setError("لطفا تاریخ تولد را وارد کنید ");
+                        txttavalodm.setError(getString(R.string.Enter_the_date_of_birth));
                     }
                     break;
 
@@ -2816,7 +2813,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //flagMosafer=flagMosafer+"T";
                     }else{
                         //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
-                        txtmahale_eghamat.setError("لطفا محل اقامت را وارد کنید ");
+                        txtmahale_eghamat.setError(getString(R.string.Please_enter_your_residence));
                     }
                 }
                 break;
@@ -2830,7 +2827,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //flagMosafer=flagMosafer+"T";
                     }else{
                         //((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
-                        txtmeliyatm.setError("لطفا ملیت را وارد کنید ");
+                        txtmeliyatm.setError(getString(R.string.Please_enter_your_nationality));
                     }}
                 break;
             case R.id.txttavalodm:
@@ -2843,7 +2840,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //flagMosafer=flagMosafer+"T";
                     }else{
                         //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
-                        txttavalodm.setError("لطفا تاریخ تولد را وارد کنید ");
+                        txttavalodm.setError(getString(R.string.Enter_the_date_of_birth));
                     }
                 }
                 break;
@@ -2859,8 +2856,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnamem.setError("لطفا نام را وارد کنید(به انگلیسی) ");
-                        }
+                            txtnamem.setError(getString(R.string.Please_enter_a_name_in_English));                        }
                 }
                 break;
             case R.id.txtfamilym:
@@ -2874,8 +2870,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             //flagMosafer=flagMosafer+"T";
                         }else{
                             //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilym.setError("لطفا نام خانوادگی را وارد کنید(به انگلیسی) ");
-                        }
+                            txtfamilym.setError(getString(R.string.Please_enter_a_surname_in_English));                        }
                 }
                 break;
             case R.id.txtexp_passport:
@@ -2888,7 +2883,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     }else{
                         //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
-                        txtexp_passport.setError("لطفا انقضاء پاسپورت را وارد کنید ");
+                        txtexp_passport.setError(getString(R.string.Please_enter_your_passport_expiration_date));
                     }}
                 break;
             case R.id.txtnumber_passport:
@@ -2901,12 +2896,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     } else {
                         //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-                        txtnumber_passport.setError("لطفا شماره پاسپورت را صحیح وارد کنید ");
+                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
                     }
                     if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
                     } else {
                         //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-                        txtnumber_passport.setError("لطفا شماره پاسپورت را وارد کنید ");
+                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
                     }
                 }
                 break;
@@ -2924,7 +2919,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     } else {
                         //((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
-                        txtemeliP.setError("لطفا ایمیل را وارد کنید ");
+                        txtemeliP.setError(getString(R.string.Please_enter_the_email));
                     }
                 }
                 break;
@@ -2939,7 +2934,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                         }else{
                             //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnameP.setError("لطفا نام را وارد کنید(به فارسی) ");
+                            txtnameP.setError(getString(R.string.Please_enter_a_name_in_Persian));
                         }}
                 break;
             case R.id.txtfamilyP:
@@ -2953,7 +2948,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                         }else{
                             //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilyP.setError("لطفا نام خانوادگی را وارد کنید(به فارسی) ");
+                            txtfamilyP.setError(getString(R.string.Please_enter_last_name_in_Persian));
                         }}
                 break;
 
@@ -2967,7 +2962,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     }else{
                         //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
-                        txtmobileP.setError("لطفا شماره موبایل را وارد کنید ");
+                        txtmobileP.setError(getString(R.string.Please_enter_the_mobile_number));
                     }}
                 break;
             case R.id.txtkodemeliP:
@@ -2982,7 +2977,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                         }else{
                             //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtkodemeliP.setError("لطفا کد ملی را وارد کنید ");
+                            txtkodemeliP.setError(getString(R.string.Please_enter_the_national_code));
                         }
                 }
                 break;
