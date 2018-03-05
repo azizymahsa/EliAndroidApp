@@ -61,7 +61,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         public void onTabSelected(TabLayout.Tab tab) {
             switch (tab.getPosition()) {
                 case 0:
-                    btnSaveInfo.setText("ثبت و ذخیره اطلاعات");
+                    btnSaveInfo.setText(R.string.text51);
                     btnSaveInfo.setVisibility(View.VISIBLE);
                     break;
                 case 1:
@@ -69,7 +69,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     //   btnSaveInfo.setText("ارسال مدارک");
                     break;
                 case 2:
-                    btnSaveInfo.setText("تغییر کلمه عبور");
+                    btnSaveInfo.setText(R.string.text52);
                     btnSaveInfo.setVisibility(View.VISIBLE);
 
                     break;
