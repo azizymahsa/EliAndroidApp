@@ -1955,7 +1955,7 @@
     <string name="select_destination_country">Select destination country</string>
     <string name="select_departure_date_and_travel_duration">Select departure date and travel duration</string>
     <string name="departure_date">Departure date</string>
-    <string name="select_travel_duration">Choose the duration of the trip</string>
+    <string name="select_travel_duration">Departure date</string>
     <string name="passenger">Passenger</string>
     <string name="number_of_passengers">Number of passengers</string>
     <string name="error_in_connection">Error in Connection</string>
@@ -1993,7 +1993,7 @@
     <string name="travel_tour">Travel Tour</string>
     <string name="travel_insurance">Travel Insurance</string>
     <string name="soon">(Coming Soon)</string>
-    <string name="trains">External Train</string>
+    <string name="trains">Foreign Train</string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="contact_us">Contact us</string>
     <string name="about_us">About us</string>
@@ -2050,7 +2050,7 @@
     <string name="OfferTo">Available services</string>
     <string name="ServicesPackage">Available services</string>
     <string name="InfoAirline">Flight information</string>
-    <string name="travel_duration">Travel Duration</string>
+    <string name="travel_duration">Travel lenght</string>
     <string name="enter_current_password">Enter the current password</string>
     <string name="current_password">Current password</string>
     <string name="new_password">New password</string>
