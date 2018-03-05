@@ -69,7 +69,7 @@
     <string name="icon_exp_down">&#xe800;</string>
 
 
-    <string name="btn_insurance">جستجوی بیمه</string>
+    <string name="btn_insurance">Insurance search</string>
     <string name="icon_like">&#xe914;</string>
     <string name="icon_dislike">&#xe915;</string>
     <string name="icon_message">&#xe049;</string>
@@ -1921,7 +1921,7 @@
     <string name="Comment">Comment)</string>
     <string name="CommentUser">User comments)</string>
     <string name="RecomandUser">% This hotel has been suggested</string>
-    <string name="Possibilities">Possibilities</string>
+    <string name="Possibilities">Facilities</string>
     <string name="Around">Around</string>
     <string name="Policy">Policy</string>
     <string name="ReservRoom">Pick and book the room</string>
