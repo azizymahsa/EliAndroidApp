@@ -2283,5 +2283,6 @@
     <string name="iran_sans_normal.ttf">fonts/times.ttf</string>
     <string name="irsans.ttf">fonts/times.ttf</string>
     <string name="mitra.ttf">fonts/times.ttf</string>
+    <string name="select">choose</string>
 </resources>
 

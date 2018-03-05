@@ -54,7 +54,7 @@ public class NumberPickerDialog implements View.OnClickListener {
         numberPicker.setTextSize(R.dimen._16dp_txtSize);
         numberPicker.setSelectedTextSize(R.dimen._16dp_txtSize);
 
-        btnOk.setText("انتخاب");
+        btnOk.setText(activity.getString(R.string.select));
         btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         // numberPicker.setOnClickListener(this);
