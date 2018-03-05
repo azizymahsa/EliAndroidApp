@@ -404,6 +404,22 @@
     <string name="six_months">6 ماه</string>
     <string name="one_year">یکسال</string>
     <string name="select">انتخاب</string>
+    <string name="approve_factor">تایید نهایی فاکتور</string>
+    <string name="contract_didnt_registred">قرار داد ثبت نشد</string>
+    <string name="no_money_has_been_payed_for_this_cart">مبلغی برای این سبد خرید پرداخت نشده است</string>
+    <string name="needed_docs_to_mail">مدارک مورد نیاز به ایمیل</string>
+    <string name="has_been_sent">ارسال شد</string>
+    <string name="contract_has_been_registred_successfully">قرار داد با موفقیت ثبت شد</string>
+    <string name="your_contract_with_number">قرار داد شما با شماره</string>
+    <string name="registred">ثبت شد.</string>
+    <string name="your_internet_connection_is_lost">اینترنت شما قطع و یا از دسترس خارج می باشد</string>
+    <string name="pre_factor_number">شماره پیش فاکتور</string>
+    <string name="payment_details">اطلاعات پرداخت</string>
+    <string name="amount">مبلغ</string>
+    <string name="tracking_code">شماره پیگیری</string>
+    <string name="our_specialists_will_call_you_soon">پیگیر کار شما هستیم، لطفا منتظر تماس کارشناسان ما باشید</string>
+    <string name="re_pay">پرداخت مجدد</string>
+    <string name="return_">بازگشت</string>
 
 
 </resources>
