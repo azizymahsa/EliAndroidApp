@@ -1985,7 +1985,7 @@
     <string name="baby">Child</string>
     <string name="adault">Adult</string>
     <string name="search">Search</string>
-    <string name="login">Login to account</string>
+    <string name="login">Login</string>
     <string name="hotel_reservation">Hotel Reservation</string>
 
     <!--nemati-->
@@ -2023,8 +2023,8 @@
     <string name="Business">Business Class</string>
     <string name="first">First Class</string>
     <string name="AirLine">AirLine</string>
-    <string name="FilterConfirm">FilterConfirm</string>
-    <string name="RemoveFilter">RemoveFilter</string>
+    <string name="FilterConfirm">Filter confirm</string>
+    <string name="RemoveFilter">Remove filter</string>
     <string name="FilterError">Option not selected for filter</string>
     <string name="SortFilter">Sort</string>
     <string name="SortMax">Based on the highest price</string>
