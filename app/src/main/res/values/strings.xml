@@ -1917,16 +1917,16 @@
     <string name="NewComment">Latest comments</string>
     <string name="BenefitComment">The most useful comments</string>
     <string name="AccessError">No access</string>
-    <string name="UserRate">The user has rated</string>
+    <string name="UserRate"> users has rated</string>
     <string name="Comment">Comment)</string>
-    <string name="CommentUser">User comments)</string>
+    <string name="CommentUser">User comments(</string>
     <string name="RecomandUser">% This hotel has been suggested</string>
     <string name="Possibilities">Facilities</string>
     <string name="Around">Around</string>
     <string name="Policy">Policy</string>
-    <string name="ReservRoom">Pick and book the room</string>
+    <string name="ReservRoom">Book a room</string>
     <string name="NoComment">No comments have been posted!</string>
-    <string name="ConfirmComment">Confirm Comment</string>
+    <string name="ConfirmComment">Comment</string>
     <string name="ErrorRoom">No room was found!</string>
     <string name="Comments">Comments</string>
     <string name="Map">Map</string>
@@ -2284,5 +2284,26 @@
     <string name="irsans.ttf">fonts/times.ttf</string>
     <string name="mitra.ttf">fonts/times.ttf</string>
     <string name="select">choose</string>
+    <string name="_0">0 to 2 years</string>
+    <string name="_1">2 to 3 years</string>
+    <string name="_2">3 to 4 years</string>
+    <string name="_3">4 to 5 years</string>
+    <string name="_4">5 to 6 years</string>
+    <string name="_5">6 to 7 years</string>
+    <string name="_6">7 to 8 years</string>
+    <string name="_7">8 to 9 years</string>
+    <string name="_8">9 to 10 years</string>
+    <string name="_9">10 to 11 years</string>
+    <string name="_10">11 to 12 years</string>
+    <string name="_11">12 years</string>
+    <string name="_12">2 years</string>
+    <string name="flight_number_correctly">Enter the one way  flight number correctly</string>
+    <string name="flight_return_number_correctly">Enter the one round trip flight number correctly</string>
+    <string name="destination_airport">Destination airport</string>
+    <string name="hotel_name">Hotel name</string>
+    <string name="departure_hour">Departure hour</string>
+    <string name="return_hour">Return hour</string>
+    <string name="one_way">One way  flight number </string>
+    <string name="round_flight">Round trip flight number</string>
 </resources>
 
