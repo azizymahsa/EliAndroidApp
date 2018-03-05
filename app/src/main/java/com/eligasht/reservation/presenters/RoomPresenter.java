@@ -138,7 +138,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
         final ModelRowCountRoom room = getRooms().get(position);
         holder.txt_adult.setText(String.valueOf(room.getCountB()));
         holder.txt_child.setText(String.valueOf(room.getCountK()));
-        holder.room_title.setText("اتاق" + " " + getStringPosition(position));
+        holder.room_title.setText(context.getString(R.string.room) + " " + getStringPosition(position));
 
         if (!ValidationTools.isEmptyOrNull(room.getChildModels())) {
             ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
@@ -176,7 +176,7 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
                 }
                 room.setCountK(room.getCountK() + 1);
                 holder.txt_child.setText(String.valueOf(room.getCountK()));
-                room.addChildModel(new ChildModel("کودک" + " " + getStringPosition(room.getChildModels().size()), true));
+                room.addChildModel(new ChildModel(context.getString(R.string.BabyPackage) + " " + getStringPosition(room.getChildModels().size()), true));
               //  childAdapter.notifyDataSetChanged();
                 ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
                 holder.rcl_child.showList(childAdapter);
@@ -221,28 +221,26 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
     private String getStringPosition(int position) {
         switch (position) {
             case 0:
-                return "اول";
+                return context.getString(R.string.First);
             case 1:
-                return "دوم";
+                return context.getString(R.string.Second);
             case 2:
-                return "سوم";
+                return context.getString(R.string.Third);
             case 3:
-                return "چهارم";
+                return context.getString(R.string.Fourth);
             case 4:
-                return "پنجم";
+                return context.getString(R.string.Fifth);
             case 5:
-                return "ششم";
+                return context.getString(R.string.Sixth);
             case 6:
-                return "هفتم";
+                return context.getString(R.string.Seventh);
             case 7:
-                return "هشتم";
+                return context.getString(R.string.Eighth);
             case 8:
-                return "نهم";
-
+                return context.getString(R.string.ninth);
             default:
                 return "";
         }
-
 
     }
 

@@ -145,7 +145,7 @@ public class PassengerPresenter implements PassengerContract.Presenter {
             return;
         }
         final BirthDateList passenger = getPassengers().get(position);
-        holder.txt_passenger_title.setText("مسافر" + " " + getStringPosition(position));
+        holder.txt_passenger_title.setText(context.getString(R.string.Passanger)+ " " + getStringPosition(position));
         if(!ValidationTools.isEmptyOrNull(passenger.getBirthDate())){
             if (geo){
                 String birthDay = DateUtil.getLongStringDateInsurance(passenger.getBirthDate(),"yyyy-MM-dd",false);
@@ -157,7 +157,7 @@ public class PassengerPresenter implements PassengerContract.Presenter {
 
             }
         }else {
-            holder.txt_birthday.setText("تاریخ تولد را انتخاب کنید");
+            holder.txt_birthday.setText(context.getString(R.string.Brithday));
         }
         holder.layout_birthday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,23 +187,23 @@ public class PassengerPresenter implements PassengerContract.Presenter {
     private String getStringPosition(int position) {
         switch (position) {
             case 0:
-                return "اول";
+                return context.getString(R.string.First);
             case 1:
-                return "دوم";
+                return context.getString(R.string.Second);
             case 2:
-                return "سوم";
+                return context.getString(R.string.Third);
             case 3:
-                return "چهارم";
+                return context.getString(R.string.Fourth);
             case 4:
-                return "پنجم";
+                return context.getString(R.string.Fifth);
             case 5:
-                return "ششم";
+                return context.getString(R.string.Sixth);
             case 6:
-                return "هفتم";
+                return context.getString(R.string.Seventh);
             case 7:
-                return "هشتم";
+                return context.getString(R.string.Eighth);
             case 8:
-                return "نهم";
+                return context.getString(R.string.ninth);
             default:
                 return "";
         }
