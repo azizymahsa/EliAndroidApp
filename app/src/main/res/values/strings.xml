@@ -1888,7 +1888,7 @@
     <string name="datePickerError">The date passed is greater than the date of the return</string>
     <string name="departTo">From :</string>
     <string name="departFrom">Up to:</string>
-    <string name="DatePickerError2">Can not be selected before today's date</string>
+    <string name="DatePickerError2">Can not be selected before today\'s date</string>
     <string name="NoResult">No results were found for your search!</string>
     <string name="off">% Discount</string>
     <string name="_1star">1 Star</string>
@@ -2240,6 +2240,7 @@
     <string name="text4">Select this item to select the unit</string>
     <string name="text5">Select Office</string>
     <string name="text6">Select this section to select Office</string>
+    <string name="your_time_has_expired">زمان شما به پایان رسید.</string>
     <!--azizi-->
 </resources>
 
