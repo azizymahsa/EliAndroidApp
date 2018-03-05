@@ -61,7 +61,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         public void onTabSelected(TabLayout.Tab tab) {
             switch (tab.getPosition()) {
                 case 0:
-                    btnSaveInfo.setText("ثبت و ذخیره اطلاعات");
+                    btnSaveInfo.setText(R.string.text51);
                     btnSaveInfo.setVisibility(View.VISIBLE);
                     break;
                 case 1:
@@ -69,7 +69,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     //   btnSaveInfo.setText("ارسال مدارک");
                     break;
                 case 2:
-                    btnSaveInfo.setText("تغییر کلمه عبور");
+                    btnSaveInfo.setText(R.string.text52);
                     btnSaveInfo.setVisibility(View.VISIBLE);
 
                     break;
@@ -92,7 +92,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "پروفایل من");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.my_profile));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));

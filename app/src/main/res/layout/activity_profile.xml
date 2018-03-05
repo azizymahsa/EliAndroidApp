@@ -126,7 +126,7 @@
         android:layout_height="@dimen/_40dp"
         android:layout_gravity="center|bottom"
         android:background="@drawable/btngravity_big"
-        android:text="ثبت و ذخیره اطلاعات"
+        android:text="@string/text51"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_16dp_normal_textSize"
         android:textStyle="bold"

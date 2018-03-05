@@ -1951,7 +1951,7 @@
     <string name="please_select_one">Please select one</string>
     <string name="please_select_destination_city">Please select the city of your trip</string>
     <string name="something_went_wron">An error has occurred</string>
-    <string name="please_select_start_trip_date">Departure date</string>
+    <string name="please_select_start_trip_date">Choose the start date of the trip</string>
     <string name="select_destination_country">Select destination country</string>
     <string name="select_departure_date_and_travel_duration">Select departure date and travel duration</string>
     <string name="departure_date">Departure date</string>
@@ -2337,7 +2337,5 @@
     <string name="text51">Record and save information</string>
 
     <string name="text52">Change passwords</string>
-    <string name="arabic">العربی</string>
-    <string name="hotel_policy">Hotel policy</string>
 </resources>
 

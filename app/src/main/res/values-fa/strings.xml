@@ -404,6 +404,18 @@
     <string name="six_months">6 ماه</string>
     <string name="one_year">یکسال</string>
     <string name="select">انتخاب</string>
+    <string name="my_profile">پروفایل من</string>
+    <string name="text20">در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد</string>
+    <string name="text21">در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد</string>
+    <string name="text22">ایمیل وارد شده در حال حاضر در سیستم وجود دارد .</string>
+    <string name="text24">لینک فعال سازی به ایمیل شما ارسال شده است.</string>
+    <string name="text25">در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد</string>
+    <string name="text26">لطفا ایمیل خود را وارد کنید</string>
+    <string name="text27">ایمیل وارد شده صحیح نمی باشد</string>
+    <string name="text28">لطفا رمز عبور خود را وارد کنید</string>
+    <string name="text29">لطفا تکرار رمز عبور را وارد کنید</string>
+    <string name="text30">رمز عبور و تکرار آن با هم مطابقت ندارد .</string>
+    <string name="text40">نام و نام خانوادگی</string>
     <string name="_0">0 تا 2 سال</string>
     <string name="_1">2 تا 3 سال</string>
     <string name="_2">3 تا 4 سال</string>
@@ -443,6 +455,9 @@
     <string name="re_pay">پرداخت مجدد</string>
     <string name="return_">بازگشت</string>
     <string name="hotel_policy">قوانین هتل</string>
+    <string name="text51">ثبت و ذخیره اطلاعات</string>
+
+    <string name="text52">تغییر کلمه عبور</string>
 
 
 </resources>
