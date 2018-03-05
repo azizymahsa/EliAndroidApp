@@ -57,6 +57,7 @@ import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsModel;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.NonScrollGridView;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.ViewPagerAttention;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
 import com.google.android.gms.common.ConnectionResult;
@@ -87,6 +88,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
+
     private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent;
     private NonScrollListView lvRooms;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
@@ -216,9 +218,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         lvRooms = findViewById(R.id.lvRooms);
         roomsAdapter = new RoomsAdapter(roomsModels, this, rlRoot, rlLoading, window);
         lvRooms.setAdapter(roomsAdapter);
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnOneComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnOneComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         lvRooms.setFocusable(false);
         llComment.setFocusable(false);
         svDetail.setFocusable(false);
@@ -688,7 +690,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         TextView textView = new TextView(DetailHotelActivity.this);
                         textView.setText(key);
 
-                        Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
+                        Typeface t = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.iran_sans_bold_ttf));
                         textView.setTypeface(t);
                         textView.setPadding(10, 10, 10, 10);
 

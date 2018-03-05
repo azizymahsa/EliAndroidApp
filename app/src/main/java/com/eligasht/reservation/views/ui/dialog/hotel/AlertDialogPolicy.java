@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -33,18 +34,18 @@ public class AlertDialogPolicy implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_policy, null);
         builder.setView(dialogView);
-        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
-        avi = (AVLoadingIndicatorView) dialogView.findViewById(R.id.avi);
-        tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
-        tvTitle = (TextView) dialogView.findViewById(R.id.tvTitle);
-        tvRoomName= (TextView) dialogView.findViewById(R.id.tvRoomName);
-       /* Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_normal.ttf");
+        btnOk = dialogView.findViewById(R.id.btnOk);
+        avi = dialogView.findViewById(R.id.avi);
+        tvAlert = dialogView.findViewById(R.id.tvAlert);
+        tvTitle = dialogView.findViewById(R.id.tvTitle);
+        tvRoomName = dialogView.findViewById(R.id.tvRoomName);
+       /* Typeface typeface=Typeface.createFromAsset(activity.getAssets(),SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         tvAlert.setTextSize(2,12);
         tvAlert.setLineSpacing(30);
         tvAlert.setTypeFace(typeface);
         tvAlert.setTextColor(ContextCompat.getColor(activity,R.color.text_color_4d));*/
 
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);

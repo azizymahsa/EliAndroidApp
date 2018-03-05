@@ -2,64 +2,37 @@ package com.eligasht.reservation.views.ui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
-import com.eligasht.reservation.models.Country;
 import com.eligasht.reservation.models.model.pack.call.CountryListReq;
 import com.eligasht.reservation.models.model.pack.call.CountryRequestModel;
 import com.eligasht.reservation.models.model.pack.response.CountryListRes;
 import com.eligasht.reservation.tools.ValidationTools;
-import com.eligasht.reservation.tools.db.local.RecentCity_Table;
-import com.eligasht.reservation.tools.db.main.CursorManager;
 import com.eligasht.reservation.views.adapters.GetAirPortMabdaAdapter;
 import com.eligasht.reservation.views.adapters.GetCountriesForInsuranceAdapter;
-import com.eligasht.reservation.views.adapters.pack.CountryAutoAdapter;
 import com.eligasht.reservation.views.components.Header;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -70,19 +43,18 @@ import retrofit2.Response;
 public class GetCountriesForInsuranceActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
+    public static String searchText = "";
+    public ListView list_airport;
+    public ListView listAirPort;
     Handler handler;
     ProgressDialog progressBar;
-    private Handler progressBarHandler = new Handler();
-    public ListView list_airport;
     ArrayList<HashMap<String, String>> mylist = null;
-    public static String searchText = "";
-    private ClientService service;
-    public ListView listAirPort;
-
     GetAirPortMabdaAdapter mAdapter;
-    private EditText searchtxt;
     AVLoadingIndicatorView avi;
     FancyButton btnBack;
+    private Handler progressBarHandler = new Handler();
+    private ClientService service;
+    private EditText searchtxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +67,12 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements He
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setOnClickListener(this);
         service = ServiceGenerator.createService(ClientService.class);
-        searchtxt = (EditText) findViewById(R.id.searchtxt);
+        searchtxt = findViewById(R.id.searchtxt);
         searchtxt.addTextChangedListener(
                 new TextWatcher() {
+                    private final long DELAY = 10; // milliseconds
+                    private Timer timer = new Timer();
+
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
                     }
@@ -105,9 +80,6 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements He
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                     }
-
-                    private Timer timer = new Timer();
-                    private final long DELAY = 10; // milliseconds
 
                     @Override
                     public void afterTextChanged(final Editable s) {
@@ -168,10 +140,10 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements He
         final LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.alert_dialog_net, null);
         mAlertDialog.setCancelable(canelable);
-        FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
-        TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
+        FancyButton btnOk = view.findViewById(R.id.btnOk);
+        TextView tvAlert = view.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.irsans_ttf));
         tvAlert.setText(message);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,18 +1,15 @@
 package com.eligasht.reservation.views.activities.login;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.GsonBuilder;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
@@ -23,9 +20,9 @@ import com.eligasht.reservation.models.model.login.call.RegisterListReq;
 import com.eligasht.reservation.models.model.login.call.RegisterRequestModel;
 import com.eligasht.reservation.models.model.login.response.WebUserRegisterRes;
 import com.eligasht.reservation.tools.ValidationTools;
-import com.eligasht.reservation.tools.WebUserTools;
-import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
+import com.google.gson.GsonBuilder;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -133,7 +130,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
         txtPass = findViewById(R.id.edit_pass);
         txtConfirmPass = findViewById(R.id.edit_confirm_pass);
         btnRegister = findViewById(R.id.btnRegister);
-        btnRegister.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnRegister.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
 
         btnRegister.setOnClickListener(this);
 

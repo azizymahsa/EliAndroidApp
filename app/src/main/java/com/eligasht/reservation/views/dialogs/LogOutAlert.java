@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.activities.main.MainActivity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import cn.refactor.library.SmoothCheckBox;
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -34,12 +35,12 @@ public class LogOutAlert implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_logout, null);
         builder.setView(dialogView);
-        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOkLogout);
-        btnExit = (FancyButton) dialogView.findViewById(R.id.btnExitLogout);
-        tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
+        btnOk = dialogView.findViewById(R.id.btnOkLogout);
+        btnExit = dialogView.findViewById(R.id.btnExitLogout);
+        tvAlert = dialogView.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnExit.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnExit.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         dialog = builder.create();

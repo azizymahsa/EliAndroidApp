@@ -1,7 +1,6 @@
 package com.eligasht.reservation.views.ui.dialog.hotel;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -19,15 +18,12 @@ import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.views.adapters.hotel.FilterHotelTypeAdapter;
 import com.eligasht.reservation.views.adapters.hotel.PriceFilterAdapter;
+import com.eligasht.reservation.views.adapters.hotel.StarFilterAdapter;
+import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 
 import java.util.ArrayList;
 
-import cn.refactor.library.SmoothCheckBox;
 import mehdi.sakout.fancybuttons.FancyButton;
-
-import com.eligasht.reservation.views.adapters.hotel.StarFilterAdapter;
-import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 
 /**
  * Created by Reza.nejati on 1/7/2018.
@@ -48,15 +44,15 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
     FilterHotelTypeAdapter filterHotelTypeAdapter, filterHotelFacilitiesAdapter, filterHotelLocationAdapter, lvBestOffAdapter;
     ArrayList<FilterHotelTypeModel> filterHotelTypeModels, filterHotelFacilitiesModels, filterHotelLocationModels;
     ArrayList<FilterPriceModel> filterHotelPriceModel;
-    private ArrayList<FilterHotelTypeModel> filterHotelBestOffModels = new ArrayList<>();
-    private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     PriceFilterAdapter priceFilterAdapter;
     StarFilterAdapter starFilterAdapter;
     String search;
     ScrollView scrollViewObject;
     EditText searchtxt;
-
     boolean remove = false;
+    private ArrayList<FilterHotelTypeModel> filterHotelBestOffModels = new ArrayList<>();
+    private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
+
     public static FilterHotelDialog newInstance(final Context activity, ArrayList<FilterModel> filter,
                                                 FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
                                                 final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,
@@ -77,18 +73,18 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
 
-        btnOk = (FancyButton) rootView.findViewById(R.id.btnOk);
-        scrollViewObject = (ScrollView) rootView.findViewById(R.id.scrollViewObject);
-        btnDeletFilter = (FancyButton) rootView.findViewById(R.id.btnDeletFilter);
-        searchtxt = (EditText) rootView.findViewById(R.id.searchtxt);
+        btnOk = rootView.findViewById(R.id.btnOk);
+        scrollViewObject = rootView.findViewById(R.id.scrollViewObject);
+        btnDeletFilter = rootView.findViewById(R.id.btnDeletFilter);
+        searchtxt = rootView.findViewById(R.id.searchtxt);
 
         searchtxt.setText(search);
-        lvHotelTypes = (NonScrollListView) rootView.findViewById(R.id.lvHotelTypes);
-        lvFacilitiesTypes = (NonScrollListView) rootView.findViewById(R.id.lvFacilitiesTypes);
-        lvLocationTypes = (NonScrollListView) rootView.findViewById(R.id.lvLocationTypes);
-        lvPrice = (NonScrollListView) rootView.findViewById(R.id.lvPrice);
-        lvBestOff = (NonScrollListView) rootView.findViewById(R.id.lvBestOff);
-        lvStar = (NonScrollListView) rootView.findViewById(R.id.lvStar);
+        lvHotelTypes = rootView.findViewById(R.id.lvHotelTypes);
+        lvFacilitiesTypes = rootView.findViewById(R.id.lvFacilitiesTypes);
+        lvLocationTypes = rootView.findViewById(R.id.lvLocationTypes);
+        lvPrice = rootView.findViewById(R.id.lvPrice);
+        lvBestOff = rootView.findViewById(R.id.lvBestOff);
+        lvStar = rootView.findViewById(R.id.lvStar);
 
         filterHotelTypeAdapter = new FilterHotelTypeAdapter(filterHotelTypeModels, activity);
         filterHotelFacilitiesAdapter = new FilterHotelTypeAdapter(filterHotelFacilitiesModels, activity);
@@ -200,8 +196,8 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             }
         });
 
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnDeletFilter.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
+        btnDeletFilter.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         btnDeletFilter.setOnClickListener(this);
         // Do something else
@@ -289,14 +285,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         }*//*
 }*/
 
-    public interface FilterHotelDialogListenerArray {
-        public void onReturnValue(ArrayList<FilterModel> type, String search,
-                                  ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
-                                  ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,
-                                  ArrayList<FilterPriceModel> filterHotelPriceModel, ArrayList<FilterHotelTypeModel> filterHotelLocationModels, ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
-                , ArrayList<FilterStarModel> filterHotelStarsModels, boolean remove);
-    }
-
     private void initialize(final Context activity, ArrayList<FilterModel> filter,
                             FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
                             final ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels, final ArrayList<FilterPriceModel> filterHotelPriceModel,
@@ -315,6 +303,13 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         this.filterHotelBestOffModels = filterHotelBestOffModels;
 
 
+    }
 
+    public interface FilterHotelDialogListenerArray {
+        void onReturnValue(ArrayList<FilterModel> type, String search,
+                           ArrayList<FilterHotelTypeModel> filterHotelTypeModels,
+                           ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels,
+                           ArrayList<FilterPriceModel> filterHotelPriceModel, ArrayList<FilterHotelTypeModel> filterHotelLocationModels, ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
+                , ArrayList<FilterStarModel> filterHotelStarsModels, boolean remove);
     }
 }

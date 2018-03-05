@@ -1,6 +1,5 @@
 package com.eligasht.reservation.views.fragments.pack;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,25 +7,11 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.eligasht.reservation.views.ui.GetCitiesForPackActivity;
-import com.google.firebase.crash.FirebaseCrash;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
-import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.orhanobut.hawk.Hawk;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
@@ -42,7 +27,16 @@ import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.activities.AddRoomActivity;
 import com.eligasht.reservation.views.activities.pack.SearchPackActivity;
-import com.eligasht.reservation.views.adapters.pack.CitySpinnerAdapter;
+import com.eligasht.reservation.views.ui.GetCitiesForPackActivity;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
+import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.orhanobut.hawk.Hawk;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -52,7 +46,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,24 +63,15 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
 
+    private final int ADD_ROOM_REQUEST = 100;
     public ViewGroup view;
     public ViewGroup layout_room;
     public TextView txtCity;
     public TextView btnSearchPackage;
     public LinearLayout btn_return_date;
     public LinearLayout btn_depart_date, linear_picker_depart, linear_picker_return;
-    private final int ADD_ROOM_REQUEST = 100;
-    private ClientService service;
     DatePickerDialog datePickerDialogDepart, datePickerDialogReturn;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogDepartgGregorian, datePickerDialogReturnGregorian;
-    private Gson gson;
-    private ArrayList<ModelRowCountRoom> roomsSelected;
-    private TextView txt_count_adult;
-    private TextView txt_count_child;
-    private TextView txt_count_room;
-    private HotelCity hotelCity;
-    private String departureFrom;
-    private String departureTo;
     int month;
     int year_;
     int day;
@@ -98,6 +82,16 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     TextView txt_depart_date;
     boolean geo = false;
     LottieAnimationView lottieAnimationView;
+    AlertDialog mAlertDialog;
+    private ClientService service;
+    private Gson gson;
+    private ArrayList<ModelRowCountRoom> roomsSelected;
+    private TextView txt_count_adult;
+    private TextView txt_count_child;
+    private TextView txt_count_room;
+    private HotelCity hotelCity;
+    private String departureFrom;
+    private String departureTo;
 
     public static PackageFragment instance() {
         PackageFragment fragment = new PackageFragment();
@@ -126,7 +120,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     public void onStop() {
         super.onStop();
     }
-
 
     @Override
     public void onDestroy() {
@@ -200,14 +193,14 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
     private void initViews() {
 
-        layout_room = (ViewGroup) view.findViewById(R.id.layout_room);
+        layout_room = view.findViewById(R.id.layout_room);
         txtCity = view.findViewById(R.id.txtCity);
         btnSearchPackage = view.findViewById(R.id.btnSearchPackage);
-        btn_return_date = (LinearLayout) view.findViewById(R.id.btn_return_date);
-        btn_depart_date = (LinearLayout) view.findViewById(R.id.btn_depart_date);
-        txt_count_adult = (TextView) view.findViewById(R.id.txt_count_adult);
-        txt_count_child = (TextView) view.findViewById(R.id.txt_count_child);
-        txt_count_room = (TextView) view.findViewById(R.id.txt_count_room);
+        btn_return_date = view.findViewById(R.id.btn_return_date);
+        btn_depart_date = view.findViewById(R.id.btn_depart_date);
+        txt_count_adult = view.findViewById(R.id.txt_count_adult);
+        txt_count_child = view.findViewById(R.id.txt_count_child);
+        txt_count_room = view.findViewById(R.id.txt_count_room);
         txt_return_date = view.findViewById(R.id.txt_return_date);
         txt_depart_date = view.findViewById(R.id.txt_depart_date);
         linear_picker_depart = view.findViewById(R.id.linear_picker_depart);
@@ -455,7 +448,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         return roomList;
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -508,9 +500,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
     }
 
-
-    AlertDialog mAlertDialog;
-
     public void needShowAlertDialog(String message, boolean canelable) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
   /*      if (mAlertDialog != null && mAlertDialog.isShowing()) {
@@ -523,7 +512,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
         TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         tvAlert.setText(message);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -634,7 +623,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             Date date;
             formatter = new SimpleDateFormat("yyyy/MM/dd");
             try {
-                date = (Date) formatter.parse(currentDateTime);
+                date = formatter.parse(currentDateTime);
                 cal.setTime(date);
             } catch (ParseException e) {
                 e.printStackTrace();

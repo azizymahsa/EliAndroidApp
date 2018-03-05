@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,46 +17,33 @@ import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.pack.GetPackageRoutesResult;
-import com.eligasht.reservation.models.model.pack.call.CountryListReq;
-import com.eligasht.reservation.models.model.pack.call.CountryRequestModel;
-import com.eligasht.reservation.models.model.pack.response.CountryListRes;
-import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.views.adapters.GeCitiesForPackAdapter;
 import com.eligasht.reservation.views.adapters.GetAirPortMabdaAdapter;
-import com.eligasht.reservation.views.adapters.GetCountriesForInsuranceAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.orhanobut.hawk.Hawk;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Timer;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class GetCitiesForPackActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
+    public static String searchText = "";
+    public ListView list_airport;
+    public ListView listAirPort;
     Handler handler;
     ProgressDialog progressBar;
-    private Handler progressBarHandler = new Handler();
-    public ListView list_airport;
     ArrayList<HashMap<String, String>> mylist = null;
-    public static String searchText = "";
-    private ClientService service;
-    public ListView listAirPort;
-
     GetAirPortMabdaAdapter mAdapter;
-    private EditText searchtxt;
     AVLoadingIndicatorView avi;
     FancyButton btnBack;
+    private Handler progressBarHandler = new Handler();
+    private ClientService service;
+    private EditText searchtxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +69,10 @@ public class GetCitiesForPackActivity extends BaseActivity implements Header.onS
         final LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.alert_dialog_net, null);
         mAlertDialog.setCancelable(canelable);
-        FancyButton btnOk = (FancyButton) view.findViewById(R.id.btnOk);
-        TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
+        FancyButton btnOk = view.findViewById(R.id.btnOk);
+        TextView tvAlert = view.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("irsans.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.irsans_ttf));
         tvAlert.setText(message);
         btnOk.setOnClickListener(new OnClickListener() {
             @Override

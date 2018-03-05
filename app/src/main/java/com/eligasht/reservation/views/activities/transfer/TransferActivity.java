@@ -1,18 +1,16 @@
 package com.eligasht.reservation.views.activities.transfer;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
-import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -20,10 +18,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.AirportTransportServicePrice;
 import com.eligasht.reservation.base.BaseActivity;
@@ -38,8 +32,12 @@ import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.app.SplashDialog;
-
+import com.google.gson.Gson;
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.DateFormat;
@@ -71,6 +69,20 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     RelativeLayout rlLoading2;
     SplashDialog splashDialog;
     LinearLayout llRoot;
+
+    public static String date_server(int y, int m, int d) {
+        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
+
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
+        String formatted = format1.format(date.getTime());
+        String[] dateGrg = formatted.split("/");
+        int monthS = Integer.valueOf(dateGrg[0]);
+        long dayS = Long.valueOf(dateGrg[1]);
+        int yearS = Integer.valueOf(dateGrg[2]);
+
+
+        return yearS + "/" + monthS + "/" + dayS;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +133,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
                 if (ValidationTools.isEmptyOrNull(tvDepurtureFlt.getText().toString())){
-                    Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf");
+                    Typeface t = Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
                     tvDepurtureFlt.setTypeface(t);
                 }else{
                     Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
@@ -146,7 +158,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
                 if (ValidationTools.isEmptyOrNull(tvReturnFlt.getText().toString())){
-                    Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf");
+                    Typeface t = Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
                     tvReturnFlt.setTypeface(t);
                 }else{
                     Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
@@ -288,7 +300,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 Date date;
                 formatter = new SimpleDateFormat("yyyy/MM/dd");
                 try {
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     datePickerDialogGregorian2.setMinDate(cal);
@@ -514,7 +526,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
     }
-
 
     @Override
     protected void onResume() {
@@ -796,20 +807,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
         }
 
-    }
-
-    public static String date_server(int y, int m, int d) {
-        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
-
-        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
-        String formatted = format1.format(date.getTime());
-        String[] dateGrg = formatted.split("/");
-        int monthS = Integer.valueOf(dateGrg[0]);
-        long dayS = Long.valueOf(dateGrg[1]);
-        int yearS = Integer.valueOf(dateGrg[2]);
-
-
-        return yearS + "/" + monthS + "/" + dayS;
     }
 
     @Override
