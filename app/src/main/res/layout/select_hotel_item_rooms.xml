@@ -135,7 +135,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_toLeftOf="@+id/tv2"
                         android:gravity="center"
-                        android:text="قوانین هتل"
+                        android:text="@string/info_hotel"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/_12dp_normal_textSize"
 
