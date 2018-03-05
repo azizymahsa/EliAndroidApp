@@ -2081,8 +2081,8 @@
     <string name="origin_colon">Origin :</string>
     <string name="destination_colon">Destination :</string>
     <string name="newborn">Baby</string>
-    <string name="departure">Departure</string>
-    <string name="departure_and_return">Departure Return</string>
+    <string name="departure">One Way</string>
+    <string name="departure_and_return">Round Trip</string>
     <string name="name_en">Name(En)*</string>
     <string name="please_enter_your_mobile_number">Please enter the mobile number</string>
     <string name="SelectLanguage">Select the application language</string>

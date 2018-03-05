@@ -132,6 +132,7 @@
             android:gravity="left|center_vertical"
             android:text="@string/payment"
             android:textColor="#aaaaaa"
+            android:textAllCaps="false"
             android:textSize="@dimen/_10dp_textSize"  />
 
         <Button
@@ -153,6 +154,7 @@
             android:gravity="left|center_vertical"
             android:text="@string/passenger"
             android:textColor="#aaaaaa"
+            android:textAllCaps="false"
             android:textSize="@dimen/_10dp_textSize"  />
 
         <Button
@@ -163,6 +165,7 @@
             android:background="@drawable/transparentt"
             android:gravity="center|left"
             android:text="@string/partner"
+            android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="@dimen/_10dp_textSize" />
     </LinearLayout>
