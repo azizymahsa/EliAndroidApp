@@ -281,7 +281,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                     }
                 });
             } catch (JSONException e) {
-                Toast.makeText(AboutActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+                Toast.makeText(AboutActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
             }
 
         }

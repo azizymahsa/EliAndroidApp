@@ -2243,6 +2243,23 @@
     <string name="your_time_has_expired">Your time has expired</string>
     <string name="change_flight">Change flight</string>
     <string name="class_flight">Flight class</string>
+    <string name="cities_all_over_the_world">شهر در سراسر جهان</string>
+    <string name="confirmed_airlines">ایرلاین معتبر</string>
+    <string name="hotels_all_over_the_world">hotels all over the world</string>
+    <string name="room_information">room information</string>
+    <string name="numbers_must_be_less_than_nine">numbers must be less than nine</string>
+    <string name="there_is_no_access">there is no access</string>
+    <string name="eligasht">eligasht</string>
+    <string name="eligasht_address_">number 7 - 23rd alley - Khaled eslamboli street - Tehran - Iran</string>
+    <string name="follow_us_on_social_networks">follow us on social networks ...</string>
+    <string name="send_message_form">send message form</string>
+    <string name="name_and_family">name and family</string>
+    <string name="phone_number">phone number</string>
+    <string name="message_subject">message subject</string>
+    <string name="message_text">message text</string>
+    <string name="send_message">send message</string>
+    <string name="activation">activation</string>
+    <string name="your_gps_is_off">your gps is off.</string>
     <!--azizi-->
 </resources>
 

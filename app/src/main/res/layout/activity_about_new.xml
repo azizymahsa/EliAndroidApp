@@ -95,7 +95,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_5dp_margin"
                             android:gravity="center"
-                            android:text="شهر در سراسر جهان"
+                            android:text="@string/cities_all_over_the_world"
                             android:textColor="#2e3192"
                             android:textSize="@dimen/_aboutdp" />
                     </LinearLayout>
@@ -143,7 +143,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_5dp_margin"
                             android:gravity="center"
-                            android:text="ایرلاین معتبر"
+                            android:text="@string/confirmed_airlines"
                             android:textColor="#2e3192"
                             android:textSize="@dimen/_aboutdp" />
                     </LinearLayout>
@@ -191,7 +191,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_5dp_margin"
                             android:gravity="center"
-                            android:text="هتل در سراسر جهان"
+                            android:text="@string/hotels_all_over_the_world"
                             android:textColor="#2e3192"
                             android:textSize="@dimen/_aboutdp" />
                     </LinearLayout>
@@ -237,7 +237,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="درباره ما"
+                            android:text="@string/about_us"
                             android:textColor="#2e3192"
                             android:textSize="@dimen/_25dp" />
 

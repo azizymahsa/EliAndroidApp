@@ -226,7 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="شرایط و قوانین استفاده از سرویس‌ها و خدمات الی گشت"
+                        android:text="@string/terms_and_conditions"
                         android:textColor="#2e3192"
                         android:textSize="@dimen/_14dp_txtSize" />
 

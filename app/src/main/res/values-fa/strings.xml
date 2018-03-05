@@ -360,4 +360,20 @@
     <string name="text4">برای انتخاب واحد این قسمت را انتخاب کنید</string>
     <string name="text5">انتخاب آفیس</string>
     <string name="text6">برای انتخاب آفیس این قسمت را انتخاب کنید</string>
+    <string name="hotels_all_over_the_world">هتل در سراسر جهان</string>
+    <string name="room_information">اطلاعات اتاق</string>
+    <string name="numbers_must_be_less_than_nine">تعداد نباید بیشتر از ۹ نفر باشد .</string>
+    <string name="there_is_no_access">امکان دسترسی وجود ندارد</string>
+    <string name="eligasht">الی گشت</string>
+    <string name="eligasht_address_">تهران -خیابان خالد اسلامبولی کوچه 23 پلاک 7</string>
+    <string name="follow_us_on_social_networks">ما را در شبکه های اجتماعی دنبال کنید ...</string>
+    <string name="send_message_form">فرم ارسال پیام</string>
+    <string name="name_and_family">نام و نام خانوادگی</string>
+    <string name="phone_number">شماره تماس</string>
+    <string name="message_subject">موضوع پیام</string>
+    <string name="message_text">متن پیام</string>
+    <string name="send_message">ارسال پیام</string>
+    <string name="activation">فعال سازی</string>
+    <string name="your_gps_is_off">موقعیت یاب دستگاه شما غیر فعال است.</string>
+
 </resources>
