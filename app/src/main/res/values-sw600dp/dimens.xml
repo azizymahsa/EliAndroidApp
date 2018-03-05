@@ -48,7 +48,7 @@
     <dimen name="_15dp">25dp</dimen>
     <dimen name="detail_setting">18sp</dimen>
 
-
+    <dimen name="bottom_tab">18dp</dimen>
     <dimen name="_150dp">250dp</dimen>
 
 
