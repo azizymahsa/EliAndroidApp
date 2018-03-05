@@ -1947,7 +1947,6 @@
     <string name="Brithday">لطفا تاریخ تولد خود را انتخاب نمایید</string>
     <string name="brithdayError">لطفا تاریخ تولد مسافران را وارد نمایید .</string>
     <string name="Passanger">Passanger</string>
-
     <string name="select_return_date">Choose the date back</string>
     <string name="please_select_one">Please select one</string>
     <string name="please_select_destination_city">Please select the city of your trip</string>
@@ -1988,6 +1987,8 @@
     <string name="search">Search</string>
     <string name="login">Login to account</string>
     <string name="hotel_reservation">Hotel Reservation</string>
+
+    <!--nemati-->
     <string name="hotel_reservation_and_plane_ticket">Plane Ticket + hotel reservation</string>
     <string name="travel_tour">Travel Tour</string>
     <string name="travel_insurance">Travel Insurance</string>
@@ -2049,8 +2050,6 @@
     <string name="OfferTo">پیشنهاد برای</string>
     <string name="ServicesPackage">خدمات قابل ارائه</string>
     <string name="InfoAirline">مشخصات پرواز</string>
-
-
     <string name="travel_duration">Travel Duration</string>
     <string name="enter_current_password">کلمه عبور فعلی را وارد کنید</string>
     <string name="current_password">کلمه عبور فعلی</string>
@@ -2090,6 +2089,7 @@
     <string name="Persian">فارسی</string>
     <string name="English">English</string>
     <string name="IrOK">Ok</string>
+    <!--nejati-->
     <string name="PostComment">Post Comment</string>
     <string name="CommentFor">Comment For</string>
     <string name="FacilityHotelComment">Facility Hotel</string>
@@ -2151,5 +2151,89 @@
     <string name="add_to_shoping_cart">افزودن به سبد خرید</string>
     <string name="added">Added</string>
     <string name="total_added_price">Total Added Price</string>
+    <string name="Child">کودک</string>
+    <string name="Please_choose_a_gender">لطفا جنسیت را انتخاب کنید</string>
+    <string name="man">مرد</string>
+    <string name="Female">زن</string>
+    <string name="Please_enter_your_residence">لطفا محل اقامت را وارد کنید</string>
+    <string name="Please_enter_your_nationality">لطفا ملیت را وارد کنید</string>
+    <string name="Please_enter_the_date_of_birth">لطفا تاریخ تولد را وارد کنید</string>
+    <string name="Please_enter_a_name_in_English">لطفا نام را وارد کنید(به انگلیسی)</string>
+    <string name="Please_enter_a_surname_in_English">لطفا نام خانوادگی را وارد کنید(به انگلیسی)</string>
+    <string name="Please_enter_your_passport_expiration_date">لطفا انقضاء پاسپورت را وارد کنید</string>
+    <string name="Please_enter_the_passport_number_correctly">لطفا شماره پاسپورت را صحیح وارد کنید</string>
+    <string name="Please_enter_the_passport_number">لطفا شماره پاسپورت را وارد کنید</string>
+    <string name="Please_enter_the_correct_code">لطفا کدملی را صحیح وارد کنید</string>
+    <string name="Please_enter_the_email">لطفا ایمیل را وارد کنید</string>
+    <string name="Please_enter_a_name_in_Persian">لطفا نام را وارد کنید(به فارسی)</string>
+    <string name="Please_enter_last_name_in_Persian">لطفا نام خانوادگی را وارد کنید(به فارسی)</string>
+    <string name="Please_enter_the_mobile_number">لطفا شماره موبایل را وارد کنید</string>
+    <string name="Please_enter_the_national_code">لطفا کد ملی را وارد کنید</string>
+    <string name="Rial">ریال</string>
+    <string name="Error_getting_information_from_eli">خطا در دریافت اطلاعات از الی گشت</string>
+    <string name="An_error_has_occurred">خطایی رخ داده است !</string>
+    <string name="Approval_and_payment_of_pre_invoice">تایید و پرداخت پیش فاکتور</string>
+    <string name="Add_to_cart_services">افزودن خدمات به سبد خرید</string>
+    <string name="passneger_info">اطلاعات مسافران</string>
+    <string name="Buyer_Specifications">مشخصات خریدار</string>
+    <string name="Traveler_info">اطلاعات مسافران</string>
+    <string name="Email_format_is_correct">ایمیل با فرمت صحیح باشد(test@test.com)</string>
+    <string name="Name_of_at_least_2_characters_and_maximum_100_characters">نام حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد</string>
+    <string name="The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters">نام خانوادگی حداقل 2 کاراکتر و حداکثر 100 کاراکتر می باشد</string>
+    <string name="Enter_the_correct_mobile_format">موبایل با  فرمت صحیح وارد شود(مانند ...0912)</string>
+    <string name="The_national_code_is_not_correct">کد ملی صحیح نمی باشد(10رقمی)</string>
+    <string name="child">کودک</string>
+    <string name="Enter_the_passport_number_correctly">شماره پاسپورت را درست وارد کنید</string>
+    <string name="Enter_the_place_of_residence">محل اقامت را وارد  کنید</string>
+    <string name="Enter_your_nationality">ملیت را وارد کنید</string>
+    <string name="Enter_the_date_of_birth">تاریخ تولد را وارد کنید</string>
+    <string name="baby_pass">نوزاد</string>
+    <string name="Enter_the_passport_expiration_date">انقضا پاسپورت را وارد کنید</string>
+    <!--heydari-->
+    <string name="Enter_your_gender">جنسیت را وارد کنید</string>
+    <string name="First_passenger_information">اطلاعات مسافر اول ( بزرگسال )</string>
+    <string name="Passenger_information">اطلاعات مسافر</string>
+    <string name="adult_">(بزرگسال)</string>
+    <string name="adult">بزرگسال</string>
+    <string name="child_">(کودک)</string>
+    <string name="baby_">(نوزاد)</string>
+    <string name="First">اول</string>
+    <string name="Second">دوم</string>
+    <string name="Third">سوم</string>
+    <string name="Fourth">چهارم</string>
+    <string name="Fifth">پنجم</string>
+    <string name="Sixth">ششم</string>
+    <string name="Seventh">هفتم</string>
+    <string name="Eighth">هشتم</string>
+    <string name="ninth">نهم</string>
+    <string name="info_passenger">اطلاعات مسافر</string>
+    <string name="not_connection">ارتباط با سرور برقرار نشد !!</string>
+    <string name="payment">پرداخت</string>
+    <string name="servis">خدمات</string>
+    <string name="passengers">مسافران</string>
+    <string name="partner">خریدار</string>
+    <string name="gender">جنسیت</string>
+    <string name="please_pesrsian">لطفا فارسی وارد کنید</string>
+    <string name="name_family">نام خانوادگی</string>
+    <string name="code_meli">کدملی</string>
+    <string name="email_">ایمیل</string>
+    <string name="Verification_and_next_step">تایید و گام بعدی</string>
+    <string name="first_room">اتاق اول</string>
+    <string name="please_eng">لطفا انگلیسی وارد کنید</string>
+    <string name="number_pass">شماره پاسپورت</string>
+    <string name="meli_code">کد ملی</string>
+    <string name="date_birth">تاریخ تولد</string>
+    <string name="exp_pas">انقضاء پاسپورت</string>
+    <string name="more_data">اطلاعات بیشتر</string>
+    <string name="nationality">ملیت</string>
+    <string name="eghamat_local">محل اقامت</string>
+    <string name="sum_khadamat">جمع کل خدمات:</string>
+    <string name="moshakhasat_mosafer">مشخصات مسافران</string>
+    <string name="info_flight">اطاعات پرواز</string>
+    <string name="detail_hotel">جزئیات هتل</string>
+    <string name="Available_services">خدمات قابل ارائه</string>
+    <string name="The_amount_payable">مبلغ قابل پرداخت:</string>
+    <string name="Registration_and_payment">ثبت و پرداخت</string>
+    <!--azizi-->
 </resources>
 
