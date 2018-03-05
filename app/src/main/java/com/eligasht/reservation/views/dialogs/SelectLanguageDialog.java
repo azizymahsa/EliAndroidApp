@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.dialogs;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -50,6 +51,9 @@ public class SelectLanguageDialog implements View.OnClickListener {
         btnWifi.setOnClickListener(this);
         dialogView.findViewById(R.id.txt_english).setOnClickListener(this);
         dialogView.findViewById(R.id.txt_persian).setOnClickListener(this);
+
+
+
         if (Prefs.getString("lang", "fa").equals("fa")) {
             england.setBackgroundResource(R.color.white);
             iran.setBackgroundResource(R.drawable.stroke_pruple);
@@ -105,10 +109,12 @@ public class SelectLanguageDialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.accept:
-                if (lang.equals("fa"))
+                if (lang.equals("fa")){
                     listener.onLanguageCLick("fa");
-                else
+                }
+                else{
                     listener.onLanguageCLick("en");
+                }
                 dialog.dismiss();
                 break;
             case R.id.txt_persian:
