@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/tools"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
-    xmlns:swipe="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,14 +18,14 @@
         android:minHeight="?attr/actionBarSize">
 
         <mehdi.sakout.fancybuttons.FancyButton
-            android:layout_alignParentRight="true"
             android:id="@+id/btnBack"
             android:layout_width="@dimen/toolbar_bottom_width_50dp"
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_gravity="center"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
-            android:layout_centerVertical="true"
             fancy:fb_radius="200dp"
             fancy:fb_text=" "
             fancy:fb_textColor="#FFFFFF"
@@ -280,7 +279,7 @@
                         android:text="@string/LastDay"
 
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_14dp_txtSize" />
+                        android:textSize="@dimen/bottom_tab" />
 
 
                 </RelativeLayout>
@@ -315,7 +314,7 @@
 
                         android:text="@string/NextDay"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_14dp_txtSize" />
+                        android:textSize="@dimen/bottom_tab" />
 
                     <TextView
 
@@ -368,7 +367,7 @@
                         android:gravity="center"
                         android:text="@string/Filter"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_14dp_txtSize" />
+                        android:textSize="@dimen/bottom_tab" />
 
                     <TextView
                         android:id="@+id/tvFilterIcon"
@@ -425,7 +424,7 @@
                         android:gravity="center"
                         android:text="@string/Sort"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_14dp_txtSize" />
+                        android:textSize="@dimen/bottom_tab" />
 
                     <TextView
                         android:id="@+id/tvSortIcon"

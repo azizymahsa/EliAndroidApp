@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:swipe="http://schemas.android.com/apk/res-auto"
+	xmlns:card_view="http://schemas.android.com/tools"
+	xmlns:fancy="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/rlRoot"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	xmlns:fancy="http://schemas.android.com/apk/res-auto"
-	xmlns:card_view="http://schemas.android.com/tools"
-	android:id="@+id/rlRoot"
 	android:orientation="vertical">
 
 
@@ -52,68 +51,68 @@
 					android:layout_height="match_parent"
 					android:layout_centerHorizontal="true"
 					android:layout_centerVertical="true"
-					android:orientation="vertical"
 					android:gravity="center"
+					android:orientation="vertical"
 					>
 
 
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
-						android:layout_weight="100"
 						android:layout_gravity="center"
+						android:layout_weight="100"
 						android:orientation="horizontal"
 						>
 						<TextView
 							android:id="@+id/tvChangeFlight"
 							android:layout_width="0dp"
-							android:layout_weight="0.5"
 							android:layout_height="wrap_content"
-							android:gravity="center"
 							android:layout_gravity="center"
-							android:visibility="gone"
+							android:layout_weight="0.5"
+							android:gravity="center"
 							android:textColor="#FFFFFF"
 							android:textSize="@dimen/toolbar_title_16dp"
+							android:visibility="gone"
 
 							/>
 						<TextView
 							android:id="@+id/txtCityBargashtt"
 							android:layout_width="0dp"
-							android:layout_weight="0.5"
 							android:layout_height="wrap_content"
-							android:gravity="right|center"
 							android:layout_gravity="center"
+							android:layout_weight="0.5"
+							android:gravity="right|center"
 							android:text="tvTitle"
-							android:visibility="visible"
 							android:textColor="#FFFFFF"
 							android:textSize="@dimen/toolbar_title_16dp"
+							android:visibility="visible"
 							/>
 						<TextView
 							android:id="@+id/txticon"
 							android:layout_width="0dp"
-							android:layout_weight="0.12"
 							android:layout_height="wrap_content"
 							android:layout_gravity="center"
-							android:text="@string/icon_plane"
-							android:visibility="visible"
-							android:textAppearance="@style/IconMenu"
+							android:layout_weight="0.12"
 							android:gravity="center"
+							android:text="@string/icon_plane"
+							android:textAppearance="@style/IconMenu"
 							android:textColor="@color/white"
+							android:visibility="visible"
 
 						 />
 						<TextView
 							android:id="@+id/txtCityRaft"
 							android:layout_width="0dp"
-							android:layout_weight="0.5"
 							android:layout_height="wrap_content"
 							android:layout_centerHorizontal="true"
-							android:gravity="left|center"
 							android:layout_gravity="center"
+							android:layout_weight="0.5"
+							android:gravity="left|center"
 
 							android:text="tvTitle"
-							android:visibility="visible"
 							android:textColor="#FFFFFF"
 							android:textSize="@dimen/toolbar_title_16dp"
+							android:visibility="visible"
 
 							/>
 					</LinearLayout>
@@ -121,14 +120,14 @@
 						android:id="@+id/txtCityBargasht"
 						android:layout_width="100dp"
 						android:layout_height="wrap_content"
-						android:gravity="center"
-						android:textColor="@android:color/white"
-						android:textSize="@dimen/_12dp"
+						android:layout_below="@+id/txtCityRaft"
 						android:layout_centerHorizontal="true"
 						android:layout_marginRight="2dp"
-						android:layout_below="@+id/txtCityRaft"
-						android:text="tvCount"
 						android:layout_marginTop="2dp"
+						android:gravity="center"
+						android:text="tvCount"
+						android:textColor="@android:color/white"
+						android:textSize="@dimen/_12dp"
 						android:visibility="gone"/>
 
 
@@ -137,14 +136,14 @@
 						android:layout_width="match_parent"
 						android:layout_height="0dp"
 						android:layout_weight="100"
+						android:ellipsize="end"
+
 						android:gravity="center"
-
-						android:textColor="@android:color/white"
-						android:textSize="@dimen/toolbar_desc_12dp"
 						android:maxLines="1"
+						android:textColor="@android:color/white"
 
 
-						android:ellipsize="end"/>
+						android:textSize="@dimen/toolbar_desc_12dp" />
 
 
 
@@ -189,8 +188,8 @@
 						android:id="@+id/txt_hom"
 						android:layout_width="@dimen/_30dp"
 						android:layout_height="@dimen/_30dp"
-						android:background="@drawable/e_logo"
 						android:layout_centerInParent="true"
+						android:background="@drawable/e_logo"
 
 						/>
 
@@ -203,15 +202,15 @@
 				android:id="@+id/txtBack"
 				android:layout_width="@dimen/toolbar_bottom_width_50dp"
 				android:layout_height="@dimen/toolbar_bottom_width_50dp"
+				android:layout_gravity="right|center"
+				android:gravity="right"
 				fancy:fb_defaultColor="@android:color/transparent"
 				fancy:fb_focusColor="@color/focusColor"
-				fancy:fb_radius="200dp"
-				fancy:fb_textColor="#FFFFFF"
 
-				android:layout_gravity="right|center"
-				fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
+				fancy:fb_radius="200dp"
 				fancy:fb_text=" "
-				android:gravity="right"/>
+				fancy:fb_textColor="#FFFFFF"
+				fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
 
 
 
@@ -222,8 +221,8 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical"
-			android:layout_below="@+id/toolbarLayout">
+			android:layout_below="@+id/toolbarLayout"
+			android:orientation="vertical">
 
 <!--			///////////////////////PIN HEADER///////////////////////////////////-->
 			<!-- //////////////////////END PIN HEADER/////////////////////////////// -->
@@ -241,14 +240,14 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
-				android:orientation="vertical"
-				android:layout_weight="100">
+				android:layout_weight="100"
+				android:orientation="vertical">
 				<RelativeLayout
 					android:id="@+id/linear_expand"
-					android:layout_below="@+id/toolbarLayout"
-
 					android:layout_width="match_parent"
+
 					android:layout_height="fill_parent"
+					android:layout_below="@+id/toolbarLayout"
 					android:background="#ffffff"
 					android:orientation="horizontal"
 					android:visibility="visible">
@@ -258,10 +257,10 @@
 						android:id="@+id/lvExp"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
+						android:animateLayoutChanges="true"
 						android:cacheColorHint="#00000000"
 						android:divider="#ffffff"
 						android:groupIndicator="@null"
-						android:animateLayoutChanges="true"
 
 
 						/>
@@ -271,8 +270,8 @@
 						android:layout_height="wrap_content"
 						android:layout_alignParentBottom="true"
 						android:layout_alignParentRight= "true"
-						android:layout_marginLeft="5dp"
 						android:layout_marginBottom="5dp"
+						android:layout_marginLeft="5dp"
 						/>
 
 				</RelativeLayout>
@@ -306,19 +305,19 @@
 								android:id="@+id/txtNoResult"
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
-								android:padding="10dp"
 								android:layout_marginTop="10dp"
-								android:textSize="16dp"
-								android:textAppearance="@style/IrsansBold"
 								android:gravity="center"
+								android:padding="10dp"
+								android:textAppearance="@style/IrsansBold"
 								android:textColor="@color/text_color_2e"
+								android:textSize="16dp"
 								/>
 
 							<ImageView
 								android:layout_width="100dp"
 								android:layout_height="100dp"
-								android:src="@drawable/alert"
-								android:layout_centerInParent="true"/>
+								android:layout_centerInParent="true"
+								android:src="@drawable/alert" />
 
 							<RelativeLayout
 								android:layout_width="wrap_content"
@@ -346,15 +345,15 @@
 									android:layout_width="match_parent"
 									android:layout_height="40dp"
 									android:layout_gravity="center"
+									android:layout_marginBottom="2dp"
+									android:layout_marginLeft="@dimen/_12dp"
+									android:layout_marginRight="@dimen/_12dp"
+									android:layout_marginTop="1dp"
+									android:background="@drawable/btngravity_big"
 									android:text="@string/BackToLastPage"
 									android:textColor="#fff"
 									android:textSize="14dp"
-									android:textStyle="bold"
-									android:layout_marginTop="1dp"
-									android:layout_marginLeft="@dimen/_12dp"
-									android:layout_marginRight="@dimen/_12dp"
-									android:layout_marginBottom="2dp"
-									android:background="@drawable/btngravity_big"/>
+									android:textStyle="bold" />
 							</RelativeLayout>
 
 
@@ -375,9 +374,9 @@
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
 				android:layout_weight="7"
-				android:orientation="horizontal"
-				android:gravity="center"
 				android:background="#ffffff"
+				android:gravity="center"
+				android:orientation="horizontal"
 
 				>
 
@@ -392,8 +391,10 @@
 					>
 					<RelativeLayout
 						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
 						android:layout_weight="100"
-						android:layout_height="wrap_content">
+						android:gravity="center">
 
 
 
@@ -401,15 +402,14 @@
 							android:id="@+id/btnNextDays"
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
+							android:layout_gravity="right"
+							android:gravity="right"
 							fancy:fb_defaultColor="@android:color/transparent"
 							fancy:fb_focusColor="@color/focusColor"
 							fancy:fb_radius="6dp"
-							fancy:fb_textColor="#FFFFFF"
-
-							android:layout_gravity="right"
-							fancy:fb_textSize="25dp"
 							fancy:fb_text=" "
-							android:gravity="right"
+							fancy:fb_textColor="#FFFFFF"
+							fancy:fb_textSize="25dp"
 							/>
 
 
@@ -418,21 +418,23 @@
 							android:id="@+id/tvNextDay"
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
+							android:layout_marginLeft="5dp"
+							android:gravity="center"
 							android:text="@string/icon_arrow_left"
 							android:textAppearance="@style/IconFonts"
-							android:gravity="center"
-							android:layout_marginLeft="5dp"
 							android:textColor="#4d4d4d"
 							android:textSize="@dimen/_25dp_normal_iconSize" />
 						<TextView
-							android:layout_toRightOf="@+id/tvNextDay"
 							android:id="@+id/txtRuzeGhabl"
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
+							android:layout_toRightOf="@+id/tvNextDay"
 							android:gravity="center"
+							android:maxLines="1"
 							android:text="@string/LastDay"
 							android:textColor="@color/text_color_4d"
-							android:textSize="@dimen/_14dp_txtSize"
+							android:textSize="@dimen/bottom_tab"
+
 							/>
 
 
@@ -442,44 +444,45 @@
 					</RelativeLayout>
 					<RelativeLayout
 						android:layout_width="0dp"
-						android:layout_weight="100"
-						android:layout_height="wrap_content">
+						android:layout_height="wrap_content"
+						android:layout_weight="100">
 
 						<mehdi.sakout.fancybuttons.FancyButton
 							android:id="@+id/btnLastDays"
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
+							android:layout_gravity="right"
+							android:gravity="right"
 							fancy:fb_defaultColor="@android:color/transparent"
 							fancy:fb_focusColor="@color/focusColor"
-							fancy:fb_radius="6dp"
-							fancy:fb_textColor="#FFFFFF"
 
-							android:layout_gravity="right"
-							fancy:fb_textSize="25dp"
+							fancy:fb_radius="6dp"
 							fancy:fb_text=" "
-							android:gravity="right"
+							fancy:fb_textColor="#FFFFFF"
+							fancy:fb_textSize="25dp"
 							/>
 
 						<TextView
 							android:id="@+id/txtRuzeBad"
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
-							android:gravity="center"
-							android:text="@string/NextDay"
 							android:layout_marginLeft="5dp"
+							android:gravity="center"
+							android:maxLines="1"
+							android:text="@string/NextDay"
 							android:textColor="@color/text_color_4d"
-							android:textSize="@dimen/_14dp_txtSize"
+							android:textSize="@dimen/bottom_tab"
 							/>
 						<TextView
 
 							android:layout_width="wrap_content"
 							android:layout_height="match_parent"
+							android:layout_toRightOf="@+id/txtRuzeBad"
+							android:gravity="center"
 							android:text="@string/icon_arrow_right"
 							android:textAppearance="@style/IconFonts"
-							android:gravity="center"
 							android:textColor="#4d4d4d"
-							android:textSize="@dimen/_25dp_normal_iconSize"
-							android:layout_toRightOf="@+id/txtRuzeBad"/>
+							android:textSize="@dimen/_25dp_normal_iconSize" />
 
 
 					</RelativeLayout>
@@ -501,20 +504,21 @@
 						android:id="@+id/txtFilter"
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/Filter"
 						android:layout_marginLeft="5dp"
+						android:gravity="center"
+						android:maxLines="1"
+						android:text="@string/Filter"
 						android:textColor="@color/text_color_4d"
-						android:textSize="@dimen/_14dp_txtSize"						/>
+						android:textSize="@dimen/bottom_tab" />
 					<TextView
 						android:id="@+id/iconFilter"
 
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
+						android:layout_marginLeft="5dp"
+						android:gravity="center"
 						android:text="@string/icon_filter"
 						android:textAppearance="@style/IconFonts"
-						android:gravity="center"
-						android:layout_marginLeft="5dp"
 						android:textColor="#4d4d4d"
 						android:textSize="@dimen/_25dp_normal_iconSize" />
 				</LinearLayout>
@@ -531,26 +535,27 @@
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_weight="100"
-					android:orientation="horizontal"
-					android:gravity="center">
+					android:gravity="center"
+					android:orientation="horizontal">
 
 					<TextView
 						android:id="@+id/lblMoratabSazi"
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
-						android:gravity="center"
-						android:text="@string/Sort"
 						android:layout_marginLeft="5dp"
+						android:gravity="center"
+						android:maxLines="1"
+						android:text="@string/Sort"
 						android:textColor="@color/text_color_4d"
-						android:textSize="@dimen/_14dp_txtSize"						/>
+						android:textSize="@dimen/bottom_tab" />
 					<TextView
 						android:id="@+id/tvSortIcon"
 						android:layout_width="wrap_content"
 						android:layout_height="match_parent"
+						android:layout_marginLeft="5dp"
+						android:gravity="center"
 						android:text="@string/icon_sort"
 						android:textAppearance="@style/IconFonts"
-						android:gravity="center"
-						android:layout_marginLeft="5dp"
 						android:textColor="#4d4d4d"
 						android:textSize="@dimen/_25dp_normal_iconSize" />
 
