@@ -12,7 +12,7 @@
     <!-- Content Description -->
     <!-- pakhsh////////////////////////////////////////////////////////////////////////////////////////// -->
     <string name="app_name">Eligasht</string>
-    <string name="accept">تایید</string>
+    <string name="accept">accept</string>
     <string name="condition">وب‌سایت الی گشت طبق قوانین جمهوری اسلامی ایران، قوانین جرایم اینترنتی و مجموعه‌ی قوانین و مقررات تجارت الکترونیکی فعالیت می‌کند.
 خدمات و محتوای عرضه شده توسط وب‌سایت الی گشت جهت استفاده‌ در این وب‌سایت تولید می‌شوند. هر گونه سوءاستفاده از اطلاعات، متن‌ها، عکس‌ها، نقشه‌ها، طرح‌ها، لوگو و... از این وب‌سایت پیگرد قانونی دارد و هیچ فرد حقیقی یا حقوقی اجازه‌ی سوء استفاده از مطالب این وب‌سایت را ندارد. ذکر مطالب این وب‌سایت در اینترنت، تنها با ذکر نام و نشانی اینترنتی وب‌سایت الی گشت و لینک به مطلب ذکر شده مجاز است و در رسانه‌های کاغذی، با کسب اجازه‌ی کتبی از مسئولان وب‌سایت.
 اطلاعات شخصی کاربران در الی گشت کاملاً محرمانه است. الی گشت تمام تلاش خود را برای محافظت از اطلاعات شخصی کاربران می‌کند. لذا جهت حفظ حریم اطلاعات شخصی کاربران، کاربر باید تعهد بدهد تا عامل تلاش جهت هک کردن هر گونه اطلاعات موجود در سایت نبوده و هیچ‌گونه معاونت و یا مشارکتی با اشخاص حقیقی و یا حقوقی در این امر نداشته باشد. ضمناً کاربر تعهد می‌دهد که هر گونه اطلاع از توسل به هک کردن اطلاعات توسط شخص و یا موسسه‌ی دیگر را در اسرع وقت به مدیریت سایت الی گشت اطلاع دهد.
@@ -103,7 +103,7 @@
 
 
     <string name="no_results_found">No Results Found</string>
-    <string name="back_exit">لطفا برای خروج یکبار دیگر دکمه برگشت را فشار دهید</string>
+    <string name="back_exit">Please press the Back button once to exit</string>
 
     <!-- /////////////country code//////////////// -->
     <string-array name="country_names">
@@ -1885,12 +1885,12 @@
     </string-array>
 
 
-    <string name="datePickerError">تاریخ رفت بزرگتر از تاریخ برگشت می باشد</string>
-    <string name="departTo">از تاریخ:</string>
-    <string name="departFrom">تا تاریخ:</string>
-    <string name="DatePickerError2">قبل از تاریخ امروز را نمی توان انتخاب کرد</string>
-    <string name="NoResult">نتیجه ای برای جستجو شما حاصل نشد!</string>
-    <string name="off">% تخفیف</string>
+    <string name="datePickerError">The date passed is greater than the date of the return</string>
+    <string name="departTo">From :</string>
+    <string name="departFrom">Up to:</string>
+    <string name="DatePickerError2">Can not be selected before today's date</string>
+    <string name="NoResult">No results were found for your search!</string>
+    <string name="off">% Discount</string>
     <string name="_1star">1 Star</string>
     <string name="_2star">2 Star</string>
     <string name="_3star">3 Star</string>
@@ -1899,32 +1899,32 @@
     <string name="WithoutStar">No stars</string>
     <string name="BestSell">Most sell</string>
     <string name="BestOff">Special Discount</string>
-    <string name="InternetError">اینترنت شما قطع و یا از دسترس خارج می باشد</string>
-    <string name="ErrorServer">خطا در دریافت اطلاعات از الی گشت</string>
+    <string name="InternetError">Your internet is disconnected or out of reach</string>
+    <string name="ErrorServer">Error getting information from Eligasht</string>
     <string name="Sort">Sort</string>
     <string name="Filter">Filter</string>
     <string name="NextDay">Next Day</string>
     <string name="LastDay">Last Day</string>
     <string name="curency">$</string>
-    <string name="ApartmenHotel">هتل آپارتمان</string>
-    <string name="BoutiqueHotel">بوتیک هتل</string>
-    <string name="ResortHotel">ریزورت هتل</string>
-    <string name="NonStop">بدون توقف</string>
-    <string name="OneStop">یک توقف</string>
-    <string name="TwoStop">دو توقف</string>
-    <string name="DetailHotel">جزئیات هتل</string>
-    <string name="GoogleUpdateError">سرویس Google Play شما نیاز به بروزرسانی دارد.</string>
+    <string name="ApartmenHotel">Apartment of Hotel</string>
+    <string name="BoutiqueHotel">Boutique of Hotel</string>
+    <string name="ResortHotel">Hotel Reservation</string>
+    <string name="NonStop">non stop</string>
+    <string name="OneStop">One Stop</string>
+    <string name="TwoStop">Two Stop</string>
+    <string name="DetailHotel">Hotel Detail</string>
+    <string name="GoogleUpdateError">Your Google Play service needs to be updated.</string>
     <string name="NewComment">Latest comments</string>
-    <string name="BenefitComment">مفیدترین نظرات</string>
-    <string name="AccessError">امکان دسترسی وجود ندارد</string>
+    <string name="BenefitComment">The most useful comments</string>
+    <string name="AccessError">No access</string>
     <string name="UserRate">The user has rated</string>
     <string name="Comment">Comment)</string>
-    <string name="CommentUser">نظرات کاربران  (</string>
-    <string name="RecomandUser">% این هتل را پیشنهاد داده اند</string>
+    <string name="CommentUser">User comments)</string>
+    <string name="RecomandUser">% This hotel has been suggested</string>
     <string name="Possibilities">Possibilities</string>
     <string name="Around">Around</string>
     <string name="Policy">Policy</string>
-    <string name="ReservRoom">انتخاب و رزرو اتاق</string>
+    <string name="ReservRoom">Pick and book the room</string>
     <string name="NoComment">No comments have been posted!</string>
     <string name="ConfirmComment">Confirm Comment</string>
     <string name="ErrorRoom">No room was found!</string>
