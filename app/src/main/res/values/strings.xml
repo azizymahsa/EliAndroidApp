@@ -2048,7 +2048,7 @@
     <string name="ChildPackage">Child</string>
     <string name="BabyPackage">Baby</string>
     <string name="OfferTo">Available services</string>
-    <string name="ServicesPackage">خدمات قابل ارائه</string>
+    <string name="ServicesPackage">Available services</string>
     <string name="InfoAirline">Flight information</string>
     <string name="travel_duration">Travel Duration</string>
     <string name="enter_current_password">Enter the current password</string>
