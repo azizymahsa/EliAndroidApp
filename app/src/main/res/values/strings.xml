@@ -1969,8 +1969,8 @@
     <string name="enter_your_birth_date">enter your birth date.</string>
     <string name="enter_your_name_in_persian">enter your name in persian.</string>
     <string name="enter_your_name_in_english">enter your name in english.</string>
-    <string name="enter_your_family_name_in_persian">enter your family name in persian.</string>
-    <string name="enter_your_family_name_in_english">enter your family name in english.</string>
+    <string name="enter_your_family_name_in_persian">enter your last name in persian.</string>
+    <string name="enter_your_family_name_in_english">enter your last name in english.</string>
     <string name="enter_your_mobile_number">Enter Your Mobile Number.</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="my_contracts">My Contracts</string>
@@ -2059,7 +2059,7 @@
     <string name="please_enter_your_name">Please enter your name</string>
     <string name="name">Name</string>
     <string name="please_enter_your_family_name">Please enter your last name</string>
-    <string name="family_name">Family Name</string>
+    <string name="family_name">last Name</string>
     <string name="other_information">Other Information</string>
     <string name="please_enter_your_email_address">Please enter email</string>
     <string name="mail">Email</string>
@@ -2159,7 +2159,7 @@
     <string name="Please_enter_your_nationality">Nationality</string>
     <string name="Please_enter_the_date_of_birth">Please enter birth date</string>
     <string name="Please_enter_a_name_in_English">Please enter a name (in English)</string>
-    <string name="Please_enter_a_surname_in_English">Please enter a surname (in English)</string>
+    <string name="Please_enter_a_surname_in_English">Please enter a last name (in English)</string>
     <string name="Please_enter_your_passport_expiration_date">Please enter your passport expiration date</string>
     <string name="Please_enter_the_passport_number_correctly">Please enter the passport number correctly</string>
     <string name="Please_enter_the_passport_number">Please enter the passport number</string>
@@ -2214,7 +2214,7 @@
     <string name="partner">Buyer</string>
     <string name="gender">Gender</string>
     <string name="please_pesrsian">Please enter persian</string>
-    <string name="name_family">Family name</string>
+    <string name="name_family">last name</string>
     <string name="code_meli">National code</string>
     <string name="email_">Email</string>
     <string name="Verification_and_next_step">Approve and next step</string>
@@ -2253,7 +2253,7 @@
     <string name="eligasht_address_">Number 7 - 23rd alley - Khaled eslamboli street - Tehran - Iran</string>
     <string name="follow_us_on_social_networks">Follow us on social networks ...</string>
     <string name="send_message_form">Send message form</string>
-    <string name="name_and_family">Name and family</string>
+    <string name="name_and_family">Name and last name</string>
     <string name="phone_number">Phone number</string>
     <string name="message_subject">Message subject</string>
     <string name="message_text">Message text</string>

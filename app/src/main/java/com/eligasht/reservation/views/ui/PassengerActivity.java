@@ -2249,7 +2249,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				break;
 
-
 			case R.id.txtmeliyatm:
 				final Intent intent4 = new Intent(this, NationalitycodeActivity.class);
 				startActivityForResult(intent4, 1);
