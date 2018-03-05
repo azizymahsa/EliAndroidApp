@@ -252,7 +252,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                         this, GPS_ERRORDIALOG_REQUEST);
                 dialog.show();
             } else {
-                Toast.makeText(this, "امکان دسترسی وجود ندارد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.there_is_no_access, Toast.LENGTH_SHORT).show();
             }
         } catch (Exception ex) {
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -274,7 +274,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         LatLng location=new LatLng(35.737595,51.413388);
 
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
-        map.addMarker(new MarkerOptions().position(location).title("الی گشت"));
+        map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
 
 
     }
@@ -427,7 +427,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 
             } catch (JSONException e) {
-                Toast.makeText(ContactUsActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
             }
 
         }

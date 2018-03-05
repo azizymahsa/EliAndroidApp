@@ -250,7 +250,7 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
                 //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 
             } catch (JSONException e) {
-                Toast.makeText(ConditionActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ConditionActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
             }
 
         }

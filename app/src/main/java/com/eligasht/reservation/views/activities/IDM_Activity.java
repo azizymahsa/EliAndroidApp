@@ -84,9 +84,9 @@ public class IDM_Activity extends FragmentActivity {
 	
 	protected void buildAlertMessageNoGps() {
 		IDM_Dialog dialog = new IDM_Dialog(this);
-		dialog.setMessage("موقعیت یاب دستگاه شما غیر فعال است.");
+		dialog.setMessage(getString(R.string.your_gps_is_off));
 		dialog.setCancelable(false);
-		dialog.setAcceptButton("فعال سازی", new IDM_Dialog.OnAcceptInterface() {
+		dialog.setAcceptButton(getString(R.string.activation), new IDM_Dialog.OnAcceptInterface() {
 
 			@Override
 			public void accept() {

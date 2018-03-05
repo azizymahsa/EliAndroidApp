@@ -48,7 +48,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_room);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "اطلاعات اتاق");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.room_information));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
@@ -164,7 +164,7 @@ try {
                 break;
             case R.id.btn_confirm:
                 if(!isValidCountPassenegr(roomPresenter.getRooms())){
-                    Toast.makeText(this, "تعداد نباید بیشتر از ۹ نفر باشد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.numbers_must_be_less_than_nine, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Gson gson = new GsonBuilder().create();
