@@ -142,13 +142,13 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
 
 
         if(Prefs.getString("lang","fa").equals("fa")){
-            holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
+            holder.room_title.setText(context.getString(R.string.room) + " " + getStringPosition(position));
 
 
 
         }
         if(Prefs.getString("lang","fa").equals("en")){
-            holder.room_title.setText(context.getString(R.string.room) + " " + getStringPosition(position));
+            holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
 
 
         }

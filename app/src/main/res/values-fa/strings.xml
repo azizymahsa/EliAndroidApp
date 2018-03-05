@@ -417,6 +417,14 @@
     <string name="_10">11 تا 12 سال</string>
     <string name="_11">12 سال</string>
     <string name="_12">2 سال</string>
+    <string name="flight_number_correctly">شماره پرواز رفت را به درستی وارد نمایید</string>
+    <string name="flight_return_number_correctly">شماره پرواز برگشت را به درستی وارد نمایید</string>
+    <string name="destination_airport">فرودگاه مقصد</string>
+    <string name="hotel_name">نام هتل</string>
+    <string name="departure_hour">ساعت رفت</string>
+    <string name="return_hour">ساعت برگشت</string>
+    <string name="one_way">شماره پرواز رفت</string>
+    <string name="round_flight">شماره پرواز برگشت</string>
 
 
 </resources>
