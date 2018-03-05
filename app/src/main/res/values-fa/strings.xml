@@ -55,7 +55,7 @@
     <string name="penalty">جریمه می شود.</string>
     <string name="RoomError">تعداد نباید بیشتر از ۹ نفر باشد .</string>
     <string name="InformationRoom">اطلاعات اتاق</string>
-    <string name="room">اتاق</string>
+    <string name="room"> اتاق </string>
     <string name="confirm">تائید</string>
     <string name="ServicesInformation">مشخصات خدمات</string>
     <string name="PackgeNoFound">موردی یافت نشد .</string>
@@ -375,5 +375,15 @@
     <string name="send_message">ارسال پیام</string>
     <string name="activation">فعال سازی</string>
     <string name="your_gps_is_off">موقعیت یاب دستگاه شما غیر فعال است.</string>
+    <string name="around_hotel">اطراف هتل</string>
+    <string name="info_hotel">قوانین هتل</string>
+    <string name="password">کلمه عبور</string>
+    <string name="btn_insurance">جستجوی بیمه</string>
+    <string name="forgot_password">فراموشی کلمه عبور</string>
+    <string name="register">ثبت نام</string>
+    <string name="login_">ورود</string>
+    <string name="reserve_package">رزرو پکیج</string>
+
+
 
 </resources>

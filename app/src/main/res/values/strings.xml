@@ -59,7 +59,7 @@
     <string name="search_package">Search Package</string>
     <string name="search_hotel">Search Hotel</string>
 
-    <string name="reserve_package">Reserve Package</string>
+    <string name="reserve_package">Package Reserve</string>
     <string name="icon_calander">&#xe908;</string>
     <string name="search_back_right">&#xea3c;</string>
     <string name="icon_plane">&#xe622;</string>
@@ -2243,8 +2243,8 @@
     <string name="your_time_has_expired">Your time has expired</string>
     <string name="change_flight">Change flight</string>
     <string name="class_flight">Flight class</string>
-    <string name="cities_all_over_the_world">شهر در سراسر جهان</string>
-    <string name="confirmed_airlines">ایرلاین معتبر</string>
+    <string name="cities_all_over_the_world">cities all over the world</string>
+    <string name="confirmed_airlines">confirmed airlines</string>
     <string name="hotels_all_over_the_world">hotels all over the world</string>
     <string name="room_information">room information</string>
     <string name="numbers_must_be_less_than_nine">numbers must be less than nine</string>
@@ -2260,6 +2260,12 @@
     <string name="send_message">send message</string>
     <string name="activation">activation</string>
     <string name="your_gps_is_off">your gps is off.</string>
+    <string name="around_hotel">Around the hotel</string>
+    <string name="info_hotel">Hotel information</string>
+    <string name="password">password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="register">Register</string>
+    <string name="login_">Login</string>
     <!--azizi-->
 </resources>
 

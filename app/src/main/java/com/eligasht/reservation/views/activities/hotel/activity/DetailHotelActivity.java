@@ -781,10 +781,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     public void add_view(String key, ArrayList<HotelProprtiesModels> hotelProprtiesModels, LinearLayout linearLayout) {
 
         TextView textView = new TextView(DetailHotelActivity.this);
-
+        textView.setText(key);
+/*
 
         if (key.contains("اطراف")) {
-          //  textView.setText(R.string.ar);
+         textView.setText(R.string.around_hotel);
 
 
         }
@@ -792,9 +793,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             textView.setText(R.string.HotelPolicy);
         }
         if (key.contains("اطلاعات")) {
+            textView.setText(R.string.info_hotel);
+
 
 
         }
+*/
 
 
 
