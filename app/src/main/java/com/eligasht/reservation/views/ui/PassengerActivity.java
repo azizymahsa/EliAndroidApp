@@ -2429,6 +2429,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public String getCounter(int i) {
 		String s="";
 		switch (i) {
+			case 0:
+				s= getString(R.string.First);
+				break;
 			case 1:
 				s= getString(R.string.First);
 				break;

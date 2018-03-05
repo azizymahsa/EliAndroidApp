@@ -476,7 +476,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         imgCount = (TextView) findViewById(R.id.imgCount);
 
         imgCount.setOnClickListener(this);
-        imgCount.setText(getString(R.string.room)+getCounter(room));
+        imgCount.setText(getString(R.string.room)+" "+getCounter(room));
 
         txtfamilym = (EditText) findViewById(R.id.txtfamilym);
         //lvFactor = (ExpandableLayoutListView) findViewById(R.id.lvFactor);
@@ -1966,17 +1966,17 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 if(countB!=0){
 
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.adult_));
-                                    imgCount.setText(getString(R.string.room)+getCounter(room));
+                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }
                                 else if(countK!=0){
 
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
-                                    imgCount.setText(getString(R.string.room)+getCounter(room));
+                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }
                                 else if(countN!=0){
 
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby_));
-                                    imgCount.setText(getString(R.string.room)+getCounter(room));
+                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }
 
 
@@ -2033,38 +2033,38 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 if(countB>=1) {
                                     System.out.println("countB:"+countB);
                                     txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.adult_));
-                                    imgCount.setText(getString(R.string.room)+getCounter(room));
+                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                     countB--;
                                 }else if(countK>=1) {
                                     System.out.println("countK:"+countK);
                                     txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.child_));
-                                    imgCount.setText(getString(R.string.room)+getCounter(room));
+                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                     countK--;
                                 }else if(countN>=1) {
                                     System.out.println("countN:"+countN);
                                     txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.baby_));
-                                    imgCount.setText(getString(R.string.room)+getCounter(room));
+                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                     countN--;
                                 }
                                 if(countB!=0){
 
                                     txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.adult_));
-                                    imgCount.setText(getString(R.string.room)+getCounter(room));
+                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }
                                 else if(countK!=0){
 
                                     txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.child_));
-                                    imgCount.setText(getString(R.string.room)+getCounter(room));
+                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }
                                 else if(countN!=0){
 
                                     txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.baby_));
-                                    imgCount.setText(getString(R.string.room)+getCounter(room));
+                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }else if(countB + countK + countN==0){
 
                                     if(rooms-1>=0){
                                         txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.adult_));
-                                        imgCount.setText(getString(R.string.room)+getCounter(room+1));
+                                        imgCount.setText(getString(R.string.room)+" "+getCounter(room+1));
                                         txttavalodm.setText("");
                                         txtnamem.setText("");
                                         txtfamilym.setText("");
@@ -2267,6 +2267,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     public String getCounter(int i) {
         String s="";
         switch (i) {
+            case 0:
+                s= getString(R.string.First);
+                break;
             case 1:
                 s= getString(R.string.First);
                 break;
