@@ -122,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14dp"
-            android:text="کلاس پروازی"
+            android:text="@string/class_flight"
             android:gravity="center"
             android:textAppearance="@style/IrsansBold"
             android:padding="5dp"

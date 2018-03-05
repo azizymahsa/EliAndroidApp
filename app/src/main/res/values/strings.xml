@@ -103,7 +103,7 @@
 
 
     <string name="no_results_found">No Results Found</string>
-    <string name="back_exit">لطفا برای خروج یکبار دیگر دکمه برگشت را فشار دهید</string>
+    <string name="back_exit">Please press the Back button once to exit</string>
 
     <!-- /////////////country code//////////////// -->
     <string-array name="country_names">
