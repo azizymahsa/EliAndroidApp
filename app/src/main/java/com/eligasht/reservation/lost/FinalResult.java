@@ -2,6 +2,7 @@ package com.eligasht.reservation.lost;
 
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
+import android.net.rtp.RtpStream;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -63,7 +64,7 @@ public class FinalResult extends BaseActivity {
         Utility.setAnimLoading(this);
 
         try {
-            InitUi.Toolbar(this, false, R.color.toolbar_color, "تایید نهایی فاکتور");
+            InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.approve_factor));
 
 
             if (getIntent().getAction().equals(Intent.ACTION_VIEW)) {
@@ -163,10 +164,10 @@ public class FinalResult extends BaseActivity {
                         rlIv.setVisibility(View.VISIBLE);
                         rlIv.setBackgroundColor(ContextCompat.getColor(FinalResult.this, R.color.red));
                         ivImage.setImageResource(R.drawable.close);
-                        tvStatusFactor.setText("قرار داد ثبت نشد");
+                        tvStatusFactor.setText(R.string.contract_didnt_registred);
                         drawable.setStroke(1, ContextCompat.getColor(FinalResult.this, R.color.red));
                         rlPeygiri.setVisibility(View.GONE);
-                        tvPaymen.setText("مبلغی برای این سبد خرید پرداخت نشده است");
+                        tvPaymen.setText(R.string.no_money_has_been_payed_for_this_cart);
                         rlPrice.setVisibility(View.GONE);
                         tvPaymen.setTextColor(ContextCompat.getColor(FinalResult.this, R.color.red));
                         tvFactor2.setVisibility(View.GONE);
@@ -228,15 +229,15 @@ public class FinalResult extends BaseActivity {
                         tvNumberPeygiri.setText(getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPayment.get(0).PaymentSaleReferenceId);
                         ivImage.setImageResource(R.drawable.white_check);
                         tvMail.setVisibility(View.VISIBLE);
-                        tvMail.setText("مدارک مورد نیاز به ایمیل " + getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPartner.get(0).RqPartner_Email + " ارسال شد");
+                        tvMail.setText(getString(R.string.needed_docs_to_mail) + getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.RequestPartner.get(0).RqPartner_Email + getString(R.string.has_been_sent));
                         GradientDrawable drawable = (GradientDrawable) rlStatus.getBackground();
                         drawable.setStroke(4, ContextCompat.getColor(FinalResult.this, R.color.green));
                         rlIv.setBackgroundColor(ContextCompat.getColor(FinalResult.this, R.color.green));
                         tvStatusFactor.setTextColor(ContextCompat.getColor(FinalResult.this, R.color.green));
                         tvPaymen.setTextColor(ContextCompat.getColor(FinalResult.this, R.color.green));
-                        tvPaymen.setText("قرار داد با موفقیت ثبت شد");
+                        tvPaymen.setText(R.string.contract_has_been_registred_successfully);
                         tvPaymen.setVisibility(View.GONE);
-                        tvStatusFactor.setText("قرار داد شما با شماره " + getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.ContractNo + " ثبت شد.");
+                        tvStatusFactor.setText(getString(R.string.your_contract_with_number) + getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.FactorSummary.ContractNo + getString(R.string.registred));
 
                         cv2.setVisibility(View.VISIBLE);
                         cv1.setVisibility(View.VISIBLE);
@@ -264,11 +265,11 @@ public class FinalResult extends BaseActivity {
                 elNotFound.setVisibility(View.VISIBLE);
                 if (!Utility.isNetworkAvailable(FinalResult.this)) {
 
-                    tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                    tvAlert.setText(R.string.your_internet_connection_is_lost);
 
                 } else {
 
-                    tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
+                    tvAlert.setText(getString(R.string.error_in_connection));
 
                 }
 
