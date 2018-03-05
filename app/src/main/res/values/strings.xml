@@ -2274,5 +2274,14 @@
     <string name="iran_sans_normal.ttf">fonts/himalaya.ttf</string>
     <string name="irsans.ttf">fonts/himalaya.ttf</string>
     <string name="mitra.ttf">fonts/himalaya.ttf</string>
+    <string name="three_months">3 months</string>
+    <string name="two_months">2 months</string>
+    <string name="fourty_five_days">45 days</string>
+    <string name="thirty_one_days">31 days</string>
+    <string name="twenty_three_days">23 days</string>
+    <string name="fifteen_days">15 days</string>
+    <string name="seven_days">7 days</string>
+    <string name="six_months">6 months</string>
+    <string name="one_year">One year</string>
 </resources>
 

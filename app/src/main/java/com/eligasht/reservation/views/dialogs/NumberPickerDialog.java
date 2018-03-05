@@ -39,7 +39,7 @@ public class NumberPickerDialog implements View.OnClickListener {
         builder.setView(dialogView);
         numberPicker = dialogView.findViewById(R.id.number_picker);
         numberPicker.setOnClickListener(this);
-        during_trip_string = new String[]{" 7 روز", "15 روز", "23 روز", "31 روز", "45 روز", "2 ماه", "3 ماه", "6 ماه", "یکسال"};
+        during_trip_string = new String[]{activity.getString(R.string.seven_days), activity.getString(R.string.fifteen_days), activity.getString(R.string.twenty_three_days), activity.getString(R.string.thirty_one_days), activity.getString(R.string.fourty_five_days), activity.getString(R.string.two_months), activity.getString(R.string.three_months), activity.getString(R.string.six_months), activity.getString(R.string.one_year)};
         during_trip = new Integer[]{7, 15, 23, 31, 45, 60 , 90, 180, 365};
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(8);
