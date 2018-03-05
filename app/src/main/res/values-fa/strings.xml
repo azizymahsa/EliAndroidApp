@@ -394,6 +394,15 @@
     <string name="iran_sans_normal.ttf">fonts/iran_sans_normal.ttf</string>
     <string name="irsans.ttf">fonts/irsans.ttf</string>
     <string name="mitra.ttf">fonts/mitra.ttf</string>
+    <string name="three_months">3 ماه</string>
+    <string name="two_months">2 ماه</string>
+    <string name="fourty_five_days">45 روز</string>
+    <string name="thirty_one_days">31 روز</string>
+    <string name="twenty_three_days">23 روز</string>
+    <string name="fifteen_days">15 روز</string>
+    <string name="seven_days">7 روز</string>
+    <string name="six_months">6 ماه</string>
+    <string name="one_year">یکسال</string>
 
 
 </resources>

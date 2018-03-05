@@ -2081,8 +2081,8 @@
     <string name="origin_colon">Origin :</string>
     <string name="destination_colon">Destination :</string>
     <string name="newborn">Baby</string>
-    <string name="departure">One way</string>
-    <string name="departure_and_return">Round Trip</string>
+    <string name="departure">Departure</string>
+    <string name="departure_and_return">Departure Return</string>
     <string name="name_en">Name(En)*</string>
     <string name="please_enter_your_mobile_number">Please enter the mobile number</string>
     <string name="SelectLanguage">Select the application language</string>
@@ -2111,9 +2111,9 @@
     <string name="SelectDepartCity">Select destination city</string>
     <string name="lisences">Lisences</string>
     <string name="day_">Day_</string>
-    <string name="rial_">Rial</string>
+    <string name="rial_">$</string>
     <string name="day">Day</string>
-    <string name="space_rial_space">Rial</string>
+    <string name="space_rial_space">$</string>
     <string name="amount_">Amount</string>
     <string name="contract_code">Contract number :</string>
     <string name="approved">Approved</string>
@@ -2269,6 +2269,15 @@
     <!--azizi-->
     <!--fonts-->
     <string name="change_flight">Change flight</string>
+    <string name="three_months">3 months</string>
+    <string name="two_months">2 months</string>
+    <string name="fourty_five_days">45 days</string>
+    <string name="thirty_one_days">31 days</string>
+    <string name="twenty_three_days">23 days</string>
+    <string name="fifteen_days">15 days</string>
+    <string name="seven_days">7 days</string>
+    <string name="six_months">6 months</string>
+    <string name="one_year">One year</string>
     <string name="Facility">fonts/times.ttf</string>
     <string name="iran_sans_bold.ttf">fonts/times.ttf</string>
     <string name="iran_sans_normal.ttf">fonts/times.ttf</string>
