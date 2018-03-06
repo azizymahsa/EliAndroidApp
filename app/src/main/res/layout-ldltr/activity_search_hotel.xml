@@ -21,7 +21,7 @@
             android:id="@+id/btnBack"
             android:layout_width="@dimen/toolbar_bottom_width_50dp"
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             fancy:fb_defaultColor="@android:color/transparent"
@@ -83,7 +83,8 @@
             android:id="@+id/llHome"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_60dp_hight"
-            android:layout_gravity="left">
+            android:layout_alignParentRight="true"
+      >
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btnHome"
