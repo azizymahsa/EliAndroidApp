@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="@dimen/_14dp"
-            android:text="  لطفا جهت بازیابی رمز عبور  به ایمیل خود مراجعه کنید ."
+            android:text="@string/please_refer_to_your_email_to_recover_the_password"
             android:textColor="@color/gray_normal"
 
             android:background="@drawable/background_strock"
@@ -41,7 +41,7 @@
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:background="@drawable/btngravity_big"
-            android:text="بازگشت"
+            android:text="@string/return_"
             android:textColor="#FFFFFF"
             android:textSize="16dp"
             android:textStyle="bold"

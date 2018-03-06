@@ -469,5 +469,12 @@
     <string name="city">شهر</string>
     <string name="people_number">تعداد نفرات</string>
     <string name="service_type">نوع سرویس</string>
+    <string name="Travel_insurance_to_travel_to_the_country">بیمه مسافرتی برای سفر به کشور</string>
+    <string name="please_refer_to_your_email_to_recover_the_password">لطفا جهت بازیابی رمز عبور به ایمیل خود مراجعه کنید .</string>
+    <string name="Tur">تور</string>
+    <string name="Please_enter_the_correct_name">لطفا نام و نام خانوادگی درست وارد کنید</string>
+    <string name="Please_enter_the_title_correctly">لطفا عنوان را درست وارد کنید</string>
+    <string name="Please_enter_the_correct_message">لطفا پیام را درست وارد کنید</string>
+
 
 </resources>
