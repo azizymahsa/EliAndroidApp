@@ -47,7 +47,7 @@
     <string name="Business">درجة رجال الأعمال</string>
     <string name="First">أولا</string>
     <string name="Enter_your_nationality">أدخل جنسيتك</string>
-    <string name="BabyPackage">الطفل</string>
+    <string name="BabyPackage">رضيع</string>
     <string name="SortMin">بناء على أدنى سعر</string>
     <string name="FacilityHotelComment">مرافق الفندق نظيفة</string>
     <string name="Buyer_Specifications">مواصفات المشتري</string>
@@ -72,13 +72,13 @@
     <string name="HiddenName">أنا لست على استعداد لإظهار اسم</string>
     <string name="EditInput">يرجى تصحيح ما يلي</string>
     <string name="Enter_the_place_of_residence">أدخل مكان الإقامة</string>
-    <string name="English">الإنجليزية</string>
+    <string name="English">English</string>
     <string name="Try">أعد المحاولة</string>
-    <string name="PassengerSpec">معلومات الركاب</string>
-    <string name="Passenger_information">معلومات الركاب</string>
-    <string name="info_passenger">معلومات الركاب</string>
+    <string name="PassengerSpec">&#160;معلومات الركاب </string>
+    <string name="Passenger_information">&#160;معلومات الركاب </string>
+    <string name="info_passenger">&#160;معلومات الركاب </string>
     <string name="_1star">1 نجمة</string>
-    <string name="Persian">اللغة الفارسية</string>
+    <string name="Persian">فارسی</string>
     <string name="NoResult">لم يتم العثور على نتائج لبحثك!</string>
     <string name="Fifth">خامس</string>
     <string name="OneStop">محطة واحدة</string>
@@ -173,7 +173,7 @@
     <string name="ReservRoom">اختيار وحجز الغرفة</string>
     <string name="accept">التأكيد</string>
     <string name="SearchHotel">ابحث عن اسم الفندق</string>
-    <string name="code_meli">Kdmly</string>
+    <string name="code_meli">الرمز الوطني</string>
     <string name="Seventh">سابع</string>
     <string name="departure_and_return">الذهاب الجولة</string>
     <string name="confirm">مؤكد</string>
@@ -185,16 +185,16 @@
     <string name="date">تاريخ</string>
     <string name="departure_to">رحلة إلى:</string>
     <string name="Possibilities">مرافق</string>
-    <string name="Rial">ريال عملة نقدية</string>
-    <string name="curency">ريال عملة نقدية</string>
-    <string name="space_rial_space">ريال عملة نقدية</string>
+    <string name="Rial">ريال </string>
+    <string name="curency">ريال </string>
+    <string name="space_rial_space">ريال </string>
     <string name="document_status">حالة الوثائق</string>
     <string name="Please_enter_a_name_in_English">الرجاء إدخال اسم (باللغة الإنجليزية)</string>
     <string name="departure_from">الرحلة من:</string>
     <string name="destination_colon">المقصد:</string>
     <string name="destination">غاية</string>
     <string name="SortMax">بناء على أعلى سعر</string>
-    <string name="TwoStopAndMore">توقف اثنين وأكثر من ذلك</string>
+    <string name="TwoStopAndMore">توقف اثنين</string>
     <string name="datePickerError">التاريخ الذي تم تمريره أكبر من تاريخ العودة</string>
     <string name="edit_profile">تعديل الملف الشخصي</string>
     <string name="Please_enter_the_passport_number">يرجى إدخال رقم جواز السفر</string>
@@ -243,8 +243,8 @@
     <string name="enter_your_name_in_english">أدخل اسم اللغة الإنجليزية.</string>
     <string name="first">الدرجة الأولى</string>
     <string name="just">فقط</string>
-    <string name="baby_pass">طفل</string>
-    <string name="newborn">طفل</string>
+    <string name="baby_pass">رضيع</string>
+    <string name="newborn">رضيع</string>
     <string name="first_room">الغرفة الأولى</string>
     <string name="hotel_reservation_and_plane_ticket">تذاكر الطائرة + حجوزات الفنادق</string>
     <string name="name">اسم</string>
@@ -456,4 +456,8 @@
     <string name="irsans.ttf">fonts/irsans.ttf</string>
     <string name="mitra.ttf">fonts/mitra.ttf</string>
 
+    <string name="class_flight">فئة الطيران</string>
+    <string name="cities_all_over_the_world">المدن في جميع أنحاء العالم</string>
+    <string name="confirmed_airlines">شركات الطيران المؤكدة </string>
+    <string name="number_human">تعداد نفرات</string>
 </resources>

@@ -75,7 +75,7 @@ public class SelectLanguageDialog implements View.OnClickListener {
             arabia.setBackgroundResource(R.color.white);
             turkey.setBackgroundResource(R.drawable.stroke_pruple);
             lang = "tr";
-        } else if (Prefs.getString("lang", "fa").equals("tr")){
+        } else if (Prefs.getString("lang", "fa").equals("ar")){
             england.setBackgroundResource(R.color.white);
             iran.setBackgroundResource(R.color.white);
             turkey.setBackgroundResource(R.color.white);
@@ -182,6 +182,7 @@ public class SelectLanguageDialog implements View.OnClickListener {
                 england.setBackgroundResource(R.color.white);
                 turkey.setBackgroundResource(R.color.white);
                 iran.setBackgroundResource(R.drawable.stroke_pruple);
+                arabia.setBackgroundResource(R.color.white);
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
                         .playOn(iran);
@@ -190,6 +191,7 @@ public class SelectLanguageDialog implements View.OnClickListener {
                 england.setBackgroundResource(R.drawable.stroke_pruple);
                 iran.setBackgroundResource(R.color.white);
                 turkey.setBackgroundResource(R.color.white);
+                arabia.setBackgroundResource(R.color.white);
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
                         .playOn(england);
@@ -199,6 +201,15 @@ public class SelectLanguageDialog implements View.OnClickListener {
                 iran.setBackgroundResource(R.color.white);
                 england.setBackgroundResource(R.color.white);
                 turkey.setBackgroundResource(R.color.white);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(arabia);
+                break;
+            case R.id.txt_turkish:
+                turkey.setBackgroundResource(R.drawable.stroke_pruple);
+                iran.setBackgroundResource(R.color.white);
+                england.setBackgroundResource(R.color.white);
+                arabia.setBackgroundResource(R.color.white);
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
                         .playOn(arabia);
