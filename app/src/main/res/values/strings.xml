@@ -1947,7 +1947,7 @@
     <string name="Brithday">Please enter your birth date</string>
     <string name="brithdayError">Please enter passengers birth date</string>
     <string name="Passanger">Passanger</string>
-    <string name="select_return_date">Choose the date back</string>
+    <string name="select_return_date" translatable="false">Choose the date back</string>
     <string name="please_select_one">Please select one</string>
     <string name="please_select_destination_city">Please select the city of your trip</string>
     <string name="something_went_wron">An error has occurred</string>
