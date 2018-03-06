@@ -468,4 +468,7 @@
     <string name="Travel_insurance_to_travel_to_the_country">تأمين السفر للسفر إلى البلاد</string>
     <string name="please_refer_to_your_email_to_recover_the_password">يرجى الرجوع إلى البريد الإلكتروني الخاص بك لاستعادة كلمة المرور.</string>
     <string name="Tur">جولة</string>
+    <string name="Please_enter_the_correct_name">لطفا نام و نام خانوادگی درست وارد کنید</string>
+    <string name="Please_enter_the_title_correctly">لطفا عنوان را درست وارد کنید</string>
+    <string name="Please_enter_the_correct_message">لطفا پیام را درست وارد کنید</string>
 </resources>

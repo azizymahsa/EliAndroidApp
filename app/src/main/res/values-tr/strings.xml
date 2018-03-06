@@ -2333,6 +2333,9 @@
     <string name="Travel_insurance_to_travel_to_the_country">Ülkeye seyahat etmek için seyahat sigortası</string>
     <string name="please_refer_to_your_email_to_recover_the_password">Şifrenizi kurtarmak için lütfen e-postanıza bakın.</string>
     <string name="Tur">Tur</string>
+    <string name="Please_enter_the_correct_name">Lütfen doğru adı girin</string>
+    <string name="Please_enter_the_title_correctly">Lütfen başlığı doğru giriniz</string>
+    <string name="Please_enter_the_correct_message">Lütfen doğru mesajı giriniz</string>
 
 
 </resources>

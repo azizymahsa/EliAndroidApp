@@ -190,7 +190,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+"لطفا نام و نام خانوادگی درست وارد کنید";
+                    errorMessage=errorMessage+"\n"+getString(R.string.Please_enter_the_correct_name);
 
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
@@ -202,7 +202,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etMail.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+" ایمیل با فرمت صحیح باشد(test@test.com)";
+                    errorMessage=errorMessage+"\n"+getString(R.string.Email_format_is_correct);
 
                 } else {
                     //((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
@@ -215,7 +215,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etTitle.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+"لطفا عنوان را درست وارد کنید";
+                    errorMessage=errorMessage+"\n"+getString(R.string.Please_enter_the_title_correctly);
 
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etTitle.getBackground();
@@ -227,7 +227,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etMessage.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+"لطفا پیام را درست وارد کنید";
+                    errorMessage=errorMessage+"\n"+getString(R.string.Please_enter_the_correct_message);
 
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etMessage.getBackground();
@@ -403,11 +403,11 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
             } catch (Exception e) {
                 if (!Utility.isNetworkAvailable(CommentActivity.this)) {
 
-                    addCommnetDialog.setTitle("اینترنت شما قطع و یا از دسترس خارج می باشد",false);
+                    addCommnetDialog.setTitle(getString(R.string.InternetError),false);
 
                 } else {
 
-                    addCommnetDialog.setTitle("خطا در دریافت اطلاعات از الی گشت",false);
+                    addCommnetDialog.setTitle(getString(R.string.ErrorServer),false);
 
                 }
 
