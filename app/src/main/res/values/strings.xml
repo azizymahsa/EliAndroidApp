@@ -2335,10 +2335,19 @@
     <string name="re_pay">Re pay</string>
     <string name="return_">return</string>
     <string name="text51">Record and save information</string>
+    <string name="number_human"> Enumerate </string>
+    <string name="return_airport"> Frodgah </string>
+    <string name="exit_time"> Exit Time </string>
+    <string name="enter_time"> Time of </string>
+    <string name="number"> No</string>
+    <string name="airline"> Hawaiian font </string>
 
     <string name="text52">Change passwords</string>
     <string name="arabic">العربی</string>
     <string name="hotel_policy">Hotel policy</string>
-    <string name="number_human">تعداد نفرات</string>
+    <string name="country">کشور</string>
+    <string name="city">شهر</string>
+    <string name="people_number">تعداد نفرات</string>
+    <string name="service_type">نوع سرویس</string>
 </resources>
 

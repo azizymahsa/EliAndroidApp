@@ -98,7 +98,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تعداد نفرات"
+                            android:text="@string/number_human"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -161,7 +161,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تعداد نفرات"
+                            android:text="@string/number_human"
 
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
@@ -173,7 +173,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ خروج از هتل"
+                            android:text="@string/checkout_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
@@ -184,7 +184,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ ورود به هتل	"
+                            android:text="@string/checkin_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
@@ -194,7 +194,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="اتاق"
+                            android:text="@string/room"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
