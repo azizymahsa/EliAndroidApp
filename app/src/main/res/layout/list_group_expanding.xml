@@ -175,6 +175,7 @@
                         android:layout_gravity="right|center_vertical"
                         android:layout_weight="2"
                         android:text="یکشنبه,21:05"
+                        android:gravity="right"
                         android:textColor="#003399"
                         android:textSize="@dimen/_14dp_txtSize"
                         android:textStyle="bold" />
@@ -332,6 +333,7 @@
                         android:layout_gravity="right|center_vertical"
                         android:layout_weight="2"
                         android:text="یکشنبه,21:05"
+                        android:gravity="right"
                         android:textColor="#003399"
                         android:textSize="@dimen/_14dp_txtSize"
                         android:textStyle="bold" />
