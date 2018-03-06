@@ -44,7 +44,7 @@
 
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="جزئیات هتل"
+                    android:text="@string/detail_hotel"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#4d4d4d"
                     android:textSize="12dp" />
@@ -99,7 +99,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تعداد نفرات"
+                            android:text="@string/people_number"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -112,7 +112,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ خروج از هتل"
+                            android:text="@string/checkout_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -125,7 +125,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ ورود به هتل	"
+                            android:text="@string/checkin_date"
                             android:textAppearance="@style/tahoma"
                             android:textColor="#4d4d4d"
 
@@ -137,7 +137,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ تولد"
+                            android:text="@string/birth_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -162,7 +162,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="جنسیت"
+                            android:text="@string/gender"
 
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
@@ -174,7 +174,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="ملیت"
+                            android:text="@string/nationality"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
@@ -186,7 +186,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="شماره پاسپورت"
+                            android:text="@string/number_pass"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
@@ -196,7 +196,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ تولد"
+                            android:text="@string/birth_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
