@@ -147,7 +147,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         }
 
 
-        toolbar_title.setText(" تور " + cityName);
+        toolbar_title.setText(getString(R.string.Tur) + cityName);
         toolbar_date.setText(date);
         goneView(layout_availabel_date, R.anim.slide_out_top);
         goneView(txtNotFoundResualt, R.anim.slide_out_top);

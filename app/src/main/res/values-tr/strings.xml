@@ -2330,6 +2330,9 @@
     <string name="return_"> dönüş </string>
     <string name="text51"> Bilgileri kaydedin ve kaydedin </string>
     <string name="text52"> Parolaları değiştirin </string>
+    <string name="Travel_insurance_to_travel_to_the_country">Ülkeye seyahat etmek için seyahat sigortası</string>
+    <string name="please_refer_to_your_email_to_recover_the_password">Şifrenizi kurtarmak için lütfen e-postanıza bakın.</string>
+    <string name="Tur">Tur</string>
 
 
 </resources>

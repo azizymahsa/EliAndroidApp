@@ -465,4 +465,7 @@
     <string name="enter_time">وقت</string>
     <string name="number">الرقم</string>
     <string name="airline">خط هاواي</string>
+    <string name="Travel_insurance_to_travel_to_the_country">تأمين السفر للسفر إلى البلاد</string>
+    <string name="please_refer_to_your_email_to_recover_the_password">يرجى الرجوع إلى البريد الإلكتروني الخاص بك لاستعادة كلمة المرور.</string>
+    <string name="Tur">جولة</string>
 </resources>

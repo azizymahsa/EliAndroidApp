@@ -2349,5 +2349,8 @@
     <string name="city">شهر</string>
     <string name="people_number">تعداد نفرات</string>
     <string name="service_type">نوع سرویس</string>
+    <string name="Travel_insurance_to_travel_to_the_country">Travel insurance to travel to the country</string>
+    <string name="please_refer_to_your_email_to_recover_the_password">Please refer to your email to recover the password.</string>
+    <string name="Tur">تور</string>
 </resources>
 
