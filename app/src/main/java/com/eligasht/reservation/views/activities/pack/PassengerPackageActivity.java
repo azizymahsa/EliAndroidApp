@@ -1060,7 +1060,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 System.out.println("gender:"+Gender);
                                 //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 if(counter-1 ==1){
-                                    db.insertData(counter-1,getString(R.string.First_passenger_information) ,getString(R.string.room)+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    db.insertData(counter-1,getString(R.string.First_passenger_information) ,getString(R.string.room)+" "+getCounter(room),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
                                 }else{
                                     db.insertData(counter-1,txtTitleCountM.getText().toString() ,imgCount.getText().toString(),Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
@@ -1084,17 +1084,17 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 }
                                 if(countB!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.adult_));
+                                    txtTitleCountM.setText(getString(R.string.Passenger_information) +" "+ getCounter(counter)+getString(R.string.adult_));
                                     imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }
                                 else if(countK!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
+                                    txtTitleCountM.setText(getString(R.string.Passenger_information) +" "+ getCounter(counter)+getString(R.string.child_));
                                     imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }
                                 else if(countN!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby_));
+                                    txtTitleCountM.setText(getString(R.string.Passenger_information) +" "+ getCounter(counter)+getString(R.string.baby_));
                                     imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }
 
@@ -1168,18 +1168,18 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                     countB--;
                                 }else if(countK>=1) {
                                     System.out.println("countK:"+countK);
-                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter-1)+getString(R.string.child_));
+                                    txtTitleCountM.setText(getString(R.string.Passenger_information)+" "+ getCounter(counter-1)+getString(R.string.child_));
                                     imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                     countK--;
                                 }else if(countN>=1) {
                                     System.out.println("countN:"+countN);
-                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter-1)+getString(R.string.baby_));
+                                    txtTitleCountM.setText(getString(R.string.Passenger_information) +" "+ getCounter(counter-1)+getString(R.string.baby_));
                                     imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                     countN--;
                                 }
                                 if(countB!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.adult_));
+                                    txtTitleCountM.setText(getString(R.string.Passenger_information) +" "+ getCounter(counter)+getString(R.string.adult_));
                                     imgCount.setText(getString(R.string.room)+" "+getCounter(room));
                                 }
                                 else if(countK!=0){
@@ -1194,7 +1194,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 }else if(countB + countK + countN==0){
 
                                     if(rooms-1>=0){
-                                        txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.adult_));
+                                        txtTitleCountM.setText(getString(R.string.Passenger_information) +" "+ getCounter(counter)+getString(R.string.adult_));
                                         imgCount.setText(getString(R.string.room)+" "+getCounter(room+1));
                                         txttavalodm.setText("");
                                         txtnamem.setText("");

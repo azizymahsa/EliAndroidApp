@@ -1127,6 +1127,17 @@ public class Utility extends Activity {
         answer = answer.replace("۸", "8");
         answer = answer.replace("۹", "9");
         answer = answer.replace("۰", "0");
+        answer = answer.replace("١", "1");
+        answer = answer.replace("٢", "2");
+        answer = answer.replace("٣", "3");
+        answer = answer.replace("٤", "4");
+        answer = answer.replace("٥", "5");
+        answer = answer.replace("٦", "6");
+        answer = answer.replace("٧", "7");
+        answer = answer.replace("٨", "8");
+        answer = answer.replace("٩", "9");
+        answer = answer.replace("٠", "0");
+
         return answer;
     }
 
