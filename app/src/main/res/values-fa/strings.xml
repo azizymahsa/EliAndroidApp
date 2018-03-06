@@ -465,6 +465,9 @@
     <string name="enter_time">زمان ورود</string>
     <string name="number">شماره</string>
     <string name="airline">خط هوایی</string>
-
+    <string name="country">کشور</string>
+    <string name="city">شهر</string>
+    <string name="people_number">تعداد نفرات</string>
+    <string name="service_type">نوع سرویس</string>
 
 </resources>

@@ -2345,9 +2345,9 @@
     <string name="text52">Change passwords</string>
     <string name="arabic">العربی</string>
     <string name="hotel_policy">Hotel policy</string>
-    <string name="country">کشور</string>
-    <string name="city">شهر</string>
-    <string name="people_number">تعداد نفرات</string>
-    <string name="service_type">نوع سرویس</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="people_number">Enumerate</string>
+    <string name="service_type">Service type</string>
 </resources>
 

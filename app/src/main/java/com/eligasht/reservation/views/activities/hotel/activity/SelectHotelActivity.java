@@ -902,7 +902,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     maxPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MaxPrice;
                     minPrice = availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.MinPrice;
                     int dif = maxPrice - minPrice;
-                    dif = dif / 5;
+                    dif = dif / 5; 
                     int x0 = minPrice;
                     int x1 = x0 + dif;
                     int x2 = x1 + dif;

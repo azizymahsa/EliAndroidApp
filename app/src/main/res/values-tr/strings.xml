@@ -2330,7 +2330,9 @@
     <string name="return_"> dönüş </string>
     <string name="text51"> Bilgileri kaydedin ve kaydedin </string>
     <string name="text52"> Parolaları değiştirin </string>
-
-
+    <string name="country"> Ülke </string>
+    <string name="city"> Şehir </string>
+    <string name="people_number"> Numaralandırmak </string>
+    <string name="service_type"> Hizmet türü </string>
 </resources>
 

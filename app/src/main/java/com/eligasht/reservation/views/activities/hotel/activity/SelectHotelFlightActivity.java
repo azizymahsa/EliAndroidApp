@@ -977,7 +977,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                             int p1 = hotels.Availability.RoomLists.get(i).OldPrice - Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
                             int p2 = p1 * 100;
                             int p3 = p2 / hotels.Availability.RoomLists.get(i).OldPrice;
-                            if (p3 != 0) {
+                            if (p3 > 0) {
+                                // negative
                                 isOff = true;
 
                                 off = p3 + getString(R.string.off);

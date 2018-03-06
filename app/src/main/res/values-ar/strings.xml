@@ -283,7 +283,7 @@
     <string name="terms_and_conditions">الشروط والأحكام</string>
     <string name="sunday">الأحد</string>
     <string name="ninth">تاسع</string>
-    <string name="wednesday">الأربعاء الأربعاء</string>
+    <string name="wednesday">الأربعاء</string>
     <string name="there_is_no_city_to_show">لا توجد مدينة لعرضها</string>
     <string name="please_specify_traverels_birth_date">يرجى إدخال تاريخ ميلاد الركاب.</string>
     <string name="travel_insurance">تأمين السفر</string>
@@ -465,4 +465,12 @@
     <string name="enter_time">وقت</string>
     <string name="number">الرقم</string>
     <string name="airline">خط هاواي</string>
+
+    <string name="country"> البلد</string>
+    <string name="city">المدينة</string>
+    <string name="people_number">تعداد</string>
+    <string name="service_type">نوع الخدمة </string>
+
+
+
 </resources>
