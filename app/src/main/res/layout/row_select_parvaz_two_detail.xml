@@ -73,7 +73,6 @@
 						android:layout_height="wrap_content"
 						android:layout_weight="50"
 						android:gravity="right|center"
-
 						android:paddingTop="2dp"
 						android:text="ترکیش ایر "
 						android:textAppearance="@style/tahoma"
