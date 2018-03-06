@@ -153,8 +153,12 @@ public class PassengerPresenter implements PassengerContract.Presenter {
 
         }
 
-        if (Prefs.getString("lang","fa").equals("en")){
+        else if (Prefs.getString("lang","fa").equals("en")){
             holder.txt_passenger_title.setText(getStringPosition(position)+ " " + context.getString(R.string.Passanger));
+
+        }else{
+            holder.txt_passenger_title.setText(getStringPosition(position)+ " " + context.getString(R.string.Passanger));
+
 
         }
 

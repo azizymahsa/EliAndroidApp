@@ -147,7 +147,11 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
 
 
         }
-        if(Prefs.getString("lang","fa").equals("en")){
+        else if(Prefs.getString("lang","fa").equals("en")){
+            holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
+
+
+        }else{
             holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
 
 
@@ -195,13 +199,18 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
 
 
                 }
-                if(Prefs.getString("lang","fa").equals("en")){
+                else if(Prefs.getString("lang","fa").equals("en")){
                     room.addChildModel(new ChildModel(getStringPosition(room.getChildModels().size())+ " " + context.getString(R.string.BabyPackage), true));
+
+
+                }else{
+                    holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
 
 
                 }
 
-              //  childAdapter.notifyDataSetChanged();
+
+                //  childAdapter.notifyDataSetChanged();
                 ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
                 holder.rcl_child.showList(childAdapter);
             }
