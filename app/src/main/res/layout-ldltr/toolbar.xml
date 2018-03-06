@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60dp_hight"
-        android:gravity="right"
+        android:gravity="left"
         android:orientation="horizontal">
 
         <mehdi.sakout.fancybuttons.FancyButton
@@ -85,7 +85,7 @@
         android:id="@+id/llHome"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_60dp_hight"
-        android:layout_gravity="left">
+        android:layout_gravity="right">
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnHome"

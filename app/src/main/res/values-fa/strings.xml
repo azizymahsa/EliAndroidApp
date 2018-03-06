@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="search_back_right">&#xea3c;</string>
 
     <string name="back_exit">لطفا برای خروج یکبار دیگر دکمه برگشت را فشار دهید</string>
 

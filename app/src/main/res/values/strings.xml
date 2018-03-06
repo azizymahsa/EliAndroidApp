@@ -61,7 +61,7 @@
 
     <string name="reserve_package">Package Reserve</string>
     <string name="icon_calander">&#xe908;</string>
-    <string name="search_back_right">&#xea3c;</string>
+    <string name="search_back_right">&#xea40;</string>
     <string name="icon_plane">&#xe622;</string>
     <string name="arrow_left">&#xea40;</string>
 
@@ -1903,7 +1903,7 @@
     <string name="ErrorServer">Error getting information from Eligasht</string>
     <string name="Sort">Sort</string>
     <string name="Filter">Filter</string>
-    <string name="NextDay">Next\nDay</string>
+    <string name="NextDay">Next Day</string>
     <string name="LastDay">Previous Day</string>
     <string name="curency">Rial</string>
     <string name="ApartmenHotel">Apartment of Hotel</string>

@@ -177,7 +177,9 @@ public class MainActivity extends Base implements View.OnClickListener {
         if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
             drawerLayout.closeDrawer(Gravity.RIGHT);
 
-        } else {
+        } else if(drawerLayout.isDrawerVisible(Gravity.LEFT)) {
+            drawerLayout.closeDrawer(Gravity.RIGHT);
+        }else {
 
 
             if (doubleBackToExitPressedOnce) {
@@ -201,7 +203,13 @@ public class MainActivity extends Base implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnMenu:
-                drawerLayout.openDrawer(Gravity.RIGHT);
+                if (Prefs.getString("lang","fa").equals("fa")||Prefs.getString("lang","fa").equals("ar")){
+                    drawerLayout.openDrawer(Gravity.RIGHT);
+
+                }else{
+                    drawerLayout.openDrawer(Gravity.LEFT);
+
+                }
                 break;
             case R.id.btnFlight:
                 addFragment(getString(R.string.searchFlight), new PlanFragment());
@@ -324,7 +332,13 @@ public class MainActivity extends Base implements View.OnClickListener {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                drawerLayout.closeDrawer(Gravity.RIGHT);
+                if (Prefs.getString("lang","fa").equals("fa")||Prefs.getString("lang","fa").equals("ar")){
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+
+                }else{
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+
+                }
 
             }
         }, 500);
