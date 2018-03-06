@@ -51,16 +51,16 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.setIsRecyclable(false);
         holder.tvBrithDay.setText(item.getRqPassenger_Birthdate());
         holder.tvNationality.setText(item.getNationality());
-        holder.tvGender.setText(item.getGender().contains("false") ? "زن" : "مرد");//item.getGender());
+        holder.tvGender.setText(item.getGender().contains("false") ? context.getString(R.string.female) : context.getString(R.string.male));//item.getGender());
         holder.tvPassangerName.setText(item.getRqPassenger_name());
 
         if (Prefs.getBoolean("IsDemostic", true)) {
-            holder.tvPass.setText("کد ملی");
+            holder.tvPass.setText(context.getString(R.string.national_code));
             holder.tvPassNo.setText(item.getRqPassenger_PassNo());
 
         } else {
 
-            holder.tvPass.setText("شماره پاسپورت");
+            holder.tvPass.setText(context.getString(R.string.number_pass));
             holder.tvPassNo.setText(item.getRqPassenger_PassNo());
 
 
