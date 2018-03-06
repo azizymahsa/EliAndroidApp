@@ -2146,7 +2146,7 @@
     <string name="base_price">Base Price</string>
     <string name="tax">Tax</string>
     <string name="payable">Payable</string>
-    <string name="select_and_reserve">Select And Reserve</string>
+    <string name="select_and_reserve">Reserve</string>
     <string name="calculate_price">Calculate price</string>
     <string name="add_to_shoping_cart">Add to cart</string>
     <string name="added">Added</string>
