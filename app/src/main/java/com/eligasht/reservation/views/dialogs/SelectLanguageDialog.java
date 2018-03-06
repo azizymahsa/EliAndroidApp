@@ -61,17 +61,26 @@ public class SelectLanguageDialog implements View.OnClickListener {
             england.setBackgroundResource(R.color.white);
             iran.setBackgroundResource(R.drawable.stroke_pruple);
             turkey.setBackgroundResource(R.color.white);
+            arabia.setBackgroundResource(R.color.white);
             lang = "fa";
         } else if (Prefs.getString("lang", "fa").equals("en")) {
             england.setBackgroundResource(R.drawable.stroke_pruple);
             iran.setBackgroundResource(R.color.white);
             turkey.setBackgroundResource(R.color.white);
+            arabia.setBackgroundResource(R.color.white);
             lang = "en";
         } else if (Prefs.getString("lang", "fa").equals("tr")) {
             england.setBackgroundResource(R.color.white);
             iran.setBackgroundResource(R.color.white);
+            arabia.setBackgroundResource(R.color.white);
             turkey.setBackgroundResource(R.drawable.stroke_pruple);
             lang = "tr";
+        } else if (Prefs.getString("lang", "fa").equals("tr")){
+            england.setBackgroundResource(R.color.white);
+            iran.setBackgroundResource(R.color.white);
+            turkey.setBackgroundResource(R.color.white);
+            arabia.setBackgroundResource(R.drawable.stroke_pruple);
+            lang = "ar";
 
         }
 
@@ -81,6 +90,7 @@ public class SelectLanguageDialog implements View.OnClickListener {
                 england.setBackgroundResource(R.drawable.stroke_pruple);
                 iran.setBackgroundResource(R.color.white);
                 turkey.setBackgroundResource(R.color.white);
+                arabia.setBackgroundResource(R.color.white);
                 lang = "en";
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
@@ -94,6 +104,7 @@ public class SelectLanguageDialog implements View.OnClickListener {
                 england.setBackgroundResource(R.color.white);
                 turkey.setBackgroundResource(R.color.white);
                 iran.setBackgroundResource(R.drawable.stroke_pruple);
+                arabia.setBackgroundResource(R.color.white);
                 lang = "fa";
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
@@ -106,11 +117,26 @@ public class SelectLanguageDialog implements View.OnClickListener {
             public void onClick(View view) {
                 england.setBackgroundResource(R.color.white);
                 iran.setBackgroundResource(R.color.white);
+                arabia.setBackgroundResource(R.color.white);
                 turkey.setBackgroundResource(R.drawable.stroke_pruple);
                 lang = "tr";
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
                         .playOn(turkey);
+
+            }
+        });
+        arabia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                england.setBackgroundResource(R.color.white);
+                iran.setBackgroundResource(R.color.white);
+                turkey.setBackgroundResource(R.color.white);
+                arabia.setBackgroundResource(R.drawable.stroke_pruple);
+                lang = "ar";
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(arabia);
 
             }
         });
@@ -148,7 +174,8 @@ public class SelectLanguageDialog implements View.OnClickListener {
                     listener.onLanguageCLick("en");
                 } else if (lang.equals("tr")) {
                     listener.onLanguageCLick("tr");
-                }
+                }else if (lang.equals("ar"))
+                    listener.onLanguageCLick("ar");
                 dialog.dismiss();
                 break;
             case R.id.txt_persian:
@@ -167,13 +194,14 @@ public class SelectLanguageDialog implements View.OnClickListener {
                         .duration(200)
                         .playOn(england);
                 break;
-            case R.id.txt_turkish:
-                turkey.setBackgroundResource(R.drawable.stroke_pruple);
+            case R.id.txt_arabic:
+                arabia.setBackgroundResource(R.drawable.stroke_pruple);
                 iran.setBackgroundResource(R.color.white);
                 england.setBackgroundResource(R.color.white);
+                turkey.setBackgroundResource(R.color.white);
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
-                        .playOn(turkey);
+                        .playOn(arabia);
                 break;
 
         }
