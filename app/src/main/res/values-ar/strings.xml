@@ -459,5 +459,10 @@
     <string name="class_flight">فئة الطيران</string>
     <string name="cities_all_over_the_world">المدن في جميع أنحاء العالم</string>
     <string name="confirmed_airlines">شركات الطيران المؤكدة </string>
-    <string name="number_human">تعداد نفرات</string>
+    <string name="number_human">تعداد </string>
+    <string name="return_airport">فرودغاه</string>
+    <string name="exit_time">وقت الخروج </string>
+    <string name="enter_time">وقت</string>
+    <string name="number">الرقم</string>
+    <string name="airline">خط هاواي</string>
 </resources>

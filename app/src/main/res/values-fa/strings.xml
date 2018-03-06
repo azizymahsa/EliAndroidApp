@@ -458,7 +458,13 @@
     <string name="text51">ثبت و ذخیره اطلاعات</string>
 
     <string name="text52">تغییر کلمه عبور</string>
+
     <string name="number_human">تعداد نفرات</string>
+    <string name="return_airport">فرودگاه مبدا</string>
+    <string name="exit_time">زمان خروج</string>
+    <string name="enter_time">زمان ورود</string>
+    <string name="number">شماره</string>
+    <string name="airline">خط هوایی</string>
 
 
 </resources>
