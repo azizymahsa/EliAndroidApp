@@ -48,13 +48,25 @@
             android:layout_weight="0.35"
             android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center|right|bottom"
+                android:paddingBottom="13dp"
+                android:paddingRight="8dp"
+                android:text="@string/icon_user_login"
+                android:textAppearance="@style/User_pass_login"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_25dp_normal_iconSize" />
+
             <EditText
                 android:id="@+id/txt_email"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 android:background="@null"
-                android:gravity="right|center|bottom"
+                android:gravity="left|center|bottom"
                 android:hint="@string/mail"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
@@ -64,17 +76,6 @@
                 android:textColorHint="@color/text_color_2e"
                 android:textSize="@dimen/_14dp_txtSize" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:gravity="center|left|bottom"
-                android:paddingBottom="13dp"
-                android:paddingLeft="8dp"
-                android:text="@string/icon_user_login"
-                android:textAppearance="@style/User_pass_login"
-                android:textColor="@color/text_color_2e"
-                android:textSize="@dimen/_25dp_normal_iconSize" />
 
         </LinearLayout>
 
@@ -90,6 +91,18 @@
             android:layout_height="0dp"
             android:layout_weight="0.35"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center|bottom|right"
+                android:paddingBottom="13dp"
+                android:paddingRight="8dp"
+                android:text="@string/icon_pass_login"
+                android:textAppearance="@style/User_pass_login"
+                android:textColor="@color/text_color_2e"
+
+                android:textSize="@dimen/_25dp_normal_iconSize" />
 
             <EditText
                 android:id="@+id/txt_password"
@@ -97,7 +110,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 android:background="@null"
-                android:gravity="right|center|bottom"
+                android:gravity="left|center|bottom"
                 android:hint="@string/password"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
@@ -107,18 +120,6 @@
                 android:textColorHint="@color/text_color_2e"
                 android:textSize="@dimen/_14dp_txtSize" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:gravity="center|bottom|left"
-                android:paddingBottom="13dp"
-                android:paddingLeft="8dp"
-                android:text="@string/icon_pass_login"
-                android:textAppearance="@style/User_pass_login"
-                android:textColor="@color/text_color_2e"
-
-                android:textSize="@dimen/_25dp_normal_iconSize" />
 
 
         </LinearLayout>
@@ -135,11 +136,19 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="45dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginTop="30dp"
             android:layout_weight="0.3"
-            android:gravity="right"
+            android:gravity="left"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/icon_forget_login"
+                android:textAppearance="@style/User_pass_login"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_25dp_normal_iconSize" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -150,14 +159,6 @@
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_14dp_txtSize" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/icon_forget_login"
-                android:textAppearance="@style/User_pass_login"
-                android:textColor="@color/text_color_2e"
-                android:textSize="@dimen/_25dp_normal_iconSize" />
 
 
         </LinearLayout>
@@ -176,7 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="45dp"
-                android:gravity="right"
+                android:gravity="left"
                 android:text="@string/register"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"

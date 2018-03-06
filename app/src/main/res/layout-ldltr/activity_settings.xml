@@ -40,7 +40,7 @@
                     android:id="@+id/language"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10_flight_dp"
@@ -50,7 +50,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/language"
+                    android:layout_toRightOf="@id/language"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -58,7 +58,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
+                        android:layout_gravity="left"
                         android:layout_marginEnd="@dimen/setting_margin"
                         android:layout_marginLeft="@dimen/setting_margin"
                         android:layout_marginRight="@dimen/setting_margin"
@@ -71,13 +71,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
+                        android:layout_gravity="left"
                         android:layout_marginEnd="@dimen/setting_margin"
                         android:layout_marginLeft="@dimen/setting_margin"
                         android:layout_marginRight="@dimen/setting_margin"
                         android:layout_marginStart="@dimen/setting_margin"
                         android:layout_marginTop="@dimen/margin_top"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:text="@string/text2"
                         android:textColor="#969292"
                         android:textSize="@dimen/detail_setting" />
@@ -117,7 +117,7 @@
                     android:id="@+id/language"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10_flight_dp"
@@ -127,14 +127,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/language"
+                    android:layout_toRightOf="@id/language"
                     android:orientation="vertical">
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
+                        android:layout_gravity="left"
                         android:layout_marginEnd="@dimen/setting_margin"
                         android:layout_marginLeft="@dimen/setting_margin"
                         android:layout_marginRight="@dimen/setting_margin"
@@ -147,13 +147,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
+                        android:layout_gravity="left"
                         android:layout_marginEnd="@dimen/setting_margin"
                         android:layout_marginLeft="@dimen/setting_margin"
                         android:layout_marginRight="@dimen/setting_margin"
                         android:layout_marginStart="@dimen/setting_margin"
                         android:layout_marginTop="@dimen/margin_top"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:text="@string/text4"
                         android:textColor="#969292"
                         android:textSize="@dimen/detail_setting" />
@@ -193,7 +193,7 @@
                     android:id="@+id/language"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10_flight_dp"
@@ -203,7 +203,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/language"
+                    android:layout_toRightOf="@id/language"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -211,12 +211,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
+                        android:layout_gravity="left"
                         android:layout_marginEnd="@dimen/setting_margin"
                         android:layout_marginLeft="@dimen/setting_margin"
                         android:layout_marginRight="@dimen/setting_margin"
                         android:layout_marginStart="@dimen/setting_margin"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:text="@string/text5"
                         android:textColor="#000"
                         android:textSize="@dimen/title_setting" />
@@ -224,13 +224,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
+                        android:layout_gravity="left"
                         android:layout_marginEnd="@dimen/setting_margin"
                         android:layout_marginLeft="@dimen/setting_margin"
                         android:layout_marginRight="@dimen/setting_margin"
                         android:layout_marginStart="@dimen/setting_margin"
                         android:layout_marginTop="@dimen/margin_top"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:text="@string/text6"
                         android:textColor="#969292"
                         android:textSize="@dimen/detail_setting" />

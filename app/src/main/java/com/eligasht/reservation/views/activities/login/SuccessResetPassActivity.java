@@ -28,7 +28,7 @@ public class SuccessResetPassActivity extends BaseActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success_reset_pass);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "فعالسازی حساب کاربری");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.activate_account));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 

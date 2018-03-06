@@ -15,19 +15,18 @@
         android:background="@color/toolbar_color"
         android:orientation="horizontal">
 
-        <com.wang.avi.AVLoadingIndicatorView
-
-            android:id="@+id/avi"
-            style="@style/AVLoadingIndicatorView"
-            android:layout_width="@dimen/_30dp"
-            android:layout_height="@dimen/_30dp"
-            android:layout_below="@+id/ivSplash"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:visibility="invisible"
-            app:indicatorColor="#ffffff"
-            app:indicatorName="BallSpinFadeLoaderIndicator" />
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/toolbar_bottom_width_50dp"
+            android:layout_height="@dimen/toolbar_bottom_width_50dp"
+            android:layout_gravity="left|center"
+            android:gravity="left"
+            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="200dp"
+            fancy:fb_text=" "
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
 
 
         <EditText
@@ -35,7 +34,6 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/_30dp_fh"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dp"
             android:layout_weight="100"
             android:background="@drawable/edittext"
             android:gravity="center"
@@ -45,19 +43,19 @@
             android:textColor="#000000"
             android:textSize="@dimen/_14dp_txtSize" />
 
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btnBack"
-            android:layout_width="@dimen/toolbar_bottom_width_50dp"
-            android:layout_height="@dimen/toolbar_bottom_width_50dp"
-            android:layout_gravity="right|center"
-            android:gravity="right"
-            fancy:fb_defaultColor="@android:color/transparent"
-            fancy:fb_focusColor="@color/focusColor"
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="@dimen/_30dp"
+            android:layout_height="@dimen/_30dp"
+            android:layout_below="@+id/ivSplash"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="invisible"
+            app:indicatorColor="#ffffff"
+            app:indicatorName="BallSpinFadeLoaderIndicator" />
 
-            fancy:fb_radius="200dp"
-            fancy:fb_text=" "
-            fancy:fb_textColor="#FFFFFF"
-            fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
 
     </LinearLayout>
 
