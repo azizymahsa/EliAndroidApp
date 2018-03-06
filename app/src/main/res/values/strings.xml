@@ -2227,12 +2227,12 @@
     <string name="more_data">More info</string>
     <string name="nationality">Nationality</string>
     <string name="eghamat_local">Place of residence</string>
-    <string name="sum_khadamat">Total services price:</string>
+    <string name="sum_khadamat">Total services price</string>
     <string name="moshakhasat_mosafer">Passengers detail</string>
     <string name="info_flight">Flight info</string>
     <string name="detail_hotel">Hotel details</string>
     <string name="Available_services">Available services</string>
-    <string name="The_amount_payable">Payable amount:</string>
+    <string name="The_amount_payable">Payable amount</string>
     <string name="Registration_and_payment">approve and pay</string>
     <string name="text1">Select language</string>
     <string name="text2">Changes will be applied after the restoration of the program</string>

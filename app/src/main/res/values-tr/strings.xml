@@ -2221,12 +2221,12 @@
     <string name="more_data">Daha fazla bilgi</string>
     <string name="nationality">milliyet</string>
     <string name="eghamat_local">İkamet yeri</string>
-    <string name="sum_khadamat">Toplam hizmet fiyatı:</string>
+    <string name="sum_khadamat">Toplam hizmet fiyatı</string>
     <string name="moshakhasat_mosafer">Yolcuların ayrıntıları</string>
     <string name="info_flight">Uçuş bilgisi</string>
     <string name="detail_hotel">Otel detayları</string>
     <string name="Available_services">Kullanılabilir hizmetler</string>
-    <string name="The_amount_payable">ödenebilir miktar:</string>
+    <string name="The_amount_payable">ödenebilir miktar</string>
     <string name="Registration_and_payment">onaylamak ve ödemek</string>
     <string name="text1">Dil Seçin</string>
     <string name="text2">Programın restorasyonu sonrasında değişiklikler yapılacaktır.</string>

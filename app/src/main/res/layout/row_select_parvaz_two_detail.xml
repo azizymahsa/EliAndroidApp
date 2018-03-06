@@ -192,7 +192,7 @@
 				android:textColor="#595959"
 				android:textSize="@dimen/_14dp_txtSize"
 				android:layout_marginRight="2dp"
-
+				android:paddingLeft="@dimen/_10dpTabletSize"
 				android:textStyle="bold" />
 
 			<LinearLayout
