@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:minHeight="@dimen/_400dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        android:background="@drawable/alert_header_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:text="@string/SelectFilter"
+        android:textAppearance="@style/IrsansBold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16dp_txtSize"
+
+        />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1234"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="@string/StarRateHotel"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+
+            <com.eligasht.reservation.views.components.SimpleRecycleView
+                android:id="@+id/rcl_degree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl">
+
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/title_background"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="@string/HotelType"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+
+            <com.eligasht.reservation.views.components.SimpleRecycleView
+                android:id="@+id/rcl_hotel_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/title_background"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="@string/LocationType"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+
+            <com.eligasht.reservation.views.components.SimpleRecycleView
+                android:id="@+id/rcl_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.eligasht.reservation.views.components.SimpleRecycleView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1234"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="@string/FacilitiType"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+            <com.eligasht.reservation.views.components.SimpleRecycleView
+                android:id="@+id/rcl_amenity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1234"
+                android:gravity="center"
+                android:padding="@dimen/margin_5dp"
+                android:text="@string/Price"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+            <com.eligasht.reservation.views.components.SimpleRecycleView
+                android:id="@+id/rcl_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10dp_margin"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnDeletFilter"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.5"
+            android:elevation="1dp"
+            android:paddingBottom="1dp"
+            fancy:fb_defaultColor="#1234"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="100dp"
+            fancy:fb_text="@string/RemoveFilter"
+            fancy:fb_textColor="#4d4d4d"
+            fancy:fb_textSize="@dimen/_14dp_txtSize" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnOk"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.5"
+            android:elevation="1dp"
+            android:paddingBottom="1dp"
+            fancy:fb_defaultColor="#1234"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="100dp"
+            fancy:fb_text="@string/FilterConfirm"
+            fancy:fb_textColor="#4d4d4d"
+            fancy:fb_textSize="@dimen/_14dp_txtSize" />
+
+    </LinearLayout>
+</LinearLayout>

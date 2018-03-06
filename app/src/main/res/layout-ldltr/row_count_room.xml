@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/linearPickerHotel"
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/shadowbox_big"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.85"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtDelete"
+                android:layout_width="26dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=" - "
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="190dp"
+            android:layout_height="141dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="0.85"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="14dp">
+
+                <Button
+                    android:id="@+id/btnMinesB"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/background_strock"
+                    android:text="-"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/txtCountB"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="top"
+                    android:text="1"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/btnPlusB"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/background_strock"
+                    android:text="+"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/txtBO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:gravity="right"
+                    android:text="@string/adault"
+                    android:textColor="#000000"
+                    android:textSize="11dp" />
+            </LinearLayout>
+            <!-- ///////////////koodak////////////////// -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="14dp">
+
+                <Button
+                    android:id="@+id/btnMinesK"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/background_strock"
+                    android:text="-"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/txtCountK"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="top"
+                    android:text="0"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/btnPlusK"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/background_strock"
+                    android:text="+"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/txtKO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:gravity="right"
+                    android:text="@string/baby"
+                    android:textColor="#000000"
+                    android:textSize="11dp" />
+            </LinearLayout>
+            <!-- //////////////////////nozad/////////////////////// -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="14dp">
+
+                <Button
+                    android:id="@+id/btnMinesN"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/background_strock"
+                    android:text="-"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/txtCountN"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="top"
+                    android:text="0"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/btnPlusN"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/background_strock"
+                    android:text="+"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/txtNO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:gravity="right"
+                    android:text="@string/newborn"
+                    android:textColor="#000000"
+                    android:textSize="11dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="اتاق اول "
+                android:textColor="#808080"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:background="@drawable/bed_icon"
+                android:text="" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

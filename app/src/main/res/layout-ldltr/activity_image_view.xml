@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/textColorR"
+    tools:context="com.eligasht.reservation.myapplicationeli.reserv.myapplicationeli.views.activities.hotel.activity.ImageViewActivity">
+
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/toolbarLayout"
+        android:background="@drawable/shadow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarLayout"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/flViewPager"
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100">
+
+            <com.veinhorn.scrollgalleryview.HackyViewPager
+
+                android:id="@+id/intro_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </FrameLayout>
+
+
+        <it.sephiroth.android.library.widget.HListView
+            android:id="@+id/thumbnails_scroll_view"
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="16"
+
+            android:scrollbars="none" />
+    </LinearLayout>
+
+
+</RelativeLayout>

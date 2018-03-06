@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:nestedScrollingEnabled="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100dp_profile"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_45_profile"
+                android:gravity="center"
+                android:padding="@dimen/_5sp_padding"
+                android:text="علی فرهادی"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="#000"
+                android:textSize="@dimen/_24dp_textSize" />
+
+
+        </RelativeLayout>
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            android:background="@color/white"
+            android:layoutDirection="rtl"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/colorPrimaryDark"
+            app:tabTextColor="@color/gray_normal">
+
+        </android.support.design.widget.TabLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_normal"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </android.support.v4.view.ViewPager>
+
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_color"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100dp_profile"
+            android:clipChildren="false"
+
+
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingTop="50dp"
+                app:layout_collapseMode="parallax"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+
+            </RelativeLayout>
+
+            <include
+                android:id="@+id/toolbarLayout"
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/toolbar_color"
+                app:layout_collapseMode="pin" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <Button
+        android:id="@+id/btnSaveInfo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40dp"
+        android:layout_gravity="center|bottom"
+        android:background="@drawable/btngravity_big"
+        android:text="@string/text51"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_16dp_normal_textSize"
+        android:textStyle="bold"
+
+        />
+
+    <com.eligasht.reservation.views.activities.login.CoordinatedImageView
+        android:id="@+id/img_profile"
+        android:layout_width="@dimen/_80dp_ci"
+        android:layout_height="@dimen/_80dp_ci"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_m50_profile"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:text="MM"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/_24dp_textSize"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|center"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" />
+
+
+</android.support.design.widget.CoordinatorLayout>

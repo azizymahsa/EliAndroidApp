@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/rlHedaer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="23"
+        android:background="@drawable/background_menu"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivUser"
+            android:layout_width="@dimen/toolbar_height_70dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_weight="100"
+            android:src="@drawable/user_sidemenu"
+
+            />
+
+        <RelativeLayout
+            android:id="@+id/rlUser"
+
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30">
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/login"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tvArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="@dimen/_10dp_margin"
+                android:gravity="center"
+                android:text="@string/icon_arrow_up"
+                android:textAppearance="@style/IconFonts"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20dp_normal_textSize" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="100"
+        android:orientation="vertical">
+
+        <com.github.aakira.expandablelayout.ExpandableWeightLayout
+            android:id="@+id/expandableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            app:ael_duration="1000"
+            app:ael_interpolator="anticipateOvershoot">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="70">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnLastBuy"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="#d7d7d7"
+                        fancy:fb_radius="6dp"
+
+                        fancy:fb_text=" "
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="25dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_toLeftOf="@+id/tv1"
+
+                        android:gravity="center"
+                        android:text="@string/my_old_purchases"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="@color/text_color_2e"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+
+                    <TextView
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="@string/contract"
+                        android:textAppearance="@style/IconMenu"
+                        android:textColor="@color/text_color_2e"
+                        android:textSize="@dimen/_30dp_normal_iconSize"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="70"
+                    android:visibility="gone">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="#d7d7d7"
+                        fancy:fb_radius="6dp"
+
+                        fancy:fb_text=" "
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="25dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="15dp"
+                        android:layout_toLeftOf="@+id/tv2"
+                        android:gravity="center"
+                        android:text="@string/my_information"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="@color/text_color_2e"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+
+                    <TextView
+                        android:id="@+id/tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="@string/userlogin"
+                        android:textAppearance="@style/IconMenu"
+                        android:textColor="@color/text_color_2e"
+                        android:textSize="@dimen/_30dp_normal_iconSize" />
+
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/text_color_2e" />
+
+            </LinearLayout>
+
+
+        </com.github.aakira.expandablelayout.ExpandableWeightLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnFlight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv3"
+                android:layout_toStartOf="@+id/tv3"
+                android:gravity="center"
+                android:text="@string/plane_ticket"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/bigplane"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnHotel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv4"
+                android:gravity="center"
+                android:text="@string/hotel_reservation"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/hotel"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnHotelFlight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv5"
+                android:gravity="center"
+                android:text="@string/hotel_reservation_and_plane_ticket"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/tour"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnPackage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv6"
+                android:gravity="center"
+                android:text="@string/travel_tour"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/packages"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnInsurance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv7"
+                android:gravity="center"
+                android:text="@string/travel_insurance"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/insurance"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnGhatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tvTrain"
+                android:gravity="center"
+                android:text="@string/soon"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/red"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tvTrain"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv11"
+                android:gravity="center"
+                android:text="@string/trains"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv11"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/train"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_condition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv8"
+                android:gravity="center"
+                android:text="@string/terms_and_conditions"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/terms"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize" />
+
+        </RelativeLayout>
+
+
+        //change lang
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_setting"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv8"
+                android:gravity="center"
+                android:text="@string/settings"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/setting"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnContactUs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv9"
+                android:gravity="center"
+                android:text="@string/contact_us"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv9"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/contactus"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnAbout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tv10"
+                android:gravity="center"
+                android:text="@string/about_us"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv10"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/aboutus"
+                android:textAppearance="@style/IconMenu"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnExit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="31dp"
+                android:layout_marginRight="31dp"
+                android:layout_marginTop="@dimen/_8dp_normal_margin"
+                android:background="@drawable/btngravity_big"
+                android:text="@string/exit"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
