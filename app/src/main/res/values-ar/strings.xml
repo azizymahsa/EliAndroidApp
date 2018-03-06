@@ -72,13 +72,13 @@
     <string name="HiddenName">أنا لست على استعداد لإظهار اسم</string>
     <string name="EditInput">يرجى تصحيح ما يلي</string>
     <string name="Enter_the_place_of_residence">أدخل مكان الإقامة</string>
-    <string name="English">الإنجليزية</string>
+    <string name="English">English</string>
     <string name="Try">أعد المحاولة</string>
     <string name="PassengerSpec">معلومات الركاب</string>
     <string name="Passenger_information">معلومات الركاب</string>
     <string name="info_passenger">معلومات الركاب</string>
     <string name="_1star">1 نجمة</string>
-    <string name="Persian">اللغة الفارسية</string>
+    <string name="Persian">فارسی</string>
     <string name="NoResult">لم يتم العثور على نتائج لبحثك!</string>
     <string name="Fifth">خامس</string>
     <string name="OneStop">محطة واحدة</string>
