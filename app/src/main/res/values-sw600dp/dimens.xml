@@ -31,7 +31,7 @@
     <dimen name="_15dp_margin">25dp</dimen>
     <dimen name="_5sp_padding">5dp</dimen>
     <dimen name="_10dp_padding">10dp</dimen>
-    <dimen name="_1dp_width">1dp</dimen>
+    <dimen name="_1dp_width">2dp</dimen>
     <dimen name="_1dp_margin">1dp</dimen>
     <dimen name="title_setting">25sp</dimen>
     <dimen name="_5dp_padding">8dp</dimen>

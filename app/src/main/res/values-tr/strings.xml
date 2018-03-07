@@ -59,7 +59,7 @@
     <string name="search_hotel"> Otel arama </string>
     <string name="reserve_package"> Paket Rezervi </string>
     <string name="icon_calander">&#xe908;</string>
-    <string name="search_back_right">&#xea3c;</string>
+    <string name="search_back_right">&#xea40;</string>
     <string name="icon_plane">&#xe622;</string>
     <string name="arrow_left">&#xea40;</string>
     <string name="icon_exp_up">&#xe801;</string>
@@ -1900,9 +1900,9 @@
     <string name="ApartmenHotel"> Apartman Otel </string>
     <string name="BoutiqueHotel"> Butik Otel </string>
     <string name="ResortHotel"> Otel Rezervasyonu </string>
-    <string name="NonStop">Non stop</string>
-    <string name="OneStop"> Tek Durak </string>
-    <string name="TwoStop"> İki Durak </string>
+    <string name="NonStop">no stop</string>
+    <string name="OneStop"> 1 Durak </string>
+    <string name="TwoStop"> 2 Durak </string>
     <string name="DetailHotel"> Otel Detayları </string>
     <string name="GoogleUpdateError"> Google Play hizmetinizin güncellenmesi gerekiyor. </string>
     <string name="NewComment"> Son yorumlar </string>
@@ -2010,7 +2010,7 @@
     <string name="UpdateAlert">Yazılımın güncellenmesi gerekiyor, yazılımı güncellemek istiyor musunuz?</string>
     <string name="SelectFilter">Filtre seçimi</string>
     <string name="Stop">durdurmak</string>
-    <string name="TwoStopAndMore">İki Dur ve Daha Fazlası</string>
+    <string name="TwoStopAndMore">2 ve daha</string>
     <string name="Economi">Ekonomik</string>
     <string name="Business">İş adamı sınıfı</string>
     <string name="first"> Birinci Sınıf </string>
@@ -2140,7 +2140,7 @@
     <string name="base_price"> Esas Fiyatı </string>
     <string name="tax"> Vergi </string>
     <string name="payable">Ödenecek </string>
-    <string name="select_and_reserve"> Seç ve Rezerv </string>
+    <string name="select_and_reserve"> Rezerv </string>
     <string name="calculate_price"> Fiyat hesapla </string>
     <string name="add_to_shoping_cart"> Sepetene ekle </string>
     <string name="added"> Eklendi </string>
