@@ -3,7 +3,6 @@ package com.eligasht.reservation.views.picker.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build.VERSION;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.widget.RecyclerView;
@@ -573,9 +572,7 @@ public class CalendarDialog implements OnClickListener {
         }
         this.sharedPrefrences.edit().putBoolean("isGregorian", this.isGregorian).apply();
         if (this.isGregorian) {
-            if (VERSION.SDK_INT >= 17) {
-                this.calendarRv.setLayoutDirection(0);
-            }
+
             this.sat.setText("S");
             this.sun.setText("F");
             this.mon.setText("T");
@@ -587,7 +584,7 @@ public class CalendarDialog implements OnClickListener {
             initAdapter(this.isGregorian);
             if (context.getResources().getBoolean(R.bool.isTablet)) {
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(-1, (int) (((double) (this.displayMetrics.density * 240.0f)) + 0.5d));
-                layoutParams.setMargins((int) (((double) (20.0f * this.displayMetrics.density)) + 0.5d), (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (1.0f * this.displayMetrics.density)) - 30d), 0);
+                layoutParams.setMargins((int) (((double) (2.0f * this.displayMetrics.density)) - 40d), (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (10.0f * this.displayMetrics.density)) + 7d), 0);
                 layoutParams.addRule(3, R.id.fri);
                 this.calendarRv.setLayoutParams(layoutParams);
             } else {
@@ -596,12 +593,9 @@ public class CalendarDialog implements OnClickListener {
                 layoutParams.addRule(3, R.id.fri);
                 this.calendarRv.setLayoutParams(layoutParams);
             }
-
             return;
         }
-        if (VERSION.SDK_INT >= 17) {
-            this.calendarRv.setLayoutDirection(1);
-        }
+
         this.sat.setText("ش");
         this.sun.setText("ی");
         this.mon.setText("د");
@@ -662,11 +656,11 @@ public class CalendarDialog implements OnClickListener {
             if (this.shortDate != null) {
                 this.dateDescription.setText(this.shortDate);
             } else if (this.typeUsageOfCalendar.equals("Train") || this.typeUsageOfCalendar.equals("NationalFlight") || this.typeUsageOfCalendar.equals("InternationalFlight")) {
-                this.dateDescription.setText("Select departure date");
+                this.dateDescription.setText(R.string.select_dep);
             } else if (this.typeUsageOfCalendar.equals("Hotel")) {
-                this.dateDescription.setText("Select checkin date");
+                this.dateDescription.setText(R.string.select_che_in);
             } else if (this.typeUsageOfCalendar.equals("AutoAlert")) {
-                this.dateDescription.setText("Select Start Date");
+                this.dateDescription.setText(R.string.select_start_date);
             }
             this.calendarRv.setLayoutManager(this.gridLayoutManager);
             this.calendarRv.setHasFixedSize(true);
