@@ -39,7 +39,6 @@ import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActiv
 import com.eligasht.reservation.views.adapters.HotelCountRoomAdapter;
 import com.eligasht.reservation.views.ui.dialog.app.CountTimeAlert;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
-import com.eligasht.reservation.views.ui.dialog.hotel.DatePickerDialogPrivate;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -64,7 +63,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
     private View rootView;
     RelativeLayout citySearch;
     TextView tvRaft, tvBargasht;
-    DatePickerDialogPrivate datePickerDialogRaft, datePickerDialogBargasht;
     private ArrayList<ModelRowCountRoom> roomsSelected;
     private final int ADD_ROOM_REQUEST = 100;
     DatePickerDialog datePickerDialog;
