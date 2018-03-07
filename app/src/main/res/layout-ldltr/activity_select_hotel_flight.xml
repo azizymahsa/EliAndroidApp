@@ -8,123 +8,106 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <FrameLayout
 
-        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+
+    <RelativeLayout
         android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60dp_hight">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60dp_hight"
-            android:background="@color/toolbar_color" />
-
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/toolbar_color"
+        android:minHeight="?attr/actionBarSize">
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
             android:layout_width="@dimen/toolbar_bottom_width_50dp"
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
-            android:layout_gravity="right|center"
-            android:gravity="right"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
-
             fancy:fb_radius="200dp"
             fancy:fb_text=" "
             fancy:fb_textColor="#FFFFFF"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_5dp_margin"
-                    android:textAppearance="@style/IrsansBold"
-                    android:textColor="@android:color/white"
-
-
-                    android:textSize="@dimen/toolbar_title_16dp" />
-
-                <TextView
-                    android:id="@+id/tvCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_toLeftOf="@+id/tvTitle"
-
-                    android:gravity="center"
-
-                    android:text="asfdasdasd"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/_12dp"
-                    android:visibility="gone"
-
-                    />
-
-
-                <TextView
-                    android:id="@+id/tvDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/toolbar_desc_12dp" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/llHome"
+            <TextView
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5dp_margin"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/toolbar_title_16dp" />
+
+            <TextView
+                android:id="@+id/tvCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="15dp"
+                android:layout_toLeftOf="@+id/tvTitle"
+                android:gravity="center"
+                android:text="asfdasdasd"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_12dp"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/toolbar_desc_12dp"
+
+                />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/llHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_60dp_hight"
+            android:layout_alignParentRight="true"
+            >
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnHome"
+                android:layout_width="@dimen/_60dp_hight"
                 android:layout_height="@dimen/_60dp_hight"
-                android:layout_gravity="left">
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="@color/focusColor"
 
-                <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btnHome"
-                    android:layout_width="@dimen/_60dp_hight"
-                    android:layout_height="@dimen/_60dp_hight"
-                    fancy:fb_defaultColor="@android:color/transparent"
-                    fancy:fb_focusColor="@color/focusColor"
+                fancy:fb_radius="200dp"
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
 
-                    fancy:fb_radius="200dp"
-                    fancy:fb_text=" "
-                    fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp" />
+            <ImageView
+                android:id="@+id/txt_hom"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/e_logo" />
 
-                <ImageView
-                    android:id="@+id/txt_hom"
-                    android:layout_width="@dimen/_30dp"
-                    android:layout_height="@dimen/_30dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/e_logo"
-
-                    />
-
-
-            </RelativeLayout>
         </RelativeLayout>
-
-
-    </FrameLayout>
+    </RelativeLayout>
 
 
     <LinearLayout
@@ -226,7 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp" />
 
@@ -255,14 +238,14 @@
 
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="140"
+                android:layout_weight="190"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="100">
+                    android:layout_weight="120">
 
 
                     <mehdi.sakout.fancybuttons.FancyButton

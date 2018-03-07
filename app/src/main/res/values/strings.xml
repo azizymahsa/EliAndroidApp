@@ -59,9 +59,9 @@
     <string name="search_package">Search Package</string>
     <string name="search_hotel">Search Hotel</string>
 
-    <string name="reserve_package">Package Reserve</string>
+    <string name="reserve_package">Reserve</string>
     <string name="icon_calander">&#xe908;</string>
-    <string name="search_back_right">&#xea3c;</string>
+    <string name="search_back_right">&#xea40;</string>
     <string name="icon_plane">&#xe622;</string>
     <string name="arrow_left">&#xea40;</string>
 
@@ -1905,7 +1905,7 @@
     <string name="ErrorServer">Error getting information from Eligasht</string>
     <string name="Sort">Sort</string>
     <string name="Filter">Filter</string>
-    <string name="NextDay">Next\nDay</string>
+    <string name="NextDay">Next Day</string>
     <string name="LastDay">Previous Day</string>
     <string name="curency">Rial</string>
     <string name="ApartmenHotel">Apartment of Hotel</string>
@@ -2041,7 +2041,7 @@
     <string name="FacilitiType">Facilities</string>
     <string name="Price">Price</string>
     <string name="SearchCity">Search</string>
-    <string name="BuyInsurance">Buy Insurance</string>
+    <string name="BuyInsurance">Buy</string>
     <string name="Detail">Detail</string>
     <string name="from">From</string>
     <string name="night">Night</string>
@@ -2280,7 +2280,7 @@
     <string name="seven_days">7 days</string>
     <string name="six_months">6 months</string>
     <string name="one_year">One year</string>
-    <string name="Facility">fonts/times.ttf</string>
+    <string name="Facility">fonts/Facility.ttf</string>
     <string name="iran_sans_bold.ttf">fonts/times.ttf</string>
     <string name="iran_sans_normal.ttf">fonts/times.ttf</string>
     <string name="irsans.ttf">fonts/times.ttf</string>
@@ -2336,7 +2336,7 @@
     <string name="our_specialists_will_call_you_soon">Please wait for us to call you</string>
     <string name="re_pay">Re pay</string>
     <string name="return_">return</string>
-    <string name="text51">Record and save information</string>
+    <string name="text51">Save</string>
     <string name="number_human"> Enumerate </string>
     <string name="return_airport"> Frodgah </string>
     <string name="exit_time"> Exit Time </string>
@@ -2353,5 +2353,11 @@
     <string name="Please_enter_the_correct_name">Please enter the correct name</string>
     <string name="Please_enter_the_title_correctly">Please enter the title correctly</string>
     <string name="Please_enter_the_correct_message">Please enter the correct message</string>
+    <string name="please_enter_your_email_to_reset_your_pass">لطفا جهت بازیابی کلمه عبور ایمیل خود را وارد کنید</string>
+    <string name="reset_pass">بازیابی رمز عبور</string>
+    <string name="activate_account">فعالسازی حساب کاربری</string>
+    <string name="activation_link_has_been_sent_to_your_email">لینک فعال سازی به ایمیل شما ارسال شده است.</string>
+    <string name="mail_or_pass_is_wrong">ایمیل و یا رمز عبور شما اشتباه می باشد .</string>
+    <string name="email_address_is_not_valid">ایمیل وارد شده صحیح نمی باشد</string>
 </resources>
 

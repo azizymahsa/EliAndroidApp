@@ -89,7 +89,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="0.12"
+                        android:layout_weight="0.09"
                         android:gravity="center"
                         android:text="@string/icon_plane"
                         android:textAppearance="@style/IconMenu"
@@ -152,7 +152,7 @@
                 android:id="@+id/llHome"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_60dp_hight"
-                android:layout_gravity="left">
+                android:layout_alignParentRight="true">
 
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnHome"
@@ -184,7 +184,7 @@
             android:id="@+id/txtBack"
             android:layout_width="@dimen/toolbar_bottom_width_50dp"
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
-            android:layout_gravity="right|center"
+            android:layout_gravity="left|center"
             android:gravity="right"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
@@ -251,7 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="5dp" />
 
@@ -364,7 +364,7 @@
 
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="140"
+                android:layout_weight="190"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -372,7 +372,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="100"
+                    android:layout_weight="120"
                     android:gravity="center">
 
 

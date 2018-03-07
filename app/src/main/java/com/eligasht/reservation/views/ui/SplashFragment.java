@@ -78,7 +78,6 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     private BroadcastReceiver sendDetailFinish;
     InternetAlert internetAlert;
     boolean isConnect;
-    boolean isUpdate = false;
 
     int req = 0;
     SplashDialog splashDialog;
@@ -96,7 +95,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
     IUpdateCheckService service;
     //  UpdateServiceConnection connection;
-    UpdateServiceConnection connection;
+
 
     private enum DOWNLOAD_TYPE {
         NONE, MAP, SOFTWARE
@@ -107,13 +106,26 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.fragment_splash);
         super.onCreate(savedInstanceState);
-        initService();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
 
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
         }
-        splashDialog = new SplashDialog(SplashFragment.this, this);
+
+        String server = "5.0.0";
+        String app = "6.0.0";
+
+        if (Double.valueOf(app.replace(".", "")) >= Double.valueOf(server.replace(".", ""))){
+            Log.e("test", "onCreate: true" );
+
+        }else{
+            Log.e("test", "onCreate: false" );
+
+
+        }
+
+
+            splashDialog = new SplashDialog(SplashFragment.this, this);
         final PackageInfo pInfo;
         try {
             pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
@@ -176,7 +188,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                             public void onPermissionGranted() {
                                 req++;
                                 if (isConnect) {
-                                new GetCommentAsync().execute();
+                                    new GetCommentAsync().execute();
                                  /*   startActivity(new Intent(SplashFragment.this, CommentActivity.class));
                                     finish();*/
                                 } else {
@@ -353,50 +365,33 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                     }
                     if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
 
-                        if (!isUpdate) {
-                            try {
-                                Version a = new Version(BuildConfig.VERSION_NAME);
-                                Version b = new Version(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion);
+                        try {
+                            String  app = BuildConfig.VERSION_NAME;
+                            String server = userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion;
+                            if (Double.valueOf(app.replace(".", "")) > Double.valueOf(server.replace(".", ""))){
 
-                                if (a.compareTo(b) == -1) {
-
-                                    updateAlert.show();
-                                    updateAlert.isForce(true);
-                                }else{
-                                    startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                                    finish();
-                                }
-
-
-                            } catch (Exception e) {
-                                splashDialog.showAlert();
-                            }
-
-
-                        } else {
-
-
-
-
-                            Version a = new Version(BuildConfig.VERSION_NAME);
-                            Version b = new Version(userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion);
-
-                            if (a.compareTo(b) == -1) {
-
-                                updateAlert.show();
-                                updateAlert.isForce(true);
-                            }else{
                                 updateAlert.show();
                                 updateAlert.isForce(false);
+
+                            }else{
+
+                                startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                                finish();
+
+
                             }
 
 
 
+
+                        } catch (Exception e) {
+                            splashDialog.showAlert();
                         }
 
 
                     } else {
-                        splashDialog.showAlert();
+                        updateAlert.show();
+                        updateAlert.isForce(true);
 
 
 
@@ -459,58 +454,16 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
     }
 
-    class UpdateServiceConnection implements ServiceConnection {
-        public void onServiceConnected(ComponentName name, IBinder boundService) {
-            service = IUpdateCheckService.Stub
-                    .asInterface((IBinder) boundService);
-            try {
-                final PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-                long vCode = service.getVersionCode(pInfo.packageName);
-                Log.e(TAG, pInfo.packageName);
-
-
-
-                if (vCode != -1) {
-                    isUpdate = true;
-                    Log.e(TAG, "onServiceConnected: " );
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        public void onServiceDisconnected(ComponentName name) {
-            service = null;
-        }
-    }
-
-    private void initService() {
-        Log.i(TAG, "initService()");
-        connection = new UpdateServiceConnection();
-        try {
-            Intent i = new Intent(
-                    "com.farsitel.bazaar.service.UpdateCheckService.BIND");
-            i.setPackage("com.farsitel.bazaar");
-            boolean ret = bindService(i, connection, Context.BIND_AUTO_CREATE);
-        } catch (Exception e) {
-        }
-    }
 
     /**
      * This is our function to un-binds this activity from our service.
      */
-    private void releaseService() {
-        unbindService(connection);
-        connection = null;
-    }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        releaseService();
+
     }
 }
 

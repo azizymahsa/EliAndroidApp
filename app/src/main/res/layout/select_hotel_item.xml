@@ -202,7 +202,7 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="false"
+                    android:layout_alignParentLeft="true"
                     android:ellipsize="end"
                     android:gravity="left|center"
                     android:maxLines="1"
