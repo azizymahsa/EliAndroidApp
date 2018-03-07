@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -175,11 +176,11 @@ public class MainActivity extends Base implements View.OnClickListener {
     public void onBackPressed() {
         // super.onBackPressed();
         if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
-            drawerLayout.closeDrawer(Gravity.RIGHT);
+            closeDrawer();
 
-        } else if(drawerLayout.isDrawerVisible(Gravity.LEFT)) {
-            drawerLayout.closeDrawer(Gravity.RIGHT);
-        }else {
+        } else if (drawerLayout.isDrawerVisible(Gravity.LEFT)) {
+            closeDrawer();
+        } else {
 
 
             if (doubleBackToExitPressedOnce) {
@@ -203,13 +204,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnMenu:
-                if (Prefs.getString("lang","fa").equals("fa")||Prefs.getString("lang","fa").equals("ar")){
-                    drawerLayout.openDrawer(Gravity.RIGHT);
-
-                }else{
-                    drawerLayout.openDrawer(Gravity.LEFT);
-
-                }
+                openDrawer();
                 break;
             case R.id.btnFlight:
                 addFragment(getString(R.string.searchFlight), new PlanFragment());
@@ -269,7 +264,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
 
                 break;
-                case R.id.rlHedaer:
+            case R.id.rlHedaer:
 
 
                 try {
@@ -340,6 +335,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     }
 
     public void addFragment(String title, Fragment fragment) {
+
         tvTitle.setText(title);
         manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getSupportFragmentManager()
@@ -349,17 +345,51 @@ public class MainActivity extends Base implements View.OnClickListener {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (Prefs.getString("lang","fa").equals("fa")||Prefs.getString("lang","fa").equals("ar")){
-                    drawerLayout.closeDrawer(Gravity.RIGHT);
-
-                }else{
-                    drawerLayout.closeDrawer(Gravity.LEFT);
-
-                }
+                closeDrawer();
 
             }
         }, 500);
 
+    }
+
+    void closeDrawer() {
+        final Configuration config = getResources().getConfiguration();
+        if (Prefs.getString("lang", "fa").equals("fa") || Prefs.getString("lang", "fa").equals("ar")) {
+            if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                drawerLayout.closeDrawer(Gravity.END);
+
+            } else {
+                drawerLayout.closeDrawer(Gravity.START);
+            }
+        } else {
+            if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                drawerLayout.closeDrawer(Gravity.END);
+
+            } else {
+                drawerLayout.closeDrawer(Gravity.START);
+            }
+
+        }
+    }
+
+    void openDrawer() {
+        final Configuration config = getResources().getConfiguration();
+        if (Prefs.getString("lang", "fa").equals("fa") || Prefs.getString("lang", "fa").equals("ar")) {
+            if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                drawerLayout.openDrawer(Gravity.END);
+
+            } else {
+                drawerLayout.openDrawer(Gravity.START);
+            }
+        } else {
+            if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                drawerLayout.openDrawer(Gravity.END);
+
+            } else {
+                drawerLayout.openDrawer(Gravity.START);
+            }
+
+        }
     }
 
     public void timer() {
