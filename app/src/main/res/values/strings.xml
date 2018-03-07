@@ -2082,7 +2082,7 @@
     <string name="departure_to">Departure to:</string>
     <string name="origin_colon">From :</string>
     <string name="destination_colon">To :</string>
-    <string name="newborn">Baby</string>
+    <string name="newborn">Infant</string>
     <string name="departure">One Way</string>
     <string name="departure_and_return">Round Trip</string>
     <string name="name_en">Name(En)*</string>

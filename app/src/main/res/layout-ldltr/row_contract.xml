@@ -358,7 +358,7 @@
                     android:gravity="center|left"
                     android:text="@string/mail"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/_12dp_normal_textSize" />
+                    android:textSize="@dimen/_15dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/contract_email"
