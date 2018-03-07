@@ -317,7 +317,6 @@
                         android:layout_gravity="center|center_vertical"
                         android:layout_weight="1.5"
                         android:gravity="center"
-
                         android:text="6"
                         android:textColor="#aaa"
                         android:textSize="@dimen/_10dp_textSize"  />

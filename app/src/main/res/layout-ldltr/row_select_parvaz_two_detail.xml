@@ -82,10 +82,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:gravity="right|center"
-
                         android:paddingTop="2dp"
                         android:text="3h 45 m "
-
                         android:textColor="#0e874e"
                         android:textSize="@dimen/_10dp_textSize" />
                 </LinearLayout>
@@ -100,7 +98,6 @@
                     android:text="استانبول"
                     android:textColor="#003399"
                     android:textSize="@dimen/_10dp_textSize"
-
                     />
 
             </LinearLayout>
