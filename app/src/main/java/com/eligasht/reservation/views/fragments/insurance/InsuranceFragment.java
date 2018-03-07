@@ -373,10 +373,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             year_ = startDate.getGeoYear();
             month = startDate.getGeoMonth();
             day = startDate.getGeoDay();
-
-            String currentDateTime = startDate.getFullGeo();
-            txt_depart_date.setText(startDate.getDescriptionGeo());
-            departureDate = currentDateTime;
+            departureDate = startDate.getFullGeo();
             departureDate = Utility.convertNumbersToEnglish(departureDate);
 
 
@@ -384,12 +381,11 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             year_ = startDate.getPersianYear();
             month = startDate.getPersianMonth();
             day = startDate.getPersianDay();
-            String currentDateTime = startDate.getFullPersian();
-            txt_depart_date.setText(startDate.getDescriptionPersian());
-            departureDate = currentDateTime;
+            departureDate = startDate.getFullPersian();
             departureDate = Utility.convertNumbersToEnglish(departureDate);
 
         }
+        txt_depart_date.setText(startDate.getDescription());
 
     }
 }
