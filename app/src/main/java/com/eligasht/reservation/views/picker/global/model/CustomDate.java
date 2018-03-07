@@ -74,24 +74,36 @@ public class CustomDate {
     }
 
     public String getFullGeo() {
-        return civilDate.getYear() + "/" + civilDate.getMonth() + "/" + civilDate.getDayOfMonth();
+        String month;
+        if (civilDate.getMonth() < 10)
+            month = "0" + civilDate.getMonth();
+        else
+            month = String.valueOf(civilDate.getMonth());
+
+        return civilDate.getYear() + "/" + month + "/" + civilDate.getDayOfMonth();
     }
 
-    public String getDescriptionPersian() {
+    private String getDescriptionPersian() {
         PersianCalendar persianCalendar = new PersianCalendar();
-        persianCalendar.setPersianDate(persianDate.getYear(), persianDate.getMonth(), persianDate.getDayOfMonth());
+        persianCalendar.setPersianDate(persianDate.getYear(), persianDate.getMonth() - 1, persianDate.getDayOfMonth());
 
         return persianCalendar.getPersianWeekDayName()
                 + " " +
                 persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName();
     }
 
-    public String getDescriptionGeo() {
+    private String getDescriptionGeo(Locale locale) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(civilDate.getYear(), civilDate.getMonth(), civilDate.getDayOfMonth());
-        return calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.ENGLISH)
+        return calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, locale)
                 + " " +
-                civilDate.getDayOfMonth() + " " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+                civilDate.getDayOfMonth() + " " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, locale);
+    }
+
+    public String getDescription() {
+        if (Locale.getDefault().getLanguage().equals("fa"))
+            return getDescriptionPersian();
+        return getDescriptionGeo(Locale.getDefault());
     }
 
 
@@ -107,7 +119,7 @@ public class CustomDate {
                 " Full Persian='" + getFullPersian() + '\n' +
                 ", Full Geo='" + getFullGeo() + '\n' +
                 ", Description Persian='" + getDescriptionPersian() + '\n' +
-                ", Description Geo='" + getDescriptionGeo() + '\n' +
+                ", Description Geo='" + getDescriptionGeo(Locale.getDefault()) + '\n' +
                 '}';
     }
 
