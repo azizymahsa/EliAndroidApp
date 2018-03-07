@@ -80,7 +80,13 @@ public class CustomDate {
         else
             month = String.valueOf(civilDate.getMonth());
 
-        return civilDate.getYear() + "/" + month + "/" + civilDate.getDayOfMonth();
+        String day;
+        if (civilDate.getDayOfMonth() < 10)
+            day = "0" + civilDate.getDayOfMonth();
+        else
+            day = String.valueOf(civilDate.getDayOfMonth());
+
+        return civilDate.getYear() + "/" + month + "/" + day;
     }
 
     private String getDescriptionPersian() {
