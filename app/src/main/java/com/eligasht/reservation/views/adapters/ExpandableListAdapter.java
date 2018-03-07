@@ -283,7 +283,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txttedad = (TextView) convertView.findViewById(R.id.txttedad);
 
         LinearLayout linearBargashtOne = (LinearLayout) convertView.findViewById(R.id.linearBargashtOne);
-        RelativeLayout linearBargashtTwo = (RelativeLayout) convertView.findViewById(R.id.linearBargashtTwo);
+        LinearLayout linearBargashtTwo = (LinearLayout) convertView.findViewById(R.id.linearBargashtTwo);
         LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
         LinearLayout linearKol = (LinearLayout) convertView.findViewById(R.id.linearKol);
         //final int[] flag = {0};
