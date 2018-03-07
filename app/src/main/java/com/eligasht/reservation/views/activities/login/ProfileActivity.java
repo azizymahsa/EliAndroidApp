@@ -36,6 +36,7 @@ import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.google.gson.GsonBuilder;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +53,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private TabLayout tabLayout;
     private TextView img_profile;
     private TextView txt_name;
+    private TextView title;
     private Button btnSaveInfo;
+    private FancyButton btnBack;
     private ProfilePagerAdapter profilePagerAdapter;
     private ClientService service;
     private CoordinatorLayout coordinatorLayout;
@@ -92,7 +95,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.my_profile));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
@@ -100,6 +102,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
 
         initViews();
+        title.setText(getString(R.string.my_profile));
+        btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnBack.setText(getString(R.string.search_back_right));
         setupPager();
         initParam();
         service = ServiceGenerator.createService(ClientService.class);
@@ -116,7 +121,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             }
         }
 
-
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void initParam() {
@@ -163,6 +173,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         txt_name = findViewById(R.id.txt_name);
         img_profile = findViewById(R.id.img_profile);
         btnSaveInfo = findViewById(R.id.btnSaveInfo);
+        title = findViewById(R.id.title);
+        btnBack = findViewById(R.id.btnBack);
         coordinatorLayout = findViewById(R.id.coordinator);
         btnSaveInfo.setOnClickListener(this);
 
