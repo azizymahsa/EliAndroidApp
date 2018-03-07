@@ -1900,7 +1900,7 @@
     <string name="ApartmenHotel"> Apartman Otel </string>
     <string name="BoutiqueHotel"> Butik Otel </string>
     <string name="ResortHotel"> Otel Rezervasyonu </string>
-    <string name="NonStop">durmaz</string>
+    <string name="NonStop">Non stop</string>
     <string name="OneStop"> Tek Durak </string>
     <string name="TwoStop"> İki Durak </string>
     <string name="DetailHotel"> Otel Detayları </string>
@@ -2126,7 +2126,7 @@
     <string name="total_cost">Total Cost</string>
     <string name="send_documents"> Belgeleri Göndermek </string>
     <string name="stop"> Durdur </string>
-    <string name="none_stop"> Hiçbir Zaman Durdur </string>
+    <string name="none_stop">Non stop </string>
     <string name="just"> Sadece </string>
     <string name="people"> Kişiler </string>
     <string name="saturday"> Sat </string>

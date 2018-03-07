@@ -219,15 +219,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/txtjensiat"
@@ -237,6 +228,15 @@
                                 android:text="@string/gender"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -293,15 +293,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblname"
@@ -311,13 +302,22 @@
                                 android:text="@string/name"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <EditText
                             android:id="@+id/txtnameP"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="4dp"
+                            android:layout_margin="1dp"
                             android:layout_marginLeft="30dp"
                             android:layout_marginRight="30dp"
                             android:background="@drawable/background_strock_white"
@@ -351,15 +351,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblfamily"
@@ -369,13 +360,23 @@
                                 android:text="@string/name_family"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
                         </LinearLayout>
 
                         <EditText
                             android:id="@+id/txtfamilyP"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
-                            android:layout_margin="4dp"
+                            android:layout_margin="1dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
@@ -408,15 +409,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblmobile"
@@ -426,13 +418,22 @@
                                 android:text="@string/mobile"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <EditText
                             android:id="@+id/txtmobileP"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
-                            android:layout_margin="4dp"
+                            android:layout_margin="1dp"
                             android:layout_marginRight="20dp"
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
@@ -463,15 +464,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblkodemeli"
@@ -481,13 +473,22 @@
                                 android:text="@string/code_meli"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <EditText
                             android:id="@+id/txtkodemeliP"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/toolbar_height_70dp"
-                            android:layout_margin="4dp"
+                            android:layout_margin="1dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
@@ -518,15 +519,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblemeli"
@@ -536,13 +528,22 @@
                                 android:text="@string/email_"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <EditText
                             android:id="@+id/txtemeliP"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
-                            android:layout_margin="4dp"
+                            android:layout_margin="1dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
@@ -579,8 +580,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35dp_normal"
                         android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginRight="22dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/btngravity_big"
                         android:gravity="center|center_vertical"
@@ -646,17 +647,6 @@
                         android:layout_marginRight="14dp"
                         android:background="@drawable/box_passenger">
 
-                        <TextView
-                            android:id="@+id/txtTitleCountM"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|center_vertical"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginTop="1dp"
-                            android:layout_weight="1.5"
-                            android:gravity="right"
-                            android:text="@string/First_passenger_information"
-                            android:textSize="@dimen/_13dp_normal_textSize" />
 
                         <TextView
                             android:id="@+id/imgCount"
@@ -670,6 +660,18 @@
                             android:text=" 1 "
                             android:textColor="#fff"
                             android:textSize="@dimen/_12dp_normal_textSize" />
+
+                        <TextView
+                            android:id="@+id/txtTitleCountM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|center_vertical"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="0dp"
+
+                            android:gravity="center|center_vertical"
+                            android:text="@string/First_passenger_information"
+                            android:textSize="@dimen/_13dp_normal_textSize" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -686,15 +688,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/txtjensiatm"
@@ -704,6 +697,16 @@
                                 android:text="@string/gender"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -760,15 +763,6 @@
                             android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblnamem"
@@ -778,13 +772,23 @@
                                 android:text="@string/name"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
                         </LinearLayout>
 
                         <EditText
                             android:id="@+id/txtnamem"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
-                            android:layout_margin="0dp"
+
                             android:layout_marginRight="5dp"
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
@@ -810,6 +814,7 @@
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
+
                         android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
@@ -817,18 +822,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="8dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblfamilym"
@@ -838,13 +834,22 @@
                                 android:text="@string/name_family"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <EditText
                             android:id="@+id/txtfamilym"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
-                            android:layout_margin="0dp"
+
                             android:layout_marginRight="5dp"
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
@@ -883,15 +888,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblnumber_passport"
@@ -901,6 +897,15 @@
                                 android:text="@string/number_pass"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <EditText
@@ -940,15 +945,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lbl_NationalCode_m"
@@ -958,6 +954,16 @@
                                 android:text="@string/meli_code"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
+
                         </LinearLayout>
 
                         <EditText
@@ -995,15 +1001,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="right|center"
-                                android:layout_weight="1.43"
-                                android:gravity="right|center_vertical"
-                                android:paddingTop="3dp"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lbltavalodm"
@@ -1013,6 +1010,15 @@
                                 android:text="@string/date_birth"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <TextView
@@ -1046,23 +1052,25 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight="1.43"
-                                android:gravity="right"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblexp_passport"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
                                 android:layout_marginRight="4dp"
                                 android:text="@string/exp_pas"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <TextView
@@ -1084,6 +1092,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
+                        android:layout_marginLeft="24dp"
                         android:layout_marginRight="24dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/more_data"
@@ -1110,14 +1119,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight="1.43"
-                                android:gravity="right"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblmeliyatm"
@@ -1127,6 +1128,15 @@
                                 android:text="@string/nationality"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <TextView
@@ -1162,14 +1172,6 @@
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="257dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:layout_weight="1.43"
-                                android:gravity="right"
-                                android:text="*"
-                                android:textColor="#ff0000" />
 
                             <TextView
                                 android:id="@+id/lblmahale_eghamat"
@@ -1179,6 +1181,15 @@
                                 android:text="@string/eghamat_local"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
+
+                            <TextView
+                                android:layout_width="257dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_weight="1.43"
+                                android:gravity="right"
+                                android:text="*"
+                                android:textColor="#ff0000" />
                         </LinearLayout>
 
                         <TextView
@@ -1216,7 +1227,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35dp_normal"
                         android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="24dp"
+                        android:layout_marginLeft="22dp"
                         android:layout_marginRight="24dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/btngravity_big"
