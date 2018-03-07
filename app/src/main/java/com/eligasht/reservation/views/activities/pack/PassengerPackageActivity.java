@@ -22,6 +22,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -181,7 +182,11 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_pack);
-
+        ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+        scroll_partner.fullScroll(ScrollView.FOCUS_UP);
+        scroll_partner.scrollTo(0,0);
+        scroll_partner.clearFocus();
+        
         initViews();
         setupGenderSpinner();
 
@@ -1493,7 +1498,26 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         }
         //if(currentMenu!=null) currentMenu.finish();
     }
+    @Override
+    public void onResume(){
+        super.onResume();
 
+        final ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+        //scroll_partner.fullScroll(ScrollView.FOCUS_UP);
+        scroll_partner.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                scroll_partner.getViewTreeObserver().removeOnPreDrawListener(this);
+                scroll_partner.setScrollY(0);
+                return false;
+            }
+        });
+        scroll_partner.clearFocus();
+        //txtemeliP.clearFocus();
+
+        // txtemeliP.setCursorVisible(false);
+
+    }
     @Override
     public void onBackPressed() {
 

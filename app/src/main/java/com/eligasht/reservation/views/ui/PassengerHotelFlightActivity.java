@@ -172,6 +172,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger);
+        ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+        scroll_partner.fullScroll(ScrollView.FOCUS_UP);
+        scroll_partner.scrollTo(0,0);
+        scroll_partner.clearFocus();
         Prefs.getString("Rooms", "dd");
         Prefs.putString("IST","HF");
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
