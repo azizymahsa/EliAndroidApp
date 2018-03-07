@@ -9,7 +9,7 @@
         android:id="@+id/adapter_month"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary">
+        android:background="@drawable/alert_header_background">
 
         <com.eligasht.reservation.views.picker.widget.IRANSansTextView
             android:id="@+id/current_month"
@@ -148,7 +148,7 @@
         android:textColor="#ff000000"
         app:layout_widthPercent="14.285696%" />
 
-    <ir.alibaba.global.utils.CalendarRecyclerView
+    <com.eligasht.reservation.views.picker.global.utils.CalendarRecyclerView
         android:id="@+id/calendar_rv"
         android:layout_width="fill_parent"
         android:layout_height="240dp"

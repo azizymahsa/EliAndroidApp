@@ -18,6 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
+import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
+import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
+import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -50,7 +54,8 @@ import java.util.List;
 
 
 public class HotelFragment extends Fragment implements OnClickListener,
-        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener {
+        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener
+        ,ICallbackCalendarDialog{
 
     public static Button  btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult,searchHotel;
@@ -78,11 +83,13 @@ public class HotelFragment extends Fragment implements OnClickListener,
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
 
     boolean geo = false;
-
+    CalendarDialog calendarDialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
+         calendarDialog=new CalendarDialog();
+
         Utility.sendTag("H", true, false);
         geo = Prefs.getBoolean("geo", false);
         //	rootView = inflater.inflate(R.layout.fragment_plane, container, false);
@@ -495,8 +502,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 break;
             case R.id.llRaft:
 
+                calendarDialog.create(getActivity(),getContext(),this,true, TypeUsageOfCalendar.HOTEL);
 
-                        if (geo) {
+
+                    /*    if (geo) {
                             if (!datePickerDialogGregorian1.isAdded()){
 
                                 datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
@@ -511,14 +520,16 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                         }
 
-
+*/
 
 
 
 
                 break;
             case R.id.llBargasht:
+                calendarDialog.create(getActivity(),getContext(),this,true, TypeUsageOfCalendar.HOTEL);
 
+/*
 
                 if (geo) {
                     if (!datePickerDialogGregorian2.isAdded()){
@@ -534,6 +545,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     }
 
                 }
+*/
 
 
 
@@ -720,6 +732,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
     }
 
+    @Override
+    public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
+
+    }
 
 
     //Gregorian==============================================Gregorian=============================Gregorian
