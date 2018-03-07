@@ -2360,6 +2360,9 @@
     <string name="mail_or_pass_is_wrong"> Your email or password is incorrect. </string>
     <string name="email_address_is_not_valid"> The email entered is not valid </string>
     <string name="success"> Your request has been successfully completed. </string>
+    <string name="select_dep">Select departure date</string>
+    <string name="select_che_in">Select checkin date</string>
+    <string name="select_start_date">Select Start Date</string>
 
 
 </resources>
