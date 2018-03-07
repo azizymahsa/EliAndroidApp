@@ -144,6 +144,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         profilePagerAdapter = new ProfilePagerAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(profilePagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.setCurrentItem(2);
         tabLayout.setOnTabSelectedListener(onTabSelectedListener);
         try {
             if (getIntent().getExtras().getBoolean("isLastBuy")) {

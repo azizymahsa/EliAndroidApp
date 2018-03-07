@@ -90,19 +90,16 @@
                 android:textSize="@dimen/toolbar_desc_12dp" />
 
             <RelativeLayout
+                android:id="@+id/llHome"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:gravity="left">
+                android:layout_height="@dimen/_60dp_hight"
+                android:layout_gravity="left"
+                >
 
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnHome"
-                    android:layout_width="@dimen/toolbar_bottom_width_50dp"
-                    android:layout_height="@dimen/toolbar_bottom_width_50dp"
-                    android:layout_gravity="right"
-                    android:gravity="right"
+                    android:layout_width="@dimen/_60dp_hight"
+                    android:layout_height="@dimen/_60dp_hight"
                     fancy:fb_defaultColor="@android:color/transparent"
                     fancy:fb_focusColor="@color/focusColor"
 
@@ -115,9 +112,10 @@
                     android:id="@+id/txt_hom"
                     android:layout_width="@dimen/_30dp"
                     android:layout_height="@dimen/_30dp"
-                    android:layout_marginLeft="@dimen/_15dp_margin"
-                    android:layout_marginTop="@dimen/_15dp_margin"
-                    android:background="@drawable/e_logo" />
+                    android:background="@drawable/e_logo"
+                    android:layout_centerInParent="true"
+
+                    />
 
 
             </RelativeLayout>

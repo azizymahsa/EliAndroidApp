@@ -44,7 +44,7 @@
                 <TextView
                     android:id="@+id/contract_date"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="right|center"
@@ -53,7 +53,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
                     android:text="@string/date"
@@ -73,7 +73,7 @@
                 <TextView
                     android:id="@+id/contract_path"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
 
                     android:gravity="right|center"
@@ -83,7 +83,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -104,7 +104,7 @@
                 <TextView
                     android:id="@+id/contract_depart_date"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -113,7 +113,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -134,7 +134,7 @@
                 <TextView
                     android:id="@+id/contract_login_date"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -143,7 +143,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -167,7 +167,7 @@
                 <TextView
                     android:id="@+id/contract_remained"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -176,7 +176,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -197,7 +197,7 @@
                 <TextView
                     android:id="@+id/contract_follower"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -206,7 +206,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -227,7 +227,7 @@
                 <TextView
                     android:id="@+id/visa"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -236,7 +236,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -256,7 +256,7 @@
                 <TextView
                     android:id="@+id/ticket"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -265,7 +265,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -286,7 +286,7 @@
                 <TextView
                     android:id="@+id/hotel"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -295,7 +295,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -316,7 +316,7 @@
                 <TextView
                     android:id="@+id/documents"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -325,7 +325,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -346,7 +346,7 @@
                 <TextView
                     android:id="@+id/contract_email"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -355,7 +355,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.6"
                     android:gravity="center|right"
@@ -383,7 +383,7 @@
                 <TextView
                     android:id="@+id/contract_total_price"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_weight="1"
                     android:gravity="right|center"
                     android:text=""
@@ -392,7 +392,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="0.3"
                     android:gravity="center|right"

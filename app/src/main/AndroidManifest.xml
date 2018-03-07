@@ -30,7 +30,19 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
 
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host=""
+                />
+
+            </intent-filter>
             <meta-data
                 android:name="unityplayer.ForwardNativeEventsToDalvik"
                 android:value="true" />
@@ -160,10 +172,6 @@
                 <data
                     android:host="invoice"
                     android:scheme="eligasht" />
-                <!-- <data -->
-                <!-- android:host="www.tarafdari.com" -->
-                <!-- android:pathPrefix="/node/" -->
-                <!-- android:scheme="http" /> -->
 
             </intent-filter>
         </activity>
