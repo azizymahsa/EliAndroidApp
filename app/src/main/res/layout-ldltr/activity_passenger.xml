@@ -38,7 +38,7 @@
             android:id="@+id/btnBack"
             style="@style/fancy_toolbar"
             android:layout_gravity="center|left"
-            android:layout_marginLeft="@dimen/_10dp_margin"
+
             android:visibility="visible"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
         <ImageView
