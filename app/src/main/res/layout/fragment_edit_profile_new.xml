@@ -472,7 +472,7 @@
                         android:background="@android:color/transparent"
 
 
-                        android:gravity="right|center"
+                        android:gravity="center"
 
                         android:orientation="horizontal"
 
@@ -527,7 +527,7 @@
                         android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/sex"
-                        android:textColor="@color/text_color_4d"
+                        android:textColor="@color/gray_dark"
                         android:textSize="@dimen/_12dp_normal_textSize" />
 
                 </LinearLayout>

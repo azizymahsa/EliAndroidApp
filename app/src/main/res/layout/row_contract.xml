@@ -36,10 +36,10 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/contract_date"
@@ -58,17 +58,17 @@
                     android:gravity="center|right"
                     android:text="@string/date"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/contract_path"
@@ -89,17 +89,17 @@
                     android:gravity="center|right"
                     android:text="@string/route"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/contract_depart_date"
@@ -119,17 +119,17 @@
                     android:gravity="center|right"
                     android:text="@string/start_trip_date"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/contract_login_date"
@@ -149,7 +149,7 @@
                     android:gravity="center|right"
                     android:text="@string/enter_date"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp"
+                    android:textSize="@dimen/_12dp_normal_textSize"
 
                     />
 
@@ -159,10 +159,10 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/contract_remained"
@@ -182,17 +182,17 @@
                     android:gravity="center|right"
                     android:text="@string/remain"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/contract_follower"
@@ -212,17 +212,17 @@
                     android:gravity="center|right"
                     android:text="@string/sales_person"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/visa"
@@ -242,17 +242,16 @@
                     android:gravity="center|right"
                     android:text="@string/visa_status"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/ticket"
@@ -272,17 +271,17 @@
                     android:gravity="center|right"
                     android:text="@string/ticket_status"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/hotel"
@@ -302,17 +301,17 @@
                     android:gravity="center|right"
                     android:text="@string/hotel_status"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/documents"
@@ -332,20 +331,17 @@
                     android:gravity="center|right"
                     android:text="@string/document_status"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_15dp_margin"
-
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/contract_email"
@@ -365,7 +361,7 @@
                     android:gravity="center|right"
                     android:text="@string/mail"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
 
             </LinearLayout>
@@ -379,11 +375,10 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_15dp_margin"
+                android:layout_height="@dimen/path_dim"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_15dp_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/contract_total_price"
