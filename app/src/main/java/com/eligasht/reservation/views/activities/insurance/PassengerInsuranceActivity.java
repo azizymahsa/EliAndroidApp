@@ -23,6 +23,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -48,6 +49,7 @@ import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.ui.PassengerActivity;
+import com.eligasht.reservation.views.ui.PassengerHotelActivity;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -174,7 +176,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_insurance);
-
+        ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+        scroll_partner.fullScroll(ScrollView.FOCUS_UP);
+        scroll_partner.scrollTo(0,0);
+        scroll_partner.clearFocus();
         initViews();
         setupGenderSpinner();
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
@@ -2573,6 +2578,26 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         YoYo.with(Techniques.BounceInRight)
                 .duration(600)
                 .playOn(txtPishfactor);
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        final ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+        //scroll_partner.fullScroll(ScrollView.FOCUS_UP);
+        scroll_partner.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                scroll_partner.getViewTreeObserver().removeOnPreDrawListener(this);
+                scroll_partner.setScrollY(0);
+                return false;
+            }
+        });
+        scroll_partner.clearFocus();
+        //txtemeliP.clearFocus();
+
+        // txtemeliP.setCursorVisible(false);
+
     }
 }
 
