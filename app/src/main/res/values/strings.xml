@@ -1883,8 +1883,10 @@
 
         <item>@drawable/ir</item><!-- 289-->
     </string-array>
-
-
+    <string name="people_number">people number</string>
+    <string name="service_type">Service type </string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
     <string name="datePickerError">The date passed is greater than the date of the return</string>
     <string name="departTo">From :</string>
     <string name="departFrom">Up to:</string>

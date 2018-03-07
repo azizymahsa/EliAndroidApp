@@ -1347,7 +1347,7 @@
 
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="50dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:gravity="left"
@@ -1774,24 +1774,27 @@
 
 
                     <TextView
-                        android:id="@+id/tvPrice"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="0"
-                        android:textAppearance="@style/IrsansBold"
-                        android:textColor="#098d4e"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="12dp"
                         android:text="@string/The_amount_payable"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_15dp_normal_textSize"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12dp"
+                        android:gravity="right"
+                        android:text="0"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="#098d4e"
+                        android:textSize="@dimen/_15dp_normal_textSize"  />
                 </LinearLayout>
 
 
