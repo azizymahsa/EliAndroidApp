@@ -2118,7 +2118,7 @@
     <string name="space_rial_space">$</string>
     <string name="amount_">Amount</string>
     <string name="contract_code">Contract number :</string>
-    <string name="approved">Approved</string>
+    <string name="approved">Confirm</string>
     <string name="delivered">Delivered</string>
     <string name="working_on_it">action</string>
     <string name="date">Date</string>
@@ -2219,7 +2219,7 @@
     <string name="name_family">last name</string>
     <string name="code_meli">National code</string>
     <string name="email_">Email</string>
-    <string name="Verification_and_next_step">Approve and next step</string>
+    <string name="Verification_and_next_step">Confirm and next step</string>
     <string name="first_room">First room</string>
     <string name="please_eng">Please enter in english</string>
     <string name="number_pass">Passport number</string>
@@ -2235,7 +2235,7 @@
     <string name="detail_hotel">Hotel details</string>
     <string name="Available_services">Available services</string>
     <string name="The_amount_payable">Payable amount</string>
-    <string name="Registration_and_payment">approve and pay</string>
+    <string name="Registration_and_payment">Confirm and pay</string>
     <string name="text1">Select language</string>
     <string name="text2">Changes will be applied after the restoration of the program</string>
     <string name="text3">Select Unit</string>
@@ -2320,7 +2320,7 @@
     <string name="one_way">One way  flight number </string>
     <string name="round_flight">Round trip flight number</string>
     <string name="enter_value">Enter number</string>
-    <string name="approve_factor">Approve invoice</string>
+    <string name="approve_factor">Confirm invoice</string>
     <string name="contract_didnt_registred">Contract didn\'t registered</string>
     <string name="no_money_has_been_payed_for_this_cart">No money has been payed for this cart</string>
     <string name="needed_docs_to_mail">Needed documents has been sent to this</string>
