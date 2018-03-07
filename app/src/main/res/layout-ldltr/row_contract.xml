@@ -24,9 +24,9 @@
                     android:id="@+id/contract_number"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="25dp"
-                    android:gravity="right|center"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:gravity="left|center"
                     android:text="@string/contract_code"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
@@ -36,122 +36,123 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
-                android:orientation="horizontal">
-
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:orientation="horizontal"
+               >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/date"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
                 <TextView
                     android:id="@+id/contract_date"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/date"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:orientation="horizontal">
-
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/route"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
                 <TextView
                     android:id="@+id/contract_path"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
 
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/route"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/start_trip_date"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/contract_depart_date"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/start_trip_date"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/enter_date"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize"
+
+                    />
 
                 <TextView
                     android:id="@+id/contract_login_date"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/enter_date"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp"
-
-                    />
 
 
             </LinearLayout>
@@ -159,215 +160,215 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/remain"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/contract_remained"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/remain"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:orientation="horizontal">
-
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/sales_person"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
                 <TextView
                     android:id="@+id/contract_follower"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/sales_person"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:orientation="horizontal">
-
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/visa_status"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
                 <TextView
                     android:id="@+id/visa"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/visa_status"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:orientation="horizontal">
-
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/ticket_status"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
                 <TextView
                     android:id="@+id/ticket"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/ticket_status"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:orientation="horizontal">
-
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/hotel_status"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
                 <TextView
                     android:id="@+id/hotel"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/hotel_status"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
+
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_10dp_margin"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/document_status"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/documents"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_15dp_normal_textSize" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/document_status"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
                 android:layout_marginBottom="@dimen/_15dp_margin"
 
-                android:layout_marginRight="@dimen/_20dp"
+                android:layout_marginLeft="@dimen/_20dp"
 
-                android:layout_marginTop="@dimen/_10dp_margin"
                 android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center|left"
+                    android:text="@string/mail"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/contract_email"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_15dp_normal_textSize" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.6"
-                    android:gravity="center|right"
-                    android:text="@string/mail"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/text_size_12dp" />
-
-
+                    android:textSize="@dimen/_12dp_normal_textSize" />
             </LinearLayout>
 
             <View
@@ -379,33 +380,34 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/path_dim"
+                android:gravity="center"
                 android:layout_marginBottom="@dimen/_15dp_margin"
-                android:layout_marginRight="@dimen/_20dp"
+                android:layout_marginLeft="@dimen/_20dp"
                 android:layout_marginTop="@dimen/_15dp_margin"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.3"
+                    android:gravity="center|left"
+                    android:text="@string/total_cost"
+
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_15dp_normal_textSize" />
+
 
                 <TextView
                     android:id="@+id/contract_total_price"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:text=""
                     android:textColor="@color/green"
                     android:textSize="@dimen/_15dp_normal_textSize" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.3"
-                    android:gravity="center|right"
-                    android:text="@string/total_cost"
-
-                    android:textColor="@color/green"
-                    android:textSize="@dimen/_15dp_normal_textSize" />
-
 
             </LinearLayout>
 
