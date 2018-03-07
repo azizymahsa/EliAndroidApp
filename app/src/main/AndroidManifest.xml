@@ -38,7 +38,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="market"
+                    android:scheme="https"
+                    android:host=""
                 />
 
             </intent-filter>

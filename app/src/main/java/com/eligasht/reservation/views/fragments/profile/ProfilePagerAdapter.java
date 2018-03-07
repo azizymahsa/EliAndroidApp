@@ -43,11 +43,13 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return editProfileFragment;
+                return changePasswordFragment;
+
             case 1:
                 return myContractsFragment;
             case 2:
-                return changePasswordFragment;
+                return editProfileFragment;
+
             default:
                 return editProfileFragment;
         }
@@ -62,11 +64,13 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return context.getString(R.string.edit_profile);
+                return context.getString(R.string.change_password);
+
             case 1:
                 return context.getString(R.string.my_contracts);
             case 2:
-                return context.getString(R.string.change_password);
+
+            return context.getString(R.string.edit_profile);
             default:
                 return context.getString(R.string.edit_profile);
         }
