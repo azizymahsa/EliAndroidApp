@@ -83,7 +83,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
     CalendarDialog calendarDialog;
     private View rootView;
     private ArrayList<ModelRowCountRoom> roomsSelected;
-
+    CustomDate startDate;
+    CustomDate endDate;
     public static String date_server(int y, int m, int d) {
         Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
 
@@ -504,7 +505,13 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 break;
             case R.id.llRaft:
 
-                calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
+                if (startDate!=null&&endDate!=null){
+                    calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
+
+                }else{
+                    calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
+
+                }
 
 
                     /*    if (geo) {
@@ -527,8 +534,13 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                 break;
             case R.id.llBargasht:
-                calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
+                if (startDate!=null&&endDate!=null){
+                    calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
 
+                }else{
+                    calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
+
+                }
 /*
 
                 if (geo) {
@@ -715,6 +727,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
+        this.startDate=startDate;
+        this.endDate=endDate;
         Log.e("Date", startDate.toString());
         tvRaft.setText(startDate.getDescription());
         tvBargasht.setText(endDate.getDescription());
@@ -723,6 +737,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
         Prefs.putString("raft", raft);
+        Prefs.putString("bargasht", bargasht);
         Prefs.putString("raftfa", tvRaft.getText().toString());
         Prefs.putString("bargashtfa", tvBargasht.getText().toString());
 
