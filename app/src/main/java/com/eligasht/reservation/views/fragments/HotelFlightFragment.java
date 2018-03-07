@@ -21,6 +21,10 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
+import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
+import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -58,7 +62,7 @@ import java.util.List;
 
 public class HotelFlightFragment extends android.support.v4.app.Fragment implements View.OnClickListener,
         TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener
-, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener{
+, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener  ,ICallbackCalendarDialog {
 
     public static Button  btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public TextView txtCity, lbl_city_english, tvMabda, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, tvMabdaEn ,searchHotel;
@@ -86,6 +90,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
     boolean geo = false;
+    CalendarDialog calendarDialog;
 
 
     @Override
@@ -95,6 +100,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         // rootView = inflater.inflate(R.layout.fragment_plane, container, false);
         Utility.sendTag("HF", true, false);
         geo = Prefs.getBoolean("geo", false);
+        calendarDialog=new CalendarDialog();
 
         //listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 
@@ -533,7 +539,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 break;
             case R.id.llRaft:
+                calendarDialog.create(getActivity(),getContext(),this,true, TypeUsageOfCalendar.HOTEL);
 
+/*
 
                 if (geo) {
                     if (!datePickerDialogGregorian1.isAdded()){
@@ -549,6 +557,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                     }
 
                 }
+*/
 
 
 
@@ -557,7 +566,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 break;
             case R.id.llBargasht:
+                calendarDialog.create(getActivity(),getContext(),this,true, TypeUsageOfCalendar.HOTEL);
 
+/*
 
                 if (geo) {
                     if (!datePickerDialogGregorian2.isAdded()){
@@ -573,6 +584,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                     }
 
                 }
+*/
 
 
 
@@ -964,6 +976,19 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
         }
 
+    }
+
+    @Override
+    public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
+        tvRaft.setText( startDate.getDescriptionPersian());
+        tvBargasht.setText( endDate.getDescriptionPersian());
+        raft=startDate.getFullGeo();
+        bargasht=endDate.getFullGeo();
+
+
+        Prefs.putString("raft", raft);
+        Prefs.putString("raftfa", tvRaft.getText().toString());
+        Prefs.putString("bargashtfa", tvBargasht.getText().toString());
     }
 }
 

@@ -735,6 +735,16 @@ public class HotelFragment extends Fragment implements OnClickListener,
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
 
+        tvRaft.setText( startDate.getDescriptionPersian());
+        tvBargasht.setText( endDate.getDescriptionPersian());
+        raft=startDate.getFullGeo();
+        bargasht=endDate.getFullGeo();
+
+
+        Prefs.putString("raft", raft);
+        Prefs.putString("raftfa", tvRaft.getText().toString());
+        Prefs.putString("bargashtfa", tvBargasht.getText().toString());
+
     }
 
 
