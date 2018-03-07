@@ -452,7 +452,7 @@
     <string name="btn_insurance">البحث التأمين</string>
 
 
-    <string name="Facility">fonts/times.ttf</string>
+    <string name="Facility">fonts/Facility.ttf</string>
     <string name="iran_sans_bold.ttf">fonts/times.ttf</string>
     <string name="iran_sans_normal.ttf">fonts/times.ttf</string>
     <string name="irsans.ttf">fonts/times.ttf</string>
