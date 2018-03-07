@@ -1908,8 +1908,8 @@
     <string name="NextDay">Next Day</string>
     <string name="LastDay">Previous Day</string>
     <string name="curency">Rial</string>
-    <string name="ApartmenHotel">Apartment of Hotel</string>
-    <string name="BoutiqueHotel">Boutique of Hotel</string>
+    <string name="ApartmenHotel">Apartment Hotel</string>
+    <string name="BoutiqueHotel">Boutique Hotel</string>
     <string name="ResortHotel">Hotel Reservation</string>
     <string name="NonStop">no stop</string>
     <string name="OneStop">One Stop</string>
@@ -1980,7 +1980,7 @@
     <string name="select_destination_city_or_airport">Select the destination city or airport</string>
     <string name="select_origin_city_or_airport">Choose the city or airport of origin</string>
     <string name="destination">Destination</string>
-    <string name="origin">Origin</string>
+    <string name="origin">From</string>
     <string name="travel_to">Travel to :</string>
     <string name="checkout_date">Checkout Date</string>
     <string name="checkin_date">Checkin Date</string>
@@ -2080,8 +2080,8 @@
     <string name="departure_from">Departure from:</string>
     <string name="istanbul">Istanbul</string>
     <string name="departure_to">Departure to:</string>
-    <string name="origin_colon">Origin :</string>
-    <string name="destination_colon">Destination :</string>
+    <string name="origin_colon">From :</string>
+    <string name="destination_colon">To :</string>
     <string name="newborn">Baby</string>
     <string name="departure">One Way</string>
     <string name="departure_and_return">Round Trip</string>
@@ -2210,7 +2210,7 @@
     <string name="ninth">Ninth</string>
     <string name="info_passenger">Passenger info</string>
     <string name="not_connection">Could not connect to server</string>
-    <string name="payment">Pay</string>
+    <string name="payment">Payment</string>
     <string name="servis">Services</string>
     <string name="passengers">Passengers</string>
     <string name="partner">Buyer</string>
