@@ -217,7 +217,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         || response.body() == null
                         || response.body().getWebUserChangePasswordResult() == null) {
 
-                    Toast.makeText(ProfileActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -229,14 +229,14 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
                 EmailContractResult webUserChangePasswordResult = response.body().getWebUserChangePasswordResult();
                 if (webUserChangePasswordResult.getSuccessResult() == 1) {
-                    Toast.makeText(ProfileActivity.this, "درخواست شما با موفقیت انجام شد.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<WebUserChangePasswordRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(ProfileActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -258,7 +258,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         || response.body() == null
                         || response.body().getWebUserUpdateProfilerResult() == null) {
 
-                    Toast.makeText(ProfileActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -271,19 +271,19 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 WebUserLogin webUserLogin = response.body().getWebUserUpdateProfilerResult().getWebUserLogin();
 
                 if (webUserLogin == null) {
-                    Toast.makeText(ProfileActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 WebUserTools.getInstance().setUser(webUserLogin);
-                Toast.makeText(ProfileActivity.this, "درخواست شما با موفقیت انجام شد.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onFailure(Call<WebUserUpdateProfileRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(ProfileActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -305,7 +305,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         || response.body() == null
                         || response.body().getEmailContractResult() == null) {
 
-                    Toast.makeText(ProfileActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -317,7 +317,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
                 EmailContractResult emailContractResult = response.body().getEmailContractResult();
                 if (emailContractResult.getSuccessResult() == 0) {
-                    Toast.makeText(ProfileActivity.this, "درخواست شما با موفقیت انجام شد.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this,getString(R.string.success) , Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -325,7 +325,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void onFailure(Call<EmailContractRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(ProfileActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -476,6 +476,7 @@
     <string name="Please_enter_the_correct_name">لطفا نام و نام خانوادگی درست وارد کنید</string>
     <string name="Please_enter_the_title_correctly">لطفا عنوان را درست وارد کنید</string>
     <string name="Please_enter_the_correct_message">لطفا پیام را درست وارد کنید</string>
+    <string name="success">درخواست شما با موفقیت انجام شد.</string>
 
 
 </resources>

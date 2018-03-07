@@ -32,20 +32,10 @@
             </intent-filter>
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
-                    android:scheme="https"
-                    android:host="eligasht"
-                />
-                <data
-                    android:scheme="http"
-                    android:host="eligasht"
-                />
-
+                    android:scheme="eligasht" />
             </intent-filter>
             <meta-data
                 android:name="unityplayer.ForwardNativeEventsToDalvik"
@@ -111,7 +101,8 @@
         <activity
             android:name=".reservation.views.activities.pack.SearchPackActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".reservation.views.activities.hotel.activity.ImageViewActivity" />
+        <activity android:name=".reservation.views.activities.hotel.activity.ImageViewActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".reservation.views.activities.hotel.activity.SelectHotelFlightActivity"
             android:screenOrientation="portrait" />

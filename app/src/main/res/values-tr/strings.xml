@@ -2340,6 +2340,7 @@
     <string name="Please_enter_the_correct_name">Lütfen doğru adı girin</string>
     <string name="Please_enter_the_title_correctly">Lütfen başlığı doğru giriniz</string>
     <string name="Please_enter_the_correct_message">Lütfen doğru mesajı giriniz</string>
+    <string name="success">İsteğiniz başarıyla tamamlandı.</string>
 
 
 </resources>
