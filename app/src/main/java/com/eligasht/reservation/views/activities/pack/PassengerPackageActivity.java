@@ -186,7 +186,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         scroll_partner.fullScroll(ScrollView.FOCUS_UP);
         scroll_partner.scrollTo(0,0);
         scroll_partner.clearFocus();
-        
+
         initViews();
         setupGenderSpinner();
 

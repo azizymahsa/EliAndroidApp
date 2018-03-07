@@ -64,7 +64,7 @@
     <string name="arrow_left">&#xea40;</string>
     <string name="icon_exp_up">&#xe801;</string>
     <string name="icon_exp_down">&#xe800;</string>
-    <string name="btn_insurance">Sigorta arama</string>
+    <string name="btn_insurance">search</string>
     <string name="icon_like">&#xe914;</string>
     <string name="icon_dislike">&#xe915;</string>
     <string name="icon_message">&#xe049;</string>
@@ -2031,7 +2031,7 @@
     <string name="FacilitiType"> Tesisler </string>
     <string name="Price"> Price </string>
     <string name="SearchCity"> Arama </string>
-    <string name="BuyInsurance"> Sigorta Satın Al </string>
+    <string name="BuyInsurance">  Satın Al </string>
     <string name="Detail"> Detay </string>
     <string name="from"> Kimden </string>
     <string name="night"> Gece </string>
