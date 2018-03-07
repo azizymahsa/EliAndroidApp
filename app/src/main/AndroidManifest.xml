@@ -39,7 +39,8 @@
 
                 <data
                     android:scheme="https"
-                    android:host=""
+                    android:host="play.google.com"
+                    android:path="/store/apps"
                 />
 
             </intent-filter>

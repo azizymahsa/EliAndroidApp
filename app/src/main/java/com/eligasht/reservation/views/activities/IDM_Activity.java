@@ -16,7 +16,6 @@ import com.eligasht.R;
 import com.eligasht.reservation.tools.ExceptionHandler;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.db.local.Config_Table;
-import com.eligasht.reservation.views.dialogs.IDM_Dialog;
 
 
 public class IDM_Activity extends FragmentActivity {
@@ -31,9 +30,8 @@ public class IDM_Activity extends FragmentActivity {
 		GlobalApplication.activityStack.add(this);
 		GlobalApplication.setActivity(this);
 		if (!isDBInitiated) {
-			
 
-			
+
 			isDBInitiated = true;
 		}
 		Config_Table config = new Config_Table();
@@ -54,7 +52,7 @@ public class IDM_Activity extends FragmentActivity {
 	}
 
 	public void dropAllTables() {
-	
+
 
 		new Config_Table().updateData(Config_Table.LAST_UPDATE, "");
 	}
@@ -75,30 +73,32 @@ public class IDM_Activity extends FragmentActivity {
 			final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 			if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
-			} else {
-				buildAlertMessageNoGps();
+//			} else {
+//				buildAlertMessageNoGps();
+//			}
 			}
 		}
 	}
-	
-	
-	protected void buildAlertMessageNoGps() {
-		IDM_Dialog dialog = new IDM_Dialog(this);
-		dialog.setMessage(getString(R.string.your_gps_is_off));
-		dialog.setCancelable(false);
-		dialog.setAcceptButton(getString(R.string.activation), new IDM_Dialog.OnAcceptInterface() {
-
-			@Override
-			public void accept() {
-				startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-			}
-		});
-		dialog.show();
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode,Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
-	}
-
 }
+	
+	
+//	protected void buildAlertMessageNoGps() {
+//		IDM_Dialog dialog = new IDM_Dialog(this);
+//		dialog.setMessage(getString(R.string.your_gps_is_off));
+//		dialog.setCancelable(false);
+//		dialog.setAcceptButton(getString(R.string.activation), new IDM_Dialog.OnAcceptInterface() {
+//
+//			@Override
+//			public void accept() {
+//				startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+//			}
+//		});
+//		dialog.show();
+//	}
+
+//	@Override
+//	protected void onActivityResult(int requestCode, int resultCode,Intent intent) {
+//		super.onActivityResult(requestCode, resultCode, intent);
+//	}
+
+//}

@@ -102,7 +102,7 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="_7_flight_dp">7dp</dimen>
     <dimen name="_5_flight_dp">5dp</dimen>
     <dimen name="_50_flight_dp">50dp</dimen>
-    <dimen name="_100dp_image">100dp</dimen>
+    <dimen name="_100dp_image">102dp</dimen>
     <dimen name="_3dp_margin_comment">3dp</dimen>
     <dimen name="_10dp_margin_comment">0dp</dimen>
     <dimen name="_5dp_margin_comment">0dp</dimen>
