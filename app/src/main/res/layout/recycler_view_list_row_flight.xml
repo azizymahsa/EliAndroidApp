@@ -147,7 +147,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ خروج از هتل"
+                            android:text="@string/checkout_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -160,7 +160,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ ورود به هتل	"
+                            android:text="@string/checkin_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -173,7 +173,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تعداد نفرات"
+                            android:text="@string/number_human"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -186,7 +186,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ خروج از هتل"
+                            android:text="@string/checkout_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -199,7 +199,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ ورود به هتل	"
+                            android:text="@string/checkin_date"
                             android:textAppearance="@style/IconFonts3"
                             android:textColor="#4d4d4d"
                             android:textStyle="bold"
@@ -212,7 +212,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ ورود به هتل	"
+                            android:text="@string/checkin_date	"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -238,7 +238,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="فرودگاه مبدا"
+                            android:text="@string/return_airport"
 
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
@@ -250,7 +250,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="فرودگاه مقصد	"
+                            android:text="@string/destination_airport"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
@@ -261,7 +261,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="تاریخ"
+                            android:text="@string/date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
@@ -272,7 +272,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="زمان خروج"
+                            android:text="@string/exit_time"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
@@ -283,7 +283,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="زمان ورود"
+                            android:text="@string/enter_time"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
@@ -293,7 +293,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="شماره"
+                            android:text="@string/number"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
@@ -303,7 +303,7 @@
                             android:layout_height="35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
-                            android:text="خط هوایی"
+                            android:text="@string/airline"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
@@ -142,9 +140,9 @@
                 android:id="@+id/rcl_available_date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
                 android:background="@color/gray_light"
                 android:gravity="right"
-                android:layout_marginTop="5dp"
                 android:layoutDirection="rtl"
                 android:visibility="visible">
 
@@ -159,12 +157,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbarLayout2"
+        android:layout_marginTop="5dp"
         android:background="@drawable/bg_banafash_with_stroke"
         android:gravity="center"
         android:paddingBottom="3dp"
         android:paddingTop="3dp"
-        android:layout_marginTop="5dp"
-        android:text="در تاریخ مذکور نتیجه ای یافت نشد، نزدیکترین تاریخ موجود به صورت زیر است:"
+        android:text="@string/PackageError"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="@dimen/_12dp_normal_textSize" />
@@ -251,10 +249,10 @@
                         android:layout_height="match_parent"
                         android:layout_toRightOf="@+id/tvNextDay"
                         android:gravity="center"
-                        android:text="روز قبل"
+                        android:text="@string/LastDay"
 
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_14dp_txtSize" />
+                        android:textSize="@dimen/bottom_tab" />
 
 
                 </RelativeLayout>
@@ -287,9 +285,9 @@
                         android:layout_marginLeft="@dimen/_5dp_margin"
                         android:gravity="center"
 
-                        android:text="روز بعد"
+                        android:text="@string/NextDay"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_14dp_txtSize" />
+                        android:textSize="@dimen/bottom_tab" />
 
                     <TextView
 
@@ -323,9 +321,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/_5dp_margin"
                     android:gravity="center"
-                    android:text="فیلتر کردن"
+                    android:text="@string/Filter"
                     android:textColor="#4d4d4d"
-                    android:textSize="@dimen/_14dp_txtSize" />
+                    android:textSize="@dimen/bottom_tab" />
 
                 <TextView
                     android:id="@+id/tvFilterIcon"
@@ -359,9 +357,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/_5dp_margin"
                     android:gravity="center"
-                    android:text="مرتب کردن"
+                    android:text="@string/Sort"
                     android:textColor="#4d4d4d"
-                    android:textSize="@dimen/_14dp_txtSize" />
+                    android:textSize="@dimen/bottom_tab" />
 
                 <TextView
                     android:id="@+id/tvSortIcon"

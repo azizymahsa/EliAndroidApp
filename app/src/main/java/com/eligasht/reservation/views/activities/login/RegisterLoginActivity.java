@@ -1,18 +1,15 @@
 package com.eligasht.reservation.views.activities.login;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.GsonBuilder;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
@@ -23,9 +20,9 @@ import com.eligasht.reservation.models.model.login.call.RegisterListReq;
 import com.eligasht.reservation.models.model.login.call.RegisterRequestModel;
 import com.eligasht.reservation.models.model.login.response.WebUserRegisterRes;
 import com.eligasht.reservation.tools.ValidationTools;
-import com.eligasht.reservation.tools.WebUserTools;
-import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
+import com.google.gson.GsonBuilder;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -83,7 +80,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                 if (response == null
                         || response.body() == null
                         || response.body().getWebUserRegisterResult() == null) {
-                    Toast.makeText(RegisterLoginActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterLoginActivity.this, R.string.text20, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -95,13 +92,13 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
                 WebUserLogin webUserLogin = response.body().getWebUserRegisterResult().getWebUserLogin();
 
                 if (webUserLogin == null) {
-                    Toast.makeText(RegisterLoginActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterLoginActivity.this, R.string.text21, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
                 if (webUserLogin.getLoginStatus().toUpperCase().equals("DUP")) {
-                    Toast.makeText(RegisterLoginActivity.this, " ایمیل وارد شده در حال حاضر در سیستم وجود دارد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterLoginActivity.this, R.string.text22, Toast.LENGTH_SHORT).show();
                     return;
                 }
 /*
@@ -113,14 +110,14 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
              /*   Intent intent = new Intent(RegisterLoginActivity.this,SuccessResetPassActivity.class);
                 startActivity(intent);
                 finish();*/
-                Toast.makeText(RegisterLoginActivity.this, "لینک فعال سازی به ایمیل شما ارسال شده است.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterLoginActivity.this, R.string.text24, Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onFailure(Call<WebUserRegisterRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(RegisterLoginActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterLoginActivity.this, R.string.text25, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -133,7 +130,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
         txtPass = findViewById(R.id.edit_pass);
         txtConfirmPass = findViewById(R.id.edit_confirm_pass);
         btnRegister = findViewById(R.id.btnRegister);
-        btnRegister.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnRegister.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
 
         btnRegister.setOnClickListener(this);
 
@@ -145,27 +142,27 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.btnRegister:
                 if (txtEmail.length() == 0) {
-                    Toast.makeText(this, "لطفا ایمیل خود را وارد کنید", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.text26, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (!ValidationTools.isEmailValid(txtEmail.getText().toString())) {
-                    Toast.makeText(this, "ایمیل وارد شده صحیح نمی باشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.text27, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (txtPass.length() == 0) {
-                    Toast.makeText(this, "لطفا رمز عبور خود را وارد کنید", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.text28, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (txtConfirmPass.length() == 0) {
-                    Toast.makeText(this, "لطفا تکرار رمز عبور را وارد کنید", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.text29, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (!txtPass.getText().toString().equals(txtConfirmPass.getText().toString())) {
-                    Toast.makeText(this, "رمز عبور و تکرار آن با هم مطابقت ندارد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.text30, Toast.LENGTH_SHORT).show();
                     return;
                 }
 

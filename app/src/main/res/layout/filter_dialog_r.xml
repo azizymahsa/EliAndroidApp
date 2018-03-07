@@ -13,7 +13,7 @@
         android:layout_height="@dimen/_50dp"
         android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
-        android:text="انتخاب فیلتر"
+        android:text="@string/SelectFilter"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_txtSize"
         android:gravity="center"
@@ -43,7 +43,7 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/edittext2"
                 android:gravity="center"
-                android:hint="جست و جو نام هتل"
+                android:hint="@string/SearchHotel"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:orientation="horizontal"
@@ -90,7 +90,7 @@
                     android:background="#1234"
                     android:gravity="center"
                     android:padding="@dimen/margin_5dp"
-                    android:text="درجه مکان اقامتی"
+                    android:text="@string/StarRateHotel"
                     android:textAppearance="@style/IrsansBold"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -112,7 +112,7 @@
                     android:background="@color/title_background"
                     android:gravity="center"
                     android:padding="@dimen/margin_5dp"
-                    android:text="نوع مکان اقامتی"
+                    android:text="@string/HotelType"
                     android:textAppearance="@style/IrsansBold"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -132,7 +132,7 @@
                     android:background="#1234"
                     android:gravity="center"
                     android:padding="@dimen/margin_5dp"
-                    android:text="موقعیت مکان اقامتی"
+                    android:text="@string/LocationType"
                     android:textAppearance="@style/IrsansBold"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -150,7 +150,7 @@
                     android:background="#1234"
                     android:gravity="center"
                     android:padding="@dimen/margin_5dp"
-                    android:text="امکانات مکان اقامتی"
+                    android:text="@string/FacilitiType"
                     android:textAppearance="@style/IrsansBold"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -169,7 +169,7 @@
                     android:background="#1234"
                     android:gravity="center"
                     android:padding="@dimen/margin_5dp"
-                    android:text="قیمت"
+                    android:text="@string/Price"
                     android:textAppearance="@style/IrsansBold"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -243,7 +243,7 @@
             fancy:fb_defaultColor="#1234"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="100dp"
-            fancy:fb_text="حذف فیلتر"
+            fancy:fb_text="@string/RemoveFilter"
             fancy:fb_textColor="#4d4d4d"
             fancy:fb_textSize="@dimen/_14dp_txtSize"
             android:layout_marginLeft="5dp"
@@ -259,7 +259,7 @@
             fancy:fb_defaultColor="#1234"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="100dp"
-            fancy:fb_text="اعمال فیلتر"
+            fancy:fb_text="@string/SelectFilter"
             fancy:fb_textColor="#4d4d4d"
             fancy:fb_textSize="@dimen/_14dp_txtSize"
             android:layout_marginLeft="5dp"

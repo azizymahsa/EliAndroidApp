@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/alert_header_background"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="مرتب سازی"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:gravity="center|right"
+            android:layout_margin="5dp"
+            android:textAppearance="@style/IrsansBold"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/IconFonts"
+            android:textColor="@android:color/white"
+            android:text="@string/icon_sort"
+            android:textSize="25dp"
+            android:gravity="center|right"
+            android:layout_margin="5dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="right">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="14dp"
+                android:text="از کمترین قیمت"
+                android:gravity="center"/>
+            <cn.refactor.library.SmoothCheckBox
+                android:id="@+id/lowCoust"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                app:color_checked="#447eeb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="از بیشترین قیمت"
+                android:textSize="14dp" />
+
+            <cn.refactor.library.SmoothCheckBox
+                android:id="@+id/bestCoust"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                app:color_checked="#447eeb" />
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        >
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:gravity="center">
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:gravity="center">
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="right">
+
+
+    </LinearLayout>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnOk"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:elevation="4dp"
+        android:gravity="center"
+        android:paddingBottom="1dp"
+        android:paddingTop="1dp"
+        fancy:fb_defaultColor="#1234"
+        fancy:fb_focusColor="@color/focusColor"
+        fancy:fb_radius="100dp"
+        fancy:fb_text="مرتب سازی"
+        fancy:fb_textColor="@color/text_color_4d"
+        fancy:fb_textSize="14dp"
+        android:layout_marginBottom="@dimen/_10dp_margin"/>
+
+
+</LinearLayout>-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/alert_header_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:text="@string/SortFilter"
+        android:textAppearance="@style/IrsansBold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16dp_txtSize"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvMax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/_10dp_margin"
+            android:text="@string/SortMax"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="@color/textColorR"
+            android:textSize="@dimen/_14dp_txtSize" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/textColorR" />
+
+        <TextView
+            android:id="@+id/tvMin"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/_10dp_margin"
+            android:text="@string/SortMin"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="@color/textColorR"
+            android:textSize="@dimen/_14dp_txtSize" />
+
+
+    </LinearLayout>
+</LinearLayout>

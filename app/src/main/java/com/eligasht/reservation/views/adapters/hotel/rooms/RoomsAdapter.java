@@ -25,6 +25,7 @@ import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.PolicyRequest;
 import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.RequestPolicy;
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.eligasht.reservation.views.ui.InitUi;
@@ -116,7 +117,7 @@ public class RoomsAdapter extends BaseAdapter {
                 OfferId = roomsModels.get(position).getOfferId();
                 SearchKey = roomsModels.get(position).getSearchKey();
                 alertDialogPolicy = new AlertDialogPolicy(context);
-                alertDialogPolicy.setTitle("قوانین هتل");
+                alertDialogPolicy.setTitle(context.getString(R.string.HotelPolicy));
                 alertDialogPolicy.setRoomName(roomsModels.get(position).getTitle()+" : ");
                 new GetHotelPolicyAsync().execute();
             }
@@ -178,28 +179,34 @@ public class RoomsAdapter extends BaseAdapter {
                     alertDialogPolicy.setText(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getErrors().get(0).DetailedMessage);
 
                 }else if(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().length==0){
-                    alertDialogPolicy.setText("نتیجه ای برای جستجو شما حاصل نشد.");
+                    alertDialogPolicy.setText(context.getResources().getString(R.string.NoResult));
                 }else{
-                    alertDialogPolicy.setText("اتاق" + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() + ": کنسل کردن از " +
+
+
+                    alertDialogPolicy.setText(context.getString(R.string.room) + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() +" : "+
                             Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate()) + " تا " +
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate())+" "+ context.getString(R.string.to)+" "+
                             Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()) + " شامل " +
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()) + " " + context.getString(R.string.Contains)+" "+
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount() + " " + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() + " جریمه می شود.");
+                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() +" "+context.getString(R.string.penalty));
+
+
+
+
 
                 }
 
             } catch (Exception e) {
                 if (!Utility.isNetworkAvailable(context)) {
 
-                    alertDialogPolicy.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                    alertDialogPolicy.setText(context.getString(R.string.InternetError));
 
                 } else {
 
-                    alertDialogPolicy.setText("خطا در دریافت اطلاعات از الی گشت");
+                    alertDialogPolicy.setText(context.getString(R.string.ErrorServer));
 
                 }
 
@@ -286,7 +293,7 @@ public class RoomsAdapter extends BaseAdapter {
 
 
             } catch (Exception e) {
-                Toast.makeText(context, "خطا در ارتباط", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                 String flightId;
                 context.finish();
             }

@@ -50,10 +50,6 @@ import java.util.Locale;
  */
 public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
     private static final String TAG = "RadialPickerLayout";
-
-    private final int TOUCH_SLOP;
-    private final int TAP_TIMEOUT;
-
     private static final int VISIBLE_DEGREES_STEP_SIZE = 30;
     private static final int HOUR_VALUE_TO_DEGREES_STEP_SIZE = VISIBLE_DEGREES_STEP_SIZE;
     private static final int MINUTE_VALUE_TO_DEGREES_STEP_SIZE = 6;
@@ -63,7 +59,8 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
     private static final int SECOND_INDEX = TimePickerDialog.SECOND_INDEX;
     private static final int AM = TimePickerDialog.AM;
     private static final int PM = TimePickerDialog.PM;
-
+    private final int TOUCH_SLOP;
+    private final int TAP_TIMEOUT;
     private Timepoint mLastValueSelected;
 
     private TimePickerController mController;
@@ -95,12 +92,6 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
 
     private AnimatorSet mTransition;
     private Handler mHandler = new Handler();
-
-    public interface OnValueSelectedListener {
-        void onValueSelected(Timepoint newTime);
-        void enablePicker();
-        void advancePicker(int index);
-    }
 
     public RadialPickerLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -148,6 +139,37 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
         mAccessibilityManager = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
 
         mTimeInitialized = false;
+    }
+
+    /**
+     * Returns mapping of any input degrees (0 to 360) to one of 12 visible output degrees (all
+     * multiples of 30), where the input will be "snapped" to the closest visible degrees.
+     *
+     * @param degrees            The input degrees
+     * @param forceHigherOrLower The output may be forced to either the higher or lower step, or may
+     *                           be allowed to snap to whichever is closer. Use 1 to force strictly higher, -1 to force
+     *                           strictly lower, and 0 to snap to the closer one.
+     * @return output degrees, will be a multiple of 30
+     */
+    private static int snapOnly30s(int degrees, int forceHigherOrLower) {
+        int stepSize = HOUR_VALUE_TO_DEGREES_STEP_SIZE;
+        int floor = (degrees / stepSize) * stepSize;
+        int ceiling = floor + stepSize;
+        if (forceHigherOrLower == 1) {
+            degrees = ceiling;
+        } else if (forceHigherOrLower == -1) {
+            if (degrees == floor) {
+                floor -= stepSize;
+            }
+            degrees = floor;
+        } else {
+            if ((degrees - floor) < (ceiling - degrees)) {
+                degrees = floor;
+            } else {
+                degrees = ceiling;
+            }
+        }
+        return degrees;
     }
 
     public void setOnValueSelectedListener(OnValueSelectedListener listener) {
@@ -213,11 +235,11 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
         String[] minutesTexts = new String[12];
         String[] secondsTexts = new String[12];
         for (int i = 0; i < 12; i++) {
-            hoursTexts[i] = is24HourMode?
-                    String.format(Locale.getDefault(), "%02d", hours_24[i]) : String.format(Locale.getDefault(), "%d", hours[i]);
-            innerHoursTexts[i] = String.format(Locale.getDefault(), "%d", hours[i]);
-            minutesTexts[i] = String.format(Locale.getDefault(), "%02d", minutes[i]);
-            secondsTexts[i] = String.format(Locale.getDefault(), "%02d", seconds[i]);
+            hoursTexts[i] = is24HourMode ?
+                    String.format(Locale.ENGLISH, "%02d", hours_24[i]) : String.format(Locale.ENGLISH, "%d", hours[i]);
+            innerHoursTexts[i] = String.format(Locale.ENGLISH, "%d", hours[i]);
+            minutesTexts[i] = String.format(Locale.ENGLISH, "%02d", minutes[i]);
+            secondsTexts[i] = String.format(Locale.ENGLISH, "%02d", seconds[i]);
         }
         mHourRadialTextsView.initialize(context,
                 hoursTexts, (is24HourMode ? innerHoursTexts : null), mController, hourValidator, true);
@@ -243,10 +265,6 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
                 secondDegrees, false);
 
         mTimeInitialized = true;
-    }
-
-    public void setTime(Timepoint time) {
-        setItem(HOUR_INDEX, time);
     }
 
     /**
@@ -281,6 +299,10 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
 
     public Timepoint getTime() {
         return mCurrentTime;
+    }
+
+    public void setTime(Timepoint time) {
+        setItem(HOUR_INDEX, time);
     }
 
     /**
@@ -394,36 +416,6 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
             return -1;
         }
         return mSnapPrefer30sMap[degrees];
-    }
-
-    /**
-     * Returns mapping of any input degrees (0 to 360) to one of 12 visible output degrees (all
-     * multiples of 30), where the input will be "snapped" to the closest visible degrees.
-     * @param degrees The input degrees
-     * @param forceHigherOrLower The output may be forced to either the higher or lower step, or may
-     * be allowed to snap to whichever is closer. Use 1 to force strictly higher, -1 to force
-     * strictly lower, and 0 to snap to the closer one.
-     * @return output degrees, will be a multiple of 30
-     */
-    private static int snapOnly30s(int degrees, int forceHigherOrLower) {
-        int stepSize = HOUR_VALUE_TO_DEGREES_STEP_SIZE;
-        int floor = (degrees / stepSize) * stepSize;
-        int ceiling = floor + stepSize;
-        if (forceHigherOrLower == 1) {
-            degrees = ceiling;
-        } else if (forceHigherOrLower == -1) {
-            if (degrees == floor) {
-                floor -= stepSize;
-            }
-            degrees = floor;
-        } else {
-            if ((degrees - floor) < (ceiling - degrees)) {
-                degrees = floor;
-            } else {
-                degrees = ceiling;
-            }
-        }
-        return degrees;
     }
 
     /**
@@ -1007,5 +999,13 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
         }
 
         return false;
+    }
+
+    public interface OnValueSelectedListener {
+        void onValueSelected(Timepoint newTime);
+
+        void enablePicker();
+
+        void advancePicker(int index);
     }
 }

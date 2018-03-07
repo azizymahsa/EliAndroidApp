@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import java.util.ArrayList;
 
@@ -20,10 +21,10 @@ import java.util.ArrayList;
  */
 
 public class PackageServicesAdapter extends BaseAdapter {
+    Context context;
     private LayoutInflater inflater;
     private ViewHolder holder;
     private ArrayList<String> arrayList = new ArrayList<>();
-    Context context;
 
 
 
@@ -53,14 +54,14 @@ public class PackageServicesAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.services_item, null);
             holder = new ViewHolder();
-            holder.textView = (TextView) convertView.findViewById(R.id.textView);
-            holder.cv1 = (CardView) convertView.findViewById(R.id.cv1);
+            holder.textView = convertView.findViewById(R.id.textView);
+            holder.cv1 = convertView.findViewById(R.id.cv1);
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Typeface face = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_normal.ttf");
+        Typeface face = Typeface.createFromAsset(context.getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         holder.textView.setText(arrayList.get(position));
         holder.textView.setTypeface(face);
 

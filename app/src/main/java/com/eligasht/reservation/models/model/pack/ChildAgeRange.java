@@ -1,5 +1,8 @@
 package com.eligasht.reservation.models.model.pack;
 
+import com.eligasht.R;
+import com.eligasht.reservation.views.ui.SingletonContext;
+
 /**
  * Created by elham.bonyani on 2/17/2017.
  */
@@ -53,31 +56,31 @@ public enum ChildAgeRange {
         switch (this) {
 
             case F0T2:
-                return "0 تا 2 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._0);
             case F2T3:
-                return "2 تا 3 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._1);
             case F3T4:
-                return "3 تا 4 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._2);
             case F4T5:
-                return "4 تا 5 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._3);
             case F5T6:
-                return "5 تا 6 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._4);
             case F6T7:
-                return "6 تا 7 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._5);
             case F7T8:
-                return "7 تا 8 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._6);
             case F8T9:
-                return "8 تا 9 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._7);
             case F9T10:
-                return "9 تا 10 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._8);
             case F10T11:
-                return "10 تا 11 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._9);
             case F11T12:
-                return "11 تا 12 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._10);
             case F12T13:
-                return "12 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._11);
             default:
-                return "2 سال";
+                return SingletonContext.getInstance().getContext().getString(R.string._12);
         }
     }
 }

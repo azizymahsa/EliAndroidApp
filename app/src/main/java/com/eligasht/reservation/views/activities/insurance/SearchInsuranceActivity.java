@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
@@ -103,6 +104,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
             long _milis = DateUtil.getMiliSecondGregorianDateTime(departureDate,"yyyy-MM-dd") + (accomodationDays * 86400000L);
             returnDate = DateUtil.getDateTime(String.valueOf(_milis),"yyyy-MM-dd");
+            returnDate=Utility.convertNumbersToEnglish(returnDate);
         }
 
         showInsurance();
@@ -110,36 +112,50 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
     //send request to server for get list of insurance
     private void showInsurance() {
-        InitUi.Toolbar(this, false, R.color.toolbar_color,  "بیمه مسافرتی برای سفر به کشور" + countryName);
+        InitUi.Toolbar(this, false, R.color.toolbar_color,  getString(R.string.Travel_insurance_to_travel_to_the_country) + countryName);
 
         showLoading();
         InsuranceListReq insuranceListReq = new InsuranceListReq();
         insuranceListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
         insuranceListReq.setCountryCode(countryCode);
+        Log.d("TAG", "showInsurance: "+countryCode);
         insuranceListReq.setDepartureDate(departureDate);
+        Log.d("TAG", "showInsurance: "+departureDate);
+
         insuranceListReq.setAccomodationDays(accomodationDays);
+        Log.d("TAG", "showInsurance: "+accomodationDays);
+
         insuranceListReq.setReturnDate(returnDate);
+        Log.d("TAG", "showInsurance: "+returnDate);
+
         insuranceListReq.setPassCount(passCount);
+        Log.d("TAG", "showInsurance: "+passCount);
+
         insuranceListReq.setBirthDateList(birthDateLists);
+        Log.d("TAG", "showInsurance: "+birthDateLists);
+
         insuranceListReq.setCulture(culture);
+        Log.d("TAG", "showInsurance: "+culture);
 
 
         Call<InsuranceRes> call = service.showInsurance(new InsuranceRequestModel(insuranceListReq));
+
         call.enqueue(new Callback<InsuranceRes>() {
             @Override
             public void onResponse(Call<InsuranceRes> call, Response<InsuranceRes> response) {
                 hideLoading();
+                Log.d("TAG", "onResponse: ");
                 if (response == null
                         || response.body() == null
                         || response.body().getShowInsuranceResult() == null) {
                     showText();
                     if (!Utility.isNetworkAvailable(SearchInsuranceActivity.this)){
 
-                        txt_error.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                        txt_error.setText(getString(R.string.InternetError));
 
                     }else{
 
-                        txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
+                        txt_error.setText(getString(R.string.ErrorServer));
 
                     }
                     error_layout.setVisibility( View.VISIBLE  );
@@ -159,28 +175,28 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
                 if(travelInsurance == null && insurancePlan == null ){
                     showText();
-                    txt_error.setText("نتیجه ای یافت نشد !");
+                    txt_error.setText(getString(R.string.PackgeNoFound));
                     error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
                 if (travelInsurance == null && (insurancePlan != null && ValidationTools.isEmptyOrNull(insurancePlan.getInsurancePlans()))) {
                     showText();
-                    txt_error.setText("نتیجه ای یافت نشد !");
+                    txt_error.setText(getString(R.string.PackgeNoFound));
                     error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
                 if ((travelInsurance != null && ValidationTools.isEmptyOrNull(travelInsurance.getTravelInsurances()))&& insurancePlan == null) {
                     showText();
-                    txt_error.setText("نتیجه ای یافت نشد !");
+                    txt_error.setText(getString(R.string.PackgeNoFound));
                     error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }
 
                 if ((travelInsurance != null && ValidationTools.isEmptyOrNull(travelInsurance.getTravelInsurances()))&& (insurancePlan != null && ValidationTools.isEmptyOrNull(insurancePlan.getInsurancePlans()))) {
                     showText();
-                    txt_error.setText("نتیجه ای یافت نشد !");
+                    txt_error.setText(getString(R.string.PackgeNoFound));
                     error_layout.setVisibility( View.VISIBLE  );
                     return;
                 }

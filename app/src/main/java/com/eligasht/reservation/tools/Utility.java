@@ -1100,6 +1100,47 @@ public class Utility extends Activity {
         });
     }
 
+    public static String convertNumbersToPersian(String str) {
+        String answer = str;
+        answer = answer.replace("1", "١");
+        answer = answer.replace("2", "٢");
+        answer = answer.replace("3", "٣");
+        answer = answer.replace("4", "٤");
+        answer = answer.replace("5", "٥");
+        answer = answer.replace("6", "٦");
+        answer = answer.replace("7", "٧");
+        answer = answer.replace("8", "٨");
+        answer = answer.replace("9", "٩");
+        answer = answer.replace("0", "٠");
+        return answer;
+    }
+
+    public static String convertNumbersToEnglish(String str) {
+        String answer = str;
+        answer = answer.replace("۱", "1");
+        answer = answer.replace("۲", "2");
+        answer = answer.replace("۳", "3");
+        answer = answer.replace("۴", "4");
+        answer = answer.replace("۵", "5");
+        answer = answer.replace("۶", "6");
+        answer = answer.replace("۷", "7");
+        answer = answer.replace("۸", "8");
+        answer = answer.replace("۹", "9");
+        answer = answer.replace("۰", "0");
+        answer = answer.replace("١", "1");
+        answer = answer.replace("٢", "2");
+        answer = answer.replace("٣", "3");
+        answer = answer.replace("٤", "4");
+        answer = answer.replace("٥", "5");
+        answer = answer.replace("٦", "6");
+        answer = answer.replace("٧", "7");
+        answer = answer.replace("٨", "8");
+        answer = answer.replace("٩", "9");
+        answer = answer.replace("٠", "0");
+
+        return answer;
+    }
+
 
 
 }

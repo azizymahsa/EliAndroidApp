@@ -69,7 +69,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/hotel_detail_background"
                     android:gravity="center"
-                    android:text="مشخصات پرواز"
+                    android:text="@string/InfoAirline"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -306,7 +306,7 @@
                     android:layout_weight="100"
                     android:background="@drawable/background_strock_select_package"
                     android:foreground="?attr/selectableItemBackground"
-                    android:text="خدمات قابل ارائه"
+                    android:text="@string/ServicesPackage"
                     android:textColor="@color/text_color_2e"
                     android:textSize="@dimen/_12dp_normal_textSize" />
 

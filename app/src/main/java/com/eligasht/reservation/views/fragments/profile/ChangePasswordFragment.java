@@ -56,15 +56,15 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
     public boolean isValidForm() {
         // check validation and if all thigs are ok return true else return false;
         if (changePass_old.length() == 0) {
-            Toast.makeText(getActivity(), "رمز عبور خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.enter_your_password, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (changePass_new_confirm.length() == 0) {
-            Toast.makeText(getActivity(), "تکرار رمز عبور را وارد کنید", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.re_enter_your_password, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (changePass_new.length() == 0) {
-            Toast.makeText(getActivity(), "پسورد جدید خود را وارد کنید.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.enter_your_new_password, Toast.LENGTH_SHORT).show();
             return false;
         }
 //        if(changePass_new.getText().equals(changePass_new_confirm.getText())){

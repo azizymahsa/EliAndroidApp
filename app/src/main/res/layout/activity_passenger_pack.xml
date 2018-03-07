@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="مشخصات خریدار "
+            android:text="@string/Buyer_Specifications"
             android:textColor="@android:color/white"
             android:textSize="@dimen/toolbar_title_16dp" />
 
@@ -130,8 +130,9 @@
             android:layout_marginLeft="7dp"
             android:background="@drawable/transparentt"
             android:gravity="left|center_vertical"
-            android:text="پرداخت"
+            android:text="@string/payment"
             android:textColor="#aaaaaa"
+            android:textAllCaps="false"
             android:textSize="@dimen/_10dp_textSize"  />
 
         <Button
@@ -140,7 +141,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/transparentt"
             android:gravity="left|center_vertical"
-            android:text=" خدمات "
+            android:text="@string/servis"
             android:textColor="#aaaaaa"
             android:visibility="gone"
             android:textSize="@dimen/_10dp_textSize"  />
@@ -151,8 +152,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/transparentt"
             android:gravity="left|center_vertical"
-            android:text="مسافران"
+            android:text="@string/passenger"
             android:textColor="#aaaaaa"
+            android:textAllCaps="false"
             android:textSize="@dimen/_10dp_textSize"  />
 
         <Button
@@ -162,7 +164,8 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/transparentt"
             android:gravity="center|left"
-            android:text="خریدار"
+            android:text="@string/partner"
+            android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="@dimen/_10dp_textSize" />
     </LinearLayout>
@@ -235,7 +238,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dp"
-                                android:text="جنسیت"
+                                android:text="@string/gender"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -255,7 +258,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/_10dp_margin"
                                 android:gravity="center"
-                                android:text="زن"
+                                android:text="@string/Female"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                             <!--  app:lrb_unCheckedColor="#9d80ff" />-->
 
@@ -266,7 +269,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="مرد"
+                                android:text="@string/man"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
 
                         </LinearLayout>
@@ -309,7 +312,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="نام"
+                                android:text="@string/name"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -323,7 +326,7 @@
                             android:layout_marginRight="30dp"
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
-                            android:hint="لطفا فارسی وارد کنید  "
+                            android:hint="@string/please_pesrsian"
                             android:maxLength="20"
                             android:paddingRight="10dp"
                             android:paddingTop="0dp"
@@ -367,7 +370,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="نام خانوادگی"
+                                android:text="@string/name_family"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -381,7 +384,7 @@
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
-                            android:hint="لطفا فارسی وارد کنید  "
+                            android:hint="@string/please_pesrsian"
                             android:maxLength="20"
                             android:paddingRight="10dp"
                             android:paddingTop="0dp"
@@ -424,7 +427,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="موبایل "
+                                android:text="@string/mobile"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -479,7 +482,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="کدملی "
+                                android:text="@string/code_meli"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -533,7 +536,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="ایمیل "
+                                android:text="@string/email_"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -605,7 +608,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:gravity="center"
-                            android:text="تایید و گام بعدی"
+                            android:text="@string/Verification_and_next_step"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#FFFFFF"
                             android:textSize="@dimen/_15dp_normal_textSize" />
@@ -656,7 +659,7 @@
                             android:layout_marginTop="1dp"
                             android:layout_weight="1.5"
                             android:gravity="right"
-                            android:text="اطلاعات مسافر اول ( بزرگسال )"
+                            android:text="@string/First_passenger_information"
                             android:textSize="@dimen/_13dp_normal_textSize" />
 
                         <TextView
@@ -668,7 +671,7 @@
                             android:layout_marginTop="0dp"
                             android:background="@drawable/background_strock_blue"
                             android:gravity="center"
-                            android:text=" اتاق اول "
+                            android:text="@string/first_room"
                             android:textColor="#fff"
                             android:textSize="@dimen/_12dp_normal_textSize" />
                         <!-- <TextView
@@ -713,7 +716,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dp"
-                                android:text="جنسیت"
+                                android:text="@string/gender"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -733,7 +736,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/_10dp_margin"
                                 android:gravity="center"
-                                android:text="زن"
+                                android:text="@string/Female"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                             <!--  app:lrb_unCheckedColor="#9d80ff" />-->
 
@@ -744,7 +747,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="مرد"
+                                android:text="@string/man"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
 
                         </LinearLayout>
@@ -786,7 +789,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="نام"
+                                android:text="@string/name"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -800,7 +803,7 @@
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
-                            android:hint="لطفا انگلیسی وارد کنید  "
+                            android:hint="@string/please_eng"
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:maxLength="20"
@@ -845,7 +848,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="نام خانوادگی"
+                                android:text="@string/name_family"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -859,7 +862,7 @@
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
-                            android:hint="لطفا انگلیسی وارد کنید  "
+                            android:hint="@string/please_eng"
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:maxLength="20"
@@ -907,7 +910,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="شماره پاسپورت"
+                                android:text="@string/number_pass"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -964,7 +967,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="تاریخ تولد "
+                                android:text="@string/date_birth"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -1014,7 +1017,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="انقضاء پاسپورت   "
+                                android:text="@string/exp_pas"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -1039,7 +1042,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginRight="24dp"
-                        android:text="اطلاعات بیشتر"
+                        android:text="@string/more_data"
                         android:textColor="#000099"
                         android:layout_marginTop="10dp"
                         android:textSize="@dimen/_15dp_normal_textSize"
@@ -1078,7 +1081,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text="ملیت "
+                                android:text="@string/nationality"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -1130,7 +1133,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
-                                android:text=" محل اقامت "
+                                android:text="@string/eghamat_local"
                                 android:textColor="#808080"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
                         </LinearLayout>
@@ -1197,7 +1200,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:gravity="center"
-                            android:text="تایید و گام بعدی"
+                            android:text="@string/Verification_and_next_step"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#FFFFFF"
                             android:textSize="@dimen/_15dp_normal_textSize" />
@@ -1255,7 +1258,7 @@
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:gravity="right"
-                    android:text="ریال"
+                    android:text="@string/Rial"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#23b574"
                     android:textSize="14dp" />
@@ -1280,7 +1283,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:gravity="right"
-                    android:text="جمع کل خدمات: "
+                    android:text="@string/sum_khadamat"
                     android:textAppearance="@style/IrsansBold" />
             </LinearLayout>
 
@@ -1328,7 +1331,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
-                    android:text="تایید و گام بعدی"
+                    android:text="@string/Verification_and_next_step"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#FFFFFF"
                     android:textSize="14dp" />
@@ -1455,7 +1458,7 @@
                                         android:layout_height="wrap_content"
                                         android:gravity="center"
                                         android:padding="5dp"
-                                        android:text="مشخصات مسافران"
+                                        android:text="@string/moshakhasat_mosafer"
                                         android:textAppearance="@style/IrsansBold"
                                         android:textColor="@color/text_color_2e"
                                         android:textSize="12dp" />
@@ -1502,7 +1505,7 @@
                                         android:layout_height="wrap_content"
                                         android:gravity="center"
                                         android:padding="5dp"
-                                        android:text="اطاعات پرواز"
+                                        android:text="@string/info_flight"
                                         android:textAppearance="@style/IrsansBold"
                                         android:textColor="@color/text_color_2e"
                                         android:textSize="12dp" />
@@ -1549,7 +1552,7 @@
                                         android:layout_height="wrap_content"
                                         android:gravity="center"
                                         android:padding="5dp"
-                                        android:text="جزئیات هتل"
+                                        android:text="@string/detail_hotel"
                                         android:textAppearance="@style/IrsansBold"
                                         android:textColor="@color/text_color_2e"
                                         android:textSize="12dp" />
@@ -1596,7 +1599,7 @@
                                         android:layout_height="wrap_content"
                                         android:gravity="center"
                                         android:padding="5dp"
-                                        android:text="خدمات قابل ارائه"
+                                        android:text="@string/Available_services"
                                         android:textAppearance="@style/IrsansBold"
                                         android:textColor="@color/text_color_2e"
                                         android:textSize="12dp" />
@@ -1666,7 +1669,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"
-                        android:text="مبلغ قابل پرداخت:"
+                        android:text="@string/The_amount_payable"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_15dp_normal_textSize" />
@@ -1684,7 +1687,7 @@
 
                 android:layout_marginTop="5dp"
                 android:background="@drawable/btngravity_big"
-                android:text="ثبت و پرداخت"
+                android:text="@string/Registration_and_payment"
                 android:textColor="#ffff"
                 android:textSize="@dimen/_15dp_normal_textSize"
                 android:textStyle="bold" />

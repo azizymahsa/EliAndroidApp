@@ -12,6 +12,15 @@ public class BirthDateList {
     @SerializedName("PassNo")
     @Expose
     private Integer passNo;
+    boolean anim=true;
+
+    public boolean isAnim() {
+        return anim;
+    }
+
+    public void setAnim(boolean anim) {
+        this.anim = anim;
+    }
 
     public String getBirthDate() {
         return birthDate;

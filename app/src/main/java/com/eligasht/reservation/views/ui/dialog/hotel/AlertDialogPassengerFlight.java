@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.eligasht.R;
 import com.eligasht.reservation.tools.JustifiedTextView;
-
 import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -39,11 +38,11 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_passenger, null);
         builder.setView(dialogView);
-        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
-        avi = (AVLoadingIndicatorView) dialogView.findViewById(R.id.avi);
-        tvAlert = (JustifiedTextView) dialogView.findViewById(R.id.tvAlert);
+        btnOk = dialogView.findViewById(R.id.btnOk);
+        avi = dialogView.findViewById(R.id.avi);
+        tvAlert = dialogView.findViewById(R.id.tvAlert);
 
-        Typeface typeface=Typeface.createFromAsset(activity.getAssets(),"fonts/iran_sans_bold.ttf");
+        Typeface typeface = Typeface.createFromAsset(activity.getAssets(), dialogView.getContext().getResources().getString(R.string.iran_sans_bold_ttf));
         tvAlert.setTextSize(2,12);
         tvAlert.setLineSpacing(25);
         tvAlert.setTypeFace(typeface);

@@ -20,6 +20,7 @@ import com.eligasht.reservation.views.adapters.pack.filter.HotelTypeFilterAdapte
 import com.eligasht.reservation.views.adapters.pack.filter.PlaceFilterAdapter;
 import com.eligasht.reservation.views.adapters.pack.filter.PriceFilterAdapter;
 import com.eligasht.reservation.views.components.SimpleRecycleView;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import java.util.ArrayList;
 
@@ -52,15 +53,6 @@ public class FilterPackageDialog implements View.OnClickListener {
     private HotelTypeFilterAdapter hotelTypeFilterAdapter;
     private PlaceFilterAdapter placeFilterAdapter;
     private DegreeFilterAdapter degreeFilterAdapter;
-
-    public interface OnFiltePackageListener{
-
-        void onConfirm(ArrayList<DegreeFilter> degreeFiltersSelected,
-                       ArrayList<PriceFilter> priceFiltersSelected,
-                       ArrayList<PlaceFilter> placeFiltersSelected,
-                       ArrayList<HotelTypeFilter> hotelTypeFiltersSelected,
-                       ArrayList<AmenityFilter> amenityFiltersSelected);
-    }
 
     public FilterPackageDialog(Context context){
 
@@ -111,10 +103,9 @@ public class FilterPackageDialog implements View.OnClickListener {
 
         btnOk.setOnClickListener(this);
         btnDeleteFilter.setOnClickListener(this);
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnDeleteFilter.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnDeleteFilter.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
     }
-
 
     public void show() {
         if(alertDialog != null && !alertDialog.isShowing()){
@@ -262,5 +253,14 @@ public class FilterPackageDialog implements View.OnClickListener {
                 }
                 break;
         }
+    }
+
+    public interface OnFiltePackageListener {
+
+        void onConfirm(ArrayList<DegreeFilter> degreeFiltersSelected,
+                       ArrayList<PriceFilter> priceFiltersSelected,
+                       ArrayList<PlaceFilter> placeFiltersSelected,
+                       ArrayList<HotelTypeFilter> hotelTypeFiltersSelected,
+                       ArrayList<AmenityFilter> amenityFiltersSelected);
     }
 }

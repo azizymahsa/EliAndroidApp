@@ -12,7 +12,7 @@
         android:padding="10dp"
         android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
-        android:text="مرتب کردن"
+        android:text="@string/Sort"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_txtSize"
         android:gravity="center"
@@ -31,7 +31,7 @@
             android:id="@+id/tvMax"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="بر اساس بیشترین قیمت"
+            android:text="@string/SortMax"
             android:textSize="@dimen/_14dp_txtSize"
             android:textColor="@color/text_color_4d"
             android:textAppearance="@style/IrsansBold"
@@ -47,7 +47,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="بر اساس کمترین قیمت"
+            android:text="@string/SortMin"
             android:textSize="@dimen/_14dp_txtSize"
             android:textColor="@color/text_color_4d"
             android:textAppearance="@style/IrsansBold"
@@ -56,5 +56,6 @@
 
 
 
-    </LinearLayout></LinearLayout>
+    </LinearLayout>
+</LinearLayout>
 

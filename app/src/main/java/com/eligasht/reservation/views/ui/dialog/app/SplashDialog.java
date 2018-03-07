@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -32,10 +33,10 @@ public class SplashDialog implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_splash, null);
         builder.setView(dialogView);
-        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
-        tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
+        btnOk = dialogView.findViewById(R.id.btnOk);
+        tvAlert = dialogView.findViewById(R.id.tvAlert);
 
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(false);
@@ -67,7 +68,7 @@ public void showAlert(){
     }
 
     public interface TryDialogListener {
-        public void onReturnValue();
+        void onReturnValue();
     }
 }
 

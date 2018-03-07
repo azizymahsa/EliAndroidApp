@@ -1,45 +1,23 @@
 package com.eligasht.reservation.views.activities.hotel.activity;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
-import com.eligasht.reservation.api.hotel.changeflight.LoadHotelFlightApi;
-import com.eligasht.reservation.api.hotel.comment.AddComment;
-import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
-import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.RequestAdd;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.RequsetAddComment;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewComment;
-import com.eligasht.reservation.models.hotel.api.changeflight.request.ChangeFlightApiRequest;
-import com.eligasht.reservation.models.hotel.api.changeflight.request.Request;
-import com.eligasht.reservation.tools.OnDetectScrollListener;
-import com.eligasht.reservation.views.adapters.hotel.LazyResoultHotelAdapter;
-import com.google.gson.Gson;
-import com.melnykov.fab.FloatingActionButton;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
+import com.eligasht.reservation.api.hotel.changeflight.LoadHotelFlightApi;
 import com.eligasht.reservation.api.hotel.hotelFlight.HotelFlightSearch;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.Country;
@@ -47,7 +25,10 @@ import com.eligasht.reservation.models.HotelAR;
 import com.eligasht.reservation.models.RquestHF;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
+import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
+import com.eligasht.reservation.models.hotel.api.changeflight.request.ChangeFlightApiRequest;
+import com.eligasht.reservation.models.hotel.api.changeflight.request.Request;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Rooms;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities;
@@ -59,11 +40,13 @@ import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.views.adapters.hotel.FlightHotelAdapter;
 import com.eligasht.reservation.views.ui.InitUi;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
-import com.scalified.fab.ActionButton;
+import com.google.gson.Gson;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -91,13 +74,18 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class SelectHotelFlightActivity extends BaseActivity implements View.OnClickListener, FilterHotelDialog.FilterHotelDialogListenerArray, SortDialog.SortHotelDialogListener {
+    public static final int CONNECTION_TIMEOUT = 10000;
+    public static final int READ_TIMEOUT = 15000;
+    LinearLayout llFilter;
+    String flightId, searchIn;
+    String flId, searchKey;
+    FilterHotelDialog filterHotelDialog;
     private com.eligasht.reservation.tools.ListView list;
     private FlightHotelAdapter adapter;
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
@@ -109,8 +97,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private ArrayList<FilterHotelTypeModel> filterHotelBestOffModels = new ArrayList<>();
     private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     private ArrayList<FilterModel> filterModels = new ArrayList<>();
-
-
     private HotelFlightSearch hotelFlightSearch;
     private List<Rooms> rooms = new ArrayList<>();
     private RelativeLayout rlLoading, rlRoot;
@@ -118,21 +104,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private Window window;
     private RelativeLayout elNotFound, rlEr, rlList;
     private FancyButton btnNextDays, btnLastDays;
-    public static final int CONNECTION_TIMEOUT = 10000;
-    public static final int READ_TIMEOUT = 15000;
     private int maxPrice, minPrice;
-
     private FancyButton btnFilter, btnSort;
-    LinearLayout llFilter;
     private FancyButton btnOk, btnBack, btnHome;
     private ImageView ivLoading, ivImage;
-
     private String raft, bargasht;
     private String raftFa, bargashtFa;
-    String flightId, searchIn;
     private LoadHotelFlightApi loadHotelFlightApi;
-    String flId, searchKey;
-    FilterHotelDialog filterHotelDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,7 +172,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         raft = getIntent().getExtras().getString("CheckInHF");
         bargasht = getIntent().getExtras().getString("CheckOutHF");
 
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -264,15 +242,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     DateFormat formatter;
                     Date date;
                     formatter = new SimpleDateFormat("yyyy/MM/dd");
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     cal.add(Calendar.DATE, 1);
                     System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
 
 
-                    Date dateRaft = (Date) formatter.parse(raft);
-                    Date dateBargasht = (Date) formatter.parse(bargasht);
+                    Date dateRaft = formatter.parse(raft);
+                    Date dateBargasht = formatter.parse(bargasht);
                     if (dateBargasht.after(dateRaft)) {
                         ///
                         ///
@@ -317,7 +295,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         }
                         new GetHotelAsync().execute();
                     } else {
-                        Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
+                        Toast.makeText(getApplicationContext(), R.string.datePickerError,
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -340,7 +318,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     DateFormat formatter;
                     Date date;
                     formatter = new SimpleDateFormat("yyyy/MM/dd");
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     cal.add(Calendar.DATE, -1);
@@ -382,7 +360,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         }
                         new GetHotelAsync().execute();
                     } else {
-                        Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز را نمی توان انتخاب کرد", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.DatePickerError2, Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -866,6 +844,45 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         return selectHotelModel;
     }
 
+    private String OrderToJsonCheckFlight() {
+        JSONObject jsone = new JSONObject();
+        JSONObject manJson = new JSONObject();
+
+
+        try {
+
+            manJson.put("UserName", "EligashtMlb");
+            manJson.put("Password", "123qwe!@#QWE");
+            manJson.put("TermianlId", "Mobile");
+            manJson.put("Code", Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));//inja esme forudgah mikhore
+            manJson.put("ToCode", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
+
+            jsone.put("request", manJson);
+
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("request:" + jsone.toString());
+        return jsone.toString();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 155) {
+            if (resultCode == Activity.RESULT_OK) {
+                flId = data.getStringExtra("FlightId");
+                searchKey = data.getStringExtra("searchKey");
+
+                new ChangeFlightAsync().execute();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
 
     private class GetHotelAsync extends AsyncTask<String, Void, String> {
 
@@ -921,7 +938,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
                 } else if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد!");
+                    tvAlert.setText(R.string.NoResult);
                     list.setVisibility(View.GONE);
                     rlList.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
@@ -960,10 +977,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                             int p1 = hotels.Availability.RoomLists.get(i).OldPrice - Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
                             int p2 = p1 * 100;
                             int p3 = p2 / hotels.Availability.RoomLists.get(i).OldPrice;
-                            if (p3 != 0) {
+                            if (p3 > 0) {
+                                // negative
                                 isOff = true;
 
-                                off = p3 + "%\nتخفیف";
+                                off = p3 + getString(R.string.off);
 
                             }
                         }
@@ -1003,15 +1021,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
                     }
 
-                    filterHotelStarsModels.add(new FilterStarModel("1 ستاره", false, 1));
-                    filterHotelStarsModels.add(new FilterStarModel("2 ستاره", false, 2));
-                    filterHotelStarsModels.add(new FilterStarModel("3 ستاره", false, 3));
-                    filterHotelStarsModels.add(new FilterStarModel("4 ستاره", false, 4));
-                    filterHotelStarsModels.add(new FilterStarModel("5 ستاره", false, 5));
-                    filterHotelStarsModels.add(new FilterStarModel("بدون ستاره", false, -1));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._1star), false, 1));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._2star), false, 2));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._3star), false, 3));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._4star), false, 4));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._5star), false, 5));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string.WithoutStar), false, -1));
 
-                    filterHotelBestOffModels.add(new FilterHotelTypeModel("بیشترین فروش", false));
-                    filterHotelBestOffModels.add(new FilterHotelTypeModel("تخفیف ویژه", false));
+                    filterHotelBestOffModels.add(new FilterHotelTypeModel(getString(R.string.BestSell), false));
+                    filterHotelBestOffModels.add(new FilterHotelTypeModel(getString(R.string.BestOff), false));
                     for (Facilities facilities : hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Facilities) {
 
                         filterHotelFacilitiesModels.add(new FilterHotelTypeModel(facilities.Title, false));
@@ -1059,11 +1077,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 elNotFound.setVisibility(View.VISIBLE);
                 if (!Utility.isNetworkAvailable(SelectHotelFlightActivity.this)) {
 
-                    tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                    tvAlert.setText(R.string.InternetError);
 
                 } else {
 
-                    tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
+                    tvAlert.setText(R.string.ErrorServer);
 
                 }
                 btnOk.setVisibility(View.VISIBLE);
@@ -1236,47 +1254,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
     }
 
-    private String OrderToJsonCheckFlight() {
-        JSONObject jsone = new JSONObject();
-        JSONObject manJson = new JSONObject();
-
-
-        try {
-
-            manJson.put("UserName", "EligashtMlb");
-            manJson.put("Password", "123qwe!@#QWE");
-            manJson.put("TermianlId", "Mobile");
-            manJson.put("Code", Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));//inja esme forudgah mikhore
-            manJson.put("ToCode", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
-
-            jsone.put("request", manJson);
-
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.out.println("request:" + jsone.toString());
-        return jsone.toString();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == 155) {
-            if (resultCode == Activity.RESULT_OK) {
-                flId = data.getStringExtra("FlightId");
-                searchKey = data.getStringExtra("searchKey");
-
-                new ChangeFlightAsync().execute();
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
-            }
-        }
-    }
-
-
     private class ChangeFlightAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
@@ -1323,7 +1300,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
                 } else if (loadHotelFlightApi.changeFlightApiResponse.LoadFlightResult.HFlight.FltList.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد !");
+                    tvAlert.setText(R.string.NoResult);
                     list.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
 
@@ -1358,7 +1335,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                             if (p3 != 0) {
                                 isOff = true;
 
-                                off = p3 + "%\nتخفیف";
+                                off = p3 + getString(R.string.off);
 
                             }
                         }
@@ -1411,11 +1388,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 elNotFound.setVisibility(View.VISIBLE);
                 if (!Utility.isNetworkAvailable(SelectHotelFlightActivity.this)) {
 
-                    tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                    tvAlert.setText(R.string.InternetError);
 
                 } else {
 
-                    tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
+                    tvAlert.setText(R.string.ErrorServer);
 
                 }
                 list.setVisibility(View.GONE);

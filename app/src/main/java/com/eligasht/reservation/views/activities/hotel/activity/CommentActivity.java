@@ -1,23 +1,19 @@
 package com.eligasht.reservation.views.activities.hotel.activity;
 
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -32,9 +28,8 @@ import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewScores;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.WebUserTools;
-import com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox;
 import com.eligasht.reservation.views.ui.InitUi;
-import com.eligasht.reservation.views.ui.PassengerHotelFlightActivity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertRating;
@@ -71,7 +66,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "ارسال نظر");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.PostComment));
         init_view();
         new AlertRating(this, this,star);
     }
@@ -103,13 +98,13 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         btnToComment.setOnClickListener(this);
         btnConfirm.setOnClickListener(this);
         rlLoading.setOnClickListener(this);
-        btnToComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnConfirm.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnToComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnConfirm.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setOnClickListener(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            tvTitle.setText("ثبت نظر برای " + extras.getString("HotelName"));
+            tvTitle.setText(getString(R.string.CommentFor) + extras.getString("HotelName"));
             hotelId=extras.getString("HotelId");
             Log.e("UserID",Prefs.getString("uesrId","-1"));
         }
@@ -195,7 +190,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+"لطفا نام و نام خانوادگی درست وارد کنید";
+                    errorMessage=errorMessage+"\n"+getString(R.string.Please_enter_the_correct_name);
 
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
@@ -207,7 +202,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etMail.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+" ایمیل با فرمت صحیح باشد(test@test.com)";
+                    errorMessage=errorMessage+"\n"+getString(R.string.Email_format_is_correct);
 
                 } else {
                     //((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
@@ -220,7 +215,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etTitle.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+"لطفا عنوان را درست وارد کنید";
+                    errorMessage=errorMessage+"\n"+getString(R.string.Please_enter_the_title_correctly);
 
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etTitle.getBackground();
@@ -232,7 +227,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etMessage.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+"لطفا پیام را درست وارد کنید";
+                    errorMessage=errorMessage+"\n"+getString(R.string.Please_enter_the_correct_message);
 
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etMessage.getBackground();
@@ -315,65 +310,6 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
     }
 
-
-    private class AddCommentAsync extends AsyncTask<String, Void, String> {
-
-        protected void onPreExecute() {
-            rlLoading.setVisibility(View.VISIBLE);
-            Log.e("requestTest",new Gson().toJson(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                    "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0")))));
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                        "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0"))));
-
-            } catch (Exception e) {
-
-            }
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            rlLoading.setVisibility(View.GONE);
-
-            try {
-
-
-                if (addComment.addCommentsResult.AddHotelReviewResult.Errors != null) {
-                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.Errors.get(0).DetailedMessage,false);
-
-
-                } else {
-
-                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.ResultText,true);
-
-
-                }
-
-
-            } catch (Exception e) {
-                if (!Utility.isNetworkAvailable(CommentActivity.this)) {
-
-                    addCommnetDialog.setTitle("اینترنت شما قطع و یا از دسترس خارج می باشد",false);
-
-                } else {
-
-                    addCommnetDialog.setTitle("خطا در دریافت اطلاعات از الی گشت",false);
-
-                }
-
-            }
-
-        }
-
-    }
-
-
     @Override
     public void onBackPressed() {
 
@@ -421,6 +357,63 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
             super.onBackPressed();
         }
 
+
+    }
+
+    private class AddCommentAsync extends AsyncTask<String, Void, String> {
+
+        protected void onPreExecute() {
+            rlLoading.setVisibility(View.VISIBLE);
+            Log.e("requestTest",new Gson().toJson(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
+                    "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0")))));
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
+                        "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0"))));
+
+            } catch (Exception e) {
+
+            }
+            return "Executed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            rlLoading.setVisibility(View.GONE);
+
+            try {
+
+
+                if (addComment.addCommentsResult.AddHotelReviewResult.Errors != null) {
+                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.Errors.get(0).DetailedMessage,false);
+
+
+                } else {
+
+                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.ResultText,true);
+
+
+                }
+
+
+            } catch (Exception e) {
+                if (!Utility.isNetworkAvailable(CommentActivity.this)) {
+
+                    addCommnetDialog.setTitle(getString(R.string.InternetError),false);
+
+                } else {
+
+                    addCommnetDialog.setTitle(getString(R.string.ErrorServer),false);
+
+                }
+
+            }
+
+        }
 
     }
 }

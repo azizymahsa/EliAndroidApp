@@ -21,7 +21,7 @@
     <!-- Label forf date or time [CHAR LIMIT=30] -->
     <string name="gmdtp_ok">OK</string>
     <string name="gmdtp_okFa">تائید</string>
-    <string name="gmdtp_cancel">@android:string/cancel</string>
+    <string name="gmdtp_cancel">Cancel</string>
     <string name="gmdtp_cancelfa">انصراف</string>
     <!--
          Content description for the hour selector in the time picker, which displays

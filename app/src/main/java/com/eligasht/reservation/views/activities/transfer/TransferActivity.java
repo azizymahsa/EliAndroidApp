@@ -1,18 +1,16 @@
 package com.eligasht.reservation.views.activities.transfer;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
-import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -20,10 +18,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.AirportTransportServicePrice;
 import com.eligasht.reservation.base.BaseActivity;
@@ -38,8 +32,12 @@ import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.app.SplashDialog;
-
+import com.google.gson.Gson;
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.DateFormat;
@@ -72,6 +70,20 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     SplashDialog splashDialog;
     LinearLayout llRoot;
 
+    public static String date_server(int y, int m, int d) {
+        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
+
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
+        String formatted = format1.format(date.getTime());
+        String[] dateGrg = formatted.split("/");
+        int monthS = Integer.valueOf(dateGrg[0]);
+        long dayS = Long.valueOf(dateGrg[1]);
+        int yearS = Integer.valueOf(dateGrg[2]);
+
+
+        return yearS + "/" + monthS + "/" + dayS;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +91,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         initViews();
         initValues();
         initCalenndar();
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "محاسبه قیمت");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.calculate_price));
 
         splashDialog = new SplashDialog(TransferActivity.this, null);
 
@@ -121,7 +133,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
                 if (ValidationTools.isEmptyOrNull(tvDepurtureFlt.getText().toString())){
-                    Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf");
+                    Typeface t = Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
                     tvDepurtureFlt.setTypeface(t);
                 }else{
                     Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
@@ -146,7 +158,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
                 if (ValidationTools.isEmptyOrNull(tvReturnFlt.getText().toString())){
-                    Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf");
+                    Typeface t = Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
                     tvReturnFlt.setTypeface(t);
                 }else{
                     Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
@@ -269,7 +281,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
             }
         });
-        datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
+        datePickerDialog2.setTitle(getResources().getString(R.string.select_return_date));
 
 
 //=====================================================================================================
@@ -288,7 +300,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 Date date;
                 formatter = new SimpleDateFormat("yyyy/MM/dd");
                 try {
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     datePickerDialogGregorian2.setMinDate(cal);
@@ -503,10 +515,10 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvHotel.setEnabled(true);
         }
         if (Prefs.getString("IST", "H").equals("H")) {
-            tvDepurtureDate.setText("انتخاب کنید");
+            tvDepurtureDate.setText(getString(R.string.please_select_one));
             tvDepurtureDate.setClickable(true);
             tvDepurtureDate.setEnabled(true);
-            tvReturnDate.setText("انتخاب کنید");
+            tvReturnDate.setText(getString(R.string.please_select_one));
             tvReturnDate.setClickable(true);
             tvReturnDate.setEnabled(true);
 
@@ -515,7 +527,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -523,11 +534,11 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         Utility.hideKeyboard(TransferActivity.this,tvReturnFlt);
 
         if (ValidationTools.isEmptyOrNull(DepurtureAirport)) {
-            tvDepurtureAirport.setText(Prefs.getString("Value-Mabda-City2", "انتخاب کنید"));
+            tvDepurtureAirport.setText(Prefs.getString("Value-Mabda-City2", getString(R.string.please_select_one)));
 
         }
         if (ValidationTools.isEmptyOrNull(Hotel)) {
-            tvHotel.setText(Prefs.getString("HotelName", "انتخاب کنید"));
+            tvHotel.setText(Prefs.getString("HotelName", getString(R.string.please_select_one)));
         }
         if (ValidationTools.isEmptyOrNull(AirPortCode)) {
             if (Prefs.getString("Value-Mabda-Airport-Code2", "").equals(""))
@@ -547,9 +558,9 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Prefs.putString("HotelName", "انتخاب کنید");
+        Prefs.putString("HotelName", getString(R.string.please_select_one));
         Prefs.putString("Value-Mabda-Airport-Code2", "");
-        Prefs.putString("Value-Mabda-City2", "انتخاب کنید");
+        Prefs.putString("Value-Mabda-City2", getString(R.string.please_select_one));
 
     }
 
@@ -602,7 +613,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             case R.id.btnCal:
                 boolean cal = true;
 
-                if (tvDepurtureAirport.getText().toString().contains("انتخاب")) {
+                if (tvDepurtureAirport.getText().toString().contains(getString(R.string.please_select_one))) {
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureAirport.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke wid
@@ -612,7 +623,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
 
-                if (tvDepurtureTime.getText().toString().contains("انتخاب")) {
+                if (tvDepurtureTime.getText().toString().contains(getString(R.string.please_select_one))) {
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureTime.getBackground();
                     drawable.setStroke(4, Color.RED); // se
@@ -623,7 +634,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
 
-                if (tvReturnTime.getText().toString().contains("انتخاب")) {
+                if (tvReturnTime.getText().toString().contains(getString(R.string.please_select_one))) {
                     //  tvReturnTime.setError("ساعت برگشت را انتخاب کنید");
                     GradientDrawable drawable = (GradientDrawable) tvReturnTime.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
@@ -651,7 +662,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     cal = false;
                     //  Toast.makeText(this, "شماره پرواز رفت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
 
-                    splashDialog.seeText("شماره پرواز رفت را به درستی وارد نمایید");
+                    splashDialog.seeText(getString(R.string.flight_number_correctly));
                     splashDialog.setBtnText();
                     splashDialog.showAlert();
                 } else {
@@ -676,7 +687,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     // tvReturnFlt.setError("شماره پرواز برگشت را به درستی وارد نمایید");
                     //    Toast.makeText(this, "شماره پرواز برگشت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
                     //   AlertDialogPassengerFlight.setText("خطا در دریافت اطلاعات از الی گشت ");
-                    splashDialog.seeText("شماره پرواز برگشت را به درستی وارد نمایید");
+                    splashDialog.seeText(getString(R.string.flight_return_number_correctly));
                     splashDialog.showAlert();
                     splashDialog.setBtnText();
 
@@ -687,7 +698,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 }
 
 
-                if (tvReturnDate.getText().toString().contains("انتخاب")) {
+                if (tvReturnDate.getText().toString().contains(getString(R.string.please_select_one))) {
                     cal = false;
                     //  tvReturnDate.setError("شماره پرواز برگشت را وارد نمایید");
                     GradientDrawable drawable = (GradientDrawable) tvReturnDate.getBackground();
@@ -698,7 +709,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 }
 
 
-                if (tvDepurtureDate.getText().toString().contains("انتخاب")) {
+                if (tvDepurtureDate.getText().toString().contains(getString(R.string.please_select_one))) {
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureDate.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
@@ -708,7 +719,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureDate.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
-                if (tvReturnTime.getText().toString().contains("انتخاب")) {
+                if (tvReturnTime.getText().toString().contains(getString(R.string.please_select_one))) {
                     // tvReturnTime.setError("تاریخ رفت را انتخاب کنید");
                     GradientDrawable drawable = (GradientDrawable) tvReturnTime.getBackground();
                     drawable.setStroke(4, Color.RED);
@@ -717,7 +728,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     GradientDrawable drawable = (GradientDrawable) tvReturnTime.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
-                if (tvHotel.getText().toString().contains("انتخاب")) {
+                if (tvHotel.getText().toString().contains(getString(R.string.please_select_one))) {
                     //  tvHotel.setError("نام هتل را انتخاب کنید");
                     GradientDrawable drawable = (GradientDrawable) tvHotel.getBackground();
                     drawable.setStroke(4, Color.RED);
@@ -796,20 +807,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
         }
 
-    }
-
-    public static String date_server(int y, int m, int d) {
-        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
-
-        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
-        String formatted = format1.format(date.getTime());
-        String[] dateGrg = formatted.split("/");
-        int monthS = Integer.valueOf(dateGrg[0]);
-        long dayS = Long.valueOf(dateGrg[1]);
-        int yearS = Integer.valueOf(dateGrg[2]);
-
-
-        return yearS + "/" + monthS + "/" + dayS;
     }
 
     @Override
@@ -912,10 +909,10 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     finish();
                     if (Utility.isNetworkAvailable(TransferActivity.this)){
 
-                        Toast.makeText(TransferActivity.this, "خطا در دریافت اطلاعات از الی گشت", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TransferActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
 
                     }else{
-                        Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خارج می باشد", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TransferActivity.this, R.string.InternetError, Toast.LENGTH_SHORT).show();
                     }
 
                 }

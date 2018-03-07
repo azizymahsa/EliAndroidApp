@@ -32,27 +32,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.changeflight.ChangeFlightApi;
-import com.eligasht.reservation.api.hotel.comment.AddComment;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.RequestAdd;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.RequsetAddComment;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewComment;
+import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.models.Country;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.ChangeFlightApiRequest;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.Request;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
-import com.eligasht.reservation.tools.datetools.SolarCalendar;
-import com.google.gson.Gson;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.R;
-import com.eligasht.reservation.base.BaseActivity;
-import com.eligasht.reservation.models.Country;
 import com.eligasht.reservation.models.model.ModelCheckBox;
 import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.models.model.SearchParvazModelExp;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.DateUtil;
+import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.views.adapters.ExpandableListAdapter;
 import com.eligasht.reservation.views.adapters.SearchParvazPinAdapter;
 import com.eligasht.reservation.views.components.Header;
@@ -61,12 +54,13 @@ import com.eligasht.reservation.views.ui.OBGParvaz.FlightSegment;
 import com.eligasht.reservation.views.ui.OBGParvaz.FlightSegmentFalse;
 import com.eligasht.reservation.views.ui.OBGParvaz.FlightSegmentTrue;
 import com.eligasht.reservation.views.ui.OBGParvaz.PriceField;
-
 import com.eligasht.reservation.views.ui.dialog.flight.FilterFlightDialogNew;
 import com.eligasht.reservation.views.ui.dialog.flight.FilterModelّFlight;
 import com.eligasht.reservation.views.ui.dialog.flight.SortFlightDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
-
+import com.google.gson.Gson;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -103,24 +97,46 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class SearchParvazActivity extends BaseActivity implements SortFlightDialog.SortFlightDialogListener, FilterFlightDialogNew.FilterFlightDialogListenerArray, Header.onSearchTextChangedListener, OnItemClickListener, OnClickListener, OnItemSelectedListener {
+    //HashMap<String, HashMap<String, ItemExpanding>> listDataChildExpanding;
+    public static final int CONNECTION_TIMEOUT = 10000;
+    public static final int READ_TIMEOUT = 15000;
+    public static boolean FlagRemove;
+    public static int COUNT_B;
+    public static int COUNT_K;
+    public static int COUNT_N;
+    public static String globalResultUniqID;
+    public static RecyclerView recyclerViewFlight;
+    public ArrayList<ModelCheckBox> filterAirlines = new ArrayList<>();
+    public ArrayList<String> airlineConstraint = new ArrayList<>();
+    public TextView txtCityBargasht, txtCityRaft, txtCityBargashtt;
+    public FancyButton txtBack, btnHome;
+    public List<ParentItemExpandingPlan> dataExpandingList;
+    public List<ParentItemExpandingPlan> dataExpandingListFilter = new ArrayList<>();
+    public List<ParentItemExpandingPlan> dataExpandingListFilter2 = new ArrayList<>();
+    public com.eligasht.reservation.tools.ExpandableListViewE expListViewExpanding;
+    public TextView lblMoratabSazi;
+    public TextView txtRuzeBad, txtRuzeGhabl, iconFilter, txtFilter, txtNoResult;
+    public String RaftF;
+    public String BargashtF;
+    public String Raft;
+    public String Bargasht;
+    public TextView txtDateOnvan, tvLoading, txticon, tvChangeFlight;
+    public RelativeLayout linear_expand;
+    public SearchParvazPinAdapter searchParvazPinAdapter;
+    public ArrayList<ModelCheckBox> arrayTrue = new ArrayList<>();
     //onSearchTextChangedListener, OnClickListener, OnItemClickListener,FiltersChangedListener,OnItemSelectedListener
     //sort
     boolean besetSeler = false;
     boolean bestOff = false;
-
     //filter
     boolean bnoStop = false;
     boolean boneStop = false;
     boolean btwoStopMore = false;
-
     boolean beconomiF = false;
     boolean bbusinessF = false;
     boolean bferstF = false;
     ChangeFlightApi changeFlightApi;
-
     boolean remove = false;
-    private ArrayList<ParentItemExpandingPlan> selectHotelModelArrayListBestSeler = new ArrayList<>();
-
     List<Flight> flightsList = new ArrayList<Flight>();
     List<Flight> flightsListFilter = new ArrayList<Flight>();
     List<FlightSegmentTrue> SegmentListtrueAkhari = new ArrayList<FlightSegmentTrue>();
@@ -128,50 +144,51 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     List<FlightSegmentTrue> SegmentListtrueAvali = new ArrayList<FlightSegmentTrue>();
     List<FlightSegmentFalse> SegmentListFalseAvali = new ArrayList<FlightSegmentFalse>();
     List<FlightSegmentFalse> SegmentListFalseAkhari = new ArrayList<FlightSegmentFalse>();
-
-    public ArrayList<ModelCheckBox> filterAirlines = new ArrayList<>();
-    public ArrayList<String> airlineConstraint = new ArrayList<>();
-    private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
-
-    public TextView txtCityBargasht, txtCityRaft, txtCityBargashtt;
-    public FancyButton txtBack, btnHome;
-
-    public List<ParentItemExpandingPlan> dataExpandingList;
-    public List<ParentItemExpandingPlan> dataExpandingListFilter = new ArrayList<>();
-    public List<ParentItemExpandingPlan> dataExpandingListFilter2 = new ArrayList<>();
-
-    public static boolean FlagRemove;
-    private ExpandableListAdapter listAdapterExpanding;
-    public com.eligasht.reservation.tools.ExpandableListViewE  expListViewExpanding;
-    public TextView lblMoratabSazi;
-    public TextView txtRuzeBad, txtRuzeGhabl, iconFilter, txtFilter, txtNoResult;
-    public static int COUNT_B;
-    public static int COUNT_K;
-    public static int COUNT_N;
     RelativeLayout rlLoading, rlRoot;
     Button btn_no_Result;
     // HashMap<String,HashMap<String,HeaderExpandingPlan>> listDataHeaderExpanding;
     List<String> listDataHeaderExpanding;
     HashMap<String, HashMap<String, ItemExpandingPlan>> listDataChildExpanding;
-
-    //HashMap<String, HashMap<String, ItemExpanding>> listDataChildExpanding;
-    public static final int CONNECTION_TIMEOUT = 10000;
-    public static final int READ_TIMEOUT = 15000;
-    public static String globalResultUniqID;
-    public String RaftF;
-    public String BargashtF;
-    public String Raft;
-    public String Bargasht;
-    public TextView txtDateOnvan, tvLoading,txticon,tvChangeFlight;
-    public RelativeLayout linear_expand;
-    public SearchParvazPinAdapter searchParvazPinAdapter;
-    public static RecyclerView recyclerViewFlight;
     Window window;
-    public ArrayList<ModelCheckBox> arrayTrue = new ArrayList<>();
     boolean isChangeFlight;
     String searchKey;
     String FlightId;
     LinearLayout llNextLastDays;
+    private ArrayList<ParentItemExpandingPlan> selectHotelModelArrayListBestSeler = new ArrayList<>();
+    private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
+    private ExpandableListAdapter listAdapterExpanding;
+
+    public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
+        // TODO Auto-generated method stub
+        // recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+        recyclerViewFlight.addItemDecoration(new DividerItemDecoration(activity, 1));
+        recyclerViewFlight.setLayoutManager(new LinearLayoutManager(activity));
+        //ArrayList<PinModelDetail> pinModelDetails = new ArrayList<>();
+        //ArrayList<PinModelHeader> pinModelHeaders = new ArrayList<>();
+        //JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
+
+		/*for (int i = 0; i < jArray5.length(); i++) {
+
+			pinModelDetails.add(new PinModelDetail(jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepAirPortFa"),
+					jArray5.getJSONObject(i).getString("ArrAirPortFa"),
+					Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
+					jArray5.getJSONObject(i).getString("FltTime"),
+					//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+					jArray5.getJSONObject(i).getString("FltCheckinTime"),
+
+					jArray5.getJSONObject(i).getString("FltNumber"),
+					jArray5.getJSONObject(i).getString("AirlineNameFa"),
+					jArray5.getJSONObject(i).getString("DepartureCityFa")));
+
+		}*/
+        if (!pinModelDetails.isEmpty()) {
+            recyclerViewFlight.setVisibility(View.VISIBLE);
+            recyclerViewFlight.setAdapter(new SearchParvazPinAdapter(pinModelDetails, pinModelHeaders));
+
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +197,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         Utility.setAnimLoading(this);
 
         window = getWindow();
-        linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+        linear_expand = findViewById(R.id.linear_expand);
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             if (bundle.getBoolean("BACK_HOME") == true) {
@@ -193,50 +210,49 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         iconFilter = findViewById(R.id.iconFilter);
 
 
-        txtBack = (FancyButton) findViewById(R.id.txtBack);
+        txtBack = findViewById(R.id.txtBack);
         txtBack.setOnClickListener(this);
         txtBack.setCustomTextFont("fonts/icomoon.ttf");
         txtBack.setText(getString(R.string.search_back_right));
 
-        btnHome = (FancyButton) findViewById(R.id.btnHome);
-        txticon = (TextView) findViewById(R.id.txticon);
+        btnHome = findViewById(R.id.btnHome);
+        txticon = findViewById(R.id.txticon);
         btnHome.setOnClickListener(this);
         /*btnHome.setCustomTextFont("fonts/icomoon.ttf");
 		btnHome.setText(getString(R.string.search_back_right));
 		*/
-        txtNoResult = (TextView) findViewById(R.id.txtNoResult);
+        txtNoResult = findViewById(R.id.txtNoResult);
         txtNoResult.setOnClickListener(this);
-        txtFilter = (TextView) findViewById(R.id.txtFilter);
+        txtFilter = findViewById(R.id.txtFilter);
         txtFilter.setOnClickListener(this);
 
-        txtRuzeBad = (TextView) findViewById(R.id.txtRuzeBad);
+        txtRuzeBad = findViewById(R.id.txtRuzeBad);
         txtRuzeBad.setOnClickListener(this);
 
 
-        btn_no_Result = (Button) findViewById(R.id.btn_no_Result);
-        llNextLastDays = (LinearLayout) findViewById(R.id.llNextLastDays);
+        btn_no_Result = findViewById(R.id.btn_no_Result);
+        llNextLastDays = findViewById(R.id.llNextLastDays);
         btn_no_Result.setOnClickListener(this);
 
-        txtRuzeGhabl = (TextView) findViewById(R.id.txtRuzeGhabl);
+        txtRuzeGhabl = findViewById(R.id.txtRuzeGhabl);
         txtRuzeGhabl.setOnClickListener(this);
 
-        lblMoratabSazi = (TextView) findViewById(R.id.lblMoratabSazi);
+        lblMoratabSazi = findViewById(R.id.lblMoratabSazi);
         lblMoratabSazi.setOnClickListener(this);
 
-        txtCityRaft = (TextView) findViewById(R.id.txtCityRaft);
+        txtCityRaft = findViewById(R.id.txtCityRaft);
         txtCityRaft.setOnClickListener(this);
 
 
-
-        txtCityBargashtt = (TextView) findViewById(R.id.txtCityBargashtt);
-        tvLoading = (TextView) findViewById(R.id.tvLoading);
-        tvChangeFlight = (TextView) findViewById(R.id.tvChangeFlight);
+        txtCityBargashtt = findViewById(R.id.txtCityBargashtt);
+        tvLoading = findViewById(R.id.tvLoading);
+        tvChangeFlight = findViewById(R.id.tvChangeFlight);
         Utility.loadingText(tvLoading, Prefs.getString("F", ""));
 
 
         txtCityBargashtt.setOnClickListener(this);
 
-        txtCityBargasht = (TextView) findViewById(R.id.txtCityBargasht);
+        txtCityBargasht = findViewById(R.id.txtCityBargasht);
         txtCityBargasht.setOnClickListener(this);
 
         Bundle extras = getIntent().getExtras();
@@ -244,11 +260,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             String maghsadf = extras.getString("Value-Maghsad-City");
             String mabdaf = extras.getString("Value-Mabda-City");
 
-            //txtCityRaft.setCustomTextFont("fonts/iran_sans_normal.ttf");
+            //txtCityRaft.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
             txtCityRaft.setText(mabdaf);//sdfsdf
 
 
-            //txtCityBargashtt.setCustomTextFont("fonts/iran_sans_normal.ttf");
+            //txtCityBargashtt.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
             txtCityBargashtt.setText(maghsadf);//sdfsdf
 
             txtCityBargasht.setText(maghsadf + "");
@@ -259,7 +275,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             Raft = extras.getString("Value-DepartureDate");
             Bargasht = extras.getString("Value-ArrivalDate");
 
-            txtDateOnvan = (TextView) findViewById(R.id.txtDateOnvan);
+            txtDateOnvan = findViewById(R.id.txtDateOnvan);
             try {
                 String flagWay = extras.getString("Value-Flag-Two");
                 if (flagWay.trim().equals("1")) {
@@ -293,7 +309,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             llNextLastDays.setVisibility(View.GONE);
             txtCityBargashtt.setVisibility(View.GONE);
             tvChangeFlight.setVisibility(View.VISIBLE);
-            tvChangeFlight.setText("تغییر پرواز");
+            tvChangeFlight.setText(R.string.ChangeFlight);
         } else {
             isChangeFlight = false;
             FlightId="";
@@ -302,7 +318,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         //expandin list
         // get the listview
-        expListViewExpanding = (com.eligasht.reservation.tools.ExpandableListViewE ) findViewById(R.id.lvExp);
+        expListViewExpanding = findViewById(R.id.lvExp);
 
         // preparing list data
         expandingListData();
@@ -372,7 +388,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         Utility.init_floating_flight(expListViewExpanding,this);
 
         //for flight==================================================================================
-        recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+        recyclerViewFlight = findViewById(R.id.recyclerViewPassenger);
         recyclerViewFlight.addItemDecoration(new DividerItemDecoration(SearchParvazActivity.this, 1));
         recyclerViewFlight.setLayoutManager(new LinearLayoutManager(SearchParvazActivity.this));
         ArrayList<PinModelDetail> pinModelDetails = new ArrayList<>();
@@ -414,38 +430,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         // and get whatever type user account id is
 
     }//end oncreat======================================================================================
-
-    public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
-        // TODO Auto-generated method stub
-        // recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
-        recyclerViewFlight.addItemDecoration(new DividerItemDecoration(activity, 1));
-        recyclerViewFlight.setLayoutManager(new LinearLayoutManager(activity));
-        //ArrayList<PinModelDetail> pinModelDetails = new ArrayList<>();
-        //ArrayList<PinModelHeader> pinModelHeaders = new ArrayList<>();
-        //JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
-
-		/*for (int i = 0; i < jArray5.length(); i++) {
-
-			pinModelDetails.add(new PinModelDetail(jArray5.getJSONObject(i).getString("AirlineNameFa"),
-					jArray5.getJSONObject(i).getString("DepAirPortFa"),
-					jArray5.getJSONObject(i).getString("ArrAirPortFa"),
-					Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
-					jArray5.getJSONObject(i).getString("FltTime"),
-					//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
-					jArray5.getJSONObject(i).getString("FltCheckinTime"),
-
-					jArray5.getJSONObject(i).getString("FltNumber"),
-					jArray5.getJSONObject(i).getString("AirlineNameFa"),
-					jArray5.getJSONObject(i).getString("DepartureCityFa")));
-
-		}*/
-        if (!pinModelDetails.isEmpty()) {
-            recyclerViewFlight.setVisibility(View.VISIBLE);
-            recyclerViewFlight.setAdapter(new SearchParvazPinAdapter(pinModelDetails, pinModelHeaders));
-
-        }
-
-    }
 
     @Override
     public void onReturnValueFlightNew(ArrayList<FilterModelّFlight> type, ArrayList<ModelCheckBox> arrayTrue) {
@@ -931,10 +915,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
 
 
-        linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+        linear_expand = findViewById(R.id.linear_expand);
         linear_expand.setVisibility(View.VISIBLE);
-        LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-        txtNoResult.setText("هیچ موردی یافت نشد");
+        LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+        txtNoResult.setText(R.string.NoResult);
         linear_no_result.setVisibility(View.GONE);
 
         if (dataExpandingListFilter.isEmpty() || !foundFirst || !foundEc || !foundBis) {
@@ -945,10 +929,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             iconFilter.setTextColor(Color.RED);
             txtFilter.setTextColor(Color.RED);
 
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+            linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
-            linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("هیچ موردی یافت نشد");
+            linear_no_result = findViewById(R.id.linear_no_result);
+            txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
 
             if (FlagRemove) {
@@ -957,10 +941,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                 FlagRemove = false;
 
-                linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+                linear_expand = findViewById(R.id.linear_expand);
                 linear_expand.setVisibility(View.VISIBLE);
-                linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-                txtNoResult.setText("هیچ موردی یافت نشد");
+                linear_no_result = findViewById(R.id.linear_no_result);
+                txtNoResult.setText(R.string.NoResult);
                 linear_no_result.setVisibility(View.GONE);
             }
             /////////////////
@@ -973,10 +957,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             iconFilter.setTextColor(Color.RED);
             txtFilter.setTextColor(Color.RED);
 
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+            linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.VISIBLE);
-            linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("هیچ موردی یافت نشد");
+            linear_no_result = findViewById(R.id.linear_no_result);
+            txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.GONE);
         }
 
@@ -1030,6 +1014,830 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
     }
 
+    private String OrderToJsonCheckFlight() {
+        JSONObject jsone = new JSONObject();
+        JSONObject manJson = new JSONObject();
+
+
+        try {
+
+            Bundle extras = getIntent().getExtras();
+            String maghsadf = "IST";
+            String mabdaf = "THR";
+            if (extras != null) {
+                maghsadf = extras.getString("Value-Maghsad-Airport-Code");
+                mabdaf = extras.getString("Value-Mabda-Airport-Code");
+            }
+
+            manJson.put("UserName", "EligashtMlb");
+            manJson.put("Password", "123qwe!@#QWE");
+            manJson.put("TermianlId", "Mobile");
+            manJson.put("Code", mabdaf);//inja esme forudgah mikhore
+            manJson.put("ToCode", maghsadf);
+
+            jsone.put("request", manJson);
+
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return jsone.toString();
+    }
+
+    public String OrderToJson() {
+        JSONObject jsone = new JSONObject();
+        JSONObject manJson = new JSONObject();
+
+        JSONObject identityJson = new JSONObject();
+        JSONObject jsoneIde = new JSONObject();
+
+        try {
+
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                String maghsadf = extras.getString("Value-Maghsad-Airport-Code");
+                String mabdaf = extras.getString("Value-Mabda-Airport-Code");
+
+                String flagWay = extras.getString("Value-Flag-Two");
+
+                String adlCount = extras.getString("Value-AdlCount");
+                String chdCount = extras.getString("Value-ChdCount");
+                String infCount = extras.getString("Value-InfCount");
+                //Global variable count mosafer
+                COUNT_B = Integer.parseInt(adlCount);
+                COUNT_K = Integer.parseInt(chdCount);
+                COUNT_N = Integer.parseInt(infCount);
+
+                System.out.println("YYYYYYYYYYYYYYYYYYYYYYY");
+                System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
+
+                //identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}
+                identityJson.put("Password", "123qwe!@#QWE");
+                identityJson.put("TermianlId", "Mobile");
+                identityJson.put("UserName", "EligashtMlb");
+                //	identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
+
+                // jsoneIde.put("identity",identityJson);//{"identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}}
+
+                manJson.put("DepartureAirportcode", mabdaf);
+                manJson.put("ArrivalAirportcode", maghsadf);
+                manJson.put("DepartureDate", Raft);
+                manJson.put("ArrivalDate", Bargasht);
+                manJson.put("OneWay", flagWay); // اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
+                manJson.put("CabinClassCode", "all");
+
+                manJson.put("AdlCount", Integer.parseInt(adlCount));
+                manJson.put("ChdCount", Integer.parseInt(chdCount));
+                manJson.put("InfCount", Integer.parseInt(infCount));//{"DepartureAirportcode":"THR","ArrivalAirportcode":"IST","DepartureDate":"2017-12-28","ArrivalDate":"2017-12-31","OneWay":"2","CabinClassCode":"Y","AdlCount":1,"ChdCount":0,"InfCount":0}
+                manJson.put("Culture", "fa-IR");
+
+                manJson.put("identity", identityJson);
+                jsone.put("request", manJson);
+                //jsone.put("request",jsoneIde);
+            } else {
+                identityJson.put("Password", "123qwe!@#QWE");
+                identityJson.put("TermianlId", "Mobile");
+                identityJson.put("UserName", "EligashtMlb");
+                //identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
+
+                jsoneIde.put("identity", identityJson);
+
+                manJson.put("DepartureAirportcode", "IST");
+                manJson.put("ArrivalAirportcode", "IKA");
+                manJson.put("DepartureDate", "2017-12-24");
+                manJson.put("ArrivalDate", "2018-01-29");
+                manJson.put("OneWay", "2"); // اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
+                manJson.put("CabinClassCode", "Y");
+
+                manJson.put("AdlCount", 1);
+                manJson.put("ChdCount", 0);
+                manJson.put("InfCount", 0);
+                manJson.put("Culture", "fa-IR");
+
+                //Global
+                COUNT_B = 1;
+                COUNT_K = 0;
+                COUNT_N = 0;
+
+
+                manJson.put("identity", identityJson);
+
+                jsone.put("request", manJson);
+                //jsone.put("request",jsoneIde);
+            }
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return jsone.toString();
+    }
+
+    private void ferstClassListData() {
+        //	if(SegmentList.get(0).getCabinClassNameFa().contains("فرست")){
+        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
+
+        if (dataExpandingListFilter != null) {
+
+            linear_expand.setVisibility(View.VISIBLE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            linear_no_result.setVisibility(View.GONE);
+            try {
+                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
+
+                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
+
+                    System.out.println("HEADER I=" + i);
+
+                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("فرست")) {
+                        System.out.println("فرست" + i);
+                        //header
+
+                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+
+                        HeaderExpandingPlan header = new HeaderExpandingPlan();
+                        header = dataExpandingListFilter.get(i).getHeader();
+
+                        parentItem.setHeader(header);
+                        parentItem.setItems(dataExpandingListFilter.get(i).getItems());
+
+                        dataExpandingListFilterTrue.add(parentItem);
+                    }//endif
+                }//endfor
+                //if(dataExpandingListFilterTrue.size()>0){
+                dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
+                dataExpandingListFilter = dataExpandingListFilterTrue;
+                //}
+
+            } catch (Exception e) {
+
+                System.out.println(e.getMessage());
+
+            }
+
+        }
+        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
+            linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.GONE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
+            linear_no_result.setVisibility(View.VISIBLE);
+        }
+
+    }//end fersclas
+
+    private void bisnesListData() {
+        //	if(SegmentList.get(0).getCabinClassNameFa().contains("بیزنس")){
+        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
+
+        if (dataExpandingListFilter != null) {
+            linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.VISIBLE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            linear_no_result.setVisibility(View.GONE);
+            try {
+                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
+
+                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
+
+                    System.out.println("HEADER I=" + i);
+
+                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("بیزنس")) {
+                        System.out.println("بیزنس" + i);
+                        //header
+
+                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+
+                        HeaderExpandingPlan header = new HeaderExpandingPlan();
+                        header = dataExpandingListFilter.get(i).getHeader();
+
+                        parentItem.setHeader(header);
+                        parentItem.setItems(dataExpandingListFilter.get(i).getItems());
+
+                        dataExpandingListFilterTrue.add(parentItem);
+                    }//endif
+                }//endfor
+                //if(dataExpandingListFilterTrue.size()>0){
+                dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
+                dataExpandingListFilter = dataExpandingListFilterTrue;
+                //}
+
+            } catch (Exception e) {
+
+                System.out.println(e.getMessage());
+
+            }
+
+        }
+        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
+            linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.GONE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            txtNoResult.setText(R.string.NoResult);
+            linear_no_result.setVisibility(View.VISIBLE);
+        }
+
+    }//end bisnes
+
+    private void economyListData() {
+
+        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
+
+        if (dataExpandingListFilter != null) {
+            RelativeLayout linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.VISIBLE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            linear_no_result.setVisibility(View.GONE);
+            try {
+                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
+
+                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
+
+                    System.out.println("HEADER I=" + i);
+
+                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("اکونومی")) {
+                        System.out.println("اکونومی" + i);
+                        //header
+
+                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+
+                        HeaderExpandingPlan header = new HeaderExpandingPlan();
+                        header = dataExpandingListFilter.get(i).getHeader();
+
+                        parentItem.setHeader(header);
+                        parentItem.setItems(dataExpandingListFilter.get(i).getItems());
+
+                        dataExpandingListFilterTrue.add(parentItem);
+                    }//endif
+                }//endfor
+                //	if(dataExpandingListFilterTrue.size()>0){
+                dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
+                dataExpandingListFilter = dataExpandingListFilterTrue;
+                //}
+
+            } catch (Exception e) {
+
+                System.out.println(e.getMessage());
+
+            }
+
+        }
+        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
+            linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.GONE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            txtNoResult.setText(R.string.NoResult);
+            linear_no_result.setVisibility(View.VISIBLE);
+        }
+
+    }//end economy
+
+    private void expandingListData() {
+        linear_expand = findViewById(R.id.linear_expand);
+        linear_expand.setVisibility(View.VISIBLE);
+        LinearLayout linear_no_resultt = findViewById(R.id.linear_no_result);
+        linear_no_resultt.setVisibility(View.GONE);
+        //	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+        listDataChildExpanding = new HashMap<String, HashMap<String, ItemExpandingPlan>>();
+        dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+        ArrayList<SearchParvazModelExp> searchParvazModelExps = new ArrayList<SearchParvazModelExp>();
+        ArrayList<SearchParvazModelExp> searchParvazModelExps1 = new ArrayList<>();
+
+        if (flightsList != null) {
+
+            try {
+                System.out.println("flightsList.size():" + flightsList.size());
+                dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+                for (int i = 0; i < flightsList.size(); i++) {
+                    //	String test = searchParvazModelExps1.get(i).AirlineCode;
+
+
+                    System.out.println("HEADER I=" + i);
+
+                    //List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
+                    SegmentList = flightsList.get(i).getSegmentList();
+
+                    //List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
+                    SegmentListtrueAvali = flightsList.get(i).getSegmentListTrue();
+
+                    SegmentListtrueAkhari = flightsList.get(i).getSegmentListTrue();
+
+
+                    //List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
+                    SegmentListFalseAvali = flightsList.get(i).getSegmentListFalse();
+                    //List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
+                    SegmentListFalseAkhari = flightsList.get(i).getSegmentListFalse();
+
+                    if (SegmentListFalseAvali.size() == 0 || SegmentListFalseAvali == null) {//yek tarafe
+                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+                        HeaderExpandingPlan header = new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(), SegmentListtrueAvali.get(0).getFlightTime(),
+                                SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getArrivalCityNameFa(), SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getFlightTime(),
+
+                                " ", " ",
+                                " ", " ",
+                                flightsList.get(i).getTotalFare().getAmount(),
+                                //flightsList.get(i).getAdlCost().getAmount(),
+                                flightsList.get(i).getFlightGUID()
+                                , SegmentList.get(0).getAirlineNameFa()
+                                , SegmentList.get(0).getAirlineCode()
+
+                                , SegmentList.get(0).getCabinClassNameFa()
+                                , flightsList.get(i).getRemainSeats()
+                                , flightsList.get(i).isIsCharter()
+                                , SegmentList.get(0).getAirlineNameEn()
+                                , SegmentListtrueAkhari.size()
+                                , SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
+                                , SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0"//SegmentListFalseAvali.get(0).getFltDateDayOfWeek()
+                                , SegmentListFalseAkhari.size()
+                                , SegmentListtrueAvali.get(0).getFlightNumber()
+                                , SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0", false);//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+                        //parentItem.Header.add(header);
+                        parentItem.setHeader(header);
+
+
+                        //fore Detail item
+                        for (int j = 0; j < SegmentList.size(); j++) {
+                            System.out.println("Detail j=" + j);
+
+                            //////////
+                            ItemExpandingPlan item = new ItemExpandingPlan();
+                            //Item
+                            item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
+                            item.FlightTimeR = SegmentList.get(j).getFlightTime();
+
+                            item.ArrivalAirportNameFaR = SegmentList.get(j).getArrivalAirportNameFa();
+                            item.FlightArrivalTimeR = SegmentList.get(j).getFlightArrivalTime();
+
+                            item.AirlineNameFaR = SegmentList.get(j).getAirlineNameFa();
+                            item.FlightNumberR = SegmentList.get(j).getFlightNumber();
+                            item.AirlineCode = SegmentList.get(j).getAirlineCode();
+
+                            item.flGUID = flightsList.get(i).getFlightGUID();
+
+
+                            item.AdlBaseFare = flightsList.get(i).getBaseFare().getAmount();
+                            item.Taxes = flightsList.get(i).getTaxes().getAmount();
+                            item.TotalFare = flightsList.get(i).getTotalFare().getAmount();
+
+                            item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
+                            item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
+                            item.OperatingAirlineNameEn = SegmentList.get(j).getOperatingAirlineNameEn();
+                            parentItem.Items.add(item);
+
+                        }
+
+                        dataExpandingList.add(parentItem);
+                    } else {//2tarafe
+                        //header
+
+                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+                        HeaderExpandingPlan header = new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(), SegmentListtrueAvali.get(0).getFlightTime(),
+                                SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getArrivalCityNameFa(), SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getFlightTime(),
+
+                                SegmentListFalseAvali.get(0).getDepartureCityNameFa(), SegmentListFalseAvali.get(0).getFlightArrivalTime(),
+                                SegmentListFalseAkhari.get(SegmentListFalseAkhari.size() - 1).getArrivalCityNameFa(), SegmentListFalseAkhari.get(0).getFlightTime(),
+
+                                //flightsList.get(i).getAdlCost().getAmount(),
+                                flightsList.get(i).getTotalFare().getAmount(),
+                                flightsList.get(i).getFlightGUID()
+                                , SegmentList.get(0).getAirlineNameFa()
+                                , SegmentList.get(0).getAirlineCode()
+
+                                , SegmentList.get(0).getCabinClassNameFa()
+                                , flightsList.get(i).getRemainSeats()
+                                , flightsList.get(i).isIsCharter()
+                                , SegmentList.get(0).getAirlineNameEn()
+                                , SegmentListtrueAkhari.size()
+                                , SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
+                                , SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0"
+                                , SegmentListFalseAkhari.size()
+                                , SegmentListtrueAvali.get(0).getFlightNumber()
+                                , SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0", false);//ArrivalCityNameEnR baraye sort bayad en bashe
+
+
+                        //parentItem.Header.add(header);
+                        parentItem.setHeader(header);
+
+
+                        //fore Detail item
+                        for (int j = 0; j < SegmentList.size(); j++) {
+                            System.out.println("Detail j=" + j);
+
+                            //////////
+                            ItemExpandingPlan item = new ItemExpandingPlan();
+                            //Item
+                            item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
+                            item.FlightTimeR = SegmentList.get(j).getFlightTime();
+
+                            item.ArrivalAirportNameFaR = SegmentList.get(j).getArrivalAirportNameFa();
+                            item.FlightArrivalTimeR = SegmentList.get(j).getFlightArrivalTime();
+
+                            item.AirlineNameFaR = SegmentList.get(j).getAirlineNameFa();
+                            item.FlightNumberR = SegmentList.get(j).getFlightNumber();
+                            item.AirlineCode = SegmentList.get(j).getAirlineCode();
+
+                            item.flGUID = flightsList.get(i).getFlightGUID();
+
+
+                            item.AdlBaseFare = flightsList.get(i).getBaseFare().getAmount();
+                            item.Taxes = flightsList.get(i).getTaxes().getAmount();
+                            item.TotalFare = flightsList.get(i).getTotalFare().getAmount();
+
+                            item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
+                            item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
+                            item.OperatingAirlineNameEn = SegmentList.get(j).getOperatingAirlineNameEn();
+                            parentItem.Items.add(item);
+
+                        }
+
+                        dataExpandingList.add(parentItem);
+                    }
+                }
+            } catch (Exception e) {
+
+                System.out.println(e.getMessage());
+
+            }
+
+        }
+        if (flightsList.size() == 0 || flightsList == null) {
+
+            linear_expand.setVisibility(View.GONE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            txtNoResult.setText(R.string.NoResult);
+            linear_no_result.setVisibility(View.VISIBLE);
+        }
+
+
+    }//end expanding listdata
+
+    private void getAirLine() {
+        //	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
+        listDataChildExpanding = new HashMap<String, HashMap<String, ItemExpandingPlan>>();
+        //dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+        ArrayList<SearchParvazModelExp> searchParvazModelExps = new ArrayList<SearchParvazModelExp>();
+        ArrayList<SearchParvazModelExp> searchParvazModelExps1 = new ArrayList<>();
+
+        if (flightsList != null) {
+
+
+            System.out.println("flightsList.size():" + flightsList.size());
+            //dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+            for (int i = 0; i < flightsList.size(); i++) {
+                SegmentList = flightsList.get(i).getSegmentList();
+                //FilterAirline filterAirline=new FilterAirline(SegmentList.get(0).getAirlineNameFa());
+
+                //	filterAirlines.add(SegmentList.get(0).getAirlineNameFa(),false);
+
+
+                airlineConstraint.add(SegmentList.get(0).getAirlineNameFa());
+
+
+                Log.e("rrrrrrrr", SegmentList.get(0).getAirlineNameFa());
+            }
+            List<String> al = new ArrayList<>();
+// add elements to al, including duplicates
+            Set<String> hs = new HashSet<>();
+            hs.addAll(airlineConstraint);
+            airlineConstraint.clear();
+            airlineConstraint.addAll(hs);
+
+            for (int i = 0; i < airlineConstraint.size(); i++) {
+                filterAirlines.add(new ModelCheckBox(airlineConstraint.get(i), false));
+            }
+        }
+
+
+    }//end getAirLine
+
+    public void filterAirLineTrue(ArrayList<ModelCheckBox> listTrue) {
+///if (SegmentList.get(0).getAirlineNameFa().contains(listTrue.get(t).getName())&&listTrue.get(t).isCheck()) {//
+        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
+
+        if (dataExpandingListFilter != null) {
+            linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.VISIBLE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            linear_no_result.setVisibility(View.GONE);
+            try {
+                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
+
+                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
+
+                    System.out.println("HEADER I=" + i);
+                    String s = dataExpandingListFilter.get(i).getHeader().AirlineNameFa;
+
+                    for (int j = 0; j < listTrue.size(); j++) {
+                        if (s.contains(listTrue.get(j).getName()) && listTrue.get(j).isCheck()) {//
+                            System.out.println("bedune tavaghof 1 " + i);
+                            //header
+
+                            ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+
+                            HeaderExpandingPlan header = new HeaderExpandingPlan();
+                            header = dataExpandingListFilter.get(i).getHeader();
+
+                            parentItem.setHeader(header);
+                            parentItem.setItems(dataExpandingListFilter.get(i).getItems());
+
+                            dataExpandingListFilterTrue.add(parentItem);
+                        }//endif
+                    }
+                }//endfor
+                if (dataExpandingListFilterTrue.size() > 0) {
+                    dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
+                    dataExpandingListFilter = dataExpandingListFilterTrue;
+                }
+
+            } catch (Exception e) {
+
+                System.out.println(e.getMessage());
+
+            }
+
+        }
+        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
+            linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.GONE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            txtNoResult.setText(R.string.NoResult);
+            linear_no_result.setVisibility(View.VISIBLE);
+        }
+
+
+    }//end filterAirLine
+
+    public void filternoStopData() {
+
+        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
+
+        if (dataExpandingListFilter != null) {
+            linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.VISIBLE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            linear_no_result.setVisibility(View.GONE);
+            try {
+                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
+
+                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
+
+                    System.out.println("HEADER I=" + i);
+
+                    if (dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 1) {//bedune tavaghof
+
+                        System.out.println("bedune tavaghof 1 " + i);
+                        //header
+
+                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
+
+                        HeaderExpandingPlan header = new HeaderExpandingPlan();
+                        header = dataExpandingListFilter.get(i).getHeader();
+
+                        parentItem.setHeader(header);
+                        parentItem.setItems(dataExpandingListFilter.get(i).getItems());
+
+                        dataExpandingListFilterTrue.add(parentItem);
+                    }//endif
+                }//endfor
+                if (dataExpandingListFilterTrue.size() > 0) {
+                    dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
+                    dataExpandingListFilter = dataExpandingListFilterTrue;
+                }
+
+            } catch (Exception e) {
+
+                System.out.println(e.getMessage());
+
+            }
+
+        }
+        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
+            linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.GONE);
+            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            txtNoResult.setText(R.string.NoResult);
+            linear_no_result.setVisibility(View.VISIBLE);
+        }
+
+    }//end Filternostop
+
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void searchTextChanged(String searchText) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Fragment fragment2;
+        // TODO Auto-generated method stub
+        switch (v.getId()) {
+
+            case R.id.txtBack:
+                /*Intent intent = new Intent(this,PlanFragment.class);
+				//i2.putExtra("CUSTOMER_ID", (int) customerID);
+				startActivity(intent);*/
+                finish();
+                break;
+            case R.id.btnHome:
+                Intent intent = new Intent("sendFinish");
+
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+                break;
+            case R.id.txtFilter:
+
+                new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
+
+                break;
+            case R.id.iconFilter:
+
+                new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
+
+                break;
+            case R.id.lblMoratabSazi://sort
+                // custom dialog
+                new SortFlightDialog(SearchParvazActivity.this, this, besetSeler, bestOff, remove);
+
+                break;
+            case R.id.txtRuzeBad:
+
+                //"2017-12-24"
+
+                try {
+
+                    String str_date = Raft;//2018-01-16
+                    DateFormat formatter;
+                    Date date;
+                    formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    date = formatter.parse(str_date);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    cal.add(Calendar.DATE, 1);
+                    System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
+
+
+                    Date dateRaft = formatter.parse(Raft);
+                    Date dateBargasht = formatter.parse(Bargasht);
+                    if (dateBargasht.after(dateRaft)) {
+                        ///
+                        ///
+                        SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
+                        //  txtDateOnvan.setText(BargashtF + "  -  " + dfm.format(cal.getTime()));
+                        /////////////////////////////
+                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy-MM-dd");//2017/03/24 11:49
+                        String formatted3 = format3.format(cal.getTime());
+                        String[] dateSplite = formatted3.split("-");
+
+                        String dayM = dateSplite[2];
+                        String monthM = dateSplite[1];
+                        String yearM = dateSplite[0];
+
+                        String dateShamsi = SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
+                        System.out.println("dateShamsi:" + yearM + monthM + dayM + "   " + dateShamsi);
+
+                        String[] dateSplite2 = dateShamsi.split("/");//shamsi
+
+                        String dayMF = dateSplite2[2];
+                        String monthMF = dateSplite2[1];
+                        String yearMF = dateSplite2[0];
+                      /*  String dayMF=dateShamsi.substring(8, 10);//02
+                        String monthMF=dateShamsi.substring(5, 7);//01
+                        String yearMF=dateShamsi.substring(0, 4);//1396
+*/
+                        PersianCalendar persianCalendar = new PersianCalendar();
+                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
+                        /////////////////////
+                        //   txtDateOnvan.setText(dfm.format(cal.getTime()) + "  -  " + BargashtF);
+                        ///
+                        RaftF = persianCalendar.getPersianLongDate();
+                        Raft = formatter.format(cal.getTime());
+                        if (getIntent().getExtras().getBoolean("Geo")) {
+
+                            txtDateOnvan.setText(DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false) + " - " + DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
+
+                        } else {
+                            txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
+
+
+                        }
+                        callApiDateNext();
+                    } else {
+                        Toast.makeText(getApplicationContext(), R.string.datePickerError,
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch (java.text.ParseException e) {
+                    System.out.println("Exception :" + e);
+                }
+
+                break;
+            case R.id.btn_no_Result:
+                finish();
+                break;
+            case R.id.txtRuzeGhabl:
+
+                //"2017-12-24"
+                try {
+
+                    String str_date = Raft;//"11-June-07";
+                    DateFormat formatter;
+                    Date date;
+                    formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    date = formatter.parse(str_date);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    cal.add(Calendar.DATE, -1);
+                    System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
+                    //shart kamtar az emruz
+                    if (System.currentTimeMillis() <= date.getTime()) {
+                        Raft = formatter.format(cal.getTime());
+
+                        ///onvan
+                        SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
+                        /////////////////////////////
+                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");//2017/03/24 11:49
+                        String formatted3 = format3.format(cal.getTime());
+
+                        String dayM = formatted3.substring(8, 10);//02
+                        String monthM = formatted3.substring(5, 7);//01
+                        String yearM = formatted3.substring(0, 4);//1396
+
+                        String dateShamsi = com.eligasht.reservation.models.model.SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
+                        String dayMF = dateShamsi.substring(8, 10);//02
+                        String monthMF = dateShamsi.substring(5, 7);//01
+                        String yearMF = dateShamsi.substring(0, 4);//1396
+
+                        PersianCalendar persianCalendar = new PersianCalendar();
+                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
+                        /////////////////////
+                        // txtDateOnvan.setText(BargashtF + "  -  " + dfm.format(cal.getTime()));
+
+                        if (getIntent().getExtras().getBoolean("Geo")) {
+
+                            //	tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
+                            txtDateOnvan.setText(DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false) + "  -  " + DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
+                        } else {
+                            //tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+                            //txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + BargashtF);
+                            txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + BargashtF);
+                        }
+                        ///
+                        callApiDateNext();
+                    } else {
+                        Toast.makeText(getApplicationContext(), R.string.DatePickerError2, Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch (java.text.ParseException e) {
+                    System.out.println("Exception :" + e);
+                }
+
+
+                break;
+
+        }
+    }
+
+    private void callApiDateNext() {
+
+        new AsyncFetch().execute();
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+                               long arg3) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onResume() {
+        Log.e("DEBUG", "onResume of SearchParvazActivity");
+        super.onResume();
+	/*	if (Prefs.getBoolean("BACK_HOME", true)) {
+			this.finish();
+		}
+		Prefs.putBoolean("BACK_HOME", false);*/
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+
+    }
 
     private class AsyncFetch extends AsyncTask<String, String, String> {
         //ProgressDialog pdLoading = new ProgressDialog(SearchParvazActivity.this,R.style.StyledDialog);
@@ -1175,15 +1983,15 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     if(GetError.contains("|")){
                         String[] s=GetError.split(Pattern.quote("|"));
 
-                        linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+                        linear_expand = findViewById(R.id.linear_expand);
                         linear_expand.setVisibility(View.GONE);
-                        LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+                        LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
                         txtNoResult.setText(s[1]+"");
                         linear_no_result.setVisibility(View.VISIBLE);
                     }else {
-                        linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+                        linear_expand = findViewById(R.id.linear_expand);
                         linear_expand.setVisibility(View.GONE);
-                        LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+                        LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
                         txtNoResult.setText(GetError);
                         linear_no_result.setVisibility(View.VISIBLE);
                     }
@@ -1452,18 +2260,18 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             } catch (JSONException e) {//d/sfdsf
                 //Toast.makeText(SearchParvazActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
                 //if (flightsListFilter.size() == 0 || flightsListFilter== null) {
-                linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+                linear_expand = findViewById(R.id.linear_expand);
                 linear_expand.setVisibility(View.GONE);
-                LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+                LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
                 linear_no_result.setVisibility(View.VISIBLE);
 
                 if (!Utility.isNetworkAvailable(SearchParvazActivity.this)){
 
-                    txtNoResult.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                    txtNoResult.setText(R.string.InternetError);
 
                 }else{
 
-                    txtNoResult.setText("خطا در دریافت اطلاعات از الی گشت");
+                    txtNoResult.setText(R.string.ErrorServer);
 
                 }
 
@@ -1715,638 +2523,29 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     //}
 
 
+
                 }
 
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
-                AlertDialogPassenger.setText("خطا در دریافت اطلاعات از الی گشت ");
+                AlertDialogPassenger.setText(getString(R.string.ErrorServer));
             }
 
         }
 
     }
-
-    private String OrderToJsonCheckFlight() {
-        JSONObject jsone = new JSONObject();
-        JSONObject manJson = new JSONObject();
-
-
-        try {
-
-            Bundle extras = getIntent().getExtras();
-            String maghsadf = "IST";
-            String mabdaf = "THR";
-            if (extras != null) {
-                maghsadf = extras.getString("Value-Maghsad-Airport-Code");
-                mabdaf = extras.getString("Value-Mabda-Airport-Code");
-            }
-
-            manJson.put("UserName", "EligashtMlb");
-            manJson.put("Password", "123qwe!@#QWE");
-            manJson.put("TermianlId", "Mobile");
-            manJson.put("Code", mabdaf);//inja esme forudgah mikhore
-            manJson.put("ToCode", maghsadf);
-
-            jsone.put("request", manJson);
-
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return jsone.toString();
-    }
-
-    public String OrderToJson() {
-        JSONObject jsone = new JSONObject();
-        JSONObject manJson = new JSONObject();
-
-        JSONObject identityJson = new JSONObject();
-        JSONObject jsoneIde = new JSONObject();
-
-        try {
-
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                String maghsadf = extras.getString("Value-Maghsad-Airport-Code");
-                String mabdaf = extras.getString("Value-Mabda-Airport-Code");
-
-                String flagWay = extras.getString("Value-Flag-Two");
-
-                String adlCount = extras.getString("Value-AdlCount");
-                String chdCount = extras.getString("Value-ChdCount");
-                String infCount = extras.getString("Value-InfCount");
-                //Global variable count mosafer
-                COUNT_B = Integer.parseInt(adlCount);
-                COUNT_K = Integer.parseInt(chdCount);
-                COUNT_N = Integer.parseInt(infCount);
-
-                System.out.println("YYYYYYYYYYYYYYYYYYYYYYY");
-                System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
-
-                //identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}
-                identityJson.put("Password", "123qwe!@#QWE");
-                identityJson.put("TermianlId", "Mobile");
-                identityJson.put("UserName", "EligashtMlb");
-                //	identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
-
-                // jsoneIde.put("identity",identityJson);//{"identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}}
-
-                manJson.put("DepartureAirportcode", mabdaf);
-                manJson.put("ArrivalAirportcode", maghsadf);
-                manJson.put("DepartureDate", Raft);
-                manJson.put("ArrivalDate", Bargasht);
-                manJson.put("OneWay", flagWay); // اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
-                manJson.put("CabinClassCode", "all");
-
-                manJson.put("AdlCount", Integer.parseInt(adlCount));
-                manJson.put("ChdCount", Integer.parseInt(chdCount));
-                manJson.put("InfCount", Integer.parseInt(infCount));//{"DepartureAirportcode":"THR","ArrivalAirportcode":"IST","DepartureDate":"2017-12-28","ArrivalDate":"2017-12-31","OneWay":"2","CabinClassCode":"Y","AdlCount":1,"ChdCount":0,"InfCount":0}
-                manJson.put("Culture", "fa-IR");
-
-                manJson.put("identity", identityJson);
-                jsone.put("request", manJson);
-                //jsone.put("request",jsoneIde);
-            } else {
-                identityJson.put("Password", "123qwe!@#QWE");
-                identityJson.put("TermianlId", "Mobile");
-                identityJson.put("UserName", "EligashtMlb");
-                //identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
-
-                jsoneIde.put("identity", identityJson);
-
-                manJson.put("DepartureAirportcode", "IST");
-                manJson.put("ArrivalAirportcode", "IKA");
-                manJson.put("DepartureDate", "2017-12-24");
-                manJson.put("ArrivalDate", "2018-01-29");
-                manJson.put("OneWay", "2"); // اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
-                manJson.put("CabinClassCode", "Y");
-
-                manJson.put("AdlCount", 1);
-                manJson.put("ChdCount", 0);
-                manJson.put("InfCount", 0);
-                manJson.put("Culture", "fa-IR");
-
-                //Global
-                COUNT_B = 1;
-                COUNT_K = 0;
-                COUNT_N = 0;
-
-
-                manJson.put("identity", identityJson);
-
-                jsone.put("request", manJson);
-                //jsone.put("request",jsoneIde);
-            }
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return jsone.toString();
-    }
-
-    private void ferstClassListData() {
-        //	if(SegmentList.get(0).getCabinClassNameFa().contains("فرست")){
-        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
-
-        if (dataExpandingListFilter != null) {
-
-            linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            linear_no_result.setVisibility(View.GONE);
-            try {
-                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
-
-                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
-
-                    System.out.println("HEADER I=" + i);
-
-                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("فرست")) {
-                        System.out.println("فرست" + i);
-                        //header
-
-                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
-
-                        HeaderExpandingPlan header = new HeaderExpandingPlan();
-                        header = dataExpandingListFilter.get(i).getHeader();
-
-                        parentItem.setHeader(header);
-                        parentItem.setItems(dataExpandingListFilter.get(i).getItems());
-
-                        dataExpandingListFilterTrue.add(parentItem);
-                    }//endif
-                }//endfor
-                //if(dataExpandingListFilterTrue.size()>0){
-                dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
-                dataExpandingListFilter = dataExpandingListFilterTrue;
-                //}
-
-            } catch (Exception e) {
-
-                System.out.println(e.getMessage());
-
-            }
-
-        }
-        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-            linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
-            linear_no_result.setVisibility(View.VISIBLE);
-        }
-
-    }//end fersclas
-
-    private void bisnesListData() {
-        //	if(SegmentList.get(0).getCabinClassNameFa().contains("بیزنس")){
-        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
-
-        if (dataExpandingListFilter != null) {
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-            linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            linear_no_result.setVisibility(View.GONE);
-            try {
-                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
-
-                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
-
-                    System.out.println("HEADER I=" + i);
-
-                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("بیزنس")) {
-                        System.out.println("بیزنس" + i);
-                        //header
-
-                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
-
-                        HeaderExpandingPlan header = new HeaderExpandingPlan();
-                        header = dataExpandingListFilter.get(i).getHeader();
-
-                        parentItem.setHeader(header);
-                        parentItem.setItems(dataExpandingListFilter.get(i).getItems());
-
-                        dataExpandingListFilterTrue.add(parentItem);
-                    }//endif
-                }//endfor
-                //if(dataExpandingListFilterTrue.size()>0){
-                dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
-                dataExpandingListFilter = dataExpandingListFilterTrue;
-                //}
-
-            } catch (Exception e) {
-
-                System.out.println(e.getMessage());
-
-            }
-
-        }
-        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-            linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
-            linear_no_result.setVisibility(View.VISIBLE);
-        }
-
-    }//end bisnes
-
-    private void economyListData() {
-
-        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
-
-        if (dataExpandingListFilter != null) {
-            RelativeLayout linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-            linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            linear_no_result.setVisibility(View.GONE);
-            try {
-                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
-
-                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
-
-                    System.out.println("HEADER I=" + i);
-
-                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("اکونومی")) {
-                        System.out.println("اکونومی" + i);
-                        //header
-
-                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
-
-                        HeaderExpandingPlan header = new HeaderExpandingPlan();
-                        header = dataExpandingListFilter.get(i).getHeader();
-
-                        parentItem.setHeader(header);
-                        parentItem.setItems(dataExpandingListFilter.get(i).getItems());
-
-                        dataExpandingListFilterTrue.add(parentItem);
-                    }//endif
-                }//endfor
-                //	if(dataExpandingListFilterTrue.size()>0){
-                dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
-                dataExpandingListFilter = dataExpandingListFilterTrue;
-                //}
-
-            } catch (Exception e) {
-
-                System.out.println(e.getMessage());
-
-            }
-
-        }
-        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-            linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
-            linear_no_result.setVisibility(View.VISIBLE);
-        }
-
-    }//end economy
-
-    private void expandingListData() {
-        linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-        linear_expand.setVisibility(View.VISIBLE);
-        LinearLayout linear_no_resultt = (LinearLayout) findViewById(R.id.linear_no_result);
-        linear_no_resultt.setVisibility(View.GONE);
-        //	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
-        listDataChildExpanding = new HashMap<String, HashMap<String, ItemExpandingPlan>>();
-        dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
-        ArrayList<SearchParvazModelExp> searchParvazModelExps = new ArrayList<SearchParvazModelExp>();
-        ArrayList<SearchParvazModelExp> searchParvazModelExps1 = new ArrayList<>();
-
-        if (flightsList != null) {
-
-            try {
-                System.out.println("flightsList.size():" + flightsList.size());
-                dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
-                for (int i = 0; i < flightsList.size(); i++) {
-                    //	String test = searchParvazModelExps1.get(i).AirlineCode;
-
-
-                    System.out.println("HEADER I=" + i);
-
-                    //List<FlightSegment> SegmentList =new ArrayList<FlightSegment>();
-                    SegmentList = flightsList.get(i).getSegmentList();
-
-                    //List<FlightSegmentTrue> SegmentListtrueAvali =new ArrayList<FlightSegmentTrue>();
-                    SegmentListtrueAvali = flightsList.get(i).getSegmentListTrue();
-
-                    SegmentListtrueAkhari = flightsList.get(i).getSegmentListTrue();
-
-
-                    //List<FlightSegmentFalse> SegmentListFalseAvali =new ArrayList<FlightSegmentFalse>();
-                    SegmentListFalseAvali = flightsList.get(i).getSegmentListFalse();
-                    //List<FlightSegmentFalse> SegmentListFalseAkhari =new ArrayList<FlightSegmentFalse>();
-                    SegmentListFalseAkhari = flightsList.get(i).getSegmentListFalse();
-
-                    if (SegmentListFalseAvali.size() == 0 || SegmentListFalseAvali == null) {//yek tarafe
-                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
-                        HeaderExpandingPlan header = new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(), SegmentListtrueAvali.get(0).getFlightTime(),
-                                SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getArrivalCityNameFa(), SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getFlightTime(),
-
-                                " ", " ",
-                                " ", " ",
-                                flightsList.get(i).getTotalFare().getAmount(),
-                                //flightsList.get(i).getAdlCost().getAmount(),
-                                flightsList.get(i).getFlightGUID()
-                                , SegmentList.get(0).getAirlineNameFa()
-                                , SegmentList.get(0).getAirlineCode()
-
-                                , SegmentList.get(0).getCabinClassNameFa()
-                                , flightsList.get(i).getRemainSeats()
-                                , flightsList.get(i).isIsCharter()
-                                , SegmentList.get(0).getAirlineNameEn()
-                                , SegmentListtrueAkhari.size()
-                                , SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
-                                , (String) (SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0")//SegmentListFalseAvali.get(0).getFltDateDayOfWeek()
-                                , SegmentListFalseAkhari.size()
-                                , SegmentListtrueAvali.get(0).getFlightNumber()
-                                , (String) (SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"), false);//ArrivalCityNameEnR baraye sort bayad en bashe
-
-
-                        //parentItem.Header.add(header);
-                        parentItem.setHeader(header);
-
-
-                        //fore Detail item
-                        for (int j = 0; j < SegmentList.size(); j++) {
-                            System.out.println("Detail j=" + j);
-
-                            //////////
-                            ItemExpandingPlan item = new ItemExpandingPlan();
-                            //Item
-                            item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
-                            item.FlightTimeR = SegmentList.get(j).getFlightTime();
-
-                            item.ArrivalAirportNameFaR = SegmentList.get(j).getArrivalAirportNameFa();
-                            item.FlightArrivalTimeR = SegmentList.get(j).getFlightArrivalTime();
-
-                            item.AirlineNameFaR = SegmentList.get(j).getAirlineNameFa();
-                            item.FlightNumberR = SegmentList.get(j).getFlightNumber();
-                            item.AirlineCode = SegmentList.get(j).getAirlineCode();
-
-                            item.flGUID = flightsList.get(i).getFlightGUID();
-
-
-                            item.AdlBaseFare = flightsList.get(i).getBaseFare().getAmount();
-                            item.Taxes = flightsList.get(i).getTaxes().getAmount();
-                            item.TotalFare = flightsList.get(i).getTotalFare().getAmount();
-
-                            item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
-                            item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
-                            item.OperatingAirlineNameEn = SegmentList.get(j).getOperatingAirlineNameEn();
-                            parentItem.Items.add(item);
-
-                        }
-
-                        dataExpandingList.add(parentItem);
-                    } else {//2tarafe
-                        //header
-
-                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
-                        HeaderExpandingPlan header = new HeaderExpandingPlan(SegmentListtrueAvali.get(0).getDepartureCityNameFa(), SegmentListtrueAvali.get(0).getFlightTime(),
-                                SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getArrivalCityNameFa(), SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getFlightTime(),
-
-                                SegmentListFalseAvali.get(0).getDepartureCityNameFa(), SegmentListFalseAvali.get(0).getFlightArrivalTime(),
-                                SegmentListFalseAkhari.get(SegmentListFalseAkhari.size() - 1).getArrivalCityNameFa(), SegmentListFalseAkhari.get(0).getFlightTime(),
-
-                                //flightsList.get(i).getAdlCost().getAmount(),
-                                flightsList.get(i).getTotalFare().getAmount(),
-                                flightsList.get(i).getFlightGUID()
-                                , SegmentList.get(0).getAirlineNameFa()
-                                , SegmentList.get(0).getAirlineCode()
-
-                                , SegmentList.get(0).getCabinClassNameFa()
-                                , flightsList.get(i).getRemainSeats()
-                                , flightsList.get(i).isIsCharter()
-                                , SegmentList.get(0).getAirlineNameEn()
-                                , SegmentListtrueAkhari.size()
-                                , SegmentListtrueAvali.get(0).getFltDateDayOfWeek()
-                                , (String) (SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFltDateDayOfWeek() : "0")
-                                , SegmentListFalseAkhari.size()
-                                , SegmentListtrueAvali.get(0).getFlightNumber()
-                                , (String) (SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0"), false);//ArrivalCityNameEnR baraye sort bayad en bashe
-
-
-                        //parentItem.Header.add(header);
-                        parentItem.setHeader(header);
-
-
-                        //fore Detail item
-                        for (int j = 0; j < SegmentList.size(); j++) {
-                            System.out.println("Detail j=" + j);
-
-                            //////////
-                            ItemExpandingPlan item = new ItemExpandingPlan();
-                            //Item
-                            item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
-                            item.FlightTimeR = SegmentList.get(j).getFlightTime();
-
-                            item.ArrivalAirportNameFaR = SegmentList.get(j).getArrivalAirportNameFa();
-                            item.FlightArrivalTimeR = SegmentList.get(j).getFlightArrivalTime();
-
-                            item.AirlineNameFaR = SegmentList.get(j).getAirlineNameFa();
-                            item.FlightNumberR = SegmentList.get(j).getFlightNumber();
-                            item.AirlineCode = SegmentList.get(j).getAirlineCode();
-
-                            item.flGUID = flightsList.get(i).getFlightGUID();
-
-
-                            item.AdlBaseFare = flightsList.get(i).getBaseFare().getAmount();
-                            item.Taxes = flightsList.get(i).getTaxes().getAmount();
-                            item.TotalFare = flightsList.get(i).getTotalFare().getAmount();
-
-                            item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
-                            item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
-                            item.OperatingAirlineNameEn = SegmentList.get(j).getOperatingAirlineNameEn();
-                            parentItem.Items.add(item);
-
-                        }
-
-                        dataExpandingList.add(parentItem);
-                    }
-                }
-            } catch (Exception e) {
-
-                System.out.println(e.getMessage());
-
-            }
-
-        }
-        if (flightsList.size() == 0 || flightsList == null) {
-
-            linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
-            linear_no_result.setVisibility(View.VISIBLE);
-        }
-
-
-    }//end expanding listdata
-
-
-    private void getAirLine() {
-        //	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
-        listDataChildExpanding = new HashMap<String, HashMap<String, ItemExpandingPlan>>();
-        //dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
-        ArrayList<SearchParvazModelExp> searchParvazModelExps = new ArrayList<SearchParvazModelExp>();
-        ArrayList<SearchParvazModelExp> searchParvazModelExps1 = new ArrayList<>();
-
-        if (flightsList != null) {
-
-
-            System.out.println("flightsList.size():" + flightsList.size());
-            //dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
-            for (int i = 0; i < flightsList.size(); i++) {
-                SegmentList = flightsList.get(i).getSegmentList();
-                //FilterAirline filterAirline=new FilterAirline(SegmentList.get(0).getAirlineNameFa());
-
-                //	filterAirlines.add(SegmentList.get(0).getAirlineNameFa(),false);
-
-
-                airlineConstraint.add(SegmentList.get(0).getAirlineNameFa());
-
-
-                Log.e("rrrrrrrr", SegmentList.get(0).getAirlineNameFa());
-            }
-            List<String> al = new ArrayList<>();
-// add elements to al, including duplicates
-            Set<String> hs = new HashSet<>();
-            hs.addAll(airlineConstraint);
-            airlineConstraint.clear();
-            airlineConstraint.addAll(hs);
-
-            for (int i = 0; i < airlineConstraint.size(); i++) {
-                filterAirlines.add(new ModelCheckBox(airlineConstraint.get(i), false));
-            }
-        }
-
-
-    }//end getAirLine
-
-    public void filterAirLineTrue(ArrayList<ModelCheckBox> listTrue) {
-///if (SegmentList.get(0).getAirlineNameFa().contains(listTrue.get(t).getName())&&listTrue.get(t).isCheck()) {//
-        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
-
-        if (dataExpandingListFilter != null) {
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-            linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            linear_no_result.setVisibility(View.GONE);
-            try {
-                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
-
-                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
-
-                    System.out.println("HEADER I=" + i);
-                    String s = dataExpandingListFilter.get(i).getHeader().AirlineNameFa;
-
-                    for (int j = 0; j < listTrue.size(); j++) {
-                        if (s.contains(listTrue.get(j).getName()) && listTrue.get(j).isCheck()) {//
-                            System.out.println("bedune tavaghof 1 " + i);
-                            //header
-
-                            ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
-
-                            HeaderExpandingPlan header = new HeaderExpandingPlan();
-                            header = dataExpandingListFilter.get(i).getHeader();
-
-                            parentItem.setHeader(header);
-                            parentItem.setItems(dataExpandingListFilter.get(i).getItems());
-
-                            dataExpandingListFilterTrue.add(parentItem);
-                        }//endif
-                    }
-                }//endfor
-                if (dataExpandingListFilterTrue.size() > 0) {
-                    dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
-                    dataExpandingListFilter = dataExpandingListFilterTrue;
-                }
-
-            } catch (Exception e) {
-
-                System.out.println(e.getMessage());
-
-            }
-
-        }
-        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-            linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
-            linear_no_result.setVisibility(View.VISIBLE);
-        }
-
-
-    }//end filterAirLine
-
-    public void filternoStopData() {
-
-        List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
-
-        if (dataExpandingListFilter != null) {
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-            linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            linear_no_result.setVisibility(View.GONE);
-            try {
-                System.out.println("flightsListFilter.size():" + flightsListFilter.size());
-
-                for (int i = 0; i < dataExpandingListFilter.size(); i++) {
-
-                    System.out.println("HEADER I=" + i);
-
-                    if (dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 1) {//bedune tavaghof
-
-                        System.out.println("bedune tavaghof 1 " + i);
-                        //header
-
-                        ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
-
-                        HeaderExpandingPlan header = new HeaderExpandingPlan();
-                        header = dataExpandingListFilter.get(i).getHeader();
-
-                        parentItem.setHeader(header);
-                        parentItem.setItems(dataExpandingListFilter.get(i).getItems());
-
-                        dataExpandingListFilterTrue.add(parentItem);
-                    }//endif
-                }//endfor
-                if (dataExpandingListFilterTrue.size() > 0) {
-                    dataExpandingListFilter = new ArrayList<ParentItemExpandingPlan>();
-                    dataExpandingListFilter = dataExpandingListFilterTrue;
-                }
-
-            } catch (Exception e) {
-
-                System.out.println(e.getMessage());
-
-            }
-
-        }
-        if (flightsListFilter.size() == 0 || flightsListFilter == null) {
-            linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
-            linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
-            txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
-            linear_no_result.setVisibility(View.VISIBLE);
-        }
-
-    }//end Filternostop
 
     public class ParentItemExpandingPlan {
+
+        public HeaderExpandingPlan Header;
+        //public String Header;
+        public List<ItemExpandingPlan> Items;
 
         public ParentItemExpandingPlan(String header) {
             //Header = header;
             Header = new HeaderExpandingPlan();
             Items = new ArrayList<ItemExpandingPlan>();
         }
-        //public String Header;
 
         public HeaderExpandingPlan getHeader() {
             return Header;
@@ -2363,9 +2562,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         public void setItems(List<ItemExpandingPlan> items) {
             Items = items;
         }
-
-        public HeaderExpandingPlan Header;
-        public List<ItemExpandingPlan> Items;
 
 
     }
@@ -2400,15 +2596,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         public int SegmentFalseCount;
         public String FlightNumberB;
         public String FlightNumberR;
-
-        public boolean isPin() {
-            return IsPin;
-        }
-
-        public void setPin(boolean pin) {
-            IsPin = pin;
-        }
-
         public boolean IsPin;
 
         public HeaderExpandingPlan(String ArrivalCityNameFaR, String FlightArrivalTimeR,
@@ -2460,6 +2647,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         }
 
+        public boolean isPin() {
+            return IsPin;
+        }
+
+        public void setPin(boolean pin) {
+            IsPin = pin;
+        }
 
         public String getArrivalCityNameFaR() {
             return ArrivalCityNameFaR;
@@ -2525,220 +2719,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void searchTextChanged(String searchText) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        Fragment fragment2;
-        // TODO Auto-generated method stub
-        switch (v.getId()) {
-
-            case R.id.txtBack:
-				/*Intent intent = new Intent(this,PlanFragment.class);
-				//i2.putExtra("CUSTOMER_ID", (int) customerID);
-				startActivity(intent);*/
-                finish();
-                break;
-            case R.id.btnHome:
-                Intent intent = new Intent("sendFinish");
-
-                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-                break;
-            case R.id.txtFilter:
-
-                new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
-
-                break;
-            case R.id.iconFilter:
-
-                new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
-
-                break;
-            case R.id.lblMoratabSazi://sort
-                // custom dialog
-                new SortFlightDialog(SearchParvazActivity.this, this, besetSeler, bestOff, remove);
-
-                break;
-            case R.id.txtRuzeBad:
-
-                //"2017-12-24"
-
-                try {
-
-                    String str_date = Raft;//2018-01-16
-                    DateFormat formatter;
-                    Date date;
-                    formatter = new SimpleDateFormat("yyyy-MM-dd");
-                    date = (Date) formatter.parse(str_date);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(date);
-                    cal.add(Calendar.DATE, 1);
-                    System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
-
-
-                    Date dateRaft = (Date) formatter.parse(Raft);
-                    Date dateBargasht = (Date) formatter.parse(Bargasht);
-                    if (dateBargasht.after(dateRaft)) {
-                        ///
-                        ///
-                        SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
-                        //  txtDateOnvan.setText(BargashtF + "  -  " + dfm.format(cal.getTime()));
-                        /////////////////////////////
-                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy-MM-dd");//2017/03/24 11:49
-                        String formatted3 = format3.format(cal.getTime());
-                        String[] dateSplite = formatted3.split("-");
-
-                        String dayM = dateSplite[2];
-                        String monthM = dateSplite[1];
-                        String yearM = dateSplite[0];
-
-                        String dateShamsi = SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
-                        System.out.println("dateShamsi:" + yearM + monthM + dayM + "   " + dateShamsi);
-
-                        String[] dateSplite2 = dateShamsi.split("/");//shamsi
-
-                        String dayMF = dateSplite2[2];
-                        String monthMF = dateSplite2[1];
-                        String yearMF = dateSplite2[0];
-                      /*  String dayMF=dateShamsi.substring(8, 10);//02
-                        String monthMF=dateShamsi.substring(5, 7);//01
-                        String yearMF=dateShamsi.substring(0, 4);//1396
-*/
-                        PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
-                        /////////////////////
-                        //   txtDateOnvan.setText(dfm.format(cal.getTime()) + "  -  " + BargashtF);
-                        ///
-                        RaftF = persianCalendar.getPersianLongDate();
-                        Raft = formatter.format(cal.getTime());
-                        if (getIntent().getExtras().getBoolean("Geo")) {
-
-                            txtDateOnvan.setText(DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false) + " - " + DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
-
-                        } else {
-                            txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
-
-
-                        }
-                        callApiDateNext();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-
-                } catch (java.text.ParseException e) {
-                    System.out.println("Exception :" + e);
-                }
-
-                break;
-            case R.id.btn_no_Result:
-                finish();
-                break;
-            case R.id.txtRuzeGhabl:
-
-                //"2017-12-24"
-                try {
-
-                    String str_date = Raft;//"11-June-07";
-                    DateFormat formatter;
-                    Date date;
-                    formatter = new SimpleDateFormat("yyyy-MM-dd");
-                    date = (Date) formatter.parse(str_date);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(date);
-                    cal.add(Calendar.DATE, -1);
-                    System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
-                    //shart kamtar az emruz
-                    if (System.currentTimeMillis() <= date.getTime()) {
-                        Raft = formatter.format(cal.getTime());
-
-                        ///onvan
-                        SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
-                        /////////////////////////////
-                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");//2017/03/24 11:49
-                        String formatted3 = format3.format(cal.getTime());
-
-                        String dayM = formatted3.substring(8, 10);//02
-                        String monthM = formatted3.substring(5, 7);//01
-                        String yearM = formatted3.substring(0, 4);//1396
-
-                        String dateShamsi = com.eligasht.reservation.models.model.SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
-                        String dayMF = dateShamsi.substring(8, 10);//02
-                        String monthMF = dateShamsi.substring(5, 7);//01
-                        String yearMF = dateShamsi.substring(0, 4);//1396
-
-                        PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
-                        /////////////////////
-                        // txtDateOnvan.setText(BargashtF + "  -  " + dfm.format(cal.getTime()));
-
-                        if (getIntent().getExtras().getBoolean("Geo")) {
-
-                            //	tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
-                            txtDateOnvan.setText(DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false) + "  -  " + DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
-                        } else {
-                            //tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
-                            //txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + BargashtF);
-                            txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + BargashtF);
-                        }
-                        ///
-                        callApiDateNext();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                } catch (java.text.ParseException e) {
-                    System.out.println("Exception :" + e);
-                }
-
-
-                break;
-
-        }
-    }
-
-    private void callApiDateNext() {
-
-        new AsyncFetch().execute();
-
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-                               long arg3) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onResume() {
-        Log.e("DEBUG", "onResume of SearchParvazActivity");
-        super.onResume();
-	/*	if (Prefs.getBoolean("BACK_HOME", true)) {
-			this.finish();
-		}
-		Prefs.putBoolean("BACK_HOME", false);*/
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-
-    }
-
-
     private class ChangeFlightAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
@@ -2799,15 +2779,15 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     if (GetError.contains("|")) {
                         String[] s = GetError.split(Pattern.quote("|"));
 
-                        linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+                        linear_expand = findViewById(R.id.linear_expand);
                         linear_expand.setVisibility(View.GONE);
-                        LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+                        LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
                         txtNoResult.setText(s[1] + "");
                         linear_no_result.setVisibility(View.VISIBLE);
                     } else {
-                        linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+                        linear_expand = findViewById(R.id.linear_expand);
                         linear_expand.setVisibility(View.GONE);
-                        LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+                        LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
                         txtNoResult.setText(GetError);
                         linear_no_result.setVisibility(View.VISIBLE);
                     }
@@ -3085,18 +3065,18 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             } catch (JSONException e) {//d/sfdsf
                 //Toast.makeText(SearchParvazActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
                 //if (flightsListFilter.size() == 0 || flightsListFilter== null) {
-                linear_expand = (RelativeLayout) findViewById(R.id.linear_expand);
+                linear_expand = findViewById(R.id.linear_expand);
                 linear_expand.setVisibility(View.GONE);
-                LinearLayout linear_no_result = (LinearLayout) findViewById(R.id.linear_no_result);
+                LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
                 linear_no_result.setVisibility(View.VISIBLE);
 
                 if (!Utility.isNetworkAvailable(SearchParvazActivity.this)) {
 
-                    txtNoResult.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                    txtNoResult.setText(R.string.InternetError);
 
                 } else {
 
-                    txtNoResult.setText("خطا در دریافت اطلاعات از الی گشت");
+                    txtNoResult.setText(R.string.ErrorServer);
 
                 }
 

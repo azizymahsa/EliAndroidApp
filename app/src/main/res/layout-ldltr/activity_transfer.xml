@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/toolbarLayout"
+        android:background="@drawable/shadow" />
+
+
+    <LinearLayout
+        android:id="@+id/llRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarLayout"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:gravity="center"
+            android:text="@string/destination_airport"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="@color/text_color_4d"
+            android:textSize="@dimen/_14dp_txtSize" />
+
+        <TextView
+            android:id="@+id/tvDepurtureAirport"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            android:layout_weight="100"
+            android:background="@drawable/color_strok_item_insurance"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="@string/please_select_one"
+            android:textColor="@color/text_color_2e"
+            android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:gravity="center"
+            android:text="@string/hotel_name"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="@color/text_color_4d"
+            android:textSize="@dimen/_14dp_txtSize" />
+
+        <TextView
+            android:id="@+id/tvHotel"
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            android:layout_weight="100"
+            android:background="@drawable/color_strok_item_insurance"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="@string/please_select_one"
+            android:textColor="@color/text_color_2e"
+            android:textSize="@dimen/_12dp_normal_textSize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="100"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:gravity="center"
+                android:text="@string/departure_date"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_4d"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+            <TextView
+                android:id="@+id/tvDepurtureDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:background="@drawable/color_strok_item_insurance"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/please_select_one"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="100"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:gravity="center"
+                android:text="@string/return_date"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_4d"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+            <TextView
+                android:id="@+id/tvReturnDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:background="@drawable/color_strok_item_insurance"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/please_select_one"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="100"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:gravity="center"
+                android:text="@string/departure_hour"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_4d"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+            <TextView
+                android:id="@+id/tvDepurtureTime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:background="@drawable/color_strok_item_insurance"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/please_select_one"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="100"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:gravity="center"
+                android:text="@string/return_hour"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_4d"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+            <TextView
+                android:id="@+id/tvReturnTime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:background="@drawable/color_strok_item_insurance"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/please_select_one"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="100"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:gravity="center"
+                android:text="@string/one_way"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_4d"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+            <EditText
+                android:id="@+id/tvDepurtureFlt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:background="@drawable/color_strok_item_insurance"
+                android:gravity="center"
+                android:hint="@string/enter_value"
+                android:imeOptions="actionNext"
+                android:padding="2dp"
+                android:singleLine="true"
+                android:textColor="@color/text_color_2e"
+                android:textColorHint="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_10dp_margin"
+            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginRight="@dimen/_30dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="100"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:gravity="center"
+                android:text="@string/round_flight"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_4d"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+            <EditText
+                android:id="@+id/tvReturnFlt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:background="@drawable/color_strok_item_insurance"
+                android:gravity="center"
+                android:hint="@string/enter_value"
+                android:imeOptions="actionDone"
+                android:padding="2dp"
+                android:singleLine="true"
+                android:textColor="@color/text_color_2e"
+                android:textColorHint="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnCal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40dp"
+                android:layout_gravity="center"
+
+                android:background="@drawable/btngravity_big"
+                android:text="@string/calculate_price"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_16dp_normal_textSize"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlLoading2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ad000000"
+        android:visibility="gone">
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="@dimen/toolbar_height_70dp"
+            android:layout_height="@dimen/toolbar_height_70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="circle-l.json"
+            app:lottie_loop="true"
+
+            />
+
+
+    </RelativeLayout>
+</RelativeLayout>

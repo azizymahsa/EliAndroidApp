@@ -57,6 +57,7 @@ import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsModel;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.NonScrollGridView;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.ViewPagerAttention;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
 import com.google.android.gms.common.ConnectionResult;
@@ -87,6 +88,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
+
     private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent;
     private NonScrollListView lvRooms;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
@@ -133,7 +135,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "جزئیات هتل");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.DetailHotel));
         window = getWindow();
         initView();
         initMap();
@@ -216,16 +218,16 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         lvRooms = findViewById(R.id.lvRooms);
         roomsAdapter = new RoomsAdapter(roomsModels, this, rlRoot, rlLoading, window);
         lvRooms.setAdapter(roomsAdapter);
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
-        btnOneComment.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnOneComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         lvRooms.setFocusable(false);
         llComment.setFocusable(false);
         svDetail.setFocusable(false);
         llDynamic.setFocusable(false);
         llCommentContent.setFocusable(false);
         svDetail.setFocusable(false);
-        tvSortComment.setText("جدیدترین نظرات");
+        tvSortComment.setText(R.string.NewComment);
         rlLoading2.setOnClickListener(this);
         btnOneComment.setOnClickListener(this);
 
@@ -263,7 +265,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.llMapClick:
                 if (updateGoogle) {
-                    Toast.makeText(this, "سرویس Google Play شما نیاز به بروزرسانی دارد.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.GoogleUpdateError, Toast.LENGTH_SHORT).show();
                 } else {
                     flMap.setVisibility(View.VISIBLE);
                     lvRooms.setVisibility(View.GONE);
@@ -330,7 +332,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     if (isNew) {
 
 
-                        tvSortComment.setText("جدیدترین نظرات");
+                        tvSortComment.setText(R.string.NewComment);
                         isNew = false;
                         Collections.sort(commentModels, new Comparator<CommentModel>() {
                             public int compare(CommentModel o1, CommentModel o2) {
@@ -347,7 +349,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         isNew = true;
 
 
-                        tvSortComment.setText("مفیدترین نظرات");
+                        tvSortComment.setText(R.string.BenefitComment);
 
 
                         Collections.sort(commentModels, new Comparator<CommentModel>() {
@@ -420,7 +422,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         this, GPS_ERRORDIALOG_REQUEST);
                 dialog.show();*/
             } else {
-                Toast.makeText(this, "امکان دسترسی وجود ندارد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.AccessError, Toast.LENGTH_SHORT).show();
             }
         } catch (Exception ex) {
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -531,7 +533,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 // llLoading.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
                 rlLoading2.setVisibility(View.GONE);
-                tvAlertError.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+                tvAlertError.setText(R.string.ErrorServer);
             }
 
 
@@ -688,7 +690,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         TextView textView = new TextView(DetailHotelActivity.this);
                         textView.setText(key);
 
-                        Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
+                        Typeface t = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.iran_sans_bold_ttf));
                         textView.setTypeface(t);
                         textView.setPadding(10, 10, 10, 10);
 
@@ -768,7 +770,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
             } catch (Exception e) {
-                Toast.makeText(DetailHotelActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailHotelActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
                 finish();
                 //  avi1.setVisibility(View.GONE);
                 //   llLoading.setVisibility(View.GONE);
@@ -782,6 +784,27 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         TextView textView = new TextView(DetailHotelActivity.this);
         textView.setText(key);
+/*
+
+        if (key.contains("اطراف")) {
+         textView.setText(R.string.around_hotel);
+
+
+        }
+        if (key.contains("قوانین")) {
+            textView.setText(R.string.HotelPolicy);
+        }
+        if (key.contains("اطلاعات")) {
+            textView.setText(R.string.info_hotel);
+
+
+
+        }
+*/
+
+
+
+
 
         Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
         textView.setTypeface(t);
@@ -874,9 +897,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 lvComments.setAdapter(commentAdapter);
                 lvComments.setFocusable(false);
 
-                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount + " کاربر امتیاز داده اند");
-                tvCommentCount.setText(" نظرات کاربران  (" + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length + " نظر)");
-                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent + "% این هتل را پیشنهاد داده اند");
+                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount + getString(R.string.UserRate));
+                tvCommentCount.setText(getString(R.string.CommentUser) + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length + getString(R.string.Comment));
+                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent + getString(R.string.RecomandUser));
                 circleView.setValueAnimated(Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore));
                 Log.e("fer", Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore) + "");
                 if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {

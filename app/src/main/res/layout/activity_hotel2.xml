@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="سفر به : "
+                android:text="@string/travel_to"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/_15dp_normal_textSize" />
 
@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="شهر سفر را انتخاب کنید"
+                android:text="@string/please_select_destination_city"
                 android:textColor="#fff"
                 android:textSize="@dimen/_20dp_normal_textSize"
                 android:textStyle="bold" />
@@ -113,7 +113,7 @@
                         android:layout_marginRight="@dimen/_4dp_normal_margin"
                         android:layout_marginTop="@dimen/_15dp_normal_margin"
                         android:gravity="right"
-                        android:text="تاریخ خروج از هتل "
+                        android:text="@string/checkout_date"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2"
                         android:textSize="@dimen/_12dp_normal_textSize"
@@ -133,7 +133,7 @@
                             android:layout_weight="0.8"
                             android:background="#fff"
                             android:gravity="right|center"
-                            android:text="انتخاب کنید"
+                            android:text="@string/please_select_one"
                             android:textColor="@color/text_color_2"
                             android:textSize="@dimen/_12dp_normal_textSize"
                             android:textStyle="bold" />
@@ -170,7 +170,7 @@
                         android:layout_marginTop="@dimen/_15dp_normal_margin"
 
                         android:gravity="right"
-                        android:text="تاریخ ورود به هتل"
+                        android:text="@string/checkin_date"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2"
                         android:textSize="@dimen/_12dp_normal_textSize"
@@ -190,7 +190,7 @@
                             android:layout_weight="0.8"
                             android:background="#fff"
                             android:gravity="right|center"
-                            android:text="انتخاب کنید"
+                            android:text="@string/please_select_one"
                             android:textColor="@color/text_color_2"
                             android:textSize="@dimen/_12dp_normal_textSize"
                             android:textStyle="bold" />
@@ -247,7 +247,7 @@
 
                         android:gravity="center"
                         android:padding="@dimen/_5sp_padding"
-                        android:text="کودک"
+                        android:text="@string/baby"
                         android:textColor="@color/text_color_2"
                         android:textSize="@dimen/_12dp_normal_textSize"
                         android:textStyle="bold" />
@@ -285,7 +285,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="@dimen/_5dp_padding"
-                        android:text="بزرگسال"
+                        android:text="@string/adault"
                         android:textColor="@color/text_color_2"
                         android:textStyle="bold"
                         android:textSize="@dimen/_12dp_normal_textSize"
@@ -325,7 +325,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="@dimen/_5dp_padding"
-                        android:text="اتاق"
+                        android:text="@string/room"
                         android:textColor="@color/text_color_2"
                         android:textSize="@dimen/_12dp_normal_textSize"
                         android:textStyle="bold" />
@@ -364,7 +364,7 @@
                 android:layout_gravity="center"
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:text="جستجو"
+                android:text="@string/search"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>

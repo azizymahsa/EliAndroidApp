@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hotel_detail_background">
+
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary" />
+
+
+    <ScrollView
+        android:id="@+id/svDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarLayout"
+        android:fillViewport="true">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/flViewPager"
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200dp_normal">
+
+                <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+
+                    android:id="@+id/intro_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </FrameLayout>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvHotel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/flViewPager"
+                android:layout_gravity="center"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="3dp"
+                card_view:cardElevation="3dp"
+
+
+                >
+
+                <LinearLayout
+                    android:id="@+id/llHotelName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivImage"
+                            android:layout_width="@dimen/_60dp_hight"
+                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
+                            android:layout_gravity="center|right"
+                            android:layout_marginRight="4dp"
+                            android:gravity="right"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/rating_start"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/tvHotelName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:gravity="right|center"
+                            android:text="sdfsdf"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_16dp_normal_textSize"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCityName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/ivHotelPic"
+                            android:layout_marginRight="4dp"
+                            android:ellipsize="end"
+                            android:gravity="center|right"
+                            android:maxLines="1"
+                            android:text="sdfsdf"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_14dp_txtSize" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center|top"
+                            android:text="@string/icon_location"
+                            android:textAppearance="@style/IconFonts"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_25dp_normal_iconSize" />
+
+                        <TextView
+                            android:id="@+id/tvAdress"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="100"
+                            android:ellipsize="end"
+                            android:gravity="center|left"
+                            android:maxLines="2"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize"
+
+                            />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvDateDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        android:ellipsize="end"
+                        android:gravity="center|right"
+                        android:maxLines="1"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_12dp_normal_textSize"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="4dp"
+
+                        android:layout_marginRight="4dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/background_hotel_detail"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/llCommentClick"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="100"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="100"
+                                android:gravity="center"
+                                android:text="@string/Comments"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textSize="@dimen/_10dp_textSize" />
+
+                            <View
+                                android:id="@+id/vComment"
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@color/blue"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llMapClick"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="100"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="100"
+                                android:gravity="center"
+                                android:text="@string/Map"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textSize="@dimen/_10dp_textSize" />
+
+                            <View
+                                android:id="@+id/vMap"
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@color/blue"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llEmakanatClick"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="100"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="100"
+                                android:gravity="center"
+                                android:text="@string/Possibilities"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textSize="@dimen/_10dp_textSize" />
+
+                            <View
+                                android:id="@+id/vEmakanat"
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@color/blue"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/llRezervClick"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="100"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="100"
+                                android:gravity="center"
+                                android:text="@string/ReservRoom"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textSize="@dimen/_10dp_textSize" />
+
+                            <View
+                                android:id="@+id/vRezerv"
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@color/blue" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvViewPager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cvHotel"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="5dp"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="3dp"
+                card_view:cardElevation="1dp"
+
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <FrameLayout
+                        android:id="@+id/flMap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:id="@+id/map"
+                            android:name="com.google.android.gms.maps.SupportMapFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_250dp_normal" />
+
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cvHotel"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="5dp"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="3dp"
+                card_view:cardElevation="1dp">
+
+                <LinearLayout
+                    android:id="@+id/llDynamic"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+
+                        android:id="@+id/llEmkanat"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+
+                    <LinearLayout
+                        android:id="@+id/llAroundHotel"
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/llPolicy"
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/llInformation"
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+
+                android:id="@+id/llComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cvHotel"
+                android:layout_marginTop="@dimen/_5dp_margin"
+                android:orientation="vertical"
+                android:visibility="gone"
+
+
+                >
+
+                <com.wang.avi.AVLoadingIndicatorView
+
+                    android:id="@+id/aviComment"
+                    style="@style/AVLoadingIndicatorView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/tv"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10dp_margin"
+                    android:visibility="gone"
+                    app:indicatorColor="@color/app_base_color"
+                    app:indicatorName="BallSpinFadeLoaderIndicator"
+
+
+                    />
+
+                <TextView
+                    android:id="@+id/tvAlertComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/NoComment"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="@color/text_color_2e"
+                    android:textSize="@dimen/_16dp_txtSize"
+                    android:visibility="gone" />
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/btnOneComment"
+                    android:layout_width="@dimen/_100dp_image"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:elevation="1dp"
+                    android:gravity="center|top"
+                    android:paddingBottom="1dp"
+                    android:visibility="gone"
+                    fancy:fb_defaultColor="@color/blue"
+                    fancy:fb_focusColor="@color/focusColor"
+                    fancy:fb_radius="4dp"
+                    fancy:fb_text="@string/ConfirmComment"
+                    fancy:fb_textColor="@color/white"
+                    fancy:fb_textSize="@dimen/_14dp_txtSize" />
+
+                <LinearLayout
+                    android:id="@+id/llCommentContent"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+
+
+                    >
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cvHotel"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        card_view:cardBackgroundColor="#ffffff"
+                        card_view:cardCornerRadius="3dp"
+                        card_view:cardElevation="1dp"
+
+
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_100dp_normal"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_marginTop="@dimen/_5dp_margin"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="60"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvVoteCount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="32"
+                                    android:gravity="center"
+                                    android:padding="5dp"
+
+                                    android:textAppearance="@style/IrsansBold"
+                                    android:textColor="@color/text_color_2e"
+                                    android:textSize="@dimen/_10dp_textSize" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="100"
+                                    android:gravity="center">
+
+                                    <at.grabner.circleprogress.CircleProgressView
+                                        android:id="@+id/circleView"
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        CircleProgressView:cpv_autoTextSize="true"
+                                        CircleProgressView:cpv_barColor="@color/text_color_2e"
+                                        CircleProgressView:cpv_barWidth="5dp"
+                                        CircleProgressView:cpv_innerContourSize="0dp"
+                                        CircleProgressView:cpv_outerContourSize="0dp"
+                                        CircleProgressView:cpv_rimColor="#eaeaea"
+                                        CircleProgressView:cpv_rimWidth="5dp"
+                                        CircleProgressView:cpv_seekMode="false"
+                                        CircleProgressView:cpv_showUnit="true"
+                                        CircleProgressView:cpv_spinColor="@color/text_color_2e"
+                                        CircleProgressView:cpv_textColor="@color/text_color_2e"
+                                        CircleProgressView:cpv_textScale="0.8"
+                                        CircleProgressView:cpv_unit="/۱۰"
+
+
+                                        CircleProgressView:cpv_unitColor="@color/colorPrimary"
+                                        CircleProgressView:cpv_unitPosition="right_top"
+                                        CircleProgressView:cpv_unitScale="1"
+                                        CircleProgressView:cpv_value="0" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="60"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:id="@+id/tvRecommendedPercent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="100"
+                                    android:gravity="center"
+                                    android:padding="5dp"
+
+                                    android:textAppearance="@style/IrsansBold"
+                                    android:textColor="@color/text_color_2e"
+                                    android:textSize="@dimen/_12dp_normal_textSize" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="100"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <mehdi.sakout.fancybuttons.FancyButton
+                                        android:id="@+id/btnComment"
+                                        android:layout_width="@dimen/_100dp_image"
+                                        android:layout_height="@dimen/_30dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:elevation="1dp"
+                                        android:gravity="center|top"
+                                        android:paddingBottom="1dp"
+                                        fancy:fb_defaultColor="@color/blue"
+                                        fancy:fb_focusColor="@color/focusColor"
+                                        fancy:fb_radius="4dp"
+                                        fancy:fb_text="@string/ConfirmComment"
+                                        fancy:fb_textColor="@color/white"
+                                        fancy:fb_textSize="@dimen/_14dp_txtSize" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginTop="@dimen/_5dp_margin"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="65"
+                            android:background="@drawable/comment_background"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <mehdi.sakout.fancybuttons.FancyButton
+                                android:id="@+id/btnSortComment"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:elevation="1dp"
+                                android:paddingBottom="1dp"
+                                fancy:fb_defaultColor="@color/TRANSPARENT"
+                                fancy:fb_focusColor="@color/focusColor"
+                                fancy:fb_radius="4dp"
+                                fancy:fb_text=" "
+                                fancy:fb_textColor="#ffff"
+                                fancy:fb_textSize="14dp" />
+
+
+                            <TextView
+                                android:id="@+id/tvSortComment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:layout_marginRight="@dimen/_5dp_margin"
+                                android:gravity="center"
+                                android:padding="@dimen/_5dp_margin"
+                                android:text="@string/BenefitComment"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textColor="@color/text_color_2e"
+                                android:textSize="@dimen/_10dp_textSize" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="@dimen/_10dp_margin"
+                                android:layout_toRightOf="@+id/tvSortComment"
+                                android:gravity="center"
+                                android:text="@string/icon_sort"
+                                android:textAppearance="@style/IconFonts"
+                                android:textColor="@color/text_color_2e"
+                                android:textSize="@dimen/icon_size_25dp"
+
+
+                                />
+
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/tvCommentCount"
+
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="100"
+                            android:gravity="right|center"
+                            android:padding="3dp"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_2e"
+                            android:textSize="@dimen/_14dp_txtSize" />
+
+                    </LinearLayout>
+
+                    <com.eligasht.reservation.tools.NonScrollRecyclerView
+                        android:id="@+id/lvComments"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5dp_margin"
+
+                        android:divider="@null"
+                        android:dividerHeight="0dp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvAlert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cvHotel"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/ErrorRoom"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="16dp"
+                android:visibility="gone" />
+
+            <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
+                android:id="@+id/lvRooms"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/cvHotel"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/elNotFound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarLayout"
+        android:visibility="gone">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"
+            android:background="@color/hotel_detail_background"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="2dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvAlertError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="@color/text_color_2e"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/alert" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/btngravity_big"
+
+                    >
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnOk"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:elevation="4dp"
+                        android:paddingBottom="1dp"
+                        fancy:fb_defaultColor="@color/TRANSPARENT"
+                        fancy:fb_focusColor="@color/focusColor"
+                        fancy:fb_radius="0dp"
+                        fancy:fb_text="@string/back"
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="18dp" />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/toolbarLayout"
+        android:background="@drawable/shadow" />
+
+    <include
+        layout="@layout/loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+
+        />
+
+    <RelativeLayout
+        android:id="@+id/rlLoading2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ad000000"
+        android:visibility="gone">
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="@dimen/toolbar_height_70dp"
+            android:layout_height="@dimen/toolbar_height_70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="circle-l.json"
+            app:lottie_loop="true"
+
+            />
+
+
+    </RelativeLayout>
+</RelativeLayout>

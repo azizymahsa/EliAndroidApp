@@ -180,7 +180,9 @@ public class MainActivity extends Base implements View.OnClickListener {
         if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
             drawerLayout.closeDrawer(Gravity.RIGHT);
 
-        } else {
+        } else if(drawerLayout.isDrawerVisible(Gravity.LEFT)) {
+            drawerLayout.closeDrawer(Gravity.RIGHT);
+        }else {
 
 
             if (doubleBackToExitPressedOnce) {
@@ -204,7 +206,13 @@ public class MainActivity extends Base implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnMenu:
-                drawerLayout.openDrawer(Gravity.RIGHT);
+                if (Prefs.getString("lang","fa").equals("fa")||Prefs.getString("lang","fa").equals("ar")){
+                    drawerLayout.openDrawer(Gravity.RIGHT);
+
+                }else{
+                    drawerLayout.openDrawer(Gravity.LEFT);
+
+                }
                 break;
             case R.id.btnFlight:
                 addFragment(getString(R.string.searchFlight), new PlanFragment());
@@ -229,7 +237,7 @@ public class MainActivity extends Base implements View.OnClickListener {
             case R.id.btnHotelFlight:
 
                 Prefs.putInt("type", 4);
-                addFragment("بلیط هواپیما + رزرو هتل", new HotelFlightFragment());
+                addFragment(getString(R.string.hotel_reservation_and_plane_ticket), new HotelFlightFragment());
 
                 break;
             case R.id.btnAbout:
@@ -319,7 +327,13 @@ public class MainActivity extends Base implements View.OnClickListener {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                drawerLayout.closeDrawer(Gravity.RIGHT);
+                if (Prefs.getString("lang","fa").equals("fa")||Prefs.getString("lang","fa").equals("ar")){
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+
+                }else{
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+
+                }
 
             }
         }, 500);
@@ -339,7 +353,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
             public void onFinish() {
                 sendFinish(false, 0);
-                Toast.makeText(MainActivity.this, "زمان شما به پایان رسید.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.your_time_has_expired, Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -408,7 +422,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID()+"");
 
             } else {
-                txt_name.setText("ورود به حساب کاربری");
+                txt_name.setText(getString(R.string.login));
                 btnExit.setVisibility(View.GONE);
                 tvArrow.setVisibility(View.INVISIBLE);
                 rlUser.setClickable(false);
@@ -424,7 +438,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         } catch (Exception e) {
 
 
-            txt_name.setText("ورود به حساب کاربری");
+            txt_name.setText(getString(R.string.login));
             btnExit.setVisibility(View.GONE);
             Prefs.putString("userId","1");
             Log.e("testtest22", "3333");

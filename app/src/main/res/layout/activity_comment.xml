@@ -2,12 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_passenger_prefactor"
 
-    android:id="@+id/rlRoot">
+    android:background="@color/color_passenger_prefactor">
 
     <include
         android:id="@+id/toolbarLayout"
@@ -20,9 +19,9 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         android:layout_below="@+id/toolbarLayout"
         android:background="@color/white"
+        android:fillViewport="true"
 
         >
         <LinearLayout
@@ -32,9 +31,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="100"
                 android:layout_marginLeft="@dimen/_10dp_margin"
                 android:layout_marginRight="@dimen/_10dp_margin"
+                android:layout_weight="100"
                 android:gravity="center|top"
                 android:orientation="vertical"
                 >
@@ -43,10 +42,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="امکانات هتل"
+                    android:layout_marginTop="@dimen/_10dp_margin_comment"
+                    android:text="@string/FacilityHotelComment"
                     android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginTop="@dimen/_10dp_margin_comment"/>
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.xw.repo.BubbleSeekBar
                     android:id="@+id/ScoreParameterID1"
@@ -73,10 +72,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="دسترسی به نقاط مهم"
+                    android:layout_marginTop="@dimen/_10dp_margin_comment"
+                    android:text="@string/AccessToImportant"
                     android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginTop="@dimen/_10dp_margin_comment"/>
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.xw.repo.BubbleSeekBar
                     android:id="@+id/ScoreParameterID2"
@@ -101,10 +100,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="کیفیت خواب"
+                    android:layout_marginTop="@dimen/_10dp_margin_comment"
+                    android:text="@string/Sleep"
                     android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginTop="@dimen/_10dp_margin_comment"/>
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.xw.repo.BubbleSeekBar
                     android:id="@+id/ScoreParameterID3"
@@ -131,10 +130,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="ارزش در برابر قیمت"
+                    android:layout_marginTop="@dimen/_10dp_margin_comment"
+                    android:text="@string/ValuePrice"
                     android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginTop="@dimen/_10dp_margin_comment"/>
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.xw.repo.BubbleSeekBar
                     android:id="@+id/ScoreParameterID4"
@@ -161,10 +160,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="وضعیت خدمات"
+                    android:layout_marginTop="@dimen/_10dp_margin_comment"
+                    android:text="@string/ServiceStatus"
                     android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginTop="@dimen/_10dp_margin_comment"/>
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.xw.repo.BubbleSeekBar
                     android:id="@+id/ScoreParameterID5"
@@ -190,17 +189,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="وضعیت نظافت"
+                    android:layout_marginTop="@dimen/_10dp_margin_comment"
+                    android:text="@string/CleaningStatus"
                     android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginTop="@dimen/_10dp_margin_comment"/>
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.xw.repo.BubbleSeekBar
                     android:id="@+id/ScoreParameterID6"
-                    android:layout_marginTop="@dimen/_5dp_margin_comment"
-
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5dp_margin_comment"
                     app:bsb_bubble_text_color="@color/white"
                     app:bsb_max="10"
                     app:bsb_min="0"
@@ -219,10 +218,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="خوشرویی کارکنان"
+                    android:layout_marginTop="@dimen/_10dp_margin_comment"
+                    android:text="@string/Admiration"
                     android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginTop="@dimen/_10dp_margin_comment"/>
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.xw.repo.BubbleSeekBar
                     android:id="@+id/ScoreParameterID7"
@@ -249,10 +248,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
-                    android:text="کیفیت غذا و پذیرایی"
+                    android:layout_marginTop="@dimen/_10dp_margin_comment"
+                    android:text="@string/QualityOfFood"
                     android:textColor="@color/text_color_4d"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginTop="@dimen/_10dp_margin_comment"/>
+                    android:textSize="@dimen/_14dp_txtSize" />
 
                 <com.xw.repo.BubbleSeekBar
                     android:id="@+id/ScoreParameterID8"
@@ -283,10 +282,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40dp"
                 android:layout_marginBottom="@dimen/_5dp_margin"
-                android:layout_marginTop="@dimen/_5dp_margin"
-                android:background="@drawable/btngravity_big"
                 android:layout_marginLeft="@dimen/_10dp_margin"
                 android:layout_marginRight="@dimen/_10dp_margin"
+                android:layout_marginTop="@dimen/_5dp_margin"
+                android:background="@drawable/btngravity_big"
 
                 >
                 <mehdi.sakout.fancybuttons.FancyButton
@@ -295,9 +294,9 @@
                     android:layout_height="@dimen/_40dp"
                     fancy:fb_defaultColor="@color/TRANSPARENT"
                     fancy:fb_focusColor="@color/focusColor"
+                    fancy:fb_text="@string/NextStep"
                     fancy:fb_textColor="#ffff"
                     fancy:fb_textSize="@dimen/_14dp_txtSize"
-                    fancy:fb_text="مرحله بعد"
 
                     />
 
@@ -340,7 +339,7 @@
                 android:layout_marginTop="@dimen/_10dp_margin"
                 android:background="@drawable/background_strock_white_comment"
                 android:gravity="center|center_vertical"
-                android:hint="نام و نام خانوادگی"
+                android:hint="@string/text40"
                 android:singleLine="true"
                 android:textColor="#000000"
                 android:textColorHint="#c2c2c2"
@@ -354,11 +353,11 @@
                 android:background="@drawable/background_strock_white_comment"
                 android:gravity="center|center_vertical"
                 android:hint="ایمیل"
+                android:inputType="textEmailAddress"
                 android:singleLine="true"
                 android:textColor="#000000"
                 android:textColorHint="#c2c2c2"
-                android:textSize="@dimen/_12dp_normal_textSize"
-                android:inputType="textEmailAddress"/>
+                android:textSize="@dimen/_12dp_normal_textSize" />
 
             <EditText
                 android:id="@+id/etTitle"
@@ -368,7 +367,7 @@
                 android:layout_marginTop="@dimen/_10dp_margin"
                 android:background="@drawable/background_strock_white_comment"
                 android:gravity="center|center_vertical"
-                android:hint="عنوان پیام"
+                android:hint="@string/TitleComment"
                 android:maxLength="20"
                 android:singleLine="true"
                 android:textColor="#000000"
@@ -383,7 +382,7 @@
                 android:layout_marginTop="@dimen/_10dp_margin"
                 android:background="@drawable/background_strock_white_comment"
                 android:gravity="center|top"
-                android:hint="نظر شما"
+                android:hint="@string/YourComment"
                 android:imeOptions="normal"
                 android:paddingTop="3dp"
                 android:textColor="#000000"
@@ -413,7 +412,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="مایل به نمایش نام نیستم"
+                    android:text="@string/HiddenName"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -437,7 +436,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="این هتل را برای دیگران پیشنهاد میکنم"
+                    android:text="@string/RecomandHotel"
                     android:textColor="@color/text_color_4d"
                     android:textSize="@dimen/_14dp_txtSize" />
 
@@ -471,9 +470,9 @@
 
                 fancy:fb_defaultColor="@color/TRANSPARENT"
                 fancy:fb_focusColor="@color/focusColor"
+                fancy:fb_text="@string/ConfirmComment"
                 fancy:fb_textColor="#ffff"
                 fancy:fb_textSize="@dimen/_14dp_txtSize"
-                fancy:fb_text="ثبت نظر"
 
                 />
 
@@ -507,8 +506,8 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/_10dp_margin"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"
             app:lottie_fileName="circle-l.json"
+            app:lottie_loop="true"
 
             />
 

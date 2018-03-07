@@ -185,7 +185,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="100"
                                 android:gravity="center"
-                                android:text="نظرات"
+                                android:text="@string/Comments"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textSize="@dimen/_10dp_textSize" />
 
@@ -211,7 +211,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="100"
                                 android:gravity="center"
-                                android:text="نقشه"
+                                android:text="@string/Map"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textSize="@dimen/_10dp_textSize" />
 
@@ -237,7 +237,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="100"
                                 android:gravity="center"
-                                android:text="امکانات"
+                                android:text="@string/Possibilities"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textSize="@dimen/_10dp_textSize" />
 
@@ -264,7 +264,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="100"
                                 android:gravity="center"
-                                android:text="انتخاب و رزرو اتاق"
+                                android:text="@string/ReservRoom"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textSize="@dimen/_10dp_textSize" />
 
@@ -427,7 +427,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="نظری ارسال نشده!"
+                    android:text="@string/NoComment"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/text_color_2e"
                     android:textSize="@dimen/_16dp_txtSize"
@@ -449,7 +449,7 @@
                     fancy:fb_defaultColor="@color/blue"
                     fancy:fb_focusColor="@color/focusColor"
                     fancy:fb_radius="4dp"
-                    fancy:fb_text="ثبت نظر"
+                    fancy:fb_text="@string/ConfirmComment"
                     fancy:fb_textColor="@color/white"
                     fancy:fb_textSize="@dimen/_14dp_txtSize" />
 
@@ -504,7 +504,7 @@
                                     android:layout_weight="32"
                                     android:gravity="center"
                                     android:padding="5dp"
-                                    android:text="از مجموع 12 رای ثبت شده"
+
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="@color/text_color_2e"
                                     android:textSize="@dimen/_10dp_textSize" />
@@ -558,7 +558,7 @@
                                     android:layout_weight="100"
                                     android:gravity="center"
                                     android:padding="5dp"
-                                    android:text="از مجموع 12 رای ثبت شده"
+
                                     android:textAppearance="@style/IrsansBold"
                                     android:textColor="@color/text_color_2e"
                                     android:textSize="@dimen/_12dp_normal_textSize" />
@@ -584,7 +584,7 @@
                                         fancy:fb_defaultColor="@color/blue"
                                         fancy:fb_focusColor="@color/focusColor"
                                         fancy:fb_radius="4dp"
-                                        fancy:fb_text="ثبت نظر"
+                                        fancy:fb_text="@string/ConfirmComment"
                                         fancy:fb_textColor="@color/white"
                                         fancy:fb_textSize="@dimen/_14dp_txtSize" />
                                 </LinearLayout>
@@ -638,7 +638,7 @@
                                 android:layout_marginRight="@dimen/_5dp_margin"
                                 android:gravity="center"
                                 android:padding="@dimen/_5dp_margin"
-                                android:text="مفیدترین نظرات"
+                                android:text="@string/BenefitComment"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/text_color_2e"
                                 android:textSize="@dimen/_10dp_textSize" />
@@ -699,7 +699,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="اتاقی یافت نشد!"
+                android:text="@string/ErrorRoom"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="16dp"
@@ -777,7 +777,7 @@
                         fancy:fb_defaultColor="@color/TRANSPARENT"
                         fancy:fb_focusColor="@color/focusColor"
                         fancy:fb_radius="0dp"
-                        fancy:fb_text="بازگشت"
+                        fancy:fb_text="@string/back"
                         fancy:fb_textColor="#FFFFFF"
                         fancy:fb_textSize="18dp" />
                 </RelativeLayout>

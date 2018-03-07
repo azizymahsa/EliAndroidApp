@@ -1,0 +1,2346 @@
+<resources>
+
+
+    <!--  <string name="app_name">Slider Menu</string> -->
+
+    <!--  <option menu> -->
+    <!-- Nav Drawer Menu Items -->
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+
+    <!-- Content Description -->
+    <!-- pakhsh////////////////////////////////////////////////////////////////////////////////////////// -->
+    <string name="app_name">Eligasht</string>
+    <string name="accept">kabul etmek</string>
+    <string name="condition">وب‌سایت الی گشت طبق قوانین جمهوری اسلامی ایران، قوانین جرایم اینترنتی و مجموعه‌ی قوانین و مقررات تجارت الکترونیکی فعالیت می‌کند.
+خدمات و محتوای عرضه شده توسط وب‌سایت الی گشت جهت استفاده‌ در این وب‌سایت تولید می‌شوند. هر گونه سوءاستفاده از اطلاعات، متن‌ها، عکس‌ها، نقشه‌ها، طرح‌ها، لوگو و... از این وب‌سایت پیگرد قانونی دارد و هیچ فرد حقیقی یا حقوقی اجازه‌ی سوء استفاده از مطالب این وب‌سایت را ندارد. ذکر مطالب این وب‌سایت در اینترنت، تنها با ذکر نام و نشانی اینترنتی وب‌سایت الی گشت و لینک به مطلب ذکر شده مجاز است و در رسانه‌های کاغذی، با کسب اجازه‌ی کتبی از مسئولان وب‌سایت.
+اطلاعات شخصی کاربران در الی گشت کاملاً محرمانه است. الی گشت تمام تلاش خود را برای محافظت از اطلاعات شخصی کاربران می‌کند. لذا جهت حفظ حریم اطلاعات شخصی کاربران، کاربر باید تعهد بدهد تا عامل تلاش جهت هک کردن هر گونه اطلاعات موجود در سایت نبوده و هیچ‌گونه معاونت و یا مشارکتی با اشخاص حقیقی و یا حقوقی در این امر نداشته باشد. ضمناً کاربر تعهد می‌دهد که هر گونه اطلاع از توسل به هک کردن اطلاعات توسط شخص و یا موسسه‌ی دیگر را در اسرع وقت به مدیریت سایت الی گشت اطلاع دهد.
+کاربران متعهد می‌شوند که اطلاعات خود را هنگام ثبت‌نام و رزرو به صورت صحیح در وب‌سایت وارد کنند. در صورت ورود اطلاعات ناقص يا نادرست، مسئولیت عواقب بعدی این عمل بر عهده‌ی کاربران خواهد بود.
+کاربر متعهد می‌شود هرگونه تغییر در مشخصات فردی خود را در اسرع وقت در وب‌سایت الی گشت اصلاح نماید. در غیر این‌صورت این وب‌سایت هیچ مسئولیتی در قبال تبعات ناشی از عدم صحت اطلاعات موجود نخواهد داشت.
+وب‌سایت الی گشت به فروش اینترنتی بلیط هواپیما می‌پردازد و در قبال شرایط، کنسلی، تاخیر یا تعجیل پرواز مسئولیتی را بر عهده نخواهد داشت.
+هرگونه سوء استفاده از نام الی گشت، سایت اینترنتی الی گشت، مکاتبه از طرف الی گشت و یا استفاده از نام های مشابه که شبهه مشابهت و تطابق را ایجاد نماید ممنوع بوده از طریق شکایت به مراجع قانونی ذی‌صلاح، دادگاه‌های رسیدگی به جرائم اینترنتی در داخل و یا خارج از کشور و نیز اطلاع‌رسانی به سرویس دهندگان و سرویس گیرندگان اینترنتی قابل پیگرد خواهد بود.
+وب‌سایت الی گشت اطلاعات شخصی کاربران را با هیچ مجموعه‌ی دیگری به اشتراک نخواهد گذاشت و مراجع ذی‌صلاح فقط در صورت موارد مصرح در قانون، امکان استفاده از این اطلاعات را خواهند داشت.
+شرایط و ضوابط رزور و خرید چارتر
+پروازهای چارتر در مقایسه با پروازهای سیستمی با تغییرات بیش‌تری مواجه هستند و در 1 درصد مواقع ممکن است قابل استفاده نباشند، در چنین مواقعی و درصورت خرید بلیط جایگزین، کل هزینه‌ی بلیط جدید به همراه مابه‌تفاوت قیمت آن، از طرف چارترکننده به شما برگردانده خواهد شد. الی گشت تمام تلاش خود را می‌کند تا این ریسک را به صفر برساند.
+در صورت کنسل شدن پرواز چارتر و عدم دریافت بلیط جایگزین از طرف آژانس، مبلغ بلیط به‌طور کامل استرداد خواهد شد.
+قیمت بلیط چارتر برای نوزاد تا 2 سال، معادل با 10 درصد کل هزینه‌ی قیمت بلیط بزرگسال است که باید در فرودگاه تهیه بشود.
+قیمت بلیط چارتر برای کودکان بین 2 تا 12 سال، برابر با قیمت بلیط بزرگسال است.
+شرایط و ضوابط رزرو و خرید بلیط هواپیما
+عملیات خرید بلیط در وب‌سایت الی گشت مشمول مجموعه‌ی قوانین و مقررات تجارت الکترونیکی بوده و هرگونه تخلف تحت پیگرد قانونی قرار خواهد گرفت. خریدار ضمن خرید اینترنتی بلیط، متعهد می‌شود که از کلیه‌ی قوانین و مقررات خرید بلیط آگاهی کامل دارد.
+طبق مقررات سازمان هواپیمایی کشوری، مسئولیت کنسلی، تاخیر یا تعجیل در زمان انجام پرواز، بر عهده‌ی شرکت هواپیمایی برگزار کننده‌ی پرواز است.
+هنگام ثبت‌نام و رزرو بلیط، نام مسافر باید به صورت صحیح با حروف انگلیسی وارد شود. امکان اصلاح نام مسافر پس از خرید نهایی بلیط وجود ندارد و الی گشت، هیچ‌گونه مسئولیتی در قبال اطلاعاتی که به اشتباه وارد شده‌اند بر عهده ندارد و برای اصلاح اطلاعات، مسافر می‌بایست بلیط را کنسل و مجدداً خریداری کند.
+بلیط خریداری شده، متعلق به مسافری است که مشخصاتش در سیستم وارد شده است و غیر قابل انتقال به غیر می‌باشد. در صورت عدم تطابق نام مسافر در بلیط و کارت شناسایی، مسافر پذیرش نخواهد شد.
+در قوانین هواپیمایی کشوری، مسافران نوزاد کم‌تر از دو سال، مسافران کودک بین دو تا دوازده سال تمام و مسافران بزرگسال، بیش از دوازده سال سن دارند. در صورت عدم دقت خریدار و اشتباه وارد نمودن رده‌ی سنی، از سوار شدن مسافر به هواپیما ممانعت به عمل خواهد آمد. و بلیط کودک را به هیچ وجه نمی‌توان به تنهایی و جدا از بلیط بزرگسال خرید کرد.
+لازم به ذکر است که در بلیط‌های نرخ مصوب، قیمت بلیط برای مسافران نوزاد، کودک و بزرگسال متفاوت است، اما در بلیط‌های چارتری و غیر قابل استرداد، قیمت بلیط کودک با بزرگسال برابر است.
+پس از انجام پرداخت و تایید آن، رزرو و خرید قطعی شده و اطلاعات بلیط به کاربر اس‌ام‌اس و ای‌میل می‌شود. هنگام مراجعه به فرودگاه، در پروازهای چارتر ارائه‌ی یک نسخه‌ی چاپ شده از بلیط و در پروازهای سیستمی، ارائه‌ی شماره‌ی بلیط به همراه مدرک معتبر شناسایی به کانتر هواپیمایی مربوطه الزامی است.
+هر نوع کنسلی بلیط از طرف مسافر، مطابق قوانین هواپیمایی کشوری، شامل جریمه‌ی کنسلی می‌شود. مقدار این جریمه بنا بر قوانین کنسلی هر ایرلاین متفاوت است. پس از درخواست استرداد توسط مسافر، مبلغ جریمه از قیمت بلیط کسر شده و بقیه‌ی پول، به‌طور آنلاین به حساب مسافر برمی‌گردد. مدت زمان بازگشت وجه، تابع مقررات بین بانکی (بین 24 تا 72 ساعت) می‌باشد. این مسئله در مورد پروازهای چارتر یا غیر قابل استرداد صادق نیست و هزینه‌ی بلیط این پروازها در صورت کنسلی به طور کامل پرداخت می‌شود.
+لغو یا تاخیر بیش از دو ساعتِ پرواز، جریمه‌ی کنسلی را شامل نمی‌شود. در این صورت مسافر فرم درخواست آن‌لاین استرداد بدون جریمه را پر می‌کند.
+لازم به ذکر است که اگر پرواز رفت و برگشت از دو ایرلاین مختلف باشند، در صورت لغو پرواز رفت یا انصراف مسافر از پرواز به دلیل تاخیر بیش از دو ساعت، ممکن است لغو پرواز برگشت شامل جریمه‌ی کنسلی شود.
+خریدار حق تغییر قیمت بلیط، دست بردن در مفاد بلیط به هر طریق و هر شکل، و یا فروش مجدد بلیط با قیمتی بالاتر از مبلغ ذکر شده را ندارد.
+طبق قوانین سازمان هواپیمایی کشوری، همراه داشتن مجوز پزشک برای خانم‌های باردار، افراد مبتلا به بیماری‌های قلبی-عروقی، بیماری‌های تنفسی، صرع، آنمی شدید، دیابت ملیتوس کنترل نشده، کسانی که دیالیز می‌شوند یا کسانی که از داروهای تضعیف‌کننده‌ی سیستم ایمنی استفاده می‌نمایند و یا هرگونه بیماری که سبب منع سفر هوایی باشد، هنگام سوار شدن به هواپیما ضروری می‌باشد. همچنین لازم است که این مسافران، داروهای مورد نیاز خود را در طول سفر به همراه داشته باشند.</string>
+    <string name="icon_menu">&#xe901;</string>
+    <string name="icon_bed">&#xe900;</string>
+    <string name="icon_location">&#xe90b;</string>
+    <string name="icon_location2">&#xe90b;</string>
+    <string name="icon_info">&#xe906;</string>
+    <string name="icon_pin">&#xe907;</string>
+    <string name="icon_filter">&#xe90c;</string>
+    <string name="icon_sort">&#xf160;</string>
+    <string name="icon_arrow_left">&#xe314;</string>
+    <string name="icon_arrow_right">&#xe315;</string>
+    <string name="icon_user">&#xf2c0;</string>
+    <string name="icon_user_login">&#xe618;</string>
+    <string name="icon_pass_login">&#xe619;</string>
+    <string name="icon_forget_login">&#xe612;</string>
+    <string name="icon_check">&#xe5ca;</string>
+    <string name="searchFlight"> Uçuşta Arama </string>
+    <string name="search_package"> Arama Paketi </string>
+    <string name="search_hotel"> Otel arama </string>
+    <string name="reserve_package"> Paket Rezervi </string>
+    <string name="icon_calander">&#xe908;</string>
+    <string name="search_back_right">&#xea3c;</string>
+    <string name="icon_plane">&#xe622;</string>
+    <string name="arrow_left">&#xea40;</string>
+    <string name="icon_exp_up">&#xe801;</string>
+    <string name="icon_exp_down">&#xe800;</string>
+    <string name="btn_insurance">Sigorta arama</string>
+    <string name="icon_like">&#xe914;</string>
+    <string name="icon_dislike">&#xe915;</string>
+    <string name="icon_message">&#xe049;</string>
+    <string name="mines">&#xe892;</string>
+    <string name="plus">&#xe891;</string>
+    <!--nejati-->
+    <string name="aboutus">&#xe609;</string>
+    <string name="bigplane">&#xe610;</string>
+    <string name="contactus">&#xe611;</string>
+    <string name="hotel">&#xe613;</string>
+    <string name="insurance">&#xe614;</string>
+    <string name="packages">&#xe615;</string>
+    <string name="terms">&#xe616;</string>
+    <string name="tour">&#xe617;</string>
+    <string name="userlogin">&#xe618;</string>
+    <string name="icon_arrow_up">&#xe316;</string>
+    <string name="icon_arrow_down">&#xe313;</string>
+    <string name="contract">&#xe620;</string>
+    <string name="contract_num">&#xe623;</string>
+    <string name="contract_email">&#xe625;</string>
+    <string name="train">&#xe621;</string>
+    <string name="ok">&#xe640;</string>
+    <string name="cancel">&#xe641;</string>
+    <string name="nowifi">&#xe917;</string>
+    <string name="transfer">&#xe918;</string>
+    <string name="plane">&#xe919;</string>
+    <string name="dot">&#xf052;</string>
+    <string name="setting">&#xe637;</string>
+
+
+    <string name="no_results_found">No Results Found</string>
+    <string name="back_exit">Please press the Back button once to exit</string>
+
+    <!-- /////////////country code//////////////// -->
+    <string-array name="country_names">
+        <item>ایران</item>
+        <item>فرانسه</item>
+        <item>ترکیه</item>
+        <item>کره</item>
+
+        <item>هند</item>
+        <item>افغانستان</item>
+        <item>آلبانی</item>
+        <item>الجزایر</item>
+
+        <item>ساموآ آمریکا</item>
+        <item>آندورا</item>
+        <item>آنگولا</item>
+        <item>آنگویلا</item>
+
+        <item>قطب جنوب</item>
+        <item>آنتیگوا و باربودا</item>
+        <item>آرژانتین</item>
+        <item>ارمنستان</item>
+
+        <item>آروبا</item>
+        <item>استرالیا</item>
+        <item>اتریش</item>
+        <item>آذربایجان</item>
+
+        <item>باهاما</item>
+        <item>بحرین</item>
+        <item>بنگلادش</item>
+        <item>باربادوس</item>
+
+        <item>بلاروس</item>
+        <item>بلژیک</item>
+        <item>بلیز</item>
+        <item>بنین</item>
+
+        <item>برمودا</item>
+        <item>بوتان</item>
+        <item>بولیوی</item>
+        <item>بوسنی و هرزگوین</item>
+
+        <item>بوتسوانا</item>
+        <item>جزیره بووه</item>
+        <item>برزیل</item>
+        <item>مستعمرات انگلیسی اقیانوس هند</item>
+
+        <item>برونئی</item>
+        <item>بلغارستان</item>
+        <item>بورکینا فاسو</item>
+        <item>بروندی</item>
+
+        <item>کامبوج</item>
+        <item>کامرون</item>
+        <item>کانادا</item>
+        <item>کیپ ورد</item>
+
+        <item>جزایر کیمن</item>
+        <item>جمهوری آفریقای مرکزی</item>
+        <item>چاد</item>
+        <item>شیلی</item>
+
+        <item>چین</item>
+        <item>جزیره کریسمس</item>
+        <item>جزایر کوکوس</item>
+        <item>کلمبیا</item>
+
+        <item>کومور</item>
+        <item>کنگو</item>
+        <item> کنگو، دمکراتیک جمهوری</item>
+        <item> جزایر کوک</item>
+
+        <item>کاستاریکا</item>
+        <item>ساحل عاج ( ساحل عاج )</item>
+        <item> کرواسی</item>
+        <item> کوبا</item>
+
+        <item>قبرس</item>
+        <item>جمهوری چک</item>
+        <item> دانمارک</item>
+        <item> جیبوتی</item>
+
+        <item>دومینیکایی</item>
+        <item>جمهوری دومینیکن</item>
+        <item>تیمور شرق</item>
+        <item>اکوادور</item><!-- 68 -->
+
+        <item>مصر</item>
+        <item>سالوادور</item>
+        <item>گینه استوایی</item>
+        <item>اریتره</item>
+
+        <item>استونی</item>
+        <item>اتیوپی</item>
+        <item>جزایر فالکلند ( مالویناس )</item>
+        <item>جزایر فارو</item>76
+
+        <item>جزایر فارو</item>
+        <item>جزایر فیجی</item>
+        <item>فنلاند</item>
+        <item>فرانسه</item>
+
+        <item>فرانسه، متروپولیتن</item>
+        <item>گویان فرانسو</item>
+        <item>پلینزی فرانسه</item>
+        <item>سرزمین های جنوبی فرانسه</item>
+
+        <item>گابن</item>
+        <item>گامبیا</item>
+        <item>گرجستان</item>
+        <item>آلمان</item>
+
+        <item>غنا</item>
+        <item>جبل الطارق</item>
+        <item>یونان</item>
+        <item>گرینلند</item>
+
+        <item>گرانادا</item>
+        <item>جزیره گوادلوپ</item>
+        <item>گوام</item>
+        <item>گواتمالا</item>
+
+        <item>گورنسی</item>
+        <item>گینه</item>
+        <item>گینه بیسائو</item>
+        <item>گویان</item>
+
+        <item>هائیتی</item>
+        <item>هرد و جزایر مک دونالد</item>
+        <item>هندوراس</item>
+        <item>هنگ کنگ S.A.R.</item>
+
+        <item>مجارستان</item>
+        <item>ایسلند</item>
+        <item>هندوستان</item>
+        <item>اندونزی</item>
+
+        <item>عراق</item>
+        <item>جزیره من</item>
+        <item>ایرلند</item>
+        <item>ایتالیا</item>
+
+        <item>جامائیکا</item>
+        <item>ژاپن</item>
+        <item>جرسی</item>
+        <item>اردن</item>
+
+        <item>قزاقستان</item>
+        <item>کنیا</item>
+        <item>کیریباتی</item>
+        <item>کره</item>
+
+        <item>کره شمالی</item>
+        <item>کویت</item>
+        <item>قرقیزستان</item>
+        <item>لائوس</item>
+
+        <item>لتونی</item>
+        <item>لبنان</item>
+        <item>لسوتو</item>
+        <item>لیبریا</item>
+
+        <item>لیبی</item>
+        <item>لیختن اشتاین</item>
+        <item>لیتوانی</item>
+        <item>لوکزامبورگ</item>
+
+        <item>ماکائو S.A.R.</item>
+        <item>مقدونیه</item>
+        <item>جزیره مالاگازی</item>
+        <item>مالاوی</item>
+
+        <item>مالزی</item>
+        <item>مالدیو</item>
+        <item>مالی</item>
+        <item>مالت</item>
+
+        <item>جزایر مارشال</item>
+        <item>مارتینیک</item>
+        <item>موریتانی</item>
+        <item>موریس</item>
+
+        <item>مایوت</item>
+        <item>مکزیک</item>
+        <item>میکرونزی</item>
+        <item>مولداوی</item>
+
+        <item>موناکو</item>
+        <item>مغولستان</item>
+        <item>مونته نگرو</item>
+        <item>مونتسرات</item>
+
+        <item>مراکش</item>
+        <item>موزامبیک</item>
+        <item>میانمار</item>
+        <item>نامیبیا</item>
+
+        <item>نائورو</item>
+        <item>نپال</item>
+        <item>هلند</item>
+        <item>آنتیل هلند</item>
+
+        <item>کالدونیای جدید</item>
+        <item>نیوزیلند</item>
+        <item>نیکاراگوئه</item>
+        <item>نیجر</item>
+
+        <item>نیجریه</item>
+        <item>نیوئه</item>
+        <item>جزیره نورفولک</item>
+        <item>جزایر ماریانای شمالی</item>
+
+        <item>نروژ</item>
+        <item>عمان</item>
+        <item>پاکستان</item>
+        <item>پالائو</item>
+
+        <item>فلسطین</item>
+        <item>پاناما</item>
+        <item>پاپوآ گینه جدید</item>
+        <item>پاراگوئه</item>
+
+        <item>پرو</item>
+        <item>فیلیپین</item>
+        <item>جزیره پیتکرن</item>
+        <item>لهستان</item>
+
+        <item>پرتغال</item>
+        <item>پورتوریکو</item>
+        <item>قطر</item>
+        <item>ریونیون</item>
+
+        <item>رومانی</item>
+        <item>روسیه</item>
+        <item>رواندا</item>
+        <item>جزیره سنت هلن </item>
+
+        <item>سنت کیتس و نویس</item>
+        <item>سنت لوسیا</item>
+        <item>سنت پیر و میکلون</item>
+        <item>سنت وینسنت و گرنادین</item>
+
+        <item>ساموآ</item>
+        <item>سان مارینو</item>
+        <item>سائوتومه و پرنسیپ</item>
+        <item>عربستان سعودی</item>
+
+        <item>سنگال</item>
+        <item>صربستان</item>
+        <item>سیشل</item>
+        <item>سیرالئون</item>
+
+        <item>سنگاپور</item>
+        <item>سنت مارتن</item>
+        <item>اسلواکی</item>
+        <item>اسلوونی</item>
+
+        <item>جزایر سلیمان</item>
+        <item>سومالی</item>
+        <item>آفریقای جنوبی</item>
+        <item>جورجیای جنوبی و جزایر ساندویچ جنوبی</item>
+
+        <item>اسپانیا</item>
+        <item>سری لانکا</item>
+        <item>سودان</item>
+        <item>سورینام</item>
+
+        <item>سوالبارد و ماین</item>
+        <item>سوازیلند</item>
+        <item>سوئد</item>
+        <item>سویس</item>
+
+        <item>سوریه</item>
+        <item>تایوان</item>
+        <item>تاجیکستان</item>
+        <item>تانزانیا</item>
+
+        <item>تایلند</item>
+        <item>تیمور شرق</item>
+        <item>توگو</item>
+        <item>توکلائو</item>
+
+        <item>تونگا</item>
+        <item>ترینیداد و توباگو</item>
+        <item>تونس</item>
+        <item>ترکیه</item>
+
+        <item>ترکمنستان</item>
+        <item>جزایر ترکس و کیاکوس</item>
+        <item>تووالو</item>
+        <item>اوگاندا</item>
+
+        <item>اوکراین</item>
+        <item>امارات متحده عربی</item>
+        <item>انگلستان</item>
+        <item>ایالات متحده</item>
+
+        <item>ایالات متحده جزایر کوچک حاشیهای</item>
+        <item>اروگوئه</item>
+        <item>ازبکستان</item>
+        <item>وانواتو</item>
+
+        <item>دولت شهر واتیکان ( مقدس )</item>
+        <item>ونزوئلا</item>
+        <item>ویتنام</item>
+        <item>جزایر ویرجین ( ایالات متحده )</item>
+
+        <item>جزایر ویرجین ( بریتانیا )</item>
+        <item>والیس و فوتونا</item>
+        <item>صحرای غربی</item>
+        <item>یمن</item>
+
+        <item>زامبیا</item>
+        <item>زیمبابوه</item>
+        <item>آلاند جزایر</item>
+        <item>آنتیگوآ</item>
+
+        <item>بونیر، سینت یوستیشس و صبا</item>
+        <item>بوسنی</item>
+        <item>کارائیب</item>
+        <item>جمهوری کنگو</item>
+
+        <item>ساحل عاج</item>
+        <item>کریمه</item>
+        <item>کرواسی</item>
+        <item>کوراسائو</item>
+
+        <item>جمهوری دموکراتیک کنگو</item>
+        <item>فرودگاه دوبی</item>
+        <item>جزایر فالکلند ( مالویناس )</item>
+        <item>فیجی</item>
+
+        <item>گامبیا</item>
+        <item>گرانادا</item>
+        <item>HAWAII</item>
+        <item>جزیره هرد و جزایر مک دونالد</item>
+
+        <item>هنگ کنگ</item>
+        <item>ماکائو</item>
+        <item>میانمار</item>
+        <item>کره شمالی</item>
+
+        <item>فلسطین</item>
+        <item>جمهوری ایرلند</item>
+        <item>پالائو</item>
+        <item>سنت بارتلمی</item>
+
+        <item>سنت مارتین</item>
+        <item>سنت مارتن ( بخش هلندی)</item>
+        <item>جورجیای جنوبی و ساندویچ جنوبی ISL</item>
+        <item> کره جنوبی</item>
+
+        <item>سودان جنوبی </item>
+        <item>ST LUCIA</item>
+        <item>سوالبارد و یان ماینی</item>
+        <item> تاسمانی</item>
+
+        <item> تیمور شرقی</item>
+        <item>توکلائو جزایر</item>
+        <item>ترکهای / کیکو</item>
+        <item> ایالات متحده آمریکا</item>
+
+        <item> ایالات متحده جزایر ویرجین</item>
+        <item>WEST BANK</item>
+
+    </string-array>
+
+    <string-array name="country_codes">
+        <item>IR</item>
+        <item>FR</item>
+        <item>TR</item>
+        <item>CR</item>
+
+        <item>IN</item>
+        <item>AF</item>
+        <item>AL</item>
+        <item>DZ</item>
+
+        <item>AS</item>
+        <item>AD</item>
+        <item>AO</item>
+        <item>AI</item>
+
+        <item>AQ</item>
+        <item>AG</item>
+        <item>AR</item>
+        <item>AM</item>
+
+        <item>AW</item>
+        <item>AU</item>
+        <item>AT</item>
+        <item>AZ</item>
+
+        <item>BS</item>
+        <item>BH</item>
+        <item>BD</item>
+        <item>BB</item>
+
+        <item>BY</item>
+        <item>BE</item>
+        <item>BZ</item>
+        <item>BJ</item>
+
+        <item>BM</item>
+        <item>BT</item>
+        <item>BO</item>
+        <item>BA</item>
+
+        <item>BW</item>
+        <item>BV</item>
+        <item>BR</item>
+        <item>IO</item>
+
+        <item>BN</item>
+        <item>BG</item>
+        <item>BF</item>
+        <item>BI</item>
+
+        <item>KH</item>
+        <item>CM</item>
+        <item>CA</item>
+        <item>CV</item>
+
+        <item>KY</item>
+        <item>CF</item>
+        <item>TD</item>
+        <item>CL</item>
+
+        <item>CN</item>
+        <item>CX</item>
+        <item>CC</item>
+        <item>CO</item>
+
+        <item>KM</item>
+        <item>CG</item>
+        <item>CD</item>
+        <item>CK</item>
+
+        <item>CR</item>
+        <item>CI</item>
+        <item>HR</item>
+        <item>CU</item>
+
+        <item>CY</item>
+        <item>CZ</item>
+        <item>DK</item>
+        <item>DJ</item>
+
+        <item>DM</item>
+        <item>DO</item>
+        <item>TP</item>
+        <item>EC</item><!-- 68 -->
+
+        <item>EG</item>
+        <item>SV</item>
+        <item>GQ</item>
+        <item>ER</item>
+
+        <item>8EE</item>
+        <item>ET</item>
+        <item>FK</item>
+        <item>FO</item>
+
+        <item>FJ</item>
+        <item>FI</item>
+        <item>FR</item>
+        <item>FX</item>
+
+        <item>GF</item>
+        <item>PF</item>
+        <item>TF</item>
+        <item>GA</item>
+
+        <item>GM</item>
+        <item>GE</item>
+        <item>DE</item>
+        <item>GH</item>
+
+        <item>GI</item>
+        <item>GR</item>
+        <item>GL</item>
+        <item>GD</item>
+
+        <item>GP</item>
+        <item>GU</item>
+        <item>GT</item>
+        <item>GG</item>
+
+        <item>GN</item>
+        <item>GW</item>
+        <item>GY</item>
+        <item>HT</item>
+
+        <item>HM</item>
+        <item>HN</item>
+        <item>HK</item>
+        <item>HU</item>
+
+        <item>IS</item>
+        <item>IN</item>
+        <item>ID</item>
+        <item>IQ</item>
+
+        <item>IM</item>
+        <item>IE</item>
+        <item>IT</item>
+        <item>JM</item>
+
+        <item>JP</item>
+        <item>JE</item>
+        <item>JO</item>
+        <item>KZ</item>
+
+        <item>KE</item>
+        <item>KI</item>
+        <item>KR</item>
+        <item>KP</item>
+
+        <item>KW</item>
+        <item>KG</item>
+        <item>LA</item>
+        <item>LV</item>
+
+        <item>LB</item>
+        <item>LS</item>
+        <item>LR</item>
+        <item>LY</item>
+
+        <item>LI</item>
+        <item>LT</item>
+        <item>LU</item>
+        <item>MO</item>
+
+        <item>MK</item>
+        <item>MG</item>
+        <item>MW</item>
+        <item>MY</item>
+
+        <item>MV</item>
+        <item>ML</item>
+        <item>MT</item>
+        <item>MH</item>
+
+        <item>MQ</item>
+        <item>MR</item>
+        <item>MU</item>
+        <item>YT</item>
+
+        <item>MX</item>
+        <item>FM</item>
+        <item>MD</item>
+        <item>MC</item>
+
+        <item>MN</item>
+        <item>ME</item>
+        <item>MS</item>
+        <item>MA</item>
+
+        <item>MZ</item>
+        <item>MM</item>
+        <item>NA</item>
+        <item>NR</item>
+
+        <item>NP</item>
+        <item>NL</item>
+        <item>AN</item>
+        <item>NC</item>
+
+        <item>NZ</item>
+        <item>NI</item>
+        <item>NE</item>
+        <item>NG</item>
+
+        <item>NU</item>
+        <item>NF</item>
+        <item>MP</item>
+        <item>NO</item>
+
+        <item>OM</item>
+        <item>PK</item>
+        <item>PW</item>
+        <item>PS</item>
+
+        <item>PA</item>
+        <item>PG</item>
+        <item>PY</item>
+        <item>PE</item>
+
+        <item>PH</item>
+        <item>PN</item>
+        <item>PL</item>
+        <item>PT</item>
+
+        <item>PR</item>
+        <item>QA</item>
+        <item>RE</item>
+        <item>RO</item>
+
+        <item>RU</item>
+        <item>RW</item>
+        <item>SH</item>
+        <item>KN</item>
+
+        <item>LC</item>
+        <item>PM</item>
+        <item>VC</item>
+        <item>WS</item>
+
+        <item>SM</item>
+        <item>ST</item>
+        <item>SA</item>
+        <item>SN</item>
+
+        <item>RS</item>
+        <item>SC</item>
+        <item>SL</item>
+        <item>SG</item>
+
+        <item>SX</item>
+        <item>SK</item>
+        <item>SI</item>
+        <item>SB</item>
+
+        <item>SO</item>
+        <item>ZA</item>
+        <item>GS</item>
+        <item>ES</item>
+
+        <item>LK</item>
+        <item>SD</item>
+        <item>SR</item>
+        <item>SJ</item>
+
+        <item>SZ</item>
+        <item>SE</item>
+        <item>CH</item>
+        <item>SY</item>
+
+        <item>TW</item>
+        <item>TJ</item>
+        <item>TZ</item>
+        <item>TH</item>
+
+        <item>TL</item>
+        <item>TG</item>
+        <item>TK</item>
+        <item>TO</item>
+
+        <item>TT</item>
+        <item>TN</item>
+        <item>TR</item>
+        <item>TM</item>
+
+        <item>TC</item>
+        <item>TV</item>
+        <item>UG</item>
+        <item>UA</item>
+
+        <item>AE</item>
+        <item>GB</item>
+        <item>US</item>
+        <item>UM</item>
+
+        <item>UY</item>
+        <item>UZ</item>
+        <item>VU</item>
+        <item>VA</item>
+
+        <item>VE</item>
+        <item>VN</item>
+        <item>VI</item>
+        <item>VG</item>
+
+        <item>WF</item>
+        <item>EH</item>
+        <item>YE</item>
+        <item>ZM</item>
+
+        <item>ZW</item><!-- 249 -->
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item><!-- 260 -->
+
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item><!-- 270 -->
+
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item><!-- 280 -->
+
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item><!-- 289 -->
+    </string-array>
+    <string-array name="nationality_names">
+        <item>ایرانی</item>
+        <item>فرانسوی</item>
+        <item>ترکیه ای</item>
+        <item>کره ای</item>
+
+        <item>هندی</item>
+        <item>افغانستانی</item>
+        <item>آلبانیایی</item>
+        <item>الجزایری</item>
+
+        <item>ساموآ آمریکایی</item>
+        <item>آندورایی</item>
+        <item>آنگولایی</item>
+        <item>آنگویلایی</item>
+
+        <item>قطب جنوبی</item>
+        <item>آنتیگوا و باربودایی</item>
+        <item>آرژانتینی</item>
+        <item>ارمنستانی</item>
+
+        <item>آروبایی</item>
+        <item>استرالیایی</item>
+        <item>اتریشی</item>
+        <item>آذربایجانی</item>
+
+        <item>باهامایی</item>
+        <item>بحرینی</item>
+        <item>بنگلادشی</item>
+        <item>باربادوسی</item>
+
+        <item>بلاروسی</item>
+        <item>بلژیکی</item>
+        <item>بلیزی</item>
+        <item>بنینی</item>
+
+        <item>برمودایی</item>
+        <item>بوتانی</item>
+        <item>بولیوی</item>
+        <item>بوسنی و هرزگوینی</item>
+
+        <item>بوتسوانایی</item>
+        <item>جزیره بووه</item>
+        <item>برزیلی</item>
+        <item>مستعمرات انگلیسی اقیانوس هند</item>
+
+        <item>برونئی</item>
+        <item>بلغارستانی</item>
+        <item>بورکینا فاسویی</item>
+        <item>بروندی</item>
+
+        <item>کامبوجی</item>
+        <item>کامرونی</item>
+        <item>کانادایی</item>
+        <item>کیپ وردی</item>
+
+        <item>جزایر کیمن</item>
+        <item>جمهوری آفریقای مرکزی</item>
+        <item>چادی</item>
+        <item>شیلی</item>
+
+        <item>چینی</item>
+        <item>جزیره کریسمس</item>
+        <item>جزایر کوکوس</item>
+        <item>کلمبیایی</item>
+
+        <item>کوموری</item>
+        <item>کنگویی</item>
+        <item>کنگویی</item>
+        <item>جزایر کوک</item>
+
+        <item>کاستاریکایی</item>
+        <item>ساحل عاجی</item>
+        <item>کرواسییی</item>
+        <item>کوبایی</item>
+
+        <item>قبرسی</item>
+        <item>جمهوری چک</item>
+        <item>دانمارکی</item>
+        <item>جیبوتی</item>
+
+        <item>دومینیکایی</item>
+        <item>جمهوری دومینیکن</item>
+        <item>تیمور شرق</item>
+        <item>اکوادوری</item><!-- 68 -->
+
+        <item>مصری</item>
+        <item>سالوادوری</item>
+        <item>گینه استوایی</item>
+        <item>اریتره</item>
+
+        <item>استونی</item>
+        <item>اتیوپی</item>
+        <item>جزایر فالکلند ( مالویناس )</item>
+        <item>جزایر فارو</item>
+
+        <item>جزایر فیجی</item>
+        <item>فنلاند</item>
+        <item>فرانسوی</item>
+        <item>فرانسه، متروپولیتنی</item>
+
+        <item>گویان فرانسوی</item>
+        <item>پلینزی فرانسه</item>
+        <item>سرزمین های جنوبی فرانسه</item>
+        <item>گابنی</item>
+
+        <item>گامبیایی</item>
+        <item>گرجستانی</item>
+        <item>آلمانی</item>
+        <item>غنایی</item>
+
+        <item>جبل الطارقی</item>
+        <item>یونانی</item>
+        <item>گرینلندی</item>
+        <item>گرانادایی</item>
+
+        <item>جزیره گوادلوپی</item>
+        <item>گوامی</item>
+        <item>گواتمالایی</item>
+        <item>گورنسی</item>
+
+        <item>گینوی</item>
+        <item>گینه بیسائویی</item>
+        <item>گویانی</item>
+        <item>هائیتی</item>
+
+        <item>هرد و جزایر مک دونالد</item>
+        <item>هندوراسی</item>
+        <item>هنگ کنگی</item>
+        <item>مجارستانی</item>
+
+        <item>ایسلندی</item>
+        <item>هندوستانی</item>
+        <item>اندونزی</item>
+        <item>عراقی</item>
+
+        <item>جزیره من</item>
+        <item>ایرلندی</item>
+        <item>ایتالیایی</item>
+        <item>جامائیکایی</item>
+
+        <item>ژاپنی</item>
+        <item>جرسی</item>
+        <item>اردنی</item>
+        <item>قزاقستانی</item>
+
+        <item>کنیایی</item>
+        <item>کیریباتی</item>
+        <item>کروی</item>
+        <item>کره شمالی</item>
+
+        <item>کویتی</item>
+        <item>قرقیزستانی</item>
+        <item>لائوسی</item>
+        <item>لتونی</item>
+
+        <item>لبنانی</item>
+        <item>لسوتویی</item>
+        <item>لیبریایی</item>
+        <item>لیبییی</item>
+
+        <item>لیختن اشتاینی</item>
+        <item>لیتوانی</item>
+        <item>لوکزامبورگی</item>
+        <item>ماکائویی</item>
+
+        <item>مقدونیوی</item>
+        <item>جزیره مالاگازی</item>
+        <item>مالاوی</item>
+        <item>مالزی</item>
+
+        <item>مالدیوی</item>
+        <item>مالی</item>
+        <item>مالتی</item>
+        <item>جزایر مارشالی</item>
+
+        <item>مارتینیکی</item>
+        <item>موریتانی</item>
+        <item>موریسی</item>
+        <item>مایوتی</item>
+
+        <item>مکزیکی</item>
+        <item>میکرونزی</item>
+        <item>مولداوی</item>
+        <item>موناکویی</item>
+
+        <item>مغولستانی</item>
+        <item>مونته نگرویی</item>
+        <item>مونتسراتی</item>
+        <item>مراکشی</item>
+
+        <item>موزامبیکی</item>
+        <item>میانماری</item>
+        <item>نامیبیایی</item>
+        <item>نائورویی</item>
+
+        <item>نپالی</item>
+        <item>هلندی</item>
+        <item>آنتیل هلند</item>
+        <item>کالدونیاوی</item>
+
+        <item>نیوزیلندی</item>
+        <item>نیکاراگوئوی</item>
+        <item>نیجری</item>
+        <item>نیجریه ای</item>
+
+        <item>نیوئوی</item>
+        <item>جزیره نورفولکی</item>
+        <item>جزایر ماریانای شمالی</item>
+        <item>نروژی</item>
+
+        <item>عمانی</item>
+        <item>پاکستانی</item>
+        <item>پالائوی</item>
+        <item>فلسطینی</item>
+
+        <item>پانامایی</item>
+        <item>پاپوآ گینوی</item>
+        <item>پاراگوئوی</item>
+        <item>پرویی</item>
+
+        <item>فیلیپینی</item>
+        <item>جزیره پیتکرن</item>
+        <item>لهستانی</item>
+        <item>پرتغالی</item>
+
+        <item>پورتوریکویی</item>
+        <item>قطری</item>
+        <item>ریونیونی</item>
+        <item>رومانی</item>
+
+        <item>روسی</item>
+        <item>رواندایی</item>
+        <item>جزیره سنت هلن</item>
+        <item>سنت کیتس و نویس</item>
+
+        <item>سنت لوسیایی</item>
+        <item>سنت پیر و میکلون</item>
+        <item>سنت وینسنت و گرنادین</item>
+        <item>ساموآیی</item>
+
+        <item>سان مارینویی</item>
+        <item>سائوتومه و پرنسیپ</item>
+        <item>عربستان سعودی</item>
+        <item>سنگالی</item>
+
+        <item>صربستانی</item>
+        <item>سیشلی</item>
+        <item>سیرالئونی</item>
+        <item>سنگاپوری</item>
+
+        <item>سنت مارتنی</item>
+        <item>اسلواکی</item>
+        <item>اسلوونی</item>
+        <item>جزایر سلیمانی</item>
+
+        <item>سومالی</item>
+        <item>آفریقای جنوبی</item>
+        <item>South Georgia And The South Sandwich Islands</item>
+        <item>اسپانیایی</item>
+
+        <item>سری لانکایی</item>
+        <item>سودانی</item>
+        <item>سورینامی</item>
+        <item>سوالبارد و ماینی</item>
+
+        <item>سوازیلندی</item>
+        <item>سوئدی</item>
+        <item>سویسی</item>
+        <item>سوریوی</item>
+
+        <item>تایوانی</item>
+        <item>تاجیکستانی</item>
+        <item>تانزانیایی</item>
+        <item>تایلندی</item>
+
+        <item>تیمور شرقی</item>
+        <item>توگویی</item>
+        <item>توکلائویی</item>
+        <item>تونگایی</item>
+
+        <item>ترینیداد و توباگویی</item>
+        <item>تونسی</item>
+        <item>ترکیه ای</item>
+        <item>ترکمنی</item>
+
+        <item>ترکس و کیاکوسی</item>
+        <item>تووالویی</item>
+        <item>اوگاندایی</item>
+        <item>اوکراینی</item>
+
+        <item>عربی</item>
+        <item>انگلستانی</item>
+        <item>آمریکایی</item>
+        <item>United States Minor Outlying Islands</item>
+
+        <item>اروگوئوی</item>
+        <item>ازبکستانی</item>
+        <item>وانواتویی</item>
+        <item>واتیکانی</item>
+
+        <item>ونزوئلایی</item>
+        <item>ویتنامی</item>
+        <item>ویرجینی</item>
+        <item>ویرجینی</item>
+
+        <item>والیس و فوتونایی</item>
+        <item>صحرای غربی</item>
+        <item>یمنی</item>
+        <item>زامبیایی</item>
+
+        <item>زیمبابوه ای</item><!-- 249 -->
+        <item> آلاندی</item>
+        <item> آنتیگوآیی</item>
+        <item>BONAIRE, SINT EUSTATIUS AND SABA </item>
+        <item> بوسنی</item>
+        <item> کارائیب</item>
+        <item>کنگویی </item>
+        <item>عاجی </item>
+        <item>کریمه ای </item>
+        <item> کرواسی</item>
+        <item>کوراسائو </item>
+        <item> کنگویی</item><!-- 260 -->
+
+        <item> دوبی</item>
+        <item>فالکلندی </item>
+        <item> فیجی</item>
+        <item>گامبیایی </item>
+        <item>گرانادایی </item>
+        <item>HAWAII </item>
+        <item> مک دونالدی</item>
+        <item> هنگ کنگی</item>
+        <item> ماکائویی</item>
+        <item> میانماری</item><!-- 270 -->
+
+        <item> کره شمالی</item>
+        <item> فلسطینی</item>
+        <item> ایرلندی</item>
+        <item> پالائویی</item>
+        <item>سنت بارتلمی </item>
+        <item> سنت مارتینی</item>
+        <item> SINT MAARTEN (DUTCH PART)</item>
+        <item> SOUTH GEORGIA AND THE SOUTH SANDWICH ISL</item>
+        <item> کره جنوبی</item>
+        <item> سودانی</item><!-- 280 -->
+
+        <item>ST LUCIA </item>
+        <item>سوالبارد و یان ماینی </item>
+        <item> تاسمانی</item>
+        <item>تیمور شرقی </item>
+        <item> توکلائویی</item>
+        <item> کیکو یی</item>
+        <item> آمریکایی</item>
+        <item>ویرجینی </item>
+        <item> وست بانک</item><!-- 289 -->
+    </string-array>
+
+    <string-array name="nationality_codes">
+        <item>Iranian</item>
+        <item>French</item>
+        <item>Turkish</item>
+        <item>Korean</item>
+
+        <item>Indian</item>
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Algeria</item>
+
+        <item>American Samoa</item>
+        <item>Andorra</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+
+        <item>Antarctica</item>
+        <item>Antigua And Barbuda</item>
+        <item>Argentina</item>
+        <item>Armenia</item>
+
+        <item>Aruba</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Azerbaijan</item>
+
+        <item>Bahamas</item>
+        <item>Bahrain</item>
+        <item>Bangladesh</item>
+        <item>Barbados</item>
+
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Belize</item>
+        <item>Benin</item>
+
+        <item>Bermuda</item>
+        <item>Bhutan</item>
+        <item>Bolivia</item>
+        <item>Bosnia and Herzegovina</item>
+
+        <item>Botswana</item>
+        <item>Bouvet Island</item>
+        <item>Brazil</item>
+        <item>British Indian Ocean Territory</item>
+
+        <item>Brunei</item>
+        <item>Bulgaria</item>
+        <item>Burkina Faso</item>
+        <item>Burundi</item>
+
+        <item>Cambodia</item>
+        <item>Cameroon</item>
+        <item>Canada</item>
+        <item>Cape Verde</item>
+
+        <item>Cayman Islands</item>
+        <item>Central African Republic</item>
+        <item>Chad</item>
+        <item>Chile</item>
+
+        <item>China</item>
+        <item>Christmas Island</item>
+        <item>Cocos (Keeling) Islands</item>
+        <item>Colombia</item>
+
+        <item>Comoros</item>
+        <item>Congo</item>
+        <item>Congo, Democractic Republic</item>
+        <item>Cook Islands</item>
+
+        <item>Costa Rica</item>
+        <item>Cote D Ivoire (Ivory Coast)</item>
+        <item>Croatia (Hrvatska)</item>
+        <item>Cuba</item>
+
+        <item>Cyprus</item>
+        <item>Czech Republic</item>
+        <item>Denmark</item>
+        <item>Djibouti</item>
+
+        <item>Dominica</item>
+        <item>Dominican Republic</item>
+        <item>East Timor</item>
+        <item>Ecuador</item><!-- 68 -->
+
+        <item>Egypt</item>
+        <item>El Salvador</item>
+        <item>Equatorial Guinea</item>
+        <item>Eritrea</item>
+
+        <item>Estonia</item>
+        <item>Ethiopia</item>
+        <item>Falkland Islands (Islas Malvinas)</item>
+        <item>Faroe Islands</item>
+
+        <item>Fiji Islands</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>France, Metropolitan</item>
+
+        <item>French Guiana</item>
+        <item>French Polynesia</item>
+        <item>French Southern Territories</item>
+        <item>Gabon</item>
+
+        <item>Gambia, The</item>
+        <item>Georgia</item>
+        <item>Germany</item>
+        <item>Ghana</item>
+
+        <item>Gibraltar</item>
+        <item>Greece</item>
+        <item>Greenland</item>
+        <item>Grenada</item>
+
+        <item>Guadeloupe</item>
+        <item>Guam</item>
+        <item>Guatemala</item>
+        <item>Guernsey</item>
+
+        <item>Guinea</item>
+        <item>Guinea-Bissau</item>
+        <item>Guyana</item>
+        <item>Haiti</item>
+
+        <item>Heard and McDonald Islands</item>
+        <item>Honduras</item>
+        <item>Hong Kong S.A.R.</item>
+        <item>Hungary</item>
+
+        <item>Iceland</item>
+        <item>India</item>
+        <item>Indonesia</item>
+        <item>Iraq</item>
+
+        <item>Isle of Man</item>
+        <item>Ireland</item>
+        <item>Italy</item>
+        <item>Jamaica</item>
+
+        <item>Japan</item>
+        <item>Jersey</item>
+        <item>Jordan</item>
+        <item>Kazakhstan</item>
+
+        <item>Kenya</item>
+        <item>Kiribati</item>
+        <item>Korea</item>
+        <item>Kuwait</item>
+
+        <item>Kyrgyzstan</item>
+        <item>Laos</item>
+        <item>Latvia</item>
+        <item>Lebanon</item>
+
+        <item>Lesotho</item>
+        <item>Liberia</item>
+        <item>Libya</item>
+        <item>Liechtenstein</item>
+
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macau S.A.R.</item>
+        <item>Macedonia</item>
+
+        <item>Madagascar</item>
+        <item>Malawi</item>
+        <item>Malaysia</item>
+        <item>Maldives</item>
+
+        <item>Mali</item>
+        <item>Malta</item>
+        <item>Marshall Islands</item>
+        <item>Martinique</item>
+
+        <item>Mauritania</item>
+        <item>Mauritius</item>
+        <item>Mayotte</item>
+        <item>Mexico</item>
+
+        <item>Micronesia</item>
+        <item>Moldova</item>
+        <item>Monaco</item>
+        <item>Mongolia</item>
+
+        <item>Montenegro</item>
+        <item>Montserrat</item>
+        <item>Morocco</item>
+        <item>Mozambique</item>
+
+        <item>Myanmar</item>
+        <item>Namibia</item>
+        <item>Nauru</item>
+        <item>Nepal</item>
+
+        <item>Netherlands</item>
+        <item>Netherlands Antilles</item>
+        <item>New Caledonia</item>
+        <item>New Zealand</item>
+
+        <item>Nicaragua</item>
+        <item>Niger</item>
+        <item>Nigeria</item>
+        <item>Niue</item>
+
+        <item>Norfolk Island</item>
+        <item>Northern Mariana Islands</item>
+        <item>Norway</item>
+        <item>Oman</item>
+
+        <item>Pakistan</item>
+        <item>Palau</item>
+        <item>Palestinian Territory, Occupied</item>
+        <item>Panama</item>
+
+        <item>Papua new Guinea</item>
+        <item>Paraguay</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+
+        <item>Pitcairn Island</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Puerto Rico</item>
+
+        <item>Qatar</item>
+        <item>Reunion</item>
+        <item>Romania</item>
+        <item>Russia</item>
+
+        <item>Rwanda</item>
+        <item>Saint Helena</item>
+        <item>Saint Kitts And Nevis</item>
+        <item>Saint Lucia</item>
+
+        <item>Saint Pierre and Miquelon</item>
+        <item>Saint Vincent And The Grenadines</item>
+        <item>Samoa</item>
+        <item>San Marino</item>
+
+        <item>Sao Tome and Principe</item>
+        <item>Saudi Arabia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+
+        <item>Seychelles</item>
+        <item>Sierra Leone</item>
+        <item>Singapore</item>
+        <item>Sint Maarten</item>
+
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>Solomon Islands</item>
+        <item>Somalia</item>
+
+        <item>South Africa</item>
+        <item>South Georgia And The South Sandwich Islands</item>
+        <item>Spain</item>
+        <item>Sri Lanka</item>
+
+        <item>Sudan</item>
+        <item>Suriname</item>
+        <item>Svalbard And Jan Mayen Islands</item>
+        <item>Swaziland</item>
+
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Syria</item>
+        <item>Taiwan</item>
+
+        <item>Tajikistan</item>
+        <item>Tanzania</item>
+        <item>Thailand</item>
+        <item>Timor-Leste</item>
+
+        <item>Togo</item>
+        <item>Tokelau</item>
+        <item>Tonga</item>
+        <item>Trinidad And Tobago</item>
+
+        <item>Tunisia</item>
+        <item>Turkey</item>
+        <item>Turkmenistan</item>
+        <item>Turks And Caicos Islands</item>
+
+        <item>Tuvalu</item>
+        <item>Uganda</item>
+        <item>Ukraine</item>
+        <item>United Arab Emirates</item>
+
+        <item>United Kingdom</item>
+        <item>United States</item>
+        <item>United States Minor Outlying Islands</item>
+        <item>Uruguay</item>
+
+        <item>Uzbekistan</item>
+        <item>Vanuatu</item>
+        <item>Vatican City State (Holy See)</item>
+        <item>Venezuela</item>
+
+        <item>Vietnam</item>
+        <item>Virgin Islands (US)</item>
+        <item>Virgin Islands (British)</item>
+        <item>Wallis And Futuna Islands</item>
+
+        <item>WESTERN SAHARA</item>
+        <item>Yemen</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
+
+        <item>ALAND ISLANDS</item><!-- 249 -->
+        <item>ANTIGUA </item>
+        <item> BONAIRE, SINT EUSTATIUS AND SABA</item>
+        <item>BOSNIA </item>
+        <item> CARIBBEAN</item>
+        <item> CONGO.REPUBLIC OF</item>
+        <item> COTE D`IVOIRE(IVORY COAST)</item>
+        <item> CRIMEA</item>
+        <item> CROATIA</item>
+        <item> CURACAO</item>
+        <item> DEMOCRATIC REPUBLIC OF CONGO</item>
+        <item> DUBAI AIRPORT</item><!-- 260 -->
+
+        <item> FALKLAND ISLANDS(MALVINAS)</item>
+        <item>FIJI </item>
+        <item> GAMBIA</item>
+        <item> GRENADA /CARRICOU</item>
+        <item>HAWAII </item>
+        <item> HEARD ISLAND AND MCDONALD ISLANDS</item>
+        <item>HONG KONG </item>
+        <item> MACAU</item>
+        <item>MYANMAR-BURMA </item>
+        <item>NORTH KOREA </item><!-- 270 -->
+
+        <item> PALESTINIAN TERRITORY</item>
+        <item> REPUBLIC OF IRELAND</item>
+        <item> REPUBLIC OF PALAU</item>
+        <item> SAINT BARTHELEMY</item>
+        <item> SAINT MARTIN (FRENCH PART)</item>
+        <item> SINT MAARTEN (DUTCH PART)</item>
+        <item> SOUTH GEORGIA AND THE SOUTH SANDWICH ISL</item>
+        <item> SOUTH KOREA</item>
+        <item> SOUTH SUDAN</item>
+        <item> ST LUCIA</item><!-- 280 -->
+
+        <item> SVALBARD AND JAN MAYEN</item>
+        <item> TASMANIA</item>
+        <item> TIMOR LESTE</item>
+        <item> TOKELAU ISLANDS</item>
+        <item> TURKS / CAICOS</item>
+        <item> U S A</item>
+        <item> U.S. VIRGIN ISLANDS</item>
+        <item> WEST BANK</item>
+        <item> </item><!-- 289 -->
+    </string-array>
+
+    <string-array name="country_flags">
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 17 ta 4 =68-->
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 30 -->
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 44-->
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 50-->
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 60-->
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 64-->
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 72 ta 4tayi -->
+
+        <item>@drawable/ir</item><!-- 289-->
+    </string-array>
+    <string name="datePickerError"> Geçen tarih dönüş tarihinden daha büyük </string>
+    <string name="departTo"> Kimden: </string>
+    <string name="departFrom"> kadar: </string>
+    <string name="DatePickerError2"> Bugünün tarihinden önce seçilemiyor </string>
+    <string name="NoResult"> Aramanız için hiçbir sonuç bulunamadı! </string>    
+    <string name="off">% İndirim </string>
+    <string name="_1star"> 1 Yıldızlı </string>
+    <string name="_2star"> 2 Yıldız </string>
+    <string name="_3star"> 3 Star </string>
+    <string name="_4star"> 4 Yıldızlı </string>
+    <string name="_5star"> 5 Yıldızlı </string>
+    <string name="WithoutStar"> Yıldız yok </string>
+    <string name="BestSell"> Çoğu satar </string>
+    <string name="BestOff"> Özel İndirim </string> 
+    <string name="InternetError"> İnternet bağlantınız kesildi veya ulaşılamadı </string>
+    <string name="ErrorServer"> Eligasht\'dan bilgi alma hatası </string>
+    <string name="Sort"> Sıralama </string>
+    <string name="Filter"> Filtre </string>
+    <string name="NextDay"> Sonraki \ nGün </string>
+    <string name="LastDay"> Önceki Gün </string>
+    <string name="curency"> Rial </string>
+    <string name="ApartmenHotel"> Apartman Otel </string>
+    <string name="BoutiqueHotel"> Butik Otel </string>
+    <string name="ResortHotel"> Otel Rezervasyonu </string>
+    <string name="NonStop">Non stop</string>
+    <string name="OneStop"> Tek Durak </string>
+    <string name="TwoStop"> İki Durak </string>
+    <string name="DetailHotel"> Otel Detayları </string>
+    <string name="GoogleUpdateError"> Google Play hizmetinizin güncellenmesi gerekiyor. </string>
+    <string name="NewComment"> Son yorumlar </string>
+    <string name="BenefitComment"> En yararlı yorumlar </string>
+    <string name="AccessError"> Erişim yok </string>
+    <string name="UserRate"> kullanıcıların derecelendirmesi </string>
+    <string name="Comment"> Yorum) </string>
+    <string name="CommentUser"> Kullanıcı yorumları (</string>
+    <string name="RecomandUser">% Bu otel önerildi </string>
+    <string name="Possibilities"> Tesisler </string>
+    <string name="Around"> Çevresinde </string>
+    <string name="Policy"> İlke </string>
+    <string name="ReservRoom"> Bir oda ayırın </string>
+    <string name="NoComment"> Yorum yapılmamış! </string>
+    <string name="ConfirmComment"> Yorum </string>
+    <string name="ErrorRoom"> Oda bulunamadı! </string>
+    <string name="Comments"> Yorumlar </string>
+    <string name="Map"> Harita </string>
+    <string name="HotelPolicy"> Otel Politikası </string>
+    <string name="cancel_f"> iptal edin: </string>
+    <string name="to"> to </string> 
+    <string name="Contains"> İçeriyor </string>
+    <string name="penalty"> Para cezasına çarptırılır. </string>
+    <string name="RoomError"> Numara 9 kişiden fazla olmamalıdır. </string>
+    <string name="InformationRoom"> Bilgi odası </string>
+    <string name="room"> Oda </string>
+    <string name="confirm"> Onayla </string>
+    <string name="ServicesInformation"> Hizmet Ayrıntıları </string>
+    <string name="PackgeNoFound"> ​​Hiçbirşey Bulunamadı. </string>
+    <string name="OnlyOne"> Bir Öğe Gösterilecek. </string>
+    <string name="PackageError"> Bu tarihte herhangi bir sonuç bulunamadı; en yakın tarih şu şekildedir: </string>
+    <string name="PassengerSpec"> Yolcu Ayrıntıları </string>
+    <string name="Brithday"> Lütfen doğum tarihinizi girin </string>
+    <string name="brithdayError"> Lütfen yolcuların doğum tarihini giriniz </string>
+    <string name="Passanger"> Yolcu </string>
+    <string name="select_return_date"> tarih seç </string>
+    <string name="please_select_one"> Lütfen birini seçin </string>
+    <string name="please_select_destination_city"> Lütfen yolculuk şehrinizi seçin </string>
+    <string name="something_went_wron"> Bir hata oluştu </string>
+    <string name="please_select_start_trip_date"> Gezinin başlangıç ​​tarihini seçin </string>
+    <string name="select_destination_country"> Hedef ülkeyi seçin </string>
+    <string name="select_departure_date_and_travel_duration"> Kalkış ve seyahat süresini seçin </string>
+    <string name="departure_date"> Ayrılış tarihi </string>
+    <string name="select_travel_duration">Ayrılış tarihi</string>
+    <string name="passenger">Yolcu</string>
+    <string name="number_of_passengers">Yolcuların sayısı</string>
+    <string name="error_in_connection">Bağlantı Hatası</string>
+    <string name="there_is_no_city_to_show">göstermek için hiçbir şehir yok</string>
+    <string name="return_date">Dönüş tarihi</string>
+    <string name="select_departure_and_return_date">Kalkış tarihini seçin</string>
+    <string name="select_destination_city_first">varış şehri seçin</string>
+    <string name="enter_your_password">şifrenizi girin.</string>
+    <string name="re_enter_your_password">Şifreyi yeniden gir</string>
+    <string name="enter_your_new_password">Yeni şifrenizi giriniz.</string>
+    <string name="enter_your_birth_date">doğum tarihinizi giriniz.</string>
+    <string name="enter_your_name_in_persian">İsminizi Farsça yazınız.</string>
+    <string name="enter_your_name_in_english">isminizi ingilizce giriniz.</string>
+    <string name="enter_your_family_name_in_persian">son adınızı persian olarak giriniz.</string>
+    <string name="enter_your_family_name_in_english">soyadınızı ingilizce olarak giriniz.</string>
+    <string name="enter_your_mobile_number">Telefon numaranızı girin.</string>
+    <string name="edit_profile">Profili Düzenle</string>
+    <string name="my_contracts">Sözleşmelerim</string>
+    <string name="change_password">Parolaları Değiştir</string>
+    <string name="select_destination_city_or_airport">Varış havalimanını seçin</string>
+    <string name="select_origin_city_or_airport">Menşei şehir veya havaalanı seçin</string>
+    <string name="destination">Hedef</string>
+    <string name="origin">Menşei</string>
+    <string name="travel_to">Seyahat :</string>
+    <string name="checkout_date">Tarihi kontrol et</string>
+    <string name="checkin_date">Checkin Tarih</string>
+    <string name="baby">Çocuk</string>
+    <string name="adault">Yetişkin</string>
+    <string name="search">Arama</string>
+    <string name="login">Oturum aç</string>
+    <string name="hotel_reservation">Otel rezervasyonu</string>
+
+
+    <!--nemati-->
+    <string name="hotel_reservation_and_plane_ticket">Bilet + Otel</string>
+    <string name="travel_tour">Seyahat Turu</string>
+    <string name="travel_insurance">Seyahat Sigortası</string>
+    <string name="soon">(Yakında)</string>
+    <string name="trains">Yabancı tren</string>
+    <string name="terms_and_conditions">Şartlar ve koşullar</string>
+    <string name="contact_us">Bizimle iletişime geçin</string>
+    <string name="about_us">Hakkımızda</string>
+    <string name="exit">çıkış</string>
+    <string name="settings">Ayarlar</string>
+    <string name="please_specify_traverels_birth_date">Lütfen yolcularınızın doğum tarihlerini giriniz.</string>
+    <string name="please_select_destination_and_origin">Lütfen menşei ve varış yerini seçin</string>
+    <string name="my_old_purchases">Eski Satın Almalarım</string>
+    <string name="my_information">Detaylarım</string>
+    <string name="plane_ticket">Uçak bileti</string>
+    <string name="AlertInternetError">İnternet bağlantınız kesintiye uğradı veya ulaşılamadı. Bu yazılımın özelliklerini kullanmak için İnternet servisinizi kontrol edin!</string>
+    <string name="Data">4G/3G</string>
+    <string name="wifi">Wifi</string>
+    <string name="NoInternet">Bağlantı koptu</string>
+    <string name="alert">Alert</string>
+    <string name="ExitAlert">Ayrılmak istediğinden emin misin?</string>
+    <string name="CancelAlert">Yok hayır</string>
+    <string name="OkAlert">Evet</string>
+    <string name="SplashServerError">Sunucu ile iletişim mümkün değildir</string>
+    <string name="Try">Tekrar deneyin</string>
+    <string name="Update">Güncelleştirme</string>
+    <string name="UpdateAlert">Yazılımın güncellenmesi gerekiyor, yazılımı güncellemek istiyor musunuz?</string>
+    <string name="SelectFilter">Filtre seçimi</string>
+    <string name="Stop">durdurmak</string>
+    <string name="TwoStopAndMore">İki Dur ve Daha Fazlası</string>
+    <string name="Economi">Ekonomik</string>
+    <string name="Business">İş adamı sınıfı</string>
+    <string name="first"> Birinci Sınıf </string>
+    <string name="AirLine"> AirLine </string>
+    <string name="FilterConfirm"> Filtreyi onayla </string>
+    <string name="RemoveFilter"> Filtreyi kaldır </string>
+    <string name="FilterError"> Filtre seçeneği seçilmedi </string>
+    <string name="SortFilter"> Sıralama </string>
+    <string name="SortMax"> En yüksek fiyata dayanılarak </string>
+    <string name="SortMin"> En düşük fiyata dayanılarak </string>
+    <string name="EditInput"> Lütfen aşağıdaki düzeltmeleri yapın </string>
+    <string name="UserRating"> Bu otelde oy verin </string>
+    <string name="back"> Geri </string> 
+    <string name="SearchHotel"> Otel adını ara </string> 
+    <string name="StarRateHotel"> Derecelendirme </string>
+    <string name="HotelType"> Tür </string>
+    <string name="KonumTürü"> Konum </string>
+    <string name="FacilitiType"> Tesisler </string>
+    <string name="Price"> Price </string>
+    <string name="SearchCity"> Arama </string>
+    <string name="BuyInsurance"> Sigorta Satın Al </string>
+    <string name="Detail"> Detay </string>
+    <string name="from"> Kimden </string>
+    <string name="night"> Gece </string>
+    <string name="Nothing"> Hiçbirşey </string>
+    <string name="Adult"> Yetişkin </string>
+    <string name="ChildPackage"> Çocuk </string>
+    <string name="BabyPackage"> Bebek </string>
+    <string name="OfferTo"> Kullanılabilir hizmetler </string>
+    <string name="ServicesPackage"> Kullanılabilir hizmetler </string>
+    <string name="InfoAirline"> Uçuş bilgileri </string>
+    <string name="travel_duration"> Seyahat süresi </string>
+    <string name="enter_current_password"> Geçerli şifreyi girin </string>
+    <string name="current_password"> Geçerli şifre </string>
+    <string name="new_password"> Yeni şifre </string>
+    <string name="re_enter_password"> Yeni şifreyi tekrar giriniz </string>
+    <string name="basic_information"> Temel Bilgiler </string>
+    <string name="please_enter_your_name"> Lütfen adınızı girin </string>
+    <string name="name"> Name </string> 
+    <string name="please_enter_your_family_name"> Lütfen soyadınızı girin </string>
+    <string name="family_name"> soyadı </string>
+    <string name="other_information"> Diğer Bilgiler </string>
+    <string name="please_enter_your_email_address"> Lütfen e-posta adresinizi girin </string>
+    <string name="mail"> E-posta </string>
+    <string name="please_enter_your_national_code"> Lütfen ulusal kodunuzu girin </string>
+    <string name="ulusal_kod"> Ulusal kod </string>
+    <string name="please_enter_your_birth_date"> doğum tarihinizi girin </string>
+    <string name="birth_date"> Doğum tarihi </string>
+    <string name="please_enter_your_phone_number"> Lütfen sabit hattınızı girin </string>
+    <string name="phone"> Telefon </string>
+    <string name="mobile"> Mobil </string>
+    <string name="please_enter_your_address"> Lütfen adresinizi girin </string>
+    <string name="address"> Adres </string>
+    <string name="female"> kadın </string>
+    <string name="male"> Erkek </string>
+    <string name="sex"> Sex </string>
+    <string name="departure_from"> Gidiş yeri: </string>
+    <string name="istanbul"> İstanbul </string>
+    <string name="departure_to"> Gidilecek yer: </string>
+    <string name="origin_colon"> Menşei: </string>
+    <string name="destination_colon"> Hedef: </string>
+    <string name="newborn"> Bebek </string>
+    <string name="departure"> Tek Yönlü </string>
+    <string name="departure_and_return"> Gidiş dönüş </string>
+    <string name="name_en"> Ad (En) * </string>
+    <string name="please_enter_your_mobile_number"> Cep numarasını giriniz </string>
+    <string name="SelectLanguage"> Uygulama dilini seçin </string>
+    <string name="Persian"> فارسی </string>
+    <string name="English"> İngilizce </string>
+    <string name="IrOK"> Tamam </string>
+
+
+    <!--nejati-->
+    <string name="PostComment">Yorum Gönder</string>
+    <string name="CommentFor">Için yorum yap</string>
+    <string name="FacilityHotelComment">Otel Tesisi</string>
+    <string name="AccessToImportant">Konuma erişim</string>
+    <string name="Sleep">Uyku kalitesi</string>
+    <string name="ValuePrice">Paranızın karşılığı</string>
+    <string name="ServiceStatus">tesisler</string>
+    <string name="CleaningStatus">Temizlik</string>
+    <string name="Admiration">Personel</string>
+    <string name="QualityOfFood">Yemek kalitesi</string>
+    <string name="NextStep">Sonraki adım</string>
+    <string name="TitleComment">Başlık Yorum</string>
+    <string name="YourComment">Senin yorumun</string>
+    <string name="RecomandHotel">Bu oteli diğerlerine öneririm</string>
+    <string name="HiddenName">Ben ismimi göstermek yerine</string>
+    <string name="ShowPicture">Resmi göster</string>
+    <string name="BackToLastPage">Son Sayfaya Dön</string>
+    <string name="ChangeFlight">Uçuşu Değiştir</string>
+    <string name="SelectDepartCity">Hedef şehri seçin</string>
+    <string name="lisences">Lisans</string>
+    <string name="day_">Gün_</string>
+    <string name="rial_">$</string>
+    <string name="day">Gün</string>
+    <string name="space_rial_space">$</string>
+    <string name="amount_">Miktar</string>
+    <string name="contract_code">Sözleşme numarası :</string>
+    <string name="approved">onaylı</string>
+    <string name="delivered">teslim</string>
+    <string name="working_on_it">aksiyon</string>
+    <string name="date">tarih</string>
+    <string name="route">Rota</string>
+    <string name="start_trip_date">Seyahat Tarihini Başla</string>
+    <string name="enter_date">Tarih Gir</string>
+    <string name="remain">Kalmak</string>
+    <string name="sales_person">Satis elemani</string>
+    <string name="visa_status">Vize durumu</string>
+    <string name="ticket_status">Bilet Durumu</string>
+    <string name="hotel_status">Otel Durumu</string>
+    <string name="document_status">Döküman durumu</string>
+    <string name="total_cost">Total Cost</string>
+    <string name="send_documents"> Belgeleri Göndermek </string>
+    <string name="stop"> Durdur </string>
+    <string name="none_stop">Non stop </string>
+    <string name="just"> Sadece </string>
+    <string name="people"> Kişiler </string>
+    <string name="saturday"> Sat </string>
+    <string name="sunday">pazar</string>
+    <string name="monday">Mon</string>
+    <string name="tuesday">suesday</string>
+    <string name="wednesday">çarşamba</string>
+    <string name="thursday">perşembe</string>
+    <string name="friday">Cum</string>
+    <string name="costs_table"> Maliyet Fiyatı </string>
+    <string name="base_price"> Esas Fiyatı </string>
+    <string name="tax"> Vergi </string>
+    <string name="payable">Ödenecek </string>
+    <string name="select_and_reserve"> Seç ve Rezerv </string>
+    <string name="calculate_price"> Fiyat hesapla </string>
+    <string name="add_to_shoping_cart"> Sepetene ekle </string>
+    <string name="added"> Eklendi </string>
+    <string name="total_added_price"> Toplam Ücret </string>
+    <string name="Child">Çocuk </string>
+    <string name="Please_choose_a_gender"> Cinsiyeti seçin </string>
+    <string name="man"> Erkek </string>
+    <string name="Female">Kadın</string>
+    <string name="Please_enter_your_residence"> Lütfen ikamet yerini girin </string>
+    <string name="Please_enter_your_nationality"> Uyruk </string>
+    <string name="Please_enter_the_date_of_birth"> Lütfen doğum tarihini giriniz </string>
+    <string name="Please_enter_a_name_in_English"> Lütfen bir ad girin (İngilizce) </string>
+    <string name="Please_enter_a_surname_in_English"> Lütfen soyadınızı giriniz (İngilizce) </string>
+    <string name="Please_enter_your_passport_expiration_date"> Lütfen pasaportun sona erme tarihini girin </string>
+    <string name="Please_enter_the_passport_number_correctly"> Lütfen pasaport numarasını doğru giriniz </string>
+    <string name="Please_enter_the_passport_number"> Lütfen pasaport numarasını girin </string>
+    <string name="Please_enter_the_correct_code">Lütfen ulusal kodunuzu doğru giriniz</string>
+    <string name="Please_enter_the_email">Lütfen e-posta adresinizi girin</string>
+    <string name="Please_enter_a_name_in_Persian"> Lütfen bir ad girin (Farsça) </string>
+    <string name="Please_enter_last_name_in_Persian"> Lütfen soyadını girin (Farsça) </string>
+    <string name="Please_enter_the_mobil_number"> Cep numarasını giriniz </string>
+    <string name="Please_enter_the_national_code"> Lütfen ulusal kodu girin </string>
+    <string name="Rial"> Rials </string>
+    <string name="Error_getting_information_from_eli"> Bilgi alma hatası </string>
+    <string name="An_error_has_occurred"> Bir hata oluştu </string>
+    <string name="Approval_and_payment_of_pre_invoice"> Ön faturanın onaylanması ve ödenmesi </string>
+    <string name="Add_to_cart_services"> Alışveriş sepetine ekle </string>
+    <string name="passneger_info"> Yolcuların bilgileri </string>
+    <string name="Buyer_Specifications">Alıcı Spesifikasyonları</string>
+    <string name="Traveler_info">Yolcu bilgileri</string>
+    <string name="Email_format_is_correct"> E-posta biçimi doğru (test@test.com) </string>
+    <string name="Name_of_at_least_2_characters_and_maximum_100_characters"> En az 2 karakter ve maksimum 100 karakterden oluşan isim </string>
+    <string name="The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters"> Soyadı en az 2 karakter ve maksimum 100 karakterdir </string>
+    <string name="Enter_the_correct_mobile_format"> Doğru mobil biçimi girin (örneğin ... 0912) </string>
+    <string name="The_national_code_is_not_correct"> Ulusal kod doğru değil (10 basamaklı) </string>
+    <string name="child"> Child </string>
+    <string name="Enter_the_passport_number_correctly"> Pasaport numarasını doğru giriniz </string>
+    <string name="Enter_the_place_of_residence"> ikamet yerine giriniz </string>
+    <string name="Enter_your_nationality"> uyrukluk girin </string>
+    <string name="Enter_the_date_of_birth"> Doğum tarihini girin </string>
+    <string name="baby_pass"> Bebek </string>
+    <string name="Enter_the_passport_expiration_date"> Pasaportun geçerlilik tarihi girin </string>
+    <!--heydari-->
+    <string name="Enter_your_gender"> Cinsiyet seçin </string>
+    <string name="First_passenger_information"> İlk yolcu bilgileri (yetişkin) </string>
+    <string name="Passenger_information"> Yolcu bilgileri </string>
+    <string name="adult_"> (Yetişkin) </string>
+    <string name="adult"> Yetişkin </string>
+    <string name="child_"> (çocuk) </string>
+    <string name="baby_"> (Bebek) </string>
+    <string name="First"> İlk </string>
+    <string name="Second"> İkinci </string>
+    <string name="Third"> Üçüncülük </string>
+    <string name="Fourth"> Dördüncü </string>
+    <string name="Fifth"> Beşincilik </string>
+    <string name="Sixth"> Altıncı </string>
+    <string name="Seventh"> Yedinci </string>
+    <string name="Eighth"> Sekizinci </string>
+    <string name="ninth"> Dokuzuncu </string>
+    <string name="info_passenger"> Yolcu bilgileri </string>
+    <string name="not_connection"> Sunucuya bağlanılamadı </string>
+    <string name="payment"> Öde </string>
+    <string name="servis">Hizmetler</string>
+    <string name="passengers">Yolcular</string>
+    <string name="partner">Alıcı</string>
+    <string name="gender">Cinsiyet</string>
+    <string name="please_pesrsian">Lütfen farsça girin</string>
+    <string name="name_family">Soyadı</string>
+    <string name="code_meli">ulusal kod</string>
+    <string name="email_">E-posta</string>
+    <string name="Verification_and_next_step">Onayla ve bir sonraki adım</string>
+    <string name="first_room">Ilk oda</string>
+    <string name="please_eng">Lütfen ingilizce girin</string>
+    <string name="number_pass">Pasaport numarası</string>
+    <string name="meli_code">Ulusal kod</string>
+    <string name="date_birth">Doğum günü</string>
+    <string name="exp_pas">Pasaportun son kullanma tarihi</string>
+    <string name="more_data">Daha fazla bilgi</string>
+    <string name="nationality">milliyet</string>
+    <string name="eghamat_local">İkamet yeri</string>
+    <string name="sum_khadamat">Toplam hizmet fiyatı</string>
+    <string name="moshakhasat_mosafer">Yolcuların ayrıntıları</string>
+    <string name="info_flight">Uçuş bilgisi</string>
+    <string name="detail_hotel">Otel detayları</string>
+    <string name="Available_services">Kullanılabilir hizmetler</string>
+    <string name="The_amount_payable">ödenebilir miktar</string>
+    <string name="Registration_and_payment">onaylamak ve ödemek</string>
+    <string name="text1">Dil Seçin</string>
+    <string name="text2">Programın restorasyonu sonrasında değişiklikler yapılacaktır.</string>
+    <string name="text3">Birim Seç</string>
+    <string name="text4">Birimi seçmek için bu öğeyi seçin</string>
+    <string name="text5">Ofis Seçiniz</string>
+    <string name="text6">Office i seçmek için bu bölümü seçin</string>
+    <string name="your_time_has_expired">Zamanın doldu</string>
+    <string name="change_fligfontht">Uçuş değiştir...</string>
+    <string name="class_flight">Uçuş sınıfı</string>
+    <string name="cities_all_over_the_world">Tüm dünyadaki şehirler</string>
+    <string name="confirmed_airlines">Onaylanmış havayolu şirketleri</string>
+    <string name="hotels_all_over_the_world">Dünyanın dört bir yanındaki oteller</string>
+    <string name="room_information">Oda bilgileri</string>
+    <string name="numbers_must_be_less_than_nine">Sayılar dokuzdan daha az olmalı</string>
+    <string name="there_is_no_access">Erişim yok</string>
+    <string name="eligasht">Eligasht</string>
+    <string name="eligasht_address_">7 Numaralı - 23. Cadde - Halid eslamboli caddesi - Tahran - İran</string>
+    <string name="follow_us_on_social_networks">Sosyal ağlarda bizi takip edin ...</string>
+    <string name="send_message_form">Mesaj gönder formu</string>
+    <string name="name_and_family">isim ve soyisim</string>
+    <string name="phone_number">Telefon numarası</string>
+    <string name="message_subject">Mesaj Konusu</string>
+    <string name="message_text">Mesaj metni</string>
+    <string name="send_message">Mesaj gönder</string>
+    <string name="activation">etkinleştirme</string>
+    <string name="your_gps_is_off">GPSleriniz kapalı.</string>
+    <string name="around_hotel">Otel çevresinde</string>
+    <string name="info_hotel">Otel bilgisi</string>
+    <string name="password">parola</string>
+    <string name="forgot_password">Parolanızı mı unuttunuz</string>
+    <string name="register">Kayıt olmak</string>
+    <string name="login_">Oturum aç</string>
+    <!--azizi-->
+    <!--fonts-->
+    <string name="change_flight"> Uçuş değiştir </string>
+    <string name="three_months"> 3 ay </string>
+    <string name="two_months"> 2 ay </string>
+    <string name="fourty_five_days"> 45 gün </string>
+    <string name="thirty_one_days"> 31 gün </string>
+    <string name="twenty_three_days"> 23 gün </string>
+    <string name="fifteen_days"> 15 gün </string>
+    <string name="seven_days"> 7 gün </string>
+    <string name="six_months"> 6 ay </string>
+    <string name="one_year"> Bir yıl </string>
+    <string name="Facility">fonts/times.ttf</string>
+    <string name="iran_sans_bold.ttf">fonts/times.ttf</string>
+    <string name="iran_sans_normal.ttf">fonts/times.ttf</string>
+    <string name="irsans.ttf">fonts/times.ttf</string>
+    <string name="mitra.ttf">fonts/times.ttf</string>
+    <string name="select"> seç </string>
+    <string name="my_profile"> Profilim </string>
+    <string name="text20"> Şu anda isteğinize cevap vermek mümkün değil </string>
+    <string name="text21"> Şu anda isteğinize yanıt vermek mümkün değil </string>
+    <string name="text22"> Alınan e-posta zaten sistemde. </string>
+    <string name="text24"> Etkinleştirme bağlantısı e-postanıza gönderildi. </string>
+    <string name="text25"> Şu anda isteğinize cevap vermek mümkün değil </string>
+    <string name="text26"> Lütfen e-postanızı girin </string>
+    <string name="text27"> Girilen e-posta doğru değil </string>
+    <string name="text28"> Lütfen şifrenizi girin </string>
+    <string name="text29"> Lütfen şifreyi tekrar giriniz </string>
+    <string name="text30"> Parola ve eşleşmiyor. </string>
+    <string name="text40"> ilk ad ve soyad </string>
+    <string name="_0"> 0 ila 2 yıl </string> 
+    <string name="_1"> 2 ila 3 yıl </string>
+    <string name="_2"> 3 ila 4 yıl </string>
+    <string name="_3"> 4-5 yıl </string>
+    <string name="_4"> 5 ila 6 yıl </string>
+    <string name="_5"> 6 ila 7 yıl </string>
+    <string name="_6"> 7 ila 8 yıl </string>
+    <string name="_7"> 8 ila 9 yıl </string>
+    <string name="_8"> 9 ila 10 yıl </string>
+    <string name="_9"> 10 ila 11 yıl </string>
+    <string name="_10"> 11 ila 12 yıl arası </string>
+    <string name="_11"> 12 yıl </string>
+    <string name="_12"> 2 yıl </string>
+    <string name="flight_number_correctly"> Tek yön uçuş numarasını doğru bir şekilde girin </string>
+    <string name="flight_return_number_correctly"> Bir gidiş dönüş uçuş numarasını doğru bir şekilde girin </string>
+    <string name="destination_airport"> Hedef havaalanı </string>
+    <string name="hotel_name"> otel adı </string>
+    <string name="departure_hour"> çıkış saati </string>
+    <string name="return_hour"> Dönüş saati </string>
+    <string name="one_way"> Tek yön uçuş numarası </string>
+    <string name="round_flight"> Gidiş-dönüş uçuş numarası </string>
+    <string name="enter_value"> Sayı girin </string>
+    <string name="approve_factor"> faturayı onayla </string>
+    <string name="contract_didnt_registred"> Sözleşme teslim edilmedi </string>
+    <string name="no_money_has_been_payed_for_this_cart"> Bu sepet için para ödenmedi </string>
+    <string name="needed_docs_to_mail"> Bu dosyaya gerekli doküman gönderildi </string>
+    <string name="has_been_sent"> e-posta adresi </string>
+    <string name="contract_has_been_registred_successfully"> Sözleşme başarıyla kaydedildi </string>
+    <string name="your_contract_with_number"> Bu numarayla sözleşmeniz </string>
+    <string name="registred"> kayıtlı. </string>
+    <string name="your_internet_connection_is_lost"> İnternet\'e bağlı değilsiniz </string>
+    <string name="pre_factor_number"> Fatura numarası </string>
+    <string name="ödeme_details"> Ödeme ayrıntıları </string>
+    <string name="amount"> Miktar </string>
+    <string name="tracking_code"> İzleme kodu </string>
+    <string name="our_specialists_will_call_you_soon"> Lütfen sizi aramamızı bekleyin </string>
+    <string name="re_pay"> Yeniden ödeyin </string>
+    <string name="return_"> dönüş </string>
+    <string name="text51"> Bilgileri kaydedin ve kaydedin </string>
+    <string name="text52"> Parolaları değiştirin </string>
+    <string name="country"> Ülke </string>
+    <string name="city"> Şehir </string>
+    <string name="people_number"> Numaralandırmak </string>
+    <string name="service_type"> Hizmet türü </string>
+    <string name="Travel_insurance_to_travel_to_the_country">Ülkeye seyahat etmek için seyahat sigortası</string>
+    <string name="please_refer_to_your_email_to_recover_the_password">Şifrenizi kurtarmak için lütfen e-postanıza bakın.</string>
+    <string name="Tur">Tur</string>
+    <string name="Please_enter_the_correct_name">Lütfen doğru adı girin</string>
+    <string name="Please_enter_the_title_correctly">Lütfen başlığı doğru giriniz</string>
+    <string name="Please_enter_the_correct_message">Lütfen doğru mesajı giriniz</string>
+
+
+</resources>
+

@@ -13,7 +13,7 @@
         android:padding="10dp"
         android:orientation="horizontal"
         android:background="@drawable/alert_header_background"
-        android:text="انتخاب فیلتر"
+        android:text="@string/SelectFilter"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_txtSize"
         android:gravity="center"
@@ -30,13 +30,13 @@
             android:id="@+id/txtTavaghof"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#ededed"
             android:gravity="center"
-            android:text="توقف "
-            android:textAppearance="@style/IrsansBold"
-            android:textSize="@dimen/_14dp_txtSize"
             android:padding="5dp"
+            android:text="@string/Stop"
+            android:textAppearance="@style/IrsansBold"
             android:textColor="@color/text_color_4d"
-            android:background="#ededed"/>
+            android:textSize="@dimen/_14dp_txtSize" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/_12dp_normal_textSize"
-                    android:text="دو توقف و بیشتر"
+                    android:text="@string/TwoStopAndMore"
                     android:gravity="center"/>
 
                 <cn.refactor.library.SmoothCheckBox
@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/_12dp_normal_textSize"
-                    android:text="یک توقف"
+                    android:text="@string/OneStop"
                     android:gravity="center"/>
 
                 <cn.refactor.library.SmoothCheckBox
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/_12dp_normal_textSize"
-                    android:text="بدون توقف"
+                    android:text="@string/NonStop"
                     android:gravity="center"/>
 
                 <cn.refactor.library.SmoothCheckBox
@@ -122,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14dp"
-            android:text="کلاس پروازی"
+            android:text="@string/class_flight"
             android:gravity="center"
             android:textAppearance="@style/IrsansBold"
             android:padding="5dp"
@@ -144,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/_12dp_normal_textSize"
-                    android:text="فرست کلاس "
+                    android:text="@string/first"
                     android:gravity="center"/>
                 <cn.refactor.library.SmoothCheckBox
                     android:id="@+id/ferstF"
@@ -163,7 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/_12dp_normal_textSize"
-                    android:text="بیزنس کلاس "
+                    android:text="@string/Business"
                     android:gravity="center"/>
                 <cn.refactor.library.SmoothCheckBox
                     android:id="@+id/businessF"
@@ -183,7 +183,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/_12dp_normal_textSize"
-                    android:text="اکونومی "
+                    android:text="@string/Economi"
                     android:gravity="center"/>
                 <cn.refactor.library.SmoothCheckBox
                     android:id="@+id/economiF"
@@ -274,7 +274,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_14dp_txtSize"
-            android:text="ایرلاین "
+            android:text="@string/AirLine"
             android:gravity="center"
             android:textAppearance="@style/IrsansBold"
             android:padding="5dp"
@@ -395,7 +395,7 @@
                 fancy:fb_defaultColor="#1234"
                 fancy:fb_focusColor="@color/focusColor"
                 fancy:fb_radius="100dp"
-                fancy:fb_text="حذف فیلتر"
+                fancy:fb_text="@string/RemoveFilter"
                 fancy:fb_textColor="#4d4d4d"
                 fancy:fb_textSize="@dimen/_14dp_txtSize"
                 android:layout_marginLeft="5dp"
@@ -411,7 +411,7 @@
                 fancy:fb_defaultColor="#1234"
                 fancy:fb_focusColor="@color/focusColor"
                 fancy:fb_radius="100dp"
-                fancy:fb_text="اعمال فیلتر"
+                fancy:fb_text="@string/FilterConfirm"
                 fancy:fb_textColor="#4d4d4d"
                 fancy:fb_textSize="@dimen/_14dp_txtSize"
                 android:layout_marginLeft="5dp"

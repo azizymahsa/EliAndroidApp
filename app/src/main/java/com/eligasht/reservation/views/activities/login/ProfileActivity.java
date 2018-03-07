@@ -12,22 +12,17 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.model.Font;
-import com.eligasht.reservation.models.model.login.WebUser;
-import com.eligasht.reservation.models.model.login.call.EmailContractReq;
-import com.google.gson.GsonBuilder;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.login.WebUserLogin;
 import com.eligasht.reservation.models.model.login.call.ChangePasswordRequestModel;
+import com.eligasht.reservation.models.model.login.call.EmailContractReq;
 import com.eligasht.reservation.models.model.login.call.EmailContractRequestModel;
 import com.eligasht.reservation.models.model.login.call.RegisterRequestModel;
 import com.eligasht.reservation.models.model.login.response.EmailContractRes;
@@ -38,11 +33,12 @@ import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.fragments.profile.ProfilePagerAdapter;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import uk.co.chrisjenx.calligraphy.CalligraphyUtils;
 
 
 /**
@@ -60,13 +56,43 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private ProfilePagerAdapter profilePagerAdapter;
     private ClientService service;
     private CoordinatorLayout coordinatorLayout;
+    private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            switch (tab.getPosition()) {
+                case 0:
+                    btnSaveInfo.setText(R.string.text51);
+                    btnSaveInfo.setVisibility(View.VISIBLE);
+                    break;
+                case 1:
+                    btnSaveInfo.setVisibility(View.GONE);
+                    //   btnSaveInfo.setText("ارسال مدارک");
+                    break;
+                case 2:
+                    btnSaveInfo.setText(R.string.text52);
+                    btnSaveInfo.setVisibility(View.VISIBLE);
+
+                    break;
+            }
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    };
 
     //
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "پروفایل من");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.my_profile));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
@@ -85,14 +111,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             for (int i = 0; i < tabChildsCount; i++) {
                 View tabViewChild = vgTab.getChildAt(i);
                 if (tabViewChild instanceof TextView) {
-                    ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/iran_sans_normal.ttf"));
+                    ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf)));
                 }
             }
         }
 
 
     }
-
 
     private void initParam() {
         try {
@@ -115,7 +140,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     }
 
-
     private void setupPager() {
         profilePagerAdapter = new ProfilePagerAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(profilePagerAdapter);
@@ -131,38 +155,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
 
     }
-
-    private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
-        @Override
-        public void onTabSelected(TabLayout.Tab tab) {
-            switch (tab.getPosition()) {
-                case 0:
-                    btnSaveInfo.setText("ثبت و ذخیره اطلاعات");
-                    btnSaveInfo.setVisibility(View.VISIBLE);
-                    break;
-                case 1:
-                    btnSaveInfo.setVisibility(View.GONE);
-                    //   btnSaveInfo.setText("ارسال مدارک");
-                    break;
-                case 2:
-                    btnSaveInfo.setText("تغییر کلمه عبور");
-                    btnSaveInfo.setVisibility(View.VISIBLE);
-
-                    break;
-            }
-        }
-
-        @Override
-        public void onTabUnselected(TabLayout.Tab tab) {
-
-        }
-
-        @Override
-        public void onTabReselected(TabLayout.Tab tab) {
-
-        }
-    };
-
 
     private void initViews() {
         viewPager = findViewById(R.id.view_pager);

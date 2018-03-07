@@ -202,7 +202,7 @@
                             fancy:fb_defaultColor="@color/TRANSPARENT"
                             fancy:fb_focusColor="@color/focusColor"
                             fancy:fb_radius="0dp"
-                            fancy:fb_text="بازگشت"
+                            fancy:fb_text="@string/return_"
                             fancy:fb_textColor="#FFFFFF"
                             fancy:fb_textSize="18dp"
                             />
@@ -256,8 +256,10 @@
             android:layout_height="0dp"
             android:layout_weight="8"
             android:background="#ffffff"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
+
+
             >
 
             <LinearLayout
@@ -267,11 +269,11 @@
                 android:layout_weight="140"
                 android:gravity="center"
                 android:orientation="horizontal">
+
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_weight="100"
-                    android:layout_height="wrap_content">
-
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100">
 
 
                     <mehdi.sakout.fancybuttons.FancyButton
@@ -279,49 +281,45 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="right"
                         fancy:fb_defaultColor="@android:color/transparent"
                         fancy:fb_focusColor="@color/focusColor"
+
                         fancy:fb_radius="6dp"
-                        fancy:fb_textColor="#FFFFFF"
-
-                        android:layout_gravity="right"
-                        fancy:fb_textSize="25dp"
                         fancy:fb_text=" "
-                        android:gravity="right"
-                        />
-
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="25dp" />
 
 
                     <TextView
                         android:id="@+id/tvNextDay"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
+                        android:gravity="center"
                         android:text="@string/icon_arrow_left"
                         android:textAppearance="@style/IconFonts"
-                        android:gravity="center"
-                        android:textSize="@dimen/_25dp_normal_iconSize"
-                        android:layout_marginLeft="@dimen/_5dp_margin"
-                        android:textColor="#4d4d4d"/>
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/_25dp_normal_iconSize" />
+
                     <TextView
-                        android:layout_toRightOf="@+id/tvNextDay"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textColor="#4d4d4d"
+                        android:layout_toRightOf="@+id/tvNextDay"
                         android:gravity="center"
+                        android:text="@string/LastDay"
 
-                        android:text="روز قبل"
-                        android:textSize="@dimen/_14dp_txtSize"
-                        />
-
-
-
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/bottom_tab" />
 
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_weight="100"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100">
 
                     <mehdi.sakout.fancybuttons.FancyButton
 
@@ -329,154 +327,150 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="right"
                         fancy:fb_defaultColor="@android:color/transparent"
                         fancy:fb_focusColor="@color/focusColor"
-                        fancy:fb_radius="6dp"
-                        fancy:fb_textColor="#FFFFFF"
 
-                        android:layout_gravity="right"
-                        fancy:fb_textSize="25dp"
+                        fancy:fb_radius="6dp"
                         fancy:fb_text=" "
-                        android:gravity="right"
-                        />
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="25dp" />
 
                     <TextView
                         android:id="@+id/tvLastDays"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textColor="#4d4d4d"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
                         android:gravity="center"
 
-                        android:text="روز بعد"
-                        android:layout_marginLeft="@dimen/_5dp_margin"
-                        android:textSize="@dimen/_14dp_txtSize"
-                        />
+                        android:text="@string/NextDay"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/bottom_tab" />
+
                     <TextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/tvLastDays"
+                        android:gravity="center"
                         android:text="@string/icon_arrow_right"
                         android:textAppearance="@style/IconFonts"
-                        android:textSize="@dimen/_25dp_normal_iconSize"
-                        android:gravity="center"
 
                         android:textColor="#4d4d4d"
-                        android:layout_toRightOf="@+id/tvLastDays"/>
+                        android:textSize="@dimen/_25dp_normal_iconSize" />
 
 
                 </RelativeLayout>
 
 
-
-
-
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100">
+
                 <mehdi.sakout.fancybuttons.FancyButton
 
                     android:id="@+id/btnFilter"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:gravity="right"
                     fancy:fb_defaultColor="@android:color/transparent"
                     fancy:fb_focusColor="@color/focusColor"
                     fancy:fb_radius="6dp"
-                    fancy:fb_textColor="#FFFFFF"
-                    android:layout_gravity="right"
-                    fancy:fb_textSize="25dp"
                     fancy:fb_text=" "
-                    android:gravity="right"
-                    />
-            <LinearLayout
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textSize="25dp" />
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-                <TextView
-                    android:id="@+id/tvFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="فیلتر کردن"
-                    android:layout_marginLeft="@dimen/_5dp_margin"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:textColor="#4d4d4d"
-                    />
-                <TextView
-                    android:id="@+id/tvFilterIcon"
+                <LinearLayout
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/icon_filter"
-                    android:textAppearance="@style/IconFonts"
-                    android:gravity="center"
-                    android:textSize="@dimen/_25dp_normal_iconSize"
-                    android:layout_marginLeft="@dimen/_5dp_margin"
-                    android:textColor="#4d4d4d"
-                    />
-            </LinearLayout>
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvFilter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
+                        android:gravity="center"
+                        android:text="@string/Filter"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/bottom_tab" />
+
+                    <TextView
+                        android:id="@+id/tvFilterIcon"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
+                        android:gravity="center"
+                        android:text="@string/icon_filter"
+                        android:textAppearance="@style/IconFonts"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/_25dp_normal_iconSize" />
+                </LinearLayout>
             </RelativeLayout>
+
             <View
                 android:layout_width="1dp"
-                android:layout_height="match_parent"/>
-
-
+                android:layout_height="match_parent" />
 
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100">
+
                 <mehdi.sakout.fancybuttons.FancyButton
 
                     android:id="@+id/btnSort"
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:gravity="right"
                     fancy:fb_defaultColor="@android:color/transparent"
                     fancy:fb_focusColor="@color/focusColor"
-                    fancy:fb_radius="6dp"
-                    fancy:fb_textColor="#FFFFFF"
 
-                    android:layout_gravity="right"
-                    fancy:fb_textSize="25dp"
+                    fancy:fb_radius="6dp"
                     fancy:fb_text=" "
-                    android:gravity="right"
-                    />
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textSize="25dp" />
+
                 <LinearLayout
                     android:id="@+id/llSort"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tvSort"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="مرتب کردن"
                         android:layout_marginLeft="@dimen/_5dp_margin"
-                        android:textSize="@dimen/_14dp_txtSize"
+                        android:gravity="center"
+                        android:text="@string/Sort"
                         android:textColor="#4d4d4d"
-                        />
+                        android:textSize="@dimen/bottom_tab" />
+
                     <TextView
                         android:id="@+id/tvSortIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
+                        android:gravity="center"
                         android:text="@string/icon_sort"
                         android:textAppearance="@style/IconFonts"
-                        android:gravity="center"
-                        android:textSize="@dimen/_25dp_normal_iconSize"
-                        android:layout_marginLeft="@dimen/_5dp_margin"
-                        android:textColor="#4d4d4d" />
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/_25dp_normal_iconSize" />
 
                 </LinearLayout>
             </RelativeLayout>
-
 
 
         </LinearLayout>

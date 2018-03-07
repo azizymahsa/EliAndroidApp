@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:padding="5sp"
-            android:text="اتاق"
+            android:text="@string/room"
             android:textColor="@color/TextColor"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -124,7 +124,7 @@
             android:layout_marginRight="@dimen/_10dp_margin"
             android:layout_marginTop="@dimen/_10dp_margin"
             android:background="@drawable/btngravity_big"
-            android:text="تائید"
+            android:text="@string/confirm"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/_16dp_normal_textSize"
             android:textStyle="bold"/>

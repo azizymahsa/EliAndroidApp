@@ -1,13 +1,11 @@
 package com.eligasht.reservation.views.adapters.hotel;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,23 +14,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.R;
+import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
+import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.eligasht.R;
-
-import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
-import com.eligasht.reservation.tools.Utility;
-
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -44,12 +40,12 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 
 public class FlightHotelAdapter extends BaseAdapter {
-    private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
-    private LayoutInflater inflater;
-    private ViewHolder holder;
     ImageLoader imageLoader;
     Activity activity;
     TextView DateTime;
+    private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
+    private LayoutInflater inflater;
+    private ViewHolder holder;
 
     public FlightHotelAdapter(ArrayList<SelectFlightHotelModel> selectHotelModelArrayList, Activity activity,TextView DateTime) {
         this.activity = activity;
@@ -87,73 +83,70 @@ public class FlightHotelAdapter extends BaseAdapter {
             TextView tvANRaft2_1, tvANRaft2_2, tvANRaft2_3;
             TextView tvANRaft1_1, tvANRaft1_2;
             holder = new ViewHolder();
-            holder.ivHotelPic = (ImageView) convertView.findViewById(R.id.ivHotelPic);
-            holder.ivRate = (ImageView) convertView.findViewById(R.id.ivRate);
-            holder.ivLogo = (ImageView) convertView.findViewById(R.id.ivLogo);
-            holder.name = (TextView) convertView.findViewById(R.id.name);
-            holder.location = (TextView) convertView.findViewById(R.id.location);
-            holder.title = (TextView) convertView.findViewById(R.id.title);
-            holder.board = (TextView) convertView.findViewById(R.id.board);
-            holder.tvPrice = (TextView) convertView.findViewById(R.id.tvPrice);
-            holder.tvOff = (TextView) convertView.findViewById(R.id.tvOff);
-            holder.cvHotel = (CardView) convertView.findViewById(R.id.cvHotel);
-            holder.tvRaft = (TextView) convertView.findViewById(R.id.tvRaft);
-            holder.tvBargasht = (TextView) convertView.findViewById(R.id.tvBargasht);
-            holder.tvBargashtTime = (TextView) convertView.findViewById(R.id.tvBargashtTime);
-            holder.tvRaftTime = (TextView) convertView.findViewById(R.id.tvRaftTime);
-            holder.tvBargashtTimeWait = (TextView) convertView.findViewById(R.id.tvBargashtTimeWait);
-            holder.tvRaftTimeWait = (TextView) convertView.findViewById(R.id.tvRaftTimeWait);
-            holder.tvAirLines = (TextView) convertView.findViewById(R.id.tvAirLines);
-            holder.ivIsBestseler = (TextView) convertView.findViewById(R.id.ivIsBestseler);
-            holder.txt_lable_hotel = (TextView) convertView.findViewById(R.id.txt_lable_hotel);
-            holder.avi2 = (AVLoadingIndicatorView) convertView.findViewById(R.id.avi2);
-            holder.btnChange = (FancyButton) convertView.findViewById(R.id.btnChange);
-            holder.rlListItem = (RelativeLayout) convertView.findViewById(R.id.rlListItem);
+            holder.ivHotelPic = convertView.findViewById(R.id.ivHotelPic);
+            holder.ivRate = convertView.findViewById(R.id.ivRate);
+            holder.ivLogo = convertView.findViewById(R.id.ivLogo);
+            holder.name = convertView.findViewById(R.id.name);
+            holder.location = convertView.findViewById(R.id.location);
+            holder.title = convertView.findViewById(R.id.title);
+            holder.board = convertView.findViewById(R.id.board);
+            holder.tvPrice = convertView.findViewById(R.id.tvPrice);
+            holder.tvOff = convertView.findViewById(R.id.tvOff);
+            holder.cvHotel = convertView.findViewById(R.id.cvHotel);
+            holder.tvRaft = convertView.findViewById(R.id.tvRaft);
+            holder.tvBargasht = convertView.findViewById(R.id.tvBargasht);
+            holder.tvBargashtTime = convertView.findViewById(R.id.tvBargashtTime);
+            holder.tvRaftTime = convertView.findViewById(R.id.tvRaftTime);
+            holder.tvBargashtTimeWait = convertView.findViewById(R.id.tvBargashtTimeWait);
+            holder.tvRaftTimeWait = convertView.findViewById(R.id.tvRaftTimeWait);
+            holder.tvAirLines = convertView.findViewById(R.id.tvAirLines);
+            holder.ivIsBestseler = convertView.findViewById(R.id.ivIsBestseler);
+            holder.txt_lable_hotel = convertView.findViewById(R.id.txt_lable_hotel);
+            holder.avi2 = convertView.findViewById(R.id.avi2);
+            holder.btnChange = convertView.findViewById(R.id.btnChange);
+            holder.rlListItem = convertView.findViewById(R.id.rlListItem);
 
 
-
-            holder.linear_1 = (LinearLayout) convertView.findViewById(R.id.linear_1);
-            holder.linear_2 = (LinearLayout) convertView.findViewById(R.id.linear_2);
-            holder.tvANRaft2_1 = (TextView) convertView.findViewById(R.id.tvANRaft2_1);
-            holder.tvANRaft2_2 = (TextView) convertView.findViewById(R.id.tvANRaft2_2);
-            holder.tvANRaft2_3 = (TextView) convertView.findViewById(R.id.tvANRaft2_3);
-            holder.tvANRaft1_1 = (TextView) convertView.findViewById(R.id.tvANRaft1_1);
-            holder.tvANRaft1_2 = (TextView) convertView.findViewById(R.id.tvANRaft1_2);
-
-
-            holder.linear_1_bargasht = (LinearLayout) convertView.findViewById(R.id.linear_1_bargasht);
-            holder.linear_2_bargasht = (LinearLayout) convertView.findViewById(R.id.linear_2_bargasht);
-            holder.tvANRaft2_1_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft2_1_bargasht);
-            holder.tvANRaft2_2_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft2_2_bargasht);
-            holder.tvANRaft2_3_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft2_3_bargasht);
-            holder.tvANRaft1_1_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft1_1_bargasht);
-            holder.tvANRaft1_2_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft1_2_bargasht);
-            holder.nonStop = (TextView) convertView.findViewById(R.id.nonStop);
+            holder.linear_1 = convertView.findViewById(R.id.linear_1);
+            holder.linear_2 = convertView.findViewById(R.id.linear_2);
+            holder.tvANRaft2_1 = convertView.findViewById(R.id.tvANRaft2_1);
+            holder.tvANRaft2_2 = convertView.findViewById(R.id.tvANRaft2_2);
+            holder.tvANRaft2_3 = convertView.findViewById(R.id.tvANRaft2_3);
+            holder.tvANRaft1_1 = convertView.findViewById(R.id.tvANRaft1_1);
+            holder.tvANRaft1_2 = convertView.findViewById(R.id.tvANRaft1_2);
 
 
+            holder.linear_1_bargasht = convertView.findViewById(R.id.linear_1_bargasht);
+            holder.linear_2_bargasht = convertView.findViewById(R.id.linear_2_bargasht);
+            holder.tvANRaft2_1_bargasht = convertView.findViewById(R.id.tvANRaft2_1_bargasht);
+            holder.tvANRaft2_2_bargasht = convertView.findViewById(R.id.tvANRaft2_2_bargasht);
+            holder.tvANRaft2_3_bargasht = convertView.findViewById(R.id.tvANRaft2_3_bargasht);
+            holder.tvANRaft1_1_bargasht = convertView.findViewById(R.id.tvANRaft1_1_bargasht);
+            holder.tvANRaft1_2_bargasht = convertView.findViewById(R.id.tvANRaft1_2_bargasht);
+            holder.nonStop = convertView.findViewById(R.id.nonStop);
 
 
-            holder.linear_3_bargasht = (LinearLayout) convertView.findViewById(R.id.linear_3_bargasht);
-            holder.linear_3 = (LinearLayout) convertView.findViewById(R.id.linear_3);
+            holder.linear_3_bargasht = convertView.findViewById(R.id.linear_3_bargasht);
+            holder.linear_3 = convertView.findViewById(R.id.linear_3);
 
-            holder.tvANRaft3_1 = (TextView) convertView.findViewById(R.id.tvANRaft3_1);
-            holder.tvANRaft3_2 = (TextView) convertView.findViewById(R.id.tvANRaft3_2);
-            holder.tvANRaft3_3 = (TextView) convertView.findViewById(R.id.tvANRaft3_3);
-            holder.tvANRaft3_4 = (TextView) convertView.findViewById(R.id.tvANRaft3_4);
+            holder.tvANRaft3_1 = convertView.findViewById(R.id.tvANRaft3_1);
+            holder.tvANRaft3_2 = convertView.findViewById(R.id.tvANRaft3_2);
+            holder.tvANRaft3_3 = convertView.findViewById(R.id.tvANRaft3_3);
+            holder.tvANRaft3_4 = convertView.findViewById(R.id.tvANRaft3_4);
 
-            holder.tvANRaft3_1_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_1_bargasht);
-            holder.tvANRaft3_2_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_2_bargasht);
-            holder.tvANRaft3_3_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_3_bargasht);
-            holder.tvANRaft3_4_bargasht = (TextView) convertView.findViewById(R.id.tvANRaft3_4_bargasht);
-            holder.tvBargashtTime2 = (TextView) convertView.findViewById(R.id.tvBargashtTime2);
-            holder.tvBargashtTime1 = (TextView) convertView.findViewById(R.id.tvBargashtTime1);
+            holder.tvANRaft3_1_bargasht = convertView.findViewById(R.id.tvANRaft3_1_bargasht);
+            holder.tvANRaft3_2_bargasht = convertView.findViewById(R.id.tvANRaft3_2_bargasht);
+            holder.tvANRaft3_3_bargasht = convertView.findViewById(R.id.tvANRaft3_3_bargasht);
+            holder.tvANRaft3_4_bargasht = convertView.findViewById(R.id.tvANRaft3_4_bargasht);
+            holder.tvBargashtTime2 = convertView.findViewById(R.id.tvBargashtTime2);
+            holder.tvBargashtTime1 = convertView.findViewById(R.id.tvBargashtTime1);
 
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.btnChange.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        holder.btnChange.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
 
         YoYo.with(Techniques.FadeIn)
                 .duration(300)
@@ -216,18 +209,18 @@ public class FlightHotelAdapter extends BaseAdapter {
 
 
         if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")) {
-            holder.txt_lable_hotel.setText("هتل آپارتمان");
+            holder.txt_lable_hotel.setText(R.string.ApartmenHotel);
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
 
         }else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
-            holder.txt_lable_hotel.setText("بوتیک هتل");
+            holder.txt_lable_hotel.setText(R.string.BoutiqueHotel);
 
 
 
         }else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
-            holder.txt_lable_hotel.setText("ریزورت هتل");
+            holder.txt_lable_hotel.setText(R.string.ResortHotel);
 
 
 
@@ -244,7 +237,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         String[] strings = selectHotelModelArrayList.get(position).getDepRout().split("→");
         switch (strings.length) {
             case 0:
-                waitRaft = "بدون توقف";
+                waitRaft = activity.getString(R.string.NonStop);
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
@@ -253,18 +246,18 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
-                waitRaft = "بدون توقف";
+                waitRaft = activity.getString(R.string.NonStop);
 
                 break;
             case 2:
-                waitRaft = "بدون توقف";
+                waitRaft = activity.getString(R.string.NonStop);
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
 
                 break;
             case 3:
-                waitRaft = "یک توقف";
+                waitRaft = activity.getString(R.string.OneStop);
                 holder.linear_2.setVisibility(View.VISIBLE);
                 holder.tvANRaft2_1.setText(strings[0]);
                 holder.tvANRaft2_2.setText(strings[1]);
@@ -272,7 +265,7 @@ public class FlightHotelAdapter extends BaseAdapter {
 
                 break;
             case 4:
-                waitRaft = "دو توقف";
+                waitRaft = activity.getString(R.string.TwoStop);
                 holder.linear_3.setVisibility(View.VISIBLE);
                 holder.tvANRaft3_1.setText(strings[0]);
                 holder.tvANRaft3_2.setText(strings[1]);

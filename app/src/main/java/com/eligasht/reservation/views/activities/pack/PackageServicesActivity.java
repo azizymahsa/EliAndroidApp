@@ -26,7 +26,7 @@ public class PackageServicesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_services);
         lvServices=findViewById(R.id.lvServices);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "مشخصات خدمات");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.ServicesInformation));
 
         try {
             JSONArray jsonObj = new JSONArray(getIntent().getExtras().getString("services"));

@@ -16,9 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
@@ -41,13 +38,16 @@ import com.eligasht.reservation.models.model.pack.response.PackageListRes;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.adapters.pack.LstAvailableDateAdapter;
 import com.eligasht.reservation.views.adapters.pack.PRowXferAdapter;
 import com.eligasht.reservation.views.components.SimpleRecycleView;
 import com.eligasht.reservation.views.dialogs.FilterPackageDialog;
 import com.eligasht.reservation.views.dialogs.SortDialogPackage;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -147,7 +147,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         }
 
 
-        toolbar_title.setText(" تور " + cityName);
+        toolbar_title.setText(getString(R.string.Tur) + cityName);
         toolbar_date.setText(date);
         goneView(layout_availabel_date, R.anim.slide_out_top);
         goneView(txtNotFoundResualt, R.anim.slide_out_top);
@@ -172,7 +172,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (response == null || response.body() == null) {
                     rcl_package.showText();
-                    txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
+                    txt_error.setText(R.string.ErrorServer);
                     error_layout.setVisibility(View.VISIBLE);
                 }
 
@@ -186,11 +186,11 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     rcl_package.showText();
                     if (!Utility.isNetworkAvailable(SearchPackActivity.this)){
 
-                        txt_error.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                        txt_error.setText(R.string.InternetError);
 
                     }else{
 
-                        txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
+                        txt_error.setText(R.string.ErrorServer);
 
                     }
                     error_layout.setVisibility(View.VISIBLE);
@@ -206,7 +206,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
                     rcl_package.showText();
-                    txt_error.setText("نتیجه ای برای جستجو شما حاصل نشد!");
+                    txt_error.setText(R.string.NoResult);
                     error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
@@ -226,7 +226,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             public void onFailure(Call<PackageListRes> call, Throwable t) {
                 hideLoading();
                 rcl_package.showText();
-                txt_error.setText("خطا در دریافت اطلاعات از الی گشت");
+                txt_error.setText(R.string.ErrorServer);
                 error_layout.setVisibility(View.VISIBLE);
             }
         });
@@ -260,8 +260,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
-        rcl_available_date = (SimpleRecycleView) findViewById(R.id.rcl_available_date);
-        rcl_package = (SimpleRecycleView) findViewById(R.id.rcl_package);
+        rcl_available_date = findViewById(R.id.rcl_available_date);
+        rcl_package = findViewById(R.id.rcl_package);
         rcl_package.setLayoutManager(new LinearLayoutManager(this));
         rcl_available_date.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rcl_available_date.hideLoading();
@@ -276,7 +276,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         layout_sort.setOnClickListener(this);
         btn_previous_day.setOnClickListener(this);
         btn_next_day.setOnClickListener(this);
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
     }
 
 
@@ -305,11 +305,11 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.llSort:
                 if (ValidationTools.isEmptyOrNull(pRowXfers)) {
-                    Toast.makeText(this, "موردی یافت نشد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.PackgeNoFound, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (pRowXfers.size() == 1) {
-                    Toast.makeText(this, "فقط یه مورد جهت نمایش وجود دارد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.OnlyOne, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 SortDialogPackage dialogPackage = new SortDialogPackage(this, this);
@@ -319,7 +319,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 long _departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
 
                 if (_departMilis + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo, "yyyy/MM/dd")) {
-                    Toast.makeText(this, "تاریخ رفت نمی تواند بعد از تاریخ برگشت باشد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.datePickerError, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long milis = _departMilis + 86400000;
@@ -329,7 +329,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             case R.id.btnLastDays:
                 long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
                 if (departMilis <= System.currentTimeMillis()) {
-                    Toast.makeText(this, "تاریخ رفت نمی تواند قبل از امروز باشد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.DatePickerError2, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long _milis = departMilis - 86400000;

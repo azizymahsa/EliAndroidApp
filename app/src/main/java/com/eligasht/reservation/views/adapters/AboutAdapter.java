@@ -13,31 +13,31 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.github.aakira.expandablelayout.ExpandableLinearLayout;
-import com.github.aakira.expandablelayout.Utils;
 import com.eligasht.R;
-
 import com.eligasht.reservation.models.model.SectionModel;
 import com.eligasht.reservation.tools.JustifiedTextView;
+import com.eligasht.reservation.views.ui.SingletonContext;
+import com.github.aakira.expandablelayout.ExpandableLinearLayout;
+import com.github.aakira.expandablelayout.Utils;
 
 import java.util.List;
 
 
 public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> {
 
-    private Context context;
-    private LayoutInflater myInflater;
+    public static String GET_FRAGMENT = null;
     //public CursorManager cursor;
     public int customerId;
     public String customerName;
     public int catt_ID = 0;
-    private LayoutInflater inflater;
-    private List<SectionModel> data;
     public String value_Maghsad_City;
     public String value_Maghsad_Airport;
     public String value_Maghsad_Airport_Code;
-    public static String GET_FRAGMENT = null;
     Activity activity;
+    private Context context;
+    private LayoutInflater myInflater;
+    private LayoutInflater inflater;
+    private List<SectionModel> data;
 
 
     public AboutAdapter(final List<SectionModel> data) {
@@ -58,7 +58,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         final SectionModel item = data.get(position);
 
         holder.setIsRecyclable(false);
-        Typeface face = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_normal.ttf");
+        Typeface face = Typeface.createFromAsset(context.getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         holder.txtDescription.setTypeFace(face);
         holder.txtSectionName.setTypeFace(face);
 
@@ -66,7 +66,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         holder.txtDescription.setTextSize(1,16);
         holder.txtSectionName.setTextColor(Color.parseColor("#000000"));
         holder.txtDescription.setTextColor(ContextCompat.getColor(context,R.color.gray_dark_2));
-        if(item.getSectionName().contains("گواهینامه ها")){
+        if(item.getSectionName().contains(context.getString(R.string.lisences))){
             String[] value_split = item.getSectionName().split("\\|");
             holder.txtSectionName.setText(value_split[1]+"");
         }else{
@@ -94,29 +94,26 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         return data.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        JustifiedTextView txtDescription;
-        JustifiedTextView txtSectionName;
-
-
-        ImageView iv_imageAddress;
-
-        public ExpandableLinearLayout expandableLayout;
-
-        public ViewHolder(View v) {
-            super(v);
-            txtDescription = (JustifiedTextView) v.findViewById(R.id.txtDescription);
-            txtSectionName = (JustifiedTextView) v.findViewById(R.id.txtSectionName);
-            iv_imageAddress = (ImageView) v.findViewById(R.id.iv_imageAddress);
-
-        }
-    }
-
     public ObjectAnimator createRotateAnimator(final View target, final float from, final float to) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(target, "rotation", from, to);
         animator.setDuration(300);
         animator.setInterpolator(Utils.createInterpolator(Utils.LINEAR_INTERPOLATOR));
         return animator;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ExpandableLinearLayout expandableLayout;
+        JustifiedTextView txtDescription;
+        JustifiedTextView txtSectionName;
+        ImageView iv_imageAddress;
+
+        public ViewHolder(View v) {
+            super(v);
+            txtDescription = v.findViewById(R.id.txtDescription);
+            txtSectionName = v.findViewById(R.id.txtSectionName);
+            iv_imageAddress = v.findViewById(R.id.iv_imageAddress);
+
+        }
     }
 }
 
@@ -213,7 +210,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
 		}
 
 		final SectionModel current=data.get(position);
-		Typeface face = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_normal.ttf");
+		Typeface face = Typeface.createFromAsset(context.getAssets(),SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
 		holder.txtDescription.setTypeFace(face);
 		holder.txtSectionName.setTypeFace(face);
 
@@ -240,7 +237,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
 	}else{
 
 		holder.iv_imageAddress.setVisibility(View.GONE);
-	}	Typeface face = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_normal.ttf");
+	}	Typeface face = Typeface.createFromAsset(context.getAssets(),SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
 		holder.txtDescription.setTypeFace(face);
 		holder.txtSectionName.setTypeFace(face);
 

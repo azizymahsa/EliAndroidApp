@@ -9,26 +9,18 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
-import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
-import com.eligasht.reservation.views.adapters.hotel.FlightHotelAdapter;
-import com.google.gson.Gson;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.hotelAvail.HotelAvailApi;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
+import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
@@ -46,6 +38,9 @@ import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
+import com.google.gson.Gson;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -64,6 +59,19 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener {
 
 
+    RelativeLayout rlLoading, rlRoot, rlList;
+    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
+    Window window;
+    RelativeLayout elNotFound, rlEr;
+    TextView tvLoading;
+    int maxPrice, minPrice;
+    LinearLayout llFilter;
+    FancyButton btnOk, btnBack, btnHome;
+    ImageView ivLoading;
+    boolean isFilter = false;
+    FancyButton btnNextDays, btnLastDays;
+    String raft, bargasht;
+    String raftFa, bargashtFa, searchIn;
     private com.eligasht.reservation.tools.ListView list;
     private LazyResoultHotelAdapter adapter;
     private ArrayList<SelectHotelModel> selectHotelModelArrayList = new ArrayList<>();
@@ -77,26 +85,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     private HotelAvailApi availApi;
     private List<Rooms> rooms = new ArrayList<>();
-    RelativeLayout rlLoading, rlRoot,rlList;
-    TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
-    Window window;
-    RelativeLayout elNotFound, rlEr;
-    TextView tvLoading;
-
-
-    int maxPrice, minPrice;
-
     private FancyButton btnFilter, btnSort;
-    LinearLayout llFilter;
-    FancyButton btnOk, btnBack, btnHome;
-    ImageView ivLoading;
-    boolean isFilter = false;
-    FancyButton btnNextDays, btnLastDays;
-
-    String raft, bargasht;
-    String raftFa, bargashtFa, searchIn;
     //TextView tvAlert;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +153,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         Log.e("bargasht", getIntent().getExtras().getString("CheckOut"));
         Log.e("cod", Prefs.getString("Value-Hotel-City-Code", ""));
 
-        btnOk.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,15 +218,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     DateFormat formatter;
                     Date date;
                     formatter = new SimpleDateFormat("yyyy/MM/dd");
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     cal.add(Calendar.DATE, 1);
                     System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
 
 
-                    Date dateRaft = (Date) formatter.parse(raft);
-                    Date dateBargasht = (Date) formatter.parse(bargasht);
+                    Date dateRaft = formatter.parse(raft);
+                    Date dateBargasht = formatter.parse(bargasht);
                     if (dateBargasht.after(dateRaft)) {
                         ///
                         ///
@@ -273,7 +263,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                         if (getIntent().getExtras().getBoolean("Geo")) {
 
-                            tvDate.setText("از تاریخ: " + DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false) + " تا تاریخ: " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
+                            tvDate.setText(getString(R.string.departTo) + DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false) + getString(R.string.departFrom) + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
 
                         } else {
                             tvDate.setText(raftFa + " - " + bargashtFa);
@@ -282,7 +272,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         }
                         new GetHotelAsync().execute();
                     } else {
-                        Toast.makeText(getApplicationContext(), "تاریخ رفت بزرگتر از تاریخ برگشت می باشد",
+                        Toast.makeText(getApplicationContext(), R.string.datePickerError,
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -305,7 +295,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     DateFormat formatter;
                     Date date;
                     formatter = new SimpleDateFormat("yyyy/MM/dd");
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     cal.add(Calendar.DATE, -1);
@@ -347,7 +337,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         }
                         new GetHotelAsync().execute();
                     } else {
-                        Toast.makeText(getApplicationContext(), "قبل از تاریخ امروز را نمی توان انتخاب کرد", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.DatePickerError2, Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -408,7 +398,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 rlList.setVisibility(View.GONE);
                 btnOk.setVisibility(View.GONE);
                 rlEr.setVisibility(View.GONE);
-                tvAlert.setText("نتیجه ای برای جستجوی شما یافت نشد");
+                tvAlert.setText(R.string.NoResult);
             } else {
 
                 if (selectHotelModelArrayListFilter.isEmpty()) {
@@ -422,7 +412,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     rlList.setVisibility(View.GONE);
                     btnOk.setVisibility(View.GONE);
                     rlEr.setVisibility(View.GONE);
-                    tvAlert.setText("نتیجه ای برای جستجوی شما یافت نشد");
+                    tvAlert.setText(R.string.NoResult);
                 } else {
 
                     tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
@@ -896,7 +886,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                 } else if (availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
-                    tvAlert.setText("نتیجه ای برای جستجو شما حاصل نشد!");
+                    tvAlert.setText(R.string.NoResult);
                     list.setVisibility(View.GONE);
                     rlList.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
@@ -939,7 +929,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                     // negative
                                     isOff = true;
 
-                                    off = p3 + "%\nتخفیف";
+                                    off = p3 + getString(R.string.off);
 
                                 }
 
@@ -976,15 +966,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
                     }
-                    filterHotelStarsModels.add(new FilterStarModel("1 ستاره", false, 1));
-                    filterHotelStarsModels.add(new FilterStarModel("2 ستاره", false, 2));
-                    filterHotelStarsModels.add(new FilterStarModel("3 ستاره", false, 3));
-                    filterHotelStarsModels.add(new FilterStarModel("4 ستاره", false, 4));
-                    filterHotelStarsModels.add(new FilterStarModel("5 ستاره", false, 5));
-                    filterHotelStarsModels.add(new FilterStarModel("بدون ستاره", false, -1));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._1star), false, 1));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._2star), false, 2));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._3star), false, 3));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._4star), false, 4));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string._5star), false, 5));
+                    filterHotelStarsModels.add(new FilterStarModel(getString(R.string.WithoutStar), false, -1));
 
-                    filterHotelBestOffModels.add(new FilterHotelTypeModel("بیشترین فروش", false));
-                    filterHotelBestOffModels.add(new FilterHotelTypeModel("تخفیف ویژه", false));
+                    filterHotelBestOffModels.add(new FilterHotelTypeModel(getString(R.string.BestSell), false));
+                    filterHotelBestOffModels.add(new FilterHotelTypeModel(getString(R.string.BestOff), false));
 
 
                     for (Facilities facilities : availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Facilities) {
@@ -1033,11 +1023,11 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 elNotFound.setVisibility(View.VISIBLE);
                 if (!Utility.isNetworkAvailable(SelectHotelActivity.this)) {
 
-                    tvAlert.setText("اینترنت شما قطع و یا از دسترس خارج می باشد");
+                    tvAlert.setText(R.string.InternetError);
 
                 } else {
 
-                    tvAlert.setText("خطا در دریافت اطلاعات از الی گشت");
+                    tvAlert.setText(R.string.ErrorServer);
 
                 }
                 list.setVisibility(View.GONE);

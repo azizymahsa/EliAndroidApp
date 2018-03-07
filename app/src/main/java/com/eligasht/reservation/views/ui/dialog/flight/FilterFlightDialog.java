@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import cn.refactor.library.SmoothCheckBox;
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -33,23 +34,23 @@ public class FilterFlightDialog implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.filter_flight_dialog, null);
         builder.setView(dialogView);
-        btnOk = (FancyButton) dialogView.findViewById(R.id.btnOk);
+        btnOk = dialogView.findViewById(R.id.btnOk);
 
-        noStop = (SmoothCheckBox) dialogView.findViewById(R.id.noStop);
-        oneStop = (SmoothCheckBox) dialogView.findViewById(R.id.oneStop);
-        twoStopMore = (SmoothCheckBox) dialogView.findViewById(R.id.twoStopMore);
+        noStop = dialogView.findViewById(R.id.noStop);
+        oneStop = dialogView.findViewById(R.id.oneStop);
+        twoStopMore = dialogView.findViewById(R.id.twoStopMore);
 
-        Remove = (SmoothCheckBox) dialogView.findViewById(R.id.Remove);
+        Remove = dialogView.findViewById(R.id.Remove);
 
-        economiF = (SmoothCheckBox) dialogView.findViewById(R.id.economiF);
-        businessF = (SmoothCheckBox) dialogView.findViewById(R.id.businessF);
-        ferstF = (SmoothCheckBox) dialogView.findViewById(R.id.ferstF);
+        economiF = dialogView.findViewById(R.id.economiF);
+        businessF = dialogView.findViewById(R.id.businessF);
+        ferstF = dialogView.findViewById(R.id.ferstF);
        /* star4 = (SmoothCheckBox) dialogView.findViewById(R.id.ferstF);
         star5 = (SmoothCheckBox) dialogView.findViewById(R.id.star5);*/
 
-        boutique = (SmoothCheckBox) dialogView.findViewById(R.id.boutique);
-        resort = (SmoothCheckBox) dialogView.findViewById(R.id.resort);
-        txtTavaghof=(TextView)dialogView.findViewById(R.id.txtTavaghof);
+        boutique = dialogView.findViewById(R.id.boutique);
+        resort = dialogView.findViewById(R.id.resort);
+        txtTavaghof = dialogView.findViewById(R.id.txtTavaghof);
 
         Remove.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
@@ -145,7 +146,7 @@ public class FilterFlightDialog implements View.OnClickListener {
         });*/
 
 
-        btnOk.setCustomTextFont("iran_sans_normal.ttf");
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
@@ -257,7 +258,7 @@ public class FilterFlightDialog implements View.OnClickListener {
     }
 
     public interface FilterFlightDialogListener {
-        public void onReturnValueFilterFlight(int type);
+        void onReturnValueFilterFlight(int type);
     }
 
 }

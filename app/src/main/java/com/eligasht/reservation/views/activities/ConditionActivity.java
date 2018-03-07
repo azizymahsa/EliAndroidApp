@@ -1,7 +1,6 @@
 package com.eligasht.reservation.views.activities;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,6 +17,7 @@ import com.eligasht.reservation.models.model.SectionModel;
 import com.eligasht.reservation.tools.JustifiedTextView;
 import com.eligasht.reservation.tools.NonScrollRecyclerView;
 import com.eligasht.reservation.views.adapters.AboutAdapter;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -47,14 +47,14 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class ConditionActivity extends BaseActivity implements View.OnClickListener {
 
 
-    private FancyButton btnBack;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     Handler handler;
     ProgressDialog progressBar;
-    private Handler progressBarHandler = new Handler();
     ArrayList<HashMap<String,String>> mylist=null;
     AboutAdapter mAdapter;
+    private FancyButton btnBack;
+    private Handler progressBarHandler = new Handler();
     private JustifiedTextView textView12;
 
     @Override
@@ -63,15 +63,15 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.layout.activity_condition);
 
 
-        textView12= (JustifiedTextView) findViewById(R.id.textView12);
-        Typeface face = Typeface.createFromAsset(this.getAssets(),"fonts/iran_sans_normal.ttf");
+        textView12 = findViewById(R.id.textView12);
+        Typeface face = Typeface.createFromAsset(this.getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         textView12.setTypeFace(face);
         textView12.setTextSize(1,16);
         textView12.setTextColor(ContextCompat.getColor(ConditionActivity.this,R.color.gray_dark_2));
         textView12.setText(R.string.condition);
         textView12.setLineSpacing(30);
 
-        btnBack = (FancyButton) findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
@@ -243,14 +243,14 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
 
                 listAirPort.addItemDecoration(new DividerItemDecoration(ConditionActivity.this, 1));
                 listAirPort.setLayoutManager(new LinearLayoutManager(ConditionActivity.this));
-                listAirPort = (NonScrollRecyclerView)findViewById(R.id.lvExp);
+                listAirPort = findViewById(R.id.lvExp);
                 mAdapter = new AboutAdapter(data);
                 //mAdapter.setAdapter(mAdapter);
                 listAirPort.setAdapter(mAdapter);
                 //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
 
             } catch (JSONException e) {
-                Toast.makeText(ConditionActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ConditionActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
             }
 
         }

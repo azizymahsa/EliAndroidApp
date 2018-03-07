@@ -84,9 +84,9 @@ public class IDM_Activity extends FragmentActivity {
 	
 	protected void buildAlertMessageNoGps() {
 		IDM_Dialog dialog = new IDM_Dialog(this);
-		dialog.setMessage("موقعیت یاب دستگاه شما غیر فعال است.");
+		dialog.setMessage(getString(R.string.your_gps_is_off));
 		dialog.setCancelable(false);
-		dialog.setAcceptButton("فعال سازی", new IDM_Dialog.OnAcceptInterface() {
+		dialog.setAcceptButton(getString(R.string.activation), new IDM_Dialog.OnAcceptInterface() {
 
 			@Override
 			public void accept() {
@@ -101,57 +101,4 @@ public class IDM_Activity extends FragmentActivity {
 		super.onActivityResult(requestCode, resultCode, intent);
 	}
 
-
-	public void updateBasicInfosFinished() {
-
-	}
-
-	public boolean checkPlayServiceVersion() {
-		/*final IDM_Dialog dialog = new IDM_Dialog(this);
-		dialog.setAcceptButton(new OnAcceptInterface() {
-
-			@Override
-			public void accept() {
-				startActivity(new Intent(
-						Intent.ACTION_VIEW,
-						Uri.parse("market://details?id="+ GooglePlayServicesUtil.GOOGLE_PLAY_SERVICES_PACKAGE)));
-				dialog.dismiss();
-				IDM_Activity.this.finish();
-			}
-		});
-		dialog.setCancelButton("بستن", new OnCancelInterface() {
-
-			@Override
-			public void cancel() {
-				dialog.dismiss();
-				IDM_Activity.this.finish();
-			}
-		});
-		int state = GooglePlayServicesUtil
-				.isGooglePlayServicesAvailable(getApplicationContext());
-		switch (state) {
-		case ConnectionResult.SUCCESS:
-			return true;
-		case ConnectionResult.SERVICE_MISSING:
-			dialog.setMessage("سرویس google play service یافت نشد. لطفا نصب نمایید");
-			dialog.show();
-			return false;
-		case ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED:
-			dialog.setMessage("سرویس google play service بروز نمی باشد. لطفا بروزرسانی نمایید.");
-			dialog.show();
-			return false;
-		case ConnectionResult.SERVICE_DISABLED:
-			dialog.setMessage("سرویس google play service غیر فعال است.");
-			dialog.show();
-			return false;
-		case ConnectionResult.SERVICE_INVALID:
-			dialog.setMessage("سرویس google play service یافت نشد. لطفا نصب نمایید");
-			dialog.show();
-			return false;
-		default:
-			dialog.dismiss();
-			IDM_Activity.this.finish();*/
-			return false;
-		//}
-	}
 }

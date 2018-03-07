@@ -132,7 +132,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 
 		holder.btnAddsabad.setTag(current.getServiceID());
 		if(current.getServiceNameEn().contains("Airport Transfer")&& current.getServiceTotalPrice()==0&& Prefs.getString("Flag_First_Computing","F").equals("F")){
-			holder.txtAdd.setText("محاسبه قیمت");
+			holder.txtAdd.setText(R.string.calculate_price);
 			if(Tprice==0) {
 				holder.txtServiceTotalPrice.setText("");
 			}else if(Tprice >0){
@@ -144,7 +144,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 					current.setFlag(false);
 					holder.btnAddsabad.setBackgroundResource(R.drawable.blue_button);
 					holder.img_khadmat_row.setVisibility(View.GONE);
-					holder.txtAdd.setText("افزودن به سبد خرید");
+					holder.txtAdd.setText(R.string.add_to_shoping_cart);
 
 
 					notifyDataSetChanged();
@@ -156,14 +156,14 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 
 				holder.btnAddsabad.setBackgroundResource(R.drawable.green_button);
 				holder.img_khadmat_row.setVisibility(View.VISIBLE);
-				holder.txtAdd.setText("اضافه شد");
+				holder.txtAdd.setText(R.string.added);
 
 
 			}else{
 
 				holder.btnAddsabad.setBackgroundResource(R.drawable.blue_button);
 				holder.img_khadmat_row.setVisibility(View.GONE);
-				holder.txtAdd.setText("افزودن به سبد خرید");
+				holder.txtAdd.setText(R.string.add_to_shoping_cart);
 
 
 
@@ -209,7 +209,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 						current.setFlag(false);
 						holder.btnAddsabad.setBackgroundResource(R.drawable.blue_button);
 						holder.img_khadmat_row.setVisibility(View.GONE);
-						holder.txtAdd.setText("افزودن به سبد خرید");
+						holder.txtAdd.setText(R.string.add_to_shoping_cart);
 
 
 					}else{
@@ -218,7 +218,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 
 						holder.btnAddsabad.setBackgroundResource(R.drawable.green_button);
 						holder.img_khadmat_row.setVisibility(View.VISIBLE);
-						holder.txtAdd.setText("اضافه شد");
+						holder.txtAdd.setText(R.string.added);
 
 					}
 					notifyDataSetChanged();

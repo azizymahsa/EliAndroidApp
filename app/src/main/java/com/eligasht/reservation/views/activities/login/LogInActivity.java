@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -15,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.gson.GsonBuilder;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
@@ -29,6 +27,7 @@ import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -43,6 +42,7 @@ import retrofit2.Response;
 public class LogInActivity extends BaseActivity implements View.OnClickListener {
 
 
+    RelativeLayout llHome;
     private FancyButton btnLogin;
     private LinearLayout btnRegister;
     private EditText txtEmail;
@@ -50,7 +50,6 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
     private ImageView eLogo;
     private LinearLayout layoutResetPassword;
     private ClientService service;
-    RelativeLayout llHome;
 
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +87,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                 if (response == null
                         || response.body() == null
                         || response.body().getLoginResult() == null) {
-                    Toast.makeText(LogInActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -98,18 +97,18 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                 }
                 WebUserLogin webUserLogin = response.body().getLoginResult().getWebUserLogin();
                 if (webUserLogin == null) {
-                    Toast.makeText(LogInActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
                 if (webUserLogin.getLoginStatus().equals("NO")) {
-                    Toast.makeText(LogInActivity.this, "ایمیل و یا رمز عبور شما اشتباه می باشد .", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, R.string.mail_or_pass_is_wrong, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (webUserLogin.getLoginStatus().equals("ACT")) {
-                    Toast.makeText(LogInActivity.this, "لینک فعال سازی به ایمیل شما ارسال شده است.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, R.string.activation_link_has_been_sent_to_your_email, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -127,7 +126,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onFailure(Call<LoginRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(LogInActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LogInActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -144,7 +143,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         layoutResetPassword = findViewById(R.id.layout_reset_password);
         txtPassword = findViewById(R.id.txt_password);
 
-        btnLogin.setCustomTextFont("fonts/iran_sans_normal.ttf");
+        btnLogin.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         //  eLogo.setVisibility(View.INVISIBLE);
 
 
@@ -169,16 +168,16 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
             case R.id.btnLogIn:
                 if (txtEmail.length() == 0) {
-                    Toast.makeText(this, "لطفا ایمیل خود را وارد کنید", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.please_enter_your_email_address), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (!ValidationTools.isEmailValid(txtEmail.getText().toString())) {
-                    Toast.makeText(this, "ایمیل وارد شده صحیح نمی باشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.email_address_is_not_valid, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (txtPassword.length() == 0) {
-                    Toast.makeText(this, "لطفا رمز عبور خود را وارد کنید", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.enter_your_password), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Login();

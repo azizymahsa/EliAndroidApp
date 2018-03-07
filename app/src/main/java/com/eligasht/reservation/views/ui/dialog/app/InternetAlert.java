@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Utility;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import cn.refactor.library.SmoothCheckBox;
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -36,12 +37,12 @@ public class InternetAlert implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_net, null);
         builder.setView(dialogView);
-        btnMobileData = (FancyButton) dialogView.findViewById(R.id.btnMobileData);
-        btnWifi = (FancyButton) dialogView.findViewById(R.id.btnWifi);
-        tvAlert = (TextView) dialogView.findViewById(R.id.tvAlert);
+        btnMobileData = dialogView.findViewById(R.id.btnMobileData);
+        btnWifi = dialogView.findViewById(R.id.btnWifi);
+        tvAlert = dialogView.findViewById(R.id.tvAlert);
 
-        btnMobileData.setCustomTextFont("iran_sans_normal.ttf");
-        btnWifi.setCustomTextFont("iran_sans_normal.ttf");
+        btnMobileData.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnWifi.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnMobileData.setOnClickListener(this);
         btnWifi.setOnClickListener(this);
         dialog = builder.create();

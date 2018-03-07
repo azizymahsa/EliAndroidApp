@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.fragments;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
@@ -296,7 +297,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
             }
         });
-        datePickerDialog2.setTitle("تاریخ برگشت را انتخاب نمایید");
+        datePickerDialog2.setTitle(getString(R.string.select_return_date));
 
 
 //=====================================================================================================
@@ -461,9 +462,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         } catch (Exception e) {
         }
 
-        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "شهر یا فرودگاه مقصد را انتخاب کنید "));
+        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", getString(R.string.select_destination_city_or_airport)));
         lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En-HF-Raft", ""));
-        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", "شهر یا فرودگاه مبدا را انتخاب کنید "));
+        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", getString(R.string.select_origin_city_or_airport)));
         tvMabdaEn.setText(Prefs.getString("Value-Hotel-City-En-HF-Source", ""));
     }
 
@@ -499,9 +500,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             case R.id.searchHotel:
                 //  new CountTimeAlert(getActivity(),this);
                 try {
-                    if (tvMabda.getText().toString().contains("انتخاب کنید") || txtCity.getText().toString().contains("انتخاب کنید")) {
+                    if (tvMabda.getText().toString().contains(getString(R.string.please_select_one)) || txtCity.getText().toString().contains(getString(R.string.please_select_one))) {
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
-                        AlertDialogPassenger.setText("لطفا مبدا و مقصد را انتخاب کنید ");
+                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin));
                     } else {
 
                         sendStartTimer();
@@ -526,7 +527,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
 
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.something_went_wron), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -777,11 +778,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     public void anim() {
 
 
-        YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
+        YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new Animator.AnimatorListener() {
 
 
             @Override
-            public void onAnimationStart(android.animation.Animator animation) {
+            public void onAnimationStart(Animator animation) {
 
 
                 YoYo.with(Techniques.SlideOutDown)
@@ -799,7 +800,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             }
 
             @Override
-            public void onAnimationEnd(android.animation.Animator animation) {
+            public void onAnimationEnd(Animator animation) {
 
                 String start = "";
                 String end = "";
@@ -818,16 +819,16 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 tvMabdaEn.setText(endF);
                 lbl_city_english.setText(startF);
 
-                if(start.contains("مبدا") && end.contains("مقصد") ){
-                    tvMabda.setText("شهر یا فرودگاه مبدا را انتخاب کنید ");
-                    txtCity.setText("شهر یا فرودگاه مقصد را انتخاب کنید ");
-                }else if(start.contains("مبدا")){
-                    txtCity.setText("شهر یا فرودگاه مقصد را انتخاب کنید ");
+                if(start.contains(getString(R.string.origin)) && end.contains(getString(R.string.destination)) ){
+                    tvMabda.setText(getString(R.string.select_origin_city_or_airport));
+                    txtCity.setText(getString(R.string.select_destination_city_or_airport));
+                }else if(start.contains(getString(R.string.origin))){
+                    txtCity.setText(getString(R.string.select_destination_city_or_airport));
                     lbl_city_english.setText("");
 
-                }else if(end.contains("مقصد") ){
+                }else if(end.contains(getString(R.string.destination)) ){
 
-                    tvMabda.setText("شهر یا فرودگاه مبدا را انتخاب کنید ");
+                    tvMabda.setText(getString(R.string.select_origin_city_or_airport));
                     tvMabdaEn.setText("");
                 }
 /////////////////////////
@@ -887,12 +888,12 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             }
 
             @Override
-            public void onAnimationCancel(android.animation.Animator animation) {
+            public void onAnimationCancel(Animator animation) {
 
             }
 
             @Override
-            public void onAnimationRepeat(android.animation.Animator animation) {
+            public void onAnimationRepeat(Animator animation) {
 
             }
 

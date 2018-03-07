@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="2dp"
                         android:gravity="right"
-                        android:text="مبدا  : "
+                        android:text="@string/origin_colon"
                         android:textColor="#ffffff"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
@@ -99,7 +99,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text="شهر یا فرودگاه مبدا را انتخاب کنید "
+                        android:text="@string/select_origin_city_or_airport"
                         android:textColor="#fff"
                         android:textSize="@dimen/_20dp_normal_textSize"
                         android:textStyle="bold"
@@ -136,7 +136,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="2dp"
                         android:gravity="right"
-                        android:text=" مقصد : "
+                        android:text="@string/destination_colon"
                         android:textColor="#ffffff"
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
@@ -145,7 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text="شهر یا فرودگاه مقصد را انتخاب کنید "
+                        android:text="@string/select_destination_city_or_airport "
                         android:textColor="#fff"
                         android:textSize="@dimen/_20dp_normal_textSize"
                         android:textStyle="bold" />
@@ -222,7 +222,7 @@
                                 android:layout_weight="80"
                                 android:background="#fff"
                                 android:gravity="right|center"
-                                android:text="تاریخ برگشت "
+                                android:text="@string/return_date"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize"
@@ -243,7 +243,7 @@
                                 android:layout_weight="80"
                                 android:background="#fff"
                                 android:gravity="right|center"
-                                android:text="تاریخ رفت"
+                                android:text="@string/departure_date"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize"
@@ -280,7 +280,7 @@
                                     android:layout_weight="0.8"
 
                                     android:gravity="center|right"
-                                    android:text="انتخاب کنید"
+                                    android:text="@string/please_select_one"
                                     android:textColor="@color/text_color_2"
                                     android:textSize="@dimen/_12dp_normal_textSize"
 
@@ -316,7 +316,7 @@
                                     android:layout_marginRight="10dp"
                                     android:layout_weight="0.8"
                                     android:gravity="center|right"
-                                    android:text="انتخاب کنید"
+                                    android:text="@string/please_select_one"
                                     android:textColor="@color/text_color_2"
                                     android:textSize="@dimen/_12dp_normal_textSize"
 
@@ -425,7 +425,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_margin="1dp"
                                 android:gravity="right|center"
-                                android:text="بزرگسال"
+                                android:text="@string/adault"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
@@ -480,7 +480,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_margin="1dp"
                                 android:gravity="right|center"
-                                android:text="کودک"
+                                android:text="@string/baby"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
@@ -535,7 +535,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_margin="1dp"
                                 android:gravity="right|center"
-                                android:text="نوزاد"
+                                android:text="@string/newborn"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
@@ -572,7 +572,7 @@
                         android:layout_gravity="center"
                         android:background="?attr/selectableItemBackground"
                         android:gravity="center"
-                        android:text="جستجو"
+                        android:text="@string/search"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
@@ -600,7 +600,7 @@
             android:layout_weight="100"
 
             android:gravity="center"
-            android:text="رفت"
+            android:text="@string/departure"
             android:textColor="#808080"
             android:textSize="@dimen/_15dp_normal_textSize"
             android:visibility="visible" />
@@ -611,7 +611,7 @@
             android:layout_height="match_parent"
             android:layout_weight="100"
             android:gravity="center"
-            android:text="رفت و برگشت"
+            android:text="@string/departure_and_return"
             android:textColor="#ffffff"
             android:textSize="@dimen/_15dp_normal_textSize"
             android:visibility="visible" />
