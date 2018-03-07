@@ -1320,23 +1320,25 @@
 
                     <TextView
                         android:id="@+id/textView1"
+                        android:text="@string/sum_khadamat"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textSize="@dimen/_15dp_khadamat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#fff"
                         android:gravity="right"
-                        android:text="@string/Rial"
-                        android:textAppearance="@style/IrsansBold"
-                        android:textColor="#23b574"
-                        android:textSize="@dimen/_15dp_khadamat" />
+
+
+                        />
 
                     <TextView
                         android:id="@+id/txtSumKhadamat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
 
                         android:layout_weight="9.60"
-                        android:gravity="left"
+                        android:gravity="right"
                         android:text="10,000,000"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#000000"
@@ -1345,13 +1347,14 @@
 
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="164dp"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:gravity="right"
-                        android:text="@string/sum_khadamat"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        android:text="@string/Rial"
+                        android:textColor="#23b574"
                         android:textAppearance="@style/IrsansBold"
-                        android:textSize="@dimen/_15dp_khadamat" />
+                        android:textSize="@dimen/_15dp_khadamat"/>
                 </LinearLayout>
 
 
