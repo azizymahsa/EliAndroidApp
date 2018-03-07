@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Build.VERSION;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AlertDialog.Builder;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.util.DisplayMetrics;
@@ -52,7 +51,7 @@ public class CalendarDialog implements OnClickListener {
     private String f13892F;
     private List<Boolean> f13893G = new ArrayList(Arrays.asList(new Boolean[365]));
     private int f13894H = 0;
-    private GridLayoutManager gridLayoutManager;
+    private Grid gridLayoutManager;
     private int f13896J;
     private int f13897K;
     private SharedPreferences sharedPrefrences;
@@ -103,6 +102,8 @@ public class CalendarDialog implements OnClickListener {
         this.activity = activity;
         this.persianStartYear = startDate.getPersianYear();
         this.persianEndYear = endDate.getPersianYear();
+        fullEndDate = null;
+        fullStartDate = null;
         this.geoStartYear = startDate.getGeoYear();//geo start year
         this.geoEndYear = endDate.getGeoYear();//geo end year
         this.isReverseTravel = true;
@@ -182,6 +183,8 @@ public class CalendarDialog implements OnClickListener {
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
         this.persianStartYear = startDate.getPersianYear();
         this.persianEndYear = 0;
+        fullEndDate = null;
+        fullStartDate = null;
         this.geoStartYear = startDate.getGeoYear();//geo start year
         this.geoEndYear = 0;//geo end year
         this.isReverseTravel = false;
@@ -262,6 +265,8 @@ public class CalendarDialog implements OnClickListener {
         this.geoStartYear = 0;//geo start year
         this.geoEndYear = 0;//geo end year
         this.isReverseTravel = reverse;
+        fullEndDate = null;
+        fullStartDate = null;
         this.fullDate = null;
         this.shortDate = null;
         this.callbackCalendarDialog = iCallbackCalendarDialog;
@@ -349,7 +354,7 @@ public class CalendarDialog implements OnClickListener {
         fri = view.findViewById(R.id.fri);
         nextPersian = view.findViewById(R.id.next_persian);
         prePersian = view.findViewById(R.id.pre_persian);
-        gridLayoutManager = new GridLayoutManager(this.context, 7);
+        gridLayoutManager = new Grid(this.context, 7);
         calendarRv.setNestedScrollingEnabled(false);
     }
 

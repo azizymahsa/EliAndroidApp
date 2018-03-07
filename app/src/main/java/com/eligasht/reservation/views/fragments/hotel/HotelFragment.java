@@ -17,11 +17,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eligasht.R;
+import com.eligasht.reservation.models.model.ModelRowCountRoom;
+import com.eligasht.reservation.models.model.pack.ChildModel;
+import com.eligasht.reservation.tools.Utility;
+import com.eligasht.reservation.tools.ValidationTools;
+import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
+import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.activities.AddRoomActivity;
+import com.eligasht.reservation.views.activities.hotel.activity.GetHotelCityActivity;
+import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
+import com.eligasht.reservation.views.adapters.HotelCountRoomAdapter;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
 import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
+import com.eligasht.reservation.views.ui.dialog.app.CountTimeAlert;
+import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -30,19 +43,6 @@ import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.eligasht.R;
-import com.eligasht.reservation.models.model.ModelRowCountRoom;
-import com.eligasht.reservation.models.model.pack.ChildModel;
-import com.eligasht.reservation.tools.Utility;
-import com.eligasht.reservation.tools.ValidationTools;
-import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.activities.AddRoomActivity;
-import com.eligasht.reservation.views.activities.hotel.activity.GetHotelCityActivity;
-import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
-import com.eligasht.reservation.views.adapters.HotelCountRoomAdapter;
-import com.eligasht.reservation.views.ui.dialog.app.CountTimeAlert;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -55,21 +55,19 @@ import java.util.List;
 
 public class HotelFragment extends Fragment implements OnClickListener,
         TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener
-        ,ICallbackCalendarDialog{
+        , ICallbackCalendarDialog {
 
-    public static Button  btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
-    public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult,searchHotel;
+    public static Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public static int countNafar = 1;
+    private final int ADD_ROOM_REQUEST = 100;
+    public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, searchHotel;
+    public ListView listRoomItem;
+    public List<ModelRowCountRoom> data;
     LinearLayout btn_add_room, llRaft, llBargasht;
     CardView cvRoom;
-    public ListView listRoomItem;
     HotelCountRoomAdapter mAdapter;
-    public List<ModelRowCountRoom> data;
-    private View rootView;
     RelativeLayout citySearch;
     TextView tvRaft, tvBargasht;
-    private ArrayList<ModelRowCountRoom> roomsSelected;
-    private final int ADD_ROOM_REQUEST = 100;
     DatePickerDialog datePickerDialog;
     DatePickerDialog datePickerDialog2;
     int month;
@@ -81,14 +79,30 @@ public class HotelFragment extends Fragment implements OnClickListener,
     String raft, bargasht;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
-
     boolean geo = false;
     CalendarDialog calendarDialog;
+    private View rootView;
+    private ArrayList<ModelRowCountRoom> roomsSelected;
+
+    public static String date_server(int y, int m, int d) {
+        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
+
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
+        String formatted = format1.format(date.getTime());
+        String[] dateGrg = formatted.split("/");
+        int monthS = Integer.valueOf(dateGrg[0]);
+        long dayS = Long.valueOf(dateGrg[1]);
+        int yearS = Integer.valueOf(dateGrg[2]);
+
+
+        return yearS + "/" + monthS + "/" + dayS;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
-         calendarDialog=new CalendarDialog();
+        calendarDialog = new CalendarDialog();
 
         Utility.sendTag("H", true, false);
         geo = Prefs.getBoolean("geo", false);
@@ -97,35 +111,35 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
         //listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 
-       // lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
-        tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
+        // lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
+        tarikh_be = rootView.findViewById(R.id.tarikh_be);
         //  lblRoomCount.setOnClickListener(this);
         tarikh_be.setOnClickListener(this);
-        txtRoomCount = (TextView) rootView.findViewById(R.id.txtRoomCount);
-        tvRaft = (TextView) rootView.findViewById(R.id.tvRaft);
-        tvBargasht = (TextView) rootView.findViewById(R.id.tvBargasht);
-        tvAdult = (TextView) rootView.findViewById(R.id.tvAdult);
-        tvChild = (TextView) rootView.findViewById(R.id.tvChild);
+        txtRoomCount = rootView.findViewById(R.id.txtRoomCount);
+        tvRaft = rootView.findViewById(R.id.tvRaft);
+        tvBargasht = rootView.findViewById(R.id.tvBargasht);
+        tvAdult = rootView.findViewById(R.id.tvAdult);
+        tvChild = rootView.findViewById(R.id.tvChild);
         llRaft = rootView.findViewById(R.id.llRaft);
         llBargasht = rootView.findViewById(R.id.llBargasht);
         // tvRaft.setOnClickListener(this);
         llRaft.setOnClickListener(this);
         llBargasht.setOnClickListener(this);
-        btn_add_room = (LinearLayout) rootView.findViewById(R.id.btn_add_room);
-        cvRoom = (CardView) rootView.findViewById(R.id.cvRoom);
+        btn_add_room = rootView.findViewById(R.id.btn_add_room);
+        cvRoom = rootView.findViewById(R.id.cvRoom);
         cvRoom.setOnClickListener(this);
 
         //txtTitle= (TextView) rootView.findViewById(R.id.txtTitle);
-        citySearch = (RelativeLayout) rootView.findViewById(R.id.citySearch);
+        citySearch = rootView.findViewById(R.id.citySearch);
 
-        lbl_city_english = (TextView) rootView.findViewById(R.id.lbl_city_english);
-        txtCity = (TextView) rootView.findViewById(R.id.txtCity);
+        lbl_city_english = rootView.findViewById(R.id.lbl_city_english);
+        txtCity = rootView.findViewById(R.id.txtCity);
 
 
         citySearch.setOnClickListener(this);
         lbl_city_english.setOnClickListener(this);
 
-        searchHotel =  rootView.findViewById(R.id.searchHotel);
+        searchHotel = rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
 
 
@@ -150,8 +164,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         //=================================================================================================
         PersianCalendar persianCalendar = new PersianCalendar();
 
-        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), (persianCalendarDatePicker.getPersianDay()+1));
-
+        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), (persianCalendarDatePicker.getPersianDay() + 1));
 
 
         month = persianCalendarDatePicker.getPersianMonth();
@@ -259,7 +272,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
         datePickerDialog2.setTitle(getString(R.string.select_return_date));
 
 
-
 //=====================================================================================================
 
 
@@ -276,7 +288,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 Date date;
                 formatter = new SimpleDateFormat("yyyy/MM/dd");
                 try {
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     datePickerDialogGregorian2.setMinDate(cal);
@@ -320,81 +332,71 @@ public class HotelFragment extends Fragment implements OnClickListener,
         });
 
 
-
 //=====================================================================================================
 
 
 //=====================================================================================================
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
 
-            tvBargasht.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
+            tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
 
         } else {
-            try{
+            try {
                 tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
-                bargasht = Prefs.getString("bargasht", "null").replaceAll("-","/");
+                bargasht = Prefs.getString("bargasht", "null").replaceAll("-", "/");
 
 
+                Log.e("testdate", bargasht);
 
+                String[] dateSplite2 = bargasht.split("/");
 
+                String dayMF = dateSplite2[2];
+                String monthMF = dateSplite2[1];
+                String yearMF = dateSplite2[0];
+                String[] dateSplite3 = SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
 
-                Log.e("testdate", bargasht );
-
-                String[] dateSplite2=bargasht.split("/");
-
-                String dayMF=dateSplite2[2];
-                String monthMF=dateSplite2[1];
-                String yearMF=dateSplite2[0];
-                String[] dateSplite3= SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
-
-                String dayMF1=dateSplite3[2];
-                String monthMF1=dateSplite3[1];
-                String yearMF1=dateSplite3[0];
+                String dayMF1 = dateSplite3[2];
+                String monthMF1 = dateSplite3[1];
+                String yearMF1 = dateSplite3[0];
 
 
                 PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
                 persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
                 Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-                datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
+                datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
 
 
-
-            }catch (Exception e){}
-
-
+            } catch (Exception e) {
+            }
 
 
         }
 
 
         if (Prefs.getString("raftfa", "null").equals("null")) {
-            tvRaft.setText(persianCalendarDatePicker.getPersianWeekDayName()+" "+persianCalendarDatePicker.getPersianDay()+" "+persianCalendarDatePicker.getPersianMonthName());
+            tvRaft.setText(persianCalendarDatePicker.getPersianWeekDayName() + " " + persianCalendarDatePicker.getPersianDay() + " " + persianCalendarDatePicker.getPersianMonthName());
 
         } else {
             tvRaft.setText(Prefs.getString("raftfa", "null"));
-            raft = Prefs.getString("raft", "null").replaceAll("-","/");
-            Log.e("testdate", raft );
+            raft = Prefs.getString("raft", "null").replaceAll("-", "/");
+            Log.e("testdate", raft);
 
-            String[] dateSplite2=raft.split("/");
+            String[] dateSplite2 = raft.split("/");
 
-            String dayMF=dateSplite2[2];
-            String monthMF=dateSplite2[1];
-            String yearMF=dateSplite2[0];
-            String[] dateSplite3= SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF),Integer.valueOf(monthMF)-1,Integer.valueOf(dayMF)+1).split("/");
+            String dayMF = dateSplite2[2];
+            String monthMF = dateSplite2[1];
+            String yearMF = dateSplite2[0];
+            String[] dateSplite3 = SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
 
-            String dayMF1=dateSplite3[2];
-            String monthMF1=dateSplite3[1];
-            String yearMF1=dateSplite3[0];
+            String dayMF1 = dateSplite3[2];
+            String monthMF1 = dateSplite3[1];
+            String yearMF1 = dateSplite3[0];
 
 
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
             Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-            datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(),  persianCalendarDatePicker2.getPersianMonth(),  persianCalendarDatePicker2.getPersianDay());
-
-
-
-
+            datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
 
 
         }
@@ -470,10 +472,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
             case R.id.searchHotel:
                 // new CountTimeAlert(getActivity(),this);
                 try {
-                    if (txtCity.getText().toString().contains(getString(R.string.please_select_one))){
+                    if (txtCity.getText().toString().contains(getString(R.string.please_select_one))) {
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_city));
-                    }else{
+                    } else {
                         sendStartTimer();
                         Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
 
@@ -502,7 +504,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 break;
             case R.id.llRaft:
 
-                calendarDialog.create(getActivity(),getContext(),this,true, TypeUsageOfCalendar.HOTEL);
+                calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
 
 
                     /*    if (geo) {
@@ -523,11 +525,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
 */
 
 
-
-
                 break;
             case R.id.llBargasht:
-                calendarDialog.create(getActivity(),getContext(),this,true, TypeUsageOfCalendar.HOTEL);
+                calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
 
 /*
 
@@ -546,8 +546,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                 }
 */
-
-
 
 
                 break;
@@ -606,7 +604,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
         return roomList;
     }
 
-
     private int getCountAdult(ArrayList<ModelRowCountRoom> rooms) {
         if (ValidationTools.isEmptyOrNull(rooms)) {
             return 0;
@@ -638,7 +635,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
         return rooms.size();
     }
-
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
@@ -692,7 +688,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
                 //   bargasht = date_server(year, monthOfYear, dayOfMonth+1);
 
-            }else{
+            } else {
 
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
             }
@@ -705,21 +701,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
         }
     }
-
-    public static String date_server(int y, int m, int d) {
-        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
-
-        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
-        String formatted = format1.format(date.getTime());
-        String[] dateGrg = formatted.split("/");
-        int monthS = Integer.valueOf(dateGrg[0]);
-        long dayS = Long.valueOf(dateGrg[1]);
-        int yearS = Integer.valueOf(dateGrg[2]);
-
-
-        return yearS + "/" + monthS + "/" + dayS;
-    }
-
 
     @Override
     public void onReturnValue(int type) {
@@ -734,11 +715,11 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-
-        tvRaft.setText( startDate.getDescriptionPersian());
-        tvBargasht.setText( endDate.getDescriptionPersian());
-        raft=startDate.getFullGeo();
-        bargasht=endDate.getFullGeo();
+        Log.e("Date", startDate.toString());
+        tvRaft.setText(startDate.getDescription());
+        tvBargasht.setText(endDate.getDescription());
+        raft = startDate.getFullGeo();
+        bargasht = endDate.getFullGeo();
 
 
         Prefs.putString("raft", raft);
