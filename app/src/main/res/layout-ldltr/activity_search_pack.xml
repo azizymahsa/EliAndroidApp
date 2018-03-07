@@ -199,23 +199,26 @@
 
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="11"
-            android:background="#ffff"
+            android:layout_weight="8"
+            android:background="#ffffff"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+
+
+            >
 
             <LinearLayout
 
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="140"
+                android:layout_weight="190"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="100">
+                    android:layout_weight="120">
 
 
                     <mehdi.sakout.fancybuttons.FancyButton
@@ -223,8 +226,8 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="left"
-                        android:gravity="left"
+                        android:layout_gravity="right"
+                        android:gravity="right"
                         fancy:fb_defaultColor="@android:color/transparent"
                         fancy:fb_focusColor="@color/focusColor"
 
@@ -269,8 +272,8 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="left"
-                        android:gravity="left"
+                        android:layout_gravity="right"
+                        android:gravity="right"
                         fancy:fb_defaultColor="@android:color/transparent"
                         fancy:fb_focusColor="@color/focusColor"
 
@@ -308,72 +311,111 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llBottom"
-
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:gravity="center">
+                android:layout_weight="100">
 
-                <TextView
-                    android:id="@+id/tvFilter"
-                    android:layout_width="wrap_content"
+                <mehdi.sakout.fancybuttons.FancyButton
+
+                    android:id="@+id/btnFilter"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_5dp_margin"
-                    android:gravity="center"
-                    android:text="@string/Filter"
-                    android:textColor="#4d4d4d"
-                    android:textSize="@dimen/bottom_tab" />
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    fancy:fb_defaultColor="@android:color/transparent"
+                    fancy:fb_focusColor="@color/focusColor"
+                    fancy:fb_radius="6dp"
+                    fancy:fb_text=" "
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textSize="25dp" />
 
-                <TextView
-                    android:id="@+id/tvFilterIcon"
+                <LinearLayout
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_5dp_margin"
-                    android:gravity="center"
-                    android:text="@string/icon_filter"
-                    android:textAppearance="@style/IconFonts"
-                    android:textColor="#4d4d4d"
-                    android:textSize="@dimen/_25dp_normal_iconSize" />
-            </LinearLayout>
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvFilter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
+                        android:gravity="center"
+                        android:text="@string/Filter"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/bottom_tab" />
+
+                    <TextView
+                        android:id="@+id/tvFilterIcon"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
+                        android:gravity="center"
+                        android:text="@string/icon_filter"
+                        android:textAppearance="@style/IconFonts"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/_25dp_normal_iconSize" />
+                </LinearLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent" />
 
 
-            <LinearLayout
-                android:id="@+id/llSort"
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_weight="100">
 
-                <TextView
-                    android:id="@+id/tvSort"
-                    android:layout_width="wrap_content"
+                <mehdi.sakout.fancybuttons.FancyButton
+
+                    android:id="@+id/btnSort"
+
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_5dp_margin"
-                    android:gravity="center"
-                    android:text="@string/Sort"
-                    android:textColor="#4d4d4d"
-                    android:textSize="@dimen/bottom_tab" />
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    fancy:fb_defaultColor="@android:color/transparent"
+                    fancy:fb_focusColor="@color/focusColor"
 
-                <TextView
-                    android:id="@+id/tvSortIcon"
-                    android:layout_width="wrap_content"
+                    fancy:fb_radius="6dp"
+                    fancy:fb_text=" "
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textSize="25dp" />
+
+                <LinearLayout
+                    android:id="@+id/llSort"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_5dp_margin"
                     android:gravity="center"
-                    android:text="@string/icon_sort"
-                    android:textAppearance="@style/IconFonts"
-                    android:textColor="#4d4d4d"
-                    android:textSize="@dimen/_25dp_normal_iconSize" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvSort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
+                        android:gravity="center"
+                        android:text="@string/Sort"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/bottom_tab" />
+
+                    <TextView
+                        android:id="@+id/tvSortIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5dp_margin"
+                        android:gravity="center"
+                        android:text="@string/icon_sort"
+                        android:textAppearance="@style/IconFonts"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/_25dp_normal_iconSize" />
+
+                </LinearLayout>
+            </RelativeLayout>
 
 
         </LinearLayout>

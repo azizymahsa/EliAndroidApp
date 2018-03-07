@@ -54,7 +54,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/name"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <EditText
                         android:id="@+id/edt_name_fa"
@@ -92,7 +92,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/family_name"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     <EditText
@@ -163,7 +163,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/mail"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <EditText
                         android:id="@+id/edt_email_user_name"
@@ -201,7 +201,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/name_en"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     <EditText
@@ -240,7 +240,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/family_name"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <EditText
                         android:id="@+id/edt_last_name_En"
@@ -278,7 +278,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/national_code"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <EditText
                         android:id="@+id/edt_code_meli"
@@ -318,7 +318,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/birth_date"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     <TextView
@@ -357,7 +357,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/phone"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <EditText
                         android:id="@+id/edt_home_phone"
@@ -396,7 +396,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/mobile"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <EditText
                         android:id="@+id/edt_mobile"
@@ -435,7 +435,7 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/address"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/text_size_12dp" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     <EditText
@@ -484,7 +484,7 @@
                             android:paddingTop="@dimen/_10dp_padding"
                             android:text="@string/sex"
                             android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/text_size_12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
                             android:layout_width="wrap_content"
