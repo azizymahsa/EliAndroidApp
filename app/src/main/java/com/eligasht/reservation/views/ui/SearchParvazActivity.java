@@ -120,7 +120,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     public String BargashtF;
     public String Raft;
     public String Bargasht;
-    public TextView txtDateOnvan, tvLoading, txticon, tvChangeFlight;
+    public TextView txtDateOnvan,txtDateOnvanB, tvLoading, txticon, tvChangeFlight,txticonDate;
     public RelativeLayout linear_expand;
     public SearchParvazPinAdapter searchParvazPinAdapter;
     public ArrayList<ModelCheckBox> arrayTrue = new ArrayList<>();
@@ -276,20 +276,25 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             Bargasht = extras.getString("Value-ArrivalDate");
 
             txtDateOnvan = findViewById(R.id.txtDateOnvan);
+            txtDateOnvanB = findViewById(R.id.txtDateOnvanB);
+            txticonDate = findViewById(R.id.txticonDate);
             try {
                 String flagWay = extras.getString("Value-Flag-Two");
                 if (flagWay.trim().equals("1")) {
                     if (getIntent().getExtras().getBoolean("Geo")) {
-                        txtDateOnvan.setText(RaftF);
+                        txticonDate.setText(RaftF);
                     } else {
-                        txtDateOnvan.setText(RaftF);
+                        txticonDate.setText(RaftF);
                     }
                     Bargasht = Raft;
                 } else {
                     if (getIntent().getExtras().getBoolean("Geo")) {
-                        txtDateOnvan.setText(BargashtF + "  -  " + RaftF);
+                        txtDateOnvan.setText(BargashtF );
+                        txtDateOnvanB.setText( RaftF);
                     } else {
-                        txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
+                        txtDateOnvan.setText(BargashtF );
+                        txtDateOnvanB.setText( RaftF);
+                       // txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
                     }
                 }
 

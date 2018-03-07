@@ -33,17 +33,18 @@
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
             style="@style/fancy_toolbar"
-            android:layout_gravity="right"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/_10dp_margin"
             android:visibility="visible"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
-
         <ImageView
             android:id="@+id/txt_hom"
             android:layout_width="@dimen/_30dp"
             android:layout_height="@dimen/_30dp"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="@dimen/_10dp_margin"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="@dimen/_10dp_margin"
             android:background="@drawable/e_logo" />
+
 
     </FrameLayout>
 
@@ -1320,23 +1321,25 @@
 
                     <TextView
                         android:id="@+id/textView1"
+                        android:text="@string/sum_khadamat"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textSize="@dimen/_15dp_khadamat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#fff"
                         android:gravity="right"
-                        android:text="@string/Rial"
-                        android:textAppearance="@style/IrsansBold"
-                        android:textColor="#23b574"
-                        android:textSize="@dimen/_15dp_khadamat" />
+
+
+                        />
 
                     <TextView
                         android:id="@+id/txtSumKhadamat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
 
                         android:layout_weight="9.60"
-                        android:gravity="left"
+                        android:gravity="right"
                         android:text="10,000,000"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#000000"
@@ -1345,13 +1348,14 @@
 
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="164dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:gravity="right"
-                        android:text="@string/sum_khadamat"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        android:text="@string/Rial"
+                        android:textColor="#23b574"
                         android:textAppearance="@style/IrsansBold"
-                        android:textSize="@dimen/_15dp_khadamat" />
+                        android:textSize="@dimen/_15dp_khadamat"/>
                 </LinearLayout>
 
 
@@ -1771,24 +1775,27 @@
 
 
                     <TextView
-                        android:id="@+id/tvPrice"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="0"
-                        android:textAppearance="@style/IrsansBold"
-                        android:textColor="#098d4e"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="12dp"
                         android:text="@string/The_amount_payable"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_15dp_normal_textSize"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12dp"
+                        android:gravity="right"
+                        android:text="0"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="#098d4e"
+                        android:textSize="@dimen/_15dp_normal_textSize"  />
                 </LinearLayout>
 
 
