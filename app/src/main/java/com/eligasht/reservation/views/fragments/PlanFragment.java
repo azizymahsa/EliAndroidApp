@@ -30,6 +30,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
 import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
@@ -86,7 +87,8 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     /*com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;*/
     CalendarDialog calendarDialog;
-
+    CustomDate startDate;
+    CustomDate endDate;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_plane, container, false);
@@ -637,27 +639,63 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 break;
             // case R.id.tarikh_be_picker:
             case R.id.linear_picker:
-                if (flagOneTwo==1) {
-                    calendarDialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.NationalFlight);
+                if (startDate!=null&&endDate!=null){
+                    if (flagOneTwo==1) {
+                        calendarDialog.create(getActivity(), getContext(), this, startDate, TypeUsageOfCalendar.NationalFlight);
+
+                    } else {
+                        calendarDialog.create(getActivity(), getContext(), this, startDate,endDate, TypeUsageOfCalendar.NationalFlight);
+
+
+                    }
+                    //  calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
+
+                }else{
+                    if (flagOneTwo==1) {
+                        calendarDialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.NationalFlight);
+
+                    } else {
+                        calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.NationalFlight);
+
+
+                    }
+                }
+                /* if (flagOneTwo==1) {
+                    calendarDialog.create(getActivity(), getContext(), this, startDate, TypeUsageOfCalendar.NationalFlight);
 
                 } else {
                     calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.NationalFlight);
 
 
-                }
+                }*/
 
                 break;
             //case R.id.tarikh_az_picker:
             case R.id.linear_tarikh_az_picker:
-                if (flagOneTwo==1) {
-                    calendarDialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.NationalFlight);
 
-                } else {
-                    calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.NationalFlight);
+                if (startDate!=null&&endDate!=null){
+                    if (flagOneTwo==1) {
+                        calendarDialog.create(getActivity(), getContext(), this, startDate, TypeUsageOfCalendar.NationalFlight);
+
+                    } else {
+                        calendarDialog.create(getActivity(), getContext(), this, startDate,endDate, TypeUsageOfCalendar.NationalFlight);
+
+
+                    }
+                  //  calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
+
+                }else{
+                    if (flagOneTwo==1) {
+                        calendarDialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.NationalFlight);
+
+                    } else {
+                        calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.NationalFlight);
+
+
+                    }
 
 
                 }
-
 
 
                 break;
@@ -724,7 +762,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
                         intent1.putExtra("Geo", Geo);//2017-11-24
-
+                        SingletonDate.getInstance().setReverseDate(startDate,endDate);
 
                         startActivity(intent1);
                     } else {//default
@@ -945,6 +983,8 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
+        this.startDate=startDate;
+        this.endDate=endDate;
         if (flagOneTwo==1) {
             tarikh_az_picker.setText(startDate.getDescription());
 

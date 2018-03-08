@@ -46,9 +46,11 @@ import com.eligasht.reservation.models.model.SearchParvazModelExp;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
+import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
 import com.eligasht.reservation.views.adapters.ExpandableListAdapter;
 import com.eligasht.reservation.views.adapters.SearchParvazPinAdapter;
 import com.eligasht.reservation.views.components.Header;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.OBGParvaz.Flight;
 import com.eligasht.reservation.views.ui.OBGParvaz.FlightSegment;
 import com.eligasht.reservation.views.ui.OBGParvaz.FlightSegmentFalse;
@@ -269,11 +271,16 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             txtCityBargasht.setText(maghsadf + "");
 
-            RaftF = extras.getString("Value-DepartureDate-format");
+          /*  RaftF = extras.getString("Value-DepartureDate-format");
             BargashtF = extras.getString("Value-ArrivalDate-format");
 
             Raft = extras.getString("Value-DepartureDate");
-            Bargasht = extras.getString("Value-ArrivalDate");
+            Bargasht = extras.getString("Value-ArrivalDate");*/
+            RaftF = SingletonDate.getInstance().getStartDate().getDescription();
+            BargashtF =SingletonDate.getInstance().getEndDate().getDescription();
+
+            Raft =  SingletonDate.getInstance().getStartDate().getFullGeo();
+            Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
             txtDateOnvan = findViewById(R.id.txtDateOnvan);
             txtDateOnvanB = findViewById(R.id.txtDateOnvanB);
@@ -1062,6 +1069,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
+                Raft =  SingletonDate.getInstance().getStartDate().getFullGeo();
+                Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();//2018/03/11
+
                 String maghsadf = extras.getString("Value-Maghsad-Airport-Code");
                 String mabdaf = extras.getString("Value-Mabda-Airport-Code");
 
@@ -1677,9 +1687,24 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 break;
             case R.id.txtRuzeBad:
 
-                //"2017-12-24"
+                if (SingletonDate.getInstance().getStartDate().addOneDay()) {
+                    //tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
+                    Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
-                try {
+                    RaftF=SingletonDate.getInstance().getStartDate().getDescription();
+                    BargashtF=SingletonDate.getInstance().getEndDate().getDescription();
+
+                    txtDateOnvanB.setText(  RaftF);
+                    txtDateOnvan.setText(BargashtF);
+                    callApiDateNext();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
+               /* try {
 
                     String str_date = Raft;//2018-01-16
                     DateFormat formatter;
@@ -1743,15 +1768,30 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 } catch (java.text.ParseException e) {
                     System.out.println("Exception :" + e);
                 }
-
+*/
                 break;
             case R.id.btn_no_Result:
                 finish();
                 break;
             case R.id.txtRuzeGhabl:
+                if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
+                    Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+
+                    RaftF=SingletonDate.getInstance().getStartDate().getDescription();
+                    BargashtF=SingletonDate.getInstance().getEndDate().getDescription();
+
+                    txtDateOnvanB.setText(  RaftF);
+                    txtDateOnvan.setText(BargashtF);
+                    callApiDateNext();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
+                            Toast.LENGTH_SHORT).show();
+
+                }
 
                 //"2017-12-24"
-                try {
+               /* try {
 
                     String str_date = Raft;//"11-June-07";
                     DateFormat formatter;
@@ -1788,7 +1828,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         if (Prefs.getBoolean("GeoFlight",true)) {
 
-                         
+
                             txtDateOnvanB.setText( DateUtil.getLongStringDateNonYear(Raft, "yyyy-MM-dd", false));
 
                             txtDateOnvan.setText(DateUtil.getLongStringDateNonYear(Bargasht, "yyyy-MM-dd", false));
@@ -1808,7 +1848,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 } catch (java.text.ParseException e) {
                     System.out.println("Exception :" + e);
                 }
-
+*/
 
                 break;
 
@@ -1963,7 +2003,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         @Override
         protected void onPostExecute(String result) {
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
-
+            Log.e("date", result);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
                 window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
