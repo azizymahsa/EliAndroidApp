@@ -50,10 +50,10 @@ public class CustomDate {
         }
     }
 
-    public static boolean isOlderThanThan(Calendar startDate, Calendar endDate) {
-        long end = startDate.getTimeInMillis();
-        long start = endDate.getTimeInMillis();
-        return TimeUnit.MILLISECONDS.toDays((end - start)) > 0;
+    public static boolean isOlderThan(Calendar startDate, Calendar endDate) {
+        long start = startDate.getTimeInMillis();
+        long end = endDate.getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays((end - start)) >= 0;
         // return TimeUnit.MILLISECONDS.toDays((end - start));
     }
 
