@@ -1,7 +1,13 @@
 package com.eligasht.reservation.views.picker.utils;
 
 
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
+
+import com.eligasht.reservation.views.ui.SingletonContext;
+
 import java.util.Calendar;
+import java.util.Locale;
 
 
 /* compiled from: UiUtils */
@@ -241,6 +247,22 @@ public class UiUtils {
         } else {
             return (i + 31) % 31;
         }
+    }
+
+    public static Typeface getFont() {
+        String obj;
+        SharedPreferences sharedPrefrences = SingletonContext.getInstance().getContext().getSharedPreferences("eligasht.com", 0);
+        if (sharedPrefrences.getBoolean("isGregorian", false))
+            obj = "fonts/times.ttf";
+        else if (Locale.getDefault().getLanguage().equals("fa"))
+            obj = "fonts/shabna_bold.ttf";
+        else
+            obj = "fonts/times.ttf";
+
+        Typeface font = Typeface.createFromAsset(
+                SingletonContext.getInstance().getContext().getAssets(),
+                obj);
+        return font;
     }
 
     public static int m18433a(int i, int i2, int i3) {

@@ -115,7 +115,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                 }
             }
             if (this.isGeorgian) {
-                monthViewHolder.day.setText(String.valueOf(UiUtils.m18434a((i - this.f9217c) + this.f9221g, this.year, this.isGeorgian)));
+                monthViewHolder.day.setText(monthViewHolder.numberUtil.toEnglishString(String.valueOf(UiUtils.m18434a((i - this.f9217c) + this.f9221g, this.year, this.isGeorgian))));
                 return;
             } else {
                 monthViewHolder.day.setText(monthViewHolder.numberUtil.toFarsiString(String.valueOf(UiUtils.m18434a((i - this.f9217c) + this.f9221g, this.year, this.isGeorgian))));
@@ -127,6 +127,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
         monthViewHolder.day.setTextColor(-16777216);
         monthViewHolder.day.setAlpha(0.87f);
     }
+
 
     @Override
     public int getItemCount() {
@@ -151,6 +152,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
             activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             this.numberUtil = new NumberUtil(view.getContext());
             this.day = view.findViewById(R.id.day);
+            day.setTypeface(UiUtils.getFont());
             view.setOnClickListener(this);
             popupWindow = new PopupWindow(context);
             if (!f9225k) {
