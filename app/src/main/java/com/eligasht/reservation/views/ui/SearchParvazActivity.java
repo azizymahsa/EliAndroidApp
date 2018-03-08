@@ -1088,8 +1088,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                 manJson.put("DepartureAirportcode", mabdaf);
                 manJson.put("ArrivalAirportcode", maghsadf);
-                manJson.put("DepartureDate", Raft);
-                manJson.put("ArrivalDate", Bargasht);
+                manJson.put("DepartureDate",  Utility.convertNumbersToEnglish(Raft));
+                manJson.put("ArrivalDate", Utility.convertNumbersToEnglish( Bargasht));
                 manJson.put("OneWay", flagWay); // اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
                 manJson.put("CabinClassCode", "all");
 
@@ -1695,11 +1695,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     Date dateRaft = formatter.parse(Raft);
                     Date dateBargasht = formatter.parse(Bargasht);
                     if (dateBargasht.after(dateRaft)) {
-                        ///
-                        ///
+
                         SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
-                        //  txtDateOnvan.setText(BargashtF + "  -  " + dfm.format(cal.getTime()));
-                        /////////////////////////////
+
                         SimpleDateFormat format3 = new SimpleDateFormat("yyyy-MM-dd");//2017/03/24 11:49
                         String formatted3 = format3.format(cal.getTime());
                         String[] dateSplite = formatted3.split("-");
@@ -1716,24 +1714,23 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         String dayMF = dateSplite2[2];
                         String monthMF = dateSplite2[1];
                         String yearMF = dateSplite2[0];
-                      /*  String dayMF=dateShamsi.substring(8, 10);//02
-                        String monthMF=dateShamsi.substring(5, 7);//01
-                        String yearMF=dateShamsi.substring(0, 4);//1396
-*/
+
                         PersianCalendar persianCalendar = new PersianCalendar();
                         persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
-                        /////////////////////
-                        //   txtDateOnvan.setText(dfm.format(cal.getTime()) + "  -  " + BargashtF);
-                        ///
-                        RaftF = persianCalendar.getPersianLongDate();
+
+                        RaftF = persianCalendar.getPersianLongDateNonYear();
                         Raft = formatter.format(cal.getTime());
-                        if (getIntent().getExtras().getBoolean("Geo")) {
-
-                            txtDateOnvan.setText(DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false) + " - " + DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
-
+                        if ( Prefs.getBoolean("GeoFlight",true)) {
+                            System.out.println("dateShamsiRaft:" +  DateUtil.getLongStringDateNonYear(Raft, "yyyy-MM-dd", false));
+                            System.out.println("dateShamsiBargasht:" + DateUtil.getLongStringDateNonYear(Bargasht, "yyyy-MM-dd", false));
+                            txtDateOnvanB.setText(  DateUtil.getLongStringDateNonYear(Raft, "yyyy-MM-dd", false));
+                            txtDateOnvan.setText(DateUtil.getLongStringDateNonYear(Bargasht, "yyyy-MM-dd", false));
                         } else {
-                            txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
-
+                            System.out.println("dateShamsiRaftF:" + RaftF);
+                            System.out.println("dateShamsiBargashtF:" + BargashtF);
+                            //txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
+                            txtDateOnvanB.setText(  RaftF);
+                            txtDateOnvan.setText(BargashtF);
 
                         }
                         callApiDateNext();
@@ -1789,14 +1786,26 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         /////////////////////
                         // txtDateOnvan.setText(BargashtF + "  -  " + dfm.format(cal.getTime()));
 
-                        if (getIntent().getExtras().getBoolean("Geo")) {
+                        if (Prefs.getBoolean("GeoFlight",true)) {
 
-                            //	tvDate.setText("از تاریخ: " +Utility.dateShowView( raft )+ " تا تاریخ: " + Utility.dateShowView( bargasht ));
-                            txtDateOnvan.setText(DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false) + "  -  " + DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
+                           /* if (getIntent().getExtras().getBoolean("Geo")) {
+
+                                txtDateOnvan.setText(  DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
+                                txtDateOnvanB.setText(DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false));
+                            } else {
+                                //txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
+                                txtDateOnvan.setText(  RaftF);
+                                txtDateOnvanB.setText(BargashtF);
+
+                            }*/
+                            txtDateOnvanB.setText( DateUtil.getLongStringDateNonYear(Raft, "yyyy-MM-dd", false));
+
+                            txtDateOnvan.setText(DateUtil.getLongStringDateNonYear(Bargasht, "yyyy-MM-dd", false));
                         } else {
-                            //tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
-                            //txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + BargashtF);
-                            txtDateOnvan.setText(persianCalendar.getPersianLongDate() + "  -  " + BargashtF);
+
+                            txtDateOnvanB.setText(persianCalendar.getPersianLongDateNonYear());
+                            txtDateOnvan.setText( BargashtF);
+
                         }
                         ///
                         callApiDateNext();
