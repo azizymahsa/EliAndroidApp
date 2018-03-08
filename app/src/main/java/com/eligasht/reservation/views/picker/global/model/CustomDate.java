@@ -111,8 +111,9 @@ public class CustomDate {
 
     public String getDescription() {
         SharedPreferences sharedPrefrences = SingletonContext.getInstance().getContext().getSharedPreferences("eligasht.com", 0);
-
-        if (Locale.getDefault().getLanguage().equals("fa") && !sharedPrefrences.getBoolean("isGregorian", false))
+        if (sharedPrefrences.getBoolean("isGregorian", false))
+            return getDescriptionGeo(Locale.ENGLISH);
+        if (Locale.getDefault().getLanguage().equals("fa"))
             return getDescriptionPersian();
         return getDescriptionGeo(Locale.getDefault());
     }
