@@ -2344,6 +2344,7 @@
     <string name="select_dep">Select departure date</string>
     <string name="select_che_in">Select checkin date</string>
     <string name="select_start_date">Select Start Date</string>
+    <string name="night2">شب</string>
 
 
 </resources>
