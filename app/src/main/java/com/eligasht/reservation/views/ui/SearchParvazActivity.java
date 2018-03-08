@@ -276,12 +276,19 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             Raft = extras.getString("Value-DepartureDate");
             Bargasht = extras.getString("Value-ArrivalDate");*/
-            RaftF = SingletonDate.getInstance().getStartDate().getDescription();
-            BargashtF =SingletonDate.getInstance().getEndDate().getDescription();
+          if(SingletonDate.getInstance().getStartDate() != null) {
+              RaftF = SingletonDate.getInstance().getStartDate().getDescription();
+              BargashtF = SingletonDate.getInstance().getEndDate().getDescription();
 
-            Raft =  SingletonDate.getInstance().getStartDate().getFullGeo();
-            Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+              Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+              Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+          }else{
+              RaftF = extras.getString("Value-DepartureDate-format");
+              BargashtF = extras.getString("Value-ArrivalDate-format");
 
+              Raft = extras.getString("Value-DepartureDate");
+              Bargasht = extras.getString("Value-ArrivalDate");
+          }
             txtDateOnvan = findViewById(R.id.txtDateOnvan);
             txtDateOnvanB = findViewById(R.id.txtDateOnvanB);
             txticonDate = findViewById(R.id.txticonDate);
@@ -1069,9 +1076,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                Raft =  SingletonDate.getInstance().getStartDate().getFullGeo();
-                Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();//2018/03/11
-
+                if( SingletonDate.getInstance().getStartDate() !=null) {
+                    Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();//2018/03/11
+                }
                 String maghsadf = extras.getString("Value-Maghsad-Airport-Code");
                 String mabdaf = extras.getString("Value-Mabda-Airport-Code");
 
