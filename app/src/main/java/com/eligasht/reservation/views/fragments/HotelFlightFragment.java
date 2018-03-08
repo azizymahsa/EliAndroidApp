@@ -985,6 +985,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
         this.startDate=startDate;
         this.endDate=endDate;
+        Prefs.putBoolean("geo", isGeo);
+
 
         Log.e("Date", startDate.toString());
         tvRaft.setText(startDate.getDescription());

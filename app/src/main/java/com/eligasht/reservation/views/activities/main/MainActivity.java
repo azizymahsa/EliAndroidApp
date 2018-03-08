@@ -353,43 +353,55 @@ public class MainActivity extends Base implements View.OnClickListener {
     }
 
     void closeDrawer() {
-        final Configuration config = getResources().getConfiguration();
-        if (Prefs.getString("lang", "fa").equals("fa") || Prefs.getString("lang", "fa").equals("ar")) {
-            if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-                drawerLayout.closeDrawer(Gravity.END);
+        try {
+            final Configuration config = getResources().getConfiguration();
+            if (Prefs.getString("lang", "fa").equals("fa") || Prefs.getString("lang", "fa").equals("ar")) {
 
+                if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                    drawerLayout.closeDrawer(Gravity.END);
+
+                } else {
+                    drawerLayout.closeDrawer(Gravity.START);
+                }
             } else {
-                drawerLayout.closeDrawer(Gravity.START);
-            }
-        } else {
-            if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-                drawerLayout.closeDrawer(Gravity.END);
+                if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                    drawerLayout.closeDrawer(Gravity.END);
 
-            } else {
-                drawerLayout.closeDrawer(Gravity.START);
-            }
+                } else {
+                    drawerLayout.closeDrawer(Gravity.START);
+                }
 
+            }
+        } catch (Exception e) {
+           e.printStackTrace();
         }
+
     }
 
     void openDrawer() {
-        final Configuration config = getResources().getConfiguration();
-        if (Prefs.getString("lang", "fa").equals("fa") || Prefs.getString("lang", "fa").equals("ar")) {
-            if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-                drawerLayout.openDrawer(Gravity.END);
+        try {
+            final Configuration config = getResources().getConfiguration();
+            if (Prefs.getString("lang", "fa").equals("fa") || Prefs.getString("lang", "fa").equals("ar")) {
+                if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                    drawerLayout.openDrawer(Gravity.END);
 
+                } else {
+                    drawerLayout.openDrawer(Gravity.START);
+                }
             } else {
-                drawerLayout.openDrawer(Gravity.START);
-            }
-        } else {
-            if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-                drawerLayout.openDrawer(Gravity.END);
+                if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                    drawerLayout.openDrawer(Gravity.END);
 
-            } else {
-                drawerLayout.openDrawer(Gravity.START);
+                } else {
+                    drawerLayout.openDrawer(Gravity.START);
+                }
+
             }
 
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
     }
 
     public void timer() {
