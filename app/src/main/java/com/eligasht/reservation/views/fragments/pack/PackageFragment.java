@@ -3,7 +3,6 @@ package com.eligasht.reservation.views.fragments.pack;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,16 +37,10 @@ import com.google.gson.reflect.TypeToken;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.orhanobut.hawk.Hawk;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -79,6 +72,9 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     TextView txt_depart_date;
     boolean geo = false;
     LottieAnimationView lottieAnimationView;
+    CustomDate startDate;
+    CustomDate endDate;
+    CalendarDialog calendarDialog;
     private ClientService service;
     private Gson gson;
     private ArrayList<ModelRowCountRoom> roomsSelected;
@@ -88,10 +84,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     private HotelCity hotelCity;
     private String departureFrom;
     private String departureTo;
-    CustomDate startDate;
-    CustomDate endDate;
-    CalendarDialog calendarDialog;
-
 
     public static PackageFragment instance() {
         PackageFragment fragment = new PackageFragment();
@@ -235,7 +227,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         }
 
 
-
         gson = new GsonBuilder().create();
 
         layout_room.setOnClickListener(this);
@@ -243,7 +234,6 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         linear_picker_return.setOnClickListener(this);
         linear_picker_depart.setOnClickListener(this);
         txtCity.setOnClickListener(this);
-
 
 
     }
@@ -305,10 +295,10 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
             case R.id.linear_picker_depart:
 
-                if (startDate!=null&&endDate!=null){
-                    calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
+                if (startDate != null && endDate != null) {
+                    calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.HOTEL);
 
-                }else{
+                } else {
                     calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
 
                 }
@@ -316,11 +306,37 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.linear_picker_return:
-                if (startDate!=null&&endDate!=null){
-                    calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
+                if (endDate != null) {
+                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                        @Override
+                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
 
-                }else{
-                    calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
+
+                            if (CustomDate.isOlderThanThan(startDate.getCalendar(), endDate.getCalendar())) {
+
+                                Toast.makeText(getContext(), "Canot", Toast.LENGTH_SHORT).show();
+                            } else {
+                                endDate = start;
+                                txt_return_date.setText(endDate.getDescription());
+                            }
+
+                        }
+                    }, endDate, TypeUsageOfCalendar.HOTEL);
+
+                } else {
+                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                        @Override
+                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+
+                            if (CustomDate.isOlderThanThan(startDate.getCalendar(), endDate.getCalendar())) {
+
+                                Toast.makeText(getContext(), "Canot", Toast.LENGTH_SHORT).show();
+                            } else {
+                                endDate = start;
+                                txt_return_date.setText(endDate.getDescription());
+                            }
+                        }
+                    }, false, TypeUsageOfCalendar.HOTEL);
 
                 }
 
@@ -330,6 +346,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 break;
         }
     }
+
 
     //for get list that rooms contents of adult's count and age of children
     private String getRoomList(ArrayList<ModelRowCountRoom> roomsSelected) {
@@ -448,13 +465,13 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     }
 
     @Override
-    public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
+    public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+        startDate = start;
+        endDate = end;
         departureFrom = startDate.getFullGeo();
         departureTo = endDate.getFullGeo();
         txt_return_date.setText(endDate.getDescription());
         txt_depart_date.setText(startDate.getDescription());
-
-
 
 
         Prefs.putString("bargasht", departureTo);

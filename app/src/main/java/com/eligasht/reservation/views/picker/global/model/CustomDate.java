@@ -2,7 +2,6 @@ package com.eligasht.reservation.views.picker.global.model;
 
 
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
@@ -51,6 +50,12 @@ public class CustomDate {
         }
     }
 
+    public static boolean isOlderThanThan(Calendar startDate, Calendar endDate) {
+        long end = startDate.getTimeInMillis();
+        long start = endDate.getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays((end - start)) > 0;
+        // return TimeUnit.MILLISECONDS.toDays((end - start));
+    }
 
     public int getPersianYear() {
         return persianDate.getYear();
@@ -119,10 +124,9 @@ public class CustomDate {
         return false;
     }
 
-
     private void addDay(int day) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(civilDate.getYear(), civilDate.getMonth()-1, civilDate.getDayOfMonth());
+        calendar.set(civilDate.getYear(), civilDate.getMonth() - 1, civilDate.getDayOfMonth());
         calendar.add(Calendar.DATE, day);
         calendar.setTimeZone(TimeZone.getDefault());
         updateDate(calendar);
@@ -142,9 +146,8 @@ public class CustomDate {
         this.anotherCustomDate = anotherCustomDate;
     }
 
-
     private void updateDate(Calendar calendar) {
-        civilDate = new CivilDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
+        civilDate = new CivilDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
         persianDate = DateConverter.civilToPersian(civilDate);
 
     }
@@ -157,7 +160,7 @@ public class CustomDate {
 
     public Calendar getCalendar() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(civilDate.getYear(), civilDate.getMonth()-1, civilDate.getDayOfMonth());
+        calendar.set(civilDate.getYear(), civilDate.getMonth() - 1, civilDate.getDayOfMonth());
         calendar.setTimeZone(TimeZone.getDefault());
         return calendar;
     }
@@ -165,7 +168,7 @@ public class CustomDate {
 
     private String getDescriptionGeo(Locale locale) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(civilDate.getYear(), civilDate.getMonth()-1, civilDate.getDayOfMonth());
+        calendar.set(civilDate.getYear(), civilDate.getMonth() - 1, civilDate.getDayOfMonth());
         return calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, locale)
                 + " " +
                 civilDate.getDayOfMonth() + " " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, locale);
