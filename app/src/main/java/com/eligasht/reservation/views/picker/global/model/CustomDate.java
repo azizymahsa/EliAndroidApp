@@ -9,6 +9,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import calendar.CivilDate;
 import calendar.DateConverter;
@@ -23,6 +24,7 @@ public class CustomDate {
 
     private PersianDate persianDate;
     private CivilDate civilDate;
+    private CustomDate anotherCustomDate = null;
 
 
     public CustomDate(String year, String month, String day) {
@@ -102,20 +104,55 @@ public class CustomDate {
                 persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName();
     }
 
-    public void addOneDay() {
+    public boolean addOneDay() {
+        if (anotherCustomDate != null) {
+            addDay(1);
+            return true;
+        }
+        if (daysBetween() > 0) {
+            addDay(1);
+            return true;
+        }
+
+        return false;
+    }
+
+
+    private void addDay(int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(civilDate.getYear(), civilDate.getMonth(), civilDate.getDayOfMonth());
-        calendar.add(Calendar.DATE, 1);
+        calendar.add(Calendar.DATE, day);
         calendar.setTimeZone(TimeZone.getDefault());
         updateDate(calendar);
-
-
     }
+
+    public boolean minusOneDay() {
+        addDay(-1);
+        return true;
+    }
+
+    public void setAnotherCustomDate(CustomDate anotherCustomDate) {
+        this.anotherCustomDate = anotherCustomDate;
+    }
+
 
     private void updateDate(Calendar calendar) {
         civilDate = new CivilDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         persianDate = DateConverter.civilToPersian(civilDate);
 
+    }
+
+    private long daysBetween() {
+        long end = anotherCustomDate.getCalendar().getTimeInMillis();
+        long start = getCalendar().getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
+    }
+
+    public Calendar getCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(civilDate.getYear(), civilDate.getMonth(), civilDate.getDayOfMonth());
+        calendar.setTimeZone(TimeZone.getDefault());
+        return calendar;
     }
 
 

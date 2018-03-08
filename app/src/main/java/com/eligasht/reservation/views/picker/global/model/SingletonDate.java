@@ -19,11 +19,13 @@ public class SingletonDate {
     public void setReverseDate(CustomDate startDate, CustomDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
+        this.startDate.setAnotherCustomDate(endDate);
     }
 
     public void setSingleDate(CustomDate startDate) {
         this.startDate = startDate;
         this.endDate = null;
+        startDate.setAnotherCustomDate(null);
     }
 
     public CustomDate getStartDate() {
