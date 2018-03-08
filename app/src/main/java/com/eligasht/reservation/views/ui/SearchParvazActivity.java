@@ -1788,16 +1788,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         if (Prefs.getBoolean("GeoFlight",true)) {
 
-                           /* if (getIntent().getExtras().getBoolean("Geo")) {
-
-                                txtDateOnvan.setText(  DateUtil.getLongStringDate(Raft, "yyyy-MM-dd", false));
-                                txtDateOnvanB.setText(DateUtil.getLongStringDate(Bargasht, "yyyy-MM-dd", false));
-                            } else {
-                                //txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
-                                txtDateOnvan.setText(  RaftF);
-                                txtDateOnvanB.setText(BargashtF);
-
-                            }*/
+                         
                             txtDateOnvanB.setText( DateUtil.getLongStringDateNonYear(Raft, "yyyy-MM-dd", false));
 
                             txtDateOnvan.setText(DateUtil.getLongStringDateNonYear(Bargasht, "yyyy-MM-dd", false));
