@@ -62,20 +62,10 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     public ViewGroup layout_depart_date;
     public ProgressBar prg_country;
     public TextView txtCity;
-    NumberPicker numberPicker;
     LinearLayout layout_duringTrip;
     TextView txt_during_trip;
     TextView txt_count_passenger;
-    DatePickerDialog datePickerDialogDepart;
-    int month;
-    int year_;
-    int day;
-    int monthMin;
-    int year_Min;
-    int dayMin;
     Country country;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogDepartgGregorian;
-    AlertDialog mAlertDialog;
     private ArrayList<BirthDateList> passengers;
     private Gson gson;
     private String departureDate;
@@ -134,12 +124,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         dialog = new CalendarDialog();
 
         initViews();
-        initParam();
         service = ServiceGenerator.createService(ClientService.class);
         return view;
-    }
-
-    private void initParam() {
     }
 
     private void initViews() {
@@ -157,9 +143,9 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
         departureDate = currentDateTime;
 
-        int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-        int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
-        int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
+//        int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
+//        int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
+//        int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
 
         txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
 
