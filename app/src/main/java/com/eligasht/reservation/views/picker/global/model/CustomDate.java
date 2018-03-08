@@ -129,7 +129,7 @@ public class CustomDate {
     public boolean minusOneDay() {
         Calendar today = Calendar.getInstance();
         today.setTimeZone(TimeZone.getDefault());
-        if (daysBetween(getCalendar(), today) > 0) {
+        if (daysBetween(today, getCalendar()) > 0) {
             addDay(-1);
             return true;
         }
