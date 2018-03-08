@@ -8,6 +8,7 @@ import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import calendar.CivilDate;
 import calendar.DateConverter;
@@ -100,6 +101,23 @@ public class CustomDate {
                 + " " +
                 persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName();
     }
+
+    public void addOneDay() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(civilDate.getYear(), civilDate.getMonth(), civilDate.getDayOfMonth());
+        calendar.add(Calendar.DATE, 1);
+        calendar.setTimeZone(TimeZone.getDefault());
+        updateDate(calendar);
+
+
+    }
+
+    private void updateDate(Calendar calendar) {
+        civilDate = new CivilDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        persianDate = DateConverter.civilToPersian(civilDate);
+
+    }
+
 
     private String getDescriptionGeo(Locale locale) {
         Calendar calendar = Calendar.getInstance();
