@@ -105,11 +105,11 @@ public class CustomDate {
     }
 
     public boolean addOneDay() {
-        if (anotherCustomDate != null) {
+        if (anotherCustomDate == null) {
             addDay(1);
             return true;
         }
-        if (daysBetween() > 0) {
+        if (daysBetween(getCalendar(), anotherCustomDate.getCalendar()) > 0) {
             addDay(1);
             return true;
         }
@@ -127,8 +127,13 @@ public class CustomDate {
     }
 
     public boolean minusOneDay() {
-        addDay(-1);
-        return true;
+        Calendar today = Calendar.getInstance();
+        today.setTimeZone(TimeZone.getDefault());
+        if (daysBetween(getCalendar(), today) > 0) {
+            addDay(-1);
+            return true;
+        }
+        return false;
     }
 
     public void setAnotherCustomDate(CustomDate anotherCustomDate) {
@@ -142,9 +147,9 @@ public class CustomDate {
 
     }
 
-    private long daysBetween() {
-        long end = anotherCustomDate.getCalendar().getTimeInMillis();
-        long start = getCalendar().getTimeInMillis();
+    private long daysBetween(Calendar startDate, Calendar endDate) {
+        long end = startDate.getTimeInMillis();
+        long start = endDate.getTimeInMillis();
         return TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
     }
 

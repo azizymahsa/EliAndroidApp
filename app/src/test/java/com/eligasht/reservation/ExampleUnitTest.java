@@ -2,7 +2,8 @@ package com.eligasht.reservation;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -10,8 +11,17 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    public static long daysBetween(Calendar startDate, Calendar endDate) {
+        long end = endDate.getTimeInMillis();
+        long start = startDate.getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
+    }
+
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        Calendar today = Calendar.getInstance();
+        Calendar next = Calendar.getInstance();
+//        next.add(Calendar.DATE,1);
+        System.out.printf(String.valueOf(daysBetween(today, next)));
     }
 }
