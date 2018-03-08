@@ -110,7 +110,6 @@ public class CustomDate {
             addDay(1);
             return true;
         }
-      
 
         if (daysBetween(getCalendar(), anotherCustomDate.getCalendar()) > 0) {
             addDay(1);

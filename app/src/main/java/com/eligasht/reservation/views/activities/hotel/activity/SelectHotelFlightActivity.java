@@ -895,7 +895,15 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.hf));
             }
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
-
+            selectHotelModelArrayList.clear();
+            selectHotelModelArrayListFilter.clear();
+            filterModels.clear();
+            filterHotelTypeModel.clear();
+            filterHotelFacilitiesModels.clear();
+            filterHotelLocationModels.clear();
+            filterHotelPriceModels.clear();
+            filterHotelBestOffModels.clear();
+            filterHotelStarsModels.clear();
         }
 
         @Override
