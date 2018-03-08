@@ -100,7 +100,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private HotelFlightSearch hotelFlightSearch;
     private List<Rooms> rooms = new ArrayList<>();
     private RelativeLayout rlLoading, rlRoot;
-    private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading;
+    private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading,tvAlertDesc;
     private Window window;
     private RelativeLayout elNotFound, rlEr, rlList;
     private FancyButton btnNextDays, btnLastDays;
@@ -144,6 +144,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         btnNextDays = findViewById(R.id.btnNextDays);
         btnLastDays = findViewById(R.id.btnLastDays);
         rlEr = findViewById(R.id.rlEr);
+        tvAlertDesc = findViewById(R.id.tvAlertDesc);
 
         // ivImage = findViewById(R.id.ivImage);
         btnNextDays.setOnClickListener(this);
@@ -459,7 +460,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             rlList.setVisibility(View.GONE);
             btnOk.setVisibility(View.GONE);
             rlEr.setVisibility(View.GONE);
-            tvAlert.setText("نتیجه ای برای جستجوی شما یافت نشد");
+            tvAlert.setText(R.string.filter_no_found);
+            tvAlertDesc.setText(R.string.change_filter);
         } else {
             if (selectHotelModelArrayListFilter.isEmpty()) {
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
@@ -472,7 +474,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 rlList.setVisibility(View.GONE);
                 btnOk.setVisibility(View.GONE);
                 rlEr.setVisibility(View.GONE);
-                tvAlert.setText("نتیجه ای برای جستجوی شما یافت نشد");
+                tvAlert.setText(R.string.filter_no_found);
+                tvAlertDesc.setText(R.string.change_filter);
             } else {
 
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
@@ -939,6 +942,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 } else if (hotelFlightSearch.hotelFlightModelResponse.HotelFlightSearchResult.HotelSearchResult.Hotels.isEmpty()) {
                     elNotFound.setVisibility(View.VISIBLE);
                     tvAlert.setText(R.string.NoResult);
+                    tvAlertDesc.setText(getString(R.string.change_date));
                     list.setVisibility(View.GONE);
                     rlList.setVisibility(View.GONE);
                     llFilter.setVisibility(View.GONE);
@@ -1086,6 +1090,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 }
                 btnOk.setVisibility(View.VISIBLE);
                 rlEr.setVisibility(View.VISIBLE);
+                tvAlertDesc.setVisibility(View.GONE);
 
             }
             //dakheli khareji
@@ -1396,6 +1401,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
                 }
                 list.setVisibility(View.GONE);
+                tvAlertDesc.setVisibility(View.GONE);
                 btnOk.setVisibility(View.VISIBLE);
                 rlEr.setVisibility(View.VISIBLE);
 
