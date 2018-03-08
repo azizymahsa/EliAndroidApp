@@ -987,6 +987,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         this.endDate=endDate;
         Prefs.putBoolean("geo", isGeo);
 
+        geo=isGeo;
 
         Log.e("Date", startDate.toString());
         tvRaft.setText(startDate.getDescription());

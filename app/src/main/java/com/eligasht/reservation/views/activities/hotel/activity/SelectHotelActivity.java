@@ -333,7 +333,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         raft = formatter.format(cal.getTime());
                         if (getIntent().getExtras().getBoolean("Geo")) {
 
-                            tvDate.setText("از تاریخ: " + DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false) + " - " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
+                            tvDate.setText(DateUtil.getLongStringDate(raft, "yyyy/MM/dd", false) + " - " + DateUtil.getLongStringDate(bargasht, "yyyy/MM/dd", false));
 
                         } else {
                             tvDate.setText(raftFa + " - " + bargashtFa);
