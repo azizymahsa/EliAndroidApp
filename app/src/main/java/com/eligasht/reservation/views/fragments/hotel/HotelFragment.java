@@ -729,6 +729,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
         this.startDate=startDate;
         this.endDate=endDate;
+        geo=isGeo;
+        Prefs.putBoolean("geo", isGeo);
         Log.e("Date", startDate.toString());
         tvRaft.setText(startDate.getDescription());
         tvBargasht.setText(endDate.getDescription());

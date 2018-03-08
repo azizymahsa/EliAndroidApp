@@ -46,21 +46,20 @@
             android:visibility="gone"
             />
 
-        <com.eligasht.reservation.tools.JustifiedTextView
+        <TextView
             android:id="@+id/tvAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/IrsansBold"
-            android:textSize="@dimen/_12dp_normal_textSize"
-            android:text=""
-            android:gravity="center"
-            android:padding="5dp"
+            android:layout_marginBottom="@dimen/_20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="@dimen/_20dp"
             android:layout_marginTop="@dimen/_20dp"
-
-            />
+            android:gravity="left"
+            android:padding="5dp"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="#2e3192"
+            android:textSize="@dimen/_12dp_normal_textSize"
+            android:visibility="visible" />
         <com.wang.avi.AVLoadingIndicatorView
 
             android:id="@+id/avi"

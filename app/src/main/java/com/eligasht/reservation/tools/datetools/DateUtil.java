@@ -268,6 +268,19 @@ public class DateUtil {
             return null;
         }
     }
+    public static String getLongStringDateNonYear(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
+            return "";
+        }
+        try {
+            return  getStringDayOfWeek(dateTime,format,isPersian) + " " +
+                    getDayOfMonth(dateTime,format,isPersian) + " "  ;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public static String getLongStringDateInsurance(String dateTime,String format,boolean isPersian){
         if(ValidationTools.isEmptyOrNull(dateTime)){
             return "";
