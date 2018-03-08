@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.tools.JustifiedTextView;
@@ -19,7 +20,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class AlertDialogPassengerFlight implements View.OnClickListener {
     android.app.AlertDialog dialog;
-    JustifiedTextView tvAlert;
+    TextView tvAlert;
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
@@ -42,10 +43,10 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
         avi = dialogView.findViewById(R.id.avi);
         tvAlert = dialogView.findViewById(R.id.tvAlert);
 
-        Typeface typeface = Typeface.createFromAsset(activity.getAssets(), dialogView.getContext().getResources().getString(R.string.iran_sans_bold_ttf));
+      /*  Typeface typeface = Typeface.createFromAsset(activity.getAssets(), dialogView.getContext().getResources().getString(R.string.iran_sans_bold_ttf));
         tvAlert.setTextSize(2,12);
         tvAlert.setLineSpacing(25);
-        tvAlert.setTypeFace(typeface);
+        tvAlert.setTypeFace(typeface);*/
         tvAlert.setTextColor(Color.parseColor("#2e3192"));
 
       //  btnOk.setCustomTextFont("fonts/iran_sans_bold.ttf");
