@@ -122,7 +122,7 @@ public class CustomDate {
 
     private void addDay(int day) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(civilDate.getYear(), civilDate.getMonth(), civilDate.getDayOfMonth());
+        calendar.set(civilDate.getYear(), civilDate.getMonth()-1, civilDate.getDayOfMonth());
         calendar.add(Calendar.DATE, day);
         calendar.setTimeZone(TimeZone.getDefault());
         updateDate(calendar);
@@ -130,7 +130,6 @@ public class CustomDate {
 
     public boolean minusOneDay() {
         Calendar today = Calendar.getInstance();
-        today.add(Calendar.MONTH, 1);
         today.setTimeZone(TimeZone.getDefault());
         if (daysBetween(today, getCalendar()) > 0) {
             addDay(-1);
@@ -145,7 +144,7 @@ public class CustomDate {
 
 
     private void updateDate(Calendar calendar) {
-        civilDate = new CivilDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        civilDate = new CivilDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
         persianDate = DateConverter.civilToPersian(civilDate);
 
     }
@@ -158,7 +157,7 @@ public class CustomDate {
 
     public Calendar getCalendar() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(civilDate.getYear(), civilDate.getMonth(), civilDate.getDayOfMonth());
+        calendar.set(civilDate.getYear(), civilDate.getMonth()-1, civilDate.getDayOfMonth());
         calendar.setTimeZone(TimeZone.getDefault());
         return calendar;
     }
@@ -166,7 +165,7 @@ public class CustomDate {
 
     private String getDescriptionGeo(Locale locale) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(civilDate.getYear(), civilDate.getMonth(), civilDate.getDayOfMonth());
+        calendar.set(civilDate.getYear(), civilDate.getMonth()-1, civilDate.getDayOfMonth());
         return calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, locale)
                 + " " +
                 civilDate.getDayOfMonth() + " " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, locale);
