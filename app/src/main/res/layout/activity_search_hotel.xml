@@ -119,7 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="100"
-            android:visibility="gone">
+            >
 
 
             <android.support.v7.widget.CardView
@@ -144,13 +144,29 @@
                         android:gravity="center"
                         android:padding="10dp"
                         android:textAppearance="@style/IrsansBold"
-                        android:textColor="@color/text_color_2e"
-                        android:textSize="16dp" />
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_16dp_normal_textSize"
+                        android:text="sdfsdf"
+                        android:layout_below="@+id/ivImageEr"/>
+                    <TextView
+                        android:id="@+id/tvAlertDesc"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:text="بهتر است تاریخ جستجو را تغییر دهید و مجداد تلاش کنید"
+                        android:layout_below="@+id/tvAlert"/>
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerInParent="true"
+                        android:id="@+id/ivImageEr"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_centerHorizontal="true"
                         android:src="@drawable/alert" />
 
                     <RelativeLayout
@@ -190,7 +206,8 @@
             android:layout_width="match_parent"
 
             android:layout_height="0dp"
-            android:layout_weight="100">
+            android:layout_weight="100"
+            android:visibility="gone">
 
             <com.eligasht.reservation.tools.ListView
                 android:id="@+id/lvHoteResult"
