@@ -1,6 +1,9 @@
 package com.eligasht.reservation.views.picker.global.model;
 
 
+import android.content.SharedPreferences;
+
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
 import java.util.Calendar;
@@ -107,7 +110,9 @@ public class CustomDate {
     }
 
     public String getDescription() {
-        if (Locale.getDefault().getLanguage().equals("fa"))
+        SharedPreferences sharedPrefrences = SingletonContext.getInstance().getContext().getSharedPreferences("eligasht.com", 0);
+
+        if (Locale.getDefault().getLanguage().equals("fa") && !sharedPrefrences.getBoolean("isGregorian", false))
             return getDescriptionPersian();
         return getDescriptionGeo(Locale.getDefault());
     }
