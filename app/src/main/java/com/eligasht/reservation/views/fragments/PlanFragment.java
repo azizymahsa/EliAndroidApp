@@ -640,27 +640,35 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 break;
             // case R.id.tarikh_be_picker:
             case R.id.linear_picker:
-                if (startDate != null && endDate != null) {
-                    //if (flagOneTwo==1) {
-                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                        @Override
-                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-                            endDate = start;
-                            tarikh_be_picker.setText(endDate.getDescription());
+                if (startDate== null && endDate==null){
+                    Toast.makeText(getActivity()," لطفا تاریخ رفت و برگشت را انتخاب کنید", Toast.LENGTH_SHORT).show();
+                }else{
+                    if(CustomDate.isOlderThanThan(startDate.getCalendar(),endDate.getCalendar())){
+                        Toast.makeText(getActivity(), getString(R.string.end_date_must_be_more_than_start_date), Toast.LENGTH_SHORT).show();
+                    }else{
+                        if (startDate != null && endDate != null) {
+                            //if (flagOneTwo==1) {
+                            calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                                @Override
+                                public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+                                    endDate = start;
+                                    tarikh_be_picker.setText(endDate.getDescription());
+                                }
+                            }, endDate, TypeUsageOfCalendar.NationalFlight);
+
+                            // }
+                            //  calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
+
+                        } else {
+                            if (flagOneTwo == 1) {
+                                calendarDialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.NationalFlight);
+
+                            } else {
+                                calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.NationalFlight);
+
+
+                            }
                         }
-                    }, endDate, TypeUsageOfCalendar.NationalFlight);
-
-                    // }
-                    //  calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
-
-                } else {
-                    if (flagOneTwo == 1) {
-                        calendarDialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.NationalFlight);
-
-                    } else {
-                        calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.NationalFlight);
-
-
                     }
                 }
                 /* if (flagOneTwo==1) {
