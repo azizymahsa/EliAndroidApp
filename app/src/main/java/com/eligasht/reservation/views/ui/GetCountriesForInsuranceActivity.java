@@ -40,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class GetCountriesForInsuranceActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
+public class GetCountriesForInsuranceActivity extends BaseActivity implements  OnClickListener {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     public static String searchText = "";
@@ -96,10 +96,12 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements He
 
 
     private void getCountries(String cityCode) {
+        showLoading();
         Call<CountryListRes> call = service.getCountryListResult(new CountryRequestModel(new CountryListReq("EligashtMlb", "123qwe!@#QWE", "Mobile", cityCode)));
         call.enqueue(new Callback<CountryListRes>() {
             @Override
             public void onResponse(Call<CountryListRes> call, Response<CountryListRes> response) {
+                hideLoading();
                 if (response == null || response.body() == null) {
                     searchtxt.setText("");
                     needShowAlertDialog(getString(R.string.ErrorServer), true);
@@ -163,30 +165,6 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements He
     }
 
 
-    public String OrderToJson() {
-        JSONObject jsone = new JSONObject();
-        JSONObject manJson = new JSONObject();
-
-
-        try {
-            //{"CreatorUserId":0,"Id":"9a633b86-8735-4060-83a3-4797548f0203","Orderno":6,"CustomerCode":"","Visitor":34,"OrderDate":"1395\/08\/19","OrderTime":"11:25:20","IsEmergancy":0,"TimeCheck":30,"ByTel":0,"SaleType":0,"IsConvert":0,"OrderStatus":7,"SMSCounter":0,"FinishTime":"11:33:03","IsReceived":0,"IsSent":0,"WarehouseId":145,"IsTemp":0,"Serial":"31007a81d4b22300"}
-
-
-            manJson.put("UserName", "EligashtMlb");
-            manJson.put("Password", "123qwe!@#QWE");
-            manJson.put("TermianlId", "Mobile");
-            manJson.put("Code", GetCountriesForInsuranceActivity.searchText);
-            //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
-            jsone.put("request", manJson);
-
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return jsone.toString();
-    }
 
     @Override
     public void onClick(View v) {
@@ -199,13 +177,12 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements He
 
     }
 
-    @Override
-    public void searchTextChanged(String searchText) {
-            /*this.searchText = searchText;
-            if(searchText.length()>2)
-			new AsyncFetch().execute();*/
-        //mAdapter.setData(searchText);
+    private void showLoading() {
+        avi.setVisibility(View.VISIBLE);
+    }
 
+    private void hideLoading() {
+        avi.setVisibility(View.INVISIBLE);
     }
 
 }
