@@ -27,6 +27,10 @@ import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.activities.insurance.AddPassengerActivity;
 import com.eligasht.reservation.views.activities.insurance.SearchInsuranceActivity;
 import com.eligasht.reservation.views.dialogs.NumberPickerDialog;
+import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
+import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
+import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.GetCountriesForInsuranceActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.google.gson.Gson;
@@ -52,7 +56,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class InsuranceFragment extends Fragment implements View.OnClickListener, NumberPickerDialog.NumberPickerListener,
         TimePickerDialog.OnTimeSetListener,
-        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
 
     private final int ADD_PASSENGER_REQUEST = 101;
     public ViewGroup view;
@@ -81,6 +85,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     private ClientService service;
     private TextView btnSearchInsurance;
     private int accomodationDays;
+    CalendarDialog dialog;
 
     public static InsuranceFragment instance() {
         InsuranceFragment fragment = new InsuranceFragment();
@@ -90,8 +95,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onResume() {
         super.onResume();
-        country = Hawk.get("Value-Insurance-Country",null);
-        if (country!=null && txtCity!=null)
+        country = Hawk.get("Value-Insurance-Country", null);
+        if (country != null && txtCity != null)
             txtCity.setText(country.getCountryNameFa());
     }
 
@@ -128,6 +133,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         view.setLayoutParams(layoutParams);
         Utility.sendTag("I", true, false);
+        dialog = new CalendarDialog();
 
         initViews();
         initParam();
@@ -158,7 +164,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
 
         txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
-
 
 
         datePickerDialogDepart = DatePickerDialog.newInstance(
@@ -224,10 +229,11 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.layout_depart_date:
-                if (!datePickerDialogDepart.isAdded()) {
-                    datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
-
-                }
+//                if (!datePickerDialogDepart.isAdded()) {
+//                    datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "DepartureFrom");
+//
+//                }
+                this.dialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.InternationalFlight);
                 break;
             case R.id.btnSearchInsurance:
                 if (country == null) {
@@ -359,5 +365,27 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         departureDate = currentDateTime;
         departureDate = Utility.convertNumbersToEnglish(departureDate);
         Log.e("packagetest1", departureDate);
+    }
+
+    @Override
+    public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
+        if (isGeo) {
+            year_ = startDate.getGeoYear();
+            month = startDate.getGeoMonth();
+            day = startDate.getGeoDay();
+            departureDate = startDate.getFullGeo();
+            departureDate = Utility.convertNumbersToEnglish(departureDate);
+
+
+        } else {
+            year_ = startDate.getPersianYear();
+            month = startDate.getPersianMonth();
+            day = startDate.getPersianDay();
+            departureDate = startDate.getFullPersian();
+            departureDate = Utility.convertNumbersToEnglish(departureDate);
+
+        }
+        txt_depart_date.setText(startDate.getDescription());
+
     }
 }
