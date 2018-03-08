@@ -120,7 +120,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="100"
-            android:visibility="gone">
+            android:visibility="gone"
+            >
 
 
             <android.support.v7.widget.CardView
@@ -145,28 +146,43 @@
                         android:gravity="center"
                         android:padding="10dp"
                         android:textAppearance="@style/IrsansBold"
-                        android:textColor="@color/text_color_2e"
-                        android:textSize="16dp" />
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_16dp_normal_textSize"
+                        android:layout_below="@+id/ivImageEr"/>
+                    <TextView
+                        android:id="@+id/tvAlertDesc"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="@color/text_color_4d"
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:layout_below="@+id/tvAlert"/>
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerInParent="true"
+                        android:id="@+id/ivImageEr"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_centerHorizontal="true"
                         android:src="@drawable/alert" />
 
                     <RelativeLayout
+                        android:layout_below="@+id/tvAlertDesc"
                         android:id="@+id/rlEr"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_alignParentBottom="true"
+                        android:layout_width="@dimen/_100dp"
+                        android:layout_height="@dimen/_40dp"
                         android:background="@drawable/btngravity_big"
+                        android:layout_centerHorizontal="true"
 
                         >
 
                         <mehdi.sakout.fancybuttons.FancyButton
                             android:id="@+id/btnOk"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:elevation="4dp"
                             android:paddingBottom="1dp"

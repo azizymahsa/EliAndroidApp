@@ -65,7 +65,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
     Window window;
     RelativeLayout elNotFound, rlEr;
-    TextView tvLoading,tvAlertDesc;
+    TextView tvLoading, tvAlertDesc;
     int maxPrice, minPrice;
     LinearLayout llFilter;
     FancyButton btnOk, btnBack, btnHome;
@@ -141,8 +141,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnBack.setOnClickListener(this);
       /*  raftFa = getIntent().getExtras().getString("CheckInFa");
         bargashtFa = getIntent().getExtras().getString("CheckOutFa");*/
-        raftFa= SingletonDate.getInstance().getStartDate().getDescription();
-        bargashtFa= SingletonDate.getInstance().getEndDate().getDescription();
+        raftFa = SingletonDate.getInstance().getStartDate().getDescription();
+        bargashtFa = SingletonDate.getInstance().getEndDate().getDescription();
 
         tvDate.setText(raftFa + " - " + bargashtFa);
         rooms.add(new Rooms(getIntent().getExtras().getInt("Adult"), getIntent().getExtras().getInt("Child")));
@@ -154,16 +154,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
       /*  raft = getIntent().getExtras().getString("CheckIn");
         bargasht = getIntent().getExtras().getString("CheckOut");*/
 
-        raft= SingletonDate.getInstance().getStartDate().getFullGeo();
-        bargasht= SingletonDate.getInstance().getEndDate().getFullGeo();
-
+        raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+        bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
 
         new GetHotelAsync().execute();
 
-        Log.e("raft", getIntent().getExtras().getString("CheckIn"));
+       /* Log.e("raft", getIntent().getExtras().getString("CheckIn"));
         Log.e("bargasht", getIntent().getExtras().getString("CheckOut"));
-        Log.e("cod", Prefs.getString("Value-Hotel-City-Code", ""));
+        Log.e("cod", Prefs.getString("Value-Hotel-City-Code", ""));*/
 
         btnOk.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -215,14 +214,19 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
             case R.id.btnNextDays:
-                btnNextDays.setClickable(true);
-                btnNextDays.setEnabled(true);
 
-                SingletonDate.getInstance().getStartDate().addOneDay();
-                tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
-                raft= SingletonDate.getInstance().getStartDate().getFullGeo();
-                bargasht= SingletonDate.getInstance().getEndDate().getFullGeo();
-                new GetHotelAsync().execute();
+
+                if (SingletonDate.getInstance().getStartDate().addOneDay()) {
+                    tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
+                    raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+                    new GetHotelAsync().execute();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
 
 
 
@@ -308,12 +312,24 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 break;
             case R.id.btnLastDays:
 
+                if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
+                    tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
+                    raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+                    new GetHotelAsync().execute();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
+
 //rastie AdateF
 
 //Ddate kochike
                 //adate bargasht
 
-                try {
+            /*    try {
 
                     String str_date = raft;//"11-June-07";
                     DateFormat formatter;
@@ -369,7 +385,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     System.out.println("Exception :" + e);
                 }
 
-
+*/
                 break;
         }
     }
@@ -422,7 +438,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             rlList.setVisibility(View.GONE);
             btnOk.setVisibility(View.GONE);
             rlEr.setVisibility(View.GONE);
-            tvAlertDesc.setVisibility(View.GONE);
             tvAlert.setText(R.string.filter_no_found);
             tvAlertDesc.setText(R.string.change_filter);
         } else {
@@ -1034,7 +1049,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
             } catch (Exception e) {
-                llFilter.setVisibility(View.GONE);
+               llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
                 rlList.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);

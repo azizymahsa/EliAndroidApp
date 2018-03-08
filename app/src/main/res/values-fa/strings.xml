@@ -19,7 +19,7 @@
     <string name="BestSell">بیشترین فروش</string>
     <string name="BestOff">تخفیف ویژه</string>
     <string name="InternetError">اینترنت شما قطع و یا از دسترس خارج می باشد</string>
-    <string name="ErrorServer">خطا در دریافت اطلاعات از الی گشت</string>
+    <string name="ErrorServer">خطا در دریافت اطلاعات از الی گشت :(</string>
     <string name="Sort">مرتب کردن</string>
     <string name="Filter">فیلتر کردن</string>
     <string name="NextDay">روز بعد</string>

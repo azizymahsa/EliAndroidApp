@@ -481,11 +481,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         sendStartTimer();
                         Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
 
-                   /*     intent.putExtra("CheckIn", raft);
+                        intent.putExtra("CheckIn", raft);
                         intent.putExtra("CheckOut", bargasht);
                         intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
                         intent.putExtra("CheckInFa", tvRaft.getText().toString());
-*/
 
                         SingletonDate.getInstance().setReverseDate(startDate,endDate);
 

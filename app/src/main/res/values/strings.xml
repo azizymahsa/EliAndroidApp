@@ -1902,7 +1902,7 @@
     <string name="BestSell">Most sell</string>
     <string name="BestOff">Special Discount</string>
     <string name="InternetError">Your internet is disconnected or out of reach</string>
-    <string name="ErrorServer">Error getting information from Eligasht</string>
+    <string name="ErrorServer">Error getting information from Eligasht:(</string>
     <string name="Sort">Sort</string>
     <string name="Filter">Filter</string>
     <string name="NextDay">Next Day</string>
