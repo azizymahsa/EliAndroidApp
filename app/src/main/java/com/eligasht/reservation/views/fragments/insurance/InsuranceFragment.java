@@ -1,16 +1,12 @@
 package com.eligasht.reservation.views.fragments.insurance;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,20 +28,13 @@ import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarD
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.GetCountriesForInsuranceActivity;
-import com.eligasht.reservation.views.ui.SingletonContext;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
-import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import mehdi.sakout.fancybuttons.FancyButton;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -60,7 +49,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     public ViewGroup view;
     public ViewGroup layout_passenger;
     public ViewGroup layout_depart_date;
-    public ProgressBar prg_country;
     public TextView txtCity;
     LinearLayout layout_duringTrip;
     TextView txt_during_trip;
@@ -142,11 +130,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
         departureDate = currentDateTime;
-
-//        int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-//        int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
-//        int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
-
         txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
 
 
@@ -157,14 +140,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         txtCity.setOnClickListener(this);
     }
 
-    private void showLoading() {
-        prg_country.setVisibility(View.VISIBLE);
-    }
-
-    private void hideLoading() {
-        prg_country.setVisibility(View.GONE);
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -172,7 +147,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 startActivity(new Intent(getActivity(), GetCountriesForInsuranceActivity.class));
                 break;
             case R.id.layout_during_travel:
-                NumberPickerDialog dialog = new NumberPickerDialog(getActivity(), this);
+                new NumberPickerDialog(getActivity(), this);
                 break;
 
             case R.id.layout_passenger:
