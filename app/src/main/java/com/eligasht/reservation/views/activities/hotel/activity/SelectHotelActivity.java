@@ -1049,7 +1049,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
             } catch (Exception e) {
-               llFilter.setVisibility(View.GONE);
+           //    llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
                 rlList.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
