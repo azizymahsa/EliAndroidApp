@@ -2352,5 +2352,6 @@
     <string name="filter_no_found">  Filtrenizin sonucu bulunamadı: (</string>
         
     <string name="change_filter">Filtrenizi değiştirmek ve tekrar denemek en iyisidir  </string>
+    <string name="end_date_must_be_more_than_start_date">تاریخ پایان نباید کوچکتر از تاریخ شروع باشد</string>
 </resources>
 

@@ -2372,5 +2372,6 @@
     <string name="filter_no_found"> The result for your filter was not found:(</string>
         
     <string name="change_filter"> It is best to change your filter and try again </string>
+    <string name="end_date_must_be_more_than_start_date">تاریخ پایان نباید کوچکتر از تاریخ شروع باشد</string>
 </resources>
 
