@@ -89,6 +89,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     CalendarDialog calendarDialog;
     CustomDate startDate;
     CustomDate endDate;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_plane, container, false);
@@ -639,19 +640,21 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 break;
             // case R.id.tarikh_be_picker:
             case R.id.linear_picker:
-                if (startDate!=null&&endDate!=null){
-                    if (flagOneTwo==1) {
-                        calendarDialog.create(getActivity(), getContext(), this, startDate, TypeUsageOfCalendar.NationalFlight);
+                if (startDate != null && endDate != null) {
+                    //if (flagOneTwo==1) {
+                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                        @Override
+                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+                            endDate = start;
+                            tarikh_be_picker.setText(endDate.getDescription());
+                        }
+                    }, endDate, TypeUsageOfCalendar.NationalFlight);
 
-                    } else {
-                        calendarDialog.create(getActivity(), getContext(), this, startDate,endDate, TypeUsageOfCalendar.NationalFlight);
-
-
-                    }
+                    // }
                     //  calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
 
-                }else{
-                    if (flagOneTwo==1) {
+                } else {
+                    if (flagOneTwo == 1) {
                         calendarDialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.NationalFlight);
 
                     } else {
@@ -673,19 +676,19 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             //case R.id.tarikh_az_picker:
             case R.id.linear_tarikh_az_picker:
 
-                if (startDate!=null&&endDate!=null){
-                    if (flagOneTwo==1) {
+                if (startDate != null && endDate != null) {
+                    if (flagOneTwo == 1) {
                         calendarDialog.create(getActivity(), getContext(), this, startDate, TypeUsageOfCalendar.NationalFlight);
 
                     } else {
-                        calendarDialog.create(getActivity(), getContext(), this, startDate,endDate, TypeUsageOfCalendar.NationalFlight);
+                        calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
 
 
                     }
-                  //  calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
+                    //  calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
 
-                }else{
-                    if (flagOneTwo==1) {
+                } else {
+                    if (flagOneTwo == 1) {
                         calendarDialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.NationalFlight);
 
                     } else {
@@ -762,7 +765,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
                         intent1.putExtra("Geo", Geo);//2017-11-24
-                        SingletonDate.getInstance().setReverseDate(startDate,endDate);
+                        if(startDate != null && endDate != null)
+                             SingletonDate.getInstance().setReverseDate(startDate, endDate);
+
 
                         startActivity(intent1);
                     } else {//default
@@ -983,9 +988,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-        this.startDate=startDate;
-        this.endDate=endDate;
-        if (flagOneTwo==1) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        if (flagOneTwo == 1) {
             tarikh_az_picker.setText(startDate.getDescription());
 
         } else {
@@ -996,13 +1001,13 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             Prefs.putString("bargashtfa", endDate.getDescription());
 
             Prefs.putString("raft", startDate.getFullGeo());
-            Prefs.putString("raftfa",  startDate.getDescription());
+            Prefs.putString("raftfa", startDate.getDescription());
 
-            raft=startDate.getFullGeo();
-            bargasht=endDate.getFullGeo();
+            raft = startDate.getFullGeo();
+            bargasht = endDate.getFullGeo();
 
-            Prefs.putBoolean("GeoFlight",isGeo);
-          //  getIntent().getExtras().getBoolean("Geo")
+            Prefs.putBoolean("GeoFlight", isGeo);
+            //  getIntent().getExtras().getBoolean("Geo")
         }
 
 
