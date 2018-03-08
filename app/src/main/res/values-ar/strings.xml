@@ -81,7 +81,7 @@
     <string name="info_passenger">&#160;معلومات الركاب </string>
     <string name="_1star">1 نجمة</string>
     <string name="Persian">فارسی</string>
-    <string name="NoResult">لم يتم العثور على نتائج لبحثك!</string>
+    <string name="NoResult">لم يتم العثور على نتائج لبحثك!:(</string>
     <string name="Fifth">خامس</string>
     <string name="OneStop">محطة واحدة</string>
     <string name="UserRating">تقييمك لهذا الفندق</string>
@@ -486,4 +486,7 @@
     <string name="select_che_in">Select checkin date</string>
     <string name="select_start_date">Select Start Date</string>
     <string name="night2">شب</string>
+    <string name="change_date">بهتر است تاریخ جستجو را تغییر دهید و مجداد تلاش کنید</string>
+    <string name="filter_no_found">نتیجه ای برای فیلتر شما یافت نشد:(</string>
+    <string name="change_filter">بهتر است فیلتر خود را تغییر داده و مجددا تلاش نمایید</string>
 </resources>

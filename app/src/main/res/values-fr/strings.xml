@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="change_date">بهتر است تاریخ جستجو را تغییر دهید و مجداد تلاش کنید</string>
+    <string name="filter_no_found">نتیجه ای برای فیلتر شما یافت نشد:(</string>
+    <string name="change_filter">بهتر است فیلتر خود را تغییر داده و مجددا تلاش نمایید</string>
+</resources>

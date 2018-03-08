@@ -1891,7 +1891,7 @@
     <string name="departTo">From :</string>
     <string name="departFrom">Up to:</string>
     <string name="DatePickerError2">Can not be selected before today\'s date</string>
-    <string name="NoResult">No results were found for your search!</string>
+    <string name="NoResult">No results were found for your search! :(</string>
     <string name="off">% Discount</string>
     <string name="_1star">1 Star</string>
     <string name="_2star">2 Star</string>
@@ -2363,8 +2363,14 @@
     <string name="select_dep">Select departure date</string>
     <string name="select_che_in">Select checkin date</string>
     <string name="select_start_date">Select Start Date</string>
-    <string name="night2">شب</string>
+
+    <string name="night2">night</string>
 
 
+    <string name="change_date"> It is better to change the search history and try again </string>
+        
+    <string name="filter_no_found"> The result for your filter was not found:(</string>
+        
+    <string name="change_filter"> It is best to change your filter and try again </string>
 </resources>
 

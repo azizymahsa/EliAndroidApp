@@ -32,6 +32,7 @@ import com.eligasht.reservation.views.adapters.HotelCountRoomAdapter;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
 import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.dialog.app.CountTimeAlert;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
@@ -480,10 +481,15 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         sendStartTimer();
                         Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
 
-                        intent.putExtra("CheckIn", raft);
+                   /*     intent.putExtra("CheckIn", raft);
                         intent.putExtra("CheckOut", bargasht);
                         intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
                         intent.putExtra("CheckInFa", tvRaft.getText().toString());
+*/
+
+                        SingletonDate.getInstance().setReverseDate(startDate,endDate);
+
+
                         intent.putExtra("Rooms", getRoomList(roomsSelected));
                         intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                         intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));

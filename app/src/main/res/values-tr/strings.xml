@@ -1880,7 +1880,7 @@
     <string name="departTo"> Kimden: </string>
     <string name="departFrom"> kadar: </string>
     <string name="DatePickerError2"> Bugünün tarihinden önce seçilemiyor </string>
-    <string name="NoResult"> Aramanız için hiçbir sonuç bulunamadı! </string>    
+    <string name="NoResult"> Aramanız için hiçbir sonuç bulunamadı :(</string>    
     <string name="off">% İndirim </string>
     <string name="_1star"> 1 Yıldızlı </string>
     <string name="_2star"> 2 Yıldız </string>
@@ -2347,5 +2347,10 @@
     <string name="night2">شب</string>
 
 
+    <string name="change_date"> Arama geçmişini değiştirmek ve tekrar denemek daha iyidir </string>
+        
+    <string name="filter_no_found">  Filtrenizin sonucu bulunamadı: (</string>
+        
+    <string name="change_filter">Filtrenizi değiştirmek ve tekrar denemek en iyisidir  </string>
 </resources>
 
