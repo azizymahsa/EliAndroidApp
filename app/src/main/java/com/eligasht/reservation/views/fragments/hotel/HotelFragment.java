@@ -86,6 +86,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     private ArrayList<ModelRowCountRoom> roomsSelected;
     CustomDate startDate;
     CustomDate endDate;
+
     public static String date_server(int y, int m, int d) {
         Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
 
@@ -486,7 +487,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
                         intent.putExtra("CheckInFa", tvRaft.getText().toString());
 
-                        SingletonDate.getInstance().setReverseDate(startDate,endDate);
+                        SingletonDate.getInstance().setReverseDate(startDate, endDate);
 
 
                         intent.putExtra("Rooms", getRoomList(roomsSelected));
@@ -510,10 +511,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 break;
             case R.id.llRaft:
 
-                if (startDate!=null&&endDate!=null){
-                    calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
+                if (startDate != null && endDate != null) {
+                    calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.HOTEL);
 
-                }else{
+                } else {
                     calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
 
                 }
@@ -539,11 +540,28 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                 break;
             case R.id.llBargasht:
-                if (startDate!=null&&endDate!=null){
-                    calendarDialog.create(getActivity(), getContext(), this,startDate,endDate, TypeUsageOfCalendar.HOTEL);
+                if (startDate != null && endDate != null) {
+                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                        @Override
+                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+//                            if () {
+//                                endDate = start;
+//                                tvBargasht.setText(endDate.getDescription());
+//                            }else {
+//                                Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
+//                            }
+                        }
+                    }, endDate, TypeUsageOfCalendar.HOTEL);
 
-                }else{
-                    calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
+                } else {
+                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                        @Override
+                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+                            endDate = start;
+                            tvBargasht.setText(endDate.getDescription());
+
+                        }
+                    }, false, TypeUsageOfCalendar.HOTEL);
 
                 }
 /*
@@ -732,9 +750,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-        this.startDate=startDate;
-        this.endDate=endDate;
-        geo=isGeo;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        geo = isGeo;
         Prefs.putBoolean("geo", isGeo);
         Log.e("Date", startDate.toString());
         tvRaft.setText(startDate.getDescription());
