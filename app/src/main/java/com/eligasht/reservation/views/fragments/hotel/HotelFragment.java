@@ -336,73 +336,13 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
 
 //=====================================================================================================
+        tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+        tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        raft = SingletonDate.getInstance().getStartDate().getFullGeo();
 
 
 //=====================================================================================================
-        if (Prefs.getString("bargashtfa", "null").equals("null")) {
-
-            tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-
-        } else {
-            try {
-                tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
-                bargasht = Prefs.getString("bargasht", "null").replaceAll("-", "/");
-
-
-                Log.e("testdate", bargasht);
-
-                String[] dateSplite2 = bargasht.split("/");
-
-                String dayMF = dateSplite2[2];
-                String monthMF = dateSplite2[1];
-                String yearMF = dateSplite2[0];
-                String[] dateSplite3 = SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
-
-                String dayMF1 = dateSplite3[2];
-                String monthMF1 = dateSplite3[1];
-                String yearMF1 = dateSplite3[0];
-
-
-                PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-                persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-                Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-                datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
-
-
-            } catch (Exception e) {
-            }
-
-
-        }
-
-
-        if (Prefs.getString("raftfa", "null").equals("null")) {
-            tvRaft.setText(persianCalendarDatePicker.getPersianWeekDayName() + " " + persianCalendarDatePicker.getPersianDay() + " " + persianCalendarDatePicker.getPersianMonthName());
-
-        } else {
-            tvRaft.setText(Prefs.getString("raftfa", "null"));
-            raft = Prefs.getString("raft", "null").replaceAll("-", "/");
-            Log.e("testdate", raft);
-
-            String[] dateSplite2 = raft.split("/");
-
-            String dayMF = dateSplite2[2];
-            String monthMF = dateSplite2[1];
-            String yearMF = dateSplite2[0];
-            String[] dateSplite3 = SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
-
-            String dayMF1 = dateSplite3[2];
-            String monthMF1 = dateSplite3[1];
-            String yearMF1 = dateSplite3[0];
-
-
-            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-            persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-            datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
-
-
-        }
 
         return rootView;
 
@@ -544,22 +484,35 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
                         @Override
                         public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-//                            if () {
-//                                endDate = start;
-//                                tvBargasht.setText(endDate.getDescription());
-//                            }else {
-//                                Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
-//                            }
+                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
+                                endDate = start;
+                                tvBargasht.setText(endDate.getDescription());
+                            } else {
+                                Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }, endDate, TypeUsageOfCalendar.HOTEL);
+                    tvRaft.setText(startDate.getDescription());
+                    tvBargasht.setText(endDate.getDescription());
+                    raft = startDate.getFullGeo();
+                    bargasht = endDate.getFullGeo();
+
+
+                    Prefs.putString("raft", raft);
+                    Prefs.putString("bargasht", bargasht);
+                    Prefs.putString("raftfa", tvRaft.getText().toString());
+                    Prefs.putString("bargashtfa", tvBargasht.getText().toString());
 
                 } else {
                     calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
                         @Override
                         public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-                            endDate = start;
-                            tvBargasht.setText(endDate.getDescription());
-
+                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
+                                endDate = start;
+                                tvBargasht.setText(endDate.getDescription());
+                            } else {
+                                Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }, false, TypeUsageOfCalendar.HOTEL);
 
