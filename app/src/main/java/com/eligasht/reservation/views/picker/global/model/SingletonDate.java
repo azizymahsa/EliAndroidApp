@@ -35,4 +35,10 @@ public class SingletonDate {
     public CustomDate getEndDate() {
         return this.endDate;
     }
+
+    public void initDate() {
+        startDate = CustomDate.today();
+        endDate = CustomDate.today();
+        startDate.setAnotherCustomDate(endDate);
+    }
 }

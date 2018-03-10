@@ -312,12 +312,14 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                         public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
 
 
-                            if (CustomDate.isOlderThanThan(startDate.getCalendar(), endDate.getCalendar())) {
+                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
 
-                                Toast.makeText(getContext(), "Canot", Toast.LENGTH_SHORT).show();
-                            } else {
                                 endDate = start;
                                 txt_return_date.setText(endDate.getDescription());
+
+                            } else {
+                                Toast.makeText(getContext(), getContext().getString(R.string.end_date_must_be_more_than_start_date), Toast.LENGTH_SHORT).show();
+
                             }
 
                         }
@@ -328,12 +330,14 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                         @Override
                         public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
 
-                            if (CustomDate.isOlderThanThan(startDate.getCalendar(), endDate.getCalendar())) {
+                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
 
-                                Toast.makeText(getContext(), "Canot", Toast.LENGTH_SHORT).show();
-                            } else {
                                 endDate = start;
                                 txt_return_date.setText(endDate.getDescription());
+
+                            } else {
+                                Toast.makeText(getContext(), getContext().getString(R.string.end_date_must_be_more_than_start_date), Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     }, false, TypeUsageOfCalendar.HOTEL);
