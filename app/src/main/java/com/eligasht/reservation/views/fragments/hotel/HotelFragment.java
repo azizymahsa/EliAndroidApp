@@ -105,6 +105,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
         calendarDialog = new CalendarDialog();
+        SingletonDate.getInstance().checkConflictDate();
 
         Utility.sendTag("H", true, false);
         geo = Prefs.getBoolean("geo", false);
