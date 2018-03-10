@@ -318,6 +318,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 }
 
+
                 break;
             case R.id.btnLastDays:
                 if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
@@ -329,6 +330,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                             Toast.LENGTH_SHORT).show();
 
                 }
+
 
                 break;
 

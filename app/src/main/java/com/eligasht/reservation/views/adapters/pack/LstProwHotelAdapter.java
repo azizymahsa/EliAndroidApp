@@ -84,12 +84,12 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         long diferent_day = DateUtil.getTimeDifference(item.getCheckIn(), item.getCheckOut()).getDay();
 
 
-        holder.txt_date.setText(context.getString(R.string.from) +
+        holder.txt_date.setText(context.getString(R.string.from) +" "+
                 DateUtil.getShortStringDateFromMilis(String.valueOf(checkin_milis), "yyyy-MM-dd", true) +
-                context.getString(R.string.to) +
+                context.getString(R.string.to) +" "+
                 DateUtil.getShortStringDateFromMilis(String.valueOf(checkout_milis), "yyyy-MM-dd", true) +
                 " - " +
-                diferent_day + context.getString(R.string.night));
+                diferent_day +" "+context.getString(R.string.night));
 
         try {
             switch (Integer.parseInt(item.getHotelStarRating().split("\\*")[0])) {

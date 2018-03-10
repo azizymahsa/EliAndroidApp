@@ -73,8 +73,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     TextView txt_depart_date;
     boolean geo = false;
     LottieAnimationView lottieAnimationView;
-    CustomDate startDate;
-    CustomDate endDate;
+
     CalendarDialog calendarDialog;
     private ClientService service;
     private Gson gson;
@@ -275,55 +274,29 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.linear_picker_depart:
-
-                if (startDate != null && endDate != null) {
-                    calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.HOTEL);
-
-                } else {
-                    calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
-
-                }
+                calendarDialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
 
                 break;
 
             case R.id.linear_picker_return:
-                if (endDate != null) {
-                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                        @Override
-                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
 
-
-                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
-
-                                endDate = start;
-                                txt_return_date.setText(endDate.getDescription());
-
-                            } else {
-                                Toast.makeText(getContext(), getContext().getString(R.string.end_date_must_be_more_than_start_date), Toast.LENGTH_SHORT).show();
-
-                            }
-
+                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                    @Override
+                    public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+                        if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
+                            SingletonDate.getInstance().setEndDate(start);
+                            txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                        } else {
+                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
                         }
-                    }, endDate, TypeUsageOfCalendar.HOTEL);
+                    }
+                }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
+                txt_depart_date.setText(SingletonDate.getInstance().getStartDate().getDescription());
+                txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                departureFrom = SingletonDate.getInstance().getStartDate().getFullGeo();
+                departureTo = SingletonDate.getInstance().getEndDate().getFullGeo();
 
-                } else {
-                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                        @Override
-                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
 
-                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
-
-                                endDate = start;
-                                txt_return_date.setText(endDate.getDescription());
-
-                            } else {
-                                Toast.makeText(getContext(), getContext().getString(R.string.end_date_must_be_more_than_start_date), Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
-                    }, false, TypeUsageOfCalendar.HOTEL);
-
-                }
 
                 break;
             case R.id.txtCity:
@@ -451,15 +424,13 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-        SingletonDate.getInstance().setReverseDate(startDate,endDate);
+        SingletonDate.getInstance().setReverseDate(start,end);
 
-        startDate = start;
-        endDate = end;
-        departureFrom = startDate.getFullGeo();
-        departureTo = endDate.getFullGeo();
-        txt_return_date.setText(endDate.getDescription());
-        txt_depart_date.setText(startDate.getDescription());
 
+        departureFrom = start.getFullGeo();
+        departureTo = end.getFullGeo();
+        txt_return_date.setText(end.getDescription());
+        txt_depart_date.setText(start.getDescription());
 
 
     }
