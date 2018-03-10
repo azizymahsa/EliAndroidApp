@@ -87,8 +87,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     /*com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;*/
     CalendarDialog calendarDialog;
-    CustomDate startDate;
-    CustomDate endDate;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -758,8 +757,8 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
                         intent1.putExtra("Geo", Geo);//2017-11-24
-                        if(startDate != null && endDate != null)
-                             SingletonDate.getInstance().setReverseDate(startDate, endDate);
+                       /* if(startDate != null && endDate != null)
+                             SingletonDate.getInstance().setReverseDate(startDate, endDate);*/
 
 
                         startActivity(intent1);
@@ -981,11 +980,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-        SingletonDate.getInstance().setReverseDate(startDate,endDate);
+
         if (flagOneTwo == 1) {
             tarikh_az_picker.setText(startDate.getDescription());
-
+            SingletonDate.getInstance().setStartDate(startDate);
         } else {
+            SingletonDate.getInstance().setReverseDate(startDate,endDate);
             tarikh_az_picker.setText(startDate.getDescription());
             tarikh_be_picker.setText(endDate.getDescription());
 
