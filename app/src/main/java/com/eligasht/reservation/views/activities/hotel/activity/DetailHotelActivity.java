@@ -468,7 +468,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     "123qwe!@#QWE", "Mobile"), "",
                     String.valueOf(getIntent().getExtras().getInt("HotelId")),
                     "", "", getIntent().getExtras().getString("ResultUniqID"),
-                    "fa-IR"))));*/
+                    getString(R.string.culture)))));*/
 
 
         }
@@ -480,7 +480,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         , "Mobile"), "",
                         String.valueOf(getIntent().getExtras().getInt("HotelId")),
                         "", "", getIntent().getExtras().getString("ResultUniqID"),
-                        "fa-IR")));
+                        getString(R.string.culture))));
 
             } catch (Exception e) {
 
@@ -552,8 +552,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected String doInBackground(String... params) {
             try {
-                getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest("fa-IR", String.valueOf(getIntent().getExtras().getInt("HotelId")))));
-                Log.e("j2j2j2", new Gson().toJson(new GetHotelDetailRequest(new GetHotelDRequest("fa-IR", String.valueOf(getIntent().getExtras().getInt("HotelId"))))));
+                getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId")))));
+                Log.e("j2j2j2", new Gson().toJson(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId"))))));
 
             } catch (Exception e) {
 
@@ -849,7 +849,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             try {
                 GetCommentRequest getCommentRequest = new GetCommentRequest();
                 Request request = new Request();
-                request.setCulture("fa-IR");
+                request.setCulture(getString(R.string.culture));
                 request.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
                 // request.setEHotelId("767");
                 getCommentRequest.setRequest(request);

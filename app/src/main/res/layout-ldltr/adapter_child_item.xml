@@ -14,7 +14,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp">
-
+        <TextView
+            android:id="@+id/txt_child"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:padding="8sp"
+            android:text="کودک اول"
+            android:textColor="@color/TextColor" />
         <RelativeLayout
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -28,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/TRANSPARENT"
-                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
 
                 >
 
@@ -37,9 +45,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="3dp"
+                android:layout_marginLeft="3dp"
                 android:text="@string/icon_arrow_down"
                 android:textAppearance="@style/IconFonts"
 
@@ -48,15 +56,7 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/txt_child"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:padding="8sp"
-            android:text="کودک اول"
-            android:textColor="@color/TextColor" />
+
 
     </LinearLayout>
 

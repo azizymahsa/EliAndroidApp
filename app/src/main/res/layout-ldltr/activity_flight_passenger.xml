@@ -1375,7 +1375,7 @@
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:gravity="right"
-                    android:text="ریال"
+                    android:text="@string/curency"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#23b574"
                     android:textSize="@dimen/_15dp_normal_textSize" />

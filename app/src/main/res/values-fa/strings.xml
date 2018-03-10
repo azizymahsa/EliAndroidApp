@@ -320,7 +320,7 @@
     <string name="day_">روز _</string>
     <string name="rial_">ریال )</string>
     <string name="day">روز</string>
-    <string name="space_rial_space">ریال</string>
+    <string name="space_rial_space"> ریال </string>
     <string name="amount_">تعداد )</string>
     <string name="approved">تایید شده</string>
     <string name="delivered">تحویل شده</string>
@@ -485,6 +485,11 @@
     <string name="filter_no_found">نتیجه ای برای فیلتر شما یافت نشد:(</string>
     <string name="change_filter">بهتر است فیلتر خود را تغییر داده و مجددا تلاش نمایید</string>
     <string name="end_date_must_be_more_than_start_date">تاریخ پایان نباید کوچکتر از تاریخ شروع باشد</string>
+    <string name="package_a">هر نفر بزرگسال</string>
+    <string name="package_b">کودک با تخت</string>
+    <string name="package_c">کودک بدون تخت</string>
+    <string name="package_d">هر نفر نوزاد</string>
+    <string name="culture">fa-IR</string>
 
 
 </resources>

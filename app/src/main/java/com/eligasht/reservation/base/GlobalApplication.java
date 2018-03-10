@@ -14,6 +14,7 @@ import android.telephony.TelephonyManager;
 import com.eligasht.R;
 import com.eligasht.reservation.notification.GetNotification;
 import com.eligasht.reservation.views.activities.IDM_Activity;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.font.CustomViewWithTypefaceSupport;
 import com.eligasht.reservation.views.ui.font.TextField;
@@ -110,6 +111,7 @@ public class GlobalApplication extends Application {
     public void onCreate() {
         super.onCreate();
         SingletonContext.getInstance().setContext(this);
+        SingletonDate.getInstance().initDate();
         ConnectionBuddyConfiguration networkInspectorConfiguration = new ConnectionBuddyConfiguration.Builder(this).build();
         ConnectionBuddy.getInstance().init(networkInspectorConfiguration);
         OneSignal.startInit(this)

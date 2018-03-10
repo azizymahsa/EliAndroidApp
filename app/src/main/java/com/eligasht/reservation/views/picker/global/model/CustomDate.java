@@ -57,6 +57,13 @@ public class CustomDate {
         // return TimeUnit.MILLISECONDS.toDays((end - start));
     }
 
+    public static CustomDate today() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getDefault());
+        return new CustomDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
+
+    }
+
     public int getPersianYear() {
         return persianDate.getYear();
     }

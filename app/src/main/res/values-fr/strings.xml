@@ -3,4 +3,9 @@
     <string name="change_date">بهتر است تاریخ جستجو را تغییر دهید و مجداد تلاش کنید</string>
     <string name="filter_no_found">نتیجه ای برای فیلتر شما یافت نشد:(</string>
     <string name="change_filter">بهتر است فیلتر خود را تغییر داده و مجددا تلاش نمایید</string>
+    <string name="package_a">هر نفر بزرگسال</string>
+    <string name="package_b">کودک با تخت</string>
+    <string name="package_c">کودک بدون تخت</string>
+    <string name="package_d">هر نفر نوزاد</string>
+    <string name="culture">fa-IR</string>
 </resources>
