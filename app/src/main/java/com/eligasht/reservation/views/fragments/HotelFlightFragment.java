@@ -94,6 +94,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     private ArrayList<ModelRowCountRoom> roomsSelected;
     CustomDate startDate;
     CustomDate endDate;
+
     public static String date_server(int y, int m, int d) {
         Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
 
@@ -116,7 +117,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         geo = Prefs.getBoolean("geo", false);
         calendarDialog = new CalendarDialog();
         SingletonDate.getInstance().checkConflictDate();
-        if (CustomDate.compareTwoDays( SingletonDate.getInstance().getStartDate().getCalendar(), SingletonDate.getInstance().getEndDate().getCalendar())==0){
+        if (CustomDate.compareTwoDays(SingletonDate.getInstance().getStartDate().getCalendar(), SingletonDate.getInstance().getEndDate().getCalendar()) == 0) {
             SingletonDate.getInstance().getEndDate().addOneDay();
         }
 
@@ -180,12 +181,10 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         mAdapter.setData(data);
 
 
-
         tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-
 
 
 //=====================================================================================================
@@ -288,7 +287,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 break;
             case R.id.llRaft:
 
-                calendarDialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
+                calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
 
                 break;
             case R.id.llBargasht:
@@ -297,11 +296,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                     public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
 
 
-                        if (CustomDate.compareTwoDays(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())==0){
+                        if (CustomDate.compareTwoDays(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar()) == 0) {
                             SingletonDate.getInstance().setEndDate(start);
                             SingletonDate.getInstance().getEndDate().addOneDay();
 
-                            Toast.makeText(getActivity(), getString(R.string.canot_inout)+" بنابراین یک روز به تاریخ برگشت شما اضافه شد", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.canot_inout) + getString(R.string.so_one_day_has_been_added_to_your_end_date), Toast.LENGTH_SHORT).show();
 
                             tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
                             return;
@@ -311,12 +310,10 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                             SingletonDate.getInstance().setEndDate(start);
                             tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
                         } else {
-                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date+" بنابراین یک روز به تاریخ برگشت شما اضافه شد", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date + getString(R.string.so_one_day_has_been_added_to_your_end_date), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
-
-
 
 
                 tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
@@ -700,7 +697,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-        SingletonDate.getInstance().setReverseDate(startDate,endDate);
+        SingletonDate.getInstance().setReverseDate(startDate, endDate);
 
         tvRaft.setText(startDate.getDescription());
         tvBargasht.setText(endDate.getDescription());

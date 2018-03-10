@@ -2367,7 +2367,7 @@
     <string name="change_date"> It is better to change the search history and try again </string>
     <string name="filter_no_found"> The result for your filter was not found:(</string>
     <string name="change_filter"> It is best to change your filter and try again </string>
-    <string name="end_date_must_be_more_than_start_date">تاریخ پایان نباید کوچکتر از تاریخ شروع باشد</string>
+    <string name="end_date_must_be_more_than_start_date">End date must be greater than start date</string>
     <string name="package_a"> Adult person </string>
     <string name="package_b"> Child with bed</string>
     <string name="package_c"> Child without bed </string>
@@ -2384,5 +2384,6 @@
     <string name="select_che">Select Retrun Date</string>
     <string name="canot_inout">Check in and Check out Canot be The Same</string>
     <string name="shamsi">Shamsi</string>
+    <string name="so_one_day_has_been_added_to_your_end_date">So your return date increased by one</string>
 </resources>
 
