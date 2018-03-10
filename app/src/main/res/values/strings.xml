@@ -2363,7 +2363,7 @@
     <string name="select_dep">Select departure date</string>
     <string name="select_che_in">Select checkin date</string>
     <string name="select_start_date">Select Start Date</string>
-    <string name="night2">night</string>
+    <string name="night2"> Nights</string>
     <string name="change_date"> It is better to change the search history and try again </string>
     <string name="filter_no_found"> The result for your filter was not found:(</string>
     <string name="change_filter"> It is best to change your filter and try again </string>
@@ -2382,6 +2382,6 @@
     <string name="select_outday">ُSelect End Date</string>
     <string name="select_finishdate">Select Out Date</string>
     <string name="select_che">Select Retrun Date</string>
-    <string name="canot_inout">Ceck in and Check out Canot be The Same</string>
+    <string name="canot_inout">Check in and Check out Canot be The Same</string>
 </resources>
 

@@ -234,7 +234,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                         days360.set(f9223i, Boolean.TRUE);
                         notifyItemChanged(f9223i);
                         if (usageCalendarText.equals("Hotel")) {
-                            initPopupWindow(view, this.numberUtil.toFarsiString(String.valueOf(f9223i - f9222h)) + context.getString(R.string.night2) + " ");
+                            initPopupWindow(view, String.valueOf(f9223i - f9222h) + context.getString(R.string.night2) + " ");
                         }
                         notifyItemRangeChanged(f9222h + 1, f9223i - 1);
                     }
