@@ -38,6 +38,7 @@ public class SingletonDate {
 
     public void setEndDate(CustomDate customDate) {
         this.endDate = customDate;
+        this.startDate.setAnotherCustomDate(endDate);
     }
 
     public void initDate() {
