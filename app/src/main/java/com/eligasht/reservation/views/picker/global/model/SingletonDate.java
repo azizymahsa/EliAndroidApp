@@ -1,5 +1,7 @@
 package com.eligasht.reservation.views.picker.global.model;
 
+import android.util.Log;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -61,8 +63,10 @@ public class SingletonDate {
 
     @Subscribe()
     public void onMessageEvent(EventBusCalendar event) {
-
-        if (event.isUpdated())
+        if (event.isUpdated()) {
+            Log.e("Tag", "onMessageEvent: Evetn Bus Updated");
             startDate.setAnotherCustomDate(endDate);
+        }
+
     }
 }

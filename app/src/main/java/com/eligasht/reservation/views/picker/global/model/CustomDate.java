@@ -163,9 +163,9 @@ public class CustomDate {
     }
 
     private void updateDate(Calendar calendar) {
-        EventBus.getDefault().post(new EventBusCalendar(true));
         civilDate = new CivilDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
         persianDate = DateConverter.civilToPersian(civilDate);
+        EventBus.getDefault().post(new EventBusCalendar(true));
 
     }
 

@@ -98,6 +98,10 @@ public class CalendarDialog implements OnClickListener {
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, CustomDate endDate, TypeUsageOfCalendar typeUsageofCalendar) {
         this.context = context;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
+        if (Locale.getDefault().getLanguage().equals("fa"))
+            sharedPrefrences.edit().putBoolean("isGregorian", false).apply();
+        else
+            sharedPrefrences.edit().putBoolean("isGregorian", true).apply();
         this.activity = activity;
         this.persianStartYear = startDate.getPersianYear();
         this.persianEndYear = endDate.getPersianYear();
@@ -107,6 +111,7 @@ public class CalendarDialog implements OnClickListener {
         this.geoEndYear = endDate.getGeoYear();//geo end year
         this.isReverseTravel = true;
         this.callbackCalendarDialog = iCallbackCalendarDialog;
+
         if (!this.sharedPrefrences.getBoolean("isGregorian", false))
             this.fullDate = startDate.getFullPersian() + "-" + endDate.getFullPersian();
         else
@@ -181,6 +186,10 @@ public class CalendarDialog implements OnClickListener {
         this.context = context;
         this.activity = activity;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
+        if (Locale.getDefault().getLanguage().equals("fa"))
+            sharedPrefrences.edit().putBoolean("isGregorian", false).apply();
+        else
+            sharedPrefrences.edit().putBoolean("isGregorian", true).apply();
         this.persianStartYear = startDate.getPersianYear();
         this.persianEndYear = 0;
         fullEndDate = null;
@@ -189,6 +198,7 @@ public class CalendarDialog implements OnClickListener {
         this.geoEndYear = 0;//geo end year
         this.isReverseTravel = false;
         this.callbackCalendarDialog = iCallbackCalendarDialog;
+
 
         if (!this.sharedPrefrences.getBoolean("isGregorian", false))
             this.fullDate = startDate.getFullPersian(); //1395/2/1-1395/2/10 or 1395/2/1
@@ -261,6 +271,10 @@ public class CalendarDialog implements OnClickListener {
         this.context = context;
         this.activity = activity;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
+        if (Locale.getDefault().getLanguage().equals("fa"))
+            sharedPrefrences.edit().putBoolean("isGregorian", false).apply();
+        else
+            sharedPrefrences.edit().putBoolean("isGregorian", true).apply();
         this.persianStartYear = 0;//persian start Year
         this.persianEndYear = 0;//persian end Year
         this.geoStartYear = 0;//geo start year
@@ -583,7 +597,7 @@ public class CalendarDialog implements OnClickListener {
             this.wed.setText("T");
             this.tur.setText("M");
             this.fri.setText("S");
-            this.changeDateKind.setText("شمسی");
+            this.changeDateKind.setText(R.string.shamsi);
             initAdapter(this.isGregorian);
             if (context.getResources().getBoolean(R.bool.isTablet)) {
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(-1, (int) (((double) (this.displayMetrics.density * 240.0f)) + 0.5d));
