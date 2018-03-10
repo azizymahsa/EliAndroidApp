@@ -87,7 +87,7 @@ public class GetHotelActivity extends BaseActivity {
 
         protected void onPreExecute() {
             avLoadingIndicatorView.setVisibility(View.VISIBLE);
-            Log.e("test", new Gson().toJson(new HotelNameRequest(new HotelNameRequestModel(search, "Culture", new Identity("EligashtMlb",
+            Log.e("test", new Gson().toJson(new HotelNameRequest(new HotelNameRequestModel(search, getString(R.string.culture), new Identity("EligashtMlb",
                     "123qwe!@#QWE", "Mobile")))));
         }
 
@@ -95,7 +95,7 @@ public class GetHotelActivity extends BaseActivity {
         protected String doInBackground(String... params) {
             try {
 
-                hotelNameApi = new HotelNameApi(new HotelNameRequest(new HotelNameRequestModel(search, "Culture", new Identity("EligashtMlb",
+                hotelNameApi = new HotelNameApi(new HotelNameRequest(new HotelNameRequestModel(search, getString(R.string.culture), new Identity("EligashtMlb",
                         "123qwe!@#QWE", "Mobile"))));
 
             } catch (Exception e) {

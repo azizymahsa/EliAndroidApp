@@ -1214,7 +1214,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             headerJson.put("PartnerList", detailsPartner);
 
-            headerJson.put("Culture", "fa-IR");
+            headerJson.put("Culture", getString(R.string.culture));
            // headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
             headerJson.put("CountryCode", Prefs.getString("CountryCode", "12"));
             headerJson.put("DepartureDate", Prefs.getString("DepartureDate", "12"));
@@ -1249,7 +1249,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
             manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
             manJson.put("Type", "I");
@@ -1285,7 +1285,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         JSONObject identityJson = new JSONObject();
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
             manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
             manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));

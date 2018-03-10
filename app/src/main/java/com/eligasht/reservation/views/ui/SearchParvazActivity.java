@@ -2478,7 +2478,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
             Log.e("teschange", new Gson().toJson(new ChangeFlightApiRequest(new Request(FlightId,
-                    searchKey, "fa-IR", new Identity("EligashtMlb",
+                    searchKey, getString(R.string.culture), new Identity("EligashtMlb",
                     "123qwe!@#QWE", "Mobile")))));
         }
 
@@ -2486,7 +2486,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         protected String doInBackground(String... params) {
             try {
                 changeFlightApi = new ChangeFlightApi(new ChangeFlightApiRequest(new Request(FlightId,
-                        searchKey, "fa-IR", new Identity("EligashtMlb",
+                        searchKey, getString(R.string.culture), new Identity("EligashtMlb",
                         "123qwe!@#QWE", "Mobile"))));
 
 

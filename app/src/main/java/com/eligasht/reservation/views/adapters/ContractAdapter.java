@@ -165,7 +165,7 @@ public class ContractAdapter extends BaseAdapter {
 
     public EmailContractReq getEmailContractReq(int pos) {
         EmailContractReq emailContractReq = new EmailContractReq();
-        emailContractReq.setCulture("fa-IR");
+        emailContractReq.setCulture(context.getString(R.string.culture));
         emailContractReq.setidentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
         emailContractReq.setBody("");
         emailContractReq.setEncryptedContractID(contractModels.get(pos).id);

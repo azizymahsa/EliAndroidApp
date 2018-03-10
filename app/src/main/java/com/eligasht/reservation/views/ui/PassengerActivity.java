@@ -1583,7 +1583,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			headerJson.put("partnerInfo", detailsPartner);
 
-			headerJson.put("Culture", "fa-IR");
+			headerJson.put("Culture", getString(R.string.culture));
 			headerJson.put("Type", "F");
 			//	headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
 
@@ -1610,7 +1610,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 		try {
-			manJson.put("Culture", "fa-IR");
+			manJson.put("Culture", getString(R.string.culture));
 			manJson.put("Type", "F");
 
 			manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
@@ -1649,7 +1649,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 		try {
-			manJson.put("Culture", "fa-IR");
+			manJson.put("Culture", getString(R.string.culture));
 			manJson.put("Type", "F");
 
 			manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));

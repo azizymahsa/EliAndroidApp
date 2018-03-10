@@ -1322,7 +1322,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             headerJson.put("PartnerList", detailsPartner);
 
-            headerJson.put("Culture", "fa-IR");
+            headerJson.put("Culture", getString(R.string.culture));
             // headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
             headerJson.put("Type", "HF");
 
@@ -1359,7 +1359,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
             manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
             manJson.put("Type", "HF");//perches service
@@ -1406,7 +1406,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
             manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
             manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));

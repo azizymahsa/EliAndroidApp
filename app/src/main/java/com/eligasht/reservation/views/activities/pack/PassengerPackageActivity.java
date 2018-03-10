@@ -2544,7 +2544,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             headerJson.put("PartnerList", detailsPartner);
 
-            headerJson.put("Culture", "fa-IR");
+            headerJson.put("Culture", getString(R.string.culture));
             headerJson.put("WebUserID", Prefs.getString("userId","-1"));
             //	headerJson.put("Type", "P");
 
@@ -2589,7 +2589,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
             manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
             manJson.put("Type", "P");
@@ -2628,7 +2628,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
 
             manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));

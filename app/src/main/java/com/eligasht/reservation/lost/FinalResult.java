@@ -135,9 +135,9 @@ public class FinalResult extends BaseActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                getPreFactor = new GetPreFactor(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""), factorId + "", new Identity("EligashtMlb",
+                getPreFactor = new GetPreFactor(new RequestPrefactor(new RequestPre(getString(R.string.culture), Prefs.getString("TypeGetPre", ""), factorId + "", new Identity("EligashtMlb",
                         "123qwe!@#QWE", "Mobile"))));
-                Log.e("okokokok", new Gson().toJson(new RequestPrefactor(new RequestPre("fa-IR", Prefs.getString("TypeGetPre", ""), factorId + "", new Identity("EligashtMlb",
+                Log.e("okokokok", new Gson().toJson(new RequestPrefactor(new RequestPre(getString(R.string.culture), Prefs.getString("TypeGetPre", ""), factorId + "", new Identity("EligashtMlb",
                         "123qwe!@#QWE", "Mobile")))));
             } catch (Exception e) {
 
