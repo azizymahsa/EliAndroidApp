@@ -274,6 +274,17 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                 break;
             case R.id.llRaft:
+                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                    @Override
+                    public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
+                        SingletonDate.getInstance().setStartDate(startDate);
+                        SingletonDate.getInstance().setEndDate(endDate);
+                        tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                        tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
+
+                    }
+                },SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(),TypeUsageOfCalendar.HOTEL);
+                break;
             case R.id.llBargasht:
                 calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
                     @Override
