@@ -152,16 +152,16 @@ public class LstProwPriceAdapter extends SectioningAdapter {
             int infCount = ((LstProwPrice) feedItemList.get(sectionIndex).getList().get(0)).getInfCount();
             String countPassenger = "";
             if(adlCount != 0){
-                countPassenger = adlCount + context.getString(R.string.Adult);
+                countPassenger = adlCount  +" "+ context.getString(R.string.Adult) +" ";
             }
             if(chCount != 0){
-                countPassenger = countPassenger + " + " + chCount + context.getString(R.string.ChildPackage);
+                countPassenger = countPassenger + " + " + chCount  +" "+ context.getString(R.string.ChildPackage)+" ";
             }
 
             if(infCount != 0){
-                countPassenger = countPassenger + " + " + infCount + context.getString(R.string.BabyPackage);
+                countPassenger = countPassenger + " + " + infCount +" "+ context.getString(R.string.BabyPackage)+" ";
             }
-            String title = context.getString(R.string.room) +" "+getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + context.getString(R.string.OfferTo) + countPassenger ;
+            String title = context.getString(R.string.room) +" "+getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + context.getString(R.string.OfferTo)  +" "+ countPassenger ;
             holder.txt_title_header.setText(title);
         }catch (Exception e){
             e.printStackTrace();
