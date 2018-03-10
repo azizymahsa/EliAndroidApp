@@ -643,7 +643,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 if (startDate== null && endDate==null){
                     Toast.makeText(getActivity()," لطفا تاریخ رفت و برگشت را انتخاب کنید", Toast.LENGTH_SHORT).show();
                 }else{
-                    if(CustomDate.isOlderThanThan(startDate.getCalendar(),endDate.getCalendar())){
+                    if(CustomDate.isOlderThan(startDate.getCalendar(),endDate.getCalendar())){
                         Toast.makeText(getActivity(), getString(R.string.end_date_must_be_more_than_start_date), Toast.LENGTH_SHORT).show();
                     }else{
                         if (startDate != null && endDate != null) {
