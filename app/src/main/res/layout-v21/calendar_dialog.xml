@@ -168,7 +168,7 @@
         android:background="@drawable/radious_accent_btn_calendar"
         android:gravity="center"
         android:minWidth="88dp"
-        android:text="تایید"
+        android:text="@string/dialog_ok"
         android:textColor="#ffffffff" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -182,7 +182,7 @@
         android:background="@drawable/radious_gray_btn_hotel"
         android:gravity="center"
         android:minWidth="88dp"
-        android:text="انصراف"
+        android:text="@string/cancel_dialog"
         android:textColor="#ffffffff" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -197,7 +197,7 @@
         android:background="@drawable/radious_accent_btn_calendar"
         android:gravity="center"
         android:minWidth="88dp"
-        android:text="میلادی"
+        android:text="@string/geo_dialog"
         android:textColor="#ffffffff" />
 
     <View
