@@ -106,6 +106,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
         rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
         calendarDialog = new CalendarDialog();
         SingletonDate.getInstance().checkConflictDate();
+        if (CustomDate.compareTwoDays( SingletonDate.getInstance().getStartDate().getCalendar(), SingletonDate.getInstance().getEndDate().getCalendar())==0){
+            SingletonDate.getInstance().getEndDate().addOneDay();
+        }
 
         Utility.sendTag("H", true, false);
         geo = Prefs.getBoolean("geo", false);
@@ -271,14 +274,22 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                 break;
             case R.id.llRaft:
-
-                calendarDialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
-
-                break;
             case R.id.llBargasht:
                 calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
                     @Override
                     public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+
+
+                        if (CustomDate.compareTwoDays(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())==0){
+                            SingletonDate.getInstance().setEndDate(start);
+                            SingletonDate.getInstance().getEndDate().addOneDay();
+
+                            Toast.makeText(getActivity(), getString(R.string.canot_inout)+" بنابراین یک روز به تاریخ برگشت شما اضافه شد", Toast.LENGTH_SHORT).show();
+
+                            tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                            return;
+
+                        }
                         if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
                             SingletonDate.getInstance().setEndDate(start);
                             tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
@@ -287,6 +298,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         }
                     }
                 }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
+
+
+
+
                 tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
                 tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
                 raft = SingletonDate.getInstance().getStartDate().getFullGeo();
@@ -461,10 +476,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
         SingletonDate.getInstance().setReverseDate(startDate,endDate);
-
-        geo = isGeo;
-        Prefs.putBoolean("geo", isGeo);
-        Log.e("Date", startDate.toString());
         tvRaft.setText(startDate.getDescription());
         tvBargasht.setText(endDate.getDescription());
         raft = startDate.getFullGeo();

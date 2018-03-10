@@ -56,10 +56,10 @@ public class CustomDate {
     }
 
 
-    public static boolean compareTwoDays(Calendar startDate, Calendar endDate) {
+    public static long compareTwoDays(Calendar startDate, Calendar endDate) {
         long start = startDate.getTimeInMillis();
         long end = endDate.getTimeInMillis();
-        return TimeUnit.MILLISECONDS.toDays((end - start)) >= 0;
+        return TimeUnit.MILLISECONDS.toDays((end - start));
         // return TimeUnit.MILLISECONDS.toDays((end - start));
     }
 
