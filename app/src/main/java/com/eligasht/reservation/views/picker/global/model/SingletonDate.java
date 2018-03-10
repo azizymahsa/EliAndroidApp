@@ -35,6 +35,10 @@ public class SingletonDate {
         this.endDate = customDate;
         this.startDate.setAnotherCustomDate(customDate);
     }
+    public void setStartDate(CustomDate customDate) {
+        this.startDate = customDate;
+        this.startDate.setAnotherCustomDate(endDate);
+    }
 
     public void initDate() {
         startDate = CustomDate.today();
