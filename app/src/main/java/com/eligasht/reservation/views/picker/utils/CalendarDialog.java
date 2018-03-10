@@ -606,7 +606,7 @@ public class CalendarDialog implements OnClickListener {
         this.wed.setText("چ");
         this.tur.setText("پ");
         this.fri.setText("ج");
-        this.changeDateKind.setText("میلادی");
+        this.changeDateKind.setText(R.string.geo_dialog);
         initAdapter(this.isGregorian);
         if (context.getResources().getBoolean(R.bool.isTablet)) {
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(-1, (int) (((double) (this.displayMetrics.density * 240.0f)) + 0.5d));
@@ -727,11 +727,11 @@ public class CalendarDialog implements OnClickListener {
         if (this.shortDate != null) {
             this.dateDescription.setText(this.shortDate);
         } else if (this.typeUsageOfCalendar.equals("Train") || this.typeUsageOfCalendar.equals("NationalFlight") || this.typeUsageOfCalendar.equals("InternationalFlight")) {
-            this.dateDescription.setText("انتخاب تاریخ رفت");
+            this.dateDescription.setText(R.string.select_checkin);
         } else if (this.typeUsageOfCalendar.equals("Hotel")) {
-            this.dateDescription.setText("انتخاب تاریخ ورود");
+            this.dateDescription.setText(R.string.select_checkout);
         } else if (this.typeUsageOfCalendar.equals("AutoAlert")) {
-            this.dateDescription.setText("انتخاب تاریخ شروع");
+            this.dateDescription.setText(R.string.select_startdate);
         }
         this.calendarRv.setLayoutManager(this.gridLayoutManager);
         this.calendarRv.setHasFixedSize(true);

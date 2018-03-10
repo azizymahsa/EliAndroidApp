@@ -160,14 +160,13 @@
         android:id="@+id/accept"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/calendar_rv"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_above="@+id/view2"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@+id/mon"
         android:background="@drawable/radious_accent_btn_calendar"
         android:gravity="center"
         android:minWidth="88dp"
-        android:text="تایید"
+        android:text="@string/dialog_ok"
         android:textColor="#ffffffff" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -181,7 +180,7 @@
         android:background="@drawable/radious_gray_btn_hotel"
         android:gravity="center"
         android:minWidth="88dp"
-        android:text="انصراف"
+        android:text="@string/cancel_dialog"
         android:textColor="#ffffffff" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -196,10 +195,11 @@
         android:background="@drawable/radious_accent_btn_calendar"
         android:gravity="center"
         android:minWidth="88dp"
-        android:text="میلادی"
+        android:text="@string/geo_dialog"
         android:textColor="#ffffffff" />
 
     <View
+        android:id="@+id/view2"
         android:layout_width="fill_parent"
         android:layout_height="16dp"
         android:layout_below="@id/change_date_kind" />

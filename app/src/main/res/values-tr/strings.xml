@@ -2341,10 +2341,10 @@
     <string name="Please_enter_the_title_correctly">Lütfen başlığı doğru giriniz</string>
     <string name="Please_enter_the_correct_message">Lütfen doğru mesajı giriniz</string>
     <string name="success">İsteğiniz başarıyla tamamlandı.</string>
-    <string name="select_dep">Select departure date</string>
-    <string name="select_che_in">Select checkin date</string>
-    <string name="select_start_date">Select Start Date</string>
-    <string name="night2">شب</string>
+    <string name="select_dep">Geçirilen tarihi seç</string>
+    <string name="select_che_in">Giriş Tarihini Seç</string>
+    <string name="select_start_date">Başlangıç Tarihini Seç</string>
+    <string name="night2">Gece</string>
 
 
     <string name="change_date"> Arama geçmişini değiştirmek ve tekrar denemek daha iyidir </string>
@@ -2363,6 +2363,16 @@
         
     <string name="package_d"> Herkesin bir bebeği var </string>
     <string name="culture">tr</string>
+    <string name="dialog_ok">Doğrula </string>
+    <string name="cancel_dialog"> İptal et</string>
+    <string name="geo_dialog">AD</string>
+    <string name="select_checkin">Geçirilen tarihi seç</string>
+    <string name="select_checkout">Giriş Tarihini Seç</string>
+    <string name="select_startdate">Başlangıç Tarihini Seç</string>
+    <string name="select_outday">Son kullanma tarihini seçin</string>
+    <string name="select_finishdate">Bitiş tarihi seçin</string>
+    <string name="select_che">İade tarihini seçin</string>
+    <string name="canot_inout">Giriş ve çıkış geçmişi tek olamaz</string>
 
 </resources>
 
