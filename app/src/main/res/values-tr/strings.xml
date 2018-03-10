@@ -2373,6 +2373,7 @@
     <string name="select_finishdate">Bitiş tarihi seçin</string>
     <string name="select_che">İade tarihini seçin</string>
     <string name="canot_inout">Giriş ve çıkış geçmişi tek olamaz</string>
+    <string name="shamsi">Sarmal</string>
 
 </resources>
 
