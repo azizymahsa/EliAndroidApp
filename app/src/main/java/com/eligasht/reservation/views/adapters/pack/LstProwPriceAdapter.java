@@ -192,23 +192,23 @@ public class LstProwPriceAdapter extends SectioningAdapter {
     private String getStringPosition(int position) {
         switch (position) {
             case 1:
-                return "اول";
+                return context.getString(R.string.first);
             case 2:
-                return "دوم";
+                return context.getString(R.string.Second);
             case 3:
-                return "سوم";
+                return context.getString(R.string.Third);
             case 4:
-                return "چهارم";
+                return context.getString(R.string.Fourth);
             case 5:
-                return "پنجم";
+                return context.getString(R.string.Fifth);
             case 6:
-                return "ششم";
+                return context.getString(R.string.Sixth);
             case 7:
-                return "هفتم";
+                return context.getString(R.string.Seventh);
             case 8:
-                return "هشتم";
+                return context.getString(R.string.Eighth);
             case 9:
-                return "نهم";
+                return context.getString(R.string.ninth);
 
             default:
                 return "";
