@@ -119,6 +119,8 @@ public class CustomDate {
     }
 
     public boolean addOneDay() {
+        Log.e("Start", toString());
+        Log.e("End", anotherCustomDate.toString());
         if (anotherCustomDate == null) {
             addDay(1);
             return true;
@@ -141,6 +143,7 @@ public class CustomDate {
     }
 
     public boolean minusOneDay() {
+
         Calendar today = Calendar.getInstance();
         today.setTimeZone(TimeZone.getDefault());
         if (daysBetween(today, getCalendar()) > 0) {
