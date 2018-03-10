@@ -2,6 +2,7 @@ package com.eligasht.reservation.views.picker.global.model;
 
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
@@ -118,11 +119,13 @@ public class CustomDate {
     }
 
     public boolean addOneDay() {
+        Log.e("Start", toString());
+        Log.e("End", anotherCustomDate.toString());
         if (anotherCustomDate == null) {
             addDay(1);
             return true;
         }
-
+        Log.e("Add", String.valueOf(daysBetween(getCalendar(), anotherCustomDate.getCalendar())));
         if (daysBetween(getCalendar(), anotherCustomDate.getCalendar()) > 0) {
             addDay(1);
             return true;
@@ -140,6 +143,7 @@ public class CustomDate {
     }
 
     public boolean minusOneDay() {
+
         Calendar today = Calendar.getInstance();
         today.setTimeZone(TimeZone.getDefault());
         if (daysBetween(today, getCalendar()) > 0) {
