@@ -152,7 +152,7 @@ public class RoomsAdapter extends BaseAdapter {
         protected void onPreExecute() {
            // alertDialogPolicy.setTitle("قوانین هتل");
             Log.e("okoktesttest", new Gson().toJson(new PolicyRequest(new RequestPolicy(new IdentityRooms("EligashtMlb",
-                    "123qwe!@#QWE", "Mobile"), EHotelId, OfferId, SearchKey, "fa-IR", false))));
+                    "123qwe!@#QWE", "Mobile"), EHotelId, OfferId, SearchKey, context.getString(R.string.culture), false))));
 
 
         }
@@ -161,7 +161,7 @@ public class RoomsAdapter extends BaseAdapter {
         protected String doInBackground(String... params) {
             try {
                 getHotelPolicyApi = new GetHotelPolicyApi(new PolicyRequest(new RequestPolicy(new IdentityRooms("EligashtMlb",
-                        "123qwe!@#QWE", "Mobile"), EHotelId, OfferId, SearchKey, "fa-IR", false)));
+                        "123qwe!@#QWE", "Mobile"), EHotelId, OfferId, SearchKey, context.getString(R.string.culture), false)));
 
 
             } catch (Exception e) {
@@ -237,7 +237,7 @@ public class RoomsAdapter extends BaseAdapter {
             try {
                 getHoldRoom = new GetHoldRoom(new HoldSelectedRoomRequest(new
                         RoomRequest(new Identity("123qwe!@#QWE",
-                        "EligashtMlb", "Mobile"), "fa-IR", eHotelId
+                        "EligashtMlb", "Mobile"), context.getString(R.string.culture), eHotelId
                         , offerIds, context.getIntent().getExtras().getString("ResultUniqID"))));
 
             } catch (Exception e) {

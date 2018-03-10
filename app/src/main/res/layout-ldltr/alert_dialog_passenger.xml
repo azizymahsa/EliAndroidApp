@@ -46,6 +46,7 @@
             android:textAppearance="@style/IrsansBold"
             android:textColor="#2e3192"
             android:textSize="@dimen/_12dp_normal_textSize"
+            android:text="ggg"
             android:visibility="visible" />
 
      <!--   <com.eligasht.reservation.tools.JustifiedTextView

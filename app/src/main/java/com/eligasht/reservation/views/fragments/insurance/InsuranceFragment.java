@@ -190,7 +190,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 _intent.putExtra("BirthDateList", gson.toJson(passengers));
                 Prefs.putString("BirthDateListInsuranc", gson.toJson(passengers));//mahsa
                 _intent.putExtra("DepartureDate", departureDate);
-                _intent.putExtra("Culture", "fa-IR");
+                _intent.putExtra("Culture", getString(R.string.culture));
                 _intent.putExtra("CountryCode", country.getCountryCode());
                 _intent.putExtra("CountryName", country.getCountryNameFa());
                 _intent.putExtra("AccomodationDays", accomodationDays);

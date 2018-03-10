@@ -73,7 +73,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
         LoginListReq loginListReq = new LoginListReq();
         loginListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
-        loginListReq.setCulture("fa-IR");
+        loginListReq.setCulture(getString(R.string.culture));
         loginListReq.setUserName(txtEmail.getText().toString());
         loginListReq.setPassword(txtPassword.getText().toString());
 

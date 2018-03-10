@@ -829,7 +829,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         protected void onPreExecute() {
             rlLoading2.setVisibility(View.VISIBLE);
             Log.e("logeeeeee", new Gson().toJson(new AirportTransportServicePriceRequest
-                    (new AirportPriceRequest(TmpRq, new Param(DepurtureAirport, AirPortCode, DepurtureDate, DepurtureTime, DepurtureFlt, ReturnDate, ServiceID, ReturnTime, ReturnFlt, CityId, Hotelcode, PassengerList, "true"), "Culture", new Identity("EligashtMlb",
+                    (new AirportPriceRequest(TmpRq, new Param(DepurtureAirport, AirPortCode, DepurtureDate, DepurtureTime, DepurtureFlt, ReturnDate, ServiceID, ReturnTime, ReturnFlt, CityId, Hotelcode, PassengerList, "true"), getString(R.string.culture), new Identity("EligashtMlb",
                             "123qwe!@#QWE", "Mobile")))));
 
         }
@@ -839,7 +839,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             try {
 
                 airportTransportServicePrice = new AirportTransportServicePrice(new AirportTransportServicePriceRequest
-                        (new AirportPriceRequest(TmpRq, new Param(DepurtureAirport, AirPortCode, DepurtureDate, DepurtureTime, DepurtureFlt, ReturnDate, ServiceID, ReturnTime, ReturnFlt, CityId, Hotelcode, PassengerList, "true"), "Culture", new Identity("EligashtMlb",
+                        (new AirportPriceRequest(TmpRq, new Param(DepurtureAirport, AirPortCode, DepurtureDate, DepurtureTime, DepurtureFlt, ReturnDate, ServiceID, ReturnTime, ReturnFlt, CityId, Hotelcode, PassengerList, "true"), getString(R.string.culture), new Identity("EligashtMlb",
                                 "123qwe!@#QWE", "Mobile"))));
 
             } catch (Exception e) {

@@ -54,11 +54,12 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="@dimen/_20dp"
-            android:gravity="left"
+            android:gravity="right"
             android:padding="5dp"
             android:textAppearance="@style/IrsansBold"
             android:textColor="#2e3192"
             android:textSize="@dimen/_12dp_normal_textSize"
+            android:text="ggg"
             android:visibility="visible" />
         <com.wang.avi.AVLoadingIndicatorView
 

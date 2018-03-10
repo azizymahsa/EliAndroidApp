@@ -84,8 +84,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private String country;
     private String culture;
     private String roomList;
-    private String cityName,PreferedAir;
-    private TextView toolbar_title,tvLoading;
+    private String cityName, PreferedAir;
+    private TextView toolbar_title, tvLoading;
     private TextView toolbar_date;
     private FancyButton btnBack;
     private ViewGroup layout_sort;
@@ -93,7 +93,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private FancyButton btn_next_day;
     private FancyButton btn_previous_day;
     private RelativeLayout error_layout;
-    private TextView txt_error,tvAlertDesc;
+    private TextView txt_error, tvAlertDesc;
     private FancyButton btnHome;
     private FancyButton btnOk;
     private TextView txtFilter;
@@ -112,7 +112,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
             window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this
-                    ,R.color.colorPrimaryDark));
+                    , R.color.colorPrimaryDark));
         }
         initViews();
         service = ServiceGenerator.createService(ClientService.class);
@@ -130,19 +130,17 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     , departureFrom
                     , departureTo
                     , roomList
-                    , culture,PreferedAir);
+                    , culture, PreferedAir);
 
 
         }
     }
+
     //send request for get package
-    private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture,String PreferedAir) {
+    private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture, String PreferedAir) {
 
 
-
-
-
-        toolbar_title.setText(getString(R.string.Tur) + cityName);
+        toolbar_title.setText(getString(R.string.Tur) + " " + cityName);
         toolbar_date.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
         goneView(layout_availabel_date, R.anim.slide_out_top);
         goneView(txtNotFoundResualt, R.anim.slide_out_top);
@@ -175,12 +173,12 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 if (searchXPackageResult == null) {
                     rcl_package.showText();
-                    if (!Utility.isNetworkAvailable(SearchPackActivity.this)){
+                    if (!Utility.isNetworkAvailable(SearchPackActivity.this)) {
 
                         txt_error.setText(R.string.InternetError);
 
 
-                    }else{
+                    } else {
 
                         txt_error.setText(R.string.ErrorServer);
 
@@ -243,7 +241,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         btn_previous_day = findViewById(R.id.btnLastDays);
         btn_next_day = findViewById(R.id.btnNextDays);
         tvLoading = findViewById(R.id.tvLoading);
-        Utility.loadingText(tvLoading,Prefs.getString("P",""));
+        Utility.loadingText(tvLoading, Prefs.getString("P", ""));
 
 
         layout_availabel_date = findViewById(R.id.layout_availabel_date);
@@ -292,7 +290,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
 
-
                 break;
             case R.id.btnOk:
                 onBackPressed();
@@ -316,7 +313,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 if (SingletonDate.getInstance().getStartDate().addOneDay()) {
 
                     departureFrom = SingletonDate.getInstance().getStartDate().getFullGeo();
-                    getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
+                    getPackages(country, departureFrom, departureTo, roomList, culture, PreferedAir);
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.datePickerError,
                             Toast.LENGTH_SHORT).show();
@@ -327,8 +324,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.btnLastDays:
                 if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
-                    departureFrom =SingletonDate.getInstance().getStartDate().getFullGeo();
-                    getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
+                    departureFrom = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    getPackages(country, departureFrom, departureTo, roomList, culture, PreferedAir);
 
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
@@ -385,12 +382,12 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
 
     public void showLoading() {
-      Window  window = getWindow();
+        Window window = getWindow();
 
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this,R.color.hf));
+            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this, R.color.hf));
         }
 
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
@@ -399,14 +396,13 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
 
     public void hideLoading() {
-        Window  window = getWindow();
+        Window window = getWindow();
 
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this,R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this, R.color.colorPrimaryDark));
         }
-
 
 
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
@@ -414,7 +410,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     }
 
     private void showList() {
-        pRowXferAdapter = new PRowXferAdapter(this, pRowXfers,toolbar_date).setListener(this);
+        pRowXferAdapter = new PRowXferAdapter(this, pRowXfers, toolbar_date).setListener(this);
         rcl_package.showList(pRowXferAdapter);
 
         ArrayList<LstAvailableDate> lstAvailableDates = new ArrayList<>();
@@ -438,11 +434,11 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 long milis = DateUtil.getMiliSecondFromJSONDate(lstAvailableDate.getDepartDate());
                 departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy/MM/dd");
                 Log.e("PackageTest", departureFrom);
-                Log.e("PackageTest2", milis+"");
-                Log.e("PackageTest3", lstAvailableDate.getPackID()+"");
+                Log.e("PackageTest2", milis + "");
+                Log.e("PackageTest3", lstAvailableDate.getPackID() + "");
 
 
-                getPackages(country, departureFrom, departureTo, roomList, culture,String.valueOf(lstAvailableDate.getPackID()));
+                getPackages(country, departureFrom, departureTo, roomList, culture, String.valueOf(lstAvailableDate.getPackID()));
             }
         });
 
