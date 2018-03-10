@@ -236,7 +236,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_weight="50"
                         android:gravity="left">
 
                         <TextView
@@ -259,12 +259,12 @@
                         android:id="@+id/txtDepurtureTrueOne"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:gravity="right"
                         android:layout_gravity="right"
 
-                        android:layout_weight="2"
+                        android:layout_weight="100"
 
-                        android:text="استانبول  "
+                        android:text="تهران  "
                         android:textColor="#000"
                         android:textSize="@dimen/_12dp_normal_textSize" />
 
@@ -411,10 +411,10 @@
                         android:id="@+id/txtDepurtureFalseOne"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:gravity="right"
                         android:layout_gravity="right"
 
-                        android:layout_weight="50"
+                        android:layout_weight="100"
 
                         android:text="تهران  "
                         android:textColor="#000"
