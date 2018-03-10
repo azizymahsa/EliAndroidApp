@@ -280,10 +280,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             Bargasht = extras.getString("Value-ArrivalDate");*/
           if(SingletonDate.getInstance().getStartDate() != null) {
               RaftF = SingletonDate.getInstance().getStartDate().getDescription();
-              BargashtF = SingletonDate.getInstance().getEndDate().getDescription();
-
               Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-              Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+
+              try {
+                  BargashtF = SingletonDate.getInstance().getEndDate().getDescription();
+                  Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+              }catch (Exception e){}
+
+
           }else{
               RaftF = extras.getString("Value-DepartureDate-format");
               BargashtF = extras.getString("Value-ArrivalDate-format");
@@ -1080,7 +1084,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             if (extras != null) {
                 if( SingletonDate.getInstance().getStartDate() !=null) {
                     Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-                    Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();//2018/03/11
+                    try{
+                        Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();//2018/03/11
+
+                    }catch (Exception e){}
                 }
                 String maghsadf = extras.getString("Value-Maghsad-Airport-Code");
                 String mabdaf = extras.getString("Value-Mabda-Airport-Code");

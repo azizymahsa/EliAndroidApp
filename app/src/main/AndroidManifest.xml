@@ -34,7 +34,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
-                    android:scheme="eligasht" />
+                    android:scheme="eligashts" />
             </intent-filter>
             <meta-data
                 android:name="unityplayer.ForwardNativeEventsToDalvik"
