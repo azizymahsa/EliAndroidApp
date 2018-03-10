@@ -935,14 +935,14 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         protected String doInBackground(String... params) {
             try {
                 hotelFlightSearch = new HotelFlightSearch(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        Utility.convertNumbersToEnglish(raft),  Utility.convertNumbersToEnglish(bargasht), Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), "fa-IR",
+                        Utility.convertNumbersToEnglish(raft),  Utility.convertNumbersToEnglish(bargasht), Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), getString(R.string.culture),
                         Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"))));
 
 
                 Gson gson = new Gson();
 
                 Log.e("test", gson.toJson(new HotelAR(new RquestHF("HF", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), "fa-IR", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR")))));
+                        raft, bargasht, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"), rooms, getIntent().getExtras().getString("Rooms"), getString(R.string.culture), Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR")))));
             } catch (Exception e) {
 
             }
@@ -1299,7 +1299,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
                 window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.hf));
             }
-            Log.e("changeflightTest", new Gson().toJson((new ChangeFlightApiRequest(new Request(flId, searchKey, "fa-IR", new Identity("EligashtMlb",
+            Log.e("changeflightTest", new Gson().toJson((new ChangeFlightApiRequest(new Request(flId, searchKey, getString(R.string.culture), new Identity("EligashtMlb",
                     "123qwe!@#QWE", "Mobile"))))));
             new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 
@@ -1308,7 +1308,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         @Override
         protected String doInBackground(String... params) {
             try {
-                loadHotelFlightApi = new LoadHotelFlightApi(new ChangeFlightApiRequest(new Request(flId, searchKey, "fa-IR", new Identity("EligashtMlb",
+                loadHotelFlightApi = new LoadHotelFlightApi(new ChangeFlightApiRequest(new Request(flId, searchKey, getString(R.string.culture), new Identity("EligashtMlb",
                         "123qwe!@#QWE", "Mobile"))));
 
 

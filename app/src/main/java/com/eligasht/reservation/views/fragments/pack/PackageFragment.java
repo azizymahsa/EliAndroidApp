@@ -29,6 +29,7 @@ import com.eligasht.reservation.views.activities.pack.SearchPackActivity;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
 import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.GetCitiesForPackActivity;
 import com.google.gson.Gson;
@@ -72,8 +73,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     TextView txt_depart_date;
     boolean geo = false;
     LottieAnimationView lottieAnimationView;
-    CustomDate startDate;
-    CustomDate endDate;
+
     CalendarDialog calendarDialog;
     private ClientService service;
     private Gson gson;
@@ -126,6 +126,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         view = (ViewGroup) inflater.inflate(R.layout.fragment_package, null);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         view.setLayoutParams(layoutParams);
+        SingletonDate.getInstance().checkConflictDate();
+
         Utility.sendTag("P", true, false);
         calendarDialog = new CalendarDialog();
 
@@ -201,32 +203,10 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
         lottieAnimationView = view.findViewById(R.id.animation_view);
         lottieAnimationView.setAnimation("circle-l.json");
-        String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy/MM/dd");
-        departureFrom = currentDateTime;
-        departureTo = currentDateTime;
-
-        if (Prefs.getString("bargashtfa", "null").equals("null")) {
-            txt_return_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
-
-        } else {
-            txt_return_date.setText(Prefs.getString("bargashtfa", "null"));
-
-            departureTo = Prefs.getString("bargasht", "null");
-
-        }
-
-
-        if (Prefs.getString("raftfa", "null").equals("null")) {
-            txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy/MM/dd", true));
-
-
-        } else {
-            txt_depart_date.setText(Prefs.getString("raftfa", "null"));
-
-            departureFrom = Prefs.getString("raft", "null");
-        }
-
-
+        txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        departureTo = SingletonDate.getInstance().getEndDate().getFullGeo();
+        txt_depart_date.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        departureFrom = SingletonDate.getInstance().getStartDate().getFullGeo();
         gson = new GsonBuilder().create();
 
         layout_room.setOnClickListener(this);
@@ -294,55 +274,29 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.linear_picker_depart:
-
-                if (startDate != null && endDate != null) {
-                    calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.HOTEL);
-
-                } else {
-                    calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
-
-                }
+                calendarDialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
 
                 break;
 
             case R.id.linear_picker_return:
-                if (endDate != null) {
-                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                        @Override
-                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
 
-
-                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
-
-                                endDate = start;
-                                txt_return_date.setText(endDate.getDescription());
-
-                            } else {
-                                Toast.makeText(getContext(), getContext().getString(R.string.end_date_must_be_more_than_start_date), Toast.LENGTH_SHORT).show();
-
-                            }
-
+                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                    @Override
+                    public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+                        if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
+                            SingletonDate.getInstance().setEndDate(start);
+                            txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                        } else {
+                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
                         }
-                    }, endDate, TypeUsageOfCalendar.HOTEL);
+                    }
+                }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
+                txt_depart_date.setText(SingletonDate.getInstance().getStartDate().getDescription());
+                txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                departureFrom = SingletonDate.getInstance().getStartDate().getFullGeo();
+                departureTo = SingletonDate.getInstance().getEndDate().getFullGeo();
 
-                } else {
-                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                        @Override
-                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
 
-                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
-
-                                endDate = start;
-                                txt_return_date.setText(endDate.getDescription());
-
-                            } else {
-                                Toast.makeText(getContext(), getContext().getString(R.string.end_date_must_be_more_than_start_date), Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
-                    }, false, TypeUsageOfCalendar.HOTEL);
-
-                }
 
                 break;
             case R.id.txtCity:
@@ -470,17 +424,14 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-        startDate = start;
-        endDate = end;
-        departureFrom = startDate.getFullGeo();
-        departureTo = endDate.getFullGeo();
-        txt_return_date.setText(endDate.getDescription());
-        txt_depart_date.setText(startDate.getDescription());
+        SingletonDate.getInstance().setReverseDate(start,end);
 
 
-        Prefs.putString("bargasht", departureTo);
-        Prefs.putString("bargashtfa", txt_return_date.getText().toString());
-        Prefs.putString("raft", departureFrom);
-        Prefs.putString("raftfa", txt_depart_date.getText().toString());
+        departureFrom = start.getFullGeo();
+        departureTo = end.getFullGeo();
+        txt_return_date.setText(end.getDescription());
+        txt_depart_date.setText(start.getDescription());
+
+
     }
 }

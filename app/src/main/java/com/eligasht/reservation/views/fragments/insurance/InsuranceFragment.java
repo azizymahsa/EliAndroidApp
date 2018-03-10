@@ -26,6 +26,7 @@ import com.eligasht.reservation.views.dialogs.NumberPickerDialog;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
 import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.GetCountriesForInsuranceActivity;
 import com.google.gson.Gson;
@@ -43,7 +44,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by elham.bonyani on 1/14/2018.
  */
 
-public class InsuranceFragment extends Fragment implements View.OnClickListener, NumberPickerDialog.NumberPickerListener,ICallbackCalendarDialog {
+public class InsuranceFragment extends Fragment implements View.OnClickListener, NumberPickerDialog.NumberPickerListener, ICallbackCalendarDialog {
 
     private final int ADD_PASSENGER_REQUEST = 101;
     public ViewGroup view;
@@ -129,8 +130,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         gson = new GsonBuilder().create();
 
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
-        departureDate = currentDateTime;
-        txt_depart_date.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+        departureDate = SingletonDate.getInstance().getStartDate().getFullGeo();
+        txt_depart_date.setText(SingletonDate.getInstance().getStartDate().getDescription());
 
 
         layout_depart_date.setOnClickListener(this);
@@ -159,7 +160,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.layout_depart_date:
-                this.dialog.create(getActivity(), getContext(), this, false, TypeUsageOfCalendar.InternationalFlight);
+                this.dialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate() , TypeUsageOfCalendar.InternationalFlight);
                 break;
             case R.id.btnSearchInsurance:
                 if (country == null) {
@@ -223,6 +224,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
 
         departureDate = startDate.getFullGeo();
+        SingletonDate.getInstance().setStartDate(startDate);
         txt_depart_date.setText(startDate.getDescription());
 
     }

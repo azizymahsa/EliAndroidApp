@@ -38,11 +38,13 @@ import com.eligasht.reservation.models.model.pack.response.PackageListRes;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
+import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
 import com.eligasht.reservation.views.adapters.pack.LstAvailableDateAdapter;
 import com.eligasht.reservation.views.adapters.pack.PRowXferAdapter;
 import com.eligasht.reservation.views.components.SimpleRecycleView;
 import com.eligasht.reservation.views.dialogs.FilterPackageDialog;
 import com.eligasht.reservation.views.dialogs.SortDialogPackage;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.google.gson.Gson;
@@ -122,7 +124,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             departureFrom = bundle.getString("DepartureFrom");
             departureTo = bundle.getString("DepartureTo");
             roomList = bundle.getString("RoomList");
-            culture = bundle.getString("Culture");
+            culture = getString(R.string.culture);
             cityName = bundle.getString("CityName");
 
             getPackages(country
@@ -136,19 +138,13 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     }
     //send request for get package
     private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture,String PreferedAir) {
-        String date;
-        if (Prefs.getString("raftfa","null").equals("null")) {
-             date = DateUtil.getShortStringDate(departureFrom, "yyyy/MM/dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy/MM/dd", true);
 
-        }else{
 
-            date = Prefs.getString("bargashtfa","null") + " - " + Prefs.getString("raftfa","null");
 
-        }
 
 
         toolbar_title.setText(getString(R.string.Tur) + cityName);
-        toolbar_date.setText(date);
+        toolbar_date.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
         goneView(layout_availabel_date, R.anim.slide_out_top);
         goneView(txtNotFoundResualt, R.anim.slide_out_top);
         showLoading();
@@ -157,11 +153,10 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         packageListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
         packageListReq.setCountry(country);
         packageListReq.setRoomList(roomList);
-        packageListReq.setDepartureFrom(departureFrom);
-        packageListReq.setDepartureTo(departureTo);
+        packageListReq.setDepartureFrom(Utility.convertNumbersToEnglish(departureFrom));
+        packageListReq.setDepartureTo(Utility.convertNumbersToEnglish(departureTo));
         packageListReq.setCulture(culture);
         packageListReq.setPreferedAir(PreferedAir);
-        Log.e("packreq",new Gson().toJson(packageListReq).toString());
 
 
         Call<PackageListRes> call = service.getPackageListResult(new PackageRequestModel(packageListReq));
@@ -313,25 +308,29 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 break;
 
             case R.id.btnNextDays:
-                long _departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
+                if (SingletonDate.getInstance().getStartDate().addOneDay()) {
 
-                if (_departMilis + 86400000 > DateUtil.getMiliSecondGregorianDateTime(departureTo, "yyyy/MM/dd")) {
-                    Toast.makeText(this, R.string.datePickerError, Toast.LENGTH_SHORT).show();
-                    return;
+                    departureFrom = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
+                            Toast.LENGTH_SHORT).show();
+
                 }
-                long milis = _departMilis + 86400000;
-                departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy/MM/dd");
-                getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
+
+
                 break;
             case R.id.btnLastDays:
-                long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
-                if (departMilis <= System.currentTimeMillis()) {
-                    Toast.makeText(this, R.string.DatePickerError2, Toast.LENGTH_SHORT).show();
-                    return;
+                if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
+                    departureFrom =SingletonDate.getInstance().getStartDate().getFullGeo();
+                    getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
+                            Toast.LENGTH_SHORT).show();
+
                 }
-                long _milis = departMilis - 86400000;
-                departureFrom = DateUtil.getDateTime(String.valueOf(_milis), "yyyy/MM/dd");
-                getPackages(country, departureFrom, departureTo, roomList, culture,PreferedAir);
+
 
                 break;
 

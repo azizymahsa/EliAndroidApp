@@ -84,8 +84,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     CalendarDialog calendarDialog;
     private View rootView;
     private ArrayList<ModelRowCountRoom> roomsSelected;
-    CustomDate startDate;
-    CustomDate endDate;
+
 
     public static String date_server(int y, int m, int d) {
         Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
@@ -106,6 +105,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
         calendarDialog = new CalendarDialog();
+        SingletonDate.getInstance().checkConflictDate();
 
         Utility.sendTag("H", true, false);
         geo = Prefs.getBoolean("geo", false);
@@ -152,257 +152,19 @@ public class HotelFragment extends Fragment implements OnClickListener,
         model.setCountB(1);
         model.setCountK(0);
         model.setCountN(0);
-
         data.add(model);
 
-
         mAdapter = new HotelCountRoomAdapter(getActivity(), data);
-        //mAdapter.setAdapter(mAdapter);
         mAdapter.setData(data);
-        //   listRoomItem.setAdapter(mAdapter);
 
-//==================================================================================================
-        PersianCalendar persianCalendarDatePicker = new PersianCalendar();
-        //  Date currentTime = Calendar.getInstance().getTime();
-        //=================================================================================================
-        PersianCalendar persianCalendar = new PersianCalendar();
-
-        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), (persianCalendarDatePicker.getPersianDay() + 1));
-
-
-        month = persianCalendarDatePicker.getPersianMonth();
-        year_ = persianCalendarDatePicker.getPersianYear();
-        day = persianCalendarDatePicker.getPersianDay();
-
-        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
-        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
-
-        // datePickerDialogGregorian2.setOnDateSetListener(this);
-        //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);
-
-        datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
-        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
-
-        datePickerDialog = DatePickerDialog.newInstance(
-                this,
-                persianCalendarDatePicker.getPersianYear(),
-                persianCalendarDatePicker.getPersianMonth(),
-                persianCalendarDatePicker.getPersianDay()
-        );
-
-        datePickerDialog.setMinDate(persianCalendarDatePicker);
-
-
-        datePickerDialog2 = DatePickerDialog.newInstance(
-                this,
-                persianCalendar.getPersianYear(),
-                persianCalendar.getPersianMonth(),
-                persianCalendar.getPersianDay()
-        );
-        datePickerDialog2.setMinDate(persianCalendar);
-
-
-        raft = date_server(persianCalendarDatePicker.getPersianYear(),
-                persianCalendarDatePicker.getPersianMonth(),
-                persianCalendarDatePicker.getPersianDay());
-
-
-        bargasht = date_server(persianCalendar.getPersianYear(),
-                persianCalendar.getPersianMonth(),
-                persianCalendar.getPersianDay());
-
-        //=====================================================================================================
-
-
-        datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
-            /*    Log.e("caltes", datePickerDialog.getSelectedDay().getYear()+"");
-
-
-
-                String str_date = datePickerDialog.getSelectedDay().getYear() + "/" + (datePickerDialog.getSelectedDay().getMonth()) + "/" + datePickerDialog.getSelectedDay().getDay();//2018-01-16
-                DateFormat formatter;
-                Date date;
-                formatter = new SimpleDateFormat("yyyy/MM/dd");
-                try {
-                    date = (Date) formatter.parse(str_date);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(date);
-                    datePickerDialogGregorian1.initialize(HotelFragment.this,cal.getTime().getYear(),cal.getTime().getMonth(),cal.getTime().getDay());
-                    Log.e("caltes1", cal.getTime().getYear()+"");
-                    Log.e("caltes2", cal.getTime().getMonth()+"");
-                    Log.e("caltes3", cal.getTime().getDay()+"");
-
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }*/
-
-            }
-        });
-
-
-        datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
-
-
-            }
-        });
+//=====================================================================================================
+        tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+        tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        raft = SingletonDate.getInstance().getStartDate().getFullGeo();
 
 
 //=====================================================================================================
-
-        datePickerDialog2.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
-            }
-        });
-
-
-        datePickerDialogGregorian2.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
-
-
-            }
-        });
-        datePickerDialog2.setTitle(getString(R.string.select_return_date));
-
-
-//=====================================================================================================
-
-
-        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-
-                geo = true;
-                Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
-
-
-                String str_date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;//2018-01-16
-                DateFormat formatter;
-                Date date;
-                formatter = new SimpleDateFormat("yyyy/MM/dd");
-                try {
-                    date = formatter.parse(str_date);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(date);
-                    datePickerDialogGregorian2.setMinDate(cal);
-
-
-                    tvRaft.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-
-                    raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-                    Log.e("GGGGGGG", raft);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                tvBargasht.setText(tvRaft.getText().toString());
-
-                Prefs.putString("bargashtfa", tvRaft.getText().toString());
-
-                Prefs.putString("raft", raft);
-                Prefs.putString("raftfa", tvRaft.getText().toString());
-
-
-            }
-        });
-        datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-                Log.e("GGGGGGGBar", year + "==" + (monthOfYear + 1) + "==" + dayOfMonth);
-                geo = true;
-                tvBargasht.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-
-                bargasht = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-
-
-                Prefs.putString("bargasht", bargasht);
-                Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-
-            }
-
-
-        });
-
-
-//=====================================================================================================
-
-
-//=====================================================================================================
-        if (Prefs.getString("bargashtfa", "null").equals("null")) {
-
-            tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-
-        } else {
-            try {
-                tvBargasht.setText(Prefs.getString("bargashtfa", "null"));
-                bargasht = Prefs.getString("bargasht", "null").replaceAll("-", "/");
-
-
-                Log.e("testdate", bargasht);
-
-                String[] dateSplite2 = bargasht.split("/");
-
-                String dayMF = dateSplite2[2];
-                String monthMF = dateSplite2[1];
-                String yearMF = dateSplite2[0];
-                String[] dateSplite3 = SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
-
-                String dayMF1 = dateSplite3[2];
-                String monthMF1 = dateSplite3[1];
-                String yearMF1 = dateSplite3[0];
-
-
-                PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-                persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-                Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-                datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
-
-
-            } catch (Exception e) {
-            }
-
-
-        }
-
-
-        if (Prefs.getString("raftfa", "null").equals("null")) {
-            tvRaft.setText(persianCalendarDatePicker.getPersianWeekDayName() + " " + persianCalendarDatePicker.getPersianDay() + " " + persianCalendarDatePicker.getPersianMonthName());
-
-        } else {
-            tvRaft.setText(Prefs.getString("raftfa", "null"));
-            raft = Prefs.getString("raft", "null").replaceAll("-", "/");
-            Log.e("testdate", raft);
-
-            String[] dateSplite2 = raft.split("/");
-
-            String dayMF = dateSplite2[2];
-            String monthMF = dateSplite2[1];
-            String yearMF = dateSplite2[0];
-            String[] dateSplite3 = SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
-
-            String dayMF1 = dateSplite3[2];
-            String monthMF1 = dateSplite3[1];
-            String yearMF1 = dateSplite3[0];
-
-
-            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-            persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
-            datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
-
-
-        }
 
         return rootView;
 
@@ -487,7 +249,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
                         intent.putExtra("CheckInFa", tvRaft.getText().toString());
 
-                        SingletonDate.getInstance().setReverseDate(startDate, endDate);
 
 
                         intent.putExtra("Rooms", getRoomList(roomsSelected));
@@ -511,76 +272,25 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 break;
             case R.id.llRaft:
 
-                if (startDate != null && endDate != null) {
-                    calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.HOTEL);
-
-                } else {
-                    calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
-
-                }
-
-
-                    /*    if (geo) {
-                            if (!datePickerDialogGregorian1.isAdded()){
-
-                                datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
-
-                            }
-
-                        } else {
-                            if(!datePickerDialog.isAdded()){
-                                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
-
-                            }
-
-                        }
-
-*/
-
+                calendarDialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
 
                 break;
             case R.id.llBargasht:
-                if (startDate != null && endDate != null) {
-                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                        @Override
-                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-//                            if () {
-//                                endDate = start;
-//                                tvBargasht.setText(endDate.getDescription());
-//                            }else {
-//                                Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
-//                            }
+                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                    @Override
+                    public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+                        if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
+                            SingletonDate.getInstance().setEndDate(start);
+                            tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                        } else {
+                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
                         }
-                    }, endDate, TypeUsageOfCalendar.HOTEL);
-
-                } else {
-                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                        @Override
-                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-                            endDate = start;
-                            tvBargasht.setText(endDate.getDescription());
-
-                        }
-                    }, false, TypeUsageOfCalendar.HOTEL);
-
-                }
-/*
-
-                if (geo) {
-                    if (!datePickerDialogGregorian2.isAdded()){
-
-                        datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
-
                     }
-
-                } else {
-                    if(!datePickerDialog2.isAdded()){
-                        datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
-
-                    }
-
-                }
-*/
+                }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
+                tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
+                tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
 
                 break;
@@ -750,8 +460,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+        SingletonDate.getInstance().setReverseDate(startDate,endDate);
+
         geo = isGeo;
         Prefs.putBoolean("geo", isGeo);
         Log.e("Date", startDate.toString());
@@ -761,15 +471,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
         bargasht = endDate.getFullGeo();
 
 
-        Prefs.putString("raft", raft);
-        Prefs.putString("bargasht", bargasht);
-        Prefs.putString("raftfa", tvRaft.getText().toString());
-        Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-
     }
 
 
-    //Gregorian==============================================Gregorian=============================Gregorian
 
 
 }
