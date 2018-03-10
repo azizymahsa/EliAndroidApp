@@ -750,31 +750,36 @@ public class CalendarDialog implements OnClickListener {
         this.calendarRv.setLayoutManager(this.gridLayoutManager);
         this.calendarRv.setHasFixedSize(true);
         Collections.fill(this.f13893G, Boolean.FALSE);
-        if (this.isReverseTravel) {
-            if (this.fullDate != null && this.fullDate.contains("-")) {
+        try {
+            if (this.isReverseTravel) {
+                if (this.fullDate != null && this.fullDate.contains("-")) {
+                    if (this.persianStartYear == this.calendarTool.m18348a()) {
+                        this.f13893G.set((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[0]))).intValue()) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
+                    } else {
+                        this.f13893G.set(((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[0]))).intValue()) + UiUtils.m18437a(false, this.calendarTool.m18348a())) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
+                    }
+                    if (this.persianEndYear == this.calendarTool.m18348a()) {
+                        this.f13893G.set((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[0]))).intValue()) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
+                    } else {
+                        this.f13893G.set(((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[0]))).intValue()) + UiUtils.m18437a(false, this.calendarTool.m18348a())) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
+                    }
+                    this.accept.setEnabled(true);
+                    this.accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
+                }
+            } else if (this.fullDate != null) {
                 if (this.persianStartYear == this.calendarTool.m18348a()) {
-                    this.f13893G.set((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[0]))).intValue()) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
+                    this.f13893G.set((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[0]))).intValue()) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
                 } else {
-                    this.f13893G.set(((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[0].split("/")[0]))).intValue()) + UiUtils.m18437a(false, this.calendarTool.m18348a())) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
+                    this.f13893G.set(((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[0]))).intValue()) + UiUtils.m18437a(false, this.calendarTool.m18348a())) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
                 }
-                if (this.persianEndYear == this.calendarTool.m18348a()) {
-                    this.f13893G.set((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[0]))).intValue()) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
-                } else {
-                    this.f13893G.set(((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[0]))).intValue()) + UiUtils.m18437a(false, this.calendarTool.m18348a())) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
-                }
-                this.accept.setEnabled(true);
-                this.accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
             }
-        } else if (this.fullDate != null) {
-            if (this.persianStartYear == this.calendarTool.m18348a()) {
-                this.f13893G.set((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[0]))).intValue()) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
-            } else {
-                this.f13893G.set(((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("/")[0]))).intValue()) + UiUtils.m18437a(false, this.calendarTool.m18348a())) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
-            }
+            this.monthAdapter = new MonthAdapter(this.activity, this.context, this.f13935x, this.calendarTool.m18352c(), this.f13933v, UiUtils.m18433a(1, this.calendarTool.m18350b(), this.f13933v), this.f13893G, this.isReverseTravel, isGeorgian, this.fullDate, this.typeUsageOfCalendar);
+            this.calendarRv.setAdapter(this.monthAdapter);
+            initClickOnCalendar(isGeorgian);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        this.monthAdapter = new MonthAdapter(this.activity, this.context, this.f13935x, this.calendarTool.m18352c(), this.f13933v, UiUtils.m18433a(1, this.calendarTool.m18350b(), this.f13933v), this.f13893G, this.isReverseTravel, isGeorgian, this.fullDate, this.typeUsageOfCalendar);
-        this.calendarRv.setAdapter(this.monthAdapter);
-        initClickOnCalendar(isGeorgian);
+
     }
 
     private void initClickOnCalendar(final boolean isGeorgian) {
