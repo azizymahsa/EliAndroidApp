@@ -481,10 +481,10 @@
     <string name="Please_enter_the_title_correctly">الرجاء إدخال العنوان بشكل صحيح</string>
     <string name="Please_enter_the_correct_message">الرجاء إدخال الرسالة الصحيحة</string>
     <string name="success">تم إكمال طلبك بنجاح.</string>
-    <string name="select_dep">Select departure date</string>
-    <string name="select_che_in">Select checkin date</string>
-    <string name="select_start_date">Select Start Date</string>
-    <string name="night2">شب</string>
+    <string name="select_dep">حدد التاريخ الذي تم تمريره</string>
+    <string name="select_che_in">حدد تاريخ تسجيل الدخول</string>
+    <string name="select_start_date">حدد تاريخ البدء</string>
+    <string name="night2">في الليل</string>
     <string name="change_date">بهتر است تاریخ جستجو را تغییر دهید و مجداد تلاش کنید</string>
     <string name="filter_no_found">نتیجه ای برای فیلتر شما یافت نشد:(</string>
     <string name="change_filter">بهتر است فیلتر خود را تغییر داده و مجددا تلاش نمایید</string>
@@ -497,4 +497,14 @@
         
     <string name="package_d"> لكل شخص طفل </string>
     <string name="culture">ar</string>
+    <string name="dialog_ok">تحقق من</string>
+    <string name="cancel_dialog">إلغاء</string>
+    <string name="geo_dialog">میلادی</string>
+    <string name="select_checkin">حدد التاريخ الذي تم تمريره</string>
+    <string name="select_checkout">حدد تاريخ تسجيل الدخول</string>
+    <string name="select_startdate">حدد تاريخ البدء</string>
+    <string name="select_outday">حدد تاريخ انتهاء الصلاحية</string>
+    <string name="select_finishdate">حدد تاريخ الانتهاء</string>
+    <string name="select_che">حدد تاريخ الإرجاع</string>
+    <string name="canot_inout"> لا يمكن أن تكون تواريخ الدخول والخروج واحدة</string>
 </resources>

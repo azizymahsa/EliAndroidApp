@@ -55,6 +55,14 @@ public class CustomDate {
         // return TimeUnit.MILLISECONDS.toDays((end - start));
     }
 
+
+    public static boolean compareTwoDays(Calendar startDate, Calendar endDate) {
+        long start = startDate.getTimeInMillis();
+        long end = endDate.getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays((end - start)) >= 0;
+        // return TimeUnit.MILLISECONDS.toDays((end - start));
+    }
+
     public static CustomDate today() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getDefault());

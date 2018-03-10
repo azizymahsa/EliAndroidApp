@@ -208,11 +208,11 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                         days360.set(f9222h, Boolean.TRUE);
                         notifyItemChanged(f9222h);
                         if (usageCalendarText.equals("Hotel")) {
-                            initPopupWindow(view, "تاریخ خروج را انتخاب نمایید");
+                            initPopupWindow(view, context.getString(R.string.select_outday));
                         } else if (usageCalendarText.equals("AutoAlert")) {
-                            initPopupWindow(view, "تاریخ پایان را انتخاب نمایید");
+                            initPopupWindow(view, context.getString(R.string.select_finishdate));
                         } else if (usageCalendarText.equals("InternationalFlight") || usageCalendarText.equals("NationalFlight")) {
-                            initPopupWindow(view, "تاریخ برگشت را انتخاب نمایید");
+                            initPopupWindow(view, context.getString(R.string.select_che));
                         }
                     } else if (getAdapterPosition() < f9222h) {
                         days360.set(f9222h, Boolean.FALSE);
@@ -221,14 +221,14 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                         days360.set(f9222h, Boolean.TRUE);
                         notifyItemChanged(f9222h);
                         if (usageCalendarText.equals("Hotel")) {
-                            initPopupWindow(view, "تاریخ خروج را انتخاب نمایید");
+                            initPopupWindow(view, context.getString(R.string.select_outday));
                         } else if (usageCalendarText.equals("AutoAlert")) {
-                            initPopupWindow(view, "تاریخ پایان را انتخاب نمایید");
+                            initPopupWindow(view, context.getString(R.string.select_finishdate));
                         } else if (usageCalendarText.equals("InternationalFlight") || usageCalendarText.equals("NationalFlight")) {
-                            initPopupWindow(view, "تاریخ برگشت را انتخاب نمایید");
+                            initPopupWindow(view, context.getString(R.string.select_che));
                         }
                     } else if (usageCalendarText.equals("Hotel") && f9222h == getAdapterPosition()) {
-                        Toast.makeText(context, "تاریخ ورود و خروج یکی نمی توانند باشند", 1).show();
+                        Toast.makeText(context, R.string.canot_inout, 1).show();
                     } else {
                         f9223i = getAdapterPosition();
                         days360.set(f9223i, Boolean.TRUE);
