@@ -474,7 +474,6 @@
     <string name="service_type">نوع الخدمة </string>
 
 
-
     <string name="Travel_insurance_to_travel_to_the_country">تأمين السفر للسفر إلى البلاد</string>
     <string name="please_refer_to_your_email_to_recover_the_password">يرجى الرجوع إلى البريد الإلكتروني الخاص بك لاستعادة كلمة المرور.</string>
     <string name="Tur">جولة</string>
@@ -490,4 +489,12 @@
     <string name="filter_no_found">نتیجه ای برای فیلتر شما یافت نشد:(</string>
     <string name="change_filter">بهتر است فیلتر خود را تغییر داده و مجددا تلاش نمایید</string>
     <string name="end_date_must_be_more_than_start_date">تاریخ پایان نباید کوچکتر از تاریخ شروع باشد</string>
+    <string name="package_a"> الشخص البالغ </string>
+        
+    <string name="package_b"> طفل مع سرير </string>
+        
+    <string name="package_c"> الطفل بدون سرير </string>
+        
+    <string name="package_d"> لكل شخص طفل </string>
+    <string name="culture">ar</string>
 </resources>

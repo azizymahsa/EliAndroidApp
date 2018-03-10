@@ -39,6 +39,7 @@ import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.views.adapters.hotel.FlightHotelAdapter;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
@@ -160,18 +161,19 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setOnClickListener(this);
-        raftFa = getIntent().getExtras().getString("CheckInFaHF");
-        bargashtFa = getIntent().getExtras().getString("CheckOutFaHF");
-
-
+        /*  raftFa = getIntent().getExtras().getString("CheckInFa");
+        bargashtFa = getIntent().getExtras().getString("CheckOutFa");*/
+        raftFa = SingletonDate.getInstance().getStartDate().getDescription();
+        bargashtFa = SingletonDate.getInstance().getEndDate().getDescription();
         tvDate.setText(raftFa + " - " + bargashtFa);
         rooms.add(new Rooms(getIntent().getExtras().getInt("Adult"), getIntent().getExtras().getInt("Child")));
 
 
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
-        raft = getIntent().getExtras().getString("CheckInHF");
-        bargasht = getIntent().getExtras().getString("CheckOutHF");
+        raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+        bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+
 
         btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -223,12 +225,24 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
 
             case R.id.btnNextDays:
-                btnNextDays.setClickable(true);
+
+                if (SingletonDate.getInstance().getStartDate().addOneDay()) {
+                    tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
+                    raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+                    new GetHotelAsync().execute();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
+              /*  btnNextDays.setClickable(true);
                 btnNextDays.setEnabled(true);
 
 
-                    /*         tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
-                            new GetHotelAsync().execute();*/
+                    *//*         tvDate.setText("از تاریخ: " + raftFa + " تا تاریخ: " + bargashtFa);
+                            new GetHotelAsync().execute();*//*
 
 
 //rastie AdateF
@@ -274,10 +288,10 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         String dayMF = dateSplite2[2];
                         String monthMF = dateSplite2[1];
                         String yearMF = dateSplite2[0];
-                      /*  String dayMF=dateShamsi.substring(8, 10);//02
+                      *//*  String dayMF=dateShamsi.substring(8, 10);//02
                         String monthMF=dateShamsi.substring(5, 7);//01
                         String yearMF=dateShamsi.substring(0, 4);//1396
-*/
+*//*
                         PersianCalendar persianCalendar = new PersianCalendar();
                         persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
                         /////////////////////
@@ -303,7 +317,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 } catch (java.text.ParseException e) {
                     System.out.println("Exception :" + e);
                 }
-
+*/
 
                 break;
             case R.id.btnLastDays:
@@ -312,8 +326,19 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
 //Ddate kochike
                 //adate bargasht
+                if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
+                    tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
+                    raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+                    new GetHotelAsync().execute();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
+                            Toast.LENGTH_SHORT).show();
 
-                try {
+                }
+
+
+             /*   try {
 
                     String str_date = raft;//"11-June-07";
                     DateFormat formatter;
@@ -368,7 +393,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 } catch (java.text.ParseException e) {
                     System.out.println("Exception :" + e);
                 }
-
+*/
 
                 break;
         }

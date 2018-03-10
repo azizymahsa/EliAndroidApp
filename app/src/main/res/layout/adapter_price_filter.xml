@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/_5sp_padding"
-            android:text="ریال"
+            android:text="@string/curency"
             android:textColor="@color/green"
             android:textSize="@dimen/_13dp_normal_textSize" />
 
