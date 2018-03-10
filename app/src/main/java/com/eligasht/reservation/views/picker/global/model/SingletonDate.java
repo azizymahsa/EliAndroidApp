@@ -22,11 +22,6 @@ public class SingletonDate {
         this.startDate.setAnotherCustomDate(endDate);
     }
 
-    public void setSingleDate(CustomDate startDate) {
-        this.startDate = startDate;
-        this.endDate = null;
-        startDate.setAnotherCustomDate(null);
-    }
 
     public CustomDate getStartDate() {
         return this.startDate;
