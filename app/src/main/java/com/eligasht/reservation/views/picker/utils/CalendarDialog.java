@@ -12,8 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -351,11 +349,11 @@ public class CalendarDialog implements OnClickListener {
 
     private void initViews() {
         calendarRv = view.findViewById(R.id.calendar_rv);
-        final LayoutAnimationController controller =
-                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
-
-        calendarRv.setLayoutAnimation(controller);
-        calendarRv.scheduleLayoutAnimation();
+//        final LayoutAnimationController controller =
+//                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+//
+//        calendarRv.setLayoutAnimation(controller);
+//        calendarRv.scheduleLayoutAnimation();
         currentMonth = view.findViewById(R.id.current_month);
         dateDescription = view.findViewById(R.id.date_description);
         accept = view.findViewById(R.id.accept);
