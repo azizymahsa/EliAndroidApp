@@ -659,7 +659,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="2dp"
-                        android:text="ریال"
+                        android:text="@string/curency"
                         android:textSize="12dp" />
 
                     <TextView
@@ -701,7 +701,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="2dp"
-                        android:text="ریال"
+                        android:text="@string/curency"
                         android:textSize="12dp" />
 
                     <TextView
@@ -743,7 +743,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="2dp"
-                        android:text="ریال"
+                        android:text="@string/curency"
                         android:textColor="#24b574"
                         android:textSize="12dp" />
 

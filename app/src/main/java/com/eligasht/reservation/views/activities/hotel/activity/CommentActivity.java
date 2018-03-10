@@ -365,7 +365,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         protected void onPreExecute() {
             rlLoading.setVisibility(View.VISIBLE);
             Log.e("requestTest",new Gson().toJson(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                    "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0")))));
+                    "123qwe!@#QWE", "Mobile"), getString(R.string.culture), new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0")))));
 
         }
 
@@ -373,7 +373,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         protected String doInBackground(String... params) {
             try {
                 addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                        "123qwe!@#QWE", "Mobile"), "fa-IR", new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0"))));
+                        "123qwe!@#QWE", "Mobile"), getString(R.string.culture), new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0"))));
 
             } catch (Exception e) {
 
