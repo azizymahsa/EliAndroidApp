@@ -2352,7 +2352,7 @@
     <string name="filter_no_found">  Filtrenizin sonucu bulunamadı: (</string>
         
     <string name="change_filter">Filtrenizi değiştirmek ve tekrar denemek en iyisidir  </string>
-    <string name="end_date_must_be_more_than_start_date">تاریخ پایان نباید کوچکتر از تاریخ شروع باشد</string>
+    <string name="end_date_must_be_more_than_start_date">Bitiş tarihi başlangıç tarihinden az olmamalıdır</string>
 
 
     <string name="package_a"> Yetişkin kişi </string>
@@ -2373,6 +2373,7 @@
     <string name="select_finishdate">Bitiş tarihi seçin</string>
     <string name="select_che">İade tarihini seçin</string>
     <string name="canot_inout">Giriş ve çıkış geçmişi tek olamaz</string>
+    <string name="so_one_day_has_been_added_to_your_end_date">Yani bir gün geri tarihinize eklendi</string>
 
 </resources>
 

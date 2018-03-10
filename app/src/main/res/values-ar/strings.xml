@@ -488,7 +488,7 @@
     <string name="change_date">بهتر است تاریخ جستجو را تغییر دهید و مجداد تلاش کنید</string>
     <string name="filter_no_found">نتیجه ای برای فیلتر شما یافت نشد:(</string>
     <string name="change_filter">بهتر است فیلتر خود را تغییر داده و مجددا تلاش نمایید</string>
-    <string name="end_date_must_be_more_than_start_date">تاریخ پایان نباید کوچکتر از تاریخ شروع باشد</string>
+    <string name="end_date_must_be_more_than_start_date">يجب ألا يكون تاريخ الانتهاء أقل من تاريخ البدء</string>
     <string name="package_a"> الشخص البالغ </string>
         
     <string name="package_b"> طفل مع سرير </string>
@@ -507,4 +507,5 @@
     <string name="select_finishdate">حدد تاريخ الانتهاء</string>
     <string name="select_che">حدد تاريخ الإرجاع</string>
     <string name="canot_inout"> لا يمكن أن تكون تواريخ الدخول والخروج واحدة</string>
+    <string name="so_one_day_has_been_added_to_your_end_date">لذلك تمت إضافة يوم واحد لتاريخ ظهرك</string>
 </resources>

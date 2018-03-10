@@ -295,7 +295,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                             SingletonDate.getInstance().setEndDate(start);
                             SingletonDate.getInstance().getEndDate().addOneDay();
 
-                            Toast.makeText(getActivity(), getString(R.string.canot_inout)+" بنابراین یک روز به تاریخ برگشت شما اضافه شد", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.canot_inout)+getString(R.string.so_one_day_has_been_added_to_your_end_date), Toast.LENGTH_SHORT).show();
 
                             tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
                             return;
