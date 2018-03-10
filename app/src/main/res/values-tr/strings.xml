@@ -2353,5 +2353,16 @@
         
     <string name="change_filter">Filtrenizi değiştirmek ve tekrar denemek en iyisidir  </string>
     <string name="end_date_must_be_more_than_start_date">تاریخ پایان نباید کوچکتر از تاریخ شروع باشد</string>
+
+
+    <string name="package_a"> Yetişkin kişi </string>
+        
+    <string name="package_b"> Yataklı çocuk </string>
+        
+    <string name="package_c"> yataksız çocuk </string>
+        
+    <string name="package_d"> Herkesin bir bebeği var </string>
+    <string name="culture">tr</string>
+
 </resources>
 

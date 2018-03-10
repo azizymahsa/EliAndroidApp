@@ -55,9 +55,9 @@
     <string name="icon_forget_login">&#xe612;</string>
     <string name="icon_check">&#xe5ca;</string>
 
-    <string name="searchFlight">Search Flight</string>
-    <string name="search_package">Search Package</string>
-    <string name="search_hotel">Search Hotel</string>
+    <string name="searchFlight">Plane Ticket</string>
+    <string name="search_package">Holiday Package</string>
+    <string name="search_hotel">Hotel Reservation</string>
 
     <string name="reserve_package">Reserve</string>
     <string name="icon_calander">&#xe908;</string>
@@ -69,7 +69,7 @@
     <string name="icon_exp_down">&#xe800;</string>
 
 
-    <string name="btn_insurance">Insurance search</string>
+    <string name="btn_insurance">Travel Insurance</string>
     <string name="icon_like">&#xe914;</string>
     <string name="icon_dislike">&#xe915;</string>
     <string name="icon_message">&#xe049;</string>
@@ -1991,8 +1991,8 @@
     <string name="hotel_reservation">Hotel Reservation</string>
 
     <!--nemati-->
-    <string name="hotel_reservation_and_plane_ticket">Ticket + Hotel</string>
-    <string name="travel_tour">Travel Tour</string>
+    <string name="hotel_reservation_and_plane_ticket">Hotel + Flight</string>
+    <string name="travel_tour">Holiday Package</string>
     <string name="travel_insurance">Travel Insurance</string>
     <string name="soon">(Coming Soon)</string>
     <string name="trains">Foreign Train</string>
@@ -2363,15 +2363,15 @@
     <string name="select_dep">Select departure date</string>
     <string name="select_che_in">Select checkin date</string>
     <string name="select_start_date">Select Start Date</string>
-
     <string name="night2">night</string>
-
-
     <string name="change_date"> It is better to change the search history and try again </string>
-        
     <string name="filter_no_found"> The result for your filter was not found:(</string>
-        
     <string name="change_filter"> It is best to change your filter and try again </string>
     <string name="end_date_must_be_more_than_start_date">تاریخ پایان نباید کوچکتر از تاریخ شروع باشد</string>
+    <string name="package_a"> Adult person </string>
+    <string name="package_b"> Child with bed</string>
+    <string name="package_c"> Child without bed </string>
+    <string name="package_d"> Infant </string>
+    <string name="culture">en</string>
 </resources>
 

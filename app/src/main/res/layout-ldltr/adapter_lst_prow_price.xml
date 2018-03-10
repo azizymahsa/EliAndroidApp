@@ -51,6 +51,115 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
+
+
+            <LinearLayout
+                android:id="@+id/layout_info_person_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_adault"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:gravity="left"
+                        android:padding="5sp"
+                        android:text="@string/package_a"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+                    <TextView
+                        android:id="@+id/price_adault"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_w_child"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:gravity="left"
+                        android:padding="6sp"
+                        android:text="@string/package_b"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+                    <TextView
+                        android:id="@+id/price_w_child"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_n_child"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:gravity="left"
+                        android:padding="6sp"
+                        android:text="@string/package_c"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+                    <TextView
+                        android:id="@+id/price_n_child"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_infant"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:gravity="left"
+                        android:padding="6sp"
+                        android:text="@string/package_d"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+                    <TextView
+                        android:id="@+id/price_infant"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="@dimen/_12dp_normal_textSize"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_total_price"
                 android:layout_width="0dp"
@@ -76,16 +185,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="5sp"
-                        android:gravity="center"
-                        android:text="ریال"
-                        android:textAppearance="@style/IrsansBold"
-                        android:textColor="@color/green"
-                        android:textSize="@dimen/_13dp_normal_textSize" />
+
 
                     <TextView
                         android:id="@+id/total_price"
@@ -97,120 +197,20 @@
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#000"
                         android:textSize="@dimen/_13dp_normal_textSize" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5sp"
+                        android:gravity="center"
+                        android:text="@string/curency"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="@color/green"
+                        android:textSize="@dimen/_13dp_normal_textSize" />
 
                 </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_info_person_price"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/price_adault"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:gravity="center"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <TextView
-                        android:id="@+id/text_adault"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:gravity="right"
-                        android:padding="5sp"
-                        android:text="هر نفر بزرگسال"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/price_w_child"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:gravity="center"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <TextView
-                        android:id="@+id/text_w_child"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:gravity="right"
-                        android:padding="6sp"
-                        android:text=" کودک با تخت"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/price_n_child"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:gravity="center"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <TextView
-                        android:id="@+id/text_n_child"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:gravity="right"
-                        android:padding="6sp"
-                        android:text="کودک بدون تخت"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/price_infant"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:gravity="center"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <TextView
-                        android:id="@+id/text_infant"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:gravity="right"
-                        android:padding="6sp"
-                        android:text="هر نفر نوزاد"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
 
         </LinearLayout>
 
