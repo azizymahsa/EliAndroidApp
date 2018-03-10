@@ -7,634 +7,615 @@
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
 
-		<FrameLayout
 
-			xmlns:fancy="http://schemas.android.com/apk/res-auto"
-			android:id="@+id/toolbarLayout"
+	<FrameLayout
+
+		xmlns:fancy="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/toolbarLayout"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/_60dp_hight">
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
 			android:layout_height="@dimen/_60dp_hight"
-			>
-
-			<android.support.v7.widget.Toolbar
-				android:id="@+id/toolbar"
-				android:layout_width="match_parent"
-				android:layout_height="@dimen/_60dp_hight"
-				android:background="@color/toolbar_color"
-				/>
+			android:background="@color/toolbar_color" />
 
 
-			<!--<mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/txtBack"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                fancy:fb_defaultColor="@android:color/transparent"
-                fancy:fb_focusColor="@color/focusColor"
-                fancy:fb_radius="6dp"
-                fancy:fb_textColor="#FFFFFF"
+		<!--<mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/txtBack"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="6dp"
+            fancy:fb_textColor="#FFFFFF"
 
-                android:layout_gravity="right"
-                fancy:fb_textSize="25dp"
-                fancy:fb_text=" "
-                android:gravity="right"
-                />-->
+            android:layout_gravity="right"
+            fancy:fb_textSize="25dp"
+            fancy:fb_text=" "
+            android:gravity="right"
+            />-->
 
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_gravity="center">
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:layout_centerHorizontal="true"
-					android:layout_centerVertical="true"
-					android:gravity="center"
-					android:orientation="vertical"
-					>
-
-					<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="0dp"
-						android:layout_gravity="center"
-						android:layout_weight="100"
-						android:orientation="horizontal"
-						>
-						<TextView
-							android:id="@+id/tvChangeFlight"
-							android:layout_width="0dp"
-							android:layout_height="wrap_content"
-							android:layout_gravity="center"
-							android:layout_weight="0.5"
-							android:gravity="center"
-							android:textColor="#FFFFFF"
-							android:textSize="@dimen/toolbar_title_16dp"
-							android:visibility="gone"
-
-							/>
-						<TextView
-							android:id="@+id/txtCityBargashtt"
-							android:layout_width="0dp"
-							android:layout_height="wrap_content"
-							android:layout_gravity="center"
-							android:layout_weight="0.5"
-							android:gravity="right|center"
-							android:text="tvTitle"
-							android:textColor="#FFFFFF"
-							android:textSize="@dimen/toolbar_title_16dp"
-							android:visibility="visible"
-							/>
-						<TextView
-							android:id="@+id/txticon"
-							android:layout_width="0dp"
-							android:layout_height="wrap_content"
-							android:layout_gravity="center"
-							android:layout_weight="0.12"
-							android:gravity="center"
-							android:text="@string/icon_plane"
-							android:textAppearance="@style/IconMenu"
-							android:textColor="@color/white"
-							android:visibility="visible"
-
-						 />
-						<TextView
-							android:id="@+id/txtCityRaft"
-							android:layout_width="0dp"
-							android:layout_height="wrap_content"
-							android:layout_centerHorizontal="true"
-							android:layout_gravity="center"
-							android:layout_weight="0.5"
-							android:gravity="left|center"
-
-							android:text="tvTitle"
-							android:textColor="#FFFFFF"
-							android:textSize="@dimen/toolbar_title_16dp"
-							android:visibility="visible"
-
-							/>
-					</LinearLayout>
-					<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="0dp"
-						android:layout_gravity="center"
-						android:layout_weight="100"
-						android:orientation="horizontal">
-
-						<TextView
-							android:id="@+id/tvChangesFlight"
-							android:layout_width="0dp"
-							android:layout_height="wrap_content"
-							android:layout_gravity="center"
-							android:layout_weight="0.5"
-							android:gravity="center"
-							android:textColor="#FFFFFF"
-							android:textSize="@dimen/toolbar_title_16dp"
-							android:visibility="gone"
-
-							/>
-
-						<TextView
-							android:id="@+id/txtDateOnvan"
-							android:layout_width="0dp"
-							android:layout_height="wrap_content"
-							android:layout_gravity="center"
-							android:layout_weight="0.5"
-							android:gravity="right|center"
-							android:text=""
-							android:textColor="#FFFFFF"
-							android:textSize="@dimen/_12dp"
-							android:visibility="visible" />
-
-						<TextView
-							android:id="@+id/txticonDate"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:layout_gravity="center"
-
-							android:gravity="center"
-							android:text="  -  "
-							android:textSize="@dimen/_12dp"
-							android:textColor="@color/white"
-							android:visibility="visible"
-
-							/>
-
-						<TextView
-							android:id="@+id/txtDateOnvanB"
-							android:layout_width="0dp"
-							android:layout_height="wrap_content"
-							android:layout_centerHorizontal="true"
-							android:layout_gravity="center"
-							android:layout_weight="0.5"
-							android:gravity="left|center"
-							android:text=""
-							android:textColor="#FFFFFF"
-							android:textSize="@dimen/_12dp"
-							android:visibility="visible"
-
-							/>
-					</LinearLayout>
-
-					<TextView
-						android:id="@+id/txtCityBargasht"
-						android:layout_width="100dp"
-						android:layout_height="wrap_content"
-						android:layout_below="@+id/txtCityRaft"
-						android:layout_centerHorizontal="true"
-						android:layout_marginRight="2dp"
-						android:layout_marginTop="2dp"
-						android:gravity="center"
-						android:text="tvCount"
-						android:textColor="@android:color/white"
-						android:textSize="@dimen/_12dp"
-						android:visibility="gone"/>
-
-					<TextView
-						android:layout_width="match_parent"
-						android:layout_height="0dp"
-						android:layout_weight="100"
-						android:ellipsize="end"
-						android:visibility="gone"
-						android:gravity="center"
-						android:maxLines="1"
-						android:textColor="@android:color/white"
-						android:textSize="@dimen/toolbar_desc_12dp" />
-
-				</LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<RelativeLayout
-					android:id="@+id/llHome"
-					android:layout_width="wrap_content"
-					android:layout_height="@dimen/_60dp_hight"
-					android:layout_gravity="left"
-					>
-
-					<mehdi.sakout.fancybuttons.FancyButton
-						android:id="@+id/btnHome"
-						android:layout_width="@dimen/_60dp_hight"
-						android:layout_height="@dimen/_60dp_hight"
-						fancy:fb_defaultColor="@android:color/transparent"
-						fancy:fb_focusColor="@color/focusColor"
-
-						fancy:fb_radius="200dp"
-						fancy:fb_text=" "
-						fancy:fb_textColor="#FFFFFF"
-						fancy:fb_textSize="25dp" />
-
-					<ImageView
-						android:id="@+id/txt_hom"
-						android:layout_width="@dimen/_30dp"
-						android:layout_height="@dimen/_30dp"
-						android:layout_centerInParent="true"
-						android:background="@drawable/e_logo"
-
-						/>
-
-
-				</RelativeLayout>
-			</RelativeLayout>
-
-
-			<mehdi.sakout.fancybuttons.FancyButton
-				android:id="@+id/txtBack"
-				android:layout_width="@dimen/toolbar_bottom_width_50dp"
-				android:layout_height="@dimen/toolbar_bottom_width_50dp"
-				android:layout_gravity="right|center"
-				android:gravity="right"
-				fancy:fb_defaultColor="@android:color/transparent"
-				fancy:fb_focusColor="@color/focusColor"
-
-				fancy:fb_radius="200dp"
-				fancy:fb_text=" "
-				fancy:fb_textColor="#FFFFFF"
-				fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
-
-
-
-		</FrameLayout>
-
-
-
-		<LinearLayout
+		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_below="@+id/toolbarLayout"
-			android:orientation="vertical">
+			android:layout_gravity="center">
 
-<!--			///////////////////////PIN HEADER///////////////////////////////////-->
-			<!-- //////////////////////END PIN HEADER/////////////////////////////// -->
-
-			<!-- //////////////////////START PIN DETAIL/////////////////////////////// -->
-
-			<!-- //////////////////////END PIN DETAIL/////////////////////////////// -->
-			<android.support.v7.widget.RecyclerView
-				android:id="@+id/recyclerViewPassenger"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:scrollbars="vertical"
-				android:visibility="visible"/>
-			<!-- //////////////////////START LIST VIEW/////////////////////////////// -->
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="0dp"
-				android:layout_weight="100"
-				android:orientation="vertical">
-				<RelativeLayout
-					android:id="@+id/linear_expand"
-					android:layout_width="match_parent"
-
-					android:layout_height="fill_parent"
-					android:layout_below="@+id/toolbarLayout"
-					android:background="#ffffff"
-					android:orientation="horizontal"
-					android:visibility="visible">
-
-
-					<com.eligasht.reservation.tools.ExpandableListViewE
-						android:id="@+id/lvExp"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:animateLayoutChanges="true"
-						android:cacheColorHint="#00000000"
-						android:divider="#ffffff"
-						android:groupIndicator="@null"
-
-
-						/>
-					<com.scalified.fab.ActionButton
-						android:id="@+id/action_button"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_alignParentBottom="true"
-						android:layout_alignParentRight= "true"
-						android:layout_marginBottom="5dp"
-						android:layout_marginLeft="5dp"
-						/>
-
-				</RelativeLayout>
-
-				<LinearLayout
-					android:id="@+id/linear_no_result"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-
-					android:layout_below="@+id/toolbarLayout"
-					android:visibility="gone"
-					>
-
-
-
-
-					<android.support.v7.widget.CardView
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:layout_gravity="center"
-						android:layout_margin="7dp"
-						android:background="@color/hotel_detail_background"
-						card_view:cardBackgroundColor="#ffffff"
-						card_view:cardCornerRadius="3dp"
-						card_view:cardElevation="2dp">
-
-						<RelativeLayout
-							android:layout_width="match_parent"
-							android:layout_height="match_parent">
-							<TextView
-								android:id="@+id/txtNoResult"
-								android:layout_width="match_parent"
-								android:layout_height="wrap_content"
-								android:layout_marginTop="10dp"
-								android:gravity="center"
-								android:padding="10dp"
-								android:textAppearance="@style/IrsansBold"
-								android:textColor="@color/text_color_2e"
-								android:textSize="16dp"
-								/>
-
-							<ImageView
-								android:layout_width="100dp"
-								android:layout_height="100dp"
-								android:layout_centerInParent="true"
-								android:src="@drawable/alert" />
-
-							<RelativeLayout
-								android:layout_width="wrap_content"
-								android:layout_height="40dp"
-
-								android:layout_alignParentBottom="true"
-
-								>
-								<!--<mehdi.sakout.fancybuttons.FancyButton
-									android:id="@+id/btnOk"
-									android:layout_width="match_parent"
-									android:layout_height="40dp"
-									android:layout_gravity="center"
-									android:elevation="4dp"
-									android:paddingBottom="1dp"
-									fancy:fb_defaultColor="@color/TRANSPARENT"
-									fancy:fb_focusColor="@color/focusColor"
-									fancy:fb_radius="0dp"
-									fancy:fb_text="بازگشت"
-									fancy:fb_textColor="#FFFFFF"
-									fancy:fb_textSize="18dp"
-									/>-->
-								<Button
-									android:id="@+id/btn_no_Result"
-									android:layout_width="match_parent"
-									android:layout_height="40dp"
-									android:layout_gravity="center"
-									android:layout_marginBottom="2dp"
-									android:layout_marginLeft="@dimen/_12dp"
-									android:layout_marginRight="@dimen/_12dp"
-									android:layout_marginTop="1dp"
-									android:background="@drawable/btngravity_big"
-									android:text="@string/BackToLastPage"
-									android:textColor="#fff"
-									android:textSize="14dp"
-									android:textStyle="bold" />
-							</RelativeLayout>
-
-
-						</RelativeLayout>
-
-
-					</android.support.v7.widget.CardView>
-				</LinearLayout>
-
-
-			</LinearLayout>
-			<View
-				android:layout_width="wrap_content"
-				android:layout_height="2dp"
-				android:background="@drawable/shadow3"/>
 
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="0dp"
-				android:layout_weight="7"
-				android:background="#ffffff"
+				android:layout_height="match_parent"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"
 				android:gravity="center"
-				android:orientation="horizontal"
+				android:orientation="vertical">
 
-				>
 
 				<LinearLayout
-					android:id="@+id/llNextLastDays"
-
-					android:layout_width="0dp"
-					android:layout_height="match_parent"
-					android:layout_weight="140"
-					android:gravity="center"
-					android:orientation="horizontal"
-					>
-					<RelativeLayout
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center"
-						android:layout_weight="100"
-						android:gravity="center">
-
-
-
-						<mehdi.sakout.fancybuttons.FancyButton
-							android:id="@+id/btnNextDays"
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:layout_gravity="right"
-							android:gravity="right"
-							fancy:fb_defaultColor="@android:color/transparent"
-							fancy:fb_focusColor="@color/focusColor"
-							fancy:fb_radius="6dp"
-							fancy:fb_text=" "
-							fancy:fb_textColor="#FFFFFF"
-							fancy:fb_textSize="25dp"
-							/>
-
-
-
-						<TextView
-							android:id="@+id/tvNextDay"
-							android:layout_width="wrap_content"
-							android:layout_height="match_parent"
-							android:layout_marginLeft="5dp"
-							android:gravity="center"
-							android:text="@string/icon_arrow_left"
-							android:textAppearance="@style/IconFonts"
-							android:textColor="#4d4d4d"
-							android:textSize="@dimen/_25dp_normal_iconSize" />
-						<TextView
-							android:id="@+id/txtRuzeGhabl"
-							android:layout_width="wrap_content"
-							android:layout_height="match_parent"
-							android:layout_toRightOf="@+id/tvNextDay"
-							android:gravity="center"
-							android:maxLines="1"
-							android:text="@string/LastDay"
-							android:textColor="@color/text_color_4d"
-							android:textSize="@dimen/bottom_tab"
-
-							/>
-
-
-
-
-
-					</RelativeLayout>
-					<RelativeLayout
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_weight="100">
-
-						<mehdi.sakout.fancybuttons.FancyButton
-							android:id="@+id/btnLastDays"
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:layout_gravity="right"
-							android:gravity="right"
-							fancy:fb_defaultColor="@android:color/transparent"
-							fancy:fb_focusColor="@color/focusColor"
-
-							fancy:fb_radius="6dp"
-							fancy:fb_text=" "
-							fancy:fb_textColor="#FFFFFF"
-							fancy:fb_textSize="25dp"
-							/>
-
-						<TextView
-							android:id="@+id/txtRuzeBad"
-							android:layout_width="wrap_content"
-							android:layout_height="match_parent"
-							android:layout_marginLeft="5dp"
-							android:gravity="center"
-							android:maxLines="1"
-							android:text="@string/NextDay"
-							android:textColor="@color/text_color_4d"
-							android:textSize="@dimen/bottom_tab"
-							/>
-						<TextView
-
-							android:layout_width="wrap_content"
-							android:layout_height="match_parent"
-							android:layout_toRightOf="@+id/txtRuzeBad"
-							android:gravity="center"
-							android:text="@string/icon_arrow_right"
-							android:textAppearance="@style/IconFonts"
-							android:textColor="#4d4d4d"
-							android:textSize="@dimen/_25dp_normal_iconSize" />
-
-
-					</RelativeLayout>
-
-
-
-
-
-				</LinearLayout>
-
-				<LinearLayout
-					android:id="@+id/llBottom"
-
-					android:layout_width="0dp"
-					android:layout_height="match_parent"
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_gravity="center"
 					android:layout_weight="100"
-					android:gravity="center">
-					<TextView
-						android:id="@+id/txtFilter"
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:layout_marginLeft="5dp"
-						android:gravity="center"
-						android:maxLines="1"
-						android:text="@string/Filter"
-						android:textColor="@color/text_color_4d"
-						android:textSize="@dimen/bottom_tab" />
-					<TextView
-						android:id="@+id/iconFilter"
-
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:layout_marginLeft="5dp"
-						android:gravity="center"
-						android:text="@string/icon_filter"
-						android:textAppearance="@style/IconFonts"
-						android:textColor="#4d4d4d"
-						android:textSize="@dimen/_25dp_normal_iconSize" />
-				</LinearLayout>
-
-				<View
-					android:layout_width="1dp"
-					android:layout_height="match_parent"/>
-
-
-
-
-				<LinearLayout
-					android:id="@+id/llSort"
-					android:layout_width="0dp"
-					android:layout_height="match_parent"
-					android:layout_weight="100"
-					android:gravity="center"
 					android:orientation="horizontal">
 
 					<TextView
-						android:id="@+id/lblMoratabSazi"
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:layout_marginLeft="5dp"
+						android:id="@+id/tvChangeFlight"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_weight="0.5"
 						android:gravity="center"
-						android:maxLines="1"
-						android:text="@string/Sort"
-						android:textColor="@color/text_color_4d"
-						android:textSize="@dimen/bottom_tab" />
-					<TextView
-						android:id="@+id/tvSortIcon"
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:layout_marginLeft="5dp"
-						android:gravity="center"
-						android:text="@string/icon_sort"
-						android:textAppearance="@style/IconFonts"
-						android:textColor="#4d4d4d"
-						android:textSize="@dimen/_25dp_normal_iconSize" />
+						android:textColor="#FFFFFF"
+						android:textSize="@dimen/toolbar_title_16dp"
+						android:visibility="gone"
 
+						/>
+
+					<TextView
+						android:id="@+id/txtCityBargashtt"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_weight="0.5"
+						android:gravity="right|center"
+						android:text="tvTitle"
+						android:textColor="#FFFFFF"
+						android:textSize="@dimen/toolbar_title_16dp"
+						android:visibility="visible" />
+
+					<TextView
+						android:id="@+id/txticon"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_weight="0.09"
+						android:gravity="center"
+						android:text="@string/icon_plane"
+						android:textAppearance="@style/IconMenu"
+						android:textColor="@color/white"
+						android:visibility="visible"
+
+						/>
+
+					<TextView
+						android:id="@+id/txtCityRaft"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_centerHorizontal="true"
+						android:layout_gravity="center"
+						android:layout_weight="0.5"
+						android:gravity="left|center"
+
+						android:text="tvTitle"
+						android:textColor="#FFFFFF"
+						android:textSize="@dimen/toolbar_title_16dp"
+						android:visibility="visible"
+
+						/>
+				</LinearLayout>
+
+				<TextView
+					android:id="@+id/txtCityBargasht"
+					android:layout_width="100dp"
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/txtCityRaft"
+					android:layout_centerHorizontal="true"
+					android:layout_marginRight="2dp"
+					android:layout_marginTop="2dp"
+					android:gravity="center"
+					android:text="tvCount"
+					android:textColor="@android:color/white"
+					android:textSize="@dimen/_12dp"
+					android:visibility="gone" />
+
+
+				<TextView
+
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_weight="100"
+					android:ellipsize="end"
+					android:text="tvCount"
+					android:gravity="center"
+					android:maxLines="1"
+					android:textColor="@android:color/white"
+					android:visibility="gone"
+
+					android:textSize="@dimen/toolbar_desc_12dp" />
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_gravity="center"
+					android:layout_weight="100"
+					android:orientation="horizontal">
+
+					<TextView
+						android:id="@+id/tvChangesFlight"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_weight="0.5"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="@dimen/toolbar_title_16dp"
+						android:visibility="gone"
+
+						/>
+
+					<TextView
+						android:id="@+id/txtDateOnvan"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:layout_weight="0.5"
+						android:gravity="right|center"
+						android:text=""
+						android:textColor="#FFFFFF"
+						android:textSize="@dimen/_12dp"
+						android:visibility="visible" />
+
+					<TextView
+						android:id="@+id/txticonDate"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+
+						android:gravity="center"
+						android:text="  -  "
+						android:textSize="@dimen/_12dp"
+						android:textColor="@color/white"
+						android:visibility="visible"
+
+						/>
+
+					<TextView
+						android:id="@+id/txtDateOnvanB"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_centerHorizontal="true"
+						android:layout_gravity="center"
+						android:layout_weight="0.5"
+						android:gravity="left|center"
+
+						android:text=""
+						android:textColor="#FFFFFF"
+						android:textSize="@dimen/_12dp"
+						android:visibility="visible"
+
+						/>
 				</LinearLayout>
 
 
 			</LinearLayout>
 
 
+			<RelativeLayout
+				android:id="@+id/llHome"
+				android:layout_width="wrap_content"
+				android:layout_height="@dimen/_60dp_hight"
+				android:layout_alignParentRight="true">
+
+				<mehdi.sakout.fancybuttons.FancyButton
+					android:id="@+id/btnHome"
+					android:layout_width="@dimen/_60dp_hight"
+					android:layout_height="@dimen/_60dp_hight"
+					fancy:fb_defaultColor="@android:color/transparent"
+					fancy:fb_focusColor="@color/focusColor"
+
+					fancy:fb_radius="200dp"
+					fancy:fb_text=" "
+					fancy:fb_textColor="#FFFFFF"
+					fancy:fb_textSize="25dp" />
+
+				<ImageView
+					android:id="@+id/txt_hom"
+					android:layout_width="@dimen/_30dp"
+					android:layout_height="@dimen/_30dp"
+					android:layout_centerInParent="true"
+					android:background="@drawable/e_logo"
+
+					/>
 
 
+			</RelativeLayout>
+		</RelativeLayout>
+
+
+		<mehdi.sakout.fancybuttons.FancyButton
+			android:id="@+id/txtBack"
+			android:layout_width="@dimen/toolbar_bottom_width_50dp"
+			android:layout_height="@dimen/toolbar_bottom_width_50dp"
+			android:layout_gravity="left|center"
+			android:gravity="right"
+			fancy:fb_defaultColor="@android:color/transparent"
+			fancy:fb_focusColor="@color/focusColor"
+
+			fancy:fb_radius="200dp"
+			fancy:fb_text=" "
+			fancy:fb_textColor="#FFFFFF"
+			fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
+
+
+	</FrameLayout>
+
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@+id/toolbarLayout"
+		android:orientation="vertical">
+
+		<!--			///////////////////////PIN HEADER///////////////////////////////////-->
+		<!-- //////////////////////END PIN HEADER/////////////////////////////// -->
+
+		<!-- //////////////////////START PIN DETAIL/////////////////////////////// -->
+
+		<!-- //////////////////////END PIN DETAIL/////////////////////////////// -->
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/recyclerViewPassenger"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:scrollbars="vertical"
+			android:visibility="visible" />
+		<!-- //////////////////////START LIST VIEW/////////////////////////////// -->
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="100"
+			android:orientation="vertical">
+
+			<RelativeLayout
+				android:id="@+id/linear_expand"
+				android:layout_width="match_parent"
+
+				android:layout_height="fill_parent"
+				android:layout_below="@+id/toolbarLayout"
+				android:background="#ffffff"
+				android:orientation="horizontal"
+				android:visibility="visible">
+
+
+				<com.eligasht.reservation.tools.ExpandableListViewE
+					android:id="@+id/lvExp"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:animateLayoutChanges="true"
+					android:cacheColorHint="#00000000"
+					android:divider="#ffffff"
+					android:groupIndicator="@null"
+
+
+					/>
+
+				<com.scalified.fab.ActionButton
+					android:id="@+id/action_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true"
+					android:layout_alignParentLeft="true"
+					android:layout_marginBottom="5dp"
+					android:layout_marginLeft="5dp" />
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:id="@+id/linear_no_result"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+
+				android:layout_below="@+id/toolbarLayout"
+				>
+
+				<android.support.v7.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_gravity="center"
+					android:layout_margin="7dp"
+					android:background="@color/hotel_detail_background"
+					card_view:cardBackgroundColor="#ffffff"
+					card_view:cardCornerRadius="3dp"
+					card_view:cardElevation="2dp">
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+
+						<TextView
+							android:id="@+id/txtNoResult"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:gravity="center"
+							android:padding="10dp"
+							android:textAppearance="@style/IrsansBold"
+							android:textColor="@color/text_color_4d"
+							android:textSize="@dimen/_16dp_normal_textSize"
+							android:layout_below="@+id/ivImageEr"/>
+						<TextView
+							android:id="@+id/tvAlertDesc"
+
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:gravity="center"
+							android:padding="10dp"
+							android:textAppearance="@style/IrsansBold"
+							android:textColor="@color/text_color_4d"
+							android:textSize="@dimen/_12dp_normal_textSize"
+							android:layout_below="@+id/tvAlert"/>
+
+						<ImageView
+							android:id="@+id/ivImageEr"
+							android:layout_width="@dimen/_300dp"
+							android:layout_height="@dimen/_200dp_normal"
+							android:layout_centerHorizontal="true"
+							android:src="@drawable/alert" />
+
+						<RelativeLayout
+							android:layout_below="@+id/ivImageEr"
+							android:id="@+id/rlEr"
+							android:layout_width="@dimen/_100dp"
+							android:layout_height="@dimen/_40dp"
+							android:background="@drawable/btngravity_big"
+							android:layout_centerHorizontal="true"
+
+							>
+
+							<mehdi.sakout.fancybuttons.FancyButton
+								android:id="@+id/btn_no_Result"
+								android:layout_width="match_parent"
+								android:layout_height="match_parent"
+								android:layout_gravity="center"
+								android:elevation="4dp"
+								android:paddingBottom="1dp"
+								fancy:fb_defaultColor="@color/TRANSPARENT"
+								fancy:fb_focusColor="@color/focusColor"
+								fancy:fb_radius="0dp"
+								fancy:fb_text="@string/return_"
+								fancy:fb_textColor="#FFFFFF"
+								fancy:fb_textSize="18dp" />
+						</RelativeLayout>
+
+
+					</RelativeLayout>
+
+
+				</android.support.v7.widget.CardView>
+
+
+
+			</RelativeLayout>
 
 
 		</LinearLayout>
 
+		<View
+			android:layout_width="wrap_content"
+			android:layout_height="2dp"
+			android:background="@drawable/shadow3" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="7"
+			android:background="#ffffff"
+			android:gravity="center"
+			android:orientation="horizontal"
+
+			>
+
+			<LinearLayout
+				android:id="@+id/llNextLastDays"
+
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="190"
+				android:gravity="center"
+				android:orientation="horizontal">
+
+				<RelativeLayout
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:layout_weight="120"
+					android:gravity="center">
+
+
+					<mehdi.sakout.fancybuttons.FancyButton
+						android:id="@+id/btnNextDays"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:layout_gravity="right"
+						android:gravity="right"
+						fancy:fb_defaultColor="@android:color/transparent"
+						fancy:fb_focusColor="@color/focusColor"
+						fancy:fb_radius="6dp"
+						fancy:fb_text=" "
+						fancy:fb_textColor="#FFFFFF"
+						fancy:fb_textSize="25dp" />
+
+
+					<TextView
+						android:id="@+id/tvNextDay"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:layout_marginLeft="5dp"
+						android:gravity="center"
+						android:text="@string/icon_arrow_left"
+						android:textAppearance="@style/IconFonts"
+						android:textColor="#4d4d4d"
+						android:textSize="@dimen/_25dp_normal_iconSize" />
+
+					<TextView
+						android:id="@+id/txtRuzeGhabl"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:layout_toRightOf="@+id/tvNextDay"
+						android:gravity="center"
+						android:maxLines="1"
+						android:text="@string/LastDay"
+						android:textColor="@color/text_color_4d"
+						android:textSize="@dimen/bottom_tab"
+
+						/>
+
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="100">
+
+					<mehdi.sakout.fancybuttons.FancyButton
+						android:id="@+id/btnLastDays"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:layout_gravity="right"
+						android:gravity="right"
+						fancy:fb_defaultColor="@android:color/transparent"
+						fancy:fb_focusColor="@color/focusColor"
+
+						fancy:fb_radius="6dp"
+						fancy:fb_text=" "
+						fancy:fb_textColor="#FFFFFF"
+						fancy:fb_textSize="25dp" />
+
+					<TextView
+						android:id="@+id/txtRuzeBad"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:layout_marginLeft="5dp"
+						android:gravity="center"
+						android:maxLines="1"
+						android:text="@string/NextDay"
+						android:textColor="@color/text_color_4d"
+						android:textSize="@dimen/bottom_tab" />
+
+					<TextView
+
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:layout_toRightOf="@+id/txtRuzeBad"
+						android:gravity="center"
+						android:text="@string/icon_arrow_right"
+						android:textAppearance="@style/IconFonts"
+						android:textColor="#4d4d4d"
+						android:textSize="@dimen/_25dp_normal_iconSize" />
+
+
+				</RelativeLayout>
+
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/llBottom"
+
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="100"
+				android:gravity="center">
+
+				<TextView
+					android:id="@+id/txtFilter"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="5dp"
+					android:gravity="center"
+					android:maxLines="1"
+					android:text="@string/Filter"
+					android:textColor="@color/text_color_4d"
+					android:textSize="@dimen/bottom_tab" />
+
+				<TextView
+					android:id="@+id/iconFilter"
+
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="5dp"
+					android:gravity="center"
+					android:text="@string/icon_filter"
+					android:textAppearance="@style/IconFonts"
+					android:textColor="#4d4d4d"
+					android:textSize="@dimen/_25dp_normal_iconSize" />
+			</LinearLayout>
+
+			<View
+				android:layout_width="1dp"
+				android:layout_height="match_parent" />
+
+
+			<LinearLayout
+				android:id="@+id/llSort"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="100"
+				android:gravity="center"
+				android:orientation="horizontal">
+
+				<TextView
+					android:id="@+id/lblMoratabSazi"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="5dp"
+					android:gravity="center"
+					android:maxLines="1"
+					android:text="@string/Sort"
+					android:textColor="@color/text_color_4d"
+					android:textSize="@dimen/bottom_tab" />
+
+				<TextView
+					android:id="@+id/tvSortIcon"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="5dp"
+					android:gravity="center"
+					android:text="@string/icon_sort"
+					android:textAppearance="@style/IconFonts"
+					android:textColor="#4d4d4d"
+					android:textSize="@dimen/_25dp_normal_iconSize" />
+
+			</LinearLayout>
+
+
+		</LinearLayout>
+
+
+	</LinearLayout>
 
 
 	<View
 		android:layout_width="match_parent"
 		android:layout_height="1dp"
 		android:layout_below="@+id/toolbarLayout"
-		android:background="@drawable/shadow"
-		/>
+		android:background="@drawable/shadow" />
+
 	<include
 		layout="@layout/loading_layout_parvaz"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:visibility="gone"/>
+		android:visibility="gone" />
 
 </RelativeLayout>

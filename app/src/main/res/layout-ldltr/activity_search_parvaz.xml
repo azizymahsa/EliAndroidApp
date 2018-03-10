@@ -319,14 +319,13 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/linear_no_result"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
                 android:layout_below="@+id/toolbarLayout"
-                android:visibility="gone">
-
+                >
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -350,50 +349,52 @@
                             android:gravity="center"
                             android:padding="10dp"
                             android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
-                            android:textSize="16dp" />
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_16dp_normal_textSize"
+                            android:layout_below="@+id/ivImageEr"/>
+                        <TextView
+                            android:id="@+id/tvAlertDesc"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:layout_below="@+id/tvAlert"/>
 
                         <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_centerInParent="true"
+                            android:id="@+id/ivImageEr"
+                            android:layout_width="@dimen/_300dp"
+                            android:layout_height="@dimen/_200dp_normal"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/alert" />
 
                         <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/ivImageEr"
+                            android:id="@+id/rlEr"
+                            android:layout_width="@dimen/_100dp"
+                            android:layout_height="@dimen/_40dp"
+                            android:background="@drawable/btngravity_big"
+                            android:layout_centerHorizontal="true"
 
                             >
-                            <!--<mehdi.sakout.fancybuttons.FancyButton
-                                android:id="@+id/btnOk"
+
+                            <mehdi.sakout.fancybuttons.FancyButton
+                                android:id="@+id/btn_no_Result"
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:elevation="4dp"
                                 android:paddingBottom="1dp"
                                 fancy:fb_defaultColor="@color/TRANSPARENT"
                                 fancy:fb_focusColor="@color/focusColor"
                                 fancy:fb_radius="0dp"
-                                fancy:fb_text="بازگشت"
+                                fancy:fb_text="@string/return_"
                                 fancy:fb_textColor="#FFFFFF"
-                                fancy:fb_textSize="18dp"
-                                />-->
-                            <Button
-                                android:id="@+id/btn_no_Result"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                android:layout_marginBottom="2dp"
-                                android:layout_marginLeft="@dimen/_12dp"
-                                android:layout_marginRight="@dimen/_12dp"
-                                android:layout_marginTop="1dp"
-                                android:background="@drawable/btngravity_big"
-                                android:text="@string/BackToLastPage"
-                                android:textColor="#fff"
-                                android:textSize="14dp"
-                                android:textStyle="bold" />
+                                fancy:fb_textSize="18dp" />
                         </RelativeLayout>
 
 
@@ -401,7 +402,10 @@
 
 
                 </android.support.v7.widget.CardView>
-            </LinearLayout>
+
+
+
+            </RelativeLayout>
 
 
         </LinearLayout>

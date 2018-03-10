@@ -148,7 +148,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     List<FlightSegmentFalse> SegmentListFalseAvali = new ArrayList<FlightSegmentFalse>();
     List<FlightSegmentFalse> SegmentListFalseAkhari = new ArrayList<FlightSegmentFalse>();
     RelativeLayout rlLoading, rlRoot;
-    Button btn_no_Result;
+    FancyButton btn_no_Result;
     // HashMap<String,HashMap<String,HeaderExpandingPlan>> listDataHeaderExpanding;
     List<String> listDataHeaderExpanding;
     HashMap<String, HashMap<String, ItemExpandingPlan>> listDataChildExpanding;
@@ -234,6 +234,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 
         btn_no_Result = findViewById(R.id.btn_no_Result);
+        btn_no_Result.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));;
         llNextLastDays = findViewById(R.id.llNextLastDays);
         btn_no_Result.setOnClickListener(this);
 
@@ -937,7 +938,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         linear_expand = findViewById(R.id.linear_expand);
         linear_expand.setVisibility(View.VISIBLE);
-        LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+        RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
         txtNoResult.setText(R.string.NoResult);
         linear_no_result.setVisibility(View.GONE);
 
@@ -1167,7 +1168,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (dataExpandingListFilter != null) {
 
             linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             linear_no_result.setVisibility(View.GONE);
             try {
                 System.out.println("flightsListFilter.size():" + flightsListFilter.size());
@@ -1206,7 +1207,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (flightsListFilter.size() == 0 || flightsListFilter == null) {
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText("نتیجه ای برای جستجوی شما یافت نشد");
             linear_no_result.setVisibility(View.VISIBLE);
         }
@@ -1220,7 +1221,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (dataExpandingListFilter != null) {
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             linear_no_result.setVisibility(View.GONE);
             try {
                 System.out.println("flightsListFilter.size():" + flightsListFilter.size());
@@ -1259,7 +1260,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (flightsListFilter.size() == 0 || flightsListFilter == null) {
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
@@ -1273,7 +1274,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (dataExpandingListFilter != null) {
             RelativeLayout linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             linear_no_result.setVisibility(View.GONE);
             try {
                 System.out.println("flightsListFilter.size():" + flightsListFilter.size());
@@ -1312,7 +1313,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (flightsListFilter.size() == 0 || flightsListFilter == null) {
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
@@ -1322,7 +1323,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     private void expandingListData() {
         linear_expand = findViewById(R.id.linear_expand);
         linear_expand.setVisibility(View.VISIBLE);
-        LinearLayout linear_no_resultt = findViewById(R.id.linear_no_result);
+        RelativeLayout linear_no_resultt = findViewById(R.id.linear_no_result);
         linear_no_resultt.setVisibility(View.GONE);
         //	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
         listDataChildExpanding = new HashMap<String, HashMap<String, ItemExpandingPlan>>();
@@ -1492,7 +1493,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (flightsList.size() == 0 || flightsList == null) {
 
             linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
@@ -1546,7 +1547,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (dataExpandingListFilter != null) {
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             linear_no_result.setVisibility(View.GONE);
             try {
                 System.out.println("flightsListFilter.size():" + flightsListFilter.size());
@@ -1588,7 +1589,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (flightsListFilter.size() == 0 || flightsListFilter == null) {
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
@@ -1603,7 +1604,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (dataExpandingListFilter != null) {
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.VISIBLE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             linear_no_result.setVisibility(View.GONE);
             try {
                 System.out.println("flightsListFilter.size():" + flightsListFilter.size());
@@ -1643,7 +1644,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (flightsListFilter.size() == 0 || flightsListFilter == null) {
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(R.string.NoResult);
             linear_no_result.setVisibility(View.VISIBLE);
         }
@@ -2529,13 +2530,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         linear_expand = findViewById(R.id.linear_expand);
                         linear_expand.setVisibility(View.GONE);
-                        LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+                        RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
                         txtNoResult.setText(s[1] + "");
                         linear_no_result.setVisibility(View.VISIBLE);
                     } else {
                         linear_expand = findViewById(R.id.linear_expand);
                         linear_expand.setVisibility(View.GONE);
-                        LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+                        RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
                         txtNoResult.setText(GetError);
                         linear_no_result.setVisibility(View.VISIBLE);
                     }
@@ -2815,7 +2816,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 //if (flightsListFilter.size() == 0 || flightsListFilter== null) {
                 linear_expand = findViewById(R.id.linear_expand);
                 linear_expand.setVisibility(View.GONE);
-                LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+                RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
                 linear_no_result.setVisibility(View.VISIBLE);
 
                 if (!Utility.isNetworkAvailable(SearchParvazActivity.this)) {
@@ -2925,13 +2926,13 @@ void getDataFaJson(String result){
 
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(s[1]+"");
             linear_no_result.setVisibility(View.VISIBLE);
         }else {
             linear_expand = findViewById(R.id.linear_expand);
             linear_expand.setVisibility(View.GONE);
-            LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(GetError);
             linear_no_result.setVisibility(View.VISIBLE);
         }
@@ -3224,13 +3225,13 @@ void getDataFaJson(String result){
 
                     linear_expand = findViewById(R.id.linear_expand);
                     linear_expand.setVisibility(View.GONE);
-                    LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+                    RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
                     txtNoResult.setText(s[1]+"");
                     linear_no_result.setVisibility(View.VISIBLE);
                 }else {
                     linear_expand = findViewById(R.id.linear_expand);
                     linear_expand.setVisibility(View.GONE);
-                    LinearLayout linear_no_result = findViewById(R.id.linear_no_result);
+                    RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
                     txtNoResult.setText(GetError);
                     linear_no_result.setVisibility(View.VISIBLE);
                 }
