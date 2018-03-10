@@ -172,18 +172,7 @@ public class GlobalApplication extends Application {
         return Operator;
     }
 
-    public String getSecurityHead() {
-        // Service1 nikSharj = new Service1();
-        // String securityCode = nikSharj.SC();
-        //
-        // if (securityCode == null)
-        // return null;
-        //
-        // String hash = Utility.MD5("j$a$" + securityCode + "$m$e");
-        //
-        // return hash;
-        return "";
-    }
+
 
     @Override
     protected void attachBaseContext(Context base) {
