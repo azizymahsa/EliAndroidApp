@@ -1,5 +1,8 @@
 package com.eligasht.reservation.views.picker.global.model;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 /**
  * Created by Ahmad.nemati on 3/8/2018.
  */
@@ -10,6 +13,7 @@ public class SingletonDate {
     private CustomDate endDate;
 
     private SingletonDate() {
+        EventBus.getDefault().register(this);
     }
 
     public static SingletonDate getInstance() {
@@ -27,6 +31,11 @@ public class SingletonDate {
         return this.startDate;
     }
 
+    public void setStartDate(CustomDate customDate) {
+        this.startDate = customDate;
+        this.startDate.setAnotherCustomDate(endDate);
+    }
+
     public CustomDate getEndDate() {
         return this.endDate;
     }
@@ -34,10 +43,6 @@ public class SingletonDate {
     public void setEndDate(CustomDate customDate) {
         this.endDate = customDate;
         this.startDate.setAnotherCustomDate(customDate);
-    }
-    public void setStartDate(CustomDate customDate) {
-        this.startDate = customDate;
-        this.startDate.setAnotherCustomDate(endDate);
     }
 
     public void initDate() {
@@ -52,5 +57,12 @@ public class SingletonDate {
             startDate.setAnotherCustomDate(endDate);
             endDate.setAnotherCustomDate(null);
         }
+    }
+
+    @Subscribe()
+    public void onMessageEvent(EventBusCalendar event) {
+
+        if (event.isUpdated())
+            startDate.setAnotherCustomDate(endDate);
     }
 }

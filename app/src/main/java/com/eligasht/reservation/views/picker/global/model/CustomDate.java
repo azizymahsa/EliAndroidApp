@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -161,6 +163,7 @@ public class CustomDate {
     }
 
     private void updateDate(Calendar calendar) {
+        EventBus.getDefault().post(new EventBusCalendar(true));
         civilDate = new CivilDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
         persianDate = DateConverter.civilToPersian(civilDate);
 
