@@ -122,6 +122,7 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="_15dp_khadamat">15dp</dimen>
     <dimen name="_23dp_khadamat">23dp</dimen>
     <dimen name="_50dp_normal_im">50dp</dimen>
+    <dimen name="_300dp">300dp</dimen>
 
 
 </resources>

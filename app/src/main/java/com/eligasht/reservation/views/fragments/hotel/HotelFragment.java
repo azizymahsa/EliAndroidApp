@@ -84,8 +84,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     CalendarDialog calendarDialog;
     private View rootView;
     private ArrayList<ModelRowCountRoom> roomsSelected;
-    CustomDate startDate;
-    CustomDate endDate;
+
 
     public static String date_server(int y, int m, int d) {
         Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
@@ -427,7 +426,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
                         intent.putExtra("CheckInFa", tvRaft.getText().toString());
 
-                        SingletonDate.getInstance().setReverseDate(startDate, endDate);
 
 
                         intent.putExtra("Rooms", getRoomList(roomsSelected));
@@ -451,89 +449,25 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 break;
             case R.id.llRaft:
 
-                if (startDate != null && endDate != null) {
-                    calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.HOTEL);
-
-                } else {
-                    calendarDialog.create(getActivity(), getContext(), this, true, TypeUsageOfCalendar.HOTEL);
-
-                }
-
-
-                    /*    if (geo) {
-                            if (!datePickerDialogGregorian1.isAdded()){
-
-                                datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
-
-                            }
-
-                        } else {
-                            if(!datePickerDialog.isAdded()){
-                                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
-
-                            }
-
-                        }
-
-*/
-
+                calendarDialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
 
                 break;
             case R.id.llBargasht:
-                if (startDate != null && endDate != null) {
-                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                        @Override
-                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
-                                endDate = start;
-                                tvBargasht.setText(endDate.getDescription());
-                            } else {
-                                Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
-                            }
+                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
+                    @Override
+                    public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+                        if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
+                            SingletonDate.getInstance().setEndDate(start);
+                            tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                        } else {
+                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
                         }
-                    }, endDate, TypeUsageOfCalendar.HOTEL);
-                    tvRaft.setText(startDate.getDescription());
-                    tvBargasht.setText(endDate.getDescription());
-                    raft = startDate.getFullGeo();
-                    bargasht = endDate.getFullGeo();
-
-
-                    Prefs.putString("raft", raft);
-                    Prefs.putString("bargasht", bargasht);
-                    Prefs.putString("raftfa", tvRaft.getText().toString());
-                    Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-
-                } else {
-                    calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                        @Override
-                        public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-                            if (CustomDate.isOlderThan(startDate.getCalendar(), start.getCalendar())) {
-                                endDate = start;
-                                tvBargasht.setText(endDate.getDescription());
-                            } else {
-                                Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }, false, TypeUsageOfCalendar.HOTEL);
-
-                }
-/*
-
-                if (geo) {
-                    if (!datePickerDialogGregorian2.isAdded()){
-
-                        datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
-
                     }
-
-                } else {
-                    if(!datePickerDialog2.isAdded()){
-                        datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
-
-                    }
-
-                }
-*/
+                }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
+                tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
+                tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
 
                 break;
@@ -703,8 +637,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+        SingletonDate.getInstance().setReverseDate(startDate,endDate);
+
         geo = isGeo;
         Prefs.putBoolean("geo", isGeo);
         Log.e("Date", startDate.toString());
@@ -714,15 +648,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
         bargasht = endDate.getFullGeo();
 
 
-        Prefs.putString("raft", raft);
-        Prefs.putString("bargasht", bargasht);
-        Prefs.putString("raftfa", tvRaft.getText().toString());
-        Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-
     }
 
 
-    //Gregorian==============================================Gregorian=============================Gregorian
 
 
 }

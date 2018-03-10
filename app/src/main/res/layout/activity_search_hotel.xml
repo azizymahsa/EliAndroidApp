@@ -163,8 +163,8 @@
 
                     <ImageView
                         android:id="@+id/ivImageEr"
-                        android:layout_width="300dp"
-                        android:layout_height="200dp"
+                        android:layout_width="@dimen/_300dp"
+                        android:layout_height="@dimen/_200dp_normal"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/alert" />
 
