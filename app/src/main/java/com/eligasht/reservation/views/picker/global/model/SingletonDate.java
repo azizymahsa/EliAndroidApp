@@ -49,9 +49,9 @@ public class SingletonDate {
 
     public void checkConflictDate() {
         if (!CustomDate.isOlderThan(startDate.getCalendar(), endDate.getCalendar())) {
-            startDate = CustomDate.today();
-            endDate = CustomDate.today();
+            endDate = startDate;
             startDate.setAnotherCustomDate(endDate);
+            endDate.setAnotherCustomDate(null);
         }
     }
 }

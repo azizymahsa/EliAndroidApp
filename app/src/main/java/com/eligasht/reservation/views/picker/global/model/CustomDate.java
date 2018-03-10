@@ -28,8 +28,6 @@ public class CustomDate {
 
 
     public CustomDate(String year, String month, String day) {
-
-
         if (year.startsWith("1")) {
             persianDate = new PersianDate(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
             civilDate = DateConverter.persianToCivil(persianDate);
