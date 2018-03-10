@@ -93,13 +93,12 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private FancyButton btn_next_day;
     private FancyButton btn_previous_day;
     private RelativeLayout error_layout;
-    private TextView txt_error;
+    private TextView txt_error,tvAlertDesc;
     private FancyButton btnHome;
     private FancyButton btnOk;
     private TextView txtFilter;
     private TextView txtIconFilter;
     private TextView txtNotFoundResualt;
-
 
     @SuppressLint("NewApi")
     @Override
@@ -180,6 +179,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                         txt_error.setText(R.string.InternetError);
 
+
                     }else{
 
                         txt_error.setText(R.string.ErrorServer);
@@ -199,6 +199,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 if (ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
                     rcl_package.showText();
                     txt_error.setText(R.string.NoResult);
+                    tvAlertDesc.setText(getString(R.string.change_date));
+
                     error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
@@ -219,6 +221,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 hideLoading();
                 rcl_package.showText();
                 txt_error.setText(R.string.ErrorServer);
+                tvAlertDesc.setText(getString(R.string.change_date));
+
                 error_layout.setVisibility(View.VISIBLE);
             }
         });
@@ -228,6 +232,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private void initViews() {
 
         toolbar_title = findViewById(R.id.tvTitle);
+        tvAlertDesc = findViewById(R.id.tvAlertDesc);
         toolbar_date = findViewById(R.id.tvDate);
         btnBack = findViewById(R.id.btnBack);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
