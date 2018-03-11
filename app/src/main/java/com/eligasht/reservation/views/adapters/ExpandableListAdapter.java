@@ -9,16 +9,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.ExpandableListViewE;
+import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -29,13 +35,14 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.views.ui.PassengerActivity;
-import com.eligasht.reservation.views.ui.SearchFlightActivity;
+import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -43,7 +50,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Activity _context;
     Activity activity;
     SearchParvazPinAdapter searchParvazPinAdapter;
-    List<SearchFlightActivity.ParentItemExpandingPlan> dataExpandingList;
+    List<SearchParvazActivity.ParentItemExpandingPlan> dataExpandingList;
     List<PinModelDetail> pinModelDetails;
     List<PinModelHeader> pinModelHeaders;
     ImageLoader imageLoader;
@@ -55,7 +62,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     String FlightId;
     ExpandableListViewE expListViewExpanding;
 
-    public ExpandableListAdapter(Activity context, List<SearchFlightActivity.ParentItemExpandingPlan> dataList,
+    public ExpandableListAdapter(Activity context, List<SearchParvazActivity.ParentItemExpandingPlan> dataList,
                                  SearchParvazPinAdapter searchParvazPinAdapter,
                                  boolean isChangeFlight, String searchKey, String FlightId, ExpandableListViewE expListViewExpanding) {
         this._context = context;
@@ -85,7 +92,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         System.out.println("groupPosition:" + groupPosition + "childPosition:" + childPosition);
-        final SearchFlightActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(childPosition);
+        final SearchParvazActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -144,13 +151,23 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         lblArrivalAirportR.setText(item.ArrivalCityNameFa + " , " + item.ArrivalAirportNameFaR);
         if (item.OperatingAirlineNameEn.contains("null")) {
             lblFlightNumberR.setText(item.AirlineCode + item.FlightNumberR);
-            lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
+            if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
+                String text2 = "<font color=#0e874e>"  + item.AirlineNameFaR+ ""+"</font> " ;
+                lblFlightNumberRPersian.setText( " , "+Html.fromHtml(text2));
+            }else{
+                lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
+            }
 
         } else {
             String text = "<font color=#aaaaaa>" + "By: " + item.OperatingAirlineNameEn + "</font> " +
                     "<font color=#0e874e>" + item.AirlineCode + item.FlightNumberR + "</font>";
             lblFlightNumberR.setText(Html.fromHtml(text));
-            lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
+            if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
+                String text2 = "<font color=#0e874e>"  + item.AirlineNameFaR+ ""+"</font> " ;
+                lblFlightNumberRPersian.setText( " , "+Html.fromHtml(text2));
+            }else{
+                lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
+            }
             //lblFlightNumberR.setText("Operated By: " + item.OperatingAirlineNameEn+" , "+item.AirlineCode+item.FlightNumberR+" , "+ item.AirlineNameFaR );
         }
         System.out.println("item.OperatingAirlineNameEn:" + item.OperatingAirlineNameEn);
@@ -237,8 +254,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
-        //ArrayList<SearchFlightActivity.HeaderExpandingPlan> item2 = this.dataExpandingList.get(groupPosition).Header;
-        final SearchFlightActivity.HeaderExpandingPlan item2 = this.dataExpandingList.get(groupPosition).Header;
+        //ArrayList<SearchParvazActivity.HeaderExpandingPlan> item2 = this.dataExpandingList.get(groupPosition).Header;
+        final SearchParvazActivity.HeaderExpandingPlan item2 = this.dataExpandingList.get(groupPosition).Header;
 
 
         if (convertView == null) {
@@ -328,14 +345,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             pinModelDetails = new ArrayList<>();
             int count = item2.SegmentFalseCount + item2.SegmentTrueCount;//count segment
             for (int i = 0; i < count; i++) {
-                SearchFlightActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(i);
+                SearchParvazActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(i);
                 ;
 
                 PinModelDetail pinModelDetail = new PinModelDetail(item.AdlBaseFare, item.Taxes, item.TotalFare, item.FlightTimeR, item.FlightArrivalTimeR, item.DepartureCityNameFa, item.DepartureAirportNameFaR, item.ArrivalCityNameFa, item.ArrivalAirportNameFaR, item.AirlineCode, item.FlightNumberR, item.AirlineNameFaR, this.dataExpandingList.get(groupPosition).Items.size());
                 pinModelDetails.add(pinModelDetail);
             }
             //felan barmidaram
-            //SearchFlightActivity.updateAdapterPin(pinModelDetails,pinModelHeaders,_context);
+            //SearchParvazActivity.updateAdapterPin(pinModelDetails,pinModelHeaders,_context);
 
         }
 

@@ -535,7 +535,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@+id/tv12"
+                android:layout_toLeftOf="@+id/tv8"
                 android:gravity="center"
                 android:text="@string/settings"
                 android:textAppearance="@style/IrsansBold"
@@ -543,7 +543,7 @@
                 android:textSize="@dimen/_12dp_normal_textSize" />
 
             <TextView
-                android:id="@+id/tv12"
+                android:id="@+id/tv8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"

@@ -111,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="350"
-
+                    android:textAppearance="@style/tahoma"
                     android:gravity="left|top"
                     android:text="استانبول"
                     android:textColor="#003399"
@@ -134,7 +134,7 @@
                         android:layout_weight="50"
                         android:gravity="left|center"
                         android:paddingTop="2dp"
-                        android:text="ترکیش ایر "
+                        android:text="TK658 "
                         android:textAppearance="@style/tahoma"
                         android:textColor="#0e874e"
                         android:textSize="@dimen/_10dp_textSize" />
@@ -146,7 +146,8 @@
                         android:layout_weight="50"
                         android:gravity="left|center"
                         android:paddingTop="2dp"
-                        android:text="3h 45 m "
+                        android:text="TK658 "
+                        android:textAppearance="@style/tahoma"
                         android:textColor="#0e874e"
                         android:textSize="@dimen/_10dp_textSize" />
                 </LinearLayout>
@@ -162,6 +163,7 @@
                     android:text="استانبول"
                     android:textColor="#003399"
                     android:textSize="@dimen/_10dp_textSize"
+                    android:textAppearance="@style/tahoma"
                     />
 
             </LinearLayout>

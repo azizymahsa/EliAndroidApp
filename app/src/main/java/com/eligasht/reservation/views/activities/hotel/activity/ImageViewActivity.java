@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.eligasht.reservation.views.ui.HackyViewPager;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,6 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.veinhorn.scrollgalleryview.HackyViewPager;
 
 
 import org.json.JSONArray;

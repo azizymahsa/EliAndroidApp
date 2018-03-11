@@ -145,8 +145,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 try {
                     startActivity(likeIng);
                 } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("https://instagram.com/eligashtco/")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/eligashtco/")));
                 }
                 break;
             case R.id.txtAparat:
