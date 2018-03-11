@@ -127,3 +127,46 @@
 # Only required if you use AsyncExecutor
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
+}
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+-keep class com.daimajia.androidanimations.** { *; }
+-keep interface com.daimajia.androidanimations.** { *; }
+-keep public class com.eligasht.* {
+  public *** get*();
+  public void set*(***);
+}
+-keep public class android.util.FloatMath
+-keep class com.fasterxml.jackson.databind.ObjectMapper {
+    public <methods>;
+    protected <methods>;
+}
+-keep class com.fasterxml.jackson.databind.ObjectWriter {
+    public ** writeValueAsString(**);
+}
+-keepnames class com.fasterxml.jackson.** { *; }
+-dontwarn com.fasterxml.jackson.databind.**
+-dontwarn com.github.jaiimageio.**
+-dontwarn it.sephiroth.**
+-dontwarn com.fasterxml.**
+-dontwarn okio.**
+-dontwarn retrofit2.**
+
+-keep class com.fasterxml.jackson.annotation.** { *; }
+
+-dontwarn com.fasterxml.jackson.databind.**
+
+-dontwarn org.springframework.**
+
+-dontwarn org.w3c.dom.bootstrap.DOMImplementationRegistry
+
+-keep class com.eligasht.reservation.models.**
+-keep class com.eligasht.reservation.models.*
+-keep class com.eligasht.reservation.models.**{*;}
+-keep class com.zplesac.connectionbuddy.**
+-keep class com.zplesac.connectionbuddy.models.**
+-keep class com.zplesac.connectionbuddy.models.*
+-keep class com.zplesac.connectionbuddy.models.**{*;}
