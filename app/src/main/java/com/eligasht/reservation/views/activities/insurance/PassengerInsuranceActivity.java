@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -47,7 +48,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.ui.SearchFlightActivity;
+import com.eligasht.reservation.views.ui.PassengerActivity;
+import com.eligasht.reservation.views.ui.PassengerHotelActivity;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -76,6 +78,7 @@ import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.NationalitycodeActivity;
+import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 
@@ -1143,7 +1146,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 GUID = extras.getString("Flight_GUID");
-                ResultUniqId = SearchFlightActivity.globalResultUniqID;
+                ResultUniqId = SearchParvazActivity.globalResultUniqID;
             }
 
             JSONObject json = new JSONObject();

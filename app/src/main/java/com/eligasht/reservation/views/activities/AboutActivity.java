@@ -38,6 +38,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -109,7 +110,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
 
                 // Enter URL address where your json file resides
                 // Even you can make call to php file which returns json data
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetAboutUs");
+                url = new URL("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetAboutUsWithCulture");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -140,7 +141,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 String serial = null;
 
                 JSONObject errorObj = new JSONObject();
-
+                String data = "";
                 try {
                     errorObj.put("Success", false);
 
@@ -149,16 +150,39 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                     serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
                 } catch (Exception ignored) {
                 }
+                try{
 
-
-                String data = "";
-
-
+                if(Locale.getDefault().getLanguage().equals("en")){
+                    JSONObject jsone = new JSONObject();
+                    JSONObject manJson = new JSONObject();
+                    manJson.put("culture", "en-");
+                   // jsone.put("", manJson);
+                    data=manJson.toString();
+                }else if(Locale.getDefault().getLanguage().equals("fa")) {
+                    data = "";
+                }else if(Locale.getDefault().getLanguage().equals("tr")) {
+                    JSONObject jsone = new JSONObject();
+                    JSONObject manJson = new JSONObject();
+                    manJson.put("culture", "tr-TR");
+                   // jsone.put("", manJson);
+                    data=manJson.toString();
+                }else if(Locale.getDefault().getLanguage().equals("ar")) {
+                    JSONObject jsone = new JSONObject();
+                    JSONObject manJson = new JSONObject();
+                    manJson.put("culture", "ar-");
+                    //jsone.put("", manJson);
+                    data=manJson.toString();
+                }
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+                System.out.println("culture:"+data);
                 HttpClient client = new DefaultHttpClient();
 
 
                 HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetAboutUs");
+                post = new HttpPost("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetAboutUsWithCulture");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
 
@@ -207,7 +231,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 // JSONObject jsonObj = new JSONObject(retSrc);
 
                 // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAboutUsResult");
+                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAboutUsWithCultureResult");
                 JSONArray jArray = GetAirportsResult.getJSONArray("Sections");
                 //////////////////////////////
 

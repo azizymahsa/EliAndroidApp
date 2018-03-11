@@ -1257,7 +1257,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 GUID = extras.getString("Flight_GUID");
-                ResultUniqId = SearchFlightActivity.globalResultUniqID;
+                ResultUniqId = SearchParvazActivity.globalResultUniqID;
             }
 
             JSONObject json = new JSONObject();

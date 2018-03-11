@@ -33,6 +33,9 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -59,6 +62,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -75,6 +79,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.activities.main.MainActivity;
+import com.eligasht.reservation.views.fragments.PlanFragment;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -146,9 +152,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
 	private String Gensiyat="";
 	Activity activity;
-	public int countB= SearchFlightActivity.COUNT_B;
-	public int countK= SearchFlightActivity.COUNT_K;
-	public int countN= SearchFlightActivity.COUNT_N;
+	public int countB=SearchParvazActivity.COUNT_B;
+	public int countK=SearchParvazActivity.COUNT_K;
+	public int countN=SearchParvazActivity.COUNT_N;
 	public int sum=countB+countK+countN;
 
 	public List<PurchaseFlightResult> data;
@@ -1511,7 +1517,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			Bundle extras = getIntent().getExtras();
 			if(extras != null){
 				GUID = extras.getString("Flight_GUID");
-				ResultUniqId = SearchFlightActivity.globalResultUniqID;
+				ResultUniqId = SearchParvazActivity.globalResultUniqID;
 			}
 
 			JSONObject json = new JSONObject();
@@ -2480,6 +2486,92 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}
 	}
 
+	/*public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+		public String  RengAge ;
+		public DatePickerFragment(String RengAge) {
+			this.RengAge=RengAge;
+		}
+		public DatePickerFragment() {
+			//this.RengAge=RengAge;
+		}
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			DatePickerDialog dialog = null;
+			if(flag){//tavalodm
+				Calendar c = Calendar.getInstance();
+				int year = c.get(Calendar.YEAR);
+				int month = c.get(Calendar.MONTH);
+				int day = c.get(Calendar.DAY_OF_MONTH);
+
+				if(RengAge.contains("کودک")){
+					dialog = new DatePickerDialog(getActivity(), this, year-12, month, day);
+				}else if(RengAge.contains(getString(R.string.baby))){
+					dialog = new DatePickerDialog(getActivity(), this, year-2, month, day);
+				}else if(RengAge.contains("بزرگسال")){
+					dialog = new DatePickerDialog(getActivity(), this, year-30, month, day);
+				}
+				// dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+///////////////setmin
+				if(RengAge.contains("کودک")){
+					System.out.println("koodak");
+					//c = Calendar.getInstance();
+					c.add(Calendar.YEAR, -12); // subtract 2 years from now
+					dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+					c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
+					dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+
+				}else if(RengAge.contains(getString(R.string.baby))){
+					System.ou t.println("Nozad");
+					//c = Calendar.getInstance();
+					c.add(Calendar.YEAR, -2); // subtract 2 years from now
+					dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+					c.add(Calendar.YEAR, 2); // add 4 years to min date to have 2 years after now
+					dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+				}else{
+					c.add(Calendar.YEAR, -120);
+					dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+					c.add(Calendar.YEAR, 108);
+					dialog.getDatePicker().setMaxDate(c.getTimeInMillis());}
+				///////end setMin
+			}else{//expPasport
+				Calendar c = Calendar.getInstance();
+				int year = c.get(Calendar.YEAR);
+				int month = c.get(Calendar.MONTH);
+				int day = c.get(Calendar.DAY_OF_MONTH);
+				dialog = new DatePickerDialog(getActivity(), this, year, month+6, day);//1997/12/23
+
+				c.add(Calendar.MONTH, 6);
+				dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+				c.add(Calendar.YEAR, 6);
+				dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+				//dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+		 	   *//* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		 	    Date mDate;*//*
+				// dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+			}
+
+			return  dialog;
+		}
+
+		public void onDateSet(DatePicker view, int year, int month, int day) {
+			String sMonth=String.valueOf(month+1);
+			String sDay=String.valueOf(day);
+			if(sMonth.length()==1)
+				sMonth="0"+sMonth;
+
+			if(sDay.length()==1)
+				sDay = "0"+sDay;
+			if(flag){
+				txttavalodm.setText(year+"/" +sMonth +"/"+ sDay);
+			}else{
+
+				txtexp_passport.setText(year+"/" + sMonth +"/" + sDay);
+			}
+
+
+
+		}
+	}//endDatepicker*/
 	void ClearMenu(View v){//android:background="@drawable/blue_line_with_arrow_small"
 		//android:background="@drawable/trans_line_with_arrow_small"
 		((ImageView)findViewById(R.id.btn_saler)).setImageResource(R.drawable.trans_line_with_arrow_small);
@@ -2488,9 +2580,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.trans_line_with_arrow_small);
 
 		((Button)findViewById(R.id.txtSaler)).setTextColor(Color.parseColor("#808080"));
-//		((Button)findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#808080"));
-//		((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#808080"));
-//		((Button)findViewById(R.id.btn_pish_factor)).setTextColor(Color.parseColor("#808080"));
+		((Button)findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#808080"));
+		((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#808080"));
+		((Button)findViewById(R.id.btn_pish_factor)).setTextColor(Color.parseColor("#808080"));
 
 		//((TextView)findViewById(R.id.imageDiscover)).setBackgroundDrawable(null);
 		//((TextView)findViewById(R.id.imageDiscover)).setTextColor(Color.WHITE);

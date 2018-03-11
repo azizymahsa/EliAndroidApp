@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,7 +47,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.ui.SearchFlightActivity;
+import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -80,6 +81,7 @@ import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.NationalitycodeActivity;
+import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 
@@ -1363,6 +1365,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 s=getString(R.string.ninth);
                 break;
             default:
+
                 System.out.println("Unknown result");
 
                 break;
@@ -1447,6 +1450,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                 c.add(Calendar.YEAR, 6);
                 dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+                //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+		 	   /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		 	    Date mDate;*/
+                // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
             }
 
             return  dialog;
@@ -2470,7 +2477,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 GUID = extras.getString("Flight_GUID");
-                ResultUniqId = SearchFlightActivity.globalResultUniqID;
+                ResultUniqId = SearchParvazActivity.globalResultUniqID;
             }
 
             JSONObject json = new JSONObject();
