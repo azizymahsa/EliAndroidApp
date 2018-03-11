@@ -55,7 +55,7 @@ import java.util.List;
 
 
 public class HotelFragment extends Fragment implements OnClickListener,
-        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener
+      CountTimeAlert.TimerDialogListener
         , ICallbackCalendarDialog {
 
     public static Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
@@ -86,19 +86,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     private ArrayList<ModelRowCountRoom> roomsSelected;
 
 
-    public static String date_server(int y, int m, int d) {
-        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
 
-        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
-        String formatted = format1.format(date.getTime());
-        String[] dateGrg = formatted.split("/");
-        int monthS = Integer.valueOf(dateGrg[0]);
-        long dayS = Long.valueOf(dateGrg[1]);
-        int yearS = Integer.valueOf(dateGrg[2]);
-
-
-        return yearS + "/" + monthS + "/" + dayS;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -246,13 +234,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     } else {
                         sendStartTimer();
                         Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
-
-                        intent.putExtra("CheckIn", raft);
-                        intent.putExtra("CheckOut", bargasht);
-                        intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
-                        intent.putExtra("CheckInFa", tvRaft.getText().toString());
-
-
 
                         intent.putExtra("Rooms", getRoomList(roomsSelected));
                         intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
@@ -405,72 +386,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
         }
 
         return rooms.size();
-    }
-
-    @Override
-    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-        geo = false;
-        year_ = year;
-        month = monthOfYear;
-        day = dayOfMonth;
-        PersianCalendar persianCalendar = new PersianCalendar();
-        persianCalendar.set(year, month, day);
-
-
-        Log.e("salam", date_server(year_, month, day));
-        if (view.getTag().equals("DatepickerdialogBargasht")) {
-            tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-            bargasht = date_server(year, monthOfYear, dayOfMonth);
-            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-            Prefs.putString("bargasht", bargasht);
-
-
-            if (Utility.campareDate(raft, bargasht)) {
-                tvRaft.setText(persianCalendar.getPersianLongDate());
-
-            }
-
-
-        }
-
-
-        if (view.getTag().equals("DatepickerdialogRaft")) {
-
-            year_Min = year;
-            monthMin = monthOfYear;
-            dayMin = dayOfMonth;
-            tvRaft.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-            //  tvBargasht.setText(persianCalendar.getPersianLongDate());
-            raft = date_server(year, monthOfYear, dayOfMonth);
-            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-            persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
-
-
-            if (Utility.campareDate(raft, bargasht)) {
-                //  persianCalendar.set(year, month, day+1);
-
-                tvBargasht.setText(persianCalendarDatePicker2.getPersianWeekDayName() + " " + persianCalendarDatePicker2.getPersianDay() + " " + persianCalendarDatePicker2.getPersianMonthName());
-                datePickerDialog2.initialize(this, year_, month, day);
-                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-                //   bargasht = date_server(year, monthOfYear, dayOfMonth+1);
-
-            } else {
-
-                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-            }
-
-
-            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-
-            Prefs.putString("raft", raft);
-            Prefs.putString("raftfa", tvRaft.getText().toString());
-
-        }
     }
 
     @Override

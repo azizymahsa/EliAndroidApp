@@ -20,7 +20,6 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -44,9 +43,6 @@ import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.models.model.SearchParvazModelExp;
 import com.eligasht.reservation.tools.Utility;
-import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.tools.datetools.SolarCalendar;
-import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
 import com.eligasht.reservation.views.adapters.ExpandableListAdapter;
 import com.eligasht.reservation.views.adapters.SearchParvazPinAdapter;
 import com.eligasht.reservation.views.components.Header;
@@ -61,7 +57,6 @@ import com.eligasht.reservation.views.ui.dialog.flight.FilterModelّFlight;
 import com.eligasht.reservation.views.ui.dialog.flight.SortFlightDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.google.gson.Gson;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import org.apache.http.HttpResponse;
@@ -82,13 +77,9 @@ import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -99,7 +90,7 @@ import java.util.regex.Pattern;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class SearchParvazActivity extends BaseActivity implements SortFlightDialog.SortFlightDialogListener, FilterFlightDialogNew.FilterFlightDialogListenerArray, Header.onSearchTextChangedListener, OnItemClickListener, OnClickListener, OnItemSelectedListener {
+public class SearchFlightActivity extends BaseActivity implements SortFlightDialog.SortFlightDialogListener, FilterFlightDialogNew.FilterFlightDialogListenerArray, Header.onSearchTextChangedListener, OnItemClickListener, OnClickListener, OnItemSelectedListener {
     //HashMap<String, HashMap<String, ItemExpanding>> listDataChildExpanding;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -349,7 +340,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         expandingListData();
 
 
-        listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
+        listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
 
         // setting list adapter
         expListViewExpanding.setAdapter(listAdapterExpanding);
@@ -376,7 +367,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                //Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SearchFlightActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "onGroupExpand: ");
             }
         });
@@ -387,7 +378,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             @Override
             public void onGroupCollapse(int groupPosition) {
                 Log.d("TAG", "onGroupCollapse: ");
-                //Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Collapsed",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SearchFlightActivity.this,listDataHeaderExpanding.get(groupPosition) + " Collapsed",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -399,7 +390,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 Log.d("TAG", "onChildClick: ");
-                        /*Toast.makeText(SearchParvazActivity.this,
+                        /*Toast.makeText(SearchFlightActivity.this,
                                  listDataHeaderExpanding.get(groupPosition)
 	     								+ " : "
 	     								+ listDataChildExpanding.get(listDataHeaderExpanding.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();*/
@@ -414,8 +405,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         //for flight==================================================================================
         recyclerViewFlight = findViewById(R.id.recyclerViewPassenger);
-        recyclerViewFlight.addItemDecoration(new DividerItemDecoration(SearchParvazActivity.this, 1));
-        recyclerViewFlight.setLayoutManager(new LinearLayoutManager(SearchParvazActivity.this));
+        recyclerViewFlight.addItemDecoration(new DividerItemDecoration(SearchFlightActivity.this, 1));
+        recyclerViewFlight.setLayoutManager(new LinearLayoutManager(SearchFlightActivity.this));
         ArrayList<PinModelDetail> pinModelDetails = new ArrayList<>();
         ArrayList<PinModelHeader> pinModelHeaders = new ArrayList<>();
         //JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
@@ -928,7 +919,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             if (filterModel.isRemove()) {
 
-                listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
+                listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
                 expListViewExpanding.setAdapter(listAdapterExpanding);
                 iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
                 txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
@@ -949,7 +940,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (dataExpandingListFilter.isEmpty() || !foundFirst || !foundEc || !foundBis) {
             // foundFirst=false;
 
-            //Toast.makeText(SearchParvazActivity.this, "هیچ موردی یافت نشد", Toast.LENGTH_LONG).show();
+            //Toast.makeText(SearchFlightActivity.this, "هیچ موردی یافت نشد", Toast.LENGTH_LONG).show();
             ///////////////
             iconFilter.setTextColor(Color.RED);
             txtFilter.setTextColor(Color.RED);
@@ -973,11 +964,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 linear_no_result.setVisibility(View.GONE);
             }
             /////////////////
-            //listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
+            //listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList,searchParvazPinAdapter);
             //expListViewExpanding.setAdapter(listAdapterExpanding);
         } else {
 
-            listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingListFilter, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
+            listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingListFilter, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
             expListViewExpanding.setAdapter(listAdapterExpanding);
             iconFilter.setTextColor(Color.RED);
             txtFilter.setTextColor(Color.RED);
@@ -1004,13 +995,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 bestOff = false;
                 Collections.sort(dataExpandingList, new Comparator<ParentItemExpandingPlan>() {
                     @Override
-                    public int compare(SearchParvazActivity.ParentItemExpandingPlan o1, SearchParvazActivity.ParentItemExpandingPlan o2) {
+                    public int compare(SearchFlightActivity.ParentItemExpandingPlan o1, SearchFlightActivity.ParentItemExpandingPlan o2) {
                         //return o1.Header.AirlineNameEa.compareToIgnoreCase(o2.Header.AirlineNameEa);
                         return Double.compare(o2.Header.AdlCost, o1.Header.AdlCost);
                     }
                 });
                 //////////////////////////////////////
-                listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
+                listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
 
 
                 // setting list adapter
@@ -1022,13 +1013,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 bestOff = true;//lowCoust
                 Collections.sort(dataExpandingList, new Comparator<ParentItemExpandingPlan>() {
                     @Override
-                    public int compare(SearchParvazActivity.ParentItemExpandingPlan o1, SearchParvazActivity.ParentItemExpandingPlan o2) {
+                    public int compare(SearchFlightActivity.ParentItemExpandingPlan o1, SearchFlightActivity.ParentItemExpandingPlan o2) {
                         //return o1.Header.AirlineNameEa.compareToIgnoreCase(o2.Header.AirlineNameEa);
                         return Double.compare(o1.Header.AdlCost, o2.Header.AdlCost);
                     }
                 });
                 //////////////////////////////////////
-                listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
+                listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
 
 
                 // setting list adapter
@@ -1689,17 +1680,17 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 break;
             case R.id.txtFilter:
 
-                new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
+                new FilterFlightDialogNew(SearchFlightActivity.this, filterModels, this, filterAirlines);
 
                 break;
             case R.id.iconFilter:
 
-                new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
+                new FilterFlightDialogNew(SearchFlightActivity.this, filterModels, this, filterAirlines);
 
                 break;
             case R.id.lblMoratabSazi://sort
                 // custom dialog
-                new SortFlightDialog(SearchParvazActivity.this, this, besetSeler, bestOff, remove);
+                new SortFlightDialog(SearchFlightActivity.this, this, besetSeler, bestOff, remove);
 
                 break;
             case R.id.txtRuzeBad:
@@ -1887,7 +1878,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
     @Override
     public void onResume() {
-        Log.e("DEBUG", "onResume of SearchParvazActivity");
+        Log.e("DEBUG", "onResume of SearchFlightActivity");
         super.onResume();
 	/*	if (Prefs.getBoolean("BACK_HOME", true)) {
 			this.finish();
@@ -1902,8 +1893,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     }
 
     private class AsyncFetch extends AsyncTask<String, String, String> {
-        //ProgressDialog pdLoading = new ProgressDialog(SearchParvazActivity.this,R.style.StyledDialog);
-        //ProgressDialog pdLoading = new ProgressDialog(SearchParvazActivity.this);
+        //ProgressDialog pdLoading = new ProgressDialog(SearchFlightActivity.this,R.style.StyledDialog);
+        //ProgressDialog pdLoading = new ProgressDialog(SearchFlightActivity.this);
 
 
         HttpURLConnection conn;
@@ -1914,11 +1905,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         protected void onPreExecute() {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
+                window.setStatusBarColor(ContextCompat.getColor(SearchFlightActivity.this, R.color.status_loading));
             }
 
 
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
+            new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
 
 
         }
@@ -2019,11 +2010,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         @Override
         protected void onPostExecute(String result) {
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+            new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
             Log.e("date", result);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+                window.setStatusBarColor(ContextCompat.getColor(SearchFlightActivity.this, R.color.colorPrimaryDark));
             }
             List<Country> data = new ArrayList<Country>();
 
@@ -2046,7 +2037,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         expandingListData();
 
 
-        listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
+        listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
 
         runOnUiThread(new Runnable() {
             @Override
@@ -2077,8 +2068,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                     @Override
                     public void onGroupExpand(int groupPosition) {
-                        //	Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
-                        //Toast.makeText(SearchParvazActivity.this, " Expanded",Toast.LENGTH_SHORT).show();
+                        //	Toast.makeText(SearchFlightActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(SearchFlightActivity.this, " Expanded",Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -2087,7 +2078,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                     @Override
                     public void onGroupCollapse(int groupPosition) {
-                    /*Toast.makeText(SearchParvazActivity.this,
+                    /*Toast.makeText(SearchFlightActivity.this,
                              listDataHeaderExpanding.get(groupPosition) + " Collapsed",
      						Toast.LENGTH_SHORT).show();*/
 
@@ -2100,7 +2091,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     @Override
                     public boolean onChildClick(ExpandableListView parent, View v,
                                                 int groupPosition, int childPosition, long id) {
-                    /*Toast.makeText(SearchParvazActivity.this,
+                    /*Toast.makeText(SearchFlightActivity.this,
      						listDataHeaderExpanding.get(groupPosition)
      								+ " : "
      								+ listDataChildExpanding.get(listDataHeaderExpanding.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();*/
@@ -2133,11 +2124,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             super.onPreExecute();
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
+                window.setStatusBarColor(ContextCompat.getColor(SearchFlightActivity.this, R.color.status_loading));
             }
 
 
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
+            new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
 
         }
 
@@ -2231,11 +2222,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         @Override
         protected void onPostExecute(String result) {
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+            new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+                window.setStatusBarColor(ContextCompat.getColor(SearchFlightActivity.this, R.color.colorPrimaryDark));
             }
             //this method will be running on UI thread
             System.out.println("result:" + result);
@@ -2260,7 +2251,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     GetError = jPricedItinerary.getString("Message");
                 }
                 if (GetError.length() > 1) {
-                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
+                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchFlightActivity.this);
                     AlertDialogPassenger.setText(GetError);
 
                 } else {
@@ -2283,7 +2274,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 }
 
             } catch (JSONException e) {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
+                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchFlightActivity.this);
                 AlertDialogPassenger.setText(getString(R.string.ErrorServer));
             }
 
@@ -2480,11 +2471,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         protected void onPreExecute() {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
+                window.setStatusBarColor(ContextCompat.getColor(SearchFlightActivity.this, R.color.status_loading));
             }
 
 
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
+            new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
             Log.e("teschange", new Gson().toJson(new ChangeFlightApiRequest(new Request(FlightId,
                     searchKey, getString(R.string.culture), new Identity("EligashtMlb",
                     "123qwe!@#QWE", "Mobile")))));
@@ -2506,12 +2497,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         @Override
         protected void onPostExecute(String result) {
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);
+            new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);
 
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+                window.setStatusBarColor(ContextCompat.getColor(SearchFlightActivity.this, R.color.colorPrimaryDark));
             }
             List<Country> data = new ArrayList<Country>();
 
@@ -2547,7 +2538,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         txtNoResult.setText(GetError);
                         linear_no_result.setVisibility(View.VISIBLE);
                     }
-                    //Toast.makeText(SearchParvazActivity.this, GetError, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SearchFlightActivity.this, GetError, Toast.LENGTH_LONG).show();
                 } else {
                     //String ResultUniqID = GetAirportsResult.getString("ResultUniqID");//
                     //globalResultUniqID = ResultUniqID;
@@ -2819,14 +2810,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     getAirLine();
                 }
             } catch (JSONException e) {//d/sfdsf
-                //Toast.makeText(SearchParvazActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(SearchFlightActivity.this, "ارتباط با سرور برقرار نشد !!", Toast.LENGTH_LONG).show();
                 //if (flightsListFilter.size() == 0 || flightsListFilter== null) {
                 linear_expand = findViewById(R.id.linear_expand);
                 linear_expand.setVisibility(View.GONE);
                 RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
                 linear_no_result.setVisibility(View.VISIBLE);
 
-                if (!Utility.isNetworkAvailable(SearchParvazActivity.this)) {
+                if (!Utility.isNetworkAvailable(SearchFlightActivity.this)) {
 
                     txtNoResult.setText(R.string.InternetError);
 
@@ -2847,7 +2838,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             expandingListData();
 
 
-            listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
+            listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId,expListViewExpanding);
 
             runOnUiThread(new Runnable() {
                 @Override
@@ -2876,8 +2867,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         @Override
                         public void onGroupExpand(int groupPosition) {
-                            //	Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
-                            //Toast.makeText(SearchParvazActivity.this, " Expanded",Toast.LENGTH_SHORT).show();
+                            //	Toast.makeText(SearchFlightActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(SearchFlightActivity.this, " Expanded",Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -2886,7 +2877,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         @Override
                         public void onGroupCollapse(int groupPosition) {
-                    /*Toast.makeText(SearchParvazActivity.this,
+                    /*Toast.makeText(SearchFlightActivity.this,
                              listDataHeaderExpanding.get(groupPosition) + " Collapsed",
      						Toast.LENGTH_SHORT).show();*/
 
@@ -2899,7 +2890,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         @Override
                         public boolean onChildClick(ExpandableListView parent, View v,
                                                     int groupPosition, int childPosition, long id) {
-                    /*Toast.makeText(SearchParvazActivity.this,
+                    /*Toast.makeText(SearchFlightActivity.this,
      						listDataHeaderExpanding.get(groupPosition)
      								+ " : "
      								+ listDataChildExpanding.get(listDataHeaderExpanding.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();*/
@@ -2943,7 +2934,7 @@ void getDataFaJson(String result){
             txtNoResult.setText(GetError);
             linear_no_result.setVisibility(View.VISIBLE);
         }
-        //Toast.makeText(SearchParvazActivity.this, GetError, Toast.LENGTH_LONG).show();
+        //Toast.makeText(SearchFlightActivity.this, GetError, Toast.LENGTH_LONG).show();
     }else{
         String ResultUniqID = null;//
 
@@ -3242,7 +3233,7 @@ void getDataFaJson(String result){
                     txtNoResult.setText(GetError);
                     linear_no_result.setVisibility(View.VISIBLE);
                 }
-                //Toast.makeText(SearchParvazActivity.this, GetError, Toast.LENGTH_LONG).show();
+                //Toast.makeText(SearchFlightActivity.this, GetError, Toast.LENGTH_LONG).show();
             }else{
                 String ResultUniqID = null;//
 

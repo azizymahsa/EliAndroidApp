@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.ModelCheckBox;
 import com.eligasht.reservation.views.adapters.hotel.FilterAdapter;
-import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
@@ -306,7 +306,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
 
                 break;
             case R.id.btnDeletFilter:
-                SearchParvazActivity.FlagRemove = true;
+                SearchFlightActivity.FlagRemove = true;
                 for (int i = 0; i < modelCheckBoxes.size(); i++) {
                     modelCheckBoxes.set(i, new ModelCheckBox(modelCheckBoxes.get(i).getName(), false));
 

@@ -1,4 +1,4 @@
-package com.veinhorn.scrollgalleryview;
+package com.eligasht.reservation.views.ui;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

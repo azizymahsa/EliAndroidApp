@@ -33,9 +33,6 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -62,7 +59,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -79,8 +75,6 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.activities.main.MainActivity;
-import com.eligasht.reservation.views.fragments.PlanFragment;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -152,9 +146,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
 	private String Gensiyat="";
 	Activity activity;
-	public int countB=SearchParvazActivity.COUNT_B;
-	public int countK=SearchParvazActivity.COUNT_K;
-	public int countN=SearchParvazActivity.COUNT_N;
+	public int countB= SearchFlightActivity.COUNT_B;
+	public int countK= SearchFlightActivity.COUNT_K;
+	public int countN= SearchFlightActivity.COUNT_N;
 	public int sum=countB+countK+countN;
 
 	public List<PurchaseFlightResult> data;
@@ -1517,7 +1511,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			Bundle extras = getIntent().getExtras();
 			if(extras != null){
 				GUID = extras.getString("Flight_GUID");
-				ResultUniqId = SearchParvazActivity.globalResultUniqID;
+				ResultUniqId = SearchFlightActivity.globalResultUniqID;
 			}
 
 			JSONObject json = new JSONObject();

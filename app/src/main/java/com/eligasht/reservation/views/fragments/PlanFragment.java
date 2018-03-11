@@ -32,6 +32,7 @@ import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarD
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
+import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
@@ -44,7 +45,6 @@ import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
 import com.eligasht.reservation.views.ui.GetAirportMaghsadActivity;
-import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
 public class PlanFragment extends Fragment implements OnClickListener, TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
@@ -700,7 +700,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 try {
 
 
-                    Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
+                    Intent intent1 = new Intent(getActivity(), SearchFlightActivity.class);
 
                     if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 0 && Prefs.getString("Value-Maghsad-Airport-Code", "") != null && Prefs.getString("Value-Maghsad-Airport-Code", "").length() > 0) {
                         System.out.println("not default" + Prefs.getString("Value-Mabda-City", ""));
