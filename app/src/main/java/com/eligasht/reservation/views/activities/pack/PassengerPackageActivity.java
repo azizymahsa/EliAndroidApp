@@ -1468,6 +1468,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             if(sDay.length()==1)
                 sDay = "0"+sDay;
             if(flag){
+
                 txttavalodm.setText(year+"/" +sMonth +"/"+ sDay);
             }else{
 
