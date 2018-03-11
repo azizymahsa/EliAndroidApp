@@ -15,13 +15,13 @@ android {
             storePassword 'z9H5V#'
         }
     }
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.eligasht"
         manifestPlaceholders = [onesignal_app_id               : "e9eccbf1-b5b1-4be7-a500-29350ca37531",
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 17
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 7
         versionName "1.0.6"
         multiDexEnabled true
@@ -64,7 +64,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.pixplicity.easyprefs:library:1.9.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     compile 'com.wang.avi:library:2.1.3'
     compile 'com.daimajia.easing:library:2.0@aar'
     compile 'com.daimajia.androidanimations:library:2.3@aar'
@@ -84,8 +84,6 @@ dependencies {
     compile 'com.android.support:customtabs:26.1.0'
     compile 'com.ms-square:expandableTextView:0.1.4'
     compile 'gun0912.ted:tedpermission:2.1.0'
-    //compile 'com.github.nirhart:parallaxscroll:1.0'
-    // compile 'me.omidh:liquidradiobutton:1.0.01'
     compile 'com.github.rey5137:material:1.2.4'
     compile 'com.android.support:multidex:1.0.2'
     compile 'com.onesignal:OneSignal:3.8.1'
@@ -101,13 +99,10 @@ dependencies {
     compile project(':persianmaterialdatetimepicker')
     compile project(':library')
     compile project(':CircleProgressView')
-    // compile project(':library3')
     compile project(':connectionbuddy')
-    //compile 'com.github.tony19:logback-android-classic:1.1.1-3'
     compile 'com.scalified:fab:1.1.3'
     compile 'com.iarcuschin:simpleratingbar:0.1.5'
     compile 'com.xw.repo:bubbleseekbar:3.10-lite'
-    //compile 'com.github.ravindu1024:android-keyboardlistener:1.0.0'
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.orhanobut:hawk:2.0.1'
     compile 'com.android.support:percent:26.1.0'
