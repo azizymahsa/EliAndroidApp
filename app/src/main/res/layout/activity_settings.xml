@@ -38,6 +38,17 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 >
+                <TextView
+                    android:id="@+id/tvArrow"
+                    android:layout_width="0dp"
+                    android:layout_weight="20"
+                    android:layout_height="match_parent"
+
+                    android:gravity="center"
+                    android:text="@string/icon_arrow_down"
+                    android:textAppearance="@style/IconFonts"
+                    android:textColor="@color/text_color_4d"
+          />
                 <Spinner
                     android:id="@+id/languageSpinner"
                     android:layout_width="0dp"
@@ -58,6 +69,8 @@
                     android:textColor="@color/text_color_4d"
                     android:textAppearance="@style/IrsansBold"/>
 
+
+
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
@@ -76,13 +89,37 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="20"
+                    android:layout_height="match_parent"
+
+                    android:gravity="center"
+                    android:text="@string/icon_arrow_down"
+                    android:textAppearance="@style/IconFonts"
+                    android:textColor="@color/text_color_4d"
+                    />
                 <Spinner
                     android:id="@+id/curencySpinner"
-
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="100"
                     android:layout_height="wrap_content"
 
-               />
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@null"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="40"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/_14dp_txtSize"
+                    android:text="واحد"
+                    android:textColor="@color/text_color_4d"
+                    android:textAppearance="@style/IrsansBold"/>
+
+
 
             </LinearLayout>
 
@@ -95,16 +132,47 @@
             android:layout_marginTop="@dimen/_10dp_margin"
             card_view:cardBackgroundColor="#ffffff">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="20"
+                    android:layout_height="match_parent"
 
+                    android:gravity="center"
+                    android:text="@string/icon_arrow_down"
+                    android:textAppearance="@style/IconFonts"
+                    android:textColor="@color/text_color_4d"
+                    />
                 <Spinner
                     android:id="@+id/officeSpinner"
-
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="100"
                     android:layout_height="wrap_content"
 
                     android:gravity="center"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:background="@null"/>
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="40"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/_14dp_txtSize"
+                    android:text="آفیس"
+                    android:textColor="@color/text_color_4d"
+                    android:textAppearance="@style/IrsansBold"/>
+
+
+
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 

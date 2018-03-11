@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class SpinnerCustomrAdapter extends BaseAdapter {
         TextView names = (TextView) view.findViewById(R.id.textView);
         icon.setImageResource(flags[i]);
         names.setText(countryNames[i]);
+        names.setTypeface(Typeface.createFromAsset(context.getAssets(),context.getString(R.string.iran_sans_normal_ttf)));
         return view;
     }
 }
