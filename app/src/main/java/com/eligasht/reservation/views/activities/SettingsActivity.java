@@ -30,6 +30,8 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private View dialogOpener;
     String[] countryNames={"ایران","England","Turkey"};
     int flags[] = {R.drawable.iran, R.drawable.united_kingdom, R.drawable.turkey};
+    String[] curencyNames={"ایران","England","Turkey"};
+    String[] officeNames={"ایران","England","Turkey"};
     Spinner languageSpinner,curencySpinner,officeSpinner;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
