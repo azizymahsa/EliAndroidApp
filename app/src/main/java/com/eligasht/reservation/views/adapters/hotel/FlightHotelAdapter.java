@@ -97,8 +97,8 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvBargasht = convertView.findViewById(R.id.tvBargasht);
             holder.tvBargashtTime = convertView.findViewById(R.id.tvBargashtTime);
             holder.tvRaftTime = convertView.findViewById(R.id.tvRaftTime);
-            holder.tvBargashtTimeWait = convertView.findViewById(R.id.tvBargashtTimeWait);
-            holder.tvRaftTimeWait = convertView.findViewById(R.id.tvRaftTimeWait);
+//            holder.tvBargashtTimeWait = convertView.findViewById(R.id.tvBargashtTimeWait);
+//            holder.tvRaftTimeWait = convertView.findViewById(R.id.tvRaftTimeWait);
             holder.tvAirLines = convertView.findViewById(R.id.tvAirLines);
             holder.ivIsBestseler = convertView.findViewById(R.id.ivIsBestseler);
             holder.txt_lable_hotel = convertView.findViewById(R.id.txt_lable_hotel);
@@ -383,8 +383,8 @@ public class FlightHotelAdapter extends BaseAdapter {
        // holder.tvBargashtTime1.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightArrivalTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
        // holder.tvBargashtTime2.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime+" "+selectHotelModelArrayList.get(position).getFlights().get(1).FlightNumber);
 
-        holder.tvRaftTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationM + "دقیقه");
-        holder.tvBargashtTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationM + "دقیقه");
+//        holder.tvRaftTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationM + "دقیقه");
+//        holder.tvBargashtTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationM + "دقیقه");
 
 
         holder.tvAirLines.setText(selectHotelModelArrayList.get(position).getFlights().get(0).AirlineNameFa);

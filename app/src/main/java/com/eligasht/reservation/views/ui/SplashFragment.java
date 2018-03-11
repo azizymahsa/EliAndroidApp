@@ -172,6 +172,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
         lottieAnimationView.setAnimation("e-splash.json");
         lottieAnimationView.playAnimation();
         tvVer.setText(BuildConfig.VERSION_NAME);
+        Log.d(TAG, "onCreate: ");
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -181,13 +182,18 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
             @Override
             public void onAnimationEnd(Animator animation) {
 
+                Log.d(TAG, "onAnimationEnd: ");
 
-                new TedPermission(SplashFragment.this)
+                TedPermission.with(SplashFragment.this)
                         .setPermissionListener(new PermissionListener() {
                             @Override
                             public void onPermissionGranted() {
+
+                                Log.d(TAG, "onPermissionGranted: 1");
                                 req++;
+
                                 if (isConnect) {
+                                    Log.d(TAG, "onPermissionGranted: ");
                                     new GetCommentAsync().execute();
                                  /*   startActivity(new Intent(SplashFragment.this, CommentActivity.class));
                                     finish();*/
@@ -195,6 +201,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                                     internetAlert.isShow();
                                 }
                             }
+
 
                             @Override
                             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
@@ -204,6 +211,9 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         .setDeniedMessage("If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
                         .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)
                         .check();
+
+
+
 
 
             }
@@ -252,7 +262,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
         protected void onPreExecute() {
             internetAlert.isCancel();
-
+            Log.d(TAG, "onPreExecute: ");
             avi.setVisibility(View.VISIBLE);
             if (!Prefs.getString("loginId", "null").equals("null")) {
                 deviceId = null;
@@ -423,6 +433,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     @Override
     public void onConnectionChange(ConnectivityEvent event) {
         // device has active internet connection
+        Log.d(TAG, new Gson().toJson(event));
 
 
         try {

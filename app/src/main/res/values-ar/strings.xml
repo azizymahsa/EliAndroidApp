@@ -544,6 +544,1835 @@
     <string name="activation_link_has_been_sent_to_your_email"> The activation link has been sent to your email. </string>
     <string name="mail_or_pass_is_wrong"> Your email or password is incorrect. </string>
     <string name="email_address_is_not_valid"> The email entered is not valid </string>
+    <string-array name="nationality_codes">
+        <item>Iranian</item>
+        <item>French</item>
+        <item>Turkish</item>
+        <item>Korean</item>
+
+        <item>Indian</item>
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Algeria</item>
+
+        <item>American Samoa</item>
+        <item>Andorra</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+
+        <item>Antarctica</item>
+        <item>Antigua And Barbuda</item>
+        <item>Argentina</item>
+        <item>Armenia</item>
+
+        <item>Aruba</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Azerbaijan</item>
+
+        <item>Bahamas</item>
+        <item>Bahrain</item>
+        <item>Bangladesh</item>
+        <item>Barbados</item>
+
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Belize</item>
+        <item>Benin</item>
+
+        <item>Bermuda</item>
+        <item>Bhutan</item>
+        <item>Bolivia</item>
+        <item>Bosnia and Herzegovina</item>
+
+        <item>Botswana</item>
+        <item>Bouvet Island</item>
+        <item>Brazil</item>
+        <item>British Indian Ocean Territory</item>
+
+        <item>Brunei</item>
+        <item>Bulgaria</item>
+        <item>Burkina Faso</item>
+        <item>Burundi</item>
+
+        <item>Cambodia</item>
+        <item>Cameroon</item>
+        <item>Canada</item>
+        <item>Cape Verde</item>
+
+        <item>Cayman Islands</item>
+        <item>Central African Republic</item>
+        <item>Chad</item>
+        <item>Chile</item>
+
+        <item>China</item>
+        <item>Christmas Island</item>
+        <item>Cocos (Keeling) Islands</item>
+        <item>Colombia</item>
+
+        <item>Comoros</item>
+        <item>Congo</item>
+        <item>Congo, Democractic Republic</item>
+        <item>Cook Islands</item>
+
+        <item>Costa Rica</item>
+        <item>Cote D Ivoire (Ivory Coast)</item>
+        <item>Croatia (Hrvatska)</item>
+        <item>Cuba</item>
+
+        <item>Cyprus</item>
+        <item>Czech Republic</item>
+        <item>Denmark</item>
+        <item>Djibouti</item>
+
+        <item>Dominica</item>
+        <item>Dominican Republic</item>
+        <item>East Timor</item>
+        <item>Ecuador</item><!-- 68 -->
+
+        <item>Egypt</item>
+        <item>El Salvador</item>
+        <item>Equatorial Guinea</item>
+        <item>Eritrea</item>
+
+        <item>Estonia</item>
+        <item>Ethiopia</item>
+        <item>Falkland Islands (Islas Malvinas)</item>
+        <item>Faroe Islands</item>
+
+        <item>Fiji Islands</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>France, Metropolitan</item>
+
+        <item>French Guiana</item>
+        <item>French Polynesia</item>
+        <item>French Southern Territories</item>
+        <item>Gabon</item>
+
+        <item>Gambia, The</item>
+        <item>Georgia</item>
+        <item>Germany</item>
+        <item>Ghana</item>
+
+        <item>Gibraltar</item>
+        <item>Greece</item>
+        <item>Greenland</item>
+        <item>Grenada</item>
+
+        <item>Guadeloupe</item>
+        <item>Guam</item>
+        <item>Guatemala</item>
+        <item>Guernsey</item>
+
+        <item>Guinea</item>
+        <item>Guinea-Bissau</item>
+        <item>Guyana</item>
+        <item>Haiti</item>
+
+        <item>Heard and McDonald Islands</item>
+        <item>Honduras</item>
+        <item>Hong Kong S.A.R.</item>
+        <item>Hungary</item>
+
+        <item>Iceland</item>
+        <item>India</item>
+        <item>Indonesia</item>
+        <item>Iraq</item>
+
+        <item>Isle of Man</item>
+        <item>Ireland</item>
+        <item>Italy</item>
+        <item>Jamaica</item>
+
+        <item>Japan</item>
+        <item>Jersey</item>
+        <item>Jordan</item>
+        <item>Kazakhstan</item>
+
+        <item>Kenya</item>
+        <item>Kiribati</item>
+        <item>Korea</item>
+        <item>Kuwait</item>
+
+        <item>Kyrgyzstan</item>
+        <item>Laos</item>
+        <item>Latvia</item>
+        <item>Lebanon</item>
+
+        <item>Lesotho</item>
+        <item>Liberia</item>
+        <item>Libya</item>
+        <item>Liechtenstein</item>
+
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macau S.A.R.</item>
+        <item>Macedonia</item>
+
+        <item>Madagascar</item>
+        <item>Malawi</item>
+        <item>Malaysia</item>
+        <item>Maldives</item>
+
+        <item>Mali</item>
+        <item>Malta</item>
+        <item>Marshall Islands</item>
+        <item>Martinique</item>
+
+        <item>Mauritania</item>
+        <item>Mauritius</item>
+        <item>Mayotte</item>
+        <item>Mexico</item>
+
+        <item>Micronesia</item>
+        <item>Moldova</item>
+        <item>Monaco</item>
+        <item>Mongolia</item>
+
+        <item>Montenegro</item>
+        <item>Montserrat</item>
+        <item>Morocco</item>
+        <item>Mozambique</item>
+
+        <item>Myanmar</item>
+        <item>Namibia</item>
+        <item>Nauru</item>
+        <item>Nepal</item>
+
+        <item>Netherlands</item>
+        <item>Netherlands Antilles</item>
+        <item>New Caledonia</item>
+        <item>New Zealand</item>
+
+        <item>Nicaragua</item>
+        <item>Niger</item>
+        <item>Nigeria</item>
+        <item>Niue</item>
+
+        <item>Norfolk Island</item>
+        <item>Northern Mariana Islands</item>
+        <item>Norway</item>
+        <item>Oman</item>
+
+        <item>Pakistan</item>
+        <item>Palau</item>
+        <item>Palestinian Territory, Occupied</item>
+        <item>Panama</item>
+
+        <item>Papua new Guinea</item>
+        <item>Paraguay</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+
+        <item>Pitcairn Island</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Puerto Rico</item>
+
+        <item>Qatar</item>
+        <item>Reunion</item>
+        <item>Romania</item>
+        <item>Russia</item>
+
+        <item>Rwanda</item>
+        <item>Saint Helena</item>
+        <item>Saint Kitts And Nevis</item>
+        <item>Saint Lucia</item>
+
+        <item>Saint Pierre and Miquelon</item>
+        <item>Saint Vincent And The Grenadines</item>
+        <item>Samoa</item>
+        <item>San Marino</item>
+
+        <item>Sao Tome and Principe</item>
+        <item>Saudi Arabia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+
+        <item>Seychelles</item>
+        <item>Sierra Leone</item>
+        <item>Singapore</item>
+        <item>Sint Maarten</item>
+
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>Solomon Islands</item>
+        <item>Somalia</item>
+
+        <item>South Africa</item>
+        <item>South Georgia And The South Sandwich Islands</item>
+        <item>Spain</item>
+        <item>Sri Lanka</item>
+
+        <item>Sudan</item>
+        <item>Suriname</item>
+        <item>Svalbard And Jan Mayen Islands</item>
+        <item>Swaziland</item>
+
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Syria</item>
+        <item>Taiwan</item>
+
+        <item>Tajikistan</item>
+        <item>Tanzania</item>
+        <item>Thailand</item>
+        <item>Timor-Leste</item>
+
+        <item>Togo</item>
+        <item>Tokelau</item>
+        <item>Tonga</item>
+        <item>Trinidad And Tobago</item>
+
+        <item>Tunisia</item>
+        <item>Turkey</item>
+        <item>Turkmenistan</item>
+        <item>Turks And Caicos Islands</item>
+
+        <item>Tuvalu</item>
+        <item>Uganda</item>
+        <item>Ukraine</item>
+        <item>United Arab Emirates</item>
+
+        <item>United Kingdom</item>
+        <item>United States</item>
+        <item>United States Minor Outlying Islands</item>
+        <item>Uruguay</item>
+
+        <item>Uzbekistan</item>
+        <item>Vanuatu</item>
+        <item>Vatican City State (Holy See)</item>
+        <item>Venezuela</item>
+
+        <item>Vietnam</item>
+        <item>Virgin Islands (US)</item>
+        <item>Virgin Islands (British)</item>
+        <item>Wallis And Futuna Islands</item>
+
+        <item>WESTERN SAHARA</item>
+        <item>Yemen</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
+
+        <item>ALAND ISLANDS</item><!-- 249 -->
+        <item>ANTIGUA </item>
+        <item> BONAIRE, SINT EUSTATIUS AND SABA</item>
+        <item>BOSNIA </item>
+        <item> CARIBBEAN</item>
+        <item> CONGO.REPUBLIC OF</item>
+        <item> COTE D`IVOIRE(IVORY COAST)</item>
+        <item> CRIMEA</item>
+        <item> CROATIA</item>
+        <item> CURACAO</item>
+        <item> DEMOCRATIC REPUBLIC OF CONGO</item>
+        <item> DUBAI AIRPORT</item><!-- 260 -->
+
+        <item> FALKLAND ISLANDS(MALVINAS)</item>
+        <item>FIJI </item>
+        <item> GAMBIA</item>
+        <item> GRENADA /CARRICOU</item>
+        <item>HAWAII </item>
+        <item> HEARD ISLAND AND MCDONALD ISLANDS</item>
+        <item>HONG KONG </item>
+        <item> MACAU</item>
+        <item>MYANMAR-BURMA </item>
+        <item>NORTH KOREA </item><!-- 270 -->
+
+        <item> PALESTINIAN TERRITORY</item>
+        <item> REPUBLIC OF IRELAND</item>
+        <item> REPUBLIC OF PALAU</item>
+        <item> SAINT BARTHELEMY</item>
+        <item> SAINT MARTIN (FRENCH PART)</item>
+        <item> SINT MAARTEN (DUTCH PART)</item>
+        <item> SOUTH GEORGIA AND THE SOUTH SANDWICH ISL</item>
+        <item> SOUTH KOREA</item>
+        <item> SOUTH SUDAN</item>
+        <item> ST LUCIA</item><!-- 280 -->
+
+        <item> SVALBARD AND JAN MAYEN</item>
+        <item> TASMANIA</item>
+        <item> TIMOR LESTE</item>
+        <item> TOKELAU ISLANDS</item>
+        <item> TURKS / CAICOS</item>
+        <item> U S A</item>
+        <item> U.S. VIRGIN ISLANDS</item>
+        <item> WEST BANK</item>
+        <item> </item><!-- 289 -->
+    </string-array>
+    <string-array name="nationality_names">
+        <item>ایرانی</item>
+        <item>فرانسوی</item>
+        <item>ترکیه ای</item>
+        <item>کره ای</item>
+
+        <item>هندی</item>
+        <item>افغانستانی</item>
+        <item>آلبانیایی</item>
+        <item>الجزایری</item>
+
+        <item>ساموآ آمریکایی</item>
+        <item>آندورایی</item>
+        <item>آنگولایی</item>
+        <item>آنگویلایی</item>
+
+        <item>قطب جنوبی</item>
+        <item>آنتیگوا و باربودایی</item>
+        <item>آرژانتینی</item>
+        <item>ارمنستانی</item>
+
+        <item>آروبایی</item>
+        <item>استرالیایی</item>
+        <item>اتریشی</item>
+        <item>آذربایجانی</item>
+
+        <item>باهامایی</item>
+        <item>بحرینی</item>
+        <item>بنگلادشی</item>
+        <item>باربادوسی</item>
+
+        <item>بلاروسی</item>
+        <item>بلژیکی</item>
+        <item>بلیزی</item>
+        <item>بنینی</item>
+
+        <item>برمودایی</item>
+        <item>بوتانی</item>
+        <item>بولیوی</item>
+        <item>بوسنی و هرزگوینی</item>
+
+        <item>بوتسوانایی</item>
+        <item>جزیره بووه</item>
+        <item>برزیلی</item>
+        <item>مستعمرات انگلیسی اقیانوس هند</item>
+
+        <item>برونئی</item>
+        <item>بلغارستانی</item>
+        <item>بورکینا فاسویی</item>
+        <item>بروندی</item>
+
+        <item>کامبوجی</item>
+        <item>کامرونی</item>
+        <item>کانادایی</item>
+        <item>کیپ وردی</item>
+
+        <item>جزایر کیمن</item>
+        <item>جمهوری آفریقای مرکزی</item>
+        <item>چادی</item>
+        <item>شیلی</item>
+
+        <item>چینی</item>
+        <item>جزیره کریسمس</item>
+        <item>جزایر کوکوس</item>
+        <item>کلمبیایی</item>
+
+        <item>کوموری</item>
+        <item>کنگویی</item>
+        <item>کنگویی</item>
+        <item>جزایر کوک</item>
+
+        <item>کاستاریکایی</item>
+        <item>ساحل عاجی</item>
+        <item>کرواسییی</item>
+        <item>کوبایی</item>
+
+        <item>قبرسی</item>
+        <item>جمهوری چک</item>
+        <item>دانمارکی</item>
+        <item>جیبوتی</item>
+
+        <item>دومینیکایی</item>
+        <item>جمهوری دومینیکن</item>
+        <item>تیمور شرق</item>
+        <item>اکوادوری</item><!-- 68 -->
+
+        <item>مصری</item>
+        <item>سالوادوری</item>
+        <item>گینه استوایی</item>
+        <item>اریتره</item>
+
+        <item>استونی</item>
+        <item>اتیوپی</item>
+        <item>جزایر فالکلند ( مالویناس )</item>
+        <item>جزایر فارو</item>
+
+        <item>جزایر فیجی</item>
+        <item>فنلاند</item>
+        <item>فرانسوی</item>
+        <item>فرانسه، متروپولیتنی</item>
+
+        <item>گویان فرانسوی</item>
+        <item>پلینزی فرانسه</item>
+        <item>سرزمین های جنوبی فرانسه</item>
+        <item>گابنی</item>
+
+        <item>گامبیایی</item>
+        <item>گرجستانی</item>
+        <item>آلمانی</item>
+        <item>غنایی</item>
+
+        <item>جبل الطارقی</item>
+        <item>یونانی</item>
+        <item>گرینلندی</item>
+        <item>گرانادایی</item>
+
+        <item>جزیره گوادلوپی</item>
+        <item>گوامی</item>
+        <item>گواتمالایی</item>
+        <item>گورنسی</item>
+
+        <item>گینوی</item>
+        <item>گینه بیسائویی</item>
+        <item>گویانی</item>
+        <item>هائیتی</item>
+
+        <item>هرد و جزایر مک دونالد</item>
+        <item>هندوراسی</item>
+        <item>هنگ کنگی</item>
+        <item>مجارستانی</item>
+
+        <item>ایسلندی</item>
+        <item>هندوستانی</item>
+        <item>اندونزی</item>
+        <item>عراقی</item>
+
+        <item>جزیره من</item>
+        <item>ایرلندی</item>
+        <item>ایتالیایی</item>
+        <item>جامائیکایی</item>
+
+        <item>ژاپنی</item>
+        <item>جرسی</item>
+        <item>اردنی</item>
+        <item>قزاقستانی</item>
+
+        <item>کنیایی</item>
+        <item>کیریباتی</item>
+        <item>کروی</item>
+        <item>کره شمالی</item>
+
+        <item>کویتی</item>
+        <item>قرقیزستانی</item>
+        <item>لائوسی</item>
+        <item>لتونی</item>
+
+        <item>لبنانی</item>
+        <item>لسوتویی</item>
+        <item>لیبریایی</item>
+        <item>لیبییی</item>
+
+        <item>لیختن اشتاینی</item>
+        <item>لیتوانی</item>
+        <item>لوکزامبورگی</item>
+        <item>ماکائویی</item>
+
+        <item>مقدونیوی</item>
+        <item>جزیره مالاگازی</item>
+        <item>مالاوی</item>
+        <item>مالزی</item>
+
+        <item>مالدیوی</item>
+        <item>مالی</item>
+        <item>مالتی</item>
+        <item>جزایر مارشالی</item>
+
+        <item>مارتینیکی</item>
+        <item>موریتانی</item>
+        <item>موریسی</item>
+        <item>مایوتی</item>
+
+        <item>مکزیکی</item>
+        <item>میکرونزی</item>
+        <item>مولداوی</item>
+        <item>موناکویی</item>
+
+        <item>مغولستانی</item>
+        <item>مونته نگرویی</item>
+        <item>مونتسراتی</item>
+        <item>مراکشی</item>
+
+        <item>موزامبیکی</item>
+        <item>میانماری</item>
+        <item>نامیبیایی</item>
+        <item>نائورویی</item>
+
+        <item>نپالی</item>
+        <item>هلندی</item>
+        <item>آنتیل هلند</item>
+        <item>کالدونیاوی</item>
+
+        <item>نیوزیلندی</item>
+        <item>نیکاراگوئوی</item>
+        <item>نیجری</item>
+        <item>نیجریه ای</item>
+
+        <item>نیوئوی</item>
+        <item>جزیره نورفولکی</item>
+        <item>جزایر ماریانای شمالی</item>
+        <item>نروژی</item>
+
+        <item>عمانی</item>
+        <item>پاکستانی</item>
+        <item>پالائوی</item>
+        <item>فلسطینی</item>
+
+        <item>پانامایی</item>
+        <item>پاپوآ گینوی</item>
+        <item>پاراگوئوی</item>
+        <item>پرویی</item>
+
+        <item>فیلیپینی</item>
+        <item>جزیره پیتکرن</item>
+        <item>لهستانی</item>
+        <item>پرتغالی</item>
+
+        <item>پورتوریکویی</item>
+        <item>قطری</item>
+        <item>ریونیونی</item>
+        <item>رومانی</item>
+
+        <item>روسی</item>
+        <item>رواندایی</item>
+        <item>جزیره سنت هلن</item>
+        <item>سنت کیتس و نویس</item>
+
+        <item>سنت لوسیایی</item>
+        <item>سنت پیر و میکلون</item>
+        <item>سنت وینسنت و گرنادین</item>
+        <item>ساموآیی</item>
+
+        <item>سان مارینویی</item>
+        <item>سائوتومه و پرنسیپ</item>
+        <item>عربستان سعودی</item>
+        <item>سنگالی</item>
+
+        <item>صربستانی</item>
+        <item>سیشلی</item>
+        <item>سیرالئونی</item>
+        <item>سنگاپوری</item>
+
+        <item>سنت مارتنی</item>
+        <item>اسلواکی</item>
+        <item>اسلوونی</item>
+        <item>جزایر سلیمانی</item>
+
+        <item>سومالی</item>
+        <item>آفریقای جنوبی</item>
+        <item>South Georgia And The South Sandwich Islands</item>
+        <item>اسپانیایی</item>
+
+        <item>سری لانکایی</item>
+        <item>سودانی</item>
+        <item>سورینامی</item>
+        <item>سوالبارد و ماینی</item>
+
+        <item>سوازیلندی</item>
+        <item>سوئدی</item>
+        <item>سویسی</item>
+        <item>سوریوی</item>
+
+        <item>تایوانی</item>
+        <item>تاجیکستانی</item>
+        <item>تانزانیایی</item>
+        <item>تایلندی</item>
+
+        <item>تیمور شرقی</item>
+        <item>توگویی</item>
+        <item>توکلائویی</item>
+        <item>تونگایی</item>
+
+        <item>ترینیداد و توباگویی</item>
+        <item>تونسی</item>
+        <item>ترکیه ای</item>
+        <item>ترکمنی</item>
+
+        <item>ترکس و کیاکوسی</item>
+        <item>تووالویی</item>
+        <item>اوگاندایی</item>
+        <item>اوکراینی</item>
+
+        <item>عربی</item>
+        <item>انگلستانی</item>
+        <item>آمریکایی</item>
+        <item>United States Minor Outlying Islands</item>
+
+        <item>اروگوئوی</item>
+        <item>ازبکستانی</item>
+        <item>وانواتویی</item>
+        <item>واتیکانی</item>
+
+        <item>ونزوئلایی</item>
+        <item>ویتنامی</item>
+        <item>ویرجینی</item>
+        <item>ویرجینی</item>
+
+        <item>والیس و فوتونایی</item>
+        <item>صحرای غربی</item>
+        <item>یمنی</item>
+        <item>زامبیایی</item>
+
+        <item>زیمبابوه ای</item><!-- 249 -->
+        <item> آلاندی</item>
+        <item> آنتیگوآیی</item>
+        <item>BONAIRE, SINT EUSTATIUS AND SABA </item>
+        <item> بوسنی</item>
+        <item> کارائیب</item>
+        <item>کنگویی </item>
+        <item>عاجی </item>
+        <item>کریمه ای </item>
+        <item> کرواسی</item>
+        <item>کوراسائو </item>
+        <item> کنگویی</item><!-- 260 -->
+
+        <item> دوبی</item>
+        <item>فالکلندی </item>
+        <item> فیجی</item>
+        <item>گامبیایی </item>
+        <item>گرانادایی </item>
+        <item>HAWAII </item>
+        <item> مک دونالدی</item>
+        <item> هنگ کنگی</item>
+        <item> ماکائویی</item>
+        <item> میانماری</item><!-- 270 -->
+
+        <item> کره شمالی</item>
+        <item> فلسطینی</item>
+        <item> ایرلندی</item>
+        <item> پالائویی</item>
+        <item>سنت بارتلمی </item>
+        <item> سنت مارتینی</item>
+        <item> SINT MAARTEN (DUTCH PART)</item>
+        <item> SOUTH GEORGIA AND THE SOUTH SANDWICH ISL</item>
+        <item> کره جنوبی</item>
+        <item> سودانی</item><!-- 280 -->
+
+        <item>ST LUCIA </item>
+        <item>سوالبارد و یان ماینی </item>
+        <item> تاسمانی</item>
+        <item>تیمور شرقی </item>
+        <item> توکلائویی</item>
+        <item> کیکو یی</item>
+        <item> آمریکایی</item>
+        <item>ویرجینی </item>
+        <item> وست بانک</item><!-- 289 -->
+    </string-array>
+    <string-array name="country_codes">
+        <item>IR</item>
+        <item>FR</item>
+        <item>TR</item>
+        <item>CR</item>
+
+        <item>IN</item>
+        <item>AF</item>
+        <item>AL</item>
+        <item>DZ</item>
+
+        <item>AS</item>
+        <item>AD</item>
+        <item>AO</item>
+        <item>AI</item>
+
+        <item>AQ</item>
+        <item>AG</item>
+        <item>AR</item>
+        <item>AM</item>
+
+        <item>AW</item>
+        <item>AU</item>
+        <item>AT</item>
+        <item>AZ</item>
+
+        <item>BS</item>
+        <item>BH</item>
+        <item>BD</item>
+        <item>BB</item>
+
+        <item>BY</item>
+        <item>BE</item>
+        <item>BZ</item>
+        <item>BJ</item>
+
+        <item>BM</item>
+        <item>BT</item>
+        <item>BO</item>
+        <item>BA</item>
+
+        <item>BW</item>
+        <item>BV</item>
+        <item>BR</item>
+        <item>IO</item>
+
+        <item>BN</item>
+        <item>BG</item>
+        <item>BF</item>
+        <item>BI</item>
+
+        <item>KH</item>
+        <item>CM</item>
+        <item>CA</item>
+        <item>CV</item>
+
+        <item>KY</item>
+        <item>CF</item>
+        <item>TD</item>
+        <item>CL</item>
+
+        <item>CN</item>
+        <item>CX</item>
+        <item>CC</item>
+        <item>CO</item>
+
+        <item>KM</item>
+        <item>CG</item>
+        <item>CD</item>
+        <item>CK</item>
+
+        <item>CR</item>
+        <item>CI</item>
+        <item>HR</item>
+        <item>CU</item>
+
+        <item>CY</item>
+        <item>CZ</item>
+        <item>DK</item>
+        <item>DJ</item>
+
+        <item>DM</item>
+        <item>DO</item>
+        <item>TP</item>
+        <item>EC</item><!-- 68 -->
+
+        <item>EG</item>
+        <item>SV</item>
+        <item>GQ</item>
+        <item>ER</item>
+
+        <item>8EE</item>
+        <item>ET</item>
+        <item>FK</item>
+        <item>FO</item>
+
+        <item>FJ</item>
+        <item>FI</item>
+        <item>FR</item>
+        <item>FX</item>
+
+        <item>GF</item>
+        <item>PF</item>
+        <item>TF</item>
+        <item>GA</item>
+
+        <item>GM</item>
+        <item>GE</item>
+        <item>DE</item>
+        <item>GH</item>
+
+        <item>GI</item>
+        <item>GR</item>
+        <item>GL</item>
+        <item>GD</item>
+
+        <item>GP</item>
+        <item>GU</item>
+        <item>GT</item>
+        <item>GG</item>
+
+        <item>GN</item>
+        <item>GW</item>
+        <item>GY</item>
+        <item>HT</item>
+
+        <item>HM</item>
+        <item>HN</item>
+        <item>HK</item>
+        <item>HU</item>
+
+        <item>IS</item>
+        <item>IN</item>
+        <item>ID</item>
+        <item>IQ</item>
+
+        <item>IM</item>
+        <item>IE</item>
+        <item>IT</item>
+        <item>JM</item>
+
+        <item>JP</item>
+        <item>JE</item>
+        <item>JO</item>
+        <item>KZ</item>
+
+        <item>KE</item>
+        <item>KI</item>
+        <item>KR</item>
+        <item>KP</item>
+
+        <item>KW</item>
+        <item>KG</item>
+        <item>LA</item>
+        <item>LV</item>
+
+        <item>LB</item>
+        <item>LS</item>
+        <item>LR</item>
+        <item>LY</item>
+
+        <item>LI</item>
+        <item>LT</item>
+        <item>LU</item>
+        <item>MO</item>
+
+        <item>MK</item>
+        <item>MG</item>
+        <item>MW</item>
+        <item>MY</item>
+
+        <item>MV</item>
+        <item>ML</item>
+        <item>MT</item>
+        <item>MH</item>
+
+        <item>MQ</item>
+        <item>MR</item>
+        <item>MU</item>
+        <item>YT</item>
+
+        <item>MX</item>
+        <item>FM</item>
+        <item>MD</item>
+        <item>MC</item>
+
+        <item>MN</item>
+        <item>ME</item>
+        <item>MS</item>
+        <item>MA</item>
+
+        <item>MZ</item>
+        <item>MM</item>
+        <item>NA</item>
+        <item>NR</item>
+
+        <item>NP</item>
+        <item>NL</item>
+        <item>AN</item>
+        <item>NC</item>
+
+        <item>NZ</item>
+        <item>NI</item>
+        <item>NE</item>
+        <item>NG</item>
+
+        <item>NU</item>
+        <item>NF</item>
+        <item>MP</item>
+        <item>NO</item>
+
+        <item>OM</item>
+        <item>PK</item>
+        <item>PW</item>
+        <item>PS</item>
+
+        <item>PA</item>
+        <item>PG</item>
+        <item>PY</item>
+        <item>PE</item>
+
+        <item>PH</item>
+        <item>PN</item>
+        <item>PL</item>
+        <item>PT</item>
+
+        <item>PR</item>
+        <item>QA</item>
+        <item>RE</item>
+        <item>RO</item>
+
+        <item>RU</item>
+        <item>RW</item>
+        <item>SH</item>
+        <item>KN</item>
+
+        <item>LC</item>
+        <item>PM</item>
+        <item>VC</item>
+        <item>WS</item>
+
+        <item>SM</item>
+        <item>ST</item>
+        <item>SA</item>
+        <item>SN</item>
+
+        <item>RS</item>
+        <item>SC</item>
+        <item>SL</item>
+        <item>SG</item>
+
+        <item>SX</item>
+        <item>SK</item>
+        <item>SI</item>
+        <item>SB</item>
+
+        <item>SO</item>
+        <item>ZA</item>
+        <item>GS</item>
+        <item>ES</item>
+
+        <item>LK</item>
+        <item>SD</item>
+        <item>SR</item>
+        <item>SJ</item>
+
+        <item>SZ</item>
+        <item>SE</item>
+        <item>CH</item>
+        <item>SY</item>
+
+        <item>TW</item>
+        <item>TJ</item>
+        <item>TZ</item>
+        <item>TH</item>
+
+        <item>TL</item>
+        <item>TG</item>
+        <item>TK</item>
+        <item>TO</item>
+
+        <item>TT</item>
+        <item>TN</item>
+        <item>TR</item>
+        <item>TM</item>
+
+        <item>TC</item>
+        <item>TV</item>
+        <item>UG</item>
+        <item>UA</item>
+
+        <item>AE</item>
+        <item>GB</item>
+        <item>US</item>
+        <item>UM</item>
+
+        <item>UY</item>
+        <item>UZ</item>
+        <item>VU</item>
+        <item>VA</item>
+
+        <item>VE</item>
+        <item>VN</item>
+        <item>VI</item>
+        <item>VG</item>
+
+        <item>WF</item>
+        <item>EH</item>
+        <item>YE</item>
+        <item>ZM</item>
+
+        <item>ZW</item><!-- 249 -->
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item><!-- 260 -->
+
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item><!-- 270 -->
+
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item><!-- 280 -->
+
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+        <item> </item><!-- 289 -->
+    </string-array>
+    <string-array name="country_names">
+        <item>ایران</item>
+        <item>فرانسه</item>
+        <item>ترکیه</item>
+        <item>کره</item>
+
+        <item>هند</item>
+        <item>افغانستان</item>
+        <item>آلبانی</item>
+        <item>الجزایر</item>
+
+        <item>ساموآ آمریکا</item>
+        <item>آندورا</item>
+        <item>آنگولا</item>
+        <item>آنگویلا</item>
+
+        <item>قطب جنوب</item>
+        <item>آنتیگوا و باربودا</item>
+        <item>آرژانتین</item>
+        <item>ارمنستان</item>
+
+        <item>آروبا</item>
+        <item>استرالیا</item>
+        <item>اتریش</item>
+        <item>آذربایجان</item>
+
+        <item>باهاما</item>
+        <item>بحرین</item>
+        <item>بنگلادش</item>
+        <item>باربادوس</item>
+
+        <item>بلاروس</item>
+        <item>بلژیک</item>
+        <item>بلیز</item>
+        <item>بنین</item>
+
+        <item>برمودا</item>
+        <item>بوتان</item>
+        <item>بولیوی</item>
+        <item>بوسنی و هرزگوین</item>
+
+        <item>بوتسوانا</item>
+        <item>جزیره بووه</item>
+        <item>برزیل</item>
+        <item>مستعمرات انگلیسی اقیانوس هند</item>
+
+        <item>برونئی</item>
+        <item>بلغارستان</item>
+        <item>بورکینا فاسو</item>
+        <item>بروندی</item>
+
+        <item>کامبوج</item>
+        <item>کامرون</item>
+        <item>کانادا</item>
+        <item>کیپ ورد</item>
+
+        <item>جزایر کیمن</item>
+        <item>جمهوری آفریقای مرکزی</item>
+        <item>چاد</item>
+        <item>شیلی</item>
+
+        <item>چین</item>
+        <item>جزیره کریسمس</item>
+        <item>جزایر کوکوس</item>
+        <item>کلمبیا</item>
+
+        <item>کومور</item>
+        <item>کنگو</item>
+        <item> کنگو، دمکراتیک جمهوری</item>
+        <item> جزایر کوک</item>
+
+        <item>کاستاریکا</item>
+        <item>ساحل عاج ( ساحل عاج )</item>
+        <item> کرواسی</item>
+        <item> کوبا</item>
+
+        <item>قبرس</item>
+        <item>جمهوری چک</item>
+        <item> دانمارک</item>
+        <item> جیبوتی</item>
+
+        <item>دومینیکایی</item>
+        <item>جمهوری دومینیکن</item>
+        <item>تیمور شرق</item>
+        <item>اکوادور</item><!-- 68 -->
+
+        <item>مصر</item>
+        <item>سالوادور</item>
+        <item>گینه استوایی</item>
+        <item>اریتره</item>
+
+        <item>استونی</item>
+        <item>اتیوپی</item>
+        <item>جزایر فالکلند ( مالویناس )</item>
+        <item>جزایر فارو</item>76
+
+        <item>جزایر فارو</item>
+        <item>جزایر فیجی</item>
+        <item>فنلاند</item>
+        <item>فرانسه</item>
+
+        <item>فرانسه، متروپولیتن</item>
+        <item>گویان فرانسو</item>
+        <item>پلینزی فرانسه</item>
+        <item>سرزمین های جنوبی فرانسه</item>
+
+        <item>گابن</item>
+        <item>گامبیا</item>
+        <item>گرجستان</item>
+        <item>آلمان</item>
+
+        <item>غنا</item>
+        <item>جبل الطارق</item>
+        <item>یونان</item>
+        <item>گرینلند</item>
+
+        <item>گرانادا</item>
+        <item>جزیره گوادلوپ</item>
+        <item>گوام</item>
+        <item>گواتمالا</item>
+
+        <item>گورنسی</item>
+        <item>گینه</item>
+        <item>گینه بیسائو</item>
+        <item>گویان</item>
+
+        <item>هائیتی</item>
+        <item>هرد و جزایر مک دونالد</item>
+        <item>هندوراس</item>
+        <item>هنگ کنگ S.A.R.</item>
+
+        <item>مجارستان</item>
+        <item>ایسلند</item>
+        <item>هندوستان</item>
+        <item>اندونزی</item>
+
+        <item>عراق</item>
+        <item>جزیره من</item>
+        <item>ایرلند</item>
+        <item>ایتالیا</item>
+
+        <item>جامائیکا</item>
+        <item>ژاپن</item>
+        <item>جرسی</item>
+        <item>اردن</item>
+
+        <item>قزاقستان</item>
+        <item>کنیا</item>
+        <item>کیریباتی</item>
+        <item>کره</item>
+
+        <item>کره شمالی</item>
+        <item>کویت</item>
+        <item>قرقیزستان</item>
+        <item>لائوس</item>
+
+        <item>لتونی</item>
+        <item>لبنان</item>
+        <item>لسوتو</item>
+        <item>لیبریا</item>
+
+        <item>لیبی</item>
+        <item>لیختن اشتاین</item>
+        <item>لیتوانی</item>
+        <item>لوکزامبورگ</item>
+
+        <item>ماکائو S.A.R.</item>
+        <item>مقدونیه</item>
+        <item>جزیره مالاگازی</item>
+        <item>مالاوی</item>
+
+        <item>مالزی</item>
+        <item>مالدیو</item>
+        <item>مالی</item>
+        <item>مالت</item>
+
+        <item>جزایر مارشال</item>
+        <item>مارتینیک</item>
+        <item>موریتانی</item>
+        <item>موریس</item>
+
+        <item>مایوت</item>
+        <item>مکزیک</item>
+        <item>میکرونزی</item>
+        <item>مولداوی</item>
+
+        <item>موناکو</item>
+        <item>مغولستان</item>
+        <item>مونته نگرو</item>
+        <item>مونتسرات</item>
+
+        <item>مراکش</item>
+        <item>موزامبیک</item>
+        <item>میانمار</item>
+        <item>نامیبیا</item>
+
+        <item>نائورو</item>
+        <item>نپال</item>
+        <item>هلند</item>
+        <item>آنتیل هلند</item>
+
+        <item>کالدونیای جدید</item>
+        <item>نیوزیلند</item>
+        <item>نیکاراگوئه</item>
+        <item>نیجر</item>
+
+        <item>نیجریه</item>
+        <item>نیوئه</item>
+        <item>جزیره نورفولک</item>
+        <item>جزایر ماریانای شمالی</item>
+
+        <item>نروژ</item>
+        <item>عمان</item>
+        <item>پاکستان</item>
+        <item>پالائو</item>
+
+        <item>فلسطین</item>
+        <item>پاناما</item>
+        <item>پاپوآ گینه جدید</item>
+        <item>پاراگوئه</item>
+
+        <item>پرو</item>
+        <item>فیلیپین</item>
+        <item>جزیره پیتکرن</item>
+        <item>لهستان</item>
+
+        <item>پرتغال</item>
+        <item>پورتوریکو</item>
+        <item>قطر</item>
+        <item>ریونیون</item>
+
+        <item>رومانی</item>
+        <item>روسیه</item>
+        <item>رواندا</item>
+        <item>جزیره سنت هلن </item>
+
+        <item>سنت کیتس و نویس</item>
+        <item>سنت لوسیا</item>
+        <item>سنت پیر و میکلون</item>
+        <item>سنت وینسنت و گرنادین</item>
+
+        <item>ساموآ</item>
+        <item>سان مارینو</item>
+        <item>سائوتومه و پرنسیپ</item>
+        <item>عربستان سعودی</item>
+
+        <item>سنگال</item>
+        <item>صربستان</item>
+        <item>سیشل</item>
+        <item>سیرالئون</item>
+
+        <item>سنگاپور</item>
+        <item>سنت مارتن</item>
+        <item>اسلواکی</item>
+        <item>اسلوونی</item>
+
+        <item>جزایر سلیمان</item>
+        <item>سومالی</item>
+        <item>آفریقای جنوبی</item>
+        <item>جورجیای جنوبی و جزایر ساندویچ جنوبی</item>
+
+        <item>اسپانیا</item>
+        <item>سری لانکا</item>
+        <item>سودان</item>
+        <item>سورینام</item>
+
+        <item>سوالبارد و ماین</item>
+        <item>سوازیلند</item>
+        <item>سوئد</item>
+        <item>سویس</item>
+
+        <item>سوریه</item>
+        <item>تایوان</item>
+        <item>تاجیکستان</item>
+        <item>تانزانیا</item>
+
+        <item>تایلند</item>
+        <item>تیمور شرق</item>
+        <item>توگو</item>
+        <item>توکلائو</item>
+
+        <item>تونگا</item>
+        <item>ترینیداد و توباگو</item>
+        <item>تونس</item>
+        <item>ترکیه</item>
+
+        <item>ترکمنستان</item>
+        <item>جزایر ترکس و کیاکوس</item>
+        <item>تووالو</item>
+        <item>اوگاندا</item>
+
+        <item>اوکراین</item>
+        <item>امارات متحده عربی</item>
+        <item>انگلستان</item>
+        <item>ایالات متحده</item>
+
+        <item>ایالات متحده جزایر کوچک حاشیهای</item>
+        <item>اروگوئه</item>
+        <item>ازبکستان</item>
+        <item>وانواتو</item>
+
+        <item>دولت شهر واتیکان ( مقدس )</item>
+        <item>ونزوئلا</item>
+        <item>ویتنام</item>
+        <item>جزایر ویرجین ( ایالات متحده )</item>
+
+        <item>جزایر ویرجین ( بریتانیا )</item>
+        <item>والیس و فوتونا</item>
+        <item>صحرای غربی</item>
+        <item>یمن</item>
+
+        <item>زامبیا</item>
+        <item>زیمبابوه</item>
+        <item>آلاند جزایر</item>
+        <item>آنتیگوآ</item>
+
+        <item>بونیر، سینت یوستیشس و صبا</item>
+        <item>بوسنی</item>
+        <item>کارائیب</item>
+        <item>جمهوری کنگو</item>
+
+        <item>ساحل عاج</item>
+        <item>کریمه</item>
+        <item>کرواسی</item>
+        <item>کوراسائو</item>
+
+        <item>جمهوری دموکراتیک کنگو</item>
+        <item>فرودگاه دوبی</item>
+        <item>جزایر فالکلند ( مالویناس )</item>
+        <item>فیجی</item>
+
+        <item>گامبیا</item>
+        <item>گرانادا</item>
+        <item>HAWAII</item>
+        <item>جزیره هرد و جزایر مک دونالد</item>
+
+        <item>هنگ کنگ</item>
+        <item>ماکائو</item>
+        <item>میانمار</item>
+        <item>کره شمالی</item>
+
+        <item>فلسطین</item>
+        <item>جمهوری ایرلند</item>
+        <item>پالائو</item>
+        <item>سنت بارتلمی</item>
+
+        <item>سنت مارتین</item>
+        <item>سنت مارتن ( بخش هلندی)</item>
+        <item>جورجیای جنوبی و ساندویچ جنوبی ISL</item>
+        <item> کره جنوبی</item>
+
+        <item>سودان جنوبی </item>
+        <item>ST LUCIA</item>
+        <item>سوالبارد و یان ماینی</item>
+        <item> تاسمانی</item>
+
+        <item> تیمور شرقی</item>
+        <item>توکلائو جزایر</item>
+        <item>ترکهای / کیکو</item>
+        <item> ایالات متحده آمریکا</item>
+
+        <item> ایالات متحده جزایر ویرجین</item>
+        <item>WEST BANK</item>
+
+    </string-array>
+    <string name="no_results_found">No Results Found</string>
+    <string name="icon_menu">&#xe901;</string>
+    <string name="icon_bed">&#xe900;</string>
+    <string name="icon_location">&#xe90b;</string>
+    <string name="icon_location2">&#xe90b;</string>
+    <string name="icon_info">&#xe906;</string>
+    <string name="icon_pin">&#xe907;</string>
+    <string name="icon_filter">&#xe90c;</string>
+    <string name="icon_sort">&#xf160;</string>
+    <string name="icon_arrow_left">&#xe314;</string>
+    <string name="icon_arrow_right">&#xe315;</string>
+    <string name="icon_user">&#xf2c0;</string>
+    <string name="icon_user_login">&#xe618;</string>
+    <string name="icon_pass_login">&#xe619;</string>
+    <string name="icon_forget_login">&#xe612;</string>
+    <string name="icon_check">&#xe5ca;</string>
+
+    <string name="icon_calander">&#xe908;</string>
+    <string name="icon_plane">&#xe622;</string>
+    <string name="arrow_left">&#xea40;</string>
+
+    <string name="icon_exp_up">&#xe801;</string>
+    <string name="icon_exp_down">&#xe800;</string>
+
+
+    <string name="icon_like">&#xe914;</string>
+    <string name="icon_dislike">&#xe915;</string>
+    <string name="icon_message">&#xe049;</string>
+
+    <string name="mines">&#xe892;</string>
+    <string name="plus">&#xe891;</string>
+
+    <!--nejati-->
+    <string name="aboutus">&#xe609;</string>
+    <string name="bigplane">&#xe610;</string>
+    <string name="contactus">&#xe611;</string>
+    <string name="hotel">&#xe613;</string>
+    <string name="insurance">&#xe614;</string>
+    <string name="packages">&#xe615;</string>
+    <string name="terms">&#xe616;</string>
+    <string name="tour">&#xe617;</string>
+    <string name="userlogin">&#xe618;</string>
+    <string name="icon_arrow_up">&#xe316;</string>
+    <string name="icon_arrow_down">&#xe313;</string>
+    <string name="contract">&#xe620;</string>
+    <string name="contract_num">&#xe623;</string>
+    <string name="contract_email">&#xe625;</string>
+    <string name="train">&#xe621;</string>
+    <string name="ok">&#xe640;</string>
+    <string name="cancel">&#xe641;</string>
+    <string name="nowifi">&#xe917;</string>
+    <string name="transfer">&#xe918;</string>
+    <string name="plane">&#xe919;</string>
+    <string name="dot">&#xf052;</string>
+    <string name="setting">&#xe637;</string>
+    <string-array name="country_flags">
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 17 ta 4 =68-->
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 30 -->
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 44-->
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 50-->
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 60-->
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 64-->
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item>
+        <item>@drawable/ir</item><!-- 72 ta 4tayi -->
+
+        <item>@drawable/ir</item><!-- 289-->
+    </string-array>
 
 
 </resources>

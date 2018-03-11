@@ -6,6 +6,7 @@ import com.zplesac.connectionbuddy.models.ConnectivityEvent;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 /**
  * Created by Željko Plesac on 21/02/16.
@@ -42,6 +43,7 @@ public class ConnectionBuddyActivity extends Activity implements ConnectivityCha
      */
     @Override
     public void onConnectionChange(ConnectivityEvent event) {
+
 
     }
 }
