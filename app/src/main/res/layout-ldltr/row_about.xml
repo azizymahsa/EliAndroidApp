@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,9 +31,10 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:padding="@dimen/_12dp"
-
-            android:text="fish name"
-            android:textColor="#000000" />
+            android:gravity="left"
+            android:text=""
+            android:textColor="#000000"
+            android:visibility="gone"/>
 
         <com.eligasht.reservation.tools.JustifiedTextView
             android:id="@+id/txtDescription"
@@ -40,14 +42,44 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-
+            android:gravity="left"
             android:padding="@dimen/_12dp"
-            android:text="TextView"
-
+            android:text=""
+android:visibility="gone"
 
             />
+        <TextView
+            android:id="@+id/txtSectionNameEn"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:padding="@dimen/_12dp"
+            android:gravity="center"
+            android:layout_gravity="center_vertical|center"
+            android:text="fish name"
+            android:textColor="#000000"
+            android:textSize="@dimen/_15dp_normal_textSize"/>
+
+        <!--<TextView
+            android:id="@+id/txtDescriptionEn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center_vertical|center"
+            android:padding="@dimen/_12dp"
+            android:text="TextView"
+            android:justificationMode="inter_word"
 
 
+            />-->
+        <WebView
+            android:id="@+id/txtDescriptionEn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            tools:ignore="WebViewLayout" />
     </LinearLayout>
 
 
