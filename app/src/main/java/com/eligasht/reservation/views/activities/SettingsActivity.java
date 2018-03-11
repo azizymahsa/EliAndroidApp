@@ -30,6 +30,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private View dialogOpener;
     String[] countryNames={"ایران","England","Turkey"};
     int flags[] = {R.drawable.iran, R.drawable.united_kingdom, R.drawable.turkey};
+    Spinner languageSpinner,curencySpinner,officeSpinner;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +38,15 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         InitUi.Toolbar(this, false, R.color.toolbar_color, getResources().getString(R.string.settings));
         dialogOpener = findViewById(R.id.dialog_opener);
         dialogOpener.setOnClickListener(this);
-        Spinner spin = (Spinner) findViewById(R.id.simpleSpinner);
-  spin.setOnItemSelectedListener(this);
+        curencySpinner = findViewById(R.id.languageSpinner);
+        languageSpinner = findViewById(R.id.curencySpinner);
+        officeSpinner = findViewById(R.id.officeSpinner);
+        languageSpinner.setOnItemSelectedListener(this);
 
         SpinnerCustomrAdapter customAdapter=new SpinnerCustomrAdapter(getApplicationContext(),flags,countryNames);
-        spin.setAdapter(customAdapter);
+        languageSpinner.setAdapter(customAdapter);
+        curencySpinner.setAdapter(customAdapter);
+        officeSpinner.setAdapter(customAdapter);
 
     }
 
