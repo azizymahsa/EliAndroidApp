@@ -51,7 +51,7 @@
                     android:text="11:40 AM"
                     android:textAppearance="@style/fontello_plan"
                     android:textColor="#003399"
-                    android:textSize="@dimen/_10dp_textSize" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
 
@@ -74,7 +74,7 @@
                     android:text="11:40 AM"
                     android:textAppearance="@style/fontello_plan"
                     android:textColor="#003399"
-                    android:textSize="@dimen/_10dp_textSize" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
             </LinearLayout>
 
@@ -111,11 +111,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="350"
-                    android:textAppearance="@style/tahoma"
                     android:gravity="left|top"
                     android:text="استانبول"
                     android:textColor="#003399"
-                    android:textSize="@dimen/_10dp_textSize" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <LinearLayout
 
@@ -135,9 +134,9 @@
                         android:gravity="left|center"
                         android:paddingTop="2dp"
                         android:text="TK658 "
-                        android:textAppearance="@style/tahoma"
+
                         android:textColor="#0e874e"
-                        android:textSize="@dimen/_10dp_textSize" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <TextView
                         android:id="@+id/lblFlightNumberPersian"
@@ -147,9 +146,8 @@
                         android:gravity="left|center"
                         android:paddingTop="2dp"
                         android:text="TK658 "
-                        android:textAppearance="@style/tahoma"
                         android:textColor="#0e874e"
-                        android:textSize="@dimen/_10dp_textSize" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
                 </LinearLayout>
 
                 <TextView
@@ -162,8 +160,7 @@
                     android:layout_marginLeft="3dip"
                     android:text="استانبول"
                     android:textColor="#003399"
-                    android:textSize="@dimen/_10dp_textSize"
-                    android:textAppearance="@style/tahoma"
+                    android:textSize="@dimen/_12dp_normal_textSize"
                     />
 
             </LinearLayout>
