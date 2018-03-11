@@ -88,11 +88,13 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.tvConfirm:
-                if (Prefs.getString("lang", "fa").equals(lang))
+                if (Prefs.getString("lang", "fa").equals(lang)) {
+                    tvConfirm.setEnabled(false);
+                    tvConfirm.setClickable(false);
+                    tvConfirm.setTextColor(ContextCompat.getColor(this,R.color.focusColor));
                     return;
+                }
                 Prefs.putString("lang", lang);
-
-
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override

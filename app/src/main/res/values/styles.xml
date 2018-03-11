@@ -60,7 +60,7 @@
     <style name="fontello_plan" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-all-icons.ttf</item></style>
     <style name="tahoma" parent="android:TextAppearance">
-        <item name="fontPath">fonts/Roboto-Medium.ttf</item></style>
+        <item name="fontPath">fonts/times.ttf</item></style>
 
 
     <style name="IconUser" parent="android:TextAppearance">
