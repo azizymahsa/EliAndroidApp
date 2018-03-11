@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eligasht"
-    android:versionCode="6"
-    android:versionName="1.0.5">
+>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -35,7 +34,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
-                    android:scheme="eligasht" />
+                    android:scheme="eligashts" />
             </intent-filter>
             <meta-data
                 android:name="unityplayer.ForwardNativeEventsToDalvik"
@@ -84,7 +83,7 @@
             android:name=".reservation.views.ui.PassengerActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".reservation.views.ui.SearchParvazActivity"
+            android:name=".reservation.views.ui.SearchFlightActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.ui.GetAirportMabdaActivity"

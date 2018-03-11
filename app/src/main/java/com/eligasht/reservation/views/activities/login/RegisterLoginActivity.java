@@ -66,7 +66,7 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
 
         RegisterListReq registerListReq = new RegisterListReq();
         registerListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
-        registerListReq.setCulture("fa-IR");
+        registerListReq.setCulture(getString(R.string.culture));
         registerListReq.setUsername(txtEmail.getText().toString());
         registerListReq.setPassword(txtPass.getText().toString());
 

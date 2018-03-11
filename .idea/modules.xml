@@ -7,8 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/connectionbuddy/connectionbuddy.iml" filepath="$PROJECT_DIR$/connectionbuddy/connectionbuddy.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library3/library3.iml" filepath="$PROJECT_DIR$/library3/library3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lottie/lottie.iml" filepath="$PROJECT_DIR$/lottie/lottie.iml" />
       <module fileurl="file://$PROJECT_DIR$/materialdatetimepicker/materialdatetimepicker.iml" filepath="$PROJECT_DIR$/materialdatetimepicker/materialdatetimepicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/persianmaterialdatetimepicker/persianmaterialdatetimepicker.iml" filepath="$PROJECT_DIR$/persianmaterialdatetimepicker/persianmaterialdatetimepicker.iml" />
     </modules>

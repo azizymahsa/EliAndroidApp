@@ -2349,7 +2349,7 @@
     <string name="hotel_policy">Hotel policy</string>
     <string name="Travel_insurance_to_travel_to_the_country">Travel insurance to travel to the country</string>
     <string name="please_refer_to_your_email_to_recover_the_password">Please refer to your email to recover the password.</string>
-    <string name="Tur">تور</string>
+    <string name="Tur">Tour</string>
     <string name="Please_enter_the_correct_name">Please enter the correct name</string>
     <string name="Please_enter_the_title_correctly">Please enter the title correctly</string>
     <string name="Please_enter_the_correct_message">Please enter the correct message</string>
@@ -2383,6 +2383,7 @@
     <string name="select_finishdate">Select Out Date</string>
     <string name="select_che">Select Retrun Date</string>
     <string name="canot_inout">Check in and Check out Canot be The Same</string>
+    <string name="shamsi">Shamsi</string>
     <string name="so_one_day_has_been_added_to_your_end_date">So your return date increased by one</string>
 </resources>
 

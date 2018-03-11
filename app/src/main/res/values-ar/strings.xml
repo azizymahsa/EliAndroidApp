@@ -507,5 +507,6 @@
     <string name="select_finishdate">حدد تاريخ الانتهاء</string>
     <string name="select_che">حدد تاريخ الإرجاع</string>
     <string name="canot_inout"> لا يمكن أن تكون تواريخ الدخول والخروج واحدة</string>
+    <string name="shamsi">شمسی</string>
     <string name="so_one_day_has_been_added_to_your_end_date">لذلك تمت إضافة يوم واحد لتاريخ ظهرك</string>
 </resources>

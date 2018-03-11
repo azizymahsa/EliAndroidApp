@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -163,6 +165,7 @@ public class CustomDate {
     private void updateDate(Calendar calendar) {
         civilDate = new CivilDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
         persianDate = DateConverter.civilToPersian(civilDate);
+        EventBus.getDefault().post(new EventBusCalendar(true));
 
     }
 
@@ -190,9 +193,9 @@ public class CustomDate {
 
     public String getDescription() {
         SharedPreferences sharedPrefrences = SingletonContext.getInstance().getContext().getSharedPreferences("eligasht.com", 0);
-        if (sharedPrefrences.getBoolean("isGregorian", false))
+        if (sharedPrefrences.getBoolean("isGregorian", false) && !Locale.getDefault().getLanguage().equals("fa"))
             return getDescriptionGeo(Locale.ENGLISH);
-        if (Locale.getDefault().getLanguage().equals("fa"))
+        if (Locale.getDefault().getLanguage().equals("fa") && !sharedPrefrences.getBoolean("isGregorian", false))
             return getDescriptionPersian();
         return getDescriptionGeo(Locale.getDefault());
     }

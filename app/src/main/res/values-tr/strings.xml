@@ -2374,6 +2374,7 @@
     <string name="select_che">İade tarihini seçin</string>
     <string name="canot_inout">Giriş ve çıkış geçmişi tek olamaz</string>
     <string name="so_one_day_has_been_added_to_your_end_date">Yani bir gün geri tarihinize eklendi</string>
+    <string name="shamsi">Sarmal</string>
 
 </resources>
 

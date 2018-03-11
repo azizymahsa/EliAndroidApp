@@ -1273,7 +1273,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 GUID = extras.getString("Flight_GUID");
-                ResultUniqId = SearchParvazActivity.globalResultUniqID;
+                ResultUniqId = SearchFlightActivity.globalResultUniqID;
             }
 
             JSONObject json = new JSONObject();
@@ -1339,7 +1339,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             headerJson.put("PartnerList", detailsPartner);
 
-            headerJson.put("Culture", "fa-IR");
+            headerJson.put("Culture", getString(R.string.culture));
             headerJson.put("Type", "H");
             headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
             headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
@@ -1373,7 +1373,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
             manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
             Log.e("54", tvfactorNumber.getText().toString());
@@ -1413,7 +1413,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
             manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
             manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));

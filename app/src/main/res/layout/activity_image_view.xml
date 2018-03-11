@@ -33,7 +33,7 @@
             android:layout_height="0dp"
             android:layout_weight="100">
 
-            <com.veinhorn.scrollgalleryview.HackyViewPager
+            <com.eligasht.reservation.views.ui.HackyViewPager
 
                 android:id="@+id/intro_view_pager"
                 android:layout_width="match_parent"

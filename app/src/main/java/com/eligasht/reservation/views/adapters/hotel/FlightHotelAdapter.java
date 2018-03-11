@@ -21,7 +21,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
-import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -171,7 +171,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         holder.btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, SearchParvazActivity.class);
+                Intent intent = new Intent(activity, SearchFlightActivity.class);
                 intent.putExtra("isChangeFlight",true);
                 intent.putExtra("FlightId",selectHotelModelArrayList.get(position).getFlightId());
                 intent.putExtra("SearchKey",selectHotelModelArrayList.get(position).getResultUniqID());

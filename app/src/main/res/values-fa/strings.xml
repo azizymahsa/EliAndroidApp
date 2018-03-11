@@ -500,6 +500,7 @@
     <string name="select_finishdate">تاریخ پایان را انتخاب نمایید</string>
     <string name="select_che">تاریخ برگشت را انتخاب نمایید</string>
     <string name="canot_inout">تاریخ ورود و خروج یکی نمی توانند باشند</string>
+    <string name="shamsi">شمسی</string>
     <string name="so_one_day_has_been_added_to_your_end_date">بنابراین یک روز به تاریخ برگشت شما اضافه شد</string>
 
 

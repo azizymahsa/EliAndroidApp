@@ -14,7 +14,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,8 +47,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.ui.PassengerActivity;
-import com.eligasht.reservation.views.ui.PassengerHotelActivity;
+import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -78,7 +76,6 @@ import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.NationalitycodeActivity;
-import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 
@@ -1146,7 +1143,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 GUID = extras.getString("Flight_GUID");
-                ResultUniqId = SearchParvazActivity.globalResultUniqID;
+                ResultUniqId = SearchFlightActivity.globalResultUniqID;
             }
 
             JSONObject json = new JSONObject();
@@ -1214,7 +1211,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             headerJson.put("PartnerList", detailsPartner);
 
-            headerJson.put("Culture", "fa-IR");
+            headerJson.put("Culture", getString(R.string.culture));
            // headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
             headerJson.put("CountryCode", Prefs.getString("CountryCode", "12"));
             headerJson.put("DepartureDate", Prefs.getString("DepartureDate", "12"));
@@ -1249,7 +1246,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
             manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
             manJson.put("Type", "I");
@@ -1285,7 +1282,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         JSONObject identityJson = new JSONObject();
 
         try {
-            manJson.put("Culture", "fa-IR");
+            manJson.put("Culture", getString(R.string.culture));
 
             manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
             manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));
