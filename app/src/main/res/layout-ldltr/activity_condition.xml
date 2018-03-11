@@ -36,7 +36,7 @@
                         style="@style/fancy_toolbar"
                         android:layout_width="@dimen/_50dp_normal"
                         android:layout_height="@dimen/_50dp_normal"
-                        android:layout_gravity="right"
+                        android:layout_gravity="left"
                         android:visibility="visible"
                         fancy:fb_radius="200dp"
                         fancy:fb_textSize="@dimen/_20dp_normal_textSize" />

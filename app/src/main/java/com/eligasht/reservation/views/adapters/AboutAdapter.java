@@ -7,10 +7,13 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.eligasht.R;
@@ -38,6 +41,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
     private LayoutInflater myInflater;
     private LayoutInflater inflater;
     private List<SectionModel> data;
+    private WebView view;
 
 
     public AboutAdapter(final List<SectionModel> data) {
@@ -69,10 +73,19 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         if(item.getSectionName().contains(context.getString(R.string.lisences))){
             String[] value_split = item.getSectionName().split("\\|");
             holder.txtSectionName.setText(value_split[1]+"");
+            holder.txtSectionNameEn.setText(value_split[1]+"");
         }else{
             holder.txtSectionName.setText(item.getSectionName()+"");
+            holder.txtSectionNameEn.setText(item.getSectionName()+"");
         }
         holder.txtDescription.setText(item.getDescription()+ "");
+        String youtContentStr = String.valueOf(Html
+                .fromHtml("<![CDATA[<body style=\"text-align:justify;color:#222222; \">"
+                        + item.getDescription()
+                        + "</body>]]>"));
+
+       // view.loadData(youtContentStr, "text/html", "utf-8");
+       holder.txtDescriptionEn.loadData(youtContentStr, "text/html", "utf-8");
 
         holder.txtDescription.setLineSpacing(30);
         holder.txtSectionName.setLineSpacing(15);
@@ -105,30 +118,21 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         public ExpandableLinearLayout expandableLayout;
         JustifiedTextView txtDescription;
         JustifiedTextView txtSectionName;
+        WebView txtDescriptionEn;
+        TextView txtSectionNameEn;
         ImageView iv_imageAddress;
 
         public ViewHolder(View v) {
             super(v);
             txtDescription = v.findViewById(R.id.txtDescription);
             txtSectionName = v.findViewById(R.id.txtSectionName);
+            txtDescriptionEn = v.findViewById(R.id.txtDescriptionEn);
+            txtSectionNameEn = v.findViewById(R.id.txtSectionNameEn);
             iv_imageAddress = v.findViewById(R.id.iv_imageAddress);
 
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
