@@ -9,10 +9,15 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.tools.Prefs;
+import com.eligasht.reservation.views.adapters.SpinnerCustomrAdapter;
 import com.eligasht.reservation.views.dialogs.SelectLanguageDialog;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SplashFragment;
@@ -21,9 +26,10 @@ import com.eligasht.reservation.views.ui.SplashFragment;
  * Created by Ahmad.nemati on 3/3/2018.
  */
 
-public class SettingsActivity extends BaseActivity implements View.OnClickListener, SelectLanguageDialog.LanguageClick {
+public class SettingsActivity extends BaseActivity implements View.OnClickListener, SelectLanguageDialog.LanguageClick, AdapterView.OnItemSelectedListener {
     private View dialogOpener;
-
+    String[] countryNames={"ایران","England","Turkey"};
+    int flags[] = {R.drawable.iran, R.drawable.united_kingdom, R.drawable.turkey};
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +37,11 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         InitUi.Toolbar(this, false, R.color.toolbar_color, getResources().getString(R.string.settings));
         dialogOpener = findViewById(R.id.dialog_opener);
         dialogOpener.setOnClickListener(this);
+        Spinner spin = (Spinner) findViewById(R.id.simpleSpinner);
+  spin.setOnItemSelectedListener(this);
 
+        SpinnerCustomrAdapter customAdapter=new SpinnerCustomrAdapter(getApplicationContext(),flags,countryNames);
+        spin.setAdapter(customAdapter);
 
     }
 
@@ -78,4 +88,15 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             }
         }, 100);
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+        Toast.makeText(getApplicationContext(), countryNames[position], Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+    }
+
 }
