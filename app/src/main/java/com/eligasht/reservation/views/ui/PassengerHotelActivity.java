@@ -1602,7 +1602,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         }else{
                             //((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+" * "+getString(R.string.Email_format_is_correct);
+                            errorMessage=errorMessage+"\n"+"* "+getString(R.string.Email_format_is_correct);
                         }
                         //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
                         //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.trim().matches("^[a-zA-Z]+$"))){
@@ -1613,7 +1613,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             }else{
                                 //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                                 flagMosafer=flagMosafer+"F";
-                                errorMessage=errorMessage+"\n"+" * "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
+                                errorMessage=errorMessage+"\n"+"* "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                             }
                         //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
                         if(RqPartner_LastNameFa != null)
@@ -1623,7 +1623,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             }else{
                                 //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
                                 flagMosafer=flagMosafer+"F";
-                                errorMessage=errorMessage+"\n"+" * "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
+                                errorMessage=errorMessage+"\n"+"* "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                             }
                         if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1631,7 +1631,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         }else{
                             //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer=flagMosafer+"F";
-                            errorMessage=errorMessage+"\n"+" * "+getString(R.string.Enter_the_correct_mobile_format);
+                            errorMessage=errorMessage+"\n"+"* "+getString(R.string.Enter_the_correct_mobile_format);
                         }
 					/*if(RqPartner_NationalCode != null)
 						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.trim().matches("[0-9]+")){*/
@@ -1642,7 +1642,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             }else{
                                 //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
                                 flagMosafer=flagMosafer+"F";
-                                errorMessage=errorMessage+"\n"+" * "+getString(R.string.The_national_code_is_not_correct);
+                                errorMessage=errorMessage+"\n"+"* "+getString(R.string.The_national_code_is_not_correct);
                             }
                         if (Gensiyat.contains("true") || Gensiyat.contains("false")){
                             flagMosafer=flagMosafer+"T";
@@ -1827,7 +1827,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+" * "+getString(R.string.Enter_the_passport_number_correctly);
+                        errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_passport_number_correctly);
                     }
                     // }
                     if(Nationality != null && Nationality.length()>1){
@@ -1836,7 +1836,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+" * "+getString(R.string.Enter_the_place_of_residence);
+                        errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_place_of_residence);
                     }
                     if(Nationality_ID != null && Nationality_ID.length()>1){
                         ((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1844,7 +1844,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+" * "+getString(R.string.Enter_your_nationality);
+                        errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_your_nationality);
                     }
                     if(RqPassenger_Birthdate != null && RqPassenger_Birthdate.length()>4){
                         ((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1852,7 +1852,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }else{
                         //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
-                        errorMessagePartner=errorMessagePartner+"\n"+" * "+getString(R.string.Enter_the_date_of_birth);
+                        errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_date_of_birth);
                     }
                     ////////////////////////////////////
                     if (txtTitleCountM.getText().toString().contains(getString(R.string.Child))) {
@@ -1868,7 +1868,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         } else {
                             //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
-                            errorMessagePartner=errorMessagePartner+"\n"+" * "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
+                            errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                         }
                     if (RqPassenger_LastNameEn != null)
                         if (RqPassenger_LastNameEn.length() > 1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")) {
@@ -1877,7 +1877,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         } else {
                             //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
-                            errorMessagePartner=errorMessagePartner+"\n"+" * "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
+                            errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                         }
                     if (RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length() > 4) {
                         ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1885,7 +1885,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     } else {
                         //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
-                        errorMessagePartner=errorMessagePartner+"\n"+" * "+getString(R.string.Enter_the_passport_expiration_date);
+                        errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_passport_expiration_date);
                     }
                     if (Gensiyat.contains("true") || Gensiyat.contains("false")) {
                         flagMosafer = flagMosafer + "T";
