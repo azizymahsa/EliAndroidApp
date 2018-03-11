@@ -45,16 +45,18 @@
                     android:layout_height="wrap_content"
 
                     android:gravity="center"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:background="@null"/>
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="10"
+                    android:layout_weight="40"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:textSize="@dimen/_14dp_txtSize"
                     android:text="زبان"
-                    android:textColor="@color/text_color_4d"/>
+                    android:textColor="@color/text_color_4d"
+                    android:textAppearance="@style/IrsansBold"/>
 
             </LinearLayout>
 

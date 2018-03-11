@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/imageView"
@@ -14,11 +15,12 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="fill_parent"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Demo"
         android:textColor="@color/text_color_4d"
         android:textSize="@dimen/_14dp_txtSize"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textAppearance="@style/IrsansBold"/>
 </LinearLayout>
