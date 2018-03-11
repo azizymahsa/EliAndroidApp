@@ -62,7 +62,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
     private void initPopupWindow(View view, String text) {
         if (this.popupWindow != null) {
             this.popupWindow.dismiss();
-            this.popupWindow.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this.context, 17170445)));
+            this.popupWindow.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this.context,R.color.white)));
         }
         View inflate = ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.popup_calendar, null);
         ((TextView) inflate.findViewById(R.id.txt)).setText(text);

@@ -21,7 +21,6 @@
         android:visibility="gone"
         app:indicatorColor="@color/white"
         app:indicatorName="BallSpinFadeLoaderIndicator"
-        android:layout_below="@+id/tv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_10dp_margin"
         />
