@@ -41,7 +41,7 @@ public class SpinnerCustomrAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.custom_spinner_items, null);
+        view = inflter.inflate(R.layout.custom_spinner_item, null);
         ImageView icon = (ImageView) view.findViewById(R.id.imageView);
         TextView names = (TextView) view.findViewById(R.id.textView);
         icon.setImageResource(flags[i]);
