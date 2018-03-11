@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,8 +57,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private TextView title;
     private Button btnSaveInfo;
     private FancyButton btnBack;
+    private FancyButton btnHome;
     private ProfilePagerAdapter profilePagerAdapter;
     private ClientService service;
+    private RelativeLayout llHome;
     private CoordinatorLayout coordinatorLayout;
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
@@ -100,8 +103,14 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
 
-
         initViews();
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         title.setText(getString(R.string.my_profile));
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
@@ -127,6 +136,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 finish();
             }
         });
+
     }
 
     private void initParam() {
@@ -175,6 +185,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         btnSaveInfo = findViewById(R.id.btnSaveInfo);
         title = findViewById(R.id.title);
         btnBack = findViewById(R.id.btnBack);
+        btnHome = findViewById(R.id.btnHome);
         coordinatorLayout = findViewById(R.id.coordinator);
         btnSaveInfo.setOnClickListener(this);
 
@@ -317,7 +328,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
                 EmailContractResult emailContractResult = response.body().getEmailContractResult();
                 if (emailContractResult.getSuccessResult() == 0) {
-                    Toast.makeText(ProfileActivity.this,getString(R.string.success) , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
                 }
 
             }
