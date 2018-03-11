@@ -145,7 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text="@string/select_destination_city_or_airport "
+                        android:text="@string/select_destination_city_or_airport"
                         android:textColor="#fff"
                         android:textSize="@dimen/_20dp_normal_textSize"
                         android:textStyle="bold" />
