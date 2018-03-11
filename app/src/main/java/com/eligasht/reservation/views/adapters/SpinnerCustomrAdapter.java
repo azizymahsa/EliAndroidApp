@@ -16,6 +16,7 @@ public class SpinnerCustomrAdapter extends BaseAdapter {
     int flags[];
     String[] countryNames;
     LayoutInflater inflter;
+    boolean isLanguage;
 
     public SpinnerCustomrAdapter(Context applicationContext, int[] flags, String[] countryNames) {
         this.context = applicationContext;
