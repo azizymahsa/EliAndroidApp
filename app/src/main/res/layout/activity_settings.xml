@@ -223,7 +223,7 @@
 
 
                 <ImageView
-                    android:id="@+id/language"
+                    android:id="@+id/language2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -235,7 +235,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/language"
+                    android:layout_toLeftOf="@id/language2"
                     android:orientation="vertical">
 
 

@@ -1363,7 +1363,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 s=getString(R.string.ninth);
                 break;
             default:
-
                 System.out.println("Unknown result");
 
                 break;
@@ -1448,10 +1447,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                 c.add(Calendar.YEAR, 6);
                 dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-		 	   /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		 	    Date mDate;*/
-                // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
             }
 
             return  dialog;
