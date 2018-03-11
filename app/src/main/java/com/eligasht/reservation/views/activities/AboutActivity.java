@@ -159,7 +159,11 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                    // jsone.put("", manJson);
                     data=manJson.toString();
                 }else if(Locale.getDefault().getLanguage().equals("fa")) {
-                    data = "";
+                    JSONObject jsone = new JSONObject();
+                    JSONObject manJson = new JSONObject();
+                    manJson.put("culture", "fa-");
+                    // jsone.put("", manJson);
+                    data=manJson.toString();
                 }else if(Locale.getDefault().getLanguage().equals("tr")) {
                     JSONObject jsone = new JSONObject();
                     JSONObject manJson = new JSONObject();

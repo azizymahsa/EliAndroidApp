@@ -84,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            tools:ignore="WebViewLayout" />
+            tools:ignore="WebViewLayout"
+            android:visibility="gone"/>
   </LinearLayout>
 
 
