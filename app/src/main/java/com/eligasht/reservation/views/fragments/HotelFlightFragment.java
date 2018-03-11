@@ -121,10 +121,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             SingletonDate.getInstance().getEndDate().addOneDay();
         }
 
-        //listRoomItem = (ListView)rootView.findViewById(R.id.listRoomItem);
 
-
-        //  lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
         tvMabda = rootView.findViewById(R.id.tvMabda);
         tvMabdaEn = rootView.findViewById(R.id.tvMabdaEn);
@@ -250,7 +247,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
             case R.id.searchHotel:
                 //  new CountTimeAlert(getActivity(),this);
-                try { 
+                try {
                     if (tvMabda.getText().toString().contains(getString(R.string.select_origin_city_or_airport)) || txtCity.getText().toString().contains(getString(R.string.select_destination_city_or_airport))) {
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin));
