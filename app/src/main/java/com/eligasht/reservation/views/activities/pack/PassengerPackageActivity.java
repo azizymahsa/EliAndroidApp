@@ -1475,26 +1475,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
         }
     }//endDatepicker
-    void ClearMenu(View v) {//android:background="@drawable/blue_line_with_arrow_small"
-        //android:background="@drawable/trans_line_with_arrow_small"
-        ((ImageView) findViewById(R.id.btn_saler)).setImageResource(R.drawable.trans_line_with_arrow_small);
-        ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.trans_line_with_arrow_small);
-//		((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.trans_line_with_arrow_small);
-        ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.trans_line_with_arrow_small);
-
-        ((Button) findViewById(R.id.txtSaler)).setTextColor(Color.parseColor("#808080"));
-        ((Button) findViewById(R.id.btn_mosaferan)).setTextColor(Color.parseColor("#808080"));
-//		((Button)findViewById(R.id.btn_khadamat)).setTextColor(Color.parseColor("#808080"));
-        ((Button) findViewById(R.id.btn_pish_factor)).setTextColor(Color.parseColor("#808080"));
-
-        //((TextView)findViewById(R.id.imageDiscover)).setBackgroundDrawable(null);
-        //((TextView)findViewById(R.id.imageDiscover)).setTextColor(Color.WHITE);
-        if (v != null) {
-            v.setBackgroundResource(R.drawable.blue_line_with_arrow_small);
-            ((TextView) v).setTextColor(Color.parseColor("#33ccff"));
-        }
-        //if(currentMenu!=null) currentMenu.finish();
-    }
     @Override
     public void onResume(){
         super.onResume();
