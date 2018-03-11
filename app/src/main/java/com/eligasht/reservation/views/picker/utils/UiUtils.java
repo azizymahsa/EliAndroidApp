@@ -255,7 +255,7 @@ public class UiUtils {
         if (sharedPrefrences.getBoolean("isGregorian", false))
             obj = "fonts/times.ttf";
         else if (Locale.getDefault().getLanguage().equals("fa"))
-            obj = "fonts/shabna_bold.ttf";
+            obj = "fonts/iran_sans_bold.ttf";
         else
             obj = "fonts/times.ttf";
 

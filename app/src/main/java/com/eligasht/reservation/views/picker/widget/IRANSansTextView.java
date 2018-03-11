@@ -39,7 +39,7 @@ public class IRANSansTextView extends TextView {
         if (sharedPrefrences.getBoolean("isGregorian", false))
             obj = "fonts/times.ttf";
         else if (Locale.getDefault().getLanguage().equals("fa"))
-            obj = "fonts/shabnam.ttf";
+            obj = "fonts/iran_sans_normal.ttf";
         else
             obj = "fonts/times.ttf";
         Typeface font = Typeface.createFromAsset(
@@ -49,7 +49,7 @@ public class IRANSansTextView extends TextView {
     }
 
     private void m18579a() {
-        setTypeface(a(getContext(), "shabnam"), 0);
+        setTypeface(a(getContext(), "iran_sans_normal"), 0);
     }
 
 }
