@@ -42,8 +42,6 @@
 				android:gravity="right|top"
 				android:orientation="vertical" >
 
-
-
 				<TextView
 
 					android:id="@+id/lblDepurtureAirportR"
