@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -64,13 +65,13 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.layout.activity_condition);
 
 
-        textView12 = findViewById(R.id.textView12);
+       /* textView12 = findViewById(R.id.textView12);
         Typeface face = Typeface.createFromAsset(this.getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         textView12.setTypeFace(face);
         textView12.setTextSize(1,16);
         textView12.setTextColor(ContextCompat.getColor(ConditionActivity.this,R.color.gray_dark_2));
 
-        textView12.setLineSpacing(30);
+        textView12.setLineSpacing(30);*/
 
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
@@ -110,7 +111,6 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         HttpURLConnection conn;
         URL url = null;
         private NonScrollRecyclerView listAirPort;
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -277,12 +277,24 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
 
                     data.add(sectionModel);
                 }
-                textView12.setText(data.get(0).getDescription()+"");
-              /*  listAirPort.addItemDecoration(new DividerItemDecoration(ConditionActivity.this, 1));
+                //textView12.setText(data.get(0).getDescription()+"");
+                listAirPort = (NonScrollRecyclerView) findViewById(R.id.lvExp);
+                listAirPort.addItemDecoration(new DividerItemDecoration(ConditionActivity.this, 1));
                 listAirPort.setLayoutManager(new LinearLayoutManager(ConditionActivity.this));
-                listAirPort = findViewById(R.id.lvExp);
                 mAdapter = new AboutAdapter(data);
-                listAirPort.setAdapter(mAdapter);*/
+                //mAdapter.setAdapter(mAdapter);
+                listAirPort.setAdapter(mAdapter);
+                listAirPort.setClickable(false);
+                listAirPort.setEnabled(false);
+                listAirPort.setScrollContainer(false);
+                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
+                listAirPort.setOnFlingListener(new RecyclerView.OnFlingListener() {
+                    @Override
+                    public boolean onFling(int velocityX, int velocityY) {
+                        listAirPort.dispatchNestedFling(velocityX, velocityY, false);
+                        return false;
+                    }
+                });
 
             } catch (JSONException e) {
                 Toast.makeText(ConditionActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
