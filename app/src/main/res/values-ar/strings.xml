@@ -36,7 +36,7 @@
     <string name="Economi">اقتصاد</string>
     <string name="InternetError">يتم قطع اتصال الإنترنت الخاص بك أو بعيدا عن متناول اليد</string>
     <string name="NextDay">في اليوم التالي</string>
-    <string name="SelectLanguage">حدد لغة البرنامج</string>
+    <string name="SelectLanguage">حدد لغة</string>
     <string name="ShowPicture">عرض الصورة</string>
     <string name="ErrorRoom">لم يتم العثور على غرفة!</string>
     <string name="FacilitiType">مرافق الإقامة</string>

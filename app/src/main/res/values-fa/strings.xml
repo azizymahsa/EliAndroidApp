@@ -168,7 +168,7 @@
     <string name="OfferTo">پیشنهاد برای</string>
     <string name="ServicesPackage">خدمات قابل ارائه</string>
     <string name="InfoAirline">مشخصات پرواز</string>
-    <string name="SelectLanguage">انتخاب زبان برنامه</string>
+    <string name="SelectLanguage">زبان</string>
     <string name="travel_duration">مدت سفر</string>
     <string name="enter_current_password">کلمه عبور فعلی را وارد کنید</string>
     <string name="current_password">کلمه عبور فعلی</string>
@@ -357,9 +357,9 @@
     <string name="total_added_price">مجموع قیمت اضافه شده</string>
     <string name="text1">انتخاب زبان</string>
     <string name="text2">تغییرات بعد از ریستارت برنامه اعمال می گردد</string>
-    <string name="text3">انتخاب واحد</string>
+    <string name="text3">واحد</string>
     <string name="text4">برای انتخاب واحد این قسمت را انتخاب کنید</string>
-    <string name="text5">انتخاب آفیس</string>
+    <string name="text5">آفیس</string>
     <string name="text6">برای انتخاب آفیس این قسمت را انتخاب کنید</string>
     <string name="hotels_all_over_the_world">هتل در سراسر جهان</string>
     <string name="room_information">اطلاعات اتاق</string>

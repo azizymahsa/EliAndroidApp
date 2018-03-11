@@ -214,7 +214,7 @@
         android:layout_marginBottom="@dimen/_10dp"
         android:layout_alignParentBottom="true">
 
-        <TextView
+        <Button
             android:id="@+id/tvConfirm"
             android:textSize="16sp"
             android:layout_width="match_parent"

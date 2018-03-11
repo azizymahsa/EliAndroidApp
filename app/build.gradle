@@ -118,7 +118,7 @@ dependencies {
     compile 'com.orhanobut:hawk:2.0.1'
     compile 'com.android.support:percent:26.1.0'
     compile 'org.greenrobot:eventbus:3.1.1'
-    compile 'com.airbnb.android:lottie:2.5.0'
+    compile 'com.airbnb.android:lottie:2.5.0-rc1'
 }
 apply plugin: 'com.google.gms.google-services'
 

@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -28,61 +30,83 @@ import com.eligasht.reservation.views.ui.SplashFragment;
  */
 
 public class SettingsActivity extends BaseActivity implements View.OnClickListener, SelectLanguageDialog.LanguageClick, AdapterView.OnItemSelectedListener {
-    String[] countryNames={"ایران","England","Turkey"};
+    String[] countryNames = {"ایران", "England", "Turkey"};
     int flags[] = {R.drawable.iran, R.drawable.united_kingdom, R.drawable.turkey};
-    String[] curencyNames={"IRR(iran)"};
-    String[] officeNames={"Eligasht-IR","Eligasht-UK","Eligasht-TK"};
-    Spinner languageSpinner,curencySpinner,officeSpinner;
-    TextView tvConfirm;
+    String[] curencyNames = {"IRR(iran)"};
+    String[] officeNames = {"Eligasht-IR", "Eligasht-UK", "Eligasht-TK"};
+    Spinner languageSpinner, curencySpinner, officeSpinner;
+    Button tvConfirm;
+    String lang;
+    boolean isChange=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getResources().getString(R.string.settings));
+        tvConfirm = (Button) findViewById(R.id.tvConfirm);
 
         curencySpinner = findViewById(R.id.curencySpinner);
         languageSpinner = findViewById(R.id.languageSpinner);
         officeSpinner = findViewById(R.id.officeSpinner);
-        tvConfirm = findViewById(R.id.tvConfirm);
         languageSpinner.setOnItemSelectedListener(this);
         curencySpinner.setOnItemSelectedListener(this);
         officeSpinner.setOnItemSelectedListener(this);
         tvConfirm.setOnClickListener(this);
 
 
+        languageSpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, countryNames, true));
+        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+        officeSpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, officeNames, false));
+
+        if (Prefs.getString("lang", "fa").equals("fa")) {
+            curencyNames = new String[]{"IRR(iran)"};
+            curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+            languageSpinner.setSelection(0);
+
+        } else if (Prefs.getString("lang", "fa").equals("en")) {
+
+            curencyNames = new String[]{"GB"};
+            curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+
+            languageSpinner.setSelection(1);
 
 
-        languageSpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,countryNames,true));
-        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,curencyNames,false));
-        officeSpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,officeNames,false));
+        } else if (Prefs.getString("lang", "fa").equals("tr")) {
+            curencyNames = new String[]{"TRY", "EUR"};
+            curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+            languageSpinner.setSelection(2);
 
+        }
+        tvConfirm.setEnabled(false);
+        tvConfirm.setClickable(false);
+        tvConfirm.setTextColor(ContextCompat.getColor(this,R.color.focusColor));
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
-                case R.id.tvConfirm:
-                  String lang="";
-                    if (Prefs.getString("lang", "fa").equals(lang))
-                        return;
-                    Prefs.putString("lang", lang);
+            case R.id.tvConfirm:
+                if (Prefs.getString("lang", "fa").equals(lang))
+                    return;
+                Prefs.putString("lang", lang);
 
 
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent mStartActivity = new Intent(SettingsActivity.this, SplashFragment.class);
-                            int mPendingIntentId = 123456;
-                            PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
-                                    PendingIntent.FLAG_CANCEL_CURRENT);
-                            AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
-                            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
-                            System.exit(0);
-                        }
-                    }, 100);                break;
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent mStartActivity = new Intent(SettingsActivity.this, SplashFragment.class);
+                        int mPendingIntentId = 123456;
+                        PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
+                                PendingIntent.FLAG_CANCEL_CURRENT);
+                        AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
+                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                        System.exit(0);
+                    }
+                }, 100);
+                break;
         }
     }
 
@@ -122,24 +146,36 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-        switch (arg0.getId()){
+        switch (arg0.getId()) {
             case R.id.languageSpinner:
+                if (isChange){
+                    tvConfirm.setEnabled(true);
+                    tvConfirm.setClickable(true);
+                    tvConfirm.setTextColor(ContextCompat.getColor(this,R.color.white));
 
-                switch (position){
+                }
+                isChange=true;
+                switch (position) {
                     case 0:
-                      curencyNames= new String[]{"IRR(iran)"};
-                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,curencyNames,false));
+                        lang = "fa";
+
+                        curencyNames = new String[]{"IRR(iran)"};
+                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
 
                         break;
                     case 1:
-                        curencyNames= new String[]{"GB"};
-                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,curencyNames,false));
+                        lang = "en";
+
+                        curencyNames = new String[]{"GB"};
+                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
 
 
                         break;
                     case 2:
-                         curencyNames= new String[]{"TRY", "EUR"};
-                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,curencyNames,false));
+                        lang = "tr";
+
+                        curencyNames = new String[]{"TRY", "EUR"};
+                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
 
                         break;
                 }
