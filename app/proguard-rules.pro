@@ -39,9 +39,11 @@
 -dontwarn okio.**
 -dontwarn javax.annotation.**
 -dontwarn com.squareup.okhttp3.**
--keep class com.squareup.okhttp3.** { ; }
+-keep class com.squareup.okhttp3.** { *; }
 -keep interface com.squareup.okhttp3.* { *; }
 -dontwarn javax.annotation.Nullable
 -dontwarn javax.annotation.ParametersAreNonnullByDefault
-
+-dontwarn net.sourceforge.jtds.**
+-dontwarn com.google.zxing.client.**
+-dontwarn com.intouch.dev.alacards.**
 

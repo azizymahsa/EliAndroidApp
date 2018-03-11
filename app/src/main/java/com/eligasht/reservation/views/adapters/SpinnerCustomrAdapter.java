@@ -18,16 +18,17 @@ public class SpinnerCustomrAdapter extends BaseAdapter {
     LayoutInflater inflter;
     boolean isLanguage;
 
-    public SpinnerCustomrAdapter(Context applicationContext, int[] flags, String[] countryNames) {
+    public SpinnerCustomrAdapter(Context applicationContext, int[] flags, String[] countryNames, boolean isLanguage) {
         this.context = applicationContext;
         this.flags = flags;
+        this.isLanguage = isLanguage;
         this.countryNames = countryNames;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
     @Override
     public int getCount() {
-        return flags.length;
+        return countryNames.length;
     }
 
     @Override
@@ -45,7 +46,12 @@ public class SpinnerCustomrAdapter extends BaseAdapter {
         view = inflter.inflate(R.layout.custom_spinner_item, null);
         ImageView icon = (ImageView) view.findViewById(R.id.imageView);
         TextView names = (TextView) view.findViewById(R.id.textView);
-        icon.setImageResource(flags[i]);
+        if (isLanguage){
+            icon.setImageResource(flags[i]);
+
+        }else{
+            icon.setVisibility(View.INVISIBLE);
+        }
         names.setText(countryNames[i]);
         names.setTypeface(Typeface.createFromAsset(context.getAssets(),context.getString(R.string.iran_sans_normal_ttf)));
         return view;

@@ -2027,7 +2027,6 @@
     <string name="SearchHotel"> Otel adını ara </string> 
     <string name="StarRateHotel"> Derecelendirme </string>
     <string name="HotelType"> Tür </string>
-    <string name="KonumTürü"> Konum </string>
     <string name="FacilitiType"> Tesisler </string>
     <string name="Price"> Price </string>
     <string name="SearchCity"> Arama </string>
@@ -2056,7 +2055,6 @@
     <string name="please_enter_your_email_address"> Lütfen e-posta adresinizi girin </string>
     <string name="mail"> E-posta </string>
     <string name="please_enter_your_national_code"> Lütfen ulusal kodunuzu girin </string>
-    <string name="ulusal_kod"> Ulusal kod </string>
     <string name="please_enter_your_birth_date"> doğum tarihinizi girin </string>
     <string name="birth_date"> Doğum tarihi </string>
     <string name="please_enter_your_phone_number"> Lütfen sabit hattınızı girin </string>
@@ -2161,7 +2159,6 @@
     <string name="Please_enter_the_email">Lütfen e-posta adresinizi girin</string>
     <string name="Please_enter_a_name_in_Persian"> Lütfen bir ad girin (Farsça) </string>
     <string name="Please_enter_last_name_in_Persian"> Lütfen soyadını girin (Farsça) </string>
-    <string name="Please_enter_the_mobil_number"> Cep numarasını giriniz </string>
     <string name="Please_enter_the_national_code"> Lütfen ulusal kodu girin </string>
     <string name="Rial"> Rials </string>
     <string name="Error_getting_information_from_eli"> Bilgi alma hatası </string>
@@ -2322,7 +2319,6 @@
     <string name="registred"> kayıtlı. </string>
     <string name="your_internet_connection_is_lost"> İnternet\'e bağlı değilsiniz </string>
     <string name="pre_factor_number"> Fatura numarası </string>
-    <string name="ödeme_details"> Ödeme ayrıntıları </string>
     <string name="amount"> Miktar </string>
     <string name="tracking_code"> İzleme kodu </string>
     <string name="our_specialists_will_call_you_soon"> Lütfen sizi aramamızı bekleyin </string>
@@ -2375,6 +2371,24 @@
     <string name="canot_inout">Giriş ve çıkış geçmişi tek olamaz</string>
     <string name="so_one_day_has_been_added_to_your_end_date">Yani bir gün geri tarihinize eklendi</string>
     <string name="shamsi">Sarmal</string>
+    <string name="LocationType">Location</string>
+    <string name="national_code">National code</string>
+    <string name="Please_enter_the_mobile_number">Please enter the mobile number</string>
+    <string name="payment_details">Payment details</string>
+    <string name="number_human"> Enumerate </string>
+    <string name="return_airport"> Frodgah </string>
+    <string name="exit_time"> Exit Time </string>
+    <string name="enter_time"> Time of </string>
+    <string name="number"> No</string>
+    <string name="airline"> Hawaiian font </string>
+    <string name="arabic">العربی</string>
+    <string name="hotel_policy">Hotel policy</string>
+    <string name="please_enter_your_email_to_reset_your_pass"> Please enter your email password to retrieve </string>
+    <string name="reset_pass"> Password Recovery </string>
+    <string name="activate_account"> Activate account </string>
+    <string name="activation_link_has_been_sent_to_your_email"> The activation link has been sent to your email. </string>
+    <string name="mail_or_pass_is_wrong"> Your email or password is incorrect. </string>
+    <string name="email_address_is_not_valid"> The email entered is not valid </string>
 
 
 </resources>
