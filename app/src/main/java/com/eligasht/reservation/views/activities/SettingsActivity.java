@@ -30,9 +30,13 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private View dialogOpener;
     String[] countryNames={"ایران","England","Turkey"};
     int flags[] = {R.drawable.iran, R.drawable.united_kingdom, R.drawable.turkey};
-    String[] curencyNames={"ایران","England","Turkey"};
-    String[] officeNames={"ایران","England","Turkey"};
+    String[] curencyNames={"IRR(iran)"};
+    String[] officeNames={"Eligasht-IR","Eligasht-UK","Eligasht-TK"};
     Spinner languageSpinner,curencySpinner,officeSpinner;
+
+    SpinnerCustomrAdapter customAdapter;
+    SpinnerCustomrAdapter curencyNamesAdapter;
+    SpinnerCustomrAdapter officeNamesAdapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +44,19 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         InitUi.Toolbar(this, false, R.color.toolbar_color, getResources().getString(R.string.settings));
         dialogOpener = findViewById(R.id.dialog_opener);
         dialogOpener.setOnClickListener(this);
-        curencySpinner = findViewById(R.id.languageSpinner);
-        languageSpinner = findViewById(R.id.curencySpinner);
+        curencySpinner = findViewById(R.id.curencySpinner);
+        languageSpinner = findViewById(R.id.languageSpinner);
         officeSpinner = findViewById(R.id.officeSpinner);
         languageSpinner.setOnItemSelectedListener(this);
+        curencySpinner.setOnItemSelectedListener(this);
+        officeSpinner.setOnItemSelectedListener(this);
 
-        SpinnerCustomrAdapter customAdapter=new SpinnerCustomrAdapter(getApplicationContext(),flags,countryNames);
-        languageSpinner.setAdapter(customAdapter);
-        curencySpinner.setAdapter(customAdapter);
-        officeSpinner.setAdapter(customAdapter);
+
+
+
+        languageSpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,countryNames,true));
+        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,curencyNames,false));
+        officeSpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,officeNames,false));
 
     }
 
@@ -98,7 +106,35 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-        Toast.makeText(getApplicationContext(), countryNames[position], Toast.LENGTH_LONG).show();
+        switch (arg0.getId()){
+            case R.id.languageSpinner:
+
+                Toast.makeText(getApplicationContext(), countryNames[position], Toast.LENGTH_LONG).show();
+                switch (position){
+                    case 0:
+                      curencyNames= new String[]{"IRR(iran)"};
+                        curencyNamesAdapter.notifyDataSetChanged();
+
+                        break;
+                    case 1:
+                        curencyNames= new String[]{"GB"};
+                        curencyNamesAdapter.notifyDataSetChanged();
+
+                        break;
+                    case 2:
+                         curencyNames= new String[]{"TRY", "EUR"};
+                        curencyNamesAdapter.notifyDataSetChanged();
+
+                        break;
+                }
+
+
+                break;
+            case R.id.curencySpinner:
+                break;
+            case R.id.officeSpinner:
+                break;
+        }
     }
 
     @Override
