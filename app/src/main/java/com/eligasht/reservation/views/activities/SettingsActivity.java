@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.R;
@@ -27,29 +28,27 @@ import com.eligasht.reservation.views.ui.SplashFragment;
  */
 
 public class SettingsActivity extends BaseActivity implements View.OnClickListener, SelectLanguageDialog.LanguageClick, AdapterView.OnItemSelectedListener {
-    private View dialogOpener;
     String[] countryNames={"ایران","England","Turkey"};
     int flags[] = {R.drawable.iran, R.drawable.united_kingdom, R.drawable.turkey};
     String[] curencyNames={"IRR(iran)"};
     String[] officeNames={"Eligasht-IR","Eligasht-UK","Eligasht-TK"};
     Spinner languageSpinner,curencySpinner,officeSpinner;
+    TextView tvConfirm;
 
-    SpinnerCustomrAdapter customAdapter;
-    SpinnerCustomrAdapter curencyNamesAdapter;
-    SpinnerCustomrAdapter officeNamesAdapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getResources().getString(R.string.settings));
-        dialogOpener = findViewById(R.id.dialog_opener);
-        dialogOpener.setOnClickListener(this);
+
         curencySpinner = findViewById(R.id.curencySpinner);
         languageSpinner = findViewById(R.id.languageSpinner);
         officeSpinner = findViewById(R.id.officeSpinner);
+        tvConfirm = findViewById(R.id.tvConfirm);
         languageSpinner.setOnItemSelectedListener(this);
         curencySpinner.setOnItemSelectedListener(this);
         officeSpinner.setOnItemSelectedListener(this);
+        tvConfirm.setOnClickListener(this);
 
 
 
@@ -64,9 +63,26 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.dialog_opener:
-                openDialog();
-                break;
+                case R.id.tvConfirm:
+                  String lang="";
+                    if (Prefs.getString("lang", "fa").equals(lang))
+                        return;
+                    Prefs.putString("lang", lang);
+
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent mStartActivity = new Intent(SettingsActivity.this, SplashFragment.class);
+                            int mPendingIntentId = 123456;
+                            PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
+                                    PendingIntent.FLAG_CANCEL_CURRENT);
+                            AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
+                            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                            System.exit(0);
+                        }
+                    }, 100);                break;
         }
     }
 
@@ -109,21 +125,21 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         switch (arg0.getId()){
             case R.id.languageSpinner:
 
-                Toast.makeText(getApplicationContext(), countryNames[position], Toast.LENGTH_LONG).show();
                 switch (position){
                     case 0:
                       curencyNames= new String[]{"IRR(iran)"};
-                        curencyNamesAdapter.notifyDataSetChanged();
+                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,curencyNames,false));
 
                         break;
                     case 1:
                         curencyNames= new String[]{"GB"};
-                        curencyNamesAdapter.notifyDataSetChanged();
+                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,curencyNames,false));
+
 
                         break;
                     case 2:
                          curencyNames= new String[]{"TRY", "EUR"};
-                        curencyNamesAdapter.notifyDataSetChanged();
+                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(),flags,curencyNames,false));
 
                         break;
                 }
