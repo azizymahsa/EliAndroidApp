@@ -453,10 +453,10 @@
 
 
     <string name="Facility">fonts/Facility.ttf</string>
-    <string name="iran_sans_bold.ttf">fonts/times.ttf</string>
-    <string name="iran_sans_normal.ttf">fonts/times.ttf</string>
-    <string name="irsans.ttf">fonts/times.ttf</string>
-    <string name="mitra.ttf">fonts/times.ttf</string>
+    <string name="iran_sans_bold.ttf">fonts/iran_sans_bold.ttf</string>
+    <string name="iran_sans_normal.ttf">fonts/iran_sans_normal.ttf</string>
+    <string name="irsans.ttf">fonts/iran_sans_normal.ttf</string>
+    <string name="mitra.ttf">fonts/iran_sans_normal.ttf</string>
 
     <string name="class_flight">فئة الطيران</string>
     <string name="cities_all_over_the_world">المدن في جميع أنحاء العالم</string>
@@ -2033,6 +2033,7 @@
     <string name="dot">&#xf052;</string>
     <string name="setting">&#xe637;</string>
     <string name="coming_soon">به زودی ...</string>
+    <string name="_arrow_right">&#xea40;</string >
     <string-array name="country_flags">
         <item>@drawable/ir</item>
         <item>@drawable/ir</item>

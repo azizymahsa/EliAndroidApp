@@ -49,9 +49,9 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
         final HotelPreFactorModel item = data.get(position);
 
         String sum = "";
-        sum = item.getAdult() + " بزرگسال";
+        sum = item.getAdult() +context.getString(R.string.adault);
         if (Integer.valueOf(item.getChild()) != 0) {
-            sum = sum + " " + item.getChild() + " کودک";
+            sum = sum + " " + item.getChild() + context.getString(R.string.child);
 
         }
 

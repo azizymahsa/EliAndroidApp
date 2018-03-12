@@ -710,7 +710,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 paymentUrl = jFact.getString("OnlinePaymentURL");
 
 
-                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + getString(R.string.Rial));
+                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+ getString(R.string.Rial));
 
 //for hotel==========================================================================================
                 final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);

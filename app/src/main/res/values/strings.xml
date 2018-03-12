@@ -67,7 +67,7 @@
 
     <string name="icon_exp_up">&#xe801;</string>
     <string name="icon_exp_down">&#xe800;</string>
-
+    <string name="_arrow_right">&#xea3c;</string>
 
     <string name="btn_insurance">Travel Insurance</string>
     <string name="icon_like">&#xe914;</string>
@@ -1984,7 +1984,7 @@
     <string name="travel_to">Travel to :</string>
     <string name="checkout_date">Checkout Date</string>
     <string name="checkin_date">Checkin Date</string>
-    <string name="baby">Child</string>
+    <string name="baby">Infant</string>
     <string name="adault">Adult</string>
     <string name="search">Search</string>
     <string name="login">Login</string>
@@ -2338,7 +2338,7 @@
     <string name="return_">return</string>
     <string name="text51">Save</string>
     <string name="number_human"> Enumerate </string>
-    <string name="return_airport"> Frodgah </string>
+    <string name="return_airport"> Airport</string>
     <string name="exit_time"> Exit Time </string>
     <string name="enter_time"> Time of </string>
     <string name="number"> No</string>
@@ -2347,7 +2347,7 @@
     <string name="text52">Change passwords</string>
     <string name="arabic">العربی</string>
     <string name="hotel_policy">Hotel policy</string>
-    <string name="Travel_insurance_to_travel_to_the_country">Travel insurance to travel to the country</string>
+    <string name="Travel_insurance_to_travel_to_the_country">Travel insurance to</string>
     <string name="please_refer_to_your_email_to_recover_the_password">Please refer to your email to recover the password.</string>
     <string name="Tur">Tour</string>
     <string name="Please_enter_the_correct_name">Please enter the correct name</string>
