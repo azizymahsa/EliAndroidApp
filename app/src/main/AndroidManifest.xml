@@ -18,7 +18,7 @@
         android:roundIcon="@drawable/logo_e"
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
-        tools:replace="android:supportsRtl,icon, label">
+        tools:replace="android:supportsRtl,icon, label,android:allowBackup">
         <activity
             android:name=".reservation.views.ui.SplashFragment"
             android:exported="true"
