@@ -67,7 +67,7 @@
 
     <string name="icon_exp_up">&#xe801;</string>
     <string name="icon_exp_down">&#xe800;</string>
-
+    <string name="_arrow_right">&#xea3c;</string>
 
     <string name="btn_insurance">Travel Insurance</string>
     <string name="icon_like">&#xe914;</string>
