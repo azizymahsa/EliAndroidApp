@@ -11,14 +11,14 @@
 
     <application
         android:name=".reservation.base.GlobalApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/logo_e"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@drawable/logo_e"
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
-        tools:replace="android:supportsRtl,icon, label">
+        tools:replace="android:supportsRtl,icon, label,android:allowBackup">
         <activity
             android:name=".reservation.views.ui.SplashFragment"
             android:exported="true"
