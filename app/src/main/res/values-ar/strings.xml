@@ -2033,6 +2033,7 @@
     <string name="dot">&#xf052;</string>
     <string name="setting">&#xe637;</string>
     <string name="coming_soon">به زودی ...</string>
+    <string name="_arrow_right">&#xea40;</string >
     <string-array name="country_flags">
         <item>@drawable/ir</item>
         <item>@drawable/ir</item>
