@@ -114,7 +114,9 @@
                     android:gravity="left|top"
                     android:text="استانبول"
                     android:textColor="#003399"
-                    android:textSize="@dimen/_12dp_normal_textSize" />
+                    android:textSize="@dimen/_12dp_normal_textSize"
+                    android:singleLine="true"
+                    android:ellipsize="end"/>
 
                 <LinearLayout
 
@@ -124,6 +126,7 @@
                     android:layout_marginLeft="3dip"
                     android:layout_weight="50"
                     android:gravity="left|top"
+                    android:layout_marginTop="4dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -134,7 +137,6 @@
                         android:gravity="left|center"
                         android:paddingTop="2dp"
                         android:text="TK658 "
-
                         android:textColor="#0e874e"
                         android:textSize="@dimen/_12dp_normal_textSize" />
 
@@ -161,6 +163,8 @@
                     android:text="استانبول"
                     android:textColor="#003399"
                     android:textSize="@dimen/_12dp_normal_textSize"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     />
 
             </LinearLayout>

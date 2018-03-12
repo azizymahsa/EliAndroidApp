@@ -42,15 +42,14 @@
 				android:gravity="right|top"
 				android:orientation="vertical" >
 
-
-
 				<TextView
 
 					android:id="@+id/lblDepurtureAirportR"
 					android:layout_width="match_parent"
 					android:layout_height="0dp"
 					android:layout_weight="350"
-
+					android:singleLine="true"
+					android:ellipsize="end"
 					android:gravity="right|top"
 					android:textSize="@dimen/_10dp_textSize"
 					android:text="استانبول"
@@ -103,7 +102,8 @@
 					android:textColor="#003399"
 					android:textSize="@dimen/_10dp_textSize"
 					android:layout_marginTop="4dp"
-
+					android:singleLine="true"
+					android:ellipsize="end"
 					/>
 
 			</LinearLayout>
