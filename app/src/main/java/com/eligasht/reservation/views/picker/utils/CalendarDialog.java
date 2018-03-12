@@ -180,6 +180,7 @@ public class CalendarDialog implements OnClickListener {
         });
     }
 
+
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, TypeUsageOfCalendar typeUsageofCalendar) {
         this.context = context;
         this.activity = activity;
@@ -349,11 +350,6 @@ public class CalendarDialog implements OnClickListener {
 
     private void initViews() {
         calendarRv = view.findViewById(R.id.calendar_rv);
-//        final LayoutAnimationController controller =
-//                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
-//
-//        calendarRv.setLayoutAnimation(controller);
-//        calendarRv.scheduleLayoutAnimation();
         currentMonth = view.findViewById(R.id.current_month);
         dateDescription = view.findViewById(R.id.date_description);
         accept = view.findViewById(R.id.accept);
@@ -528,6 +524,7 @@ public class CalendarDialog implements OnClickListener {
         }
     }
 
+
     private CustomDate getDateByString(String str) {
         if (str == null)
             return null;
@@ -599,7 +596,7 @@ public class CalendarDialog implements OnClickListener {
             initAdapter(this.isGregorian);
             if (context.getResources().getBoolean(R.bool.isTablet)) {
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(-1, (int) (((double) (this.displayMetrics.density * 240.0f)) + 0.5d));
-                layoutParams.setMargins((int) (((double) (2.0f * this.displayMetrics.density)) - 40d), (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (10.0f * this.displayMetrics.density)) + 7d), 0);
+                layoutParams.setMargins((int) (((double) (2.0f * this.displayMetrics.density)) + 35d), (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (1.0f * this.displayMetrics.density)) - 25d), 0);
                 layoutParams.addRule(3, R.id.fri);
                 this.calendarRv.setLayoutParams(layoutParams);
             } else {
@@ -622,7 +619,7 @@ public class CalendarDialog implements OnClickListener {
         initAdapter(this.isGregorian);
         if (context.getResources().getBoolean(R.bool.isTablet)) {
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(-1, (int) (((double) (this.displayMetrics.density * 240.0f)) + 0.5d));
-            layoutParams.setMargins(-32, (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (15.0f * this.displayMetrics.density)) + .5d), 0);
+            layoutParams.setMargins(37, (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (2.0f * this.displayMetrics.density)) - 30d), 0);
             layoutParams.addRule(3, R.id.fri);
             this.calendarRv.setLayoutParams(layoutParams);
         } else {
@@ -693,6 +690,7 @@ public class CalendarDialog implements OnClickListener {
                         this.f13893G.set(((UiUtils.m18456b(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[0]))).intValue()) + UiUtils.m18437a(true, this.calendarTool.m18353d())) - UiUtils.m18456b(1, this.calendarTool.m18354e(), this.calendarTool.m18353d())) + this.f13935x, Boolean.valueOf(true));
                     }
                     this.accept.setEnabled(true);
+                    accept.setTextColor(context.getResources().getColor(R.color.btn));
                     this.accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
                 }
             } else if (this.fullDate != null) {
@@ -762,6 +760,7 @@ public class CalendarDialog implements OnClickListener {
                         this.f13893G.set(((UiUtils.m18433a(Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[2]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[1]))).intValue(), Integer.valueOf(this.numberUtil.toEnglishString(String.valueOf(this.fullDate.split("-")[1].split("/")[0]))).intValue()) + UiUtils.m18437a(false, this.calendarTool.m18348a())) - UiUtils.m18433a(1, this.calendarTool.m18350b(), this.calendarTool.m18348a())) + this.f13935x, Boolean.valueOf(true));
                     }
                     this.accept.setEnabled(true);
+                    accept.setTextColor(context.getResources().getColor(R.color.btn));
                     this.accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
                 }
             } else if (this.fullDate != null) {
@@ -790,11 +789,13 @@ public class CalendarDialog implements OnClickListener {
                         ab = -1;
                         indexDaySelected = -1;
                         accept.setEnabled(false);
+                        accept.setTextColor(context.getResources().getColor(R.color.gray_dark));
                         accept.setBackgroundResource(R.drawable.radious_gray_btn_hotel);
                     }
                     if (ab == -1) {
                         ab = dateSelectedIndex;
                         accept.setEnabled(false);
+                        accept.setTextColor(context.getResources().getColor(R.color.gray_dark));
                         accept.setBackgroundResource(R.drawable.radious_gray_btn_hotel);
                     } else if (ab > dateSelectedIndex) {
                         ab = dateSelectedIndex;
@@ -804,10 +805,12 @@ public class CalendarDialog implements OnClickListener {
                     } else {
                         indexDaySelected = dateSelectedIndex;
                         accept.setEnabled(true);
+                        accept.setTextColor(context.getResources().getColor(R.color.btn));
                         accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
                     }
                 } else {
                     accept.setEnabled(true);
+                    accept.setTextColor(context.getResources().getColor(R.color.btn));
                     accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
                 }
                 if (isGeorgian) {
