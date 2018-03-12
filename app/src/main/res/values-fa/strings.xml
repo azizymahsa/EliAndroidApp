@@ -24,7 +24,7 @@
     <string name="Filter">فیلتر کردن</string>
     <string name="NextDay">روز بعد</string>
     <string name="LastDay">روز قبل</string>
-    <string name="curency">ریال</string>
+    <string name="curency">&#032;ریال&#032;</string>
     <string name="ApartmenHotel">هتل آپارتمان</string>
     <string name="BoutiqueHotel">بوتیک هتل</string>
     <string name="ResortHotel">ریزورت هتل</string>
@@ -228,7 +228,7 @@
     <string name="Please_enter_last_name_in_Persian">لطفا نام خانوادگی را وارد کنید(به فارسی)</string>
     <string name="Please_enter_the_mobile_number">لطفا شماره موبایل را وارد کنید</string>
     <string name="Please_enter_the_national_code">لطفا کد ملی را وارد کنید</string>
-    <string name="Rial">ریال</string>
+    <string name="Rial">&#032;ریال&#032;</string>
     <string name="Error_getting_information_from_eli">خطا در دریافت اطلاعات از الی گشت</string>
     <string name="An_error_has_occurred">خطایی رخ داده است !</string>
     <string name="Approval_and_payment_of_pre_invoice">تایید و پرداخت پیش فاکتور</string>
@@ -318,9 +318,9 @@
     <string name="SelectDepartCity">شهر مقصد را انتخاب کنید</string>
     <string name="lisences">گواهینامه ها</string>
     <string name="day_">روز _</string>
-    <string name="rial_">ریال )</string>
+    <string name="rial_">ریال ) &#032;</string>
     <string name="day">روز</string>
-    <string name="space_rial_space"> ریال </string>
+    <string name="space_rial_space">&#032; ریال&#032;</string>
     <string name="amount_">تعداد )</string>
     <string name="approved">تایید شده</string>
     <string name="delivered">تحویل شده</string>

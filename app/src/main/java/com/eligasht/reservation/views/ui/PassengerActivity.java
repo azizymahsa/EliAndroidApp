@@ -989,7 +989,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				long totalprice = jFact.getLong("TotalPrice");
 
 
-				tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+ getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+				tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
 
 //for hotel==========================================================================================
 				final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
