@@ -1475,15 +1475,13 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-
+                android:layout_height="@dimen/_60dp_hight"
                 >
 
                 <ImageView
                     android:id="@+id/ivImage"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-
+                    android:layout_height="@dimen/_60dp_hight"
                     android:scaleType="fitXY"
                     android:src="@drawable/path2" />
 
@@ -1763,7 +1761,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="@dimen/_60dp_hight"
                     android:scaleType="fitXY"
 
                     android:src="@drawable/path1" />

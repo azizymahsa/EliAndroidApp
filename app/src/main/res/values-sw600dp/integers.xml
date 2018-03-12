@@ -2,6 +2,6 @@
 <resources>
     <integer name="text12">20</integer>
     <integer name="_300">300</integer>
-    <integer name="_150">150</integer>
+    <integer name="_150">120</integer>
 
 </resources>
