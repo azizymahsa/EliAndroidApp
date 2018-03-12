@@ -187,8 +187,8 @@
     <string name="date">تاريخ</string>
     <string name="departure_to">رحلة إلى:</string>
     <string name="Possibilities">مرافق</string>
-    <string name="Rial">ريال </string>
-    <string name="curency">ريال </string>
+    <string name="Rial"> ريال&#032;</string>
+    <string name="curency"> ريال&#032; </string>
     <string name="space_rial_space">ريال </string>
     <string name="document_status">حالة الوثائق</string>
     <string name="Please_enter_a_name_in_English">الرجاء إدخال اسم (باللغة الإنجليزية)</string>
