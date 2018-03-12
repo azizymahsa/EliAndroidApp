@@ -63,28 +63,23 @@
         android:orientation="horizontal"
         android:weightSum="4">
 
+
+
+
+
+
+
         <ImageView
-            android:id="@+id/btn_pish_factor"
-            android:layout_width="@dimen/_95dp_image_passenger"
+            android:id="@+id/btn_saler"
+            android:layout_width="@dimen/_30dp_image_passenger"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="5dp"
             android:gravity="right|center_vertical"
-            android:scaleType="fitEnd"
-            android:src="@drawable/factor_passenger_off"
+            android:scaleType="fitStart"
+            android:src="@drawable/saler_passenger"
             android:text=""
-            android:textColor="#808080"
+            android:textColor="#33ccff"
             android:textSize="10dp" />
-
-        <ImageView
-            android:id="@+id/btn_khadamat"
-            android:layout_width="@dimen/_95dp_image_passenger"
-            android:layout_height="wrap_content"
-            android:gravity="right|center_vertical"
-            android:src="@drawable/khadamat_passenger_off"
-            android:text="  "
-            android:textColor="#808080"
-            android:textSize="10dp" />
-
         <ImageView
             android:id="@+id/btn_mosaferan"
             android:layout_width="@dimen/_95dp_image_passenger"
@@ -94,17 +89,25 @@
             android:text="  "
             android:textColor="#808080"
             android:textSize="10dp" />
-
         <ImageView
-            android:id="@+id/btn_saler"
-            android:layout_width="@dimen/_30dp_image_passenger"
+            android:id="@+id/btn_khadamat"
+            android:layout_width="@dimen/_95dp_image_passenger"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
             android:gravity="right|center_vertical"
-            android:scaleType="fitStart"
-            android:src="@drawable/saler_passenger"
+            android:src="@drawable/khadamat_passenger_off"
+            android:text="  "
+            android:textColor="#808080"
+            android:textSize="10dp" />
+        <ImageView
+            android:id="@+id/btn_pish_factor"
+            android:layout_width="@dimen/_95dp_image_passenger"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:gravity="right|center_vertical"
+            android:scaleType="fitEnd"
+            android:src="@drawable/factor_passenger_off"
             android:text=""
-            android:textColor="#33ccff"
+            android:textColor="#808080"
             android:textSize="10dp" />
     </LinearLayout>
 
@@ -119,53 +122,56 @@
         android:orientation="horizontal"
         android:weightSum="4">
 
-        <Button
-            android:id="@+id/txtPishfactor"
-            android:layout_width="@dimen/_95dp_image_passenger"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:background="@drawable/transparentt"
-            android:gravity="left|center_vertical"
-            android:text="@string/payment"
-            android:textAllCaps="false"
-            android:textColor="#aaaaaa"
-            android:textSize="@dimen/_10dp_textSize" />
 
-        <Button
-            android:id="@+id/txtKhadamat"
-            android:layout_width="@dimen/_95dp_image_passenger"
-            android:layout_height="wrap_content"
-            android:background="@drawable/transparentt"
-            android:gravity="left|center_vertical"
-            android:text="@string/servis"
-            android:textAllCaps="false"
-            android:textColor="#aaaaaa"
-            android:textSize="@dimen/_10dp_textSize" />
 
-        <Button
-            android:id="@+id/txtMasaferan"
-            android:layout_width="@dimen/_95dp_image_passenger"
-            android:layout_height="wrap_content"
-            android:background="@drawable/transparentt"
-            android:gravity="left|center_vertical"
-            android:text="@string/passenger"
-            android:textAllCaps="false"
-            android:textColor="#aaaaaa"
-            android:textSize="@dimen/_10dp_textSize" />
+
+
+
+
 
         <Button
             android:id="@+id/txtSaler"
             android:layout_width="@dimen/_30dp_image_passenger"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/transparentt"
             android:gravity="center|left"
             android:text="@string/partner"
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="@dimen/_10dp_textSize" />
+        <Button
+            android:id="@+id/txtMasaferan"
+            android:layout_width="@dimen/_95dp_image_passenger"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparentt"
+            android:gravity="right|center_vertical"
+            android:text="@string/passenger"
+            android:textAllCaps="false"
+            android:textColor="#aaaaaa"
+            android:textSize="@dimen/_10dp_textSize" />
+        <Button
+            android:id="@+id/txtKhadamat"
+            android:layout_width="@dimen/_95dp_image_passenger"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparentt"
+            android:gravity="right|center_vertical"
+            android:text="@string/servis"
+            android:textAllCaps="false"
+            android:textColor="#aaaaaa"
+            android:textSize="@dimen/_10dp_textSize" />
+        <Button
+            android:id="@+id/txtPishfactor"
+            android:layout_width="@dimen/_95dp_image_passenger"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/transparentt"
+            android:gravity="right|center_vertical"
+            android:text="@string/payment"
+            android:textAllCaps="false"
+            android:textColor="#aaaaaa"
+            android:textSize="@dimen/_10dp_textSize" />
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
