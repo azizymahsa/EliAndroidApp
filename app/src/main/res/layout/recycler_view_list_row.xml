@@ -32,7 +32,7 @@
                 android:layout_below="@+id/rlTitleHotel"
 
 
-                android:layout_height="35dp"
+                android:layout_height="@dimen/_35dp"
                 android:background="#fff4ee">
 
 
@@ -46,7 +46,7 @@
                     android:text="جزئیات هتل"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#4d4d4d"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/tvArrow"
@@ -70,7 +70,7 @@
             <com.github.aakira.expandablelayout.ExpandableLinearLayout
                 android:id="@+id/expandableLayout"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="@dimen/_120dp"
                 android:layout_below="@id/buttonLayout"
                 android:orientation="vertical"
                 app:ael_duration="400"
@@ -95,52 +95,52 @@
                             android:id="@+id/tvSum"
 
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/_35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
                             android:text="@string/number_human"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
                             android:id="@+id/tvCheckOut"
 
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/_35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
                             android:text="تاریخ خروج از هتل"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
                             android:id="@+id/tvCheckIn"
 
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/_35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
                             android:text="تاریخ ورود به هتل	"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
                         <TextView
                             android:id="@+id/tvRoom"
 
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/_35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
                             android:text="تاریخ ورود به هتل	"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     </LinearLayout>
@@ -158,47 +158,47 @@
                         <TextView
 
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/_35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
                             android:text="@string/number_human"
 
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
 
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/_35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
                             android:text="@string/checkout_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/_35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
                             android:text="@string/checkin_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/_35dp"
                             android:gravity="center|right"
                             android:padding="5dp"
                             android:text="@string/room"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
 
@@ -214,226 +214,3 @@
 
 </RelativeLayout>
 
-<!--                            <LinearLayout
-                                android:id="@+id/llHotelPrefactor"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:id="@+id/rlTitleHotel"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="50"
-                                    android:orientation="horizontal"
-                                    android:gravity="center">
-
-                                    <View
-                                        android:layout_width="0dp"
-                                        android:layout_height="1dp"
-                                        android:layout_weight="100"
-                                        android:background="@color/text_color_2e"/>
-                                    <TextView
-                                        android:layout_width="90dp"
-                                        android:layout_height="wrap_content"
-                                        android:padding="5dp"
-                                        android:text="جزئیات هتل"
-                                        android:textAppearance="@style/IrsansBold"
-                                        android:textColor="@color/text_color_2e"
-                                        android:textSize="12dp"
-                                        android:gravity="center"/>
-                                    <View
-                                        android:layout_width="0dp"
-                                        android:layout_height="1dp"
-                                        android:layout_weight="100"
-                                        android:background="@color/text_color_2e"/>
-                                </LinearLayout>
-
-
-
-                            <RelativeLayout
-                                android:id="@+id/rlUser"
-                                android:layout_width="match_parent"
-                                android:layout_below="@+id/rlTitleHotel"
-
-
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp">
-
-
-                                <TextView
-                                    android:id="@+id/tvHotelDetail"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/color_passenger_prefactor"
-                                    android:gravity="center"
-                                    android:padding="5dp"
-                                    android:text="جزئیات هتل"
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="@color/text_color_2e"
-                                    android:textSize="12dp" />
-
-                                <TextView
-                                    android:id="@+id/tvArrow"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentLeft="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:gravity="center"
-
-                                    android:text="@string/icon_arrow_up"
-                                    android:textAppearance="@style/IconFonts"
-                                    android:textColor="@color/text_color_2e"
-                                    android:textSize="18dp" />
-
-                            </RelativeLayout>
-
-                            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                                android:id="@+id/expandableLayout"
-                                android:layout_width="match_parent"
-                                android:layout_height="150dp"
-                                android:layout_below="@+id/rlUser"
-
-                                app:ael_duration="1000"
-
-                                app:ael_interpolator="anticipateOvershoot">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="100"
-                                        android:gravity="right"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/tvHotelName"
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="نام هتل"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="#4d4d4d"
-
-                                            android:textSize="12dp"
-                                            android:visibility="gone"/>
-
-                                        <TextView
-                                            android:id="@+id/tvSum"
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تعداد نفرات"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="#4d4d4d"
-
-                                            android:textSize="12dp" />
-
-                                        <TextView
-                                            android:id="@+id/tvCheckOut"
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تاریخ خروج از هتل"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="#4d4d4d"
-
-                                            android:textSize="12dp" />
-
-                                        <TextView
-                                            android:id="@+id/tvCheckIn"
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تاریخ ورود به هتل	"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="#4d4d4d"
-
-                                            android:textSize="12dp" />
-
-
-                                    </LinearLayout>
-
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="65"
-
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="نام هتل"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="@color/text_color_2e"
-
-                                            android:textSize="12dp"
-                                            android:visibility="gone"/>
-
-                                        <TextView
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تعداد نفرات"
-
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="@color/text_color_2e"
-                                            android:textSize="12dp" />
-
-                                        <TextView
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تاریخ خروج از هتل"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="@color/text_color_2e"
-
-                                            android:textSize="12dp" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="35dp"
-                                            android:gravity="center|right"
-                                            android:padding="5dp"
-                                            android:text="تاریخ ورود به هتل	"
-                                            android:textAppearance="@style/IrsansBold"
-                                            android:textColor="@color/text_color_2e"
-
-                                            android:textSize="12dp" />
-
-
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-
-                            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
-
-
-
-                            </LinearLayout>
--->

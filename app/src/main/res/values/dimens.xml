@@ -20,6 +20,7 @@
     <dimen name="bottom_tab">11dp</dimen>
     <dimen name="_50dp_normal_im">50dp</dimen>
     <dimen name="_300dp">300dp</dimen>
+    <dimen name="_120dp">120dp</dimen>
 
 
 </resources>

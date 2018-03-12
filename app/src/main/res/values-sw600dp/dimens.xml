@@ -138,5 +138,6 @@
     <dimen name="_23dp_khadamat">30dp</dimen>
     <dimen name="_50dp_normal_im">70dp</dimen>
     <dimen name="_300dp">600dp</dimen>
+    <dimen name="_120dp">380dp</dimen>
 
 </resources>
