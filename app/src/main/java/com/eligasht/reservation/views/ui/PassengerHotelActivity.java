@@ -763,7 +763,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 paymentUrl = jFact.getString("OnlinePaymentURL");
 
 
-                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + getString(R.string.Rial));
+                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+ getString(R.string.Rial));
 
 //for hotel==========================================================================================
                 final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
@@ -1019,7 +1019,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 // Setup and Handover data to recyclerview
                 ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-                txtTitle.setText(getString(R.string.An_error_has_occurred));
+                txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
                 //myScrollView.setOnTouchListener(null);
 
                 linear_saler.setVisibility(View.GONE);

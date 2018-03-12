@@ -15,13 +15,13 @@ android {
             storePassword 'z9H5V#'
         }
     }
-    compileSdkVersion 27
+    compileSdkVersion 26
     defaultConfig {
         applicationId "com.eligasht"
         manifestPlaceholders = [onesignal_app_id               : "e9eccbf1-b5b1-4be7-a500-29350ca37531",
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 17
-        targetSdkVersion 27
+        targetSdkVersion 26
         versionCode 7
         versionName "1.0.6"
         multiDexEnabled true
@@ -91,7 +91,6 @@ dependencies {
     compile('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
         exclude module: 'support-v4'
     }
-    compile 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.pwittchen:reactivenetwork-rx2:0.12.3'
     compile 'com.novoda:merlin:1.1.5'
     compile 'org.jsoup:jsoup:1.8.3'

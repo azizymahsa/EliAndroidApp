@@ -17,7 +17,7 @@
         android:paddingRight="15sp"
         android:paddingTop="15sp"
         android:paddingBottom="15sp"
-        android:text="به زودی ..."
+        android:text="@string/coming_soon"
         android:textAppearance="@style/IrsansBold"
         android:textColor="#878787"
         android:textSize="12sp" />

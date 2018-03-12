@@ -393,9 +393,9 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
             manJson.put("Password", "123qwe!@#QWE");
             manJson.put("TermianlId", "Mobile");
             manJson.put("Code", GetAirportMabdaActivity.searchText);
-            //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
+            manJson.put("culture","en-");
             jsone.put("request", manJson);
-
+            System.out.println("cultere:"+jsone.toString());
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block

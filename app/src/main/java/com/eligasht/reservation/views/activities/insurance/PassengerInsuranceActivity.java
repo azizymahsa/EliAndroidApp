@@ -710,7 +710,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 paymentUrl = jFact.getString("OnlinePaymentURL");
 
 
-                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + getString(R.string.Rial));
+                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+ getString(R.string.Rial));
 
 //for hotel==========================================================================================
                 final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
@@ -1319,11 +1319,11 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         switch (v.getId()) {
 
             case R.id.txt_hom:
-                Prefs.putBoolean("BACK_HOME", true);
-               /* Intent intent = new Intent("sendFinish");
+                Prefs.putBoolean("BACK_HOME",true);
+                //	myScrollView.setOnTouchListener(null);
+                Intent intent = new Intent("sendFinish");
 
-                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);*/
-               finish();
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
             case R.id.txtMore:
 

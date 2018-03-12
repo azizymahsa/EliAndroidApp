@@ -122,6 +122,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         initMap();
         new GetContactUsAsync().execute();
 // add PhoneStateListener
+        findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
 
 
     }

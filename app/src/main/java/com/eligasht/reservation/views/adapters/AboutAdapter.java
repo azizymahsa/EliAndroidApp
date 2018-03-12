@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.SectionModel;
 import com.eligasht.reservation.tools.JustifiedTextView;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
@@ -62,14 +63,29 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         final SectionModel item = data.get(position);
 
         holder.setIsRecyclable(false);
-        Typeface face = Typeface.createFromAsset(context.getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
-        holder.txtDescription.setTypeFace(face);
-        holder.txtSectionName.setTypeFace(face);
+        Typeface face;
+        if(Prefs.getString("lang","fa").equals("fa")){
+             face = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_normal.ttf");
+            holder.txtSectionNameEn.setVisibility(View.GONE);
+            holder.txtDescriptionEn.setVisibility(View.GONE);
+        }else{
+             face = Typeface.createFromAsset(context.getAssets(),"fonts/times.ttf");
+            holder.txtSectionName.setVisibility(View.GONE);
+            holder.txtDescription.setVisibility(View.GONE);
 
-        holder.txtSectionName.setTextSize(2,18);
+        }
+        holder.txtDescription.setTypeFace(face);
+
+
+        holder.txtDescription.setLineSpacing(30);
+
         holder.txtDescription.setTextSize(1,16);
+
+
         holder.txtSectionName.setTextColor(Color.parseColor("#000000"));
         holder.txtDescription.setTextColor(ContextCompat.getColor(context,R.color.gray_dark_2));
+
+
         if(item.getSectionName().contains(context.getString(R.string.lisences))){
             String[] value_split = item.getSectionName().split("\\|");
             holder.txtSectionName.setText(value_split[1]+"");
@@ -78,18 +94,23 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
             holder.txtSectionName.setText(item.getSectionName()+"");
             holder.txtSectionNameEn.setText(item.getSectionName()+"");
         }
+
+
+
+
+
+
+
+
+
+
         holder.txtDescription.setText(item.getDescription()+ "");
         String youtContentStr = String.valueOf(Html
                 .fromHtml("<![CDATA[<body style=\"text-align:justify;color:#222222; \">"
                         + item.getDescription()
                         + "</body>]]>"));
-
-       // view.loadData(youtContentStr, "text/html", "utf-8");
        holder.txtDescriptionEn.loadData(youtContentStr, "text/html", "utf-8");
 
-        holder.txtDescription.setLineSpacing(30);
-        holder.txtSectionName.setLineSpacing(15);
-        //	holder.iv_imageAddress.setBackgroundResource();
 
         if(item.getImageAddress() != "null"){
 
@@ -117,7 +138,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ExpandableLinearLayout expandableLayout;
         JustifiedTextView txtDescription;
-        JustifiedTextView txtSectionName;
+     TextView txtSectionName;
         WebView txtDescriptionEn;
         TextView txtSectionNameEn;
         ImageView iv_imageAddress;

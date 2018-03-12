@@ -1462,14 +1462,13 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-
+                android:layout_height="@dimen/_60dp_hight"
                 >
 
                 <ImageView
                     android:id="@+id/ivImage"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="@dimen/_60dp_hight"
 
                     android:scaleType="fitXY"
                     android:src="@drawable/path2" />
@@ -1750,12 +1749,12 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="@dimen/_60dp_hight"
                     android:scaleType="fitXY"
 
                     android:src="@drawable/path1" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -1775,14 +1774,15 @@
                         android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"
                         android:text="@string/The_amount_payable"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-                </LinearLayout>
+                        android:textSize="@dimen/_15dp_normal_textSize"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>
 
 
             </RelativeLayout>

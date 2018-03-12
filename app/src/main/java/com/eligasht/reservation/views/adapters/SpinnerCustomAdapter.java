@@ -43,14 +43,21 @@ public class SpinnerCustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.custom_spinner_item, null);
-        ImageView icon = (ImageView) view.findViewById(R.id.imageView);
-        TextView names = (TextView) view.findViewById(R.id.textView);
+        TextView names;
         if (isLanguage){
+            view = inflter.inflate(R.layout.custom_spinner_item, null);
+             names = (TextView) view.findViewById(R.id.textView);
+
+            ImageView icon = (ImageView) view.findViewById(R.id.imageView);
             icon.setImageResource(flags[i]);
 
+
         }else{
-            icon.setVisibility(View.GONE);
+            view = inflter.inflate(R.layout.custom_spinner_item_2, null);
+            names = (TextView) view.findViewById(R.id.textView);
+
+
+
         }
         names.setText(countryNames[i]);
         names.setTypeface(Typeface.createFromAsset(context.getAssets(),context.getString(R.string.iran_sans_normal_ttf)));

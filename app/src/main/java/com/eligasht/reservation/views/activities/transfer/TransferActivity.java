@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.activities.transfer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -11,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -132,10 +134,10 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
-                if (ValidationTools.isEmptyOrNull(tvDepurtureFlt.getText().toString())){
+                if (ValidationTools.isEmptyOrNull(tvDepurtureFlt.getText().toString())) {
                     Typeface t = Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
                     tvDepurtureFlt.setTypeface(t);
-                }else{
+                } else {
                     Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
                     tvDepurtureFlt.setTypeface(t);
                 }
@@ -157,10 +159,10 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
-                if (ValidationTools.isEmptyOrNull(tvReturnFlt.getText().toString())){
+                if (ValidationTools.isEmptyOrNull(tvReturnFlt.getText().toString())) {
                     Typeface t = Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
                     tvReturnFlt.setTypeface(t);
-                }else{
+                } else {
                     Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
                     tvReturnFlt.setTypeface(t);
                 }
@@ -530,8 +532,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onResume() {
         super.onResume();
-        Utility.hideKeyboard(TransferActivity.this,tvDepurtureFlt);
-        Utility.hideKeyboard(TransferActivity.this,tvReturnFlt);
 
         if (ValidationTools.isEmptyOrNull(DepurtureAirport)) {
             tvDepurtureAirport.setText(Prefs.getString("Value-Mabda-City2", getString(R.string.please_select_one)));
@@ -742,7 +742,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
                     if (Prefs.getString("IST", "H").equals("H")) {
                         AirPortCode = Prefs.getString("Value-Maghsad-Airport-Code2", "");
-                        Log.e("okok", "ffsdf" );
+                        Log.e("okok", "ffsdf");
 
                     }
 
@@ -752,7 +752,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     ReturnTime = tvReturnTime.getText().toString();
                     DepurtureFlt = tvDepurtureFlt.getText().toString();
                     ReturnFlt = tvReturnFlt.getText().toString();
-                    ReturnDate =bargasht;
+                    ReturnDate = bargasht;
                     new GetPriceAsync().execute();
                     break;
                 }
@@ -880,13 +880,13 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
                 }else{*/
 
-                    Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
-                    Log.e("test", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
-                    finish();
+                Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
+                Log.e("test", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
+                finish();
                 //flag first computing
                 Prefs.putString("Flag_First_Computing", "T");
 
-              //  }
+                //  }
 
 
             } catch (Exception e) {
@@ -894,29 +894,28 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 Prefs.putString("Flag_First_Computing", "F");
 
 
-                try{
-                    if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors!=null||!airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.isEmpty()){
-                        Prefs.putLong("Tprice",0);
+                try {
+                    if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors != null || !airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.isEmpty()) {
+                        Prefs.putLong("Tprice", 0);
 
                         Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).Message, Toast.LENGTH_SHORT).show();
-                        Prefs.putLong("Tprice",0);
+                        Prefs.putLong("Tprice", 0);
                         finish();
 
                     }
 
-                }catch (Exception e2){
-                    Prefs.putLong("Tprice",0);
+                } catch (Exception e2) {
+                    Prefs.putLong("Tprice", 0);
                     finish();
-                    if (Utility.isNetworkAvailable(TransferActivity.this)){
+                    if (Utility.isNetworkAvailable(TransferActivity.this)) {
 
                         Toast.makeText(TransferActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
 
-                    }else{
+                    } else {
                         Toast.makeText(TransferActivity.this, R.string.InternetError, Toast.LENGTH_SHORT).show();
                     }
 
                 }
-
 
 
 

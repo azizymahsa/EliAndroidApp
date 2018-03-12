@@ -170,3 +170,14 @@
 -keep class com.zplesac.connectionbuddy.models.**
 -keep class com.zplesac.connectionbuddy.models.*
 -keep class com.zplesac.connectionbuddy.models.**{*;}
+-keep class com.wang.avi.** { *; }
+-keep class com.wang.avi.indicators.** { *; }
+-keep class com.rey.material.** { *; }
+-dontwarn com.rey.material.**
+
+-ignorewarnings
+-keep class * {
+    public private *;
+}
+-dontwarn javax.annotation.GuardedBy
+-dontwarn javax.annotation.**

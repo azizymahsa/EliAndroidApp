@@ -596,10 +596,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         switch (v.getId()) {
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME",true);
-                /*Intent intent = new Intent("sendFinish");
+                //	myScrollView.setOnTouchListener(null);
+                Intent intent = new Intent("sendFinish");
 
-                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);*/
-                finish();
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
             case R.id.txtMore:
                 linearMahaleeghamat.setVisibility(View.VISIBLE);
@@ -2018,7 +2018,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 paymentUrl = jFact.getString("OnlinePaymentURL");
 
 
-                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + getString(R.string.Rial));
+                tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+ getString(R.string.Rial));
 
 //for hotel==========================================================================================
                 final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
