@@ -41,7 +41,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "بازیابی رمز عبور");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.reset_pass));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
@@ -71,7 +71,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
                 if (response == null
                         || response.body() == null
                         || response.body().getWebUserRememberPasswordResult() == null) {
-                    Toast.makeText(ResetPasswordActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResetPasswordActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -90,7 +90,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onFailure(Call<WebUserRememberPasswordRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(ResetPasswordActivity.this, "در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ResetPasswordActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -11,7 +11,7 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/cvDate"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_3_flight_dp"
         android:layout_marginLeft="10dp"
@@ -33,7 +33,7 @@
 
                 <TextView
                     android:id="@+id/txtServiceNameFa"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1.03"
@@ -62,7 +62,7 @@
 
                 <TextView
                     android:id="@+id/txtDescription"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:layout_marginTop="4dp"

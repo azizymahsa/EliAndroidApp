@@ -22,22 +22,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="@dimen/_10dp_margin">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="100"
-                android:gravity="right|center"
-                android:text="ferwer"
-                android:textAppearance="@style/IconFonts"
-                android:textColor="@color/text_color_2e"
-                android:textSize="@dimen/_14dp_txtSize"
-
-
-                />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -49,6 +33,22 @@
                 android:textSize="@dimen/_25dp_normal_iconSize"
 
                 />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="100"
+                android:gravity="left|center"
+                android:text="ferwer"
+                android:textAppearance="@style/IconFonts"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_14dp_txtSize"
+
+
+                />
+
 
 
         </LinearLayout>

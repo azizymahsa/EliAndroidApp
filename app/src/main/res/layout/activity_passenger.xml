@@ -630,7 +630,8 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            >
 
             <!-- ///////////////////////// -->
             <ScrollView
@@ -664,8 +665,8 @@
 
                         <TextView
                             android:id="@+id/imgCount"
-                            android:layout_width="80dp"
-                            android:layout_height="25dp"
+                            android:layout_width="@dimen/_80dp_fh_"
+                            android:layout_height="@dimen/_25dp"
                             android:layout_gravity="right|center"
                             android:layout_margin="5dp"
                             android:layout_marginTop="0dp"
@@ -1403,15 +1404,13 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-
+                android:layout_height="@dimen/_60dp_hight"
                 >
 
                 <ImageView
                     android:id="@+id/ivImage"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-
+                    android:layout_height="@dimen/_60dp_hight"
                     android:scaleType="fitXY"
                     android:src="@drawable/path2" />
 
@@ -1691,7 +1690,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="@dimen/_60dp_hight"
                     android:scaleType="fitXY"
 
                     android:src="@drawable/path1" />
