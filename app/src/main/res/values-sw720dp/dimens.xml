@@ -128,6 +128,8 @@
     <dimen name="path_dim">90dp</dimen>
     <dimen name="_300dp">600dp</dimen>
     <dimen name="_120dp">380dp</dimen>
+    <dimen name="_255dp">400dp</dimen>
+    <dimen name="_145dp">225dp</dimen>
 
 
 </resources>

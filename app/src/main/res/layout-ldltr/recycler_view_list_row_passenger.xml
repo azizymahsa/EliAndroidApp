@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/tools">
+
 
 
     <android.support.v7.widget.CardView
@@ -11,14 +12,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
 
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="2dp"
         android:background="@color/hotel_detail_background"
         card_view:cardBackgroundColor="#ffffff"
         card_view:cardCornerRadius="1dp"
-        card_view:cardElevation="0.5dp">
+        card_view:cardElevation="0.5dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="2dp"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,10 +29,10 @@
             <RelativeLayout
                 android:id="@+id/buttonLayout"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-
-
                 android:layout_below="@+id/rlTitleHotel"
+
+
+                android:layout_height="@dimen/_35dp"
                 android:background="#fff4ee">
 
 
@@ -45,7 +47,7 @@
                     android:text="@string/detail_hotel"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#4d4d4d"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/_12dp" />
 
                 <TextView
                     android:id="@+id/tvArrow"
@@ -65,20 +67,77 @@
             </RelativeLayout>
 
 
+
             <com.github.aakira.expandablelayout.ExpandableLinearLayout
                 android:id="@+id/expandableLayout"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="@dimen/_120dp"
                 android:layout_below="@id/buttonLayout"
                 android:orientation="vertical"
                 app:ael_duration="400"
-                app:ael_expanded="false">
-
+                app:ael_expanded="false"
+                >
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="145dp"
+                    android:layout_height="@dimen/_145dp"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="65"
 
+                        android:orientation="vertical">
+
+
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35dp"
+                            android:gravity="center|left"
+                            android:padding="5dp"
+                            android:text="@string/gender"
+
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_2e"
+                            android:textSize="@dimen/_12dp" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35dp"
+                            android:gravity="center|left"
+                            android:padding="5dp"
+                            android:text="@string/nationality"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_2e"
+
+                            android:textSize="@dimen/_12dp" />
+
+                        <TextView
+                            android:id="@+id/tvPass"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35dp"
+                            android:gravity="center|left"
+                            android:padding="5dp"
+                            android:text="@string/number_pass"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_2e"
+
+                            android:textSize="@dimen/_12dp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35dp"
+                            android:gravity="center|left"
+                            android:padding="5dp"
+                            android:text="@string/birth_date"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_2e"
+
+                            android:textSize="@dimen/_12dp" />
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -88,119 +147,63 @@
                         android:orientation="vertical">
 
 
+
                         <TextView
                             android:id="@+id/tvGender"
 
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:gravity="center|right"
+                            android:layout_height="@dimen/_35dp"
+                            android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/people_number"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp" />
 
                         <TextView
                             android:id="@+id/tvNationality"
 
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:gravity="center|right"
+                            android:layout_height="@dimen/_35dp"
+                            android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/checkout_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp" />
 
                         <TextView
                             android:id="@+id/tvPassNo"
 
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:gravity="center|right"
+                            android:layout_height="@dimen/_35dp"
+                            android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/checkin_date"
                             android:textAppearance="@style/tahoma"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="12dp"
-                            android:textStyle="bold" />
-
+                            android:textSize="@dimen/_12dp"
+                            android:textStyle="bold"/>
                         <TextView
                             android:id="@+id/tvBrithDay"
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:gravity="center|right"
+                            android:layout_height="@dimen/_35dp"
+                            android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/birth_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="12dp" />
+                            android:textSize="@dimen/_12dp" />
 
 
                     </LinearLayout>
 
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="65"
 
-                        android:orientation="vertical">
-
-
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:gravity="center|right"
-                            android:padding="5dp"
-                            android:text="@string/gender"
-
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
-                            android:textSize="12dp" />
-
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:gravity="center|right"
-                            android:padding="5dp"
-                            android:text="@string/nationality"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
-
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:id="@+id/tvPass"
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:gravity="center|right"
-                            android:padding="5dp"
-                            android:text="@string/number_pass"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
-
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:gravity="center|right"
-                            android:padding="5dp"
-                            android:text="@string/birth_date"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
-
-                            android:textSize="12dp" />
-
-
-                    </LinearLayout>
 
 
                 </LinearLayout>
