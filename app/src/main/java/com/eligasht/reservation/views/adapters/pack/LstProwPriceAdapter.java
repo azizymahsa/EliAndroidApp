@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.pack.LstProwPrice;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox;
@@ -161,7 +162,15 @@ public class LstProwPriceAdapter extends SectioningAdapter {
             if(infCount != 0){
                 countPassenger = countPassenger + " + " + infCount +" "+ context.getString(R.string.BabyPackage)+" ";
             }
-            String title = context.getString(R.string.room) +" "+getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + context.getString(R.string.OfferTo)  +" "+ countPassenger ;
+            String title;
+            if (Prefs.getString("lang","fa").equals("fa")){
+                 title = context.getString(R.string.room) +" "+getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + context.getString(R.string.OfferTo)  +" "+ countPassenger ;
+
+            }else{
+                title = getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) +" "+context.getString(R.string.room) + " : " + context.getString(R.string.OfferTo)  +" "+ countPassenger ;
+
+            }
+
             holder.txt_title_header.setText(title);
         }catch (Exception e){
             e.printStackTrace();
@@ -192,7 +201,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
     private String getStringPosition(int position) {
         switch (position) {
             case 1:
-                return context.getString(R.string.first);
+                return context.getString(R.string.First);
             case 2:
                 return context.getString(R.string.Second);
             case 3:

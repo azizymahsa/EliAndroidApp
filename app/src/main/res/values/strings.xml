@@ -2049,7 +2049,7 @@
     <string name="Adult">Adult</string>
     <string name="ChildPackage">Child</string>
     <string name="BabyPackage">Infant</string>
-    <string name="OfferTo">Available services</string>
+    <string name="OfferTo">Offer for</string>
     <string name="ServicesPackage">Available services</string>
     <string name="InfoAirline">Flight information</string>
     <string name="travel_duration">Travel lenght</string>

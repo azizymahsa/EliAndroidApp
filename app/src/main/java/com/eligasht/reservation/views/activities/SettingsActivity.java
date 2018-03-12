@@ -109,12 +109,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     }
 
 
-    private void openDialog() {
-        SelectLanguageDialog selectLanguageDialog = new SelectLanguageDialog(this, this);
-        selectLanguageDialog.show();
-
-    }
-
 
     private String getTypeOfLanguage() {
         return Prefs.getString("lang", "fa");
@@ -189,7 +183,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
     }
 
 }
