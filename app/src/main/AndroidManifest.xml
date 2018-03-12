@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.eligasht"
->
+    package="com.eligasht">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -34,9 +33,10 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
-                    
+
                     android:scheme="eligashts" />
             </intent-filter>
+
             <meta-data
                 android:name="unityplayer.ForwardNativeEventsToDalvik"
                 android:value="true" />
@@ -82,6 +82,7 @@
 
         <activity
             android:name=".reservation.views.ui.PassengerActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".reservation.views.ui.SearchParvazActivity"
@@ -101,8 +102,9 @@
         <activity
             android:name=".reservation.views.activities.pack.SearchPackActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".reservation.views.activities.hotel.activity.ImageViewActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".reservation.views.activities.hotel.activity.ImageViewActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.activities.hotel.activity.SelectHotelFlightActivity"
             android:screenOrientation="portrait" />
@@ -184,7 +186,7 @@
         <activity
             android:name=".reservation.views.activities.transfer.TransferActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".reservation.views.activities.transfer.GetHotelActivity"
             android:screenOrientation="portrait" />
@@ -196,14 +198,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.activities.hotel.activity.CommentActivity"
-            android:screenOrientation="portrait"
-
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.ui.GetCitiesForPackActivity"
-            android:screenOrientation="portrait"
-
-            />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
