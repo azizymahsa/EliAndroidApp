@@ -533,10 +533,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 }
 
                 if (filterModel.isEconomiF()) {
-                    //if(dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("اکونومی")){
+                    //if(dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi))){
                     for (int i = 0; i < dataExpandingList.size(); i++) {
 
-                        if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains("اکونومی")) {
+                        if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi))) {
 
                             ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
                             HeaderExpandingPlan header = new HeaderExpandingPlan();
@@ -554,7 +554,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 }
                 if (filterModel.isBusinessF()) {
                     for (int i = 0; i < dataExpandingList.size(); i++) {
-                        if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains("بیزینس")) {
+                        if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._biss))) {
                             ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
                             HeaderExpandingPlan header = new HeaderExpandingPlan();
                             header = dataExpandingList.get(i).getHeader();
@@ -569,7 +569,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 if (filterModel.isFerstF()) {
                     for (int i = 0; i < dataExpandingList.size(); i++) {
 
-                        if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains("فرست")) {
+                        if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._ferst))) {
 
                             ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
                             HeaderExpandingPlan header = new HeaderExpandingPlan();
@@ -594,7 +594,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         for (int i = 0; i < dataExpandingListFilter.size(); i++) {
 
-                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("اکونومی") && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 1) {
+                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi)) && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 1) {
                                 isClear = true;
 
 
@@ -612,7 +612,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         for (int i = 0; i < dataExpandingListFilter.size(); i++) {
 
-                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("اکونومی") && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 2) {
+                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi)) && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 2) {
                                 isClear = true;
 
 
@@ -630,7 +630,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         for (int i = 0; i < dataExpandingListFilter.size(); i++) {
 
-                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("اکونومی") && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount >= 3) {
+                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi)) && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount >= 3) {
                                 isClear = true;
 
 
@@ -652,7 +652,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         for (int i = 0; i < dataExpandingListFilter.size(); i++) {
 
-                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("فرست") && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 1) {
+                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._ferst)) && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 1) {
                                 isClear = true;
 
 
@@ -670,7 +670,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         for (int i = 0; i < dataExpandingListFilter.size(); i++) {
 
-                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("فرست") && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 2) {
+                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._ferst)) && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 2) {
 
                                 isClear = true;
 
@@ -688,7 +688,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         for (int i = 0; i < dataExpandingListFilter.size(); i++) {
 
-                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("فرست") && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount >= 3) {
+                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._ferst)) && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount >= 3) {
                                 isClear = true;
 
 
@@ -710,7 +710,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         for (int i = 0; i < dataExpandingListFilter.size(); i++) {
 
-                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("بیزینس") && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 1) {
+                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._biss)) && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 1) {
 
 
                                 ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
@@ -727,7 +727,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         for (int i = 0; i < dataExpandingListFilter.size(); i++) {
 
-                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("بیزینس") && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 2) {
+                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._biss)) && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount == 2) {
 
                                 isClear = true;
 
@@ -745,7 +745,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                         for (int i = 0; i < dataExpandingListFilter.size(); i++) {
 
-                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("بیزینس") && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount >= 3) {
+                            if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._biss)) && dataExpandingListFilter.get(i).getHeader().SegmentTrueCount >= 3) {
 
                                 isClear = true;
 
@@ -864,9 +864,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         }
 
                         if (filterModel.isEconomiF()) {
-                            //if(dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("اکونومی")){
+                            //if(dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi))){
                             for (int i = 0; i < dataExpandingList.size(); i++) {
-                                if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains("اکونومی")) {
+                                if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi))) {
                                     for (int ii = 0; ii < strings.size(); ii++) {
                                         if (dataExpandingList.get(i).getHeader().AirlineNameFa.equals(strings.get(ii))) {
                                             ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
@@ -883,7 +883,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         }
                         if (filterModel.isBusinessF()) {
                             for (int i = 0; i < dataExpandingList.size(); i++) {
-                                if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains("بیزینس")) {
+                                if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._biss))) {
 
                                     for (int ii = 0; ii < strings.size(); ii++) {
                                         if (dataExpandingList.get(i).getHeader().AirlineNameFa.equals(strings.get(ii))) {
@@ -902,7 +902,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         }
                         if (filterModel.isFerstF()) {
                             for (int i = 0; i < dataExpandingList.size(); i++) {
-                                if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains("فرست")) {
+                                if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._ferst))) {
                                     for (int ii = 0; ii < strings.size(); ii++) {
                                         if (dataExpandingList.get(i).getHeader().AirlineNameFa.equals(strings.get(ii))) {
                                             ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
@@ -1183,7 +1183,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     }
 
     private void ferstClassListData() {
-        //	if(SegmentList.get(0).getCabinClassNameFa().contains("فرست")){
+        //	if(SegmentList.get(0).getCabinClassNameFa().contains(getString(R.string._ferst))){
         List<ParentItemExpandingPlan> dataExpandingListFilterTrue = new ArrayList<ParentItemExpandingPlan>();
 
         if (dataExpandingListFilter != null) {
@@ -1198,8 +1198,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                     System.out.println("HEADER I=" + i);
 
-                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("فرست")) {
-                        System.out.println("فرست" + i);
+                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string._ferst))) {
+                        System.out.println(getString(R.string._ferst) + i);
                         //header
 
                         ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
@@ -1304,8 +1304,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                     System.out.println("HEADER I=" + i);
 
-                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains("اکونومی")) {
-                        System.out.println("اکونومی" + i);
+                    if (dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi))) {
+                        System.out.println(getString(R.string.Economi) + i);
                         //header
 
                         ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
@@ -3301,7 +3301,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         flightSegment.setArrivalDateShamsi(jPricedIfdgtinerary.getString("ArrivalDateShamsi"));
                         flightSegment.setCabinClassCode(jPricedIfdgtinerary.getString("CabinClassCode"));
                         flightSegment.setCabinClassName(jPricedIfdgtinerary.getString("CabinClassName"));
-                        flightSegment.setCabinClassNameFa(jPricedIfdgtinerary.getString("CabinClassNameFa"));
+                        flightSegment.setCabinClassNameFa(jPricedIfdgtinerary.getString("CabinClassName"));
                         flightSegment.setDepartureAirportCode(jPricedIfdgtinerary.getString("DepartureAirportCode"));
                         flightSegment.setDepartureAirportNameEn(jPricedIfdgtinerary.getString("DepartureAirportNameEn"));
 
