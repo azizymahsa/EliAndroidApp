@@ -8,19 +8,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.tools.Prefs;
-import com.eligasht.reservation.views.adapters.SpinnerCustomrAdapter;
+import com.eligasht.reservation.views.adapters.SpinnerCustomAdapter;
 import com.eligasht.reservation.views.dialogs.SelectLanguageDialog;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SplashFragment;
@@ -55,26 +51,26 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         tvConfirm.setOnClickListener(this);
 
 
-        languageSpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, countryNames, true));
-        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
-        officeSpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, officeNames, false));
+        languageSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, countryNames, true));
+        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
+        officeSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, officeNames, false));
 
         if (Prefs.getString("lang", "fa").equals("fa")) {
             curencyNames = new String[]{"IRR(iran)"};
-            curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+            curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
             languageSpinner.setSelection(0);
 
         } else if (Prefs.getString("lang", "fa").equals("en")) {
 
             curencyNames = new String[]{"GB"};
-            curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+            curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
 
             languageSpinner.setSelection(1);
 
 
         } else if (Prefs.getString("lang", "fa").equals("tr")) {
             curencyNames = new String[]{"TRY", "EUR"};
-            curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+            curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
             languageSpinner.setSelection(2);
 
         }
@@ -162,14 +158,14 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                         lang = "fa";
 
                         curencyNames = new String[]{"IRR(iran)"};
-                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+                        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
 
                         break;
                     case 1:
                         lang = "en";
 
                         curencyNames = new String[]{"GB"};
-                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+                        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
 
 
                         break;
@@ -177,7 +173,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                         lang = "tr";
 
                         curencyNames = new String[]{"TRY", "EUR"};
-                        curencySpinner.setAdapter(new SpinnerCustomrAdapter(getApplicationContext(), flags, curencyNames, false));
+                        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
 
                         break;
                 }
