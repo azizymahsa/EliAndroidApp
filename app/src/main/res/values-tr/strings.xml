@@ -2394,7 +2394,7 @@
     <string name="_arrow_right">&#xea3c;</string>
     <string name="_biss">Business</string>
     <string name="_ferst">First</string>
-
-
+    <string name="check_mail"> Lütfen e-postanızı girin </string>
+    <string name="wrong_mail"> Girilen e-posta geçerli değil </string>
 </resources>
 

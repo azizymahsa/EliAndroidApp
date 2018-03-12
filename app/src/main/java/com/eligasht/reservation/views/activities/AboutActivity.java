@@ -68,6 +68,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
 
 
         new GetAboutAsync().execute();
+
     }
 
     @Override

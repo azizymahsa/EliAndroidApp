@@ -511,12 +511,12 @@
     <string name="cities_all_over_the_world">شهر در سراسر جهان</string>
     <string name="confirmed_airlines">ایرلاین معتبر </string>
     <string name="arabic">العربی</string>
-    <string name="please_enter_your_email_to_reset_your_pass"> Please enter your email password to retrieve </string>
-    <string name="reset_pass"> Password Recovery </string>
-    <string name="activate_account"> Activate account </string>
-    <string name="activation_link_has_been_sent_to_your_email"> The activation link has been sent to your email. </string>
-    <string name="mail_or_pass_is_wrong"> Your email or password is incorrect. </string>
-    <string name="email_address_is_not_valid"> The email entered is not valid </string>
+    <string name="please_enter_your_email_to_reset_your_pass"> لطفا ایمیل خود را وارد نمایید</string>
+    <string name="reset_pass"> بازیابی رمز عبور </string>
+    <string name="activate_account">فعال سازی حساب کاربری </string>
+    <string name="activation_link_has_been_sent_to_your_email"> لینک فعال سازی به ایمیل شما ارسال گردید </string>
+    <string name="mail_or_pass_is_wrong"> ایمیل یا پسورد اشتباه است </string>
+    <string name="email_address_is_not_valid"> ایمیل وارد شده صحیح نیست </string>
     <string-array name="nationality_codes">
         <item>Iranian</item>
         <item>French</item>
@@ -2009,6 +2009,8 @@
     <string name="coming_soon">به زودی ...</string>
     <string name="_biss">بیزینس</string>
     <string name="_ferst">فرست</string>
+    <string name="check_mail">لطفا ایمیل خود را وارد کنید</string>
+    <string name="wrong_mail">ایمیل وارد شده صحیح نمی باشد</string>
     <string-array name="country_flags">
         <item>@drawable/ir</item>
         <item>@drawable/ir</item>
