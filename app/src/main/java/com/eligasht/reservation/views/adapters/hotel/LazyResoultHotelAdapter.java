@@ -14,8 +14,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.tools.GlidApp;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -94,17 +96,13 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 .duration(300)
                 .playOn(holder.cvHotel);
         String imageUri = "https://cdn.elicdn.com" + selectHotelModelArrayList.get(position).getImageUrl();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                // this will make circle, pass the width of image
-                .displayer(new RoundedBitmapDisplayer(3))
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .considerExifParams(true)
-                .build();
 
-
-        imageLoader.displayImage(imageUri, holder.ivHotelPic, options, null);
+        Glide
+                .with(context)
+                .load(imageUri)
+                .centerCrop()
+                .error(R.drawable.not_found)
+                .into(holder.ivHotelPic);
 
      /*   AQuery aQuery=new AQuery(v);
         aQuery.id(holder.imgPhoto).image(item.getImageUrl().toString());
