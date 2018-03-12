@@ -2389,5 +2389,8 @@
     <string name="_biss">Business</string>
     <string name="_ferst">First</string>
 
+    <string name = "check_mail"> Please enter your email </string>
+         <string name = "wrong_mail"> The email entered is not valid </string>
+
 </resources>
 

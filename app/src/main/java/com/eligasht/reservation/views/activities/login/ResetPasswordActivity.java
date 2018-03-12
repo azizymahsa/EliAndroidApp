@@ -27,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by elham.bonyani on 1/17/2018.
+ * Created by reza nejati on 1/17/2018.
  */
 
 public class ResetPasswordActivity extends BaseActivity implements View.OnClickListener {
@@ -52,7 +52,6 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         initViews();
         service = ServiceGenerator.createService(ClientService.class);
 
-        findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
 
     }
 
@@ -108,12 +107,12 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.btnResetPassword:
                 if (email_reset_pass.length() == 0) {
-                    Toast.makeText(this, "لطفا ایمیل خود را وارد کنید", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.check_mail, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (!ValidationTools.isEmailValid(email_reset_pass.getText().toString())) {
-                    Toast.makeText(this, "ایمیل وارد شده صحیح نمی باشد", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.wrong_mail, Toast.LENGTH_SHORT).show();
                     return;
                 }
 

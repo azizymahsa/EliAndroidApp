@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -78,6 +79,17 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
         }
     }
 
+//    private void setAnimation(View viewToAnimate, int position)
+//    {
+//        // If the bound view wasn't previously displayed on screen, it's animated
+//        if (position > lastPosition)
+//        {
+//            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
+//            viewToAnimate.startAnimation(animation);
+//            lastPosition = position;
+//        }
+//    }
+
     @Override
     public MonthViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return new MonthViewHolder(LayoutInflater.from(this.context).inflate(R.layout.adapter_day_of_month_item, viewGroup, false));
@@ -85,11 +97,13 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
 
     @Override
     public void onBindViewHolder(MonthViewHolder monthViewHolder, int i) {
+        // setAnimation(monthViewHolder.itemView, i);
+        //  YoYo.with(Techniques.FadeInUp).delay(50).playOn(monthViewHolder.itemView);
         if (i > this.f9217c - 1) {
             if (i % 7 == 6) {
                 monthViewHolder.day.setTextColor(-65536);
             } else {
-                monthViewHolder.day.setTextColor(-16777216);
+                monthViewHolder.day.setTextColor(Color.parseColor("#737585"));
             }
             if (i < (this.f9218d + this.f9217c) - 1) {
                 monthViewHolder.day.setAlpha(0.24f);
@@ -97,11 +111,23 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                 monthViewHolder.day.setAlpha(0.87f);
                 if (this.days360.contains(Boolean.TRUE)) {
                     if (this.days360.get(i)) {
+                        Log.e("Sec PAram", String.valueOf(f9222h));
+                        Log.e("Param", String.valueOf(f9223i) + " And i" + i);
+
+                        if (f9222h != f9223i && f9223i != -1) {
+                            //    monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#2e00bcd4"));
+                            //  monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#2e00bcd4"));
+                            //     monthViewHolder.rootView.setVisibility(View.VISIBLE);
+
+                        }
                         monthViewHolder.day.setBackgroundResource(R.drawable.circle_shape_blue);
-                        monthViewHolder.day.setTextColor(-1);
+
+                        //   monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#2e00bcd4"));
+                        monthViewHolder.day.setTextColor(Color.parseColor("#b388ff"));
                     } else if (i < this.f9223i && i > this.f9222h && this.f9222h != -1 && this.f9223i != -1) {
-                        monthViewHolder.day.setBackgroundResource(R.drawable.rec_calendar);
-                        monthViewHolder.day.setTextColor(-16777216);
+                        // monthViewHolder.day.setBackgroundResource(R.drawable.rec_calendar);
+                        monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#2e00bcd4"));
+                        monthViewHolder.day.setTextColor(Color.parseColor("#737585"));
                     } else if (i == (this.f9218d + this.f9217c) - 1) {
                         monthViewHolder.day.setTextColor(Color.parseColor("#9d80ff"));
                         monthViewHolder.day.setAlpha(1.0f);
@@ -124,7 +150,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
         }
         monthViewHolder.day.setText("");
         monthViewHolder.day.setBackgroundResource(0);
-        monthViewHolder.day.setTextColor(-16777216);
+        monthViewHolder.day.setTextColor(Color.parseColor("#737585"));
         monthViewHolder.day.setAlpha(0.87f);
     }
 
@@ -133,6 +159,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
     public int getItemCount() {
         return 365;
     }
+
 
     public void setOnDateSelect(DateSelected dateSelected) {
         this.dateSelectListener = dateSelected;
@@ -145,6 +172,8 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
     public class MonthViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
         private TextView day;
         private NumberUtil numberUtil;
+        private View rootView;
+
 
         MonthViewHolder(View view) {
             super(view);
@@ -152,6 +181,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
             activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             this.numberUtil = new NumberUtil(view.getContext());
             this.day = view.findViewById(R.id.day);
+            rootView = view.findViewById(R.id.temp);
             day.setTypeface(UiUtils.getFont());
             view.setOnClickListener(this);
             popupWindow = new PopupWindow(context);
@@ -188,7 +218,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                 this.itemView.setClickable(false);
                 f9225k = true;
                 if (dateSelectListener != null && getAdapterPosition() >= (f9218d + f9217c) - 1) {
-                    view.setBackgroundResource(R.drawable.circle_shape_blue);
+                    // view.setBackgroundResource(R.drawable.circle_shape_blue);
                     days360.set(getAdapterPosition(), Boolean.TRUE);
                     notifyItemChanged(getAdapterPosition());
                     dateSelectListener.onDateSelected(view, getAdapterPosition());

@@ -8,8 +8,7 @@
     <RelativeLayout
         android:id="@+id/adapter_month"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/alert_header_background">
+        android:layout_height="wrap_content">
 
         <com.eligasht.reservation.views.picker.widget.IRANSansTextView
             android:id="@+id/current_month"
@@ -18,7 +17,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginRight="16dp"
             android:layout_marginTop="6dp"
-            android:textColor="#ffffffff"
+            android:textColor="#9d80ff"
             android:textSize="19sp" />
 
         <com.eligasht.reservation.views.picker.widget.IRANSansTextView
@@ -29,7 +28,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="2dp"
             android:text="انتخاب تاریخ رفت"
-            android:textColor="#ffffffff"
+            android:textColor="@color/gray_dark"
             android:textSize="13sp" />
 
         <View
@@ -44,7 +43,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:foreground="?selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:tint="#9d80ff" />
 
         <ImageView
             android:id="@+id/pre_persian"
@@ -54,7 +54,8 @@
             android:layout_centerVertical="true"
             android:foreground="?selectableItemBackgroundBorderless"
             android:rotation="180.0"
-            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:tint="#9d80ff" />
     </RelativeLayout>
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -67,7 +68,7 @@
         android:alpha="0.87"
         android:gravity="center"
         android:text="ش"
-        android:textColor="#ff000000"
+        android:textColor="#9d80ff"
         app:layout_widthPercent="14.285696%" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -80,7 +81,7 @@
         android:alpha="0.87"
         android:gravity="center"
         android:text="ی"
-        android:textColor="#ff000000"
+        android:textColor="#9d80ff"
         app:layout_widthPercent="14.285696%" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -93,7 +94,7 @@
         android:alpha="0.87"
         android:gravity="center"
         android:text="د"
-        android:textColor="#ff000000"
+        android:textColor="#9d80ff"
         app:layout_widthPercent="14.285696%" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -106,7 +107,7 @@
         android:alpha="0.87"
         android:gravity="center"
         android:text="س"
-        android:textColor="#ff000000"
+        android:textColor="#9d80ff"
         app:layout_widthPercent="14.279997%" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -119,7 +120,7 @@
         android:alpha="0.87"
         android:gravity="center"
         android:text="چ"
-        android:textColor="#ff000000"
+        android:textColor="#9d80ff"
         app:layout_widthPercent="14.285696%" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -132,7 +133,7 @@
         android:alpha="0.87"
         android:gravity="center"
         android:text="پ"
-        android:textColor="#ff000000"
+        android:textColor="#9d80ff"
         app:layout_widthPercent="14.285696%" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
@@ -145,7 +146,7 @@
         android:alpha="0.87"
         android:gravity="center"
         android:text="ج"
-        android:textColor="#ff000000"
+        android:textColor="#9d80ff"
         app:layout_widthPercent="14.285696%" />
 
     <com.eligasht.reservation.views.picker.global.utils.CalendarRecyclerView
@@ -154,7 +155,10 @@
         android:layout_height="240dp"
         android:layout_below="@id/fri"
         android:layout_marginTop="8dp"
-        android:background="#ffffffff" />
+        android:background="#ffffffff"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layoutAnimation="@anim/layout_animation_fall_down" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
         android:id="@+id/accept"
@@ -167,7 +171,7 @@
         android:gravity="center"
         android:minWidth="88dp"
         android:text="@string/dialog_ok"
-        android:textColor="#ffffffff" />
+        android:textColor="#9d80ff" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
         android:id="@+id/cancel"
@@ -181,7 +185,7 @@
         android:gravity="center"
         android:minWidth="88dp"
         android:text="@string/cancel_dialog"
-        android:textColor="#ffffffff" />
+        android:textColor="#9d80ff" />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
         android:id="@+id/change_date_kind"
@@ -196,7 +200,7 @@
         android:gravity="center"
         android:minWidth="88dp"
         android:text="@string/geo_dialog"
-        android:textColor="#ffffffff" />
+        android:textColor="#9d80ff" />
 
     <View
         android:id="@+id/view2"

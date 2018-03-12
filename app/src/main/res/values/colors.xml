@@ -38,9 +38,13 @@
     <color name="background_color_flight_button">#29aae3</color>
     <color name="text_color_2">#737585</color>
 
-    <color name="accent">#ff00bcd4</color>
+    <color name="accent">#9d80ff</color>
     <color name="primary">#9d80ff</color>
     <color name="primarydark">#ffff7d00</color>
+    <color name="btn">#9d80ff</color>
+
+    <color name="test">#9d80ff</color>
+    <color name="stoke_c">#b388ff</color>
 
 
     <color name="mdtp_accent_color">#FF938EC5</color>
