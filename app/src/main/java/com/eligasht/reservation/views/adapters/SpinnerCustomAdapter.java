@@ -11,14 +11,14 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 
-public class SpinnerCustomrAdapter extends BaseAdapter {
+public class SpinnerCustomAdapter extends BaseAdapter {
     Context context;
     int flags[];
     String[] countryNames;
     LayoutInflater inflter;
     boolean isLanguage;
 
-    public SpinnerCustomrAdapter(Context applicationContext, int[] flags, String[] countryNames, boolean isLanguage) {
+    public SpinnerCustomAdapter(Context applicationContext, int[] flags, String[] countryNames, boolean isLanguage) {
         this.context = applicationContext;
         this.flags = flags;
         this.isLanguage = isLanguage;
@@ -50,7 +50,7 @@ public class SpinnerCustomrAdapter extends BaseAdapter {
             icon.setImageResource(flags[i]);
 
         }else{
-            icon.setVisibility(View.INVISIBLE);
+            icon.setVisibility(View.GONE);
         }
         names.setText(countryNames[i]);
         names.setTypeface(Typeface.createFromAsset(context.getAssets(),context.getString(R.string.iran_sans_normal_ttf)));
