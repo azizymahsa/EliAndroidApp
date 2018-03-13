@@ -92,7 +92,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private ViewGroup llFilter;
     private FancyButton btn_next_day;
     private FancyButton btn_previous_day;
-    private RelativeLayout error_layout;
+    private FancyButton btnFilter;
+    private RelativeLayout error_layout,llBottom;
     private TextView txt_error, tvAlertDesc;
     private FancyButton btnHome;
     private FancyButton btnOk;
@@ -232,6 +233,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         toolbar_title = findViewById(R.id.tvTitle);
         tvAlertDesc = findViewById(R.id.tvAlertDesc);
         toolbar_date = findViewById(R.id.tvDate);
+        llBottom = findViewById(R.id.llBottom);
+        btnFilter = findViewById(R.id.btnFilter);
         btnBack = findViewById(R.id.btnBack);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
@@ -271,6 +274,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         layout_sort.setOnClickListener(this);
         btn_previous_day.setOnClickListener(this);
         btn_next_day.setOnClickListener(this);
+        llBottom.setOnClickListener(this);
+        btnFilter.setOnClickListener(this);
         btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
     }
 
@@ -336,7 +341,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 break;
 
-            case R.id.llFilter:
+            case R.id.btnFilter:
                 if (ValidationTools.isEmptyOrNull(pRowXfers)) {
                     return;
                 }
