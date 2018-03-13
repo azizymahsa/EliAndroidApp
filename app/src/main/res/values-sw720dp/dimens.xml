@@ -47,7 +47,7 @@
 
 
     <dimen name="_20dp_normal_textSize">30dp</dimen>
-    <dimen name="_15dp_normal_textSize">25dp</dimen>
+    <dimen name="_15dp_normal_textSize">20dp</dimen>
     <dimen name="_12dp_normal_textSize">18dp</dimen>
     <dimen name="_25dp_normal_iconSize">40dp</dimen>
     <dimen name="_16dp_normal_textSize">24dp</dimen>
@@ -77,7 +77,7 @@
     <dimen name="_80dp_ci">110dp</dimen>
     <dimen name="_24dp_textSize">28dp</dimen>
 
-    <dimen name="_260dp_f">525dp</dimen>
+    <dimen name="_260dp_f">528dp</dimen>
     <dimen name="_90dp">140dp</dimen>
     <dimen name="_60dp_margin_package">120dp</dimen>
     <dimen name="_68dp_f">128dp</dimen>
@@ -130,6 +130,7 @@
     <dimen name="_120dp">380dp</dimen>
     <dimen name="_255dp">400dp</dimen>
     <dimen name="_145dp">225dp</dimen>
+    <dimen name="_5dpflight">28dp</dimen>
 
 
 </resources>
