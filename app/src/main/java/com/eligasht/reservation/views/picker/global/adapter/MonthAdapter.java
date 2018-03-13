@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build.VERSION;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
@@ -76,8 +75,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
         this.popupWindow.setContentView(inflate);
         this.popupWindow.setOutsideTouchable(true);
         this.popupWindow.setTouchable(true);
-        if (Locale.getDefault().getLanguage().equals("fa") || Locale.getDefault().getLanguage().equals("ar"))
-        {
+        if (Locale.getDefault().getLanguage().equals("fa") || Locale.getDefault().getLanguage().equals("ar")) {
             if (text.length() > 10) {
                 if (SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet)) {
                     this.popupWindow.showAsDropDown(view, -((int) (((double) (15.0f * this.displayMetrics.density)) + 0.5d) + view.getHeight() / 2), -2 * view.getHeight() - 10);
@@ -93,9 +91,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                 }
 
             }
-        }
-        else
-        {
+        } else {
             if (text.length() > 10) {
                 if (SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet)) {
                     this.popupWindow.showAsDropDown(view, -((int) (((double) (1.0f * this.displayMetrics.density)) - 10d) + view.getHeight() / 2), -2 * view.getHeight() - 10);
@@ -112,7 +108,6 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
 
             }
         }
-
 
 
     }
