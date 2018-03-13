@@ -197,7 +197,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="@dimen/_10dpTabletSize"
-                android:layout_marginRight="@dimen/_10dpTabletSize">
+                android:layout_marginRight="@dimen/_10dpTabletSize"
+                android:layout_marginBottom="@dimen/_1dp_width"
+                android:layout_marginTop="@dimen/_1dp_width">
 
                 <TextView
                     android:id="@+id/textView3"
@@ -261,7 +263,8 @@
                     android:gravity="left"
                     android:text="@string/tax"
                     android:textColor="#aaaaaa"
-
+                    android:layout_marginBottom="@dimen/_1dp_width"
+                    android:layout_marginTop="@dimen/_1dp_width"
                     android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
@@ -304,7 +307,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="@dimen/_10dpTabletSize"
-                android:layout_marginRight="@dimen/_10dpTabletSize">
+                android:layout_marginRight="@dimen/_10dpTabletSize"
+                android:layout_marginBottom="@dimen/_1dp_width"
+                android:layout_marginTop="@dimen/_1dp_width">
 
                 <TextView
                     android:id="@+id/textView7"
@@ -317,7 +322,8 @@
                     android:text="@string/payable"
                     android:textColor="#000000"
                     android:textSize="@dimen/_13dp_normal_textSize"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    />
 
                 <TextView
                     android:id="@+id/txtTotalFareCost"
