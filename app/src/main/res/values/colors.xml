@@ -37,13 +37,13 @@
     <color name="red">#d61616</color>
     <color name="background_color_flight_button">#29aae3</color>
     <color name="text_color_2">#737585</color>
-
+    <color name="gray900">#ff1f1f1f</color>
     <color name="accent">#9d80ff</color>
     <color name="primary">#9d80ff</color>
     <color name="primarydark">#ffff7d00</color>
-    <color name="btn">#9d80ff</color>
+    <color name="btn">#ff1369b3</color>
 
-    <color name="test">#9d80ff</color>
+    <color name="test">#ff1369b3</color>
     <color name="stoke_c">#b388ff</color>
 
 

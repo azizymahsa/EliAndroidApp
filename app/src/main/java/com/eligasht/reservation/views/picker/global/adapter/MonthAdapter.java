@@ -21,8 +21,10 @@ import android.widget.Toast;
 import com.eligasht.R;
 import com.eligasht.reservation.views.picker.utils.NumberUtil;
 import com.eligasht.reservation.views.picker.utils.UiUtils;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import java.util.List;
+import java.util.Locale;
 
 
 public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
@@ -63,32 +65,62 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
     private void initPopupWindow(View view, String text) {
         if (this.popupWindow != null) {
             this.popupWindow.dismiss();
-            this.popupWindow.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this.context, R.color.white)));
+            this.popupWindow.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this.context, 17170445)));
         }
         View inflate = ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.popup_calendar, null);
         ((TextView) inflate.findViewById(R.id.txt)).setText(text);
         this.popupWindow.setFocusable(false);
         this.popupWindow.setWidth(-2);
         this.popupWindow.setHeight(-2);
+        popupWindow.setAnimationStyle(R.style.Animation);
         this.popupWindow.setContentView(inflate);
         this.popupWindow.setOutsideTouchable(true);
         this.popupWindow.setTouchable(true);
-        this.popupWindow.showAsDropDown(view, -((int) (((double) (44.0f * this.displayMetrics.density)) + 0.5d)), -((int) (((double) (74.0f * this.displayMetrics.density)) + 0.5d)));
-        if (VERSION.SDK_INT >= 21) {
-            this.popupWindow.setElevation(6.0f);
+        if (Locale.getDefault().getLanguage().equals("fa") || Locale.getDefault().getLanguage().equals("ar"))
+        {
+            if (text.length() > 10) {
+                if (SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet)) {
+                    this.popupWindow.showAsDropDown(view, -((int) (((double) (15.0f * this.displayMetrics.density)) + 0.5d) + view.getHeight() / 2), -2 * view.getHeight() - 10);
+                } else {
+                    this.popupWindow.showAsDropDown(view, -((int) (((double) (30.0f * this.displayMetrics.density)) + 0.5d) + view.getHeight() / 2), -2 * view.getHeight() - 10);
+                }
+
+            } else {
+                if (SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet)) {
+                    this.popupWindow.showAsDropDown(view, 30, -2 * view.getHeight() - 10);
+                } else {
+                    this.popupWindow.showAsDropDown(view, 0, -2 * view.getHeight() - 10);
+                }
+
+            }
         }
+        else
+        {
+            if (text.length() > 10) {
+                if (SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet)) {
+                    this.popupWindow.showAsDropDown(view, -((int) (((double) (1.0f * this.displayMetrics.density)) - 10d) + view.getHeight() / 2), -2 * view.getHeight() - 10);
+                } else {
+                    this.popupWindow.showAsDropDown(view, -((int) (((double) (30.0f * this.displayMetrics.density)) + 0.5d) + view.getHeight() / 2), -2 * view.getHeight() - 10);
+                }
+
+            } else {
+                if (SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet)) {
+                    this.popupWindow.showAsDropDown(view, 20, -2 * view.getHeight() - 10);
+                } else {
+                    this.popupWindow.showAsDropDown(view, 0, -2 * view.getHeight() - 10);
+                }
+
+            }
+        }
+
+
+
     }
 
-//    private void setAnimation(View viewToAnimate, int position)
-//    {
-//        // If the bound view wasn't previously displayed on screen, it's animated
-//        if (position > lastPosition)
-//        {
-//            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
-//            viewToAnimate.startAnimation(animation);
-//            lastPosition = position;
-//        }
-//    }
+    private void showPopUP(View view, int x, int y) {
+        popupWindow.showAsDropDown(view, x, y);
+    }
+
 
     @Override
     public MonthViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -103,7 +135,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
             if (i % 7 == 6) {
                 monthViewHolder.day.setTextColor(-65536);
             } else {
-                monthViewHolder.day.setTextColor(Color.parseColor("#737585"));
+                monthViewHolder.day.setTextColor(Color.parseColor("#ff1f1f1f"));
             }
             if (i < (this.f9218d + this.f9217c) - 1) {
                 monthViewHolder.day.setAlpha(0.24f);
@@ -123,20 +155,25 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                         monthViewHolder.day.setBackgroundResource(R.drawable.circle_shape_blue);
 
                         //   monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#2e00bcd4"));
-                        monthViewHolder.day.setTextColor(Color.parseColor("#b388ff"));
+                        monthViewHolder.day.setTextColor(Color.parseColor("#ff1369b3"));
+                        monthViewHolder.day.setAlpha(.7f);
+
                     } else if (i < this.f9223i && i > this.f9222h && this.f9222h != -1 && this.f9223i != -1) {
                         // monthViewHolder.day.setBackgroundResource(R.drawable.rec_calendar);
                         monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#2e00bcd4"));
                         monthViewHolder.day.setTextColor(Color.parseColor("#737585"));
                     } else if (i == (this.f9218d + this.f9217c) - 1) {
-                        monthViewHolder.day.setTextColor(Color.parseColor("#9d80ff"));
+                        monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+                        monthViewHolder.day.setTextColor(Color.parseColor("#b388ff"));
                         monthViewHolder.day.setAlpha(1.0f);
                     } else {
+                        monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
                         monthViewHolder.day.setAlpha(0.87f);
                         monthViewHolder.day.setBackgroundResource(0);
                     }
                 } else if (i == (this.f9218d + this.f9217c) - 1) {
-                    monthViewHolder.day.setTextColor(Color.parseColor("#9d80ff"));
+                    monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+                    monthViewHolder.day.setTextColor(Color.parseColor("#b388ff"));
                     monthViewHolder.day.setAlpha(1.0f);
                 }
             }
@@ -150,7 +187,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
         }
         monthViewHolder.day.setText("");
         monthViewHolder.day.setBackgroundResource(0);
-        monthViewHolder.day.setTextColor(Color.parseColor("#737585"));
+        monthViewHolder.day.setTextColor(Color.parseColor("#ff1f1f1f"));
         monthViewHolder.day.setAlpha(0.87f);
     }
 
