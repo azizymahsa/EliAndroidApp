@@ -190,7 +190,8 @@ public class RoomsAdapter extends BaseAdapter {
                             Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()) + " " + context.getString(R.string.Contains)+" "+
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount() + " " + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount() + " " +
+                            getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() +" "+context.getString(R.string.penalty));
 
 

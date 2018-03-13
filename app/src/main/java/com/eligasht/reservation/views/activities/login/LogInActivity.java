@@ -168,16 +168,16 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
             case R.id.btnLogIn:
                 if (txtEmail.length() == 0) {
-                    Toast.makeText(this, getString(R.string.please_enter_your_email_address), Toast.LENGTH_SHORT).show();
+                    txtEmail.setError(getString(R.string.please_enter_your_email_address));
                     return;
                 }
 
                 if (!ValidationTools.isEmailValid(txtEmail.getText().toString())) {
-                    Toast.makeText(this, R.string.email_address_is_not_valid, Toast.LENGTH_SHORT).show();
+                    txtEmail.setError(getString(R.string.email_address_is_not_valid));
                     return;
                 }
                 if (txtPassword.length() == 0) {
-                    Toast.makeText(this, getString(R.string.enter_your_password), Toast.LENGTH_SHORT).show();
+                    txtPassword.setError(getString(R.string.enter_your_password));
                     return;
                 }
                 Login();
