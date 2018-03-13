@@ -91,6 +91,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.35"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -121,7 +122,6 @@
                 android:textSize="@dimen/_14dp_txtSize" />
 
 
-
         </LinearLayout>
 
         <View
@@ -141,6 +141,7 @@
             android:layout_weight="0.3"
             android:gravity="left"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -153,12 +154,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:gravity="right|center"
                 android:text="@string/forgot_password"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_14dp_txtSize" />
-
 
 
         </LinearLayout>
@@ -167,21 +167,31 @@
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginRight="45dp"
-            android:layout_weight="0.4"
-            android:gravity="right"
-
-            android:orientation="vertical">
+            android:layout_gravity="left"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="45dp"
+            android:layout_weight="0.3"
+            android:gravity="left"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="45dp"
-                android:gravity="left"
+                android:gravity="center"
+                android:text="@string/icon_forget_login"
+                android:textAppearance="@style/User_pass_login"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_25dp_normal_iconSize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
                 android:text="@string/register"
-                android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_14dp_txtSize" />
+
 
         </LinearLayout>
 
