@@ -16,6 +16,8 @@ android {
         }
     }
     compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
     defaultConfig {
         applicationId "com.eligasht"
         manifestPlaceholders = [onesignal_app_id               : "e9eccbf1-b5b1-4be7-a500-29350ca37531",
@@ -79,7 +81,7 @@ dependencies {
     compile 'com.android.support:customtabs:27.1.0'
     compile 'com.ms-square:expandableTextView:0.1.4'
     compile 'gun0912.ted:tedpermission:2.1.0'
-    compile 'com.android.support:multidex:1.0.2'
+    compile 'com.android.support:multidex:1.0.3'
     compile 'com.onesignal:OneSignal:3.8.1'
     compile 'it.sephiroth.android.library.horizontallistview:hlistview:1.2.2'
     compile('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
@@ -88,7 +90,7 @@ dependencies {
     implementation 'com.github.pwittchen:reactivenetwork-rx2:0.12.3'
     compile 'com.novoda:merlin:1.1.5'
     compile 'org.jsoup:jsoup:1.8.3'
-    compile project(':materialdatetimepicker')
+   compile project(':materialdatetimepicker')
     compile project(':persianmaterialdatetimepicker')
     compile project(':library')
     compile project(':CircleProgressView')
