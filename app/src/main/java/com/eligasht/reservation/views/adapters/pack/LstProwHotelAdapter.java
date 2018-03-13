@@ -19,12 +19,7 @@ import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 import com.eligasht.reservation.views.viewholders.LstProwHotelRowHolder;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
 
 import java.util.ArrayList;
 
@@ -134,40 +129,7 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         Glide.with(context)
                 .load(imageUri)
                 .into(holder.ivBigImage);
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                // this will make circle, pass the width of image
-                .displayer(new RoundedBitmapDisplayer(3))
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .considerExifParams(true)
-                .build();
 
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
-
-        imageLoader.displayImage(imageUri, holder.ivBigImage, options, new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                holder.ivBigImage.setImageResource(R.drawable.not_found);
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-            }
-        });
 
 
         holder.ivBigImage.setOnClickListener(new View.OnClickListener() {

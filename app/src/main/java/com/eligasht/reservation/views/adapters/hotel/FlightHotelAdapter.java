@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
@@ -153,22 +154,14 @@ public class FlightHotelAdapter extends BaseAdapter {
                 .playOn(holder.cvHotel);
 
         String imageUri = "https://cdn.elicdn.com" + selectHotelModelArrayList.get(position).getImageUrl();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                // this will make circle, pass the width of image
-                .displayer(new RoundedBitmapDisplayer(3))
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .considerExifParams(true)
-                .build();
 
-
-        imageLoader.displayImage(imageUri, holder.ivHotelPic, options, null);
-
-     /*   AQuery aQuery=new AQuery(v);
-        aQuery.id(holder.imgPhoto).image(item.getImageUrl().toString());
-*/
-        holder.btnChange.setOnClickListener(new View.OnClickListener() {
+        Glide
+                .with(activity)
+                .load(imageUri)
+                .centerCrop()
+                .error(R.drawable.not_found)
+                .into(holder.ivHotelPic);
+     holder.btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, SearchParvazActivity.class);
@@ -392,32 +385,12 @@ public class FlightHotelAdapter extends BaseAdapter {
         String imageUri2 = "https://cdn.elicdn.com/Content/AirLine/MblSize/"+selectHotelModelArrayList.get(position).getFlights().get(0).AirlineCode+".png";
 
 
-        imageLoader.displayImage(imageUri2, holder.ivLogo, options, new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                holder.avi2.setVisibility(View.GONE);
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                holder.avi2.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-                holder.avi2.setVisibility(View.GONE);
-
-            }
-        });
-
-
-
+        Glide
+                .with(activity)
+                .load(imageUri2)
+                .centerCrop()
+                .error(R.drawable.not_found)
+                .into(holder.ivLogo);
 
 
 
