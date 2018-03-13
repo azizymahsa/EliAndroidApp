@@ -359,16 +359,17 @@ public class CalendarDialog implements OnClickListener {
         if (!this.sharedPrefrences.getBoolean("isGregorian", false)) {
 
             if (this.fullDate != null && this.fullDate.contains("-")) {
-                this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("-")[0].split("/")[2]) + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.numberUtil.toFarsiString(this.fullDate.split("-")[1].split("/")[2]) + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
+
+                this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("-")[0].split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.numberUtil.toFarsiString(this.fullDate.split("-")[1].split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
             } else if (this.fullDate != null) {
-                this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("/")[2]) + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
+                this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
             }
         } else {
 
             if (this.fullDate != null && this.fullDate.contains("-")) {
-                this.dateDescription.setText(this.fullDate.split("-")[0].split("/")[2] + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.fullDate.split("-")[1].split("/")[2] + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
+                this.dateDescription.setText(this.fullDate.split("-")[0].split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.fullDate.split("-")[1].split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
             } else if (this.fullDate != null) {
-                this.dateDescription.setText(this.fullDate.split("/")[2] + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
+                this.dateDescription.setText(this.fullDate.split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
             }
         }
     }
@@ -443,18 +444,18 @@ public class CalendarDialog implements OnClickListener {
                     initFullDate(this.fullDate);
                     initTextViews();
                     if (this.fullDate != null && this.fullDate.contains("-")) {
-                        this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("-")[0].split("/")[2]) + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.numberUtil.toFarsiString(this.fullDate.split("-")[1].split("/")[2]) + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
+                        this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("-")[0].split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.numberUtil.toFarsiString(this.fullDate.split("-")[1].split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
                     } else if (this.fullDate != null) {
-                        this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("/")[2]) + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
+                        this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
                     }
                 } else {
                     this.sharedPrefrences.edit().putBoolean("isGregorian", true).apply();
                     initFullDate(this.fullDate);
                     initTextViews();
                     if (this.fullDate != null && this.fullDate.contains("-")) {
-                        this.dateDescription.setText(this.fullDate.split("-")[0].split("/")[2] + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.fullDate.split("-")[1].split("/")[2] + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
+                        this.dateDescription.setText(this.fullDate.split("-")[0].split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.fullDate.split("-")[1].split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
                     } else if (this.fullDate != null) {
-                        this.dateDescription.setText(this.fullDate.split("/")[2] + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
+                        this.dateDescription.setText(this.fullDate.split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
                     }
                 }
                 if (this.fullDate == null || !this.fullDate.contains("-")) {
@@ -914,21 +915,21 @@ public class CalendarDialog implements OnClickListener {
         }
         if (this.f13913a) {
             if (this.isGregorian) {
-                m18316a(this.f13891E, i2 + "/" + UiUtils.m18494u(String.valueOf(UiUtils.m18432a(i3, i2))) + "/" + UiUtils.m18494u(String.valueOf(i)));
+                m18316a(this.f13891E, i2 + "/" + UiUtils.zeroAdder(String.valueOf(UiUtils.m18432a(i3, i2))) + "/" + UiUtils.zeroAdder(String.valueOf(i)));
             } else {
-                m18316a(this.f13891E, this.numberUtil.toFarsiString(String.valueOf(i2)) + "/" + this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(UiUtils.m18455b(i3, i2)))) + "/" + this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(i))));
+                m18316a(this.f13891E, this.numberUtil.toFarsiString(String.valueOf(i2)) + "/" + this.numberUtil.toFarsiString(UiUtils.zeroAdder(String.valueOf(UiUtils.m18455b(i3, i2)))) + "/" + this.numberUtil.toFarsiString(UiUtils.zeroAdder(String.valueOf(i))));
             }
         } else if (this.isGregorian) {
-            m18316a(i2 + "/" + UiUtils.m18494u(String.valueOf(String.valueOf(UiUtils.m18432a(i3, i2)))) + "/" + UiUtils.m18494u(String.valueOf(i)), this.f13891E);
+            m18316a(i2 + "/" + UiUtils.zeroAdder(String.valueOf(String.valueOf(UiUtils.m18432a(i3, i2)))) + "/" + UiUtils.zeroAdder(String.valueOf(i)), this.f13891E);
         } else {
-            m18316a(this.numberUtil.toFarsiString(String.valueOf(i2)) + "/" + this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(UiUtils.m18455b(i3, i2)))) + "/" + this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(i))), this.f13891E);
+            m18316a(this.numberUtil.toFarsiString(String.valueOf(i2)) + "/" + this.numberUtil.toFarsiString(UiUtils.zeroAdder(String.valueOf(UiUtils.m18455b(i3, i2)))) + "/" + this.numberUtil.toFarsiString(UiUtils.zeroAdder(String.valueOf(i))), this.f13891E);
         }
         if (this.isReverseTravel) {
             if (this.f13913a) {
                 if (this.isGregorian) {
-                    this.dateDescription.setText(this.f13892F + " - " + UiUtils.m18494u(String.valueOf(i)) + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)));
+                    this.dateDescription.setText(this.f13892F.replaceFirst("^0+(?!$)", "") + " - " + UiUtils.zeroRemover(String.valueOf(i)).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)));
                 } else {
-                    this.dateDescription.setText(this.f13892F + " - " + this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(i))) + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)));
+                    this.dateDescription.setText(this.f13892F.replaceFirst("^0+(?!$)", "") + " - " + this.numberUtil.toFarsiString(UiUtils.zeroRemover(String.valueOf(i))).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)));
                 }
                 if (this.isGregorian) {
                     this.f13897K = i2;
@@ -939,31 +940,31 @@ public class CalendarDialog implements OnClickListener {
             } else {
                 if (this.isGregorian) {
                     if (this.typeUsageOfCalendar.equals("Train") || this.typeUsageOfCalendar.equals("NationalFlight") || this.typeUsageOfCalendar.equals("InternationalFlight")) {
-                        this.dateDescription.setText(UiUtils.m18494u(String.valueOf(i)) + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)) + " - Select return date");
+                        this.dateDescription.setText(UiUtils.zeroRemover(String.valueOf(i)).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)) + " - Select return date");
                     } else if (this.typeUsageOfCalendar.equals("Hotel")) {
-                        this.dateDescription.setText(UiUtils.m18494u(String.valueOf(i)) + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)) + " - Select checkout date");
+                        this.dateDescription.setText(UiUtils.zeroRemover(String.valueOf(i)).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)) + " - Select checkout date");
                     } else if (this.typeUsageOfCalendar.equals("AutoAlert")) {
-                        this.dateDescription.setText(UiUtils.m18494u(String.valueOf(i)) + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)) + " - Select start date");
+                        this.dateDescription.setText(UiUtils.zeroRemover(String.valueOf(i)).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)) + " - Select start date");
                     }
                     this.f13892F = this.dateDescription.getText().toString().split("-")[0];
-                    this.f13891E = String.valueOf(i2) + "/" + UiUtils.m18494u(String.valueOf(UiUtils.m18432a(i3, i2))) + "/" + UiUtils.m18494u(String.valueOf(i));
+                    this.f13891E = String.valueOf(i2) + "/" + UiUtils.zeroAdder(String.valueOf(UiUtils.m18432a(i3, i2))) + "/" + UiUtils.zeroAdder(String.valueOf(i));
                 } else {
                     if (this.typeUsageOfCalendar.equals("Train") || this.typeUsageOfCalendar.equals("NationalFlight") || this.typeUsageOfCalendar.equals("InternationalFlight")) {
-                        this.dateDescription.setText(this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(i))) + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)) + " - انتخاب تاریخ برگشت");
+                        this.dateDescription.setText(this.numberUtil.toFarsiString(UiUtils.zeroRemover(String.valueOf(i))).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)) + " - انتخاب تاریخ برگشت");
                     } else if (this.typeUsageOfCalendar.equals("Hotel")) {
-                        this.dateDescription.setText(this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(i))) + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)) + " - انتخاب تاریخ خروج");
+                        this.dateDescription.setText(this.numberUtil.toFarsiString(UiUtils.zeroRemover(String.valueOf(i))).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)) + " - انتخاب تاریخ خروج");
                     } else if (this.typeUsageOfCalendar.equals("AutoAlert")) {
-                        this.dateDescription.setText(this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(i))) + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)) + " - انتخاب تاریخ پایان");
+                        this.dateDescription.setText(this.numberUtil.toFarsiString(UiUtils.zeroRemover(String.valueOf(i))).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)) + " - انتخاب تاریخ پایان");
                     }
                     this.f13892F = this.dateDescription.getText().toString().split("-")[0];
-                    this.f13891E = this.numberUtil.toFarsiString(String.valueOf(i2)) + "/" + this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(UiUtils.m18455b(i3, i2)))) + "/" + this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(i)));
+                    this.f13891E = this.numberUtil.toFarsiString(String.valueOf(i2)) + "/" + this.numberUtil.toFarsiString(UiUtils.zeroAdder(String.valueOf(UiUtils.m18455b(i3, i2)))) + "/" + this.numberUtil.toFarsiString(UiUtils.zeroAdder(String.valueOf(i)));
                 }
                 this.f13913a = true;
             }
         } else if (this.isGregorian) {
-            this.dateDescription.setText(UiUtils.m18494u(String.valueOf(i)) + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)));
+            this.dateDescription.setText(UiUtils.zeroRemover(String.valueOf(i)).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(UiUtils.m18432a(i3, i2)));
         } else {
-            this.dateDescription.setText(this.numberUtil.toFarsiString(UiUtils.m18494u(String.valueOf(i))) + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)));
+            this.dateDescription.setText(this.numberUtil.toFarsiString(UiUtils.zeroRemover(String.valueOf(i))).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(UiUtils.m18455b(i3, i2)));
         }
         if (!this.isReverseTravel) {
             setShortDate(this.dateDescription.getText().toString());

@@ -92,7 +92,7 @@ public class UiUtils {
             str = str.replace("/", "-");
         }
         f14019i.m18351b(Integer.valueOf(str.split("T")[0].split("-")[0]).intValue(), Integer.valueOf(str.split("T")[0].split("-")[1]).intValue(), Integer.valueOf(str.split("T")[0].split("-")[2]).intValue());
-        return f14019i.m18356g().split("/")[0] + "/" + UiUtils.m18494u(String.valueOf(f14019i.m18350b())) + "/" + UiUtils.m18494u(String.valueOf(f14019i.m18352c()));
+        return f14019i.m18356g().split("/")[0] + "/" + UiUtils.zeroAdder(String.valueOf(f14019i.m18350b())) + "/" + UiUtils.zeroAdder(String.valueOf(f14019i.m18352c()));
     }
 
 
@@ -137,9 +137,16 @@ public class UiUtils {
         return i + 2;
     }
 
-    public static String m18494u(String str) {
+    public static String zeroAdder(String str) {
         if (str.length() == 1) {
             return "0" + str;
+        }
+        return str;
+    }
+
+    public static String zeroRemover(String str) {
+        if (str.length() == 1) {
+            return str;
         }
         return str;
     }
