@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.views.ui.HackyViewPager;
 import com.github.chrisbanes.photoview.PhotoView;
@@ -148,6 +147,7 @@ public class ImageViewActivity extends BaseActivity {
             PhotoView image = (PhotoView) view.findViewById(R.id.photo_view);
 
             container.addView(view, 0);
+
 
 
 

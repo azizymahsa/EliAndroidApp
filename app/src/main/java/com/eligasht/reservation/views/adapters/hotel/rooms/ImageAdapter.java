@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+
 import com.eligasht.R;
 import com.eligasht.reservation.tools.GlideApp;
 
