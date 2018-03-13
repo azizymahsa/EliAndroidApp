@@ -96,14 +96,14 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                 if (SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet)) {
                     this.popupWindow.showAsDropDown(view, -((int) (((double) (1.0f * this.displayMetrics.density)) - 10d) + view.getHeight() / 2), -2 * view.getHeight() - 10);
                 } else {
-                    this.popupWindow.showAsDropDown(view, -((int) (((double) (30.0f * this.displayMetrics.density)) + 0.5d) + view.getHeight() / 2), -2 * view.getHeight() - 10);
+                    this.popupWindow.showAsDropDown(view, -((int) (((double) (10.0f * this.displayMetrics.density)) + 0.5d) + view.getHeight() / 2), -2 * view.getHeight() - 10);
                 }
 
             } else {
                 if (SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet)) {
                     this.popupWindow.showAsDropDown(view, 20, -2 * view.getHeight() - 10);
                 } else {
-                    this.popupWindow.showAsDropDown(view, 0, -2 * view.getHeight() - 10);
+                    this.popupWindow.showAsDropDown(view, -20, -2 * view.getHeight() - 10);
                 }
 
             }
