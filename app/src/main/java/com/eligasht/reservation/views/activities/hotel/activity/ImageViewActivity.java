@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.views.ui.HackyViewPager;
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -150,7 +151,7 @@ public class ImageViewActivity extends BaseActivity {
 
 
 
-            Glide.with(ImageViewActivity.this)
+            GlideApp.with(ImageViewActivity.this)
                     .load(images.get(position))
                     .centerCrop()
                     .error(R.drawable.not_found)
@@ -202,7 +203,7 @@ public class ImageViewActivity extends BaseActivity {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            Glide.with(ImageViewActivity.this)
+            GlideApp.with(ImageViewActivity.this)
                     .load(images.get(position))
                     .centerCrop()
                     .error(R.drawable.not_found)

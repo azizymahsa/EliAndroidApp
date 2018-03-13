@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +15,7 @@ import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.models.model.Country;
 import com.eligasht.reservation.models.model.insurance.BirthDateList;
+import com.eligasht.reservation.tools.GlideAppModule;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
@@ -152,7 +152,6 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.layout_passenger:
-
                 Intent intent = new Intent(getActivity(), AddPassengerActivity.class);
                 intent.putExtra("BirthDateList", gson.toJson(passengers));
                 Prefs.putString("BirthDateListInsuranc", gson.toJson(passengers));//mahsa

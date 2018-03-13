@@ -20,6 +20,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
+import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
@@ -148,7 +149,7 @@ public class FlightHotelAdapter extends BaseAdapter {
 
         String imageUri = "https://cdn.elicdn.com" + selectHotelModelArrayList.get(position).getImageUrl();
 
-        Glide
+        GlideApp
                 .with(activity)
                 .load(imageUri)
                 .centerCrop()
@@ -378,7 +379,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         String imageUri2 = "https://cdn.elicdn.com/Content/AirLine/MblSize/"+selectHotelModelArrayList.get(position).getFlights().get(0).AirlineCode+".png";
 
 
-        Glide
+        GlideApp
                 .with(activity)
                 .load(imageUri2)
                 .centerCrop()
