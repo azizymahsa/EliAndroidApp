@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.http.HttpResponse;
@@ -2165,18 +2166,30 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 								countN--;
 							}
 							if(countB!=0){
+								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
+									txtTitleCountM.setText( getCounter(counter)+" " +getString(R.string.Passenger_information)+" " + getString(R.string.adult_));
 
-								txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.adult_));
+								}else {
+									txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.adult_));
+								}
 								imgCount.setText(counter+"");
 							}
 							else if(countK!=0){
+								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
+									txtTitleCountM.setText( getCounter(counter) +" " +getString(R.string.Passenger_information) +" " + getString(R.string.child_));
 
-								txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
+								}else {
+									txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
+								}
 								imgCount.setText(counter+"");
 							}
 							else if(countN!=0){
+								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
+									txtTitleCountM.setText( getCounter(counter) +" " +getString(R.string.Passenger_information) +" " + getString(R.string.baby_));
 
-								txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby_));
+								}else {
+									txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby_));
+								}
 								imgCount.setText(counter+"");
 							}
 

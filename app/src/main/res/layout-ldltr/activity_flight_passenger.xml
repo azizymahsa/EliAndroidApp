@@ -596,8 +596,6 @@
                         android:orientation="horizontal">
 
 
-
-
                         <TextView
                             android:id="@+id/lblMoratabSazi"
                             android:layout_width="wrap_content"
@@ -1249,25 +1247,25 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_gravity="left"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:gravity="left|center_vertical"
-                           android:text="@string/_arrow_right"
-                            android:textAppearance="@style/IconFonts"
-                            android:textColor="#ffffff"
-                            android:textSize="26dp" />
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:gravity="center"
                             android:text="@string/Verification_and_next_step"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#FFFFFF"
                             android:textSize="@dimen/_15dp_normal_textSize" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="left|center_vertical"
+                            android:text="@string/_arrow_right"
+                            android:textAppearance="@style/IconFonts"
+                            android:textColor="#ffffff"
+                            android:textSize="26dp" />
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
@@ -1330,13 +1328,13 @@
 
                     <TextView
                         android:id="@+id/textView1"
-                        android:text="@string/sum_khadamat"
-                        android:textAppearance="@style/IrsansBold"
-                        android:textSize="@dimen/_15dp_khadamat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#fff"
                         android:gravity="right"
+                        android:text="@string/sum_khadamat"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textSize="@dimen/_15dp_khadamat"
 
 
                         />
@@ -1362,9 +1360,9 @@
                         android:layout_gravity="left"
                         android:gravity="left"
                         android:text="@string/Rial"
-                        android:textColor="#23b574"
                         android:textAppearance="@style/IrsansBold"
-                        android:textSize="@dimen/_15dp_khadamat"/>
+                        android:textColor="#23b574"
+                        android:textSize="@dimen/_15dp_khadamat" />
                 </LinearLayout>
 
 
@@ -1445,25 +1443,25 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:gravity="left|center_vertical"
-                   android:text="@string/_arrow_right"
-                    android:textAppearance="@style/IconFonts"
-                    android:textColor="#ffffff"
-                    android:textSize="26dp" />
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
                     android:text="@string/Verification_and_next_step"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/_15dp_normal_textSize" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/_arrow_right"
+                    android:textAppearance="@style/IconFonts"
+                    android:textColor="#ffffff"
+                    android:textSize="26dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -1482,8 +1480,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_60dp_hight"
-                >
+                android:layout_height="@dimen/_60dp_hight">
 
                 <ImageView
                     android:id="@+id/ivImage"
@@ -1785,13 +1782,13 @@
                         android:id="@+id/tvPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="0"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#098d4e"
-                        android:textSize="@dimen/_15dp_normal_textSize"
-                        android:layout_alignParentRight="true"/>
+                        android:textSize="@dimen/_15dp_normal_textSize" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1800,8 +1797,7 @@
                         android:text="@string/The_amount_payable"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_15dp_normal_textSize"
-                        />
+                        android:textSize="@dimen/_15dp_normal_textSize" />
                 </RelativeLayout>
 
             </RelativeLayout>
