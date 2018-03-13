@@ -62,7 +62,7 @@
     <dimen name="_50dp_normal">70dp</dimen>
     <dimen name="_200dp_normal">300dp</dimen>
     <dimen name="_250dp_normal">350dp</dimen>
-    <dimen name="_30dp_normal_iconSize">35dp</dimen>
+    <dimen name="_30dp_normal_iconSize">30dp</dimen>
     <dimen name="_35dp_normal">40dp</dimen>
     <dimen name="_16dp_exit_menu_textSize">20dp</dimen>
     <dimen name="_8dp_normal_margin">12dp</dimen>

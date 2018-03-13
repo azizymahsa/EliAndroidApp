@@ -185,7 +185,7 @@
                 android:gravity="center|right|bottom"
                 android:paddingBottom="13dp"
                 android:paddingRight="8dp"
-                android:text="@string/icon_forget_login"
+                android:text="@string/icon_pen"
                 android:textAppearance="@style/User_pass_login"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_25dp_normal_iconSize" />

@@ -190,7 +190,7 @@
                             fancy:fb_radius="0dp"
                             fancy:fb_text="@string/return_"
                             fancy:fb_textColor="#FFFFFF"
-                            fancy:fb_textSize="18dp" />
+                            fancy:fb_textSize="@dimen/_16dp_normal_textSize" />
                     </RelativeLayout>
 
 

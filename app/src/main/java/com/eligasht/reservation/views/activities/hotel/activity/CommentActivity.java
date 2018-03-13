@@ -104,7 +104,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         btnBack.setOnClickListener(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            tvTitle.setText(getString(R.string.CommentFor) + extras.getString("HotelName"));
+            tvTitle.setText(getString(R.string.CommentFor)+" "+ extras.getString("HotelName"));
             hotelId=extras.getString("HotelId");
             Log.e("UserID",Prefs.getString("uesrId","-1"));
         }
