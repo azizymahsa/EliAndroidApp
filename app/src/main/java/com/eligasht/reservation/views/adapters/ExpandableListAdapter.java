@@ -21,22 +21,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.ExpandableListViewE;
-import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+
 import com.eligasht.R;
 
 import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.text.NumberFormat;
@@ -53,7 +51,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     List<SearchParvazActivity.ParentItemExpandingPlan> dataExpandingList;
     List<PinModelDetail> pinModelDetails;
     List<PinModelHeader> pinModelHeaders;
-    ImageLoader imageLoader;
     public static Boolean shouldShowAnimation = false;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -73,8 +70,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         this.isChangeFlight = isChangeFlight;
         this.FlightId = FlightId;
         this.searchKey = searchKey;
-        imageLoader = ImageLoader.getInstance();
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
+
     }
 
 
@@ -488,40 +484,27 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 					}*/
 
         String imageUri = "https://cdn.elicdn.com/Content/AirLine/MblSize/" + s + ".png";
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                // this will make circle, pass the width of image
-                .displayer(new RoundedBitmapDisplayer(3))
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .considerExifParams(true)
-                .build();
+
         System.out.println("https://cdn.elicdn.com/Content/AirLine/MblSize/" + s + ".png");
-
-        imageLoader.displayImage(imageUri, lblProductrow, options, new ImageLoadingListener() {
+        Glide
+                .with(_context)
+                .load(imageUri)
+                .centerCrop()
+                .error(R.drawable.not_found).listener(new RequestListener<String, GlideDrawable>() {
             @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
+            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                return false;
             }
 
             @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                 avi.setVisibility(View.GONE);
-
+                return false;
             }
+        })
+                .into(lblProductrow);
 
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                avi.setVisibility(View.GONE);
 
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-                avi.setVisibility(View.GONE);
-
-            }
-        });
 
 
 		/*lblProductrow.setImageResource();

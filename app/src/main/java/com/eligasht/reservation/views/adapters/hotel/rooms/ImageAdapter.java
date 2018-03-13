@@ -8,12 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.bumptech.glide.Glide;
 import com.eligasht.R;
 
 import java.util.ArrayList;
@@ -26,13 +21,13 @@ public class ImageAdapter extends BaseAdapter {
     private ArrayList<ImageModel> imageModels = new ArrayList<>();
     private LayoutInflater inflater;
     private ViewHolder holder;
-    ImageLoader imageLoader;
+    Context context;
 
     public ImageAdapter(ArrayList<ImageModel> imageModels, Context context) {
         this.imageModels = imageModels;
+        this.context = context;
         inflater = LayoutInflater.from(context);
-        imageLoader = ImageLoader.getInstance();
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
+
     }
 
     @Override
@@ -61,45 +56,15 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        // String imageUri = "drawable://" + productModels.get(position).getProductImage();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                // this will make circle, pass the width of image
-                .displayer(new RoundedBitmapDisplayer(5))
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .considerExifParams(true)
-
-                .build();
-
-        imageLoader.displayImage(imageModels.get(position).getImage(), holder.ivImage, options, new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-                //  holder.pb.setVisibility(View.VISIBLE);
 
 
-            }
+        Glide
+                .with(context)
+                .load(imageModels.get(position).getImage())
+                .centerCrop()
+                .error(R.drawable.not_found)
+                .into(holder.ivImage);
 
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-
-
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-
-
-            }
-        });
 
 
         return convertView;

@@ -15,9 +15,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.eligasht.reservation.views.ui.HackyViewPager;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.views.ui.InitUi;
@@ -31,11 +29,9 @@ import java.util.ArrayList;
 import it.sephiroth.android.library.widget.HListView;
 
 public class ImageViewActivity extends BaseActivity {
-    ImageLoader imageLoader;
     ArrayList<String> images = new ArrayList<>();
     HListView thumbnails_scroll_view;
     private HackyViewPager viewPager;
-    DisplayImageOptions options;
     IntroAdapter introAdapter;
     ImageListAdapter imageListAdapter;
     boolean listChange = true;
@@ -47,17 +43,10 @@ public class ImageViewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_view);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.ShowPicture));
-        imageLoader = ImageLoader.getInstance();
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(ImageViewActivity.this));
+
 
         pos = getIntent().getExtras().getInt("pic");
-        options = new DisplayImageOptions.Builder()
-                // this will make circle, pass the width of image
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .considerExifParams(true)
-                .build();
+
 
         thumbnails_scroll_view = findViewById(R.id.thumbnails_scroll_view);
         viewPager = findViewById(R.id.intro_view_pager);

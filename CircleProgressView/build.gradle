@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'//apply plugin: 'com.github.dcendents.android
 
 group = 'com.github.jakob-grabner'
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         minSdkVersion 11
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 3
         versionName "1.2"
     }
@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-annotations:25.1.0'
+    compile 'com.android.support:support-annotations:27.1.0'
 }
 
 // build a jar with source files

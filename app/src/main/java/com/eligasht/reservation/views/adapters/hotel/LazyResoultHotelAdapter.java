@@ -19,11 +19,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.GlidApp;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
-import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+
 import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.tools.Utility;
@@ -36,7 +32,6 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
     private ArrayList<SelectHotelModel> selectHotelModelArrayList = new ArrayList<>();
     private LayoutInflater inflater;
     private ViewHolder holder;
-    ImageLoader imageLoader;
     Context context;
     Activity activity;
     TextView DateTime;
@@ -47,8 +42,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         this.selectHotelModelArrayList = selectHotelModelArrayList;
         this.context = context;
         inflater = LayoutInflater.from(context);
-        imageLoader = ImageLoader.getInstance();
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
+
 
 
     }

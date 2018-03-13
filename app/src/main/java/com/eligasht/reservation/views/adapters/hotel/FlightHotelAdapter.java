@@ -24,12 +24,7 @@ import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -41,7 +36,6 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 
 public class FlightHotelAdapter extends BaseAdapter {
-    ImageLoader imageLoader;
     Activity activity;
     TextView DateTime;
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
@@ -54,8 +48,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         this.activity = activity;
         this.DateTime = DateTime;
         inflater = LayoutInflater.from(activity);
-        imageLoader = ImageLoader.getInstance();
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(activity));
+
 
 
     }

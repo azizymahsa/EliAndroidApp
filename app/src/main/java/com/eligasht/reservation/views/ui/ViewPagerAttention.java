@@ -11,11 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
 import com.eligasht.R;
 import com.eligasht.reservation.views.activities.hotel.activity.ImageViewActivity;
 import com.eligasht.reservation.views.adapters.hotel.rooms.ImageModel;
@@ -33,7 +29,6 @@ public class ViewPagerAttention {
     int layout;
     int indiactor;
     private ArrayList<ImageModel> imageModels = new ArrayList<>();
-    ImageLoader imageLoader;
     String brandId;
     int like;
     int currentPage = 0;
@@ -89,8 +84,7 @@ public class ViewPagerAttention {
     }
     private class IntroAdapter extends PagerAdapter {
         public IntroAdapter() {
-            imageLoader = ImageLoader.getInstance();
-            ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(activity));
+
 
         }
 

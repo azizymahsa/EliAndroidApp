@@ -251,9 +251,9 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.rey.material.widget.RadioButton
+                            <RadioButton
                                 android:id="@+id/zanS"
-                                style="@style/Material.Drawable.RadioButton"
+
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/_10dp_margin"
@@ -263,9 +263,9 @@
                             <!--  app:lrb_unCheckedColor="#9d80ff" />-->
 
 
-                            <com.rey.material.widget.RadioButton
+                            <RadioButton
                                 android:id="@+id/mardS"
-                                style="@style/Material.Drawable.RadioButton"
+
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -729,9 +729,9 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.rey.material.widget.RadioButton
+                            <RadioButton
                                 android:id="@+id/zan"
-                                style="@style/Material.Drawable.RadioButton"
+
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/_10dp_margin"
@@ -741,9 +741,9 @@
                             <!--  app:lrb_unCheckedColor="#9d80ff" />-->
 
 
-                            <com.rey.material.widget.RadioButton
+                            <RadioButton
                                 android:id="@+id/mard"
-                                style="@style/Material.Drawable.RadioButton"
+
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"

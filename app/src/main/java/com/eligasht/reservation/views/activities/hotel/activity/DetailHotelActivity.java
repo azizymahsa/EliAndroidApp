@@ -70,8 +70,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.text.DecimalFormat;
@@ -573,8 +572,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.colorPrimaryDark));
             }
 
-            ImageLoader imageLoader = ImageLoader.getInstance();
-            ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(DetailHotelActivity.this));
+
 
             ArrayList<ImageModel> imageModels = new ArrayList<>();
             //  new InitUi().Loading(rlLoading,rlRoot,false);

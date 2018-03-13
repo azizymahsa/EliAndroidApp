@@ -36,6 +36,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Scroller;
@@ -160,7 +161,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     //change for Prefactor=========================================================================
     LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight;
     List<PurchaseFlightResult> data=null;
-    private com.rey.material.widget.RadioButton btnzan, btnmard, btnzanS, btnmardS;
+    private RadioButton btnzan, btnmard, btnzanS, btnmardS;
     private int defaultRooms=1;
 
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
@@ -404,7 +405,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         btnBack.setOnClickListener(PassengerHotelFlightActivity.this);
 
         //kharidar
-        btnzanS = (com.rey.material.widget.RadioButton) findViewById(R.id.zanS);
+        btnzanS = (RadioButton) findViewById(R.id.zanS);
         btnzanS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -416,7 +417,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             }
         });
 
-        btnmardS = (com.rey.material.widget.RadioButton) findViewById(R.id.mardS);
+        btnmardS = (RadioButton) findViewById(R.id.mardS);
         btnmardS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -428,7 +429,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             }
         });
         ////////mosafer
-        btnzan = (com.rey.material.widget.RadioButton) findViewById(R.id.zan);
+        btnzan = (RadioButton) findViewById(R.id.zan);
         btnzan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -440,7 +441,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             }
         });
 
-        btnmard = (com.rey.material.widget.RadioButton) findViewById(R.id.mard);
+        btnmard = (RadioButton) findViewById(R.id.mard);
         btnmard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
