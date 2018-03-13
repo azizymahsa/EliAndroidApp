@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -109,42 +110,15 @@ public class ViewPagerAttention {
             container.addView(view, 0);
 //            image.setImageResource(images[position]);
 
-            DisplayImageOptions options = new DisplayImageOptions.Builder()
-                    // this will make circle, pass the width of image
-                    .cacheInMemory(true)
-                    .cacheOnDisk(true)
-                    .bitmapConfig(Bitmap.Config.RGB_565)
-                    .considerExifParams(true)
-                    .build();
 
 
+            Glide.with(activity)
+                    .load(imageModels.get(position).getImage())
+                    .centerCrop()
+                    .error(R.drawable.not_found)
+                    .into(image);
 
-            imageLoader.displayImage(imageModels.get(position).getImage(), image, options, new ImageLoadingListener() {
-                @Override
-                public void onLoadingStarted(String imageUri, View view) {
-                   // notifyDataSetChanged();
 
-                }
-
-                @Override
-                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                   // notifyDataSetChanged();
-
-                }
-
-                @Override
-                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                   // notifyDataSetChanged();
-
-                }
-
-                @Override
-                public void onLoadingCancelled(String imageUri, View view) {
-
-                   // notifyDataSetChanged();
-
-                }
-            });
 
 
 

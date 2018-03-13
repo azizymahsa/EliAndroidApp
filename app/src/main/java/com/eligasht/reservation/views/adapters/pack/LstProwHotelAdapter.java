@@ -126,10 +126,14 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
             e.printStackTrace();
         }
         String imageUri = "https://cdn.elicdn.com/" + item.getHotelImgPath();
-        Glide.with(context)
-                .load(imageUri)
-                .into(holder.ivBigImage);
 
+
+        Glide
+                .with(context)
+                .load(imageUri)
+                .centerCrop()
+                .error(R.drawable.not_found)
+                .into(holder.ivBigImage);
 
 
         holder.ivBigImage.setOnClickListener(new View.OnClickListener() {

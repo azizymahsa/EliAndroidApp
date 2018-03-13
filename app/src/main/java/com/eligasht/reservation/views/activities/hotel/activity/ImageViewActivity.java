@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.eligasht.reservation.views.ui.HackyViewPager;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -159,9 +160,12 @@ public class ImageViewActivity extends BaseActivity {
             container.addView(view, 0);
 
 
-            imageLoader.displayImage(images.get(position), image, options, null);
 
-
+            Glide.with(ImageViewActivity.this)
+                    .load(images.get(position))
+                    .centerCrop()
+                    .error(R.drawable.not_found)
+                    .into(image);
             return view;
         }
 
@@ -209,8 +213,12 @@ public class ImageViewActivity extends BaseActivity {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
+            Glide.with(ImageViewActivity.this)
+                    .load(images.get(position))
+                    .centerCrop()
+                    .error(R.drawable.not_found)
+                    .into(holder.ivImage);
 
-            imageLoader.displayImage(images.get(position), holder.ivImage, options, null);
             holder.ivImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
