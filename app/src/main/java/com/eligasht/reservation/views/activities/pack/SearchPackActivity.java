@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -139,7 +140,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
     //send request for get package
     private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture, String PreferedAir) {
-
+     
 
         toolbar_title.setText(getString(R.string.Tur) + " " + cityName);
         toolbar_date.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
