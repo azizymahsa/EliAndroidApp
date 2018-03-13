@@ -54,6 +54,7 @@
     <string name="icon_pass_login">&#xe619;</string>
     <string name="icon_forget_login">&#xe612;</string>
     <string name="icon_check">&#xe5ca;</string>
+    <string name="icon_pen">&#xe91a;</string>
 
     <string name="searchFlight">Plane Ticket</string>
     <string name="search_package">Holiday Package</string>

@@ -135,15 +135,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="45dp"
             android:layout_marginTop="30dp"
             android:layout_weight="0.3"
             android:gravity="right"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="0.8"
                 android:layout_marginRight="5dp"
                 android:gravity="right|center"
                 android:text="@string/forgot_password"
@@ -151,13 +151,16 @@
                 android:textSize="@dimen/_14dp_txtSize" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_weight="0.2"
+                android:gravity="center|left"
                 android:text="@string/icon_forget_login"
                 android:textAppearance="@style/User_pass_login"
                 android:textColor="@color/text_color_2e"
-                android:textSize="@dimen/_25dp_normal_iconSize" />
+                android:textSize="@dimen/_25dp_normal_iconSize"
+                android:paddingBottom="13dp"
+                android:paddingLeft="8dp"/>
 
 
         </LinearLayout>
@@ -167,29 +170,34 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="45dp"
             android:layout_weight="0.3"
-            android:gravity="right"
+            android:gravity="right|center"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="45dp"
+                android:layout_weight="0.8"
                 android:layout_marginRight="5dp"
-                android:gravity="center"
+
+                android:gravity="center|right"
                 android:text="@string/register"
                 android:textColor="@color/text_color_2e"
-                android:textSize="@dimen/_14dp_txtSize" />
+                android:textSize="@dimen/_14dp_txtSize"
+                />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/icon_forget_login"
-                android:textAppearance="@style/User_pass_login"
+                android:layout_weight="0.2"
+                android:gravity="center|left"
+                android:text="@string/icon_pen"
+                android:textAppearance="@style/IconFonts"
                 android:textColor="@color/text_color_2e"
-                android:textSize="@dimen/_25dp_normal_iconSize" />
+                android:textSize="@dimen/_25dp_normal_iconSize"
+                android:paddingBottom="13dp"
+                android:paddingLeft="8dp"
+                />
 
         </LinearLayout>
 
