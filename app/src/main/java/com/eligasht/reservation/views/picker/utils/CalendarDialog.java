@@ -94,7 +94,7 @@ public class CalendarDialog implements OnClickListener {
 
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, CustomDate endDate, TypeUsageOfCalendar typeUsageofCalendar) {
-        f13894H=0;
+        f13894H = 0;
         this.context = context;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
         if (Locale.getDefault().getLanguage().equals("fa"))
@@ -148,6 +148,7 @@ public class CalendarDialog implements OnClickListener {
         alertDialog = builder.create();
         alertDialog.setCancelable(true);
         alertDialog.show();
+        initSubtitle();
 
 
         this.calendarRv.addOnScrollListener(new OnScrollListener() {
@@ -183,7 +184,7 @@ public class CalendarDialog implements OnClickListener {
 
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, TypeUsageOfCalendar typeUsageofCalendar) {
-        f13894H=0;
+        f13894H = 0;
         this.context = context;
         this.activity = activity;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
@@ -235,6 +236,7 @@ public class CalendarDialog implements OnClickListener {
         alertDialog = builder.create();
         alertDialog.setCancelable(true);
         alertDialog.show();
+        initSubtitle();
 
 
         this.calendarRv.addOnScrollListener(new OnScrollListener() {
@@ -269,7 +271,7 @@ public class CalendarDialog implements OnClickListener {
     }
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, boolean reverse, TypeUsageOfCalendar typeUsageofCalendar) {
-        f13894H=0;
+        f13894H = 0;
         this.context = context;
         this.activity = activity;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
@@ -318,6 +320,7 @@ public class CalendarDialog implements OnClickListener {
         alertDialog = builder.create();
         alertDialog.setCancelable(true);
         alertDialog.show();
+        initSubtitle();
 
 
         this.calendarRv.addOnScrollListener(new OnScrollListener() {
@@ -349,6 +352,25 @@ public class CalendarDialog implements OnClickListener {
                 }
             }
         });
+    }
+
+
+    private void initSubtitle() {
+        if (!this.sharedPrefrences.getBoolean("isGregorian", false)) {
+
+            if (this.fullDate != null && this.fullDate.contains("-")) {
+                this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("-")[0].split("/")[2]) + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.numberUtil.toFarsiString(this.fullDate.split("-")[1].split("/")[2]) + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
+            } else if (this.fullDate != null) {
+                this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("/")[2]) + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
+            }
+        } else {
+
+            if (this.fullDate != null && this.fullDate.contains("-")) {
+                this.dateDescription.setText(this.fullDate.split("-")[0].split("/")[2] + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.fullDate.split("-")[1].split("/")[2] + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
+            } else if (this.fullDate != null) {
+                this.dateDescription.setText(this.fullDate.split("/")[2] + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
+            }
+        }
     }
 
     private void initViews() {
