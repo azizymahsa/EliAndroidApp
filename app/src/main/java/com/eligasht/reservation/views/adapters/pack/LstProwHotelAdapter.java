@@ -79,20 +79,20 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         long checkin_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckIn());
         long checkout_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckOut());
         long diferent_day = DateUtil.getTimeDifference(item.getCheckIn(), item.getCheckOut()).getDay();
-        if (Prefs.getString("lang","fa").equals("fa")){
-            holder.txt_date.setText(context.getString(R.string.from) +" "+
-                    DateUtil.getShortStringDateFromMilis(String.valueOf(checkin_milis), "yyyy-MM-dd", true) +
-                    context.getString(R.string.to) +" "+
+        if (Prefs.getString("lang", "fa").equals("fa")) {
+            holder.txt_date.setText(context.getString(R.string.from) + " " +
+                    DateUtil.getShortStringDateFromMilis(String.valueOf(checkin_milis), "yyyy-MM-dd", true) + " " +
+                    context.getString(R.string.to) + " " +
                     DateUtil.getShortStringDateFromMilis(String.valueOf(checkout_milis), "yyyy-MM-dd", true) +
                     " - " +
-                    diferent_day +" "+context.getString(R.string.night));
-        }else{
-            holder.txt_date.setText(context.getString(R.string.from) +" "+
-                    DateUtil.getShortStringDateFromMilis(String.valueOf(checkin_milis), "yyyy-MM-dd", false) +
-                    context.getString(R.string.to) +" "+
+                    diferent_day + " " + context.getString(R.string.night));
+        } else {
+            holder.txt_date.setText(context.getString(R.string.from) + " " +
+                    DateUtil.getShortStringDateFromMilis(String.valueOf(checkin_milis), "yyyy-MM-dd", false) + " " +
+                    context.getString(R.string.to) + " " +
                     DateUtil.getShortStringDateFromMilis(String.valueOf(checkout_milis), "yyyy-MM-dd", false) +
                     " - " +
-                    diferent_day +" "+context.getString(R.string.night));
+                    diferent_day + " " + context.getString(R.string.night));
         }
 
 
