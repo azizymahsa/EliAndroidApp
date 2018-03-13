@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.eligasht.reservation.tools.GlideApp;
 import com.google.gson.Gson;
 
 import com.eligasht.R;
@@ -106,7 +107,7 @@ public class ViewPagerAttention {
 
 
 
-            Glide.with(activity)
+            GlideApp.with(activity)
                     .load(imageModels.get(position).getImage())
                     .centerCrop()
                     .error(R.drawable.not_found)

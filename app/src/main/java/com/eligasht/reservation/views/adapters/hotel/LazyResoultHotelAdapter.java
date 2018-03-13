@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.eligasht.reservation.tools.GlidApp;
+import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 
 import com.eligasht.R;
@@ -91,7 +91,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 .playOn(holder.cvHotel);
         String imageUri = "https://cdn.elicdn.com" + selectHotelModelArrayList.get(position).getImageUrl();
 
-        Glide
+        GlideApp
                 .with(context)
                 .load(imageUri)
                 .centerCrop()

@@ -22,9 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.ExpandableListViewE;
@@ -33,6 +30,7 @@ import com.eligasht.R;
 
 import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
+import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -486,22 +484,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         String imageUri = "https://cdn.elicdn.com/Content/AirLine/MblSize/" + s + ".png";
 
         System.out.println("https://cdn.elicdn.com/Content/AirLine/MblSize/" + s + ".png");
-        Glide
+        GlideApp
                 .with(_context)
                 .load(imageUri)
                 .centerCrop()
-                .error(R.drawable.not_found).listener(new RequestListener<String, GlideDrawable>() {
-            @Override
-            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                avi.setVisibility(View.GONE);
-                return false;
-            }
-        })
+                .error(R.drawable.not_found)
                 .into(lblProductrow);
 
 
