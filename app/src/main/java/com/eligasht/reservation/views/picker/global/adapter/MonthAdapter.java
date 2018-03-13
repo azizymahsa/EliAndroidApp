@@ -138,9 +138,6 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
                 monthViewHolder.day.setAlpha(0.87f);
                 if (this.days360.contains(Boolean.TRUE)) {
                     if (this.days360.get(i)) {
-                        Log.e("Sec PAram", String.valueOf(f9222h));
-                        Log.e("Param", String.valueOf(f9223i) + " And i" + i);
-
                         if (f9222h != f9223i && f9223i != -1) {
                             //    monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#2e00bcd4"));
                             //  monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#2e00bcd4"));
