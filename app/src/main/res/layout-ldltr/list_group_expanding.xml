@@ -150,34 +150,47 @@
                     </LinearLayout>
 
 
-                    <TextView
-
-                        android:id="@+id/lblFlightArrivalTimeR"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center|center_vertical"
-                        android:layout_weight="1.5"
-                        android:gravity="center"
-
-                        android:text="6"
-                        android:textColor="#aaa"
-                        android:textSize="@dimen/_10dp_textSize" />
-
-                    <TextView
-
-                        android:id="@+id/lblArrivalCityNameFaR"
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right|center_vertical"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:text="یکشنبه,21:05"
-                        android:textColor="#003399"
-                        android:textSize="@dimen/_14dp_txtSize"
-                        android:textStyle="bold" />
+                        android:gravity="right">
+                        <TextView
+
+                            android:id="@+id/lblArrivalCityNameFaRTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center_vertical"
+                            android:text=",21:05"
+                            android:gravity="right"
+                            android:textColor="#003399"
+                            android:textAppearance="@style/tahoma"
+                            android:textSize="@dimen/_14dp_txtSize"
+                            android:textStyle="bold" />
+                        <TextView
+
+                            android:id="@+id/lblArrivalCityNameFaR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center_vertical"
+                            android:text="پنجشنبه"
+                            android:gravity="right"
+                            android:textColor="#003399"
+
+                            android:textSize="@dimen/_14dp_txtSize"
+                            />
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -308,34 +321,46 @@
                     </LinearLayout>
 
 
-                    <TextView
-
-                        android:id="@+id/lblFlightArrivalTimeB"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center|center_vertical"
-                        android:layout_weight="1.5"
-                        android:gravity="center"
-
-                        android:text="6"
-                        android:textColor="#aaa"
-                        android:textSize="@dimen/_10dp_textSize" />
-
-                    <TextView
-
-                        android:id="@+id/lblArrivalCityNameFaB"
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right|center_vertical"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:text="یکشنبه,21:05"
-                        android:textColor="#003399"
-                        android:textSize="@dimen/_14dp_txtSize"
-                        android:textStyle="bold" />
+                        android:gravity="right">
+                        <TextView
+
+                            android:id="@+id/lblArrivalCityNameFaBTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center_vertical"
+                            android:text="21:05"
+                            android:gravity="right"
+                            android:textAppearance="@style/tahoma"
+                            android:textColor="#003399"
+                            android:textSize="@dimen/_14dp_txtSize"
+                            android:textStyle="bold" />
+                        <TextView
+
+                            android:id="@+id/lblArrivalCityNameFaB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center_vertical"
+                            android:text="یکشنبه"
+                            android:gravity="right"
+                            android:textColor="#003399"
+                            android:textSize="@dimen/_14dp_txtSize"
+                            />
+                    </LinearLayout>
+
 
                 </LinearLayout>
 

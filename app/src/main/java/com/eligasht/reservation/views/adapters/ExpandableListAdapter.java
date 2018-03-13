@@ -395,8 +395,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             System.out.println("bargasgt:" + item2.FltDateDayOfWeekFalse);
             lblArrivalCityNameFaB.setText("" + GetDayWeek(item2.FltDateDayOfWeekFalse) );
             lblArrivalCityNameFaBTime.setText(   item2.FlightTimeB+" , ");
-            int tavaghofB = item2.SegmentFalseCount - 1;
-            lblFlightArrivalTimeB.setText((tavaghofB == 0) ? _context.getString(R.string.none_stop) : tavaghofB + _context.getString(R.string.stop));//count bargasht
+            try{
+                int tavaghofB = item2.SegmentFalseCount - 1;
+                System.out.println("tavaghofR:"+tavaghofB+"RR"+item2.SegmentFalseCount);
+                lblFlightArrivalTimeB.setText((tavaghofB == 0) ? _context.getString(R.string.none_stop) : tavaghofB + _context.getString(R.string.stop)+"");//count bargasht
+            }catch(Exception e){
+                e.getMessage();
+            }
+
         }
         //raft
         txtArrivelTrueLast.setText(item2.DepartureCityNameFaR);
@@ -409,9 +415,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         System.out.println("raft:" + item2.FltDateDayOfWeek);
         lblArrivalCityNameFaR.setText("" + GetDayWeek(item2.FltDateDayOfWeek)  );
         lblArrivalCityNameFaRTime.setText(  item2.FlightArrivalTimeR+" , ");
+        try{
         int tavaghofR = item2.SegmentTrueCount - 1;
-        lblFlightArrivalTimeR.setText((tavaghofR == 0) ? _context.getString(R.string.none_stop) : tavaghofR + _context.getString(R.string.stop));//count raft
-
+        System.out.println("tavaghofR:"+tavaghofR+"BB"+item2.SegmentTrueCount);
+        lblFlightArrivalTimeR.setText((tavaghofR == 0) ? _context.getString(R.string.none_stop) : tavaghofR + _context.getString(R.string.stop)+"");//count raft
+    }catch(Exception e){
+        e.getMessage();
+    }
         lblAdlCost.setText(item2.AdlCost + "");
         lblAdlCost.setText(String.valueOf(NumberFormat.getInstance().format(item2.AdlCost)));
 
