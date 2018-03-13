@@ -3,7 +3,6 @@ package com.eligasht.reservation.views.adapters.hotel;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -17,7 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.eligasht.reservation.tools.GlidApp;
+import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 
 import com.eligasht.R;
@@ -91,7 +90,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 .playOn(holder.cvHotel);
         String imageUri = "https://cdn.elicdn.com" + selectHotelModelArrayList.get(position).getImageUrl();
 
-        Glide
+        GlideApp
                 .with(context)
                 .load(imageUri)
                 .centerCrop()

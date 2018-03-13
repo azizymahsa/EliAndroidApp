@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.eligasht.R;
+import com.eligasht.reservation.tools.GlideApp;
 
 import java.util.ArrayList;
 
@@ -58,7 +59,7 @@ public class ImageAdapter extends BaseAdapter {
         }
 
 
-        Glide
+        GlideApp
                 .with(context)
                 .load(imageModels.get(position).getImage())
                 .centerCrop()

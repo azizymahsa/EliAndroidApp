@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.pack.LstProwHotel;
+import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
@@ -128,7 +129,7 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         String imageUri = "https://cdn.elicdn.com/" + item.getHotelImgPath();
 
 
-        Glide
+        GlideApp
                 .with(context)
                 .load(imageUri)
                 .centerCrop()

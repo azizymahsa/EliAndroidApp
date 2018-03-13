@@ -3,36 +3,31 @@ package com.eligasht.reservation.views.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.eligasht.reservation.tools.ExpandableListViewE;
-
 import com.eligasht.R;
-
 import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
+import com.eligasht.reservation.tools.ExpandableListViewE;
+import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -92,7 +87,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.row_select_parvaz_two_detail, parent,false);
+            convertView = infalInflater.inflate(R.layout.row_select_parvaz_two_detail, parent, false);
         }
         LinearLayout llCounter = (LinearLayout) convertView.findViewById(R.id.llCounter);
         TextView lblFlightTimeR = (TextView) convertView.findViewById(R.id.lblFlightTimeR);
@@ -147,10 +142,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         lblArrivalAirportR.setText(item.ArrivalCityNameFa + " , " + item.ArrivalAirportNameFaR);
         if (item.OperatingAirlineNameEn.contains("null")) {
             lblFlightNumberR.setText(item.AirlineCode + item.FlightNumberR);
-            if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
-                String text2 = "<font color=#0e874e>"  + item.AirlineNameFaR+ ""+"</font> " ;
-                lblFlightNumberRPersian.setText( " , "+Html.fromHtml(text2));
-            }else{
+            if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                String text2 = "<font color=#0e874e>" + item.AirlineNameFaR + "" + "</font> ";
+                lblFlightNumberRPersian.setText(" , " + Html.fromHtml(text2));
+            } else {
                 lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
             }
 
@@ -158,10 +153,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             String text = "<font color=#aaaaaa>" + "By: " + item.OperatingAirlineNameEn + "</font> " +
                     "<font color=#0e874e>" + item.AirlineCode + item.FlightNumberR + "</font>";
             lblFlightNumberR.setText(Html.fromHtml(text));
-            if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
-                String text2 = "<font color=#0e874e>"  + item.AirlineNameFaR+ ""+"</font> " ;
-                lblFlightNumberRPersian.setText( " , "+Html.fromHtml(text2));
-            }else{
+            if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                String text2 = "<font color=#0e874e>" + item.AirlineNameFaR + "" + "</font> ";
+                lblFlightNumberRPersian.setText(" , " + Html.fromHtml(text2));
+            } else {
                 lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
             }
             //lblFlightNumberR.setText("Operated By: " + item.OperatingAirlineNameEn+" , "+item.AirlineCode+item.FlightNumberR+" , "+ item.AirlineNameFaR );
@@ -256,7 +251,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_group_expanding, parent,false);//list Group header//row_select_parvaz_two_header
+            convertView = infalInflater.inflate(R.layout.list_group_expanding, parent, false);//list Group header//row_select_parvaz_two_header
         }
 
 
@@ -305,7 +300,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     .duration(300)
                     .playOn(linearKol);
             Log.d("TAG", "getGroupView: inside adapter true");
-        } else{
+        } else {
             Log.d("TAG", "getGroupView: inside adapter false");
         }
         txtPin.setTag(item2.IsPin);
@@ -471,7 +466,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			lblProductrow.setBackgroundResource(R.drawable.wy);
 		else {*/
         System.out.println(s);
-				/*	try {
+                /*	try {
 						InputStream is = (InputStream) new URL("https://cdn.elicdn.com/Content/AirLine/"+s+".png").getContent();
 						System.out.println("https://cdn.elicdn.com/Content/AirLine/"+s+".png");
 						Bitmap d = BitmapFactory.decodeStream(is);
@@ -486,22 +481,22 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         String imageUri = "https://cdn.elicdn.com/Content/AirLine/MblSize/" + s + ".png";
 
         System.out.println("https://cdn.elicdn.com/Content/AirLine/MblSize/" + s + ".png");
-        Glide
+        GlideApp
                 .with(_context)
                 .load(imageUri)
                 .centerCrop()
-                .error(R.drawable.not_found).listener(new RequestListener<String, GlideDrawable>() {
-            @Override
-            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                return false;
-            }
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        return false;
+                    }
 
-            @Override
-            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                avi.setVisibility(View.GONE);
-                return false;
-            }
-        })
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        avi.setVisibility(View.GONE);
+                        return false;
+                    }
+                })
                 .into(lblProductrow);
 
 
@@ -567,7 +562,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 //end asynTask
-
 
 
 }
