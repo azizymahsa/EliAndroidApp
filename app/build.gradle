@@ -27,12 +27,7 @@ android {
         multiDexEnabled true
 
     }
-    dexOptions {
 
-        jumboMode true
-        javaMaxHeapSize "4g"
-
-    }
     buildTypes {
         release {
             debuggable true
