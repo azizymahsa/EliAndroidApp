@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.ExpandableListViewE;
@@ -273,10 +279,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView num_flight_b = (TextView) convertView.findViewById(R.id.num_flight_b);
         final AVLoadingIndicatorView avi = convertView.findViewById(R.id.avi);
 
+        TextView lblArrivalCityNameFaRTime = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaRTime);
         TextView lblArrivalCityNameFaR = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaR);
+
         TextView lblFlightArrivalTimeR = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeR);
 
         TextView lblArrivalCityNameFaB = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaB);
+        TextView lblArrivalCityNameFaBTime = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaBTime);
         TextView lblFlightArrivalTimeB = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeB);
 
         TextView lblAdlCost = (TextView) convertView.findViewById(R.id.lblAdlCost);
@@ -384,9 +393,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             ///////////////
             //lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
             System.out.println("bargasgt:" + item2.FltDateDayOfWeekFalse);
-            lblArrivalCityNameFaB.setText("" + GetDayWeek(item2.FltDateDayOfWeekFalse) + " , " + item2.FlightTimeB);
-            int tavaghofB = item2.SegmentFalseCount - 1;
-            lblFlightArrivalTimeB.setText((tavaghofB == 0) ? _context.getString(R.string.none_stop) : tavaghofB + _context.getString(R.string.stop));//count bargasht
+            lblArrivalCityNameFaB.setText("" + GetDayWeek(item2.FltDateDayOfWeekFalse) );
+            lblArrivalCityNameFaBTime.setText(   item2.FlightTimeB+" , ");
+            try{
+                int tavaghofB = item2.SegmentFalseCount - 1;
+                System.out.println("tavaghofR:"+tavaghofB+"RR"+item2.SegmentFalseCount);
+                lblFlightArrivalTimeB.setText((tavaghofB == 0) ? _context.getString(R.string.none_stop) : tavaghofB + _context.getString(R.string.stop)+"");//count bargasht
+            }catch(Exception e){
+                e.getMessage();
+            }
+
         }
         //raft
         txtArrivelTrueLast.setText(item2.DepartureCityNameFaR);
@@ -397,10 +413,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         //
         //	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
         System.out.println("raft:" + item2.FltDateDayOfWeek);
-        lblArrivalCityNameFaR.setText("" + GetDayWeek(item2.FltDateDayOfWeek) + " , " + item2.FlightArrivalTimeR);
+        lblArrivalCityNameFaR.setText("" + GetDayWeek(item2.FltDateDayOfWeek)  );
+        lblArrivalCityNameFaRTime.setText(  item2.FlightArrivalTimeR+" , ");
+        try{
         int tavaghofR = item2.SegmentTrueCount - 1;
-        lblFlightArrivalTimeR.setText((tavaghofR == 0) ? _context.getString(R.string.none_stop) : tavaghofR + _context.getString(R.string.stop));//count raft
-
+        System.out.println("tavaghofR:"+tavaghofR+"BB"+item2.SegmentTrueCount);
+        lblFlightArrivalTimeR.setText((tavaghofR == 0) ? _context.getString(R.string.none_stop) : tavaghofR + _context.getString(R.string.stop)+"");//count raft
+    }catch(Exception e){
+        e.getMessage();
+    }
         lblAdlCost.setText(item2.AdlCost + "");
         lblAdlCost.setText(String.valueOf(NumberFormat.getInstance().format(item2.AdlCost)));
 
@@ -488,7 +509,18 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .with(_context)
                 .load(imageUri)
                 .centerCrop()
-                .error(R.drawable.not_found)
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        avi.setVisibility(View.GONE);
+                        return false;
+                    }
+                })
                 .into(lblProductrow);
 
 

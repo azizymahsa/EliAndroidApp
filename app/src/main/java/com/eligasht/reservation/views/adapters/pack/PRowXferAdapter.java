@@ -78,6 +78,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
     public void onBindViewHolder(PRowXferRowHolder holder, final int position) {
         final PRowXfer item = filtertemList.get(position);
 
+
         YoYo.with(Techniques.FadeIn)
                 .duration(300)
                 .playOn( holder.list_pack);

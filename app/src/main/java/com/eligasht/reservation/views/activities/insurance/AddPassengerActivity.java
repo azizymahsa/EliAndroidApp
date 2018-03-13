@@ -114,7 +114,7 @@ public class AddPassengerActivity extends BaseActivity implements
         //shamsi
         datePickerDialogBirthDay = DatePickerDialog.newInstance(
                 this,
-                currentYear - 66,
+                currentYear - 100,
                 0,
                 1
         );

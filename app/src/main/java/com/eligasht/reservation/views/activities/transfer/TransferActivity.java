@@ -81,8 +81,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         int monthS = Integer.valueOf(dateGrg[0]);
         long dayS = Long.valueOf(dateGrg[1]);
         int yearS = Integer.valueOf(dateGrg[2]);
-
-
         return yearS + "/" + monthS + "/" + dayS;
     }
 

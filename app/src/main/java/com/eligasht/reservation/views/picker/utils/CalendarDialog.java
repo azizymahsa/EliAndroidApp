@@ -94,6 +94,7 @@ public class CalendarDialog implements OnClickListener {
 
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, CustomDate endDate, TypeUsageOfCalendar typeUsageofCalendar) {
+        f13894H=0;
         this.context = context;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
         if (Locale.getDefault().getLanguage().equals("fa"))
@@ -182,6 +183,7 @@ public class CalendarDialog implements OnClickListener {
 
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, TypeUsageOfCalendar typeUsageofCalendar) {
+        f13894H=0;
         this.context = context;
         this.activity = activity;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
@@ -267,6 +269,7 @@ public class CalendarDialog implements OnClickListener {
     }
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, boolean reverse, TypeUsageOfCalendar typeUsageofCalendar) {
+        f13894H=0;
         this.context = context;
         this.activity = activity;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
@@ -596,7 +599,7 @@ public class CalendarDialog implements OnClickListener {
             initAdapter(this.isGregorian);
             if (context.getResources().getBoolean(R.bool.isTablet)) {
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(-1, (int) (((double) (this.displayMetrics.density * 240.0f)) + 0.5d));
-                layoutParams.setMargins((int) (((double) (2.0f * this.displayMetrics.density)) + 35d), (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (1.0f * this.displayMetrics.density)) - 25d), 0);
+                layoutParams.setMargins((int) (((double) (2.0f * this.displayMetrics.density)) + 5d), (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (7.0f * this.displayMetrics.density)) - 20d), 0);
                 layoutParams.addRule(3, R.id.fri);
                 this.calendarRv.setLayoutParams(layoutParams);
             } else {
@@ -619,7 +622,7 @@ public class CalendarDialog implements OnClickListener {
         initAdapter(this.isGregorian);
         if (context.getResources().getBoolean(R.bool.isTablet)) {
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(-1, (int) (((double) (this.displayMetrics.density * 240.0f)) + 0.5d));
-            layoutParams.setMargins(37, (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (2.0f * this.displayMetrics.density)) - 30d), 0);
+            layoutParams.setMargins(5, (int) (((double) (this.displayMetrics.density * 8.0f)) + 0.5d), (int) (((double) (2.0f * this.displayMetrics.density)) - 10d), 0);
             layoutParams.addRule(3, R.id.fri);
             this.calendarRv.setLayoutParams(layoutParams);
         } else {
