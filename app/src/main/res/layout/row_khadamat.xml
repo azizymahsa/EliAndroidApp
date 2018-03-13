@@ -131,7 +131,7 @@
                     android:text=".. جزئیات بیشتر"
                     android:textColor="#6699ff"
                     android:textSize="10dp"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
 
                 <!-- <Button
                      android:id="@+id/btnAddsabad"

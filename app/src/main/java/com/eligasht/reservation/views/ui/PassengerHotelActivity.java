@@ -107,6 +107,7 @@ import java.util.Date;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -481,7 +482,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         imgCount = (TextView) findViewById(R.id.imgCount);
 
         imgCount.setOnClickListener(this);
-        imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+         if(Locale.getDefault().getLanguage().equals("en")|| Locale.getDefault().getLanguage().equals("tr")){
+        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+        } else{
+         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+
+        }
 
         txtfamilym = (EditText) findViewById(R.id.txtfamilym);
         //lvFactor = (ExpandableLayoutListView) findViewById(R.id.lvFactor);
@@ -1968,18 +1974,42 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 }
                                 if(countB!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.adult_));
-                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                      if(Prefs.getString("lang","fa").equals("fa")){
+                                          System.out.println("farsi:");
+                                         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                         txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.adult_));
+                                     } else{
+                                        
+                                         imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                         txtTitleCountM.setText(getCounter(counter)+getString(R.string.Passenger_information) + getString(R.string.adult_));
+
+                                     }
                                 }
                                 else if(countK!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
-                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                     if(Prefs.getString("lang","fa").equals("fa")){
+                                          System.out.println("farsi:");
+                                        imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                        txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
+                                     } else{
+                                           
+                                        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                        txtTitleCountM.setText(getCounter(counter)+getString(R.string.Passenger_information) + getString(R.string.child_));
+
+                                     }
                                 }
                                 else if(countN!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby_));
-                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                     if(Prefs.getString("lang","fa").equals("fa")){
+                                          System.out.println("farsi:");
+                                       
+                                         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                         txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby_));
+
+                                     } else{
+                                         imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                         txtTitleCountM.setText( getCounter(counter)+getString(R.string.Passenger_information) +getString(R.string.baby_));
+                                     }
                                 }
 
 
@@ -2035,39 +2065,92 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
                                 if(countB>=1) {
                                     System.out.println("countB:"+countB);
-                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.adult_));
-                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                       if(Prefs.getString("lang","fa").equals("fa")){
+                                          System.out.println("farsi:");
+
+                                          imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                          txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.adult_));
+
+                                     } else{
+                                          imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                          txtTitleCountM.setText(getCounter(counter-1)+getString(R.string.info_passenger) + getString(R.string.adult_));
+                                     }
                                     countB--;
                                 }else if(countK>=1) {
                                     System.out.println("countK:"+countK);
-                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.child_));
-                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                       if(Prefs.getString("lang","fa").equals("fa")){
+                                          System.out.println("farsi:");
+                                          imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                          txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.child_));
+                                     } else{
+
+                                          imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                          txtTitleCountM.setText(getCounter(counter-1)+getString(R.string.info_passenger) + getString(R.string.child_));
+
+                                     }
                                     countK--;
                                 }else if(countN>=1) {
                                     System.out.println("countN:"+countN);
-                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.baby_));
-                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                       if(Prefs.getString("lang","fa").equals("fa")){
+                                          System.out.println("farsi:");
+                                          imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                          txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.baby_));
+                                     } else{
+
+                                          imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                          txtTitleCountM.setText(getCounter(counter-1)+getString(R.string.info_passenger) + getString(R.string.baby_));
+
+                                     }
                                     countN--;
                                 }
                                 if(countB!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.adult_));
-                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                       if(Prefs.getString("lang","fa").equals("fa")){
+                                          System.out.println("farsi:");
+
+                                          imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                          txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.adult_));
+                                     } else{
+                                          imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                          txtTitleCountM.setText(getCounter(counter)+getString(R.string.info_passenger) + getString(R.string.adult_));
+
+                                     }
                                 }
                                 else if(countK!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.child_));
-                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                        if(Prefs.getString("lang","fa").equals("fa")){
+                                          System.out.println("farsi:");
+                                          System.out.println("farsi:");
+                                          imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                          txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.child_));
+                                     } else{
+
+                                          imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                          txtTitleCountM.setText(getCounter(counter)+getString(R.string.info_passenger) + getString(R.string.child_));
+                                     }
                                 }
                                 else if(countN!=0){
 
-                                    txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.baby_));
-                                    imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                       if(Prefs.getString("lang","fa").equals("fa")){
+                                          System.out.println("farsi:");
+
+                                          imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                          txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.baby_));
+                                     } else{
+                                          imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                          txtTitleCountM.setText(getCounter(counter)+getString(R.string.info_passenger) + getString(R.string.baby_));
+
+                                     }
                                 }else if(countB + countK + countN==0){
 
                                     if(rooms-1>=0){
-                                        txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.adult_));
-                                        imgCount.setText(getString(R.string.room)+" "+getCounter(room+1));
+                                        if(Prefs.getString("lang","fa").equals("fa")){
+                                            txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter)+getString(R.string.adult_));
+                                            imgCount.setText(getString(R.string.room)+" "+getCounter(room+1));
+                                        }else{
+                                            txtTitleCountM.setText(getCounter(counter)+getString(R.string.info_passenger) + getString(R.string.adult_));
+                                            imgCount.setText(getCounter(room+1)+" "+getString(R.string.room));
+                                        }
                                         txttavalodm.setText("");
                                         txtnamem.setText("");
                                         txtfamilym.setText("");
