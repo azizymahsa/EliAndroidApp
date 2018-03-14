@@ -28,6 +28,7 @@ import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.RequestPoli
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.DateUtil;
+import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerHotelActivity;
 import com.eligasht.reservation.views.ui.PassengerHotelFlightActivity;
@@ -202,15 +203,11 @@ public class RoomsAdapter extends BaseAdapter {
                             +" : "+
                             context.getString(R.string.departTo)
                             +" "+
-                            DateUtil.getShortStringDateFromMilisRoom(String.valueOf( DateUtil.getMiliSecondFromJSONDate
-                                    (getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate_d())),
-                                    "dd MMM HH:mm",false)+" "+ context.getString(R.string.departFrom)
+                           CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                   getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate_d()
                             +" "+
-                            DateUtil.getShortStringDateFromMilisRoom(String.valueOf( DateUtil.getMiliSecondFromJSONDate
-                                            (getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate_d())),
-                                    "dd MMM HH:mm",false)
+                            CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate_d())
                             + " " +
                             context.getString(R.string.Contains)
                             +" "+
@@ -220,7 +217,7 @@ public class RoomsAdapter extends BaseAdapter {
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency()
                             +" "+
-                            context.getString(R.string.penalty));
+                            context.getString(R.string.penalty)));
 
 
 
