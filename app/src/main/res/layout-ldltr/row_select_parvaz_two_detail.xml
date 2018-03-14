@@ -183,12 +183,16 @@
             <TextView
                 android:id="@+id/editText1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_30dp_flight"
                 android:layout_marginRight="2dp"
+                android:layout_marginBottom="@dimen/_1dp_flight"
+                android:layout_marginTop="@dimen/_1dp_flight"
+                android:gravity="left|center_vertical"
                 android:background="#d5d9dc"
                 android:paddingLeft="@dimen/_10dpTabletSize"
                 android:paddingRight="@dimen/_10dpTabletSize"
                 android:text="@string/costs_table"
+                android:layout_gravity="center|center_vertical"
                 android:textColor="#595959"
                 android:textSize="@dimen/_14dp_txtSize"
                 android:textStyle="bold" />
@@ -198,8 +202,8 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="@dimen/_10dpTabletSize"
                 android:layout_marginRight="@dimen/_10dpTabletSize"
-                android:layout_marginBottom="@dimen/_1dp_width"
-                android:layout_marginTop="@dimen/_1dp_width">
+                android:layout_marginBottom="@dimen/_1dp_flight"
+              >
 
                 <TextView
                     android:id="@+id/textView3"
@@ -251,7 +255,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="@dimen/_10dpTabletSize"
-                android:layout_marginRight="@dimen/_10dpTabletSize">
+                android:layout_marginRight="@dimen/_10dpTabletSize"
+                android:layout_marginBottom="@dimen/_1dp_flight"
+                android:layout_marginTop="@dimen/_1dp_flight">
 
                 <TextView
                     android:id="@+id/textView5"
@@ -308,8 +314,8 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="@dimen/_10dpTabletSize"
                 android:layout_marginRight="@dimen/_10dpTabletSize"
-                android:layout_marginBottom="@dimen/_1dp_width"
-                android:layout_marginTop="@dimen/_1dp_width">
+                android:layout_marginBottom="@dimen/_1dp_flight"
+                android:layout_marginTop="@dimen/_1dp_flight">
 
                 <TextView
                     android:id="@+id/textView7"
