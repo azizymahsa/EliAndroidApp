@@ -18,6 +18,7 @@ public class HCancellationPolicy {
     private String Currency;
 
     private String DescriptionEn;
+    private String FromDate_d;
 
     public String getToDate() {
         return ToDate;
@@ -73,6 +74,14 @@ public class HCancellationPolicy {
 
     public void setDescriptionEn(String DescriptionEn) {
         this.DescriptionEn = DescriptionEn;
+    }
+
+    public String getFromDate_d() {
+        return FromDate_d;
+    }
+
+    public void setFromDate_d(String fromDate_d) {
+        FromDate_d = fromDate_d;
     }
 
     @Override
