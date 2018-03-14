@@ -22,8 +22,13 @@
         android:textSize="@dimen/_16dp_txtSize"
 
         />
-
+    <ScrollView
+        android:id="@+id/scrollViewObject"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_400dp"
+        android:fillViewport="true">
     <LinearLayout
+        android:id="@+id/linearViewObject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -330,7 +335,7 @@
                 android:gravity="center">
 
 
-                <ListView
+                <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/listView1"
                     android:layout_width="match_parent"
                     android:layout_height="123dp"
@@ -379,7 +384,8 @@
 
 
         </LinearLayout>
-
+    </LinearLayout>
+    </ScrollView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -421,7 +427,6 @@
                 fancy:fb_textColor="#4d4d4d"
                 fancy:fb_textSize="@dimen/_14dp_txtSize" />
         </LinearLayout>
-    </LinearLayout>
 
 
 </LinearLayout>

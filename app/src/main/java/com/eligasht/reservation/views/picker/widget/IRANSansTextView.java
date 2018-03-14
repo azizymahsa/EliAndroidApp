@@ -15,21 +15,21 @@ public class IRANSansTextView extends TextView {
     public IRANSansTextView(Context context) {
         super(context);
         if (!isInEditMode()) {
-            m18579a();
+            init();
         }
     }
 
     public IRANSansTextView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         if (!isInEditMode()) {
-            m18579a();
+            init();
         }
     }
 
     public IRANSansTextView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         if (!isInEditMode()) {
-            m18579a();
+            init();
         }
     }
 
@@ -37,18 +37,18 @@ public class IRANSansTextView extends TextView {
         String obj;
         SharedPreferences sharedPrefrences = SingletonContext.getInstance().getContext().getSharedPreferences("eligasht.com", 0);
         if (sharedPrefrences.getBoolean("isGregorian", false))
-            obj = "fonts/times.ttf";
+            obj = "fonts/Roboto-Regular.ttf";
         else if (Locale.getDefault().getLanguage().equals("fa"))
             obj = "fonts/iran_sans_normal.ttf";
         else
-            obj = "fonts/times.ttf";
+            obj = "fonts/Roboto-Regular.ttf";
         Typeface font = Typeface.createFromAsset(
                 context.getAssets(),
                 obj);
         return font;
     }
 
-    private void m18579a() {
+    public void init() {
         setTypeface(a(getContext(), "iran_sans_normal"), 0);
     }
 

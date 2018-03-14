@@ -37,11 +37,11 @@ public class IRANSansMe extends TextView {
         String obj;
         SharedPreferences sharedPrefrences = SingletonContext.getInstance().getContext().getSharedPreferences("eligasht.com", 0);
         if (sharedPrefrences.getBoolean("isGregorian", false))
-            obj = "fonts/times.ttf";
+            obj = "fonts/Roboto-Regular.ttf";
         else if (Locale.getDefault().getLanguage().equals("fa"))
             obj = "fonts/iran_sans_bold.ttf";
         else
-            obj = "fonts/times.ttf";
+            obj = "fonts/Roboto-Regular.ttf";
 
         Typeface font = Typeface.createFromAsset(
                 context.getAssets(),
@@ -49,7 +49,7 @@ public class IRANSansMe extends TextView {
         return font;
     }
 
-    private void init(Context context) {
+    public void init(Context context) {
         setTypeface(a(context), 0);
     }
 

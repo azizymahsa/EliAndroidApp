@@ -4,12 +4,16 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.ModelCheckBox;
 import com.eligasht.reservation.views.adapters.hotel.FilterAdapter;
+import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
@@ -48,7 +52,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
 
     boolean remove_;
 
-    ListView lv;
+    NonScrollListView lv;
     FilterAdapter adapter;
     private ArrayList<ModelCheckBox> modelCheckBoxes = new ArrayList<>();
 
@@ -89,6 +93,23 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
 
 
         lv = dialogView.findViewById(R.id.listView1);
+        final ScrollView  scrollViewObject=dialogView.findViewById(R.id.scrollViewObject);
+        LinearLayout linearViewObject=dialogView.findViewById(R.id.linearViewObject);
+
+        scrollViewObject.setFocusable(false);
+        linearViewObject.setFocusable(false);
+
+        scrollViewObject.fullScroll(ScrollView.FOCUS_UP);
+        scrollViewObject.scrollTo(0,0);
+
+        scrollViewObject.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                scrollViewObject.getViewTreeObserver().removeOnPreDrawListener(this);
+                scrollViewObject.setScrollY(0);
+                return false;
+            }
+        });
        /* modelItems = new ModelCheckBox[5];
         modelItems[0] = new ModelCheckBox("pizza", 0);
         modelItems[1] = new ModelCheckBox("burger", 1);
