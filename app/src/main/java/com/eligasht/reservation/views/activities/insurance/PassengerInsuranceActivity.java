@@ -1454,7 +1454,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     String flagMosafer="T";
                     ///Validate
                     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                    if ( RqPartner_Email.trim().matches(emailPattern) &&  RqPartner_Email.trim().length() > 0) {
+                    if ( RqPartner_Email.matches(emailPattern) &&  RqPartner_Email.trim().length() > 0) {
                         ((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
@@ -1463,9 +1463,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         errorMessage=errorMessage+"\n"+"* "+getString(R.string.Email_format_is_correct);
                     }
                     //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
-                    //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.trim().matches("^[a-zA-Z]+$"))){
+                    //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
                     if(RqPartner_FirstNameFa != null)
-                        if( RqPartner_FirstNameFa.length()>2 && !(RqPartner_FirstNameFa.toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+                        if( RqPartner_FirstNameFa.length()>2 && !(RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
                             ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         }else{
@@ -1475,7 +1475,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         }
                     //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
                     if(RqPartner_LastNameFa != null)
-                        if( RqPartner_LastNameFa.length()>2 && !(RqPartner_LastNameFa.toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+                        if( RqPartner_LastNameFa.length()>2 && !(RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
                             ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         }else{
@@ -1483,7 +1483,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             flagMosafer=flagMosafer+"F";
                             errorMessage=errorMessage+"\n"+"* "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                         }
-                    if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.trim().matches("[0-9]+")){
+                    if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
@@ -1492,9 +1492,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         errorMessage=errorMessage+"\n"+"* "+getString(R.string.Enter_the_correct_mobile_format);
                     }
 					/*if(RqPartner_NationalCode != null)
-						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.trim().matches("[0-9]+")){*/
+						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.matches("[0-9]+")){*/
                     if(RqPartner_NationalCode != null)
-                        if( RqPartner_NationalCode.length()==10 && RqPartner_NationalCode.trim().matches("[0-9]+")){
+                        if( RqPartner_NationalCode.length()==10 && RqPartner_NationalCode.matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         }else{
@@ -1685,7 +1685,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         }*/
 
                     ///Validate
-                    if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
+                    if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
@@ -1725,7 +1725,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     }
                     /////////////////////////////////
                     if(RqPassenger_FirstNameEn != null)
-                        if( RqPassenger_FirstNameEn.length()>1 && RqPassenger_FirstNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$")){
+                        if( RqPassenger_FirstNameEn.length()>1 && RqPassenger_FirstNameEn.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")){
                             ((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         }else{
@@ -1734,7 +1734,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                         }
                     if(RqPassenger_LastNameEn != null)
-                        if( RqPassenger_LastNameEn.length()>1 && RqPassenger_LastNameEn.toLowerCase().trim().matches("^[a-zA-Z]+$") ){
+                        if( RqPassenger_LastNameEn.length()>1 && RqPassenger_LastNameEn.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$") ){
                             ((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
                         }else{
@@ -2356,7 +2356,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 }else{
                     System.out.println("f");
                     if(txtnamem.getText().toString() != null)
-                        if( txtnamem.getText().toString().length()>1 && txtnamem.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$")){
+                        if( txtnamem.getText().toString().length()>1 && txtnamem.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")){
                             ((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
                             //flagMosafer=flagMosafer+"T";
                         }else{
@@ -2370,7 +2370,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 }else{
                     System.out.println("f");
                     if(txtfamilym.getText().toString() != null)
-                        if( txtfamilym.getText().toString().length()>1 && txtfamilym.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$") ){
+                        if( txtfamilym.getText().toString().length()>1 && txtfamilym.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$") ){
                             ((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
                             //flagMosafer=flagMosafer+"T";
                         }else{
@@ -2396,7 +2396,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     System.out.println("t");
                 }else {
                     System.out.println("f");
-                    if (txtnumber_passport.getText().toString().trim().length() > 6 && txtnumber_passport.getText().toString().trim().length() < 10 && (txtnumber_passport.getText().toString().trim().substring(0, 1).matches("^[a-zA-Z]+$")) && txtnumber_passport.getText().toString().trim().substring(1, txtnumber_passport.getText().toString().length() - 1).matches("[0-9]+")) {
+                    if (txtnumber_passport.getText().toString().trim().length() > 6 && txtnumber_passport.getText().toString().trim().length() < 10 && (txtnumber_passport.getText().toString().trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && txtnumber_passport.getText().toString().trim().substring(1, txtnumber_passport.getText().toString().length() - 1).matches("[0-9]+")) {
                         ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     } else {
@@ -2434,7 +2434,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 }else{
                     System.out.println("f");
                     if(txtnameP.getText().toString() != null)
-                        if( txtnameP.getText().toString().length()>2 && !(txtnameP.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+                        if( txtnameP.getText().toString().length()>2 && !(txtnameP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
                             ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                         }else{
@@ -2448,7 +2448,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 }else{
                     System.out.println("f");
                     if(txtfamilyP.getText().toString() != null)
-                        if( txtfamilyP.getText().toString().length()>2 && !(txtfamilyP.getText().toString().toLowerCase().trim().matches("^[a-zA-Z]+$"))){
+                        if( txtfamilyP.getText().toString().length()>2 && !(txtfamilyP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
                             ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                         }else{
@@ -2463,7 +2463,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     System.out.println("t");
                 }else{
                     System.out.println("f");
-                    if(txtmobileP.getText().toString() != null && txtmobileP.getText().toString().length()==11 && txtmobileP.getText().toString().trim().matches("[0-9]+")){
+                    if(txtmobileP.getText().toString() != null && txtmobileP.getText().toString().length()==11 && txtmobileP.getText().toString().matches("[0-9]+")){
                         ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     }else{
@@ -2477,7 +2477,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 }else{
                     System.out.println("f");
                     if(txtkodemeliP.getText().toString() != null)
-                        if( txtkodemeliP.getText().toString().length()==10 &&  txtkodemeliP.getText().toString().trim().matches("[0-9]+")){
+                        if( txtkodemeliP.getText().toString().length()==10 &&  txtkodemeliP.getText().toString().matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                         }else{

@@ -6,17 +6,11 @@ package com.eligasht.reservation.models.hotel.api.hotelPolicy.test;
 
 public class HCancellationPolicy {
     private String ToDate;
-
     private String RoomNo;
-
     private String ReturnAmount;
-
     private String FromDate;
-
     private String DescriptionFa;
-
     private String Currency;
-
     private String DescriptionEn;
     private String FromDate_d;
     private String ToDate_d;
