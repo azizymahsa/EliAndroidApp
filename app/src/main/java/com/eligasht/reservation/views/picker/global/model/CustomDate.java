@@ -48,17 +48,15 @@ public class CustomDate {
                 .replace("(","")
                 . replace(")","");
 
-        String timezone= te.split("\\+")[1];
-        System.out.println(timezone);
         te=te.split("\\+")[0];
         System.out.println(te);
-        return generateLongToString(Long.parseLong(te),timezone);
+        return generateLongToString(Long.parseLong(te));
     }
 
-    private static String generateLongToString(long time,String timezone) {
+    private static String generateLongToString(long time) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(TimeZone.getTimeZone(timezone));
         calendar.setTimeInMillis(time);
+        calendar.setTimeZone(TimeZone.getDefault());
         String monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
         int month=calendar.get(Calendar.DAY_OF_MONTH);
         String hour = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
