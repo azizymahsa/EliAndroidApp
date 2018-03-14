@@ -19,6 +19,7 @@ public class HCancellationPolicy {
 
     private String DescriptionEn;
     private String FromDate_d;
+    private String ToDate_d;
 
     public String getToDate() {
         return ToDate;
@@ -82,6 +83,14 @@ public class HCancellationPolicy {
 
     public void setFromDate_d(String fromDate_d) {
         FromDate_d = fromDate_d;
+    }
+
+    public String getToDate_d() {
+        return ToDate_d;
+    }
+
+    public void setToDate_d(String toDate_d) {
+        ToDate_d = toDate_d;
     }
 
     @Override

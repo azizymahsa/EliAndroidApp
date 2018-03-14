@@ -27,11 +27,14 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.reservation.api.VersionChecker;
+import com.eligasht.reservation.base.GlobalApplication;
 import com.eligasht.reservation.models.hotel.api.userEntranceRequest.request.UserEntranceRequest;
 import com.eligasht.reservation.tools.Version;
 import com.eligasht.reservation.views.activities.hotel.activity.CommentActivity;
 import com.eligasht.reservation.views.ui.dialog.app.UpdateAlert;
 import com.farsitel.bazaar.IUpdateCheckService;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -111,19 +114,15 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
         }
+        GlobalApplication application = (GlobalApplication) getApplication();
+        Tracker mTracker = application.getDefaultTracker();
+        mTracker.setScreenName("splash");
 
-        String server = "5.0.0";
-        String app = "6.0.0";
-
-        if (Double.valueOf(app.replace(".", "")) >= Double.valueOf(server.replace(".", ""))){
-            Log.e("test", "onCreate: true" );
-
-        }else{
-            Log.e("test", "onCreate: false" );
+        mTracker.setTitle("splash");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
 
-        }
-
+        mTracker.send(new HitBuilders.AppViewBuilder().build());
 
             splashDialog = new SplashDialog(SplashFragment.this, this);
         final PackageInfo pInfo;

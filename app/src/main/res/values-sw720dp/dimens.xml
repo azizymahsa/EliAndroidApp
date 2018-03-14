@@ -131,6 +131,8 @@
     <dimen name="_255dp">400dp</dimen>
     <dimen name="_145dp">225dp</dimen>
     <dimen name="_5dpflight">28dp</dimen>
+    <dimen name="_1dp_flight">8dp</dimen>
+    <dimen name="_30dp_flight">45dp</dimen>
 
 
 </resources>
