@@ -21,24 +21,22 @@ import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.getHotelPolicy.GetHotelPolicyApi;
 import com.eligasht.reservation.api.hotel.getHotelRoom.GetHoldRoom;
 import com.eligasht.reservation.models.hotel.api.holdSelectedRoom.call.HoldSelectedRoomRequest;
+import com.eligasht.reservation.models.hotel.api.holdSelectedRoom.call.RoomRequest;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.PolicyRequest;
 import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.RequestPolicy;
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
-import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
-import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
+import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerHotelActivity;
 import com.eligasht.reservation.views.ui.PassengerHotelFlightActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPolicy;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-
-import com.eligasht.reservation.models.hotel.api.holdSelectedRoom.call.RoomRequest;
-import com.google.gson.Gson;
 
 /**
  * Created by Reza.nejati on 1/6/2018.
@@ -112,13 +110,13 @@ public class RoomsAdapter extends BaseAdapter {
 
         holder.btnPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 EHotelId = roomsModels.get(position).getHotelId();
                 OfferId = roomsModels.get(position).getOfferId();
                 SearchKey = roomsModels.get(position).getSearchKey();
                 alertDialogPolicy = new AlertDialogPolicy(context);
                 alertDialogPolicy.setTitle(context.getString(R.string.HotelPolicy));
-                alertDialogPolicy.setRoomName(roomsModels.get(position).getTitle()+" : ");
+                alertDialogPolicy.setRoomName(roomsModels.get(position).getTitle() + " : ");
                 new GetHotelPolicyAsync().execute();
             }
         });
@@ -126,11 +124,12 @@ public class RoomsAdapter extends BaseAdapter {
         holder.llSelectHotel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
+                try {
                     offerIds = roomsModels.get(position).getOfferId();
                     eHotelId = roomsModels.get(position).getHotelId();
                     new GetHoldRoomAsync().execute();
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
 
             }
         });
@@ -150,7 +149,7 @@ public class RoomsAdapter extends BaseAdapter {
     private class GetHotelPolicyAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
-           // alertDialogPolicy.setTitle("قوانین هتل");
+            // alertDialogPolicy.setTitle("قوانین هتل");
             Log.e("okoktesttest", new Gson().toJson(new PolicyRequest(new RequestPolicy(new IdentityRooms("EligashtMlb",
                     "123qwe!@#QWE", "Mobile"), EHotelId, OfferId, SearchKey, context.getString(R.string.culture), false))));
 
@@ -175,32 +174,29 @@ public class RoomsAdapter extends BaseAdapter {
 
             try {
 
-                if (getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getErrors()!=null){
+                if (getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getErrors() != null) {
                     alertDialogPolicy.setText(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getErrors().get(0).DetailedMessage);
 
-                }else if(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().length==0){
+                } else if (getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().length == 0) {
                     alertDialogPolicy.setText(context.getResources().getString(R.string.NoResult));
-                }else{
+                } else {
 
-
-                    alertDialogPolicy.setText(context.getString(R.string.room) + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() +" : "+
+                    Log.d("TAGGGG", "onPostExecute: " + getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate());
+                    alertDialogPolicy.setText(context.getString(R.string.room) +" "+ getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() + " : " + " از تاریخ " +
+                            DateUtil.getShortStringDateFromMilis(String.valueOf(DateUtil.getMiliSecondFromJSONDate(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate()) ),"yyyy-mm-dd",false) + " " + context.getString(R.string.to) + " " +
                             Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate())+" "+ context.getString(R.string.to)+" "+
-                            Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()) + " " + context.getString(R.string.Contains)+" "+
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()) + " " + context.getString(R.string.Contains) + " " +
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount() + " " +
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() +" "+context.getString(R.string.penalty));
-
-
-
+                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() + " " + context.getString(R.string.penalty));
 
 
                 }
 
             } catch (Exception e) {
+                e.printStackTrace();
                 if (!Utility.isNetworkAvailable(context)) {
 
                     alertDialogPolicy.setText(context.getString(R.string.InternetError));
