@@ -12,6 +12,8 @@ import android.support.multidex.MultiDex;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustConfig;
 import com.eligasht.R;
 import com.eligasht.reservation.notification.GetNotification;
 import com.eligasht.reservation.views.activities.IDM_Activity;
@@ -115,6 +117,10 @@ public class GlobalApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sAnalytics = GoogleAnalytics.getInstance(this);
+        String appToken = "{niedy5vr1xc0}";
+        String environment = AdjustConfig.ENVIRONMENT_SANDBOX;
+        AdjustConfig config = new AdjustConfig(this, appToken, environment);
+        Adjust.onCreate(config);
 
         SingletonContext.getInstance().setContext(this);
         SingletonDate.getInstance().initDate();
