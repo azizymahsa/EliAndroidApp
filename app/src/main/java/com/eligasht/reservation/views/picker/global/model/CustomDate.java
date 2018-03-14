@@ -39,6 +39,18 @@ public class CustomDate {
         }
     }
 
+    public static String longToString(long time) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getDefault());
+        calendar.setTimeInMillis(time);
+        String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+        String hour = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
+        String min = String.valueOf(calendar.get(Calendar.MINUTE));
+        StringBuilder builder = new StringBuilder();
+        builder.append(month).append(" ").append(hour).append(":").append(min);
+        return builder.toString();
+    }
+
     public CustomDate(int year, int month, int day) {
         String y = String.valueOf(year);
         if (y.startsWith("1")) {
