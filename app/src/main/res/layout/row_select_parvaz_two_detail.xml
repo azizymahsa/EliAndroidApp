@@ -184,13 +184,17 @@
 			<TextView
 				android:id="@+id/editText1"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="30dp"
 				android:background="#d5d9dc"
 				android:text="@string/costs_table"
 				android:paddingRight="@dimen/_10dpTabletSize"
 				android:textColor="#595959"
 				android:textSize="@dimen/_13dp_normal_textSize"
 				android:layout_marginRight="2dp"
+				android:layout_marginBottom="@dimen/_1dp_flight"
+				android:layout_marginTop="@dimen/_1dp_flight"
+				android:layout_gravity="center|center_vertical"
+				android:gravity="left|center_vertical"
 				android:paddingLeft="@dimen/_10dpTabletSize"
 				android:textStyle="bold" />
 
@@ -199,8 +203,8 @@
 				android:layout_height="30dp"
 				android:layout_marginLeft="@dimen/_10dpTabletSize"
 				android:layout_marginRight="@dimen/_10dpTabletSize"
-				android:layout_marginTop="@dimen/_1dp_width"
-				android:layout_marginBottom="@dimen/_1dp_width">
+				android:layout_marginBottom="@dimen/_1dp_flight"
+				>
 
 				<TextView
 					android:id="@+id/txtAdlCostPR"
@@ -244,8 +248,8 @@
 				android:layout_height="30dp"
 				android:layout_marginLeft="@dimen/_10dpTabletSize"
 				android:layout_marginRight="@dimen/_10dpTabletSize"
-				android:layout_marginBottom="@dimen/_1dp_width"
-				android:layout_marginTop="@dimen/_1dp_width">
+				android:layout_marginBottom="@dimen/_1dp_flight"
+				android:layout_marginTop="@dimen/_1dp_flight">
 
 				<TextView
 					android:id="@+id/txtTaxesR"
@@ -289,8 +293,8 @@
 				android:layout_height="30dp"
 				android:layout_marginLeft="@dimen/_10dpTabletSize"
 				android:layout_marginRight="@dimen/_10dpTabletSize"
-				android:layout_marginBottom="@dimen/_1dp_width"
-				android:layout_marginTop="@dimen/_1dp_width">
+				android:layout_marginBottom="@dimen/_1dp_flight"
+				android:layout_marginTop="@dimen/_1dp_flight">
 
 				<TextView
 					android:id="@+id/txtTotalFareCostR"
