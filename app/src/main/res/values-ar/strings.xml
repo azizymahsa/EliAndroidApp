@@ -2039,6 +2039,7 @@
     <string name="_ferst">فرست</string>
     <string name="check_mail">لطفا ایمیل خود را وارد کنید</string>
     <string name="wrong_mail">ایمیل وارد شده صحیح نمی باشد</string>
+    <string name="hour">ساعت</string>
     <string-array name="country_flags">
         <item>@drawable/ir</item>
         <item>@drawable/ir</item>
