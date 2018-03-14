@@ -4,9 +4,11 @@ package com.eligasht.reservation.views.picker.global.model;
 import android.content.SharedPreferences;
 
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.google.zxing.common.StringUtils;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
 import org.greenrobot.eventbus.EventBus;
+import org.jsoup.helper.StringUtil;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -44,14 +46,18 @@ public class CustomDate {
         te =te.replace("/","")
                 .replace("Date","")
                 .replace("(","")
-                . replace(")","")
-                .replace("+0330","");
-        return generateLongToString(Long.parseLong(te));
+                . replace(")","");
+
+        String timezone= te.split("\\+")[1];
+        System.out.println(timezone);
+        te=te.split("\\+")[0];
+        System.out.println(te);
+        return generateLongToString(Long.parseLong(te),timezone);
     }
 
-    public static String generateLongToString(long time) {
+    private static String generateLongToString(long time,String timezone) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(TimeZone.getDefault());
+        calendar.setTimeZone(TimeZone.getTimeZone(timezone));
         calendar.setTimeInMillis(time);
         String monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
         int month=calendar.get(Calendar.DAY_OF_MONTH);
