@@ -114,7 +114,7 @@ public class GlobalApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        sAnalytics = GoogleAnalytics.getInstance(this);
+      //  sAnalytics = GoogleAnalytics.getInstance(this);
 
         SingletonContext.getInstance().setContext(this);
         SingletonDate.getInstance().initDate();
@@ -185,7 +185,7 @@ public class GlobalApplication extends Application {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
-    synchronized public Tracker getDefaultTracker() {
+   /* synchronized public Tracker getDefaultTracker() {
         // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
         if (sTracker == null) {
 
@@ -197,5 +197,5 @@ public class GlobalApplication extends Application {
 
         return sTracker;
     }
-
+*/
 }

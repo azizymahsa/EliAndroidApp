@@ -87,8 +87,5 @@ public class HCancellationPolicy {
         ToDate_d = toDate_d;
     }
 
-    @Override
-    public String toString() {
-        return "ClassPojo [ToDate = " + ToDate + ", RoomNo = " + RoomNo + ", ReturnAmount = " + ReturnAmount + ", FromDate = " + FromDate + ", DescriptionFa = " + DescriptionFa + ", Currency = " + Currency + ", DescriptionEn = " + DescriptionEn + "]";
-    }
+
 }

@@ -1889,8 +1889,8 @@
     <string name="country">Country</string>
     <string name="city">City</string>
     <string name="datePickerError">The date passed is greater than the date of the return</string>
-    <string name="departTo">From :</string>
-    <string name="departFrom">Up to:</string>
+    <string name="departTo">From </string>
+    <string name="departFrom">Up to</string>
     <string name="DatePickerError2">Can not be selected before today\'s date</string>
     <string name="NoResult">No results were found for your search! :(</string>
     <string name="off">% Discount</string>

@@ -61,7 +61,7 @@
                 android:paddingBottom="10dp"
                 android:singleLine="true"
                 android:textColor="@color/text_color_2e"
-                android:textColorHint="@color/text_color_2e"
+                android:textColorHint="#9fa0c4"
                 android:textSize="@dimen/_14dp_txtSize" />
 
             <TextView
@@ -104,7 +104,7 @@
                 android:paddingBottom="10dp"
                 android:singleLine="true"
                 android:textColor="@color/text_color_2e"
-                android:textColorHint="@color/text_color_2e"
+                android:textColorHint="#9fa0c4"
                 android:textSize="@dimen/_14dp_txtSize" />
 
             <TextView
@@ -186,8 +186,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/icon_forget_login"
-                android:textAppearance="@style/User_pass_login"
+                android:text="@string/icon_pen"
+                android:textAppearance="@style/IconFonts"
                 android:textColor="@color/text_color_2e"
                 android:textSize="@dimen/_25dp_normal_iconSize" />
 
