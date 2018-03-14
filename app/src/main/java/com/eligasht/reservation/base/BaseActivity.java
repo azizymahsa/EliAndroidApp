@@ -67,6 +67,12 @@ public class BaseActivity extends Base {
     super.onResume();
     AdjustEvent event = new AdjustEvent("spcnjq");
     Adjust.trackEvent(event);
+    AdjustEvent event1 = new AdjustEvent("spcnjq");
+
+    // Add callback parameters to this parameter.
+    event1.addCallbackParameter("key", "value");
+
+    Adjust.trackEvent(event1);
 
   }
 }
