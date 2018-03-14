@@ -193,11 +193,6 @@ public class RoomsAdapter extends BaseAdapter {
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount() + " " +
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() +" "+context.getString(R.string.penalty));
-
-
-
-
-
                 }
 
             } catch (Exception e) {
