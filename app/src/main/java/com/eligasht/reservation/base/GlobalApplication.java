@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.eligasht.R;
 import com.eligasht.reservation.notification.GetNotification;
@@ -18,6 +19,8 @@ import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.font.CustomViewWithTypefaceSupport;
 import com.eligasht.reservation.views.ui.font.TextField;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.onesignal.OneSignal;
 import com.orhanobut.hawk.Hawk;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -39,7 +42,8 @@ public class GlobalApplication extends Application {
     private static IDM_Activity activity;
     private static Context context;
     private static GlobalApplication mInstance;
-
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
     public static void setGlobalTypeFace(Context context) {
         globalTypeFace = Typeface.createFromAsset(context.getAssets(),
                 context.getResources().getString(R.string.mitra_ttf));
@@ -110,6 +114,8 @@ public class GlobalApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        sAnalytics = GoogleAnalytics.getInstance(this);
+
         SingletonContext.getInstance().setContext(this);
         SingletonDate.getInstance().initDate();
         ConnectionBuddyConfiguration networkInspectorConfiguration = new ConnectionBuddyConfiguration.Builder(this).build();
@@ -178,6 +184,18 @@ public class GlobalApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+    synchronized public Tracker getDefaultTracker() {
+        // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+        if (sTracker == null) {
+
+
+
+            sTracker = sAnalytics.newTracker(R.xml.global_tracker);
+            Log.e("123", sTracker+"" );
+        }
+
+        return sTracker;
     }
 
 }

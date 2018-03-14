@@ -673,16 +673,16 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 for (Map.Entry<String, ArrayList<HotelProprtiesModels>> entry : myMap.entrySet()) {
                     String key = entry.getKey();
                     ArrayList<HotelProprtiesModels> value = entry.getValue();
-                    if (key.contains("امکانات")) {
+                    if (key.contains("امکانات")||key.toLowerCase().contains("facil")) {
                         add_view(key, value, llEmkanat);
 
                     }
-                    if (key.contains("اطراف")) {
+                    if (key.contains("اطراف")||key.toLowerCase().contains("near by")) {
 
                         add_view(key, value, llAroundHotel);
 
                     }
-                    if (key.contains("قوانین")) {
+                    if (key.contains("قوانین")||key.toLowerCase().contains("policies")) {
 
                         //add_view(key, value, llPolicy);
                         TextView textView = new TextView(DetailHotelActivity.this);
@@ -710,7 +710,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         llPolicy.addView(nonScrollGridView);
 
                     }
-                    if (key.contains("اطلاعات")) {
+                    if (key.contains("اطلاعات")||key.toLowerCase().contains("information")) {
 
                         add_view(key, value, llInformation);
 

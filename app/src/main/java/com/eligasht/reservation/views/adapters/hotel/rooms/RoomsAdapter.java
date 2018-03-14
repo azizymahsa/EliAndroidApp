@@ -258,7 +258,6 @@ public class RoomsAdapter extends BaseAdapter {
             }
             try {
 
-
             /*    if (Prefs.getLong("time",0)>=50000){*/
                 if (context.getIntent().getExtras().getInt("type") == 1) {
                     flightId = context.getIntent().getExtras().getString("FlightID");
