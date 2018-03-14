@@ -43,11 +43,12 @@ public class CustomDate {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getDefault());
         calendar.setTimeInMillis(time);
-        String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+        String monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+        int month=calendar.get(Calendar.DAY_OF_MONTH);
         String hour = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
         String min = String.valueOf(calendar.get(Calendar.MINUTE));
         StringBuilder builder = new StringBuilder();
-        builder.append(month).append(" ").append(hour).append(":").append(min);
+        builder.append(month).append(" ").append(monthName).append(" ").append("ساعت").append(" ").append(hour).append(":").append(min);
         return builder.toString();
     }
 
