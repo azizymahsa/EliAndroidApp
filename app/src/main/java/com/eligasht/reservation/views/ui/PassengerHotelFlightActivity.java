@@ -1663,9 +1663,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             partnerInfo_Table.dropTable();
                             partnerInfo_Table.openDB();
 
-
                             partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
-
 
                             partnerInfo_Table.closeDB();
                             ////////////////
