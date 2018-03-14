@@ -2398,5 +2398,6 @@
     <string name="_ferst">First</string>
     <string name="check_mail"> Lütfen e-postanızı girin </string>
     <string name="wrong_mail"> Girilen e-posta geçerli değil </string>
+    <string name="hour">ساعت</string>
 </resources>
 

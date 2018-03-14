@@ -3,12 +3,11 @@ package com.eligasht.reservation.views.picker.global.model;
 
 import android.content.SharedPreferences;
 
+import com.eligasht.R;
 import com.eligasht.reservation.views.ui.SingletonContext;
-import com.google.zxing.common.StringUtils;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
 import org.greenrobot.eventbus.EventBus;
-import org.jsoup.helper.StringUtil;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -42,13 +41,13 @@ public class CustomDate {
     }
 
     public static String longToString(String time) {
-        String te=time;
-        te =te.replace("/","")
-                .replace("Date","")
-                .replace("(","")
-                . replace(")","");
+        String te = time;
+        te = te.replace("/", "")
+                .replace("Date", "")
+                .replace("(", "")
+                .replace(")", "");
 
-        te=te.split("\\+")[0];
+        te = te.split("\\+")[0];
         System.out.println(te);
         return generateLongToString(Long.parseLong(te));
     }
@@ -58,14 +57,13 @@ public class CustomDate {
         calendar.setTimeInMillis(time);
         calendar.setTimeZone(TimeZone.getDefault());
         String monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
-        int month=calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.DAY_OF_MONTH);
         String hour = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
         String min = String.valueOf(calendar.get(Calendar.MINUTE));
         StringBuilder builder = new StringBuilder();
-        builder.append(month).append(" ").append(monthName).append(" ").append("ساعت").append(" ").append(hour).append(":").append(min);
+        builder.append(month).append(" ").append(monthName).append(" ").append(SingletonContext.getInstance().getContext().getString(R.string.hour)).append(" ").append(hour).append(":").append(min);
         return builder.toString();
     }
-
 
 
     public CustomDate(int year, int month, int day) {

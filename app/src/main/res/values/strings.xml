@@ -2391,6 +2391,7 @@
     <string name="_ferst">First</string>
     <string name="check_mail"> Please enter your email </string>
     <string name="wrong_mail"> The email entered is not valid </string>
+    <string name="hour">O'clock</string>
 
 </resources>
 
