@@ -56,7 +56,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     public static TextView tarikh_be_picker;
     public TextView txtCountB, tvStart, tvEnd, txtCountK, txtCountN, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchPlan;
     public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
-    private LinearLayout linear_picker_title, linear_picker;
+    private LinearLayout linear_picker_title;
     public int flagOneTwo = 2;
     private static String picker_be = "2017-12-29";
     private static String picker_az = "2017-12-25";
@@ -77,7 +77,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     String raft, bargasht;
     LinearLayout linearLayout_mabda, linearLayout_maghsad;
     ImageView ivImage;
-    public LinearLayout linear_tarikh_az_picker;
+    public LinearLayout linear_tarikh_az_picker,linear_picker;
     public static int countNafar = 1;
     LinearLayout llButton;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
@@ -99,7 +99,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
         llButton = ((LinearLayout) rootView.findViewById(R.id.llButton));
 
-        linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
+       // linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
         linear_tarikh_az_picker = (LinearLayout) rootView.findViewById(R.id.linear_tarikh_az_picker);
         tarikh_az_picker = (TextView) rootView.findViewById(R.id.tarikh_az_picker);
         tarikh_be_picker = (TextView) rootView.findViewById(R.id.tarikh_be_picker);
@@ -144,7 +144,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
 
         linear_tarikh_az_picker.setOnClickListener(this);
-        linear_picker.setOnClickListener(this);
+        //linear_picker.setOnClickListener(this);
         // tarikh_az_picker.setOnClickListener(this);
         // tarikh_be_picker.setOnClickListener(this);
         btnPlusB.setOnClickListener(this);
@@ -657,7 +657,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         .playOn(linear_picker);
                 break;
             // case R.id.tarikh_be_picker:
-            case R.id.linear_picker:
+            /*case R.id.linear_picker:
                 SingletonDate.getInstance().checkConflictDate();
                 calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
                     @Override
@@ -676,7 +676,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
 
-                break;
+                break;*/
             //case R.id.tarikh_az_picker:
             case R.id.linear_tarikh_az_picker:
 
