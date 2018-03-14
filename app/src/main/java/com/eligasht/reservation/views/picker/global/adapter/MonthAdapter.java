@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 import com.eligasht.R;
 import com.eligasht.reservation.views.picker.utils.NumberUtil;
 import com.eligasht.reservation.views.picker.utils.UiUtils;
+import com.eligasht.reservation.views.picker.widget.IRANSansTextView;
 import com.eligasht.reservation.views.ui.SingletonContext;
 
 import java.util.List;
@@ -126,6 +126,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
     public void onBindViewHolder(MonthViewHolder monthViewHolder, int i) {
         // setAnimation(monthViewHolder.itemView, i);
         //  YoYo.with(Techniques.FadeInUp).delay(50).playOn(monthViewHolder.itemView);
+        monthViewHolder.day.init();
         if (i > this.f9217c - 1) {
             if (i % 7 == 6) {
                 monthViewHolder.day.setTextColor(-65536);
@@ -152,7 +153,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
 
                     } else if (i < this.f9223i && i > this.f9222h && this.f9222h != -1 && this.f9223i != -1) {
                         // monthViewHolder.day.setBackgroundResource(R.drawable.rec_calendar);
-                        monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#2e00bcd4"));
+                        monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFE2ECF5"));
                         monthViewHolder.day.setTextColor(Color.parseColor("#737585"));
                     } else if (i == (this.f9218d + this.f9217c) - 1) {
                         monthViewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
@@ -199,7 +200,7 @@ public class MonthAdapter extends Adapter<MonthAdapter.MonthViewHolder> {
     }
 
     public class MonthViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
-        private TextView day;
+        private IRANSansTextView day;
         private NumberUtil numberUtil;
         private View rootView;
 
