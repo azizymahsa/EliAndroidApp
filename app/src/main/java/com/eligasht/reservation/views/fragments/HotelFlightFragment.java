@@ -61,9 +61,8 @@ import java.util.List;
  * Created by Reza.nejati on 1/14/2018.
  */
 
-public class HotelFlightFragment extends android.support.v4.app.Fragment implements View.OnClickListener,
-        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener
-        , com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
+public class HotelFlightFragment extends android.support.v4.app.Fragment implements View.OnClickListener, CountTimeAlert.TimerDialogListener
+        , ICallbackCalendarDialog {
 
     public static Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public static int countNafar = 1;
@@ -92,21 +91,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     CalendarDialog calendarDialog;
     private View rootView;
     private ArrayList<ModelRowCountRoom> roomsSelected;
-    CustomDate startDate;
-    CustomDate endDate;
-
-    public static String date_server(int y, int m, int d) {
-        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
-
-        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
-        String formatted = format1.format(date.getTime());
-        String[] dateGrg = formatted.split("/");
-        int monthS = Integer.valueOf(dateGrg[0]);
-        long dayS = Long.valueOf(dateGrg[1]);
-        int yearS = Integer.valueOf(dateGrg[2]);
-
-        return yearS + "/" + monthS + "/" + dayS;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -223,11 +207,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     public void onDestroyView() {
         super.onDestroyView();
         Prefs.putBoolean("geo", geo);
-
-
-   /*     Prefs.putString("Value-Hotel-City-Fa", "");
-        Prefs.putString("Value-Hotel-City-En", "");
-        Prefs.putString("Value-Hotel-City-Code", "");*/
     }
 
 
@@ -237,7 +216,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         switch (v.getId()) {
 
             case R.id.linearLayout_mabda:
-                // new FilterHotelDialog(getActivity());
                 Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent2.putExtra("type", 1);
                 intent2.putExtra("position", "HF");
@@ -288,30 +266,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 break;
             case R.id.llBargasht:
-                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                    @Override
-                    public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-
-
-                        if (CustomDate.compareTwoDays(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar()) == 0) {
-                            SingletonDate.getInstance().setEndDate(start);
-                            SingletonDate.getInstance().getEndDate().addOneDay();
-
-                            Toast.makeText(getActivity(), getString(R.string.canot_inout) + getString(R.string.so_one_day_has_been_added_to_your_end_date), Toast.LENGTH_SHORT).show();
-
-                            tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                            return;
-
-                        }
-                        if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
-                            SingletonDate.getInstance().setEndDate(start);
-                            tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                        } else {
-                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date + getString(R.string.so_one_day_has_been_added_to_your_end_date), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
-
+                calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
 
                 tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
                 tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
@@ -422,72 +377,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         return rooms.size();
     }
 
-    @Override
-    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-        geo = false;
-        year_ = year;
-        month = monthOfYear;
-        day = dayOfMonth;
-        PersianCalendar persianCalendar = new PersianCalendar();
-        persianCalendar.set(year, month, day);
-
-
-        Log.e("salam", date_server(year_, month, day));
-        if (view.getTag().equals("DatepickerdialogBargasht")) {
-            tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-            bargasht = date_server(year, monthOfYear, dayOfMonth);
-            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-            Prefs.putString("bargasht", bargasht);
-
-
-            if (Utility.campareDate(raft, bargasht)) {
-                tvRaft.setText(persianCalendar.getPersianLongDate());
-
-            }
-
-
-        }
-
-
-        if (view.getTag().equals("DatepickerdialogRaft")) {
-
-            year_Min = year;
-            monthMin = monthOfYear;
-            dayMin = dayOfMonth;
-            tvRaft.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-            //  tvBargasht.setText(persianCalendar.getPersianLongDate());
-            raft = date_server(year, monthOfYear, dayOfMonth);
-            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-            persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
-
-
-            if (Utility.campareDate(raft, bargasht)) {
-                //  persianCalendar.set(year, month, day+1);
-
-                tvBargasht.setText(persianCalendarDatePicker2.getPersianWeekDayName() + " " + persianCalendarDatePicker2.getPersianDay() + " " + persianCalendarDatePicker2.getPersianMonthName());
-                datePickerDialog2.initialize(this, year_, month, day);
-                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-                //   bargasht = date_server(year, monthOfYear, dayOfMonth+1);
-
-            } else {
-
-                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-            }
-
-
-            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-
-            Prefs.putString("raft", raft);
-            Prefs.putString("raftfa", tvRaft.getText().toString());
-
-        }
-    }
-
     private void sendStartTimer() {
         Intent intent = new Intent("sendStartTimer");
         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
@@ -556,11 +445,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                     tvMabda.setText(getString(R.string.select_origin_city_or_airport));
                     tvMabdaEn.setText("");
                 }
-/////////////////////////
-
                 String m3 = Prefs.getString("Value-Hotel-City-Code-HF-Raft", "");
-
-
                 String m4 = Prefs.getString("Value-Hotel-City-Code-HF-Source", "");
                 Prefs.putString("Value-Hotel-City-Code-HF-Raft", m4);
                 Prefs.putString("Value-Hotel-City-Code-HF-Source", m3);
@@ -570,31 +455,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 Prefs.putString("Value-Hotel-City-Fa-HF-Source", end);
                 Prefs.putString("Value-Hotel-City-En-HF-Source", endF);
 
-           /*     String airportMaghsad=  Prefs.getString("Value-Maghsad-Airport-Code","");
-                String airPortMabda= Prefs.getString("Value-Mabda-Airport-Code","");
-
-                Prefs.putString("Value-Mabda-Airport-Code",airportMaghsad);
-                Prefs.putString("Value-Maghsad-Airport-Code",airPortMabda);
-
-                String mabdaCity = Prefs.getString("Value-Mabda-City", "");
-                String mabdaAirPort = Prefs.getString("Value-Mabda-Airport", "");
-                String maghsadCity = Prefs.getString("Value-Maghsad-City", "");
-                String maghsadAirPort = Prefs.getString("Value-Maghsad-Airport", "");
-
-                Prefs.putString("Value-Mabda-City", maghsadCity);
-                Prefs.putString("Value-Mabda-Airport", maghsadAirPort);
-                Prefs.putString("Value-Maghsad-City", mabdaCity);
-                Prefs.putString("Value-Maghsad-Airport", mabdaAirPort);*/
-
-
-
-              /*  tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", "تهران"));
-                tvMabdaEn.setText(Prefs.getString("Value-Hotel-City-En-HF-Source", ""));
-
-*/
-
-
-////////////////////////
                 YoYo.with(Techniques.SlideInUp)
                         .duration(500)
                         .playOn(tvMabdaEn);
@@ -631,66 +491,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     }
 
 
-    @Override
-    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-        if (view.getTag().equals("DatePickerDialogGregorianRaft")) {
-
-            geo = true;
-            Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
-
-
-            String str_date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;//2018-01-16
-            DateFormat formatter;
-            Date date;
-            formatter = new SimpleDateFormat("yyyy/MM/dd");
-            try {
-                date = formatter.parse(str_date);
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(date);
-                datePickerDialogGregorian2.setMinDate(cal);
-
-
-                tvRaft.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-
-                raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-                Log.e("GGGGGGG", raft);
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            tvBargasht.setText(tvRaft.getText().toString());
-
-            Prefs.putString("bargashtfa", tvRaft.getText().toString());
-
-            Prefs.putString("raft", raft);
-            Prefs.putString("raftfa", tvRaft.getText().toString());
-
-
-        }
-        if (view.getTag().equals("DatePickerDialogGregorianBargasht")) {
-
-            Log.e("GGGGGGGBar", year + "==" + (monthOfYear + 1) + "==" + dayOfMonth);
-          /*  Geo = true;
-
-            tarikh_be_picker.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-            bargasht = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-
-            Prefs.putString("bargasht", bargasht);
-            Prefs.putString("bargashtfa", DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));*/
-            geo = true;
-            tvBargasht.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-
-            bargasht = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-
-
-            Prefs.putString("bargasht", bargasht);
-            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-
-
-        }
-
-    }
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {

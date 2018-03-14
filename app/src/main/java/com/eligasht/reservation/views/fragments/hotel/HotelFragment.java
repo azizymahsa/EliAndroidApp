@@ -288,29 +288,14 @@ public class HotelFragment extends Fragment implements OnClickListener,
             case R.id.llBargasht:
                 calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
                     @Override
-                    public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
+                    public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
+                        SingletonDate.getInstance().setStartDate(startDate);
+                        SingletonDate.getInstance().setEndDate(endDate);
+                        tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                        tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
 
-
-                        if (CustomDate.compareTwoDays(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())==0){
-                            SingletonDate.getInstance().setEndDate(start);
-                            SingletonDate.getInstance().getEndDate().addOneDay();
-
-                            Toast.makeText(getActivity(), getString(R.string.canot_inout)+getString(R.string.so_one_day_has_been_added_to_your_end_date), Toast.LENGTH_SHORT).show();
-
-                            tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                            return;
-
-                        }
-                        if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
-                            SingletonDate.getInstance().setEndDate(start);
-                            tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                        } else {
-                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
-                        }
                     }
-                }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
-
-
+                },SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(),TypeUsageOfCalendar.HOTEL);
 
 
                 tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());

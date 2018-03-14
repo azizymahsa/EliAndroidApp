@@ -6,8 +6,8 @@
     <string name="icon_pen">&#xe91a;</string>
 
     <string name="datePickerError">تاریخ رفت بزرگتر از تاریخ برگشت می باشد</string>
-    <string name="departTo">از تاریخ:</string>
-    <string name="departFrom">تا تاریخ:</string>
+    <string name="departTo">از تاریخ</string>
+    <string name="departFrom">تا تاریخ</string>
     <string name="DatePickerError2">قبل از تاریخ امروز را نمی توان انتخاب کرد</string>
     <string name="NoResult">نتیجه ای یافت نشد :(</string>
     <string name="off">% تخفیف</string>

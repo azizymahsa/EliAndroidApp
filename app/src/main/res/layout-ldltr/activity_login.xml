@@ -73,7 +73,7 @@
                 android:paddingBottom="10dp"
                 android:singleLine="true"
                 android:textColor="@color/text_color_2e"
-                android:textColorHint="@color/text_color_2e"
+                android:textColorHint="#9fa0c4"
                 android:textSize="@dimen/_14dp_txtSize" />
 
 
@@ -100,7 +100,7 @@
                 android:paddingBottom="13dp"
                 android:paddingRight="8dp"
                 android:text="@string/icon_pass_login"
-                android:textAppearance="@style/User_pass_login"
+                android:textAppearance="@style/IconFonts"
                 android:textColor="@color/text_color_2e"
 
                 android:textSize="@dimen/_25dp_normal_iconSize" />
@@ -118,7 +118,7 @@
                 android:paddingBottom="10dp"
                 android:singleLine="true"
                 android:textColor="@color/text_color_2e"
-                android:textColorHint="@color/text_color_2e"
+                android:textColorHint="#9fa0c4"
                 android:textSize="@dimen/_14dp_txtSize" />
 
 

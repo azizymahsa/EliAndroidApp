@@ -114,7 +114,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
         }
-        GlobalApplication application = (GlobalApplication) getApplication();
+      /*  GlobalApplication application = (GlobalApplication) getApplication();
         Tracker mTracker = application.getDefaultTracker();
         mTracker.setScreenName("splash");
 
@@ -122,7 +122,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
 
-        mTracker.send(new HitBuilders.AppViewBuilder().build());
+        mTracker.send(new HitBuilders.AppViewBuilder().build());*/
 
             splashDialog = new SplashDialog(SplashFragment.this, this);
         final PackageInfo pInfo;
