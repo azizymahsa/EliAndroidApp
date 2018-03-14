@@ -39,7 +39,17 @@ public class CustomDate {
         }
     }
 
-    public static String longToString(long time) {
+    public static String longToString(String time) {
+        String te=time;
+        te =te.replace("/","")
+                .replace("Date","")
+                .replace("(","")
+                . replace(")","")
+                .replace("+0330","");
+        return generateLongToString(Long.parseLong(te));
+    }
+
+    public static String generateLongToString(long time) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getDefault());
         calendar.setTimeInMillis(time);
@@ -51,6 +61,8 @@ public class CustomDate {
         builder.append(month).append(" ").append(monthName).append(" ").append("ساعت").append(" ").append(hour).append(":").append(min);
         return builder.toString();
     }
+
+
 
     public CustomDate(int year, int month, int day) {
         String y = String.valueOf(year);
