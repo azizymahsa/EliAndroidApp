@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -58,5 +60,13 @@ public class BaseActivity extends Base {
     if (mProgressDialog != null && mProgressDialog.isShowing()) {
       mProgressDialog.dismiss();
     }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    AdjustEvent event = new AdjustEvent("spcnjq");
+    Adjust.trackEvent(event);
+
   }
 }
