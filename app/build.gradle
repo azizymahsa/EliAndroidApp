@@ -16,7 +16,7 @@ android {
         }
     }
     compileSdkVersion 26
- //   buildToolsVersion '27.0.3'
+    //   buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.eligasht"
@@ -49,12 +49,14 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.google.firebase:firebase-crash:11.8.0'
+    implementation 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
     compile 'com.android.support:support-core-utils:26.1.0'
     implementation 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support:cardview-v7:26.1.0'
-  //compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.google.android.gms:play-services:11.8.0'
+    //compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     testCompile 'junit:junit:4.12'
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -90,7 +92,7 @@ dependencies {
     implementation 'com.github.pwittchen:reactivenetwork-rx2:0.12.3'
     compile 'com.novoda:merlin:1.1.5'
     compile 'org.jsoup:jsoup:1.8.3'
-   compile project(':materialdatetimepicker')
+    compile project(':materialdatetimepicker')
     compile project(':persianmaterialdatetimepicker')
     compile project(':library')
     compile project(':CircleProgressView')
