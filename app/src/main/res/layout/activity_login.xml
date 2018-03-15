@@ -25,7 +25,8 @@
             android:gravity="center"
             android:text="@string/login"
             android:textAppearance="@style/IrsansBold"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:textSize="@dimen/_16dp_normal_textSize"/>
 
         <include
             android:id="@+id/toolbarLayout"

@@ -80,7 +80,8 @@
             android:layout_marginLeft="@dimen/_10dp_margin"
             android:layout_marginRight="@dimen/_10dp_margin"
             android:layout_marginTop="@dimen/_10dp_margin"
-            card_view:cardBackgroundColor="#ffffff">
+            card_view:cardBackgroundColor="#ffffff"
+            android:visibility="gone">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -132,7 +133,8 @@
             android:layout_marginLeft="@dimen/_10dp_margin"
             android:layout_marginRight="@dimen/_10dp_margin"
             android:layout_marginTop="@dimen/_10dp_margin"
-            card_view:cardBackgroundColor="#ffffff">
+            card_view:cardBackgroundColor="#ffffff"
+            android:visibility="gone">
 
             <RelativeLayout
                 android:layout_width="match_parent"
