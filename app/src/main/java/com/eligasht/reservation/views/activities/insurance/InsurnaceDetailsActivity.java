@@ -28,7 +28,7 @@ public class InsurnaceDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insurnace_details);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "جزئیات بیمه");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.detail_insurnace));
         lvDetails=findViewById(R.id.lvDetails);
 
         try {
