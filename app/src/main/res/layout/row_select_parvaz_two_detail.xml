@@ -184,7 +184,7 @@
 			<TextView
 				android:id="@+id/editText1"
 				android:layout_width="match_parent"
-				android:layout_height="30dp"
+				android:layout_height="@dimen/_30dp_flight"
 				android:background="#d5d9dc"
 				android:text="@string/costs_table"
 				android:paddingRight="@dimen/_10dpTabletSize"

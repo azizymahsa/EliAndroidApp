@@ -1192,62 +1192,62 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                     System.out.println("countB:"+countB);
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter-1)+getString(R.string.adult_));
                                      if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
-        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
-        } else{
-         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                        } else{
+                                         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
 
-        }
+                                        }
                                     countB--;
                                 }else if(countK>=1) {
                                     System.out.println("countK:"+countK);
                                     txtTitleCountM.setText(getString(R.string.Passenger_information)+" "+ getCounter(counter-1)+getString(R.string.child_));
                                      if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
-        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
-        } else{
-         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                        } else{
+                                         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
 
-        }
+                                        }
                                     countK--;
                                 }else if(countN>=1) {
                                     System.out.println("countN:"+countN);
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) +" "+ getCounter(counter-1)+getString(R.string.baby_));
                                      if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
-        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
-        } else{
-         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                        } else{
+                                         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
 
-        }
+                                        }
                                     countN--;
                                 }
                                 if(countB!=0){
 
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) +" "+ getCounter(counter)+getString(R.string.adult_));
                                      if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
-        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
-        } else{
-         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                        } else{
+                                         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
 
-        }
+                                        }
                                 }
                                 else if(countK!=0){
 
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
                                      if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
-        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
-        } else{
-         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                        } else{
+                                         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
 
-        }
+                                        }
                                 }
                                 else if(countN!=0){
 
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby_));
                                      if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
-        imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
-        } else{
-         imgCount.setText(getString(R.string.room)+" "+getCounter(room));
+                                    imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
+                                    } else{
+                                     imgCount.setText(getString(R.string.room)+" "+getCounter(room));
 
-        }
+                                    }
                                 }else if(countB + countK + countN==0){
 
                                     if(rooms-1>=0){
