@@ -112,7 +112,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
     //send request to server for get list of insurance
     private void showInsurance() {
-        InitUi.Toolbar(this, false, R.color.toolbar_color,  getString(R.string.Travel_insurance_to_travel_to_the_country) + countryName);
+        InitUi.Toolbar(this, false, R.color.toolbar_color,  getString(R.string.Travel_insurance_to_travel_to_the_country)+" " + countryName);
 
         showLoading();
         InsuranceListReq insuranceListReq = new InsuranceListReq();

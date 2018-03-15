@@ -377,7 +377,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         try {
                             String  app = BuildConfig.VERSION_NAME;
                             String server = userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion;
-                            if (Double.valueOf(app.replace(".", "")) > Double.valueOf(server.replace(".", ""))){
+                            if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))){
 
                                 updateAlert.show();
                                 updateAlert.isForce(false);
