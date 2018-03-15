@@ -238,12 +238,13 @@
 
 
                         <LinearLayout
+                            android:id="@+id/linear_tarikh_az_picker"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
                             <LinearLayout
-                                android:id="@+id/linear_tarikh_az_picker"
+
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginRight="5dp"
