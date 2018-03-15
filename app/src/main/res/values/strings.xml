@@ -2380,7 +2380,7 @@
     <string name="select_checkin">ُSelect Departure Date</string>
     <string name="select_checkout">Select Check in Date</string>
     <string name="select_startdate">Select Start Date</string>
-    <string name="select_outday">ُSelect End Date</string>
+    <string name="select_outday">Select End Date</string>
     <string name="select_finishdate">Select Out Date</string>
     <string name="select_che">Select Retrun Date</string>
     <string name="canot_inout">Check in and Check out Canot be The Same</string>
@@ -2391,7 +2391,7 @@
     <string name="_ferst">First</string>
     <string name="check_mail"> Please enter your email </string>
     <string name="wrong_mail"> The email entered is not valid </string>
-    <string name="hour">O'clock</string>
+    <string name="hour">at</string>
 
 </resources>
 
