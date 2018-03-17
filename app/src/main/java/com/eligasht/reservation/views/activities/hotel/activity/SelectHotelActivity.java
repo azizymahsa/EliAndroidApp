@@ -54,7 +54,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
@@ -908,11 +914,41 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
                         }
                     });
-                    adapter.notifyDataSetChanged();
+
 
                 }
+               /* Predicate<SelectHotelModel> hasSameNameAsOneUser =
+                        c -> selectHotelModelArrayListFilter.stream().anyMatch(u -> u.getName().equals(""));
 
 
+                for (int i = 0; i <  selectHotelModelArrayListFilter.stream()
+                        .filter(hasSameNameAsOneUser)
+                        .collect(Collectors.toList()).size(); i++) {
+
+                }
+*/
+
+                adapter.notifyDataSetChanged();
+
+           /*     Observable
+                        .fromIterable(selectHotelModelArrayList)
+                        .subscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .map(something -> something.isBestSell())
+                        .filter(str -> str)
+                .subscribe(resp -> Log.d("TAG", "onPostExecute: " + resp));
+
+*/
+
+            /*    gettest(selectHotelModelArrayList).subscribe(selectHotelModels -> {
+                    selectHotelModelArrayList = (ArrayList<SelectHotelModel>) selectHotelModels;
+                    adapter.notifyDataSetChanged();
+                    adapter = new LazyResoultHotelAdapter((ArrayList<SelectHotelModel>) selectHotelModels, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
+                    list.setAdapter(adapter);
+
+                });
+
+*/
             } catch (Exception e) {
                 // llFilter.setVisibility(View.GONE);
                 list.setVisibility(View.GONE);
@@ -940,5 +976,28 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         }
 
     }
+
+   /* private Observable<List<SelectHotelModel>> gettest(ArrayList<SelectHotelModel> selectHotelModel) {
+
+
+        return makeObs(  Observable
+                .fromIterable(selectHotelModelArrayList)
+                .map(something -> something)
+                .filter(str -> str.isBestSell())
+                .toList().toObservable());
+
+
+
+
+    }
+
+    public final Observable makeObs(Observable<?> observable) {
+        return observable .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.computation());
+    }*/
+
+
+
+
+
 
 }

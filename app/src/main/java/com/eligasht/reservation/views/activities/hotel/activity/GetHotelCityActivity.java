@@ -388,6 +388,8 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
 
+
+
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     searchtxt.setText(result.get(0));

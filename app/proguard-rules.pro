@@ -214,3 +214,7 @@
   **[] $VALUES;
   public *;
 }
+-keep public class com.eligasht.reservation.views.adapters.hotel.rooms
+-keep public class com.eligasht.reservation.models.hotel.api.detail
+-keep public class com.eligasht.reservation.views.adapters.hotel.rooms{ *; }
+-keep public class com.eligasht.reservation.views.adapters.hotel.rooms.** { *; }
