@@ -1606,25 +1606,49 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         }
                         //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
                         //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
-                        if(RqPartner_FirstNameFa != null)
-                            if( RqPartner_FirstNameFa.length()>2 && !(RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
-                                ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
-                                flagMosafer=flagMosafer+"T";
+                        if(RqPartner_FirstNameFa != null){
+                            if(Locale.getDefault().getLanguage().equals("en")){
+                                if( RqPartner_FirstNameFa.length()>2 && ((RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) )){
+                                    ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
+                                    flagMosafer=flagMosafer+"T";
+                                }else{
+                                    //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
+                                    flagMosafer=flagMosafer+"F";
+                                    errorMessage=errorMessage+"\n"+"* "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
+                                }
                             }else{
-                                //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-                                flagMosafer=flagMosafer+"F";
-                                errorMessage=errorMessage+"\n"+"* "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
+                                if( RqPartner_FirstNameFa.length()>2 && !(RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
+                                    ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
+                                    flagMosafer=flagMosafer+"T";
+                                }else{
+                                    //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
+                                    flagMosafer=flagMosafer+"F";
+                                    errorMessage=errorMessage+"\n"+"* "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
+                                }
                             }
+                        }
                         //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
-                        if(RqPartner_LastNameFa != null)
-                            if( RqPartner_LastNameFa.length()>2 && !(RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
-                                ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
-                                flagMosafer=flagMosafer+"T";
+                        if(RqPartner_LastNameFa != null){
+                            if(Locale.getDefault().getLanguage().equals("en")){
+                                if( RqPartner_LastNameFa.length()>2 && ((RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) )){
+                                    ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
+                                    flagMosafer=flagMosafer+"T";
+                                }else{
+                                    //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+                                    flagMosafer=flagMosafer+"F";
+                                    errorMessage=errorMessage+"\n"+"* "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
+                                }
                             }else{
-                                //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-                                flagMosafer=flagMosafer+"F";
-                                errorMessage=errorMessage+"\n"+"* "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
+                                if( RqPartner_LastNameFa.length()>2 && !(RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
+                                    ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
+                                    flagMosafer=flagMosafer+"T";
+                                }else{
+                                    //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+                                    flagMosafer=flagMosafer+"F";
+                                    errorMessage=errorMessage+"\n"+"* "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
+                                }
                             }
+                        }
                         if(RqPartner_Mobile != null && RqPartner_Mobile.length()==11 && RqPartner_Mobile.matches("[0-9]+")){
                             ((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer=flagMosafer+"T";
@@ -2996,28 +3020,53 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     System.out.println("t");
                 }else{
                     System.out.println("f");
-                    if(txtnameP.getText().toString() != null)
-                        if( txtnameP.getText().toString().length()>2 && !(txtnameP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
-                            ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
+                    if(txtnameP.getText().toString() != null){
+                        if(Locale.getDefault().getLanguage().equals("en")){
+                            if( txtnameP.getText().toString().length()>2 && ((txtnameP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(txtnameP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))){
+                                ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
 
+                            }else{
+
+                                txtnameP.setError(getString(R.string.Please_enter_a_name_in_Persian));
+                            }
                         }else{
-                            //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtnameP.setError(getString(R.string.Please_enter_a_name_in_Persian));
-                        }}
+                            if( txtnameP.getText().toString().length()>2 && !(txtnameP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
+                                ((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
+
+                            }else{
+
+                                txtnameP.setError(getString(R.string.Please_enter_a_name_in_Persian));
+                            }
+                        }
+
+                    }
+                }
                 break;
             case R.id.txtfamilyP:
                 if(hasFocus){
                     System.out.println("t");
                 }else{
                     System.out.println("f");
-                    if(txtfamilyP.getText().toString() != null)
-                        if( txtfamilyP.getText().toString().length()>2 && !(txtfamilyP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
-                            ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
+                    if(txtfamilyP.getText().toString() != null){
+                        if(Locale.getDefault().getLanguage().equals("en")){
+                            if( txtfamilyP.getText().toString().length()>2 && ((txtfamilyP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(txtfamilyP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))){
+                                ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
 
+                            }else{
+                                //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+                                txtfamilyP.setError(getString(R.string.Please_enter_last_name_in_Persian));
+                            }
                         }else{
-                            //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-                            txtfamilyP.setError(getString(R.string.Please_enter_last_name_in_Persian));
-                        }}
+                            if( txtfamilyP.getText().toString().length()>2 && !(txtfamilyP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
+                                ((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
+
+                            }else{
+                                //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+                                txtfamilyP.setError(getString(R.string.Please_enter_last_name_in_Persian));
+                            }
+                        }
+                    }
+                }
                 break;
 
             case R.id.txtmobileP:
