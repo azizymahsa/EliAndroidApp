@@ -208,7 +208,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                             }
                         })
                         .setDeniedMessage("If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
-                        .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)
+                        .setPermissions(Manifest.permission.READ_PHONE_STATE)
                         .check();
 
 
@@ -377,7 +377,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         try {
                             String  app = BuildConfig.VERSION_NAME;
                             String server = userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion;
-                            if (Double.valueOf(app.replace(".", "")) > Double.valueOf(server.replace(".", ""))){
+                            if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))){
 
                                 updateAlert.show();
                                 updateAlert.isForce(false);

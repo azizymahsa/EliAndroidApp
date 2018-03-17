@@ -804,7 +804,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
 
-        Typeface t = Typeface.createFromAsset(getAssets(), "fonts/iran_sans_bold.ttf");
+        Typeface t = Typeface.createFromAsset(getAssets(),  getResources().getString(R.string.iran_sans_bold_ttf));
         textView.setTypeface(t);
         textView.setPadding(10, 10, 10, 10);
 

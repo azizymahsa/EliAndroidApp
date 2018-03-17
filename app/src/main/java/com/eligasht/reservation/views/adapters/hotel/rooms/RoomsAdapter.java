@@ -204,20 +204,18 @@ public class RoomsAdapter extends BaseAdapter {
                             context.getString(R.string.departTo)
                             +" "+
                            CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                   getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate_d()
-                            +" "+
+                                   getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate_d())
+                            +" "+ context.getString(R.string.departFrom)+" "+
                             CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate_d())
-                            + " " +
-                            context.getString(R.string.Contains)
-                            +" "+
+                            + " " + context.getString(R.string.Contains) +" "+
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount()
                             + " " +
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                             getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency()
                             +" "+
-                            context.getString(R.string.penalty)));
+                            context.getString(R.string.penalty));
 
 
 

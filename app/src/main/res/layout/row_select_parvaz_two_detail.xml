@@ -194,7 +194,7 @@
 				android:layout_marginBottom="@dimen/_1dp_flight"
 				android:layout_marginTop="@dimen/_1dp_flight"
 				android:layout_gravity="center|center_vertical"
-				android:gravity="left|center_vertical"
+				android:gravity="right|center_vertical"
 				android:paddingLeft="@dimen/_10dpTabletSize"
 				android:textStyle="bold" />
 
