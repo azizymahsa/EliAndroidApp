@@ -105,8 +105,8 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         tarikh_be_picker = (TextView) rootView.findViewById(R.id.tarikh_be_picker);
         linearLayout_mabda = (LinearLayout) rootView.findViewById(R.id.linearLayout_mabda);
         linearLayout_maghsad = (LinearLayout) rootView.findViewById(R.id.linearLayout_maghsad);
-    /*tarikh_az_picker.setTypeface(face);
-    tarikh_be_picker.setTypeface(face);*/
+        /*tarikh_az_picker.setTypeface(face);
+        tarikh_be_picker.setTypeface(face);*/
 
         tarikh_az = (TextView) rootView.findViewById(R.id.tarikh_az);
         tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
