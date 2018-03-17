@@ -94,7 +94,10 @@ public class CalendarDialog implements OnClickListener {
 
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, CustomDate endDate, TypeUsageOfCalendar typeUsageofCalendar) {
+        if (alertDialog !=null && alertDialog.isShowing())
+            return;
         f13894H = 0;
+
         this.context = context;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
         if (Locale.getDefault().getLanguage().equals("fa"))
@@ -184,7 +187,10 @@ public class CalendarDialog implements OnClickListener {
 
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, TypeUsageOfCalendar typeUsageofCalendar) {
+        if (alertDialog !=null && alertDialog.isShowing())
+            return;
         f13894H = 0;
+
         this.context = context;
         this.activity = activity;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
@@ -271,7 +277,10 @@ public class CalendarDialog implements OnClickListener {
     }
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, boolean reverse, TypeUsageOfCalendar typeUsageofCalendar) {
+        if (alertDialog !=null && alertDialog.isShowing())
+            return;
         f13894H = 0;
+
         this.context = context;
         this.activity = activity;
         sharedPrefrences = this.context.getSharedPreferences("eligasht.com", 0);
