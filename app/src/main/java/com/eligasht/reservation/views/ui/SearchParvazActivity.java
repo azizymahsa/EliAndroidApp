@@ -156,7 +156,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     boolean isChangeFlight;
     String searchKey;
     String FlightId;
-    LinearLayout llNextLastDays;
+    LinearLayout llNextLastDays,llDateToolbar;
     private ArrayList<ParentItemExpandingPlan> selectHotelModelArrayListBestSeler = new ArrayList<>();
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
     private ExpandableListAdapter listAdapterExpanding;
@@ -246,6 +246,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         lblMoratabSazi.setOnClickListener(this);
 
         txtCityRaft = findViewById(R.id.txtCityRaft);
+        llDateToolbar = findViewById(R.id.llDateToolbar);
         txtCityRaft.setOnClickListener(this);
 
 
@@ -335,6 +336,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             txtDateOnvan.setVisibility(View.GONE);
             llNextLastDays.setVisibility(View.GONE);
             txtCityBargashtt.setVisibility(View.GONE);
+            llDateToolbar.setVisibility(View.GONE);
             tvChangeFlight.setVisibility(View.VISIBLE);
             tvChangeFlight.setText(R.string.ChangeFlight);
         } else {

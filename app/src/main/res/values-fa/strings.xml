@@ -2014,6 +2014,8 @@
     <string name="wrong_mail">ایمیل وارد شده صحیح نمی باشد</string>
     <string name="hour">ساعت</string>
     <string name="detail_insurnace">جزئیات بیمه</string>
+    <string name="best_seller">پر فروش</string>
+    <string name="comma">,</string>
     <string-array name="country_flags">
         <item>@drawable/ir</item>
         <item>@drawable/ir</item>

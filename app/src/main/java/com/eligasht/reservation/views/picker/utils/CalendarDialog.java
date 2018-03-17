@@ -147,6 +147,8 @@ public class CalendarDialog implements OnClickListener {
         initCalendar();
         alertDialog = builder.create();
         alertDialog.setCancelable(true);
+        if (alertDialog.isShowing())
+            return;
         alertDialog.show();
         initSubtitle();
 
@@ -235,6 +237,8 @@ public class CalendarDialog implements OnClickListener {
         initCalendar();
         alertDialog = builder.create();
         alertDialog.setCancelable(true);
+        if (alertDialog.isShowing())
+            return;
         alertDialog.show();
         initSubtitle();
 

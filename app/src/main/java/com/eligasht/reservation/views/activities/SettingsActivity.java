@@ -26,7 +26,7 @@ import com.eligasht.reservation.views.ui.SplashFragment;
  */
 
 public class SettingsActivity extends BaseActivity implements View.OnClickListener, SelectLanguageDialog.LanguageClick, AdapterView.OnItemSelectedListener {
-    String[] countryNames = {"ایران", "England", "Turkey"};
+    String[] countryNames = {"ایران (IR)", "(UK)England", "(TR) Türkiye"};
     int flags[] = {R.drawable.iran, R.drawable.united_kingdom, R.drawable.turkey};
     String[] curencyNames = {"IRR(iran)"};
     String[] officeNames = {"Eligasht-IR", "Eligasht-UK", "Eligasht-TK"};

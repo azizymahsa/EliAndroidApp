@@ -26,6 +26,7 @@ import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.PolicyRequest;
 import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.RequestPolicy;
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
@@ -36,6 +37,7 @@ import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPolicy;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -197,27 +199,53 @@ public class RoomsAdapter extends BaseAdapter {
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount() + " " +
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() + " " + context.getString(R.string.penalty));*/
-                    alertDialogPolicy.setText(context.getString(R.string.room)+
-                            " " +
-                            getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo()
-                            +" : "+
-                            context.getString(R.string.departTo)
-                            +" "+
-                           CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                   getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate_d())
-                            +" "+ context.getString(R.string.departFrom)+" "+
-                            CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate_d())
-                            + " " + context.getString(R.string.Contains) +" "+
-                            getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount()
-                            + " " +
-                            getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency()
-                            +" "+
-                            context.getString(R.string.penalty));
+
+                    if (Prefs.getString("lang", "fa").equals("fa"))
+
+                    {
+
+                        alertDialogPolicy.setText(context.getString(R.string.room) +
+                                " " +
+                                getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo()
+                                + " : " +
+                                context.getString(R.string.departTo)
+                                + " " +
+                                CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                        getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate_d())
+                                + " " + context.getString(R.string.departFrom) + " " +
+                                CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                        getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate_d())
+                                + " " + context.getString(R.string.Contains) + " " +
+                                getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                        getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount()
+                                + " " +
+                                getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                        getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency()
+                                + " " +
+                                context.getString(R.string.penalty));
 
 
+                    } else {
+                        alertDialogPolicy.setText(context.getString(R.string.room) +
+                                " " +
+                                getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo()
+                                + " : " +
+                                "Cancellation" + " from"
+                                + " " +
+                                CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                        getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate_d())
+                                + " " + "to" + " " +
+                                CustomDate.longToString(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                        getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate_d())
+                                + " " + "will be penalized" + " " +
+                                getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                        getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount()
+                                + " " +
+                                getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
+                                        getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() + ".");
+
+
+                    }
 
 
                 }
@@ -246,12 +274,12 @@ public class RoomsAdapter extends BaseAdapter {
 
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-
                 window.setStatusBarColor(ContextCompat.getColor(context, R.color.status_loading));
             }
 
 
             new InitUi().Loading(context, rlLoading, rlRoot, true, R.drawable.hotel_loading);
+
 
 
         }

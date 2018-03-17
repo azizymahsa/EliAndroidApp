@@ -1868,15 +1868,15 @@
     <string name="departFrom">to</string>
     <string name="DatePickerError2">Can not be selected before today\'s date</string>
     <string name="NoResult">No results were found for your search! :(</string>
-    <string name="off">% Discount</string>
+    <string name="off">% Off</string>
     <string name="_1star">1 Star</string>
     <string name="_2star">2 Star</string>
     <string name="_3star">3 Star</string>
     <string name="_4star">4 Star</string>
     <string name="_5star">5 Star</string>
     <string name="WithoutStar">No stars</string>
-    <string name="BestSell">Most sell</string>
-    <string name="BestOff">Special Discount</string>
+    <string name="BestSell">Best seller</string>
+    <string name="BestOff">Special Offer</string>
     <string name="InternetError">Your internet is disconnected or out of reach</string>
     <string name="ErrorServer">Error getting information from Eligasht:(</string>
     <string name="Sort">Sort</string>
@@ -1994,15 +1994,15 @@
     <string name="Try">Try again</string>
     <string name="Update">Update</string>
     <string name="UpdateAlert">The software needs to be upgraded, Do you want to update the software?</string>
-    <string name="SelectFilter">Filter selection</string>
+    <string name="SelectFilter">Filter result</string>
     <string name="Stop">Stop</string>
     <string name="TwoStopAndMore">Two Stop &amp; More</string>
     <string name="Economi">Economy</string>
     <string name="Business">Business Class</string>
     <string name="first">First Class</string>
     <string name="AirLine">AirLine</string>
-    <string name="FilterConfirm">Filter confirm</string>
-    <string name="RemoveFilter">Remove filter</string>
+    <string name="FilterConfirm">Filter</string>
+    <string name="RemoveFilter">Remove</string>
     <string name="FilterError">Option not selected for filter</string>
     <string name="SortFilter">Sort</string>
     <string name="SortMax">Based on the highest price</string>
@@ -2028,7 +2028,7 @@
     <string name="OfferTo">Offer for</string>
     <string name="ServicesPackage">Available services</string>
     <string name="InfoAirline">Flight information</string>
-    <string name="travel_duration">Travel lenght</string>
+    <string name="travel_duration">Travel length</string>
     <string name="enter_current_password">Enter the current password</string>
     <string name="current_password">Current pass</string>
     <string name="new_password">New pass</string>
@@ -2066,7 +2066,7 @@
     <string name="SelectLanguage">Language</string>
     <string name="Persian">فارسی</string>
     <string name="English">English</string>
-    <string name="IrOK">Ok</string>
+    <string name="IrOK">OK</string>
     <!--nejati-->
     <string name="PostComment">Post Comment</string>
     <string name="CommentFor">Comment For</string>
@@ -2155,9 +2155,9 @@
     <string name="passneger_info">Passengers info</string>
     <string name="Buyer_Specifications">Buyer Specifications</string>
     <string name="Traveler_info">Passengers info</string>
-    <string name="Email_format_is_correct">Email format is correct (test@test.com)</string>
-    <string name="Name_of_at_least_2_characters_and_maximum_100_characters">Name of at least 2 characters and maximum 100 characters</string>
-    <string name="The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters">The last name is at least 2 characters and a maximum of 100 characters</string>
+    <string name="Email_format_is_correct">Email format is not correct (test@test.com)</string>
+    <string name="Name_of_at_least_2_characters_and_maximum_100_characters">Name must be at least 2 characters and maximum 100 characters</string>
+    <string name="The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters">The last name must be at least 2 characters and maximum of 100 characters</string>
     <string name="Enter_the_correct_mobile_format">Enter the correct mobile format (like ... 0912)</string>
     <string name="The_national_code_is_not_correct">The national code is not correct (10 digits)</string>
     <string name="child">Child</string>
@@ -2298,7 +2298,7 @@
     <string name="enter_value">Enter number</string>
     <string name="approve_factor">Confirm invoice</string>
     <string name="contract_didnt_registred">Contract didn\'t registered</string>
-    <string name="no_money_has_been_payed_for_this_cart">No money has been payed for this cart</string>
+    <string name="no_money_has_been_payed_for_this_cart">No money has been paid for this cart</string>
     <string name="needed_docs_to_mail">Needed documents has been sent to this</string>
     <string name="has_been_sent">email address</string>
     <string name="contract_has_been_registred_successfully">Contract has been registered successfully</string>
@@ -2368,6 +2368,8 @@
     <string name="wrong_mail"> The email entered is not valid </string>
     <string name="hour">at</string>
     <string name="detail_insurnace">Insurnace Detail</string>
+    <string name="best_seller">Best seller</string>
+    <string name="comma">,</string>
 
 </resources>
 

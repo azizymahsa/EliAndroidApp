@@ -61,7 +61,7 @@
                     android:id="@+id/ivIsBestseler"
                     android:layout_width="@dimen/_50dp_normal"
                     android:layout_height="@dimen/_50dp_normal_im"
-                    android:text="پر فروش"
+                    android:text="@string/best_seller"
                     android:background="@drawable/best_seller_back"
                     android:textColor="@color/white"
                     android:textAppearance="@style/IrsansBold"
