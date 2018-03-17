@@ -42,6 +42,10 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 
@@ -109,8 +113,6 @@ dependencies {
     implementation 'com.android.installreferrer:installreferrer:1.0'
     compile 'com.android.installreferrer:installreferrer:1.0'
     implementation 'com.google.android.gms:play-services-analytics:11.8.0'
-
-
 }
 apply plugin: 'com.google.gms.google-services'
 
