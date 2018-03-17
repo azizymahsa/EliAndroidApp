@@ -1476,9 +1476,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         public String  RengAge ;
-        public DatePickerFragment(String RengAge) {
-            this.RengAge=RengAge;
-        }
         public DatePickerFragment() {
             //this.RengAge=RengAge;
         }

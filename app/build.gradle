@@ -11,7 +11,7 @@ android {
         release {
             keyAlias 'key0'
             keyPassword 'z9H5V#'
-            storeFile file('C:/Users/pouya.heidari/Desktop/eligasht.jks')
+            storeFile file('C:/eligasht.jks')
             storePassword 'z9H5V#'
         }
     }

@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.adjust.sdk.Adjust;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.ui.dialog.app.InternetAlert;
 import com.google.gson.Gson;

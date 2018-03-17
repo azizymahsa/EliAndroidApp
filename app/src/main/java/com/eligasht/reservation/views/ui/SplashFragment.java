@@ -25,6 +25,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustConfig;
+import com.adjust.sdk.AdjustEvent;
+import com.adjust.sdk.LogLevel;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.reservation.api.VersionChecker;
 import com.eligasht.reservation.base.GlobalApplication;
@@ -49,6 +53,7 @@ import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.dialog.app.InternetAlert;
 import com.eligasht.reservation.views.ui.dialog.app.SplashDialog;
+import com.orhanobut.hawk.Hawk;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.zplesac.connectionbuddy.activities.ConnectionBuddyActivity;
 import com.zplesac.connectionbuddy.models.ConnectivityEvent;
@@ -124,7 +129,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
 
         mTracker.send(new HitBuilders.AppViewBuilder().build());*/
 
-            splashDialog = new SplashDialog(SplashFragment.this, this);
+        splashDialog = new SplashDialog(SplashFragment.this, this);
         final PackageInfo pInfo;
         try {
             pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
@@ -210,9 +215,6 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         .setDeniedMessage("If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
                         .setPermissions(Manifest.permission.READ_PHONE_STATE)
                         .check();
-
-
-
 
 
             }
@@ -372,39 +374,46 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
                         }
 
                     }
-                    if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
-
-                        try {
-                            String  app = BuildConfig.VERSION_NAME;
-                            String server = userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion;
-                            if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))){
-
-                                updateAlert.show();
-                                updateAlert.isForce(false);
-
-                            }else{
-
-                                startActivity(new Intent(SplashFragment.this, MainActivity.class));
-                                finish();
+                    Log.e("AdjustEnabled", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.AdjustEnabled + "");
+                    if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.AdjustEnabled){
+                        Hawk.put("adjust",true);
+                    }else {
+                        Hawk.put("adjust",false);
+                    }
 
 
+
+                        if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
+
+
+                            try {
+                                String app = BuildConfig.VERSION_NAME;
+                                String server = userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion;
+                                if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))) {
+
+                                    updateAlert.show();
+                                    updateAlert.isForce(false);
+
+                                } else {
+
+                                    startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                                    finish();
+
+
+                                }
+
+
+                            } catch (Exception e) {
+                                splashDialog.showAlert();
                             }
 
 
+                        } else {
+                            updateAlert.show();
+                            updateAlert.isForce(true);
 
 
-                        } catch (Exception e) {
-                            splashDialog.showAlert();
                         }
-
-
-                    } else {
-                        updateAlert.show();
-                        updateAlert.isForce(true);
-
-
-
-                    }
 
                 }
 
@@ -421,6 +430,19 @@ public class SplashFragment extends ConnectionBuddyActivity implements SplashDia
     @Override
     protected void onResume() {
         super.onResume();
+        if (Hawk.get("adjust", true)){
+            try{
+                AdjustEvent event = new AdjustEvent("yoi24u");
+                Adjust.trackEvent(event);
+            }catch (Exception e){
+                e.printStackTrace();
+
+            }
+
+        }
+
+
+
 
     }
 
