@@ -1,9 +1,12 @@
 package com.eligasht.reservation.views.activities.hotel.activity;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.HotelCity;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.db.local.RecentCityHotel_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
 import com.eligasht.reservation.views.adapters.GetHotelCityAdapter;
@@ -44,6 +48,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -59,11 +64,13 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
     public ListView listCityHotel;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
-    FancyButton btnBack;
+    FancyButton btnBack,btnMic;
 
     GetHotelCityAdapter mAdapter;
     private EditText searchtxt;
     AVLoadingIndicatorView avLoadingIndicatorView;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +78,13 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
         setContentView(R.layout.activity_get_city_hotel);
         avLoadingIndicatorView = findViewById(R.id.avi);
         btnBack = findViewById(R.id.btnBack);
+        btnMic = findViewById(R.id.btnMic);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnMic.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
+        btnMic.setText(getString(R.string.icon_mic));
         btnBack.setOnClickListener(this);
+        btnMic.setOnClickListener(this);
 
         //////////////////show recent
         ListView listAirPort = (ListView) findViewById(R.id.listCityHotel);
@@ -309,7 +320,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
                     //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
                 }
             } catch (JSONException e) {
-                Toast.makeText(GetHotelCityActivity.this, "خطا در برقراری ارتباط", Toast.LENGTH_LONG).show();
+                Toast.makeText(GetHotelCityActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_LONG).show();
             }
 
         }
@@ -350,6 +361,40 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
             case R.id.btnBack:
                 finish();
                 break;
+            case R.id.btnMic:
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Prefs.getString("lang","fa"));
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                        "لطفا مکان مورد نظر را اعلام نمایید...");
+                try {
+                    startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+                } catch (ActivityNotFoundException a) {
+                    Toast.makeText(getApplicationContext(),
+                            "Error",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    searchtxt.setText(result.get(0));
+                }
+                break;
+            }
+
         }
     }
 

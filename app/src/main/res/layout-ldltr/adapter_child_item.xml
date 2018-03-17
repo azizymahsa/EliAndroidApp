@@ -36,7 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/TRANSPARENT"
-                android:paddingLeft="5dp"
+                android:paddingLeft="10dp"
+
 
                 >
 
@@ -47,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="1dp"
                 android:text="@string/icon_arrow_down"
                 android:textAppearance="@style/IconFonts"
 

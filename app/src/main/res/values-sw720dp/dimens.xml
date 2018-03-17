@@ -133,6 +133,7 @@
     <dimen name="_5dpflight">28dp</dimen>
     <dimen name="_1dp_flight">8dp</dimen>
     <dimen name="_30dp_flight">45dp</dimen>
+    <dimen name="_30dp_search">50dp</dimen>
 
 
 </resources>

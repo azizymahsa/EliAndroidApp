@@ -24,8 +24,8 @@ android {
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 7
-        versionName "1.0.6"
+        versionCode 8
+        versionName "1.0.7"
         multiDexEnabled true
 
     }
@@ -109,6 +109,8 @@ dependencies {
     implementation 'com.android.installreferrer:installreferrer:1.0'
     compile 'com.android.installreferrer:installreferrer:1.0'
     implementation 'com.google.android.gms:play-services-analytics:11.8.0'
+    compile 'com.github.zagum:SpeechRecognitionView:1.2.2'
+
 
 
 }
