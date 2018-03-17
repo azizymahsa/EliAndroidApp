@@ -2,29 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:layout_margin="10dp"
     android:gravity="center"
-    android:orientation="horizontal">
+    >
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_weight="100"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_launcher"
+        android:scaleType="fitEnd"/>
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="@dimen/_100dp"
-        android:layout_height="50dp"
-        android:layout_marginRight="5dp"
-        android:gravity="center|right"
+        android:layout_width="0dp"
+        android:layout_weight="100"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:gravity="left|center"
         android:text="Demo"
         android:textAppearance="@style/IrsansBold"
         android:textColor="@color/text_color_4d"
-        android:textSize="@dimen/_14dp_txtSize" />
+        android:textSize="@dimen/_14dp_txtSize"
+        android:layout_marginLeft="5dp"
+        />
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="5dp"
-        android:src="@drawable/ic_launcher" />
+
 
 
 </LinearLayout>

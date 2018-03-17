@@ -75,7 +75,9 @@
                 android:singleLine="true"
                 android:textColor="@color/text_color_2e"
                 android:textColorHint="#9fa0c4"
-                android:textSize="@dimen/_14dp_txtSize" />
+                android:textSize="@dimen/_14dp_txtSize"
+
+                android:layout_marginRight="@dimen/_50dp"/>
 
 
         </LinearLayout>
@@ -120,7 +122,8 @@
                 android:singleLine="true"
                 android:textColor="@color/text_color_2e"
                 android:textColorHint="#9fa0c4"
-                android:textSize="@dimen/_14dp_txtSize" />
+                android:textSize="@dimen/_14dp_txtSize"
+                android:layout_marginRight="@dimen/_50dp"/>
 
 
         </LinearLayout>
