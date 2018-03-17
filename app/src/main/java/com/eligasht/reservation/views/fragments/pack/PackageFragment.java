@@ -65,7 +65,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     public ViewGroup layout_room;
     public TextView txtCity;
     public TextView btnSearchPackage;
-    public LinearLayout btn_return_date;
+    public LinearLayout btn_return_date,linearLayout_mabda;
     public LinearLayout btn_depart_date, linear_picker_depart, linear_picker_return;
     DatePickerDialog datePickerDialogDepart, datePickerDialogReturn;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogDepartgGregorian, datePickerDialogReturnGregorian;
@@ -169,6 +169,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                 try {
                     Hawk.put("PackCityData", response.body().getGetHotelListResult());
                 } catch (Exception e) {
+
                 }
 
             }
@@ -177,7 +178,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
             public void onFailure(Call<CityListRes> call, Throwable t) {
                 try {
                     hideLoading();
-                    needShowAlertDialog(getString(R.string.error_in_connection), true);
+                  //  needShowAlertDialog(getString(R.string.error_in_connection), true);
                 } catch (Exception e) {
                 }
             }
@@ -200,6 +201,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         txt_depart_date = view.findViewById(R.id.txt_depart_date);
         linear_picker_depart = view.findViewById(R.id.linear_picker_depart);
         linear_picker_return = view.findViewById(R.id.linear_picker_return);
+        linearLayout_mabda = view.findViewById(R.id.linearLayout_mabda);
 
         lottieAnimationView = view.findViewById(R.id.animation_view);
         lottieAnimationView.setAnimation("circle-l.json");
@@ -216,6 +218,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         txtCity.setOnClickListener(this);
 
 
+
     }
 
     private void initParam() {
@@ -223,13 +226,13 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     }
 
     private void showLoading() {
-        txtCity.setVisibility(View.GONE);
+        linearLayout_mabda.setVisibility(View.GONE);
         lottieAnimationView.playAnimation();
 
     }
 
     private void hideLoading() {
-        txtCity.setVisibility(View.VISIBLE);
+        linearLayout_mabda.setVisibility(View.VISIBLE);
         lottieAnimationView.setVisibility(View.GONE);
 
     }
