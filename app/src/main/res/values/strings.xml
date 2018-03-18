@@ -33,7 +33,7 @@
     <string name="icon_mic">&#xe91b;</string>
 
     <string name="searchFlight">Plane Ticket</string>
-    <string name="search_package">Vacation Package</string>
+    <string name="search_package">Holiday Package</string>
     <string name="search_hotel">Hotel Reservation</string>
 
     <string name="reserve_package">Book</string>
@@ -1925,7 +1925,7 @@
     <string name="PassengerSpec">Passenger Details</string>
     <string name="Brithday">Please enter your birth date</string>
     <string name="brithdayError">Please enter passengers birth date</string>
-    <string name="Passanger">Passenger</string>
+    <string name="Passanger">Passenger(s)</string>
     <string name="select_return_date">Choose the date back</string>
     <string name="please_select_one">Please select one</string>
     <string name="please_select_destination_city">Please select the city of your trip</string>
@@ -1936,7 +1936,7 @@
     <string name="departure_date">Departure date</string>
     <string name="select_travel_duration">Departure date</string>
     <string name="passenger">Passenger</string>
-    <string name="number_of_passengers">Number of passengers</string>
+    <string name="number_of_passengers">Add passengers</string>
     <string name="error_in_connection">Error in Connection</string>
     <string name="there_is_no_city_to_show">there is no city to show</string>
     <string name="return_date">Return date</string>
@@ -1969,7 +1969,7 @@
 
     <!--nemati-->
     <string name="hotel_reservation_and_plane_ticket">Hotel + Flight</string>
-    <string name="travel_tour">Vacation Package</string>
+    <string name="travel_tour">Holiday Package</string>
     <string name="travel_insurance">Travel Insurance</string>
     <string name="soon">(Coming Soon)</string>
     <string name="trains"> Train</string>
@@ -2326,7 +2326,7 @@
     <string name="hotel_policy">Hotel policy</string>
     <string name="Travel_insurance_to_travel_to_the_country">Travel insurance to</string>
     <string name="please_refer_to_your_email_to_recover_the_password">Please refer to your email to recover the password.</string>
-    <string name="Tur">Tour</string>
+    <string name="Tur">Holiday Package</string>
     <string name="Please_enter_the_correct_name">Please enter the correct name</string>
     <string name="Please_enter_the_title_correctly">Please enter the title correctly</string>
     <string name="Please_enter_the_correct_message">Please enter the correct message</string>
