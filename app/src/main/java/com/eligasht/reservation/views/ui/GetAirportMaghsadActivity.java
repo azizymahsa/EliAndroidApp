@@ -442,12 +442,14 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 finish();
                 break;
             case R.id.btnMic:
+                searchtxt.setText("");
+
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, com.eligasht.reservation.tools.Prefs.getString("lang","fa"));
-                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                        "لطفا مکان مورد نظر را اعلام نمایید...");
+        /*        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                        "لطفا مکان مورد نظر را اعلام نمایید...");*/
                 try {
                     startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
                 } catch (ActivityNotFoundException a) {

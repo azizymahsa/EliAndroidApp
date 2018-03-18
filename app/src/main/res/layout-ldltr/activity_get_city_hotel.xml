@@ -72,10 +72,14 @@
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
+            android:gravity="center"
+
             >
             <com.wang.avi.AVLoadingIndicatorView
 
                 android:id="@+id/avi"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
                 style="@style/AVLoadingIndicatorView"
                 android:gravity="center"
                 android:visibility="invisible"
