@@ -12,10 +12,12 @@ public class UserEntranceResponse {
     public final MobileAppStartupServiceResult UserEntranceResponse;
     public final String ID;
     public final ArrayList<Errors> errors;
+    public final boolean AdjustEnabled;
 
-    public UserEntranceResponse(MobileAppStartupServiceResult userEntranceResponse, String ID, ArrayList<Errors> errors) {
+    public UserEntranceResponse(MobileAppStartupServiceResult userEntranceResponse, String ID, ArrayList<Errors> errors, boolean adjustEnabled) {
         UserEntranceResponse = userEntranceResponse;
         this.ID = ID;
         this.errors = errors;
+        AdjustEnabled = adjustEnabled;
     }
 }

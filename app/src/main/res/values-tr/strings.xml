@@ -2190,6 +2190,8 @@
     <string name="first_room">Ilk oda</string>
     <string name="please_eng">Lütfen ingilizce girin</string>
     <string name="number_pass">Pasaport numarası</string>
+    <string name="icon_mic">&#xe91b;</string>
+
     <string name="meli_code">Ulusal kod</string>
     <string name="date_birth">Doğum günü</string>
     <string name="exp_pas">Pasaportun son kullanma tarihi</string>

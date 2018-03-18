@@ -601,7 +601,7 @@ public class Utility extends Activity {
             customTabsIntent.launchUrl(context, uri);
 
         }catch (Exception e){
-            Toast.makeText(context, "خطایی رخ داده است", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,context.getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
         }
 
 

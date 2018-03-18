@@ -503,9 +503,9 @@
     <string name="canot_inout">تاریخ ورود و خروج یکی نمی توانند باشند</string>
     <string name="shamsi">شمسی</string>
     <string name="so_one_day_has_been_added_to_your_end_date">بنابراین یک روز به تاریخ برگشت شما اضافه شد</string>
+    <string name="icon_mic">&#xe91b;</string>
 
 
-    <string name="condition"> </string>
     <string name="your_time_has_expired">Your time has expired</string>
     <string name="change_fligfontht">Change flight</string>
     <string name="class_flight">Flight class</string>
