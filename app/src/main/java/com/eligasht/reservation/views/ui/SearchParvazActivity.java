@@ -156,7 +156,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     boolean isChangeFlight;
     String searchKey;
     String FlightId;
-    LinearLayout llNextLastDays,llDateToolbar;
+    LinearLayout llNextLastDays,llDateToolbar,llBottom,llSort;
     private ArrayList<ParentItemExpandingPlan> selectHotelModelArrayListBestSeler = new ArrayList<>();
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
     private ExpandableListAdapter listAdapterExpanding;
@@ -211,7 +211,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
         iconFilter = findViewById(R.id.iconFilter);
-
+        llBottom= findViewById(R.id.llBottom);
+        llBottom.setOnClickListener(this);
+        llSort= findViewById(R.id.llSort);
+        llSort.setOnClickListener(this);
 
         txtBack = findViewById(R.id.txtBack);
         txtBack.setOnClickListener(this);
@@ -227,7 +230,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         txtNoResult = findViewById(R.id.txtNoResult);
         txtNoResult.setOnClickListener(this);
         txtFilter = findViewById(R.id.txtFilter);
-        txtFilter.setOnClickListener(this);
+       // txtFilter.setOnClickListener(this);
 
         txtRuzeBad = findViewById(R.id.txtRuzeBad);
         txtRuzeBad.setOnClickListener(this);
@@ -243,7 +246,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         txtRuzeGhabl.setOnClickListener(this);
 
         lblMoratabSazi = findViewById(R.id.lblMoratabSazi);
-        lblMoratabSazi.setOnClickListener(this);
+        //lblMoratabSazi.setOnClickListener(this);
 
         txtCityRaft = findViewById(R.id.txtCityRaft);
         llDateToolbar = findViewById(R.id.llDateToolbar);
@@ -1703,17 +1706,17 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
-            case R.id.txtFilter:
+            case R.id.llBottom:
 
                 new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
 
                 break;
-            case R.id.iconFilter:
+            /*case R.id.iconFilter:
 
                 new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
 
-                break;
-            case R.id.lblMoratabSazi://sort
+                break;*/
+            case R.id.llSort://sort
                 // custom dialog
                 new SortFlightDialog(SearchParvazActivity.this, this, besetSeler, bestOff, remove);
 
