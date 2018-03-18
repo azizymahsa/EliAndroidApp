@@ -30,7 +30,7 @@
             app:indicatorColor="#ffffff"
             app:indicatorName="BallPulseIndicator" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="@dimen/_30dp_search"
 
@@ -41,23 +41,10 @@
             android:orientation="horizontal"
 
             >
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btnMic"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="right|center"
-                android:gravity="right"
-                fancy:fb_defaultColor="@android:color/transparent"
-                fancy:fb_focusColor="@color/focusColor"
 
-                fancy:fb_radius="200dp"
-                fancy:fb_text=" "
-                fancy:fb_textColor="@color/text_color_4d"
-                fancy:fb_textSize="20dp" />
             <EditText
                 android:id="@+id/searchtxt"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:gravity="center"
@@ -66,8 +53,20 @@
                 android:textSize="@dimen/_14dp_txtSize"
 
                 />
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnMic"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_gravity="right|center"
+                android:gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="@color/focusColor"
 
-        </LinearLayout>
+                fancy:fb_radius="200dp"
+                fancy:fb_text=" "
+                fancy:fb_textColor="@color/text_color_4d"
+                fancy:fb_textSize="15dp" />
+        </RelativeLayout>
 
 
         <mehdi.sakout.fancybuttons.FancyButton

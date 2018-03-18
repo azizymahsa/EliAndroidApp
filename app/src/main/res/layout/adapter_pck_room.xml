@@ -10,9 +10,9 @@
         android:id="@+id/card_room"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/_15dp"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_marginTop="@dimen/_10dp_margin"
         android:orientation="vertical"
         android:background="@drawable/background_strock_gray"
         >
@@ -28,31 +28,30 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="0.8"
-                    android:layout_height="141dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_height="@dimen/_145dp"
                     android:layout_marginTop="12sp"
                     android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="@dimen/_16dp_normal_textSize"
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp">
 
                         <Button
                             android:id="@+id/btnMinesAdt"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="@dimen/_30dp"
+                            android:layout_height="@dimen/_30dp"
                             android:layout_marginBottom="1dp"
                             android:layout_marginTop="1dp"
                             android:background="@drawable/background_strock"
                             android:text="@string/mines"
                             android:textAppearance="@style/IconFontsMines"
                             android:textColor="#56687a"
-                            android:textSize="12dp"/>
+                            android:textSize="@dimen/_16dp_txtSize"/>
 
                         <TextView
                             android:id="@+id/txtCountAdt"
@@ -62,18 +61,19 @@
                             android:gravity="center"
                             android:textColor="@color/pack_room_text"
                             android:textAppearance="@style/IrsansBold"
-                            android:text="1"/>
+                            android:text="1"
+                            android:textSize="@dimen/_16dp_normal_textSize"/>
 
                         <Button
                             android:id="@+id/btnPlusAdt"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="@dimen/_30dp"
+                            android:layout_height="@dimen/_30dp"
                             android:layout_margin="1dp"
                             android:background="@drawable/background_strock"
                             android:text="@string/plus"
                             android:textAppearance="@style/IconFontsMines"
                             android:textColor="#56687a"
-                            android:textSize="12dp"/>
+                            android:textSize="@dimen/_16dp_txtSize"/>
 
                         <TextView
                             android:id="@+id/txtBO"
@@ -84,7 +84,7 @@
                             android:gravity="right"
                             android:text="@string/Adult"
                             android:textColor="@color/pack_room_text"
-                            android:textSize="16dp"
+                            android:textSize="@dimen/_16dp_normal_textSize"
                             android:textAppearance="@style/IrsansBold"/>
 
                     </LinearLayout>
@@ -100,15 +100,15 @@
 
                         <Button
                             android:id="@+id/btnMinesCh"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="@dimen/_30dp"
+                            android:layout_height="@dimen/_30dp"
                             android:layout_marginBottom="1dp"
                             android:layout_marginTop="1dp"
                             android:background="@drawable/background_strock"
                             android:text="@string/mines"
                             android:textAppearance="@style/IconFontsMines"
                             android:textColor="#56687a"
-                            android:textSize="12dp"/>
+                            android:textSize="@dimen/_16dp_txtSize"/>
 
                         <TextView
                             android:id="@+id/txtCountCh"
@@ -118,18 +118,19 @@
                             android:gravity="center"
                             android:text="0"
                             android:textColor="@color/pack_room_text"
-                            android:textAppearance="@style/IrsansBold" />
+                            android:textAppearance="@style/IrsansBold"
+                            android:textSize="@dimen/_16dp_normal_textSize"/>
 
                         <Button
                             android:id="@+id/btnPlusCh"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="@dimen/_30dp"
+                            android:layout_height="@dimen/_30dp"
                             android:layout_margin="1dp"
                             android:background="@drawable/background_strock"
                             android:text="@string/plus"
                             android:textAppearance="@style/IconFontsMines"
                             android:textColor="#56687a"
-                            android:textSize="12dp"/>
+                            android:textSize="@dimen/_16dp_txtSize"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -139,7 +140,7 @@
                             android:gravity="right"
                             android:text="@string/Child"
                             android:textColor="@color/pack_room_text"
-                            android:textSize="16dp"
+                            android:textSize="@dimen/_16dp_normal_textSize"
                             android:textAppearance="@style/IrsansBold"/>
 
                     </LinearLayout>
@@ -161,6 +162,7 @@
                         android:text="اتاق اول"
                         android:textColor="@color/pack_room_text"
                         android:textAppearance="@style/IrsansBold"
+                        android:textSize="@dimen/_16dp_normal_textSize"
                         />
 
                     <TextView
@@ -169,7 +171,7 @@
                         android:padding="2sp"
                         android:textAppearance="@style/IconFonts"
                         android:text="@string/icon_bed"
-                        android:textSize="30dp"
+                        android:textSize="@dimen/_25dp_normal_iconSize"
                         android:textColor="@color/pack_room_text"
                         />
 
