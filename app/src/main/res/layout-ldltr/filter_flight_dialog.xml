@@ -41,10 +41,9 @@
             android:gravity="center"
             android:padding="5dp"
             android:text="@string/Stop"
-            android:textColor="@color/text_color_4d"
             android:textAppearance="@style/IrsansBold"
-            android:textSize="@dimen/_14dp_txtSize"
-            />
+            android:textColor="@color/text_color_4d"
+            android:textSize="@dimen/_14dp_txtSize" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,13 +131,9 @@
             android:background="#ededed"
             android:gravity="center"
             android:padding="5dp"
-
-            android:textColor="@color/text_color_4d"
-            android:textAppearance="@style/IrsansBold"
-            android:textSize="@dimen/_14dp_txtSize"
-
             android:text="@string/class_flight"
-            />
+            android:textAppearance="@style/IrsansBold"
+            android:textSize="14dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -210,12 +205,21 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+        </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#000000"
-            android:visibility="gone" />
+            android:background="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -279,7 +283,21 @@
             </LinearLayout>
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ededed"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/AirLine"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="@color/text_color_4d"
+            android:textSize="@dimen/_14dp_txtSize" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -299,22 +317,7 @@
 
 
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ededed"
-            android:gravity="center"
-            android:padding="5dp"
-            android:textColor="@color/text_color_4d"
-            android:textAppearance="@style/IrsansBold"
-            android:textSize="@dimen/_14dp_txtSize"
-            android:text="@string/AirLine"
-            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -344,7 +347,10 @@
 
         </LinearLayout>
 
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
