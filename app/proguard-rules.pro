@@ -208,3 +208,13 @@
 }
 -keep public class com.android.installreferrer.** { *; }
 -keep public class com.android.installreferrer.** { *; }
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+-keep public class com.eligasht.reservation.views.adapters.hotel.rooms
+-keep public class com.eligasht.reservation.models.hotel.api.detail
+-keep public class com.eligasht.reservation.views.adapters.hotel.rooms{ *; }
+-keep public class com.eligasht.reservation.views.adapters.hotel.rooms.** { *; }

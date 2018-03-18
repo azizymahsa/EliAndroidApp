@@ -189,8 +189,8 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Prefs.getString("lang","fa"));
-                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                        "لطفا مکان مورد نظر را اعلام نمایید...");
+        /*        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                        "لطفا مکان مورد نظر را اعلام نمایید...");*/
                 try {
                     startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
                 } catch (ActivityNotFoundException a) {

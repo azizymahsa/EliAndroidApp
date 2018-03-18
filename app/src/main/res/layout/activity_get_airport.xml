@@ -73,6 +73,9 @@
                 fancy:fb_text=" "
                 fancy:fb_textColor="@color/text_color_4d"
                 fancy:fb_textSize="@dimen/_14dp_txtSize" />
+
+
+
         </RelativeLayout>
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"

@@ -39,12 +39,10 @@
                 android:background="#ededed"
                 android:gravity="center"
                 android:padding="5dp"
-                android:textColor="@color/text_color_4d"
-                android:textAppearance="@style/IrsansBold"
-                android:textSize="@dimen/_14dp_txtSize"
-
                 android:text="@string/Stop"
-                />
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_4d"
+                android:textSize="@dimen/_14dp_txtSize" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -132,12 +130,9 @@
                 android:background="#ededed"
                 android:gravity="center"
                 android:padding="5dp"
-                android:textColor="@color/text_color_4d"
-                android:textAppearance="@style/IrsansBold"
-                android:textSize="@dimen/_14dp_txtSize"
-
                 android:text="@string/class_flight"
-                />
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="14dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -209,7 +204,15 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
+
+            </LinearLayout>
 
 
             <View
@@ -290,12 +293,10 @@
                 android:background="#ededed"
                 android:gravity="center"
                 android:padding="5dp"
-                android:textColor="@color/text_color_4d"
-                android:textAppearance="@style/IrsansBold"
-                android:textSize="@dimen/_14dp_txtSize"
-
                 android:text="@string/AirLine"
-                />
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_4d"
+                android:textSize="@dimen/_14dp_txtSize" />
 
             <LinearLayout
                 android:layout_width="match_parent"
