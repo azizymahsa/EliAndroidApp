@@ -18,6 +18,7 @@ public class SelectFlightHotelModel {
     private String price;
     private String imageUrl;
     private String location;
+    private boolean animation=false;
 
     int oldPrice;
     int star;
@@ -60,6 +61,14 @@ public class SelectFlightHotelModel {
         Amount = amount;
         Locations = locations;
         FlightId = flightId;
+    }
+
+    public boolean isAnimation() {
+        return animation;
+    }
+
+    public void setAnimation(boolean animation) {
+        this.animation = animation;
     }
 
     public String getName() {
