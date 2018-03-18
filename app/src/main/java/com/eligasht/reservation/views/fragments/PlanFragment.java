@@ -48,8 +48,6 @@ import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
 public class PlanFragment extends Fragment implements OnClickListener, TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
-    public PlanFragment() {
-    }
 
     public static boolean flag;
     public static TextView tarikh_az_picker;

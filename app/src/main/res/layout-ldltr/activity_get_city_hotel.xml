@@ -30,30 +30,17 @@
             fancy:fb_text=" "
             fancy:fb_textColor="#FFFFFF"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="@dimen/_30dp_search"
 
             android:layout_weight="100"
             android:background="@drawable/edittext"
-            android:layout_marginRight="20dp"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal"
 
             >
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btnMic"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="right|center"
-                android:gravity="right"
-                fancy:fb_defaultColor="@android:color/transparent"
-                fancy:fb_focusColor="@color/focusColor"
 
-                fancy:fb_radius="200dp"
-                fancy:fb_text=" "
-                fancy:fb_textColor="@color/text_color_4d"
-                fancy:fb_textSize="20dp" />
             <EditText
                 android:id="@+id/searchtxt"
                 android:layout_width="match_parent"
@@ -65,27 +52,38 @@
                 android:textSize="@dimen/_14dp_txtSize"
 
                 />
-            <com.github.zagum.speechrecognitionview.RecognitionProgressView
-                android:id="@+id/recognition_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-        </LinearLayout>
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnMic"
+                android:layout_width="@dimen/_35dp"
+                android:layout_height="@dimen/_35dp"
+                android:layout_gravity="right|center"
+                android:gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="@color/focusColor"
 
-        <com.wang.avi.AVLoadingIndicatorView
+                fancy:fb_radius="200dp"
+                fancy:fb_text=" "
+                fancy:fb_textColor="@color/text_color_4d"
+                fancy:fb_textSize="@dimen/_14dp_txtSize" />
+        </RelativeLayout>
 
-            android:id="@+id/avi"
-            style="@style/AVLoadingIndicatorView"
-            android:layout_width="@dimen/_30dp"
-            android:layout_height="@dimen/_30dp"
-            android:layout_below="@+id/ivSplash"
+        <LinearLayout
+            android:layout_width="@dimen/toolbar_bottom_width_50dp"
+            android:layout_height="@dimen/toolbar_bottom_width_50dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginRight="10dp"
+            >
+            <com.wang.avi.AVLoadingIndicatorView
 
-            android:visibility="invisible"
-            app:indicatorColor="#ffffff"
-            app:indicatorName="BallPulseIndicator" />
+                android:id="@+id/avi"
+                style="@style/AVLoadingIndicatorView"
+                android:gravity="center"
+                android:visibility="invisible"
+                app:indicatorColor="#ffffff"
+                app:indicatorName="BallPulseIndicator"
+
+                />
+        </LinearLayout>
 
     </LinearLayout>
 

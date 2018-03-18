@@ -15,20 +15,23 @@
         android:layout_weight="15"
         android:background="@color/toolbar_color"
         android:orientation="horizontal">
-
-        <com.wang.avi.AVLoadingIndicatorView
-
-            android:id="@+id/avi"
-            style="@style/AVLoadingIndicatorView"
-            android:layout_width="@dimen/_30dp"
-            android:layout_height="@dimen/_30dp"
-            android:layout_below="@+id/ivSplash"
+        <LinearLayout
+            android:layout_width="@dimen/toolbar_bottom_width_50dp"
+            android:layout_height="@dimen/toolbar_bottom_width_50dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:visibility="invisible"
-            app:indicatorColor="#ffffff"
-            app:indicatorName="BallPulseIndicator" />
+            >
+            <com.wang.avi.AVLoadingIndicatorView
+
+                android:id="@+id/avi"
+                style="@style/AVLoadingIndicatorView"
+                android:gravity="center"
+                android:visibility="invisible"
+                app:indicatorColor="#ffffff"
+                app:indicatorName="BallPulseIndicator"
+
+                />
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -36,7 +39,6 @@
 
             android:layout_weight="100"
             android:background="@drawable/edittext"
-            android:layout_marginLeft="20dp"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal"
 
@@ -55,8 +57,8 @@
                 />
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btnMic"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
+                android:layout_width="@dimen/_35dp"
+                android:layout_height="@dimen/_35dp"
                 android:layout_gravity="right|center"
                 android:gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
@@ -65,7 +67,7 @@
                 fancy:fb_radius="200dp"
                 fancy:fb_text=" "
                 fancy:fb_textColor="@color/text_color_4d"
-                fancy:fb_textSize="15dp" />
+                fancy:fb_textSize="@dimen/_14dp_txtSize" />
         </RelativeLayout>
 
 

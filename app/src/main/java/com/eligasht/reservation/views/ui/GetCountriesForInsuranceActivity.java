@@ -1,9 +1,12 @@
 package com.eligasht.reservation.views.ui;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
@@ -21,6 +25,7 @@ import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.pack.call.CountryListReq;
 import com.eligasht.reservation.models.model.pack.call.CountryRequestModel;
 import com.eligasht.reservation.models.model.pack.response.CountryListRes;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.views.adapters.GetAirPortMabdaAdapter;
 import com.eligasht.reservation.views.adapters.GetCountriesForInsuranceAdapter;
@@ -51,10 +56,11 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
     ArrayList<HashMap<String, String>> mylist = null;
     GetAirPortMabdaAdapter mAdapter;
     AVLoadingIndicatorView avi;
-    FancyButton btnBack;
+    FancyButton btnBack,btnMic;
     private Handler progressBarHandler = new Handler();
     private ClientService service;
     private EditText searchtxt;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +69,14 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
         avi = findViewById(R.id.avi);
         btnBack = findViewById(R.id.btnBack);
         listAirPort = findViewById(R.id.listAirPort);
+        btnBack = findViewById(R.id.btnBack);
+        btnMic = findViewById(R.id.btnMic);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnMic.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
+        btnMic.setText(getString(R.string.icon_mic));
         btnBack.setOnClickListener(this);
+        btnMic.setOnClickListener(this);
         service = ServiceGenerator.createService(ClientService.class);
         searchtxt = findViewById(R.id.searchtxt);
         searchtxt.addTextChangedListener(
@@ -165,16 +176,50 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
     }
 
 
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        // TODO Auto-generated method stub
+        switch (v.getId()){
             case R.id.btnBack:
                 finish();
                 break;
-        }
-        // TODO Auto-generated method stub
+            case R.id.btnMic:
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Prefs.getString("lang","fa"));
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                        "لطفا مکان مورد نظر را اعلام نمایید...");
+                try {
+                    startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+                } catch (ActivityNotFoundException a) {
+                    Toast.makeText(getApplicationContext(),
+                            "Error",
+                            Toast.LENGTH_SHORT).show();
+                }
 
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+
+
+
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    searchtxt.setText(result.get(0));
+                }
+                break;
+            }
+
+        }
     }
 
     private void showLoading() {
