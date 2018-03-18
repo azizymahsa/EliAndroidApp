@@ -27,7 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/pack_room_background"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_10dp_margin"
+        >
 
 
 
@@ -36,6 +38,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_marginLeft="@dimen/_15dp"
       >
 
         <LinearLayout
@@ -43,14 +47,15 @@
             android:layout_height="wrap_content"
             android:background="@drawable/background_purple"
             android:orientation="horizontal"
-            android:layout_marginLeft="10dp">
+        >
             <ImageView
                 android:id="@+id/btn_remove"
-                android:layout_width="50sp"
-                android:layout_height="30sp"
+                android:layout_width="@dimen/_50dp_passenger"
+                android:layout_height="@dimen/_30dp_passenger"
                 android:padding="3sp"
                 android:src="@drawable/ic_remove_black_24dp"
-                android:tint="@color/colorPrimaryDark"/>
+                android:tint="@color/colorPrimaryDark"
+                android:background="?attr/selectableItemBackground"/>
 
 
             <View
@@ -59,11 +64,12 @@
                 android:background="@color/colorPrimaryDark" />
             <ImageView
                 android:id="@+id/btn_add"
-                android:layout_width="50sp"
-                android:layout_height="30sp"
+                android:layout_width="@dimen/_50dp_passenger"
+                android:layout_height="@dimen/_30dp_passenger"
                 android:src="@drawable/ic_add_black_24dp"
                 android:padding="3sp"
-                android:tint="@color/colorPrimaryDark"/>
+                android:tint="@color/colorPrimaryDark"
+                android:background="?attr/selectableItemBackground"/>
 
 
 
@@ -79,20 +85,19 @@
             android:text="( 1 )"
             android:textColor="@color/TextColor"
             android:textAppearance="@style/IrsansBold"
-            android:textSize="14sp"
+            android:textSize="@dimen/_16dp_txtSize"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:padding="5sp"
             android:text="@string/room"
             android:textColor="@color/TextColor"
-            android:textSize="14sp"
+            android:textSize="@dimen/_16dp_txtSize"
             android:textStyle="bold"
             android:textAppearance="@style/IrsansBold"
-            android:layout_marginRight="10dp"/>
+      />
 
 
 

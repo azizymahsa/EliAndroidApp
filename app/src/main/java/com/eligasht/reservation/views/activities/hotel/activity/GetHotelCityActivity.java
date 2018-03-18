@@ -362,6 +362,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
                 finish();
                 break;
             case R.id.btnMic:
+                searchtxt.setText("");
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);

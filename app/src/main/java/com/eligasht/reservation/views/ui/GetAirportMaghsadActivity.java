@@ -26,9 +26,12 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -36,6 +39,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 import com.pixplicity.easyprefs.library.Prefs;
@@ -54,13 +58,15 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class GetAirportMaghsadActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+
     Handler handler;
     ProgressDialog progressBar;
     private Handler progressBarHandler = new Handler();
     public ListView list_airport;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
-    FancyButton btnBack;
+    FancyButton btnBack,btnMic;
 
     GetAirPortMaghsadAdapter mAdapter;
     private EditText searchtxt;
@@ -76,9 +82,13 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         //Make call to AsyncTask
         //new AsyncFetch().execute();
         btnBack = findViewById(R.id.btnBack);
+        btnMic = findViewById(R.id.btnMic);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnMic.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
+        btnMic.setText(getString(R.string.icon_mic));
         btnBack.setOnClickListener(this);
+        btnMic.setOnClickListener(this);
         //////////////////show recent
         ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
         List<Country> data = new ArrayList<>();
@@ -431,6 +441,43 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
             case R.id.btnBack:
                 finish();
                 break;
+            case R.id.btnMic:
+                searchtxt.setText("");
+
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, com.eligasht.reservation.tools.Prefs.getString("lang","fa"));
+        /*        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                        "لطفا مکان مورد نظر را اعلام نمایید...");*/
+                try {
+                    startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+                } catch (ActivityNotFoundException a) {
+                    Toast.makeText(getApplicationContext(),
+                            "Error",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+
+
+
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    searchtxt.setText(result.get(0));
+                }
+                break;
+            }
+
         }
     }
 

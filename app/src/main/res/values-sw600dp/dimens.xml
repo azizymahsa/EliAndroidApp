@@ -26,7 +26,7 @@
     <dimen name="margin_top">7dp</dimen>
     <dimen name="_200dp">400dp</dimen>
     <dimen name="_10dp_marging">15dp</dimen>
-    <dimen name="_14dp_txtSize">20dp</dimen>
+    <dimen name="_14dp_txtSize">18dp</dimen>
     <dimen name="_2dp_margin">2dp</dimen>
     <dimen name="_15dp_margin">25dp</dimen>
     <dimen name="_5sp_padding">5dp</dimen>
@@ -45,7 +45,7 @@
     <dimen name="_21dp_margin">21dp</dimen>
     <dimen name="_40dp">60dp</dimen>
     <dimen name="_30dp">45dp</dimen>
-    <dimen name="_15dp">25dp</dimen>
+    <dimen name="_15dp">23dp</dimen>
     <dimen name="detail_setting">18sp</dimen>
 
     <dimen name="bottom_tab">18dp</dimen>
@@ -145,5 +145,7 @@
     <dimen name="_1dp_flight">8dp</dimen>
     <dimen name="_30dp_flight">45dp</dimen>
     <dimen name="_30dp_search">50dp</dimen>
+    <dimen name="_50dp_passenger">40dp</dimen>
+    <dimen name="_30dp_passenger">25sp</dimen>
 
 </resources>

@@ -217,7 +217,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
             public void onFailure(Call<InsuranceRes> call, Throwable t) {
                 hideLoading();
                 showText();
-                txt_error.setText(t.getMessage());
+                txt_error.setText(getString(R.string.ErrorServer));
                 error_layout.setVisibility( View.VISIBLE  );
 
             }

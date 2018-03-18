@@ -14,14 +14,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:gravity="center"
-        android:paddingBottom="15sp"
-        android:paddingLeft="15sp"
-        android:paddingRight="15sp"
-        android:paddingTop="15sp"
-        android:text="به زودی ..."
+        android:paddingBottom="@dimen/_10dp_margin"
+        android:paddingLeft="@dimen/_10dp_margin"
+        android:paddingRight="@dimen/_10dp_margin"
+        android:paddingTop="@dimen/_10dp_margin"
+        android:text="@string/coming_soon"
         android:textAppearance="@style/IrsansBold"
         android:textColor="#878787"
-        android:textSize="12sp" />
+        android:textSize="@dimen/_12dp_normal_textSize" />
 
     <LinearLayout
         android:id="@+id/layout_date"
