@@ -187,6 +187,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
 		txtTitleCountM.setOnClickListener(this);
+		//txtTitleCountM.setOnClickListener(v -> Log.d("debug", "Button clicked"));
 		txttavalodm = (TextView) findViewById(R.id.txttavalodm);
 		txttavalodm.setOnClickListener(this);
 		txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
@@ -422,16 +423,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		});
 
 		btnmard = (RadioButton) findViewById(R.id.mard);
-		btnmard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if(btnmard.isChecked()){
-					btnzan.setChecked(false);
-					System.out.println("mard");
-					Gensiyat="true";
-				}
-			}
-		});
+		btnmard.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(btnmard.isChecked()){
+                btnzan.setChecked(false);
+                System.out.println("mard");
+                Gensiyat="true";
+            }
+        });
 
 		rlLoading = findViewById(R.id.rlLoading);
 		rlRoot = findViewById(R.id.rlRoot);

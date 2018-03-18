@@ -139,7 +139,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         tvEnd = (TextView) rootView.findViewById(R.id.tvEnd);
         lbl_forudgah_mabda = (TextView) rootView.findViewById(R.id.lbl_forudgah_mabda);
         lbl_forudgah_maghsad = (TextView) rootView.findViewById(R.id.lbl_forudgah_maghsad);
-
+        lbl_forudgah_maghsad.setOnClickListener(v -> Log.d("debug", "Button clicked"));
 
         linear_tarikh_az_picker.setOnClickListener(this);
         //linear_picker.setOnClickListener(this);
