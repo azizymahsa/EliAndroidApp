@@ -1,11 +1,5 @@
 package com.eligasht.reservation.views.fragments;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,32 +21,40 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
-import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
-import com.eligasht.reservation.views.picker.global.model.CustomDate;
-import com.eligasht.reservation.views.picker.global.model.SingletonDate;
-import com.eligasht.reservation.views.picker.utils.CalendarDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
-import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
+import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
+import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
+import com.eligasht.reservation.views.picker.utils.CalendarDialog;
+import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
 import com.eligasht.reservation.views.ui.GetAirportMaghsadActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
+import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.pixplicity.easyprefs.library.Prefs;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class PlanFragment extends Fragment implements OnClickListener, TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
 
     public static boolean flag;
     public static TextView tarikh_az_picker;
     public static TextView tarikh_be_picker;
-    public TextView txtCountB, tvStart, tvEnd, txtCountK, txtCountN, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchPlan;
+    private TickerView txtCountB;
+    public TextView tvStart, tvEnd, txtCountK, txtCountN, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchPlan;
     public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     private LinearLayout linear_picker_title;
     public int flagOneTwo = 2;
@@ -75,7 +77,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     String raft, bargasht;
     LinearLayout linearLayout_mabda, linearLayout_maghsad;
     ImageView ivImage;
-    public LinearLayout linear_tarikh_az_picker,linear_picker;
+    public LinearLayout linear_tarikh_az_picker, linear_picker;
     public static int countNafar = 1;
     LinearLayout llButton;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
@@ -97,7 +99,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
         llButton = ((LinearLayout) rootView.findViewById(R.id.llButton));
 
-       // linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
+        // linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
         linear_tarikh_az_picker = (LinearLayout) rootView.findViewById(R.id.linear_tarikh_az_picker);
         tarikh_az_picker = (TextView) rootView.findViewById(R.id.tarikh_az_picker);
         tarikh_be_picker = (TextView) rootView.findViewById(R.id.tarikh_be_picker);
@@ -130,7 +132,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         txtNO = (TextView) rootView.findViewById(R.id.txtNO);
 
         textView3 = (TextView) rootView.findViewById(R.id.textView3);
-        txtCountB = (TextView) rootView.findViewById(R.id.txtCountB);
+        txtCountB = rootView.findViewById(R.id.txtCountB);
         txtCountK = (TextView) rootView.findViewById(R.id.txtCountK);
         txtCountN = (TextView) rootView.findViewById(R.id.txtCountN);
         tvStart = (TextView) rootView.findViewById(R.id.tvStart);
@@ -465,9 +467,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         if (isInRange(1, 8, btnPlusBIntVal))
                             btnPlusBIntVal = btnPlusBIntVal + 1;
                         txtCountB.setText(String.valueOf(btnPlusBIntVal));//}
-                        YoYo.with(Techniques.Shake)
-                                .duration(200)
-                                .playOn(txtCountB);
+//                        YoYo.with(Techniques.Shake)
+//                                .duration(200)
+//                                .playOn(txtCountB);
                     } catch (Exception e) {
                         e.printStackTrace();
                         //  Toast.makeText(getActivity(), "Some error :(", 2000).show();
@@ -483,9 +485,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     if (isInRange(2, 9, btnMinesBIntVal))
                         btnMinesBIntVal = btnMinesBIntVal - 1;
                     txtCountB.setText(String.valueOf(btnMinesBIntVal));//}
-                    YoYo.with(Techniques.Shake)
-                            .duration(200)
-                            .playOn(txtCountB);
+//                    YoYo.with(Techniques.Shake)
+//                            .duration(200)
+//                            .playOn(txtCountB);
                 } catch (Exception e) {
                     e.printStackTrace();
                     //   Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -679,16 +681,15 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             case R.id.linear_tarikh_az_picker:
 
                 SingletonDate.getInstance().checkConflictDate();
-                    if (flagOneTwo == 1) {
-                        calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.NationalFlight);
+                if (flagOneTwo == 1) {
+                    calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.NationalFlight);
 
-                    } else {
-                        //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
-                        calendarDialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
+                } else {
+                    //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
+                    calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
 
 
-                    }
-
+                }
 
 
                 break;
@@ -983,7 +984,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             tarikh_az_picker.setText(startDate.getDescription());
             SingletonDate.getInstance().setStartDate(startDate);
         } else {
-            SingletonDate.getInstance().setReverseDate(startDate,endDate);
+            SingletonDate.getInstance().setReverseDate(startDate, endDate);
             tarikh_az_picker.setText(startDate.getDescription());
             tarikh_be_picker.setText(endDate.getDescription());
 
