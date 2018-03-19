@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="stepview_line_done">#00ffff</color>
+    <color name="stepview_line_next">#00ffff</color>
+    <color name="stepview_text_next">#00ffff</color>
+    <color name="stepview_text_done">#00ffff</color>
+    <color name="stepview_text_selected">#00ffff</color>
+    <color name="stepview_circle_done">#00ffff</color>
+    <color name="stepview_circle_selected">#00ffff</color>
+    <color name="stepview_selected_number">#25448a</color>
+    <color name="stepview_mark">#00ffff</color>
+</resources>

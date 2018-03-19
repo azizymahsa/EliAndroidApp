@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+
+
+ext {
+    bintrayRepo = 'StepView'
+    bintrayName = 'stepview'
+
+    publishedGroupId = 'com.shuhart.stepview'
+    libraryName = 'stepview'
+    artifact = 'stepview'
+
+    libraryDescription = 'A simple animated StepView for Android'
+
+    siteUrl = 'https://github.com/shuhart/StepView'
+    gitUrl = 'https://github.com/shuhart/StepView.git'
+
+    libraryVersion = '1.2.6'
+
+    developerId = 'shuhart'
+    developerName = 'Redrick Shuhart'
+    developerEmail = 'kornev.b@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+    }
+}
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation "com.android.support:support-annotations:26.1.0"
+    implementation "com.android.support:appcompat-v7:26.1.0"
+}
+
+
