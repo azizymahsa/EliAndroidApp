@@ -67,7 +67,8 @@ public class InsurnaceDetailAdapter  extends BaseAdapter {
         }
         Typeface face = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.iran_sans_bold_ttf));
         Typeface face2 = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.iran_sans_normal_ttf));
-        holder.tvPrice.setAnimationDelay(500);
+        holder.tvPrice.setAnimationDelay(1000);
+        holder.tvPrice.setText("");
         holder.tvPrice.setText(arrayList.get(position).getPrice());
         holder.tvTitle.setText(arrayList.get(position).getTitle());
         holder.tvPrice.setTypeface(face);

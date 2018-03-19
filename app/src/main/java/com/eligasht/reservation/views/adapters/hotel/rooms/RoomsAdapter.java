@@ -109,7 +109,8 @@ public class RoomsAdapter extends BaseAdapter {
         }
         holder.tvBoard.setText(roomsModels.get(position).getBoard());
         holder.tvTitle.setText(roomsModels.get(position).getTitle());
-        holder.tvPrice.setAnimationDelay(500);
+        holder.tvPrice.setAnimationDelay(1000);
+        holder.tvPrice.setText("");
         holder.tvPrice.setText(Utility.priceFormat(roomsModels.get(position).getPrice()) + "");
         holder.tvDesc.setText(roomsModels.get(position).getDesc());
 

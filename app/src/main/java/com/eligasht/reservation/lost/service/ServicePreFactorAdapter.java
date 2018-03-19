@@ -54,7 +54,8 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         holder.tvServiceFa.setText(item.getServiceNameFa());
         holder.tvCityName.setText(item.getCityFa());
         holder.tvTypeService.setText(item.getServiceType());
-        holder.tvPrice.setAnimationDelay(500);
+        holder.tvPrice.setAnimationDelay(1000);
+        holder.tvPrice.setText("");
         holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice()));
 
         if (item.getServiceNameFa().contains("بیمه")) {
