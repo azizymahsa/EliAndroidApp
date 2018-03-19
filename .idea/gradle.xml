@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/materialdatetimepicker" />
             <option value="$PROJECT_DIR$/persianmaterialdatetimepicker" />
+            <option value="$PROJECT_DIR$/stepview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
