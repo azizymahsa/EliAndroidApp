@@ -51,7 +51,7 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.list_image_item, null);
             holder = new ViewHolder();
-            holder.ivImage = (ImageView) convertView.findViewById(R.id.ivImage);
+            holder.ivImage = convertView.findViewById(R.id.ivImage);
 
             convertView.setTag(holder);
         } else {

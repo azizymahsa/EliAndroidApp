@@ -50,9 +50,9 @@ public class StarFilterAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.filter_hotel_type_price, null);
             holder = new ViewHolder();
-            holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-            holder.tvRial = (TextView) convertView.findViewById(R.id.tvRial);
-            holder.checkbox = (SmoothCheckBox) convertView.findViewById(R.id.checkbox);
+            holder.tvTitle = convertView.findViewById(R.id.tvTitle);
+            holder.tvRial = convertView.findViewById(R.id.tvRial);
+            holder.checkbox = convertView.findViewById(R.id.checkbox);
 
 
             convertView.setTag(holder);

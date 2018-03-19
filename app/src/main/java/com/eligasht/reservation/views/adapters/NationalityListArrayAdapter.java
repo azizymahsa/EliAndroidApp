@@ -37,8 +37,8 @@ public class NationalityListArrayAdapter extends ArrayAdapter<NationalitycodeAct
             LayoutInflater inflator = context.getLayoutInflater();
             view = inflator.inflate(R.layout.activity_countrycode_row, null);
             final ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = (TextView) view.findViewById(R.id.name);
-            viewHolder.flag = (ImageView) view.findViewById(R.id.flag);
+            viewHolder.name = view.findViewById(R.id.name);
+            viewHolder.flag = view.findViewById(R.id.flag);
             view.setTag(viewHolder);
         } else {
             view = convertView;

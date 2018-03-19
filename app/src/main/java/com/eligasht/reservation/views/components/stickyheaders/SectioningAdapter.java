@@ -610,7 +610,7 @@ public class SectioningAdapter extends RecyclerView.Adapter<SectioningAdapter.Vi
 
 		// walk the section indices backwards
 		List<Integer> sectionIndices = new ArrayList<>(selectionStateBySection.keySet());
-		Collections.sort(sectionIndices, Collections.<Integer>reverseOrder());
+		Collections.sort(sectionIndices, Collections.reverseOrder());
 
 		for (int sectionIndex : sectionIndices) {
 			SectionSelectionState state = selectionStateBySection.get(sectionIndex);

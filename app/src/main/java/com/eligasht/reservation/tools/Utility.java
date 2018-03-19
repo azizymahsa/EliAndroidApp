@@ -179,10 +179,7 @@ public class Utility extends Activity {
         year = year + 38;
         year = year * 31;
         year = year % 128;
-        if (year > 30)
-            return false;
-        else
-            return true;
+        return year <= 30;
     }
 
     public static void CallUSSD(String USSDMessage, Context mContext) {
@@ -308,11 +305,7 @@ public class Utility extends Activity {
 			return false;
 		}*/
         try {
-            if (in.isReachable(5000)) {
-                return true;
-            } else {
-                return false;
-            }
+            return in.isReachable(5000);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -356,12 +349,8 @@ public class Utility extends Activity {
         view.getLocationOnScreen(location);
         int viewX = location[0];
         int viewY = location[1];
-        if ((x > viewX && x < (viewX + view.getWidth()))
-                && (y > viewY && y < (viewY + view.getHeight()))) {
-            return true;
-        } else {
-            return false;
-        }
+        return (x > viewX && x < (viewX + view.getWidth()))
+                && (y > viewY && y < (viewY + view.getHeight()));
     }
 
     public static String getVersionInfos() {
@@ -705,13 +694,7 @@ public class Utility extends Activity {
 
 
         try {
-            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
-                login = true;
-
-            } else {
-
-                login = false;
-            }
+            login = WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1;
         } catch (Exception e) {
             login = false;
 
@@ -741,15 +724,11 @@ public class Utility extends Activity {
             Date date;
             Date date2;
             formatter = new SimpleDateFormat("yyyy/MM/dd");
-            date = (Date) formatter.parse(Depart);
-            date2 = (Date) formatter.parse(Return);
+            date = formatter.parse(Depart);
+            date2 = formatter.parse(Return);
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
-            if (date2.getTime() < date.getTime()) {
-                return true;
-            } else {
-                return false;
-            }
+            return date2.getTime() < date.getTime();
 
         } catch (Exception e) {
             return false;

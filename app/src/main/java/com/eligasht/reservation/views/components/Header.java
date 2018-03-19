@@ -43,10 +43,10 @@ public class Header extends LinearLayout implements OnClickListener,
 			menu = findViewById(R.id.menu);
 			if (menu != null)
 				menu.setOnClickListener(this);
-			searchText = (EditText) findViewById(R.id.searchText);
+			searchText = findViewById(R.id.searchText);
 			searchText.addTextChangedListener(this);
 			Utility.hideKeyboard(getContext(), searchText);
-			filterIcon = (ImageView) findViewById(R.id.filter);
+			filterIcon = findViewById(R.id.filter);
 			filterIcon.setOnClickListener(this);
 			findViewById(R.id.clear).setOnClickListener(this);
 		} catch (Exception e) {
@@ -113,7 +113,7 @@ public class Header extends LinearLayout implements OnClickListener,
 	}
 
 	public interface onSearchTextChangedListener {
-		public void searchTextChanged(String searchText);
+		void searchTextChanged(String searchText);
 	}
 
 	public void setOnSearchTextChangedListener(

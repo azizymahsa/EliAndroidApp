@@ -224,7 +224,7 @@ public class JalaliCalendar extends Calendar {
         jalaliNP = (int) Math.floor(jalaliDayNo / 12053);
         jalaliDayNo = jalaliDayNo % 12053;
 
-        jalaliYear = 979 + 33 * jalaliNP + 4 * (int) (jalaliDayNo / 1461);
+        jalaliYear = 979 + 33 * jalaliNP + 4 * jalaliDayNo / 1461;
         jalaliDayNo = jalaliDayNo % 1461;
 
         if (jalaliDayNo >= 366) {
@@ -258,7 +258,7 @@ public class JalaliCalendar extends Calendar {
         jalali.setYear(jalali.getYear() - 979);
         jalali.setDate(jalali.getDate() - 1);
 
-        jalaliDayNo = 365 * jalali.getYear() + (int) (jalali.getYear() / 33) * 8
+        jalaliDayNo = 365 * jalali.getYear() + jalali.getYear() / 33 * 8
                 + (int) Math.floor(((jalali.getYear() % 33) + 3) / 4);
         for (i = 0; i < jalali.getMonth(); ++i) {
             jalaliDayNo += jalaliDaysInMonth[i];
@@ -326,7 +326,6 @@ public class JalaliCalendar extends Calendar {
                 dayOfYear--;
                 break;
         }
-        ;
         dayOfYear = (int) Math.floor(dayOfYear / 7);
         return dayOfYear + 1;
     }
@@ -340,10 +339,8 @@ public class JalaliCalendar extends Calendar {
 
     public static boolean isLeepYear(int year) {
         //Algorithm from www.wikipedia.com
-        if ((year % 33 == 1 || year % 33 == 5 || year % 33 == 9 || year % 33 == 13 ||
-                year % 33 == 17 || year % 33 == 22 || year % 33 == 26 || year % 33 == 30)) {
-            return true;
-        } else return false;
+        return (year % 33 == 1 || year % 33 == 5 || year % 33 == 9 || year % 33 == 13 ||
+                year % 33 == 17 || year % 33 == 22 || year % 33 == 26 || year % 33 == 30);
     }
 
     @Override

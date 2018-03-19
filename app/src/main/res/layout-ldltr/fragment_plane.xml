@@ -388,12 +388,14 @@
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
-                            <TextView
+                            <com.eligasht.reservation.views.ticker.TickerView
                                 android:id="@+id/txtCountB"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_gravity="top"
+                                android:gravity="center_vertical"
                                 android:text="1"
+                                card_view:ticker_defaultCharacterList="number"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
@@ -445,14 +447,16 @@
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
-                            <TextView
+                            <com.eligasht.reservation.views.ticker.TickerView
                                 android:id="@+id/txtCountK"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_gravity="top"
                                 android:text="0"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/_12dp_normal_textSize" />
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:gravity="center_vertical"
+                                card_view:ticker_defaultCharacterList="number"/>
 
                             <Button
                                 android:id="@+id/btnPlusK"
@@ -501,14 +505,16 @@
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
-                            <TextView
+                            <com.eligasht.reservation.views.ticker.TickerView
                                 android:id="@+id/txtCountN"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_gravity="top"
                                 android:text="0"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/_12dp_normal_textSize" />
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:gravity="center_vertical"
+                                card_view:ticker_defaultCharacterList="number"/>
 
                             <Button
                                 android:id="@+id/btnPlusN"

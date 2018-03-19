@@ -98,26 +98,26 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.row_select_parvaz_two_detail, parent,false);
         }
-        LinearLayout llCounter = (LinearLayout) convertView.findViewById(R.id.llCounter);
-        TextView lblFlightTimeR = (TextView) convertView.findViewById(R.id.lblFlightTimeR);
-        TextView lblFlightArrivalTimeR = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeR);
-        TextView lblDepurtureAirportR = (TextView) convertView.findViewById(R.id.lblDepurtureAirportR);
-        TextView lblArrivalAirportR = (TextView) convertView.findViewById(R.id.lblArrivalAirportR);
-        TextView lblFlightNumberR = (TextView) convertView.findViewById(R.id.lblFlightNumberR);
-        TextView lblFlightNumberRPersian = (TextView) convertView.findViewById(R.id.lblFlightNumberPersian);
+        LinearLayout llCounter = convertView.findViewById(R.id.llCounter);
+        TextView lblFlightTimeR = convertView.findViewById(R.id.lblFlightTimeR);
+        TextView lblFlightArrivalTimeR = convertView.findViewById(R.id.lblFlightArrivalTimeR);
+        TextView lblDepurtureAirportR = convertView.findViewById(R.id.lblDepurtureAirportR);
+        TextView lblArrivalAirportR = convertView.findViewById(R.id.lblArrivalAirportR);
+        TextView lblFlightNumberR = convertView.findViewById(R.id.lblFlightNumberR);
+        TextView lblFlightNumberRPersian = convertView.findViewById(R.id.lblFlightNumberPersian);
 
-        LinearLayout linearTableNerkh = (LinearLayout) convertView.findViewById(R.id.linearTableNerkh);//
-        LinearLayout linearButton = (LinearLayout) convertView.findViewById(R.id.linearButton);
+        LinearLayout linearTableNerkh = convertView.findViewById(R.id.linearTableNerkh);//
+        LinearLayout linearButton = convertView.findViewById(R.id.linearButton);
         //nerkh
-        TextView txtAdlCostP = (TextView) convertView.findViewById(R.id.txtAdlCostP);
-        TextView txtTaxes = (TextView) convertView.findViewById(R.id.txtTaxes);
-        TextView txtTotalFareCost = (TextView) convertView.findViewById(R.id.txtTotalFareCost);
+        TextView txtAdlCostP = convertView.findViewById(R.id.txtAdlCostP);
+        TextView txtTaxes = convertView.findViewById(R.id.txtTaxes);
+        TextView txtTotalFareCost = convertView.findViewById(R.id.txtTotalFareCost);
 
-        TextView txtAdlCostPR = (TextView) convertView.findViewById(R.id.txtAdlCostPR);
-        TextView txtTaxesR = (TextView) convertView.findViewById(R.id.txtTaxesR);
-        TextView txtTotalFareCostR = (TextView) convertView.findViewById(R.id.txtTotalFareCostR);
+        TextView txtAdlCostPR = convertView.findViewById(R.id.txtAdlCostPR);
+        TextView txtTaxesR = convertView.findViewById(R.id.txtTaxesR);
+        TextView txtTotalFareCostR = convertView.findViewById(R.id.txtTotalFareCostR);
 
-        Button btnSelect = (Button) convertView.findViewById(R.id.btnSelect);
+        Button btnSelect = convertView.findViewById(R.id.btnSelect);
 
         //nerkh
         if (item.AdlBaseFare > 0) {
@@ -202,7 +202,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("searchKey", searchKey);
                     returnIntent.putExtra("FlightId", item.flGUID);
-                    _context.setResult(_context.RESULT_OK, returnIntent);
+                    _context.setResult(Activity.RESULT_OK, returnIntent);
                     _context.finish();
                 } else {
                     Intent i4 = new Intent(_context, PassengerActivity.class);
@@ -264,42 +264,42 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
 
-        TextView btnExpand = (TextView) convertView.findViewById(R.id.btnExpand);
+        TextView btnExpand = convertView.findViewById(R.id.btnExpand);
 
-        final TextView txtPin = (TextView) convertView.findViewById(R.id.txtPin);
+        final TextView txtPin = convertView.findViewById(R.id.txtPin);
 
-        TextView txtArrivelFalseLast = (TextView) convertView.findViewById(R.id.txtArrivelFalseLast);
-        TextView txtDepurtureFalseOne = (TextView) convertView.findViewById(R.id.txtDepurtureFalseOne);
+        TextView txtArrivelFalseLast = convertView.findViewById(R.id.txtArrivelFalseLast);
+        TextView txtDepurtureFalseOne = convertView.findViewById(R.id.txtDepurtureFalseOne);
 
-        TextView txtArrivelTrueLast = (TextView) convertView.findViewById(R.id.txtArrivelTrueLast);
-        TextView txtDepurtureTrueOne = (TextView) convertView.findViewById(R.id.txtDepurtureTrueOne);
+        TextView txtArrivelTrueLast = convertView.findViewById(R.id.txtArrivelTrueLast);
+        TextView txtDepurtureTrueOne = convertView.findViewById(R.id.txtDepurtureTrueOne);
 
 
-        TextView num_flight_r = (TextView) convertView.findViewById(R.id.num_flight_r);
-        TextView num_flight_b = (TextView) convertView.findViewById(R.id.num_flight_b);
+        TextView num_flight_r = convertView.findViewById(R.id.num_flight_r);
+        TextView num_flight_b = convertView.findViewById(R.id.num_flight_b);
         final AVLoadingIndicatorView avi = convertView.findViewById(R.id.avi);
 
-        TextView lblArrivalCityNameFaRTime = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaRTime);
-        TextView lblArrivalCityNameFaR = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaR);
+        TextView lblArrivalCityNameFaRTime = convertView.findViewById(R.id.lblArrivalCityNameFaRTime);
+        TextView lblArrivalCityNameFaR = convertView.findViewById(R.id.lblArrivalCityNameFaR);
 
-        TextView lblFlightArrivalTimeR = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeR);
+        TextView lblFlightArrivalTimeR = convertView.findViewById(R.id.lblFlightArrivalTimeR);
 
-        TextView lblArrivalCityNameFaB = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaB);
-        TextView lblArrivalCityNameFaBTime = (TextView) convertView.findViewById(R.id.lblArrivalCityNameFaBTime);
-        TextView lblFlightArrivalTimeB = (TextView) convertView.findViewById(R.id.lblFlightArrivalTimeB);
+        TextView lblArrivalCityNameFaB = convertView.findViewById(R.id.lblArrivalCityNameFaB);
+        TextView lblArrivalCityNameFaBTime = convertView.findViewById(R.id.lblArrivalCityNameFaBTime);
+        TextView lblFlightArrivalTimeB = convertView.findViewById(R.id.lblFlightArrivalTimeB);
 
-        TextView lblAdlCost = (TextView) convertView.findViewById(R.id.lblAdlCost);
+        TextView lblAdlCost = convertView.findViewById(R.id.lblAdlCost);
 
-        ImageView lblProductrow = (ImageView) convertView.findViewById(R.id.lblProductrow);
+        ImageView lblProductrow = convertView.findViewById(R.id.lblProductrow);
 
-        TextView txt_economi = (TextView) convertView.findViewById(R.id.txt_economi);
+        TextView txt_economi = convertView.findViewById(R.id.txt_economi);
 
-        TextView txttedad = (TextView) convertView.findViewById(R.id.txttedad);
+        TextView txttedad = convertView.findViewById(R.id.txttedad);
 
-        LinearLayout linearBargashtOne = (LinearLayout) convertView.findViewById(R.id.linearBargashtOne);
-        LinearLayout linearBargashtTwo = (LinearLayout) convertView.findViewById(R.id.linearBargashtTwo);
-        LinearLayout linearBargashtTree = (LinearLayout) convertView.findViewById(R.id.linearBargashtTree);
-        LinearLayout linearKol = (LinearLayout) convertView.findViewById(R.id.linearKol);
+        LinearLayout linearBargashtOne = convertView.findViewById(R.id.linearBargashtOne);
+        LinearLayout linearBargashtTwo = convertView.findViewById(R.id.linearBargashtTwo);
+        LinearLayout linearBargashtTree = convertView.findViewById(R.id.linearBargashtTree);
+        LinearLayout linearKol = convertView.findViewById(R.id.linearKol);
         //final int[] flag = {0};
 //        linearKol.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -349,7 +349,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             int count = item2.SegmentFalseCount + item2.SegmentTrueCount;//count segment
             for (int i = 0; i < count; i++) {
                 SearchParvazActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(i);
-                ;
 
                 PinModelDetail pinModelDetail = new PinModelDetail(item.AdlBaseFare, item.Taxes, item.TotalFare, item.FlightTimeR, item.FlightArrivalTimeR, item.DepartureCityNameFa, item.DepartureAirportNameFaR, item.ArrivalCityNameFa, item.ArrivalAirportNameFaR, item.AirlineCode, item.FlightNumberR, item.AirlineNameFaR, this.dataExpandingList.get(groupPosition).Items.size());
                 pinModelDetails.add(pinModelDetail);

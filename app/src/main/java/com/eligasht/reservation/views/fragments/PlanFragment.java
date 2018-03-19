@@ -1,11 +1,5 @@
 package com.eligasht.reservation.views.fragments;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,32 +21,40 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
-import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
-import com.eligasht.reservation.views.picker.global.model.CustomDate;
-import com.eligasht.reservation.views.picker.global.model.SingletonDate;
-import com.eligasht.reservation.views.picker.utils.CalendarDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
-import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
+import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
+import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.picker.global.model.SingletonDate;
+import com.eligasht.reservation.views.picker.utils.CalendarDialog;
+import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
 import com.eligasht.reservation.views.ui.GetAirportMaghsadActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
+import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.pixplicity.easyprefs.library.Prefs;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class PlanFragment extends Fragment implements OnClickListener, TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
 
     public static boolean flag;
     public static TextView tarikh_az_picker;
     public static TextView tarikh_be_picker;
-    public TextView txtCountB, tvStart, tvEnd, txtCountK, txtCountN, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchPlan;
+    private TickerView txtCountB, txtCountK, txtCountN;
+    public TextView tvStart, tvEnd, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchPlan;
     public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     private LinearLayout linear_picker_title;
     public int flagOneTwo = 2;
@@ -75,7 +77,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     String raft, bargasht;
     LinearLayout linearLayout_mabda, linearLayout_maghsad;
     ImageView ivImage;
-    public LinearLayout linear_tarikh_az_picker,linear_picker;
+    public LinearLayout linear_tarikh_az_picker, linear_picker;
     public static int countNafar = 1;
     LinearLayout llButton;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
@@ -95,50 +97,50 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         Utility.sendTag("F", true, false);
         Geo = Prefs.getBoolean("geo", false);
 
-        llButton = ((LinearLayout) rootView.findViewById(R.id.llButton));
+        llButton = rootView.findViewById(R.id.llButton);
 
-       // linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
-        linear_tarikh_az_picker = (LinearLayout) rootView.findViewById(R.id.linear_tarikh_az_picker);
-        tarikh_az_picker = (TextView) rootView.findViewById(R.id.tarikh_az_picker);
-        tarikh_be_picker = (TextView) rootView.findViewById(R.id.tarikh_be_picker);
-        linearLayout_mabda = (LinearLayout) rootView.findViewById(R.id.linearLayout_mabda);
-        linearLayout_maghsad = (LinearLayout) rootView.findViewById(R.id.linearLayout_maghsad);
+        // linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
+        linear_tarikh_az_picker = rootView.findViewById(R.id.linear_tarikh_az_picker);
+        tarikh_az_picker = rootView.findViewById(R.id.tarikh_az_picker);
+        tarikh_be_picker = rootView.findViewById(R.id.tarikh_be_picker);
+        linearLayout_mabda = rootView.findViewById(R.id.linearLayout_mabda);
+        linearLayout_maghsad = rootView.findViewById(R.id.linearLayout_maghsad);
         /*tarikh_az_picker.setTypeface(face);
         tarikh_be_picker.setTypeface(face);*/
 
-        tarikh_az = (TextView) rootView.findViewById(R.id.tarikh_az);
-        tarikh_be = (TextView) rootView.findViewById(R.id.tarikh_be);
-        ivImage = (ImageView) rootView.findViewById(R.id.ivImage);
+        tarikh_az = rootView.findViewById(R.id.tarikh_az);
+        tarikh_be = rootView.findViewById(R.id.tarikh_be);
+        ivImage = rootView.findViewById(R.id.ivImage);
 
 
-        btnPlusB = (Button) rootView.findViewById(R.id.btnPlusB);
-        btnMinesB = (Button) rootView.findViewById(R.id.btnMinesB);
+        btnPlusB = rootView.findViewById(R.id.btnPlusB);
+        btnMinesB = rootView.findViewById(R.id.btnMinesB);
 
-        btnPlusK = (Button) rootView.findViewById(R.id.btnPlusK);
-        btnMinesK = (Button) rootView.findViewById(R.id.btnMinesK);
+        btnPlusK = rootView.findViewById(R.id.btnPlusK);
+        btnMinesK = rootView.findViewById(R.id.btnMinesK);
 
-        btnPlusN = (Button) rootView.findViewById(R.id.btnPlusN);
-        btnMinesN = (Button) rootView.findViewById(R.id.btnMinesN);
+        btnPlusN = rootView.findViewById(R.id.btnPlusN);
+        btnMinesN = rootView.findViewById(R.id.btnMinesN);
 
-        btntwo = (TextView) rootView.findViewById(R.id.btntwo);
-        btnOne = (TextView) rootView.findViewById(R.id.btnOne);
+        btntwo = rootView.findViewById(R.id.btntwo);
+        btnOne = rootView.findViewById(R.id.btnOne);
 
 
         searchPlan = rootView.findViewById(R.id.searchPlan);
-        txtBO = (TextView) rootView.findViewById(R.id.txtBO);
-        txtKO = (TextView) rootView.findViewById(R.id.txtKO);
-        txtNO = (TextView) rootView.findViewById(R.id.txtNO);
+        txtBO = rootView.findViewById(R.id.txtBO);
+        txtKO = rootView.findViewById(R.id.txtKO);
+        txtNO = rootView.findViewById(R.id.txtNO);
 
-        textView3 = (TextView) rootView.findViewById(R.id.textView3);
-        txtCountB = (TextView) rootView.findViewById(R.id.txtCountB);
-        txtCountK = (TextView) rootView.findViewById(R.id.txtCountK);
-        txtCountN = (TextView) rootView.findViewById(R.id.txtCountN);
-        tvStart = (TextView) rootView.findViewById(R.id.tvStart);
+        textView3 = rootView.findViewById(R.id.textView3);
+        txtCountB = rootView.findViewById(R.id.txtCountB);
+        txtCountK = rootView.findViewById(R.id.txtCountK);
+        txtCountN = rootView.findViewById(R.id.txtCountN);
+        tvStart = rootView.findViewById(R.id.tvStart);
 
-        txtOption = (RelativeLayout) rootView.findViewById(R.id.txtOption);
-        tvEnd = (TextView) rootView.findViewById(R.id.tvEnd);
-        lbl_forudgah_mabda = (TextView) rootView.findViewById(R.id.lbl_forudgah_mabda);
-        lbl_forudgah_maghsad = (TextView) rootView.findViewById(R.id.lbl_forudgah_maghsad);
+        txtOption = rootView.findViewById(R.id.txtOption);
+        tvEnd = rootView.findViewById(R.id.tvEnd);
+        lbl_forudgah_mabda = rootView.findViewById(R.id.lbl_forudgah_mabda);
+        lbl_forudgah_maghsad = rootView.findViewById(R.id.lbl_forudgah_maghsad);
 
 
         linear_tarikh_az_picker.setOnClickListener(this);
@@ -278,7 +280,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 Date date;
                 formatter = new SimpleDateFormat("yyyy/MM/dd");
                 try {
-                    date = (Date) formatter.parse(str_date);
+                    date = formatter.parse(str_date);
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     datePickerDialogGregorian2.setMinDate(cal);
@@ -465,9 +467,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         if (isInRange(1, 8, btnPlusBIntVal))
                             btnPlusBIntVal = btnPlusBIntVal + 1;
                         txtCountB.setText(String.valueOf(btnPlusBIntVal));//}
-                        YoYo.with(Techniques.Shake)
-                                .duration(200)
-                                .playOn(txtCountB);
+//                        YoYo.with(Techniques.Shake)
+//                                .duration(200)
+//                                .playOn(txtCountB);
                     } catch (Exception e) {
                         e.printStackTrace();
                         //  Toast.makeText(getActivity(), "Some error :(", 2000).show();
@@ -483,9 +485,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     if (isInRange(2, 9, btnMinesBIntVal))
                         btnMinesBIntVal = btnMinesBIntVal - 1;
                     txtCountB.setText(String.valueOf(btnMinesBIntVal));//}
-                    YoYo.with(Techniques.Shake)
-                            .duration(200)
-                            .playOn(txtCountB);
+//                    YoYo.with(Techniques.Shake)
+//                            .duration(200)
+//                            .playOn(txtCountB);
                 } catch (Exception e) {
                     e.printStackTrace();
                     //   Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -502,9 +504,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         if (isInRange(0, 8, btnPlisKIntVal))
                             btnPlisKIntVal = btnPlisKIntVal + 1;
                         txtCountK.setText(String.valueOf(btnPlisKIntVal));//}
-                        YoYo.with(Techniques.Shake)
-                                .duration(200)
-                                .playOn(txtCountK);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         //  Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -518,9 +518,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     if (isInRange(1, 9, btnMinesKIntVal))
                         btnMinesKIntVal = btnMinesKIntVal - 1;
                     txtCountK.setText(String.valueOf(btnMinesKIntVal));//}
-                    YoYo.with(Techniques.Shake)
-                            .duration(200)
-                            .playOn(txtCountK);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -536,9 +534,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         if (isInRange(0, 8, presentIntVal3))
                             presentIntVal3 = presentIntVal3 + 1;
                         txtCountN.setText(String.valueOf(presentIntVal3));//}
-                        YoYo.with(Techniques.Shake)
-                                .duration(200)
-                                .playOn(txtCountN);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -552,9 +548,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     if (isInRange(1, 9, presentIntVal4))
                         presentIntVal4 = presentIntVal4 - 1;
                     txtCountN.setText(String.valueOf(presentIntVal4));//}
-                    YoYo.with(Techniques.Shake)
-                            .duration(200)
-                            .playOn(txtCountN);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
@@ -605,7 +599,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
 
                 //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
-                linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
+                linear_picker = rootView.findViewById(R.id.linear_picker);
                 tarikh_be.setVisibility(View.VISIBLE);
                 linear_picker.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.Pulse)
@@ -640,7 +634,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
 
                 //linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
-                linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
+                linear_picker = rootView.findViewById(R.id.linear_picker);
 
                 tarikh_be.setVisibility(View.INVISIBLE);
                 linear_picker.setVisibility(View.INVISIBLE);
@@ -679,16 +673,15 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             case R.id.linear_tarikh_az_picker:
 
                 SingletonDate.getInstance().checkConflictDate();
-                    if (flagOneTwo == 1) {
-                        calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.NationalFlight);
+                if (flagOneTwo == 1) {
+                    calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.NationalFlight);
 
-                    } else {
-                        //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
-                        calendarDialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
+                } else {
+                    //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
+                    calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
 
 
-                    }
-
+                }
 
 
                 break;
@@ -983,7 +976,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             tarikh_az_picker.setText(startDate.getDescription());
             SingletonDate.getInstance().setStartDate(startDate);
         } else {
-            SingletonDate.getInstance().setReverseDate(startDate,endDate);
+            SingletonDate.getInstance().setReverseDate(startDate, endDate);
             tarikh_az_picker.setText(startDate.getDescription());
             tarikh_be_picker.setText(endDate.getDescription());
 

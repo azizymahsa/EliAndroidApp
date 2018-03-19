@@ -105,9 +105,9 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
             convertView = myInflater.inflate(R.layout.row_airport, null);
             holder = new ViewHolder();
 
-            holder.AirportName = (TextView) convertView.findViewById(R.id.text1);
-            holder.CityName = (TextView) convertView.findViewById(R.id.text2);
-            holder.txtIcon = (TextView) convertView.findViewById(R.id.txtIcon);
+            holder.AirportName = convertView.findViewById(R.id.text1);
+            holder.CityName = convertView.findViewById(R.id.text2);
+            holder.txtIcon = convertView.findViewById(R.id.txtIcon);
             //holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
             convertView.setTag(holder);
         } else {

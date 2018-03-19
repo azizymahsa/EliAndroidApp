@@ -84,38 +84,38 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         expandableLayout = findViewById(R.id.expandableLayout);
 
 
-        btnBack = (FancyButton) findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
 
-        textView15= (TextView) findViewById(R.id.textView15);
+        textView15= findViewById(R.id.textView15);
         textView15.setOnClickListener(this);
 
-        txtPhone = (TextView) findViewById(R.id.txtPhone);
+        txtPhone = findViewById(R.id.txtPhone);
         txtPhone.setOnClickListener(this);
 
-        txtAddres = (TextView) findViewById(R.id.txtAddres);
+        txtAddres = findViewById(R.id.txtAddres);
         txtAddres.setOnClickListener(this);
 
-        txtSocialFollow = (TextView) findViewById(R.id.txtSocialFollow);
+        txtSocialFollow = findViewById(R.id.txtSocialFollow);
         txtSocialFollow.setOnClickListener(this);
 
-        txtTelegram = (ImageView) findViewById(R.id.txtTelegram);
+        txtTelegram = findViewById(R.id.txtTelegram);
         txtTelegram.setOnClickListener(this);
-        txtFacebook = (ImageView) findViewById(R.id.txtFacebook);
+        txtFacebook = findViewById(R.id.txtFacebook);
         txtFacebook.setOnClickListener(this);
-        txtGoogleP = (ImageView) findViewById(R.id.txtGoogleP);
+        txtGoogleP = findViewById(R.id.txtGoogleP);
         txtGoogleP.setOnClickListener(this);
-        txtInstagram = (ImageView) findViewById(R.id.txtInstagram);
+        txtInstagram = findViewById(R.id.txtInstagram);
         txtInstagram.setOnClickListener(this);
-        txtLinkdin = (ImageView) findViewById(R.id.txtLinkdin);
+        txtLinkdin = findViewById(R.id.txtLinkdin);
         txtLinkdin.setOnClickListener(this);
-        txtPintrest = (ImageView) findViewById(R.id.txtPintrest);
+        txtPintrest = findViewById(R.id.txtPintrest);
         txtPintrest.setOnClickListener(this);
-        txtTweeter = (ImageView) findViewById(R.id.txtTweeter);
+        txtTweeter = findViewById(R.id.txtTweeter);
         txtTweeter.setOnClickListener(this);
-        txtAparat = (ImageView) findViewById(R.id.txtAparat);
+        txtAparat = findViewById(R.id.txtAparat);
         txtAparat.setOnClickListener(this);
 
 

@@ -115,10 +115,10 @@ public class SimpleRecycleView<T extends RecyclerView.ViewHolder> extends Linear
     }
 
     private void initViews() {
-        progressBar =(ProgressBar) findViewById(R.id.prg);
-        txtTitle =(TextView) findViewById(R.id.txt_title);
-        textView = (TextView) findViewById(R.id.txt);
-        recyclerView = (RecyclerView) findViewById(R.id.rcl);
+        progressBar = findViewById(R.id.prg);
+        txtTitle = findViewById(R.id.txt_title);
+        textView = findViewById(R.id.txt);
+        recyclerView = findViewById(R.id.rcl);
         recyclerView.setNestedScrollingEnabled(false);
     }
 

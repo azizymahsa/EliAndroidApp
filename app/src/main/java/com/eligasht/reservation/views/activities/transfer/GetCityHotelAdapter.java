@@ -52,9 +52,9 @@ public class GetCityHotelAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.row_airport, null);
             holder = new ViewHolder();
-            holder.text1 = (TextView) convertView.findViewById(R.id.text1);
-            holder.text2 = (TextView) convertView.findViewById(R.id.text2);
-            holder.llContentLayout = (LinearLayout) convertView.findViewById(R.id.llContentLayout);
+            holder.text1 = convertView.findViewById(R.id.text1);
+            holder.text2 = convertView.findViewById(R.id.text2);
+            holder.llContentLayout = convertView.findViewById(R.id.llContentLayout);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

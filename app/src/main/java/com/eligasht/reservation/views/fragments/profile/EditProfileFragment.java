@@ -92,8 +92,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         edt_last_name_fa = view.findViewById(R.id.edt_last_name_fa);
         edt_code_meli = view.findViewById(R.id.edt_code_meli);
         edt_email_user_name = view.findViewById(R.id.edt_email_user_name);
-        chk_gender_man = (SmoothCheckBox) view.findViewById(R.id.chB_man);
-        chk_gender_woman = (SmoothCheckBox) view.findViewById(R.id.chB_woman);
+        chk_gender_man = view.findViewById(R.id.chB_man);
+        chk_gender_woman = view.findViewById(R.id.chB_woman);
         birthday_date = view.findViewById(R.id.edt_birthday);
         txt_birthday = view.findViewById(R.id.txt_birthday);
 

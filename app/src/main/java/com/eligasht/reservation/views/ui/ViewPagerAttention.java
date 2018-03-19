@@ -45,7 +45,7 @@ public class ViewPagerAttention {
         gson= new Gson();
         this.indiactor = indiactor;
         this.imageModels = imageModels;
-        viewPager = (AutoScrollViewPager) activity.findViewById(layout);
+        viewPager = activity.findViewById(layout);
         //indicator = (CirclePageIndicator) activity.findViewById(indiactor);
         viewPager.setAdapter(new IntroAdapter());
         viewPager.setPageMargin(0);
@@ -100,7 +100,7 @@ public class ViewPagerAttention {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             View view = View.inflate(container.getContext(), R.layout.list_image_item, null);
-            ImageView image = (ImageView) view.findViewById(R.id.ivImage);
+            ImageView image = view.findViewById(R.id.ivImage);
 
             container.addView(view, 0);
 //            image.setImageResource(images[position]);
@@ -136,7 +136,7 @@ public class ViewPagerAttention {
         }
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((View) object);
+            container.removeView((View) object);
         }
     }
 

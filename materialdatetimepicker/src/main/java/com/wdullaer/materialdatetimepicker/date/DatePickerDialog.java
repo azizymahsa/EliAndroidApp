@@ -251,18 +251,18 @@ public class DatePickerDialog extends DialogFragment implements
 
         View view = inflater.inflate(R.layout.gmdtp_date_picker_dialog, container, false);
 
-        mDayOfWeekView = (TextView) view.findViewById(R.id.date_picker_header);
-        mMonthAndDayView = (LinearLayout) view.findViewById(R.id.date_picker_month_and_day);
+        mDayOfWeekView = view.findViewById(R.id.date_picker_header);
+        mMonthAndDayView = view.findViewById(R.id.date_picker_month_and_day);
         mMonthAndDayView.setOnClickListener(this);
-        mSelectedMonthTextView = (TextView) view.findViewById(R.id.date_picker_month);
-        mSelectedDayTextView = (TextView) view.findViewById(R.id.date_picker_day);
-        mYearView = (TextView) view.findViewById(R.id.date_picker_year);
+        mSelectedMonthTextView = view.findViewById(R.id.date_picker_month);
+        mSelectedDayTextView = view.findViewById(R.id.date_picker_day);
+        mYearView = view.findViewById(R.id.date_picker_year);
         mYearView.setOnClickListener(this);
-        switchType = (Button) view.findViewById(R.id.gswitch_type);
+        switchType = view.findViewById(R.id.gswitch_type);
         if (visibile == 1) {
             switchType.setVisibility(View.INVISIBLE);
         }
-        final com.wdullaer.materialdatetimepicker.AccessibleTextView date_picker_year = (com.wdullaer.materialdatetimepicker.AccessibleTextView) view.findViewById(R.id.date_picker_year);
+        final com.wdullaer.materialdatetimepicker.AccessibleTextView date_picker_year = view.findViewById(R.id.date_picker_year);
         date_picker_year.setVisibility(View.VISIBLE);
 
 
@@ -312,7 +312,7 @@ public class DatePickerDialog extends DialogFragment implements
         int bgColorResource = mThemeDark ? R.color.mdtp_date_picker_view_animator_dark_theme : R.color.mdtp_date_picker_view_animator;
         view.setBackgroundColor(ContextCompat.getColor(activity, bgColorResource));
 
-        mAnimator = (AccessibleDateAnimator) view.findViewById(R.id.animator);
+        mAnimator = view.findViewById(R.id.animator);
         mAnimator.addView(mDayPickerView);
         mAnimator.addView(mYearPickerView);
         mAnimator.setDateMillis(mCalendar.getTimeInMillis());
@@ -325,7 +325,7 @@ public class DatePickerDialog extends DialogFragment implements
         animation2.setDuration(ANIMATION_DURATION);
         mAnimator.setOutAnimation(animation2);
 
-        Button okButton = (Button) view.findViewById(R.id.ok);
+        Button okButton = view.findViewById(R.id.ok);
         okButton.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -345,7 +345,7 @@ public class DatePickerDialog extends DialogFragment implements
         if (mOkString != null) okButton.setText(toEnglishString(mOkString));
         else okButton.setText(mOkResid);
 
-        Button cancelButton = (Button) view.findViewById(R.id.cancel);
+        Button cancelButton = view.findViewById(R.id.cancel);
         cancelButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -28,7 +28,7 @@ public class ChildAgeRangeAdapter extends ArrayAdapter<ChildAgeRange> {
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         View row= View.inflate(mContext, R.layout.spinner_item_list, null);
         final ChildAgeRange childAgeRange = mValues.get(position);
-        TextView txtItemSpinner=(TextView)row.findViewById(R.id.txtItemSpinner);
+        TextView txtItemSpinner= row.findViewById(R.id.txtItemSpinner);
         txtItemSpinner.setText(childAgeRange.toString());
         return row;
     }
@@ -37,7 +37,7 @@ public class ChildAgeRangeAdapter extends ArrayAdapter<ChildAgeRange> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = View.inflate(mContext, R.layout.spinner_item_top, null);
-        TextView txtTopSpinner=(TextView)row.findViewById(R.id.txtTopSpinner);
+        TextView txtTopSpinner= row.findViewById(R.id.txtTopSpinner);
         txtTopSpinner.setText(mValues.get(position).toString());
         return row;
     }

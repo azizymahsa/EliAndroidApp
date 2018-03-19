@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Utility;
+import com.eligasht.reservation.views.ticker.TickerView;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
@@ -53,6 +54,8 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         holder.tvServiceFa.setText(item.getServiceNameFa());
         holder.tvCityName.setText(item.getCityFa());
         holder.tvTypeService.setText(item.getServiceType());
+        holder.tvPrice.setAnimationDelay(1000);
+        holder.tvPrice.setText("");
         holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice()));
 
         if (item.getServiceNameFa().contains("بیمه")) {
@@ -115,7 +118,8 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvPrice, tvArrow, tvServiceCityUi;
+        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvArrow, tvServiceCityUi;
+        TickerView  tvPrice;
         /**
          * You must use the ExpandableLinearLayout in the recycler view.
          * The ExpandableRelativeLayout doesn't work.

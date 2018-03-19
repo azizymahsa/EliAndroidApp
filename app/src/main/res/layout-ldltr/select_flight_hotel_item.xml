@@ -125,10 +125,10 @@
                         android:background="@color/green"
                         android:gravity="center"
                         android:maxLines="1"
+                        android:padding="2dp"
                         android:text="هتل"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_10dp_textSize"
-                        android:padding="2dp"/>
+                        android:textSize="@dimen/_10dp_textSize" />
 
 
                 </LinearLayout>
@@ -260,7 +260,7 @@
 
                             />
 
-                        <TextView
+                        <com.eligasht.reservation.views.ticker.TickerView
                             android:id="@+id/tvPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -270,6 +270,7 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#000000"
                             android:textSize="@dimen/_13dp_normal_textSize"
+                            app:ticker_defaultCharacterList="number"
 
                             />
 
@@ -301,8 +302,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:orientation="horizontal"
-                              >
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -310,10 +310,10 @@
                                     android:layout_weight="130"
                                     android:gravity="center"
 
+                                    android:paddingLeft="2dp"
                                     android:text="@string/change_flight"
                                     android:textColor="#0071bc"
                                     android:textSize="@dimen/_12dp_normal_textSize"
-                                    android:paddingLeft="2dp"
 
                                     />
 

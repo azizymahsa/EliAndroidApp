@@ -50,8 +50,8 @@ public class FilterHotelTypeAdapter extends BaseAdapter{
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.filter_hotel_type, null);
             holder = new ViewHolder();
-            holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-            holder.checkbox = (SmoothCheckBox) convertView.findViewById(R.id.checkbox);
+            holder.tvTitle = convertView.findViewById(R.id.tvTitle);
+            holder.checkbox = convertView.findViewById(R.id.checkbox);
 
 
             convertView.setTag(holder);

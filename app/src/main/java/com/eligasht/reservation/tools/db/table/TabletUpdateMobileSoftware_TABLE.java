@@ -7,12 +7,12 @@ public class TabletUpdateMobileSoftware_TABLE {
 
 		private String parameterValue;
 
-		private Columns(String value) {
+		Columns(String value) {
 			this.parameterValue = value;
 		}
 
 		public String value() {
 			return this.parameterValue;
 		}
-	};
+	}
 }

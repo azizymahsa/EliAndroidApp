@@ -50,8 +50,8 @@ public class PassengerAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.passenger_service, null);
             holder = new ViewHolder();
-            holder.cbCheck = (SmoothCheckBox) convertView.findViewById(R.id.cbCheck);
-            holder.textView1 = (TextView) convertView.findViewById(R.id.textView1);
+            holder.cbCheck = convertView.findViewById(R.id.cbCheck);
+            holder.textView1 = convertView.findViewById(R.id.textView1);
 
             convertView.setTag(holder);
         } else {

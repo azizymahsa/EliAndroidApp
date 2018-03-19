@@ -12,7 +12,7 @@ public class PassengerPartnerInfo_Table extends MainLocalDB {
 
 	public static final String TABLE_NAME = "PASSENGER_PARTNER_INFO";
 
-	public static enum Columns {
+	public enum Columns {
 		/* "RqPartner_Address": "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran",
 	      "RqPartner_Email": "mohebbi@eligasht.com",
 	      "RqPartner_FirstNameFa": "مریم",
@@ -28,7 +28,7 @@ public class PassengerPartnerInfo_Table extends MainLocalDB {
 		public static boolean firstIsPrimery = false;
 		private String parameterValue;
 
-		private Columns(String value) {
+		Columns(String value) {
 			this.parameterValue = value;
 		}
 
@@ -39,9 +39,9 @@ public class PassengerPartnerInfo_Table extends MainLocalDB {
 		public String value() {
 			return this.name();
 		}
-	};
+	}
 
-	public PassengerPartnerInfo_Table(Activity activity) {
+    public PassengerPartnerInfo_Table(Activity activity) {
 		super(activity);
 	}
 /*

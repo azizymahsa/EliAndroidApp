@@ -52,9 +52,9 @@ public class FilterAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.row_filter_airline, null);
             holder = new ViewHolder();
-            holder.cbCheck = (SmoothCheckBox) convertView.findViewById(R.id.cbCheck);
-            holder.textView1 = (TextView) convertView.findViewById(R.id.textView1);
-            holder.llLayout = (LinearLayout) convertView.findViewById(R.id.llLayout);
+            holder.cbCheck = convertView.findViewById(R.id.cbCheck);
+            holder.textView1 = convertView.findViewById(R.id.textView1);
+            holder.llLayout = convertView.findViewById(R.id.llLayout);
 
             convertView.setTag(holder);
         } else {

@@ -51,7 +51,7 @@
                 android:layout_marginBottom="2dp"
                 android:background="@color/text_color"/>
 
-            <TextView
+            <com.eligasht.reservation.views.ticker.TickerView
                 android:id="@+id/tvPrice"
 
                 android:layout_width="match_parent"
@@ -62,6 +62,7 @@
                 android:gravity="center"
                 android:textColor="@color/green"
                 android:padding="10dp"
+
 
 
                 />

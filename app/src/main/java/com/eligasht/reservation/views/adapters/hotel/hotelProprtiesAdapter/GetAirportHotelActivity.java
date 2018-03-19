@@ -84,7 +84,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
         btnBack.setOnClickListener(this);
         btnMic.setOnClickListener(this);
         //////////////////show recent
-        ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+        ListView listAirPort = findViewById(R.id.listAirPort);
         List<Country> data = new ArrayList<>();
         RecentCity_Table recentCity_table = new RecentCity_Table(this);
         CursorManager cursorManager = null;
@@ -144,7 +144,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 
         /////////////////////////////
 
-        searchtxt = (EditText) findViewById(R.id.searchtxt);
+        searchtxt = findViewById(R.id.searchtxt);
         searchtxt.addTextChangedListener(
                 new TextWatcher() {
                     @Override
@@ -178,9 +178,9 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
                                                 } else {
                                                     if (d.length() < 0 || d.length() == 0) {
                                                         ////
-                                                        ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+                                                        ListView listAirPort = findViewById(R.id.listAirPort);
                                                         List<Country> data = null;
-                                                        listAirPort = (ListView) findViewById(R.id.listAirPort);
+                                                        listAirPort = findViewById(R.id.listAirPort);
                                                         mAdapter = new GetAirPortHotelAdapter(GetAirportHotelActivity.this, data, GetAirportHotelActivity.this);
                                                         //mAdapter.setAdapter(mAdapter);
                                                         mAdapter.setData(data);
@@ -353,7 +353,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
                     }
 
                     ////
-                    listAirPort = (ListView) findViewById(R.id.listAirPort);
+                    listAirPort = findViewById(R.id.listAirPort);
                     mAdapter = new GetAirPortHotelAdapter(GetAirportHotelActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportHotelActivity.this, getIntent().getExtras().getInt("type"), getIntent().getExtras().getString("position"));
                     //mAdapter.setAdapter(mAdapter);
                     mAdapter.setData(data);

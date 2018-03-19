@@ -29,6 +29,7 @@ import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.AfterPaymentAdapter;
 import com.eligasht.reservation.views.adapters.AfterPaymentModel;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
+import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.google.gson.Gson;
 
@@ -38,7 +39,8 @@ import java.util.List;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class FinalResult extends BaseActivity {
-    TextView tvFactor, tvFactor2, tvPaymen, tvPrice, tvPeygiri, tvStatusFactor, tvSuccses, tvNumberPeygiri, tvMail, tvAlert;
+    TextView tvFactor, tvFactor2, tvPaymen, tvPeygiri, tvStatusFactor, tvSuccses, tvNumberPeygiri, tvMail, tvAlert;
+    TickerView  tvPrice;
     GetPreFactor getPreFactor;
     RelativeLayout rlPrice, rlPeygiri, rlStatus, rlIv, rlLoading;
     ImageView ivImage;

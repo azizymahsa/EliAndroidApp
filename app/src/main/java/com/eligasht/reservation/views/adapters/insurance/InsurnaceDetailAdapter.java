@@ -15,6 +15,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.insurance.DetailsModel;
 import com.eligasht.reservation.tools.JustifiedTextView;
+import com.eligasht.reservation.views.ticker.TickerView;
 
 import java.util.ArrayList;
 
@@ -66,6 +67,8 @@ public class InsurnaceDetailAdapter  extends BaseAdapter {
         }
         Typeface face = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.iran_sans_bold_ttf));
         Typeface face2 = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.iran_sans_normal_ttf));
+        holder.tvPrice.setAnimationDelay(1000);
+        holder.tvPrice.setText("");
         holder.tvPrice.setText(arrayList.get(position).getPrice());
         holder.tvTitle.setText(arrayList.get(position).getTitle());
         holder.tvPrice.setTypeface(face);
@@ -83,7 +86,7 @@ public class InsurnaceDetailAdapter  extends BaseAdapter {
 
 
     public class ViewHolder {
-        TextView tvPrice;
+        TickerView tvPrice;
         JustifiedTextView tvTitle;
         CardView cv1;
     }
