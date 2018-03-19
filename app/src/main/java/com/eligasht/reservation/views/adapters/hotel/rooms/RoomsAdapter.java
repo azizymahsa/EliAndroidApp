@@ -30,6 +30,7 @@ import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
+import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerHotelActivity;
 import com.eligasht.reservation.views.ui.PassengerHotelFlightActivity;
@@ -95,12 +96,12 @@ public class RoomsAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.select_hotel_item_rooms, null);
             holder = new ViewHolder();
-            holder.tvBoard = (TextView) convertView.findViewById(R.id.tvBoard);
-            holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-            holder.tvPrice = (TextView) convertView.findViewById(R.id.tvPrice);
-            holder.tvDesc = (TextView) convertView.findViewById(R.id.tvDesc);
-            holder.btnPolicy = (FancyButton) convertView.findViewById(R.id.btnPolicy);
-            holder.llSelectHotel = (CardView) convertView.findViewById(R.id.llSelectHotel);
+            holder.tvBoard = convertView.findViewById(R.id.tvBoard);
+            holder.tvTitle = convertView.findViewById(R.id.tvTitle);
+            holder.tvPrice = convertView.findViewById(R.id.tvPrice);
+            holder.tvDesc = convertView.findViewById(R.id.tvDesc);
+            holder.btnPolicy = convertView.findViewById(R.id.btnPolicy);
+            holder.llSelectHotel = convertView.findViewById(R.id.llSelectHotel);
 
             convertView.setTag(holder);
         } else {
@@ -108,6 +109,7 @@ public class RoomsAdapter extends BaseAdapter {
         }
         holder.tvBoard.setText(roomsModels.get(position).getBoard());
         holder.tvTitle.setText(roomsModels.get(position).getTitle());
+        holder.tvPrice.setAnimationDelay(500);
         holder.tvPrice.setText(Utility.priceFormat(roomsModels.get(position).getPrice()) + "");
         holder.tvDesc.setText(roomsModels.get(position).getDesc());
 
@@ -143,7 +145,8 @@ public class RoomsAdapter extends BaseAdapter {
 
 
     public class ViewHolder {
-        TextView tvBoard, tvTitle, tvPrice, tvDesc;
+        TextView tvBoard, tvTitle, tvDesc;
+        TickerView  tvPrice;
         FancyButton btnPolicy;
         CardView llSelectHotel;
 

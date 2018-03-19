@@ -5,7 +5,7 @@ package com.eligasht.reservation.models.hotel.api.detail;
  */
 
 public class GetHotelDetailResult {
-    public final com.eligasht.reservation.models.hotel.api.detail.HotelDetail HotelDetail;;
+    public final com.eligasht.reservation.models.hotel.api.detail.HotelDetail HotelDetail;
 
     public GetHotelDetailResult(com.eligasht.reservation.models.hotel.api.detail.HotelDetail hotelDetail) {
         HotelDetail = hotelDetail;

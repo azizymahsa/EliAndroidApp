@@ -11,11 +11,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.eligasht.R;
-
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.SectionModel;
 import com.eligasht.reservation.tools.NonScrollRecyclerView;
 import com.eligasht.reservation.views.adapters.AboutAdapter;
+import com.eligasht.reservation.views.ticker.TickerView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -54,6 +54,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
     private Handler progressBarHandler = new Handler();
     ArrayList<HashMap<String, String>> mylist = null;
     AboutAdapter mAdapter;
+    TickerView v1, v2, v3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +62,19 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_about_new);
 
 
-        btnBack = (FancyButton) findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
+        v1 = findViewById(R.id.textView2);
+        v2 = findViewById(R.id.textView8);
+        v3 = findViewById(R.id.textView5);
 
 
         new GetAboutAsync().execute();
 
     }
+
 
     @Override
     protected void onDestroy() {
@@ -151,38 +156,38 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                     serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
                 } catch (Exception ignored) {
                 }
-                try{
+                try {
 
-                if(Locale.getDefault().getLanguage().equals("en")){
-                    JSONObject jsone = new JSONObject();
-                    JSONObject manJson = new JSONObject();
-                    manJson.put("culture", "en-");
-                   // jsone.put("", manJson);
-                    data=manJson.toString();
-                }else if(Locale.getDefault().getLanguage().equals("fa")) {
-                    JSONObject jsone = new JSONObject();
-                    JSONObject manJson = new JSONObject();
-                    manJson.put("culture", "fa-");
-                    // jsone.put("", manJson);
-                    data=manJson.toString();
-                }else if(Locale.getDefault().getLanguage().equals("tr")) {
-                    JSONObject jsone = new JSONObject();
-                    JSONObject manJson = new JSONObject();
-                    manJson.put("culture", "tr-TR");
-                   // jsone.put("", manJson);
-                    data=manJson.toString();
-                }else if(Locale.getDefault().getLanguage().equals("ar")) {
-                    JSONObject jsone = new JSONObject();
-                    JSONObject manJson = new JSONObject();
-                    manJson.put("culture", "ar-");
-                    //jsone.put("", manJson);
-                    data=manJson.toString();
+                    if (Locale.getDefault().getLanguage().equals("en")) {
+                        JSONObject jsone = new JSONObject();
+                        JSONObject manJson = new JSONObject();
+                        manJson.put("culture", "en-");
+                        // jsone.put("", manJson);
+                        data = manJson.toString();
+                    } else if (Locale.getDefault().getLanguage().equals("fa")) {
+                        JSONObject jsone = new JSONObject();
+                        JSONObject manJson = new JSONObject();
+                        manJson.put("culture", "fa-");
+                        // jsone.put("", manJson);
+                        data = manJson.toString();
+                    } else if (Locale.getDefault().getLanguage().equals("tr")) {
+                        JSONObject jsone = new JSONObject();
+                        JSONObject manJson = new JSONObject();
+                        manJson.put("culture", "tr-TR");
+                        // jsone.put("", manJson);
+                        data = manJson.toString();
+                    } else if (Locale.getDefault().getLanguage().equals("ar")) {
+                        JSONObject jsone = new JSONObject();
+                        JSONObject manJson = new JSONObject();
+                        manJson.put("culture", "ar-");
+                        //jsone.put("", manJson);
+                        data = manJson.toString();
+                    }
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-                System.out.println("culture:"+data);
+                System.out.println("culture:" + data);
                 HttpClient client = new DefaultHttpClient();
 
 
@@ -224,8 +229,12 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         protected void onPostExecute(String result) {
 
             //this method will be running on UI thread
-
-            pdLoading.dismiss();
+            v1.setAnimationDuration(1000);
+            v2.setAnimationDuration(1000);
+            v3.setAnimationDuration(1000);
+            v1.setText("1200", true);
+            v2.setText("900", true);
+            v3.setText("20000", true);
             List<SectionModel> data = new ArrayList<SectionModel>();
 
             pdLoading.dismiss();
@@ -252,7 +261,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 }
 
 
-                listAirPort = (NonScrollRecyclerView) findViewById(R.id.lvExp);
+                listAirPort = findViewById(R.id.lvExp);
                 listAirPort.addItemDecoration(new DividerItemDecoration(AboutActivity.this, 1));
                 listAirPort.setLayoutManager(new LinearLayoutManager(AboutActivity.this));
                 mAdapter = new AboutAdapter(data);

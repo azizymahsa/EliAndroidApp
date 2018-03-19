@@ -38,10 +38,10 @@ public class GetHotelRoomCountActivity extends Activity implements Header.onSear
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_count_room_hotel);
 			
-			btn_add_room = (Button) findViewById(R.id.btn_add_room);
+			btn_add_room = findViewById(R.id.btn_add_room);
 			btn_add_room.setOnClickListener(this);
 		    //Make call to AsyncTask
-			listCityHotel=(ListView)findViewById(R.id.listCityHotel);
+			listCityHotel= findViewById(R.id.listCityHotel);
 			
 			 data=new ArrayList<ModelRowCountRoom>();
 			   // for(int i=0;i<2;i++){

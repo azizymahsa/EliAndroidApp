@@ -40,7 +40,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getResources().getString(R.string.settings));
-        tvConfirm = (Button) findViewById(R.id.tvConfirm);
+        tvConfirm = findViewById(R.id.tvConfirm);
 
         curencySpinner = findViewById(R.id.curencySpinner);
         languageSpinner = findViewById(R.id.languageSpinner);

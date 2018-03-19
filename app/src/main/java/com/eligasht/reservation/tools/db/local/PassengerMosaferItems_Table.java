@@ -12,7 +12,7 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 
 	public static final String TABLE_NAME = "PASSENGER_MOSAFER_ITEMS";
 
-	public static enum Columns {
+	public enum Columns {
 
 		ID(integer),Onvan(text),Otagh(text),Gender(text), Nationality(text), Nationality_ID(text)
 		,RqPassenger_Address(text), RqPassenger_Birthdate(text), RqPassenger_Email(text)
@@ -23,7 +23,7 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 		public static boolean firstIsPrimery = true;
 		private String parameterValue;
 
-		private Columns(String value) {
+		Columns(String value) {
 			this.parameterValue = value;
 		}
 
@@ -34,9 +34,9 @@ public class PassengerMosaferItems_Table extends MainLocalDB {
 		public String value() {
 			return this.name();
 		}
-	};
+	}
 
-	public PassengerMosaferItems_Table(Activity activity) {
+    public PassengerMosaferItems_Table(Activity activity) {
 		super(activity);
 	}
 /*

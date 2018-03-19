@@ -124,8 +124,8 @@ public class SortFlightDialog implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.sort_flight_dialog, null);
         builder.setView(dialogView);
-        tvMax = (TextView) dialogView.findViewById(R.id.tvMax);
-        tvMin = (TextView) dialogView.findViewById(R.id.tvMin);
+        tvMax = dialogView.findViewById(R.id.tvMax);
+        tvMin = dialogView.findViewById(R.id.tvMin);
 
         tvMax.setOnClickListener(this);
         tvMin.setOnClickListener(this);
@@ -155,7 +155,7 @@ public class SortFlightDialog implements View.OnClickListener {
         }
     }
     public interface SortFlightDialogListener{
-        public void onReturnValueSort(int type);
+        void onReturnValueSort(int type);
     }
 
 }

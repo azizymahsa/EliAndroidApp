@@ -25,12 +25,12 @@ public class LstProwHotelRowHolder extends RecyclerView.ViewHolder {
 
     public LstProwHotelRowHolder(View view) {
         super(view);
-        this.ivBigImage = (ImageView) view.findViewById(R.id.ivBigImage);
-        this.avi = (AVLoadingIndicatorView) view.findViewById(R.id.avi);
-        this.txt_hotel_name = (TextView) view.findViewById(R.id.txt_hotel_name);
-        this.txt_date = (TextView) view.findViewById(R.id.txt_date);
-        this.txt_location_full_name = (TextView) view.findViewById(R.id.txt_location_full_name);
-        this.rating = (ImageView) view.findViewById(R.id.rating);
+        this.ivBigImage = view.findViewById(R.id.ivBigImage);
+        this.avi = view.findViewById(R.id.avi);
+        this.txt_hotel_name = view.findViewById(R.id.txt_hotel_name);
+        this.txt_date = view.findViewById(R.id.txt_date);
+        this.txt_location_full_name = view.findViewById(R.id.txt_location_full_name);
+        this.rating = view.findViewById(R.id.rating);
         this.txt_city_name = view.findViewById(R.id.txt_city);
         this.lableHotelTilte = view.findViewById(R.id.txt_lable_hotel);
     }

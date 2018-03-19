@@ -232,14 +232,12 @@ public abstract class MonthAdapter extends BaseAdapter implements OnDayClickList
         if (mEndSelectedDay == null) return false;
         if (mEndSelectedDay.year == year && mEndSelectedDay.month > month && !isSelectedDayGreaterThanMonth(year, month))
             return true;
-        if (mEndSelectedDay.year > year && !isSelectedDayGreaterThanMonth(year, month)) return true;
-        return false;
+        return mEndSelectedDay.year > year && !isSelectedDayGreaterThanMonth(year, month);
     }
 
     private boolean isSelectedDayGreaterThanMonth(int year, int month) {
         if (mSelectedDay.year == year && mSelectedDay.month > month) return true;
-        if (mSelectedDay.year > year) return true;
-        return false;
+        return mSelectedDay.year > year;
     }
 
     public abstract MonthView createMonthView(Context context);

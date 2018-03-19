@@ -235,7 +235,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         btn_no_Result = findViewById(R.id.btn_no_Result);
         btn_no_Result.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
-        ;
         llNextLastDays = findViewById(R.id.llNextLastDays);
         btn_no_Result.setOnClickListener(this);
 

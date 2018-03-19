@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eligasht.reservation.views.ticker.TickerView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -38,7 +39,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     public SimpleRecycleView rcl_room;
     public ImageView btn_add;
     public ImageView btn_remove;
-    public TextView count_room;
+    public TickerView count_room;
     public RoomAdapter roomAdapter;
     public RoomPresenter roomPresenter;
     private Button btn_confirm;
@@ -80,11 +81,11 @@ try {
 
     @Override
     public void initViews() {
-        count_room = (TextView) findViewById(R.id.count_room);
-        btn_confirm = (Button) findViewById(R.id.btn_confirm);
-        btn_add = (ImageView) findViewById(R.id.btn_add);
-        btn_remove = (ImageView) findViewById(R.id.btn_remove);
-        rcl_room = (SimpleRecycleView) findViewById(R.id.rcl_room);
+        count_room = findViewById(R.id.count_room);
+        btn_confirm = findViewById(R.id.btn_confirm);
+        btn_add = findViewById(R.id.btn_add);
+        btn_remove = findViewById(R.id.btn_remove);
+        rcl_room = findViewById(R.id.rcl_room);
         rcl_room.setLayoutManager(new LinearLayoutManager(getAppContext()));
         hideLoading();
         setRoomsCount(1);
@@ -192,9 +193,6 @@ try {
             sum = sum + room.getCountB() + room.getCountK();
         }
 
-        if(sum > 9){
-            return false;
-        }
-        return true;
+        return sum <= 9;
     }
 }

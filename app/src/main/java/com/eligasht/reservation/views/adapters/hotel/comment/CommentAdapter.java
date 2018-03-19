@@ -57,13 +57,13 @@ public class CommentAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.comment_item, null);
             holder = new ViewHolder();
             //   holder.tvComment = (TextView) convertView.findViewById(R.id.tvComment);
-            holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-            holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
-            holder.tvName = (TextView) convertView.findViewById(R.id.tvName);
-            holder.tvLike = (TextView) convertView.findViewById(R.id.tvLike);
-            holder.tvDislike = (TextView) convertView.findViewById(R.id.tvDislike);
-            holder.expandable_text = (TextView) convertView.findViewById(R.id.expandable_text);
-            holder.expand_text_view = (ExpandableTextView) convertView.findViewById(R.id.expand_text_view);
+            holder.tvTitle = convertView.findViewById(R.id.tvTitle);
+            holder.tvDate = convertView.findViewById(R.id.tvDate);
+            holder.tvName = convertView.findViewById(R.id.tvName);
+            holder.tvLike = convertView.findViewById(R.id.tvLike);
+            holder.tvDislike = convertView.findViewById(R.id.tvDislike);
+            holder.expandable_text = convertView.findViewById(R.id.expandable_text);
+            holder.expand_text_view = convertView.findViewById(R.id.expand_text_view);
 
             convertView.setTag(holder);
         } else {

@@ -31,8 +31,8 @@ public class SortDialogPackage implements View.OnClickListener {
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_sort, null);
         builder.setView(dialogView);
-        tvMax = (TextView) dialogView.findViewById(R.id.tvMax);
-        tvMin = (TextView) dialogView.findViewById(R.id.tvMin);
+        tvMax = dialogView.findViewById(R.id.tvMax);
+        tvMin = dialogView.findViewById(R.id.tvMin);
 
         tvMax.setOnClickListener(this);
         tvMin.setOnClickListener(this);
@@ -62,7 +62,7 @@ public class SortDialogPackage implements View.OnClickListener {
         }
     }
     public interface SortHotelDialogListener{
-        public void onReturnValue(int type);
+        void onReturnValue(int type);
     }
 
 }

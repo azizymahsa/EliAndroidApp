@@ -239,7 +239,7 @@
                     android:orientation="horizontal"
                     android:padding="5dp">
 
-                    <TextView
+                    <com.eligasht.reservation.views.ticker.TickerView
                         android:id="@+id/tvRial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -248,11 +248,12 @@
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/green"
                         android:textSize="@dimen/_13dp_normal_textSize"
+                        app:ticker_defaultCharacterList="number"
 
 
                         />
 
-                    <TextView
+                    <com.eligasht.reservation.views.ticker.TickerView
                         android:id="@+id/tvPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -262,6 +263,7 @@
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#000000"
                         android:textSize="@dimen/_13dp_normal_textSize"
+                        app:ticker_defaultCharacterList="number"
 
                         />
 

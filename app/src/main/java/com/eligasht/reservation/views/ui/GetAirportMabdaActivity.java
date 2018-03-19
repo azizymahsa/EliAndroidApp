@@ -85,7 +85,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         btnBack.setOnClickListener(this);
         btnMic.setOnClickListener(this);
         //////////////////show recent
-        ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+        ListView listAirPort = findViewById(R.id.listAirPort);
         List<Country> data = new ArrayList<>();
         RecentCity_Table recentCity_table = new RecentCity_Table(this);
         CursorManager cursorManager = recentCity_table.getAll(1);//mabda
@@ -113,7 +113,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         }
 
         ////
-        listAirPort = (ListView) findViewById(R.id.listAirPort);
+        listAirPort = findViewById(R.id.listAirPort);
         mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
 
         //	mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data,  GetAirportMabdaActivity.this);
@@ -155,7 +155,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         //searchtxt = (EditText) findViewById(R.id.searchtxt);
         //Make call to AsyncTask
 
-        searchtxt = (EditText) findViewById(R.id.searchtxt);
+        searchtxt = findViewById(R.id.searchtxt);
         searchtxt.addTextChangedListener(
                 new TextWatcher() {
                     @Override
@@ -189,7 +189,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                                                 } else {
                                                     if (d.length() < 0 || d.length() == 0) {
                                                         ////
-                                                        ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+                                                        ListView listAirPort = findViewById(R.id.listAirPort);
                                                         List<Country> data = null;
                                                         mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, GetAirportMabdaActivity.this);
 
@@ -373,7 +373,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                         }
 
                         ////
-                        listAirPort = (ListView) findViewById(R.id.listAirPort);
+                        listAirPort = findViewById(R.id.listAirPort);
                         mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
 
                         mAdapter.setData(data);

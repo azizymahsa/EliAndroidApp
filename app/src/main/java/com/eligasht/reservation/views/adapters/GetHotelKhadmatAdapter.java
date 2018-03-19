@@ -96,16 +96,16 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 			convertView = myInflater.inflate(R.layout.row_khadamat, null);
 			holder = new GetKhadmatAdapter.ViewHolder();
 
-			holder.txtDescription = (TextView) convertView.findViewById(R.id.txtDescription);
-			holder.txtServiceNameFa = (TextView) convertView.findViewById(R.id.txtServiceNameFa);
+			holder.txtDescription = convertView.findViewById(R.id.txtDescription);
+			holder.txtServiceNameFa = convertView.findViewById(R.id.txtServiceNameFa);
 
-			holder.imageView1= (ImageView) convertView.findViewById(R.id.imageView1);
+			holder.imageView1= convertView.findViewById(R.id.imageView1);
 
-			holder.btnAddsabad= (RelativeLayout) convertView.findViewById(R.id.btnAddsabad);
-			holder.txtAdd= (TextView) convertView.findViewById(R.id.txtAdd);
-			holder.img_khadmat_row= (ImageView) convertView.findViewById(R.id.img_khadmat_row);
+			holder.btnAddsabad= convertView.findViewById(R.id.btnAddsabad);
+			holder.txtAdd= convertView.findViewById(R.id.txtAdd);
+			holder.img_khadmat_row= convertView.findViewById(R.id.img_khadmat_row);
 
-			holder.txtServiceTotalPrice= (TextView) convertView.findViewById(R.id.txtServiceTotalPrice);
+			holder.txtServiceTotalPrice= convertView.findViewById(R.id.txtServiceTotalPrice);
 
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
 			convertView.setTag(holder);

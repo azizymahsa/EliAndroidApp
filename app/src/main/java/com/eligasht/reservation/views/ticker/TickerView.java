@@ -39,18 +39,19 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 /**
  * The primary view for showing a ticker text view that handles smoothly scrolling from the
  * current text to a given text. The scrolling behavior is defined by
  * {@link #setCharacterLists} which dictates what characters come in between the starting
  * and ending characters.
- *
+ * <p>
  * <p>This class primarily handles the drawing customization of the ticker view, for example
  * setting animation duration, interpolator, colors, etc. It ensures that the canvas is properly
  * positioned, and then it delegates the drawing of each column of text to
  * {@link TickerColumnManager}.
- *
+ * <p>
  * <p>This class's API should behave similarly to that of a {@link android.widget.TextView}.
  * However, I chose to extend from {@link View} instead of {@link android.widget.TextView}
  * because it allows me full flexibility in customizing the drawing and also support different
@@ -113,16 +114,17 @@ public class TickerView extends View {
     /**
      * We currently only support the following set of XML attributes:
      * <ul>
-     *     <li>app:textColor
-     *     <li>app:textSize
+     * <li>app:textColor
+     * <li>app:textSize
      * </ul>
      *
-     * @param context context from constructor
-     * @param attrs attrs from constructor
+     * @param context      context from constructor
+     * @param attrs        attrs from constructor
      * @param defStyleAttr defStyleAttr from constructor
-     * @param defStyleRes defStyleRes from constructor
+     * @param defStyleRes  defStyleRes from constructor
      */
     protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+
         final Resources res = context.getResources();
         final StyledAttributes styledAttributes = new StyledAttributes(res);
 
@@ -179,7 +181,7 @@ public class TickerView extends View {
                 }
         }
 
-        setText(styledAttributes.text, false);
+        setText(styledAttributes.text, true);
 
         arr.recycle();
 
@@ -199,6 +201,10 @@ public class TickerView extends View {
                 invalidate();
             }
         });
+        if (!isInEditMode()) {
+            setTypeface(SingletonContext.getInstance().getTypeface());
+        }
+
     }
 
     private class StyledAttributes {
@@ -242,15 +248,15 @@ public class TickerView extends View {
      * This is the primary API that the view uses to determine how to animate from one character
      * to another. The provided strings dictates what characters will appear between
      * the start and end characters.
-     *
+     * <p>
      * <p>For example, given the string "abcde", if the view wants to animate from 'd' to 'a',
      * it will know that it has to go from 'd' to 'c' to 'b' to 'a', and these are the characters
      * that show up during the animation scroll.
-     *
+     * <p>
      * <p>We allow for multiple character lists, and the character lists will be prioritized with
      * latter lists given a higher priority than the previous lists. e.g. given "123" and "13",
      * an animation from 1 to 3 will use the sequence [1,3] rather than [1,2,3].
-     *
+     * <p>
      * <p>You can find some helpful character list generators in {@link TickerUtils}.
      *
      * @param characterLists the list of strings that dictates character orderings.
@@ -261,8 +267,8 @@ public class TickerView extends View {
 
     /**
      * @return whether or not the character lists (via {@link #setCharacterLists}) have been set.
-     *         Can use this value to determine if you need to call {@link #setCharacterLists}
-     *         before calling {@link #setText}.
+     * Can use this value to determine if you need to call {@link #setCharacterLists}
+     * before calling {@link #setText}.
      */
     public boolean isCharacterListsSet() {
         return columnManager.getCharacterLists() != null;
@@ -276,14 +282,14 @@ public class TickerView extends View {
      * @param text the text to display.
      */
     public void setText(String text) {
-        setText(text, !TextUtils.isEmpty(this.text));
+        setText(text, true);
     }
 
     /**
      * Similar to {@link #setText(String)} but provides the optional argument of whether to
      * animate to the provided text or not.
      *
-     * @param text the text to display.
+     * @param text    the text to display.
      * @param animate whether to animate to text.
      */
     public void setText(String text, boolean animate) {
@@ -445,7 +451,7 @@ public class TickerView extends View {
 
     /**
      * @return the current text gravity used to align the text. Should be one of the values defined
-     *         in {@link Gravity}.
+     * in {@link Gravity}.
      */
     public int getGravity() {
         return gravity;
@@ -470,10 +476,10 @@ public class TickerView extends View {
      * measured width animated along with the text width. However, a side effect of this is that
      * the entering/exiting character might get truncated by the view's view bounds as the width
      * shrinks or expands.
-     *
+     * <p>
      * <p>Warning: using this feature may degrade performance as it will force a re-measure and
      * re-layout during each animation frame.
-     *
+     * <p>
      * <p>This flag is disabled by default.
      *
      * @param animateMeasurementChange whether or not to animate measurement changes.
@@ -587,7 +593,7 @@ public class TickerView extends View {
 
     // VisibleForTesting
     static void realignAndClipCanvasForGravity(Canvas canvas, int gravity, Rect viewBounds,
-            float currentWidth, float currentHeight) {
+                                               float currentWidth, float currentHeight) {
         final int availableWidth = viewBounds.width();
         final int availableHeight = viewBounds.height();
 
@@ -612,7 +618,7 @@ public class TickerView extends View {
             translationX = viewBounds.left + (availableWidth - currentWidth);
         }
 
-        canvas.translate(translationX ,translationY);
+        canvas.translate(translationX, translationY);
         canvas.clipRect(0f, 0f, currentWidth, currentHeight);
     }
 }

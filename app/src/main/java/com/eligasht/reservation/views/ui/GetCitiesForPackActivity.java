@@ -57,7 +57,7 @@ public class GetCitiesForPackActivity extends BaseActivity implements Header.onS
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setOnClickListener(this);
         service = ServiceGenerator.createService(ClientService.class);
-        onPostExecute(new GeCitiesForPackAdapter(this, (GetPackageRoutesResult) Hawk.get("PackCityData"),this));
+        onPostExecute(new GeCitiesForPackAdapter(this, Hawk.get("PackCityData"),this));
     }
 
 

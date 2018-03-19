@@ -13,7 +13,7 @@ public class RecentCity_Table extends MainLocalDB {
 	public static final String TABLE_NAME = "RECENTCITY";
 
 
-	public static enum Columns {
+	public enum Columns {
 
 		Id(integer), AirPortName(text), CityName(text)
 		,AirPortCode(text),flag(integer);
@@ -21,7 +21,7 @@ public class RecentCity_Table extends MainLocalDB {
 		public static boolean firstIsPrimery = true;
 		private String parameterValue;
 
-		private Columns(String value) {
+		Columns(String value) {
 			this.parameterValue = value;
 		}
 
@@ -32,9 +32,9 @@ public class RecentCity_Table extends MainLocalDB {
 		public String value() {
 			return this.name();
 		}
-	};
+	}
 
-	public RecentCity_Table(Activity activity) {
+    public RecentCity_Table(Activity activity) {
 		super(activity);
 	}
 /*

@@ -50,8 +50,8 @@ public class AfterPaymentAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.row_payment_log, null);
             holder = new ViewHolder();
-            holder.tvLog = (TextView) convertView.findViewById(R.id.tvLog);
-            holder.tvStatusIcon = (TextView) convertView.findViewById(R.id.tvStatusIcon);
+            holder.tvLog = convertView.findViewById(R.id.tvLog);
+            holder.tvStatusIcon = convertView.findViewById(R.id.tvStatusIcon);
 
             convertView.setTag(holder);
         } else {

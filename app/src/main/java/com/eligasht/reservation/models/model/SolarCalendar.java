@@ -11,12 +11,12 @@ public class SolarCalendar {
 	private static Calendar calendar;
 
 	public SolarCalendar() {
-		this.calendar = Calendar.getInstance();
+		calendar = Calendar.getInstance();
 		calSolarCalendar();
 	}
 
 	public SolarCalendar(Calendar calendar) {
-		this.calendar = calendar;
+		SolarCalendar.calendar = calendar;
 		calSolarCalendar();
 	}
 	//jorjian to persian

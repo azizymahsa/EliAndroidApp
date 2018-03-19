@@ -23,6 +23,7 @@ import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
 import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
+import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 
@@ -188,6 +189,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         holder.location.setText(selectHotelModelArrayList.get(position).getLocation() +"،"+ selectHotelModelArrayList.get(position).getCity());
         holder.title.setText(selectHotelModelArrayList.get(position).getTitle());
         holder.board.setText(selectHotelModelArrayList.get(position).getBoard());
+        holder.tvPrice.setAnimationDelay(500);
         holder.tvPrice.setText(Utility.priceFormat(String.valueOf(Integer.valueOf(selectHotelModelArrayList.get(position).getPrice()) + Integer.valueOf(selectHotelModelArrayList.get(position).getAmount()))));
 
 //
@@ -452,7 +454,8 @@ public class FlightHotelAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView name, location, title, board, tvPrice, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines,nonStop,ivIsBestseler,txt_lable_hotel,tvBargashtTime2,tvBargashtTime1;
+        TickerView  tvPrice;
+        TextView name, location, title, board, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines,nonStop,ivIsBestseler,txt_lable_hotel,tvBargashtTime2,tvBargashtTime1;
         ImageView ivHotelPic, ivRate, ivLogo;
         CardView cvHotel;
         LinearLayout linear_1, linear_2,linear_3;
