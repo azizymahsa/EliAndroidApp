@@ -4,10 +4,9 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
 import com.eligasht.R;
 import com.eligasht.reservation.views.ui.SingletonContext;
-
+import com.orhanobut.hawk.Hawk;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
@@ -15,60 +14,96 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 
 public class SplashDialog implements View.OnClickListener {
-    android.app.AlertDialog dialog;
-    View dialogView;
-    LayoutInflater inflater;
-    android.app.AlertDialog.Builder builder;
-    Activity activity;
-    FancyButton btnOk;
-    TextView tvAlert;
-    TryDialogListener filterHotelDialogListener;
+
+  android.app.AlertDialog dialog;
+  View dialogView;
+  LayoutInflater inflater;
+  android.app.AlertDialog.Builder builder;
+  Activity activity;
+  FancyButton btnOk;
+  TextView tvAlert;
+  TryDialogListener filterHotelDialogListener;
+  Boolean restart;
 
 
+  public SplashDialog(final Activity activity, TryDialogListener filterHotelDialogListener) {
+    this.activity = activity;
+    this.filterHotelDialogListener = filterHotelDialogListener;
+    builder = new android.app.AlertDialog.Builder(activity);
+    inflater = LayoutInflater.from(activity);
+    dialogView = inflater.inflate(R.layout.alert_dialog_splash, null);
+    builder.setView(dialogView);
+    btnOk = dialogView.findViewById(R.id.btnOk);
+    tvAlert = dialogView.findViewById(R.id.tvAlert);
 
-    public SplashDialog(final Activity activity,TryDialogListener filterHotelDialogListener) {
-        this.activity = activity;
-        this.filterHotelDialogListener = filterHotelDialogListener;
-        builder = new android.app.AlertDialog.Builder(activity);
-        inflater = LayoutInflater.from(activity);
-        dialogView = inflater.inflate(R.layout.alert_dialog_splash, null);
-        builder.setView(dialogView);
-        btnOk = dialogView.findViewById(R.id.btnOk);
-        tvAlert = dialogView.findViewById(R.id.tvAlert);
+    btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources()
+        .getString(R.string.iran_sans_normal_ttf));
+    btnOk.setOnClickListener(this);
+    dialog = builder.create();
+    dialog.setCancelable(false);
+    restart = false;
+  }
 
-        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
-        btnOk.setOnClickListener(this);
-        dialog = builder.create();
-        dialog.setCancelable(false);
-    }
-public void seeText(String message){
+  public SplashDialog(final Activity activity, TryDialogListener filterHotelDialogListener,
+      Boolean isRestartApp) {
+    this.activity = activity;
+    this.filterHotelDialogListener = filterHotelDialogListener;
+    builder = new android.app.AlertDialog.Builder(activity);
+    inflater = LayoutInflater.from(activity);
+    dialogView = inflater.inflate(R.layout.alert_dialog_splash, null);
+    builder.setView(dialogView);
+    btnOk = dialogView.findViewById(R.id.btnOk);
+    tvAlert = dialogView.findViewById(R.id.tvAlert);
+
+    btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources()
+        .getString(R.string.iran_sans_normal_ttf));
+    btnOk.setOnClickListener(this);
+    dialog = builder.create();
+    dialog.setCancelable(false);
+    restart = true;
+  }
+
+  public void seeText(String message) {
     tvAlert.setText(message);
-}
-public void showAlert(){
+  }
+
+  public void showAlert() {
 
     dialog.show();
-}
-    public void setBtnText(){
-        btnOk.setText("باشه!");
+  }
 
-    }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnOk:
-                dialog.cancel();
-                try {
-                    filterHotelDialogListener.onReturnValue();
+  public void setBtnText() {
+    btnOk.setText("باشه!");
 
-                }catch (Exception e){}
+  }
 
-                break;
+  @Override
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.btnOk:
+        dialog.cancel();
+        try {
+          if (!restart) {
+            filterHotelDialogListener.onReturnValue();
 
+          } else {
+            filterHotelDialogListener.returnRestartAppValue();
+          }
+
+        } catch (Exception e) {
         }
-    }
 
-    public interface TryDialogListener {
-        void onReturnValue();
+        break;
+
     }
+  }
+
+  public interface TryDialogListener {
+
+    void onReturnValue();
+
+    void returnRestartAppValue();
+  }
+
 }
 

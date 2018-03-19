@@ -10,8 +10,8 @@ import android.widget.ImageView;
 
 
 import com.eligasht.R;
-import com.eligasht.reservation.tools.GlideApp;
 
+import com.eligasht.reservation.tools.GlideApp;
 import java.util.ArrayList;
 
 /**

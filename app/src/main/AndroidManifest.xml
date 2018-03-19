@@ -33,6 +33,7 @@
     <activity
       android:exported="true"
       android:name=".reservation.views.ui.SplashFragment"
+      android:launchMode="singleTask"
       android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>

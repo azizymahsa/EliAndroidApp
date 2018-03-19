@@ -2379,5 +2379,6 @@
     <string name="hour">saat</string>
     <string name="best_seller">En çok satan kitap</string>
     <string name="comma">,</string>
+  <string name="the_locale_will_be_changed">با توجه به مکان فعلی شما، زبان برنامه تغییر خواهد کرد</string>
 </resources>
 
