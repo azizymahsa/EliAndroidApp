@@ -5,6 +5,7 @@ package com.eligasht.reservation.views.activities.hotel.activity;
  */
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -119,7 +120,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private AddCommnetDialog addCommnetDialog;
     private String comment, userName, title;
     private CommentAdapterRecycle commentAdapter;
-    private TextView tvSortComment, tvDateDetail;
+    private TextView tvSortComment, tvDateDetail,tvCommentClickIcon,tvCommentClickText,tvMapClickText,tvMapClickIcon,tvEmakanatClickIcon,
+            tvEmakanatClickText,tvRezervClickIcon,tvRezervClickText;
     boolean isNew = false;
     private ScrollView svDetail;
     private RelativeLayout elNotFound;
@@ -144,8 +146,10 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 lvRooms.setVisibility(View.GONE);
                 vComment.setVisibility(View.GONE);
                 tvAlert.setVisibility(View.GONE);
-                llDynamic.setVisibility(View.VISIBLE);
-                vEmakanat.setVisibility(View.VISIBLE);
+              /*  llDynamic.setVisibility(View.VISIBLE);
+                vEmakanat.setVisibility(View.VISIBLE);*/
+                flMap.setVisibility(View.VISIBLE);
+                vMap.setVisibility(View.VISIBLE);
             }
         } catch (Exception e) {
         }
@@ -164,6 +168,16 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         rlRoot = findViewById(R.id.rlRoot);
         llEmakanatClick = findViewById(R.id.llEmakanatClick);
         ivLoading = findViewById(R.id.ivLoading);
+        tvCommentClickIcon = findViewById(R.id.tvCommentClickIcon);
+        tvCommentClickText = findViewById(R.id.tvCommentClickText);
+        tvMapClickText = findViewById(R.id.tvMapClickText);
+        tvMapClickIcon = findViewById(R.id.tvMapClickIcon);
+        tvEmakanatClickIcon = findViewById(R.id.tvEmakanatClickIcon);
+        tvEmakanatClickText = findViewById(R.id.tvEmakanatClickText);
+        tvRezervClickIcon = findViewById(R.id.tvRezervClickIcon);
+        tvRezervClickText = findViewById(R.id.tvRezervClickText);
+
+
         llMapClick = findViewById(R.id.llMapClick);
         tvAdress = findViewById(R.id.tvAdress);
         llRezervClick = findViewById(R.id.llRezervClick);
@@ -260,6 +274,15 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 vComment.setVisibility(View.INVISIBLE);
                 vRezerv.setVisibility(View.VISIBLE);
 
+                tvCommentClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvCommentClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvMapClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvMapClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvEmakanatClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvRezervClickIcon.setTextColor(Color.BLACK);
+                tvRezervClickText.setTextColor(Color.BLACK);
+
 
                 break;
             case R.id.llMapClick:
@@ -280,6 +303,23 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     vMap.setVisibility(View.VISIBLE);
                     vRezerv.setVisibility(View.INVISIBLE);
                     vComment.setVisibility(View.INVISIBLE);
+
+
+
+
+
+                    tvCommentClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                    tvCommentClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                    tvMapClickText.setTextColor(Color.BLACK);
+                    tvMapClickIcon.setTextColor(Color.BLACK);
+                    tvEmakanatClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                    tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                    tvRezervClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                    tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+
+
+
+
                 }
 
 
@@ -298,14 +338,20 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 vRezerv.setVisibility(View.INVISIBLE);
                 vComment.setVisibility(View.INVISIBLE);
 
+
+                tvCommentClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvCommentClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvMapClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvMapClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvEmakanatClickIcon.setTextColor(Color.BLACK);
+                tvEmakanatClickText.setTextColor(Color.BLACK);
+                tvRezervClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+
+
                 break;
             case R.id.llCommentClick:
-      /*          svDetail.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        svDetail.fullScroll(ScrollView.FOCUS_UP);
-                    }
-                }, 100);*/
+
                 flMap.setVisibility(View.GONE);
                 lvRooms.setVisibility(View.GONE);
                 tvAlert.setVisibility(View.GONE);
@@ -322,6 +368,15 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     new GetCommentAsync().execute();
 
                 }
+
+                tvCommentClickIcon.setTextColor(Color.BLACK);
+                tvCommentClickText.setTextColor(Color.BLACK);
+                tvMapClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvMapClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvEmakanatClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvRezervClickIcon.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
 
 
                 break;

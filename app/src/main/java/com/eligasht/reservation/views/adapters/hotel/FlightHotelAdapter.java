@@ -419,6 +419,10 @@ public class FlightHotelAdapter extends BaseAdapter {
 
         if (selectHotelModelArrayList.get(position).isOff()) {
             holder.tvOff.setVisibility(View.VISIBLE);
+            YoYo.with(Techniques.SlideInRight)
+                    .duration(700)
+                    .playOn(holder.tvOff);
+
             holder.tvOff.setText(selectHotelModelArrayList.get(position).getOff());
 
         } else {
@@ -427,7 +431,9 @@ public class FlightHotelAdapter extends BaseAdapter {
         }
         if (selectHotelModelArrayList.get(position).isBestSell()) {
             holder.ivIsBestseler.setVisibility(View.VISIBLE);
-
+            YoYo.with(Techniques.SlideInLeft)
+                    .duration(700)
+                    .playOn(holder.ivIsBestseler);
         } else {
             holder.ivIsBestseler.setVisibility(View.GONE);
 
@@ -524,13 +530,13 @@ public class FlightHotelAdapter extends BaseAdapter {
                     float left = lineOnstep.getLeft();
                     tvPlane.setTranslationX(-right);
 
-                    ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlane, "translationX", -right, left - 20);
+                    ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlane, "translationX", -right, left - 25);
                     anim2.setDuration(2500);
                     anim2.setStartDelay(20);// Duration in milliseconds
                     anim2.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
                     anim2.start();
 
-                    ObjectAnimator anim3 = ObjectAnimator.ofFloat(lineOnstep, "translationX", -right, left - 20);
+                    ObjectAnimator anim3 = ObjectAnimator.ofFloat(lineOnstep, "translationX", -right, left - 25);
                     anim3.setDuration(2500);
                     anim3.setStartDelay(20);// Duration in milliseconds
                     anim3.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
@@ -538,24 +544,24 @@ public class FlightHotelAdapter extends BaseAdapter {
                 }
             };
             handler.postDelayed(r, 500);
+        }else {
+            float right = lineOnstep.getRight();
+            float left = lineOnstep.getLeft();
+            tvPlane.setTranslationX(-right);
+
+            ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlane, "translationX", -right, left - 25);
+            anim2.setDuration(3000);
+            anim2.setStartDelay(50);// Duration in milliseconds
+            anim2.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
+            anim2.start();
+
+            ObjectAnimator anim3 = ObjectAnimator.ofFloat(lineOnstep, "translationX", -right, left - 25);
+            anim3.setDuration(3000);
+            anim3.setStartDelay(50);// Duration in milliseconds
+            anim3.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
+            anim3.start();
+
         }
-        float right = lineOnstep.getRight();
-        float left = lineOnstep.getLeft();
-        tvPlane.setTranslationX(-right);
-
-        ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlane, "translationX", -right, left - 25);
-        anim2.setDuration(2500);
-        anim2.setStartDelay(20);// Duration in milliseconds
-        anim2.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
-        anim2.start();
-
-        ObjectAnimator anim3 = ObjectAnimator.ofFloat(lineOnstep, "translationX", -right, left - 25);
-        anim3.setDuration(2500);
-        anim3.setStartDelay(20);// Duration in milliseconds
-        anim3.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
-        anim3.start();
-
-
 
 
     }
