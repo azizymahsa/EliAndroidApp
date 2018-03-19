@@ -218,7 +218,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		///////////////
 		stepView.done(false);
 		ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
-		ScrollView scroll_partner= findViewById(R.id.scroll_partner);
 		scroll_partner.fullScroll(ScrollView.FOCUS_UP);
 		scroll_partner.scrollTo(0,0);
 		scroll_partner.clearFocus();
