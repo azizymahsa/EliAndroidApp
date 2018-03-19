@@ -2373,6 +2373,7 @@
     <string name="comma">,</string>
     <string name="icon_comments">&#xe638;</string>
     <string name="icon_room">&#xe639;</string>
+    <string name="icon_ac">&#xe640;</string>
 
 
 </resources>

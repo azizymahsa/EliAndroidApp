@@ -57,10 +57,10 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginTop="5dp"
-                android:visibility="gone"
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="3dp"
                 card_view:cardElevation="3dp"
+                android:visibility="gone"
 
 
                 >
@@ -178,7 +178,13 @@
                             android:layout_height="match_parent"
                             android:layout_weight="100"
                             android:orientation="vertical">
-
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/icon_comments"
+                                android:textAppearance="@style/IconFonts"
+                                android:textSize="@dimen/_16dp_normal_textSize" />
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -203,8 +209,15 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="100"
-                            android:orientation="vertical">
-
+                            android:orientation="vertical"
+                            android:background="?attr/selectableItemBackground">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/icon_location"
+                                android:textAppearance="@style/IconFonts"
+                                android:textSize="@dimen/_16dp_normal_textSize" />
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -229,7 +242,15 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="100"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:background="?attr/selectableItemBackground">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/icon_ac"
+                                android:textAppearance="@style/IconFonts"
+                                android:textSize="@dimen/_16dp_normal_textSize" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -256,7 +277,15 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="100"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:background="?attr/selectableItemBackground">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/icon_room"
+                                android:textAppearance="@style/IconFonts"
+                                android:textSize="@dimen/_16dp_normal_textSize" />
 
                             <TextView
                                 android:layout_width="match_parent"
