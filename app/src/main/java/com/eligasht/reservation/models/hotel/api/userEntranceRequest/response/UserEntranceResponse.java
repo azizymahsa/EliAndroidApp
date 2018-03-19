@@ -13,11 +13,13 @@ public class UserEntranceResponse {
     public final String ID;
     public final ArrayList<Errors> errors;
     public final boolean AdjustEnabled;
+    public final String CultureDefault;
 
-    public UserEntranceResponse(MobileAppStartupServiceResult userEntranceResponse, String ID, ArrayList<Errors> errors, boolean adjustEnabled) {
+    public UserEntranceResponse(MobileAppStartupServiceResult userEntranceResponse, String ID, ArrayList<Errors> errors, boolean adjustEnabled, String cultureDefault) {
         UserEntranceResponse = userEntranceResponse;
         this.ID = ID;
         this.errors = errors;
         AdjustEnabled = adjustEnabled;
+        CultureDefault = cultureDefault;
     }
 }
