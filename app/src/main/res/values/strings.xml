@@ -12,7 +12,7 @@
     <!-- Content Description -->
     <!-- pakhsh////////////////////////////////////////////////////////////////////////////////////////// -->
     <string name="app_name">Eligasht</string>
-    <string name="accept">accept</string>
+    <string name="accept">Ok</string>
 
     <string name="icon_menu">&#xe901;</string>
     <string name="icon_bed">&#xe900;</string>
@@ -33,10 +33,10 @@
     <string name="icon_mic">&#xe91b;</string>
 
     <string name="searchFlight">Plane Ticket</string>
-    <string name="search_package">Holiday Package</string>
+    <string name="search_package">Vacation Package</string>
     <string name="search_hotel">Hotel Reservation</string>
 
-    <string name="reserve_package">Reserve</string>
+    <string name="reserve_package">Book</string>
     <string name="icon_calander">&#xe908;</string>
     <string name="search_back_right">&#xea40;</string>
     <string name="icon_plane">&#xe622;</string>
@@ -1917,15 +1917,15 @@
     <string name="RoomError">The number should not be more than 9 people.</string>
     <string name="InformationRoom">Information Room</string>
     <string name="room">Room</string>
-    <string name="confirm">Confirm</string>
-    <string name="ServicesInformation">Service Details</string>
+    <string name="confirm">ok</string>
+    <string name="ServicesInformation">Included Service</string>
     <string name="PackgeNoFound">Nothing Found.</string>
     <string name="OnlyOne">One Item To Show.</string>
     <string name="PackageError">There is no result found on this date, the closest available date is as follows:</string>
     <string name="PassengerSpec">Passenger Details</string>
     <string name="Brithday">Please enter your birth date</string>
     <string name="brithdayError">Please enter passengers birth date</string>
-    <string name="Passanger">Passenger</string>
+    <string name="Passanger">Passenger(s)</string>
     <string name="select_return_date">Choose the date back</string>
     <string name="please_select_one">Please select one</string>
     <string name="please_select_destination_city">Please select the city of your trip</string>
@@ -2027,7 +2027,7 @@
     <string name="ChildPackage">Child</string>
     <string name="BabyPackage">Infant</string>
     <string name="OfferTo">Offer for</string>
-    <string name="ServicesPackage">Available services</string>
+    <string name="ServicesPackage">Included services</string>
     <string name="InfoAirline">Flight information</string>
     <string name="travel_duration">Travel length</string>
     <string name="enter_current_password">Enter the current password</string>
@@ -2125,7 +2125,7 @@
     <string name="base_price">Base Price</string>
     <string name="tax">Tax</string>
     <string name="payable">Payable</string>
-    <string name="select_and_reserve">Reserve</string>
+    <string name="select_and_reserve">Book</string>
     <string name="calculate_price">Calculate price</string>
     <string name="add_to_shoping_cart">Add to cart</string>
     <string name="added">Added</string>
@@ -2170,7 +2170,7 @@
     <string name="Enter_the_passport_expiration_date">Enter passport expiration date</string>
     <!--heydari-->
     <string name="Enter_your_gender">Choose gender</string>
-    <string name="First_passenger_information">First passenger information (adult)</string>
+    <string name="First_passenger_information">First passenger info (adult)</string>
     <string name="Passenger_information">Passenger info</string>
     <string name="adult_">(Adult)</string>
     <string name="adult">Adult</string>
@@ -2210,7 +2210,7 @@
     <string name="moshakhasat_mosafer">Passengers detail</string>
     <string name="info_flight">Flight info</string>
     <string name="detail_hotel">Hotel details</string>
-    <string name="Available_services">Available services</string>
+    <string name="Available_services">Included services</string>
     <string name="The_amount_payable">Payable amount</string>
     <string name="Registration_and_payment">Confirm and pay</string>
     <string name="text1">Select language</string>
@@ -2223,7 +2223,7 @@
     <string name="change_fligfontht">Change flight</string>
     <string name="class_flight">Flight class</string>
     <string name="cities_all_over_the_world">Cities all over the world</string>
-    <string name="confirmed_airlines">Confirmed airlines</string>
+    <string name="confirmed_airlines">Authentic airlines</string>
     <string name="hotels_all_over_the_world">Hotels all over the world</string>
     <string name="room_information">Room information</string>
     <string name="numbers_must_be_less_than_nine">Numbers must be less than nine</string>

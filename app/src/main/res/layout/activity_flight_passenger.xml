@@ -6,7 +6,9 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlRoot"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:background="#ffffff">
+    <!--  app:doneStepLineColor="#00ff00"-->
 
 
 
@@ -50,18 +52,60 @@
             />
 
     </FrameLayout>
-
     <LinearLayout
-        android:id="@+id/llLayout"
+        android:id="@+id/llCirclr"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_28dp_image_height_passenger"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_container"
         android:layout_gravity="center"
         android:layout_marginTop="7dp"
         android:background="#ffffff"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:weightSum="1"
+        >
+        <com.shuhart.stepview.StepView
+            android:id="@+id/step_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:sv_selectedCircleColor="@color/dark_orang"
+            app:sv_selectedTextColor="@color/gray_dark"
+            app:sv_stepLineWidth="2dp"
+            app:sv_stepPadding="4dp"
+            app:sv_nextTextColor="#e6e4e4"
+            app:sv_stepViewStyle="@color/gray_dark"
+            app:sv_nextStepLineColor="#aaaaaa"
+            app:sv_doneCircleColor="@color/dark_orang"
+            app:sv_doneStepLineColor="@color/dark_orang"
+            app:sv_defaultCircleColor="#aaaaaa"
+            app:sv_doneCircleRadius="@dimen/_20dp_khadamat"
+            app:sv_selectedCircleRadius="@dimen/_20dp_khadamat"
+            app:sv_selectedStepNumberColor="@color/white"
+            app:sv_doneStepMarkColor="@color/white"
+            app:sv_stepNumberTextSize="18dp"
+            app:sv_doneTextColor="#aaaaaa"
+            app:sv_animationType="Line"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_28dp_image_height_passenger"
+        android:layout_below="@+id/llCirclr"
+        android:layout_gravity="center"
+        android:layout_marginTop="7dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/btn_pish_factor"
@@ -117,7 +161,8 @@
         android:orientation="horizontal"
         android:weightSum="4"
         android:gravity="center"
-        android:layout_below="@+id/llLayout">
+        android:layout_below="@+id/llLayout"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/txtPishfactor"

@@ -46,7 +46,9 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -113,6 +115,7 @@ import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
+import com.shuhart.stepview.StepView;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -175,13 +178,46 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
 	com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
 	com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
-
+	com.shuhart.stepview.StepView stepView;
 	@SuppressLint("WrongViewCast")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_flight_passenger);
 
+		//////////
+		stepView = (com.shuhart.stepview.StepView) findViewById(R.id.step_view);
+		//stepView.setOnCli
+		stepView.setStepsNumber(4);
+		stepView.getState()
+				.selectedTextColor(ContextCompat.getColor(this, R.color.dark_orang))
+				.animationType(StepView.ANIMATION_ALL)
+				.selectedStepNumberColor(ContextCompat.getColor(this, R.color.white))
+				.selectedCircleColor(ContextCompat.getColor(this, R.color.dark_orang))
+				.selectedCircleRadius(getResources().getDimensionPixelSize(R.dimen._20dp_khadamat))
+				.animationDuration(1500)
+				.defaultCircleColor(ContextCompat.getColor(this, R.color.gray_dark))
+				// You should specify only stepsNumber or steps array of strings.
+				// In case you specify both steps array is chosen.
+				.steps(new ArrayList<String>() {{
+					add(getString(R.string.partner));
+					add(getString(R.string.passenger));
+					add(getString(R.string.servis));
+					add(getString(R.string.payment));
+				}})
+				// You should specify only steps number or steps array of strings.
+				// In case you specify both steps array is chosen.
+				.stepsNumber(4)
+				.stepLineWidth(getResources().getDimensionPixelSize(R.dimen.dp1))
+				.textSize(getResources().getDimensionPixelSize(R.dimen._10dp_textSize))
+				.stepNumberTextSize(getResources().getDimensionPixelSize(R.dimen.sp16))
+				//.typeface(ResourcesCompat.getFont(this, R.string.fon))
+				// other state methods are equal to the corresponding xml attributes
+				.commit();
+
+		///////////////
+		stepView.done(false);
+		ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
 		ScrollView scroll_partner= findViewById(R.id.scroll_partner);
 		scroll_partner.fullScroll(ScrollView.FOCUS_UP);
 		scroll_partner.scrollTo(0,0);
@@ -247,10 +283,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				String monthMF = dateSplite2[1];
 				String yearMF = dateSplite2[0];
 
-
 				datePickerDialog.initialize(PassengerActivity.this, Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
 				datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
-
 
 			}
 		});
@@ -297,9 +331,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
 			}
 		});
-
-
-
 
 
 		String RengAge=txtTitleCountM.getText().toString();
@@ -375,8 +406,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		persianCalendar2.set(persianCalendarDatePicker.getPersianYear()+6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() );
 		datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
 		///////end setMin
-
-///////////////////////////////
 
 		/////////////////////
 		data=new ArrayList<PurchaseFlightResult>();
@@ -457,6 +486,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 		txtnamem = findViewById(R.id.txtnamem);
+		txtnamem = (EditText) findViewById(R.id.txtnamem);
 		txtnamem.setOnClickListener(this);
 		txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
 		txtnamem.setOnFocusChangeListener(this);
@@ -483,8 +513,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 		txtTitle= findViewById(R.id.tvTitle);
+		txtTitle= (TextView) findViewById(R.id.tvTitle);
 		txtTitle.setOnClickListener(this);
 
+		btn_next_partnerInfo=(LinearLayout) findViewById(R.id.btn_next_partnerInfo);
 
 		btn_next_partnerInfo= findViewById(R.id.btn_next_partnerInfo);
 		btn_next_partnerInfo.setOnClickListener(this);
@@ -492,7 +524,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		btn_nextm= findViewById(R.id.btn_nextm);
 		btn_nextm.setOnClickListener(this);
 
-		btn_taeed_khadamat= findViewById(R.id.btn_taeed_khadamat);
+		btn_taeed_khadamat=(LinearLayout)findViewById(R.id.btn_taeed_khadamat);
 		btn_taeed_khadamat.setOnClickListener(this);
 
 		linear_code_meli= findViewById(R.id.linear_code_meli);
@@ -1280,6 +1312,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				// Setup and Handover data to recyclerview
 				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
+				stepView.go(3,true);
 				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
 				txtTitle.setText(R.string.Approval_and_payment_of_pre_invoice);
 				//	myScrollView.setOnTouchListener(null);
@@ -1513,6 +1546,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 					((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+					stepView.go(2,true);
 					((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 					txtTitle.setText(R.string.Add_to_cart_services);
 
@@ -1722,7 +1756,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				break;
 
 			case R.id.btnBack:
-
+				try{
+				stepView.go(stepView.getCurrentStep()-1,true);
+				}catch(Exception e){
+					e.getMessage();
+				}
 				if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 					linear_pish_factor.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
@@ -1809,6 +1847,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				break;
 			case R.id.btn_next_partnerInfo:
+
 				if(FlagTab){
 					linear_saler.setVisibility(View.GONE);
 					linear_mosaferan.setVisibility(View.VISIBLE);
@@ -1818,6 +1857,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+					stepView.go(1,true);
 
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
@@ -1950,6 +1990,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							//((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
 							Gensiyat="";
 							((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+							stepView.go(1,true);
 							((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 							setAnimation();
 						}
@@ -2052,6 +2093,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				flag = false;
 				break;
 			case R.id.btn_nextm:
+
 				LinearLayout mainLayout;
 				mainLayout = findViewById(R.id.linear_list_khadamat);
 
@@ -2288,6 +2330,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+					stepView.go(2,true);
 
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
@@ -2392,6 +2435,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+					stepView.go(2,true);
 
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
@@ -2410,6 +2454,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
+					stepView.go(3,true);
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
@@ -2548,17 +2593,18 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public void onBackPressed() {
 
 
+
 		if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 			linear_pish_factor.setVisibility(View.GONE);
 			linear_list_khadamat.setVisibility(View.VISIBLE);
-
+			stepView.go(2,true);
 			((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 			((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 			txtTitle.setText(getString(R.string.Add_to_cart_services));
 		}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
 			linear_list_khadamat.setVisibility(View.GONE);
 			linear_mosaferan.setVisibility(View.VISIBLE);
-
+			stepView.go(1,true);
 
 			txtTitle.setText(getString(R.string.passneger_info));
 			((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
@@ -2618,7 +2664,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			//////////////////////
 			linear_mosaferan.setVisibility(View.GONE);
 			linear_saler.setVisibility(View.VISIBLE);
-
+			stepView.go(0,true);
 
 			txtTitle.setText(getString(R.string.Buyer_Specifications));
 			((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
