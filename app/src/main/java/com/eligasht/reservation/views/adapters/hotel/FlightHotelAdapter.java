@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.text.Html;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,7 +47,7 @@ public class FlightHotelAdapter extends BaseAdapter {
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
     private LayoutInflater inflater;
     private ViewHolder holder;
-  
+
 
     public FlightHotelAdapter(ArrayList<SelectFlightHotelModel> selectHotelModelArrayList, Activity activity, TextView DateTime) {
         this.activity = activity;
@@ -141,7 +143,7 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvBargashtTime2 = convertView.findViewById(R.id.tvBargashtTime2);
             holder.tvBargashtTime1 = convertView.findViewById(R.id.tvBargashtTime1);
             holder.lineOnstep = convertView.findViewById(R.id.lineOnstep);
-            holder.lineOnstep_barhasht= convertView.findViewById(R.id.lineOnstep_barhasht);
+            holder.lineOnstep_barhasht = convertView.findViewById(R.id.lineOnstep_barhasht);
 
 
             convertView.setTag(holder);
@@ -245,7 +247,7 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
-                anim(holder.lineOnstep, holder.tvPlane,position);
+               /// anim(holder.lineOnstep, holder.tvPlane, position);
 
                 break;
             case 1:
@@ -253,7 +255,7 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
                 waitRaft = activity.getString(R.string.NonStop);
-                anim(holder.lineOnstep, holder.tvPlane,position);
+              //  anim(holder.lineOnstep, holder.tvPlane, position);
 
                 break;
             case 2:
@@ -261,7 +263,8 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
-                anim(holder.lineOnstep, holder.tvPlane,position);
+
+                anim(holder.lineOnstep, holder.tvPlane, position);
 
                 break;
             case 3:
@@ -270,7 +273,7 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.tvANRaft2_1.setText(strings[0]);
                 holder.tvANRaft2_2.setText(strings[1]);
                 holder.tvANRaft2_3.setText(strings[2]);
-                anim(holder.lineOnstep, holder.tvPlane,position);
+             ///   anim(holder.lineOnstep, holder.tvPlane, position);
 
                 break;
             case 4:
@@ -305,7 +308,7 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.linear_1_bargasht.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1_bargasht.setText(strings2[0]);
                 holder.tvANRaft1_2_bargasht.setText(strings2[1]);
-                anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht,position);
+            //    anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht, position);
 
                 break;
             case 1:
@@ -314,7 +317,7 @@ public class FlightHotelAdapter extends BaseAdapter {
                     holder.tvANRaft1_2_bargasht.setText(strings2[1]);
                     holder.tvANRaft1_1_bargasht.setText(strings2[0]);
                     holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                    anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht,position);
+                 ///   anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht, position);
 
 
                 } catch (Exception e) {
@@ -330,7 +333,7 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.linear_1_bargasht.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1_bargasht.setText(strings2[0]);
                 holder.tvANRaft1_2_bargasht.setText(strings2[1]);
-                anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht,position);
+                anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht, position);
 
 
                 break;
@@ -483,7 +486,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         TextView tvANRaft2_1, tvANRaft2_2, tvANRaft2_3;
         TextView tvANRaft3_1, tvANRaft3_2, tvANRaft3_3, tvANRaft3_4;
         TextView tvANRaft1_1, tvANRaft1_2;
-        TextView tvPlane,tvPlane_bargasht;
+        TextView tvPlane, tvPlane_bargasht;
         AVLoadingIndicatorView avi2;
         FancyButton btnChange;
         RelativeLayout rlListItem;
@@ -492,33 +495,68 @@ public class FlightHotelAdapter extends BaseAdapter {
         TextView tvANRaft2_1_bargasht, tvANRaft2_2_bargasht, tvANRaft2_3_bargasht;
         TextView tvANRaft3_1_bargasht, tvANRaft3_2_bargasht, tvANRaft3_3_bargasht, tvANRaft3_4_bargasht;
         TextView tvANRaft1_1_bargasht, tvANRaft1_2_bargasht;
-        View lineOnstep,lineOnstep_barhasht;
+        View lineOnstep, lineOnstep_barhasht;
 
     }
-    public void anim(View lineOnstep,View tvPlane,int position){
-       if (selectHotelModelArrayList.get(position).isAnimation())
-           return;
-        selectHotelModelArrayList.get(position).setAnimation(true);
 
-        int delay=500;
-        if (position==0||position==1){
-            delay=1500;
+    public void anim(View lineOnstep, View tvPlane, int position) {
+      /*  if (lineOnstep.getTag() !=null && lineOnstep.getTag().equals("gg"))
+            return;
+        lineOnstep.setTag("gg");*/
+        boolean run = false;
+        for (int i = 0; i < selectHotelModelArrayList.get(position).getBooleans().size(); i++) {
+            if (!selectHotelModelArrayList.get(position).getBooleans().get(i)) {
+                run = true;
+                selectHotelModelArrayList.get(position).getBooleans().set(i,true);
+                break;
+            }
+        }
+        if (!run)
+            return;
+        Log.e("viewtest", lineOnstep.getId()+"" );
+
+        if (position == 0 || position == 1) {
+
+           Handler handler = new Handler();
+            Runnable r = new Runnable() {
+                public void run() {
+                    float right = lineOnstep.getRight();
+                    float left = lineOnstep.getLeft();
+                    tvPlane.setTranslationX(-right);
+
+                    ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlane, "translationX", -right, left - 20);
+                    anim2.setDuration(2500);
+                    anim2.setStartDelay(20);// Duration in milliseconds
+                    anim2.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
+                    anim2.start();
+
+                    ObjectAnimator anim3 = ObjectAnimator.ofFloat(lineOnstep, "translationX", -right, left - 20);
+                    anim3.setDuration(2500);
+                    anim3.setStartDelay(20);// Duration in milliseconds
+                    anim3.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
+                    anim3.start();
+                }
+            };
+            handler.postDelayed(r, 500);
         }
         float right = lineOnstep.getRight();
         float left = lineOnstep.getLeft();
         tvPlane.setTranslationX(-right);
 
-        ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlane, "translationX", -right, left-15);
-        anim2.setDuration(4000);
-        anim2.setStartDelay(delay);// Duration in milliseconds
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlane, "translationX", -right, left - 25);
+        anim2.setDuration(2500);
+        anim2.setStartDelay(20);// Duration in milliseconds
         anim2.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
         anim2.start();
 
-        ObjectAnimator anim3 = ObjectAnimator.ofFloat(lineOnstep, "translationX", -right, left-15);
-        anim3.setDuration(4000);
-        anim3.setStartDelay(delay);// Duration in milliseconds
+        ObjectAnimator anim3 = ObjectAnimator.ofFloat(lineOnstep, "translationX", -right, left - 25);
+        anim3.setDuration(2500);
+        anim3.setStartDelay(20);// Duration in milliseconds
         anim3.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
         anim3.start();
+
+
+
 
     }
 

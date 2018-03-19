@@ -5,6 +5,7 @@ import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Reza.nejati on 1/4/2018.
@@ -18,7 +19,8 @@ public class SelectFlightHotelModel {
     private String price;
     private String imageUrl;
     private String location;
-    private boolean animation=false;
+    private List<Boolean> booleans=new ArrayList<>();
+
 
     int oldPrice;
     int star;
@@ -61,14 +63,17 @@ public class SelectFlightHotelModel {
         Amount = amount;
         Locations = locations;
         FlightId = flightId;
+        booleans.add(false);
+        booleans.add(false);
     }
 
-    public boolean isAnimation() {
-        return animation;
+
+    public List<Boolean> getBooleans() {
+        return booleans;
     }
 
-    public void setAnimation(boolean animation) {
-        this.animation = animation;
+    public void setBooleans(List<Boolean> booleans) {
+        this.booleans = booleans;
     }
 
     public String getName() {
