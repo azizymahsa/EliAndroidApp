@@ -49,7 +49,7 @@ public class InternetAlert implements View.OnClickListener {
         dialog = builder.create();
         dialog.setCancelable(false);
         LottieAnimationView lottieAnimationView = dialogView.findViewById(R.id.animation_view);
-        lottieAnimationView.setAnimation("no_connection.json");
+        lottieAnimationView.setAnimation("lottie/no_connection.json");
         lottieAnimationView.playAnimation();
     }
     public void isCancel(){

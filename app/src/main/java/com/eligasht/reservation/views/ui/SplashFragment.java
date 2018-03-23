@@ -146,29 +146,6 @@ public class SplashFragment extends ConnectionBuddyActivity implements
 
     TelephonyManager telemamanger = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
-/*
-        try {
-         String ver=   new VersionChecker().execute().get();
-         if (ver!=null||!TextUtils.isEmpty(ver)){
-             Version a = new Version(BuildConfig.VERSION_NAME);
-             Version b = new Version(ver);
-             if (a.compareTo(b)==-1){
-                 isGooglePlay=true;
-                 isStop=true;
-                 Log.e("teeeest123",  a.compareTo(b)+"");
-             }
-         }
-
-
-
-
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }*/
-
     internetAlert = new InternetAlert(SplashFragment.this);
 
     ivSplash = findViewById(R.id.ivSplash);
@@ -176,7 +153,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements
     tvVer = findViewById(R.id.tvVer);
     avi = findViewById(R.id.avi);
     lottieAnimationView = findViewById(R.id.animation_view);
-    lottieAnimationView.setAnimation("e-splash.json");
+    lottieAnimationView.setAnimation("lottie/e-splash.json");
     lottieAnimationView.playAnimation();
     tvVer.setText(BuildConfig.VERSION_NAME);
     Log.d(TAG, "onCreate: ");
@@ -202,8 +179,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements
                 if (isConnect) {
                   Log.d(TAG, "onPermissionGranted: ");
                   new GetCommentAsync().execute();
-                                 /*   startActivity(new Intent(SplashFragment.this, CommentActivity.class));
-                                    finish();*/
+
                 } else {
                   internetAlert.isShow();
                 }
@@ -413,7 +389,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements
                 if (Hawk.get("isFirstEntrance", true)) {
                   if (
 //                      userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault
-                      "en".contains("en")) {
+                          userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault.contains("en")) {
 
                     showRestartDialog();
 

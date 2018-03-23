@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.getHotelPolicy.GetHotelPolicyApi;
 import com.eligasht.reservation.api.hotel.getHotelRoom.GetHoldRoom;
@@ -150,6 +151,7 @@ public class RoomsAdapter extends BaseAdapter {
         TickerView  tvPrice;
         FancyButton btnPolicy;
         CardView llSelectHotel;
+        LottieAnimationView lottieInfo;
 
     }
 

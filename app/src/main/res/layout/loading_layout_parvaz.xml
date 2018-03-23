@@ -60,4 +60,30 @@
 
 
 
+    <FrameLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+   >
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottiePlane"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:translationX="100dp"
+
+
+
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_fileName="lottie/plane.json"
+            app:lottie_enableMergePathsForKitKatAndAbove="true"
+
+            />
+    </FrameLayout>
+
+
+
 </RelativeLayout>

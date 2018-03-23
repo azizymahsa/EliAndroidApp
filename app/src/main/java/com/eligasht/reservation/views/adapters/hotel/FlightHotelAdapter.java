@@ -210,8 +210,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         holder.location.setText(selectHotelModelArrayList.get(position).getLocation() + "،" + selectHotelModelArrayList.get(position).getCity());
         holder.title.setText(selectHotelModelArrayList.get(position).getTitle());
         holder.board.setText(selectHotelModelArrayList.get(position).getBoard());
-        holder.tvPrice.setAnimationDelay(1000);
-        holder.tvPrice.setText("");
+
         holder.tvPrice.setText(Utility.priceFormat(String.valueOf(Integer.valueOf(selectHotelModelArrayList.get(position).getPrice()) + Integer.valueOf(selectHotelModelArrayList.get(position).getAmount()))));
 
 //
@@ -490,7 +489,7 @@ public class FlightHotelAdapter extends BaseAdapter {
     public class ViewHolder {
         TextView name, location, title, board, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines, nonStop, ivIsBestseler, txt_lable_hotel, tvBargashtTime2, tvBargashtTime1;
         ImageView ivHotelPic, ivRate, ivLogo;
-        TickerView  tvPrice;
+        TextView  tvPrice;
         CardView cvHotel;
         LinearLayout linear_1, linear_2, linear_3;
         TextView tvANRaft2_1, tvANRaft2_2, tvANRaft2_3;

@@ -30,7 +30,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 
 
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.content.ContextCompat;
@@ -738,7 +737,7 @@ public class Utility extends Activity {
 
     public static void setAnimLoading(Activity activity) {
         LottieAnimationView lottieAnimationView = activity.findViewById(R.id.animation_view);
-        lottieAnimationView.setAnimation("circle-l.json");
+        lottieAnimationView.setAnimation("lottie/circle-l.json");
         lottieAnimationView.playAnimation();
 
 

@@ -23,7 +23,6 @@ import com.eligasht.reservation.models.model.pack.call.CityRequestModel;
 import com.eligasht.reservation.models.model.pack.response.CityListRes;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
-import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.activities.AddRoomActivity;
 import com.eligasht.reservation.views.activities.pack.SearchPackActivity;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
@@ -204,7 +203,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         linearLayout_mabda = view.findViewById(R.id.linearLayout_mabda);
 
         lottieAnimationView = view.findViewById(R.id.animation_view);
-        lottieAnimationView.setAnimation("circle-l.json");
+        lottieAnimationView.setAnimation("lottie/circle-l.json");
         txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
         departureTo = SingletonDate.getInstance().getEndDate().getFullGeo();
         txt_depart_date.setText(SingletonDate.getInstance().getStartDate().getDescription());

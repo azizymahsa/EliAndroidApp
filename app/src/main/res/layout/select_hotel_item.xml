@@ -252,7 +252,7 @@
 
                     />
 
-                <com.eligasht.reservation.views.ticker.TickerView
+                <TextView
                     android:id="@+id/tvPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -261,7 +261,6 @@
                     android:gravity="left|center"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#000000"
-                    app:ticker_defaultCharacterList="number"
                     android:textSize="@dimen/_13dp_normal_textSize"
 
                     />

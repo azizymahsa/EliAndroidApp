@@ -380,7 +380,6 @@
                                 android:layout_width="@dimen/_30dp_f_h"
                                 android:layout_height="@dimen/_30dp_f_h"
                                 android:layout_marginBottom="1dp"
-                                android:layout_marginRight="20dp"
                                 android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="@string/mines"
@@ -397,7 +396,9 @@
                                 android:text="1"
                                 card_view:ticker_defaultCharacterList="number"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/_12dp_normal_textSize" />
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:layout_marginLeft="@dimen/_10dp"
+                                android:layout_marginRight="@dimen/_10dp"/>
 
                             <Button
                                 android:id="@+id/btnPlusB"
@@ -439,7 +440,6 @@
                                 android:layout_width="@dimen/_30dp_f_h"
                                 android:layout_height="@dimen/_30dp_f_h"
                                 android:layout_marginBottom="1dp"
-                                android:layout_marginRight="20dp"
                                 android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="@string/mines"
@@ -456,7 +456,9 @@
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize"
                                 android:gravity="center_vertical"
-                                card_view:ticker_defaultCharacterList="number"/>
+                                card_view:ticker_defaultCharacterList="number"
+                                android:layout_marginLeft="@dimen/_10dp"
+                                android:layout_marginRight="@dimen/_10dp"/>
 
                             <Button
                                 android:id="@+id/btnPlusK"
@@ -497,7 +499,6 @@
                                 android:layout_width="@dimen/_30dp_f_h"
                                 android:layout_height="@dimen/_30dp_f_h"
                                 android:layout_marginBottom="1dp"
-                                android:layout_marginRight="20dp"
                                 android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="@string/mines"
@@ -514,7 +515,9 @@
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize"
                                 android:gravity="center_vertical"
-                                card_view:ticker_defaultCharacterList="number"/>
+                                card_view:ticker_defaultCharacterList="number"
+                                android:layout_marginLeft="@dimen/_10dp"
+                                android:layout_marginRight="@dimen/_10dp"/>
 
                             <Button
                                 android:id="@+id/btnPlusN"

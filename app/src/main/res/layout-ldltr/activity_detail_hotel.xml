@@ -59,8 +59,6 @@
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="3dp"
                 card_view:cardElevation="3dp"
-                android:visibility="gone"
-
 
 
                 >
@@ -82,12 +80,11 @@
                         <ImageView
                             android:id="@+id/ivImage"
                             android:layout_width="@dimen/_60dp_hight"
-                            android:layout_height="14dp"
-                            android:layout_gravity="center|left"
-                            android:layout_marginLeft="4dp"
-
-                            android:gravity="left"
-                            android:scaleType="fitStart"
+                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
+                            android:layout_gravity="center|right"
+                            android:layout_marginRight="4dp"
+                            android:gravity="right"
+                            android:scaleType="fitEnd"
                             android:src="@drawable/rating_start"
 
                             />
@@ -96,8 +93,9 @@
                             android:id="@+id/tvHotelName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:gravity="left|center"
+                            android:layout_marginRight="4dp"
+                            android:gravity="right|center"
+                            android:text="sdfsdf"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_16dp_normal_textSize"
@@ -105,14 +103,14 @@
 
                         <TextView
                             android:id="@+id/tvCityName"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_below="@+id/ivHotelPic"
-                            android:layout_marginLeft="4dp"
-
+                            android:layout_marginRight="4dp"
                             android:ellipsize="end"
-                            android:gravity="center|left"
+                            android:gravity="center|right"
                             android:maxLines="1"
+                            android:text="sdfsdf"
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_14dp_txtSize" />
 
@@ -121,7 +119,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="left"
+                        android:gravity="right"
                         android:orientation="horizontal">
 
                         <TextView
@@ -131,8 +129,7 @@
                             android:text="@string/icon_location"
                             android:textAppearance="@style/IconFonts"
                             android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_25dp_normal_iconSize"
-                            />
+                            android:textSize="@dimen/_25dp_normal_iconSize" />
 
                         <TextView
                             android:id="@+id/tvAdress"
@@ -155,9 +152,9 @@
                         android:id="@+id/tvDateDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
                         android:ellipsize="end"
-                        android:gravity="center|left"
+                        android:gravity="center|right"
                         android:maxLines="1"
                         android:textColor="@color/text_color_4d"
                         android:textSize="@dimen/_12dp_normal_textSize"
@@ -166,7 +163,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="70dp"
                         android:layout_marginLeft="4dp"
 
                         android:layout_marginRight="4dp"
@@ -178,16 +175,32 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="100"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:background="?attr/selectableItemBackground">
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieComment"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="140"
+                                android:orientation="vertical"
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                android:padding="5dp"
+
+                                />
 
                             <TextView
+                                android:id="@+id/tvCommentClickText"
+
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="@string/Comments"
                                 android:textAppearance="@style/IrsansBold"
-                                android:textSize="@dimen/_10dp_textSize" />
+                                android:textSize="@dimen/_10dp_textSize"
+                                android:textColor="@color/gray_dark"/>
 
                             <View
                                 android:id="@+id/vComment"
@@ -204,16 +217,31 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="100"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:background="?attr/selectableItemBackground">
 
-                            <TextView
+
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieMap"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="140"
+                                android:orientation="vertical"
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                />
+                            <TextView
+                                android:id="@+id/tvMapClickText"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="@string/Map"
                                 android:textAppearance="@style/IrsansBold"
-                                android:textSize="@dimen/_10dp_textSize" />
+                                android:textSize="@dimen/_10dp_textSize"
+                                android:textColor="@color/gray_dark"/>
 
                             <View
                                 android:id="@+id/vMap"
@@ -226,20 +254,31 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/llEmakanatClick"
+                            android:id="@+id/llEmkanatClick"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="100"
-                            android:orientation="vertical">
-
-                            <TextView
+                            android:orientation="vertical"
+                            android:background="?attr/selectableItemBackground">
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieEmkanat"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="140"
+                                android:orientation="vertical"
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                />
+                            <TextView
+                                android:id="@+id/tvEmakanatClickText"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="@string/Possibilities"
                                 android:textAppearance="@style/IrsansBold"
-                                android:textSize="@dimen/_10dp_textSize" />
+                                android:textSize="@dimen/_10dp_textSize"
+                                android:textColor="@color/gray_dark"/>
 
                             <View
                                 android:id="@+id/vEmakanat"
@@ -257,11 +296,23 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="100"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:background="?attr/selectableItemBackground">
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieRezerv"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="140"
+                                android:orientation="vertical"
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                />
 
                             <TextView
+                                android:id="@+id/tvRezervClickText"
+
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="@string/ReservRoom"
@@ -819,7 +870,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             app:lottie_autoPlay="true"
-            app:lottie_fileName="circle-l.json"
+            app:lottie_fileName="lottie/circle-l.json"
             app:lottie_loop="true"
 
             />

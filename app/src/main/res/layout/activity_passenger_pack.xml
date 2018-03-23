@@ -1717,7 +1717,7 @@
             android:layout_marginTop="10dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_fileName="circle-l.json"
+            app:lottie_fileName="lottie/circle-l.json"
 
             />
 

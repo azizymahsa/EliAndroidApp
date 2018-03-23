@@ -239,7 +239,7 @@
                     android:orientation="horizontal"
                     android:padding="5dp">
 
-                    <com.eligasht.reservation.views.ticker.TickerView
+                    <TextView
                         android:id="@+id/tvRial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -248,7 +248,6 @@
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/green"
                         android:textSize="@dimen/_13dp_normal_textSize"
-                        app:ticker_defaultCharacterList="number"
 
 
                         />

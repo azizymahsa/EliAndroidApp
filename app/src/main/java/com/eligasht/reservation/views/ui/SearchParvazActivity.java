@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.ui;
 
+import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
@@ -16,6 +18,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -32,6 +36,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.changeflight.ChangeFlightApi;
 import com.eligasht.reservation.base.BaseActivity;
@@ -160,6 +165,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     private ArrayList<ParentItemExpandingPlan> selectHotelModelArrayListBestSeler = new ArrayList<>();
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
     private ExpandableListAdapter listAdapterExpanding;
+    LottieAnimationView lottiePlane;
 
     public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
         // TODO Auto-generated method stub
@@ -236,6 +242,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         btn_no_Result = findViewById(R.id.btn_no_Result);
         btn_no_Result.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
         llNextLastDays = findViewById(R.id.llNextLastDays);
+        lottiePlane = findViewById(R.id.lottiePlane);
         btn_no_Result.setOnClickListener(this);
 
         txtRuzeGhabl = findViewById(R.id.txtRuzeGhabl);
@@ -456,6 +463,27 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         }
         // and get whatever type user account id is
+
+
+
+        Handler handler = new Handler();
+        Runnable r = new Runnable() {
+            public void run() {
+                Log.e("left", rlLoading.getLeft()+"");
+                Log.e("right", rlLoading.getRight()+"");
+                ObjectAnimator anim2 = ObjectAnimator.ofFloat(lottiePlane, "translationX",0, -rlLoading.getRight()-100);
+                anim2.setDuration(6000);
+                anim2.setInterpolator(new LinearInterpolator());  // E.g. Linear, Accelerate, Decelerate
+                anim2.start();
+
+
+            }
+        };
+        handler.postDelayed(r, 100);
+
+
+
+
 
     }//end oncreat======================================================================================
 

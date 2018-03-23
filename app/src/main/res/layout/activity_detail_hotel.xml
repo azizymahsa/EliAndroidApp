@@ -60,7 +60,6 @@
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="3dp"
                 card_view:cardElevation="3dp"
-                android:visibility="gone"
 
 
                 >
@@ -165,7 +164,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="70dp"
                         android:layout_marginLeft="4dp"
 
                         android:layout_marginRight="4dp"
@@ -179,21 +178,23 @@
                             android:layout_weight="100"
                             android:orientation="vertical"
                             android:background="?attr/selectableItemBackground">
-                            <TextView
-                                android:id="@+id/tvCommentClickIcon"
 
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieComment"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center|top"
-                                android:text="@string/icon_comments"
-                                android:textAppearance="@style/IconFonts3"
-                                android:textSize="@dimen/_16dp_normal_textSize"
-                                android:textColor="@color/gray_dark"/>
+                                android:layout_height="0dp"
+                                android:layout_weight="140"
+                                android:orientation="vertical"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="false"
+                                android:padding="5dp"
+                                />
+
                             <TextView
                                 android:id="@+id/tvCommentClickText"
 
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="@string/Comments"
@@ -218,20 +219,23 @@
                             android:layout_weight="100"
                             android:orientation="vertical"
                             android:background="?attr/selectableItemBackground">
-                            <TextView
-                                android:id="@+id/tvMapClickIcon"
+
+
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieMap"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center|top"
-                                android:text="@string/icon_location"
-                                android:textAppearance="@style/IconFonts"
-                                android:textSize="@dimen/_16dp_normal_textSize"
-                                android:textColor="@color/gray_dark"/>
+                                android:layout_height="0dp"
+                                android:layout_weight="140"
+                                android:orientation="vertical"
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                />
                             <TextView
                                 android:id="@+id/tvMapClickText"
 
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="@string/Map"
@@ -250,26 +254,25 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/llEmakanatClick"
+                            android:id="@+id/llEmkanatClick"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="100"
                             android:orientation="vertical"
                             android:background="?attr/selectableItemBackground">
-                            <TextView
-                                android:id="@+id/tvEmakanatClickIcon"
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieEmkanat"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center|top"
-                                android:text="@string/icon_ac"
-                                android:textAppearance="@style/IconFonts3"
-                                android:textSize="@dimen/_16dp_normal_textSize"
-                                android:textColor="@color/gray_dark"/>
-
+                                android:layout_height="0dp"
+                                android:layout_weight="140"
+                                android:orientation="vertical"
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                />
                             <TextView
                                 android:id="@+id/tvEmakanatClickText"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="@string/Possibilities"
@@ -295,21 +298,21 @@
                             android:layout_weight="100"
                             android:orientation="vertical"
                             android:background="?attr/selectableItemBackground">
-                            <TextView
-                                android:id="@+id/tvRezervClickIcon"
-
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieRezerv"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center|top"
-                                android:text="@string/icon_room"
-                                android:textAppearance="@style/IconFonts3"
-                                android:textSize="@dimen/_16dp_normal_textSize" />
+                                android:layout_height="0dp"
+                                android:layout_weight="140"
+                                android:orientation="vertical"
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                />
 
                             <TextView
                                 android:id="@+id/tvRezervClickText"
 
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="100"
                                 android:gravity="center"
                                 android:text="@string/ReservRoom"
@@ -867,7 +870,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             app:lottie_autoPlay="true"
-            app:lottie_fileName="circle-l.json"
+            app:lottie_fileName="lottie/circle-l.json"
             app:lottie_loop="true"
 
             />

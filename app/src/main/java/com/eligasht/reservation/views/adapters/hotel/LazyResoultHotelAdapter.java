@@ -107,7 +107,6 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         holder.location.setText(selectHotelModelArrayList.get(position).getLocation() + "،" + selectHotelModelArrayList.get(position).getCity());
         holder.title.setText(selectHotelModelArrayList.get(position).getTitle());
         holder.board.setText(selectHotelModelArrayList.get(position).getBoard());
-        holder.tvPrice.setAnimationDelay(500);
         holder.tvPrice.setText(Utility.priceFormat(selectHotelModelArrayList.get(position).getPrice()));
 
         holder.rlListItem.setOnClickListener(new View.OnClickListener() {
@@ -213,7 +212,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
 
     public class ViewHolder {
         TextView name, location, title, board, tvOff, ivIsBestseler, txt_lable_hotel;
-        TickerView  tvPrice;
+        TextView  tvPrice;
         ImageView ivHotelPic, ivRate;
         CardView cvHotel;
         RelativeLayout rlListItem;
