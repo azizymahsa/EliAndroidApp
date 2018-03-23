@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.views.ui.SingletonContext;
-import com.orhanobut.hawk.Hawk;
+
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
@@ -69,8 +69,14 @@ public class SplashDialog implements View.OnClickListener {
   }
 
   public void showAlert() {
+try {
+  dialog.show();
+}
+catch (Exception e)
+{
+  e.printStackTrace();
+}
 
-    dialog.show();
   }
 
   public void setBtnText() {

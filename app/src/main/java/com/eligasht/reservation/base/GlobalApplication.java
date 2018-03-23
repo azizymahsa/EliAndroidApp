@@ -18,6 +18,7 @@ import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustConfig;
 import com.adjust.sdk.AdjustEvent;
 import com.adjust.sdk.LogLevel;
+import com.eligasht.BuildConfig;
 import com.eligasht.R;
 import com.eligasht.reservation.notification.GetNotification;
 import com.eligasht.reservation.views.activities.IDM_Activity;
@@ -27,6 +28,7 @@ import com.eligasht.reservation.views.ui.font.CustomViewWithTypefaceSupport;
 import com.eligasht.reservation.views.ui.font.TextField;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.crash.FirebaseCrash;
 import com.onesignal.OneSignal;
 import com.orhanobut.hawk.Hawk;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -182,6 +184,8 @@ public class GlobalApplication extends Application {
             Adjust.onCreate(config);
             registerActivityLifecycleCallbacks(new AdjustLifecycleCallbacks());
         }
+
+        FirebaseCrash.setCrashCollectionEnabled(!BuildConfig.DEBUG);
     }
 
     public String getMyOperator(Context aContext) {

@@ -292,11 +292,17 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+try {
+    //this method will be running on UI thread
+    pdLoading.setMessage("\tLoading...");
+    pdLoading.setCancelable(false);
+    pdLoading.show();
+}
+catch (Exception e)
+{
+    e.printStackTrace();
+}
 
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
 
         }
 
@@ -434,42 +440,48 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
             //this method will be running on UI thread
 
-            pdLoading.dismiss();
-            List<ContactInfo> data=new ArrayList<ContactInfo>();
+         try {
+             pdLoading.dismiss();
+             List<ContactInfo> data=new ArrayList<ContactInfo>();
 
-            pdLoading.dismiss();
-            try {
+             pdLoading.dismiss();
+             try {
 ////////////////////////////
-                JSONObject jsonObj = new JSONObject(result);
+                 JSONObject jsonObj = new JSONObject(result);
 
-                // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetContactUsWithCutureResult");
-                String jsonAddress = GetAirportsResult.getString("Address");
+                 // Getting JSON Array node
+                 JSONObject GetAirportsResult = jsonObj.getJSONObject("GetContactUsWithCutureResult");
+                 String jsonAddress = GetAirportsResult.getString("Address");
 
-                JSONArray jArray = GetAirportsResult.getJSONArray("ContactInfos");
-
-
-                // Extract data from json and store into ArrayList as class objects
-                for(int i=0;i<jArray.length();i++){
-                    JSONObject json_data = jArray.getJSONObject(i);
-                    ContactInfo sectionModel = new ContactInfo();
-                    sectionModel.setDescription(json_data.getString("Description"));
-                    sectionModel.setIcon(json_data.getString("Icon"));
-                    sectionModel.setIconNumber(json_data.getString("IconNumber"));
-                    sectionModel.setTitle(json_data.getString("Title"));
-
-                    data.add(sectionModel);
-                }
-                System.out.println("Image:"+GetAirportsResult.getString("Address"));//r\n\t\
-                txtAddres.setText(GetAirportsResult.getString("Address").replaceAll("\t","").replaceAll("\r"," ").replaceAll("\n"," "));
-                txtPhone.setText(""+GetAirportsResult.getString("PhoneNumber"));
+                 JSONArray jArray = GetAirportsResult.getJSONArray("ContactInfos");
 
 
-                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
+                 // Extract data from json and store into ArrayList as class objects
+                 for(int i=0;i<jArray.length();i++){
+                     JSONObject json_data = jArray.getJSONObject(i);
+                     ContactInfo sectionModel = new ContactInfo();
+                     sectionModel.setDescription(json_data.getString("Description"));
+                     sectionModel.setIcon(json_data.getString("Icon"));
+                     sectionModel.setIconNumber(json_data.getString("IconNumber"));
+                     sectionModel.setTitle(json_data.getString("Title"));
 
-            } catch (JSONException e) {
-                Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
-            }
+                     data.add(sectionModel);
+                 }
+                 System.out.println("Image:"+GetAirportsResult.getString("Address"));//r\n\t\
+                 txtAddres.setText(GetAirportsResult.getString("Address").replaceAll("\t","").replaceAll("\r"," ").replaceAll("\n"," "));
+                 txtPhone.setText(""+GetAirportsResult.getString("PhoneNumber"));
+
+
+                 //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
+
+             } catch (JSONException e) {
+                 Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+             }
+         }
+         catch (Exception e)
+         {
+
+         }
 
         }
 

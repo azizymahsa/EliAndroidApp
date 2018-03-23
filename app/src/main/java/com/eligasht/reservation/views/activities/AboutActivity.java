@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.SectionModel;
@@ -102,11 +104,15 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            try {
+                pdLoading.setMessage("\tLoading...");
+                pdLoading.setCancelable(false);
+                pdLoading.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+
 
         }
 
@@ -227,60 +233,64 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
 
         @Override
         protected void onPostExecute(String result) {
-
-            //this method will be running on UI thread
-            v1.setAnimationDuration(1000);
-            v2.setAnimationDuration(1000);
-            v3.setAnimationDuration(1000);
-            v1.setText("1200", true);
-            v2.setText("900", true);
-            v3.setText("20000", true);
-            List<SectionModel> data = new ArrayList<SectionModel>();
-
-            pdLoading.dismiss();
             try {
+                //this method will be running on UI thread
+                v1.setAnimationDuration(1000);
+                v2.setAnimationDuration(1000);
+                v3.setAnimationDuration(1000);
+                v1.setText("1200", true);
+                v2.setText("900", true);
+                v3.setText("20000", true);
+                List<SectionModel> data = new ArrayList<SectionModel>();
+
+                pdLoading.dismiss();
+                try {
 ////////////////////////////
-                JSONObject jsonObj = new JSONObject(result);
+                    JSONObject jsonObj = new JSONObject(result);
 
-                // JSONObject jsonObj = new JSONObject(retSrc);
+                    // JSONObject jsonObj = new JSONObject(retSrc);
 
-                // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAboutUsWithCultureResult");
-                JSONArray jArray = GetAirportsResult.getJSONArray("Sections");
-                //////////////////////////////
+                    // Getting JSON Array node
+                    JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAboutUsWithCultureResult");
+                    JSONArray jArray = GetAirportsResult.getJSONArray("Sections");
+                    //////////////////////////////
 
-                // Extract data from json and store into ArrayList as class objects
-                for (int i = 0; i < jArray.length(); i++) {
-                    JSONObject json_data = jArray.getJSONObject(i);
-                    SectionModel sectionModel = new SectionModel();
-                    sectionModel.setDescription(json_data.getString("Description"));
-                    sectionModel.setSectionName(json_data.getString("SectionName"));
-                    sectionModel.setImageAddress(json_data.getString("ImageAddress"));
+                    // Extract data from json and store into ArrayList as class objects
+                    for (int i = 0; i < jArray.length(); i++) {
+                        JSONObject json_data = jArray.getJSONObject(i);
+                        SectionModel sectionModel = new SectionModel();
+                        sectionModel.setDescription(json_data.getString("Description"));
+                        sectionModel.setSectionName(json_data.getString("SectionName"));
+                        sectionModel.setImageAddress(json_data.getString("ImageAddress"));
 
-                    data.add(sectionModel);
-                }
-
-
-                listAirPort = findViewById(R.id.lvExp);
-                listAirPort.addItemDecoration(new DividerItemDecoration(AboutActivity.this, 1));
-                listAirPort.setLayoutManager(new LinearLayoutManager(AboutActivity.this));
-                mAdapter = new AboutAdapter(data);
-                //mAdapter.setAdapter(mAdapter);
-                listAirPort.setAdapter(mAdapter);
-                listAirPort.setClickable(false);
-                listAirPort.setEnabled(false);
-                listAirPort.setScrollContainer(false);
-                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
-                listAirPort.setOnFlingListener(new RecyclerView.OnFlingListener() {
-                    @Override
-                    public boolean onFling(int velocityX, int velocityY) {
-                        listAirPort.dispatchNestedFling(velocityX, velocityY, false);
-                        return false;
+                        data.add(sectionModel);
                     }
-                });
-            } catch (JSONException e) {
-                Toast.makeText(AboutActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+
+
+                    listAirPort = findViewById(R.id.lvExp);
+                    listAirPort.addItemDecoration(new DividerItemDecoration(AboutActivity.this, 1));
+                    listAirPort.setLayoutManager(new LinearLayoutManager(AboutActivity.this));
+                    mAdapter = new AboutAdapter(data);
+                    //mAdapter.setAdapter(mAdapter);
+                    listAirPort.setAdapter(mAdapter);
+                    listAirPort.setClickable(false);
+                    listAirPort.setEnabled(false);
+                    listAirPort.setScrollContainer(false);
+                    //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
+                    listAirPort.setOnFlingListener(new RecyclerView.OnFlingListener() {
+                        @Override
+                        public boolean onFling(int velocityX, int velocityY) {
+                            listAirPort.dispatchNestedFling(velocityX, velocityY, false);
+                            return false;
+                        }
+                    });
+                } catch (JSONException e) {
+                    Toast.makeText(AboutActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
+
             }
+
 
         }
 
