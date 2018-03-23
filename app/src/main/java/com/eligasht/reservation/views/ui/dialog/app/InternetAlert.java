@@ -76,9 +76,16 @@ public class InternetAlert implements View.OnClickListener {
                 if(Utility.isNetworkAvailable(activity)) {
                     dialog.cancel();
                 }else{
-                    Intent intent = new Intent();
-                    intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
-                    activity.startActivity(intent);
+                    try {
+                        Intent intent = new Intent();
+                        intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
+                        activity.startActivity(intent);
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
                 }
 
 
@@ -88,7 +95,14 @@ public class InternetAlert implements View.OnClickListener {
                     dialog.cancel();
 
                 }else{
-                    activity.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    try {
+                        activity.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
 
                 }
 

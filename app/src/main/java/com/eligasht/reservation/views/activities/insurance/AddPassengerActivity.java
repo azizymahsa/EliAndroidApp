@@ -102,7 +102,14 @@ public class AddPassengerActivity extends BaseActivity implements
         btn_add = findViewById(R.id.btn_add);
         btn_remove = findViewById(R.id.btn_remove);
         rcl_add_passenger = findViewById(R.id.rcl_add_passenger);
-        rcl_add_passenger.setLayoutManager(new LinearLayoutManager(getAppContext()));
+        try {
+            rcl_add_passenger.setLayoutManager(new LinearLayoutManager(this));
+        }
+        catch (Exception e)
+        {
+
+        }
+
         hideLoading();
 
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");

@@ -155,21 +155,28 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         call.enqueue(new Callback<CityListRes>() {
             @Override
             public void onResponse(Call<CityListRes> call, Response<CityListRes> response) {
-                hideLoading();
-                if (response == null || response.body() == null) {
-                    needShowAlertDialog(getString(R.string.error_in_connection), true);
-                    return;
-                }
-
-                if (response.body().getGetHotelListResult() == null || response.body().getGetHotelListResult().getCities() == null) {
-                    needShowAlertDialog(getString(R.string.there_is_no_city_to_show), true);
-                    return;
-                }
                 try {
-                    Hawk.put("PackCityData", response.body().getGetHotelListResult());
-                } catch (Exception e) {
+                    hideLoading();
+                    if (response == null || response.body() == null) {
+                        needShowAlertDialog(getString(R.string.error_in_connection), true);
+                        return;
+                    }
 
+                    if (response.body().getGetHotelListResult() == null || response.body().getGetHotelListResult().getCities() == null) {
+                        needShowAlertDialog(getString(R.string.there_is_no_city_to_show), true);
+                        return;
+                    }
+                    try {
+                        Hawk.put("PackCityData", response.body().getGetHotelListResult());
+                    } catch (Exception e) {
+
+                    }
                 }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
 
             }
 
