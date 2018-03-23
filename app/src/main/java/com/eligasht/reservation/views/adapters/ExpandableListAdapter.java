@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.adapters;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseExpandableListAdapter;
@@ -296,17 +298,28 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView txttedad = convertView.findViewById(R.id.txttedad);
 
+
+
+        TextView tvPlaneIcon2 = convertView.findViewById(R.id.tvPlaneIcon2);
+        TextView tvPlaneIcon = convertView.findViewById(R.id.tvPlaneIcon);
+        View viewLine2 = convertView.findViewById(R.id.viewLine2);
+        View viewLine = convertView.findViewById(R.id.viewLine);
+        LinearLayout llRaft = convertView.findViewById(R.id.llRaft);
+
+
+
+
+
+
+
+
+
+
         LinearLayout linearBargashtOne = convertView.findViewById(R.id.linearBargashtOne);
         LinearLayout linearBargashtTwo = convertView.findViewById(R.id.linearBargashtTwo);
         LinearLayout linearBargashtTree = convertView.findViewById(R.id.linearBargashtTree);
         LinearLayout linearKol = convertView.findViewById(R.id.linearKol);
-        //final int[] flag = {0};
-//        linearKol.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d("TAG", "onClick: ");
-//            }
-//        });
+
         if (shouldShowAnimation) {
             YoYo.with(Techniques.FadeIn)
                     .duration(300)
@@ -364,7 +377,31 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             expListViewExpanding.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
 
 
-            //linearKol.clearAnimation();
+            float right = llRaft.getRight();
+            float left = llRaft.getLeft();
+            tvPlaneIcon.setTranslationX(right);
+
+            float right2 = linearBargashtTwo.getRight();
+            float left2 = linearBargashtTwo.getLeft();
+            tvPlaneIcon2.setTranslationX(right);
+
+            ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlaneIcon, "translationX", right, left );
+            anim2.setDuration(1500);
+            anim2.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
+            anim2.start();
+            ObjectAnimator anim3 = ObjectAnimator.ofFloat(viewLine, "translationX", right, left);
+            anim3.setDuration(1500);
+            anim3.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
+            anim3.start();
+
+            ObjectAnimator anim4 = ObjectAnimator.ofFloat(tvPlaneIcon2, "translationX", right2, left2 );
+            anim4.setDuration(1500);
+            anim4.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
+            anim4.start();
+            ObjectAnimator anim5 = ObjectAnimator.ofFloat(viewLine2, "translationX", right2, left2);
+            anim5.setDuration(1500);
+            anim5.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
+            anim5.start();
 
         } else {
             btnExpand.setText(_context.getString(R.string.icon_exp_down));

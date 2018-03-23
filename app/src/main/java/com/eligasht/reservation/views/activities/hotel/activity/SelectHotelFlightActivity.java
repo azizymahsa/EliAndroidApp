@@ -27,6 +27,7 @@ import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
+import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.ChangeFlightApiRequest;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.Request;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
@@ -743,6 +744,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
     }
 
+
+
+
+
+
+
+
     public ArrayList<SelectFlightHotelModel> facility(ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels) {
         boolean isFilter = false;
 
@@ -760,9 +768,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
             if (filterHotelFacilitiesModels.get(i).isCheck()) {
                 for (int j = 0; j < selectHotelModels.size(); j++) {
-
                     for (int k = 0; k < selectHotelModels.get(j).getFacilities().size(); k++) {
                         isFilter = true;
+
                         if (filterHotelFacilitiesModels.get(i).getTitle().contains(selectHotelModels.get(j).getFacilities().get(k).Title)) {
                             filter.add(Add_To(i));
 
@@ -795,6 +803,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
 
     }
+
+
 
     public ArrayList<SelectFlightHotelModel> searchText(String text) {
         boolean isFilter = false;

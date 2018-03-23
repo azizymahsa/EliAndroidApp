@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center">
 
@@ -31,6 +31,8 @@
         android:orientation="vertical"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
+        app:lottie_fileName="lottie/warning.json"
+
         android:layout_marginTop="10dp"
         />
     <TextView

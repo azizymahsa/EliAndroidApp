@@ -3,6 +3,7 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -21,17 +22,29 @@
         android:textSize="@dimen/_16dp_txtSize"
 
         />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_fileName="lottie/warning.json"
 
+        android:layout_marginTop="10dp"
+        />
 
     <TextView
         android:id="@+id/tvAlert"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_10dp"
         android:gravity="center"
-        android:text="@string/SplashServerError"
         android:textAppearance="@style/IrsansBold"
-        android:textSize="@dimen/_12dp_normal_textSize" />
-
+        android:textSize="@dimen/_12dp_normal_textSize"
+        android:text="@string/ErrorServer"
+        />
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/btnOk"

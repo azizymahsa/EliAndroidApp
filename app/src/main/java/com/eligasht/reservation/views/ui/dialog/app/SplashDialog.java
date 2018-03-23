@@ -37,9 +37,6 @@ public class SplashDialog implements View.OnClickListener {
     builder.setView(dialogView);
     btnOk = dialogView.findViewById(R.id.btnOk);
     tvAlert = dialogView.findViewById(R.id.tvAlert);
-    LottieAnimationView lottieAnimationView = dialogView.findViewById(R.id.animation_view);
-    lottieAnimationView.setAnimation("lottie/warning.json");
-    lottieAnimationView.playAnimation();
     btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources()
         .getString(R.string.iran_sans_normal_ttf));
     btnOk.setOnClickListener(this);
@@ -58,9 +55,7 @@ public class SplashDialog implements View.OnClickListener {
     builder.setView(dialogView);
     btnOk = dialogView.findViewById(R.id.btnOk);
     tvAlert = dialogView.findViewById(R.id.tvAlert);
-    LottieAnimationView lottieAnimationView = dialogView.findViewById(R.id.animation_view);
-    lottieAnimationView.setAnimation("lottie/warning.json");
-    lottieAnimationView.playAnimation();
+
     btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources()
         .getString(R.string.iran_sans_normal_ttf));
     btnOk.setOnClickListener(this);
