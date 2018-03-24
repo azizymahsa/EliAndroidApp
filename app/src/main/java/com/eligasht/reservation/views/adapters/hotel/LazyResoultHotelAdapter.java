@@ -132,6 +132,10 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         if (selectHotelModelArrayList.get(position).isOff()) {
             holder.tvOff.setVisibility(View.VISIBLE);
             holder.tvOff.setText(selectHotelModelArrayList.get(position).getOff());
+            YoYo.with(Techniques.SlideInRight)
+                    .duration(700)
+                    .playOn(holder.tvOff);
+
 
         } else {
             holder.tvOff.setVisibility(View.GONE);
@@ -139,7 +143,9 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         }
         if (selectHotelModelArrayList.get(position).isBestSell()) {
             holder.ivIsBestseler.setVisibility(View.VISIBLE);
-
+            YoYo.with(Techniques.SlideInLeft)
+                    .duration(700)
+                    .playOn(holder.ivIsBestseler);
         } else {
             holder.ivIsBestseler.setVisibility(View.GONE);
 

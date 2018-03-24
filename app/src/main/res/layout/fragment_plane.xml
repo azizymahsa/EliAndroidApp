@@ -259,7 +259,7 @@
 
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginRight="0dp"
+                                android:layout_marginRight="6dp"
                                 android:layout_weight="100"
                                 android:gravity="right"
                                 android:orientation="horizontal">
@@ -268,7 +268,6 @@
                                     android:id="@+id/tarikh_be_picker"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginRight="10dp"
                                     android:layout_weight="0.8"
 
                                     android:gravity="center|right"
@@ -305,7 +304,6 @@
                                     android:id="@+id/tarikh_az_picker"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginRight="10dp"
                                     android:layout_weight="0.8"
                                     android:gravity="center|right"
                                     android:text="@string/please_select_one"

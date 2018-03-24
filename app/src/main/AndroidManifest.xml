@@ -32,7 +32,7 @@
 
     <activity
       android:exported="true"
-      android:name=".reservation.views.ui.SplashActivity"
+      android:name=".reservation.views.activities.AboutActivity"
       android:launchMode="singleTask"
       android:screenOrientation="portrait">
       <intent-filter>
@@ -120,9 +120,9 @@
     <activity
       android:name=".reservation.views.activities.hotel.activity.SelectHotelFlightActivity"
       android:screenOrientation="portrait"/>
-    <activity
+<!--    <activity
       android:name=".reservation.views.activities.AboutActivity"
-      android:screenOrientation="portrait"/>
+      android:screenOrientation="portrait"/>-->
     <activity
       android:name=".reservation.views.activities.ContactUsActivity"
       android:screenOrientation="portrait"/>
