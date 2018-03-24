@@ -158,7 +158,7 @@
         android:background="#ffffffff"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:layoutAnimation="@anim/layout_animation_fall_down" />
+       />
 
     <com.eligasht.reservation.views.picker.widget.IRANSansMe
         android:id="@+id/accept"
