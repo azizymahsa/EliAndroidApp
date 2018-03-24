@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.fragments;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
@@ -87,6 +89,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     /*com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;*/
     CalendarDialog calendarDialog;
+    private LottieAnimationView lottieCheckin, lottieCheckout;
 
 
     @Override
@@ -107,7 +110,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         linearLayout_maghsad = rootView.findViewById(R.id.linearLayout_maghsad);
         /*tarikh_az_picker.setTypeface(face);
         tarikh_be_picker.setTypeface(face);*/
-
+        lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
+        lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
+        lottieCheckin.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);
         tarikh_az = rootView.findViewById(R.id.tarikh_az);
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
         ivImage = rootView.findViewById(R.id.ivImage);
@@ -450,6 +456,54 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
     public boolean isInRange(int a, int b, int c) {
         return b > a ? c >= a && c <= b : c >= b && c <= a;
+    }
+
+    private void initCheckInCheckOutAnim() {
+        lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckin.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        lottieCheckout.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckout.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        lottieCheckin.playAnimation();
+        lottieCheckout.playAnimation();
     }
 
     @Override
@@ -971,7 +1025,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-
+        initCheckInCheckOutAnim();
         if (flagOneTwo == 1) {
             tarikh_az_picker.setText(startDate.getDescription());
             SingletonDate.getInstance().setStartDate(startDate);
