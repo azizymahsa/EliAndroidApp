@@ -159,9 +159,9 @@
                             android:layout_height="match_parent"
                             android:layout_weight="0.2"
                             android:gravity="center"
-                            card_view:lottie_autoPlay="false"
-                            card_view:lottie_loop="false"
-                            card_view:lottie_fileName="lottie/calendar.json"
+                            app:lottie_autoPlay="false"
+                            app:lottie_loop="false"
+                            app:lottie_fileName="lottie/calendar.json"
                             />
 
                     </LinearLayout>
@@ -217,9 +217,9 @@
                             android:layout_height="match_parent"
                             android:layout_weight="0.2"
                             android:gravity="center"
-                            card_view:lottie_autoPlay="false"
-                            card_view:lottie_loop="false"
-                            card_view:lottie_fileName="lottie/calendar.json"
+                            app:lottie_autoPlay="false"
+                            app:lottie_loop="false"
+                            app:lottie_fileName="lottie/calendar.json"
                             />
 
                     </LinearLayout>
