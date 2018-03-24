@@ -134,15 +134,16 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lottie_checkin"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="0.2"
                             android:gravity="center"
-                            android:text="@string/icon_calander"
-                            android:textAppearance="@style/IconFonts"
-                            android:textColor="@color/text_color_2"
-                            android:textSize="@dimen/_25dp_normal_iconSize" />
+                            card_view:lottie_autoPlay="false"
+                            card_view:lottie_loop="false"
+                            card_view:lottie_fileName="lottie/calendar.json"
+                            />
 
                         <TextView
                             android:id="@+id/txt_depart_date"
@@ -194,15 +195,16 @@
                         android:orientation="horizontal">
 
 
-                        <TextView
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lottie_checkout"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="0.2"
                             android:gravity="center"
-                            android:text="@string/icon_calander"
-                            android:textAppearance="@style/IconFonts"
-                            android:textColor="@color/text_color_2"
-                            android:textSize="@dimen/_25dp_normal_iconSize" />
+                            card_view:lottie_autoPlay="false"
+                            card_view:lottie_loop="false"
+                            card_view:lottie_fileName="lottie/calendar.json"
+                            />
 
                         <TextView
                             android:id="@+id/txt_return_date"

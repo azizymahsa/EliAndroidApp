@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.fragments.pack;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -83,6 +84,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     private HotelCity hotelCity;
     private String departureFrom;
     private String departureTo;
+    private LottieAnimationView lottieCheckin, lottieCheckout;
 
     public static PackageFragment instance() {
         PackageFragment fragment = new PackageFragment();
@@ -193,10 +195,62 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
     }
 
+    private void initCheckInCheckOutAnim() {
+        lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckin.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        lottieCheckout.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckout.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        lottieCheckin.playAnimation();
+        lottieCheckout.playAnimation();
+    }
+
     private void initViews() {
 
         layout_room = view.findViewById(R.id.layout_room);
         txtCity = view.findViewById(R.id.txtCity);
+        lottieCheckin = view.findViewById(R.id.lottie_checkin);
+        lottieCheckout = view.findViewById(R.id.lottie_checkout);
+        lottieCheckin.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);
         btnSearchPackage = view.findViewById(R.id.btnSearchPackage);
         btn_return_date = view.findViewById(R.id.btn_return_date);
         btn_depart_date = view.findViewById(R.id.btn_depart_date);
@@ -293,6 +347,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                     @Override
                     public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
                         if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
+                            initCheckInCheckOutAnim();
                             SingletonDate.getInstance().setEndDate(start);
                             txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
                         } else {
@@ -440,6 +495,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         departureTo = end.getFullGeo();
         txt_return_date.setText(end.getDescription());
         txt_depart_date.setText(start.getDescription());
+        initCheckInCheckOutAnim();
 
 
     }

@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.fragments.hotel;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,13 +18,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.ModelRowCountRoom;
 import com.eligasht.reservation.models.model.pack.ChildModel;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
-import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.activities.AddRoomActivity;
 import com.eligasht.reservation.views.activities.hotel.activity.GetHotelCityActivity;
@@ -45,11 +45,8 @@ import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -84,6 +81,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     CalendarDialog calendarDialog;
     private View rootView;
     private ArrayList<ModelRowCountRoom> roomsSelected;
+    private LottieAnimationView lottieCheckin, lottieCheckout;
 
 
     public static String date_server(int y, int m, int d) {
@@ -106,7 +104,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         rootView = inflater.inflate(R.layout.activity_hotel2, container, false);
         calendarDialog = new CalendarDialog();
         SingletonDate.getInstance().checkConflictDate();
-        if (CustomDate.compareTwoDays( SingletonDate.getInstance().getStartDate().getCalendar(), SingletonDate.getInstance().getEndDate().getCalendar())==0){
+        if (CustomDate.compareTwoDays(SingletonDate.getInstance().getStartDate().getCalendar(), SingletonDate.getInstance().getEndDate().getCalendar()) == 0) {
             SingletonDate.getInstance().getEndDate().addOneDay();
         }
 
@@ -119,6 +117,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
         // lblRoomCount = (TextView) rootView.findViewById(R.id.lblRoomCount);
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
+        lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
+        lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
+        lottieCheckin.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);
         //  lblRoomCount.setOnClickListener(this);
         tarikh_be.setOnClickListener(this);
         txtRoomCount = rootView.findViewById(R.id.txtRoomCount);
@@ -172,6 +174,54 @@ public class HotelFragment extends Fragment implements OnClickListener,
         return rootView;
 
     }//end oncreat
+
+    private void initCheckInCheckOutAnim() {
+        lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckin.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        lottieCheckout.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckout.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        lottieCheckin.playAnimation();
+        lottieCheckout.playAnimation();
+    }
 
     @Override
     public void onResume() {
@@ -253,7 +303,6 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         intent.putExtra("CheckInFa", tvRaft.getText().toString());
 
 
-
                         intent.putExtra("Rooms", getRoomList(roomsSelected));
                         intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                         intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
@@ -279,11 +328,12 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
                         SingletonDate.getInstance().setStartDate(startDate);
                         SingletonDate.getInstance().setEndDate(endDate);
+                        initCheckInCheckOutAnim();
                         tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
                         tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
 
                     }
-                },SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(),TypeUsageOfCalendar.HOTEL);
+                }, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
                 break;
             case R.id.llBargasht:
                 calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
@@ -291,11 +341,12 @@ public class HotelFragment extends Fragment implements OnClickListener,
                     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
                         SingletonDate.getInstance().setStartDate(startDate);
                         SingletonDate.getInstance().setEndDate(endDate);
+                        initCheckInCheckOutAnim();
                         tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
                         tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
 
                     }
-                },SingletonDate.getInstance().getStartDate(),SingletonDate.getInstance().getEndDate(),TypeUsageOfCalendar.HOTEL);
+                }, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
 
 
                 tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
@@ -471,16 +522,15 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-        SingletonDate.getInstance().setReverseDate(startDate,endDate);
+        SingletonDate.getInstance().setReverseDate(startDate, endDate);
         tvRaft.setText(startDate.getDescription());
         tvBargasht.setText(endDate.getDescription());
+        initCheckInCheckOutAnim();
         raft = startDate.getFullGeo();
         bargasht = endDate.getFullGeo();
 
 
     }
-
-
 
 
 }

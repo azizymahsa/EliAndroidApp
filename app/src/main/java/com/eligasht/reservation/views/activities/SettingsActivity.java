@@ -19,7 +19,7 @@ import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.adapters.SpinnerCustomAdapter;
 import com.eligasht.reservation.views.dialogs.SelectLanguageDialog;
 import com.eligasht.reservation.views.ui.InitUi;
-import com.eligasht.reservation.views.ui.SplashFragment;
+import com.eligasht.reservation.views.ui.SplashActivity;
 
 /**
  * Created by Ahmad.nemati on 3/3/2018.
@@ -95,7 +95,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent mStartActivity = new Intent(SettingsActivity.this, SplashFragment.class);
+                        Intent mStartActivity = new Intent(SettingsActivity.this, SplashActivity.class);
                         int mPendingIntentId = 123456;
                         PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
                                 PendingIntent.FLAG_CANCEL_CURRENT);
@@ -125,7 +125,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mStartActivity = new Intent(SettingsActivity.this, SplashFragment.class);
+                Intent mStartActivity = new Intent(SettingsActivity.this, SplashActivity.class);
                 int mPendingIntentId = 123456;
                 PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
                         PendingIntent.FLAG_CANCEL_CURRENT);

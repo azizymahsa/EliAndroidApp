@@ -54,7 +54,7 @@ import java.util.ArrayList;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
-public class SplashFragment extends ConnectionBuddyActivity implements
+public class SplashActivity extends ConnectionBuddyActivity implements
         SplashDialog.TryDialogListener {
 
     boolean isShow = true;
@@ -96,12 +96,12 @@ public class SplashFragment extends ConnectionBuddyActivity implements
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mStartActivity = new Intent(SplashFragment.this, SplashFragment.class);
+                Intent mStartActivity = new Intent(SplashActivity.this, SplashActivity.class);
                 int mPendingIntentId = 123456;
                 PendingIntent mPendingIntent = PendingIntent
-                        .getActivity(SplashFragment.this, mPendingIntentId, mStartActivity,
+                        .getActivity(SplashActivity.this, mPendingIntentId, mStartActivity,
                                 PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager mgr = (AlarmManager) SplashFragment.this
+                AlarmManager mgr = (AlarmManager) SplashActivity.this
                         .getSystemService(Context.ALARM_SERVICE);
                 mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
                 System.exit(0);
@@ -138,11 +138,11 @@ public class SplashFragment extends ConnectionBuddyActivity implements
 
         mTracker.send(new HitBuilders.AppViewBuilder().build());*/
 
-        splashDialog = new SplashDialog(SplashFragment.this, this);
+        splashDialog = new SplashDialog(SplashActivity.this, this);
         final PackageInfo pInfo;
         try {
             pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            updateAlert = new UpdateAlert(SplashFragment.this, pInfo.packageName);
+            updateAlert = new UpdateAlert(SplashActivity.this, pInfo.packageName);
 
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -150,7 +150,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements
 
         TelephonyManager telemamanger = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
-        internetAlert = new InternetAlert(SplashFragment.this);
+        internetAlert = new InternetAlert(SplashActivity.this);
 
         ivSplash = findViewById(R.id.ivSplash);
         ivLoading = findViewById(R.id.ivLoading);
@@ -172,7 +172,7 @@ public class SplashFragment extends ConnectionBuddyActivity implements
 
                 Log.d(TAG, "onAnimationEnd: ");
                 try {
-                    TedPermission.with(SplashFragment.this)
+                    TedPermission.with(SplashActivity.this)
                             .setPermissionListener(new PermissionListener() {
                                 @Override
                                 public void onPermissionGranted() {
@@ -264,9 +264,9 @@ public class SplashFragment extends ConnectionBuddyActivity implements
                 DeviceOSType = null;
 
             } else {
-                deviceId = Utility.getDeviceID(SplashFragment.this);
-                deviceSubscriberID = Utility.getSubscriberID(SplashFragment.this);
-                operator = Utility.getMyOperator(SplashFragment.this);
+                deviceId = Utility.getDeviceID(SplashActivity.this);
+                deviceSubscriberID = Utility.getSubscriberID(SplashActivity.this);
+                operator = Utility.getMyOperator(SplashActivity.this);
                 sdkVersion = android.os.Build.VERSION.SDK_INT + "";
                 model = android.os.Build.MODEL;
                 brand = Build.BRAND;
@@ -401,12 +401,12 @@ public class SplashFragment extends ConnectionBuddyActivity implements
                                         showRestartDialog();
 
                                     } else {
-                                        startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                         finish();
                                     }
 
                                 } else {
-                                    startActivity(new Intent(SplashFragment.this, MainActivity.class));
+                                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                     finish();
                                 }
                                 Hawk.put("isFirstEntrance", false);

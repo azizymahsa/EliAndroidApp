@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
@@ -26,9 +27,6 @@ import com.eligasht.reservation.models.model.ModelRowCountRoom;
 import com.eligasht.reservation.models.model.pack.ChildModel;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
-import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.tools.datetools.SolarCalendar;
-import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
 import com.eligasht.reservation.views.activities.pack.AddRoomActivity;
 import com.eligasht.reservation.views.adapters.HotelCountRoomAdapter;
@@ -44,17 +42,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
-import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -91,6 +81,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     CalendarDialog calendarDialog;
     private View rootView;
     private ArrayList<ModelRowCountRoom> roomsSelected;
+    private LottieAnimationView lottieCheckin, lottieCheckout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,6 +101,10 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         tvMabda = rootView.findViewById(R.id.tvMabda);
         tvMabdaEn = rootView.findViewById(R.id.tvMabdaEn);
         linearLayout_mabda = rootView.findViewById(R.id.linearLayout_mabda);
+        lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
+        lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
+        lottieCheckin.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);
         //  lblRoomCount.setOnClickListener(this);
         tarikh_be.setOnClickListener(this);
         txtRoomCount = rootView.findViewById(R.id.txtRoomCount);
@@ -207,6 +202,54 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     public void onDestroyView() {
         super.onDestroyView();
         Prefs.putBoolean("geo", geo);
+    }
+
+    private void initCheckInCheckOutAnim() {
+        lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckin.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        lottieCheckout.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckout.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        lottieCheckin.playAnimation();
+        lottieCheckout.playAnimation();
     }
 
 
@@ -491,13 +534,13 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     }
 
 
-
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
         SingletonDate.getInstance().setReverseDate(startDate, endDate);
 
         tvRaft.setText(startDate.getDescription());
         tvBargasht.setText(endDate.getDescription());
+        initCheckInCheckOutAnim();
         raft = startDate.getFullGeo();
         bargasht = endDate.getFullGeo();
 
