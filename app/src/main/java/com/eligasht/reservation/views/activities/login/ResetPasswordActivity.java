@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
+import com.eligasht.reservation.models.model.login.call.RequestChangePass;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
@@ -58,7 +61,16 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
     //request for remember password
     private void RememberPass() {
         ResetPassRequestModel resetPassRequestModel = new ResetPassRequestModel();
-        resetPassRequestModel.setRequest(email_reset_pass.getText().toString());
+        RequestChangePass requestChangePass= new RequestChangePass();
+
+
+
+
+        requestChangePass.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+        requestChangePass.setCulture(getString(R.string.culture));
+        requestChangePass.setUserName(email_reset_pass.getText().toString());
+        requestChangePass.setContractNo("0");
+        resetPassRequestModel.setRequest(requestChangePass);
 
         needShowProgressDialog();
         Log.e(" request ", new GsonBuilder().create().toJson(resetPassRequestModel));
@@ -66,21 +78,21 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         call.enqueue(new Callback<WebUserRememberPasswordRes>() {
             @Override
             public void onResponse(Call<WebUserRememberPasswordRes> call, Response<WebUserRememberPasswordRes> response) {
+                Log.e("logintest",response.body().getWebUserRememberPasswordResult().getWarningss().get(0).getShortText() );
+                Log.e("logintest",response.body().getWebUserRememberPasswordResult().getError().get(0).getMessage() );
                 needHideProgressDialog();
-                if (response == null
-                        || response.body() == null
-                        || response.body().getWebUserRememberPasswordResult() == null) {
-                    Toast.makeText(ResetPasswordActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
-                    return;
-                }
+              if (response.body().getWebUserRememberPasswordResult().getWebUserLogin().getLoginStatus().toLowerCase().equals("ok")){
 
-                if (response.body().getWebUserRememberPasswordResult().getWebUserLogin() == null && response.body().getWebUserRememberPasswordResult().getError() != null) {
-                    Toast.makeText(ResetPasswordActivity.this, response.body().getWebUserRememberPasswordResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                  Intent intent = new Intent(ResetPasswordActivity.this, SuccessResetPassActivity.class);
+                  intent.putExtra("value",response.body().getWebUserRememberPasswordResult().getWarningss().get(0).getShortText());
+                  startActivity(intent);
+                  finish();
 
-                Intent intent = new Intent(ResetPasswordActivity.this, SuccessResetPassActivity.class);
-                startActivity(intent);
+              }else {
+
+                  Toast.makeText(ResetPasswordActivity.this, response.body().getWebUserRememberPasswordResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
+              }
+
 
                 //do somethings !!
 

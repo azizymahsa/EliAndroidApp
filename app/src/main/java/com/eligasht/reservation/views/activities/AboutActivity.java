@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.activities;
 
+import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -57,6 +59,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
     ArrayList<HashMap<String, String>> mylist = null;
     AboutAdapter mAdapter;
     TickerView v1, v2, v3;
+    ImageView hotel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +74,14 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         v1 = findViewById(R.id.textView2);
         v2 = findViewById(R.id.textView8);
         v3 = findViewById(R.id.textView5);
+        hotel = findViewById(R.id.hotel);
+        YoYo.with(Techniques.Pulse).repeat(500)
+                .duration(5000)
+                .playOn(hotel);
 
 
         new GetAboutAsync().execute();
+
 
     }
 
