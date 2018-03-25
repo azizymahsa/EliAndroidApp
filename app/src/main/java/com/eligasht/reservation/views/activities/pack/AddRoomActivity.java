@@ -81,11 +81,11 @@ try {
 
     @Override
     public void initViews() {
-        count_room = findViewById(R.id.count_room);
-        btn_confirm = findViewById(R.id.btn_confirm);
-        btn_add = findViewById(R.id.btn_add);
-        btn_remove = findViewById(R.id.btn_remove);
-        rcl_room = findViewById(R.id.rcl_room);
+        count_room = (TickerView) findViewById(R.id.count_room);
+        btn_confirm = (Button) findViewById(R.id.btn_confirm);
+        btn_add = (ImageView) findViewById(R.id.btn_add);
+        btn_remove = (ImageView) findViewById(R.id.btn_remove);
+        rcl_room = (SimpleRecycleView) findViewById(R.id.rcl_room);
         rcl_room.setLayoutManager(new LinearLayoutManager(getAppContext()));
         hideLoading();
         setRoomsCount(1);
@@ -193,6 +193,9 @@ try {
             sum = sum + room.getCountB() + room.getCountK();
         }
 
-        return sum <= 9;
+        if(sum > 9){
+            return false;
+        }
+        return true;
     }
 }

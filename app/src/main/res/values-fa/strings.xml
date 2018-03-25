@@ -508,7 +508,7 @@
 
     <string name="your_time_has_expired">Your time has expired</string>
     <string name="change_fligfontht">Change flight</string>
-    <string name="class_flight">Flight class</string>
+    <string name="class_flight">کلاس پرواز</string>
     <string name="cities_all_over_the_world">شهر در سراسر جهان</string>
     <string name="confirmed_airlines">ایرلاین معتبر </string>
     <string name="arabic">العربی</string>
@@ -2358,5 +2358,7 @@
 
         <item>@drawable/ir</item><!-- 289-->
     </string-array>
-
+    <string name="icon_comments">&#xe638;</string>
+    <string name="icon_room">&#xe639;</string>
+    <string name="icon_ac">&#xe640;</string>
 </resources>

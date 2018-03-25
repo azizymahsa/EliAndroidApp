@@ -2374,7 +2374,7 @@
     <string name="icon_comments">&#xe638;</string>
     <string name="icon_room">&#xe639;</string>
     <string name="icon_ac">&#xe640;</string>
-    <string name="the_locale_will_be_changed">با توجه به مکان فعلی شما، زبان برنامه تغییر خواهد کرد</string>
+    <string name="the_locale_will_be_changed">Depending on your current location, the program language will be changed</string>
 
 
 </resources>

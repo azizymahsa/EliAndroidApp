@@ -54,12 +54,12 @@ public class CountryAutoAdapter extends ArrayAdapter<Country> {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.adapter_country_auto, parent, false);
-            TextView textView = view.findViewById(R.id.txtItem);
+            TextView textView = (TextView) view.findViewById(R.id.txtItem);
             textView.setText(mList.get(position).getCountryNameFa());
         }
         Country country = mList.get(position);
         if (country != null) {
-            TextView textView = view.findViewById(R.id.txtItem);
+            TextView textView = (TextView) view.findViewById(R.id.txtItem);
             if (textView != null) {
                 textView.setText(country.getCountryNameFa());
             }

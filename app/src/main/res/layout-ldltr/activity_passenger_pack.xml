@@ -31,6 +31,8 @@
             android:textSize="@dimen/toolbar_title_16dp" />
 
 
+
+
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
             style="@style/fancy_toolbar"
@@ -38,7 +40,6 @@
             android:layout_marginLeft="@dimen/_10dp_margin"
             android:visibility="visible"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
-
         <ImageView
             android:id="@+id/txt_hom"
             android:layout_width="@dimen/_30dp"
@@ -62,6 +63,11 @@
         android:weightSum="4">
 
 
+
+
+
+
+
         <ImageView
             android:id="@+id/btn_saler"
             android:layout_width="@dimen/_30dp_image_passenger"
@@ -73,7 +79,6 @@
             android:text=""
             android:textColor="#33ccff"
             android:textSize="10dp" />
-
         <ImageView
             android:id="@+id/btn_mosaferan"
             android:layout_width="@dimen/_95dp_image_passenger"
@@ -83,7 +88,6 @@
             android:text="  "
             android:textColor="#808080"
             android:textSize="10dp" />
-
         <ImageView
             android:id="@+id/btn_pish_factor"
 
@@ -94,7 +98,6 @@
             android:text="  "
             android:textColor="#808080"
             android:textSize="10dp" />
-
         <ImageView
             android:id="@+id/btn_khadamat"
             android:layout_width="@dimen/_95dp_image_passenger"
@@ -104,9 +107,9 @@
             android:scaleType="fitEnd"
             android:src="@drawable/factor_passenger_off"
             android:text=""
+            android:visibility="gone"
             android:textColor="#808080"
-            android:textSize="10dp"
-            android:visibility="gone" />
+            android:textSize="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -121,6 +124,12 @@
         android:weightSum="4">
 
 
+
+
+
+
+
+
         <Button
             android:id="@+id/txtSaler"
             android:layout_width="@dimen/_30dp_image_passenger"
@@ -132,7 +141,6 @@
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="@dimen/_10dp_textSize" />
-
         <Button
             android:id="@+id/txtMasaferan"
             android:layout_width="@dimen/_95dp_image_passenger"
@@ -143,7 +151,6 @@
             android:textAllCaps="false"
             android:textColor="#aaaaaa"
             android:textSize="@dimen/_10dp_textSize" />
-
         <Button
             android:id="@+id/txtKhadamat"
             android:layout_width="@dimen/_95dp_image_passenger"
@@ -154,8 +161,8 @@
             android:textAllCaps="false"
             android:textColor="#aaaaaa"
             android:textSize="@dimen/_10dp_textSize"
-            android:visibility="gone" />
-
+            android:visibility="gone"
+            />
         <Button
             android:id="@+id/txtPishfactor"
             android:layout_width="@dimen/_95dp_image_passenger"
@@ -166,7 +173,8 @@
             android:text="@string/payment"
             android:textAllCaps="false"
             android:textColor="#aaaaaa"
-            android:textSize="@dimen/_10dp_textSize" />
+            android:textSize="@dimen/_10dp_textSize"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -335,6 +343,7 @@
                             android:textColorHint="#aaaaaa"
                             android:textSize="@dimen/_14dp" />
                     </LinearLayout>
+
 
                     <!-- family name -->
 
@@ -1269,13 +1278,13 @@
 
                 <TextView
                     android:id="@+id/textView1"
+                    android:text="@string/sum_khadamat"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="@dimen/_15dp_khadamat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:gravity="right"
-                    android:text="@string/sum_khadamat"
-                    android:textAppearance="@style/IrsansBold"
-                    android:textSize="@dimen/_15dp_khadamat"
 
 
                     />
@@ -1301,9 +1310,9 @@
                     android:layout_gravity="left"
                     android:gravity="left"
                     android:text="@string/Rial"
-                    android:textAppearance="@style/IrsansBold"
                     android:textColor="#23b574"
-                    android:textSize="@dimen/_15dp_khadamat" />
+                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="@dimen/_15dp_khadamat"/>
             </LinearLayout>
 
             <!-- <Button
@@ -1331,6 +1340,8 @@
                 android:orientation="horizontal">
 
 
+
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -1341,7 +1352,6 @@
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#FFFFFF"
                     android:textSize="14dp" />
-
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -1372,7 +1382,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_60dp_hight">
+                android:layout_height="@dimen/_60dp_hight"
+                >
 
                 <ImageView
                     android:id="@+id/ivImage"
@@ -1674,14 +1685,13 @@
                         android:id="@+id/tvPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="0"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#098d4e"
                         android:textSize="@dimen/_15dp_normal_textSize"
-                        />
+                        android:layout_alignParentRight="true"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1690,7 +1700,8 @@
                         android:text="@string/The_amount_payable"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_15dp_normal_textSize"
+                        />
                 </RelativeLayout>
 
 

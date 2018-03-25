@@ -48,7 +48,6 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
@@ -156,8 +155,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     public List<PurchaseFlightResult> data;
     private GetHotelKhadmatAdapter mAdapter;
     private EditText searchtxt;
-    public TextView txt_shomare_factor;
-    public TextView  tvPrice;
+    public TextView txt_shomare_factor, tvPrice;
     public ImageView textView4;
     private String Gensiyat="";
     public int countB;
@@ -186,7 +184,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_pack);
-        ScrollView scroll_partner= findViewById(R.id.scroll_partner);
+        ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
         scroll_partner.fullScroll(ScrollView.FOCUS_UP);
         scroll_partner.scrollTo(0,0);
         scroll_partner.clearFocus();
@@ -300,7 +298,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
 
-        txtTitleCountM = findViewById(R.id.txtTitleCountM);
+        txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
         txtTitleCountM.setOnClickListener(this);
         String RengAge=txtTitleCountM.getText().toString();
 
@@ -310,7 +308,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-            int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+            int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
             int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
             PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
             persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -359,7 +357,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-            int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+            int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
             int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
@@ -391,7 +389,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         alRoom.addAll(hs);
 
         rooms=alRoom.size();
-        imgCount = findViewById(R.id.imgCount);
+        imgCount = (TextView) findViewById(R.id.imgCount);
          if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
         imgCount.setText(getCounter(room)+" "+ getString(R.string.room));
         } else{
@@ -404,14 +402,14 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     private void initViews() {
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
-        btnBack = findViewById(R.id.btnBack);
-        txt_hom = findViewById(R.id.txt_hom);
+        btnBack = (FancyButton) findViewById(R.id.btnBack);
+        txt_hom = (ImageView) findViewById(R.id.txt_hom);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setVisibility(View.VISIBLE);
 
         //kharidar
-        btnzanS = findViewById(R.id.zanS);
+        btnzanS = (RadioButton) findViewById(R.id.zanS);
         btnzanS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -423,7 +421,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             }
         });
 
-        btnmardS = findViewById(R.id.mardS);
+        btnmardS = (RadioButton) findViewById(R.id.mardS);
         btnmardS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -435,7 +433,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             }
         });
         ////////mosafer
-        btnzan = findViewById(R.id.zan);
+        btnzan = (RadioButton) findViewById(R.id.zan);
         btnzan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -447,7 +445,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             }
         });
 
-        btnmard = findViewById(R.id.mard);
+        btnmard = (RadioButton) findViewById(R.id.mard);
         btnmard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -459,57 +457,57 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             }
         });
 
-        textView4 = findViewById(R.id.textView4);
-        tvfactorNumber = findViewById(R.id.tvfactorNumber);
-        expandableLayout = findViewById(R.id.expandableLayout);
-        txtMore = findViewById(R.id.txtMore);
-        txtSumKhadamat = findViewById(R.id.txtSumKhadamat);
-        tvPrice = findViewById(R.id.tvPrice);
+        textView4 = (ImageView) findViewById(R.id.textView4);
+        tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
+        expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
+        txtMore = (TextView) findViewById(R.id.txtMore);
+        txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
+        tvPrice = (TextView) findViewById(R.id.tvPrice);
         txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
-        txttavalodm = findViewById(R.id.txttavalodm);
-        txtnamem = findViewById(R.id.txtnamem);
+        txttavalodm = (TextView) findViewById(R.id.txttavalodm);
+        txtnamem = (EditText) findViewById(R.id.txtnamem);
        // imgCount = (TextView) findViewById(R.id.imgCount);
-        txtfamilym = findViewById(R.id.txtfamilym);
-        txtnumber_passport = findViewById(R.id.txtnumber_passport);
-        txtexp_passport = findViewById(R.id.txtexp_passport);
-        txtTitle = findViewById(R.id.tvTitle);
+        txtfamilym = (EditText) findViewById(R.id.txtfamilym);
+        txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
+        txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
+        txtTitle = (TextView) findViewById(R.id.tvTitle);
 
-        btn_next_partnerInfo = findViewById(R.id.btn_next_partnerInfo);
-        btn_nextm = findViewById(R.id.btn_nextm);
-        btn_taeed_khadamat = findViewById(R.id.btn_taeed_khadamat);
-        btn_pardakht_factor = findViewById(R.id.btn_pardakht_factor);
-        btn_saler = findViewById(R.id.btn_saler);
-        btn_mosaferan = findViewById(R.id.btn_mosaferan);
-        btn_pish_factor = findViewById(R.id.btn_pish_factor);
+        btn_next_partnerInfo = (LinearLayout) findViewById(R.id.btn_next_partnerInfo);
+        btn_nextm = (LinearLayout) findViewById(R.id.btn_nextm);
+        btn_taeed_khadamat = (LinearLayout) findViewById(R.id.btn_taeed_khadamat);
+        btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);
+        btn_saler = (ImageView) findViewById(R.id.btn_saler);
+        btn_mosaferan = (ImageView) findViewById(R.id.btn_mosaferan);
+        btn_pish_factor = (ImageView) findViewById(R.id.btn_pish_factor);
 
 
-        txtSaler= findViewById(R.id.txtSaler);
-        txtMasaferan= findViewById(R.id.txtMasaferan);
-        txtKhadamat= findViewById(R.id.txtKhadamat);
-        txtPishfactor= findViewById(R.id.txtPishfactor);
+        txtSaler= (Button) findViewById(R.id.txtSaler);
+        txtMasaferan=(Button)findViewById(R.id.txtMasaferan);
+        txtKhadamat=(Button)findViewById(R.id.txtKhadamat);
+        txtPishfactor=(Button)findViewById(R.id.txtPishfactor);
 
         setAnimation();
-        linear_saler = findViewById(R.id.linear_saler);
-        linear_mosaferan = findViewById(R.id.linear_mosaferan);
-        linear_pish_factor = findViewById(R.id.linear_pish_factor);
-        linearMahaleeghamat = findViewById(R.id.linearMahaleeghamat);
-        linearMeliyat = findViewById(R.id.linearMeliyat);
-        txtnameP = findViewById(R.id.txtnameP);
+        linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
+        linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
+        linear_pish_factor = (LinearLayout) findViewById(R.id.linear_pish_factor);
+        linearMahaleeghamat = (LinearLayout) findViewById(R.id.linearMahaleeghamat);
+        linearMeliyat = (LinearLayout) findViewById(R.id.linearMeliyat);
+        txtnameP = (EditText) findViewById(R.id.txtnameP);
         txtfamilyP = (EditText) findViewById(R.id.txtfamilyP);
 
 
         txtmobileP = (EditText) findViewById(R.id.txtmobileP);
         txtkodemeliP = (EditText) findViewById(R.id.txtkodemeliP);
         txtemeliP = (EditText) findViewById(R.id.txtemeliP);
-        txtmeliyatm = findViewById(R.id.txtmeliyatm);
-        txtmahale_eghamat = findViewById(R.id.txtmahale_eghamat);
-        txt_shomare_factor = findViewById(R.id.txt_shomare_factor);
-        linear_list_khadamat = findViewById(R.id.linear_list_khadamat);
-        listKhadamat = findViewById(R.id.listKhadamat);
-        llDetailHotel = findViewById(R.id.llDetailHotel);
-        llDetailPassanger = findViewById(R.id.llDetailPassanger);
-        llDetailService = findViewById(R.id.llDetailService);
-        llDetailFlight = findViewById(R.id.llDetailFlight);
+        txtmeliyatm = (TextView) findViewById(R.id.txtmeliyatm);
+        txtmahale_eghamat = (TextView) findViewById(R.id.txtmahale_eghamat);
+        txt_shomare_factor = (TextView) findViewById(R.id.txt_shomare_factor);
+        linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
+        listKhadamat = (ListView) findViewById(R.id.listKhadamat);
+        llDetailHotel = (LinearLayout) findViewById(R.id.llDetailHotel);
+        llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
+        llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
+        llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
 
 
         btn_saler.setOnClickListener(this);
@@ -580,8 +578,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
     private void setupGenderSpinner() {
 
-        Spinner spinner = findViewById(R.id.spinner1);
-        Spinner spinnerMosafer = findViewById(R.id.spinnerMosafer);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+        Spinner spinnerMosafer = (Spinner) findViewById(R.id.spinnerMosafer);
 
         spinner.setOnItemSelectedListener(this);
         spinnerMosafer.setOnItemSelectedListener(this);
@@ -859,7 +857,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-                    int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+                    int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
                     int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
                     PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
                     persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -915,7 +913,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-                    int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+                    int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
                     int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
                     PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
                     persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
@@ -942,13 +940,13 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 break;
             case R.id.btn_nextm:
                 LinearLayout mainLayout;
-                mainLayout = findViewById(R.id.linear_list_khadamat);
+                mainLayout = (LinearLayout)findViewById(R.id.linear_list_khadamat);
 
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
                 /////////////////////////
                 txtexp_passport.setScroller(new Scroller(this));
-                ScrollView scrolMosafer= findViewById(R.id.scrolMosafer);
+                ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
                 scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
                 if(FlagMosaferan){
                     String Gender= Gensiyat;
@@ -1491,7 +1489,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
                 if(RengAge.contains(getString(R.string.Child))){
-                    dialog = new DatePickerDialog(getActivity(), this, year-12, month, day);
+                    dialog = new DatePickerDialog(getActivity(), this, year-14, month, day);
                 }else if(RengAge.contains(getString(R.string.baby))){
                     dialog = new DatePickerDialog(getActivity(), this, year-2, month, day);
                 }else if(RengAge.contains(getString(R.string.adult))){
@@ -1502,7 +1500,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 if(RengAge.contains(getString(R.string.Child))){
                     System.out.println("koodak");
                     //c = Calendar.getInstance();
-                    c.add(Calendar.YEAR, -12); // subtract 2 years from now
+                    c.add(Calendar.YEAR, -14); // subtract 2 years from now
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                     c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
@@ -1560,7 +1558,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     public void onResume(){
         super.onResume();
 
-        final ScrollView scroll_partner= findViewById(R.id.scroll_partner);
+        final ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
         //scroll_partner.fullScroll(ScrollView.FOCUS_UP);
         scroll_partner.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
@@ -2102,7 +2100,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+ getString(R.string.Rial));
 
 //for hotel==========================================================================================
-                final RecyclerView recyclerViewHotel = findViewById(R.id.recyclerView);
+                final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
                 recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
                 recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
                 ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
@@ -2127,7 +2125,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 //for passenger======================================================================================
 
 
-                final RecyclerView recyclerViewPassenger = findViewById(R.id.recyclerViewPassenger);
+                final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
                 recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
                 recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
                 ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
@@ -2149,7 +2147,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
 
                 //for Services=============================================================================
-                final RecyclerView recyclerViewService = findViewById(R.id.recyclerViewService);
+                final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
                 recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
                 recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
                 ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
@@ -2167,7 +2165,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                 }
                 //for flight==================================================================================
-                final RecyclerView recyclerViewFlight = findViewById(R.id.recyclerViewFlight);
+                final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
                 recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
                 recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
                 ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
@@ -2936,7 +2934,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         Date date;
         formatter = new SimpleDateFormat("yyyy/MM/dd");
         try {
-            date = formatter.parse(str_date);
+            date = (Date) formatter.parse(str_date);
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             datePickerDialogGregorian2.setMinDate(cal);

@@ -11,6 +11,7 @@
 
 
 
+
     <FrameLayout
         xmlns:fancy="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar_container"
@@ -1665,8 +1666,7 @@
                         android:textColor="#098d4e"
                         android:textSize="@dimen/_15dp_normal_textSize"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                       />
+                        android:layout_marginLeft="10dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"

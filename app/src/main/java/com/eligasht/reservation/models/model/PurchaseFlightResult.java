@@ -1,6 +1,6 @@
 package com.eligasht.reservation.models.model;
 
-import com.eligasht.reservation.views.activities.transfer.ExcursionData;
+import com.eligasht.reservation.views.activities.transfer.ExcursionDta;
 
 public class PurchaseFlightResult {
 	private String CityEn;
@@ -28,7 +28,7 @@ public class PurchaseFlightResult {
 	private String ServiceTypeID;
 	
 	private String ServiceTypeImgURL;
-	private ExcursionData excursionData;
+	private ExcursionDta excursionData;
 
 
 	private String BookingCode;
@@ -181,11 +181,11 @@ public class PurchaseFlightResult {
 		this.flag = flag;
 	}
 
-	public ExcursionData getExcursionData() {
+	public ExcursionDta getExcursionData() {
 		return excursionData;
 	}
 
-	public void setExcursionData(ExcursionData excursionData) {
+	public void setExcursionData(ExcursionDta excursionData) {
 		this.excursionData = excursionData;
 	}
 }

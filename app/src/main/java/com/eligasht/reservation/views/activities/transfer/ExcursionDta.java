@@ -4,7 +4,7 @@ package com.eligasht.reservation.views.activities.transfer;
  * Created by Reza.nejati on 2/13/2018.
  */
 
-public class ExcursionData {
+public class ExcursionDta {
     public final String ArrialAirportCode;
     public final String ArrialAirportName;
     public final String ArrivalFltDate;
@@ -18,7 +18,7 @@ public class ExcursionData {
     public final String HotelNameEn;
     public final String PassengerList;
 
-    public ExcursionData(String arrialAirportCode, String arrialAirportName, String arrivalFltDate, String arrivalFltNo, String arrivalFltTime, String cityID, String departureFltDate, String departureFltNo, String departureFltTime, String hotelID, String hotelNameEn, String passengerList) {
+    public ExcursionDta(String arrialAirportCode, String arrialAirportName, String arrivalFltDate, String arrivalFltNo, String arrivalFltTime, String cityID, String departureFltDate, String departureFltNo, String departureFltTime, String hotelID, String hotelNameEn, String passengerList) {
         ArrialAirportCode = arrialAirportCode;
         ArrialAirportName = arrialAirportName;
         ArrivalFltDate = arrivalFltDate;

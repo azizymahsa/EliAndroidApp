@@ -43,7 +43,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -78,7 +77,6 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.activities.transfer.ExcursionData;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -102,12 +100,12 @@ import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.tools.db.local.PassengerMosaferItems_Table;
 import com.eligasht.reservation.tools.db.local.PassengerPartnerInfo_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
+import com.eligasht.reservation.views.activities.transfer.ExcursionDta;
 import com.eligasht.reservation.views.adapters.GetKhadmatAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
-import com.shuhart.stepview.StepView;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -144,8 +142,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	GetKhadmatAdapter mAdapter;
 	ScrollView myScrollView;
 	private EditText searchtxt;
-	public TextView txt_shomare_factor,tvfactorNumber;
-	TextView tvPrice;
+	public TextView txt_shomare_factor,tvPrice,tvfactorNumber;
 
 	public ImageView txt_hom;
 	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
@@ -170,55 +167,23 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
 	com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
 	com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
-	com.shuhart.stepview.StepView stepView;
+
 	@SuppressLint("WrongViewCast")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_flight_passenger);
 
-		//////////
-		stepView = (com.shuhart.stepview.StepView) findViewById(R.id.step_view);
-		//stepView.setOnCli
-		stepView.setStepsNumber(4);
-		stepView.getState()
-				.selectedTextColor(ContextCompat.getColor(this, R.color.dark_orang))
-				.animationType(StepView.ANIMATION_ALL)
-				.selectedStepNumberColor(ContextCompat.getColor(this, R.color.white))
-				.selectedCircleColor(ContextCompat.getColor(this, R.color.dark_orang))
-				.selectedCircleRadius(getResources().getDimensionPixelSize(R.dimen._20dp_khadamat))
-				.animationDuration(1500)
-				.defaultCircleColor(ContextCompat.getColor(this, R.color.gray_dark))
-				// You should specify only stepsNumber or steps array of strings.
-				// In case you specify both steps array is chosen.
-				.steps(new ArrayList<String>() {{
-					add(getString(R.string.partner));
-					add(getString(R.string.passenger));
-					add(getString(R.string.servis));
-					add(getString(R.string.payment));
-				}})
-				// You should specify only steps number or steps array of strings.
-				// In case you specify both steps array is chosen.
-				.stepsNumber(4)
-				.stepLineWidth(getResources().getDimensionPixelSize(R.dimen.dp1))
-				.textSize(getResources().getDimensionPixelSize(R.dimen._10dp_textSize))
-				.stepNumberTextSize(getResources().getDimensionPixelSize(R.dimen.sp16))
-				//.typeface(ResourcesCompat.getFont(this, R.string.fon))
-				// other state methods are equal to the corresponding xml attributes
-				.commit();
-
-		///////////////
-		stepView.done(false);
 		ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
 		scroll_partner.fullScroll(ScrollView.FOCUS_UP);
 		scroll_partner.scrollTo(0,0);
 		scroll_partner.clearFocus();
 
-		txtTitleCountM = findViewById(R.id.txtTitleCountM);
+		txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
 		txtTitleCountM.setOnClickListener(this);
-		txttavalodm = findViewById(R.id.txttavalodm);
+		txttavalodm = (TextView) findViewById(R.id.txttavalodm);
 		txttavalodm.setOnClickListener(this);
-		txtexp_passport = findViewById(R.id.txtexp_passport);
+		txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
 		txtexp_passport.setOnClickListener(this);
 
 		Prefs.putString("IST","F");
@@ -274,8 +239,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				String monthMF = dateSplite2[1];
 				String yearMF = dateSplite2[0];
 
+
 				datePickerDialog.initialize(PassengerActivity.this, Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
 				datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
+
 
 			}
 		});
@@ -324,6 +291,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		});
 
 
+
+
+
 		String RengAge=txtTitleCountM.getText().toString();
 
 ///////////////setmin
@@ -332,7 +302,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 			int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-			int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+			int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
 			int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
 			PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
 			persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -371,7 +341,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}else{
 			String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 			int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-			int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-120;
+			int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-140;
 			int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
 			PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
 			persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -381,7 +351,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 			int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-			int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+			int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
 			int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
 			PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
 			persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
@@ -398,16 +368,18 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
 		///////end setMin
 
+///////////////////////////////
+
 		/////////////////////
 		data=new ArrayList<PurchaseFlightResult>();
-		btnBack = findViewById(R.id.btnBack);
+		btnBack = (FancyButton) findViewById(R.id.btnBack);
 		btnBack.setCustomTextFont("fonts/icomoon.ttf");
 		btnBack.setText(getString(R.string.search_back_right));
 		btnBack.setVisibility(View.VISIBLE);
 		btnBack.setOnClickListener(this);
 
 		//kharidar
-		btnzanS = findViewById(R.id.zanS);
+		btnzanS = (RadioButton) findViewById(R.id.zanS);
 		btnzanS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -419,7 +391,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 		});
 
-		btnmardS = findViewById(R.id.mardS);
+		btnmardS = (RadioButton) findViewById(R.id.mardS);
 		btnmardS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -431,7 +403,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 		});
 		////////mosafer
-		btnzan = findViewById(R.id.zan);
+		btnzan = (RadioButton) findViewById(R.id.zan);
 		btnzan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -443,7 +415,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 		});
 
-		btnmard = findViewById(R.id.mard);
+		btnmard = (RadioButton) findViewById(R.id.mard);
 		btnmard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -459,42 +431,41 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		rlRoot = findViewById(R.id.rlRoot);
 
 
-		txt_hom = findViewById(R.id.txt_hom);
+		txt_hom = (ImageView) findViewById(R.id.txt_hom);
 		txt_hom.setOnClickListener(this);
 
-		txtMore = findViewById(R.id.txtMore);
+		txtMore = (TextView) findViewById(R.id.txtMore);
 		txtMore.setOnClickListener(this);
 
-		tvPrice= findViewById(R.id.tvPrice);
+		tvPrice= (TextView) findViewById(R.id.tvPrice);
 		tvPrice.setOnClickListener(this);
 
-		imgCount= findViewById(R.id.imgCount);
+		imgCount=(TextView) findViewById(R.id.imgCount);
 		imgCount.setOnClickListener(this);
 
-		txtSumKhadamat = findViewById(R.id.txtSumKhadamat);
+		txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
 		txtSumKhadamat.setOnClickListener(this);
 		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
 
 
-		txtnamem = findViewById(R.id.txtnamem);
 		txtnamem = (EditText) findViewById(R.id.txtnamem);
 		txtnamem.setOnClickListener(this);
 		txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
 		txtnamem.setOnFocusChangeListener(this);
 
-		txtfamilym = findViewById(R.id.txtfamilym);
+		txtfamilym = (EditText) findViewById(R.id.txtfamilym);
 		txtfamilym.setOnClickListener(this);
 		txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
 		txtfamilym.setOnFocusChangeListener(this);
 
-		txt_NationalCode_m= findViewById(R.id.txt_NationalCode_m);
-		txtnumber_passport= findViewById(R.id.txtnumber_passport);
+		txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
+		txtnumber_passport= (EditText) findViewById(R.id.txtnumber_passport);
 		txt_NationalCode_m.setOnClickListener(this);
 		txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
 		txt_NationalCode_m.setOnFocusChangeListener(this);
 
-		txtnumber_passport = findViewById(R.id.txtnumber_passport);
+		txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
 		txtnumber_passport.setOnClickListener(this);
 		txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
@@ -503,48 +474,46 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 
-		txtTitle= findViewById(R.id.tvTitle);
 		txtTitle= (TextView) findViewById(R.id.tvTitle);
 		txtTitle.setOnClickListener(this);
 
-		btn_next_partnerInfo=(LinearLayout) findViewById(R.id.btn_next_partnerInfo);
 
-		btn_next_partnerInfo= findViewById(R.id.btn_next_partnerInfo);
+		btn_next_partnerInfo=(LinearLayout) findViewById(R.id.btn_next_partnerInfo);
 		btn_next_partnerInfo.setOnClickListener(this);
 
-		btn_nextm= findViewById(R.id.btn_nextm);
+		btn_nextm=(LinearLayout)findViewById(R.id.btn_nextm);
 		btn_nextm.setOnClickListener(this);
 
 		btn_taeed_khadamat=(LinearLayout)findViewById(R.id.btn_taeed_khadamat);
 		btn_taeed_khadamat.setOnClickListener(this);
 
-		linear_code_meli= findViewById(R.id.linear_code_meli);
+		linear_code_meli=(LinearLayout)findViewById(R.id.linear_code_meli);
 		linear_code_meli.setOnClickListener(this);
 
-		linear_number_passport= findViewById(R.id.linear_number_passport);
+		linear_number_passport=(LinearLayout)findViewById(R.id.linear_number_passport);
 		linear_number_passport.setOnClickListener(this);
 
-		linear_expdate= findViewById(R.id.linear_expdate);
+		linear_expdate=(LinearLayout)findViewById(R.id.linear_expdate);
 		linear_expdate.setOnClickListener(this);
 
-		btn_pardakht_factor= findViewById(R.id.btn_pardakht_factor);
+		btn_pardakht_factor=(Button)findViewById(R.id.btn_pardakht_factor);
 		btn_pardakht_factor.setOnClickListener(this);
 
-		textView4 = findViewById(R.id.textView4);
+		textView4 = (ImageView) findViewById(R.id.textView4);
 
-		textView4 = findViewById(R.id.textView4);
-		tvfactorNumber = findViewById(R.id.tvfactorNumber);
+		textView4 = (ImageView) findViewById(R.id.textView4);
+		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
 			/* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
 			 btnAddsabad.setOnClickListener(this);*/
-		btn_saler= findViewById(R.id.btn_saler);
-		btn_mosaferan= findViewById(R.id.btn_mosaferan);
-		btn_khadamat= findViewById(R.id.btn_khadamat);
-		btn_pish_factor= findViewById(R.id.btn_pish_factor);
+		btn_saler= (ImageView) findViewById(R.id.btn_saler);
+		btn_mosaferan=(ImageView)findViewById(R.id.btn_mosaferan);
+		btn_khadamat=(ImageView)findViewById(R.id.btn_khadamat);
+		btn_pish_factor=(ImageView)findViewById(R.id.btn_pish_factor);
 
-		txtSaler= findViewById(R.id.txtSaler);
-		txtMasaferan= findViewById(R.id.txtMasaferan);
-		txtKhadamat= findViewById(R.id.txtKhadamat);
-		txtPishfactor= findViewById(R.id.txtPishfactor);
+		txtSaler= (Button) findViewById(R.id.txtSaler);
+		txtMasaferan=(Button)findViewById(R.id.txtMasaferan);
+		txtKhadamat=(Button)findViewById(R.id.txtKhadamat);
+		txtPishfactor=(Button)findViewById(R.id.txtPishfactor);
 
 		btn_saler.setOnClickListener(this);
 		btn_mosaferan.setOnClickListener(this);
@@ -552,13 +521,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		btn_pish_factor.setOnClickListener(this);
 		setAnimation();
 
-		linear_saler = findViewById(R.id.linear_saler);
-		linear_mosaferan = findViewById(R.id.linear_mosaferan);
-		linear_pish_factor= findViewById(R.id.linear_pish_factor);
-		linearMahaleeghamat= findViewById(R.id.linearMahaleeghamat);
-		linearMeliyat= findViewById(R.id.linearMeliyat);
+		linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
+		linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
+		linear_pish_factor= (LinearLayout) findViewById(R.id.linear_pish_factor);
+		linearMahaleeghamat= (LinearLayout) findViewById(R.id.linearMahaleeghamat);
+		linearMeliyat= (LinearLayout) findViewById(R.id.linearMeliyat);
 
-		txtnameP= findViewById(R.id.txtnameP);
+		txtnameP= (EditText)findViewById(R.id.txtnameP);
 		//	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
 		txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
 		txtnameP.setOnFocusChangeListener(this);
@@ -577,22 +546,22 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		//txtemeliP.setOnFocusChangeListener(this);
 		//txtemeliP.clearFocus();
 
-		txtmeliyatm= findViewById(R.id.txtmeliyatm);
+		txtmeliyatm= (TextView)findViewById(R.id.txtmeliyatm);
 		txtmeliyatm.setOnClickListener(this);
-		txtmahale_eghamat= findViewById(R.id.txtmahale_eghamat);
+		txtmahale_eghamat= (TextView)findViewById(R.id.txtmahale_eghamat);
 		txtmahale_eghamat.setOnClickListener(this);
 
-		txt_shomare_factor= findViewById(R.id.txt_shomare_factor);
+		txt_shomare_factor= (TextView)findViewById(R.id.txt_shomare_factor);
 		txt_shomare_factor.setOnClickListener(this);
 
-		linear_list_khadamat = findViewById(R.id.linear_list_khadamat);
+		linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
 
-		listKhadamat = findViewById(R.id.listKhadamat);
-		myScrollView = findViewById(R.id.layout_scroll);
-		llDetailHotel = findViewById(R.id.llDetailHotel);
-		llDetailPassanger = findViewById(R.id.llDetailPassanger);
-		llDetailService = findViewById(R.id.llDetailService);
-		llDetailFlight = findViewById(R.id.llDetailFlight);
+		listKhadamat = (NonScrollListView)findViewById(R.id.listKhadamat);
+		myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
+		llDetailHotel = (LinearLayout) findViewById(R.id.llDetailHotel);
+		llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
+		llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
+		llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
 		Utility.setAnimLoading(this);
 
 		boolean checkDomestic=Prefs.getBoolean("IsDemostic",false);
@@ -607,8 +576,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}
 		//////////////////////////
 		// Spinner element
-		Spinner spinner = findViewById(R.id.spinner1);
-		Spinner spinnerMosafer = findViewById(R.id.spinnerMosafer);
+		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+		Spinner spinnerMosafer = (Spinner) findViewById(R.id.spinnerMosafer);
 
 		// Spinner click listener
 		spinner.setOnItemSelectedListener(this);
@@ -1044,7 +1013,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
 
 //for hotel==========================================================================================
-				final RecyclerView recyclerViewHotel = findViewById(R.id.recyclerView);
+				final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
 				recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
 				recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 				ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
@@ -1070,7 +1039,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 
-				final RecyclerView recyclerViewPassenger = findViewById(R.id.recyclerViewPassenger);
+				final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
 				recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
 				recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 				ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
@@ -1092,7 +1061,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				//for Services=============================================================================
-				final RecyclerView recyclerViewService = findViewById(R.id.recyclerViewService);
+				final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
 				recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
 				recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 				ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
@@ -1110,7 +1079,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				}
 				//for flight==================================================================================
-				final RecyclerView recyclerViewFlight = findViewById(R.id.recyclerViewFlight);
+				final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
 				recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
 				recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 				ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
@@ -1303,7 +1272,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				// Setup and Handover data to recyclerview
 				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
-				stepView.go(3,true);
 				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
 				txtTitle.setText(R.string.Approval_and_payment_of_pre_invoice);
 				//	myScrollView.setOnTouchListener(null);
@@ -1469,7 +1437,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					// Extract data from json and store into ArrayList as class objects
 					for (int i = 0; i < jArray.length(); i++) {
 						JSONObject json_data = jArray.getJSONObject(i);
-						JSONObject excursionDta = json_data.getJSONObject("ExcursionData");
+						JSONObject excursionData = json_data.getJSONObject("ExcursionDta");
 
 						PurchaseFlightResult fishData = new PurchaseFlightResult();
 						fishData.setCityEn(json_data.getString("CityEn"));
@@ -1509,14 +1477,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 
-						fishData.setExcursionData(new ExcursionData(excursionDta.getString("ArrialAirportCode"),
-								excursionDta.getString("ArrialAirportName"),
-								excursionDta.getString("ArrivalFltDate")
-								,excursionDta.getString("ArrivalFltNo"),
-								excursionDta.getString("ArrivalFltTime"),
-								excursionDta.getString("CityID"),excursionDta.getString("DepartureFltDate"),
-								excursionDta.getString("DepartureFltNo"),excursionDta.getString("DepartureFltTime"),
-								excursionDta.getString("HotelID"),excursionDta.getString("HotelNameEn"),excursionDta.getString("PassengerList")));
+						fishData.setExcursionData(new ExcursionDta(excursionData.getString("ArrialAirportCode"),
+								excursionData.getString("ArrialAirportName"),
+								excursionData.getString("ArrivalFltDate")
+								,excursionData.getString("ArrivalFltNo"),
+								excursionData.getString("ArrivalFltTime"),
+								excursionData.getString("CityID"),excursionData.getString("DepartureFltDate"),
+								excursionData.getString("DepartureFltNo"),excursionData.getString("DepartureFltTime"),
+								excursionData.getString("HotelID"),excursionData.getString("HotelNameEn"),excursionData.getString("PassengerList")));
 
 
 
@@ -1537,7 +1505,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 					((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
-					stepView.go(2,true);
 					((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 					txtTitle.setText(R.string.Add_to_cart_services);
 
@@ -1747,11 +1714,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				break;
 
 			case R.id.btnBack:
-				try{
-				stepView.go(stepView.getCurrentStep()-1,true);
-				}catch(Exception e){
-					e.getMessage();
-				}
+
 				if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 					linear_pish_factor.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
@@ -1838,7 +1801,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				break;
 			case R.id.btn_next_partnerInfo:
-
 				if(FlagTab){
 					linear_saler.setVisibility(View.GONE);
 					linear_mosaferan.setVisibility(View.VISIBLE);
@@ -1848,7 +1810,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
-					stepView.go(1,true);
 
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
@@ -1981,7 +1942,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							//((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
 							Gensiyat="";
 							((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
-							stepView.go(1,true);
 							((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 							setAnimation();
 						}
@@ -2000,7 +1960,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 					int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-					int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+					int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
 					int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
 					PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
 					persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -2047,7 +2007,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 					int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-					int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-120;
+					int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-140;
 					int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
 					PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
 					persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -2058,7 +2018,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 					int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-					int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+					int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
 					int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
 					PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
 					persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
@@ -2084,15 +2044,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				flag = false;
 				break;
 			case R.id.btn_nextm:
-
 				LinearLayout mainLayout;
-				mainLayout = findViewById(R.id.linear_list_khadamat);
+				mainLayout = (LinearLayout)findViewById(R.id.linear_list_khadamat);
 
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
 				///////////////
 				txtexp_passport.setScroller(new Scroller(this));
-				ScrollView scrolMosafer= findViewById(R.id.scrolMosafer);
+				ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
 				scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
 
 
@@ -2321,7 +2280,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
-					stepView.go(2,true);
 
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
@@ -2426,7 +2384,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
-					stepView.go(2,true);
 
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
@@ -2445,7 +2402,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
-					stepView.go(3,true);
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
 					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
@@ -2503,7 +2459,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this,gheymatKh);
 		mAdapter.setData(data);
 		listKhadamat.setAdapter(mAdapter);
-		final ScrollView scroll_partner= findViewById(R.id.scroll_partner);
+		final ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
 		//scroll_partner.fullScroll(ScrollView.FOCUS_UP);
 		scroll_partner.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
 			@Override
@@ -2584,18 +2540,17 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public void onBackPressed() {
 
 
-
 		if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 			linear_pish_factor.setVisibility(View.GONE);
 			linear_list_khadamat.setVisibility(View.VISIBLE);
-			stepView.go(2,true);
+
 			((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 			((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 			txtTitle.setText(getString(R.string.Add_to_cart_services));
 		}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
 			linear_list_khadamat.setVisibility(View.GONE);
 			linear_mosaferan.setVisibility(View.VISIBLE);
-			stepView.go(1,true);
+
 
 			txtTitle.setText(getString(R.string.passneger_info));
 			((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
@@ -2655,7 +2610,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			//////////////////////
 			linear_mosaferan.setVisibility(View.GONE);
 			linear_saler.setVisibility(View.VISIBLE);
-			stepView.go(0,true);
+
 
 			txtTitle.setText(getString(R.string.Buyer_Specifications));
 			((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
@@ -3012,7 +2967,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		Date date;
 		formatter = new SimpleDateFormat("yyyy/MM/dd");
 		try {
-			date = formatter.parse(str_date);
+			date = (Date) formatter.parse(str_date);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
 			datePickerDialogGregorian2.setMinDate(cal);
