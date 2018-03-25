@@ -165,7 +165,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     private ArrayList<ParentItemExpandingPlan> selectHotelModelArrayListBestSeler = new ArrayList<>();
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
     private ExpandableListAdapter listAdapterExpanding;
-    LottieAnimationView lottiePlane;
 
     public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
         // TODO Auto-generated method stub
@@ -242,7 +241,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         btn_no_Result = findViewById(R.id.btn_no_Result);
         btn_no_Result.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
         llNextLastDays = findViewById(R.id.llNextLastDays);
-        lottiePlane = findViewById(R.id.lottiePlane);
         btn_no_Result.setOnClickListener(this);
 
         txtRuzeGhabl = findViewById(R.id.txtRuzeGhabl);
