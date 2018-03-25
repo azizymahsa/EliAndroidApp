@@ -157,7 +157,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     private GetHotelKhadmatAdapter mAdapter;
     private EditText searchtxt;
     public TextView txt_shomare_factor;
-    public TickerView  tvPrice;
+    public TextView  tvPrice;
     public ImageView textView4;
     private String Gensiyat="";
     public int countB;

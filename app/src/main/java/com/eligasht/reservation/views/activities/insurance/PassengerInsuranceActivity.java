@@ -151,7 +151,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     private GetHotelKhadmatAdapter mAdapter;
     private EditText searchtxt;
     public TextView txt_shomare_factor;
-    public TickerView tvPrice;
+    public TextView tvPrice;
     public ImageView textView4;
     private String Gensiyat = "";
     private Activity activity;

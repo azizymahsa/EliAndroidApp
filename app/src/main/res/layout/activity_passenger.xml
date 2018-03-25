@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlRoot"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#ffffff">
 
 
-
-    <FrameLayout
-        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    <FrameLayout xmlns:fancy="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60dp_hight"
-            android:background="#9d80ff"/>
-
+            android:background="#9d80ff" />
 
 
         <TextView
@@ -35,22 +31,20 @@
             android:textSize="@dimen/toolbar_title_16dp" />
 
 
-
-
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
             style="@style/fancy_toolbar"
             android:layout_gravity="right"
             android:visibility="visible"
-            fancy:fb_textSize="@dimen/_25dp_normal_iconSize"/>
+            fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
+
         <ImageView
             android:id="@+id/txt_hom"
             android:layout_width="@dimen/_30dp"
             android:layout_height="@dimen/_30dp"
             android:layout_gravity="center|left"
             android:layout_marginLeft="@dimen/_10dp_margin"
-            android:background="@drawable/e_logo"
-            />
+            android:background="@drawable/e_logo" />
 
 
     </FrameLayout>
@@ -73,11 +67,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:gravity="right|center_vertical"
+            android:scaleType="fitEnd"
             android:src="@drawable/factor_passenger_off"
             android:text=""
             android:textColor="#808080"
-            android:textSize="10dp"
-            android:scaleType="fitEnd"/>
+            android:textSize="10dp" />
 
         <ImageView
             android:id="@+id/btn_khadamat"
@@ -105,23 +99,23 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:gravity="right|center_vertical"
+            android:scaleType="fitStart"
             android:src="@drawable/saler_passenger"
             android:text=""
             android:textColor="#33ccff"
-            android:textSize="10dp"
-            android:scaleType="fitStart"/>
+            android:textSize="10dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/textLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_28dp_image_height_passenger"
+        android:layout_below="@+id/llLayout"
         android:layout_marginTop="5dp"
         android:background="#fff"
-        android:orientation="horizontal"
-        android:weightSum="4"
         android:gravity="center"
-        android:layout_below="@+id/llLayout">
+        android:orientation="horizontal"
+        android:weightSum="4">
 
         <Button
             android:id="@+id/txtPishfactor"
@@ -133,7 +127,7 @@
             android:text="@string/payment"
             android:textAllCaps="false"
             android:textColor="#aaaaaa"
-            android:textSize="@dimen/_10dp_textSize"  />
+            android:textSize="@dimen/_10dp_textSize" />
 
         <Button
             android:id="@+id/txtKhadamat"
@@ -144,7 +138,7 @@
             android:text="@string/servis"
             android:textAllCaps="false"
             android:textColor="#aaaaaa"
-            android:textSize="@dimen/_10dp_textSize"  />
+            android:textSize="@dimen/_10dp_textSize" />
 
         <Button
             android:id="@+id/txtMasaferan"
@@ -155,7 +149,7 @@
             android:text="@string/passenger"
             android:textAllCaps="false"
             android:textColor="#aaaaaa"
-            android:textSize="@dimen/_10dp_textSize"  />
+            android:textSize="@dimen/_10dp_textSize" />
 
         <Button
             android:id="@+id/txtSaler"
@@ -173,9 +167,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/textLayout"
         android:background="#ffffff"
-        android:orientation="vertical"
-        android:layout_below="@+id/textLayout">
+        android:orientation="vertical">
 
 
         <!-- <LinearLayout
@@ -630,8 +624,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:orientation="vertical"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
 
             <!-- ///////////////////////// -->
             <ScrollView
@@ -1404,8 +1397,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_60dp_hight"
-                >
+                android:layout_height="@dimen/_60dp_hight">
 
                 <ImageView
                     android:id="@+id/ivImage"
@@ -1700,34 +1692,33 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_margin="4dp"
-                    android:gravity="center"
-                    >
+                    android:gravity="center">
 
 
-                    <com.eligasht.reservation.views.ticker.TickerView
+                    <TextView
                         android:id="@+id/tvPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center|left"
-card_view:ticker_defaultCharacterList="number"
                         android:text="0"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#098d4e"
                         android:textSize="@dimen/_15dp_normal_textSize"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"/>
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
                         android:layout_marginRight="12dp"
                         android:text="@string/The_amount_payable"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_15dp_normal_textSize"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"/>
+                        android:textSize="@dimen/_15dp_normal_textSize" />
                 </RelativeLayout>
 
 
@@ -1779,8 +1770,7 @@ card_view:ticker_defaultCharacterList="number"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ad000000"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
 
         <com.airbnb.lottie.LottieAnimationView
@@ -1791,8 +1781,8 @@ card_view:ticker_defaultCharacterList="number"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"
             app:lottie_fileName="lottie/circle-l.json"
+            app:lottie_loop="true"
 
             />
 

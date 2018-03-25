@@ -75,7 +75,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         v3 = findViewById(R.id.textView5);
         hotel = findViewById(R.id.hotel);
         YoYo.with(Techniques.Pulse).repeat(500)
-                .duration(5000)
+                .duration(8000)
                 .playOn(hotel);
 
 

@@ -146,7 +146,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     //ScrollView myScrollView;
     private EditText searchtxt;
     public TextView txt_shomare_factor;
-    public TickerView tvPrice;
+    public TextView tvPrice;
     public ImageView txt_hom, textView4;
 
     private String Gensiyat="";

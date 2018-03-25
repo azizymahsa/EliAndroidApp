@@ -121,6 +121,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnLastBuy = findViewById(R.id.btnLastBuy);
         lottieUserMenu = findViewById(R.id.lottieUserMenu);
         lottieUserMenu.setAnimation("lottie/user.json");
+        lottieUserMenu.setSpeed(1.5f);
         //tvTitle.setText(getString(R.string.searchFlight));
 
 
