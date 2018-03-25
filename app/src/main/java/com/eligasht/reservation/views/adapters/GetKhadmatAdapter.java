@@ -182,20 +182,20 @@ public Activity activity;
 				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false") && Tprice==0 && Prefs.getString("Flag_First_Computing","F").equals("F")){
 					Intent intent=	new Intent(context, TransferActivity.class);
 
-					intent.putExtra("ArrialAirportCode",current.getExcursionDta().ArrialAirportCode);
-					intent.putExtra("ArrivalFltDate",current.getExcursionDta().ArrivalFltDate);
-					intent.putExtra("ArrivalFltNo",current.getExcursionDta().ArrivalFltNo);
-					intent.putExtra("ArrivalFltTime",current.getExcursionDta().ArrivalFltTime);
-					intent.putExtra("CityID",current.getExcursionDta().CityID);
-					intent.putExtra("DepartureFltDate",current.getExcursionDta().DepartureFltDate);
-					intent.putExtra("DepartureFltNo",current.getExcursionDta().DepartureFltNo);
-					intent.putExtra("DepartureFltTime",current.getExcursionDta().DepartureFltTime);
-					intent.putExtra("HotelID",current.getExcursionDta().HotelID);
-					intent.putExtra("HotelNameEn",current.getExcursionDta().HotelNameEn);
-					intent.putExtra("ArrialAirportName",current.getExcursionDta().ArrialAirportName);
+					intent.putExtra("ArrialAirportCode",current.getExcursionData().ArrialAirportCode);
+					intent.putExtra("ArrivalFltDate",current.getExcursionData().ArrivalFltDate);
+					intent.putExtra("ArrivalFltNo",current.getExcursionData().ArrivalFltNo);
+					intent.putExtra("ArrivalFltTime",current.getExcursionData().ArrivalFltTime);
+					intent.putExtra("CityID",current.getExcursionData().CityID);
+					intent.putExtra("DepartureFltDate",current.getExcursionData().DepartureFltDate);
+					intent.putExtra("DepartureFltNo",current.getExcursionData().DepartureFltNo);
+					intent.putExtra("DepartureFltTime",current.getExcursionData().DepartureFltTime);
+					intent.putExtra("HotelID",current.getExcursionData().HotelID);
+					intent.putExtra("HotelNameEn",current.getExcursionData().HotelNameEn);
+					intent.putExtra("ArrialAirportName",current.getExcursionData().ArrialAirportName);
 
 					intent.putExtra("ServiceID",current.getSelectID());
-					intent.putExtra("PassengerList",current.getExcursionDta().PassengerList);
+					intent.putExtra("PassengerList",current.getExcursionData().PassengerList);
 					intent.putExtra("BookingCode",current.getBookingCode());
 					context.startActivity(intent);
 

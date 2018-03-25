@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linear_1"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="left"
     android:orientation="horizontal"
+    android:id="@+id/linear_1"
+    android:gravity="left"
     android:visibility="gone"
 
 
-    >
 
+
+
+
+
+
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,64 +25,70 @@
         <TextView
             android:id="@+id/tvANRaft1_1"
             android:layout_width="@dimen/_30dp"
-            android:layout_height="wrap_content"
-
-            android:layout_toLeftOf="@+id/ivArrow"
             android:gravity="left"
+
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/ivArrow"
             android:text="IKA"
 
             android:textColor="@color/text_color_4d"
             android:textSize="@dimen/_12dp_normal_textSize" />
 
 
+
+
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
 
-                android:gravity="center"
-                android:text="@string/dot"
+                android:textSize="12dp"
                 android:textAppearance="@style/IconFonts"
+                android:text="@string/dot"
                 android:textColor="@color/gray_dark"
-                android:textSize="12dp" />
-
+                android:gravity="center"/>
 
             <View
+                android:id="@+id/lineOnstep"
                 android:layout_width="@dimen/_200dp_fh"
                 android:layout_height="1dp"
-                android:background="@color/gray_dark" />
+                android:background="@color/gray_dark"/>
 
 
             <TextView
+                android:id="@+id/tvPlane"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
 
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:text="@string/plane"
+                android:textSize="12dp"
                 android:textAppearance="@style/IconFonts"
+                android:text="@string/plane"
                 android:textColor="@color/gray_dark"
-                android:textSize="12dp" />
+                android:gravity="center"
+                android:layout_marginRight="3dp"/>
+
 
         </LinearLayout>
+
 
 
         <TextView
             android:id="@+id/tvANRaft1_2"
 
             android:layout_width="@dimen/_30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_toRightOf="@+id/ivArrow"
             android:gravity="left"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivArrow"
             android:text="IKA"
             android:textColor="@color/text_color_4d"
-            android:textSize="@dimen/_12dp_normal_textSize" />
+            android:textSize="@dimen/_12dp_normal_textSize"
+            android:layout_marginLeft="3dp"/>
 
     </LinearLayout>
 </LinearLayout>
