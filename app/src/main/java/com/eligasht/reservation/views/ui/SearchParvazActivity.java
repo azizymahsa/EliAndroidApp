@@ -466,20 +466,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 
 
-        Handler handler = new Handler();
-        Runnable r = new Runnable() {
-            public void run() {
-                Log.e("left", rlLoading.getLeft()+"");
-                Log.e("right", rlLoading.getRight()+"");
-                ObjectAnimator anim2 = ObjectAnimator.ofFloat(lottiePlane, "translationX",0, -rlLoading.getRight()-100);
-                anim2.setDuration(6000);
-                anim2.setInterpolator(new LinearInterpolator());  // E.g. Linear, Accelerate, Decelerate
-                anim2.start();
-
-
-            }
-        };
-        handler.postDelayed(r, 100);
 
 
 
