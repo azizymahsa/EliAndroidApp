@@ -94,7 +94,7 @@ public class CalendarDialog implements OnClickListener {
 
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, CustomDate endDate, TypeUsageOfCalendar typeUsageofCalendar) {
-        if (alertDialog !=null && alertDialog.isShowing())
+        if (alertDialog != null && alertDialog.isShowing())
             return;
         f13894H = 0;
 
@@ -189,7 +189,7 @@ public class CalendarDialog implements OnClickListener {
 
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, CustomDate startDate, TypeUsageOfCalendar typeUsageofCalendar) {
-        if (alertDialog !=null && alertDialog.isShowing())
+        if (alertDialog != null && alertDialog.isShowing())
             return;
         f13894H = 0;
 
@@ -281,7 +281,7 @@ public class CalendarDialog implements OnClickListener {
     }
 
     public void create(final Activity activity, Context context, ICallbackCalendarDialog iCallbackCalendarDialog, boolean reverse, TypeUsageOfCalendar typeUsageofCalendar) {
-        if (alertDialog !=null && alertDialog.isShowing())
+        if (alertDialog != null && alertDialog.isShowing())
             return;
         f13894H = 0;
 
@@ -419,7 +419,6 @@ public class CalendarDialog implements OnClickListener {
         numberUtil = new NumberUtil(context);
         if (fullDate != null) {
             fullDate = splitDate(fullDate);
-
         }
         initTextViews();
     }

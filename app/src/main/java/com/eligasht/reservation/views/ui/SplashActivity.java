@@ -91,7 +91,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
 
     @Override
     public void returnRestartAppValue() {
-        Prefs.putString("lang", "en");
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -392,18 +391,23 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                                 updateAlert.isForce(false);
 
                             } else {
-
-                                if (Hawk.get("isFirstEntrance", true)) {
-                                    if (
-//                      userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault
-                                            userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault.contains("en")) {
-
-                                        showRestartDialog();
-
-                                    } else {
+                                Log.e("Cal", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault);
+                                if (Prefs.getBoolean("isFirstEntrance", true)) {
+                                    if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault
+                                            .split("-")[0].equals(Prefs.getString("lang","fa")))
+                                    {
+                                        Prefs.putBoolean("isFirstEntrance", false);
+                                        Prefs.putString("lang", "fa");
                                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                         finish();
                                     }
+                                    else
+                                    {
+                                        Prefs.putBoolean("isFirstEntrance", false);
+                                        Prefs.putString("lang", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault.split("-")[0]);
+                                        showRestartDialog();
+                                    }
+
 
                                 } else {
                                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
