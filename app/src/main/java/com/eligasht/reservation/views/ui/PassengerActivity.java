@@ -34,9 +34,6 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -48,7 +45,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -65,7 +61,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -83,9 +78,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.activities.main.MainActivity;
-import com.eligasht.reservation.views.fragments.PlanFragment;
-import com.eligasht.reservation.views.ticker.TickerView;
+import com.eligasht.reservation.views.activities.transfer.ExcursionData;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -109,7 +102,6 @@ import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.tools.db.local.PassengerMosaferItems_Table;
 import com.eligasht.reservation.tools.db.local.PassengerPartnerInfo_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
-import com.eligasht.reservation.views.activities.transfer.ExcursionDta;
 import com.eligasht.reservation.views.adapters.GetKhadmatAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.components.Header;
@@ -1477,7 +1469,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					// Extract data from json and store into ArrayList as class objects
 					for (int i = 0; i < jArray.length(); i++) {
 						JSONObject json_data = jArray.getJSONObject(i);
-						JSONObject excursionDta = json_data.getJSONObject("ExcursionDta");
+						JSONObject excursionDta = json_data.getJSONObject("ExcursionData");
 
 						PurchaseFlightResult fishData = new PurchaseFlightResult();
 						fishData.setCityEn(json_data.getString("CityEn"));
@@ -1517,7 +1509,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 
-						fishData.setExcursionDta(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
+						fishData.setExcursionData(new ExcursionData(excursionDta.getString("ArrialAirportCode"),
 								excursionDta.getString("ArrialAirportName"),
 								excursionDta.getString("ArrivalFltDate")
 								,excursionDta.getString("ArrivalFltNo"),

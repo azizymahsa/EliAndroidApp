@@ -50,7 +50,6 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.ticker.TickerView;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -75,7 +74,7 @@ import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.tools.db.local.PassengerMosaferItems_Table;
 import com.eligasht.reservation.tools.db.local.PassengerPartnerInfo_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
-import com.eligasht.reservation.views.activities.transfer.ExcursionDta;
+import com.eligasht.reservation.views.activities.transfer.ExcursionData;
 import com.eligasht.reservation.views.adapters.GetKhadmatHotelFlightAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
@@ -1182,7 +1181,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 // Extract data from json and store into ArrayList as class objects
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject json_data = jArray.getJSONObject(i);
-                    JSONObject excursionDta = json_data.getJSONObject("ExcursionDta");
+                    JSONObject excursionDta = json_data.getJSONObject("ExcursionData");
                     PurchaseFlightResult fishData = new PurchaseFlightResult();
                     fishData.setCityEn(json_data.getString("CityEn"));
                     fishData.setCityFa(json_data.getString("CityFa"));
@@ -1218,7 +1217,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
 
-                    fishData.setExcursionDta(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
+                    fishData.setExcursionData(new ExcursionData(excursionDta.getString("ArrialAirportCode"),
                             excursionDta.getString("ArrialAirportName"),
                             excursionDta.getString("ArrivalFltDate")
                             ,excursionDta.getString("ArrivalFltNo"),
