@@ -207,7 +207,8 @@
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/llRaft"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginRight="2dp"
                     android:gravity="right|center"
@@ -215,6 +216,8 @@
 
 
                     <TextView
+                        android:id="@+id/tvPlaneIcon"
+
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
 
@@ -226,6 +229,8 @@
                         android:textSize="17dp" />
 
                     <View
+                        android:id="@+id/viewLine"
+
                         android:layout_width="@dimen/_260dp_f"
                         android:layout_height="@dimen/_1dp_width"
                         android:background="@color/gray_dark" />
@@ -387,7 +392,7 @@
 
                 <LinearLayout
                     android:id="@+id/linearBargashtTwo"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginRight="2dp"
                     android:gravity="right|center"
@@ -395,6 +400,8 @@
 
 
                     <TextView
+                        android:id="@+id/tvPlaneIcon2"
+
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
 
@@ -406,6 +413,8 @@
                         android:textSize="17dp" />
 
                     <View
+                        android:id="@+id/viewLine2"
+
                         android:layout_width="@dimen/_260dp_f"
                         android:layout_height="@dimen/_1dp_width"
                         android:background="@color/gray_dark" />

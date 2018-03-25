@@ -50,7 +50,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@color/text_color" />
 
-            <com.eligasht.reservation.views.ticker.TickerView
+            <TextView
                 android:id="@+id/tvPrice"
 
                 android:layout_width="match_parent"
@@ -61,7 +61,6 @@
                 android:text="ferwer"
                 android:textColor="@color/green"
                 android:textSize="@dimen/_16dp_normal_textSize"
-                card_view:ticker_defaultCharacterList="number"
 
 
                 />
