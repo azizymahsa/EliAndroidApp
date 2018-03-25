@@ -1,6 +1,5 @@
 package com.eligasht.reservation.views.activities;
 
-import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,6 +17,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.SectionModel;
 import com.eligasht.reservation.tools.NonScrollRecyclerView;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.adapters.AboutAdapter;
 import com.eligasht.reservation.views.ticker.TickerView;
 
@@ -42,7 +42,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -50,16 +49,16 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class AboutActivity extends BaseActivity implements View.OnClickListener {
 
 
-    private FancyButton btnBack;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     Handler handler;
     ProgressDialog progressBar;
-    private Handler progressBarHandler = new Handler();
     ArrayList<HashMap<String, String>> mylist = null;
     AboutAdapter mAdapter;
     TickerView v1, v2, v3;
     ImageView hotel;
+    private FancyButton btnBack;
+    private Handler progressBarHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,25 +171,25 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 }
                 try {
 
-                    if (Locale.getDefault().getLanguage().equals("en")) {
+                    if (Prefs.getString("lang", "fa").equals("en")) {
                         JSONObject jsone = new JSONObject();
                         JSONObject manJson = new JSONObject();
                         manJson.put("culture", "en-");
                         // jsone.put("", manJson);
                         data = manJson.toString();
-                    } else if (Locale.getDefault().getLanguage().equals("fa")) {
+                    } else if (Prefs.getString("lang", "fa").equals("fa")) {
                         JSONObject jsone = new JSONObject();
                         JSONObject manJson = new JSONObject();
                         manJson.put("culture", "fa-");
                         // jsone.put("", manJson);
                         data = manJson.toString();
-                    } else if (Locale.getDefault().getLanguage().equals("tr")) {
+                    } else if (Prefs.getString("lang", "fa").equals("tr")) {
                         JSONObject jsone = new JSONObject();
                         JSONObject manJson = new JSONObject();
                         manJson.put("culture", "tr-TR");
                         // jsone.put("", manJson);
                         data = manJson.toString();
-                    } else if (Locale.getDefault().getLanguage().equals("ar")) {
+                    } else if (Prefs.getString("lang", "fa").equals("ar")) {
                         JSONObject jsone = new JSONObject();
                         JSONObject manJson = new JSONObject();
                         manJson.put("culture", "ar-");

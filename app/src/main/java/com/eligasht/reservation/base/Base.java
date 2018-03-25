@@ -59,6 +59,21 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
         super.onStop();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            String languageToLoad = Prefs.getString("lang", "fa"); // your language
+            Locale locale = new Locale(languageToLoad);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } catch (Exception e) {
+        }
+    }
+
     /**
      * Override this method if you want to manually handle connectivity change events.
      *
