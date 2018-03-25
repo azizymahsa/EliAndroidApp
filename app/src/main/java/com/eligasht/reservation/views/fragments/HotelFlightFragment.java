@@ -273,7 +273,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin));
                     } else {
-
+                        Log.e("raft+hotel", raft );
+                        Log.e("bargasht+hotel", bargasht );
                         sendStartTimer();
 
                         Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);

@@ -1641,7 +1641,7 @@
                     >
 
 
-                    <com.eligasht.reservation.views.ticker.TickerView
+                    <TextView
                         android:id="@+id/tvPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

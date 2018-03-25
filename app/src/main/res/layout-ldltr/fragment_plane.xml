@@ -390,7 +390,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_gravity="top"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="1"
                                 card_view:ticker_defaultCharacterList="number"
                                 android:textColor="@color/text_color_2"
@@ -453,7 +453,7 @@
                                 android:text="0"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 card_view:ticker_defaultCharacterList="number"
                                 android:layout_marginLeft="@dimen/_10dp"
                                 android:layout_marginRight="@dimen/_10dp"/>
@@ -512,7 +512,7 @@
                                 android:text="0"
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 card_view:ticker_defaultCharacterList="number"
                                 android:layout_marginLeft="@dimen/_10dp"
                                 android:layout_marginRight="@dimen/_10dp"/>

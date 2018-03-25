@@ -153,7 +153,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	ScrollView myScrollView;
 	private EditText searchtxt;
 	public TextView txt_shomare_factor,tvfactorNumber;
-	TickerView tvPrice;
+	TextView tvPrice;
 
 	public ImageView txt_hom;
 	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;

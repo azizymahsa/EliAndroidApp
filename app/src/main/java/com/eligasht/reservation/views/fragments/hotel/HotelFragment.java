@@ -52,7 +52,7 @@ import java.util.List;
 
 
 public class HotelFragment extends Fragment implements OnClickListener,
-        TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, CountTimeAlert.TimerDialogListener
+    CountTimeAlert.TimerDialogListener
         , ICallbackCalendarDialog {
 
     public static Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
@@ -301,6 +301,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         intent.putExtra("CheckOut", bargasht);
                         intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
                         intent.putExtra("CheckInFa", tvRaft.getText().toString());
+                        Log.e("raft+hotel", raft );
+                        Log.e("bargasht+hotel", bargasht );
 
 
                         intent.putExtra("Rooms", getRoomList(roomsSelected));
@@ -323,31 +325,12 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
                 break;
             case R.id.llRaft:
-                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                    @Override
-                    public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-                        SingletonDate.getInstance().setStartDate(startDate);
-                        SingletonDate.getInstance().setEndDate(endDate);
-                        initCheckInCheckOutAnim();
-                        tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                        tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
 
-                    }
-                }, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
+                calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
+
                 break;
             case R.id.llBargasht:
-                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                    @Override
-                    public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-                        SingletonDate.getInstance().setStartDate(startDate);
-                        SingletonDate.getInstance().setEndDate(endDate);
-                        initCheckInCheckOutAnim();
-                        tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                        tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
-
-                    }
-                }, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
-
+                calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
 
                 tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
                 tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
@@ -443,71 +426,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         return rooms.size();
     }
 
-    @Override
-    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
 
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-        geo = false;
-        year_ = year;
-        month = monthOfYear;
-        day = dayOfMonth;
-        PersianCalendar persianCalendar = new PersianCalendar();
-        persianCalendar.set(year, month, day);
-
-
-        Log.e("salam", date_server(year_, month, day));
-        if (view.getTag().equals("DatepickerdialogBargasht")) {
-            tvBargasht.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-            bargasht = date_server(year, monthOfYear, dayOfMonth);
-            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-            Prefs.putString("bargasht", bargasht);
-
-
-            if (Utility.campareDate(raft, bargasht)) {
-                tvRaft.setText(persianCalendar.getPersianLongDate());
-
-            }
-
-
-        }
-
-
-        if (view.getTag().equals("DatepickerdialogRaft")) {
-
-            year_Min = year;
-            monthMin = monthOfYear;
-            dayMin = dayOfMonth;
-            tvRaft.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-            //  tvBargasht.setText(persianCalendar.getPersianLongDate());
-            raft = date_server(year, monthOfYear, dayOfMonth);
-            PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-            persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
-
-
-            if (Utility.campareDate(raft, bargasht)) {
-                //  persianCalendar.set(year, month, day+1);
-
-                tvBargasht.setText(persianCalendarDatePicker2.getPersianWeekDayName() + " " + persianCalendarDatePicker2.getPersianDay() + " " + persianCalendarDatePicker2.getPersianMonthName());
-                datePickerDialog2.initialize(this, year_, month, day);
-                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-                //   bargasht = date_server(year, monthOfYear, dayOfMonth+1);
-
-            } else {
-
-                datePickerDialog2.setMinDate(persianCalendarDatePicker2);
-            }
-
-
-            Prefs.putString("bargashtfa", tvBargasht.getText().toString());
-
-            Prefs.putString("raft", raft);
-            Prefs.putString("raftfa", tvRaft.getText().toString());
-
-        }
-    }
 
     @Override
     public void onReturnValue(int type) {
@@ -522,14 +441,15 @@ public class HotelFragment extends Fragment implements OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
+
+
         SingletonDate.getInstance().setReverseDate(startDate, endDate);
+
         tvRaft.setText(startDate.getDescription());
         tvBargasht.setText(endDate.getDescription());
         initCheckInCheckOutAnim();
         raft = startDate.getFullGeo();
         bargasht = endDate.getFullGeo();
-
-
     }
 
 

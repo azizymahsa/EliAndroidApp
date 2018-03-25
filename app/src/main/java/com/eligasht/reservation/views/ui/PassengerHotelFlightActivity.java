@@ -148,7 +148,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     //ScrollView myScrollView;
     private EditText searchtxt;
     public TextView txt_shomare_factor, imgCount;
-    public TickerView  tvPrice;
+    public TextView  tvPrice;
     public ImageView txt_hom, textView4;
     private boolean FlagMosaferan = true;
     private String Gensiyat = "";
