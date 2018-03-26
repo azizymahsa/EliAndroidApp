@@ -63,8 +63,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     String raft, bargasht;
     LinearLayout linearLayout_mabda, linearLayout_maghsad, llRaft, llBargasht;
     ImageView ivImage;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
     boolean geo = false;
     CalendarDialog calendarDialog;
     private View rootView;
@@ -359,29 +357,18 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
     @Override
     public void onReturnValue(int type) {
-
-
     }
 
-
     public void anim() {
-
-
         YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new Animator.AnimatorListener() {
-
-
             @Override
             public void onAnimationStart(Animator animation) {
-
-
                 YoYo.with(Techniques.SlideOutDown)
                         .duration(500)
                         .playOn(tvMabdaEn);
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
                         .playOn(lbl_city_english);
-
-
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
                         .playOn(txtCity);
@@ -443,8 +430,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 YoYo.with(Techniques.SlideInDown)
                         .duration(500)
                         .playOn(txtCity);
-
-
             }
 
             @Override
