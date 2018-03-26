@@ -59,7 +59,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class Utility extends Activity {
+public class Utility {
 
     public static void applyFonts(final View v) {
         try {

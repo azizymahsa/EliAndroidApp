@@ -34,7 +34,7 @@
 
     <string name="searchFlight">Flight</string>
     <string name="search_package">Vacation Package</string>
-    <string name="search_hotel">Hotel</string>
+    <string name="search_hotel">Hotels</string>
 
     <string name="reserve_package">Book</string>
     <string name="icon_calander">&#xe908;</string>
@@ -1965,7 +1965,7 @@
     <string name="adault">Adult</string>
     <string name="search">Search</string>
     <string name="login">Login</string>
-    <string name="hotel_reservation">Hotel</string>
+    <string name="hotel_reservation">Hotels</string>
 
     <!--nemati-->
     <string name="hotel_reservation_and_plane_ticket">Hotel + Flight</string>

@@ -105,7 +105,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private RoomsAdapter roomsAdapter;
     private GetRoomsList getRoomsList;
     private Window window;
-    private LinearLayout llEmkanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel, llInformation, llPolicy;
+    private LinearLayout llEmkanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel, llInformation, llPolicy,tab_layout;
     private FrameLayout flMap;
     private View vEmakanat, vMap, vRezerv, vComment;
     private GoogleMap map;
@@ -135,7 +135,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private NonScrollRecyclerView lvComments;
     private CardView cvHotel;
     private FrameLayout flViewPager;
-    LottieAnimationView lottieMap,lottieRezerv,lottieComment,lottieEmkanat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +154,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 vEmakanat.setVisibility(View.VISIBLE);*/
                 flMap.setVisibility(View.VISIBLE);
                 vMap.setVisibility(View.VISIBLE);
-                lottieMap.playAnimation();
 
             }
         } catch (Exception e) {
@@ -172,6 +170,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         rlLoading = findViewById(R.id.rlLoading);
         flViewPager = findViewById(R.id.flViewPager);
         cvHotel = findViewById(R.id.cvHotel);
+        tab_layout = findViewById(R.id.tab_layout);
         rlRoot = findViewById(R.id.rlRoot);
         llEmkanatClick = findViewById(R.id.llEmkanatClick);
         ivLoading = findViewById(R.id.ivLoading);
@@ -250,32 +249,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         Utility.setAnimLoading(this);
         tvDateDetail.setText(getIntent().getExtras().getString("DateTime"));
-        lottieMap = findViewById(R.id.lottieMap);
-        lottieRezerv = findViewById(R.id.lottieRezerv);
-        lottieComment = findViewById(R.id.lottieComment);
-        lottieEmkanat = findViewById(R.id.lottieEmkanat);
 
-
-
-
-        lottieMap.setAnimation("lottie/map.json");
-        lottieRezerv.setAnimation("lottie/bed.json");
-        lottieComment.setAnimation("lottie/comment.json");
-        lottieEmkanat.setAnimation("lottie/fridge.json");
-
-
-        Handler handler = new Handler();
-        Runnable r = new Runnable() {
-            public void run() {
-
-
-                lottieEmkanat.setFrame((int)lottieEmkanat.getMaxFrame());
-                lottieComment.setFrame((int)lottieEmkanat.getMaxFrame());
-                lottieRezerv.setFrame((int)lottieEmkanat.getMaxFrame());
-                lottieMap.setFrame((int)lottieEmkanat.getMaxFrame());
-            }
-        };
-        handler.postDelayed(r, 500);
 
 
 
@@ -315,7 +289,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
                 tvRezervClickText.setTextColor(Color.BLACK);
 
-                lottieRezerv.playAnimation();
 
 
 
@@ -349,7 +322,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
                     tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
 
-                    lottieMap.playAnimation();
 
 
 
@@ -379,7 +351,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 tvEmakanatClickText.setTextColor(Color.BLACK);
                 tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
 
-                lottieEmkanat.playAnimation();
 
                 break;
             case R.id.llCommentClick:
@@ -406,7 +377,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
                 tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
 
-                lottieComment.playAnimation();
 
 
                 break;
@@ -649,7 +619,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected void onPostExecute(String result) {
             rlLoading2.setVisibility(View.GONE);
             // Utility.disableEnableControls(true,rlRoot);
-            lottieRezerv.playAnimation();
 
 
             //new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
@@ -667,11 +636,15 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));*/
             try {
                 cvHotel.setVisibility(View.VISIBLE);
+                tab_layout.setVisibility(View.VISIBLE);
 
 
                 YoYo.with(Techniques.FadeIn)
                         .duration(400)
                         .playOn(cvHotel);
+                YoYo.with(Techniques.FadeIn)
+                        .duration(400)
+                        .playOn(tab_layout);
 
 
                 tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
