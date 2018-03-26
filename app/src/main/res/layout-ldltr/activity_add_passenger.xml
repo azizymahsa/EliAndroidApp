@@ -53,7 +53,7 @@
                 android:textStyle="bold"
                 android:textAppearance="@style/IrsansBold"
                 />
-            <com.eligasht.reservation.views.ticker.TickerView
+            <TextView
                 android:id="@+id/count_passenger"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:textAppearance="@style/IrsansBold"
                 android:textSize="@dimen/_16dp_txtSize"
                 android:textStyle="bold"
-                app:ticker_defaultCharacterList="number"/>
+          />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

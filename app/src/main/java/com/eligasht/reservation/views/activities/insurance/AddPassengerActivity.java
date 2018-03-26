@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.R;
@@ -52,7 +53,7 @@ public class AddPassengerActivity extends BaseActivity implements
     public ImageView btn_add;
     public ImageView btn_remove;
     private Button btn_confirm;
-    private TickerView count_passenger;
+    private TextView count_passenger;
     public PassengerAdapter passengerAdapter;
     public PassengerPresenter passengerPresenter;
     DatePickerDialog datePickerDialogBirthDay;
