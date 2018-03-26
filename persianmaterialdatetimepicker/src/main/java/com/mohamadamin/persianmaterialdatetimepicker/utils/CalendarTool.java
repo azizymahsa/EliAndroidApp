@@ -423,7 +423,10 @@ public class CalendarTool {
         leap = (((N+1) % 33)-1) % 4;
         if (leap == -1)
             leap = 4;
-        return leap == 4 || leap == 0;
+        if (leap==4 || leap==0)
+            return true;
+        else
+            return false;
 
     }
 

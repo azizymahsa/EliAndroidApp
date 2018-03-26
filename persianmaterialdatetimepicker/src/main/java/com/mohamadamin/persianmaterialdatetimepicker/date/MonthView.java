@@ -655,7 +655,11 @@ public abstract class MonthView extends View {
             return false;
         }
 
-        return day < minDate.getPersianDay();
+        if (day < minDate.getPersianDay()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private boolean isAfterMax(int year, int month, int day) {
@@ -679,7 +683,11 @@ public abstract class MonthView extends View {
             return false;
         }
 
-        return day > maxDate.getPersianDay();
+        if (day > maxDate.getPersianDay()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

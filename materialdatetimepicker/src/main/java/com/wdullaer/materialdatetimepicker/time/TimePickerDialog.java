@@ -499,16 +499,16 @@ public class TimePickerDialog extends DialogFragment implements
         mSelectedColor = ContextCompat.getColor(context, R.color.gmdtp_white);
         mUnselectedColor = ContextCompat.getColor(context, R.color.mdtp_accent_color_focused);
 
-        mHourView = view.findViewById(R.id.hours);
+        mHourView = (TextView) view.findViewById(R.id.hours);
         mHourView.setOnKeyListener(keyboardListener);
-        mHourSpaceView = view.findViewById(R.id.hour_space);
-        mMinuteSpaceView = view.findViewById(R.id.minutes_space);
-        mMinuteView = view.findViewById(R.id.minutes);
+        mHourSpaceView = (TextView) view.findViewById(R.id.hour_space);
+        mMinuteSpaceView = (TextView) view.findViewById(R.id.minutes_space);
+        mMinuteView = (TextView) view.findViewById(R.id.minutes);
         mMinuteView.setOnKeyListener(keyboardListener);
-        mSecondSpaceView = view.findViewById(R.id.seconds_space);
-        mSecondView = view.findViewById(R.id.seconds);
+        mSecondSpaceView = (TextView) view.findViewById(R.id.seconds_space);
+        mSecondView = (TextView) view.findViewById(R.id.seconds);
         mSecondView.setOnKeyListener(keyboardListener);
-        mAmPmTextView = view.findViewById(R.id.ampm_label);
+        mAmPmTextView = (TextView) view.findViewById(R.id.ampm_label);
         mAmPmTextView.setOnKeyListener(keyboardListener);
         String[] amPmTexts = new DateFormatSymbols().getAmPmStrings();
         mAmText = amPmTexts[0];
@@ -522,7 +522,7 @@ public class TimePickerDialog extends DialogFragment implements
 
         mInitialTime = roundToNearest(mInitialTime);
 
-        mTimePicker = view.findViewById(R.id.time_picker);
+        mTimePicker = (RadialPickerLayout) view.findViewById(R.id.time_picker);
         mTimePicker.setOnValueSelectedListener(this);
         mTimePicker.setOnKeyListener(keyboardListener);
         mTimePicker.initialize(getActivity(), this, mInitialTime, mIs24HourMode);
@@ -558,9 +558,9 @@ public class TimePickerDialog extends DialogFragment implements
         });
         Typeface typeface= Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_bold.ttf");
 
-        mOkButton = view.findViewById(R.id.ok);
+        mOkButton = (Button) view.findViewById(R.id.ok);
         mOkButton.setTypeface(typeface);
-        gswitch_type = view.findViewById(R.id.gswitch_type);
+        gswitch_type = (Button) view.findViewById(R.id.gswitch_type);
         gswitch_type.setVisibility(View.GONE);
         mOkButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -579,7 +579,7 @@ public class TimePickerDialog extends DialogFragment implements
         if(mOkString != null) mOkButton.setText(mOkString);
         else mOkButton.setText(mOkResid);
 
-        mCancelButton = view.findViewById(R.id.cancel);
+        mCancelButton = (Button) view.findViewById(R.id.cancel);
         mCancelButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -636,7 +636,7 @@ public class TimePickerDialog extends DialogFragment implements
                     LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
             );
             paramsSeparator.addRule(RelativeLayout.CENTER_IN_PARENT);
-            TextView separatorView = view.findViewById(R.id.separator);
+            TextView separatorView = (TextView) view.findViewById(R.id.separator);
             separatorView.setLayoutParams(paramsSeparator);
         } else if (!mEnableMinutes && !mEnableSeconds) {
             // center the hour
@@ -701,7 +701,7 @@ public class TimePickerDialog extends DialogFragment implements
         }
 
         // Set the title (if any)
-        TextView timePickerHeader = view.findViewById(R.id.time_picker_header);
+        TextView timePickerHeader = (TextView) view.findViewById(R.id.time_picker_header);
         if (!mTitle.isEmpty()) {
             timePickerHeader.setVisibility(TextView.VISIBLE);
             timePickerHeader.setText(mTitle.toUpperCase(Locale.ENGLISH));

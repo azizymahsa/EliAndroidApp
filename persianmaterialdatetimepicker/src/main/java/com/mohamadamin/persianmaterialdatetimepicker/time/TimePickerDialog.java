@@ -234,20 +234,20 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
         mSelectedColor = res.getColor(R.color.mdtp_white);
         mUnselectedColor = res.getColor(R.color.mdtp_accent_color_focused);
 
-        mHourView = view.findViewById(R.id.hours);
+        mHourView = (TextView) view.findViewById(R.id.hours);
         mHourView.setOnKeyListener(keyboardListener);
-        mHourSpaceView = view.findViewById(R.id.hour_space);
-        mMinuteSpaceView = view.findViewById(R.id.minutes_space);
-        mMinuteView = view.findViewById(R.id.minutes);
+        mHourSpaceView = (TextView) view.findViewById(R.id.hour_space);
+        mMinuteSpaceView = (TextView) view.findViewById(R.id.minutes_space);
+        mMinuteView = (TextView) view.findViewById(R.id.minutes);
         mMinuteView.setOnKeyListener(keyboardListener);
-        mAmPmTextView = view.findViewById(R.id.ampm_label);
+        mAmPmTextView = (TextView) view.findViewById(R.id.ampm_label);
         mAmPmTextView.setOnKeyListener(keyboardListener);
         mAmText = "قبل‌ازظهر";
         mPmText = "بعدازظهر";
 
         mHapticFeedbackController = new HapticFeedbackController(getActivity());
 
-        mTimePicker = view.findViewById(R.id.time_picker);
+        mTimePicker = (RadialPickerLayout) view.findViewById(R.id.time_picker);
         mTimePicker.setOnValueSelectedListener(this);
         mTimePicker.setOnKeyListener(keyboardListener);
         mTimePicker.initialize(getActivity(), mHapticFeedbackController, mInitialHourOfDay,
@@ -276,7 +276,7 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
             }
         });
 
-        mOkButton = view.findViewById(R.id.ok);
+        mOkButton = (Button) view.findViewById(R.id.ok);
         mOkButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -295,7 +295,7 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
         mOkButton.setOnKeyListener(keyboardListener);
         mOkButton.setTypeface(TypefaceHelper.get(getDialog().getContext(),"IRANSansMobile"));
 
-        Button mCancelButton = view.findViewById(R.id.cancel);
+        Button mCancelButton = (Button) view.findViewById(R.id.cancel);
         mCancelButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -314,7 +314,7 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
             RelativeLayout.LayoutParams paramsSeparator = new RelativeLayout.LayoutParams(
                     LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             paramsSeparator.addRule(RelativeLayout.CENTER_IN_PARENT);
-            TextView separatorView = view.findViewById(R.id.separator);
+            TextView separatorView = (TextView) view.findViewById(R.id.separator);
             separatorView.setLayoutParams(paramsSeparator);
         } else {
             mAmPmTextView.setVisibility(View.VISIBLE);
@@ -354,7 +354,7 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
         }
 
         // Set the title (if any)
-        TextView timePickerHeader = view.findViewById(R.id.time_picker_header);
+        TextView timePickerHeader = (TextView) view.findViewById(R.id.time_picker_header);
         if (!mTitle.isEmpty()) {
             timePickerHeader.setVisibility(TextView.VISIBLE);
             timePickerHeader.setText(mTitle); // TODO

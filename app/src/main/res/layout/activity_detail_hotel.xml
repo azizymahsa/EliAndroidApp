@@ -60,7 +60,6 @@
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="3dp"
                 card_view:cardElevation="3dp"
-                android:visibility="gone"
 
 
                 >
