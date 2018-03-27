@@ -753,8 +753,11 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         @Override
         protected String doInBackground(String... params) {
             try {
-                availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H", new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
-                        Utility.convertNumbersToEnglish(raft), Utility.convertNumbersToEnglish(bargasht), Prefs.getString("Value-Hotel-City-Code", "c25972"), "DXB", rooms, getIntent().getExtras().getString("Rooms"), getString(R.string.culture), "")));
+                availApi = new HotelAvailApi(new HotelAvailRequestModel(new Request("H",
+                        new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"),
+                        Utility.convertNumbersToEnglish(raft), Utility.convertNumbersToEnglish(bargasht),
+                        Prefs.getString("Value-Hotel-City-Code", "c25972"), "DXB",
+                        rooms, getIntent().getExtras().getString("Rooms"), getString(R.string.culture), "")));
 
 
                 Gson gson = new Gson();

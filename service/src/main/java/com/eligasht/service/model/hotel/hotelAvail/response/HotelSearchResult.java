@@ -1,0 +1,171 @@
+
+package com.eligasht.service.model.hotel.hotelAvail.response;
+
+import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+public class HotelSearchResult {
+
+    @SerializedName("CityImage")
+    @Expose
+    private Object cityImage;
+    @SerializedName("Counts")
+    @Expose
+    private int counts;
+    @SerializedName("Facilities")
+    @Expose
+    private List<Object> facilities = null;
+    @SerializedName("Flights")
+    @Expose
+    private Object flights;
+    @SerializedName("FlightsID")
+    @Expose
+    private Object flightsID;
+    @SerializedName("HotelTypes")
+    @Expose
+    private List<Object> hotelTypes = null;
+    @SerializedName("Hotels")
+    @Expose
+    private Object hotels;
+    @SerializedName("LoadDB")
+    @Expose
+    private boolean loadDB;
+    @SerializedName("Locations")
+    @Expose
+    private List<Object> locations = null;
+    @SerializedName("MaxPrice")
+    @Expose
+    private int maxPrice;
+    @SerializedName("MinPrice")
+    @Expose
+    private int minPrice;
+    @SerializedName("NightCounts")
+    @Expose
+    private int nightCounts;
+    @SerializedName("Stars")
+    @Expose
+    private List<Object> stars = null;
+    @SerializedName("Webservices")
+    @Expose
+    private List<Object> webservices = null;
+
+    public Object getCityImage() {
+        return cityImage;
+    }
+
+    public void setCityImage(Object cityImage) {
+        this.cityImage = cityImage;
+    }
+
+    public int getCounts() {
+        return counts;
+    }
+
+    public void setCounts(int counts) {
+        this.counts = counts;
+    }
+
+    public List<Object> getFacilities() {
+        return facilities;
+    }
+
+    public void setFacilities(List<Object> facilities) {
+        this.facilities = facilities;
+    }
+
+    public Object getFlights() {
+        return flights;
+    }
+
+    public void setFlights(Object flights) {
+        this.flights = flights;
+    }
+
+    public Object getFlightsID() {
+        return flightsID;
+    }
+
+    public void setFlightsID(Object flightsID) {
+        this.flightsID = flightsID;
+    }
+
+    public List<Object> getHotelTypes() {
+        return hotelTypes;
+    }
+
+    public void setHotelTypes(List<Object> hotelTypes) {
+        this.hotelTypes = hotelTypes;
+    }
+
+    public Object getHotels() {
+        return hotels;
+    }
+
+    public void setHotels(Object hotels) {
+        this.hotels = hotels;
+    }
+
+    public boolean isLoadDB() {
+        return loadDB;
+    }
+
+    public void setLoadDB(boolean loadDB) {
+        this.loadDB = loadDB;
+    }
+
+    public List<Object> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Object> locations) {
+        this.locations = locations;
+    }
+
+    public int getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(int maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public int getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(int minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public int getNightCounts() {
+        return nightCounts;
+    }
+
+    public void setNightCounts(int nightCounts) {
+        this.nightCounts = nightCounts;
+    }
+
+    public List<Object> getStars() {
+        return stars;
+    }
+
+    public void setStars(List<Object> stars) {
+        this.stars = stars;
+    }
+
+    public List<Object> getWebservices() {
+        return webservices;
+    }
+
+    public void setWebservices(List<Object> webservices) {
+        this.webservices = webservices;
+    }
+
+    public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
+    public String toString() {
+        return new ToStringBuilder(this).append("cityImage", cityImage).append("counts", counts).append("facilities", facilities).append("flights", flights).append("flightsID", flightsID).append("hotelTypes", hotelTypes).append("hotels", hotels).append("loadDB", loadDB).append("locations", locations).append("maxPrice", maxPrice).append("minPrice", minPrice).append("nightCounts", nightCounts).append("stars", stars).append("webservices", webservices).toString();
+    }
+
+}

@@ -2,7 +2,6 @@ package com.eligasht.reservation.base;
 
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
@@ -16,16 +15,23 @@ import android.util.Log;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustConfig;
-import com.adjust.sdk.AdjustEvent;
 import com.adjust.sdk.LogLevel;
 import com.eligasht.BuildConfig;
 import com.eligasht.R;
+import com.eligasht.ServiceApplication;
 import com.eligasht.reservation.notification.GetNotification;
 import com.eligasht.reservation.views.activities.IDM_Activity;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.font.CustomViewWithTypefaceSupport;
 import com.eligasht.reservation.views.ui.font.TextField;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
+import com.eligasht.service.model.hotel.hotelAvail.request.Identity;
+import com.eligasht.service.model.hotel.hotelAvail.request.Request;
+import com.eligasht.service.model.hotel.hotelAvail.request.Room;
+import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.crash.FirebaseCrash;
@@ -37,12 +43,16 @@ import com.zplesac.connectionbuddy.ConnectionBuddyConfiguration;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
+import retrofit2.Retrofit;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
-public class GlobalApplication extends Application {
+public class GlobalApplication extends ServiceApplication {
 
     public static Typeface globalTypeFace;
     public static ArrayList<IDM_Activity> activityStack = new ArrayList<IDM_Activity>();
@@ -53,6 +63,8 @@ public class GlobalApplication extends Application {
     private static GlobalApplication mInstance;
     private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
+
+
 
     public static void setGlobalTypeFace(Context context) {
         globalTypeFace = Typeface.createFromAsset(context.getAssets(),
@@ -130,9 +142,6 @@ public class GlobalApplication extends Application {
         sAnalytics = GoogleAnalytics.getInstance(this);
 
 
-
-
-
         SingletonContext.getInstance().setContext(this);
         SingletonDate.getInstance().initDate();
         ConnectionBuddyConfiguration networkInspectorConfiguration = new ConnectionBuddyConfiguration.Builder(
@@ -173,9 +182,7 @@ public class GlobalApplication extends Application {
         );
 
 
-
-
-        if (Hawk.get("adjust", true)){
+        if (Hawk.get("adjust", true)) {
             String realToken = "niedy5vr1xc0";
             String environment = AdjustConfig.ENVIRONMENT_PRODUCTION;
             AdjustConfig config = new AdjustConfig(this, realToken, environment);
