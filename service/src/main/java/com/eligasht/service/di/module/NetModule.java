@@ -9,6 +9,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -47,7 +48,8 @@ public class NetModule {
     Cache provideHttpCache(Application application) {
         this.application = (ServiceApplication) application;
         int cacheSize = 10 * 1024 * 1024;
-        Cache cache = new Cache(application.getCacheDir(), cacheSize);
+        File httpCacheDirectory = new File(application.getCacheDir(), "responses");
+        Cache cache = new Cache(httpCacheDirectory, cacheSize);
         return cache;
     }
 
@@ -67,16 +69,17 @@ public class NetModule {
         client.addInterceptor(chain -> {
             Request original = chain.request();
 
-
+            int maxAge = 60;
             Request.Builder requestBuilder = original.newBuilder()
-                    .addHeader("Accept", "application/x.api.v1+json");
+                    .addHeader("Accept", "application/x.api.v1+json")
+                     .header("Cache-Control", "public, max-age=" + maxAge);
 
             Request request = requestBuilder.build();
             return chain.proceed(request);
 
         });
 
-        //   client.cache(cache);
+         client.cache(cache);
         client.connectTimeout(60, TimeUnit.SECONDS);
         client.readTimeout(60, TimeUnit.SECONDS);
         client.writeTimeout(60, TimeUnit.SECONDS);

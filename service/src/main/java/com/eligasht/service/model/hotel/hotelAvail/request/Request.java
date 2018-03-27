@@ -19,13 +19,13 @@ public class Request {
     private String culture="fa-IR";
     @SerializedName("Depart")
     @Expose
-    private String depart;
+    private String depart="DXB";
     @SerializedName("EDepart")
     @Expose
     private String eDepart;
     @SerializedName("EchoToken")
     @Expose
-    private String echoToken;
+    private String echoToken="H";
     @SerializedName("Rooms")
     @Expose
     private List<Room> rooms = null;

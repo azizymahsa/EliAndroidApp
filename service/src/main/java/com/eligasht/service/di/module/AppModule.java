@@ -19,6 +19,7 @@ public class AppModule {
         this.mApplication = mApplication;
     }
 
+
     @Provides
     @Singleton
     Application provideApplication() {
