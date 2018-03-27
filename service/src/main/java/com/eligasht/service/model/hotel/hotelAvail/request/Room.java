@@ -35,4 +35,8 @@ public class Room {
         return new ToStringBuilder(this).append("adultCount", adultCount).append("childCount", childCount).toString();
     }
 
+    public Room(int adultCount, int childCount) {
+        this.adultCount = adultCount;
+        this.childCount = childCount;
+    }
 }

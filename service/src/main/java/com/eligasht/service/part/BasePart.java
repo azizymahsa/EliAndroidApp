@@ -27,9 +27,7 @@ public abstract class BasePart {
     public void start() {
         if (observable == null)
             throw new NullPointerException(getPart().getClass().getSimpleName() + "Service" + " Must Not be Null");
-        subscription = observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .unsubscribeOn(Schedulers.io()).subscribe();
+        subscription = observable.subscribe();
     }
 
     public void stop() {

@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/materialdatetimepicker/materialdatetimepicker.iml" filepath="$PROJECT_DIR$/materialdatetimepicker/materialdatetimepicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/persianmaterialdatetimepicker/persianmaterialdatetimepicker.iml" filepath="$PROJECT_DIR$/persianmaterialdatetimepicker/persianmaterialdatetimepicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/service/service.iml" filepath="$PROJECT_DIR$/service/service.iml" />
+      <module fileurl="file://C:\Users\reza.nejati\Desktop\eligasht\EligashtAndroidApp\service\service.iml" filepath="C:\Users\reza.nejati\Desktop\eligasht\EligashtAndroidApp\service\service.iml" />
       <module fileurl="file://$PROJECT_DIR$/stepview/stepview.iml" filepath="$PROJECT_DIR$/stepview/stepview.iml" />
     </modules>
   </component>

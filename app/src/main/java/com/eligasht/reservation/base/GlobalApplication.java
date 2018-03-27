@@ -141,36 +141,7 @@ public class GlobalApplication extends ServiceApplication {
     public void onCreate() {
         super.onCreate();
 
-        HotelAvailReq hotelAvailReq = new HotelAvailReq();
-        Request request = new Request();
-        request.setCheckinString("2018/03/28");
-        request.setCheckoutString("2018/04/30");
-        request.setDepart("c25972");
-        request.setEchoToken("H");
-        request.setEDepart("DXB");
-        request.setRoomsString("2,4,1,0,0,0");
-        Identity identity=new Identity();
-        request.setIdentity(identity);
-        List<Room> rooms = new ArrayList<>();
-        Room room = new Room();
-        room.setAdultCount(2);
-        room.setChildCount(2);
-        rooms.add(room);
-        request.setRooms(rooms);
-        request.setSource("");
-        hotelAvailReq.setRequest(request);
 
-        SingletonService.getInstance().getHotelService().hotelAvail(new OnServiceStatus<HotelAvailRes>() {
-            @Override
-            public void onReady(HotelAvailRes hotelAvailRes) {
-                hotelAvailRes.getHotelAvailResult().showLog();
-            }
-
-            @Override
-            public void onError(Throwable error) {
-                Log.e("test20", error.getMessage());
-            }
-        }, hotelAvailReq).start();
 //        Log.e("Class", serviceGenerator.toString());
         sAnalytics = GoogleAnalytics.getInstance(this);
 
