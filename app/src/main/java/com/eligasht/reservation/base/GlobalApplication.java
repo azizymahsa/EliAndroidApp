@@ -64,8 +64,7 @@ public class GlobalApplication extends ServiceApplication {
     private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
 
-    @Inject
-    Retrofit serviceGenerator;
+
 
     public static void setGlobalTypeFace(Context context) {
         globalTypeFace = Typeface.createFromAsset(context.getAssets(),
@@ -140,9 +139,6 @@ public class GlobalApplication extends ServiceApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
-
-//        Log.e("Class", serviceGenerator.toString());
         sAnalytics = GoogleAnalytics.getInstance(this);
 
 
