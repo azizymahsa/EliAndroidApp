@@ -19,25 +19,25 @@ public class Hotel {
     private boolean bestSell;
     @SerializedName("CheckInPolicy")
     @Expose
-    private Object checkInPolicy;
+    private String checkInPolicy;
     @SerializedName("CheckOutPolicy")
     @Expose
-    private Object checkOutPolicy;
+    private String checkOutPolicy;
     @SerializedName("City")
     @Expose
     private String city;
     @SerializedName("CityNameEn")
     @Expose
-    private Object cityNameEn;
+    private String cityNameEn;
     @SerializedName("CityNameFa")
     @Expose
-    private Object cityNameFa;
+    private String cityNameFa;
     @SerializedName("CountryNameEn")
     @Expose
-    private Object countryNameEn;
+    private String countryNameEn;
     @SerializedName("Description")
     @Expose
-    private Object description;
+    private String description;
     @SerializedName("EId")
     @Expose
     private String eId;
@@ -64,10 +64,10 @@ public class Hotel {
     private int hotelID;
     @SerializedName("HotelNameEn")
     @Expose
-    private Object hotelNameEn;
+    private String hotelNameEn;
     @SerializedName("HotelNameFa")
     @Expose
-    private Object hotelNameFa;
+    private String hotelNameFa;
     @SerializedName("Id")
     @Expose
     private int id;
@@ -82,7 +82,7 @@ public class Hotel {
     private boolean isTop;
     @SerializedName("LanguageSpoken")
     @Expose
-    private Object languageSpoken;
+    private String languageSpoken;
     @SerializedName("LastBooking")
     @Expose
     private String lastBooking;
@@ -145,7 +145,7 @@ public class Hotel {
     private String website;
     @SerializedName("ZipCode")
     @Expose
-    private Object zipCode;
+    private String zipCode;
 
     public String getAddress() {
         return address;
@@ -171,19 +171,19 @@ public class Hotel {
         this.bestSell = bestSell;
     }
 
-    public Object getCheckInPolicy() {
+    public String getCheckInPolicy() {
         return checkInPolicy;
     }
 
-    public void setCheckInPolicy(Object checkInPolicy) {
+    public void setCheckInPolicy(String checkInPolicy) {
         this.checkInPolicy = checkInPolicy;
     }
 
-    public Object getCheckOutPolicy() {
+    public String getCheckOutPolicy() {
         return checkOutPolicy;
     }
 
-    public void setCheckOutPolicy(Object checkOutPolicy) {
+    public void setCheckOutPolicy(String checkOutPolicy) {
         this.checkOutPolicy = checkOutPolicy;
     }
 
@@ -195,35 +195,35 @@ public class Hotel {
         this.city = city;
     }
 
-    public Object getCityNameEn() {
+    public String getCityNameEn() {
         return cityNameEn;
     }
 
-    public void setCityNameEn(Object cityNameEn) {
+    public void setCityNameEn(String cityNameEn) {
         this.cityNameEn = cityNameEn;
     }
 
-    public Object getCityNameFa() {
+    public String getCityNameFa() {
         return cityNameFa;
     }
 
-    public void setCityNameFa(Object cityNameFa) {
+    public void setCityNameFa(String cityNameFa) {
         this.cityNameFa = cityNameFa;
     }
 
-    public Object getCountryNameEn() {
+    public String getCountryNameEn() {
         return countryNameEn;
     }
 
-    public void setCountryNameEn(Object countryNameEn) {
+    public void setCountryNameEn(String countryNameEn) {
         this.countryNameEn = countryNameEn;
     }
 
-    public Object getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Object description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -291,19 +291,19 @@ public class Hotel {
         this.hotelID = hotelID;
     }
 
-    public Object getHotelNameEn() {
+    public String getHotelNameEn() {
         return hotelNameEn;
     }
 
-    public void setHotelNameEn(Object hotelNameEn) {
+    public void setHotelNameEn(String hotelNameEn) {
         this.hotelNameEn = hotelNameEn;
     }
 
-    public Object getHotelNameFa() {
+    public String getHotelNameFa() {
         return hotelNameFa;
     }
 
-    public void setHotelNameFa(Object hotelNameFa) {
+    public void setHotelNameFa(String hotelNameFa) {
         this.hotelNameFa = hotelNameFa;
     }
 
@@ -339,11 +339,11 @@ public class Hotel {
         this.isTop = isTop;
     }
 
-    public Object getLanguageSpoken() {
+    public String getLanguageSpoken() {
         return languageSpoken;
     }
 
-    public void setLanguageSpoken(Object languageSpoken) {
+    public void setLanguageSpoken(String languageSpoken) {
         this.languageSpoken = languageSpoken;
     }
 
@@ -507,11 +507,11 @@ public class Hotel {
         this.website = website;
     }
 
-    public Object getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(Object zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
