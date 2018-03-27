@@ -35,6 +35,7 @@ import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -42,6 +43,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
@@ -312,6 +314,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 //try {
                 HashMap<String, String> airport = null;
                 mylist = new ArrayList<HashMap<String, String>>();
+                Log.e("testtesttest", new Gson().toJson(data));
                 HttpResponse res = client.execute(post);
                 String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 

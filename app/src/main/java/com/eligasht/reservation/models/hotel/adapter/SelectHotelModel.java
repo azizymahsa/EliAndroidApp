@@ -1,6 +1,11 @@
 package com.eligasht.reservation.models.hotel.adapter;
 
+import com.eligasht.service.model.hotel.hotelAvail.response.Facility;
+import com.eligasht.service.model.hotel.hotelAvail.response.Facility_;
+import com.eligasht.service.model.hotel.hotelAvail.response.Location;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Reza.nejati on 1/4/2018.
@@ -23,12 +28,12 @@ public class SelectHotelModel {
     boolean isOff;
     String off;
     String TypeText;
-    ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> Facilities;
+    List<Facility_> Facilities;
     int diff;
     String offerId;
-    ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> Locations;
+    List<Location> Locations;
 
-    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff, String offerId, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> locations) {
+    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility_> facilities, int diff, String offerId, List<Location> locations) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -170,13 +175,7 @@ public class SelectHotelModel {
         TypeText = typeText;
     }
 
-    public ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> getFacilities() {
-        return Facilities;
-    }
 
-    public void setFacilities(ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> facilities) {
-        Facilities = facilities;
-    }
 
     public int getDiff() {
         return diff;
@@ -194,11 +193,19 @@ public class SelectHotelModel {
         this.offerId = offerId;
     }
 
-    public ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> getLocations() {
+    public List<Facility_> getFacilities() {
+        return Facilities;
+    }
+
+    public void setFacilities(List<Facility_> facilities) {
+        Facilities = facilities;
+    }
+
+    public List<Location> getLocations() {
         return Locations;
     }
 
-    public void setLocations(ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> locations) {
+    public void setLocations(List<Location> locations) {
         Locations = locations;
     }
 }
