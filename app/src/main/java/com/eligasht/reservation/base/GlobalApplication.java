@@ -25,13 +25,6 @@ import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.font.CustomViewWithTypefaceSupport;
 import com.eligasht.reservation.views.ui.font.TextField;
-import com.eligasht.service.generator.SingletonService;
-import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
-import com.eligasht.service.model.hotel.hotelAvail.request.Identity;
-import com.eligasht.service.model.hotel.hotelAvail.request.Request;
-import com.eligasht.service.model.hotel.hotelAvail.request.Room;
-import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.crash.FirebaseCrash;
@@ -43,12 +36,8 @@ import com.zplesac.connectionbuddy.ConnectionBuddyConfiguration;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
-import javax.inject.Inject;
-
-import retrofit2.Retrofit;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
@@ -64,8 +53,6 @@ public class GlobalApplication extends ServiceApplication {
     private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
 
-    @Inject
-    Retrofit serviceGenerator;
 
     public static void setGlobalTypeFace(Context context) {
         globalTypeFace = Typeface.createFromAsset(context.getAssets(),
@@ -140,9 +127,7 @@ public class GlobalApplication extends ServiceApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
-
-//        Log.e("Class", serviceGenerator.toString());
+        
         sAnalytics = GoogleAnalytics.getInstance(this);
 
 
