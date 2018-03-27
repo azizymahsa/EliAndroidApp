@@ -10,13 +10,13 @@ public class HotelSearchResult {
 
     @SerializedName("CityImage")
     @Expose
-    private Object cityImage;
+    private String cityImage;
     @SerializedName("Counts")
     @Expose
     private int counts;
     @SerializedName("Facilities")
     @Expose
-    private List<Object> facilities = null;
+    private List<Facility> facilities = null;
     @SerializedName("Flights")
     @Expose
     private Object flights;
@@ -25,16 +25,16 @@ public class HotelSearchResult {
     private Object flightsID;
     @SerializedName("HotelTypes")
     @Expose
-    private List<Object> hotelTypes = null;
+    private List<HotelType> hotelTypes = null;
     @SerializedName("Hotels")
     @Expose
-    private Object hotels;
+    private List<Hotel> hotels = null;
     @SerializedName("LoadDB")
     @Expose
     private boolean loadDB;
     @SerializedName("Locations")
     @Expose
-    private List<Object> locations = null;
+    private List<Location> locations = null;
     @SerializedName("MaxPrice")
     @Expose
     private int maxPrice;
@@ -46,16 +46,16 @@ public class HotelSearchResult {
     private int nightCounts;
     @SerializedName("Stars")
     @Expose
-    private List<Object> stars = null;
+    private List<Star> stars = null;
     @SerializedName("Webservices")
     @Expose
-    private List<Object> webservices = null;
+    private List<Webservice> webservices = null;
 
-    public Object getCityImage() {
+    public String getCityImage() {
         return cityImage;
     }
 
-    public void setCityImage(Object cityImage) {
+    public void setCityImage(String cityImage) {
         this.cityImage = cityImage;
     }
 
@@ -67,11 +67,11 @@ public class HotelSearchResult {
         this.counts = counts;
     }
 
-    public List<Object> getFacilities() {
+    public List<Facility> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(List<Object> facilities) {
+    public void setFacilities(List<Facility> facilities) {
         this.facilities = facilities;
     }
 
@@ -91,19 +91,19 @@ public class HotelSearchResult {
         this.flightsID = flightsID;
     }
 
-    public List<Object> getHotelTypes() {
+    public List<HotelType> getHotelTypes() {
         return hotelTypes;
     }
 
-    public void setHotelTypes(List<Object> hotelTypes) {
+    public void setHotelTypes(List<HotelType> hotelTypes) {
         this.hotelTypes = hotelTypes;
     }
 
-    public Object getHotels() {
+    public List<Hotel> getHotels() {
         return hotels;
     }
 
-    public void setHotels(Object hotels) {
+    public void setHotels(List<Hotel> hotels) {
         this.hotels = hotels;
     }
 
@@ -115,11 +115,11 @@ public class HotelSearchResult {
         this.loadDB = loadDB;
     }
 
-    public List<Object> getLocations() {
+    public List<Location> getLocations() {
         return locations;
     }
 
-    public void setLocations(List<Object> locations) {
+    public void setLocations(List<Location> locations) {
         this.locations = locations;
     }
 
@@ -147,19 +147,19 @@ public class HotelSearchResult {
         this.nightCounts = nightCounts;
     }
 
-    public List<Object> getStars() {
+    public List<Star> getStars() {
         return stars;
     }
 
-    public void setStars(List<Object> stars) {
+    public void setStars(List<Star> stars) {
         this.stars = stars;
     }
 
-    public List<Object> getWebservices() {
+    public List<Webservice> getWebservices() {
         return webservices;
     }
 
-    public void setWebservices(List<Object> webservices) {
+    public void setWebservices(List<Webservice> webservices) {
         this.webservices = webservices;
     }
 

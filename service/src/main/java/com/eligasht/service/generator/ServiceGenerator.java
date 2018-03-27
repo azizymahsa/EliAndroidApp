@@ -8,8 +8,7 @@ import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import javax.inject.Inject;
 
 import retrofit2.Retrofit;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import rx.Observable;
 
 /**
  * Created by Ahmad.nemati on 3/26/2018.
@@ -23,13 +22,10 @@ public class ServiceGenerator {
         this.retrofit = retrofit;
     }
 
-    public void createHotelService(OnServiceStatus<HotelAvailRes> listener, HotelAvailReq req) {
-        retrofit.create(RetroClient.class).hotelAvail(req)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .unsubscribeOn(Schedulers.io())
+    public Observable createHotelService(OnServiceStatus<HotelAvailRes> listener, HotelAvailReq req) {
+        return retrofit.create(RetroClient.class).hotelAvail(req)
                 .doOnNext(listener::onReady)
-                .doOnError(listener::onError)
-                .subscribe();
+                .doOnError(listener::onError);
+
     }
 }

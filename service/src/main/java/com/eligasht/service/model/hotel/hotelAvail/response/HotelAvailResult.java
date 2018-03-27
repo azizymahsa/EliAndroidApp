@@ -5,6 +5,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.List;
+
 public class HotelAvailResult {
 
     @SerializedName("Comments")
@@ -12,7 +14,7 @@ public class HotelAvailResult {
     private Object comments;
     @SerializedName("Errors")
     @Expose
-    private Object errors;
+    private List<Error> errors = null;
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -34,11 +36,11 @@ public class HotelAvailResult {
         this.comments = comments;
     }
 
-    public Object getErrors() {
+    public List<Error> getErrors() {
         return errors;
     }
 
-    public void setErrors(Object errors) {
+    public void setErrors(List<Error> errors) {
         this.errors = errors;
     }
 
@@ -75,8 +77,16 @@ public class HotelAvailResult {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("comments", comments).append("errors", errors).append("resultKey", resultKey).append("warningss", warningss).append("hotelSearchResult", hotelSearchResult).append("resultUniqID", resultUniqID).toString();
-    }
 
+    @Override
+    public String toString() {
+        return "HotelAvailResult{" +
+                "comments=" + comments +
+                ", errors=" + errors +
+                ", resultKey=" + resultKey +
+                ", warningss=" + warningss +
+                ", hotelSearchResult=" + hotelSearchResult +
+                ", resultUniqID='" + resultUniqID + '\'' +
+                '}';
+    }
 }

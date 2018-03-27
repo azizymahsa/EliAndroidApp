@@ -14,8 +14,17 @@ public class Hotel extends BasePart {
         super(serviceGenerator);
     }
 
-    public void hotelAvail(OnServiceStatus<HotelAvailRes> listener, HotelAvailReq req)
+
+
+    public Hotel hotelAvail(OnServiceStatus<HotelAvailRes> listener, HotelAvailReq req)
     {
-        getServiceGenerator().createHotelService(listener,req);
+        setObservable(getServiceGenerator().createHotelService(listener,req));
+        return this;
     }
+
+    public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
+    public BasePart getPart() {
+        return this;
+    }
+
 }
