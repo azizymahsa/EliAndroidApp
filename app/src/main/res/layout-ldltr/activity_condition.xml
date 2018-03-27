@@ -28,14 +28,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12dp"
                     android:orientation="vertical">
+
 
                     <mehdi.sakout.fancybuttons.FancyButton
                         android:id="@+id/btnBack"
                         style="@style/fancy_toolbar"
-                        android:layout_width="@dimen/_50dp_normal"
-                        android:layout_height="@dimen/_50dp_normal"
+                        android:layout_width="@dimen/toolbar_bottom_width_50dp"
+                        android:layout_height="@dimen/toolbar_bottom_width_50dp"
                         android:layout_gravity="left"
                         android:visibility="visible"
                         fancy:fb_radius="200dp"
@@ -43,6 +43,7 @@
 
                 </LinearLayout>
             </RelativeLayout>
+
 
             <!-- /////////////////////////////// -->
 

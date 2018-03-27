@@ -198,13 +198,14 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             case R.id.btnSaveInfo:
                 switch (tabLayout.getSelectedTabPosition()) {
                     case 0:
-                        updateProfile();
+                        changePasswordProfile();
+
                         break;
                     case 1:
                         //   emailContractProfile();
                         break;
                     case 2:
-                        changePasswordProfile();
+                        updateProfile();
                         break;
                 }
                 break;

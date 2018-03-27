@@ -71,6 +71,7 @@
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
+            android:gravity="center"
             >
             <com.wang.avi.AVLoadingIndicatorView
 
@@ -81,6 +82,8 @@
                 android:visibility="invisible"
                 app:indicatorColor="#ffffff"
                 app:indicatorName="BallPulseIndicator"
+                android:layout_gravity="center"
+
 
                 />
         </LinearLayout>
