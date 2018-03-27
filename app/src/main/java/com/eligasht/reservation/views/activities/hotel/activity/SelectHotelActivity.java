@@ -101,8 +101,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
-        //  OneSignal.sendTag("position", "isSearchHotel");
-        //InitUi.Toolbar(this, false, R.color.flight_status, " چهارشنبه 28 اسفند-دوشنبه 5 فروردین ");
         window = getWindow();
         list = findViewById(R.id.lvHoteResult);
         rlList = findViewById(R.id.rlList);
@@ -145,8 +143,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setOnClickListener(this);
-      /*  raftFa = getIntent().getExtras().getString("CheckInFa");
-        bargashtFa = getIntent().getExtras().getString("CheckOutFa");*/
         raftFa = SingletonDate.getInstance().getStartDate().getDescription();
         bargashtFa = SingletonDate.getInstance().getEndDate().getDescription();
 
@@ -172,8 +168,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             }
         });
 
-
-// TODO: 1/12/2018 change this
         Utility.init_floating(list, this);
 
 
@@ -689,8 +683,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         boolean isOff = false;
                         int xiff = 0;
                         int hotelPrice = Integer.valueOf(hotels.Availability.RoomLists.get(i).Price);
-
-
                         if ((hotels.Availability.RoomLists.get(i).OldPrice > 0) &&
                                 (hotels.Availability.RoomLists.get(i).OldPrice > Integer.valueOf(hotels.Availability.RoomLists.get(i).Price))) {
 
@@ -699,7 +691,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             int p3 = p2 / hotels.Availability.RoomLists.get(i).OldPrice;
                             if (p3 != 0) {
                                 if (p3 > 0) {
-                                    // negative
                                     isOff = true;
 
                                     off = p3 + getString(R.string.off);
@@ -733,11 +724,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                                 off, hotels.TypeText, hotels.Facilities,
                                 xiff, hotels.Availability.RoomLists.get(i).OfferId,
                                 availApi.hotelAvailModelResponse.HotelAvailResult.HotelSearchResult.Locations));
-
-
-                        //  i++;
-
-
                     }
                     filterHotelStarsModels.add(new FilterStarModel(getString(R.string._1star), false, 1));
                     filterHotelStarsModels.add(new FilterStarModel(getString(R.string._2star), false, 2));

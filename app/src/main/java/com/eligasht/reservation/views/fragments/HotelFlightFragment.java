@@ -411,12 +411,10 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 String m4 = Prefs.getString("Value-Hotel-City-Code-HF-Source", "");
                 Prefs.putString("Value-Hotel-City-Code-HF-Raft", m4);
                 Prefs.putString("Value-Hotel-City-Code-HF-Source", m3);
-
                 Prefs.putString("Value-Hotel-City-Fa-HF-Raft", start);
                 Prefs.putString("Value-Hotel-City-En-HF-Raft", startF);
                 Prefs.putString("Value-Hotel-City-Fa-HF-Source", end);
                 Prefs.putString("Value-Hotel-City-En-HF-Source", endF);
-
                 YoYo.with(Techniques.SlideInUp)
                         .duration(500)
                         .playOn(tvMabdaEn);
@@ -434,18 +432,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
             @Override
             public void onAnimationCancel(Animator animation) {
-
             }
-
             @Override
             public void onAnimationRepeat(Animator animation) {
-
             }
-
-        })
-                .playOn(tvMabda);
-
-
+        }).playOn(tvMabda);
         final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
         ivImage.startAnimation(animation);
     }
@@ -454,7 +445,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
         SingletonDate.getInstance().setReverseDate(startDate, endDate);
-
         tvRaft.setText(startDate.getDescription());
         tvBargasht.setText(endDate.getDescription());
         initCheckInCheckOutAnim();
