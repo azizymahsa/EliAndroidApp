@@ -127,7 +127,7 @@ public class GlobalApplication extends ServiceApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        
+
         sAnalytics = GoogleAnalytics.getInstance(this);
 
 
