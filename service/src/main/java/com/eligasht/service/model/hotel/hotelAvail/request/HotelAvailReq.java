@@ -20,8 +20,6 @@ public class HotelAvailReq {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("request", request).toString();
-    }
+
 
 }

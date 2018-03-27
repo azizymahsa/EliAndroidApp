@@ -156,6 +156,7 @@ public class GlobalApplication extends ServiceApplication {
                 .unsubscribeWhenNotificationsAreDisabled(true)
                 .setNotificationReceivedHandler(new GetNotification())
                 .init();
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.NONE, OneSignal.LOG_LEVEL.NONE);
         Hawk.init(this).build();
         mInstance = this;
         applicationContext = getApplicationContext();

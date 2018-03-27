@@ -754,7 +754,7 @@ public class Utility {
             typeWriter.setText(jsonObj.getString(0));
 
             for ( int i = 1; i < jsonObj.length(); i++) {
-                Log.e("piiccc12345","ok");
+              //  Log.e("piiccc12345","ok");
 
                 final int finalI = i;
                 final Runnable finalCharacterAdder = characterAdder;
@@ -763,7 +763,7 @@ public class Utility {
 
                     @Override
                     public void run() {
-                        Log.d("onStart2", jsonObj.toString());
+                     //   Log.d("onStart2", jsonObj.toString());
 
                         if (finalI1 <= jsonObj.length()) {
                             YoYo.with(Techniques.SlideOutDown)

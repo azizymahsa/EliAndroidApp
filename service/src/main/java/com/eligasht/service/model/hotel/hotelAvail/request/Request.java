@@ -120,8 +120,21 @@ public class Request {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("checkinString", checkinString).append("checkoutString", checkoutString).append("culture", culture).append("depart", depart).append("eDepart", eDepart).append("echoToken", echoToken).append("rooms", rooms).append("roomsString", roomsString).append("source", source).append("identity", identity).toString();
-    }
 
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "checkinString='" + checkinString + '\'' +
+                ", checkoutString='" + checkoutString + '\'' +
+                ", culture='" + culture + '\'' +
+                ", depart='" + depart + '\'' +
+                ", eDepart='" + eDepart + '\'' +
+                ", echoToken='" + echoToken + '\'' +
+                ", rooms=" + rooms +
+                ", roomsString='" + roomsString + '\'' +
+                ", source='" + source + '\'' +
+                ", identity=" + identity +
+                '}';
+    }
 }

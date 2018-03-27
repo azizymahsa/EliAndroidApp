@@ -1,7 +1,6 @@
 package com.eligasht.reservation.views.activities.hotel.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -16,23 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.R;
-import com.eligasht.reservation.api.hotel.hotelAvail.HotelAvailApi;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.call.HotelAvailRequestModel;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Request;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Rooms;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.response.HotelTypes;
 import com.eligasht.reservation.tools.Utility;
-import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.views.adapters.hotel.LazyResoultHotelAdapter;
-import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
@@ -47,33 +36,19 @@ import com.eligasht.service.model.hotel.hotelAvail.response.Hotel;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelType;
 import com.eligasht.service.model.hotel.hotelAvail.response.Location;
-import com.google.gson.Gson;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
-import javax.inject.Singleton;
-
-import io.reactivex.Observable;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener,OnServiceStatus<HotelAvailRes> {
+public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener, OnServiceStatus<HotelAvailRes> {
 
 
     RelativeLayout rlLoading, rlRoot, rlList;
@@ -162,8 +137,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         rlRoot = findViewById(R.id.rlRoot);
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
-
-
 
 
         btnOk.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
@@ -317,6 +290,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             searchIn = "";
         }
     }
+
     public ArrayList<SelectHotelModel> best_0ff(ArrayList<FilterHotelTypeModel> filterHotelBestOffModels) {
         boolean isFilter = false;
         ArrayList<SelectHotelModel> selectHotelModels = new ArrayList<>();
@@ -412,6 +386,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             return filter;
         }
     }
+
     public ArrayList<SelectHotelModel> price(ArrayList<FilterPriceModel> filterPriceModels) {
         boolean isFilter = false;
 
@@ -439,6 +414,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             return filter;
         }
     }
+
     public ArrayList<SelectHotelModel> location(ArrayList<FilterHotelTypeModel> filterHotelLocationModels) {
         boolean isFilter = false;
         ArrayList<SelectHotelModel> selectHotelModels = new ArrayList<>();
@@ -465,6 +441,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             return filter;
         }
     }
+
     public ArrayList<SelectHotelModel> facility(ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels) {
         boolean isFilter = false;
         ArrayList<SelectHotelModel> selectHotelModels = new ArrayList<>();
@@ -502,6 +479,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             return result;
         }
     }
+
     public ArrayList<SelectHotelModel> searchText(String text) {
         boolean isFilter = false;
         ArrayList<SelectHotelModel> selectHotelModels = new ArrayList<>();
@@ -600,8 +578,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     }
 
 
-
-    public void hotel_request(){
+    public void hotel_request() {
 
         selectHotelModelArrayList.clear();
         selectHotelModelArrayListFilter.clear();
@@ -621,31 +598,25 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 
 
-
-
-
         HotelAvailReq hotelAvailReq = new HotelAvailReq();
         com.eligasht.service.model.hotel.hotelAvail.request.Request request = new com.eligasht.service.model.hotel.hotelAvail.request.Request();
         request.setCheckinString(Utility.convertNumbersToEnglish(raft));
         request.setCheckoutString(Utility.convertNumbersToEnglish(bargasht));
         request.setDepart(Prefs.getString("Value-Hotel-City-Code", "c25972"));
         request.setRoomsString(getIntent().getExtras().getString("Rooms"));
-        com.eligasht.service.model.hotel.hotelAvail.request.Identity identity=new com.eligasht.service.model.hotel.hotelAvail.request.Identity();
+        com.eligasht.service.model.hotel.hotelAvail.request.Identity identity = new com.eligasht.service.model.hotel.hotelAvail.request.Identity();
         request.setIdentity(identity);
         request.setRooms(rooms);
         request.setSource("");
         hotelAvailReq.setRequest(request);
 
 
-        SingletonService.getInstance().getHotelService().hotelAvail(this,hotelAvailReq).start();
+        SingletonService.getInstance().getHotelService().hotelAvail(this, hotelAvailReq);
 
     }
 
     @Override
     public void onReady(HotelAvailRes hotelAvailRes) {
-
-
-
 
 
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
@@ -658,7 +629,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         selectHotelModelArrayList.clear();
         selectHotelModelArrayListFilter.clear();
         try {
-            if (hotelAvailRes.getHotelAvailResult().getErrors()!= null) {
+            if (hotelAvailRes.getHotelAvailResult().getErrors() != null) {
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText(hotelAvailRes.getHotelAvailResult().getErrors().get(0).getDetailedMessage());
                 list.setVisibility(View.GONE);
@@ -696,7 +667,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     int xiff = 0;
                     int hotelPrice = hotels.getAvailability().getRoomLists().get(i).getPrice();
                     if ((hotels.getAvailability().getRoomLists().get(i).getOldPrice() > 0) &&
-                            (hotels.getAvailability().getRoomLists().get(i).getOldPrice() > hotels.getAvailability().getRoomLists().get(i).getPrice() )) {
+                            (hotels.getAvailability().getRoomLists().get(i).getOldPrice() > hotels.getAvailability().getRoomLists().get(i).getPrice())) {
 
                         int p1 = hotels.getAvailability().getRoomLists().get(i).getOldPrice() - hotels.getAvailability().getRoomLists().get(i).getPrice();
                         int p2 = p1 * 100;
@@ -729,10 +700,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
                     selectHotelModelArrayList.add(new SelectHotelModel(hotels.getName(), hotels.getCity(), hotels.getAvailability().getRoomLists().get(i).getTitle(),
-                            hotels.getAvailability().getRoomLists().get(i).getBoard(), hotels.getAvailability().getRoomLists().get(i).getPrice()+"",
+                            hotels.getAvailability().getRoomLists().get(i).getBoard(), hotels.getAvailability().getRoomLists().get(i).getPrice() + "",
                             hotels.getMainImage(), hotels.getLocation(),
                             hotels.getAvailability().getRoomLists().get(i).getOldPrice(), hotels.getStarRating(),
-                           Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getEHotelId()) ,
+                            Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getEHotelId()),
                             hotelAvailRes.getHotelAvailResult().getResultUniqID(), hotels.isBestSell(), isOff,
                             off, hotels.getTypeText(), hotels.getFacilities(),
                             xiff, hotels.getAvailability().getRoomLists().get(i).getOfferId(),
@@ -816,9 +787,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     }
 
     @Override
-    public void onError(Throwable error) {
-
+    public void onError(String message) {
+        Log.e("OnError", message);
     }
+
 
 }
 

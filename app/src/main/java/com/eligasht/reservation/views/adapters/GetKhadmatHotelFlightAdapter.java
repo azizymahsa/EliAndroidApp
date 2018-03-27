@@ -92,7 +92,7 @@ public long sumTprice=0;
 		final GetKhadmatAdapter.ViewHolder holder;
 
 		if (convertView == null) {
-			Log.e("POSITION", "" + position);
+		//	Log.e("POSITION", "" + position);
 			convertView = myInflater.inflate(R.layout.row_khadamat, null);
 			holder = new GetKhadmatAdapter.ViewHolder();
 
