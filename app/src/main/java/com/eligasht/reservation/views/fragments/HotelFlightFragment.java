@@ -54,29 +54,15 @@ import java.util.List;
 public class HotelFlightFragment extends android.support.v4.app.Fragment implements View.OnClickListener, CountTimeAlert.TimerDialogListener
         , ICallbackCalendarDialog {
 
-    public static Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
-    public static int countNafar = 1;
-    private final int ADD_ROOM_REQUEST = 100;
     public TextView txtCity, lbl_city_english, tvMabda, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, tvMabdaEn, searchHotel;
-    public ListView listRoomItem;
     public List<ModelRowCountRoom> data;
     LinearLayout btn_add_room, llRoom;
     HotelCountRoomAdapter mAdapter;
     RelativeLayout citySearch;
     TextView tvRaft, tvBargasht;
-    DatePickerDialog datePickerDialog;
-    DatePickerDialog datePickerDialog2;
-    int month;
-    int year_;
-    int day;
-    int monthMin;
-    int year_Min;
-    int dayMin;
     String raft, bargasht;
     LinearLayout linearLayout_mabda, linearLayout_maghsad, llRaft, llBargasht;
     ImageView ivImage;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
-    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
     boolean geo = false;
     CalendarDialog calendarDialog;
     private View rootView;
@@ -87,7 +73,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_flight_hotel2, container, false);
-        // rootView = inflater.inflate(R.layout.fragment_plane, container, false);
         Utility.sendTag("HF", true, false);
         geo = Prefs.getBoolean("geo", false);
         calendarDialog = new CalendarDialog();
@@ -105,7 +90,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
         lottieCheckin.setSpeed(2f);
         lottieCheckout.setSpeed(2f);
-        //  lblRoomCount.setOnClickListener(this);
         tarikh_be.setOnClickListener(this);
         txtRoomCount = rootView.findViewById(R.id.txtRoomCount);
         linearLayout_maghsad = rootView.findViewById(R.id.linearLayout_maghsad);
@@ -116,76 +100,45 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         ivImage = rootView.findViewById(R.id.ivImage);
         llRaft = rootView.findViewById(R.id.llRaft);
         llBargasht = rootView.findViewById(R.id.llBargasht);
-        // tvRaft.setOnClickListener(this);
         llRaft.setOnClickListener(this);
         llBargasht.setOnClickListener(this);
-        // tvBargasht.setOnClickListener(this);
         linearLayout_maghsad.setOnClickListener(this);
-
         btn_add_room = rootView.findViewById(R.id.btn_add_room);
         llRoom = rootView.findViewById(R.id.llRoom);
         llRoom.setOnClickListener(this);
         linearLayout_mabda.setOnClickListener(this);
-
-        //txtTitle= (TextView) rootView.findViewById(R.id.txtTitle);
         citySearch = rootView.findViewById(R.id.citySearch);
-
         lbl_city_english = rootView.findViewById(R.id.lbl_city_english);
         txtCity = rootView.findViewById(R.id.txtCity);
-
-
         citySearch.setOnClickListener(this);
         lbl_city_english.setOnClickListener(this);
-
         searchHotel = rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
         ivImage.setOnClickListener(this);
-
-
         data = new ArrayList<ModelRowCountRoom>();
-        // for(int i=0;i<2;i++){
         ModelRowCountRoom model = new ModelRowCountRoom();
         model.setCountB(1);
         model.setCountK(0);
         model.setCountN(0);
-
         data.add(model);
-
-
         mAdapter = new HotelCountRoomAdapter(getActivity(), data);
-        //mAdapter.setAdapter(mAdapter);
         mAdapter.setData(data);
-
-
         tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-
-
-//=====================================================================================================
-
         return rootView;
-
-    }//end oncreat
+    }
 
     @Override
     public void onResume() {
         super.onResume();
         Prefs.putBoolean("geo", geo);
         try {
-
-            Log.e("11111", Prefs.getString("Value-Hotel-City-Code-HF-Raft", ""));
-            Log.e("322222", Prefs.getString("Value-Hotel-City-Code-HF-Source", ""));
-
             Gson gson;
-
             gson = new GsonBuilder().create();
             roomsSelected = gson.fromJson(Prefs.getString("Rooms", "[{\"CountB\":1,\"CountK\":0,\"CountN\":0,\"childModels\":[]}]"), new TypeToken<List<ModelRowCountRoom>>() {
             }.getType());
-
-            Log.e("1243intent", Prefs.getString("Rooms", "dd"));
-
             tvAdult.setText(String.valueOf(getCountAdult(roomsSelected)));
             tvChild.setText(String.valueOf(getCountChild(roomsSelected)));
             txtRoomCount.setText(String.valueOf(getCountRooms(roomsSelected)));
@@ -262,23 +215,17 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent2.putExtra("type", 1);
                 intent2.putExtra("position", "HF");
-
                 startActivity(intent2);
                 break;
 
             case R.id.searchHotel:
-                //  new CountTimeAlert(getActivity(),this);
                 try {
                     if (tvMabda.getText().toString().contains(getString(R.string.select_origin_city_or_airport)) || txtCity.getText().toString().contains(getString(R.string.select_destination_city_or_airport))) {
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin));
                     } else {
-                        Log.e("raft+hotel", raft );
-                        Log.e("bargasht+hotel", bargasht );
                         sendStartTimer();
-
                         Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);
-
                         intent.putExtra("CheckInHF", raft);
                         intent.putExtra("CheckOutHF", bargasht);
                         intent.putExtra("CheckOutFaHF", tvBargasht.getText().toString());
@@ -287,11 +234,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                         intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                         intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
                         intent.putExtra("Geo", geo);
-
                         Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-                        Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
-
-
                         startActivity(intent);
                     }
 
@@ -299,42 +242,28 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 } catch (Exception e) {
                     Toast.makeText(getActivity(), getString(R.string.something_went_wron), Toast.LENGTH_SHORT).show();
                 }
-
-
-                //   }
-
                 break;
             case R.id.llRaft:
-
                 calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
-
                 break;
             case R.id.llBargasht:
                 calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
-
                 tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
                 tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
                 raft = SingletonDate.getInstance().getStartDate().getFullGeo();
                 bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
-
-
                 break;
             case R.id.llRoom:
                 Intent room = new Intent(getActivity(), AddRoomActivity.class);
-
                 room.putExtra("roomList", Prefs.getString("Rooms", "dd"));
                 startActivity(room);
 
                 break;
             case R.id.linearLayout_maghsad:
-                // new FilterHotelDialog(getActivity());
                 Intent intent = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent.putExtra("type", 2);
                 intent.putExtra("position", "HF");
-
-
                 startActivity(intent);
-
                 break;
             case R.id.ivImage:
                 anim();
@@ -428,29 +357,18 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
     @Override
     public void onReturnValue(int type) {
-
-
     }
 
-
     public void anim() {
-
-
         YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new Animator.AnimatorListener() {
-
-
             @Override
             public void onAnimationStart(Animator animation) {
-
-
                 YoYo.with(Techniques.SlideOutDown)
                         .duration(500)
                         .playOn(tvMabdaEn);
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
                         .playOn(lbl_city_english);
-
-
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
                         .playOn(txtCity);
@@ -493,12 +411,10 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 String m4 = Prefs.getString("Value-Hotel-City-Code-HF-Source", "");
                 Prefs.putString("Value-Hotel-City-Code-HF-Raft", m4);
                 Prefs.putString("Value-Hotel-City-Code-HF-Source", m3);
-
                 Prefs.putString("Value-Hotel-City-Fa-HF-Raft", start);
                 Prefs.putString("Value-Hotel-City-En-HF-Raft", startF);
                 Prefs.putString("Value-Hotel-City-Fa-HF-Source", end);
                 Prefs.putString("Value-Hotel-City-En-HF-Source", endF);
-
                 YoYo.with(Techniques.SlideInUp)
                         .duration(500)
                         .playOn(tvMabdaEn);
@@ -512,24 +428,15 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 YoYo.with(Techniques.SlideInDown)
                         .duration(500)
                         .playOn(txtCity);
-
-
             }
 
             @Override
             public void onAnimationCancel(Animator animation) {
-
             }
-
             @Override
             public void onAnimationRepeat(Animator animation) {
-
             }
-
-        })
-                .playOn(tvMabda);
-
-
+        }).playOn(tvMabda);
         final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
         ivImage.startAnimation(animation);
     }
@@ -538,7 +445,6 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
         SingletonDate.getInstance().setReverseDate(startDate, endDate);
-
         tvRaft.setText(startDate.getDescription());
         tvBargasht.setText(endDate.getDescription());
         initCheckInCheckOutAnim();

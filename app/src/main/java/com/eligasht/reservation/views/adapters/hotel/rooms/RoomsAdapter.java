@@ -110,7 +110,6 @@ public class RoomsAdapter extends BaseAdapter {
         }
         holder.tvBoard.setText(roomsModels.get(position).getBoard());
         holder.tvTitle.setText(roomsModels.get(position).getTitle());
-        holder.tvPrice.setAnimationDelay(1000);
         holder.tvPrice.setText("");
         holder.tvPrice.setText(Utility.priceFormat(roomsModels.get(position).getPrice()) + "");
         holder.tvDesc.setText(roomsModels.get(position).getDesc());
@@ -148,7 +147,7 @@ public class RoomsAdapter extends BaseAdapter {
 
     public class ViewHolder {
         TextView tvBoard, tvTitle, tvDesc;
-        TickerView  tvPrice;
+        TextView  tvPrice;
         FancyButton btnPolicy;
         CardView llSelectHotel;
         LottieAnimationView lottieInfo;

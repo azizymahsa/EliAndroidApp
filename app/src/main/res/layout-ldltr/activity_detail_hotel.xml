@@ -49,7 +49,7 @@
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cvHotel"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/flViewPager"
                 android:layout_gravity="center"
@@ -162,186 +162,253 @@
 
                         />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginLeft="4dp"
 
-                        android:layout_marginRight="4dp"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/llCommentClick"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="100"
-                            android:orientation="vertical"
-                            android:background="?attr/selectableItemBackground">
-
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:id="@+id/lottieComment"
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="140"
-                                android:orientation="vertical"
-                                app:lottie_autoPlay="false"
-                                app:lottie_loop="false"
-                                android:padding="5dp"
-
-                                />
-
-                            <TextView
-                                android:id="@+id/tvCommentClickText"
-
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="100"
-                                android:gravity="center"
-                                android:text="@string/Comments"
-                                android:textAppearance="@style/IrsansBold"
-                                android:textSize="@dimen/_10dp_textSize"
-                                android:textColor="@color/gray_dark"/>
-
-                            <View
-                                android:id="@+id/vComment"
-                                android:layout_width="match_parent"
-                                android:layout_height="3dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:background="@color/blue"
-                                android:visibility="invisible" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/llMapClick"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="100"
-                            android:orientation="vertical"
-                            android:background="?attr/selectableItemBackground">
-
-
-
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:id="@+id/lottieMap"
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="140"
-                                android:orientation="vertical"
-                                app:lottie_autoPlay="false"
-                                app:lottie_loop="false"
-                                />
-                            <TextView
-                                android:id="@+id/tvMapClickText"
-
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="100"
-                                android:gravity="center"
-                                android:text="@string/Map"
-                                android:textAppearance="@style/IrsansBold"
-                                android:textSize="@dimen/_10dp_textSize"
-                                android:textColor="@color/gray_dark"/>
-
-                            <View
-                                android:id="@+id/vMap"
-                                android:layout_width="match_parent"
-                                android:layout_height="3dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:background="@color/blue"
-                                android:visibility="invisible" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/llEmkanatClick"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="100"
-                            android:orientation="vertical"
-                            android:background="?attr/selectableItemBackground">
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:id="@+id/lottieEmkanat"
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="140"
-                                android:orientation="vertical"
-                                app:lottie_autoPlay="false"
-                                app:lottie_loop="false"
-                                />
-                            <TextView
-                                android:id="@+id/tvEmakanatClickText"
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="100"
-                                android:gravity="center"
-                                android:text="@string/Possibilities"
-                                android:textAppearance="@style/IrsansBold"
-                                android:textSize="@dimen/_10dp_textSize"
-                                android:textColor="@color/gray_dark"/>
-
-                            <View
-                                android:id="@+id/vEmakanat"
-                                android:layout_width="match_parent"
-                                android:layout_height="3dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:background="@color/blue"
-                                android:visibility="invisible" />
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:id="@+id/llRezervClick"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="100"
-                            android:orientation="vertical"
-                            android:background="?attr/selectableItemBackground">
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:id="@+id/lottieRezerv"
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="140"
-                                android:orientation="vertical"
-                                app:lottie_autoPlay="false"
-                                app:lottie_loop="false"
-                                />
-
-                            <TextView
-                                android:id="@+id/tvRezervClickText"
-
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="100"
-                                android:gravity="center"
-                                android:text="@string/ReservRoom"
-                                android:textAppearance="@style/IrsansBold"
-                                android:textSize="@dimen/_10dp_textSize" />
-
-                            <View
-                                android:id="@+id/vRezerv"
-                                android:layout_width="match_parent"
-                                android:layout_height="3dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:background="@color/blue" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
 
+
+
+            <LinearLayout
+                android:id="@+id/tab_layout"
+                android:layout_below="@+id/cvHotel"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="2dp"
+                android:visibility="gone"
+
+                android:orientation="horizontal"
+                >
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="100"
+                    android:layout_gravity="center"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="3dp"
+                    card_view:cardElevation="2dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+
+                    >
+                    <LinearLayout
+                        android:id="@+id/llCommentClick"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="150"
+                            android:gravity="center"
+                            android:src="@drawable/location_pin"
+                            android:layout_marginTop="4dp"
+                            />
+                        <TextView
+                            android:id="@+id/tvCommentClickText"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="80"
+                            android:gravity="center"
+                            android:text="@string/Comments"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textSize="@dimen/_10dp_textSize"
+                            android:textColor="@color/gray_dark"/>
+
+                        <View
+                            android:id="@+id/vComment"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@color/blue"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="100"
+                    android:layout_gravity="center"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="3dp"
+                    card_view:cardElevation="2dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+
+                    >
+                    <LinearLayout
+                        android:id="@+id/llMapClick"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="?attr/selectableItemBackground">
+
+
+                        <ImageView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="150"
+                            android:gravity="center"
+                            android:src="@drawable/comment"
+                            android:layout_marginTop="4dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tvMapClickText"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="80"
+                            android:gravity="center"
+                            android:text="@string/Map"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textSize="@dimen/_10dp_textSize"
+                            android:textColor="@color/gray_dark"/>
+
+                        <View
+                            android:id="@+id/vMap"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@color/blue"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="100"
+                    android:layout_gravity="center"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="3dp"
+                    card_view:cardElevation="2dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+
+                    >
+                    <LinearLayout
+                        android:id="@+id/llEmkanatClick"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="150"
+                            android:gravity="center"
+                            android:src="@drawable/fridge"
+                            android:layout_marginTop="4dp"
+                            />
+                        <TextView
+                            android:id="@+id/tvEmakanatClickText"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="80"
+                            android:gravity="center"
+                            android:text="@string/Possibilities"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textSize="@dimen/_10dp_textSize"
+                            android:textColor="@color/gray_dark"/>
+
+                        <View
+                            android:id="@+id/vEmakanat"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@color/blue"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="100"
+                    android:layout_gravity="center"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="3dp"
+                    card_view:cardElevation="2dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+
+                    >
+                    <LinearLayout
+                        android:id="@+id/llRezervClick"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="150"
+                            android:gravity="center"
+                            android:src="@drawable/bed"
+                            android:layout_marginTop="4dp"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/tvRezervClickText"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="80"
+                            android:gravity="center"
+                            android:text="@string/ReservRoom"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textSize="@dimen/_10dp_textSize" />
+
+                        <View
+                            android:id="@+id/vRezerv"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@color/blue" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+
+
+            </LinearLayout>
+
             <android.support.v7.widget.CardView
                 android:id="@+id/cvViewPager"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cvHotel"
+                android:layout_below="@+id/tab_layout"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="7dp"
@@ -384,7 +451,7 @@
                 android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cvHotel"
+                android:layout_below="@+id/tab_layout"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="7dp"
@@ -449,7 +516,7 @@
                 android:id="@+id/llComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cvHotel"
+                android:layout_below="@+id/tab_layout"
                 android:layout_marginTop="@dimen/_5dp_margin"
                 android:orientation="vertical"
                 android:visibility="gone"
@@ -747,7 +814,7 @@
                 android:id="@+id/tvAlert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cvHotel"
+                android:layout_below="@+id/tab_layout"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:padding="10dp"
@@ -762,7 +829,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/cvHotel"
+                android:layout_below="@+id/tab_layout"
                 android:divider="@null"
                 android:dividerHeight="0dp" />
 
