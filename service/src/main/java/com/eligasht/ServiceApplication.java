@@ -25,12 +25,7 @@ public class ServiceApplication extends Application {
                 .build();
 
         SingletonService.getInstance().setNetComponent(mNetComponent).inject();
-
-
     }
 
 
-    public NetComponent getNetComponent() {
-        return mNetComponent;
-    }
 }

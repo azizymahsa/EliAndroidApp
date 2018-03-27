@@ -485,7 +485,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 //  expandableLayout.setVisibility(View.VISIBLE);
 
                 Prefs.putString("userId", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
-                Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
+             //   Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
                 rlHedaer.setClickable(false);
                 rlHedaer.setEnabled(false);
 
@@ -501,7 +501,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 }
                 rlHedaer.setClickable(true);
                 rlHedaer.setEnabled(true);
-                Log.e("testtest22", "2222");
+            //    Log.e("testtest22", "2222");
 
             }
         } catch (Exception e) {
@@ -511,7 +511,7 @@ public class MainActivity extends Base implements View.OnClickListener {
             txt_name.setText(getString(R.string.login));
             btnExit.setVisibility(View.GONE);
             Prefs.putString("userId", "1");
-            Log.e("testtest22", "3333");
+          //  Log.e("testtest22", "3333");
 
             if (expandableLayout.isExpanded()) {
                 expandableLayout.collapse();

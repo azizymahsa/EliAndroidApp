@@ -95,7 +95,7 @@ public class HotelCountRoomAdapter extends BaseAdapter {
 		final ViewHolder holder;
 		
 		if (convertView == null) {
-			Log.e("POSITION", "" + position);
+		//	Log.e("POSITION", "" + position);
 			convertView = myInflater.inflate(R.layout.row_count_room, null);
 			holder = new ViewHolder();
 

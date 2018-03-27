@@ -15,7 +15,7 @@ public class Facility_ {
     private String eId;
     @SerializedName("HotelDetailURL")
     @Expose
-    private Object hotelDetailURL;
+    private String hotelDetailURL;
     @SerializedName("Icon")
     @Expose
     private String icon;
@@ -42,11 +42,11 @@ public class Facility_ {
         this.eId = eId;
     }
 
-    public Object getHotelDetailURL() {
+    public String getHotelDetailURL() {
         return hotelDetailURL;
     }
 
-    public void setHotelDetailURL(Object hotelDetailURL) {
+    public void setHotelDetailURL(String hotelDetailURL) {
         this.hotelDetailURL = hotelDetailURL;
     }
 

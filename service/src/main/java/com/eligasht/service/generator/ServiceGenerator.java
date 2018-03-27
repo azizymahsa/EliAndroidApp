@@ -24,13 +24,9 @@ public class ServiceGenerator {
         this.retrofit = retrofit;
     }
 
-    public Observable createHotelService(OnServiceStatus<HotelAvailRes> listener, HotelAvailReq req) {
-        return retrofit.create(RetroClient.class).hotelAvail(req)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .unsubscribeOn(Schedulers.io())
-                .doOnNext(listener::onReady)
-                .doOnError(listener::onError);
-
+    public RetroClient createService() {
+        return retrofit.create(RetroClient.class);
     }
+
+
 }

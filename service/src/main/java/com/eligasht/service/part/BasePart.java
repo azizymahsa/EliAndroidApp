@@ -1,9 +1,10 @@
 package com.eligasht.service.part;
 
 import com.eligasht.service.generator.ServiceGenerator;
+import com.eligasht.service.listener.OnServiceStatus;
 
 import rx.Observable;
-import rx.Subscription;
+import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -13,8 +14,7 @@ import rx.schedulers.Schedulers;
 
 public abstract class BasePart {
     private ServiceGenerator serviceGenerator;
-    private Observable observable;
-    private Subscription subscription;
+
 
     public BasePart(ServiceGenerator serviceGenerator) {
         this.serviceGenerator = serviceGenerator;
@@ -24,26 +24,27 @@ public abstract class BasePart {
         return serviceGenerator;
     }
 
-    public void start() {
-        if (observable == null)
-            throw new NullPointerException(getPart().getClass().getSimpleName() + "Service" + " Must Not be Null");
-        subscription = observable.subscribe();
+    public <T> void start(Observable<T> observable, OnServiceStatus<T> listener) {
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io())
+                .subscribe(new Observer<T>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        listener.onError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(T t) {
+                        listener.onReady(t);
+                    }
+                });
+
     }
 
-    public void stop() {
-        if (subscription == null)
-            throw new NullPointerException(getPart().getClass().getSimpleName() + "Service" + " Must Not be Null");
-        if (subscription.isUnsubscribed())
-            return;
-        subscription.unsubscribe();
-
-    }
-
-
-    public void setObservable(Observable observable) {
-        this.observable = observable;
-    }
-
-
-    public abstract BasePart getPart();
 }

@@ -83,7 +83,7 @@ public class GetCountriesForInsuranceAdapter extends BaseAdapter {
         final ViewHolder holder;
 
         if (convertView == null) {
-            Log.e("POSITION", "" + position);
+        //    Log.e("POSITION", "" + position);
             convertView = myInflater.inflate(R.layout.row_country, null);
             holder = new ViewHolder();
 

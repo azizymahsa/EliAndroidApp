@@ -92,7 +92,7 @@ public Activity activity;
 		final ViewHolder holder;
 
 		if (convertView == null) {
-			Log.e("POSITION", "" + position);
+		//	Log.e("POSITION", "" + position);
 			convertView = myInflater.inflate(R.layout.row_khadamat, null);
 			holder = new ViewHolder();
 

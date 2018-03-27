@@ -15,7 +15,7 @@ public class Error {
     private String detailedMessage;
     @SerializedName("Language")
     @Expose
-    private Object language;
+    private String language;
     @SerializedName("Message")
     @Expose
     private String message;
@@ -36,11 +36,11 @@ public class Error {
         this.detailedMessage = detailedMessage;
     }
 
-    public Object getLanguage() {
+    public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(Object language) {
+    public void setLanguage(String language) {
         this.language = language;
     }
 
