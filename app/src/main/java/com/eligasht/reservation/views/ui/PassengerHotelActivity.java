@@ -1686,9 +1686,13 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         if (flagMosafer.contains("F")) {
                             //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
                             //Toast.makeText(this,errorMessage,2000).show();
-                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this);
-                            alertDialogPassenger.setText("" + "  " + errorMessage);
-                        } else {
+                            try {
+                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this);
+                                alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
+                            }catch (Exception e){
+                                e.getMessage();
+                            }
+                            } else {
                             //insert partner
                             PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerHotelActivity.this);
 
@@ -1930,9 +1934,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                     if (flagMosafer.contains("F")) {
                         //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
-                        AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelActivity.this);
-                        AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner);
-                        //Toast.makeText(this,errorMessagePartner,2000).show();
+                        try {
+                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelActivity.this);
+                            AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
+                        }catch (Exception e){
+                            e.getMessage();
+                        }//Toast.makeText(this,errorMessagePartner,2000).show();
                     } else {
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelActivity.this);
 

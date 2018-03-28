@@ -217,7 +217,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
                 try {
                     if (txtCity.getText().toString().contains(getString(R.string.please_select_destination_city))) {
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
-                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_city));
+                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_city),getString(R.string.massege));
                     } else {
                         sendStartTimer();
                         Intent intent = new Intent(getActivity(), SelectHotelActivity.class);

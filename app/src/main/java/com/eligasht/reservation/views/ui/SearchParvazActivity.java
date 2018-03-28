@@ -2286,9 +2286,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     GetError = jPricedItinerary.getString("Message");
                 }
                 if (GetError.length() > 1) {
-                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
-                    AlertDialogPassenger.setText(GetError);
-
+                    try {
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
+                        AlertDialogPassenger.setText(GetError, getString(R.string.massege));
+                    }catch (Exception e){
+                        e.getMessage();
+                    }
                 } else {
 ////////////////////////////////
 					/*JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
@@ -2309,7 +2312,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.ErrorServer));
+                AlertDialogPassenger.setText(getString(R.string.ErrorServer),getString(R.string.massege));
             }
 
         }

@@ -257,7 +257,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     new AddCommentAsync().execute();
                 }else{
                     AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(CommentActivity.this);
-                    alertDialogPassenger.setText("" + "  " + errorMessage);
+                    alertDialogPassenger.setText("" + "  " + errorMessage,getString(R.string.massege));
                 }
                 break;
             case R.id.btnBack:

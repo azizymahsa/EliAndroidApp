@@ -222,7 +222,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 try {
                     if (tvMabda.getText().toString().contains(getString(R.string.select_origin_city_or_airport)) || txtCity.getText().toString().contains(getString(R.string.select_destination_city_or_airport))) {
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
-                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin));
+                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin),getString(R.string.massege));
                     } else {
                         sendStartTimer();
                         Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);

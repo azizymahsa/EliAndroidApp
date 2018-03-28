@@ -343,7 +343,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                     }
                     if (GetError.length() > 1) {
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
-                        AlertDialogPassenger.setText(GetError);
+                        AlertDialogPassenger.setText(GetError,getString(R.string.massege));
 
                     } else {
 ////////////////////////////////
@@ -382,7 +382,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 }
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.ErrorServer));
+                AlertDialogPassenger.setText(getString(R.string.ErrorServer),getString(R.string.massege));
             }
 
         }

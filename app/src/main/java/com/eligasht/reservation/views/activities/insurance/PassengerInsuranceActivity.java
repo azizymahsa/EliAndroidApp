@@ -1535,7 +1535,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
                             //Toast.makeText(this,errorMessage,2000).show();
                             AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerInsuranceActivity.this);
-                            alertDialogPassenger.setText("" + "  " + errorMessage);
+                            alertDialogPassenger.setText("" + "  " + errorMessage,getString(R.string.EditInput));
                         } else {
                             //insert partner
                             PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerInsuranceActivity.this);
@@ -1783,7 +1783,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     if (flagMosafer.contains("F")) {
                         //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
                         AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerInsuranceActivity.this);
-                        AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner);
+                        AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner,getString(R.string.EditInput));
                         //Toast.makeText(this,errorMessagePartner,2000).show();
                     } else {
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);

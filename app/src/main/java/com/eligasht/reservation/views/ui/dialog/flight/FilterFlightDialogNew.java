@@ -290,10 +290,13 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
                 /////////////////////////////////
                 Log.e("GGG", flagSelect);
                 if(!flagSelect.contains("T")){
-                    AlertDialogPassenger AlertDialogPassengerFlight =  new AlertDialogPassenger(activity);
-                    AlertDialogPassengerFlight.setText(activity.getString(R.string.FilterError));
-                    Log.e("GGGGGGGRaftELSE", flagSelect);
-
+                    try {
+                        AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(activity);
+                        AlertDialogPassengerFlight.setText(activity.getString(R.string.FilterError), activity.getString(R.string.massege));
+                        Log.e("GGGGGGGRaftELSE", flagSelect);
+                    }catch (Exception e){
+                        e.getMessage();
+                    }
                 }else{
                     //========
                     Log.e("GGGGGGGRaft", flagSelect);
