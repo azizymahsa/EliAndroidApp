@@ -51,9 +51,9 @@ public class Config_Table extends MainLocalDB {
 		public String value() {
 			return this.name();
 		}
-	};
+	}
 
-	public Config_Table() {
+    public Config_Table() {
 		super(GlobalApplication.getContext());
 	}
 

@@ -14,24 +14,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eligasht.reservation.tools.Utility;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
-import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.contracts.PassengerContract;
 import com.eligasht.reservation.models.model.insurance.BirthDateList;
 import com.eligasht.reservation.presenters.PassengerPresenter;
 import com.eligasht.reservation.tools.Prefs;
+import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.adapters.insurance.PassengerAdapter;
 import com.eligasht.reservation.views.components.SimpleRecycleView;
+import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
+import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,12 +98,19 @@ public class AddPassengerActivity extends BaseActivity implements
     @Override
     public void initViews() {
 
-        count_passenger = (TextView) findViewById(R.id.count_passenger);
-        btn_confirm = (Button) findViewById(R.id.btn_confirm);
-        btn_add = (ImageView) findViewById(R.id.btn_add);
-        btn_remove = (ImageView) findViewById(R.id.btn_remove);
-        rcl_add_passenger = (SimpleRecycleView) findViewById(R.id.rcl_add_passenger);
-        rcl_add_passenger.setLayoutManager(new LinearLayoutManager(getAppContext()));
+        count_passenger = findViewById(R.id.count_passenger);
+        btn_confirm = findViewById(R.id.btn_confirm);
+        btn_add = findViewById(R.id.btn_add);
+        btn_remove = findViewById(R.id.btn_remove);
+        rcl_add_passenger = findViewById(R.id.rcl_add_passenger);
+        try {
+            rcl_add_passenger.setLayoutManager(new LinearLayoutManager(this));
+        }
+        catch (Exception e)
+        {
+
+        }
+
         hideLoading();
 
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
@@ -125,7 +133,7 @@ public class AddPassengerActivity extends BaseActivity implements
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        datePickerDialogDepartgGregorian.initialize(this,year - 50,0,1);
+        datePickerDialogDepartgGregorian.initialize(this, year - 50, 0, 1);
         datePickerDialogDepartgGregorian.setYearRange(1940, year);
 
 
@@ -143,7 +151,6 @@ public class AddPassengerActivity extends BaseActivity implements
             }
         });
         datePickerDialogDepartgGregorian.setOnDateSetListener(this);
-
 
 
         btn_add.setOnClickListener(this);
@@ -209,15 +216,16 @@ public class AddPassengerActivity extends BaseActivity implements
     @Override
     public void onSetBirthDayPassenger(BirthDateList passenger) {
         if (Prefs.getBoolean("pasGe", false)) {
-            if (!datePickerDialogDepartgGregorian.isAdded()){
+            if (!datePickerDialogDepartgGregorian.isAdded()) {
                 datePickerDialogDepartgGregorian.show(getFragmentManager(), "DepartureFromGregorian");
                 currentPassenger = passenger;
             }
 
 
         } else {
-            if (!datePickerDialogBirthDay.isAdded()){
-            datePickerDialogBirthDay.show(getSupportFragmentManager(), "BirthDay");}
+            if (!datePickerDialogBirthDay.isAdded()) {
+                datePickerDialogBirthDay.show(getSupportFragmentManager(), "BirthDay");
+            }
 
             currentPassenger = passenger;
         }
@@ -290,7 +298,7 @@ public class AddPassengerActivity extends BaseActivity implements
 
 
         if (view.getTag().equals("BirthDay")) {
-            passengerPresenter.setBirthday(currentPassenger, Utility.convertNumbersToEnglish(currentDateTime) ,false);
+            passengerPresenter.setBirthday(currentPassenger, Utility.convertNumbersToEnglish(currentDateTime), false);
             datePickerDialogBirthDay.initialize(this, year_, month, day);
 
         }
@@ -304,10 +312,6 @@ public class AddPassengerActivity extends BaseActivity implements
         day = dayOfMonth;
 
 
-
-
-
-
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
@@ -316,7 +320,7 @@ public class AddPassengerActivity extends BaseActivity implements
         String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
 
 
-        passengerPresenter.setBirthday(currentPassenger, Utility.convertNumbersToEnglish(currentDateTime),true);
+        passengerPresenter.setBirthday(currentPassenger, Utility.convertNumbersToEnglish(currentDateTime), true);
 
 
     }

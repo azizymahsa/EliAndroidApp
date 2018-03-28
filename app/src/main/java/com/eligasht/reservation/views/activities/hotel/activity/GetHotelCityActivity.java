@@ -87,7 +87,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
         btnMic.setOnClickListener(this);
 
         //////////////////show recent
-        ListView listAirPort = (ListView) findViewById(R.id.listCityHotel);
+        ListView listAirPort = findViewById(R.id.listCityHotel);
         List<HotelCity> data = new ArrayList<>();
         RecentCityHotel_Table recentCity_table = new RecentCityHotel_Table(this);
         CursorManager cursorManager = recentCity_table.getAll();
@@ -111,7 +111,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 
         //////////////////////////
 
-        searchtxt = (EditText) findViewById(R.id.searchtxt);
+        searchtxt = findViewById(R.id.searchtxt);
         searchtxt.addTextChangedListener(
                 new TextWatcher() {
                     @Override
@@ -153,7 +153,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 														listAirPort.setAdapter(mAdapter);*/
                                                         GetHotelCityActivity.searchText = "";
                                                         List<HotelCity> data = null;
-                                                        ListView listAirPort = (ListView) findViewById(R.id.listCityHotel);
+                                                        ListView listAirPort = findViewById(R.id.listCityHotel);
                                                         mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data, GetHotelCityActivity.this);
                                                         //mAdapter.setAdapter(mAdapter);
                                                         mAdapter.setData(data);
@@ -312,7 +312,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
 
 
                     ////
-                    listAirPort = (ListView) findViewById(R.id.listCityHotel);
+                    listAirPort = findViewById(R.id.listCityHotel);
                     mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, GetHotelCityActivity.this, data, getIntent().getExtras().getInt("type"));
                     //mAdapter.setAdapter(mAdapter);
                     mAdapter.setData(data);

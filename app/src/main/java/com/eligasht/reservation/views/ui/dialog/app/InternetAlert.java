@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.ui.SingletonContext;
@@ -47,6 +48,9 @@ public class InternetAlert implements View.OnClickListener {
         btnWifi.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(false);
+        LottieAnimationView lottieAnimationView = dialogView.findViewById(R.id.animation_view);
+        lottieAnimationView.setAnimation("lottie/no_connection.json");
+        lottieAnimationView.playAnimation();
     }
     public void isCancel(){
         try{
@@ -72,9 +76,16 @@ public class InternetAlert implements View.OnClickListener {
                 if(Utility.isNetworkAvailable(activity)) {
                     dialog.cancel();
                 }else{
-                    Intent intent = new Intent();
-                    intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
-                    activity.startActivity(intent);
+                    try {
+                        Intent intent = new Intent();
+                        intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
+                        activity.startActivity(intent);
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
                 }
 
 
@@ -84,7 +95,14 @@ public class InternetAlert implements View.OnClickListener {
                     dialog.cancel();
 
                 }else{
-                    activity.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    try {
+                        activity.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
 
                 }
 

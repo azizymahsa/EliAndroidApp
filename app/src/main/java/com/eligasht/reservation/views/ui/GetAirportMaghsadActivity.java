@@ -35,6 +35,7 @@ import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -42,6 +43,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
@@ -91,7 +93,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         btnMic.setOnClickListener(this);
         //////////////////show recent
         
-        ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+        ListView listAirPort = findViewById(R.id.listAirPort);
         List<Country> data = new ArrayList<>();
         RecentCity_Table recentCity_table = new RecentCity_Table(this);
         CursorManager cursorManager = recentCity_table.getAll(2);//maghsad
@@ -121,7 +123,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         }
 
 
-        listAirPort = (ListView) findViewById(R.id.listAirPort);
+        listAirPort = findViewById(R.id.listAirPort);
         mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data, Value_Mabda_City, Value_Mabda_Airport, Value_Mabda_Airport_Code, GetAirportMaghsadActivity.this);
 
         //mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data,  GetAirportMaghsadActivity.this);
@@ -160,7 +162,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         }
 
         /////////////////////////////
-        searchtxt = (EditText) findViewById(R.id.searchtxt);
+        searchtxt = findViewById(R.id.searchtxt);
         searchtxt.addTextChangedListener(
                 new TextWatcher() {
                     @Override
@@ -194,7 +196,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                                                 }
                                                 if (d.length() < 0 || d.length() == 0) {
                                                     ////
-                                                    ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
+                                                    ListView listAirPort = findViewById(R.id.listAirPort);
                                                     List<Country> data = null;
                                                     mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data, GetAirportMaghsadActivity.this);
 
@@ -312,6 +314,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 //try {
                 HashMap<String, String> airport = null;
                 mylist = new ArrayList<HashMap<String, String>>();
+                Log.e("testtesttest", new Gson().toJson(data));
                 HttpResponse res = client.execute(post);
                 String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 
@@ -393,7 +396,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                         }
 
 
-                        listAirPort = (ListView) findViewById(R.id.listAirPort);
+                        listAirPort = findViewById(R.id.listAirPort);
                         mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data, Value_Mabda_City, Value_Mabda_Airport, Value_Mabda_Airport_Code, GetAirportMaghsadActivity.this);
                         //mAdapter.setAdapter(mAdapter);
                         mAdapter.setData(data);

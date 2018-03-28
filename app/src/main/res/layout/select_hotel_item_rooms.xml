@@ -57,7 +57,7 @@
                     android:layout_toRightOf="@+id/title"
                     android:layout_weight="100"
                     android:gravity="left|center"
-                    android:textColor="@color/green"
+                    android:textColor="@color/boardColor"
                     android:textSize="@dimen/_13dp_normal_textSize" />
 
                 <TextView

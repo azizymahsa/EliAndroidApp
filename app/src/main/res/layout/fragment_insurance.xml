@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -144,16 +145,16 @@
                                 android:textSize="@dimen/_12dp_normal_textSize"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottie_checkout"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
                                 android:gravity="center"
-                                android:text="@string/icon_calander"
-                                android:textAppearance="@style/IconFonts"
-                                android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/_25dp_normal_iconSize" />
-
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                app:lottie_fileName="lottie/calendar.json"
+                                />
                         </LinearLayout>
 
 
@@ -200,17 +201,16 @@
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize"
                                 android:textStyle="bold" />
-
-                            <TextView
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottie_checkin"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.2"
                                 android:gravity="center"
-                                android:text="@string/icon_calander"
-                                android:textAppearance="@style/IconFonts"
-                                android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/_25dp_normal_iconSize" />
-
+                                app:lottie_autoPlay="false"
+                                app:lottie_loop="false"
+                                app:lottie_fileName="lottie/calendar.json"
+                                />
                         </LinearLayout>
 
                         <!-- android:text="پیش نمایش" -->

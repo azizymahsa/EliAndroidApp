@@ -19,14 +19,13 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearKol"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
-    android:id="@+id/linearKol"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <!--
          <LinearLayout
@@ -39,8 +38,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" android:layout_marginTop="4dp"
-        >
+        android:layout_marginTop="4dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/TextView"
@@ -55,7 +54,7 @@
             android:gravity="center"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -67,11 +66,11 @@
         android:layout_marginTop="4dp"
         android:layout_weight="0.02"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/TextView01"
@@ -86,15 +85,16 @@
                 android:gravity="center"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/fronttop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:layout_marginBottom="8dp"
             android:background="#ffffff"
             android:gravity="center"
             android:minHeight="40dp"
@@ -137,8 +137,8 @@
                         <TextView
                             android:id="@+id/num_flight_r"
                             android:layout_width="90dp"
-                            android:layout_marginLeft="@dimen/_10dpTabletSize"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_10dpTabletSize"
 
                             android:gravity="left"
                             android:text="TK898"
@@ -162,53 +162,56 @@
 
                         android:text="6"
                         android:textColor="#aaa"
-                        android:textSize="@dimen/_10dp_textSize"  />
-<LinearLayout
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_weight="2"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentRight="true"
-    android:layout_gravity="right|center_vertical"
-    android:gravity="right">
-    <TextView
+                        android:textSize="@dimen/_10dp_textSize" />
 
-        android:id="@+id/lblArrivalCityNameFaRTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="right|center_vertical"
-        android:text=",21:05"
-        android:gravity="right"
-        android:textColor="#003399"
-        android:textAppearance="@style/tahoma"
-        android:textSize="@dimen/_14dp_txtSize"
-        android:textStyle="bold" />
-    <TextView
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_weight="2"
+                        android:gravity="right">
 
-        android:id="@+id/lblArrivalCityNameFaR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="right|center_vertical"
-        android:text="پنجشنبه"
-        android:gravity="right"
-        android:textColor="#003399"
+                        <TextView
 
-        android:textSize="@dimen/_14dp_txtSize"
-        />
-</LinearLayout>
+                            android:id="@+id/lblArrivalCityNameFaRTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center_vertical"
+                            android:gravity="right"
+                            android:text=",21:05"
+                            android:textAppearance="@style/tahoma"
+                            android:textColor="#003399"
+                            android:textSize="@dimen/_14dp_txtSize"
+                            android:textStyle="bold" />
+
+                        <TextView
+
+                            android:id="@+id/lblArrivalCityNameFaR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center_vertical"
+                            android:gravity="right"
+                            android:text="پنجشنبه"
+                            android:textColor="#003399"
+
+                            android:textSize="@dimen/_14dp_txtSize" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/llRaft"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginRight="2dp"
                     android:gravity="right|center"
@@ -216,6 +219,7 @@
 
 
                     <TextView
+                        android:id="@+id/tvPlaneIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
 
@@ -227,6 +231,7 @@
                         android:textSize="17dp" />
 
                     <View
+                        android:id="@+id/viewLine"
                         android:layout_width="@dimen/_260dp_f"
                         android:layout_height="@dimen/_1dp_width"
                         android:background="@color/gray_dark" />
@@ -274,7 +279,7 @@
                             android:gravity="left"
                             android:text="تهران"
                             android:textColor="#000"
-                            android:textSize="@dimen/_12dp_normal_textSize"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     </LinearLayout>
@@ -291,7 +296,7 @@
 
                         android:text="استانبول  "
                         android:textColor="#000"
-                        android:textSize="@dimen/_12dp_normal_textSize"/>
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                 </LinearLayout>
                 <!-- /////////////////////////Bargasht/////////////////////////////// -->
@@ -319,8 +324,8 @@
                         <TextView
                             android:id="@+id/num_flight_b"
                             android:layout_width="90dp"
-                            android:layout_marginLeft="@dimen/_10dpTabletSize"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_10dpTabletSize"
 
                             android:gravity="left"
                             android:text="TK898"
@@ -343,82 +348,89 @@
                         android:gravity="center"
                         android:text="6"
                         android:textColor="#aaa"
-                        android:textSize="@dimen/_10dp_textSize"  />
+                        android:textSize="@dimen/_10dp_textSize" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="right|center_vertical"
                         android:layout_weight="2"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="right|center_vertical"
                         android:gravity="right">
-                    <TextView
 
-                        android:id="@+id/lblArrivalCityNameFaBTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="right|center_vertical"
-                        android:text="21:05"
-                        android:gravity="right"
-                        android:textAppearance="@style/tahoma"
-                        android:textColor="#003399"
-                        android:textSize="@dimen/_14dp_txtSize"
-                        android:textStyle="bold" />
-                    <TextView
+                        <TextView
 
-                        android:id="@+id/lblArrivalCityNameFaB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="right|center_vertical"
-                        android:text="یکشنبه"
-                        android:gravity="right"
-                        android:textColor="#003399"
-                        android:textSize="@dimen/_14dp_txtSize"
-                         />
+                            android:id="@+id/lblArrivalCityNameFaBTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center_vertical"
+                            android:gravity="right"
+                            android:text="21:05"
+                            android:textAppearance="@style/tahoma"
+                            android:textColor="#003399"
+                            android:textSize="@dimen/_14dp_txtSize"
+                            android:textStyle="bold" />
+
+                        <TextView
+
+                            android:id="@+id/lblArrivalCityNameFaB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center_vertical"
+                            android:gravity="right"
+                            android:text="یکشنبه"
+                            android:textColor="#003399"
+                            android:textSize="@dimen/_14dp_txtSize" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
+
                     android:id="@+id/linearBargashtTwo"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:orientation="horizontal"
                     android:layout_marginRight="2dp"
                     android:gravity="right|center"
-                    >
+                    android:orientation="horizontal">
 
 
                     <TextView
+                        android:id="@+id/tvPlaneIcon2"
+
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
 
-                        android:textSize="17dp"
-                        android:textAppearance="@style/IconFonts"
-                        android:text="@string/plane"
-                        android:textColor="@color/gray_dark"
                         android:gravity="right|center"
-                        android:rotation="180"/>
+                        android:rotation="180"
+                        android:text="@string/plane"
+                        android:textAppearance="@style/IconFonts"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="17dp" />
+
                     <View
+                        android:id="@+id/viewLine2"
+
                         android:layout_width="@dimen/_260dp_f"
                         android:layout_height="@dimen/_1dp_width"
-                        android:background="@color/gray_dark"/>
+                        android:background="@color/gray_dark" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
 
-                        android:textSize="14dp"
-                        android:textAppearance="@style/IconFonts"
+                        android:gravity="center"
                         android:text="@string/dot"
+                        android:textAppearance="@style/IconFonts"
                         android:textColor="@color/gray_dark"
-                        android:gravity="center"/>
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -434,8 +446,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:gravity="left"
-                        >
+                        android:gravity="left">
 
                         <TextView
                             android:id="@+id/txtArrivelFalseLast"
@@ -447,7 +458,7 @@
                             android:gravity="left"
                             android:text="استانبول"
                             android:textColor="#000"
-                            android:textSize="@dimen/_12dp_normal_textSize"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     </LinearLayout>
@@ -473,9 +484,9 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
                 android:layout_marginLeft="9dp"
                 android:layout_marginRight="5dp"
+                android:layout_weight="5"
 
                 >
 
@@ -507,10 +518,10 @@
                     style="@style/AVLoadingIndicatorView"
                     android:layout_width="@dimen/_40dp_f"
                     android:layout_height="@dimen/_40dp_f"
+                    android:layout_centerInParent="true"
                     android:visibility="visible"
                     app:indicatorColor="@color/app_base_color"
-                    app:indicatorName="BallSpinFadeLoaderIndicator"
-                    android:layout_centerInParent="true"/>
+                    app:indicatorName="BallSpinFadeLoaderIndicator" />
 
                 <ImageView
                     android:id="@+id/lblProductrow"
@@ -532,37 +543,37 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal"
             android:layout_gravity="center"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:background="@color/sorati"
+            android:orientation="horizontal"
             android:padding="@dimen/_5dp_margin">
 
 
             <TextView
                 android:id="@+id/btnExpand"
                 android:layout_width="0dp"
-                android:layout_weight="0.04"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:textSize="@dimen/text_size_12dp"
                 android:layout_marginLeft="@dimen/_5dpflight"
+                android:layout_weight="0.04"
+                android:gravity="center"
+                android:text="@string/icon_exp_up"
                 android:textAppearance="@style/Arrow"
                 android:textColor="#000"
-                android:text="@string/icon_exp_up"
-                />
+                android:textSize="@dimen/text_size_12dp" />
+
             <TextView
                 android:id="@+id/txt_economi"
                 android:layout_width="0dp"
-                android:layout_weight="0.2"
-
                 android:layout_height="match_parent"
+
+                android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_5dp_margin_f_g"
 
+                android:layout_weight="0.2"
                 android:background="@drawable/background_strock_blue_dark_economi"
                 android:gravity="center"
-                android:layout_gravity="center"
                 android:text="@string/Economi"
                 android:textColor="#003399"
                 android:textSize="@dimen/_10dp_textSize" />
@@ -588,9 +599,9 @@
                 android:background="#f5eeff"
                 android:gravity="right"
                 android:text="@string/Rial"
-                android:textColor="#0e874e"
-
                 android:textAppearance="@style/IrsansBold"
+
+                android:textColor="#0e874e"
                 android:textSize="@dimen/_13dp_normal_textSize" />
 
             <TextView
@@ -598,14 +609,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textAppearance="@style/IrsansBold"
+                android:layout_marginRight="@dimen/_10dpTabletSize"
                 android:gravity="right"
                 android:text="10,000,000"
+                android:textAppearance="@style/IrsansBold"
                 android:textColor="#000000"
                 android:textSize="@dimen/_13dp_normal_textSize"
-                android:textStyle="bold"
-                android:layout_marginRight="@dimen/_10dpTabletSize"
-                />
+                android:textStyle="bold" />
             <!--android:layout_marginRight="@dimen/_10dp_margin_f_g"-->
         </LinearLayout>
 

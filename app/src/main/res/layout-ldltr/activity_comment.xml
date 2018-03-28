@@ -500,7 +500,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/_10dp_margin"
             app:lottie_autoPlay="true"
-            app:lottie_fileName="circle-l.json"
+            app:lottie_fileName="lottie/circle-l.json"
             app:lottie_loop="true"
 
             />

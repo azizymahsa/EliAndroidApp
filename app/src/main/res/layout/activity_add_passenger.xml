@@ -86,7 +86,8 @@
                 android:textColor="@color/TextColor"
                 android:textAppearance="@style/IrsansBold"
                 android:textSize="@dimen/_16dp_txtSize"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+             />
 
             <TextView
                 android:layout_width="wrap_content"

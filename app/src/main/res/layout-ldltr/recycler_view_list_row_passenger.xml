@@ -47,7 +47,7 @@
                     android:text="@string/detail_hotel"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#4d4d4d"
-                    android:textSize="@dimen/_12dp" />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/tvArrow"
@@ -100,7 +100,7 @@
 
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
-                            android:textSize="@dimen/_12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
 
@@ -112,7 +112,7 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
-                            android:textSize="@dimen/_12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
                             android:id="@+id/tvPass"
@@ -124,7 +124,7 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
-                            android:textSize="@dimen/_12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_35dp"
@@ -134,7 +134,7 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
 
-                            android:textSize="@dimen/_12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     </LinearLayout>
@@ -159,7 +159,7 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="@dimen/_12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
                             android:id="@+id/tvNationality"
@@ -172,7 +172,7 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="@dimen/_12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
                             android:id="@+id/tvPassNo"
@@ -185,7 +185,7 @@
                             android:textAppearance="@style/tahoma"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="@dimen/_12dp"
+                            android:textSize="@dimen/_12dp_normal_textSize"
                             android:textStyle="bold"/>
                         <TextView
                             android:id="@+id/tvBrithDay"
@@ -197,7 +197,7 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
-                            android:textSize="@dimen/_12dp" />
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     </LinearLayout>

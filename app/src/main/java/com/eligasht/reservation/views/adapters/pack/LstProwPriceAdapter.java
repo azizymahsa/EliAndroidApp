@@ -27,17 +27,17 @@ public class LstProwPriceAdapter extends SectioningAdapter {
     private Context context;
     private ArrayList<Section> feedItemList;
     public class ItemViewHolder extends SectioningAdapter.ItemViewHolder {
-        public TextView adaultPrice;
-        public TextView wChildPrice;
-        public TextView nChildPrice;
-        public TextView infantPrice;
-        public TextView totalPrice;
+        private TextView adaultPrice;
+        private TextView wChildPrice;
+        private TextView nChildPrice;
+        private TextView infantPrice;
+        private TextView totalPrice;
         public TextView total_price;
-        public TextView txt_hr_room_list;
-        public TextView txt_hr_room_list2;
-        public SmoothCheckBox chk_prow_price;
+        private TextView txt_hr_room_list;
+        private TextView txt_hr_room_list2;
+        private SmoothCheckBox chk_prow_price;
 
-        public ItemViewHolder(View itemView) {
+        private ItemViewHolder(View itemView) {
             super(itemView);
             adaultPrice = itemView.findViewById(R.id.price_adault);
             wChildPrice = itemView.findViewById(R.id.price_w_child);

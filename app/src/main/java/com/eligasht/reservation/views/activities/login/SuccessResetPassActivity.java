@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.eligasht.R;
 
@@ -22,6 +23,7 @@ import com.eligasht.reservation.views.ui.InitUi;
 public class SuccessResetPassActivity extends BaseActivity implements View.OnClickListener{
 
     private Button btnBackHomeLog;
+    TextView tvInfo;
 
 
     @SuppressLint("NewApi")
@@ -42,7 +44,9 @@ public class SuccessResetPassActivity extends BaseActivity implements View.OnCli
 
     private void initViews() {
         btnBackHomeLog = findViewById(R.id.btnBackHomePage);
+        tvInfo = findViewById(R.id.tvInfo);
         btnBackHomeLog.setOnClickListener(this);
+        tvInfo.setText(getIntent().getExtras().getString("value"));
     }
 
     @Override

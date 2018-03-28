@@ -430,7 +430,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="120"
+                    android:layout_weight="90"
                     android:gravity="center">
 
 
@@ -563,7 +563,7 @@
                 android:id="@+id/llSort"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="100"
+                android:layout_weight="120"
                 android:gravity="center"
                 android:orientation="horizontal">
 

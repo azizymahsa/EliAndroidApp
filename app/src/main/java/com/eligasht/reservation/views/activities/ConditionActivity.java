@@ -282,7 +282,7 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
                     data.add(sectionModel);
                 }
                 //textView12.setText(data.get(0).getDescription()+"");
-                listAirPort = (NonScrollRecyclerView) findViewById(R.id.lvExp);
+                listAirPort = findViewById(R.id.lvExp);
                 listAirPort.addItemDecoration(new DividerItemDecoration(ConditionActivity.this, 1));
                 listAirPort.setLayoutManager(new LinearLayoutManager(ConditionActivity.this));
                 mAdapter = new AboutAdapter(data);

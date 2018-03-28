@@ -308,7 +308,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-            int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+            int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
             int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
             PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
             persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -357,7 +357,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-            int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+            int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
             int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
@@ -857,7 +857,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-                    int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+                    int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
                     int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
                     PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
                     persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -913,7 +913,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-                    int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+                    int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
                     int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
                     PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
                     persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
@@ -1489,7 +1489,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
                 if(RengAge.contains(getString(R.string.Child))){
-                    dialog = new DatePickerDialog(getActivity(), this, year-12, month, day);
+                    dialog = new DatePickerDialog(getActivity(), this, year-14, month, day);
                 }else if(RengAge.contains(getString(R.string.baby))){
                     dialog = new DatePickerDialog(getActivity(), this, year-2, month, day);
                 }else if(RengAge.contains(getString(R.string.adult))){
@@ -1500,7 +1500,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 if(RengAge.contains(getString(R.string.Child))){
                     System.out.println("koodak");
                     //c = Calendar.getInstance();
-                    c.add(Calendar.YEAR, -12); // subtract 2 years from now
+                    c.add(Calendar.YEAR, -14); // subtract 2 years from now
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                     c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());

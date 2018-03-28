@@ -8,17 +8,11 @@ import java.util.regex.Pattern;
 public class ValidationTools {
 
     public static boolean isEmptyOrNull(String input){
-        if(input == null  || input.isEmpty() || input.trim().equals("") || input.trim().toLowerCase().equals("null")){
-           return true;
-        }
-        return false;
+        return input == null || input.isEmpty() || input.trim().equals("") || input.trim().toLowerCase().equals("null");
     }
 
     public static boolean isEmptyOrNull(ArrayList arrayList){
-        if(arrayList == null || arrayList.size() == 0){
-            return true;
-        }
-        return false;
+        return arrayList == null || arrayList.size() == 0;
     }
     public static boolean isEmailValid(String email) {
         if (ValidationTools.isEmptyOrNull(email)) {
@@ -42,15 +36,9 @@ public class ValidationTools {
         }
         if (countryCode.trim().equals("98")) {
             x = String.valueOf(mobile.charAt(0));
-            if ((x.trim().equals("" + 9) && mobile.length() == 10) || (x.trim().equals("" + 0) && mobile.length() == 11)) {
-                return true;
-            }
-            return false;
+            return (x.trim().equals("" + 9) && mobile.length() == 10) || (x.trim().equals("" + 0) && mobile.length() == 11);
         } else {
-            if (mobile.length() > 15 || mobile.length() < 5) {
-                return false;
-            }
-            return true;
+            return !(mobile.length() > 15 || mobile.length() < 5);
         }
     }
 

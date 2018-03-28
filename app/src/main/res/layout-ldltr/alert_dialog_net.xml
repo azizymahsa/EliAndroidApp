@@ -3,6 +3,7 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -21,18 +22,16 @@
 
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="@string/nowifi"
-        android:textAppearance="@style/IconFonts"
-        android:textColor="@color/text_color_4d"
-        android:textSize="@dimen/_25dp_normal_iconSize"
-
-
         />
+
 
 
     <TextView

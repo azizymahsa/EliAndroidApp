@@ -51,7 +51,7 @@ public class AwardsSelectedsAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = myInflater.inflate(R.layout.lv_rows, null);
             holder = new ViewHolder();
-            holder.text = (TextView) convertView.findViewById(R.id.item_title);
+            holder.text = convertView.findViewById(R.id.item_title);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

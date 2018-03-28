@@ -144,7 +144,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     GetHotelKhadmatAdapter mAdapter;
     //ScrollView myScrollView;
     private EditText searchtxt;
-    public TextView txt_shomare_factor, tvPrice;
+    public TextView txt_shomare_factor;
+    public TextView tvPrice;
     public ImageView txt_hom, textView4;
 
     private String Gensiyat="";
@@ -175,7 +176,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger);
-        ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+        ScrollView scroll_partner= findViewById(R.id.scroll_partner);
         scroll_partner.fullScroll(ScrollView.FOCUS_UP);
         scroll_partner.scrollTo(0,0);
         scroll_partner.clearFocus();
@@ -284,7 +285,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
 
-        txtTitleCountM = (TextView) findViewById(R.id.txtTitleCountM);
+        txtTitleCountM = findViewById(R.id.txtTitleCountM);
         txtTitleCountM.setOnClickListener(this);
 
         String RengAge=txtTitleCountM.getText().toString();
@@ -295,7 +296,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-            int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+            int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
             int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
             PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
             persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -344,7 +345,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-            int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+            int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
             int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
@@ -400,14 +401,14 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         // Getting JSON Array node
 
 
-        btnBack = (FancyButton) findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setVisibility(View.VISIBLE);
         btnBack.setOnClickListener(this);
 
         //kharidar
-        btnzanS = (RadioButton) findViewById(R.id.zanS);
+        btnzanS = findViewById(R.id.zanS);
         btnzanS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -419,7 +420,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             }
         });
 
-        btnmardS = (RadioButton) findViewById(R.id.mardS);
+        btnmardS = findViewById(R.id.mardS);
         btnmardS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -431,7 +432,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             }
         });
         ////////mosafer
-        btnzan = (RadioButton) findViewById(R.id.zan);
+        btnzan = findViewById(R.id.zan);
         btnzan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -443,7 +444,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             }
         });
 
-        btnmard = (RadioButton) findViewById(R.id.mard);
+        btnmard = findViewById(R.id.mard);
         btnmard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -459,27 +460,27 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
 
-        txt_hom = (ImageView) findViewById(R.id.txt_hom);
-        textView4 = (ImageView) findViewById(R.id.textView4);
-        tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
-        expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
+        txt_hom = findViewById(R.id.txt_hom);
+        textView4 = findViewById(R.id.textView4);
+        tvfactorNumber = findViewById(R.id.tvfactorNumber);
+        expandableLayout = findViewById(R.id.expandableLayout);
         txt_hom.setOnClickListener(this);
 
-        txtMore = (TextView) findViewById(R.id.txtMore);
+        txtMore = findViewById(R.id.txtMore);
         txtMore.setOnClickListener(this);
 
-        txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
-        tvPrice = (TextView) findViewById(R.id.tvPrice);
+        txtSumKhadamat = findViewById(R.id.txtSumKhadamat);
+        tvPrice = findViewById(R.id.tvPrice);
         txtSumKhadamat.setOnClickListener(this);
         txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
 
-        txttavalodm = (TextView) findViewById(R.id.txttavalodm);
+        txttavalodm = findViewById(R.id.txttavalodm);
         txttavalodm.setOnClickListener(this);
-        txtnamem = (EditText) findViewById(R.id.txtnamem);
+        txtnamem = findViewById(R.id.txtnamem);
         txtnamem.setOnClickListener(this);
         txtnamem.setOnFocusChangeListener(this);
         txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
-        imgCount = (TextView) findViewById(R.id.imgCount);
+        imgCount = findViewById(R.id.imgCount);
 
         imgCount.setOnClickListener(this);
          if(Locale.getDefault().getLanguage().equals("en")|| Locale.getDefault().getLanguage().equals("tr")){
@@ -489,7 +490,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
         }
 
-        txtfamilym = (EditText) findViewById(R.id.txtfamilym);
+        txtfamilym = findViewById(R.id.txtfamilym);
         //lvFactor = (ExpandableLayoutListView) findViewById(R.id.lvFactor);
         txtfamilym.setOnClickListener(this);
         txtfamilym.setOnFocusChangeListener(this);
@@ -497,41 +498,41 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
 
-        txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
+        txtnumber_passport = findViewById(R.id.txtnumber_passport);
         txtnumber_passport.setOnClickListener(this);
         txtnumber_passport.setOnFocusChangeListener(this);
         txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
         txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
-        txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
+        txtexp_passport = findViewById(R.id.txtexp_passport);
         txtexp_passport.setOnClickListener(this);
 
-        txtTitle = (TextView) findViewById(R.id.tvTitle);
+        txtTitle = findViewById(R.id.tvTitle);
         txtTitle.setOnClickListener(this);
 
 
-        btn_next_partnerInfo = (LinearLayout) findViewById(R.id.btn_next_partnerInfo);
+        btn_next_partnerInfo = findViewById(R.id.btn_next_partnerInfo);
         btn_next_partnerInfo.setOnClickListener(this);
 
-        btn_nextm = (LinearLayout) findViewById(R.id.btn_nextm);
+        btn_nextm = findViewById(R.id.btn_nextm);
         btn_nextm.setOnClickListener(this);
 
-        btn_taeed_khadamat = (LinearLayout) findViewById(R.id.btn_taeed_khadamat);
+        btn_taeed_khadamat = findViewById(R.id.btn_taeed_khadamat);
         btn_taeed_khadamat.setOnClickListener(this);
 
-        btn_pardakht_factor = (Button) findViewById(R.id.btn_pardakht_factor);
+        btn_pardakht_factor = findViewById(R.id.btn_pardakht_factor);
         btn_pardakht_factor.setOnClickListener(this);
             /* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
              btnAddsabad.setOnClickListener(this);*/
 
-        btn_saler= (ImageView) findViewById(R.id.btn_saler);
-        btn_mosaferan=(ImageView)findViewById(R.id.btn_mosaferan);
-        btn_khadamat=(ImageView)findViewById(R.id.btn_khadamat);
-        btn_pish_factor=(ImageView)findViewById(R.id.btn_pish_factor);
+        btn_saler= findViewById(R.id.btn_saler);
+        btn_mosaferan= findViewById(R.id.btn_mosaferan);
+        btn_khadamat= findViewById(R.id.btn_khadamat);
+        btn_pish_factor= findViewById(R.id.btn_pish_factor);
 
-        txtSaler= (Button) findViewById(R.id.txtSaler);
-        txtMasaferan=(Button)findViewById(R.id.txtMasaferan);
-        txtKhadamat=(Button)findViewById(R.id.txtKhadamat);
-        txtPishfactor=(Button)findViewById(R.id.txtPishfactor);
+        txtSaler= findViewById(R.id.txtSaler);
+        txtMasaferan= findViewById(R.id.txtMasaferan);
+        txtKhadamat= findViewById(R.id.txtKhadamat);
+        txtPishfactor= findViewById(R.id.txtPishfactor);
 
         btn_saler.setOnClickListener(this);
         btn_mosaferan.setOnClickListener(this);
@@ -539,13 +540,13 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         btn_pish_factor.setOnClickListener(this);
         setAnimation();
 
-        linear_saler = (LinearLayout) findViewById(R.id.linear_saler);
-        linear_mosaferan = (LinearLayout) findViewById(R.id.linear_mosaferan);
-        linear_pish_factor = (LinearLayout) findViewById(R.id.linear_pish_factor);
-        linearMahaleeghamat = (LinearLayout) findViewById(R.id.linearMahaleeghamat);
-        linearMeliyat = (LinearLayout) findViewById(R.id.linearMeliyat);
+        linear_saler = findViewById(R.id.linear_saler);
+        linear_mosaferan = findViewById(R.id.linear_mosaferan);
+        linear_pish_factor = findViewById(R.id.linear_pish_factor);
+        linearMahaleeghamat = findViewById(R.id.linearMahaleeghamat);
+        linearMeliyat = findViewById(R.id.linearMeliyat);
 
-        txtnameP = (EditText) findViewById(R.id.txtnameP);
+        txtnameP = findViewById(R.id.txtnameP);
         // txtnameP.setHint("لطفا نام را فارسی وارد کنید");
         txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
         txtnameP.setOnFocusChangeListener(this);
@@ -562,28 +563,28 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         txtemeliP = (EditText) findViewById(R.id.txtemeliP);
         txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
         txtemeliP.setOnFocusChangeListener(this);
-        txtmeliyatm = (TextView) findViewById(R.id.txtmeliyatm);
+        txtmeliyatm = findViewById(R.id.txtmeliyatm);
         txtmeliyatm.setOnClickListener(this);
-        txtmahale_eghamat = (TextView) findViewById(R.id.txtmahale_eghamat);
+        txtmahale_eghamat = findViewById(R.id.txtmahale_eghamat);
         txtmahale_eghamat.setOnClickListener(this);
 
-        txt_shomare_factor = (TextView) findViewById(R.id.txt_shomare_factor);
+        txt_shomare_factor = findViewById(R.id.txt_shomare_factor);
         txt_shomare_factor.setOnClickListener(this);
 
-        linear_list_khadamat = (LinearLayout) findViewById(R.id.linear_list_khadamat);
+        linear_list_khadamat = findViewById(R.id.linear_list_khadamat);
 
-        listKhadamat = (ListView) findViewById(R.id.listKhadamat);
-        llDetailHotel = (LinearLayout) findViewById(R.id.llDetailHotel);
-        llDetailPassanger = (LinearLayout) findViewById(R.id.llDetailPassanger);
-        llDetailService = (LinearLayout) findViewById(R.id.llDetailService);
-        llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
+        listKhadamat = findViewById(R.id.listKhadamat);
+        llDetailHotel = findViewById(R.id.llDetailHotel);
+        llDetailPassanger = findViewById(R.id.llDetailPassanger);
+        llDetailService = findViewById(R.id.llDetailService);
+        llDetailFlight = findViewById(R.id.llDetailFlight);
         // myScrollView = (ScrollView) findViewById(R.id.layout_scroll);
 
 
         //////////////////////////
         // Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
-        Spinner spinnerMosafer = (Spinner) findViewById(R.id.spinnerMosafer);
+        Spinner spinner = findViewById(R.id.spinner1);
+        Spinner spinnerMosafer = findViewById(R.id.spinnerMosafer);
 
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
@@ -773,7 +774,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+ getString(R.string.Rial));
 
 //for hotel==========================================================================================
-                final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
+                final RecyclerView recyclerViewHotel = findViewById(R.id.recyclerView);
                 recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerHotelActivity.this, 1));
                 recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerHotelActivity.this));
                 ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
@@ -798,7 +799,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 //for passenger======================================================================================
 
 
-                final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+                final RecyclerView recyclerViewPassenger = findViewById(R.id.recyclerViewPassenger);
                 recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerHotelActivity.this, 1));
                 recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerHotelActivity.this));
                 ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
@@ -820,7 +821,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
                 //for Services=============================================================================
-                final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
+                final RecyclerView recyclerViewService = findViewById(R.id.recyclerViewService);
                 recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerHotelActivity.this, 1));
                 recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerHotelActivity.this));
                 ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
@@ -839,7 +840,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 }
                 //for flight==================================================================================
-                final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+                final RecyclerView recyclerViewFlight = findViewById(R.id.recyclerViewFlight);
                 recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerHotelActivity.this, 1));
                 recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerHotelActivity.this));
                 ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
@@ -1224,7 +1225,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
 
-                    fishData.setExcursionDta(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
+                    fishData.setExcursionData(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
                             excursionDta.getString("ArrialAirportName"),
                             excursionDta.getString("ArrivalFltDate")
                             ,excursionDta.getString("ArrivalFltNo"),
@@ -1736,7 +1737,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-                    int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
+                    int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
                     int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
                     PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
                     persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -1794,7 +1795,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-                    int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+                    int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
                     int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
                     PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
                     persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
@@ -1821,13 +1822,13 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 break;
             case R.id.btn_nextm:
                 LinearLayout mainLayout;
-                mainLayout = (LinearLayout)findViewById(R.id.linear_list_khadamat);
+                mainLayout = findViewById(R.id.linear_list_khadamat);
 
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
                 ///////////////
                 txtexp_passport.setScroller(new Scroller(this));
-                ScrollView scrolMosafer = (ScrollView) findViewById(R.id.scrolMosafer);
+                ScrollView scrolMosafer = findViewById(R.id.scrolMosafer);
                 scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
                 if(FlagMosaferan){
                     String Gender= Gensiyat;
@@ -2449,7 +2450,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
                 if(RengAge.contains(getString(R.string.Child))){
-                    dialog = new DatePickerDialog(getActivity(), this, year-12, month, day);
+                    dialog = new DatePickerDialog(getActivity(), this, year-14, month, day);
                 }else if(RengAge.contains(getString(R.string.baby))){
                     dialog = new DatePickerDialog(getActivity(), this, year-2, month, day);
                 }else if(RengAge.contains(getString(R.string.adult))){
@@ -2460,7 +2461,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 if(RengAge.contains(getString(R.string.Child))){
                     System.out.println("koodak");
                     //c = Calendar.getInstance();
-                    c.add(Calendar.YEAR, -12); // subtract 2 years from now
+                    c.add(Calendar.YEAR, -14); // subtract 2 years from now
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                     c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
                     dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
@@ -2643,7 +2644,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         mAdapter = new GetHotelKhadmatAdapter(PassengerHotelActivity.this, data, PassengerHotelActivity.this,gheymatKh);
         mAdapter.setData(data);
         listKhadamat.setAdapter(mAdapter);
-        final ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
+        final ScrollView scroll_partner= findViewById(R.id.scroll_partner);
         //scroll_partner.fullScroll(ScrollView.FOCUS_UP);
         scroll_partner.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
@@ -3162,7 +3163,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         Date date;
         formatter = new SimpleDateFormat("yyyy/MM/dd");
         try {
-            date = (Date) formatter.parse(str_date);
+            date = formatter.parse(str_date);
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             datePickerDialogGregorian2.setMinDate(cal);

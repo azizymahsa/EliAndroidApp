@@ -58,8 +58,8 @@ public class MapFragment extends Fragment implements View.OnClickListener  {
 
 
         if (serviceOK()) {
-            FrameLayout containerMap = (FrameLayout) view.findViewById(R.id.container_map);
-            mMapView = (MapView) view.findViewById(R.id.container_map);
+            FrameLayout containerMap = view.findViewById(R.id.container_map);
+            mMapView = view.findViewById(R.id.container_map);
             mMapView.onCreate(savedInstanceState);
 //            containerMap.addView(mapView);
             mMapView.getMapAsync(new OnMapReadyCallback() {

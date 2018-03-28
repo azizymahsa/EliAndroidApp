@@ -125,10 +125,10 @@
                         android:background="@color/green"
                         android:gravity="center"
                         android:maxLines="1"
+                        android:padding="2dp"
                         android:text="هتل"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_10dp_textSize"
-                        android:padding="2dp"/>
+                        android:textSize="@dimen/_10dp_textSize" />
 
 
                 </LinearLayout>
@@ -236,7 +236,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@+id/title"
                         android:gravity="left|center"
-                        android:textColor="@color/green"
+                        android:textColor="@color/boardColor"
                         android:textSize="@dimen/_13dp_normal_textSize"
 
                         />
@@ -301,8 +301,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:orientation="horizontal"
-                              >
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -310,10 +309,10 @@
                                     android:layout_weight="130"
                                     android:gravity="center"
 
+                                    android:paddingLeft="2dp"
                                     android:text="@string/change_flight"
                                     android:textColor="#0071bc"
                                     android:textSize="@dimen/_12dp_normal_textSize"
-                                    android:paddingLeft="2dp"
 
                                     />
 

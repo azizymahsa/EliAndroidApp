@@ -23,6 +23,7 @@ import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActiv
 import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.tools.Utility;
+import com.eligasht.reservation.views.ticker.TickerView;
 
 import java.util.ArrayList;
 
@@ -67,18 +68,18 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.select_hotel_item, null);
             holder = new ViewHolder();
-            holder.ivHotelPic = (ImageView) convertView.findViewById(R.id.ivHotelPic);
-            holder.ivRate = (ImageView) convertView.findViewById(R.id.ivRate);
-            holder.ivIsBestseler = (TextView) convertView.findViewById(R.id.ivIsBestseler);
-            holder.name = (TextView) convertView.findViewById(R.id.name);
-            holder.location = (TextView) convertView.findViewById(R.id.location);
-            holder.title = (TextView) convertView.findViewById(R.id.title);
-            holder.board = (TextView) convertView.findViewById(R.id.board);
-            holder.tvPrice = (TextView) convertView.findViewById(R.id.tvPrice);
-            holder.tvOff = (TextView) convertView.findViewById(R.id.tvOff);
-            holder.txt_lable_hotel = (TextView) convertView.findViewById(R.id.txt_lable_hotel);
-            holder.cvHotel = (CardView) convertView.findViewById(R.id.cvHotel);
-            holder.rlListItem = (RelativeLayout) convertView.findViewById(R.id.rlListItem);
+            holder.ivHotelPic = convertView.findViewById(R.id.ivHotelPic);
+            holder.ivRate = convertView.findViewById(R.id.ivRate);
+            holder.ivIsBestseler = convertView.findViewById(R.id.ivIsBestseler);
+            holder.name = convertView.findViewById(R.id.name);
+            holder.location = convertView.findViewById(R.id.location);
+            holder.title = convertView.findViewById(R.id.title);
+            holder.board = convertView.findViewById(R.id.board);
+            holder.tvPrice = convertView.findViewById(R.id.tvPrice);
+            holder.tvOff = convertView.findViewById(R.id.tvOff);
+            holder.txt_lable_hotel = convertView.findViewById(R.id.txt_lable_hotel);
+            holder.cvHotel = convertView.findViewById(R.id.cvHotel);
+            holder.rlListItem = convertView.findViewById(R.id.rlListItem);
 
 
             convertView.setTag(holder);
@@ -131,6 +132,10 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         if (selectHotelModelArrayList.get(position).isOff()) {
             holder.tvOff.setVisibility(View.VISIBLE);
             holder.tvOff.setText(selectHotelModelArrayList.get(position).getOff());
+            YoYo.with(Techniques.SlideInRight)
+                    .duration(700)
+                    .playOn(holder.tvOff);
+
 
         } else {
             holder.tvOff.setVisibility(View.GONE);
@@ -138,7 +143,9 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         }
         if (selectHotelModelArrayList.get(position).isBestSell()) {
             holder.ivIsBestseler.setVisibility(View.VISIBLE);
-
+            YoYo.with(Techniques.SlideInLeft)
+                    .duration(700)
+                    .playOn(holder.ivIsBestseler);
         } else {
             holder.ivIsBestseler.setVisibility(View.GONE);
 
@@ -210,7 +217,8 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView name, location, title, board, tvPrice, tvOff, ivIsBestseler, txt_lable_hotel;
+        TextView name, location, title, board, tvOff, ivIsBestseler, txt_lable_hotel;
+        TextView  tvPrice;
         ImageView ivHotelPic, ivRate;
         CardView cvHotel;
         RelativeLayout rlListItem;

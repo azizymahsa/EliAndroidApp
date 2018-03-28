@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.base.Base;
 import com.eligasht.reservation.tools.WebUserTools;
@@ -52,7 +53,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     private static TextView txt_name;
     RelativeLayout rlUser;
     ExpandableWeightLayout expandableLayout;
-    ImageView ivUser;
+    LottieAnimationView lottieUserMenu;
     CountDownTimer countDownTimer;
     int TotalTime = 2000000;
     Button btnExit;
@@ -114,12 +115,13 @@ public class MainActivity extends Base implements View.OnClickListener {
         rlUser = findViewById(R.id.rlUser);
         txt_name = findViewById(R.id.txt_name);
         tvArrow = findViewById(R.id.tvArrow);
-        ivUser = findViewById(R.id.ivUser);
         rlHedaer = findViewById(R.id.rlHedaer);
         btnExit = findViewById(R.id.btnExit);
         btnSetting = findViewById(R.id.btn_setting);
         btnLastBuy = findViewById(R.id.btnLastBuy);
-
+        lottieUserMenu = findViewById(R.id.lottieUserMenu);
+        lottieUserMenu.setAnimation("lottie/user.json");
+        lottieUserMenu.setSpeed(1.5f);
         //tvTitle.setText(getString(R.string.searchFlight));
 
 
@@ -135,7 +137,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnContactUs.setOnClickListener(this);
         btn_condition.setOnClickListener(this);
         rlUser.setOnClickListener(this);
-        ivUser.setOnClickListener(this);
+        lottieUserMenu.setOnClickListener(this);
         rlHedaer.setOnClickListener(this);
         btnFlight.setOnClickListener(this);
         btnExit.setOnClickListener(this);
@@ -144,32 +146,32 @@ public class MainActivity extends Base implements View.OnClickListener {
 
         addFragment(getString(R.string.searchFlight), new PlanFragment());
 
-      /*  switch (Prefs.getInt("type", 0)) {
-            case 0:
-                addFragment(getString(R.string.searchFlight), new PlanFragment());
-                break;
-            case 1:
-                addFragment(getString(R.string.search_hotel), new HotelFragment());
-                break;
-            case 2:
-                addFragment(getString(R.string.search_package), new PackageFragment());
-                break;
-            case 3:
-                addFragment(getString(R.string.btn_insurance), new InsuranceFragment());
-                break;
-            case 4:
-                addFragment("بلیط هواپیما + رزرو هتل", new HotelFlightFragment());
-                break;
-            default:
-                PlanFragment workerStateFragment = new PlanFragment();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, workerStateFragment)
-                        .commit();
-                break;
-        }
-*/
 
+        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                if (!lottieUserMenu.isAnimating()){
+                    lottieUserMenu.playAnimation();
+
+                }
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
     }
 
     @Override
@@ -247,7 +249,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 Intent intent3 = new Intent(this, ConditionActivity.class);
                 startActivity(intent3);
                 break;
-            case R.id.ivUser:
+            case R.id.lottieUserMenu:
 
 
                 try {
@@ -483,7 +485,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 //  expandableLayout.setVisibility(View.VISIBLE);
 
                 Prefs.putString("userId", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
-                Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
+             //   Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
                 rlHedaer.setClickable(false);
                 rlHedaer.setEnabled(false);
 
@@ -499,7 +501,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 }
                 rlHedaer.setClickable(true);
                 rlHedaer.setEnabled(true);
-                Log.e("testtest22", "2222");
+            //    Log.e("testtest22", "2222");
 
             }
         } catch (Exception e) {
@@ -509,7 +511,7 @@ public class MainActivity extends Base implements View.OnClickListener {
             txt_name.setText(getString(R.string.login));
             btnExit.setVisibility(View.GONE);
             Prefs.putString("userId", "1");
-            Log.e("testtest22", "3333");
+          //  Log.e("testtest22", "3333");
 
             if (expandableLayout.isExpanded()) {
                 expandableLayout.collapse();

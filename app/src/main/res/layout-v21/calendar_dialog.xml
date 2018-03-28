@@ -156,7 +156,6 @@
         android:layout_width="fill_parent"
         android:layout_height="240dp"
         android:layout_below="@id/fri"
-        android:layoutAnimation="@anim/layout_animation_fall_down"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:clipChildren="false"

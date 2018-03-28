@@ -27,6 +27,7 @@ import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
+import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.ChangeFlightApiRequest;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.Request;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
@@ -743,6 +744,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
     }
 
+
+
+
+
+
+
+
     public ArrayList<SelectFlightHotelModel> facility(ArrayList<FilterHotelTypeModel> filterHotelFacilitiesModels) {
         boolean isFilter = false;
 
@@ -760,9 +768,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
             if (filterHotelFacilitiesModels.get(i).isCheck()) {
                 for (int j = 0; j < selectHotelModels.size(); j++) {
-
                     for (int k = 0; k < selectHotelModels.get(j).getFacilities().size(); k++) {
                         isFilter = true;
+
                         if (filterHotelFacilitiesModels.get(i).getTitle().contains(selectHotelModels.get(j).getFacilities().get(k).Title)) {
                             filter.add(Add_To(i));
 
@@ -795,6 +803,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
 
     }
+
+
 
     public ArrayList<SelectFlightHotelModel> searchText(String text) {
         boolean isFilter = false;
@@ -831,42 +841,62 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
 
     public SelectFlightHotelModel Add_To(int j) {
+        SelectFlightHotelModel selectHotelModel = null;
+
+        try{
 
 
-        SelectFlightHotelModel selectHotelModel;
 
-        if (selectHotelModelArrayListFilter.isEmpty()) {
+            if (selectHotelModelArrayListFilter.isEmpty()) {
 
-            selectHotelModel = new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
-                    selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
-                    selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
-                    selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
-                    selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
-                    selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
-                    selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
-                    selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
-                    selectHotelModelArrayList.get(j).getFacilities(),
-                    selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
-                    selectHotelModelArrayList.get(j).getArrRout(),
-                    selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount(),
-                    selectHotelModelArrayList.get(j).getLocations(), selectHotelModelArrayList.get(j).getFlightId());
+                selectHotelModel = new SelectFlightHotelModel(selectHotelModelArrayList.get(j).getName(),
+                        selectHotelModelArrayList.get(j).getCity(), selectHotelModelArrayList.get(j).getTitle(),
+                        selectHotelModelArrayList.get(j).getBoard(), selectHotelModelArrayList.get(j).getPrice(),
+                        selectHotelModelArrayList.get(j).getImageUrl(), selectHotelModelArrayList.get(j).getLocation(),
+                        selectHotelModelArrayList.get(j).getOldPrice(), selectHotelModelArrayList.get(j).getStar(),
+                        selectHotelModelArrayList.get(j).geteHotelId(), selectHotelModelArrayList.get(j).getResultUniqID(),
+                        selectHotelModelArrayList.get(j).isBestSell(), selectHotelModelArrayList.get(j).isOff(),
+                        selectHotelModelArrayList.get(j).getOff(), selectHotelModelArrayList.get(j).getTypeText(),
+                        selectHotelModelArrayList.get(j).getFacilities(),
+                        selectHotelModelArrayList.get(j).getDiff(), selectHotelModelArrayList.get(j).getFlights(),
+                        selectHotelModelArrayList.get(j).getArrRout(),
+                        selectHotelModelArrayList.get(j).getDepRout(), selectHotelModelArrayList.get(j).getAmount(),
+                        selectHotelModelArrayList.get(j).getLocations(), selectHotelModelArrayList.get(j).getFlightId());
 
 
-        } else {
+            } else {
 
-            selectHotelModel = new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
-                    selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
-                    selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
-                    selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
-                    selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
-                    selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
-                    selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
-                    selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
-                    selectHotelModelArrayListFilter.get(j).getFacilities(),
-                    selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(),
-                    selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(),
-                    selectHotelModelArrayListFilter.get(j).getAmount(), selectHotelModelArrayListFilter.get(j).getLocations(), selectHotelModelArrayList.get(j).getFlightId());
+                selectHotelModel = new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
+                        selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
+                        selectHotelModelArrayListFilter.get(j).getBoard(), selectHotelModelArrayListFilter.get(j).getPrice(),
+                        selectHotelModelArrayListFilter.get(j).getImageUrl(), selectHotelModelArrayListFilter.get(j).getLocation(),
+                        selectHotelModelArrayListFilter.get(j).getOldPrice(), selectHotelModelArrayListFilter.get(j).getStar(),
+                        selectHotelModelArrayListFilter.get(j).geteHotelId(), selectHotelModelArrayListFilter.get(j).getResultUniqID(),
+                        selectHotelModelArrayListFilter.get(j).isBestSell(), selectHotelModelArrayListFilter.get(j).isOff(),
+                        selectHotelModelArrayListFilter.get(j).getOff(), selectHotelModelArrayListFilter.get(j).getTypeText(),
+                        selectHotelModelArrayListFilter.get(j).getFacilities(),
+                        selectHotelModelArrayListFilter.get(j).getDiff(), selectHotelModelArrayListFilter.get(j).getFlights(),
+                        selectHotelModelArrayListFilter.get(j).getArrRout(), selectHotelModelArrayListFilter.get(j).getDepRout(),
+                        selectHotelModelArrayListFilter.get(j).getAmount(), selectHotelModelArrayListFilter.get(j).getLocations(), selectHotelModelArrayList.get(j).getFlightId());
+            }
+
         }
+        catch (Exception e){
+            tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+            tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
+            adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
+            list.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            elNotFound.setVisibility(View.VISIBLE);
+            list.setVisibility(View.GONE);
+            rlList.setVisibility(View.GONE);
+            btnOk.setVisibility(View.GONE);
+            rlEr.setVisibility(View.GONE);
+            tvAlert.setText(R.string.filter_no_found);
+            tvAlertDesc.setText(R.string.change_filter);
+        }
+
+
 
 
         return selectHotelModel;

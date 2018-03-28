@@ -2019,7 +2019,8 @@
     <string name="detail_insurnace">جزئیات بیمه</string>
     <string name="best_seller">پر فروش</string>
     <string name="comma">،</string>
-    <string-array name="country_flags">
+  <string name="the_locale_will_be_changed">با توجه به مکان فعلی شما، زبان برنامه تغییر خواهد کرد</string>
+  <string-array name="country_flags">
         <item>@drawable/ir</item>
         <item>@drawable/ir</item>
         <item>@drawable/ir</item>
@@ -2360,6 +2361,9 @@
 
         <item>@drawable/ir</item><!-- 289-->
     </string-array>
+    <string name="icon_comments">&#xe638;</string>
+    <string name="icon_room">&#xe639;</string>
+    <string name="icon_ac">&#xe640;</string>
 
 
 </resources>

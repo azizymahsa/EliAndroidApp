@@ -53,7 +53,7 @@
                             android:textColor="#56687a"
                             android:textSize="@dimen/_16dp_txtSize"/>
 
-                        <TextView
+                        <com.eligasht.reservation.views.ticker.TickerView
                             android:id="@+id/txtCountAdt"
                             android:layout_width="60dp"
                             android:layout_height="30dp"
@@ -62,7 +62,8 @@
                             android:textColor="@color/pack_room_text"
                             android:textAppearance="@style/IrsansBold"
                             android:text="1"
-                            android:textSize="@dimen/_14dp_txtSize"/>
+                            android:textSize="@dimen/_14dp_txtSize"
+                            app:ticker_defaultCharacterList="number"/>
 
                         <Button
                             android:id="@+id/btnPlusAdt"
@@ -109,7 +110,7 @@
                             android:textColor="#56687a"
                             android:textSize="@dimen/_16dp_txtSize"/>
 
-                        <TextView
+                        <com.eligasht.reservation.views.ticker.TickerView
                             android:id="@+id/txtCountCh"
                             android:layout_width="60dp"
                             android:layout_height="30dp"
@@ -118,6 +119,7 @@
                             android:text="0"
                             android:textColor="@color/pack_room_text"
                             android:textAppearance="@style/IrsansBold"
+                            app:ticker_defaultCharacterList="number"
                             android:textSize="@dimen/_14dp_txtSize"/>
 
                         <Button

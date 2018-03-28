@@ -8,14 +8,18 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
-
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.SectionModel;
 import com.eligasht.reservation.tools.NonScrollRecyclerView;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.adapters.AboutAdapter;
+import com.eligasht.reservation.views.ticker.TickerView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -38,7 +42,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -46,14 +49,16 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class AboutActivity extends BaseActivity implements View.OnClickListener {
 
 
-    private FancyButton btnBack;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     Handler handler;
     ProgressDialog progressBar;
-    private Handler progressBarHandler = new Handler();
     ArrayList<HashMap<String, String>> mylist = null;
     AboutAdapter mAdapter;
+    TickerView v1, v2, v3;
+    ImageView hotel;
+    private FancyButton btnBack;
+    private Handler progressBarHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +66,24 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_about_new);
 
 
-        btnBack = (FancyButton) findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
+        v1 = findViewById(R.id.textView2);
+        v2 = findViewById(R.id.textView8);
+        v3 = findViewById(R.id.textView5);
+        hotel = findViewById(R.id.hotel);
+        YoYo.with(Techniques.Pulse).repeat(500)
+                .duration(8000)
+                .playOn(hotel);
 
 
         new GetAboutAsync().execute();
 
+
     }
+
 
     @Override
     protected void onDestroy() {
@@ -97,11 +111,15 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            try {
+                pdLoading.setMessage("\tLoading...");
+                pdLoading.setCancelable(false);
+                pdLoading.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+
 
         }
 
@@ -151,38 +169,38 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                     serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
                 } catch (Exception ignored) {
                 }
-                try{
+                try {
 
-                if(Locale.getDefault().getLanguage().equals("en")){
-                    JSONObject jsone = new JSONObject();
-                    JSONObject manJson = new JSONObject();
-                    manJson.put("culture", "en-");
-                   // jsone.put("", manJson);
-                    data=manJson.toString();
-                }else if(Locale.getDefault().getLanguage().equals("fa")) {
-                    JSONObject jsone = new JSONObject();
-                    JSONObject manJson = new JSONObject();
-                    manJson.put("culture", "fa-");
-                    // jsone.put("", manJson);
-                    data=manJson.toString();
-                }else if(Locale.getDefault().getLanguage().equals("tr")) {
-                    JSONObject jsone = new JSONObject();
-                    JSONObject manJson = new JSONObject();
-                    manJson.put("culture", "tr-TR");
-                   // jsone.put("", manJson);
-                    data=manJson.toString();
-                }else if(Locale.getDefault().getLanguage().equals("ar")) {
-                    JSONObject jsone = new JSONObject();
-                    JSONObject manJson = new JSONObject();
-                    manJson.put("culture", "ar-");
-                    //jsone.put("", manJson);
-                    data=manJson.toString();
+                    if (Prefs.getString("lang", "fa").equals("en")) {
+                        JSONObject jsone = new JSONObject();
+                        JSONObject manJson = new JSONObject();
+                        manJson.put("culture", "en-");
+                        // jsone.put("", manJson);
+                        data = manJson.toString();
+                    } else if (Prefs.getString("lang", "fa").equals("fa")) {
+                        JSONObject jsone = new JSONObject();
+                        JSONObject manJson = new JSONObject();
+                        manJson.put("culture", "fa-");
+                        // jsone.put("", manJson);
+                        data = manJson.toString();
+                    } else if (Prefs.getString("lang", "fa").equals("tr")) {
+                        JSONObject jsone = new JSONObject();
+                        JSONObject manJson = new JSONObject();
+                        manJson.put("culture", "tr-TR");
+                        // jsone.put("", manJson);
+                        data = manJson.toString();
+                    } else if (Prefs.getString("lang", "fa").equals("ar")) {
+                        JSONObject jsone = new JSONObject();
+                        JSONObject manJson = new JSONObject();
+                        manJson.put("culture", "ar-");
+                        //jsone.put("", manJson);
+                        data = manJson.toString();
+                    }
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-                System.out.println("culture:"+data);
+                System.out.println("culture:" + data);
                 HttpClient client = new DefaultHttpClient();
 
 
@@ -222,56 +240,64 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
 
         @Override
         protected void onPostExecute(String result) {
-
-            //this method will be running on UI thread
-
-            pdLoading.dismiss();
-            List<SectionModel> data = new ArrayList<SectionModel>();
-
-            pdLoading.dismiss();
             try {
+                //this method will be running on UI thread
+                v1.setAnimationDuration(1000);
+                v2.setAnimationDuration(1000);
+                v3.setAnimationDuration(1000);
+                v1.setText("1200", true);
+                v2.setText("900", true);
+                v3.setText("20000", true);
+                List<SectionModel> data = new ArrayList<SectionModel>();
+
+                pdLoading.dismiss();
+                try {
 ////////////////////////////
-                JSONObject jsonObj = new JSONObject(result);
+                    JSONObject jsonObj = new JSONObject(result);
 
-                // JSONObject jsonObj = new JSONObject(retSrc);
+                    // JSONObject jsonObj = new JSONObject(retSrc);
 
-                // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAboutUsWithCultureResult");
-                JSONArray jArray = GetAirportsResult.getJSONArray("Sections");
-                //////////////////////////////
+                    // Getting JSON Array node
+                    JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAboutUsWithCultureResult");
+                    JSONArray jArray = GetAirportsResult.getJSONArray("Sections");
+                    //////////////////////////////
 
-                // Extract data from json and store into ArrayList as class objects
-                for (int i = 0; i < jArray.length(); i++) {
-                    JSONObject json_data = jArray.getJSONObject(i);
-                    SectionModel sectionModel = new SectionModel();
-                    sectionModel.setDescription(json_data.getString("Description"));
-                    sectionModel.setSectionName(json_data.getString("SectionName"));
-                    sectionModel.setImageAddress(json_data.getString("ImageAddress"));
+                    // Extract data from json and store into ArrayList as class objects
+                    for (int i = 0; i < jArray.length(); i++) {
+                        JSONObject json_data = jArray.getJSONObject(i);
+                        SectionModel sectionModel = new SectionModel();
+                        sectionModel.setDescription(json_data.getString("Description"));
+                        sectionModel.setSectionName(json_data.getString("SectionName"));
+                        sectionModel.setImageAddress(json_data.getString("ImageAddress"));
 
-                    data.add(sectionModel);
-                }
-
-
-                listAirPort = (NonScrollRecyclerView) findViewById(R.id.lvExp);
-                listAirPort.addItemDecoration(new DividerItemDecoration(AboutActivity.this, 1));
-                listAirPort.setLayoutManager(new LinearLayoutManager(AboutActivity.this));
-                mAdapter = new AboutAdapter(data);
-                //mAdapter.setAdapter(mAdapter);
-                listAirPort.setAdapter(mAdapter);
-                listAirPort.setClickable(false);
-                listAirPort.setEnabled(false);
-                listAirPort.setScrollContainer(false);
-                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
-                listAirPort.setOnFlingListener(new RecyclerView.OnFlingListener() {
-                    @Override
-                    public boolean onFling(int velocityX, int velocityY) {
-                        listAirPort.dispatchNestedFling(velocityX, velocityY, false);
-                        return false;
+                        data.add(sectionModel);
                     }
-                });
-            } catch (JSONException e) {
-                Toast.makeText(AboutActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+
+
+                    listAirPort = findViewById(R.id.lvExp);
+                    listAirPort.addItemDecoration(new DividerItemDecoration(AboutActivity.this, 1));
+                    listAirPort.setLayoutManager(new LinearLayoutManager(AboutActivity.this));
+                    mAdapter = new AboutAdapter(data);
+                    //mAdapter.setAdapter(mAdapter);
+                    listAirPort.setAdapter(mAdapter);
+                    listAirPort.setClickable(false);
+                    listAirPort.setEnabled(false);
+                    listAirPort.setScrollContainer(false);
+                    //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
+                    listAirPort.setOnFlingListener(new RecyclerView.OnFlingListener() {
+                        @Override
+                        public boolean onFling(int velocityX, int velocityY) {
+                            listAirPort.dispatchNestedFling(velocityX, velocityY, false);
+                            return false;
+                        }
+                    });
+                } catch (JSONException e) {
+                    Toast.makeText(AboutActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
+
             }
+
 
         }
 

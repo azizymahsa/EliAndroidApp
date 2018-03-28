@@ -146,7 +146,7 @@ public class ImageViewActivity extends BaseActivity {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             View view = View.inflate(container.getContext(), R.layout.list_image_item_gallary, null);
-            PhotoView image = (PhotoView) view.findViewById(R.id.photo_view);
+            PhotoView image = view.findViewById(R.id.photo_view);
 
             container.addView(view, 0);
 
@@ -163,7 +163,7 @@ public class ImageViewActivity extends BaseActivity {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((View) object);
+            container.removeView((View) object);
         }
     }
 
@@ -198,7 +198,7 @@ public class ImageViewActivity extends BaseActivity {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.row_item_image, null);
                 holder = new ViewHolder();
-                holder.ivImage = (ImageView) convertView.findViewById(R.id.ivImage);
+                holder.ivImage = convertView.findViewById(R.id.ivImage);
 
 
                 convertView.setTag(holder);

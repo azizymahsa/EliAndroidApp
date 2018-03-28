@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.eligasht.R;
 import com.eligasht.reservation.base.GlobalApplication;
 import com.eligasht.reservation.views.components.SimpleRecycleView;
+import com.eligasht.reservation.views.ticker.TickerView;
 
 /**
  * Created by elham.bonyani on 1/4/2018.
@@ -19,8 +20,8 @@ public class RoomRowHolder extends RecyclerView.ViewHolder {
 
 
     public TextView room_title;
-    public TextView txt_adult;
-    public TextView txt_child;
+    public TickerView txt_adult;
+    public TickerView txt_child;
     public Button btn_adt_pluse;
     public Button btn_adt_mines;
     public Button btn_ch_pluse;

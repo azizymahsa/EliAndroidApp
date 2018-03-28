@@ -19,14 +19,25 @@ public class LoginResult {
         WebUserLogin = value;
     }
 
-    private ArrayList<Errors> Error;
+    private ArrayList<Errors> Errors;
+    private ArrayList<Warningss> Warningss;
+
+
+    public final ArrayList<com.eligasht.reservation.models.model.login.Warningss> getWarningss() {
+        return Warningss;
+    }
+
+    public final void  setWarningss(ArrayList<com.eligasht.reservation.models.model.login.Warningss> warningss) {
+        Warningss = warningss;
+    }
+
     public final ArrayList<Errors> getError()
     {
-        return Error;
+        return Errors;
     }
     public final void setError(ArrayList<Errors> value)
     {
-        Error = value;
+        Errors = value;
     }
 
 }

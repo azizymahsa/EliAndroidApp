@@ -11,18 +11,16 @@
     android:id="@+id/rlRoot">
 
     <FrameLayout
-
         xmlns:fancy="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60dp_hight"        >
-
+        android:layout_height="@dimen/_60dp_hight"
+        >
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60dp_hight"
             android:background="@color/toolbar_color"/>
-
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
@@ -32,7 +30,6 @@
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="200dp"
             fancy:fb_textColor="#FFFFFF"
-
             android:layout_gravity="right|center"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
             fancy:fb_text=" "

@@ -1653,7 +1653,8 @@
                         android:textColor="#098d4e"
                         android:textSize="@dimen/_15dp_normal_textSize"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginLeft="10dp"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1729,7 +1730,7 @@
             android:layout_marginTop="10dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_fileName="circle-l.json"
+            app:lottie_fileName="lottie/circle-l.json"
 
             />
 

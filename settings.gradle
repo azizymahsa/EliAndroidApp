@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':service'
 include ':materialdatetimepicker'
 include ':persianmaterialdatetimepicker'
 include ':library'

@@ -40,6 +40,18 @@
             android:orientation="horizontal"
 
             >
+
+            <EditText
+                android:id="@+id/searchtxt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="@string/SearchCity"
+                android:textColor="#000000"
+                android:textSize="@dimen/_14dp_txtSize"
+
+                />
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btnMic"
                 android:layout_width="@dimen/_35dp"
@@ -53,24 +65,13 @@
                 fancy:fb_text=" "
                 fancy:fb_textColor="@color/text_color_4d"
                 fancy:fb_textSize="@dimen/_14dp_txtSize" />
-            <EditText
-                android:id="@+id/searchtxt"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:gravity="center"
-                android:hint="@string/SearchCity"
-                android:textColor="#000000"
-                android:textSize="@dimen/_14dp_txtSize"
-
-                />
-
         </RelativeLayout>
         <LinearLayout
             android:layout_width="@dimen/toolbar_bottom_width_50dp"
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
+            android:gravity="center"
             >
             <com.wang.avi.AVLoadingIndicatorView
 
@@ -81,6 +82,8 @@
                 android:visibility="invisible"
                 app:indicatorColor="#ffffff"
                 app:indicatorName="BallPulseIndicator"
+                android:layout_gravity="center"
+
 
                 />
         </LinearLayout>

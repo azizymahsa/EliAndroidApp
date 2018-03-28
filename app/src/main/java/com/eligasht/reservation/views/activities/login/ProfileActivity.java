@@ -67,7 +67,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         public void onTabSelected(TabLayout.Tab tab) {
             switch (tab.getPosition()) {
                 case 0:
-                    btnSaveInfo.setText(R.string.text51);
+                    btnSaveInfo.setText(R.string.text52);
                     btnSaveInfo.setVisibility(View.VISIBLE);
                     break;
                 case 1:
@@ -75,9 +75,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     //   btnSaveInfo.setText("ارسال مدارک");
                     break;
                 case 2:
-                    btnSaveInfo.setText(R.string.text52);
-                    btnSaveInfo.setVisibility(View.VISIBLE);
 
+                    btnSaveInfo.setText(R.string.text51);
+                    btnSaveInfo.setVisibility(View.VISIBLE);
                     break;
             }
         }
@@ -198,13 +198,14 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             case R.id.btnSaveInfo:
                 switch (tabLayout.getSelectedTabPosition()) {
                     case 0:
-                        updateProfile();
+                        changePasswordProfile();
+
                         break;
                     case 1:
                         //   emailContractProfile();
                         break;
                     case 2:
-                        changePasswordProfile();
+                        updateProfile();
                         break;
                 }
                 break;

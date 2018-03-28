@@ -116,14 +116,14 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 		final ViewHolder holder;
 
 		if (convertView == null) {
-			Log.e("POSITION", "" + position);
+		//	Log.e("POSITION", "" + position);
 			convertView = myInflater.inflate(R.layout.row_airport, null);
 			holder = new ViewHolder();
 
-			holder.AirportName = (TextView) convertView.findViewById(R.id.text1);
-			holder.CityName = (TextView) convertView.findViewById(R.id.text2);
-			holder.llContentLayout = (LinearLayout) convertView.findViewById(R.id.llContentLayout);
-			holder.llLayoutSubTitle = (LinearLayout) convertView.findViewById(R.id.llLayoutSubTitle);
+			holder.AirportName = convertView.findViewById(R.id.text1);
+			holder.CityName = convertView.findViewById(R.id.text2);
+			holder.llContentLayout = convertView.findViewById(R.id.llContentLayout);
+			holder.llLayoutSubTitle = convertView.findViewById(R.id.llLayoutSubTitle);
 
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
 			convertView.setTag(holder);

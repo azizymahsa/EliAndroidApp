@@ -4,11 +4,14 @@ package com.eligasht.reservation.views.activities.hotel.activity;
  * Reza Nejati <reza.n.j.t.i@gmail.com>
  */
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DividerItemDecoration;
@@ -19,6 +22,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +31,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
@@ -100,7 +105,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private RoomsAdapter roomsAdapter;
     private GetRoomsList getRoomsList;
     private Window window;
-    private LinearLayout llEmakanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel, llInformation, llPolicy;
+    private LinearLayout llEmkanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel, llInformation, llPolicy,tab_layout;
     private FrameLayout flMap;
     private View vEmakanat, vMap, vRezerv, vComment;
     private GoogleMap map;
@@ -119,7 +124,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private AddCommnetDialog addCommnetDialog;
     private String comment, userName, title;
     private CommentAdapterRecycle commentAdapter;
-    private TextView tvSortComment, tvDateDetail;
+    private TextView tvSortComment, tvDateDetail,tvCommentClickText,tvMapClickText,
+            tvEmakanatClickText,tvRezervClickText;
     boolean isNew = false;
     private ScrollView svDetail;
     private RelativeLayout elNotFound;
@@ -144,8 +150,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 lvRooms.setVisibility(View.GONE);
                 vComment.setVisibility(View.GONE);
                 tvAlert.setVisibility(View.GONE);
-                llDynamic.setVisibility(View.VISIBLE);
-                vEmakanat.setVisibility(View.VISIBLE);
+              /*  llDynamic.setVisibility(View.VISIBLE);
+                vEmakanat.setVisibility(View.VISIBLE);*/
+                flMap.setVisibility(View.VISIBLE);
+                vMap.setVisibility(View.VISIBLE);
+
             }
         } catch (Exception e) {
         }
@@ -161,9 +170,16 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         rlLoading = findViewById(R.id.rlLoading);
         flViewPager = findViewById(R.id.flViewPager);
         cvHotel = findViewById(R.id.cvHotel);
+        tab_layout = findViewById(R.id.tab_layout);
         rlRoot = findViewById(R.id.rlRoot);
-        llEmakanatClick = findViewById(R.id.llEmakanatClick);
+        llEmkanatClick = findViewById(R.id.llEmkanatClick);
         ivLoading = findViewById(R.id.ivLoading);
+        tvCommentClickText = findViewById(R.id.tvCommentClickText);
+        tvMapClickText = findViewById(R.id.tvMapClickText);
+        tvEmakanatClickText = findViewById(R.id.tvEmakanatClickText);
+        tvRezervClickText = findViewById(R.id.tvRezervClickText);
+
+
         llMapClick = findViewById(R.id.llMapClick);
         tvAdress = findViewById(R.id.tvAdress);
         llRezervClick = findViewById(R.id.llRezervClick);
@@ -197,7 +213,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         btnOneComment = findViewById(R.id.btnOneComment);
         rlLoading2 = findViewById(R.id.rlLoading2);
         // avi1 = findViewById(R.id.avi1);
-        llEmakanatClick.setOnClickListener(this);
+        llEmkanatClick.setOnClickListener(this);
         llMapClick.setOnClickListener(this);
         llRezervClick.setOnClickListener(this);
         llCommentClick.setOnClickListener(this);
@@ -206,6 +222,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         flMap = findViewById(R.id.flMap);
         btnComment = findViewById(R.id.btnComment);
+
         btnComment.setOnClickListener(this);
 
         vEmakanat = findViewById(R.id.vEmakanat);
@@ -232,6 +249,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         Utility.setAnimLoading(this);
         tvDateDetail.setText(getIntent().getExtras().getString("DateTime"));
+
+
+
+
+
+
+
     }
 
     @Override
@@ -260,6 +284,14 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 vComment.setVisibility(View.INVISIBLE);
                 vRezerv.setVisibility(View.VISIBLE);
 
+                tvCommentClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvMapClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvRezervClickText.setTextColor(Color.BLACK);
+
+
+
+
 
                 break;
             case R.id.llMapClick:
@@ -280,11 +312,26 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     vMap.setVisibility(View.VISIBLE);
                     vRezerv.setVisibility(View.INVISIBLE);
                     vComment.setVisibility(View.INVISIBLE);
+
+
+
+
+
+                    tvCommentClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                    tvMapClickText.setTextColor(Color.BLACK);
+                    tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                    tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+
+
+
+
+
+
                 }
 
 
                 break;
-            case R.id.llEmakanatClick:
+            case R.id.llEmkanatClick:
                 flMap.setVisibility(View.GONE);
                 lvRooms.setVisibility(View.GONE);
                 llComment.setVisibility(View.GONE);
@@ -298,14 +345,16 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 vRezerv.setVisibility(View.INVISIBLE);
                 vComment.setVisibility(View.INVISIBLE);
 
+
+                tvCommentClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvMapClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvEmakanatClickText.setTextColor(Color.BLACK);
+                tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+
+
                 break;
             case R.id.llCommentClick:
-      /*          svDetail.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        svDetail.fullScroll(ScrollView.FOCUS_UP);
-                    }
-                }, 100);*/
+
                 flMap.setVisibility(View.GONE);
                 lvRooms.setVisibility(View.GONE);
                 tvAlert.setVisibility(View.GONE);
@@ -322,6 +371,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     new GetCommentAsync().execute();
 
                 }
+
+                tvCommentClickText.setTextColor(Color.BLACK);
+                tvMapClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+                tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
+
 
 
                 break;
@@ -581,11 +636,15 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             window.setStatusBarColor(getColor(R.color.colorPrimaryDark));*/
             try {
                 cvHotel.setVisibility(View.VISIBLE);
+                tab_layout.setVisibility(View.VISIBLE);
 
 
                 YoYo.with(Techniques.FadeIn)
                         .duration(400)
                         .playOn(cvHotel);
+                YoYo.with(Techniques.FadeIn)
+                        .duration(400)
+                        .playOn(tab_layout);
 
 
                 tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);

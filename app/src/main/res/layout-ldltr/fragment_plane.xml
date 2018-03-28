@@ -252,23 +252,22 @@
                                 android:gravity="left"
                                 android:orientation="horizontal">
 
-                                <TextView
+                                <com.airbnb.lottie.LottieAnimationView
+                                    android:id="@+id/lottie_checkin"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginBottom="1dp"
                                     android:layout_weight="0.2"
                                     android:gravity="center"
-                                    android:text="@string/icon_calander"
-                                    android:textAppearance="@style/IconFonts"
-                                    android:textColor="@color/text_color_2"
-                                    android:textSize="@dimen/_25dp_normal_iconSize" />
+                                    card_view:lottie_autoPlay="false"
+                                    card_view:lottie_loop="false"
+                                    card_view:lottie_fileName="lottie/calendar.json"
+                                    />
 
 
                                 <TextView
                                     android:id="@+id/tarikh_az_picker"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginRight="10dp"
                                     android:layout_weight="0.8"
                                     android:gravity="center|left"
                                     android:text="@string/please_select_one"
@@ -289,22 +288,21 @@
                                 android:orientation="horizontal">
 
 
-                                <TextView
+                                <com.airbnb.lottie.LottieAnimationView
+                                    android:id="@+id/lottie_checkout"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginBottom="1dp"
                                     android:layout_weight="0.2"
                                     android:gravity="center"
-                                    android:text="@string/icon_calander"
-                                    android:textAppearance="@style/IconFonts"
-                                    android:textColor="@color/text_color_2"
-                                    android:textSize="@dimen/_25dp_normal_iconSize" />
+                                    card_view:lottie_autoPlay="false"
+                                    card_view:lottie_loop="false"
+                                    card_view:lottie_fileName="lottie/calendar.json"
+                                    />
 
                                 <TextView
                                     android:id="@+id/tarikh_be_picker"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginRight="10dp"
                                     android:layout_weight="0.8"
                                     android:gravity="center|left"
                                     android:text="@string/please_select_one"
@@ -380,7 +378,6 @@
                                 android:layout_width="@dimen/_30dp_f_h"
                                 android:layout_height="@dimen/_30dp_f_h"
                                 android:layout_marginBottom="1dp"
-                                android:layout_marginRight="20dp"
                                 android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="@string/mines"
@@ -388,14 +385,18 @@
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
-                            <TextView
+                            <com.eligasht.reservation.views.ticker.TickerView
                                 android:id="@+id/txtCountB"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_gravity="top"
+                                android:gravity="center"
                                 android:text="1"
+                                card_view:ticker_defaultCharacterList="number"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/_12dp_normal_textSize" />
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:layout_marginLeft="@dimen/_10dp"
+                                android:layout_marginRight="@dimen/_10dp"/>
 
                             <Button
                                 android:id="@+id/btnPlusB"
@@ -437,7 +438,6 @@
                                 android:layout_width="@dimen/_30dp_f_h"
                                 android:layout_height="@dimen/_30dp_f_h"
                                 android:layout_marginBottom="1dp"
-                                android:layout_marginRight="20dp"
                                 android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="@string/mines"
@@ -445,14 +445,18 @@
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
-                            <TextView
+                            <com.eligasht.reservation.views.ticker.TickerView
                                 android:id="@+id/txtCountK"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_gravity="top"
                                 android:text="0"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/_12dp_normal_textSize" />
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:gravity="center"
+                                card_view:ticker_defaultCharacterList="number"
+                                android:layout_marginLeft="@dimen/_10dp"
+                                android:layout_marginRight="@dimen/_10dp"/>
 
                             <Button
                                 android:id="@+id/btnPlusK"
@@ -493,7 +497,6 @@
                                 android:layout_width="@dimen/_30dp_f_h"
                                 android:layout_height="@dimen/_30dp_f_h"
                                 android:layout_marginBottom="1dp"
-                                android:layout_marginRight="20dp"
                                 android:layout_marginTop="1dp"
                                 android:background="@drawable/background_strock"
                                 android:text="@string/mines"
@@ -501,14 +504,18 @@
                                 android:textColor="@color/text_color_2"
                                 android:textSize="@dimen/_12dp_normal_textSize" />
 
-                            <TextView
+                            <com.eligasht.reservation.views.ticker.TickerView
                                 android:id="@+id/txtCountN"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_gravity="top"
                                 android:text="0"
                                 android:textColor="@color/text_color_2"
-                                android:textSize="@dimen/_12dp_normal_textSize" />
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:gravity="center"
+                                card_view:ticker_defaultCharacterList="number"
+                                android:layout_marginLeft="@dimen/_10dp"
+                                android:layout_marginRight="@dimen/_10dp"/>
 
                             <Button
                                 android:id="@+id/btnPlusN"

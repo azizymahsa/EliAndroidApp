@@ -55,15 +55,15 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
 
     public boolean isValidForm() {
         // check validation and if all thigs are ok return true else return false;
-        if (changePass_old.length() == 0) {
+        if (changePass_old.getText().length() == 0) {
             Toast.makeText(getActivity(), R.string.enter_your_password, Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (changePass_new_confirm.length() == 0) {
+        if (changePass_new_confirm.getText().length() == 0) {
             Toast.makeText(getActivity(), R.string.re_enter_your_password, Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (changePass_new.length() == 0) {
+        if (changePass_new.getText().length() == 0) {
             Toast.makeText(getActivity(), R.string.enter_your_new_password, Toast.LENGTH_SHORT).show();
             return false;
         }

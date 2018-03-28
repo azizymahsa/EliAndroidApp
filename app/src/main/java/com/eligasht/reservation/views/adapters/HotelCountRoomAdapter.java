@@ -95,24 +95,24 @@ public class HotelCountRoomAdapter extends BaseAdapter {
 		final ViewHolder holder;
 		
 		if (convertView == null) {
-			Log.e("POSITION", "" + position);
+		//	Log.e("POSITION", "" + position);
 			convertView = myInflater.inflate(R.layout.row_count_room, null);
 			holder = new ViewHolder();
 
 			///
-			holder.btnPlusB= (Button) convertView.findViewById(R.id.btnPlusB);
-			holder.txtCountB= (TextView) convertView.findViewById(R.id.txtCountB);
-			holder.btnMinesB= (Button) convertView.findViewById(R.id.btnMinesB);
+			holder.btnPlusB= convertView.findViewById(R.id.btnPlusB);
+			holder.txtCountB= convertView.findViewById(R.id.txtCountB);
+			holder.btnMinesB= convertView.findViewById(R.id.btnMinesB);
 			
-			holder.btnPlusK= (Button) convertView.findViewById(R.id.btnPlusK);
-			holder.txtCountK= (TextView) convertView.findViewById(R.id.txtCountK);
-			holder.btnMinesK= (Button) convertView.findViewById(R.id.btnMinesK);
+			holder.btnPlusK= convertView.findViewById(R.id.btnPlusK);
+			holder.txtCountK= convertView.findViewById(R.id.txtCountK);
+			holder.btnMinesK= convertView.findViewById(R.id.btnMinesK);
 			
-			holder.btnPlusN= (Button) convertView.findViewById(R.id.btnPlusN);
-			holder.txtCountN= (TextView) convertView.findViewById(R.id.txtCountN);
-			holder.btnMinesN= (Button) convertView.findViewById(R.id.btnMinesN);
+			holder.btnPlusN= convertView.findViewById(R.id.btnPlusN);
+			holder.txtCountN= convertView.findViewById(R.id.txtCountN);
+			holder.btnMinesN= convertView.findViewById(R.id.btnMinesN);
 			
-			holder.txtDelete= (TextView) convertView.findViewById(R.id.txtDelete);
+			holder.txtDelete= convertView.findViewById(R.id.txtDelete);
 		
 			convertView.setTag(holder);
 		} else {

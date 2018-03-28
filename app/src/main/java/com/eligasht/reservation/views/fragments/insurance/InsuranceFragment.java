@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.fragments.insurance;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
@@ -63,6 +65,8 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     private TextView btnSearchInsurance;
     private int accomodationDays;
     CalendarDialog dialog;
+    private LottieAnimationView lottieCheckin, lottieCheckout;
+
 
     public static InsuranceFragment instance() {
         InsuranceFragment fragment = new InsuranceFragment();
@@ -132,7 +136,10 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
         departureDate = SingletonDate.getInstance().getStartDate().getFullGeo();
         txt_depart_date.setText(SingletonDate.getInstance().getStartDate().getDescription());
-
+        lottieCheckin = view.findViewById(R.id.lottie_checkin);
+        lottieCheckout = view.findViewById(R.id.lottie_checkout);
+        lottieCheckin.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);
 
         layout_depart_date.setOnClickListener(this);
         layout_duringTrip.setOnClickListener(this);
@@ -140,7 +147,31 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         btnSearchInsurance.setOnClickListener(this);
         txtCity.setOnClickListener(this);
     }
+    private void initCheckInCheckOutAnim() {
+        lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckin.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        lottieCheckin.playAnimation();
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -203,6 +234,29 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     public void onReturnValue(String type, int duration) {
         txt_during_trip.setText(type);
         accomodationDays = duration;
+        lottieCheckout.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                lottieCheckout.setFrame(0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        lottieCheckout.playAnimation();
     }
 
     @Override
@@ -221,7 +275,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
-
+        initCheckInCheckOutAnim();
         departureDate = startDate.getFullGeo();
         SingletonDate.getInstance().setStartDate(startDate);
         txt_depart_date.setText(startDate.getDescription());

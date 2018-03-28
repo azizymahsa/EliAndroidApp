@@ -28,7 +28,7 @@ public class PurchaseFlightResult {
 	private String ServiceTypeID;
 	
 	private String ServiceTypeImgURL;
-	private ExcursionDta excursionDta;
+	private ExcursionDta excursionData;
 
 
 	private String BookingCode;
@@ -181,11 +181,11 @@ public class PurchaseFlightResult {
 		this.flag = flag;
 	}
 
-	public ExcursionDta getExcursionDta() {
-		return excursionDta;
+	public ExcursionDta getExcursionData() {
+		return excursionData;
 	}
 
-	public void setExcursionDta(ExcursionDta excursionDta) {
-		this.excursionDta = excursionDta;
+	public void setExcursionData(ExcursionDta excursionData) {
+		this.excursionData = excursionData;
 	}
 }

@@ -92,20 +92,20 @@ public long sumTprice=0;
 		final GetKhadmatAdapter.ViewHolder holder;
 
 		if (convertView == null) {
-			Log.e("POSITION", "" + position);
+		//	Log.e("POSITION", "" + position);
 			convertView = myInflater.inflate(R.layout.row_khadamat, null);
 			holder = new GetKhadmatAdapter.ViewHolder();
 
-			holder.txtDescription = (TextView) convertView.findViewById(R.id.txtDescription);
-			holder.txtServiceNameFa = (TextView) convertView.findViewById(R.id.txtServiceNameFa);
+			holder.txtDescription = convertView.findViewById(R.id.txtDescription);
+			holder.txtServiceNameFa = convertView.findViewById(R.id.txtServiceNameFa);
 
-			holder.imageView1= (ImageView) convertView.findViewById(R.id.imageView1);
+			holder.imageView1= convertView.findViewById(R.id.imageView1);
 
-			holder.btnAddsabad= (RelativeLayout) convertView.findViewById(R.id.btnAddsabad);
-			holder.txtAdd= (TextView) convertView.findViewById(R.id.txtAdd);
-			holder.img_khadmat_row= (ImageView) convertView.findViewById(R.id.img_khadmat_row);
+			holder.btnAddsabad= convertView.findViewById(R.id.btnAddsabad);
+			holder.txtAdd= convertView.findViewById(R.id.txtAdd);
+			holder.img_khadmat_row= convertView.findViewById(R.id.img_khadmat_row);
 
-			holder.txtServiceTotalPrice= (TextView) convertView.findViewById(R.id.txtServiceTotalPrice);
+			holder.txtServiceTotalPrice= convertView.findViewById(R.id.txtServiceTotalPrice);
 
 
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
@@ -116,7 +116,7 @@ public long sumTprice=0;
 		//cursor.moveToPosition(position);
 		final PurchaseFlightResult current=data.get(position);
 		holder.txtDescription.setText(current.getServiceDescFa()+ "");
-		Log.e("testkhadamat",current.getExcursionDta().DepartureFltTime );
+		Log.e("testkhadamat",current.getExcursionData().DepartureFltTime );
 
 		holder.txtServiceNameFa.setText(current.getServiceNameFa());
 		holder.txtServiceTotalPrice.setText(current.getServiceTotalPrice() > 0 ? String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice())) : "IT");//String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
@@ -191,20 +191,20 @@ public long sumTprice=0;
 				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false") && Tprice==0 && Prefs.getString("Flag_First_Computing","F").equals("F")){
 					Intent intent=	new Intent(context, TransferActivity.class);
 
-					intent.putExtra("ArrialAirportCode",current.getExcursionDta().ArrialAirportCode);
-					intent.putExtra("ArrivalFltDate",current.getExcursionDta().ArrivalFltDate);
-					intent.putExtra("ArrivalFltNo",current.getExcursionDta().ArrivalFltNo);
-					intent.putExtra("ArrivalFltTime",current.getExcursionDta().ArrivalFltTime);
-					intent.putExtra("CityID",current.getExcursionDta().CityID);
-					intent.putExtra("DepartureFltDate",current.getExcursionDta().DepartureFltDate);
-					intent.putExtra("DepartureFltNo",current.getExcursionDta().DepartureFltNo);
-					intent.putExtra("DepartureFltTime",current.getExcursionDta().DepartureFltTime);
-					intent.putExtra("HotelID",current.getExcursionDta().HotelID);
-					intent.putExtra("HotelNameEn",current.getExcursionDta().HotelNameEn);
-					intent.putExtra("ArrialAirportName",current.getExcursionDta().ArrialAirportName);
+					intent.putExtra("ArrialAirportCode",current.getExcursionData().ArrialAirportCode);
+					intent.putExtra("ArrivalFltDate",current.getExcursionData().ArrivalFltDate);
+					intent.putExtra("ArrivalFltNo",current.getExcursionData().ArrivalFltNo);
+					intent.putExtra("ArrivalFltTime",current.getExcursionData().ArrivalFltTime);
+					intent.putExtra("CityID",current.getExcursionData().CityID);
+					intent.putExtra("DepartureFltDate",current.getExcursionData().DepartureFltDate);
+					intent.putExtra("DepartureFltNo",current.getExcursionData().DepartureFltNo);
+					intent.putExtra("DepartureFltTime",current.getExcursionData().DepartureFltTime);
+					intent.putExtra("HotelID",current.getExcursionData().HotelID);
+					intent.putExtra("HotelNameEn",current.getExcursionData().HotelNameEn);
+					intent.putExtra("ArrialAirportName",current.getExcursionData().ArrialAirportName);
 
 					intent.putExtra("ServiceID",current.getSelectID());
-					intent.putExtra("PassengerList",current.getExcursionDta().PassengerList);
+					intent.putExtra("PassengerList",current.getExcursionData().PassengerList);
 					intent.putExtra("BookingCode",current.getBookingCode());
 					context.startActivity(intent);
 

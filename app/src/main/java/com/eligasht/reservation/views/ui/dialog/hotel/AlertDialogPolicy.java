@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -44,7 +45,9 @@ public class AlertDialogPolicy implements View.OnClickListener {
         tvAlert.setLineSpacing(30);
         tvAlert.setTypeFace(typeface);
         tvAlert.setTextColor(ContextCompat.getColor(activity,R.color.text_color_4d));*/
-
+        LottieAnimationView lottieAnimationView = dialogView.findViewById(R.id.animation_view);
+        lottieAnimationView.setAnimation("lottie/warning.json");
+        lottieAnimationView.playAnimation();
         btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         dialog = builder.create();

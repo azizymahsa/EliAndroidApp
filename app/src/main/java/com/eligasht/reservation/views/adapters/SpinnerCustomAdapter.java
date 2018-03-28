@@ -46,15 +46,15 @@ public class SpinnerCustomAdapter extends BaseAdapter {
         TextView names;
         if (isLanguage){
             view = inflter.inflate(R.layout.custom_spinner_item, null);
-             names = (TextView) view.findViewById(R.id.textView);
+             names = view.findViewById(R.id.textView);
 
-            ImageView icon = (ImageView) view.findViewById(R.id.imageView);
+            ImageView icon = view.findViewById(R.id.imageView);
             icon.setImageResource(flags[i]);
 
 
         }else{
             view = inflter.inflate(R.layout.custom_spinner_item_2, null);
-            names = (TextView) view.findViewById(R.id.textView);
+            names = view.findViewById(R.id.textView);
 
 
 

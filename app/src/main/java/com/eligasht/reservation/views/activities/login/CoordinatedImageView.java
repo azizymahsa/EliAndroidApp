@@ -118,7 +118,7 @@ public class CoordinatedImageView extends TextView {
 
         public void onDependentViewRemoved(CoordinatorLayout parent, CoordinatedImageView child, View dependency) {
             if(dependency instanceof Snackbar.SnackbarLayout && ViewCompat.getTranslationY(child) != 0.0F) {
-                ViewCompat.animate(child).translationY(0.0F).scaleX(1.0F).scaleY(1.0F).alpha(1.0F).setInterpolator(new FastOutSlowInInterpolator()).setListener((ViewPropertyAnimatorListener)null);
+                ViewCompat.animate(child).translationY(0.0F).scaleX(1.0F).scaleY(1.0F).alpha(1.0F).setInterpolator(new FastOutSlowInInterpolator()).setListener(null);
             }
 
         }
@@ -284,7 +284,7 @@ public class CoordinatedImageView extends TextView {
         }
 
         public static void offsetDescendantRect(ViewGroup group, View child, Rect rect) {
-            Matrix m = (Matrix)sMatrix.get();
+            Matrix m = sMatrix.get();
             if(m == null) {
                 m = new Matrix();
                 sMatrix.set(m);
@@ -293,7 +293,7 @@ public class CoordinatedImageView extends TextView {
             }
 
             offsetDescendantMatrix(group, child, m);
-            RectF rectF = (RectF)sRectF.get();
+            RectF rectF = sRectF.get();
             if(rectF == null) {
                 rectF = new RectF();
             }
