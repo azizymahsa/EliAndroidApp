@@ -34,6 +34,7 @@ import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -57,6 +58,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class GetAirportMabdaActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
+    private static final String TAG = "GetAirport";
     Handler handler;
     ProgressDialog progressBar;
     private Handler progressBarHandler = new Handler();
@@ -230,7 +232,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
                 // Enter URL address where your json file resides
                 // Even you can make call to php file which returns json data
-                url = new URL("http://mobilews.eligasht.com/Services/CommonRest/StaticDataService.svc/GetAirportWithParents");
+                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetAirportWithParentsWithCulture");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -279,7 +281,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
 
                 HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/Services/CommonRest/StaticDataService.svc/GetAirportWithParents");
+                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetAirportWithParentsWithCulture");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
 
@@ -335,7 +337,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                     String GetError = "";
                     JSONArray jError = null;
                     // Getting JSON Array node
-                    JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");//Error
+                    JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsWithCultureResult");//Error
                     if (!GetAirportsResult.getString("Errors").equals("null")) {
                         jError = GetAirportsResult.getJSONArray("Errors");//
                         JSONObject jPricedItinerary = jError.getJSONObject(0);
@@ -392,25 +394,30 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     public String OrderToJson() {
         JSONObject jsone = new JSONObject();
         JSONObject manJson = new JSONObject();
+        JSONObject identityJson = new JSONObject();
 
 
         try {
             //{"CreatorUserId":0,"Id":"9a633b86-8735-4060-83a3-4797548f0203","Orderno":6,"CustomerCode":"","Visitor":34,"OrderDate":"1395\/08\/19","OrderTime":"11:25:20","IsEmergancy":0,"TimeCheck":30,"ByTel":0,"SaleType":0,"IsConvert":0,"OrderStatus":7,"SMSCounter":0,"FinishTime":"11:33:03","IsReceived":0,"IsSent":0,"WarehouseId":145,"IsTemp":0,"Serial":"31007a81d4b22300"}
+            identityJson.put("Password", "123qwe!@#QWE");
+            identityJson.put("TermianlId", "Mobile");
+            identityJson.put("UserName", "EligashtMlb");
+            identityJson.put("Code", GetAirportMabdaActivity.searchText);
+            manJson.put("identity",identityJson);
 
 
-            manJson.put("UserName", "EligashtMlb");
-            manJson.put("Password", "123qwe!@#QWE");
-            manJson.put("TermianlId", "Mobile");
-            manJson.put("Code", GetAirportMabdaActivity.searchText);
-            manJson.put("culture","en-");
+         //   manJson.put("Code", GetAirportMaghsadActivity.searchText);
+            manJson.put("Culture","en");
+            manJson.put("city","");
+            //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);
-            System.out.println("cultere:"+jsone.toString());
+
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
+        Log.d(TAG, jsone.toString());
         return jsone.toString();
     }
 

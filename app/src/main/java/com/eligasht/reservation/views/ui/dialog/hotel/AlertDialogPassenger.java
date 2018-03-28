@@ -41,6 +41,7 @@ public class AlertDialogPassenger implements View.OnClickListener {
         btnOk = dialogView.findViewById(R.id.btnOk);
         avi = dialogView.findViewById(R.id.avi);
         tvAlert = dialogView.findViewById(R.id.tvAlert);
+        tvTitle = dialogView.findViewById(R.id.tvTitle);
 
  /*       Typeface typeface = Typeface.createFromAsset(activity.getAssets(), dialogView.getContext().getResources().getString(R.string.iran_sans_bold_ttf));
         tvAlert.setTextSize(2, 12);

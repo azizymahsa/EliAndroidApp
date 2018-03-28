@@ -40,6 +40,7 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_fileName="lottie/warning.json"
+            android:layout_gravity="center"
 
             android:layout_marginTop="10dp"
             />
