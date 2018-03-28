@@ -37,27 +37,23 @@ public class GetKhadmatHotelFlightAdapter extends BaseAdapter {
 	public String value_Maghsad_Airport_Code;
 	List<String> selectId = new ArrayList<String>();
 	List<Long> gheymat = new ArrayList<Long>();
-public long Tprice=0;
+public long Tprice;
 public long sumTprice=0;
 	//public List<StrictMath> SegmentListtrueAvali = new ArrayList<FlightSegmentTrue>();
 	public Activity activity;
 
 	// create constructor to innitilize context and data sent from MainActivity
-	public GetKhadmatHotelFlightAdapter(Context context, List<PurchaseFlightResult> data, Activity activity,long Tprice){
+	public GetKhadmatHotelFlightAdapter(Context context, List<PurchaseFlightResult> data, Activity activity,long Tpricee){
 		this.context=context;
 		this.activity=activity;
 		inflater= LayoutInflater.from(context);
 		this.data=data;
-		this.Tprice=Tprice;
+		this.Tprice=Tpricee;
 		myInflater = LayoutInflater.from(activity);
 
 
 	}
-	public GetKhadmatHotelFlightAdapter(Activity activity){
-		//this.context=activity;
-		this.activity=activity;
-		myInflater = LayoutInflater.from(activity);
-	}
+
 
 	public void setData(List<PurchaseFlightResult> data) {
 		this.data = data;

@@ -852,7 +852,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             try {
                 rlLoading2.setVisibility(View.GONE);
 
-                if (airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getErrors()!=null||!airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getErrors().isEmpty()){
+                if (airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getErrors().size()!=0){
                     Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getErrors().get(0).Message, Toast.LENGTH_SHORT).show();
                     Prefs.putLong("Tprice", 0);
                     finish();
@@ -860,8 +860,9 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 }else{
                     Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()));
                     Log.e("testTra",airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()+"");
+                    Prefs.putString("Flag_First_Computing", "F");
+
                     finish();
-                    Prefs.putString("Flag_First_Computing", "T");
                 }
 
 

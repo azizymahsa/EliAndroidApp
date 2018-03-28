@@ -2648,6 +2648,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         super.onResume();
         long gheymatKh=Prefs.getLong("Tprice",0);
         System.out.println("wwwTPRICE:"+gheymatKh);
+
         mAdapter = new GetHotelKhadmatAdapter(PassengerHotelActivity.this, data, PassengerHotelActivity.this,gheymatKh);
         mAdapter.setData(data);
         listKhadamat.setAdapter(mAdapter);
