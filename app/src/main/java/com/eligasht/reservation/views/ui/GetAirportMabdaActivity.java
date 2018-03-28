@@ -402,7 +402,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
             manJson.put("Password", "123qwe!@#QWE");
             manJson.put("TermianlId", "Mobile");
             manJson.put("Code", GetAirportMabdaActivity.searchText);
-            manJson.put("culture","en-");
+            manJson.put("culture","en");
             jsone.put("request", manJson);
             System.out.println("cultere:"+jsone.toString());
 
