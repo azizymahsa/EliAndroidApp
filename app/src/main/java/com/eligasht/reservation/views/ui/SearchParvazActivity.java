@@ -1,6 +1,5 @@
 package com.eligasht.reservation.views.ui;
 
-import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
@@ -18,8 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -36,7 +32,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.changeflight.ChangeFlightApi;
 import com.eligasht.reservation.base.BaseActivity;
@@ -161,7 +156,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     boolean isChangeFlight;
     String searchKey;
     String FlightId;
-    LinearLayout llNextLastDays,llDateToolbar;
+    LinearLayout llNextLastDays,llDateToolbar,llBottom,llSort;
     private ArrayList<ParentItemExpandingPlan> selectHotelModelArrayListBestSeler = new ArrayList<>();
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
     private ExpandableListAdapter listAdapterExpanding;
@@ -216,7 +211,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
         iconFilter = findViewById(R.id.iconFilter);
-
+        llBottom= findViewById(R.id.llBottom);
+        llBottom.setOnClickListener(this);
+        llSort= findViewById(R.id.llSort);
+        llSort.setOnClickListener(this);
 
         txtBack = findViewById(R.id.txtBack);
         txtBack.setOnClickListener(this);
@@ -232,7 +230,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         txtNoResult = findViewById(R.id.txtNoResult);
         txtNoResult.setOnClickListener(this);
         txtFilter = findViewById(R.id.txtFilter);
-        txtFilter.setOnClickListener(this);
+        // txtFilter.setOnClickListener(this);
 
         txtRuzeBad = findViewById(R.id.txtRuzeBad);
         txtRuzeBad.setOnClickListener(this);
@@ -240,6 +238,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         btn_no_Result = findViewById(R.id.btn_no_Result);
         btn_no_Result.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
+        ;
         llNextLastDays = findViewById(R.id.llNextLastDays);
         btn_no_Result.setOnClickListener(this);
 
@@ -247,7 +246,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         txtRuzeGhabl.setOnClickListener(this);
 
         lblMoratabSazi = findViewById(R.id.lblMoratabSazi);
-        lblMoratabSazi.setOnClickListener(this);
+        //lblMoratabSazi.setOnClickListener(this);
 
         txtCityRaft = findViewById(R.id.txtCityRaft);
         llDateToolbar = findViewById(R.id.llDateToolbar);
@@ -461,13 +460,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         }
         // and get whatever type user account id is
-
-
-
-
-
-
-
 
     }//end oncreat======================================================================================
 
@@ -1714,17 +1706,17 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
-            case R.id.txtFilter:
+            case R.id.llBottom:
 
                 new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
 
                 break;
-            case R.id.iconFilter:
+            /*case R.id.iconFilter:
 
                 new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
 
-                break;
-            case R.id.lblMoratabSazi://sort
+                break;*/
+            case R.id.llSort://sort
                 // custom dialog
                 new SortFlightDialog(SearchParvazActivity.this, this, besetSeler, bestOff, remove);
 
@@ -2286,12 +2278,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     GetError = jPricedItinerary.getString("Message");
                 }
                 if (GetError.length() > 1) {
-                    try {
-                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
-                        AlertDialogPassenger.setText(GetError, getString(R.string.massege));
-                    }catch (Exception e){
-                        e.getMessage();
-                    }
+                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
+                    AlertDialogPassenger.setText(GetError, getString(R.string.massege));
+
                 } else {
 ////////////////////////////////
 					/*JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
@@ -2312,7 +2301,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.ErrorServer),getString(R.string.massege));
+                AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
             }
 
         }

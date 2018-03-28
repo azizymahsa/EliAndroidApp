@@ -422,7 +422,7 @@
 
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="190"
+                android:layout_weight="170"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -430,7 +430,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="90"
+                    android:layout_weight="120"
                     android:gravity="center">
 
 
@@ -563,8 +563,9 @@
                 android:id="@+id/llSort"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="120"
+                android:layout_weight="100"
                 android:gravity="center"
+                android:layout_marginRight="@dimen/_5_flight_dp"
                 android:orientation="horizontal">
 
                 <TextView

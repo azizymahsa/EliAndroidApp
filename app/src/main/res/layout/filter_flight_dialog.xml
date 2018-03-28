@@ -39,10 +39,12 @@
                 android:background="#ededed"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/Stop"
-                android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_4d"
-                android:textSize="@dimen/_14dp_txtSize" />
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize"
+
+                android:text="@string/Stop"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,7 +56,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="70"
+                    android:layout_weight="90"
                     android:gravity="center">
 
 
@@ -76,7 +78,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="65"
+                    android:layout_weight="70"
                     android:gravity="center">
 
 
@@ -130,9 +132,12 @@
                 android:background="#ededed"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/class_flight"
+                android:textColor="@color/text_color_4d"
                 android:textAppearance="@style/IrsansBold"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp_txtSize"
+
+                android:text="@string/class_flight"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -204,15 +209,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="5dp">
 
-
-            </LinearLayout>
 
 
             <View
@@ -293,10 +290,12 @@
                 android:background="#ededed"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/AirLine"
-                android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/text_color_4d"
-                android:textSize="@dimen/_14dp_txtSize" />
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize"
+
+                android:text="@string/AirLine"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
