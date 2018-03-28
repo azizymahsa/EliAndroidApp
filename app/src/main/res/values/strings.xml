@@ -12,7 +12,7 @@
     <!-- Content Description -->
     <!-- pakhsh////////////////////////////////////////////////////////////////////////////////////////// -->
     <string name="app_name">Eligasht</string>
-    <string name="accept">Ok</string>
+    <string name="accept">accept</string>
 
     <string name="icon_menu">&#xe901;</string>
     <string name="icon_bed">&#xe900;</string>
@@ -32,9 +32,9 @@
     <string name="icon_pen">&#xe91a;</string>
     <string name="icon_mic">&#xe91b;</string>
 
-    <string name="searchFlight">Flight</string>
-    <string name="search_package">Vacation Package</string>
-    <string name="search_hotel">Hotels</string>
+    <string name="searchFlight">Flight Only</string>
+    <string name="search_package">Holiday Package</string>
+    <string name="search_hotel">Hotel Reservation</string>
 
     <string name="reserve_package">Book</string>
     <string name="icon_calander">&#xe908;</string>
@@ -1887,7 +1887,7 @@
     <string name="curency">Rial</string>
     <string name="ApartmenHotel">Apartment Hotel</string>
     <string name="BoutiqueHotel">Boutique Hotel</string>
-    <string name="ResortHotel">Hotel</string>
+    <string name="ResortHotel">Hotel Reservation</string>
     <string name="NonStop">no stop</string>
     <string name="OneStop">One Stop</string>
     <string name="TwoStop">Two Stop</string>
@@ -1917,15 +1917,15 @@
     <string name="RoomError">The number should not be more than 9 people.</string>
     <string name="InformationRoom">Information Room</string>
     <string name="room">Room</string>
-    <string name="confirm">ok</string>
-    <string name="ServicesInformation">Included Service</string>
+    <string name="confirm">Confirm</string>
+    <string name="ServicesInformation">Service Details</string>
     <string name="PackgeNoFound">Nothing Found.</string>
     <string name="OnlyOne">One Item To Show.</string>
     <string name="PackageError">There is no result found on this date, the closest available date is as follows:</string>
     <string name="PassengerSpec">Passenger Details</string>
     <string name="Brithday">Please enter your birth date</string>
     <string name="brithdayError">Please enter passengers birth date</string>
-    <string name="Passanger">Passenger(s)</string>
+    <string name="Passanger">Passenger</string>
     <string name="select_return_date">Choose the date back</string>
     <string name="please_select_one">Please select one</string>
     <string name="please_select_destination_city">Please select the city of your trip</string>
@@ -1936,7 +1936,7 @@
     <string name="departure_date">Departure date</string>
     <string name="select_travel_duration">Departure date</string>
     <string name="passenger">Passenger</string>
-    <string name="number_of_passengers">Number of passengers</string>
+    <string name="number_of_passengers">Add passengers</string>
     <string name="error_in_connection">Error in Connection</string>
     <string name="there_is_no_city_to_show">there is no city to show</string>
     <string name="return_date">Return date</string>
@@ -1965,7 +1965,7 @@
     <string name="adault">Adult</string>
     <string name="search">Search</string>
     <string name="login">Login</string>
-    <string name="hotel_reservation">Hotels</string>
+    <string name="hotel_reservation">Hotel Reservation</string>
 
     <!--nemati-->
     <string name="hotel_reservation_and_plane_ticket">Hotel + Flight</string>
@@ -1982,7 +1982,7 @@
     <string name="please_select_destination_and_origin">Please select the origin and destination</string>
     <string name="my_old_purchases">My Old Purchases</string>
     <string name="my_information">My Details</string>
-    <string name="plane_ticket">Flight</string>
+    <string name="plane_ticket">Flight </string>
     <string name="AlertInternetError">Your internet connection is interrupted or out of reach. To use the features of this software check your internet service!</string>
     <string name="Data">4G/3G</string>
     <string name="wifi">Wifi</string>
@@ -2223,7 +2223,7 @@
     <string name="change_fligfontht">Change flight</string>
     <string name="class_flight">Flight class</string>
     <string name="cities_all_over_the_world">Cities all over the world</string>
-    <string name="confirmed_airlines">Authentic airlines</string>
+    <string name="confirmed_airlines">Confirmed airlines</string>
     <string name="hotels_all_over_the_world">Hotels all over the world</string>
     <string name="room_information">Room information</string>
     <string name="numbers_must_be_less_than_nine">Numbers must be less than nine</string>
@@ -2371,11 +2371,7 @@
     <string name="detail_insurnace">Insurnace Detail</string>
     <string name="best_seller">Best seller</string>
     <string name="comma">,</string>
-    <string name="icon_comments">&#xe638;</string>
-    <string name="icon_room">&#xe639;</string>
-    <string name="icon_ac">&#xe640;</string>
-    <string name="the_locale_will_be_changed">Depending on your current location, the program language will be changed</string>
-
+    <string name="massege">massege</string>
 
 </resources>
 

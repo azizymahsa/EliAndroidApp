@@ -873,7 +873,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             } catch (JSONException e) {
                 //Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli));
+                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
 
@@ -1037,8 +1037,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 new AsyncFetchGetPreFactorDetails().execute();
 
             } catch (JSONException e) {
+                try {
+
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli));
+                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
+                }catch (Exception ee){
+                   ee.getMessage();
+                }
             }
 
 
@@ -1253,7 +1258,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 setAnimation();
             } catch (JSONException e) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli));
+                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
         }//end on pos excute
@@ -1679,8 +1684,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         if (flagMosafer.contains("F")) {
                             //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
                             //Toast.makeText(this,errorMessage,2000).show();
+                            try{
                             AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                            alertDialogPassenger.setText("" + "  " + errorMessage);
+                            alertDialogPassenger.setText("" + "  " + errorMessage,getString(R.string.EditInput));
+                            }catch (Exception e){
+                              e.getMessage();
+                            }
                         } else {
                             //insert partner
                             PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerHotelFlightActivity.this);
@@ -1922,9 +1931,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     if (flagMosafer.contains("F")) {
                         //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
-                        AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                        AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner);
-                        //Toast.makeText(this,errorMessagePartner,2000).show();
+                        try {
+                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+                            AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
+                        }catch (Exception e){
+                            e.getMessage();
+                        }//Toast.makeText(this,errorMessagePartner,2000).show();
                     } else {
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelFlightActivity.this);
 

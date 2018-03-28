@@ -20,7 +20,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class AlertDialogPassenger implements View.OnClickListener {
     android.app.AlertDialog dialog;
-    TextView tvAlert;
+    TextView tvAlert,tvTitle;
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
@@ -28,6 +28,7 @@ public class AlertDialogPassenger implements View.OnClickListener {
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     String text;
+    String title;
     // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
 
 
@@ -58,9 +59,11 @@ public class AlertDialogPassenger implements View.OnClickListener {
         }
     }
 
-    public void setText(String text) {
+    public void setText(String text,String title) {
         this.text = text;
+        this.title = title;
         tvAlert.setText(text);
+        tvTitle.setText(title);
         avi.setVisibility(View.GONE);
 
     }

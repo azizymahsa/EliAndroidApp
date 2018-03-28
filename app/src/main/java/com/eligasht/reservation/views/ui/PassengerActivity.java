@@ -1921,8 +1921,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						if(flagMosafer.contains("F")){
 							//Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
 							//Toast.makeText(this,errorMessage,2000).show();
-							AlertDialogPassenger alertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this);
-							alertDialogPassenger.setText(""+"  "+errorMessage);
+							try {
+								AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerActivity.this);
+								alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
+							}catch (Exception e){
+							e.getMessage();
+							}
 						}else{
 							//insert partner
 							PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerActivity.this);
@@ -2166,9 +2170,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					if(flagMosafer.contains("F")){
 						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
-						AlertDialogPassenger AlertDialogPassengerFlight =  new AlertDialogPassenger(PassengerActivity.this);
-						AlertDialogPassengerFlight.setText(""+"  "+errorMessagePartner);
-						//Toast.makeText(this,errorMessagePartner,2000).show();
+						try {
+							AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerActivity.this);
+							AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
+						}catch (Exception e){
+							e.getMessage();
+						}//Toast.makeText(this,errorMessagePartner,2000).show();
 					}else{
 						PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerActivity.this);
 
