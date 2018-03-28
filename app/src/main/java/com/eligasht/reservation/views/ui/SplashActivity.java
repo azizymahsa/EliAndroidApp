@@ -97,11 +97,8 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             public void run() {
                 Intent mStartActivity = new Intent(SplashActivity.this, SplashActivity.class);
                 int mPendingIntentId = 123456;
-                PendingIntent mPendingIntent = PendingIntent
-                        .getActivity(SplashActivity.this, mPendingIntentId, mStartActivity,
-                                PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager mgr = (AlarmManager) SplashActivity.this
-                        .getSystemService(Context.ALARM_SERVICE);
+                PendingIntent mPendingIntent = PendingIntent.getActivity(SplashActivity.this, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager mgr = (AlarmManager) SplashActivity.this .getSystemService(Context.ALARM_SERVICE);
                 mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
                 System.exit(0);
             }

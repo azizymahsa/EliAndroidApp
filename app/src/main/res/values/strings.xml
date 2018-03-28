@@ -32,7 +32,7 @@
     <string name="icon_pen">&#xe91a;</string>
     <string name="icon_mic">&#xe91b;</string>
 
-    <string name="searchFlight">Flight Only</string>
+    <string name="searchFlight">Flight</string>
     <string name="search_package">Holiday Package</string>
     <string name="search_hotel">Hotel Reservation</string>
 

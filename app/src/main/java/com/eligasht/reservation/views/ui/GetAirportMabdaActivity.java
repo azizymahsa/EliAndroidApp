@@ -118,12 +118,10 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         listAirPort = findViewById(R.id.listAirPort);
         mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
 
-        //	mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data,  GetAirportMabdaActivity.this);
-
         mAdapter.setData(data);
         listAirPort.setAdapter(mAdapter);
 
-        //////////////////////////
+
         //////////////////////////Remove recent
         CursorManager cursorManager1 = recentCity_table.getCountRow();
         System.out.println("count:" + cursorManager1.getInt("COUNT(Id)"));
@@ -220,9 +218,6 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         protected void onPreExecute() {
             super.onPreExecute();
             avi.setVisibility(View.VISIBLE);
-
-            //this method will be running on UI thread
-
 
         }
 
@@ -406,10 +401,8 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
             manJson.put("identity",identityJson);
 
 
-         //   manJson.put("Code", GetAirportMaghsadActivity.searchText);
             manJson.put("Culture","en");
             manJson.put("city","");
-            //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);
 
 
@@ -468,10 +461,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     }
     @Override
     public void searchTextChanged(String searchText) {
-            /*this.searchText = searchText;
-			if(searchText.length()>2)
-			new AsyncFetch().execute();*/
-        //mAdapter.setData(searchText);
+
 
     }
 }
