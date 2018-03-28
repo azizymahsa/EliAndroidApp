@@ -2372,6 +2372,8 @@
     <string name="best_seller">Best seller</string>
     <string name="comma">,</string>
     <string name="massege">massege</string>
+    <string name="the_locale_will_be_changed">Depending on your current location, the program language will be changed</string>
+
 
 </resources>
 
