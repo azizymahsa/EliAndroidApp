@@ -2355,7 +2355,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public void onResume(){
         super.onResume();
         long gheymatKh=Prefs.getLong("Tprice",0);
-        System.out.println("wwwTPRICE:"+gheymatKh);
         mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this,gheymatKh);
         mAdapter.setData(data);
         listKhadamat.setAdapter(mAdapter);
