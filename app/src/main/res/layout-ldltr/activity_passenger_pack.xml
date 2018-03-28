@@ -344,7 +344,7 @@
                             android:textSize="@dimen/_14dp" />
                     </LinearLayout>
 
-                    
+
                     <!-- family name -->
 
                     <LinearLayout
