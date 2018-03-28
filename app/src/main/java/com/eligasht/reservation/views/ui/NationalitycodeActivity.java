@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,8 @@ import android.widget.ArrayAdapter;
 
 import com.eligasht.R;
 import com.eligasht.reservation.views.adapters.NationalityListArrayAdapter;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class NationalitycodeActivity extends ListActivity {
 
@@ -71,5 +74,10 @@ public class NationalitycodeActivity extends ListActivity {
         public String getCode() {
             return code;
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(context));
     }
 }

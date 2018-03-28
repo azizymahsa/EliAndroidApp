@@ -30,7 +30,7 @@
         android:layout_centerInParent="true"
         android:orientation="vertical"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="lottie/e-splash.json"
+        app:lottie_fileName="lottie/e-english.json"
         app:lottie_loop="false" />
 
     <com.wang.avi.AVLoadingIndicatorView

@@ -17,6 +17,7 @@ public class GetNotification implements OneSignal.NotificationReceivedHandler {
         JSONObject data = notification.payload.additionalData;
         String customKey;
 
+
         if (data != null) {
             customKey = data.optString("customkey", null);
             if (customKey != null)

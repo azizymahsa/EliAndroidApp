@@ -376,7 +376,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             btnExpand.setText(_context.getString(R.string.icon_exp_up));
             expListViewExpanding.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
 
-
             float right = llRaft.getRight();
             float left = llRaft.getLeft();
             tvPlaneIcon.setTranslationX(right);
@@ -385,20 +384,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             float left2 = linearBargashtTwo.getLeft();
             tvPlaneIcon2.setTranslationX(right);
 
-            ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlaneIcon, "translationX", right, left );
+            ObjectAnimator anim2 = ObjectAnimator.ofFloat(tvPlaneIcon, "translationX", right, left-_context.getResources().getInteger(R.integer._85));
             anim2.setDuration(1500);
             anim2.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
             anim2.start();
-            ObjectAnimator anim3 = ObjectAnimator.ofFloat(viewLine, "translationX", right, left);
+            ObjectAnimator anim3 = ObjectAnimator.ofFloat(viewLine, "translationX", right, left-_context.getResources().getInteger(R.integer._85));
             anim3.setDuration(1500);
             anim3.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
             anim3.start();
 
-            ObjectAnimator anim4 = ObjectAnimator.ofFloat(tvPlaneIcon2, "translationX", right2, left2 );
+            ObjectAnimator anim4 = ObjectAnimator.ofFloat(tvPlaneIcon2, "translationX", right2, left2-_context.getResources().getInteger(R.integer._85) );
             anim4.setDuration(1500);
             anim4.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
             anim4.start();
-            ObjectAnimator anim5 = ObjectAnimator.ofFloat(viewLine2, "translationX", right2, left2);
+            ObjectAnimator anim5 = ObjectAnimator.ofFloat(viewLine2, "translationX", right2, left2-_context.getResources().getInteger(R.integer._85));
             anim5.setDuration(1500);
             anim5.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
             anim5.start();

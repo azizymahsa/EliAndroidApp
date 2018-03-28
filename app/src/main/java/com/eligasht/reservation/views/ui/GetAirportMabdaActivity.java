@@ -407,7 +407,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
 
          //   manJson.put("Code", GetAirportMaghsadActivity.searchText);
-            manJson.put("Culture","en");
+            manJson.put("Culture", getString(R.string.culture));
             manJson.put("city","");
             //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
             jsone.put("request", manJson);
