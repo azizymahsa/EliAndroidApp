@@ -3,22 +3,23 @@ package com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.r
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class TotalPrice {
+public class AdultTotalFare {
 
     @SerializedName("Amount")
     @Expose
-    private Integer amount;
+    private Double amount;
     @SerializedName("CurrencyCode")
     @Expose
     private String currencyCode;
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

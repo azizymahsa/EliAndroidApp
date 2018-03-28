@@ -210,7 +210,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="150"
                             android:gravity="center"
-                            android:src="@drawable/location_pin"
+                            android:src="@drawable/comment"
                             android:layout_marginTop="4dp"
                             />
                         <TextView
@@ -265,7 +265,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="150"
                             android:gravity="center"
-                            android:src="@drawable/comment"
+                            android:src="@drawable/location_pin"
                             android:layout_marginTop="4dp"
                             />
 

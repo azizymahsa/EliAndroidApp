@@ -458,7 +458,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         isFilter = true;
 
                         if (filterHotelFacilitiesModels.get(i).getTitle().contains(selectHotelModels.get(j).getFacilities().get(k).getTitle())) {
-                            filter.add(Add_To(i));
+                            filter.add(Add_To(k));
                         }
                     }
                 }

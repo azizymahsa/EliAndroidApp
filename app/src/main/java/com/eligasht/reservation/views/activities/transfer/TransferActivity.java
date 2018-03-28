@@ -852,39 +852,22 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             try {
                 rlLoading2.setVisibility(View.GONE);
 
-
-             /*   if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors!=null){
-                    Prefs.putLong("Tprice",0);
-
+                if (airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getErrors()!=null||!airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getErrors().isEmpty()){
+                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getErrors().get(0).Message, Toast.LENGTH_SHORT).show();
+                    Prefs.putLong("Tprice", 0);
                     finish();
-                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).Message, Toast.LENGTH_SHORT).show();
-
 
                 }else{
-                    Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
-
-
+                    Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()));
+                    Log.e("testTra",airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()+"");
                     finish();
-
+                    Prefs.putString("Flag_First_Computing", "T");
                 }
 
-*/
-           /*     if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors!=null||!airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.isEmpty()){
-                    Prefs.putLong("Tprice",0);
-
-                    finish();
-                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).Message, Toast.LENGTH_SHORT).show();
 
 
-                }else{*/
 
-                Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount()));
-                Log.e("test", airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().TransferAvailabilityRoundtripResults[0].getTotalPrice().getAmount());
-                finish();
-                //flag first computing
-                Prefs.putString("Flag_First_Computing", "T");
 
-                //  }
 
 
             } catch (Exception e) {
@@ -892,39 +875,17 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 Prefs.putString("Flag_First_Computing", "F");
 
 
-                try {
-                    if (airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors != null || !airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.isEmpty()) {
-                        Prefs.putLong("Tprice", 0);
+                Prefs.putLong("Tprice", 0);
+                finish();
+                if (Utility.isNetworkAvailable(TransferActivity.this)) {
 
-                        Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.getAirportTransportServicePriceResult().Errors.get(0).Message, Toast.LENGTH_SHORT).show();
-                        Prefs.putLong("Tprice", 0);
-                        finish();
+                    Toast.makeText(TransferActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
 
-                    }
-
-                } catch (Exception e2) {
-                    Prefs.putLong("Tprice", 0);
-                    finish();
-                    if (Utility.isNetworkAvailable(TransferActivity.this)) {
-
-                        Toast.makeText(TransferActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        Toast.makeText(TransferActivity.this, R.string.InternetError, Toast.LENGTH_SHORT).show();
-                    }
-
+                } else {
+                    Toast.makeText(TransferActivity.this, R.string.InternetError, Toast.LENGTH_SHORT).show();
                 }
 
 
-
-
-
-              /*  if (!Utility.isNetworkAvailable(TransferActivity.this)){
-                    Toast.makeText(TransferActivity.this, "اینترنت شما قطع و یا از دسترس خارج می باشد", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(TransferActivity.this,"خطا در دریافت اطلاعات از الی گشت", Toast.LENGTH_SHORT).show();
-
-                }*/
 
 
             }

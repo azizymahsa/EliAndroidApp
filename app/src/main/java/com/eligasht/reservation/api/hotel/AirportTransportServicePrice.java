@@ -5,7 +5,8 @@ import android.util.Log;
 
 import com.eligasht.reservation.base.BaseAPI;
 import com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.request.AirportTransportServicePriceRequest;
-import com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.respone.AirportTransportRespone;
+import com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.respone.AirportTransportServicePriceResult;
+import com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.respone.AirportTransportServiceResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -18,14 +19,14 @@ import retrofit2.http.POST;
 public class AirportTransportServicePrice extends BaseAPI {
     private final String TAG = "__" + this.getClass().getSimpleName().toUpperCase().toString();
     public final static String ACTION_NAME = "HotelFlight/HotelFlightService.svc/AirportTransportServicePrice";
-    public AirportTransportRespone airportTransportRespone;
+    public AirportTransportServiceResponse airportTransportRespone;
 
     AirportTransportServicePriceRequest hotelAvailRequestModel;
 
     public interface GetHotel {
         @RawRes
         @POST(AirportTransportServicePrice.ACTION_NAME)
-        Call<AirportTransportRespone> get_hotel(
+        Call<AirportTransportServiceResponse> get_hotel(
                 @Body AirportTransportServicePriceRequest hotelAvailRequestModel
         );
     }
@@ -45,7 +46,7 @@ public class AirportTransportServicePrice extends BaseAPI {
     protected void execute() {
 
        GetHotel getHotel = retrofit.create(GetHotel.class);
-        Call<AirportTransportRespone> call = getHotel.get_hotel(hotelAvailRequestModel);
+        Call<AirportTransportServiceResponse> call = getHotel.get_hotel(hotelAvailRequestModel);
         try {
             airportTransportRespone = call.execute().body();
 
