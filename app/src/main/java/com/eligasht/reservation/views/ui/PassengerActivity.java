@@ -48,6 +48,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -1003,7 +1004,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				//FactorSummary
 				JSONObject jFact = jArray.getJSONObject("FactorSummary");
-				paymentUrl = jFact.getString("OnlinePaymentURL");
+				if (jFact.getString("OnlinePaymentURL")==null||jFact.getString("OnlinePaymentURL").equals("")|| TextUtils.isEmpty(jFact.getString("OnlinePaymentURL"))){
+					btn_pardakht_factor.setVisibility(View.INVISIBLE);
+				}else{
+					paymentUrl = jFact.getString("OnlinePaymentURL");
+
+				}
+
 
 				int RqBase_ID = jFact.getInt("RqBase_ID");
 				//////////////////////////////

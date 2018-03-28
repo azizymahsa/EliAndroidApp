@@ -99,6 +99,7 @@
     <dimen name="_32_normal_flight">40dp</dimen>
     <dimen name="_10dp_title">25dp</dimen>
     <dimen name="_130_khadmatdp">180dp</dimen>
+    .
     <dimen name="_15_flight_dp">15dp</dimen>
     <dimen name="_10_flight_dp">10dp</dimen>
     <dimen name="_3_flight_dp">3dp</dimen>

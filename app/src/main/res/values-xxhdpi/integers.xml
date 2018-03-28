@@ -3,5 +3,6 @@
     <integer name="text12">12</integer>
     <integer name="_300">299</integer>
     <integer name="_150">150</integer>
+    <integer name="_85">40</integer>
 
 </resources>

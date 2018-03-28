@@ -2,6 +2,5 @@
 <resources>
     <integer name="anim_duration_medium">35</integer>
     <integer name="color">17170445</integer>
-    <integer name="_85">0</integer>
 
 </resources>
