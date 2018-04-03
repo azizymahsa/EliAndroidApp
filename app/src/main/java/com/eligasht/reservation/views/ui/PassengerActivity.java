@@ -48,6 +48,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -252,8 +253,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
 			@Override
 			public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-
-				String month=""+monthOfYear+1;
+				Log.e("Tag", "onDateSet: "+monthOfYear+"" );
+				String month=""+(monthOfYear+1);
 				String day=""+dayOfMonth;
 				if(Integer.toString(monthOfYear+1).length()==1){
 					month="0"+(monthOfYear+1);
@@ -1003,7 +1004,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				//FactorSummary
 				JSONObject jFact = jArray.getJSONObject("FactorSummary");
-				paymentUrl = jFact.getString("OnlinePaymentURL");
+				if (jFact.getString("OnlinePaymentURL")==null||jFact.getString("OnlinePaymentURL").equals("")|| TextUtils.isEmpty(jFact.getString("OnlinePaymentURL"))){
+					btn_pardakht_factor.setVisibility(View.INVISIBLE);
+				}else{
+					paymentUrl = jFact.getString("OnlinePaymentURL");
+
+				}
+
 
 				int RqBase_ID = jFact.getInt("RqBase_ID");
 				//////////////////////////////

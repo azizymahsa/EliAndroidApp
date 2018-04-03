@@ -21,6 +21,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -632,14 +633,19 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         }
          scrolMosafer = findViewById(R.id.scrolMosafer);
         //////////////
-       /* scrolMosafer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Log.e("testy", scrollY+"");
-                Log.e("testx", scrollX+"");
+        try{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                scrolMosafer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    Log.e("testy", scrollY+"");
+                    Log.e("testx", scrollX+"");
 
+                }
+            });
             }
-        });*/
+        }catch (Exception e){}
+
     }//end oncreate
     //AsyncFetchGetPreFactorDetails
 
@@ -773,7 +779,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 int RqBase_ID = jFact.getInt("RqBase_ID");
                 //////////////////////////////
                 long totalprice = jFact.getLong("TotalPrice");
-                paymentUrl = jFact.getString("OnlinePaymentURL");
+                if (jFact.getString("OnlinePaymentURL")==null||jFact.getString("OnlinePaymentURL").equals("")|| TextUtils.isEmpty(jFact.getString("OnlinePaymentURL"))){
+                    btn_pardakht_factor.setVisibility(View.INVISIBLE);
+                }else{
+                    paymentUrl = jFact.getString("OnlinePaymentURL");
+
+                }
 
 
                 tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+ getString(R.string.Rial));
@@ -1007,10 +1018,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 if (successResult == 0) {
                     //get Error
                     JSONObject getError = jsonObj.getJSONObject("Errors");
-                    String message = getError.getString("Message" );
+                    String message = getError.getString("Message");
                     // Toast.makeText(PassengerHotelFlightActivity.this, message, Toast.LENGTH_LONG).show();
                     AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerHotelFlightActivity.this, PassengerHotelFlightActivity.this);
-                    AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
+                    AlertDialogPassengerFlight.setText(message);
                 }
 
                 if (successResult > 1) {
