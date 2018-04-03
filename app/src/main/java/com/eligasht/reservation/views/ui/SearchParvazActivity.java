@@ -2217,7 +2217,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
     private class ChangeFlightAsync extends AsyncTask<String, Void, String> {
 
         protected void onPreExecute() {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
                 window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
             }
@@ -2248,7 +2248,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);
 
 
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
                 window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
             }

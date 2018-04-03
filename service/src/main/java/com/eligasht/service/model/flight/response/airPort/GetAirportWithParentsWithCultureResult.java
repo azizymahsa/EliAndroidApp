@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.flight.response;
+package com.eligasht.service.model.flight.response.airPort;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

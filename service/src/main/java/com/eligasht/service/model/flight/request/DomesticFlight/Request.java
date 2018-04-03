@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.flight.response.DomesticFlight;
+package com.eligasht.service.model.flight.request.DomesticFlight;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

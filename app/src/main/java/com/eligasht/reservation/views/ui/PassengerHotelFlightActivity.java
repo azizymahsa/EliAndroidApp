@@ -632,14 +632,14 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         }
          scrolMosafer = findViewById(R.id.scrolMosafer);
         //////////////
-        scrolMosafer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+       /* scrolMosafer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 Log.e("testy", scrollY+"");
                 Log.e("testx", scrollX+"");
 
             }
-        });
+        });*/
     }//end oncreate
     //AsyncFetchGetPreFactorDetails
 

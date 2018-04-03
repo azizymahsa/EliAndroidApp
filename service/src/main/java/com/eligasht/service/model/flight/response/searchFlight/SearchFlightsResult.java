@@ -1,4 +1,3 @@
-
 package com.eligasht.service.model.flight.response.searchFlight;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public class SearchFlightsResult {
     private Object comments;
     @SerializedName("Errors")
     @Expose
-    private Object errors;
+    private List<Error> errors = null;
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -28,23 +27,6 @@ public class SearchFlightsResult {
     @SerializedName("ResultUniqID")
     @Expose
     private String resultUniqID;
-
-    public Object getComments() {
-        return comments;
-    }
-
-    public void setComments(Object comments) {
-        this.comments = comments;
-    }
-
-    public Object getErrors() {
-        return errors;
-    }
-
-    public void setErrors(Object errors) {
-        this.errors = errors;
-    }
-
     public Object getResultKey() {
         return resultKey;
     }
@@ -84,5 +66,30 @@ public class SearchFlightsResult {
     public void setResultUniqID(String resultUniqID) {
         this.resultUniqID = resultUniqID;
     }
+
+
+
+    public SearchFlightsResult() {
+    }
+
+    public Object getComments() {
+        return comments;
+    }
+
+    public void setComments(Object comments) {
+        this.comments = comments;
+    }
+
+    public List<Error> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<Error> errors) {
+        this.errors = errors;
+    }
+
+
+
+
 
 }

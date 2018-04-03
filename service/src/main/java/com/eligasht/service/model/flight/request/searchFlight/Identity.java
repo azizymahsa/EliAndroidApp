@@ -8,13 +8,13 @@ public class Identity {
 
     @SerializedName("Password")
     @Expose
-    private String password;
+    private String password="123qwe!@#QWE";
     @SerializedName("TermianlId")
     @Expose
-    private String termianlId;
+    private String termianlId="Mobile";
     @SerializedName("UserName")
     @Expose
-    private String userName;
+    private String userName="EligashtMlb";
 
     public String getPassword() {
         return password;

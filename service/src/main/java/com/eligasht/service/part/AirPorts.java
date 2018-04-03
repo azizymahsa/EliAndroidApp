@@ -2,21 +2,21 @@ package com.eligasht.service.part;
 
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
-import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.flight.request.airPort.RequestAirports;
+import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 
 /**
  * Created by Ahmad.nemati on 3/26/2018.
  */
 
-public class Hotel extends BasePart {
-    public Hotel(ServiceGenerator serviceGenerator) {
+public class AirPorts extends BasePart {
+    public AirPorts(ServiceGenerator serviceGenerator) {
         super(serviceGenerator);
     }
 
 
-    public void hotelAvail(OnServiceStatus<HotelAvailRes> listener, HotelAvailReq req) {
-        start(getServiceGenerator().createService().hotelAvail(req), listener);
+    public void airPortsAvail(OnServiceStatus<ResponsAirports> listener, RequestAirports req) {
+        start(getServiceGenerator().createService().responsAirports(req), listener);
     }
 
 }

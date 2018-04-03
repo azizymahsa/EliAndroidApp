@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.flight.request;
+package com.eligasht.service.model.flight.request.airPort;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

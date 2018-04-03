@@ -20,7 +20,7 @@ public class SegmentList {
     private String airlineNameFa;
     @SerializedName("AirplaneName")
     @Expose
-    private Object airplaneName;
+    private String airplaneName;
     @SerializedName("ArrivalAirportCode")
     @Expose
     private String arrivalAirportCode;
@@ -119,7 +119,7 @@ public class SegmentList {
     private Integer operatingAirlineID;
     @SerializedName("OperatingAirlineNameEn")
     @Expose
-    private Object operatingAirlineNameEn;
+    private String operatingAirlineNameEn;
     @SerializedName("OperatingAirlineNameFa")
     @Expose
     private Object operatingAirlineNameFa;
@@ -156,11 +156,11 @@ public class SegmentList {
         this.airlineNameFa = airlineNameFa;
     }
 
-    public Object getAirplaneName() {
+    public String getAirplaneName() {
         return airplaneName;
     }
 
-    public void setAirplaneName(Object airplaneName) {
+    public void setAirplaneName(String airplaneName) {
         this.airplaneName = airplaneName;
     }
 
@@ -420,11 +420,11 @@ public class SegmentList {
         this.operatingAirlineID = operatingAirlineID;
     }
 
-    public Object getOperatingAirlineNameEn() {
+    public String getOperatingAirlineNameEn() {
         return operatingAirlineNameEn;
     }
 
-    public void setOperatingAirlineNameEn(Object operatingAirlineNameEn) {
+    public void setOperatingAirlineNameEn(String operatingAirlineNameEn) {
         this.operatingAirlineNameEn = operatingAirlineNameEn;
     }
 
