@@ -153,8 +153,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         tvVer = findViewById(R.id.tvVer);
         avi = findViewById(R.id.avi);
         lottieAnimationView = findViewById(R.id.animation_view);
-        lottieAnimationView.setAnimation("lottie/e-splash.json");
-        lottieAnimationView.playAnimation();
         tvVer.setText(BuildConfig.VERSION_NAME);
         Log.d(TAG, "onCreate: ");
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {

@@ -20,7 +20,7 @@ public class NationalityListArrayAdapter extends ArrayAdapter<NationalitycodeAct
 
     static class ViewHolder {
         protected TextView name;
-        protected ImageView flag;
+      //  protected ImageView flag;
     }
 
     public NationalityListArrayAdapter(Activity context, List<NationalitycodeActivity.Country> list) {
@@ -38,7 +38,7 @@ public class NationalityListArrayAdapter extends ArrayAdapter<NationalitycodeAct
             view = inflator.inflate(R.layout.activity_countrycode_row, null);
             final ViewHolder viewHolder = new ViewHolder();
             viewHolder.name = view.findViewById(R.id.name);
-            viewHolder.flag = view.findViewById(R.id.flag);
+          //  viewHolder.flag = view.findViewById(R.id.flag);
             view.setTag(viewHolder);
         } else {
             view = convertView;
@@ -46,7 +46,7 @@ public class NationalityListArrayAdapter extends ArrayAdapter<NationalitycodeAct
 
         ViewHolder holder = (ViewHolder) view.getTag();
         holder.name.setText(list.get(position).getName());
-        holder.flag.setImageDrawable(list.get(position).getFlag());
+      //  holder.flag.setImageDrawable(list.get(position).getFlag());
         return view;
     }
 }

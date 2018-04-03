@@ -6,9 +6,9 @@ package com.eligasht.reservation.models.model;
 
 public class PinModelDetail {
 
-private long AdlBaseFare;
-private long Taxes;
-private long TotalFare;
+private double AdlBaseFare;
+private double Taxes;
+private double TotalFare;
 private String FlightTimeR;
 private  String FlightArrivalTimeR;
 
@@ -24,7 +24,7 @@ private  String AirlineNameFaR;
 
 private int sizeEpnd;
 
-    public PinModelDetail(long adlBaseFare, long taxes, long totalFare, String flightTimeR, String flightArrivalTimeR, String departureCityNameFa, String departureAirportNameFaR, String arrivalCityNameFa, String arrivalAirportNameFaR, String airlineCode, String flightNumberR, String airlineNameFaR, int sizeEpnd) {
+    public PinModelDetail(double adlBaseFare, double taxes, double totalFare, String flightTimeR, String flightArrivalTimeR, String departureCityNameFa, String departureAirportNameFaR, String arrivalCityNameFa, String arrivalAirportNameFaR, String airlineCode, String flightNumberR, String airlineNameFaR, int sizeEpnd) {
         AdlBaseFare = adlBaseFare;
         Taxes = taxes;
         TotalFare = totalFare;
@@ -41,27 +41,27 @@ private int sizeEpnd;
     }
 
 
-    public long getAdlBaseFare() {
+    public double getAdlBaseFare() {
         return AdlBaseFare;
     }
 
-    public void setAdlBaseFare(long adlBaseFare) {
+    public void setAdlBaseFare(double adlBaseFare) {
         AdlBaseFare = adlBaseFare;
     }
 
-    public long getTaxes() {
+    public double getTaxes() {
         return Taxes;
     }
 
-    public void setTaxes(long taxes) {
+    public void setTaxes(double taxes) {
         Taxes = taxes;
     }
 
-    public long getTotalFare() {
+    public double getTotalFare() {
         return TotalFare;
     }
 
-    public void setTotalFare(long totalFare) {
+    public void setTotalFare(double totalFare) {
         TotalFare = totalFare;
     }
 

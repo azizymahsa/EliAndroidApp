@@ -1,4 +1,4 @@
-package com.eligasht.reservation.views.ui.OBGParvaz;
+package com.eligasht.reservation.views.ui.OBGFlight;
 
 import net.sourceforge.jtds.jdbc.DateTime;
 

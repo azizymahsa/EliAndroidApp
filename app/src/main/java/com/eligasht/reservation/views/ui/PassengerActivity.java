@@ -1109,7 +1109,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				setAnimation();
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight alertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				alertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli));
+				alertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
 
@@ -1225,7 +1225,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		@Override
 		protected void onPostExecute(String resultPishfactor) {
 
-
+			Log.e("PurchesRespons:",resultPishfactor);
 
 			rlLoading.setVisibility(View.GONE);
 			Utility.disableEnableControls(true,rlRoot);
@@ -1245,7 +1245,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					String message= getError.getString("DetailedMessage");
 					//Toast.makeText(PassengerActivity.this, message, Toast.LENGTH_LONG).show();
 					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(message);
+					AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
 				}
 
 				if(successResult >1) {
@@ -1258,7 +1258,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					//txt_shomare_factor.setText("خطایی رخ داده است !");
 					//new AlertDialog(PassengerActivity.this, "خطایی رخ داده است !");
 					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(getString(R.string.An_error_has_occurred));
+					AlertDialogPassengerFlight.setText(getString(R.string.An_error_has_occurred),getString(R.string.massege));
 					//Toast.makeText(PassengerActivity.this, "خطایی رخ داده است !", Toast.LENGTH_LONG).show();
 					Prefs.putBoolean("BACK_HOME", true);
 					//	myScrollView.setOnTouchListener(null);
@@ -1286,7 +1286,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"");
+				AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
 				//new AlertDialog(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
 				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
 			}
@@ -1422,7 +1422,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 				if (GetError.length()>1) {
 					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(""+"  "+GetError);
+					AlertDialogPassengerFlight.setText(""+"  "+GetError,getString(R.string.massege));
 
 				}else{
 
@@ -1519,9 +1519,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 			} catch (JSONException e) {
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"");
-				//new AlertDialog(PassengerActivity.this,"در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
-				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
+				AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
+
 			}
 
 		}//end on pos excute
@@ -1690,7 +1689,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			//manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
 			jsone.put("request",manJson);
 
-
+			Log.e("PurchesRequest:",jsone.toString());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -2057,7 +2056,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				txtexp_passport.setScroller(new Scroller(this));
 				ScrollView scrolMosafer=(ScrollView)findViewById(R.id.scrolMosafer);
 				scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
-
 
 				if(FlagMosaferan){
 					String Gender= Gensiyat;

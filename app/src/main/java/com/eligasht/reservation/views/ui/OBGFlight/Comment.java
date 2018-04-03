@@ -1,4 +1,4 @@
-package com.eligasht.reservation.views.ui.OBGParvaz;
+package com.eligasht.reservation.views.ui.OBGFlight;
 
 public class Comment {
     private String Language ;

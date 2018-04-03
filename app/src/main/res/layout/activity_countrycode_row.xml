@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-
-</LinearLayout>
-
--->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="4dp" >
-
-    <!-- Views with default image and text, for demonstration. They will be changed in the adapter -->
-
-    <ImageView
-        android:id="@+id/flag"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="8dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/ir"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_weight="58615.73"
-        android:gravity="right"
-        android:text="Title"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="#ffffff"
+    android:id="@+id/llLayout"
+    android:gravity="center">
+    <LinearLayout
+        android:id="@+id/llContentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent"
+                android:text="fish name"
+                android:gravity="right|center"
+                android:textColor="#000000"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:text="@string/icon_location2"
+                android:textAppearance="@style/IconFonts"
+                android:textColor="@color/app_base_color"
+                android:textSize="@dimen/icon_size_25dp" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
