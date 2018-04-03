@@ -253,8 +253,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
 			@Override
 			public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-
-				String month=""+monthOfYear+1;
+				Log.e("Tag", "onDateSet: "+monthOfYear+"" );
+				String month=""+(monthOfYear+1);
 				String day=""+dayOfMonth;
 				if(Integer.toString(monthOfYear+1).length()==1){
 					month="0"+(monthOfYear+1);
