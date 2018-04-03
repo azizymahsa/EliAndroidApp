@@ -1,8 +1,8 @@
-package com.eligasht.reservation.views.ui.OBGParvaz;
+package com.eligasht.reservation.views.ui.OBGFlight;
 
 import net.sourceforge.jtds.jdbc.DateTime;
 
-public class FlightSegment {
+public class FlightSegmentFalse {
     private String AirlineCode ;
 
     private int AirlineID ;
@@ -46,37 +46,6 @@ public class FlightSegment {
     private String DepartureAirportNameFa ;
 
     private String DepartureCityCode ;
-
-	private String DepartureCityNameEn ;
-
-	private String DepartureCityNameFa ;
-
-	private String DepartureCountryNameEn ;
-
-	private String DepartureCountryNameFa ;
-
-	private DateTime DepartureDate ;
-
-	private String DepartureDateShamsi ;
-
-	private String FlightArrivalTime ;
-
-	private String FlightNumber ;
-
-	private String FlightTime ;
-
-	private String FltDateDayOfWeek ;
-
-	private String FltDurationH ;
-
-	private String FltDurationM ;
-
-	private boolean IsDepartureSegment ;
-
-	private int OperatingAirlineID ;
-	private String OperatingAirlineCode ;
-	private String OperatingAirlineNameEn ;
-	private String OperatingAirlineNameFa ;
 
     public String getAirlineCode() {
 		return AirlineCode;
@@ -357,37 +326,31 @@ public class FlightSegment {
 	public void setIsDepartureSegment(boolean isDepartureSegment) {
 		IsDepartureSegment = isDepartureSegment;
 	}
-	public int getOperatingAirlineID() {
-		return OperatingAirlineID;
-	}
 
-	public void setOperatingAirlineID(int operatingAirlineID) {
-		OperatingAirlineID = operatingAirlineID;
-	}
+	private String DepartureCityNameEn ;
 
-	public String getOperatingAirlineCode() {
-		return OperatingAirlineCode;
-	}
+    private String DepartureCityNameFa ;
 
-	public void setOperatingAirlineCode(String operatingAirlineCode) {
-		OperatingAirlineCode = operatingAirlineCode;
-	}
+    private String DepartureCountryNameEn ;
 
-	public String getOperatingAirlineNameEn() {
-		return OperatingAirlineNameEn;
-	}
+    private String DepartureCountryNameFa ;
 
-	public void setOperatingAirlineNameEn(String operatingAirlineNameEn) {
-		OperatingAirlineNameEn = operatingAirlineNameEn;
-	}
+    private DateTime DepartureDate ;
 
-	public String getOperatingAirlineNameFa() {
-		return OperatingAirlineNameFa;
-	}
+    private String DepartureDateShamsi ;
 
-	public void setOperatingAirlineNameFa(String operatingAirlineNameFa) {
-		OperatingAirlineNameFa = operatingAirlineNameFa;
-	}
+    private String FlightArrivalTime ;
 
+    private String FlightNumber ;
+
+    private String FlightTime ;
+
+    private String FltDateDayOfWeek ;
+
+    private String FltDurationH ;
+
+    private String FltDurationM ;
+
+    private boolean IsDepartureSegment ;
 
 }

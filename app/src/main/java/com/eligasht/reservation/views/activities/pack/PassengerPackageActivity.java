@@ -2366,7 +2366,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 }
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerPackageActivity.this,PassengerPackageActivity.this);
-                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli));            }
+                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));            }
         }
     }
 

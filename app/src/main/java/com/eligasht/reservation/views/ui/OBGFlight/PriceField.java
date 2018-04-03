@@ -1,15 +1,15 @@
-package com.eligasht.reservation.views.ui.OBGParvaz;
+package com.eligasht.reservation.views.ui.OBGFlight;
 
 public class PriceField {
-    private long Amount ;
+    private double Amount ;
 
     private String CurrencyCode;
 
-	public long getAmount() {
+	public double getAmount() {
 		return Amount;
 	}
 
-	public void setAmount(long l) {
+	public void setAmount(double l) {
 		Amount = l;
 	}
 

@@ -878,7 +878,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli));
+                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
 
 
             }
@@ -1016,7 +1016,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     String message = getError.getString("Message");
                     // Toast.makeText(PassengerHotelActivity.this, message, Toast.LENGTH_LONG).show();
                     AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                    AlertDialogPassengerFlight.setText(message);
+                    AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
                 }
 
                 if (successResult > 1) {
@@ -1044,7 +1044,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 new AsyncFetchGetPreFactorDetails().execute();
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli));
+                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
 
@@ -1144,7 +1144,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 HttpResponse res = client.execute(post);
                 String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 
-
                 return (retSrc);
 
             } catch (IOException e) {
@@ -1227,10 +1226,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     fishData.setSelectID(json_data.getString("SelectID"));
                     fishData.setBookingCode(jsonResult.getString("BookingCode"));
 
-
-
-
-
                     fishData.setExcursionData(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
                             excursionDta.getString("ArrialAirportName"),
                             excursionDta.getString("ArrivalFltDate")
@@ -1269,7 +1264,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             } catch (JSONException e) {
                 // Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli));
+                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
         }//end on pos excute

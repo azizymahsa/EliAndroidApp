@@ -151,7 +151,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         lblFlightArrivalTimeR.setText(item.FlightArrivalTimeR + "");
         lblDepurtureAirportR.setText(item.DepartureCityNameFa + " , " + item.DepartureAirportNameFaR);
         lblArrivalAirportR.setText(item.ArrivalCityNameFa + " , " + item.ArrivalAirportNameFaR);
-        if (item.OperatingAirlineNameEn.contains("null")) {
+        if (item.OperatingAirlineNameEn == null) {
             lblFlightNumberR.setText(item.AirlineCode + item.FlightNumberR);
             if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
                 String text2 = "<font color=#0e874e>"  + item.AirlineNameFaR+ ""+"</font> " ;

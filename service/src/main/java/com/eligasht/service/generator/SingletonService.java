@@ -1,6 +1,8 @@
 package com.eligasht.service.generator;
 
 import com.eligasht.service.di.component.NetComponent;
+import com.eligasht.service.part.AirPorts;
+import com.eligasht.service.part.FlightSearch;
 import com.eligasht.service.part.Hotel;
 
 import javax.inject.Inject;
@@ -17,6 +19,8 @@ public class SingletonService {
 
 
     Hotel hotel;
+    AirPorts airPorts;
+    FlightSearch flightSearch;
     private static final SingletonService ourInstance = new SingletonService();
 
     public static SingletonService getInstance() {
@@ -41,6 +45,14 @@ public class SingletonService {
             hotel = new Hotel(serviceGenerator);
         return hotel;
     }
-
-
+    public AirPorts getAirPortsService() {
+        if (airPorts == null)
+            airPorts = new AirPorts(serviceGenerator);
+        return airPorts;
+    }
+    public FlightSearch getFlightSearchService() {
+        if (flightSearch == null)
+            flightSearch = new FlightSearch(serviceGenerator);
+        return flightSearch;
+    }
 }

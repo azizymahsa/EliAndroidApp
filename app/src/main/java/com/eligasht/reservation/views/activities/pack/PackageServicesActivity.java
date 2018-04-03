@@ -34,15 +34,12 @@ public class PackageServicesActivity extends BaseActivity {
                 Log.e("test", jsonObj.getJSONObject(i).getString("PRowServiceNameF"));
                 arrayList.add(new String(jsonObj.getJSONObject(i).getString("PRowServiceNameF").toString()));
 
-
             }
             lvServices.setAdapter(new PackageServicesAdapter(this,arrayList));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
 
     }
     @Override
