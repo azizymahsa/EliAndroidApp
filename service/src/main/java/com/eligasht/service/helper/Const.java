@@ -11,5 +11,6 @@ public class Const {
     public final static String FlightSearchAvail = "Flight/FlightService.svc/SearchFlights";
     public final static String CheckFlightAvail = "Common/StaticDataService.svc/GetIsDomestic";
     public final static String PurchaseServiceFlightAvil="Common/StaticDataService.svc/PurchaseService";
+    public final static String PreFactorDetailsAvil="Common/StaticDataService.svc/GetPreFactorDetails";
 
 }

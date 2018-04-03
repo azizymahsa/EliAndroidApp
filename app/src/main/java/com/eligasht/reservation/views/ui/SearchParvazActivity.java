@@ -284,17 +284,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             //txtCityRaft.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
             txtCityRaft.setText(mabdaf);//sdfsdf
 
-
             //txtCityBargashtt.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
             txtCityBargashtt.setText(maghsadf);//sdfsdf
 
             txtCityBargasht.setText(maghsadf + "");
 
-          /*  RaftF = extras.getString("Value-DepartureDate-format");
-            BargashtF = extras.getString("Value-ArrivalDate-format");
-
-            Raft = extras.getString("Value-DepartureDate");
-            Bargasht = extras.getString("Value-ArrivalDate");*/
             if (SingletonDate.getInstance().getStartDate() != null) {
                 RaftF = SingletonDate.getInstance().getStartDate().getDescription();
                 Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
@@ -516,7 +510,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 requestSearchFlight.setRequest(request);
 
                 SingletonService.getInstance().getFlightSearchService().flightSearchAvail(SearchParvazActivity.this,requestSearchFlight);
-               System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
+                System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
 
             } else {
                 RequestSearchFlight requestSearchFlight = new RequestSearchFlight();
@@ -541,15 +535,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                 SingletonService.getInstance().getFlightSearchService().flightSearchAvail(SearchParvazActivity.this,requestSearchFlight);
 
-
-
                 //Global
                 COUNT_B = 1;
                 COUNT_K = 0;
                 COUNT_N = 0;
-
-
-
 
             }
 
@@ -562,6 +551,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     }
         @Override
         public void onReady(ResponsSearchFlight responsSearchFlight) {
+        if(flightsList != null){
+            flightsList.clear();
+        }
            System.out.println("Response: "+responsSearchFlight.getSearchFlightsResult().getFlights().size());
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
            // Log.e("date", result);
@@ -1681,65 +1673,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
 
                 }
 
-                //"2017-12-24"
-               /* try {
 
-                    String str_date = Raft;//"11-June-07";
-                    DateFormat formatter;
-                    Date date;
-                    formatter = new SimpleDateFormat("yyyy-MM-dd");
-                    date = formatter.parse(str_date);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(date);
-                    cal.add(Calendar.DATE, -1);
-                    System.out.println("Mines one day to current date : " + formatter.format(cal.getTime()));
-                    //shart kamtar az emruz
-                    if (System.currentTimeMillis() <= date.getTime()) {
-                        Raft = formatter.format(cal.getTime());
-
-                        ///onvan
-                        SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
-                        /////////////////////////////
-                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy/MM/dd HH:mm");//2017/03/24 11:49
-                        String formatted3 = format3.format(cal.getTime());
-
-                        String dayM = formatted3.substring(8, 10);//02
-                        String monthM = formatted3.substring(5, 7);//01
-                        String yearM = formatted3.substring(0, 4);//1396
-
-                        String dateShamsi = com.eligasht.reservation.models.model.SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
-                        String dayMF = dateShamsi.substring(8, 10);//02
-                        String monthMF = dateShamsi.substring(5, 7);//01
-                        String yearMF = dateShamsi.substring(0, 4);//1396
-
-                        PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
-                        /////////////////////
-                        // txtDateOnvan.setText(BargashtF + "  -  " + dfm.format(cal.getTime()));
-
-                        if (Prefs.getBoolean("GeoFlight",true)) {
-
-
-                            txtDateOnvanB.setText( DateUtil.getLongStringDateNonYear(Raft, "yyyy-MM-dd", false));
-
-                            txtDateOnvan.setText(DateUtil.getLongStringDateNonYear(Bargasht, "yyyy-MM-dd", false));
-                        } else {
-
-                            txtDateOnvanB.setText(persianCalendar.getPersianLongDateNonYear());
-                            txtDateOnvan.setText( BargashtF);
-
-                        }
-                        ///
-                        callApiDateNext();
-                    } else {
-                        Toast.makeText(getApplicationContext(), R.string.DatePickerError2, Toast.LENGTH_SHORT).show();
-                    }
-
-
-                } catch (java.text.ParseException e) {
-                    System.out.println("Exception :" + e);
-                }
-*/
 
                 break;
 
@@ -1763,10 +1697,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
     public void onResume() {
         Log.e("DEBUG", "onResume of SearchParvazActivity");
         super.onResume();
-	/*	if (Prefs.getBoolean("BACK_HOME", true)) {
-			this.finish();
-		}
-		Prefs.putBoolean("BACK_HOME", false);*/
+
     }
 
     @Override
@@ -1789,8 +1720,6 @@ System.out.println("DomesticRequest:"+jsone.toString());
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                //recyclerView.setAdapter(tweetAdapter);
-
 
                 // setting list adapter
                 expListViewExpanding.setAdapter(listAdapterExpanding);
@@ -1800,9 +1729,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
 
                     @Override
                     public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                        // Toast.makeText(getApplicationContext(),
-                        // "Group Clicked " + listDataHeader.get(groupPosition),
-                        // Toast.LENGTH_SHORT).show();
+
                         Log.d("TAG", "onGroupClick: 1500");
                         ExpandableListAdapter.shouldShowAnimation = false;
 
@@ -1947,10 +1874,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
                 }
                 post.setEntity(se);
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
-                //{"GetAirportWithParentsResult":{"Errors":[],"List":[{"Key":"IST|Istanbul, Turkey (IST-All Airports)","Value":"استانبول ( همه فرودگاه ها ),نزدیک استانبول, ترکیه"},{"Key":"IST|Istan
-                //try {
-                //HashMap<String, String> airport = null;
-                //mylist = new ArrayList<HashMap<String, String>>();
+
                 HttpResponse res = client.execute(post);
                 String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 
@@ -2222,7 +2146,6 @@ System.out.println("DomesticRequest:"+jsone.toString());
                 window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
             }
 
-
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
             Log.e("teschange", new Gson().toJson(new ChangeFlightApiRequest(new Request(FlightId,
                     searchKey, getString(R.string.culture), new Identity("EligashtMlb",
@@ -2264,12 +2187,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("HotelPlusFlightChangeFltResult");
                 Log.e("Response2", GetAirportsResult.toString());
 
-			/*	if(!GetAirportsResult.getString("Errors").equals("null")){
-					jError=GetAirportsResult.getJSONArray("Errors");//
-					JSONObject jPricedItinerary = jError.getJSONObject(0);
-					GetError = jPricedItinerary.getString("DetailedMessage");
 
-				}*/
                 if (GetError.length() > 1) {
                     if (GetError.contains("|")) {
                         String[] s = GetError.split(Pattern.quote("|"));
@@ -2288,8 +2206,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
                     }
                     //Toast.makeText(SearchParvazActivity.this, GetError, Toast.LENGTH_LONG).show();
                 } else {
-                    //String ResultUniqID = GetAirportsResult.getString("ResultUniqID");//
-                    //globalResultUniqID = ResultUniqID;
+
 
                     JSONArray jArray = GetAirportsResult.getJSONArray("Flights");//
 

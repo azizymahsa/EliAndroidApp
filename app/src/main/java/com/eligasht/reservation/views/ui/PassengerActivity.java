@@ -41,8 +41,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,6 +56,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -78,12 +81,27 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
+import com.eligasht.service.model.flight.request.purchaseServiceFlight.RequestPurchaseFlight;
+import com.eligasht.service.model.flight.request.searchFlight.RequestSearchFlight;
+import com.eligasht.service.model.flight.response.PreFactorDetails.FactorSummary;
+import com.eligasht.service.model.flight.response.PreFactorDetails.GetPreFactorDetailsResult;
+import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactor;
+import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorFlight;
+import com.eligasht.service.model.flight.response.PreFactorDetails.RequestPassenger;
+import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFactorDetails;
+import com.eligasht.service.model.flight.response.purchaseServiceFlight.Error;
+import com.eligasht.service.model.flight.response.purchaseServiceFlight.PurchaseServiceResult;
+import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
@@ -112,7 +130,7 @@ import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class PassengerActivity extends BaseActivity implements Header.onSearchTextChangedListener,OnClickListener,OnItemSelectedListener,View.OnFocusChangeListener,
-		com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,
+		com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, OnServiceStatus<ResponsePurchaseFlight>,
 		com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener{
 
 	public static boolean flag;
@@ -125,7 +143,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
 	public Button btnAddsabad,btn_pardakht_factor,txtSaler,txtMasaferan,txtKhadamat,txtPishfactor;
 	public EditText txtnamem,txtfamilym,txt_NationalCode_m;
-	public static TextView txttavalodm;
+	public  TextView txttavalodm;
 	public EditText txtnumber_passport,txtnameP;
 	public static TextView txtexp_passport;
 	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM;
@@ -875,6 +893,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 
+
 	//AsyncFetchGetPreFactorDetails
 	private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
 		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
@@ -983,10 +1002,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		@Override
 		protected void onPostExecute(String resultPishfactor) {
 
-			//this method will be running on UI thread
-			//{"PurchaseServiceResult":{"Errors":null,"ResultText":"Temp Contract Saved Successfully!","SuccessResult":782528}}
-			//  pdLoading.dismiss();
-			//List<PurchaseFlightResult> data=new ArrayList<PurchaseFlightResult>();
+
 			System.out.println("resultPishfactor:"+resultPishfactor);
 			rlLoading.setVisibility(View.GONE);
 			Utility.disableEnableControls(true,rlRoot);
@@ -1125,183 +1141,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	}
 	//end AsyncFetchGetPreFactorDetails
-	//AsyncFetchPishFactor
-	private class AsyncFetchPishFactor extends AsyncTask<String, String, String> {
-		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
-		HttpURLConnection conn;
-		URL url = null;
-		private ListView listAirPort;
 
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-
-			//this method will be running on UI thread
-			rlLoading.setVisibility(View.VISIBLE);
-			Utility.disableEnableControls(false,rlRoot);
-		}
-
-		@Override
-		protected String doInBackground(String... params) {
-			try {
-
-				// Enter URL address where your json file resides
-				// Even you can make call to php file which returns json data
-				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
-
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return e.toString();
-			}
-			try {
-
-				// Setup HttpURLConnection class to send and receive data from php and mysql
-				conn = (HttpURLConnection) url.openConnection();
-				conn.setReadTimeout(READ_TIMEOUT);
-				conn.setConnectTimeout(CONNECTION_TIMEOUT);
-				// conn.setRequestMethod("GET");
-				conn.setRequestMethod("POST");
-				// setDoOutput to true as we recieve data from json file
-				conn.setDoOutput(true);
-
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				return e1.toString();
-			}
-
-			try {
-
-				int response_code = conn.getResponseCode();
-
-				String serial = null;
-
-				JSONObject errorObj = new JSONObject();
-
-				try {
-					errorObj.put("Success", false);
-
-					Class<?> c = Class.forName("android.os.SystemProperties");
-					Method get = c.getMethod("get", String.class);
-					serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-				} catch (Exception ignored) {
-				}
-
-
-				String data =OrderToJsonPishFactor();
-
-
-				HttpClient client = new DefaultHttpClient();
-
-
-				HttpPost post = new HttpPost();
-				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
-				post.setHeader("Content-Type", "application/json; charset=UTF-8");
-				post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-				StringEntity se = null;
-				try {
-					se = new StringEntity(data, "UTF-8");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-				post.setEntity(se);
-				ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-
-				HashMap<String, String> airport = null;
-				mylist = new ArrayList<HashMap<String, String>>();
-				HttpResponse res = client.execute(post);
-				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-				return (retSrc);
-
-			} catch (IOException e) {
-				e.printStackTrace();
-				return e.toString();
-			} finally {
-				conn.disconnect();
-			}
-
-
-		}//end doin background
-
-		@Override
-		protected void onPostExecute(String resultPishfactor) {
-
-			Log.e("PurchesRespons:",resultPishfactor);
-
-			rlLoading.setVisibility(View.GONE);
-			Utility.disableEnableControls(true,rlRoot);
-			try {
-////////////////////////////
-				JSONObject jsonObj = new JSONObject(resultPishfactor);
-
-				// JSONObject jsonObj = new JSONObject(retSrc);
-
-				// Getting JSON Array node
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseServiceResult");
-				int successResult=GetAirportsResult.getInt("SuccessResult");
-				if(successResult==0){
-					//get Error
-					JSONObject getError = jsonObj.getJSONObject("Errors");
-
-					String message= getError.getString("DetailedMessage");
-					//Toast.makeText(PassengerActivity.this, message, Toast.LENGTH_LONG).show();
-					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
-				}
-
-				if(successResult >1) {
-					txt_shomare_factor.setText(GetAirportsResult.getString("SuccessResult"));
-
-					tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
-
-					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 300, 150));
-				}else{
-					//txt_shomare_factor.setText("خطایی رخ داده است !");
-					//new AlertDialog(PassengerActivity.this, "خطایی رخ داده است !");
-					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(getString(R.string.An_error_has_occurred),getString(R.string.massege));
-					//Toast.makeText(PassengerActivity.this, "خطایی رخ داده است !", Toast.LENGTH_LONG).show();
-					Prefs.putBoolean("BACK_HOME", true);
-					//	myScrollView.setOnTouchListener(null);
-					/*Intent intent = new Intent("sendFinish");
-
-					LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);*/
-					finish();
-
-				}
-				// sfsfs
-
-				// Setup and Handover data to recyclerview
-				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
-				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-				txtTitle.setText(R.string.Approval_and_payment_of_pre_invoice);
-				//	myScrollView.setOnTouchListener(null);
-
-				linear_saler.setVisibility(View.GONE);
-				linear_mosaferan.setVisibility(View.GONE);
-				linear_list_khadamat.setVisibility(View.GONE);
-				linear_pish_factor.setVisibility(View.VISIBLE);
-				FlagTab=true;
-				//call api GetPreFactorDetails
-				new AsyncFetchGetPreFactorDetails().execute();
-
-			} catch (JSONException e) {
-				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
-				//new AlertDialog(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
-				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
-			}
-
-
-		}//end on pos excute
-
-	}//end async get pish factor
 	//het khadamat
 	private class AsyncFetch extends AsyncTask<String, String, String> {
 		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
@@ -1661,15 +1501,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		return jsone.toString();
 	}
 	public String OrderToJsonPishFactor() {
-			/* public class PurchaseServiceReq
-			    {
-			        public string RqBaseID { get; set; } // "782528"  => شماره پیش فاکتور
-			        public string ServiceStr { get; set; } // I1515:1877300|S1303:1877300|S1304:1877300     => کد سرویس2: کد مسافر1 ،کد مسافر2 کد سرویس: کد مسافر1 ،کد مسافر2 |
-			        public string Exc { get; set; }
-			        public string InsCoverageXML { get; set; }
-			        public string InsPrcieXML { get; set; }
-			        public int InsPlanCode { get; set; }
-			    }*/
+
 		JSONObject jsone = new JSONObject();
 		JSONObject manJson = new JSONObject();
 		JSONObject identityJson = new JSONObject();
@@ -2306,8 +2138,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				//call api pishFactor
-				new AsyncFetchPishFactor().execute();
-
+			//	new AsyncFetchPishFactor().execute();
+				RequestPurchase();
 
 				break;
 
@@ -2435,6 +2267,260 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	}
 
+	@Override
+	public void onReady(ResponsePurchaseFlight responsePurchaseFlight) {
+
+
+
+		Log.e("PurchesRespons:",responsePurchaseFlight.getPurchaseServiceResult().getSuccessResult()+"");
+
+		rlLoading.setVisibility(View.GONE);
+		Utility.disableEnableControls(true,rlRoot);
+		try {
+
+			PurchaseServiceResult GetAirportsResult = responsePurchaseFlight.getPurchaseServiceResult();//jsonObj.getJSONObject("PurchaseServiceResult");
+			int successResult=GetAirportsResult.getSuccessResult();//getInt("SuccessResult");
+			if(successResult==0){
+				//get Error
+				List<Error> getError = GetAirportsResult.getErrors();//getJSONObject("Errors");
+
+				String message= getError.get(0).getDetailedMessage();//getString("DetailedMessage");
+
+				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+				AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
+			}
+
+			if(successResult >1) {
+				txt_shomare_factor.setText(GetAirportsResult.getSuccessResult()+"");
+
+				tvfactorNumber.setText(GetAirportsResult.getSuccessResult()+"");
+
+				textView4.setImageBitmap(getBitmap(GetAirportsResult.getSuccessResult()+"", 128, 300, 150));
+			}else{
+
+				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+				AlertDialogPassengerFlight.setText(getString(R.string.An_error_has_occurred),getString(R.string.massege));
+
+				Prefs.putBoolean("BACK_HOME", true);
+
+				finish();
+
+			}
+
+			// Setup and Handover data to recyclerview
+			((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
+			((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+			txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
+
+			linear_saler.setVisibility(View.GONE);
+			linear_mosaferan.setVisibility(View.GONE);
+			linear_list_khadamat.setVisibility(View.GONE);
+			linear_pish_factor.setVisibility(View.VISIBLE);
+			FlagTab=true;
+			//call api GetPreFactorDetails
+			//new AsyncFetchGetPreFactorDetails().execute();
+			RequestPreFactorDetails();
+
+		} catch (Exception e) {
+			AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+			AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
+
+		}
+	}
+
+	private void RequestPreFactorDetails() {
+		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
+
+		//this method will be running on UI thread
+		rlLoading.setVisibility(View.VISIBLE);
+		Utility.disableEnableControls(false,rlRoot);
+		RequestPreFactorDetails requestPreFactorDetails = new RequestPreFactorDetails();
+		com.eligasht.service.model.flight.request.PreFactorDetails.Request request = new com.eligasht.service.model.flight.request.PreFactorDetails.Request();
+		com.eligasht.service.model.flight.request.PreFactorDetails.Identity identity = new com.eligasht.service.model.flight.request.PreFactorDetails.Identity();
+		request.setIdentity(identity);
+
+		request.setCulture(getString(R.string.culture));
+		request.setType("F");
+
+		request.setInvoiceNo(tvfactorNumber.getText().toString());//perches service
+
+		requestPreFactorDetails.setRequest(request);
+		SingletonService.getInstance().getPreFactorDetailFlight().flightPreFactorDetailAvail(new OnServiceStatus<ResponsePreFactorDetails>() {
+			@Override
+			public void onReady(ResponsePreFactorDetails responsePreFactorDetails) {
+
+
+				Log.e("ResponsePreFactorDetails:",responsePreFactorDetails.getGetPreFactorDetailsResult().getPreFactor().toString()+"");
+
+
+				rlLoading.setVisibility(View.GONE);
+				Utility.disableEnableControls(true,rlRoot);
+				try {
+					// Getting JSON Array node
+					GetPreFactorDetailsResult GetAirportsResult = responsePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
+
+					PreFactor jArray = GetAirportsResult.getPreFactor();//("PreFactor");//FactorSummary
+
+					//FactorSummary
+					FactorSummary jFact = jArray.getFactorSummary();
+					if (jFact.getOnlinePaymentURL()==null||jFact.getOnlinePaymentURL().equals("")|| TextUtils.isEmpty(jFact.getOnlinePaymentURL())){
+						btn_pardakht_factor.setVisibility(View.INVISIBLE);
+					}else{
+						paymentUrl = jFact.getOnlinePaymentURL();
+					}
+
+					int RqBase_ID = jFact.getRqBaseID();//Int("RqBase_ID");
+					//////////////////////////////
+					long totalprice = jFact.getTotalPrice();
+
+					tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+//for hotel==========================================================================================
+					final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
+					recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
+					recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+					ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
+
+					List<Object> jArray2 = jArray.getPreFactorHotels();//PreFactorHotels();
+
+
+			/*for (int i = 0; i < jArray2.size(); i++) {
+				hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).HotelNameE(),
+						Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekin"))
+						, Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekout")),
+						jArray2.getJSONObject(i).getString("AdlCount"),
+						jArray2.getJSONObject(i).getString("ChdCount"),jArray2.getJSONObject(i).getString("RoomTitleFa")));
+
+			}
+			if (!hotelPreFactorModels.isEmpty()) {
+				recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
+				llDetailHotel.setVisibility(View.VISIBLE);
+			}*/
+
+
+//for passenger======================================================================================
+
+					final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+					recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
+					recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+					ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
+
+					List<RequestPassenger> jArray3 = jArray.getRequestPassenger();//RequestPassenger");
+
+					System.out.println("json detail mossfaer:"+jArray3);
+					for (int i = 0; i < jArray3.size(); i++) {
+						passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender()+"",jArray3.get(i).getNationality(),
+								jArray3.get(i).getRqPassengerBirthdate(),jArray3.get(i).getRqPassengerPassNo(),
+								jArray3.get(i).getRqPassengerName(),jArray3.get(i).getRqPassengerNationalCode()+""));
+
+					}
+					if (!passengerPreFactorModels.isEmpty()) {
+						llDetailPassanger.setVisibility(View.VISIBLE);
+						recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
+
+					}
+
+
+					//for Services=============================================================================
+					final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
+					recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
+					recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+					ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
+					List<Object> jArray4 = jArray.getPreFactorServices();
+
+			/*for (int i = 0; i < jArray4.size(); i++) {
+				servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+						jArray4.getJSONObject(i).getString("ServicePrice"),jArray4.getJSONObject(i).getString("ServiceType"),
+						jArray4.getJSONObject(i).getString("CityFa"),jArray4.getJSONObject(i).getString("ServiceNameFa"),jArray4.getJSONObject(i).getString("CountryFa")));
+
+			}
+			if (!servicePreFactorModels.isEmpty()) {
+				llDetailService.setVisibility(View.VISIBLE);
+				recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
+
+			}*/
+					//for flight==================================================================================
+					final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+					recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
+					recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+					ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
+					List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
+
+					for (int i = 0; i < jArray5.size(); i++) {
+
+						flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
+								jArray5.get(i).getDepAirPortFa()+"",//String("DepAirPortFa"),
+								jArray5.get(i).getArrAirPortFa()+"",//String("ArrAirPortFa"),
+								Utility.dateShow(jArray5.get(i).getFltDate())+"",//String("FltDate")),
+								jArray5.get(i).getFltTime()+"",//String("FltTime"),
+								//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+								jArray5.get(i).getFltCheckinTime()+"",//;//String("FltCheckinTime"),
+
+								jArray5.get(i).getFltNumber()+"",
+								jArray5.get(i).getAirlineNameFa()+"",
+								jArray5.get(i).getDepartureCityFa()+"",jArray5.get(i).getAirlineCode()+""));
+
+					}
+					if (!flightPreFactorModels.isEmpty()) {
+						llDetailFlight.setVisibility(View.VISIBLE);
+						recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
+
+
+					}
+					setAnimation();
+				} catch (Exception e) {
+					AlertDialogPassengerFlight alertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+					alertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege)+"fff");
+					//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
+				}
+			}
+
+			@Override
+			public void onError(String message) {
+				Log.e("ResponsErroe","ee");
+			}
+		}, requestPreFactorDetails);
+
+
+	}
+
+	@Override
+	public void onError(String message) {
+		System.out.println("PurchesonError: "+message);
+		rlLoading.setVisibility(View.GONE);
+		Utility.disableEnableControls(true,rlRoot);
+
+	}
+	private void RequestPurchase() {
+		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
+
+		//this method will be running on UI thread
+		rlLoading.setVisibility(View.VISIBLE);
+		Utility.disableEnableControls(false,rlRoot);
+
+		RequestPurchaseFlight requestPurchaseFlight = new RequestPurchaseFlight();
+		com.eligasht.service.model.flight.request.purchaseServiceFlight.Request request = new com.eligasht.service.model.flight.request.purchaseServiceFlight.Request();
+		JSONObject jsone = new JSONObject();
+		JSONObject manJson = new JSONObject();
+		JSONObject identityJson = new JSONObject();
+
+		com.eligasht.service.model.flight.request.purchaseServiceFlight.Identity identity = new com.eligasht.service.model.flight.request.purchaseServiceFlight.Identity();
+
+		request.setIdentity(identity);
+
+		request.setCulture(getString(R.string.culture));
+		request.setType("F");
+		request.setRqBaseID(Prefs.getString("BookingCode_NumFactor", ""));
+		request.setServiceStr(Prefs.getString("Select_ID_khadamat", ""));
+		request.setExc("");
+		request.setInsCoverageXML("");
+
+		request.setInsPrcieXML("");
+		request.setInsPlanCode(-1);
+
+		requestPurchaseFlight.setRequest(request);
+		SingletonService.getInstance().getPurchaseFlight().flightPurchaseAvail(PassengerActivity.this,requestPurchaseFlight);
+	}
+
 	private void setAnimation() {
 		YoYo.with(Techniques.BounceInRight)
 				.duration(600)
@@ -2487,6 +2573,182 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		//txtemeliP.setCursorVisible(false);
 
 	}
+	private class AsyncFetchPishFactor extends AsyncTask<String, String, String> {
+		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
+		HttpURLConnection conn;
+		URL url = null;
+		private ListView listAirPort;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+
+			//this method will be running on UI thread
+			rlLoading.setVisibility(View.VISIBLE);
+			Utility.disableEnableControls(false,rlRoot);
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			try {
+
+				// Enter URL address where your json file resides
+				// Even you can make call to php file which returns json data
+				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
+
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return e.toString();
+			}
+			try {
+
+				// Setup HttpURLConnection class to send and receive data from php and mysql
+				conn = (HttpURLConnection) url.openConnection();
+				conn.setReadTimeout(READ_TIMEOUT);
+				conn.setConnectTimeout(CONNECTION_TIMEOUT);
+				// conn.setRequestMethod("GET");
+				conn.setRequestMethod("POST");
+				// setDoOutput to true as we recieve data from json file
+				conn.setDoOutput(true);
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return e1.toString();
+			}
+
+			try {
+
+				int response_code = conn.getResponseCode();
+
+				String serial = null;
+
+				JSONObject errorObj = new JSONObject();
+
+				try {
+					errorObj.put("Success", false);
+
+					Class<?> c = Class.forName("android.os.SystemProperties");
+					Method get = c.getMethod("get", String.class);
+					serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
+				} catch (Exception ignored) {
+				}
+
+
+				String data =OrderToJsonPishFactor();
+
+
+				HttpClient client = new DefaultHttpClient();
+
+
+				HttpPost post = new HttpPost();
+				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
+				post.setHeader("Content-Type", "application/json; charset=UTF-8");
+				post.setHeader("Accept", "application/json; charset=UTF-8");
+
+
+				StringEntity se = null;
+				try {
+					se = new StringEntity(data, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				post.setEntity(se);
+				ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+
+				HashMap<String, String> airport = null;
+				mylist = new ArrayList<HashMap<String, String>>();
+				HttpResponse res = client.execute(post);
+				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
+
+
+				return (retSrc);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+				return e.toString();
+			} finally {
+				conn.disconnect();
+			}
+
+
+		}//end doin background
+
+		@Override
+		protected void onPostExecute(String resultPishfactor) {
+
+
+
+			rlLoading.setVisibility(View.GONE);
+			Utility.disableEnableControls(true,rlRoot);
+			try {
+////////////////////////////
+				JSONObject jsonObj = new JSONObject(resultPishfactor);
+
+				// JSONObject jsonObj = new JSONObject(retSrc);
+
+				// Getting JSON Array node
+				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseServiceResult");
+				int successResult=GetAirportsResult.getInt("SuccessResult");
+				if(successResult==0){
+					//get Error
+					JSONObject getError = jsonObj.getJSONObject("Errors");
+
+					String message= getError.getString("DetailedMessage");
+					//Toast.makeText(PassengerActivity.this, message, Toast.LENGTH_LONG).show();
+					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+					AlertDialogPassengerFlight.setText(message,"");
+				}
+
+				if(successResult >1) {
+					txt_shomare_factor.setText(GetAirportsResult.getString("SuccessResult"));
+
+					tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
+
+					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 300, 150));
+				}else{
+					//txt_shomare_factor.setText("خطایی رخ داده است !");
+					//new AlertDialog(PassengerActivity.this, "خطایی رخ داده است !");
+					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+					AlertDialogPassengerFlight.setText(getString(R.string.An_error_has_occurred),"");
+					//Toast.makeText(PassengerActivity.this, "خطایی رخ داده است !", Toast.LENGTH_LONG).show();
+					Prefs.putBoolean("BACK_HOME", true);
+					//	myScrollView.setOnTouchListener(null);
+					/*Intent intent = new Intent("sendFinish");
+
+					LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);*/
+					finish();
+
+				}
+				// sfsfs
+
+				// Setup and Handover data to recyclerview
+				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
+				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+				txtTitle.setText(R.string.Approval_and_payment_of_pre_invoice);
+				//	myScrollView.setOnTouchListener(null);
+
+				linear_saler.setVisibility(View.GONE);
+				linear_mosaferan.setVisibility(View.GONE);
+				linear_list_khadamat.setVisibility(View.GONE);
+				linear_pish_factor.setVisibility(View.VISIBLE);
+				FlagTab=true;
+				//call api GetPreFactorDetails
+				new AsyncFetchGetPreFactorDetails().execute();
+
+			} catch (JSONException e) {
+				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+				AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"","");
+				//new AlertDialog(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
+			}
+
+
+		}//end on pos excute
+
+	}//end async get pish factor
 	public String getCounter(int i) {
 		String s="";
 		switch (i) {
