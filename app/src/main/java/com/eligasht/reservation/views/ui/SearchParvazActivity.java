@@ -58,8 +58,10 @@ import com.eligasht.reservation.views.ui.dialog.flight.SortFlightDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.request.airPort.RequestAirports;
 import com.eligasht.service.model.flight.request.searchFlight.RequestSearchFlight;
+import com.eligasht.service.model.flight.response.DomesticFlight.GetIsDomesticResult;
 import com.eligasht.service.model.flight.response.DomesticFlight.ResponseDomesticFlight;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.model.flight.response.searchFlight.AdlBaseFare;
@@ -553,7 +555,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
            System.out.println("Response: "+responsSearchFlight.getSearchFlightsResult().getFlights().size());
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
-           // Log.e("date", result);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
                 window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
@@ -1157,37 +1158,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
     }
 
-    private String OrderToJsonCheckFlight() {
-        JSONObject jsone = new JSONObject();
-        JSONObject manJson = new JSONObject();
-
-
-        try {
-
-            Bundle extras = getIntent().getExtras();
-            String maghsadf = "IST";
-            String mabdaf = "THR";
-            if (extras != null) {
-                maghsadf = extras.getString("Value-Maghsad-Airport-Code");
-                mabdaf = extras.getString("Value-Mabda-Airport-Code");
-            }
-
-            manJson.put("UserName", "EligashtMlb");
-            manJson.put("Password", "123qwe!@#QWE");
-            manJson.put("TermianlId", "Mobile");
-            manJson.put("Code", mabdaf);//inja esme forudgah mikhore
-            manJson.put("ToCode", maghsadf);
-
-            jsone.put("request", manJson);
-System.out.println("DomesticRequest:"+jsone.toString());
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return jsone.toString();
-    }
 
 
     private void expandingListData() {
@@ -1246,10 +1216,8 @@ System.out.println("DomesticRequest:"+jsone.toString());
                                 ,SegmentListtrueAkhari
                                 ,SegmentListFalseAkhari);//ArrivalCityNameEnR baraye sort bayad en bashe
 
-
                         //parentItem.Header.add(header);
                         parentItem.setHeader(header);
-
 
                         //fore Detail item
                         for (int j = 0; j < SegmentList.size(); j++) {
@@ -1434,9 +1402,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
         switch (v.getId()) {
 
             case R.id.txtBack:
-                /*Intent intent = new Intent(this,PlanFragment.class);
-				//i2.putExtra("CUSTOMER_ID", (int) customerID);
-				startActivity(intent);*/
+
                 finish();
                 break;
             case R.id.btnHome:
@@ -1449,11 +1415,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
                 new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
 
                 break;
-            /*case R.id.iconFilter:
 
-                new FilterFlightDialogNew(SearchParvazActivity.this, filterModels, this, filterAirlines);
-
-                break;*/
             case R.id.llSort://sort
                 // custom dialog
                 new SortFlightDialog(SearchParvazActivity.this, this, besetSeler, bestOff, remove);
@@ -1478,71 +1440,7 @@ System.out.println("DomesticRequest:"+jsone.toString());
 
                 }
 
-               /* try {
 
-                    String str_date = Raft;//2018-01-16
-                    DateFormat formatter;
-                    Date date;
-                    formatter = new SimpleDateFormat("yyyy-MM-dd");
-                    date = formatter.parse(str_date);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(date);
-                    cal.add(Calendar.DATE, 1);
-                    System.out.println("Add one day to current date : " + formatter.format(cal.getTime()));
-
-
-                    Date dateRaft = formatter.parse(Raft);
-                    Date dateBargasht = formatter.parse(Bargasht);
-                    if (dateBargasht.after(dateRaft)) {
-
-                        SimpleDateFormat dfm = new SimpleDateFormat("dd MMMM yyyy");
-
-                        SimpleDateFormat format3 = new SimpleDateFormat("yyyy-MM-dd");//2017/03/24 11:49
-                        String formatted3 = format3.format(cal.getTime());
-                        String[] dateSplite = formatted3.split("-");
-
-                        String dayM = dateSplite[2];
-                        String monthM = dateSplite[1];
-                        String yearM = dateSplite[0];
-
-                        String dateShamsi = SolarCalendar.calSolarCalendar(Integer.parseInt(yearM), Integer.parseInt(monthM), Integer.parseInt(dayM));
-                        System.out.println("dateShamsi:" + yearM + monthM + dayM + "   " + dateShamsi);
-
-                        String[] dateSplite2 = dateShamsi.split("/");//shamsi
-
-                        String dayMF = dateSplite2[2];
-                        String monthMF = dateSplite2[1];
-                        String yearMF = dateSplite2[0];
-
-                        PersianCalendar persianCalendar = new PersianCalendar();
-                        persianCalendar.set(Integer.parseInt(yearMF), Integer.parseInt(monthMF) - 1, Integer.parseInt(dayMF));
-
-                        RaftF = persianCalendar.getPersianLongDateNonYear();
-                        Raft = formatter.format(cal.getTime());
-                        if ( Prefs.getBoolean("GeoFlight",true)) {
-                            System.out.println("dateShamsiRaft:" +  DateUtil.getLongStringDateNonYear(Raft, "yyyy-MM-dd", false));
-                            System.out.println("dateShamsiBargasht:" + DateUtil.getLongStringDateNonYear(Bargasht, "yyyy-MM-dd", false));
-                            txtDateOnvanB.setText(  DateUtil.getLongStringDateNonYear(Raft, "yyyy-MM-dd", false));
-                            txtDateOnvan.setText(DateUtil.getLongStringDateNonYear(Bargasht, "yyyy-MM-dd", false));
-                        } else {
-                            System.out.println("dateShamsiRaftF:" + RaftF);
-                            System.out.println("dateShamsiBargashtF:" + BargashtF);
-                            //txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
-                            txtDateOnvanB.setText(  RaftF);
-                            txtDateOnvan.setText(BargashtF);
-
-                        }
-                        callApiDateNext();
-                    } else {
-                        Toast.makeText(getApplicationContext(), R.string.datePickerError,
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-
-                } catch (java.text.ParseException e) {
-                    System.out.println("Exception :" + e);
-                }
-*/
                 break;
             case R.id.btn_no_Result:
                 finish();
@@ -1674,163 +1572,8 @@ System.out.println("DomesticRequest:"+jsone.toString());
         });
     }
 
-    private class AsyncCheckFlight extends AsyncTask<String, String, String> {
-        HttpURLConnection conn;
-        URL url = null;
-        private ListView listAirPort;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
-            }
 
 
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-
-
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetIsDomestic");
-
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
-            }
-            try {
-
-                // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                // conn.setRequestMethod("GET");
-                conn.setRequestMethod("POST");
-                // setDoOutput to true as we recieve data from json file
-                conn.setDoOutput(true);
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
-
-            try {
-
-                int response_code = conn.getResponseCode();
-
-                String serial = null;
-
-                JSONObject errorObj = new JSONObject();
-
-                try {
-                    errorObj.put("Success", false);
-
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
-                }
-
-
-                String data = OrderToJsonCheckFlight();
-
-
-                HttpClient client = new DefaultHttpClient();
-
-
-                HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetIsDomestic");
-                post.setHeader("Content-Type", "application/json; charset=UTF-8");
-                post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-                StringEntity se = null;
-                try {
-                    se = new StringEntity(data, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                post.setEntity(se);
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-                HttpResponse res = client.execute(post);
-                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-                return (retSrc);
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
-            }
-
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            System.out.println("DomesticResult:"+result);
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
-
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
-            }
-            //this method will be running on UI thread
-            System.out.println("result:" + result);
-            //	avi.setVisibility(View.INVISIBLE);
-            List<Country> data = new ArrayList<Country>();
-
-
-            try {
-
-                JSONObject jsonObj = new JSONObject(result);
-
-                String GetError = "";
-                JSONArray jError = null;
-
-                // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetIsDomesticResult");//Error
-                if (!GetAirportsResult.getString("Errors").equals("null")) {
-                    jError = GetAirportsResult.getJSONArray("Errors");//
-                    JSONObject jPricedItinerary = jError.getJSONObject(0);
-                    GetError = jPricedItinerary.getString("Message");
-                }
-                if (GetError.length() > 1) {
-                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
-                    AlertDialogPassenger.setText(GetError, getString(R.string.massege));
-
-                } else {
-
-                    boolean IsDemostic = GetAirportsResult.getBoolean("IsDomestic");//false khareji true dakheli
-                    if (IsDemostic)
-                        Prefs.putBoolean("IsDemostic", true);
-                    else
-                        Prefs.putBoolean("IsDemostic", false);
-
-                    //}
-
-
-                }
-
-            } catch (JSONException e) {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
-            }
-
-        }
-
-    }
 
     public class ParentItemExpandingPlan {
 
@@ -2745,8 +2488,8 @@ System.out.println("DomesticRequest:"+jsone.toString());
                 showDataExpanding();
 
                 //dakheli khareji
-               new AsyncCheckFlight().execute();
-              //  SendReqCheckFlight();
+             //  new AsyncCheckFlight().execute();
+               SendReqCheckFlight();
 
                 getAirLine();
             }
@@ -2755,6 +2498,90 @@ System.out.println("DomesticRequest:"+jsone.toString());
         }
     }//end fa
 
+    private void SendReqCheckFlight() {
+        RequestDomesticFlight requestDomesticFlight= new RequestDomesticFlight();
+        com.eligasht.service.model.flight.request.DomesticFlight.Request request = new com.eligasht.service.model.flight.request.DomesticFlight.Request();
+
+
+
+        try {
+
+            Bundle extras = getIntent().getExtras();
+            String maghsadf = "IST";
+            String mabdaf = "THR";
+            if (extras != null) {
+                maghsadf = extras.getString("Value-Maghsad-Airport-Code");
+                mabdaf = extras.getString("Value-Mabda-Airport-Code");
+            }
+
+            request.setUserName("EligashtMlb");
+            request.setPassword("123qwe!@#QWE");
+            request.setTermianlId("Mobile");
+            request.setCode(mabdaf);////inja esme forudgah mikhore
+            request.setToCode(maghsadf);
+
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        requestDomesticFlight.setRequest(request);
+
+        SingletonService.getInstance().getCheckFlight().domesticFlightAvail(new OnServiceStatus<ResponseDomesticFlight>() {
+            @Override
+            public void onReady(ResponseDomesticFlight responseDomesticFlight) {
+                System.out.println("DomesticResult:"+responseDomesticFlight.getGetIsDomesticResult().getIsDomestic());
+                new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                    window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+                }
+
+                List<Country> data = new ArrayList<Country>();
+
+
+
+                    String GetError = "";
+                    Object jError = null;
+
+                    GetIsDomesticResult GetAirportsResult = responseDomesticFlight.getGetIsDomesticResult();//Error
+                    if (GetAirportsResult.getErrors()!= null) {
+                        jError = GetAirportsResult.getErrors();//
+
+                        GetError = GetAirportsResult.getErrors().get(0).getMessage();//.getString("Message");
+                    }
+                    if (GetError.length() > 1) {
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this);
+                        AlertDialogPassenger.setText(GetError, getString(R.string.massege));
+
+                    } else {
+
+                        boolean IsDemostic = GetAirportsResult.getIsDomestic();//false khareji true dakheli
+                        if (IsDemostic)
+                            Prefs.putBoolean("IsDemostic", true);
+                        else
+                            Prefs.putBoolean("IsDemostic", false);
+
+
+                    }
+
+
+
+            }
+
+            @Override
+            public void onError(String message) {
+                System.out.println("onError: "+message);
+                new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+                // Log.e("date", result);
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+
+                    window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+                }
+            }
+        }, requestDomesticFlight);
+        }
 
 
     private void getDataEnJson(ResponsSearchFlight responsSearchFlight) {
@@ -3046,8 +2873,8 @@ System.out.println("DomesticRequest:"+jsone.toString());
                 showDataExpanding();
 
                 //dakheli khareji
-                new AsyncCheckFlight().execute();
-
+               // new AsyncCheckFlight().execute();
+                SendReqCheckFlight();
                 getAirLine();
             }
         } catch (Exception e) {
