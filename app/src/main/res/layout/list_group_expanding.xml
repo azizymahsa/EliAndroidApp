@@ -121,13 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp">
 
-                    <!-- <TextView
-                         android:id="@+id/textView1"
-                        android:layout_width="0dp"
-                         android:layout_weight="1"
-                         android:layout_height="wrap_content"
-                           android:gravity="right"
-                         android:text="TextView" /> -->
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -139,7 +133,6 @@
                             android:layout_width="90dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/_10dpTabletSize"
-
                             android:gravity="left"
                             android:text="TK898"
                             android:textAppearance="@style/tahoma"
@@ -150,19 +143,19 @@
 
                     </LinearLayout>
 
-
                     <TextView
 
-                        android:id="@+id/lblFlightArrivalTimeR"
+                        android:id="@+id/lblFlightArrivalTimeLongR"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center|center_vertical"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1"
                         android:gravity="center"
-
-                        android:text="6"
+                        android:layout_marginLeft="@dimen/_10dpTabletSize"
+                        android:text="1h 55 m"
+                        android:textAppearance="@style/tahoma"
                         android:textColor="#aaa"
-                        android:textSize="@dimen/_10dp_textSize" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -175,7 +168,6 @@
                         android:gravity="right">
 
                         <TextView
-
                             android:id="@+id/lblArrivalCityNameFaRTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -191,10 +183,9 @@
                             android:textStyle="bold" />
 
                         <TextView
-
                             android:id="@+id/lblArrivalCityNameFaR"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
@@ -202,9 +193,10 @@
                             android:gravity="right"
                             android:text="پنجشنبه"
                             android:textColor="#003399"
-
-                            android:textSize="@dimen/_14dp_txtSize" />
+                            android:textSize="@dimen/_14dp_txtSize"
+                            android:visibility="gone" />
                     </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -217,32 +209,46 @@
                     android:gravity="right|center"
                     android:orientation="horizontal">
 
-
                     <TextView
-                        android:id="@+id/tvPlaneIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/_10dpTabletSize"
+                        android:text="@string/empty_circle"
+                        android:textAppearance="@style/IconFonts4"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="14dp" />
 
+                    <View
+                        android:layout_width="@dimen/_100dpflight"
+                        android:layout_height="@dimen/_1dp_width"
+                        android:background="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/tvPlaneIcon2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
                         android:gravity="right|center"
                         android:rotation="180"
                         android:text="@string/plane"
                         android:textAppearance="@style/IconFonts"
                         android:textColor="@color/gray_dark"
-                        android:textSize="17dp" />
+                        android:textSize="20dp" />
 
                     <View
-                        android:id="@+id/viewLine"
-                        android:layout_width="@dimen/_260dp_f"
+                        android:id="@+id/viewLine2"
+                        android:layout_width="@dimen/_100dpflight"
                         android:layout_height="@dimen/_1dp_width"
                         android:background="@color/gray_dark" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
                         android:gravity="center"
-                        android:text="@string/dot"
-                        android:textAppearance="@style/IconFonts"
+                        android:text="@string/empty_circle"
+                        android:textAppearance="@style/IconFonts4"
                         android:textColor="@color/gray_dark"
                         android:textSize="14dp" />
 
@@ -256,13 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp">
 
-                    <!-- <TextView
-                         android:id="@+id/textView1"
-                        android:layout_width="0dp"
-                         android:layout_weight="1"
-                         android:layout_height="wrap_content"
-                           android:gravity="right"
-                         android:text="TextView" /> -->
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -286,17 +286,41 @@
 
                     <TextView
 
-                        android:id="@+id/txtDepurtureTrueOne"
+                        android:id="@+id/lblFlightArrivalTimeR"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/_10dpTabletSize"
+                        android:text="بدون توقف"
+                        android:textColor="#aaa"
+                        android:textSize="@dimen/_10dp_textSize" />
+
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
                         android:layout_gravity="right|center_vertical"
-
                         android:layout_weight="2"
+                        android:gravity="right">
 
-                        android:text="استانبول  "
-                        android:textColor="#000"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
+                        <TextView
+                            android:id="@+id/txtDepurtureTrueOne"
+                            android:layout_width="90dp"
+
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_10dpTabletSize"
+
+                            android:gravity="right"
+                            android:text="تهران"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
                 <!-- /////////////////////////Bargasht/////////////////////////////// -->
@@ -337,18 +361,19 @@
 
                     </LinearLayout>
 
-
                     <TextView
 
-                        android:id="@+id/lblFlightArrivalTimeB"
+                        android:id="@+id/lblFlightArrivalTimeLongB"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center|center_vertical"
-                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/_10dpTabletSize"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="6"
+                        android:text="1h 55m"
+                        android:textAppearance="@style/tahoma"
                         android:textColor="#aaa"
-                        android:textSize="@dimen/_10dp_textSize" />
+                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -377,7 +402,6 @@
                             android:textStyle="bold" />
 
                         <TextView
-
                             android:id="@+id/lblArrivalCityNameFaB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -388,12 +412,14 @@
                             android:gravity="right"
                             android:text="یکشنبه"
                             android:textColor="#003399"
-                            android:textSize="@dimen/_14dp_txtSize" />
+                            android:textSize="@dimen/_14dp_txtSize"
+                            android:visibility="gone" />
                     </LinearLayout>
+
+
                 </LinearLayout>
 
                 <LinearLayout
-
                     android:id="@+id/linearBargashtTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
@@ -401,34 +427,46 @@
                     android:gravity="right|center"
                     android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/_10dpTabletSize"
+                        android:text="@string/empty_circle"
+                        android:textAppearance="@style/IconFonts4"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="14dp" />
+
+                    <View
+                        android:layout_width="@dimen/_100dpflight"
+                        android:layout_height="@dimen/_1dp_width"
+                        android:background="@color/gray_dark" />
 
                     <TextView
                         android:id="@+id/tvPlaneIcon2"
-
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
                         android:gravity="right|center"
                         android:rotation="180"
                         android:text="@string/plane"
                         android:textAppearance="@style/IconFonts"
                         android:textColor="@color/gray_dark"
-                        android:textSize="17dp" />
+                        android:textSize="20dp" />
 
                     <View
                         android:id="@+id/viewLine2"
-
-                        android:layout_width="@dimen/_260dp_f"
+                        android:layout_width="@dimen/_100dpflight"
                         android:layout_height="@dimen/_1dp_width"
                         android:background="@color/gray_dark" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
                         android:gravity="center"
-                        android:text="@string/dot"
-                        android:textAppearance="@style/IconFonts"
+                        android:text="@string/empty_circle"
+                        android:textAppearance="@style/IconFonts4"
                         android:textColor="@color/gray_dark"
                         android:textSize="14dp" />
 
@@ -445,12 +483,13 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+
                         android:layout_weight="2"
                         android:gravity="left">
 
                         <TextView
                             android:id="@+id/txtArrivelFalseLast"
-                            android:layout_width="90dp"
+                            android:layout_width="wrap_content"
 
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/_10dpTabletSize"
@@ -464,19 +503,38 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/lblFlightArrivalTimeB"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/_10dpTabletSize"
+                        android:text="بدون توقف  "
+                        android:textColor="#aaa"
+                        android:textSize="@dimen/_10dp_textSize" />
 
-                        android:id="@+id/txtDepurtureFalseOne"
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_gravity="right|center_vertical"
-
                         android:layout_weight="2"
+                        android:gravity="right">
 
-                        android:text="تهران  "
-                        android:textColor="#000"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
+                        <TextView
+                            android:id="@+id/txtDepurtureFalseOne"
+                            android:layout_width="wrap_content"
 
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_10dpTabletSize"
+
+                            android:gravity="right"
+                            android:text="استانبول"
+                            android:textColor="#000"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
                 <!-- ///////////////////////////////////////////////////// -->
             </LinearLayout>

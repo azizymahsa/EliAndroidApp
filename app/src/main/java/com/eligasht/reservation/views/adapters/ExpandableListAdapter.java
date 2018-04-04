@@ -43,8 +43,12 @@ import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,6 +68,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     String searchKey;
     String FlightId;
     ExpandableListViewE expListViewExpanding;
+    int childPosition;
 
     public ExpandableListAdapter(Activity context, List<SearchParvazActivity.ParentItemExpandingPlan> dataList,
                                  SearchParvazPinAdapter searchParvazPinAdapter,
@@ -82,6 +87,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
+        childPosition=childPosititon;
         return this.dataExpandingList.get(groupPosition).Items.get(childPosititon);
 
     }
@@ -121,6 +127,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         Button btnSelect = convertView.findViewById(R.id.btnSelect);
 
+
+
+
+
+
+
+
         //nerkh
         if (item.AdlBaseFare > 0) {
             txtAdlCostP.setText(String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
@@ -152,7 +165,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         lblDepurtureAirportR.setText(item.DepartureCityNameFa + " , " + item.DepartureAirportNameFaR);
         lblArrivalAirportR.setText(item.ArrivalCityNameFa + " , " + item.ArrivalAirportNameFaR);
         if (item.OperatingAirlineNameEn == null) {
-            lblFlightNumberR.setText(item.AirlineCode + item.FlightNumberR);
+            String test=item.AirlineCode + item.FlightNumberR;
+            lblFlightNumberR.setText(test.replace(" ",""));
+            Log.e("Exp:", test.replace(" ",""));
             if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
                 String text2 = "<font color=#0e874e>"  + item.AirlineNameFaR+ ""+"</font> " ;
                 lblFlightNumberRPersian.setText( " , "+Html.fromHtml(text2));
@@ -162,8 +177,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         } else {
             String text = "<font color=#aaaaaa>" + "By: " + item.OperatingAirlineNameEn + "</font> " +
-                    "<font color=#0e874e>" + item.AirlineCode + item.FlightNumberR + "</font>";
+                    "<font color=#0e874e>" + item.AirlineCode.replace(" ","") + item.FlightNumberR.replace(" ","") + "</font>";
             lblFlightNumberR.setText(Html.fromHtml(text));
+            Log.e("Exp:", Html.fromHtml(text)+"");
             if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
                 String text2 = "<font color=#0e874e>"  + item.AirlineNameFaR+ ""+"</font> " ;
                 lblFlightNumberRPersian.setText( " , "+Html.fromHtml(text2));
@@ -265,7 +281,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_group_expanding, parent,false);//list Group header//row_select_parvaz_two_header
         }
 
-
         TextView btnExpand = convertView.findViewById(R.id.btnExpand);
 
         final TextView txtPin = convertView.findViewById(R.id.txtPin);
@@ -298,7 +313,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView txttedad = convertView.findViewById(R.id.txttedad);
 
-
+        TextView lblFlightArrivalTimeLongB= convertView.findViewById(R.id.lblFlightArrivalTimeLongB);
+        TextView lblFlightArrivalTimeLongR= convertView.findViewById(R.id.lblFlightArrivalTimeLongR);
 
         TextView tvPlaneIcon2 = convertView.findViewById(R.id.tvPlaneIcon2);
         TextView tvPlaneIcon = convertView.findViewById(R.id.tvPlaneIcon);
@@ -308,18 +324,37 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 
-
-
-
-
-
-
-
         LinearLayout linearBargashtOne = convertView.findViewById(R.id.linearBargashtOne);
         LinearLayout linearBargashtTwo = convertView.findViewById(R.id.linearBargashtTwo);
         LinearLayout linearBargashtTree = convertView.findViewById(R.id.linearBargashtTree);
         LinearLayout linearKol = convertView.findViewById(R.id.linearKol);
 
+        int hTrue=0;
+        int mTrue=0;
+        for (int i = 0; i <dataExpandingList.get(groupPosition).Header.SegmentTrueCount; i++) {
+            Log.e("SegmentTrueCount:", dataExpandingList.get(groupPosition).Header.SegmentTrueCount+"" );
+            hTrue=hTrue+Integer.parseInt(item2.segmentListtrueAkhari.get(i).getFltDurationH());
+            mTrue=mTrue+Integer.parseInt(item2.segmentListtrueAkhari.get(i).getFltDurationM());
+
+        }
+        int hour=mTrue/60;
+        int min=mTrue % 60;
+        int sumTrueH=hTrue+hour;
+        int sumTrueM=min;
+        int hFalse=0;
+        int mFalse=0;
+        for (int i = 0; i <dataExpandingList.get(groupPosition).Header.SegmentFalseCount; i++) {
+            Log.e("SegmentFalseCount:", dataExpandingList.get(groupPosition).Header.SegmentFalseCount+"" );
+            hFalse=hFalse+Integer.parseInt(item2.segmentListfalseAkhari.get(i).getFltDurationH());
+            mFalse=mFalse+Integer.parseInt(item2.segmentListfalseAkhari.get(i).getFltDurationM());
+        }
+        int hourF=mFalse/60;
+        int minF=mFalse % 60;
+        int sumFalseH=hFalse+hourF;
+        int sumFalseM=minF;
+
+        lblFlightArrivalTimeLongR.setText(sumTrueH+" h "+sumTrueM+" m");
+        lblFlightArrivalTimeLongB.setText(sumFalseH+" h "+sumFalseM+" m");
         if (shouldShowAnimation) {
             YoYo.with(Techniques.FadeIn)
                     .duration(300)
@@ -375,8 +410,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (isExpanded) {
             btnExpand.setText(_context.getString(R.string.icon_exp_up));
             expListViewExpanding.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
-
-            float right = llRaft.getRight();
+            //moving tvPlaneIcon2 from right to left
+           /* float right = llRaft.getRight();
             float left = llRaft.getLeft();
             tvPlaneIcon.setTranslationX(right);
 
@@ -400,8 +435,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             ObjectAnimator anim5 = ObjectAnimator.ofFloat(viewLine2, "translationX", right2, left2-_context.getResources().getInteger(R.integer._85));
             anim5.setDuration(1500);
             anim5.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
-            anim5.start();
-
+            anim5.start(); */
         } else {
             btnExpand.setText(_context.getString(R.string.icon_exp_down));
 
@@ -429,7 +463,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             //lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
             System.out.println("bargasgt:" + item2.FltDateDayOfWeekFalse);
             lblArrivalCityNameFaB.setText("" + GetDayWeek(item2.FltDateDayOfWeekFalse) );
-            lblArrivalCityNameFaBTime.setText(   item2.FlightTimeB+" , ");
+            lblArrivalCityNameFaBTime.setText(   item2.FlightTimeB);//+" , ");
             try{
                 int tavaghofB = item2.SegmentFalseCount - 1;
                 System.out.println("tavaghofR:"+tavaghofB+"RR"+item2.SegmentFalseCount);
@@ -449,7 +483,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         //	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
         System.out.println("raft:" + item2.FltDateDayOfWeek);
         lblArrivalCityNameFaR.setText("" + GetDayWeek(item2.FltDateDayOfWeek)  );
-        lblArrivalCityNameFaRTime.setText(  item2.FlightArrivalTimeR+" , ");
+        lblArrivalCityNameFaRTime.setText(  item2.FlightArrivalTimeR);//+" , ");
         try{
         int tavaghofR = item2.SegmentTrueCount - 1;
         System.out.println("tavaghofR:"+tavaghofR+"BB"+item2.SegmentTrueCount);
@@ -483,47 +517,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         //((Button)findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.purple_button_larg);
         //lblProductrow.setBackgroundResource(R.drawable.ir);
         String s = item2.AirlineCode;
-        /*if(s.toLowerCase().equals("ir"))
-            lblProductrow.setBackgroundResource(R.drawable.ir);
-		else if(s.toLowerCase().equals("a3"))
-			lblProductrow.setBackgroundResource(R.drawable.a);
-		else if(s.toLowerCase().equals("af"))
-			lblProductrow.setBackgroundResource(R.drawable.af);
-		else if(s.toLowerCase().equals("az"))
-			lblProductrow.setBackgroundResource(R.drawable.az);
-		else if(s.toLowerCase().equals("ek"))
-			lblProductrow.setBackgroundResource(R.drawable.ek);
-		else if(s.toLowerCase().equals("ey"))
-			lblProductrow.setBackgroundResource(R.drawable.ey);
-		else if(s.toLowerCase().equals("fz"))
-			lblProductrow.setBackgroundResource(R.drawable.fz);
-		else if(s.toLowerCase().equals("g9"))
-			lblProductrow.setBackgroundResource(R.drawable.g);
-		else if(s.toLowerCase().equals("j2"))
-			lblProductrow.setBackgroundResource(R.drawable.j);
-		else if(s.toLowerCase().equals("ji"))
-			lblProductrow.setBackgroundResource(R.drawable.ji);
-		else if(s.toLowerCase().equals("kk"))
-			lblProductrow.setBackgroundResource(R.drawable.kk);
-		else if(s.toLowerCase().equals("kl"))
-			lblProductrow.setBackgroundResource(R.drawable.kl);
-		else if(s.toLowerCase().equals("lh"))
-			lblProductrow.setBackgroundResource(R.drawable.lh);
-		else if(s.toLowerCase().equals("pc"))
-			lblProductrow.setBackgroundResource(R.drawable.pc);
-		else if(s.toLowerCase().equals("qr"))
-			lblProductrow.setBackgroundResource(R.drawable.qr);
-		else if(s.toLowerCase().equals("su"))
-			lblProductrow.setBackgroundResource(R.drawable.su);
-		else if(s.toLowerCase().equals("tg"))
-			lblProductrow.setBackgroundResource(R.drawable.tg);
-		else if(s.toLowerCase().equals("tk"))
-			lblProductrow.setBackgroundResource(R.drawable.tk);
-		else if(s.toLowerCase().equals("w5"))
-			lblProductrow.setBackgroundResource(R.drawable.w);
-		else if(s.toLowerCase().equals("wy"))
-			lblProductrow.setBackgroundResource(R.drawable.wy);
-		else {*/
+
         System.out.println(s);
 				/*	try {
 						InputStream is = (InputStream) new URL("https://cdn.elicdn.com/Content/AirLine/"+s+".png").getContent();
