@@ -493,7 +493,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 com.eligasht.service.model.flight.request.searchFlight.Request request = new com.eligasht.service.model.flight.request.searchFlight.Request();
 
                 com.eligasht.service.model.flight.request.searchFlight.Identity identity = new com.eligasht.service.model.flight.request.searchFlight.Identity();
-                //identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}
+                //identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","jUserName":"EligashtMlb"}
                 request.setIdentity(identity);
 
                 request.setDepartureAirportcode(mabdaf);

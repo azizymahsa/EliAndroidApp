@@ -90,6 +90,7 @@ import com.eligasht.service.model.flight.response.PreFactorDetails.FactorSummary
 import com.eligasht.service.model.flight.response.PreFactorDetails.GetPreFactorDetailsResult;
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactor;
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorFlight;
+import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorService;
 import com.eligasht.service.model.flight.response.PreFactorDetails.RequestPassenger;
 import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFactorDetails;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.Error;
@@ -2210,7 +2211,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				//.setOnTouchListener(null);
 				break;
 			case R.id.btn_khadamat:
-				if(FlagTab) {
+				if(FlagTab){
 					linear_saler.setVisibility(View.GONE);
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
@@ -2270,8 +2271,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	@Override
 	public void onReady(ResponsePurchaseFlight responsePurchaseFlight) {
 
-
-
 		Log.e("PurchesRespons:",responsePurchaseFlight.getPurchaseServiceResult().getSuccessResult()+"");
 
 		rlLoading.setVisibility(View.GONE);
@@ -2283,9 +2282,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			if(successResult==0){
 				//get Error
 				List<Error> getError = GetAirportsResult.getErrors();//getJSONObject("Errors");
-
 				String message= getError.get(0).getDetailedMessage();//getString("DetailedMessage");
-
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
 				AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
 			}
@@ -2425,19 +2422,19 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
 					recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 					ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
-					List<Object> jArray4 = jArray.getPreFactorServices();
+					List<PreFactorService> jArray4 = jArray.getPreFactorServices();
 
-			/*for (int i = 0; i < jArray4.size(); i++) {
+			for (int i = 0; i < jArray4.size(); i++) {
 				servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-						jArray4.getJSONObject(i).getString("ServicePrice"),jArray4.getJSONObject(i).getString("ServiceType"),
-						jArray4.getJSONObject(i).getString("CityFa"),jArray4.getJSONObject(i).getString("ServiceNameFa"),jArray4.getJSONObject(i).getString("CountryFa")));
+						jArray4.get(i).getServicePrice()+"",jArray4.get(i).getServiceType(),
+						jArray4.get(i).getCityFa(),jArray4.get(i).getServiceNameFa(),jArray4.get(i).getCountryFa()));
 
 			}
 			if (!servicePreFactorModels.isEmpty()) {
 				llDetailService.setVisibility(View.VISIBLE);
 				recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
 
-			}*/
+			}
 					//for flight==================================================================================
 					final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
 					recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));

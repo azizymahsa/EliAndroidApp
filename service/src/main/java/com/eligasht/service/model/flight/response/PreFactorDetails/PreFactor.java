@@ -24,7 +24,7 @@ public class PreFactor {
     private List<Object> preFactorHotels = null;
     @SerializedName("PreFactorServices")
     @Expose
-    private List<Object> preFactorServices = null;
+    private List<PreFactorService> preFactorServices = null;
     @SerializedName("RequestPartner")
     @Expose
     private List<RequestPartner> requestPartner = null;
@@ -78,11 +78,11 @@ public class PreFactor {
         this.preFactorHotels = preFactorHotels;
     }
 
-    public List<Object> getPreFactorServices() {
+    public List<PreFactorService> getPreFactorServices() {
         return preFactorServices;
     }
 
-    public void setPreFactorServices(List<Object> preFactorServices) {
+    public void setPreFactorServices(List<PreFactorService> preFactorServices) {
         this.preFactorServices = preFactorServices;
     }
 
