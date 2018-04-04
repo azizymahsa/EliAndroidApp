@@ -249,7 +249,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
-                String month=""+monthOfYear+1;
+                String month=""+(monthOfYear+1);
                 String day=""+dayOfMonth;
                 if(Integer.toString(monthOfYear+1).length()==1){
                     month="0"+(monthOfYear+1);
@@ -632,14 +632,14 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         }
          scrolMosafer = findViewById(R.id.scrolMosafer);
         //////////////
-       /* scrolMosafer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+        scrolMosafer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 Log.e("testy", scrollY+"");
                 Log.e("testx", scrollX+"");
 
             }
-        });*/
+        });
     }//end oncreate
     //AsyncFetchGetPreFactorDetails
 
@@ -1007,7 +1007,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 if (successResult == 0) {
                     //get Error
                     JSONObject getError = jsonObj.getJSONObject("Errors");
-                    String message = getError.getString("Message" );
+                    String message = getError.getString("Message");
                     // Toast.makeText(PassengerHotelFlightActivity.this, message, Toast.LENGTH_LONG).show();
                     AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerHotelFlightActivity.this, PassengerHotelFlightActivity.this);
                     AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
