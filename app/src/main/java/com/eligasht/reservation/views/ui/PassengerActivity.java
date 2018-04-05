@@ -50,6 +50,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -2340,7 +2341,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			public void onReady(ResponsePreFactorDetails responsePreFactorDetails) {
 
 
-				Log.e("ResponsePreFactorDetails:",responsePreFactorDetails.getGetPreFactorDetailsResult().getPreFactor().toString()+"");
+				Log.e("ResponsePreFactor",responsePreFactorDetails.getGetPreFactorDetailsResult().getPreFactor().toString()+"");
 
 
 				rlLoading.setVisibility(View.GONE);

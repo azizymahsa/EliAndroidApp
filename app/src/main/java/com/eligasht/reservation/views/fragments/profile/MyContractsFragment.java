@@ -26,15 +26,7 @@ import java.util.ArrayList;
 public class MyContractsFragment extends Fragment implements View.OnClickListener {
 
     public ViewGroup view;
-    private TextView num_contract;
-    private TextView date;
-    private TextView path;
-    private TextView depart_date;
-    private TextView login_date;
-    private TextView sum_price;
-    private TextView remained_price;
-    private TextView follower;
-    private TextView email;
+
     ListView lvContract;
     private ArrayList<ContractModel> contractModels = new ArrayList<>();
 
@@ -55,9 +47,9 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
 
 
     private void initViews() {
-        num_contract = view.findViewById(R.id.contract_number);
+       // num_contract = view.findViewById(R.id.contract_number);
         lvContract = view.findViewById(R.id.lvContract);
-        date = view.findViewById(R.id.contract_date);
+      /*  date = view.findViewById(R.id.contract_date);
         path = view.findViewById(R.id.contract_path);
         depart_date = view.findViewById(R.id.contract_depart_date);
         login_date = view.findViewById(R.id.contract_login_date);
@@ -65,7 +57,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
         remained_price = view.findViewById(R.id.contract_remained);
         follower = view.findViewById(R.id.contract_follower);
         email = view.findViewById(R.id.contract_email);
-
+*/
         //set data of login for contracts
         try {
             for (int i = 0; i < WebUserTools.getInstance().getUser().getPreviousContracts().size(); i++) {

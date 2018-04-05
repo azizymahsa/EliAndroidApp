@@ -44,7 +44,7 @@
     <string name="Possibilities">امکانات</string>
     <string name="Around">اطراف</string>
     <string name="Policy">قوانین</string>
-    <string name="ReservRoom">انتخاب و رزرو اتاق</string>
+    <string name="ReservRoom">رزرو اتاق</string>
     <string name="NoComment">نظری ارسال نشده!</string>
     <string name="ConfirmComment">ثبت نظر</string>
     <string name="ErrorRoom">اتاقی یافت نشد!</string>
@@ -2362,4 +2362,6 @@
     <string name="icon_room">&#xe639;</string>
     <string name="icon_ac">&#xe640;</string>
     <string name="massege">پیغام</string>
+    <string name="please_enter_your_name_english">لطفا نام (En) خود را وارد کنید</string>
+    <string name="please_enter_your_family_name_english">لطفا نام خانوادگی (En) خود را وارد کنید</string>
 </resources>

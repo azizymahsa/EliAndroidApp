@@ -8,11 +8,14 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,7 @@ import com.eligasht.reservation.models.model.login.response.EmailContractRes;
 import com.eligasht.reservation.models.model.login.response.EmailContractResult;
 import com.eligasht.reservation.models.model.login.response.WebUserChangePasswordRes;
 import com.eligasht.reservation.models.model.login.response.WebUserUpdateProfileRes;
+import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.fragments.profile.ProfilePagerAdapter;
@@ -52,7 +56,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private TextView img_profile;
     private TextView txt_name;
     private TextView title;
     private Button btnSaveInfo;
@@ -62,6 +65,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private ClientService service;
     private RelativeLayout llHome;
     private CoordinatorLayout coordinatorLayout;
+    private ImageView imageView;
+    private Toolbar toolbar;
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
@@ -105,13 +110,32 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
         initViews();
 
+        if (!ValidationTools.isEmptyOrNull(WebUserTools.getInstance().getUser().getWebUserProperties().getImgURL())){
+            GlideApp
+                    .with(this)
+                    .load(WebUserTools.getInstance().getUser().getWebUserProperties().getImgURL())
+                    .centerCrop()
+                    .error(R.drawable.not_found)
+                    .into(imageView);
+        }
+        else{
+
+        }
+
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        title.setText(getString(R.string.my_profile));
+        if (!ValidationTools.isEmptyOrNull(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF())||
+                !ValidationTools.isEmptyOrNull(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF())){
+            title.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+" "+WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+
+        }else{
+            title.setText(getString(R.string.my_profile));
+
+        }
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
         setupPager();
@@ -144,9 +168,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
 
             try {
-                img_profile.setText(String.valueOf(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameE().charAt(0) + "" + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameE().charAt(0)).toUpperCase());
+              //  img_profile.setText(String.valueOf(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameE().charAt(0) + "" + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameE().charAt(0)).toUpperCase());
             } catch (Exception e) {
-                img_profile.setText("");
+               // img_profile.setText("");
             }
 
             try {
@@ -181,13 +205,16 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         viewPager = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tab_layout);
         txt_name = findViewById(R.id.txt_name);
-        img_profile = findViewById(R.id.img_profile);
+        imageView = findViewById(R.id.imageView);
+      //  img_profile = findViewById(R.id.img_profile);
         btnSaveInfo = findViewById(R.id.btnSaveInfo);
         title = findViewById(R.id.title);
         btnBack = findViewById(R.id.btnBack);
         btnHome = findViewById(R.id.btnHome);
         coordinatorLayout = findViewById(R.id.coordinator);
+        toolbar = findViewById(R.id.toolbar);
         btnSaveInfo.setOnClickListener(this);
+        initToolbar(toolbar);
 
 
     }
@@ -341,6 +368,23 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             }
         });
 
+    }
+    protected void initToolbar(Toolbar toolbar) {
+        if (toolbar == null)
+            return;
+        setSupportActionBar(toolbar);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayUseLogoEnabled(false);
+
+        View customView = getLayoutInflater().inflate(R.layout.toolbar, null);
+        customView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        actionBar.setCustomView(customView);
+        Toolbar parent = (Toolbar) customView.getParent();
+        parent.setContentInsetsAbsolute(0, 0);
     }
 
 }

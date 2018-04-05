@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -78,7 +79,7 @@ public class InitUi {
 
 
     }
-    public  void Loading(Activity activity,final RelativeLayout rlLoading, final RelativeLayout root, boolean start,int image ) {
+    public  void Loading(Activity activity, final RelativeLayout rlLoading, final ViewGroup root, boolean start, int image ) {
       //  ImageView ivImage=activity.findViewById(R.id.ivImage);
       //  ivImage.setImageDrawable(ContextCompat.getDrawable(activity,image));
 
