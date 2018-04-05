@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
@@ -63,7 +64,8 @@ public class RoomsAdapter extends BaseAdapter {
     String offerIds;
     GetHoldRoom getHoldRoom;
     String flightId;
-    RelativeLayout rlLoading, rlRoot;
+    RelativeLayout rlLoading;
+    RelativeLayout rlRoot;
     Window window;
     AlertDialogPolicy alertDialogPolicy;
 

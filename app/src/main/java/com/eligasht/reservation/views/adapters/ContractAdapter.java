@@ -18,6 +18,7 @@ import com.eligasht.reservation.models.model.login.call.EmailContractReq;
 import com.eligasht.reservation.models.model.login.call.EmailContractRequestModel;
 import com.eligasht.reservation.models.model.login.response.EmailContractRes;
 import com.eligasht.reservation.models.model.login.response.EmailContractResult;
+import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;
@@ -94,8 +95,8 @@ public class ContractAdapter extends BaseAdapter {
             holder.path.setText(contractModels.get(position).path);
             holder.depart_date.setText(contractModels.get(position).depart_date);
             holder.login_date.setText(contractModels.get(position).login_date);
-            holder.sum_price.setText(contractModels.get(position).sum_price);
-            holder.remained_price.setText(contractModels.get(position).remained_price);
+            holder.sum_price.setText(Utility.priceFormat(contractModels.get(position).sum_price));
+            holder.remained_price.setText(Utility.priceFormat(contractModels.get(position).remained_price));
             holder.follower.setText(contractModels.get(position).follower);
             holder.email.setText(contractModels.get(position).email);
         } catch (Exception e) {

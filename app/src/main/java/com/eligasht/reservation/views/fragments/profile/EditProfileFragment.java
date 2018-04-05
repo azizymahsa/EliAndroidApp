@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.fragments.profile;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,11 +52,12 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     private EditText edt_home_phone;
     private EditText edt_mobile;
     private EditText edt_address;
+    private TextInputLayout txt_birthday_input;
     public SmoothCheckBox chk_gender_man;
     public SmoothCheckBox chk_gender_woman;
     transient private boolean isChecked;
     private LinearLayout birthday_date;
-    private TextView txt_birthday;
+    private EditText txt_birthday;
     private String birthdayDate;
     DatePickerDialog datePickerDialogDepart;
     int month;
@@ -96,6 +98,9 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         chk_gender_woman = view.findViewById(R.id.chB_woman);
         birthday_date = view.findViewById(R.id.edt_birthday);
         txt_birthday = view.findViewById(R.id.txt_birthday);
+        txt_birthday_input = view.findViewById(R.id.txt_birthday_input);
+        birthday_date.setOnClickListener(this);
+        txt_birthday_input.setOnClickListener(this);
 
         //set information of user
         birthdayDate = WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserBirthDayMiladi();
@@ -148,6 +153,14 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         chk_gender_man.setOnCheckedChangeListener(null);
         chk_gender_woman.setOnCheckedChangeListener(null);
         birthday_date.setOnClickListener(this);
+        try{
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserGender()){
+                chk_gender_man.setChecked(true);
+            }else{
+                chk_gender_woman.setChecked(true);
+            }
+        }catch (Exception e){}
+
 
         chk_gender_man.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
@@ -179,13 +192,12 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
 
 
-            case R.id.edt_birthday:
-                datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "BirthDay");
-                break;
-        }
+            datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "BirthDay");
+
+
+
     }
 
 

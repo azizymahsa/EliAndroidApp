@@ -2373,6 +2373,11 @@
     <string name="comma">,</string>
     <string name="massege">massege</string>
     <string name="the_locale_will_be_changed">Depending on your current location, the program language will be changed</string>
+    <string name="please_enter_your_name_english">Please enter your name(En)</string>
+    <string name="please_enter_your_family_name_english">Please enter your last name(En)</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
