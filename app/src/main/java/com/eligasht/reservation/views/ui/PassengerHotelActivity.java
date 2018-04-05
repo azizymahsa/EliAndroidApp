@@ -247,7 +247,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
-                String month=""+monthOfYear+1;
+                String month=""+(monthOfYear+1);
                 String day=""+dayOfMonth;
                 if(Integer.toString(monthOfYear+1).length()==1){
                     month="0"+(monthOfYear+1);
