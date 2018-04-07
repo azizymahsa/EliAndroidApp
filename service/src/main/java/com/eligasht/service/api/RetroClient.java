@@ -1,9 +1,11 @@
 package com.eligasht.service.api;
 
+import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
 import com.eligasht.service.model.flight.request.airPort.RequestAirports;
 import com.eligasht.service.model.flight.request.purchaseServiceFlight.RequestPurchaseFlight;
 import com.eligasht.service.model.flight.request.searchFlight.RequestSearchFlight;
+import com.eligasht.service.model.flight.response.DomesticFlight.ResponseDomesticFlight;
 import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFactorDetails;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.helper.Const;
@@ -42,5 +44,9 @@ public interface RetroClient {
     @POST(Const.PreFactorDetailsAvil)
     Observable<ResponsePreFactorDetails> responsePreFactorDetails(
             @Body RequestPreFactorDetails requestPreFactorDetails
+    );
+    @POST(Const.CheckFlightAvail)
+    Observable<ResponseDomesticFlight> responseDomesticFlightObservable(
+            @Body RequestDomesticFlight requestDomesticFlight
     );
 }

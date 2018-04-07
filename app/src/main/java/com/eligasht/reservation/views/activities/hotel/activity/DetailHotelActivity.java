@@ -12,15 +12,20 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -41,6 +46,8 @@ import com.eligasht.reservation.api.hotel.comment.GetComment;
 import com.eligasht.reservation.api.hotel.room.GetRoomsList;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.lost.CommentAdapterRecycle;
+import com.eligasht.reservation.models.eventbus.HotelProprtiesBus;
+import com.eligasht.reservation.models.eventbus.RoomsModelBus;
 import com.eligasht.reservation.models.hotel.api.detail.ImageHotel;
 import com.eligasht.reservation.models.hotel.api.detail.call.GetHotelDRequest;
 import com.eligasht.reservation.models.hotel.api.detail.call.GetHotelDetailRequest;
@@ -54,12 +61,14 @@ import com.eligasht.reservation.models.hotel.api.rooms.response.RoomList;
 import com.eligasht.reservation.tools.NonScrollRecyclerView;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.hotel.comment.CommentModel;
+import com.eligasht.reservation.views.adapters.hotel.hotelDetail.HotelDetailViewPager;
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesAdapter;
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesModels;
 import com.eligasht.reservation.views.adapters.hotel.rooms.ImageModel;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsModel;
+import com.eligasht.reservation.views.fragments.profile.ProfilePagerAdapter;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.NonScrollGridView;
 import com.eligasht.reservation.views.ui.SingletonContext;
@@ -78,6 +87,8 @@ import com.google.gson.Gson;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -91,41 +102,36 @@ import at.grabner.circleprogress.CircleProgressView;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, AddCommnetDialog.OnCommentDialogListenerArray {
+public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, AddCommnetDialog.OnCommentDialogListenerArray {
 
     private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent;
-    private NonScrollListView lvRooms;
+    //  private NonScrollListView lvRooms;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
-    boolean updateGoogle = false;
-    private RelativeLayout rlLoading, rlRoot, rlLoading2;
+    private RelativeLayout rlLoading, rlLoading2;
+    CoordinatorLayout rlRoot;
     private AddComment addComment;
     private RoomsAdapter roomsAdapter;
     private GetRoomsList getRoomsList;
     private Window window;
-    private LinearLayout llEmkanatClick, llMapClick, llRezervClick, llCommentClick, llCommentContent, llAroundHotel, llInformation, llPolicy,tab_layout;
-    private FrameLayout flMap;
-    private View vEmakanat, vMap, vRezerv, vComment;
-    private GoogleMap map;
-    private View mapView;
-    private MapView mMapView;
-    private static final int GPS_ERRORDIALOG_REQUEST = 9001;
-    private String eHotelId;
-    private String offerIds;
+    private HotelDetailViewPager hotelDetailViewPager;
+    private ViewPager view_pager;
+    Toolbar toolbar;
+
+
     private GetHotelDetail getHotelDetail;
     private TextView tvHotelName, tvCityName, tvAdress, tvAlert, tvAlertError;
     private ImageView ivImage;
     private LinearLayout llDynamic, llLoading, llComment, llEmkanat;
     private AVLoadingIndicatorView aviComment;
-    private FancyButton btnSortComment, btnOk, btnComment, btnOneComment;
     private ImageView ivLoading;
     private AddCommnetDialog addCommnetDialog;
     private String comment, userName, title;
     private CommentAdapterRecycle commentAdapter;
-    private TextView tvSortComment, tvDateDetail,tvCommentClickText,tvMapClickText,
-            tvEmakanatClickText,tvRezervClickText;
+    private TextView tvSortComment, tvDateDetail, tvCommentClickText, tvMapClickText,
+            tvEmakanatClickText, tvRezervClickText;
     boolean isNew = false;
     private ScrollView svDetail;
     private RelativeLayout elNotFound;
@@ -135,29 +141,33 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private NonScrollRecyclerView lvComments;
     private CardView cvHotel;
     private FrameLayout flViewPager;
+    private TabLayout tab_layout;
+    private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_hotel);
+        setContentView(R.layout.activity_detail_hotel_2);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.DetailHotel));
         window = getWindow();
         initView();
-        initMap();
-        try {
-            if (getIntent().getExtras().getString("Type").equals("Pakage")) {
-                llRezervClick.setVisibility(View.GONE);
-                lvRooms.setVisibility(View.GONE);
-                vComment.setVisibility(View.GONE);
-                tvAlert.setVisibility(View.GONE);
-              /*  llDynamic.setVisibility(View.VISIBLE);
-                vEmakanat.setVisibility(View.VISIBLE);*/
-                flMap.setVisibility(View.VISIBLE);
-                vMap.setVisibility(View.VISIBLE);
 
-            }
-        } catch (Exception e) {
-        }
+
     }
 
     @Override
@@ -170,9 +180,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         rlLoading = findViewById(R.id.rlLoading);
         flViewPager = findViewById(R.id.flViewPager);
         cvHotel = findViewById(R.id.cvHotel);
-        tab_layout = findViewById(R.id.tab_layout);
         rlRoot = findViewById(R.id.rlRoot);
-        llEmkanatClick = findViewById(R.id.llEmkanatClick);
         ivLoading = findViewById(R.id.ivLoading);
         tvCommentClickText = findViewById(R.id.tvCommentClickText);
         tvMapClickText = findViewById(R.id.tvMapClickText);
@@ -180,81 +188,59 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvRezervClickText = findViewById(R.id.tvRezervClickText);
 
 
-        llMapClick = findViewById(R.id.llMapClick);
         tvAdress = findViewById(R.id.tvAdress);
-        llRezervClick = findViewById(R.id.llRezervClick);
         ivImage = findViewById(R.id.ivImage);
         tvHotelName = findViewById(R.id.tvHotelName);
         lvComments = findViewById(R.id.lvComments);
         tvCityName = findViewById(R.id.tvCityName);
         llDynamic = findViewById(R.id.llDynamic);
         tvAlertComment = findViewById(R.id.tvAlertComment);
-        llCommentContent = findViewById(R.id.llCommentContent);
         aviComment = findViewById(R.id.aviComment);
         llComment = findViewById(R.id.llComment);
-        btnSortComment = findViewById(R.id.btnSortComment);
-        vComment = findViewById(R.id.vComment);
-        llCommentClick = findViewById(R.id.llCommentClick);
         tvDateDetail = findViewById(R.id.tvDateDetail);
         tvSortComment = findViewById(R.id.tvSortComment);
-        btnOk = findViewById(R.id.btnOk);
         elNotFound = findViewById(R.id.elNotFound);
         tvAlertError = findViewById(R.id.tvAlertError);
         tvAlert = findViewById(R.id.tvAlert);
-        svDetail = findViewById(R.id.svDetail);
         llEmkanat = findViewById(R.id.llEmkanat);
-        llAroundHotel = findViewById(R.id.llAroundHotel);
-        llInformation = findViewById(R.id.llInformation);
         circleView = findViewById(R.id.circleView);
-        llPolicy = findViewById(R.id.llPolicy);
         tvCommentCount = findViewById(R.id.tvCommentCount);
         tvVoteCount = findViewById(R.id.tvVoteCount);
         tvRecommendedPercent = findViewById(R.id.tvRecommendedPercent);
-        btnOneComment = findViewById(R.id.btnOneComment);
         rlLoading2 = findViewById(R.id.rlLoading2);
-        // avi1 = findViewById(R.id.avi1);
-        llEmkanatClick.setOnClickListener(this);
-        llMapClick.setOnClickListener(this);
-        llRezervClick.setOnClickListener(this);
-        llCommentClick.setOnClickListener(this);
-        btnSortComment.setOnClickListener(this);
-        btnOk.setOnClickListener(this);
+        tab_layout = findViewById(R.id.tab_layout);
+        view_pager = findViewById(R.id.view_pager);
+        toolbar = findViewById(R.id.toolbar);
+        initToolbar(toolbar);
 
-        flMap = findViewById(R.id.flMap);
-        btnComment = findViewById(R.id.btnComment);
-
-        btnComment.setOnClickListener(this);
-
-        vEmakanat = findViewById(R.id.vEmakanat);
-        vMap = findViewById(R.id.vMap);
-        vRezerv = findViewById(R.id.vRezerv);
 
         tvTitle = findViewById(R.id.tvTitle);
-        //  gvEmakanat = findViewById(R.id.gvEmakanat);
-        lvRooms = findViewById(R.id.lvRooms);
         roomsAdapter = new RoomsAdapter(roomsModels, this, rlRoot, rlLoading, window);
-        lvRooms.setAdapter(roomsAdapter);
-        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
-        btnComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
-        btnOneComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
-        lvRooms.setFocusable(false);
-        llComment.setFocusable(false);
-        svDetail.setFocusable(false);
-        llDynamic.setFocusable(false);
-        llCommentContent.setFocusable(false);
-        svDetail.setFocusable(false);
-        tvSortComment.setText(R.string.NewComment);
         rlLoading2.setOnClickListener(this);
-        btnOneComment.setOnClickListener(this);
-
         Utility.setAnimLoading(this);
         tvDateDetail.setText(getIntent().getExtras().getString("DateTime"));
+        hotelDetailViewPager = new HotelDetailViewPager(this, getSupportFragmentManager());
+        view_pager.setAdapter(hotelDetailViewPager);
+        tab_layout.setupWithViewPager(view_pager);
+        view_pager.setCurrentItem(3);
+        tab_layout.setOnTabSelectedListener(onTabSelectedListener);
 
 
+        ViewGroup vg = (ViewGroup) tab_layout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf)));
+                }
+            }
+        }
 
 
-
-
+        new GetRoomsAsync().execute();
 
     }
 
@@ -262,124 +248,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.llRezervClick:
-                flMap.setVisibility(View.GONE);
-                lvRooms.setVisibility(View.VISIBLE);
-                llDynamic.setVisibility(View.GONE);
-                llComment.setVisibility(View.GONE);
-                if (roomsModels.isEmpty()) {
 
-                    tvAlert.setVisibility(View.VISIBLE);
-                    lvRooms.setVisibility(View.GONE);
-                    aviComment.setVisibility(View.GONE);
-
-                }
-
-                YoYo.with(Techniques.FadeIn)
-                        .duration(600)
-                        .playOn(lvRooms);
-
-                vEmakanat.setVisibility(View.INVISIBLE);
-                vMap.setVisibility(View.INVISIBLE);
-                vComment.setVisibility(View.INVISIBLE);
-                vRezerv.setVisibility(View.VISIBLE);
-
-                tvCommentClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-                tvMapClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-                tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-                tvRezervClickText.setTextColor(Color.BLACK);
-
-
-
-
-
-                break;
-            case R.id.llMapClick:
-                if (updateGoogle) {
-                    Toast.makeText(this, R.string.GoogleUpdateError, Toast.LENGTH_SHORT).show();
-                } else {
-                    flMap.setVisibility(View.VISIBLE);
-                    lvRooms.setVisibility(View.GONE);
-                    llDynamic.setVisibility(View.GONE);
-                    llComment.setVisibility(View.GONE);
-                    tvAlert.setVisibility(View.GONE);
-
-                    YoYo.with(Techniques.FadeIn)
-                            .duration(400)
-                            .playOn(flMap);
-
-                    vEmakanat.setVisibility(View.INVISIBLE);
-                    vMap.setVisibility(View.VISIBLE);
-                    vRezerv.setVisibility(View.INVISIBLE);
-                    vComment.setVisibility(View.INVISIBLE);
-
-
-
-
-
-                    tvCommentClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-                    tvMapClickText.setTextColor(Color.BLACK);
-                    tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-                    tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-
-
-
-
-
-
-                }
-
-
-                break;
-            case R.id.llEmkanatClick:
-                flMap.setVisibility(View.GONE);
-                lvRooms.setVisibility(View.GONE);
-                llComment.setVisibility(View.GONE);
-                tvAlert.setVisibility(View.GONE);
-                llDynamic.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(400)
-                        .playOn(llDynamic);
-                vEmakanat.setVisibility(View.VISIBLE);
-                vMap.setVisibility(View.INVISIBLE);
-                vRezerv.setVisibility(View.INVISIBLE);
-                vComment.setVisibility(View.INVISIBLE);
-
-
-                tvCommentClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-                tvMapClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-                tvEmakanatClickText.setTextColor(Color.BLACK);
-                tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-
-
-                break;
-            case R.id.llCommentClick:
-
-                flMap.setVisibility(View.GONE);
-                lvRooms.setVisibility(View.GONE);
-                tvAlert.setVisibility(View.GONE);
-                llComment.setVisibility(View.VISIBLE);
-                llDynamic.setVisibility(View.GONE);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(400)
-                        .playOn(llComment);
-                vEmakanat.setVisibility(View.INVISIBLE);
-                vMap.setVisibility(View.INVISIBLE);
-                vRezerv.setVisibility(View.INVISIBLE);
-                vComment.setVisibility(View.VISIBLE);
-                if (isComment) {
-                    new GetCommentAsync().execute();
-
-                }
-
-                tvCommentClickText.setTextColor(Color.BLACK);
-                tvMapClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-                tvEmakanatClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-                tvRezervClickText.setTextColor(ContextCompat.getColor(this,R.color.gray_dark));
-
-
-
-                break;
 
             case R.id.btnSortComment:
                 try {
@@ -446,58 +315,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    public void initMap() {
-
-
-        if (serviceOK()) {
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map);
-            mapFragment.getMapAsync(this);
-
-
-        } else {
-            // TODO: 9/18/2016
-        }
-        new GetRoomsAsync().execute();
-
-
-    }
-
-
-    public boolean serviceOK() {
-        try {
-            int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-            if (isAvailable == ConnectionResult.SUCCESS) {
-                return true;
-            } else if (GooglePlayServicesUtil.isUserRecoverableError(isAvailable)) {
-
-                updateGoogle = true;
-            /*    Dialog dialog = GooglePlayServicesUtil.getErrorDialog(isAvailable,
-                        this, GPS_ERRORDIALOG_REQUEST);
-                dialog.show();*/
-            } else {
-                Toast.makeText(this, R.string.AccessError, Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception ex) {
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
-        }
-        return false;
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-
-        map = googleMap;
-
-        map.getUiSettings().setTiltGesturesEnabled(false);
-        map.getUiSettings().setScrollGesturesEnabled(false);
-        map.getUiSettings().setZoomGesturesEnabled(false);
-        map.getUiSettings().setZoomControlsEnabled(true);
-
-
-    }
-
     @Override
     public void onReturnValue(String userName, String title) {
         this.userName = userName;
@@ -510,20 +327,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         protected void onPreExecute() {
             rlLoading2.setVisibility(View.VISIBLE);
-            //   Utility.disableEnableControls(false,rlRoot);
 
 
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
                 window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.blue2));
-            }            ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
-         /*   Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
-            Log.e("test2", new Gson().toJson(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("EligashtMlb",
-                    "123qwe!@#QWE", "Mobile"), "",
-                    String.valueOf(getIntent().getExtras().getInt("HotelId")),
-                    "", "", getIntent().getExtras().getString("ResultUniqID"),
-                    getString(R.string.culture)))));*/
-
+            }
 
         }
 
@@ -560,31 +369,25 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {
                         Log.e("testtest", roomList.Description);
 
-                        roomsModels.add(new RoomsModel(roomList.Board, roomList.Title, roomList.Description, roomList.Price, roomList.OfferId, roomList.EHotelId, getRoomsList.getRoomsListResponse.GetRoomsListResult.SearchKey));
+                        roomsModels.add(new RoomsModel(roomList.Board, roomList.Title, roomList.Description, roomList.Price,
+                                roomList.OfferId, roomList.EHotelId, getRoomsList.getRoomsListResponse.GetRoomsListResult.SearchKey));
                         //   i++;
 
                     }
-                    roomsAdapter.notifyDataSetChanged();
+                    EventBus.getDefault().post(new RoomsModelBus(roomsModels));
                     new GetHoldDetailAsync().execute();
-                    YoYo.with(Techniques.FadeIn)
-                            .duration(400)
-                            .playOn(lvRooms);
 
 
                 }
                 try {
                     if (getIntent().getExtras().getString("Pakage").equals("Pakage")) {
-                        lvRooms.setVisibility(View.GONE);
+                        // lvRooms.setVisibility(View.GONE);
 
                     }
                 } catch (Exception e) {
                 }
-
-
-                //  setListViewHeightBasedOnChildren(lvRooms);
             } catch (Exception e) {
-                //avi1.setVisibility(View.GONE);
-                // llLoading.setVisibility(View.GONE);
+
                 elNotFound.setVisibility(View.VISIBLE);
                 rlLoading2.setVisibility(View.GONE);
                 tvAlertError.setText(R.string.ErrorServer);
@@ -618,33 +421,22 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected void onPostExecute(String result) {
             rlLoading2.setVisibility(View.GONE);
-            // Utility.disableEnableControls(true,rlRoot);
 
-
-            //new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, false,R.drawable.hotel_loading);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
                 window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.colorPrimaryDark));
             }
 
 
-
             ArrayList<ImageModel> imageModels = new ArrayList<>();
-            //  new InitUi().Loading(rlLoading,rlRoot,false);
 
-         /*   new InitUi().Loading(rlLoading, rlRoot, false);
-            window.setStatusBarColor(getColor(R.color.colorPrimaryDark));*/
             try {
                 cvHotel.setVisibility(View.VISIBLE);
-                tab_layout.setVisibility(View.VISIBLE);
 
 
                 YoYo.with(Techniques.FadeIn)
                         .duration(400)
                         .playOn(cvHotel);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(400)
-                        .playOn(tab_layout);
 
 
                 tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
@@ -657,8 +449,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 try {
                     LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
                             Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
-                    map.addMarker(new MarkerOptions().position(location).title(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName));
+                    //  map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
+                    //   map.addMarker(new MarkerOptions().position(location).title(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName));
                 } catch (Exception e) {
                 }
 
@@ -667,118 +459,10 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     Log.e("image", imageHotel.HotelImagesURL);
 
                 }
-
-                for (HotelProprties hotelProprties : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties) {
-                    if (hotelProprties.CategoryID != 4) {
+                EventBus.getDefault().post(new HotelProprtiesBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties));
 
 
-                        arrayStringList.add(hotelProprties.Category);
-                        if (hotelProprties.CategoryID != 2) {
-                            hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
 
-
-                        } else {
-
-                            if (hotelProprties.PropertyDescription.equals("0") || hotelProprties.PropertyDescription.equals(" ") ||
-                                    hotelProprties.PropertyDescription.equals("") || TextUtils.isEmpty(hotelProprties.PropertyDescription)) {
-
-                            } else {
-                                hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
-
-                            }
-                        }
-
-
-                    }
-
-
-                    //add_textView(hotelProprties.PropertyTitle);
-
-                }
-
-                Set<String> hs = new HashSet<>();
-                hs.addAll(arrayStringList);
-                arrayStringList.clear();
-                arrayStringList.addAll(hs);
-                hs.size();
-
-
-              /*  String toMoveUp = "امکانات هتل";
-                while (arrayStringList.indexOf(toMoveUp) != 0) {
-                    int i = arrayStringList.indexOf(toMoveUp);
-                    Collections.swap(arrayStringList, i, i - 2);
-                }
-*/
-                HashMap<String, ArrayList<HotelProprtiesModels>> myMap = new HashMap<String, ArrayList<HotelProprtiesModels>>();
-                for (int i = 0; i < arrayStringList.size(); i++) {
-                    ArrayList<HotelProprtiesModels> test = new ArrayList<>();
-
-                    for (int j = 0; j < hotelProprtiesModels.size(); j++) {
-
-                        if (arrayStringList.get(i).equals(hotelProprtiesModels.get(j).getPropertyCat())) {
-                            test.add(new HotelProprtiesModels(hotelProprtiesModels.get(j).getPropertyTitle(), hotelProprtiesModels.get(j).getPropertyCat(),
-                                    hotelProprtiesModels.get(j).getImage(), hotelProprtiesModels.get(j).getPropertyDescription(), hotelProprtiesModels.get(j).getCategoryID()));
-
-
-                        }
-
-
-                    }
-                    myMap.put(arrayStringList.get(i), test);
-
-                }
-
-
-                for (Map.Entry<String, ArrayList<HotelProprtiesModels>> entry : myMap.entrySet()) {
-                    String key = entry.getKey();
-                    ArrayList<HotelProprtiesModels> value = entry.getValue();
-                    if (key.contains("امکانات")||key.toLowerCase().contains("facil")) {
-                        add_view(key, value, llEmkanat);
-
-                    }
-                    if (key.contains("اطراف")||key.toLowerCase().contains("near by")) {
-
-                        add_view(key, value, llAroundHotel);
-
-                    }
-                    if (key.contains("قوانین")||key.toLowerCase().contains("policies")) {
-
-                        //add_view(key, value, llPolicy);
-                        TextView textView = new TextView(DetailHotelActivity.this);
-                        textView.setText(key);
-
-                        Typeface t = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.iran_sans_bold_ttf));
-                        textView.setTypeface(t);
-                        textView.setPadding(10, 10, 10, 10);
-
-                        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT));
-                        textView.setTextSize(getResources().getInteger(R.integer.text12));
-                        textView.setGravity(Gravity.CENTER);
-                        textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
-                        llPolicy.addView(textView);
-
-
-                        NonScrollListView nonScrollGridView = new NonScrollListView(DetailHotelActivity.this);
-                        nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT));
-                        // nonScrollGridView.setNumColumns(2);
-
-                        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, DetailHotelActivity.this, null, true));
-                        nonScrollGridView.setFocusable(false);
-                        llPolicy.addView(nonScrollGridView);
-
-                    }
-                    if (key.contains("اطلاعات")||key.toLowerCase().contains("information")) {
-
-                        add_view(key, value, llInformation);
-
-                    }
-
-
-                }
-
-                flViewPager.setVisibility(View.VISIBLE);
 
                 YoYo.with(Techniques.FadeIn)
                         .duration(400)
@@ -788,7 +472,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                 new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager);
-                tvCityName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CityName+ " " + getString(R.string.comma) + " " + getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CountryName);
+                tvCityName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CityName + " " + getString(R.string.comma) + " " + getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CountryName);
                 Log.e("star", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating + "");
 
                 switch (getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating) {
@@ -822,7 +506,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 if (roomsModels.isEmpty()) {
 
                     tvAlert.setVisibility(View.VISIBLE);
-                    lvRooms.setVisibility(View.GONE);
+                    //   lvRooms.setVisibility(View.GONE);
                 }
 
 
@@ -837,54 +521,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-    public void add_view(String key, ArrayList<HotelProprtiesModels> hotelProprtiesModels, LinearLayout linearLayout) {
-
-        TextView textView = new TextView(DetailHotelActivity.this);
-        textView.setText(key);
-/*
-
-        if (key.contains("اطراف")) {
-         textView.setText(R.string.around_hotel);
-
-
-        }
-        if (key.contains("قوانین")) {
-            textView.setText(R.string.HotelPolicy);
-        }
-        if (key.contains("اطلاعات")) {
-            textView.setText(R.string.info_hotel);
-
-
-
-        }
-*/
-
-
-
-
-
-        Typeface t = Typeface.createFromAsset(getAssets(),  getResources().getString(R.string.iran_sans_bold_ttf));
-        textView.setTypeface(t);
-        textView.setPadding(10, 10, 10, 10);
-
-        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        textView.setTextSize(getResources().getInteger(R.integer.text12));
-        textView.setGravity(Gravity.CENTER);
-        textView.setBackgroundColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.title_background));
-        linearLayout.addView(textView);
-
-
-        NonScrollGridView nonScrollGridView = new NonScrollGridView(DetailHotelActivity.this);
-        nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        // nonScrollGridView.setNumColumns(2);
-
-
-        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(hotelProprtiesModels, DetailHotelActivity.this, nonScrollGridView, false));
-        nonScrollGridView.setFocusable(false);
-        linearLayout.addView(nonScrollGridView);
-    }
 
 
     private class GetCommentAsync extends AsyncTask<String, Void, String> {
@@ -922,7 +558,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected void onPostExecute(String result) {
             //  new InitUi().Loading(rlLoading,rlRoot,false);
-            llCommentContent.setVisibility(View.VISIBLE);
+            //    llCommentContent.setVisibility(View.VISIBLE);
             aviComment.setVisibility(View.GONE);
             isComment = false;
 
@@ -962,8 +598,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {
 
                     tvAlertComment.setVisibility(View.VISIBLE);
-                    btnOneComment.setVisibility(View.VISIBLE);
-                    llCommentContent.setVisibility(View.GONE);
+                  /*  btnOneComment.setVisibility(View.VISIBLE);
+                    llCommentContent.setVisibility(View.GONE);*/
                 }
 
                 lvComments.setOnFlingListener(new RecyclerView.OnFlingListener() {
@@ -980,7 +616,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                /* avi1.setVisibility(View.GONE);
                 llLoading.setVisibility(View.GONE);
                 elNotFound.setVisibility(View.VISIBLE);
-                tvAlertError.setText("در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
+                tvAlertError.setText("?? ??? ???? ???????? ?? ???????  ??? ????? ???? ??? ???? ");
             }*/
 
 
@@ -988,5 +624,21 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
+    protected void initToolbar(Toolbar toolbar) {
+        if (toolbar == null)
+            return;
+        setSupportActionBar(toolbar);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayUseLogoEnabled(false);
 
+        View customView = getLayoutInflater().inflate(R.layout.toolbar, null);
+        customView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        actionBar.setCustomView(customView);
+        Toolbar parent = (Toolbar) customView.getParent();
+        parent.setContentInsetsAbsolute(0, 0);
+    }
 }

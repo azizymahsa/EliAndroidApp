@@ -26,8 +26,6 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
     View view;
 
 
-
-
     public static MapHotelFragment instance() {
         MapHotelFragment fragment = new MapHotelFragment();
         return fragment;
@@ -45,6 +43,8 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (view != null)
+            return view;
         view = inflater.inflate(R.layout.fragment_map_hotel, container, false);
         if (serviceOK()) {
             mMapView = (MapView) view.findViewById(R.id.mapView);
@@ -57,14 +57,10 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mMapView.getMapAsync(this) ;
+        mMapView.getMapAsync(this);
 
         return view;
     }
-
-
-
-
 
 
     @Override
@@ -74,7 +70,8 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap mMap) {
-        googleMap = mMap;;
+        googleMap = mMap;
+        ;
 
         googleMap.getUiSettings().setTiltGesturesEnabled(false);
         googleMap.getUiSettings().setScrollGesturesEnabled(false);
@@ -84,20 +81,20 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
-  /*  public void initMap() {
+    /*  public void initMap() {
 
 
-        if (serviceOK()) {
-            SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().fin(R.id.map);
-            mapFragment.getMapAsync(this);
+          if (serviceOK()) {
+              SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().fin(R.id.map);
+              mapFragment.getMapAsync(this);
 
 
-        } else {
-        }
+          } else {
+          }
 
 
-    }
-*/
+      }
+  */
     public boolean serviceOK() {
         try {
             int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
