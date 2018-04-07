@@ -137,6 +137,8 @@
     <dimen name="_30dp_search">50dp</dimen>
     <dimen name="_50dp_passenger">60dp</dimen>
     <dimen name="_30dp_passenger">40sp</dimen>
+    <dimen name="_100dpflight">252dp</dimen>
+    <dimen name="_100dpleftFlight">200dp</dimen>
 
 
 </resources>

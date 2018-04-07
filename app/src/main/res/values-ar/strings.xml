@@ -1,7 +1,7 @@
 <resources>
     <string name="search_back_right">&#xea3c;</string>
     <string name="icon_pen">&#xe91a;</string>
-
+    <string name="empty_circle">&#xe627;</string>
     <string name="Adult">شخص بالغ</string>
     <string name="BestSell">معظم بيع</string>
     <string name="ApartmenHotel">شقة فندقية</string>

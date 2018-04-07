@@ -3,6 +3,7 @@ package com.eligasht.service.generator;
 import com.eligasht.service.di.component.NetComponent;
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactor;
 import com.eligasht.service.part.AirPorts;
+import com.eligasht.service.part.CheckFlight;
 import com.eligasht.service.part.FlightSearch;
 import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.PreFactorDetailFlight;
@@ -26,6 +27,7 @@ public class SingletonService {
     FlightSearch flightSearch;
     PurchaseFlight purchaseFlight;
     PreFactorDetailFlight preFactorDetailFlight;
+    CheckFlight checkFlight;
     private static final SingletonService ourInstance = new SingletonService();
 
     public static SingletonService getInstance() {
@@ -69,5 +71,10 @@ public class SingletonService {
         if (preFactorDetailFlight == null)
             preFactorDetailFlight = new PreFactorDetailFlight(serviceGenerator);
         return preFactorDetailFlight;
+    }
+    public CheckFlight getCheckFlight() {
+        if (checkFlight == null)
+            checkFlight = new CheckFlight(serviceGenerator);
+        return checkFlight;
     }
 }

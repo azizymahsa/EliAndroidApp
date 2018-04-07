@@ -141,4 +141,6 @@ values-sw480dp          5.1”  480x800 mdpi -->
     <dimen name="_30dp_search">30dp</dimen>
     <dimen name="_50dp_passenger">50dp</dimen>
     <dimen name="_30dp_passenger">30sp</dimen>
+    <dimen name="_100dpflight">100dp</dimen>
+    <dimen name="_100dpleftFlight">100dp</dimen>
 </resources>
