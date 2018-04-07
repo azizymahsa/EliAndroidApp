@@ -65,12 +65,12 @@ public class RoomsAdapter extends BaseAdapter {
     GetHoldRoom getHoldRoom;
     String flightId;
     RelativeLayout rlLoading;
-    RelativeLayout rlRoot;
+    ViewGroup rlRoot;
     Window window;
     AlertDialogPolicy alertDialogPolicy;
 
 
-    public RoomsAdapter(ArrayList<RoomsModel> roomsModels, Activity context, RelativeLayout rlRoot, RelativeLayout rlLoading, Window window) {
+    public RoomsAdapter(ArrayList<RoomsModel> roomsModels, Activity context, ViewGroup rlRoot, RelativeLayout rlLoading, Window window) {
         this.roomsModels = roomsModels;
         this.context = context;
         this.rlRoot = rlRoot;
