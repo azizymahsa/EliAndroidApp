@@ -44,7 +44,7 @@ public class HotelFacilityFragment extends Fragment {
     private View view;
     private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
-    private LinearLayout llEmkanat,llAroundHotel,llPolicy,llInformation;
+    private LinearLayout llEmkanat, llAroundHotel, llPolicy, llInformation;
 
 
     public static HotelFacilityFragment instance() {
@@ -104,6 +104,7 @@ public class HotelFacilityFragment extends Fragment {
             }
 
 
+            //add_textView(hotelProprties.PropertyTitle);
 
         }
 
@@ -114,7 +115,12 @@ public class HotelFacilityFragment extends Fragment {
         hs.size();
 
 
-
+              /*  String toMoveUp = "امکانات هتل";
+                while (arrayStringList.indexOf(toMoveUp) != 0) {
+                    int i = arrayStringList.indexOf(toMoveUp);
+                    Collections.swap(arrayStringList, i, i - 2);
+                }
+*/
         HashMap<String, ArrayList<HotelProprtiesModels>> myMap = new HashMap<String, ArrayList<HotelProprtiesModels>>();
         for (int i = 0; i < arrayStringList.size(); i++) {
             ArrayList<HotelProprtiesModels> test = new ArrayList<>();
@@ -138,19 +144,19 @@ public class HotelFacilityFragment extends Fragment {
         for (Map.Entry<String, ArrayList<HotelProprtiesModels>> entry : myMap.entrySet()) {
             String key = entry.getKey();
             ArrayList<HotelProprtiesModels> value = entry.getValue();
-            if (key.contains("امکانات")||key.toLowerCase().contains("facil")) {
+            if (key.contains("امکانات")) {
                 add_view(key, value, llEmkanat);
 
             }
-            if (key.contains("اطراف")||key.toLowerCase().contains("near by")) {
+            if (key.contains("اطراف")) {
 
                 add_view(key, value, llAroundHotel);
 
             }
-            if (key.contains("قوانین")||key.toLowerCase().contains("policies")) {
+            if (key.contains("قوانین")) {
 
                 //add_view(key, value, llPolicy);
-                TextView textView = new TextView(getActivity());
+                TextView textView = new TextView(getContext());
                 textView.setText(key);
 
                 Typeface t = Typeface.createFromAsset(getActivity().getAssets(), getResources().getString(R.string.iran_sans_bold_ttf));
@@ -165,7 +171,7 @@ public class HotelFacilityFragment extends Fragment {
                 llPolicy.addView(textView);
 
 
-                NonScrollListView nonScrollGridView = new NonScrollListView(getActivity());
+                NonScrollListView nonScrollGridView = new NonScrollListView(getContext());
                 nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
                 // nonScrollGridView.setNumColumns(2);
@@ -175,13 +181,15 @@ public class HotelFacilityFragment extends Fragment {
                 llPolicy.addView(nonScrollGridView);
 
             }
-            if (key.contains("اطلاعات")||key.toLowerCase().contains("information")) {
+            if (key.contains("اطلاعات")) {
 
                 add_view(key, value, llInformation);
 
-            }}
+            }
 
-    }
+
+
+        }}
 
 
     @Override
@@ -193,10 +201,10 @@ public class HotelFacilityFragment extends Fragment {
 
     public void add_view(String key, ArrayList<HotelProprtiesModels> hotelProprtiesModels, LinearLayout linearLayout) {
 
-        TextView textView = new TextView(getActivity());
+        TextView textView = new TextView(getContext());
         textView.setText(key);
 
-        Typeface t = Typeface.createFromAsset(getActivity().getAssets(),  getResources().getString(R.string.iran_sans_bold_ttf));
+        Typeface t = Typeface.createFromAsset(getActivity().getAssets(), getResources().getString(R.string.iran_sans_bold_ttf));
         textView.setTypeface(t);
         textView.setPadding(10, 10, 10, 10);
 
@@ -208,7 +216,7 @@ public class HotelFacilityFragment extends Fragment {
         linearLayout.addView(textView);
 
 
-        NonScrollGridView nonScrollGridView = new NonScrollGridView(getActivity());
+        NonScrollGridView nonScrollGridView = new NonScrollGridView(getContext());
         nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         // nonScrollGridView.setNumColumns(2);

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.fragments.hotelDetail.CommentHotelFragment;
 import com.eligasht.reservation.views.fragments.hotelDetail.HotelFacilityFragment;
 import com.eligasht.reservation.views.fragments.hotelDetail.MapHotelFragment;
 import com.eligasht.reservation.views.fragments.hotelDetail.RoomHotelFragment;
@@ -16,22 +17,25 @@ import com.eligasht.reservation.views.fragments.hotelDetail.RoomHotelFragment;
 
 public class HotelDetailViewPager extends FragmentPagerAdapter {
     private Context context;
+    private CommentHotelFragment commentHotelFragment;
 
 
     public HotelDetailViewPager(Context context, FragmentManager fm) {
         super(fm);
         this.context = context;
+        commentHotelFragment=CommentHotelFragment.instance();
 
     }
 
-
-
+    public CommentHotelFragment getCommentHotelFragment() {
+        return commentHotelFragment;
+    }
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return MapHotelFragment.instance();
+                return commentHotelFragment;
 
             case 1:
                 return MapHotelFragment.instance();
