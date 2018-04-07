@@ -49,4 +49,8 @@ public interface RetroClient {
     Observable<ResponseDomesticFlight> responseDomesticFlightObservable(
             @Body RequestDomesticFlight requestDomesticFlight
     );
+    @POST(Const.PurchaseFlightAvil)
+    Observable<com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight> responsePurchaseFlightObservable(
+            @Body com.eligasht.service.model.flight.request.PurchaseFlight.RequestPurchaseFlight requestPurchaseFlightPassenger
+    );
 }

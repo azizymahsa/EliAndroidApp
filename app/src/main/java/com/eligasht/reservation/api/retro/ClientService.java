@@ -63,7 +63,7 @@ public interface ClientService {
     @POST("Package/PackageService.svc/SearchXPackage")
     Call<PackageListRes> getPackageListResult(@Body PackageRequestModel packageRequestModel);
 
-    @POST("Package/PackageService.svc/PurchaseFlight")
+    @POST("Package/PackageService.svc/PurchaseFlightService")
     Call<PurchaseRes> getPurchaseResult(@Body PurchaseRequestModel purchaseRequestModel);
 
 

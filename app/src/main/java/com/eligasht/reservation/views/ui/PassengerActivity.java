@@ -1,12 +1,5 @@
 package com.eligasht.reservation.views.ui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -20,15 +13,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
@@ -40,11 +24,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -56,7 +37,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver;
-import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -84,8 +64,9 @@ import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalen
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
+import com.eligasht.service.model.flight.request.PurchaseFlight.PartnerInfo;
+import com.eligasht.service.model.flight.request.PurchaseFlight.PassList;
 import com.eligasht.service.model.flight.request.purchaseServiceFlight.RequestPurchaseFlight;
-import com.eligasht.service.model.flight.request.searchFlight.RequestSearchFlight;
 import com.eligasht.service.model.flight.response.PreFactorDetails.FactorSummary;
 import com.eligasht.service.model.flight.response.PreFactorDetails.GetPreFactorDetailsResult;
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactor;
@@ -93,22 +74,23 @@ import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorFlig
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorService;
 import com.eligasht.service.model.flight.response.PreFactorDetails.RequestPassenger;
 import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFactorDetails;
+import com.eligasht.service.model.flight.response.PurchaseFlight.Service;
+import com.eligasht.service.model.flight.response.PurchaseFlight.TmpReserveResult;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.Error;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.PurchaseServiceResult;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
+import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.onesignal.OneSignal;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.lost.flight.FlightPreFactorAdapter;
 import com.eligasht.reservation.lost.flight.FlightPreFactorModel;
-import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
 import com.eligasht.reservation.lost.hotel.HotelPreFactorModel;
 import com.eligasht.reservation.lost.passenger.PassangerPreFactorAdapter;
 import com.eligasht.reservation.lost.passenger.PassengerPreFactorModel;
@@ -220,8 +202,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				persianCalendarDatePicker.getPersianDay()
 		);
 
-		//datePickerDialog.setMinDate(persianCalendarDatePicker);
-
 
 		//______________________________________________________________________
 
@@ -273,7 +253,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			@Override
 			public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
-				String month=""+monthOfYear+1;
+				String month=""+(monthOfYear+1);
 				String day=""+dayOfMonth;
 				if(Integer.toString(monthOfYear+1).length()==1){
 					month="0"+(monthOfYear+1);
@@ -894,645 +874,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 
-
-	//AsyncFetchGetPreFactorDetails
-	private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
-		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
-		HttpURLConnection conn;
-		URL url = null;
-		private ListView listAirPort;
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-
-
-			rlLoading.setVisibility(View.VISIBLE);
-			//	rlLoading2.setVisibility(View.VISIBLE);
-			Utility.disableEnableControls(false,rlRoot);
-		}
-
-		@Override
-		protected String doInBackground(String... params) {
-			try {
-
-				// Enter URL address where your json file resides
-				// Even you can make call to php file which returns json data
-				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails");
-
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return e.toString();
-			}
-			try {
-
-				// Setup HttpURLConnection class to send and receive data from php and mysql
-				conn = (HttpURLConnection) url.openConnection();
-				conn.setReadTimeout(READ_TIMEOUT);
-				conn.setConnectTimeout(CONNECTION_TIMEOUT);
-				// conn.setRequestMethod("GET");
-				conn.setRequestMethod("POST");
-				// setDoOutput to true as we recieve data from json file
-				conn.setDoOutput(true);
-
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				return e1.toString();
-			}
-
-			try {
-
-				int response_code = conn.getResponseCode();
-
-				String serial = null;
-
-				JSONObject errorObj = new JSONObject();
-
-				try {
-					errorObj.put("Success", false);
-
-					Class<?> c = Class.forName("android.os.SystemProperties");
-					Method get = c.getMethod("get", String.class);
-					serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-				} catch (Exception ignored) {
-				}
-
-
-				String data =OrderToJsonGetPreFactorDetails();
-
-
-				HttpClient client = new DefaultHttpClient();
-
-
-				HttpPost post = new HttpPost();
-				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails");
-				post.setHeader("Content-Type", "application/json; charset=UTF-8");
-				post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-				StringEntity se = null;
-				try {
-					se = new StringEntity(data, "UTF-8");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-				post.setEntity(se);
-				ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-
-				HashMap<String, String> airport = null;
-				mylist = new ArrayList<HashMap<String, String>>();
-				HttpResponse res = client.execute(post);
-				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-				return (retSrc);
-
-			} catch (IOException e) {
-				e.printStackTrace();
-				return e.toString();
-			} finally {
-				conn.disconnect();
-			}
-
-
-		}//end doin background
-
-		@Override
-		protected void onPostExecute(String resultPishfactor) {
-
-
-			System.out.println("resultPishfactor:"+resultPishfactor);
-			rlLoading.setVisibility(View.GONE);
-			Utility.disableEnableControls(true,rlRoot);
-			try {
-////////////////////////////
-				JSONObject jsonObj = new JSONObject(resultPishfactor);
-				Log.e("jsonObj", jsonObj.toString());
-
-				// Getting JSON Array node
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
-
-
-				JSONObject jArray = GetAirportsResult.getJSONObject("PreFactor");//FactorSummary
-
-
-				//FactorSummary
-				JSONObject jFact = jArray.getJSONObject("FactorSummary");
-				paymentUrl = jFact.getString("OnlinePaymentURL");
-
-				int RqBase_ID = jFact.getInt("RqBase_ID");
-				//////////////////////////////
-				long totalprice = jFact.getLong("TotalPrice");
-
-
-				tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
-
-//for hotel==========================================================================================
-				final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
-				recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
-				recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
-				ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
-
-				JSONArray jArray2 = jArray.getJSONArray("PreFactorHotels");
-
-
-				for (int i = 0; i < jArray2.length(); i++) {
-					hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.getJSONObject(i).getString("HotelNameE"),
-							Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekin"))
-							, Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekout")),
-							jArray2.getJSONObject(i).getString("AdlCount"),
-							jArray2.getJSONObject(i).getString("ChdCount"),jArray2.getJSONObject(i).getString("RoomTitleFa")));
-
-				}
-				if (!hotelPreFactorModels.isEmpty()) {
-					recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
-					llDetailHotel.setVisibility(View.VISIBLE);
-				}
-
-
-//for passenger======================================================================================
-
-
-
-				final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
-				recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
-				recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
-				ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
-
-				JSONArray jArray3 = jArray.getJSONArray("RequestPassenger");
-
-				System.out.println("json detail mossfaer:"+jArray3);
-				for (int i = 0; i < jArray3.length(); i++) {
-					passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"),jArray3.getJSONObject(i).getString("Nationality"),
-							jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"),jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),
-							jArray3.getJSONObject(i).getString("RqPassenger_name"),jArray3.getJSONObject(i).getString("RqPassenger_NationalCode")));
-
-				}
-				if (!passengerPreFactorModels.isEmpty()) {
-					llDetailPassanger.setVisibility(View.VISIBLE);
-					recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
-
-				}
-
-
-				//for Services=============================================================================
-				final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
-				recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
-				recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
-				ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
-				JSONArray jArray4 = jArray.getJSONArray("PreFactorServices");
-
-				for (int i = 0; i < jArray4.length(); i++) {
-					servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
-							jArray4.getJSONObject(i).getString("ServicePrice"),jArray4.getJSONObject(i).getString("ServiceType"),
-							jArray4.getJSONObject(i).getString("CityFa"),jArray4.getJSONObject(i).getString("ServiceNameFa"),jArray4.getJSONObject(i).getString("CountryFa")));
-
-				}
-				if (!servicePreFactorModels.isEmpty()) {
-					llDetailService.setVisibility(View.VISIBLE);
-					recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
-
-				}
-				//for flight==================================================================================
-				final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
-				recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
-				recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
-				ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
-				JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
-
-				for (int i = 0; i < jArray5.length(); i++) {
-
-					flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
-							jArray5.getJSONObject(i).getString("DepAirPortFa"),
-							jArray5.getJSONObject(i).getString("ArrAirPortFa"),
-							Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
-							jArray5.getJSONObject(i).getString("FltTime"),
-							//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
-							jArray5.getJSONObject(i).getString("FltCheckinTime"),
-
-							jArray5.getJSONObject(i).getString("FltNumber"),
-							jArray5.getJSONObject(i).getString("AirlineNameFa"),
-							jArray5.getJSONObject(i).getString("DepartureCityFa"),jArray5.getJSONObject(i).getString("AirlineCode")));
-
-				}
-				if (!flightPreFactorModels.isEmpty()) {
-					llDetailFlight.setVisibility(View.VISIBLE);
-					recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
-
-
-				}
-				setAnimation();
-			} catch (JSONException e) {
-				AlertDialogPassengerFlight alertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				alertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
-				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
-			}
-
-
-		}//end on pos excute
-
-	}
-	//end AsyncFetchGetPreFactorDetails
-
-	//het khadamat
-	private class AsyncFetch extends AsyncTask<String, String, String> {
-		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
-		HttpURLConnection conn;
-		URL url = null;
-		private ListView listAirPort;
-
-		@Override
-		protected void onPreExecute(){
-			super.onPreExecute();
-
-			rlLoading.setVisibility(View.VISIBLE);
-			Utility.disableEnableControls(false,rlRoot);
-		}
-
-		@Override
-		protected String doInBackground(String... params) {
-			try {
-
-				// Enter URL address where your json file resides
-				// Even you can make call to php file which returns json data
-				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Flight/FlightService.svc/PurchaseFlight");
-
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return e.toString();
-			}
-			try {
-
-				// Setup HttpURLConnection class to send and receive data from php and mysql
-				conn = (HttpURLConnection) url.openConnection();
-				conn.setReadTimeout(READ_TIMEOUT);
-				conn.setConnectTimeout(CONNECTION_TIMEOUT);
-				// conn.setRequestMethod("GET");
-				conn.setRequestMethod("POST");
-				// setDoOutput to true as we recieve data from json file
-				conn.setDoOutput(true);
-
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				return e1.toString();
-			}
-
-			try {
-
-				int response_code = conn.getResponseCode();
-
-				String serial = null;
-
-				JSONObject errorObj = new JSONObject();
-
-				try {
-					errorObj.put("Success", false);
-
-					Class<?> c = Class.forName("android.os.SystemProperties");
-					Method get = c.getMethod("get", String.class);
-					serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-				} catch (Exception ignored) {
-				}
-
-
-				String data =OrderToJsonPurchase();//Purchase
-
-
-				HttpClient client = new DefaultHttpClient();
-
-
-				HttpPost post = new HttpPost();
-				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Flight/FlightService.svc/PurchaseFlight");
-				post.setHeader("Content-Type", "application/json; charset=UTF-8");
-				post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-				StringEntity se = null;
-				try {
-					se = new StringEntity(data, "UTF-8");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-				post.setEntity(se);
-				ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-
-				HashMap<String, String> airport = null;
-				mylist = new ArrayList<HashMap<String, String>>();
-				HttpResponse res = client.execute(post);
-				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-				return retSrc;
-
-			} catch (IOException e) {
-				e.printStackTrace();
-				return e.toString();
-			} finally {
-				conn.disconnect();
-			}
-
-
-		}//end doin background
-
-		@Override
-		protected void onPostExecute(String result) {
-			FlagMosaferan=false;
-			//btn_next_partnerInfo.setVisibility(View.INVISIBLE);
-
-			//this method will be running on UI thread
-
-			Utility.disableEnableControls(true,rlRoot);
-			rlLoading.setVisibility(View.GONE);
-			try {
-////////////////////////////
-				JSONObject jsonObj = new JSONObject(result);
-
-				String GetError="";
-				JSONArray jError=null;
-				// Getting JSON Array node
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightResult");//Error
-				if(!GetAirportsResult.getString("Errors").equals("null")){
-					jError = GetAirportsResult.getJSONArray("Errors");//
-					JSONObject jPricedItinerary = jError.getJSONObject(0);
-					GetError = jPricedItinerary.getString("Message");
-				}
-				if (GetError.length()>1) {
-					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(""+"  "+GetError,getString(R.string.massege));
-
-				}else{
-
-
-					JSONArray jArray = GetAirportsResult.getJSONArray("Services");
-					JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
-
-					Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
-					//////////////////////////////
-					//  JSONArray jArray = new JSONArray(result);
-
-					// Extract data from json and store into ArrayList as class objects
-					for (int i = 0; i < jArray.length(); i++) {
-						JSONObject json_data = jArray.getJSONObject(i);
-						JSONObject excursionData = json_data.getJSONObject("ExcursionDta");
-
-						PurchaseFlightResult fishData = new PurchaseFlightResult();
-						fishData.setCityEn(json_data.getString("CityEn"));
-						fishData.setCityFa(json_data.getString("CityFa"));
-						fishData.setCurrency_ID(json_data.getString("Currency_ID"));
-
-						fishData.setHasFlight(json_data.getString("HasFlight"));
-						fishData.setHasHotel(json_data.getString("HasHotel"));
-						fishData.setLoadDB(json_data.getString("LoadDB"));
-
-						fishData.setServiceAdlPrice(json_data.getString("ServiceAdlPrice"));
-						fishData.setServiceChdPrice(json_data.getString("ServiceChdPrice"));
-						fishData.setServiceDescEn(json_data.getString("ServiceDescEn"));
-
-						fishData.setServiceDescFa(json_data.getString("ServiceDescFa"));
-						fishData.setServiceID(json_data.getString("ServiceID"));
-						fishData.setServiceImgURL(json_data.getString("ServiceImgURL"));
-
-						fishData.setServiceInfPrice(json_data.getString("ServiceInfPrice"));
-						fishData.setServiceNameEn(json_data.getString("ServiceNameEn"));
-						fishData.setServiceNameFa(json_data.getString("ServiceNameFa"));
-
-
-						fishData.setServiceTypeEn(json_data.getString("ServiceTypeEn"));
-						fishData.setServiceTypeFa(json_data.getString("ServiceTypeFa"));
-						fishData.setServiceTypeID(json_data.getString("ServiceTypeID"));
-
-						fishData.setServiceTotalPrice(json_data.getLong("ServiceTotalPrice"));
-						fishData.setSelectID(json_data.getString("SelectID"));
-
-
-
-
-
-
-						fishData.setBookingCode(jsonResult.getString("BookingCode"));
-
-
-
-						fishData.setExcursionData(new ExcursionDta(excursionData.getString("ArrialAirportCode"),
-								excursionData.getString("ArrialAirportName"),
-								excursionData.getString("ArrivalFltDate")
-								,excursionData.getString("ArrivalFltNo"),
-								excursionData.getString("ArrivalFltTime"),
-								excursionData.getString("CityID"),excursionData.getString("DepartureFltDate"),
-								excursionData.getString("DepartureFltNo"),excursionData.getString("DepartureFltTime"),
-								excursionData.getString("HotelID"),excursionData.getString("HotelNameEn"),excursionData.getString("PassengerList")));
-
-
-
-						fishData.setFlag(false);
-						data.add(fishData);
-					}
-
-					// Setup and Handover data to recyclerview
-
-					linear_saler.setVisibility(View.GONE);
-					linear_mosaferan.setVisibility(View.GONE);
-					linear_pish_factor.setVisibility(View.GONE);
-
-
-
-					linear_list_khadamat.setVisibility(View.VISIBLE);
-					FlagTab=true;
-
-
-					((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
-					((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-					txtTitle.setText(R.string.Add_to_cart_services);
-
-					mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this,0);
-					//mAdapter.setAdapter(mAdapter);
-					mAdapter.setData(data);
-					listKhadamat.setAdapter(mAdapter);
-					if(linear_code_meli.getVisibility()==View.VISIBLE){
-						listKhadamat.setVisibility(View.GONE);
-					}
-					setAnimation();
-				}
-			} catch (JSONException e) {
-				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
-
-			}
-
-		}//end on pos excute
-
-	}//end async
-	public String OrderToJsonPurchase() {
-		JSONObject jsone = new JSONObject();
-		JSONObject manJson = new JSONObject();
-
-
-		try {
-			String GUID ="";
-			String ResultUniqId="";
-			Bundle extras = getIntent().getExtras();
-			if(extras != null){
-				GUID = extras.getString("Flight_GUID");
-				ResultUniqId = SearchParvazActivity.globalResultUniqID;
-			}
-
-			JSONObject json = new JSONObject();
-			JSONObject headerJson = new JSONObject();
-			JSONArray detailJsonArray = new JSONArray();
-			JSONObject detailsJson = new JSONObject();
-			JSONObject detailsPartner = new JSONObject();
-			JSONObject identityJson = new JSONObject();
-
-			headerJson.put("EchoToken",ResultUniqId);
-			headerJson.put("BookingReferenceID", GUID);///ID.toString()
-
-			//mosaferan
-			PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
-			CursorManager cursorM=items_Table.getAllMosafer();
-			//CursorManager cursorM=items_Table.getMosaferById(1);
-			if(cursorM != null){
-				for (int i = 0; i < cursorM.getCount(); i++) {
-
-					cursorM.moveToPosition(i);
-
-					detailsJson = new JSONObject();
-					detailsJson.put("Gender",cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
-					detailsJson.put("Nationality", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-					detailsJson.put("Nationality_ID",cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-
-					detailsJson.put("RqPassenger_Address", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
-					detailsJson.put("RqPassenger_Birthdate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-					detailsJson.put("RqPassenger_Email",cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
-
-					detailsJson.put("RqPassenger_FirstNameEn", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-					detailsJson.put("RqPassenger_FirstNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
-					detailsJson.put("RqPassenger_LastNameEn",cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-
-					detailsJson.put("RqPassenger_LastNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
-					detailsJson.put("RqPassenger_Mobile", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
-					detailsJson.put("RqPassenger_NationalCode",cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
-
-					detailsJson.put("RqPassenger_PassExpDate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-					detailsJson.put("RqPassenger_PassNo", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-					detailsJson.put("RqPassenger_Tel",cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
-
-					detailJsonArray.put(detailsJson);
-					System.out.println("detailsJson:"+detailsJson);
-
-				}
-				headerJson.put("passList", detailJsonArray);
-			}
-
-			////kharidar
-			PassengerPartnerInfo_Table partnerInfo_Table=new PassengerPartnerInfo_Table(PassengerActivity.this);
-			CursorManager cursorManager=partnerInfo_Table.getPartner();
-			cursorManager.moveToPosition(0);
-			detailsPartner.put("RqPartner_Address", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
-			detailsPartner.put("RqPartner_Email", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
-			detailsPartner.put("RqPartner_FirstNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
-			detailsPartner.put("RqPartner_Gender", cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
-			detailsPartner.put("RqPartner_LastNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
-			detailsPartner.put("RqPartner_Mobile", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
-			detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
-			detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
-			detailsPartner.put("WebUser_ID ", Prefs.getString("userId","-1"));//Purchase
-
-			headerJson.put("partnerInfo", detailsPartner);
-
-			headerJson.put("Culture", getString(R.string.culture));
-			headerJson.put("Type", "F");
-			//	headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
-
-			identityJson.put("Password", "123qwe!@#QWE");
-			identityJson.put("TermianlId", "Mobile");
-			identityJson.put("UserName", "EligashtMlb");
-
-			headerJson.put("identity",identityJson);
-
-			jsone.put("request",headerJson);
-
-
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("detailsPartner:"+jsone.toString());
-		return jsone.toString();
-	}
-	public String OrderToJsonGetPreFactorDetails() {
-		JSONObject jsone = new JSONObject();
-		JSONObject manJson = new JSONObject();
-		JSONObject identityJson = new JSONObject();
-
-
-		try {
-			manJson.put("Culture", getString(R.string.culture));
-			manJson.put("Type", "F");
-
-			manJson.put("invoiceNo", tvfactorNumber.getText().toString());//perches service
-
-
-			identityJson.put("Password", "123qwe!@#QWE");
-			identityJson.put("TermianlId", "Mobile");
-			identityJson.put("UserName", "EligashtMlb");
-			//identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
-			manJson.put("identity",identityJson);
-			//manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
-
-			jsone.put("request",manJson);
-			System.out.println("OrderToJsonGetPreFactorDetails:"+jsone.toString());
-
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return jsone.toString();
-	}
-	public String OrderToJsonPishFactor() {
-
-		JSONObject jsone = new JSONObject();
-		JSONObject manJson = new JSONObject();
-		JSONObject identityJson = new JSONObject();
-
-
-		try {
-			manJson.put("Culture", getString(R.string.culture));
-			manJson.put("Type", "F");
-
-			manJson.put("RqBaseID", Prefs.getString("BookingCode_NumFactor", ""));
-			manJson.put("ServiceStr", Prefs.getString("Select_ID_khadamat", ""));
-			Prefs.putString("Select_ID_khadamat","");//khali kardan field
-			manJson.put("Exc", "");
-			manJson.put("InsCoverageXML","");
-
-			manJson.put("InsPrcieXML","");
-			manJson.put("InsPlanCode",-1);
-
-			identityJson.put("Password", "123qwe!@#QWE");
-			identityJson.put("TermianlId", "Mobile");
-			identityJson.put("UserName", "EligashtMlb");
-			//identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
-			manJson.put("identity",identityJson);
-			//manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
-			jsone.put("request",manJson);
-
-			Log.e("PurchesRequest:",jsone.toString());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return jsone.toString();
-
-
-	}
 	@Override
 	public void onClick(View v) {
 		Fragment fragment2;
@@ -2104,8 +1445,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					if(sum==0){
 						System.out.println("APICALL:"+"sum:"+sum);
 						System.out.println("insert:");
-						new AsyncFetch().execute();
 
+						sendRequestPerchase();//khadamat
 					}
 				}
 				if(FlagTab){
@@ -2131,11 +1472,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			case R.id.btn_taeed_khadamat:
 
-
 				//call api pishFactor
-			//	new AsyncFetchPishFactor().execute();
 				RequestPurchase();
-
 				break;
 
 			case R.id.txtmeliyatm:
@@ -2211,14 +1549,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 					linear_pish_factor.setVisibility(View.GONE);
 
-			/*	myScrollView.setSmoothScrollingEnabled(false); // disable scrolling
-				myScrollView.setOnTouchListener(new View.OnTouchListener() {
-					@Override
-					public boolean onTouch(View v, MotionEvent event) {
-						return true;
-					}
-				});*/
-					//myScrollView.setVisibility(View.GONE);
 
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
@@ -2251,13 +1581,225 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				break;
 			case R.id.txt_hom:
 				Prefs.putBoolean("BACK_HOME",true);
-				//	myScrollView.setOnTouchListener(null);
 				Intent intent = new Intent("sendFinish");
 
 				LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-				//finish();
-				//this.startActivity(i4);
+
 				break;
+		}
+
+	}
+
+	private void sendRequestPerchase() {
+		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
+
+		//this method will be running on UI thread
+		rlLoading.setVisibility(View.VISIBLE);
+		Utility.disableEnableControls(false,rlRoot);
+
+		com.eligasht.service.model.flight.request.PurchaseFlight.RequestPurchaseFlight requestPurchaseFlightt = new com.eligasht.service.model.flight.request.PurchaseFlight.RequestPurchaseFlight();
+		com.eligasht.service.model.flight.request.PurchaseFlight.Request request = new com.eligasht.service.model.flight.request.PurchaseFlight.Request();
+		com.eligasht.service.model.flight.request.PurchaseFlight.Identity identity = new com.eligasht.service.model.flight.request.PurchaseFlight.Identity();
+		request.setIdentity(identity);
+
+		try {
+			String GUID ="";
+			String ResultUniqId="";
+			Bundle extras = getIntent().getExtras();
+			if(extras != null){
+				GUID = extras.getString("Flight_GUID");
+				ResultUniqId = SearchParvazActivity.globalResultUniqID;
+			}
+
+
+			request.setEchoToken(ResultUniqId);//.headerJson.put("EchoToken",ResultUniqId);
+			request.setBookingReferenceID(GUID);//headerJson.put("BookingReferenceID", GUID);///ID.toString()
+
+			//mosaferan
+			PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
+			CursorManager cursorM=items_Table.getAllMosafer();
+
+			if(cursorM != null){
+				List<PassList> passLists=new ArrayList<>();
+				for (int i = 0; i < cursorM.getCount(); i++) {
+
+					cursorM.moveToPosition(i);
+
+					PassList passList=new PassList();
+
+					passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));//setGender=cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
+					passList.setNationality( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
+					passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+
+					passList.setRqPassengerAddress( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
+					passList.setRqPassengerBirthdate( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
+					passList.setRqPassengerEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
+
+					passList.setRqPassengerFirstNameEn( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+					passList.setRqPassengerFirstNameFa( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
+					passList.setRqPassengerLastNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
+
+					passList.setRqPassengerLastNameFa( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
+					passList.setRqPassengerMobile( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
+					passList.setRqPassengerNationalCode(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
+
+					passList.setRqPassengerPassExpDate( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
+					passList.setRqPassengerPassNo( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
+					passList.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+					passLists.add(i,passList);
+
+				}
+				request.setPassList(passLists);
+			}
+
+
+			////kharidar
+			PassengerPartnerInfo_Table partnerInfo_Table=new PassengerPartnerInfo_Table(PassengerActivity.this);
+			CursorManager cursorManager=partnerInfo_Table.getPartner();
+			cursorManager.moveToPosition(0);
+			PartnerInfo partnerInfo=new PartnerInfo();
+
+			partnerInfo.setRqPartnerAddress( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
+			partnerInfo.setRqPartnerEmail( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
+			partnerInfo.setRqPartnerFirstNameFa( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
+			partnerInfo.setRqPartnerGender( cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
+			partnerInfo.setRqPartnerLastNameFa( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
+			partnerInfo.setRqPartnerMobile( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
+			partnerInfo.setRqPartnerNationalCode( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
+			partnerInfo.setRqPartnerTel( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+			partnerInfo.setWebUserID ( Prefs.getString("userId","-1"));//Purchase
+
+			request.setPartnerInfo(partnerInfo);
+
+			request.setCulture( getString(R.string.culture));
+			request.setType( "F");
+
+
+			requestPurchaseFlightt.setRequest(request);
+			Log.e("jjjssson", new Gson().toJson(requestPurchaseFlightt) );
+			SingletonService.getInstance().getPurchaseFlightPassenger().purchaseFlightAvail(new OnServiceStatus<com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight>() {
+				@Override
+				public void onReady(com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight responsePurchaseFlight) {
+				//	Log.e("PurchesResponsKhadamat:",responsePurchaseFlight.getPurchaseFlightResult().getServices().get(0)+"");
+
+					rlLoading.setVisibility(View.GONE);
+					Utility.disableEnableControls(true,rlRoot);
+
+					FlagMosaferan=false;
+
+
+					try {
+
+
+						String GetError="";
+						List<com.eligasht.service.model.flight.response.PurchaseFlight.Error> jError=null;
+						// Getting JSON Array node
+						com.eligasht.service.model.flight.response.PurchaseFlight.PurchaseFlightResult GetAirportsResult = responsePurchaseFlight.getPurchaseFlightResult();//jsonObj.getJSONObject("PurchaseFlightResult");//Error
+						if(GetAirportsResult.getErrors()!= null){
+							jError = GetAirportsResult.getErrors();//getJSONArray("Errors");//
+							com.eligasht.service.model.flight.response.PurchaseFlight.Error jPricedItinerary = jError.get(0);
+							GetError = jPricedItinerary.getMessage();
+						}
+						if (GetError.length()>1) {
+							AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+							AlertDialogPassengerFlight.setText(""+"  "+GetError,getString(R.string.massege));
+
+						}else{
+
+							List<Service> jArray = GetAirportsResult.getServices();//JSONArray("Services");
+							TmpReserveResult jsonResult = GetAirportsResult.getTmpReserveResult();//("TmpReserveResult");
+
+							Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode()+"");
+
+							for (int i = 0; i < jArray.size(); i++) {
+								Service json_data = jArray.get(i);
+								com.eligasht.service.model.flight.response.PurchaseFlight.ExcursionDta excursionData = json_data.getExcursionDta();
+
+								PurchaseFlightResult purchaseFlightResult = new PurchaseFlightResult();
+								purchaseFlightResult.setCityEn(json_data.getCityEn());
+								purchaseFlightResult.setCityFa(json_data.getCityFa());
+								purchaseFlightResult.setCurrency_ID(json_data.getCurrencyID()+"");
+
+								purchaseFlightResult.setHasFlight(json_data.getHasFlight()+"");
+								purchaseFlightResult.setHasHotel(json_data.getHasHotel()+"");
+								purchaseFlightResult.setLoadDB(json_data.getLoadDB()+"");
+
+								purchaseFlightResult.setServiceAdlPrice(json_data.getServiceAdlPrice()+"");
+								purchaseFlightResult.setServiceChdPrice(json_data.getServiceChdPrice()+"");
+								purchaseFlightResult.setServiceDescEn(json_data.getServiceDescEn());
+
+								purchaseFlightResult.setServiceDescFa(json_data.getServiceDescFa());
+								purchaseFlightResult.setServiceID(json_data.getServiceID());
+								purchaseFlightResult.setServiceImgURL(json_data.getServiceImgURL());
+
+								purchaseFlightResult.setServiceInfPrice(json_data.getServiceInfPrice()+"");
+								purchaseFlightResult.setServiceNameEn(json_data.getServiceNameEn());
+								purchaseFlightResult.setServiceNameFa(json_data.getServiceNameFa());
+
+
+								purchaseFlightResult.setServiceTypeEn(json_data.getServiceTypeEn());
+								purchaseFlightResult.setServiceTypeFa(json_data.getServiceTypeFa());
+								purchaseFlightResult.setServiceTypeID(json_data.getServiceTypeID()+"");
+
+								purchaseFlightResult.setServiceTotalPrice( Long.parseLong(json_data.getServiceTotalPrice()));
+								purchaseFlightResult.setSelectID(json_data.getSelectID());
+
+								purchaseFlightResult.setBookingCode(jsonResult.getBookingCode()+"");
+
+								purchaseFlightResult.setExcursionData(new ExcursionDta(excursionData.getArrialAirportCode(),
+										excursionData.getArrialAirportName(),
+										excursionData.getArrivalFltDate()
+										,excursionData.getArrivalFltNo(),
+										excursionData.getArrivalFltTime(),
+										excursionData.getCityID()+"",excursionData.getDepartureFltDate(),
+										excursionData.getDepartureFltNo(),excursionData.getDepartureFltTime(),
+										excursionData.getHotelID()+"",excursionData.getHotelNameEn()+"",excursionData.getPassengerList()));
+
+								purchaseFlightResult.setFlag(false);
+								data.add(purchaseFlightResult);
+							}
+
+							// Setup and Handover data to recyclerview
+
+							linear_saler.setVisibility(View.GONE);
+							linear_mosaferan.setVisibility(View.GONE);
+							linear_pish_factor.setVisibility(View.GONE);
+
+							linear_list_khadamat.setVisibility(View.VISIBLE);
+							FlagTab=true;
+
+							((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+							((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+							txtTitle.setText(R.string.Add_to_cart_services);
+
+							mAdapter = new GetKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this,0);
+
+							mAdapter.setData(data);
+							listKhadamat.setAdapter(mAdapter);
+							if(linear_code_meli.getVisibility()==View.VISIBLE){
+								listKhadamat.setVisibility(View.GONE);
+							}
+							setAnimation();
+						}
+					} catch (Exception e) {
+						AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+						AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
+
+					}
+				}
+
+				@Override
+				public void onError(String message) {
+					System.out.println("PurchesFlightError: "+message);
+					rlLoading.setVisibility(View.GONE);
+					Utility.disableEnableControls(true,rlRoot);
+				}
+			}, requestPurchaseFlightt);
+
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -2309,7 +1851,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			linear_pish_factor.setVisibility(View.VISIBLE);
 			FlagTab=true;
 			//call api GetPreFactorDetails
-			//new AsyncFetchGetPreFactorDetails().execute();
+
 			RequestPreFactorDetails();
 
 		} catch (Exception e) {
@@ -2461,7 +2003,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				} catch (Exception e) {
 					AlertDialogPassengerFlight alertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
 					alertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege)+"fff");
-					//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
+
 				}
 			}
 
@@ -2559,187 +2101,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 		});
 		scroll_partner.clearFocus();
-		//txtemeliP.clearFocus();
 
-		//txtemeliP.setCursorVisible(false);
 
 	}
-	private class AsyncFetchPishFactor extends AsyncTask<String, String, String> {
-		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
-		HttpURLConnection conn;
-		URL url = null;
-		private ListView listAirPort;
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-
-			//this method will be running on UI thread
-			rlLoading.setVisibility(View.VISIBLE);
-			Utility.disableEnableControls(false,rlRoot);
-		}
-
-		@Override
-		protected String doInBackground(String... params) {
-			try {
-
-				// Enter URL address where your json file resides
-				// Even you can make call to php file which returns json data
-				url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
-
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return e.toString();
-			}
-			try {
-
-				// Setup HttpURLConnection class to send and receive data from php and mysql
-				conn = (HttpURLConnection) url.openConnection();
-				conn.setReadTimeout(READ_TIMEOUT);
-				conn.setConnectTimeout(CONNECTION_TIMEOUT);
-				// conn.setRequestMethod("GET");
-				conn.setRequestMethod("POST");
-				// setDoOutput to true as we recieve data from json file
-				conn.setDoOutput(true);
-
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				return e1.toString();
-			}
-
-			try {
-
-				int response_code = conn.getResponseCode();
-
-				String serial = null;
-
-				JSONObject errorObj = new JSONObject();
-
-				try {
-					errorObj.put("Success", false);
-
-					Class<?> c = Class.forName("android.os.SystemProperties");
-					Method get = c.getMethod("get", String.class);
-					serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-				} catch (Exception ignored) {
-				}
-
-
-				String data =OrderToJsonPishFactor();
-
-
-				HttpClient client = new DefaultHttpClient();
-
-
-				HttpPost post = new HttpPost();
-				post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
-				post.setHeader("Content-Type", "application/json; charset=UTF-8");
-				post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-				StringEntity se = null;
-				try {
-					se = new StringEntity(data, "UTF-8");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-				post.setEntity(se);
-				ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-
-				HashMap<String, String> airport = null;
-				mylist = new ArrayList<HashMap<String, String>>();
-				HttpResponse res = client.execute(post);
-				String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-				return (retSrc);
-
-			} catch (IOException e) {
-				e.printStackTrace();
-				return e.toString();
-			} finally {
-				conn.disconnect();
-			}
-
-
-		}//end doin background
-
-		@Override
-		protected void onPostExecute(String resultPishfactor) {
-
-
-
-			rlLoading.setVisibility(View.GONE);
-			Utility.disableEnableControls(true,rlRoot);
-			try {
-////////////////////////////
-				JSONObject jsonObj = new JSONObject(resultPishfactor);
-
-				// JSONObject jsonObj = new JSONObject(retSrc);
-
-				// Getting JSON Array node
-				JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseServiceResult");
-				int successResult=GetAirportsResult.getInt("SuccessResult");
-				if(successResult==0){
-					//get Error
-					JSONObject getError = jsonObj.getJSONObject("Errors");
-
-					String message= getError.getString("DetailedMessage");
-					//Toast.makeText(PassengerActivity.this, message, Toast.LENGTH_LONG).show();
-					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(message,"");
-				}
-
-				if(successResult >1) {
-					txt_shomare_factor.setText(GetAirportsResult.getString("SuccessResult"));
-
-					tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
-
-					textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, 300, 150));
-				}else{
-					//txt_shomare_factor.setText("خطایی رخ داده است !");
-					//new AlertDialog(PassengerActivity.this, "خطایی رخ داده است !");
-					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(getString(R.string.An_error_has_occurred),"");
-					//Toast.makeText(PassengerActivity.this, "خطایی رخ داده است !", Toast.LENGTH_LONG).show();
-					Prefs.putBoolean("BACK_HOME", true);
-					//	myScrollView.setOnTouchListener(null);
-					/*Intent intent = new Intent("sendFinish");
-
-					LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);*/
-					finish();
-
-				}
-				// sfsfs
-
-				// Setup and Handover data to recyclerview
-				((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
-				((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-				txtTitle.setText(R.string.Approval_and_payment_of_pre_invoice);
-				//	myScrollView.setOnTouchListener(null);
-
-				linear_saler.setVisibility(View.GONE);
-				linear_mosaferan.setVisibility(View.GONE);
-				linear_list_khadamat.setVisibility(View.GONE);
-				linear_pish_factor.setVisibility(View.VISIBLE);
-				FlagTab=true;
-				//call api GetPreFactorDetails
-				new AsyncFetchGetPreFactorDetails().execute();
-
-			} catch (JSONException e) {
-				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
-				AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"","");
-				//new AlertDialog(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ");
-				//Toast.makeText(PassengerActivity.this, "در حال حاضر پاسخگویی به درخواست  شما امکان پذیر نمی باشد ", Toast.LENGTH_LONG).show();
-			}
-
-
-		}//end on pos excute
-
-	}//end async get pish factor
 	public String getCounter(int i) {
 		String s="";
 		switch (i) {
@@ -2793,7 +2157,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			String nationalityCode = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYCODE);
 			String nationalityName = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYNAME);
-			//Toast.makeText(this, "You selected countrycode: " + countryCode, Toast.LENGTH_LONG).show();
+
 			if(countryCode != null)
 				txtmahale_eghamat.setText(countryCode+"");//txtmahale_eghamat.setText(countryCode+" "+countryName);
 			if(nationalityCode != null)
@@ -2837,7 +2201,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 					txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
-					//txtTitleCountM.setText(getString(R.string.info_passenger) + counter);
+
 					System.out.println("InsertMosaferGet:"+cursorM.getString(PassengerMosaferItems_Table.Columns.ID.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
 				}
 			}
@@ -2846,33 +2210,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			imgCount.setText(counter+"");
 			///////////////////
 		}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
-			////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
-		/*	if(counter>1) {
-				PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
-				CursorManager cursorM=items_Table.getMosaferById(counter-1);
-				if(cursorM != null){
-					for (int i = 0; i < cursorM.getCount(); i++) {
 
-						txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-						txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-						txtnumber_passport.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-
-						txttavalodm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-						txtexp_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-
-						txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-						txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-						txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
-						System.out.println("InsertMosaferGet:"+cursorM.getString(PassengerMosaferItems_Table.Columns.ID.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-
-					}
-
-				}
-				counter--;
-
-				imgCount.setText(counter+"");
-			}else{*/
-			//////////////////////
 			linear_mosaferan.setVisibility(View.GONE);
 			linear_saler.setVisibility(View.VISIBLE);
 
@@ -2884,10 +2222,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}else if(linear_saler.getVisibility() == View.VISIBLE) {
 
 			Prefs.putBoolean("BACK_HOME", true);
-			//	myScrollView.setOnTouchListener(null);
-			/*Intent intent = new Intent("sendFinish");
 
-			LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);*/
 			finish();
 
 		}
@@ -3201,25 +2536,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	@Override
 	public void onDateSet(com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
-	/*	String str_date = year + "/" + (monthOfYear + 1) + "/" + (dayOfMonth-1);//2018-01-16
-		DateFormat formatter;
-		Date date;
-		formatter = new SimpleDateFormat("yyyy/MM/dd");
-		try {
-			date = (Date) formatter.parse(str_date);
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(date);
-			datePickerDialogGregorian2.setMinDate(cal);
 
-
-			txttavalodm.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-			txttavalodm.setText(str_date);
-			//raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-			//Log.e("GGGGGGG", raft);
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}*/
 	}
 
 
@@ -3240,8 +2557,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			txttavalodm.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 			txttavalodm.setText(str_date);
-			//raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-			//	Log.e("GGGGGGG", raft);
+
 
 		} catch (ParseException e) {
 			e.printStackTrace();

@@ -1346,7 +1346,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             detailsPartner.put("WebUser_ID ", Prefs.getString("userId","-1"));//Purchase
 
 
-            headerJson.put("PartnerList", detailsPartner);
+            headerJson.put("PartnerInfo", detailsPartner);
 
             headerJson.put("Culture", getString(R.string.culture));
             headerJson.put("Type", "H");

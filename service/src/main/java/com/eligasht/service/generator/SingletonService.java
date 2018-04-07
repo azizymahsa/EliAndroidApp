@@ -1,13 +1,13 @@
 package com.eligasht.service.generator;
 
 import com.eligasht.service.di.component.NetComponent;
-import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactor;
 import com.eligasht.service.part.AirPorts;
 import com.eligasht.service.part.CheckFlight;
 import com.eligasht.service.part.FlightSearch;
 import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.PreFactorDetailFlight;
-import com.eligasht.service.part.PurchaseFlight;
+import com.eligasht.service.part.PurchaseFlightPassenger;
+import com.eligasht.service.part.PurchaseFlightService;
 
 import javax.inject.Inject;
 
@@ -25,9 +25,10 @@ public class SingletonService {
     Hotel hotel;
     AirPorts airPorts;
     FlightSearch flightSearch;
-    PurchaseFlight purchaseFlight;
+    PurchaseFlightService purchaseFlight;
     PreFactorDetailFlight preFactorDetailFlight;
     CheckFlight checkFlight;
+    PurchaseFlightPassenger purchaseFlightPassenger;
     private static final SingletonService ourInstance = new SingletonService();
 
     public static SingletonService getInstance() {
@@ -62,9 +63,9 @@ public class SingletonService {
             flightSearch = new FlightSearch(serviceGenerator);
         return flightSearch;
     }
-    public PurchaseFlight getPurchaseFlight() {
+    public PurchaseFlightService getPurchaseFlight() {
         if (purchaseFlight == null)
-            purchaseFlight = new PurchaseFlight(serviceGenerator);
+            purchaseFlight = new PurchaseFlightService(serviceGenerator);
         return purchaseFlight;
     }
     public PreFactorDetailFlight getPreFactorDetailFlight() {
@@ -76,5 +77,10 @@ public class SingletonService {
         if (checkFlight == null)
             checkFlight = new CheckFlight(serviceGenerator);
         return checkFlight;
+    }
+    public PurchaseFlightPassenger getPurchaseFlightPassenger() {
+        if (purchaseFlightPassenger == null)
+            purchaseFlightPassenger = new PurchaseFlightPassenger(serviceGenerator);
+        return purchaseFlightPassenger;
     }
 }
