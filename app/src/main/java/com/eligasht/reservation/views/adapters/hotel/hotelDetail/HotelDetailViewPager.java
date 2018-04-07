@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.fragments.hotelDetail.HotelFacilityFragment;
 import com.eligasht.reservation.views.fragments.hotelDetail.MapHotelFragment;
 import com.eligasht.reservation.views.fragments.hotelDetail.RoomHotelFragment;
 
@@ -15,33 +16,31 @@ import com.eligasht.reservation.views.fragments.hotelDetail.RoomHotelFragment;
 
 public class HotelDetailViewPager extends FragmentPagerAdapter {
     private Context context;
-    private MapHotelFragment mapHotelFragment;
+
 
     public HotelDetailViewPager(Context context, FragmentManager fm) {
         super(fm);
         this.context = context;
 
-        mapHotelFragment = MapHotelFragment.instance();
     }
 
-    public MapHotelFragment getMapHotelFragment() {
-        return mapHotelFragment;
-    }
+
+
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return RoomHotelFragment.instance();
+                return MapHotelFragment.instance();
 
             case 1:
                 return MapHotelFragment.instance();
             case 2:
-                return MapHotelFragment.instance();
+                return HotelFacilityFragment.instance();
             case 3:
-                return MapHotelFragment.instance();
+                return RoomHotelFragment.instance();
             default:
-                return MapHotelFragment.instance();
+                return RoomHotelFragment.instance();
         }
     }
     @Override
@@ -52,13 +51,13 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return context.getString(R.string.Map);
+                return context.getString(R.string.Comments);
 
             case 1:
-                return context.getString(R.string.Possibilities);
+                return context.getString(R.string.Map);
             case 2:
 
-                return context.getString(R.string.Comments);
+                return context.getString(R.string.Possibilities);
             case 3:
 
                 return context.getString(R.string.ReservRoom);

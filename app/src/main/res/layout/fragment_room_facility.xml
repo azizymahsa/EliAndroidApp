@@ -1,0 +1,74 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.eligasht.reservation.views.fragments.hotelDetail.RoomHotelFragment"
+    android:clipToPadding="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:fillViewport="true"
+    >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tab_layout"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="5dp"
+        app:cardBackgroundColor="#ffffff"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="1dp">
+
+        <LinearLayout
+            android:id="@+id/llDynamic"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+
+                android:id="@+id/llEmkanat"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+
+            <LinearLayout
+                android:id="@+id/llAroundHotel"
+
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                />
+
+            <LinearLayout
+                android:id="@+id/llPolicy"
+
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                />
+
+            <LinearLayout
+                android:id="@+id/llInformation"
+
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</android.support.v4.widget.NestedScrollView>

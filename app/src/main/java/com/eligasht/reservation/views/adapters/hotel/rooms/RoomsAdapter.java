@@ -195,18 +195,6 @@ public class RoomsAdapter extends BaseAdapter {
                             getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
                                     getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate());
 
-                /*    alertDialogPolicy.setText(context.getString(R.string.room) +" "+ getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                            getHCancellationPolicies()[0].getHCancellationPolicy()[0].getRoomNo() + " : " + " از تاریخ " +
-                            DateUtil.getShortStringDateFromMilis(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getFromDate(),"dd MMM HH:mm",false) +
-                            " " + context.getString(R.string.to) + " " +
-                            Utility.dateShowPolicy(getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getToDate()) + " " + context.getString(R.string.Contains) + " " +
-                            getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getReturnAmount() + " " +
-                            getHotelPolicyApi.getHotelPolicyResponse.getGetHotelPolicyResult().
-                                    getHCancellationPolicies()[0].getHCancellationPolicy()[0].getCurrency() + " " + context.getString(R.string.penalty));*/
-
                     if (Prefs.getString("lang", "fa").equals("fa"))
 
                     {
