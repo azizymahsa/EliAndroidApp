@@ -367,7 +367,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                     int i = 0;
                     for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {
-                        Log.e("testtest", roomList.Description);
+                     //   Log.e("testtest", roomList.Description);
 
                         roomsModels.add(new RoomsModel(roomList.Board, roomList.Title, roomList.Description, roomList.Price,
                                 roomList.OfferId, roomList.EHotelId, getRoomsList.getRoomsListResponse.GetRoomsListResult.SearchKey));
@@ -410,7 +410,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         protected String doInBackground(String... params) {
             try {
                 getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId")))));
-                Log.e("j2j2j2", new Gson().toJson(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId"))))));
+             //   Log.e("j2j2j2", new Gson().toJson(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId"))))));
 
             } catch (Exception e) {
 
@@ -444,7 +444,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 tvTitle.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
 
                 tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
-                Log.e("test", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
+             //   Log.e("test", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
 
                 try {
                     LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
@@ -456,7 +456,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 for (ImageHotel imageHotel : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelImages) {
                     imageModels.add(new ImageModel(imageHotel.HotelImagesURL));
-                    Log.e("image", imageHotel.HotelImagesURL);
+                  //  Log.e("image", imageHotel.HotelImagesURL);
 
                 }
                 EventBus.getDefault().post(new HotelProprtiesBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties));
@@ -531,8 +531,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
             //  window.setStatusBarColor(getColor(R.color.blue2));
             ///   new InitUi().Loading(DetailHotelActivity.this,rlLoading, rlRoot, true,R.drawable.hotel_loading);
-            Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
-            Log.e("test2", getIntent().getExtras().getString("ResultUniqID"));
+        //    Log.e("test1", String.valueOf(getIntent().getExtras().getInt("HotelId")));
+        //    Log.e("test2", getIntent().getExtras().getString("ResultUniqID"));
 
 
         }

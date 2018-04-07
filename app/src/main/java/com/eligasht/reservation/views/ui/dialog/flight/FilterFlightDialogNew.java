@@ -288,7 +288,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
                     }
                 }
                 /////////////////////////////////
-                Log.e("GGG", flagSelect);
+             //   Log.e("GGG", flagSelect);
                 if(!flagSelect.contains("T")){
                     try {
                         AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(activity);

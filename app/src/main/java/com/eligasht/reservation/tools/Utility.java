@@ -749,7 +749,7 @@ public class Utility {
         try {
 
             final JSONArray jsonObj = new JSONArray(json);
-            Log.e("teeeeeeeeeeeeeest",jsonObj.toString());
+         //   Log.e("teeeeeeeeeeeeeest",jsonObj.toString());
 
             typeWriter.setText(jsonObj.getString(0));
 
@@ -877,7 +877,7 @@ public class Utility {
                 if (floatingActionButton.getVisibility()==View.GONE&& isShow[0]){
 
                     floatingActionButton.setVisibility(View.VISIBLE);
-                    Log.e("onUpScrolling", "onUpScrolling: 3333333333333" );
+                 //   Log.e("onUpScrolling", "onUpScrolling: 3333333333333" );
 
                     YoYo.with(Techniques.SlideInUp).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
 
@@ -918,7 +918,7 @@ public class Utility {
             public void onFirstVisibleItem() {
 
                 if (floatingActionButton.getVisibility()==View.VISIBLE&& !isShow[0]){
-                    Log.e("onUpScrolling", "onUpScrolling:44444444444" );
+                //    Log.e("onUpScrolling", "onUpScrolling:44444444444" );
 
                     isShow[0]=true;
                     YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
@@ -999,7 +999,7 @@ public class Utility {
                 if (floatingActionButton.getVisibility() == View.GONE && isShow[0]) {
 
                     floatingActionButton.setVisibility(View.VISIBLE);
-                    Log.e("onUpScrolling", "onUpScrolling: 3333333333333");
+                //    Log.e("onUpScrolling", "onUpScrolling: 3333333333333");
 
                     YoYo.with(Techniques.SlideInUp).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
 
@@ -1040,7 +1040,7 @@ public class Utility {
             public void onFirstVisibleItem() {
 
                 if (floatingActionButton.getVisibility() == View.VISIBLE && !isShow[0]) {
-                    Log.e("onUpScrolling", "onUpScrolling:44444444444");
+                 //   Log.e("onUpScrolling", "onUpScrolling:44444444444");
 
                     isShow[0] = true;
                     YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {

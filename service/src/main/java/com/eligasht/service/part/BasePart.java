@@ -3,10 +3,12 @@ package com.eligasht.service.part;
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.listener.OnServiceStatus;
 
-import rx.Observable;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by Ahmad.nemati on 3/26/2018.
@@ -30,8 +32,13 @@ public abstract class BasePart {
                 .unsubscribeOn(Schedulers.io())
                 .subscribe(new Observer<T>() {
                     @Override
-                    public void onCompleted() {
+                    public void onSubscribe(Disposable d) {
 
+                    }
+
+                    @Override
+                    public void onNext(T value) {
+                        listener.onReady(value);
                     }
 
                     @Override
@@ -40,8 +47,8 @@ public abstract class BasePart {
                     }
 
                     @Override
-                    public void onNext(T t) {
-                        listener.onReady(t);
+                    public void onComplete() {
+
                     }
                 });
 

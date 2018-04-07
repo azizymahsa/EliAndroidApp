@@ -89,8 +89,8 @@ public class HotelProprtiesAdapter extends BaseAdapter {
                     long valLong = Long.parseLong(valHexStr, 16);
 
                     holder.tvImage.setText((char) valLong + "");
-                    Log.e("dfsf", hotelProprtiesModels.get(position).getImage());
-                    Log.e("dfsf", holder.tvImage.getText().toString());
+                   // Log.e("dfsf", hotelProprtiesModels.get(position).getImage());
+                 //   Log.e("dfsf", holder.tvImage.getText().toString());
 
                 } catch (Exception e) {
                 }

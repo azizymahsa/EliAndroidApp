@@ -176,9 +176,7 @@
 -dontwarn com.rey.material.**
 
 -ignorewarnings
--keep class * {
-    public private *;
-}
+
 -dontwarn javax.annotation.GuardedBy
 -dontwarn javax.annotation.**
 -keep public class com.adjust.sdk.** { *; }
