@@ -21,7 +21,7 @@ public class Request {
     @SerializedName("PassList")
     @Expose
     private ArrayList<PassList> passList = null;
-    @SerializedName("PartnerList")
+    @SerializedName("PartnerInfo")
     @Expose
     private PartnerList partnerList;
     @SerializedName("PackRow_ID")

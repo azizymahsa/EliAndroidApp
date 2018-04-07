@@ -12,8 +12,8 @@ import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlig
  * Created by Mahsa.azizi on 3/29/2018.
  */
 
-public class PurchaseFlight extends BasePart {
-    public PurchaseFlight(ServiceGenerator serviceGenerator) {
+public class PurchaseFlightService extends BasePart {
+    public PurchaseFlightService(ServiceGenerator serviceGenerator) {
         super(serviceGenerator);
     }
 

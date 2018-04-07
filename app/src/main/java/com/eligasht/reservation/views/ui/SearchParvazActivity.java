@@ -1745,31 +1745,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         public  String FltDurationM;
 
 
-        public ItemExpandingPlan(String DepartureAirportNameFaR, String FlightTimeR,
-                                 String ArrivalAirportNameFaR, String FlightArrivalTimeR,
-                                 String AirlineNameFaR, String FlightNumberR,
-                                 String DepartureAirportNameFaB, String FlightTimeB,
-                                 String ArrivalAirportNameFaB, String FlightArrivalTimeB,
-                                 String AirlineNameFaB, String FlightNumberB
-                , String flGUID
-                                 //nerkh
-                , long AdlCost, double Taxes, double TotalFare, String OperatingAirlineNameEn) {
 
-            this.DepartureAirportNameFaR = DepartureAirportNameFaR;
-            this.FlightTimeR = FlightTimeR;
-            this.ArrivalAirportNameFaR = ArrivalAirportNameFaR;
-            this.FlightArrivalTimeR = FlightArrivalTimeR;
-            this.AirlineNameFaR = AirlineNameFaR;
-            this.FlightNumberR = FlightNumberR;
-            this.flGUID = flGUID;
-
-            this.AdlBaseFare = AdlBaseFare;
-            this.Taxes = Taxes;
-            this.TotalFare = TotalFare;
-            this.OperatingAirlineNameEn = OperatingAirlineNameEn;
-
-
-        }
 
         public ItemExpandingPlan() {
             // TODO Auto-generated constructor stub
@@ -1817,7 +1793,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             List<Country> data = new ArrayList<Country>();
 
             try {
-////////////////////////////
+
                 Log.e("Response", new Gson().toJson(changeFlightApi.changeFlightApiResponse));
                 JSONObject jsonObj = new JSONObject(new Gson().toJson(changeFlightApi.changeFlightApiResponse));
                 String GetError = "";
@@ -1843,7 +1819,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         txtNoResult.setText(GetError);
                         linear_no_result.setVisibility(View.VISIBLE);
                     }
-                    //Toast.makeText(SearchParvazActivity.this, GetError, Toast.LENGTH_LONG).show();
                 } else {
 
 

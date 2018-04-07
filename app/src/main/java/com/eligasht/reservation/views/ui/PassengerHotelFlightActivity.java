@@ -1339,7 +1339,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
             detailsPartner.put("WebUser_ID ", Prefs.getString("userId","-1"));//Purchase
 
-            headerJson.put("PartnerList", detailsPartner);
+            headerJson.put("PartnerInfo", detailsPartner);
 
             headerJson.put("Culture", getString(R.string.culture));
             // headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
