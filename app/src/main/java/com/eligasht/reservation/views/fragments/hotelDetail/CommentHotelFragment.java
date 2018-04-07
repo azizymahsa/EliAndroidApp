@@ -35,6 +35,7 @@ import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.Hotel
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesModels;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.ui.NonScrollGridView;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -64,11 +65,11 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
     private TextView  tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent,tvSortComment;
     private CommentAdapterRecycle commentAdapter;
     boolean isNew = false;
-    GetComment getComment;
-    private boolean isComment = true;
-    String hotelName=null;
-    String hotelId=null;
-    FancyButton btnComment,btnOneComment;
+    private GetComment getComment;
+    private boolean isComment = true,isFirst=true;
+    private String hotelName=null;
+    private String hotelId=null;
+    private FancyButton btnComment,btnOneComment;
 
 
     private AVLoadingIndicatorView aviComment;
@@ -111,7 +112,8 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
-        if (hotelName!=null||hotelId!=null){
+        if ((hotelName!=null||hotelId!=null)&&isFirst){
+            isFirst=false;
             new GetCommentAsync().execute();
 
         }
@@ -139,6 +141,9 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
         llCommentContent = view.findViewById(R.id.llCommentContent);
         btnComment.setOnClickListener(this);
         btnOneComment.setOnClickListener(this);
+        btnComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnOneComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+
 
 
     }

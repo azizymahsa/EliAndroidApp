@@ -103,55 +103,38 @@ import at.grabner.circleprogress.CircleProgressView;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, AddCommnetDialog.OnCommentDialogListenerArray {
+public class DetailHotelActivity extends BaseActivity implements View.OnClickListener{
 
-    private TextView tvTitle, tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent;
-    //  private NonScrollListView lvRooms;
+    private TextView tvTitle;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
-    private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
-    private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
     private RelativeLayout rlLoading, rlLoading2;
     CoordinatorLayout rlRoot;
-    private AddComment addComment;
-    private RoomsAdapter roomsAdapter;
     private GetRoomsList getRoomsList;
     private Window window;
     private HotelDetailViewPager hotelDetailViewPager;
     private ViewPager view_pager;
-    Toolbar toolbar;
-
-
+    private Toolbar toolbar;
+    private LatLng location;
     private GetHotelDetail getHotelDetail;
-    private TextView tvHotelName, tvCityName, tvAdress, tvAlert, tvAlertError;
+    private TextView tvHotelName, tvCityName, tvAdress, tvAlertError;
     private ImageView ivImage;
-    private LinearLayout llDynamic, llLoading, llComment, llEmkanat;
-    private AVLoadingIndicatorView aviComment;
-    private ImageView ivLoading;
-    private AddCommnetDialog addCommnetDialog;
-    private String comment, userName, title;
-    private CommentAdapterRecycle commentAdapter;
-    private TextView tvSortComment, tvDateDetail, tvCommentClickText, tvMapClickText,
-            tvEmakanatClickText, tvRezervClickText;
+    private TextView tvSortComment, tvDateDetail;
     boolean isNew = false;
-    private ScrollView svDetail;
     private RelativeLayout elNotFound;
-    private GetComment getComment;
-    private boolean isComment = true;
-    private CircleProgressView circleView;
-    private NonScrollRecyclerView lvComments;
     private CardView cvHotel;
     private FrameLayout flViewPager;
     private TabLayout tab_layout;
-    String hotelName=null;
-    String hotelId=null;
-   CommentModelBus commentModelBus;
+    CommentModelBus commentModelBus;
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             switch (tab.getPosition()) {
                 case 0:
-                   hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
+                    hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
+                    break;
+                case 1:
+                    hotelDetailViewPager.getMapHotelFragment().setMarker(location,commentModelBus);
                     break;
             }
 
@@ -190,41 +173,20 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         flViewPager = findViewById(R.id.flViewPager);
         cvHotel = findViewById(R.id.cvHotel);
         rlRoot = findViewById(R.id.rlRoot);
-        ivLoading = findViewById(R.id.ivLoading);
-        tvCommentClickText = findViewById(R.id.tvCommentClickText);
-        tvMapClickText = findViewById(R.id.tvMapClickText);
-        tvEmakanatClickText = findViewById(R.id.tvEmakanatClickText);
-        tvRezervClickText = findViewById(R.id.tvRezervClickText);
-
-
         tvAdress = findViewById(R.id.tvAdress);
         ivImage = findViewById(R.id.ivImage);
         tvHotelName = findViewById(R.id.tvHotelName);
-        lvComments = findViewById(R.id.lvComments);
         tvCityName = findViewById(R.id.tvCityName);
-        llDynamic = findViewById(R.id.llDynamic);
-        tvAlertComment = findViewById(R.id.tvAlertComment);
-        aviComment = findViewById(R.id.aviComment);
-        llComment = findViewById(R.id.llComment);
         tvDateDetail = findViewById(R.id.tvDateDetail);
         tvSortComment = findViewById(R.id.tvSortComment);
         elNotFound = findViewById(R.id.elNotFound);
         tvAlertError = findViewById(R.id.tvAlertError);
-        tvAlert = findViewById(R.id.tvAlert);
-        llEmkanat = findViewById(R.id.llEmkanat);
-        circleView = findViewById(R.id.circleView);
-        tvCommentCount = findViewById(R.id.tvCommentCount);
-        tvVoteCount = findViewById(R.id.tvVoteCount);
-        tvRecommendedPercent = findViewById(R.id.tvRecommendedPercent);
         rlLoading2 = findViewById(R.id.rlLoading2);
         tab_layout = findViewById(R.id.tab_layout);
         view_pager = findViewById(R.id.view_pager);
         toolbar = findViewById(R.id.toolbar);
         initToolbar(toolbar);
-
-
         tvTitle = findViewById(R.id.tvTitle);
-        roomsAdapter = new RoomsAdapter(roomsModels, this, rlRoot, rlLoading, window);
         rlLoading2.setOnClickListener(this);
         Utility.setAnimLoading(this);
         tvDateDetail.setText(getIntent().getExtras().getString("DateTime"));
@@ -233,8 +195,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tab_layout.setupWithViewPager(view_pager);
         view_pager.setCurrentItem(3);
         tab_layout.setOnTabSelectedListener(onTabSelectedListener);
-
-
         ViewGroup vg = (ViewGroup) tab_layout.getChildAt(0);
         int tabsCount = vg.getChildCount();
         for (int j = 0; j < tabsCount; j++) {
@@ -248,7 +208,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             }
         }
 
-
         new GetRoomsAsync().execute();
 
     }
@@ -258,46 +217,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         switch (v.getId()) {
 
-
-            case R.id.btnSortComment:
-                try {
-                    if (isNew) {
-
-
-                        tvSortComment.setText(R.string.NewComment);
-                        isNew = false;
-                        Collections.sort(commentModels, new Comparator<CommentModel>() {
-                            public int compare(CommentModel o1, CommentModel o2) {
-                                if (o1.getDate() == null || o2.getDate() == null)
-                                    return 0;
-                                return o2.getDate().compareTo(o1.getDate());
-                            }
-                        });
-                        commentAdapter.notifyDataSetChanged();
-
-                    } else {
-
-
-                        isNew = true;
-
-
-                        tvSortComment.setText(R.string.BenefitComment);
-
-
-                        Collections.sort(commentModels, new Comparator<CommentModel>() {
-                            @Override
-                            public int compare(CommentModel p1, CommentModel p2) {
-                                return p2.getLike() - p1.getLike(); // Ascending
-                            }
-                        });
-                        commentAdapter.notifyDataSetChanged();
-
-                    }
-                } catch (Exception e) {
-                }
-
-
-                break;
             case R.id.btnOk:
                 finish();
                 break;
@@ -307,12 +226,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    @Override
-    public void onReturnValue(String userName, String title) {
-        this.userName = userName;
-        this.title = title;
-
-    }
 
 
     private class GetRoomsAsync extends AsyncTask<String, Void, String> {
@@ -439,10 +352,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 Log.e("test", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
 
                 try {
-                    LatLng location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
+                    location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
                             Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
-                    //  map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
-                    //   map.addMarker(new MarkerOptions().position(location).title(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName));
+
                 } catch (Exception e) {
                 }
 
@@ -452,10 +364,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 }
                 EventBus.getDefault().post(new HotelProprtiesBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties));
-                commentModelBus= new CommentModelBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName, String.valueOf(getIntent().getExtras().getInt("HotelId")));
+                commentModelBus = new CommentModelBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName, String.valueOf(getIntent().getExtras().getInt("HotelId")));
 
                 EventBus.getDefault().post(new CommentModelBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName, String.valueOf(getIntent().getExtras().getInt("HotelId"))));
-
 
 
                 YoYo.with(Techniques.FadeIn)
@@ -497,10 +408,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         ivImage.setVisibility(View.GONE);
                         break;
                 }
-                if (roomsModels.isEmpty()) {
-
-                    tvAlert.setVisibility(View.VISIBLE);
-                }
 
 
             } catch (Exception e) {
@@ -512,9 +419,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         }
 
     }
-
-
-
 
 
     protected void initToolbar(Toolbar toolbar) {

@@ -10,14 +10,18 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.eligasht.R;
+import com.eligasht.reservation.models.eventbus.CommentModelBus;
 import com.eligasht.reservation.views.fragments.profile.EditProfileFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
@@ -50,7 +54,7 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
             mMapView = (MapView) view.findViewById(R.id.mapView);
             mMapView.onCreate(savedInstanceState);
         }
-        mMapView.onResume(); // needed to get the map to display immediately
+        mMapView.onResume(); //
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -71,8 +75,6 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap mMap) {
         googleMap = mMap;
-        ;
-
         googleMap.getUiSettings().setTiltGesturesEnabled(false);
         googleMap.getUiSettings().setScrollGesturesEnabled(false);
         googleMap.getUiSettings().setZoomGesturesEnabled(false);
@@ -81,20 +83,6 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
-    /*  public void initMap() {
-
-
-          if (serviceOK()) {
-              SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().fin(R.id.map);
-              mapFragment.getMapAsync(this);
-
-
-          } else {
-          }
-
-
-      }
-  */
     public boolean serviceOK() {
         try {
             int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
@@ -109,5 +97,10 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
             Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
         }
         return false;
+    }
+
+    public void setMarker(LatLng location, CommentModelBus name) {
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
+        googleMap.addMarker(new MarkerOptions().position(location).title(name.getHotelName()));
     }
 }

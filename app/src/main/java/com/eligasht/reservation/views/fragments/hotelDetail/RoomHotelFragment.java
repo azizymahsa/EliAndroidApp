@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.R;
@@ -31,6 +32,7 @@ public class RoomHotelFragment extends Fragment {
     private NonScrollListView lvRooms;
     private RoomsAdapter roomsAdapter;
     private Window window;
+    private TextView tvAlert;
 
 
     public static RoomHotelFragment instance() {
@@ -57,14 +59,23 @@ public class RoomHotelFragment extends Fragment {
 
     public void initView() {
         lvRooms = view.findViewById(R.id.lvRooms);
+        tvAlert = view.findViewById(R.id.tvAlert);
 
 
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void setData(RoomsModelBus roomsModels) {
-        roomsAdapter = new RoomsAdapter(roomsModels.getRoomsModels(), getActivity(), getActivity().findViewById(R.id.rlRoot), getActivity().findViewById(R.id.rlLoading), getActivity().getWindow());
-        lvRooms.setAdapter(roomsAdapter);
+        if (roomsModels.getRoomsModels().isEmpty()){
+            tvAlert.setVisibility(View.VISIBLE);
+            lvRooms.setVisibility(View.GONE);
+
+        }else{
+            roomsAdapter = new RoomsAdapter(roomsModels.getRoomsModels(), getActivity(), getActivity().findViewById(R.id.rlRoot), getActivity().findViewById(R.id.rlLoading), getActivity().getWindow());
+            lvRooms.setAdapter(roomsAdapter);
+        }
+
+
 
     }
 

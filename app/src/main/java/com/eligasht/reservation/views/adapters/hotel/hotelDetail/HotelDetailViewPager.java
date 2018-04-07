@@ -18,13 +18,20 @@ import com.eligasht.reservation.views.fragments.hotelDetail.RoomHotelFragment;
 public class HotelDetailViewPager extends FragmentPagerAdapter {
     private Context context;
     private CommentHotelFragment commentHotelFragment;
+    private MapHotelFragment mapHotelFragment;
 
 
     public HotelDetailViewPager(Context context, FragmentManager fm) {
         super(fm);
         this.context = context;
         commentHotelFragment=CommentHotelFragment.instance();
+        mapHotelFragment=MapHotelFragment.instance();
 
+
+    }
+
+    public MapHotelFragment getMapHotelFragment() {
+        return mapHotelFragment;
     }
 
     public CommentHotelFragment getCommentHotelFragment() {
@@ -38,7 +45,7 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
                 return commentHotelFragment;
 
             case 1:
-                return MapHotelFragment.instance();
+                return mapHotelFragment;
             case 2:
                 return HotelFacilityFragment.instance();
             case 3:

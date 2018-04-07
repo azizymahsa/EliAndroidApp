@@ -34,6 +34,7 @@
             android:layout_marginTop="@dimen/_10dp_margin"
             app:indicatorColor="@color/app_base_color"
             app:indicatorName="BallSpinFadeLoaderIndicator"
+            android:visibility="gone"
 
 
             />
@@ -89,8 +90,7 @@
                 android:layout_below="@+id/cvHotel"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
+
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="3dp"
                 card_view:cardElevation="1dp"
