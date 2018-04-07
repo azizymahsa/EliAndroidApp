@@ -174,7 +174,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                                             @Override
                                             public void run() {
                                                 String d = s.toString().trim();
-                                                if (d.length() > 1) {
+                                                if (d.length() > 2) {
 
                                                     GetAirportMaghsadActivity.searchText = d.toLowerCase();
                                                   //  new AsyncFetch().execute();
