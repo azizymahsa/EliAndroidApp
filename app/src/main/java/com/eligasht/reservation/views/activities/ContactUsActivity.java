@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -312,9 +313,13 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         map.getUiSettings().setTiltGesturesEnabled(false);
         map.getUiSettings().setScrollGesturesEnabled(false);
         map.getUiSettings().setZoomGesturesEnabled(false);
+map.clear();
+        if (responseContactUs != null) {
+            location=new LatLng(responseContactUs.getGetContactUsWithCutureResult().getLatitude(),responseContactUs.getGetContactUsWithCutureResult().getLongitude());
+        }else{
+             location=new LatLng(35.737595,51.413388);
+        }
 
-
-        
 
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
         map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
@@ -350,11 +355,22 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
                     data.add(sectionModel);
                 }
-                location=new LatLng(GetAirportsResult.getLatitude(),GetAirportsResult.getLongitude());
+
                 System.out.println("Image:"+GetAirportsResult.getAddress());//r\n\t\
                 txtAddres.setText(GetAirportsResult.getAddress().replaceAll("\t","").replaceAll("\r"," ").replaceAll("\n"," "));
                 txtPhone.setText(""+GetAirportsResult.getPhoneNumber());
 
+                map.clear();
+                if (responseContactUs != null) {
+                    location=new LatLng(responseContactUs.getGetContactUsWithCutureResult().getLatitude(),responseContactUs.getGetContactUsWithCutureResult().getLongitude());
+                    Log.i("Location1",location.toString() );
+                }else{
+                    location=new LatLng(35.737595,51.413388);
+                    Log.i("Location2",location.toString() );
+                }
+
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+                map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
             } catch (Exception e) {
                 Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
             }
