@@ -60,6 +60,7 @@ import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
 import com.eligasht.reservation.models.hotel.api.rooms.call.RoomRequest;
 import com.eligasht.reservation.models.hotel.api.rooms.response.RoomList;
 import com.eligasht.reservation.tools.NonScrollRecyclerView;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.hotel.comment.CommentModel;
 import com.eligasht.reservation.views.adapters.hotel.hotelDetail.HotelDetailViewPager;
@@ -203,11 +204,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             for (int i = 0; i < tabChildsCount; i++) {
                 View tabViewChild = vgTab.getChildAt(i);
                 if (tabViewChild instanceof TextView) {
+
                     ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf)));
+
                 }
             }
         }
-
         new GetRoomsAsync().execute();
 
     }
@@ -258,7 +260,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         @Override
         protected void onPostExecute(String result) {
-            //  new InitUi().Loading(rlLoading,rlRoot,false);
 
 
             try {
@@ -276,7 +277,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                         roomsModels.add(new RoomsModel(roomList.Board, roomList.Title, roomList.Description, roomList.Price,
                                 roomList.OfferId, roomList.EHotelId, getRoomsList.getRoomsListResponse.GetRoomsListResult.SearchKey));
-                        //   i++;
 
                     }
                     EventBus.getDefault().post(new RoomsModelBus(roomsModels));

@@ -92,7 +92,8 @@
                 android:layout_width="@dimen/toolbar_bottom_width_50dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:gravity="center">
+                android:gravity="center"
+                >
 
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnHome"

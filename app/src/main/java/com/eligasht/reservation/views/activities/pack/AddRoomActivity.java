@@ -58,7 +58,6 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
         }
         initViews();
         roomPresenter = new RoomPresenter(this);
-        Log.i("eli", "roomPresenter.getRooms().get(0).getChildModels().get(0).getChildAgeRange().getValue()");
 
 
 try {
@@ -67,6 +66,7 @@ try {
     if (bundle != null) {
         roomArrayList = gson.fromJson(bundle.getString("roomList"), new TypeToken<List<ModelRowCountRoom>>() {
         }.getType());
+        count_room.setText("( " + roomArrayList.size() + " )");
     }
 }catch (Exception e){}
         roomPresenter.setRooms(roomArrayList);

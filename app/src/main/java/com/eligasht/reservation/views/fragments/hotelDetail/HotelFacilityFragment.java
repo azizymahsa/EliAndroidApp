@@ -180,7 +180,7 @@ public class HotelFacilityFragment extends Fragment {
         for (Map.Entry<String, ArrayList<HotelProprtiesModels>> entry : myMap.entrySet()) {
             String key = entry.getKey();
             ArrayList<HotelProprtiesModels> value = entry.getValue();
-            if (key.contains("امکانات")) {
+            if (key.contains("امکانات")|| key.toLowerCase().contains("facil")) {
                 llFacility.setVisibility(View.VISIBLE);
                 tvFacility.setText(key);
                 rvFacility.addItemDecoration(new DividerItemDecoration(getContext(), 1));
@@ -191,7 +191,7 @@ public class HotelFacilityFragment extends Fragment {
 
 
             }
-            if (key.contains("اطراف")) {
+            if (key.contains("اطراف")|| key.toLowerCase().contains("near by")) {
 
                 llAroundHotel.setVisibility(View.VISIBLE);
                 tvAroundHotel.setText(key);
@@ -203,7 +203,7 @@ public class HotelFacilityFragment extends Fragment {
                 nonScrollGridView.setFocusable(false);
                 llAroundHotel.addView(nonScrollGridView);
             }
-            if (key.contains("قوانین")) {
+            if (key.contains("قوانین")|| key.toLowerCase().contains("policies")) {
                 llPolicy.setVisibility(View.VISIBLE);
                 tvPolicy.setText(key);
 
@@ -217,7 +217,7 @@ public class HotelFacilityFragment extends Fragment {
                 nonScrollGridView.setFocusable(false);
                 llPolicy.addView(nonScrollGridView);
             }
-            if (key.contains("اطلاعات")) {
+            if (key.contains("اطلاعات")|| key.toLowerCase().contains("information")) {
 
                 llInformation.setVisibility(View.VISIBLE);
 
@@ -229,7 +229,7 @@ public class HotelFacilityFragment extends Fragment {
                         LinearLayout.LayoutParams.WRAP_CONTENT));
                 // nonScrollGridView.setNumColumns(2);
 
-                nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, getActivity(), true));
+                nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, getActivity(), false));
                 nonScrollGridView.setFocusable(false);
                 llInformation.addView(nonScrollGridView);
             }
