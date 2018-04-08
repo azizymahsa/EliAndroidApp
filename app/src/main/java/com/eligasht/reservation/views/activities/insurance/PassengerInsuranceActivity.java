@@ -1020,7 +1020,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
             detailsPartner.put("WebUser_ID ", Prefs.getString("userId", "-1"));//Purchase
 
-            headerJson.put("PartnerInfo", detailsPartner);
+            headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", getString(R.string.culture));
 

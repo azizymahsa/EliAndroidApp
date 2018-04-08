@@ -164,7 +164,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         lblFlightArrivalTimeR.setText(item.FlightArrivalTimeR + "");
         lblDepurtureAirportR.setText(item.DepartureCityNameFa + " , " + item.DepartureAirportNameFaR);
         lblArrivalAirportR.setText(item.ArrivalCityNameFa + " , " + item.ArrivalAirportNameFaR);
-        if (item.OperatingAirlineNameEn == null) {
+        if (item.OperatingAirlineNameEn == null || item.OperatingAirlineNameEn.equals("null")) {
             String test=item.AirlineCode + item.FlightNumberR;
             lblFlightNumberR.setText(test.replace(" ",""));
             Log.e("Exp:", test.replace(" ",""));
