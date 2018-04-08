@@ -20,6 +20,15 @@ import com.eligasht.reservation.tools.NonScrollRecyclerView;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.adapters.AboutAdapter;
 import com.eligasht.reservation.views.ticker.TickerView;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.about.request.RequestAbout;
+import com.eligasht.service.model.about.response.GetAboutUsWithCultureResult;
+import com.eligasht.service.model.about.response.ResponseAbout;
+import com.eligasht.service.model.about.response.Section;
+import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
+import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
+import com.eligasht.service.part.AboutService;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -46,19 +55,17 @@ import java.util.List;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class AboutActivity extends BaseActivity implements View.OnClickListener {
+public class AboutActivity extends BaseActivity implements View.OnClickListener , OnServiceStatus<ResponseAbout> {
 
 
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    Handler handler;
-    ProgressDialog progressBar;
-    ArrayList<HashMap<String, String>> mylist = null;
+
     AboutAdapter mAdapter;
     TickerView v1, v2, v3;
     ImageView hotel;
     private FancyButton btnBack;
-    private Handler progressBarHandler = new Handler();
+    private ProgressDialog pdLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +86,30 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 .playOn(hotel);
 
 
-        new GetAboutAsync().execute();
 
+        SendRequestAbout();
 
     }
+    private void SendRequestAbout() {
+        pdLoading = new ProgressDialog(AboutActivity.this);
+        try {
+            //this method will be running on UI thread
+            pdLoading.setMessage("\tLoading...");
+            pdLoading.setCancelable(false);
+            pdLoading.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
+        RequestAbout requestAbout = new RequestAbout();
+        com.eligasht.service.model.about.request.RequestAbout request = new com.eligasht.service.model.about.request.RequestAbout();
+
+        request.setCulture(getString(R.string.culture));
+
+        SingletonService.getInstance().getAboutService().aboutAvail(this,request);
+    }
 
     @Override
     protected void onDestroy() {
@@ -100,208 +126,67 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-
-    private class GetAboutAsync extends AsyncTask<String, Void, String> {
-
-        ProgressDialog pdLoading = new ProgressDialog(AboutActivity.this);
-        HttpURLConnection conn;
-        URL url = null;
-        private NonScrollRecyclerView listAirPort;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            try {
-                pdLoading.setMessage("\tLoading...");
-                pdLoading.setCancelable(false);
-                pdLoading.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    @Override
+    public void onReady(ResponseAbout responseAbout) {
+        try {
+             NonScrollRecyclerView nonScrollList;
             //this method will be running on UI thread
+            v1.setAnimationDuration(1000);
+            v2.setAnimationDuration(1000);
+            v3.setAnimationDuration(1000);
+            v1.setText("1200", true);
+            v2.setText("900", true);
+            v3.setText("20000", true);
+            List<SectionModel> data = new ArrayList<SectionModel>();
 
+            pdLoading.dismiss();
 
-        }
+                GetAboutUsWithCultureResult GetAirportsResult = responseAbout.getGetAboutUsWithCultureResult();
+                List<Section> jArray = GetAirportsResult.getSections();
 
-        @Override
-        protected String doInBackground(String... params) {
-            try {
+                // Extract data from json and store into ArrayList as class objects
+                for (int i = 0; i < jArray.size(); i++) {
+                    Section json_data = jArray.get(i);
+                    SectionModel sectionModel = new SectionModel();
+                    sectionModel.setDescription(json_data.getDescription());
+                    sectionModel.setSectionName(json_data.getSectionName());
+                    sectionModel.setImageAddress(json_data.getImageAddress());
 
-                // Enter URL address where your json file resides
-                // Even you can make call to php file which returns json data
-                url = new URL("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetAboutUsWithCulture");
-
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
-            }
-            try {
-
-                // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                // conn.setRequestMethod("GET");
-                conn.setRequestMethod("POST");
-                // setDoOutput to true as we recieve data from json file
-                conn.setDoOutput(true);
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
-
-            try {
-
-                int response_code = conn.getResponseCode();
-
-                String serial = null;
-
-                JSONObject errorObj = new JSONObject();
-                String data = "";
-                try {
-                    errorObj.put("Success", false);
-
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
+                    data.add(sectionModel);
                 }
-                try {
 
-                    if (Prefs.getString("lang", "fa").equals("en")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "en-");
-                        // jsone.put("", manJson);
-                        data = manJson.toString();
-                    } else if (Prefs.getString("lang", "fa").equals("fa")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "fa-");
-                        // jsone.put("", manJson);
-                        data = manJson.toString();
-                    } else if (Prefs.getString("lang", "fa").equals("tr")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "tr-TR");
-                        // jsone.put("", manJson);
-                        data = manJson.toString();
-                    } else if (Prefs.getString("lang", "fa").equals("ar")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "ar-");
-                        //jsone.put("", manJson);
-                        data = manJson.toString();
+
+                nonScrollList = findViewById(R.id.lvExp);
+                nonScrollList.addItemDecoration(new DividerItemDecoration(AboutActivity.this, 1));
+                nonScrollList.setLayoutManager(new LinearLayoutManager(AboutActivity.this));
+                mAdapter = new AboutAdapter(data);
+
+                nonScrollList.setAdapter(mAdapter);
+                nonScrollList.setClickable(false);
+                nonScrollList.setEnabled(false);
+                nonScrollList.setScrollContainer(false);
+
+                nonScrollList.setOnFlingListener(new RecyclerView.OnFlingListener() {
+                    @Override
+                    public boolean onFling(int velocityX, int velocityY) {
+                        nonScrollList.dispatchNestedFling(velocityX, velocityY, false);
+                        return false;
                     }
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                System.out.println("culture:" + data);
-                HttpClient client = new DefaultHttpClient();
-
-
-                HttpPost post = new HttpPost();
-                post = new HttpPost("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetAboutUsWithCulture");
-                post.setHeader("Content-Type", "application/json; charset=UTF-8");
-                post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-                StringEntity se = null;
-                try {
-                    se = new StringEntity(data, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                post.setEntity(se);
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-                HashMap<String, String> airport = null;
-                mylist = new ArrayList<HashMap<String, String>>();
-                HttpResponse res = client.execute(post);
-                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-                return (retSrc);
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
-            }
-
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                //this method will be running on UI thread
-                v1.setAnimationDuration(1000);
-                v2.setAnimationDuration(1000);
-                v3.setAnimationDuration(1000);
-                v1.setText("1200", true);
-                v2.setText("900", true);
-                v3.setText("20000", true);
-                List<SectionModel> data = new ArrayList<SectionModel>();
-
-                pdLoading.dismiss();
-                try {
-////////////////////////////
-                    JSONObject jsonObj = new JSONObject(result);
-
-                    // JSONObject jsonObj = new JSONObject(retSrc);
-
-                    // Getting JSON Array node
-                    JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAboutUsWithCultureResult");
-                    JSONArray jArray = GetAirportsResult.getJSONArray("Sections");
-                    //////////////////////////////
-
-                    // Extract data from json and store into ArrayList as class objects
-                    for (int i = 0; i < jArray.length(); i++) {
-                        JSONObject json_data = jArray.getJSONObject(i);
-                        SectionModel sectionModel = new SectionModel();
-                        sectionModel.setDescription(json_data.getString("Description"));
-                        sectionModel.setSectionName(json_data.getString("SectionName"));
-                        sectionModel.setImageAddress(json_data.getString("ImageAddress"));
-
-                        data.add(sectionModel);
-                    }
-
-
-                    listAirPort = findViewById(R.id.lvExp);
-                    listAirPort.addItemDecoration(new DividerItemDecoration(AboutActivity.this, 1));
-                    listAirPort.setLayoutManager(new LinearLayoutManager(AboutActivity.this));
-                    mAdapter = new AboutAdapter(data);
-                    //mAdapter.setAdapter(mAdapter);
-                    listAirPort.setAdapter(mAdapter);
-                    listAirPort.setClickable(false);
-                    listAirPort.setEnabled(false);
-                    listAirPort.setScrollContainer(false);
-                    //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
-                    listAirPort.setOnFlingListener(new RecyclerView.OnFlingListener() {
-                        @Override
-                        public boolean onFling(int velocityX, int velocityY) {
-                            listAirPort.dispatchNestedFling(velocityX, velocityY, false);
-                            return false;
-                        }
-                    });
-                } catch (JSONException e) {
-                    Toast.makeText(AboutActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
-                }
+                });
             } catch (Exception e) {
-
+                Toast.makeText(AboutActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
             }
 
+    }
 
-        }
+    @Override
+    public void onError(String message) {
+        Toast.makeText(AboutActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
 
-    }//end asynTask
+    }
+
+
+
 
 
 }

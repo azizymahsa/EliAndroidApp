@@ -1,5 +1,7 @@
 package com.eligasht.service.api;
 
+import com.eligasht.service.model.about.request.RequestAbout;
+import com.eligasht.service.model.about.response.ResponseAbout;
 import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
 import com.eligasht.service.model.flight.request.airPort.RequestAirports;
@@ -58,5 +60,9 @@ public interface RetroClient {
     @POST(Const.ContactUsAvil)
     Observable<ResponseContactUs> responsContactUs(
             @Body RequestContactUs requestContactUs
+    );
+    @POST(Const.AboutAvil)
+    Observable<ResponseAbout> responseAboutObservable(
+            @Body RequestAbout requestAbout
     );
 }
