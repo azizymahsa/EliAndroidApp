@@ -23,6 +23,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/llFacility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tvFacility"
@@ -40,6 +46,7 @@
 
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvFacility" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llAroundHotel"
@@ -50,7 +57,19 @@
                     android:orientation="vertical"
                     android:visibility="gone"
 
-                    />
+                    >
+
+
+                    <TextView
+                        android:id="@+id/tvAroundHotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/title_background"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="sdfsdfsdf"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llPolicy"
@@ -62,7 +81,19 @@
                     android:visibility="gone"
 
 
-                    />
+                    >
+
+                    <TextView
+                        android:id="@+id/tvPolicy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/title_background"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="sdfsdfsdf"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llInformation"
@@ -74,7 +105,20 @@
                     android:visibility="gone"
 
 
-                    />
+                    >
+
+
+                    <TextView
+                        android:id="@+id/tvInformation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/title_background"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="sdfsdfsdf"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+
+                </LinearLayout>
             </LinearLayout>
 
 

@@ -25,18 +25,16 @@ import java.util.ArrayList;
 
 public class HotelProprtiesAdapter extends BaseAdapter {
     Activity context;
-    NonScrollGridView nonScrollGridView;
     boolean isPolicy;
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
     private LayoutInflater inflater;
     private ViewHolder holder;
 
 
-    public HotelProprtiesAdapter(ArrayList<HotelProprtiesModels> hotelProprtiesModels, Activity context, NonScrollGridView nonScrollGridView, boolean isPolicy) {
+    public HotelProprtiesAdapter(ArrayList<HotelProprtiesModels> hotelProprtiesModels, Activity context, boolean isPolicy) {
         this.hotelProprtiesModels = hotelProprtiesModels;
         this.context = context;
         this.isPolicy = isPolicy;
-        this.nonScrollGridView = nonScrollGridView;
         inflater = LayoutInflater.from(context);
     }
 
@@ -99,10 +97,10 @@ public class HotelProprtiesAdapter extends BaseAdapter {
                 } catch (Exception e) {
                 }
                 holder.tvTitle.setText(hotelProprtiesModels.get(position).getPropertyTitle());
-                nonScrollGridView.setNumColumns(3);
+               // nonScrollGridView.setNumColumns(3);
 
             } else {
-                nonScrollGridView.setNumColumns(1);
+             //   nonScrollGridView.setNumColumns(1);
 
 
                 holder.tvTitle.setText(hotelProprtiesModels.get(position).getPropertyTitle());

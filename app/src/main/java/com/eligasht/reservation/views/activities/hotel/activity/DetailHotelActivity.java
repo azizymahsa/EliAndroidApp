@@ -154,7 +154,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_hotel_2);
+        setContentView(R.layout.activity_detail_hotel);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.DetailHotel));
         window = getWindow();
         initView();

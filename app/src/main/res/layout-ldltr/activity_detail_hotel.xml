@@ -1,843 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/hotel_detail_background">
+    android:background="@color/gray_light"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    >
 
-
-    <include
-        android:id="@+id/toolbarLayout"
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary" />
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:background="@color/toolbar_color"
+            app:contentScrim="@color/toolbar_color"
 
-    <ScrollView
-        android:id="@+id/svDetail"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbarLayout"
-        android:fillViewport="true">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/flViewPager"
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200dp_normal">
-
-                <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
-
-                    android:id="@+id/intro_view_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-
-            </FrameLayout>
-
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cvHotel"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            >
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/flViewPager"
-                android:layout_gravity="center"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="5dp"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="3dp"
-                card_view:cardElevation="3dp"
-                android:visibility="gone"
-
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7"
+                android:background="@color/gray_light"
 
                 >
+                <Space
+                    android:id="@+id/spacer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60dp_hight"
+                    />
 
-                <LinearLayout
-                    android:id="@+id/llHotelName"
+                <FrameLayout
+                    android:id="@+id/flViewPager"
+                    android:layout_below="@+id/spacer"
+
+
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200dp_normal">
+
+                    <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+
+                        android:id="@+id/intro_view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+
+                </FrameLayout>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cvHotel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:orientation="vertical"
-                    android:padding="5dp">
+                    android:layout_below="@+id/flViewPager"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="2dp"
+
+
+
+                    >
 
                     <LinearLayout
+                        android:id="@+id/llHotelName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:orientation="vertical">
+                        android:layout_centerHorizontal="true"
+                        android:orientation="vertical"
+                        android:padding="5dp">
 
-                        <ImageView
-                            android:id="@+id/ivImage"
-                            android:layout_width="@dimen/_60dp_hight"
-                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
-                            android:layout_gravity="center|right"
-                            android:layout_marginRight="4dp"
-                            android:gravity="right"
-                            android:scaleType="fitEnd"
-                            android:src="@drawable/rating_start"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/tvHotelName"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:gravity="right|center"
-                            android:text="sdfsdf"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_16dp_normal_textSize"
-                            android:textStyle="bold" />
+                            android:gravity="right"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/ivImage"
+                                android:layout_width="@dimen/_60dp_hight"
+                                android:layout_height="@dimen/_16dp_exit_menu_textSize"
+                                android:layout_gravity="center|left"
+                                android:gravity="left"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/rating_start"
+
+                                />
+
+                            <TextView
+                                android:id="@+id/tvHotelName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:gravity="left|center"
+                                android:text="sdfsdf"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textColor="@color/text_color_4d"
+                                android:textSize="@dimen/_16dp_normal_textSize"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvCityName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_below="@+id/ivHotelPic"
+                                android:ellipsize="end"
+                                android:gravity="center|left"
+                                android:maxLines="1"
+                                android:layout_gravity="left|center"
+                                android:textColor="@color/text_color_4d"
+                                android:textSize="@dimen/_14dp_txtSize" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="@string/icon_location"
+                                android:textAppearance="@style/IconFonts"
+                                android:textColor="@color/text_color_4d"
+                                android:textSize="@dimen/_25dp_normal_iconSize" />
+
+                            <TextView
+                                android:id="@+id/tvAdress"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="4dp"
+                                android:layout_weight="100"
+                                android:ellipsize="end"
+                                android:gravity="center|left"
+                                android:maxLines="2"
+                                android:textColor="@color/text_color_4d"
+                                android:textSize="@dimen/_12dp_normal_textSize"
+                                android:lineSpacingExtra="2dp"
+
+                                />
+
+
+                        </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tvCityName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_below="@+id/ivHotelPic"
-                            android:layout_marginRight="4dp"
-                            android:ellipsize="end"
-                            android:gravity="center|right"
-                            android:maxLines="1"
-                            android:text="sdfsdf"
-                            android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_14dp_txtSize" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center|top"
-                            android:text="@string/icon_location"
-                            android:textAppearance="@style/IconFonts"
-                            android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_25dp_normal_iconSize" />
-
-                        <TextView
-                            android:id="@+id/tvAdress"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="4dp"
-                            android:layout_weight="100"
+                            android:id="@+id/tvDateDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:gravity="center|left"
-                            android:maxLines="2"
+                            android:maxLines="1"
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize"
 
                             />
 
 
+
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tvDateDetail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="4dp"
-                        android:ellipsize="end"
-                        android:gravity="center|right"
-                        android:maxLines="1"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_12dp_normal_textSize"
 
-                        />
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
 
 
 
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
 
 
 
-            <LinearLayout
-                android:id="@+id/tab_layout"
-                android:layout_below="@+id/cvHotel"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginTop="2dp"
-                android:visibility="gone"
-
-                android:orientation="horizontal"
-                >
-
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="100"
-                    android:layout_gravity="center"
-                    card_view:cardBackgroundColor="#ffffff"
-                    card_view:cardCornerRadius="3dp"
-                    card_view:cardElevation="2dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
-
-                    >
-                    <LinearLayout
-                        android:id="@+id/llCommentClick"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="?attr/selectableItemBackground">
-                        <ImageView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="150"
-                            android:gravity="center"
-                            android:src="@drawable/comment"
-                            android:layout_marginTop="4dp"
-                            />
-                        <TextView
-                            android:id="@+id/tvCommentClickText"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="80"
-                            android:gravity="center"
-                            android:text="@string/Comments"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textSize="@dimen/_10dp_textSize"
-                            android:textColor="@color/gray_dark"/>
-
-                        <View
-                            android:id="@+id/vComment"
-                            android:layout_width="match_parent"
-                            android:layout_height="3dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@color/blue"
-                            android:visibility="invisible" />
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="100"
-                    android:layout_gravity="center"
-                    card_view:cardBackgroundColor="#ffffff"
-                    card_view:cardCornerRadius="3dp"
-                    card_view:cardElevation="2dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
-
-                    >
-                    <LinearLayout
-                        android:id="@+id/llMapClick"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="?attr/selectableItemBackground">
-
-
-                        <ImageView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="150"
-                            android:gravity="center"
-                            android:src="@drawable/location_pin"
-                            android:layout_marginTop="4dp"
-                            />
-
-                        <TextView
-                            android:id="@+id/tvMapClickText"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="80"
-                            android:gravity="center"
-                            android:text="@string/Map"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textSize="@dimen/_10dp_textSize"
-                            android:textColor="@color/gray_dark"/>
-
-                        <View
-                            android:id="@+id/vMap"
-                            android:layout_width="match_parent"
-                            android:layout_height="3dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@color/blue"
-                            android:visibility="invisible" />
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="100"
-                    android:layout_gravity="center"
-                    card_view:cardBackgroundColor="#ffffff"
-                    card_view:cardCornerRadius="3dp"
-                    card_view:cardElevation="2dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
-
-                    >
-                    <LinearLayout
-                        android:id="@+id/llEmkanatClick"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="?attr/selectableItemBackground">
-
-                        <ImageView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="150"
-                            android:gravity="center"
-                            android:src="@drawable/fridge"
-                            android:layout_marginTop="4dp"
-                            />
-                        <TextView
-                            android:id="@+id/tvEmakanatClickText"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="80"
-                            android:gravity="center"
-                            android:text="@string/Possibilities"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textSize="@dimen/_10dp_textSize"
-                            android:textColor="@color/gray_dark"/>
-
-                        <View
-                            android:id="@+id/vEmakanat"
-                            android:layout_width="match_parent"
-                            android:layout_height="3dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@color/blue"
-                            android:visibility="invisible" />
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="100"
-                    android:layout_gravity="center"
-                    card_view:cardBackgroundColor="#ffffff"
-                    card_view:cardCornerRadius="3dp"
-                    card_view:cardElevation="2dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
-
-                    >
-                    <LinearLayout
-                        android:id="@+id/llRezervClick"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="?attr/selectableItemBackground">
-
-                        <ImageView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="150"
-                            android:gravity="center"
-                            android:src="@drawable/bed"
-                            android:layout_marginTop="4dp"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/tvRezervClickText"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="80"
-                            android:gravity="center"
-                            android:text="@string/ReservRoom"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textSize="@dimen/_10dp_textSize" />
-
-                        <View
-                            android:id="@+id/vRezerv"
-                            android:layout_width="match_parent"
-                            android:layout_height="3dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@color/blue" />
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-
-
-
-            </LinearLayout>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cvViewPager"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tab_layout"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="5dp"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="3dp"
-                card_view:cardElevation="1dp"
-
+                app:layout_collapseMode="pin"
 
                 >
-
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-
-                    <FrameLayout
-                        android:id="@+id/flMap"
+                    <include
+                        android:id="@+id/toolbarLayout"
+                        layout="@layout/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
+                        android:layout_height="@dimen/_60dp_hight"
+                        android:background="@color/colorPrimary" />
 
-                        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                            android:id="@+id/map"
-                            android:name="com.google.android.gms.maps.SupportMapFragment"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_250dp_normal" />
-
-                    </FrameLayout>
-
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tab_layout"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="5dp"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="3dp"
-                card_view:cardElevation="1dp">
-
-                <LinearLayout
-                    android:id="@+id/llDynamic"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <LinearLayout
-
-                        android:id="@+id/llEmkanat"
-
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" />
-
-
-                    <LinearLayout
-                        android:id="@+id/llAroundHotel"
-
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-
-                        />
-
-                    <LinearLayout
-                        android:id="@+id/llPolicy"
-
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-
-                        />
-
-                    <LinearLayout
-                        android:id="@+id/llInformation"
-
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-
-            <LinearLayout
-
-                android:id="@+id/llComment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tab_layout"
-                android:layout_marginTop="@dimen/_5dp_margin"
-                android:orientation="vertical"
-                android:visibility="gone"
-
-
-                >
-
-                <com.wang.avi.AVLoadingIndicatorView
-
-                    android:id="@+id/aviComment"
-                    style="@style/AVLoadingIndicatorView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/tv"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_10dp_margin"
-                    android:visibility="gone"
-                    app:indicatorColor="@color/app_base_color"
-                    app:indicatorName="BallSpinFadeLoaderIndicator"
-
-
-                    />
-
-                <TextView
-                    android:id="@+id/tvAlertComment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/NoComment"
-                    android:textAppearance="@style/IrsansBold"
-                    android:textColor="@color/text_color_2e"
-                    android:textSize="@dimen/_16dp_txtSize"
-                    android:visibility="gone" />
-
-                <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btnOneComment"
-                    android:layout_width="@dimen/_100dp_image"
-                    android:layout_height="@dimen/_30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="10dp"
-                    android:elevation="1dp"
-                    android:gravity="center|top"
-                    android:paddingBottom="1dp"
-                    android:visibility="gone"
-                    fancy:fb_defaultColor="@color/blue"
-                    fancy:fb_focusColor="@color/focusColor"
-                    fancy:fb_radius="4dp"
-                    fancy:fb_text="@string/ConfirmComment"
-                    fancy:fb_textColor="@color/white"
-                    fancy:fb_textSize="@dimen/_14dp_txtSize" />
-
-                <LinearLayout
-                    android:id="@+id/llCommentContent"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:focusable="false"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-
-
-                    >
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/cvHotel"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        card_view:cardBackgroundColor="#ffffff"
-                        card_view:cardCornerRadius="3dp"
-                        card_view:cardElevation="1dp"
-
-
-                        >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_100dp_normal"
-                            android:layout_marginLeft="7dp"
-                            android:layout_marginRight="7dp"
-                            android:layout_marginTop="@dimen/_5dp_margin"
-                            android:gravity="right"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="60"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tvVoteCount"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="32"
-                                    android:gravity="center"
-                                    android:padding="5dp"
-
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="@color/text_color_2e"
-                                    android:textSize="@dimen/_10dp_textSize" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="100"
-                                    android:gravity="center">
-
-                                    <at.grabner.circleprogress.CircleProgressView
-                                        android:id="@+id/circleView"
-                                        android:layout_width="70dp"
-                                        android:layout_height="70dp"
-                                        CircleProgressView:cpv_autoTextSize="true"
-                                        CircleProgressView:cpv_barColor="@color/text_color_2e"
-                                        CircleProgressView:cpv_barWidth="5dp"
-                                        CircleProgressView:cpv_innerContourSize="0dp"
-                                        CircleProgressView:cpv_outerContourSize="0dp"
-                                        CircleProgressView:cpv_rimColor="#eaeaea"
-                                        CircleProgressView:cpv_rimWidth="5dp"
-                                        CircleProgressView:cpv_seekMode="false"
-                                        CircleProgressView:cpv_showUnit="true"
-                                        CircleProgressView:cpv_spinColor="@color/text_color_2e"
-                                        CircleProgressView:cpv_textColor="@color/text_color_2e"
-                                        CircleProgressView:cpv_textScale="0.8"
-                                        CircleProgressView:cpv_unit="/۱۰"
-
-
-                                        CircleProgressView:cpv_unitColor="@color/colorPrimary"
-                                        CircleProgressView:cpv_unitPosition="right_top"
-                                        CircleProgressView:cpv_unitScale="1"
-                                        CircleProgressView:cpv_value="0" />
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="60"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-
-                                <TextView
-                                    android:id="@+id/tvRecommendedPercent"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="100"
-                                    android:gravity="center"
-                                    android:padding="5dp"
-
-                                    android:textAppearance="@style/IrsansBold"
-                                    android:textColor="@color/text_color_2e"
-                                    android:textSize="@dimen/_12dp_normal_textSize" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="100"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <mehdi.sakout.fancybuttons.FancyButton
-                                        android:id="@+id/btnComment"
-                                        android:layout_width="@dimen/_100dp_image"
-                                        android:layout_height="@dimen/_30dp"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_gravity="center"
-                                        android:layout_marginLeft="5dp"
-                                        android:layout_marginRight="5dp"
-                                        android:elevation="1dp"
-                                        android:gravity="center|top"
-                                        android:paddingBottom="1dp"
-                                        fancy:fb_defaultColor="@color/blue"
-                                        fancy:fb_focusColor="@color/focusColor"
-                                        fancy:fb_radius="4dp"
-                                        fancy:fb_text="@string/ConfirmComment"
-                                        fancy:fb_textColor="@color/white"
-                                        fancy:fb_textSize="@dimen/_14dp_txtSize" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40dp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginRight="7dp"
-                        android:layout_marginTop="@dimen/_5dp_margin"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="65"
-                            android:background="@drawable/comment_background"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <mehdi.sakout.fancybuttons.FancyButton
-                                android:id="@+id/btnSortComment"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_alignParentLeft="true"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="5dp"
-                                android:elevation="1dp"
-                                android:paddingBottom="1dp"
-                                fancy:fb_defaultColor="@color/TRANSPARENT"
-                                fancy:fb_focusColor="@color/focusColor"
-                                fancy:fb_radius="4dp"
-                                fancy:fb_text=" "
-                                fancy:fb_textColor="#ffff"
-                                fancy:fb_textSize="14dp" />
-
-
-                            <TextView
-                                android:id="@+id/tvSortComment"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_centerInParent="true"
-                                android:layout_marginRight="@dimen/_5dp_margin"
-                                android:gravity="center"
-                                android:padding="@dimen/_5dp_margin"
-                                android:text="@string/BenefitComment"
-                                android:textAppearance="@style/IrsansBold"
-                                android:textColor="@color/text_color_2e"
-                                android:textSize="@dimen/_10dp_textSize" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="@dimen/_10dp_margin"
-                                android:layout_toRightOf="@+id/tvSortComment"
-                                android:gravity="center"
-                                android:text="@string/icon_sort"
-                                android:textAppearance="@style/IconFonts"
-                                android:textColor="@color/text_color_2e"
-                                android:textSize="@dimen/icon_size_25dp"
-
-
-                                />
-
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:id="@+id/tvCommentCount"
-
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="100"
-                            android:gravity="right|center"
-                            android:padding="3dp"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
-                            android:textSize="@dimen/_14dp_txtSize" />
-
-                    </LinearLayout>
-
-                    <com.eligasht.reservation.tools.NonScrollRecyclerView
-                        android:id="@+id/lvComments"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5dp_margin"
-
-                        android:divider="@null"
-                        android:dividerHeight="0dp" />
-
-
+                        android:layout_height="1dp"
+                        android:background="@drawable/shadow" />
                 </LinearLayout>
 
 
-            </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/tvAlert"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tab_layout"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/ErrorRoom"
-                android:textAppearance="@style/IrsansBold"
-                android:textColor="@color/text_color_2e"
-                android:textSize="16dp"
-                android:visibility="gone" />
 
-            <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
-                android:id="@+id/lvRooms"
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_collapseMode="parallax"
+        app:layout_collapseParallaxMultiplier="0.7"
+        android:layout_below="@+id/app_bar"
+
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="1dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/tab_layout"
-                android:divider="@null"
-                android:dividerHeight="0dp" />
+                android:background="@color/white"
+                android:layoutDirection="rtl"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/colorPrimaryDark"
+                app:tabMaxWidth="0dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/colorPrimaryDark"
+                app:tabTextColor="@color/gray_normal">
+
+            </android.support.design.widget.TabLayout>
+        </android.support.v7.widget.CardView>
 
 
-        </RelativeLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </android.support.v4.view.ViewPager>
 
 
-    </ScrollView>
+
+
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/elNotFound"
@@ -853,9 +294,9 @@
             android:layout_gravity="center"
             android:layout_margin="7dp"
             android:background="@color/hotel_detail_background"
-            card_view:cardBackgroundColor="#ffffff"
-            card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="2dp">
+            app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="2dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -945,4 +386,5 @@
 
 
     </RelativeLayout>
-</RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

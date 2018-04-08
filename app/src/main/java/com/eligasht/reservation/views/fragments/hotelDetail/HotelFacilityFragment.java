@@ -55,8 +55,8 @@ public class HotelFacilityFragment extends Fragment {
     private View view;
     private ArrayList<String> arrayStringList = new ArrayList<>();
     private ArrayList<HotelProprtiesModels> hotelProprtiesModels = new ArrayList<>();
-    private LinearLayout llAroundHotel, llPolicy, llInformation,llEmkanat;
-    TextView tvFacility;
+    private LinearLayout llAroundHotel, llPolicy, llInformation, llFacility;
+    TextView tvFacility,tvPolicy,tvAroundHotel,tvInformation;
     RecyclerView rvFacility;
     NestedScrollView nestedSv;
 
@@ -84,13 +84,16 @@ public class HotelFacilityFragment extends Fragment {
     }
 
     public void initView() {
-        llEmkanat = view.findViewById(R.id.llEmkanat);
+        llFacility = view.findViewById(R.id.llFacility);
         llAroundHotel = view.findViewById(R.id.llAroundHotel);
         llPolicy = view.findViewById(R.id.llPolicy);
         llInformation = view.findViewById(R.id.llInformation);
         tvFacility = view.findViewById(R.id.tvFacility);
         rvFacility = view.findViewById(R.id.rvFacility);
         nestedSv = view.findViewById(R.id.nestedSv);
+        tvPolicy = view.findViewById(R.id.tvPolicy);
+        tvAroundHotel = view.findViewById(R.id.tvAroundHotel);
+        tvInformation = view.findViewById(R.id.tvInformation);
 
 
     }
@@ -104,7 +107,7 @@ public class HotelFacilityFragment extends Fragment {
             @Override
             public void run() {
                 // TODO Auto-generated method stub
-                nestedSv.smoothScrollTo(0,0);
+                nestedSv.smoothScrollTo(0, 0);
 
             }
         }, 200);
@@ -178,39 +181,31 @@ public class HotelFacilityFragment extends Fragment {
             String key = entry.getKey();
             ArrayList<HotelProprtiesModels> value = entry.getValue();
             if (key.contains("امکانات")) {
-                //  llEmkanat.setVisibility(View.VISIBLE);
+                llFacility.setVisibility(View.VISIBLE);
                 tvFacility.setText(key);
                 rvFacility.addItemDecoration(new DividerItemDecoration(getContext(), 1));
                 rvFacility.setLayoutManager(new GridLayoutManager(getContext(), 3));
                 rvFacility.setHasFixedSize(true);
-                rvFacility.setAdapter(new HotelFacilityAdapter(hotelProprtiesModels, getActivity()));
+                rvFacility.setAdapter(new HotelFacilityAdapter(value, getActivity()));
                 rvFacility.setNestedScrollingEnabled(false);
 
 
             }
             if (key.contains("اطراف")) {
 
-                add_view(key, value, llAroundHotel);
                 llAroundHotel.setVisibility(View.VISIBLE);
+                tvAroundHotel.setText(key);
+                NonScrollGridView nonScrollGridView = new NonScrollGridView(getContext());
 
+                nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, getActivity(), false));
+                nonScrollGridView.setFocusable(false);
+                llAroundHotel.addView(nonScrollGridView);
             }
             if (key.contains("قوانین")) {
                 llPolicy.setVisibility(View.VISIBLE);
-
-
-                TextView textView = new TextView(getContext());
-                textView.setText(key);
-
-                Typeface t = Typeface.createFromAsset(getActivity().getAssets(), getResources().getString(R.string.iran_sans_bold_ttf));
-                textView.setTypeface(t);
-                textView.setPadding(10, 10, 10, 10);
-
-                textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT));
-                textView.setTextSize(getResources().getInteger(R.integer.text12));
-                textView.setGravity(Gravity.CENTER);
-                textView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.title_background));
-                llPolicy.addView(textView);
+                tvPolicy.setText(key);
 
 
                 NonScrollListView nonScrollGridView = new NonScrollListView(getContext());
@@ -218,16 +213,25 @@ public class HotelFacilityFragment extends Fragment {
                         LinearLayout.LayoutParams.WRAP_CONTENT));
                 // nonScrollGridView.setNumColumns(2);
 
-                nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, getActivity(), null, true));
+                nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, getActivity(), true));
                 nonScrollGridView.setFocusable(false);
                 llPolicy.addView(nonScrollGridView);
             }
             if (key.contains("اطلاعات")) {
 
-                add_view(key, value, llInformation);
                 llInformation.setVisibility(View.VISIBLE);
 
+                tvInformation.setText(key);
 
+
+                NonScrollListView nonScrollGridView = new NonScrollListView(getContext());
+                nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                // nonScrollGridView.setNumColumns(2);
+
+                nonScrollGridView.setAdapter(new HotelProprtiesAdapter(value, getActivity(), true));
+                nonScrollGridView.setFocusable(false);
+                llInformation.addView(nonScrollGridView);
             }
 
 
@@ -244,28 +248,7 @@ public class HotelFacilityFragment extends Fragment {
 
     public void add_view(String key, ArrayList<HotelProprtiesModels> hotelProprtiesModels, LinearLayout linearLayout) {
 
-        TextView textView = new TextView(getContext());
-        textView.setText(key);
 
-        Typeface t = Typeface.createFromAsset(getActivity().getAssets(), getResources().getString(R.string.iran_sans_bold_ttf));
-        textView.setTypeface(t);
-        textView.setPadding(10, 10, 10, 10);
-
-        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        textView.setTextSize(getResources().getInteger(R.integer.text12));
-        textView.setGravity(Gravity.CENTER);
-        textView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.title_background));
-        linearLayout.addView(textView);
-
-
-        NonScrollGridView nonScrollGridView = new NonScrollGridView(getContext());
-
-        nonScrollGridView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        nonScrollGridView.setAdapter(new HotelProprtiesAdapter(hotelProprtiesModels, getActivity(), nonScrollGridView, false));
-        nonScrollGridView.setFocusable(false);
-        linearLayout.addView(nonScrollGridView);
     }
 
 }
