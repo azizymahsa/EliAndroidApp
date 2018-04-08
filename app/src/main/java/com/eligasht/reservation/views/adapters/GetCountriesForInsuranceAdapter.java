@@ -53,12 +53,7 @@ public class GetCountriesForInsuranceAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    /*
-    public void setData(String searchText) {
-        this.cursor = new Customers_Table().getCustomersFilter(searchText);
-        //initiated = true;
-        notifyDataSetChanged();
-    }*/
+
     @Override
     public int getCount() {
         return data == null ? 0 : data.size();
@@ -72,10 +67,9 @@ public class GetCountriesForInsuranceAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        //data.moveToPosition(position);
-        //Country current=data.get(position);
+
         long s = position + 1;
-        //return data.getLong(Customers_Table.Columns.CUSTOMER_ID.value());
+
         return s;
     }
 
@@ -83,7 +77,7 @@ public class GetCountriesForInsuranceAdapter extends BaseAdapter {
         final ViewHolder holder;
 
         if (convertView == null) {
-        //    Log.e("POSITION", "" + position);
+        //Log.e("POSITION", "" + position);
             convertView = myInflater.inflate(R.layout.row_country, null);
             holder = new ViewHolder();
 

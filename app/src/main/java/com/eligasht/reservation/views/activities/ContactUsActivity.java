@@ -148,8 +148,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.txtAparat:
 
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://www.aparat.com/eligasht")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.aparat.com/eligasht")));
                 break;
             case R.id.txtTweeter:
 

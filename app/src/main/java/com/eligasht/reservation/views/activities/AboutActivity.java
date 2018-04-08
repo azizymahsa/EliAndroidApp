@@ -85,8 +85,6 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
                 .duration(8000)
                 .playOn(hotel);
 
-
-
         SendRequestAbout();
 
     }

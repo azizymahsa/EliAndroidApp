@@ -169,7 +169,6 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
                     return;
                 }
 
-
                 TravelInsurance travelInsurance = response.body().getShowInsuranceResult().getTravelInsurance();
                 insurancePlan = response.body().getShowInsuranceResult().getInsurancePlan();
 
@@ -289,7 +288,6 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
                 break;
         }
     }
-
     //onclick the first's list from  insurance
     @Override
     public void onClickTravelInsurancItem(TravelInsurance_ travelInsurance) {
@@ -304,7 +302,6 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         Prefs.putInt("PassCount",passCount);
         startActivity(intent);
     }
-
     //onclick the second's list from  insurance
     @Override
     public void onClickInsurancPlanItem(InsurancePlan_  _insurancePlan) {
