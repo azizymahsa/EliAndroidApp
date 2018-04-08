@@ -138,7 +138,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public NonScrollListView listKhadamat;
 	ArrayList<HashMap<String,String>> mylist=null;
 	public static String searchText = "";
-	//public static long GET_PRICE_KHADAMAT;
+
 	public static long GET_PRICE_KHADAMAT;
 
 	GetKhadmatAdapter mAdapter;
@@ -289,9 +289,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
 			}
 		});
-
-
-
 
 
 		String RengAge=txtTitleCountM.getText().toString();
@@ -503,8 +500,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		textView4 = (ImageView) findViewById(R.id.textView4);
 		tvfactorNumber = (TextView) findViewById(R.id.tvfactorNumber);
-			/* btnAddsabad=(Button)findViewById(R.id.btnAddsabad);
-			 btnAddsabad.setOnClickListener(this);*/
+
 		btn_saler= (ImageView) findViewById(R.id.btn_saler);
 		btn_mosaferan=(ImageView)findViewById(R.id.btn_mosaferan);
 		btn_khadamat=(ImageView)findViewById(R.id.btn_khadamat);
@@ -1582,16 +1578,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			case R.id.txt_hom:
 				Prefs.putBoolean("BACK_HOME",true);
 				Intent intent = new Intent("sendFinish");
-
 				LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-
 				break;
 		}
 
 	}
 
 	private void sendRequestPerchase() {
-		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
 
 		//this method will be running on UI thread
 		rlLoading.setVisibility(View.VISIBLE);
@@ -1612,8 +1605,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 
 
-			request.setEchoToken(ResultUniqId);//.headerJson.put("EchoToken",ResultUniqId);
-			request.setBookingReferenceID(GUID);//headerJson.put("BookingReferenceID", GUID);///ID.toString()
+			request.setEchoToken(ResultUniqId);
+			request.setBookingReferenceID(GUID);
 
 			//mosaferan
 			PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
@@ -1627,7 +1620,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					PassList passList=new PassList();
 
-					passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));//setGender=cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
+					passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
 					passList.setNationality( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 					passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 
@@ -1680,23 +1673,20 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			SingletonService.getInstance().getPurchaseFlightPassenger().purchaseFlightAvail(new OnServiceStatus<com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight>() {
 				@Override
 				public void onReady(com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight responsePurchaseFlight) {
-				//	Log.e("PurchesResponsKhadamat:",responsePurchaseFlight.getPurchaseFlightResult().getServices().get(0)+"");
 
 					rlLoading.setVisibility(View.GONE);
 					Utility.disableEnableControls(true,rlRoot);
 
 					FlagMosaferan=false;
 
-
 					try {
-
 
 						String GetError="";
 						List<com.eligasht.service.model.flight.response.PurchaseFlight.Error> jError=null;
 						// Getting JSON Array node
 						com.eligasht.service.model.flight.response.PurchaseFlight.PurchaseFlightResult GetAirportsResult = responsePurchaseFlight.getPurchaseFlightResult();//jsonObj.getJSONObject("PurchaseFlightResult");//Error
 						if(GetAirportsResult.getErrors()!= null){
-							jError = GetAirportsResult.getErrors();//getJSONArray("Errors");//
+							jError = GetAirportsResult.getErrors();
 							com.eligasht.service.model.flight.response.PurchaseFlight.Error jPricedItinerary = jError.get(0);
 							GetError = jPricedItinerary.getMessage();
 						}
@@ -1706,8 +1696,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 						}else{
 
-							List<Service> jArray = GetAirportsResult.getServices();//JSONArray("Services");
-							TmpReserveResult jsonResult = GetAirportsResult.getTmpReserveResult();//("TmpReserveResult");
+							List<Service> jArray = GetAirportsResult.getServices();
+							TmpReserveResult jsonResult = GetAirportsResult.getTmpReserveResult();
 
 							Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode()+"");
 
@@ -1793,6 +1783,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("PurchesFlightError: "+message);
 					rlLoading.setVisibility(View.GONE);
 					Utility.disableEnableControls(true,rlRoot);
+					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+					AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
 				}
 			}, requestPurchaseFlightt);
 
@@ -1814,11 +1806,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		try {
 
 			PurchaseServiceResult GetAirportsResult = responsePurchaseFlight.getPurchaseServiceResult();//jsonObj.getJSONObject("PurchaseServiceResult");
-			int successResult=GetAirportsResult.getSuccessResult();//getInt("SuccessResult");
+			int successResult=GetAirportsResult.getSuccessResult();
 			if(successResult==0){
 				//get Error
-				List<Error> getError = GetAirportsResult.getErrors();//getJSONObject("Errors");
-				String message= getError.get(0).getDetailedMessage();//getString("DetailedMessage");
+				List<Error> getError = GetAirportsResult.getErrors();
+				String message= getError.get(0).getDetailedMessage();
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
 				AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
 			}
