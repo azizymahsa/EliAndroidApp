@@ -36,6 +36,7 @@ import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.dialog.app.CountTimeAlert;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -208,10 +209,15 @@ public class HotelFragment extends Fragment implements OnClickListener,
         switch (v.getId()) {
 
             case R.id.citySearch:
+
                 Intent intent2 = new Intent(getActivity(), GetHotelCityActivity.class);
                 intent2.putExtra("type", 0);
                 intent2.putExtra("position", "H");
-                startActivity(intent2);
+                SwipeBackActivityHelper.activityBuilder(getActivity())
+                        .intent(intent2)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
                 break;
             case R.id.searchHotel:
                 try {
@@ -231,7 +237,11 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
                         Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
                         intent.putExtra("Geo", geo);
-                        startActivity(intent);
+                        SwipeBackActivityHelper.activityBuilder(getActivity())
+                                .intent(intent)
+                                .needParallax(true)
+                                .needBackgroundShadow(true)
+                                .startActivity();
                     }
 
                 } catch (Exception e) {
@@ -255,7 +265,12 @@ public class HotelFragment extends Fragment implements OnClickListener,
             case R.id.cvRoom:
                 Intent room = new Intent(getActivity(), AddRoomActivity.class);
                 room.putExtra("roomList", Prefs.getString("Rooms", "dd"));
-                startActivity(room);
+
+                SwipeBackActivityHelper.activityBuilder(getActivity())
+                        .intent(room)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
                 break;
             case R.id.tarikh_be:
                 break;

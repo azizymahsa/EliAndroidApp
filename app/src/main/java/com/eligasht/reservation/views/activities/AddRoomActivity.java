@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.reservation.views.ticker.TickerView;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -45,11 +46,20 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     public RoomPresenter roomPresenter;
     private Button btn_confirm;
     ArrayList<ModelRowCountRoom> roomArrayList;
+    SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_room);
+        helper.setEdgeMode(false)
+                .setParallaxMode(true)
+                .setParallaxRatio(3)
+                .setNeedBackgroundShadow(true)
+                .init(this);
+
+
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.room_information));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {

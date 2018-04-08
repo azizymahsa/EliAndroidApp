@@ -218,16 +218,16 @@ public class FlightHotelAdapter extends BaseAdapter {
 //        holder.tvBargasht.setText(selectHotelModelArrayList.get(position).getDepRout());
 
 
-        if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")) {
+        if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")||selectHotelModelArrayList.get(position).getTypeText().toLowerCase().contains("apart")) {
             holder.txt_lable_hotel.setText(R.string.ApartmenHotel);
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
 
-        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")) {
+        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")||selectHotelModelArrayList.get(position).getTypeText().toLowerCase().contains("bout")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
             holder.txt_lable_hotel.setText(R.string.BoutiqueHotel);
 
 
-        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")) {
+        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")||selectHotelModelArrayList.get(position).getTypeText().toLowerCase().contains("reso")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
             holder.txt_lable_hotel.setText(R.string.ResortHotel);
 
@@ -236,7 +236,6 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.txt_lable_hotel.setVisibility(View.GONE);
 
         }
-
 
         String waitRaft;
         String waitBargasht;

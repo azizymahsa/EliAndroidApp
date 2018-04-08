@@ -11,6 +11,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustEvent;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -19,12 +21,15 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class BaseActivity extends Base {
   private BroadcastReceiver sendStartTimer;
+  SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     notiRecive();
+
   }
+
 
   @Override
   protected void attachBaseContext(Context context) {

@@ -76,6 +76,7 @@ import com.eligasht.reservation.views.ui.NonScrollGridView;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.ViewPagerAttention;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -127,6 +128,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private FrameLayout flViewPager;
     private TabLayout tab_layout;
     CommentModelBus commentModelBus;
+    SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
@@ -156,6 +159,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
+        helper.setEdgeMode(true)
+                .setParallaxMode(true)
+                .setParallaxRatio(3)
+                .setNeedBackgroundShadow(true)
+                .init(this);
+        helper.disableSwipeBack();
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.DetailHotel));
         window = getWindow();
         initView();
@@ -191,10 +200,47 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         rlLoading2.setOnClickListener(this);
         Utility.setAnimLoading(this);
         tvDateDetail.setText(getIntent().getExtras().getString("DateTime"));
-        hotelDetailViewPager = new HotelDetailViewPager(this, getSupportFragmentManager());
+        hotelDetailViewPager = new HotelDetailViewPager(this, getSupportFragmentManager(),false);
         view_pager.setAdapter(hotelDetailViewPager);
         tab_layout.setupWithViewPager(view_pager);
         view_pager.setCurrentItem(3);
+        try {
+            if (getIntent().getExtras().getString("Type").equals("Pakage")) {
+                // lvRooms.setVisibility(View.GONE);
+                hotelDetailViewPager = new HotelDetailViewPager(this, getSupportFragmentManager(),true);
+                view_pager.setAdapter(hotelDetailViewPager);
+                tab_layout.setupWithViewPager(view_pager);
+                view_pager.setCurrentItem(2);
+
+            }
+        } catch (Exception e) {
+        }
+
+        view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position != 0) {
+                    /// if the current view page is not the first, make 'viewPager' receive touch event.
+                    helper.disableSwipeBack();
+
+                    /// or enable edge mode
+                } else {
+                    /// the current page return to the first one, make 'swipe back' receive touch event.
+                    helper.enableSwipeBack();
+
+                    /// or disable edge mode
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
         tab_layout.setOnTabSelectedListener(onTabSelectedListener);
         ViewGroup vg = (ViewGroup) tab_layout.getChildAt(0);
         int tabsCount = vg.getChildCount();
@@ -284,13 +330,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
 
                 }
-                try {
-                    if (getIntent().getExtras().getString("Pakage").equals("Pakage")) {
-                        // lvRooms.setVisibility(View.GONE);
 
-                    }
-                } catch (Exception e) {
-                }
             } catch (Exception e) {
 
                 elNotFound.setVisibility(View.VISIBLE);
@@ -360,7 +400,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
                 for (ImageHotel imageHotel : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelImages) {
                     imageModels.add(new ImageModel(imageHotel.HotelImagesURL));
-                    Log.e("image", imageHotel.HotelImagesURL);
 
                 }
                 EventBus.getDefault().post(new HotelProprtiesBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties));
@@ -376,7 +415,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 Collections.reverse(imageModels);
 
 
-                new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager);
+                new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager,getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
                 tvCityName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CityName + " " + getString(R.string.comma) + " " + getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CountryName);
                 Log.e("star", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating + "");
 

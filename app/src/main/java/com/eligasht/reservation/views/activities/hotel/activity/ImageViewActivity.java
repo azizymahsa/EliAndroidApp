@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.views.ui.HackyViewPager;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import com.eligasht.R;
@@ -36,16 +37,26 @@ public class ImageViewActivity extends BaseActivity {
     ImageListAdapter imageListAdapter;
     boolean listChange = true;
     int pos;
+    SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_view);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.ShowPicture));
 
 
-        pos = getIntent().getExtras().getInt("pic");
+        helper.setEdgeMode(true)
+                .setParallaxMode(true)
+                .setParallaxRatio(3)
+                .setNeedBackgroundShadow(true)
+                .init(this);
+        helper.disableSwipeBack();
+
+        try{
+            pos = getIntent().getExtras().getInt("pic");
+            InitUi.Toolbar(this, false, R.color.toolbar_color, getIntent().getExtras().getString("hotelName"));
+        }catch (Exception e){}
 
 
         thumbnails_scroll_view = findViewById(R.id.thumbnails_scroll_view);
@@ -116,6 +127,17 @@ public class ImageViewActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
+                if (position != 0) {
+                    /// if the current view page is not the first, make 'viewPager' receive touch event.
+                    helper.disableSwipeBack();
+
+                    /// or enable edge mode
+                } else {
+                    /// the current page return to the first one, make 'swipe back' receive touch event.
+                    helper.enableSwipeBack();
+
+                    /// or disable edge mode
+                }
 
             }
 

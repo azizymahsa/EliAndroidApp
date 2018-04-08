@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.eligasht.reservation.myapplicationeli.reserv.myapplicationeli.views.activities.hotel.activity.ImageViewActivity"
     android:background="@color/textColorR">
 
 
@@ -15,11 +14,6 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/toolbarLayout"
-        android:background="@drawable/shadow" />
     <LinearLayout
         android:layout_below="@+id/toolbarLayout"
 
@@ -60,4 +54,9 @@
     </LinearLayout>
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/toolbarLayout"
+        android:background="@drawable/shadow" />
 </RelativeLayout>

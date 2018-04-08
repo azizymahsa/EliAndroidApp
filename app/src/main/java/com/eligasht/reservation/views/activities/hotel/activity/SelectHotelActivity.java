@@ -36,6 +36,8 @@ import com.eligasht.service.model.hotel.hotelAvail.response.Hotel;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelType;
 import com.eligasht.service.model.hotel.hotelAvail.response.Location;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
+import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
@@ -84,6 +86,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
+        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+
+        helper.setEdgeMode(false)
+                .setParallaxMode(true)
+                .setParallaxRatio(3)
+                .setNeedBackgroundShadow(true)
+                .init(this);
         window = getWindow();
         list = findViewById(R.id.lvHoteResult);
         rlList = findViewById(R.id.rlList);
@@ -608,7 +617,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         request.setIdentity(identity);
         request.setRooms(rooms);
         request.setSource("");
+        request.setCulture(getString(R.string.culture));
         hotelAvailReq.setRequest(request);
+        Gson gson = new Gson();
+        Log.e("testt", gson.toJson(request));
 
 
         SingletonService.getInstance().getHotelService().hotelAvail(this, hotelAvailReq);
