@@ -68,6 +68,8 @@ try {
     if (bundle != null) {
         roomArrayList = gson.fromJson(bundle.getString("roomList"), new TypeToken<List<ModelRowCountRoom>>() {
         }.getType());
+        count_room.setText("( " + roomArrayList.size() + " )");
+
     }
 }catch (Exception e){}
         roomPresenter.setRooms(roomArrayList);

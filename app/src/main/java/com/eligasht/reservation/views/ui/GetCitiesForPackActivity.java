@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eligasht.R;
@@ -44,6 +45,7 @@ public class GetCitiesForPackActivity extends BaseActivity implements Header.onS
     private Handler progressBarHandler = new Handler();
     private ClientService service;
     private EditText searchtxt;
+    RelativeLayout llHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class GetCitiesForPackActivity extends BaseActivity implements Header.onS
         avi = findViewById(R.id.avi);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.SelectDepartCity));
         btnBack = findViewById(R.id.btnBack);
+        llHome = findViewById(R.id.llHome);
+        llHome.setVisibility(View.GONE);
         listAirPort = findViewById(R.id.listAirPort);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));

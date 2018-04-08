@@ -1895,7 +1895,7 @@
     <string name="DetailHotel">Hotel Detail</string>
     <string name="GoogleUpdateError">Your Google Play service needs to be updated.</string>
     <string name="NewComment">Latest comments</string>
-    <string name="BenefitComment">The most useful comments</string>
+    <string name="BenefitComment">Useful comments</string>
     <string name="AccessError">No access</string>
     <string name="UserRate"> users has rated</string>
     <string name="Comment">Comment)</string>
@@ -1904,7 +1904,7 @@
     <string name="Possibilities">Facilities</string>
     <string name="Around">Around</string>
     <string name="Policy">Policy</string>
-    <string name="ReservRoom">Book a room</string>
+    <string name="ReservRoom">Book</string>
     <string name="NoComment">No comments have been posted!</string>
     <string name="ConfirmComment">Comment</string>
     <string name="ErrorRoom">No room was found!</string>
@@ -1996,7 +1996,7 @@
     <string name="Try">Try again</string>
     <string name="Update">Update</string>
     <string name="UpdateAlert">The software needs to be upgraded, Do you want to update the software?</string>
-    <string name="SelectFilter">Filter result</string>
+    <string name="SelectFilter">Filter</string>
     <string name="Stop">Stop</string>
     <string name="TwoStopAndMore">Two Stop &amp; More</string>
     <string name="Economi">Economy</string>
@@ -2379,6 +2379,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="icon_location_fontello">&#xe624;</string>
 
 
 </resources>

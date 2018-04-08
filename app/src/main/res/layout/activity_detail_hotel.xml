@@ -141,8 +141,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="center|top"
-                                android:text="@string/icon_location"
-                                android:textAppearance="@style/IconFonts"
+                                android:text="@string/icon_location_fontello"
+                                android:textAppearance="@style/IconFonts3"
                                 android:textColor="@color/text_color_4d"
                                 android:textSize="@dimen/_25dp_normal_iconSize" />
 
