@@ -321,7 +321,7 @@
                         android:textSize="@dimen/_12dp_normal_textSize" />
 
 
-                    <TextView
+                    <EditText
                         android:id="@+id/txt_birthday"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

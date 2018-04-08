@@ -550,22 +550,27 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     }
         @Override
         public void onReady(ResponsSearchFlight responsSearchFlight) {
-        if(flightsList != null){
-            flightsList.clear();
-        }
-           System.out.println("Response: "+responsSearchFlight.getSearchFlightsResult().getFlights().size());
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+            if (flightsList != null) {
+                flightsList.clear();
             }
+            try {
+                System.out.println("Response: " + responsSearchFlight.getSearchFlightsResult().getFlights().size());
+                new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-            if (Locale.getDefault().getLanguage().equals("fa")) {
-               getDataFaJson(responsSearchFlight);
-            } else if (Locale.getDefault().getLanguage().equals("en")) {
-                getDataEnJson(responsSearchFlight);
-            }
-            responsSearchFlight.getSearchFlightsResult().getFlights().get(0).getBaseFare();
+                    window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+                }
+
+                if (Locale.getDefault().getLanguage().equals("fa")) {
+                    getDataFaJson(responsSearchFlight);
+                } else if (Locale.getDefault().getLanguage().equals("en")) {
+                    getDataEnJson(responsSearchFlight);
+                }
+                if (responsSearchFlight.getSearchFlightsResult().getFlights().size()>0)
+                 responsSearchFlight.getSearchFlightsResult().getFlights().get(0).getBaseFare();
+            }catch (Exception e){
+                    System.out.println("Exception: "+e);
+             }
         }
 
         @Override

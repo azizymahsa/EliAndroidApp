@@ -1,14 +1,18 @@
 package com.eligasht.service.api;
 
+import com.eligasht.service.model.about.request.RequestAbout;
+import com.eligasht.service.model.about.response.ResponseAbout;
 import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
 import com.eligasht.service.model.flight.request.airPort.RequestAirports;
+import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
 import com.eligasht.service.model.flight.request.purchaseServiceFlight.RequestPurchaseFlight;
 import com.eligasht.service.model.flight.request.searchFlight.RequestSearchFlight;
 import com.eligasht.service.model.flight.response.DomesticFlight.ResponseDomesticFlight;
 import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFactorDetails;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.helper.Const;
+import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
@@ -52,5 +56,13 @@ public interface RetroClient {
     @POST(Const.PurchaseFlightAvil)
     Observable<com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight> responsePurchaseFlightObservable(
             @Body com.eligasht.service.model.flight.request.PurchaseFlight.RequestPurchaseFlight requestPurchaseFlightPassenger
+    );
+    @POST(Const.ContactUsAvil)
+    Observable<ResponseContactUs> responsContactUs(
+            @Body RequestContactUs requestContactUs
+    );
+    @POST(Const.AboutAvil)
+    Observable<ResponseAbout> responseAboutObservable(
+            @Body RequestAbout requestAbout
     );
 }

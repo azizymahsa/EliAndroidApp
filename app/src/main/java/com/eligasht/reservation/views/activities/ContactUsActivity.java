@@ -1,20 +1,22 @@
 package com.eligasht.reservation.views.activities;
 
-import android.Manifest;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
+import com.eligasht.service.model.flight.response.contactUs.GetContactUsWithCutureResult;
+import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -24,65 +26,39 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.ContactInfo;
-import com.eligasht.reservation.views.adapters.AboutAdapter;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class ContactUsActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback {
+public class ContactUsActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback , OnServiceStatus<ResponseContactUs> {
 
 
     private FancyButton btnBack;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    Handler handler;
-    ProgressDialog progressBar;
-    private Handler progressBarHandler = new Handler();
     ArrayList<HashMap<String, String>> mylist = null;
-    AboutAdapter mAdapter;
-    TextView txtPhone,txtAddres,txtSocialFollow,textView15;
+      TextView txtPhone,txtAddres,txtSocialFollow,textView15;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
     private GoogleMap map;
     ExpandableRelativeLayout expandableLayout;
     public ImageView txtInstagram,txtAparat,txtTweeter,txtPintrest,txtLinkdin,txtGoogleP,txtFacebook,txtTelegram;
-    // private TextView tvTitle, tvArrow;
+    ProgressDialog pdLoading;
+       LatLng location;
+    private ResponseContactUs responseContactUs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
 
-
-        //tvArrow = findViewById(R.id.tvArrow);
         expandableLayout = findViewById(R.id.expandableLayout);
-
 
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
@@ -118,13 +94,33 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         txtAparat = findViewById(R.id.txtAparat);
         txtAparat.setOnClickListener(this);
 
-
         initMap();
-        new GetContactUsAsync().execute();
-// add PhoneStateListener
+
+        SendRequestContactUs();
+
         findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
 
+    }
 
+    private void SendRequestContactUs() {
+        pdLoading = new ProgressDialog(ContactUsActivity.this);
+        try {
+            //this method will be running on UI thread
+            pdLoading.setMessage("\tLoading...");
+            pdLoading.setCancelable(false);
+            pdLoading.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        RequestContactUs requestContactUs = new RequestContactUs();
+        com.eligasht.service.model.flight.request.contactUs.RequestContactUs request = new com.eligasht.service.model.flight.request.contactUs.RequestContactUs();
+
+        request.setCulture(getString(R.string.culture));
+
+        SingletonService.getInstance().getContactUs().contactUsAvail(this,request);
     }
 
 
@@ -220,8 +216,14 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
                 break;
             case R.id.txtPhone:
-                Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "۰۲۱-۸۵۴۰", null));
-                startActivity(intent2);
+                if (responseContactUs == null) {
+                    Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "۰۲۱-۸۵۴۰", null));
+                    startActivity(intent2);
+                }else {
+                    Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", responseContactUs.getGetContactUsWithCutureResult().getPhoneNumber(), null));
+                    startActivity(intent2);
+                }
+
 
 
 
@@ -270,9 +272,13 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         map.getUiSettings().setTiltGesturesEnabled(false);
         map.getUiSettings().setScrollGesturesEnabled(false);
         map.getUiSettings().setZoomGesturesEnabled(false);
+        map.clear();
+        if (responseContactUs != null) {
+            location=new LatLng(responseContactUs.getGetContactUsWithCutureResult().getLatitude(),responseContactUs.getGetContactUsWithCutureResult().getLongitude());
+        }else{
+             location=new LatLng(35.737595,51.413388);
+        }
 
-
-        LatLng location=new LatLng(35.737595,51.413388);
 
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
         map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
@@ -280,214 +286,61 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
     }
 
+    @Override
+    public void onReady(ResponseContactUs responseContactUs) {
 
-
-    private class GetContactUsAsync extends AsyncTask<String, Void, String> {
-
-        ProgressDialog pdLoading = new ProgressDialog(ContactUsActivity.this);
-        HttpURLConnection conn;
-        URL url = null;
-        private ListView listAirPort;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-try {
-    //this method will be running on UI thread
-    pdLoading.setMessage("\tLoading...");
-    pdLoading.setCancelable(false);
-    pdLoading.show();
-}
-catch (Exception e)
-{
-    e.printStackTrace();
-}
-
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
+         this.responseContactUs=responseContactUs;
             try {
+                pdLoading.dismiss();
+                List<ContactInfo> data=new ArrayList<ContactInfo>();
 
-                // Enter URL address where your json file resides
-                // Even you can make call to php file which returns json data
-                url = new URL("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetContactUsWithCuture");
+                pdLoading.dismiss();
 
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
-            }
-            try {
+                // Getting JSON Array node
+                GetContactUsWithCutureResult GetAirportsResult = responseContactUs.getGetContactUsWithCutureResult();//
+                String jsonAddress = GetAirportsResult.getAddress();
 
-                // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                // conn.setRequestMethod("GET");
-                conn.setRequestMethod("POST");
-                // setDoOutput to true as we recieve data from json file
-                conn.setDoOutput(true);
+                List<com.eligasht.service.model.flight.response.contactUs.ContactInfo> jArray = GetAirportsResult.getContactInfos();
 
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
 
-            try {
+                // Extract data from json and store into ArrayList as class objects
+                for(int i=0;i<jArray.size();i++){
+                    com.eligasht.service.model.flight.response.contactUs.ContactInfo json_data = jArray.get(i);
+                    ContactInfo sectionModel = new ContactInfo();
+                    sectionModel.setDescription(json_data.getDescription());
+                    sectionModel.setIcon(json_data.getIcon());
+                    sectionModel.setIconNumber(json_data.getIconNumber());
+                    sectionModel.setTitle(json_data.getTitle());
 
-                int response_code = conn.getResponseCode();
-
-                String serial = null;
-
-                JSONObject errorObj = new JSONObject();
-
-                try {
-                    errorObj.put("Success", false);
-
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
+                    data.add(sectionModel);
                 }
 
+                System.out.println("Image:"+GetAirportsResult.getAddress());//r\n\t\
+                txtAddres.setText(GetAirportsResult.getAddress().replaceAll("\t","").replaceAll("\r"," ").replaceAll("\n"," "));
+                txtPhone.setText(""+GetAirportsResult.getPhoneNumber());
 
-                String data = "";
-                try {
-                    errorObj.put("Success", false);
-
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
+                map.clear();
+                if (responseContactUs != null) {
+                    location=new LatLng(responseContactUs.getGetContactUsWithCutureResult().getLatitude(),responseContactUs.getGetContactUsWithCutureResult().getLongitude());
+                    Log.i("Location1",location.toString() );
+                }else{
+                    location=new LatLng(35.737595,51.413388);
+                    Log.i("Location2",location.toString() );
                 }
-                try{
 
-                    if(Locale.getDefault().getLanguage().equals("en")){
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "en-");
-                        // jsone.put("", manJson);
-                        data=manJson.toString();
-                    }else if(Locale.getDefault().getLanguage().equals("fa")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "fa-");
-                        // jsone.put("", manJson);
-                        data=manJson.toString();
-                    }else if(Locale.getDefault().getLanguage().equals("tr")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "tr-TR");
-                        // jsone.put("", manJson);
-                        data=manJson.toString();
-                    }else if(Locale.getDefault().getLanguage().equals("ar")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "ar-");
-                        //jsone.put("", manJson);
-                        data=manJson.toString();
-                    }
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                System.out.println("culture:"+data);
-
-
-                HttpClient client = new DefaultHttpClient();
-
-
-                HttpPost post = new HttpPost();
-                post = new HttpPost("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetContactUsWithCuture");
-                post.setHeader("Content-Type", "application/json; charset=UTF-8");
-                post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-                StringEntity se = null;
-                try {
-                    se = new StringEntity(data, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                post.setEntity(se);
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-                HashMap<String, String> airport = null;
-                mylist = new ArrayList<HashMap<String, String>>();
-                HttpResponse res = client.execute(post);
-                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-                return (retSrc);
-
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+                map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
+            } catch (Exception e) {
+                Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
             }
 
 
-        }
+    }
 
-        @Override
-        protected void onPostExecute(String result) {
-
-            //this method will be running on UI thread
-
-         try {
-             pdLoading.dismiss();
-             List<ContactInfo> data=new ArrayList<ContactInfo>();
-
-             pdLoading.dismiss();
-             try {
-////////////////////////////
-                 JSONObject jsonObj = new JSONObject(result);
-
-                 // Getting JSON Array node
-                 JSONObject GetAirportsResult = jsonObj.getJSONObject("GetContactUsWithCutureResult");
-                 String jsonAddress = GetAirportsResult.getString("Address");
-
-                 JSONArray jArray = GetAirportsResult.getJSONArray("ContactInfos");
-
-
-                 // Extract data from json and store into ArrayList as class objects
-                 for(int i=0;i<jArray.length();i++){
-                     JSONObject json_data = jArray.getJSONObject(i);
-                     ContactInfo sectionModel = new ContactInfo();
-                     sectionModel.setDescription(json_data.getString("Description"));
-                     sectionModel.setIcon(json_data.getString("Icon"));
-                     sectionModel.setIconNumber(json_data.getString("IconNumber"));
-                     sectionModel.setTitle(json_data.getString("Title"));
-
-                     data.add(sectionModel);
-                 }
-                 System.out.println("Image:"+GetAirportsResult.getString("Address"));//r\n\t\
-                 txtAddres.setText(GetAirportsResult.getString("Address").replaceAll("\t","").replaceAll("\r"," ").replaceAll("\n"," "));
-                 txtPhone.setText(""+GetAirportsResult.getString("PhoneNumber"));
-
-
-                 //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
-
-             } catch (JSONException e) {
-                 Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
-             }
-         }
-         catch (Exception e)
-         {
-
-         }
-
-        }
-
-    }//end asynTask
-
-
+    @Override
+    public void onError(String message) {
+        Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+    }
 
 
 }
