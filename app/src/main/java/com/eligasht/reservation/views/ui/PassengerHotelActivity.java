@@ -1262,8 +1262,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 listKhadamat.setAdapter(mAdapter);
                 setAnimation();//}
             } catch (JSONException e) {
-                // Toast.makeText(PassengerHotelActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
+               //  Toast.makeText(SingletonContext.getInstance().getContext(),getString(R.string.Error_getting_information_from_eli), Toast.LENGTH_LONG).show();
+                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(SingletonContext.getInstance().getContext());
                 AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
