@@ -754,7 +754,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             case R.id.txttavalodm:
                 String RengAge = txtTitleCountM.getText().toString();
 ///////////////setmin
-                if (RengAge.contains(getString(R.string.Child))) {
+                if (RengAge.contains(getString(R.string._childP))) {
+                    Log.e("RengAge:", RengAge);
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
                     int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true) - 14;
@@ -772,7 +773,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     datePickerDialog.setYearRange(currentYear, currentYear2);
                     datePickerDialog.setMaxDate(persianCalendarDatePicker2);
                     datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
-                } else if (RengAge.contains(getString(R.string.baby))) {
+                } else if (RengAge.contains(getString(R.string._InfantP))) {
+                    Log.e("RengAge:", RengAge);
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
                     int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true) - 2;
@@ -791,6 +793,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     datePickerDialog.setMaxDate(persianCalendarDatePicker2);
                     datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
                 } else {
+                    Log.e("RengAge:", RengAge);
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
                     int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true) - 120;

@@ -615,8 +615,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
     }
 
-
-
     @Override
     public void onError(String message) {
         rlLoading.setVisibility(View.GONE);
@@ -780,7 +778,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
     }
 
-
 private void RequestPurchaseInsurance(){
     rlLoading.setVisibility(View.VISIBLE);
     RequestPurchaseInsurance requestPurchaseInsurance = new RequestPurchaseInsurance();
@@ -880,16 +877,11 @@ private void RequestPurchaseInsurance(){
 
 }
 
-
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Prefs.getBoolean("IsDemostic", true);
-
     }
-
 
     @Override
     public void onClick(View v) {
@@ -1102,8 +1094,8 @@ private void RequestPurchaseInsurance(){
                 String RengAge = txtTitleCountM.getText().toString();
 
 ///////////////setmin
-                if (RengAge.contains(getString(R.string.Child))) {
-
+                if (RengAge.contains(getString(R.string._childP))) {
+                    Log.e("RengAge:", RengAge);
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
                     int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true) - 12;
@@ -1126,8 +1118,8 @@ private void RequestPurchaseInsurance(){
                     datePickerDialog.setMaxDate(persianCalendarDatePicker2);
                     datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
 
-                } else if (RengAge.contains(getString(R.string.baby))) {
-
+                } else if (RengAge.contains(getString(R.string._InfantP))) {
+                    Log.e("RengAge:", RengAge);
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
                     int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true) - 2;
@@ -1150,7 +1142,7 @@ private void RequestPurchaseInsurance(){
                     datePickerDialog.setMaxDate(persianCalendarDatePicker2);
                     datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
                 } else {
-
+                    Log.e("RengAge:", RengAge);
                     String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
                     int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true) - 120;
