@@ -64,7 +64,7 @@ public class SingletonDate {
     @Subscribe()
     public void onMessageEvent(EventBusCalendar event) {
         if (event.isUpdated()) {
-            Log.e("Tag", "onMessageEvent: Evetn Bus Updated");
+        //    Log.e("Tag", "onMessageEvent: Evetn Bus Updated");
             startDate.setAnotherCustomDate(endDate);
         }
 

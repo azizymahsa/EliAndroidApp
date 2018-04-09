@@ -251,7 +251,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     if (cbSubmitName.isChecked()){
                         name="";
                     }
-                    Log.e("test3333", Prefs.getString("userId","-1"));
+                  //  Log.e("test3333", Prefs.getString("userId","-1"));
                     ReviewComment.add(new ReviewComment(0, message,
                             0, 1, mail, name, title, Prefs.getString("userId","-1"),reviewScores,String.valueOf(isRecommended)));
                     new AddCommentAsync().execute();

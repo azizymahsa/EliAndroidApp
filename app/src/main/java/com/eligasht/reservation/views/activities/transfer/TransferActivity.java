@@ -357,7 +357,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             bargasht = Prefs.getString("bargasht", "null").replaceAll("-", "/");
 
 
-            Log.e("testdate", bargasht);
+          //  Log.e("testdate", bargasht);
 
             String[] dateSplite2 = bargasht.split("/");
 
@@ -373,7 +373,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+           // Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
             datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
 
 
@@ -386,7 +386,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         } else {
             // tvDepurtureDate.setText(Prefs.getString("raftfa", "null"));
             raft = Prefs.getString("raft", "null").replaceAll("-", "/");
-            Log.e("testdate", raft);
+        //    Log.e("testdate", raft);
 
             String[] dateSplite2 = raft.split("/");
 
@@ -402,7 +402,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-            Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+           // Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
             datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
 
 
@@ -649,13 +649,13 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                     //    tvDepurtureFlt.setError("شماره پرواز رفت را انتخاب کنید");
-                    Log.e("test1", tvDepurtureFlt.getHint().toString());
+                //    Log.e("test1", tvDepurtureFlt.getHint().toString());
 
 
                 } else if (tvDepurtureFlt.getText().toString().length() >= 8) {
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
-                    Log.e("test2", tvDepurtureFlt.getText().toString().length() + "");
+                 //   Log.e("test2", tvDepurtureFlt.getText().toString().length() + "");
 
                     cal = false;
                     //  Toast.makeText(this, "شماره پرواز رفت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
@@ -666,7 +666,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 } else {
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
-                    Log.e("test4", tvDepurtureFlt.getText().toString() + "");
+               //     Log.e("test4", tvDepurtureFlt.getText().toString() + "");
 
                 }
 
@@ -809,7 +809,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onTimeSet(com.wdullaer.materialdatetimepicker.time.RadialPickerLayout view, int hourOfDay, int minute, int second) {
-        Log.e("test", view.getTag() + "");
+    //    Log.e("test", view.getTag() + "");
       /*  if (view.getTag().equals("timeRaft")) {
             tvDepurtureTime.setText(hourOfDay + ":" + minute);
 
@@ -859,7 +859,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
                 }else{
                     Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()));
-                    Log.e("testTra",airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()+"");
+                //    Log.e("testTra",airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()+"");
                     Prefs.putString("Flag_First_Computing", "F");
 
                     finish();

@@ -33,7 +33,7 @@ public class InsurnaceDetailsActivity extends AppCompatActivity {
 
         try {
             JSONArray jsonObj = new JSONArray(getIntent().getExtras().getString("details"));
-            Log.e("testttt", jsonObj.toString() );
+            //Log.e("testttt", jsonObj.toString() );
 
             if (getIntent().getExtras().getBoolean("plan")){
                 for (int i = 0; i < jsonObj.length(); i++) {

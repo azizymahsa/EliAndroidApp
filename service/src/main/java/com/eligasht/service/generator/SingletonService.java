@@ -74,6 +74,7 @@ public class SingletonService {
             purchaseFlight = new PurchaseFlightService(serviceGenerator);
         return purchaseFlight;
     }
+
     public PreFactorDetailFlight getPreFactorDetailFlight() {
         if (preFactorDetailFlight == null)
             preFactorDetailFlight = new PreFactorDetailFlight(serviceGenerator);

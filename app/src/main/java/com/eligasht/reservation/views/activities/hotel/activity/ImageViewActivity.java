@@ -71,9 +71,9 @@ public class ImageViewActivity extends BaseActivity {
 
         try {
             JSONArray jsonObj = new JSONArray(getIntent().getExtras().getString("list"));
-            Log.e("testest", jsonObj.toString() );
+          //  Log.e("testest", jsonObj.toString() );
 
-            Log.e("piiccc", jsonObj.toString());
+         //   Log.e("piiccc", jsonObj.toString());
             for (int i = 0; i < jsonObj.length(); i++) {
                 images.add(new String(jsonObj.getJSONObject(i).getString("image")));
 

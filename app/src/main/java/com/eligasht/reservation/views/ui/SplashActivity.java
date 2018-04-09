@@ -282,11 +282,11 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                                         DeviceOSType, operator, brand, getString(R.string.culture),
                                         new Identity("EligashtMlb",
                                                 "123qwe!@#QWE", "Mobile"))));
-                Log.e("ggg", new Gson().toJson(new UserRequest
-                        (new UserEntranceRequest(deviceId, Prefs.getString("loginId", null), deviceSubscriberID,
-                                sdkVersion, model, product, BuildConfig.VERSION_NAME, DeviceOSType, operator, brand,
-                                getString(R.string.culture), new Identity("EligashtMlb",
-                                "123qwe!@#QWE", "Mobile")))));
+//                Log.e("ggg", new Gson().toJson(new UserRequest
+//                        (new UserEntranceRequest(deviceId, Prefs.getString("loginId", null), deviceSubscriberID,
+//                                sdkVersion, model, product, BuildConfig.VERSION_NAME, DeviceOSType, operator, brand,
+//                                getString(R.string.culture), new Identity("EligashtMlb",
+//                                "123qwe!@#QWE", "Mobile")))));
 
             } catch (Exception e) {
 
