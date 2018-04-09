@@ -276,7 +276,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 //convert to miladi
                 String[] dateSplite3 = date_server(yearSh, monthSh - 1, daySh - 1).split("-");
 
-
                 String dayMF1 = dateSplite3[2];
                 String monthMF1 = dateSplite3[1];
                 String yearMF1 = dateSplite3[0];
