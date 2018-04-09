@@ -20,8 +20,7 @@ import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlig
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
-import com.eligasht.service.model.insurance.response.ResponsePurchaseInsurance;
-import com.eligasht.service.part.FlightSearch;
+import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
 import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
 
 import io.reactivex.Observable;
@@ -90,7 +89,10 @@ public interface RetroClient {
             @Body RequestPurchaseInsurance requestPurchaseInsurance
     );
 
-
+    @POST(Const.PreFactorDetailsInsuranceAvil)
+    Observable<com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.ResponsePreFactorDetails> responsePreFactorDetailsInsurance(
+            @Body com.eligasht.service.model.insurance.request.RequestPreFactorDetail.RequestPreFactorDetails requestPreFactorDetails
+    );
 
 
 }
