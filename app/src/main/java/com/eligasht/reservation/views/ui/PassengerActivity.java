@@ -194,17 +194,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		PersianCalendar persianCalendar = new PersianCalendar();
 		persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
 //=====================================================================================================
-		//_____________________________________________________________________
+
 		datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
 				this,
 				persianCalendarDatePicker.getPersianYear(),
 				persianCalendarDatePicker.getPersianMonth(),
 				persianCalendarDatePicker.getPersianDay()
 		);
-
-
-		//______________________________________________________________________
-
 
 //=====================================================================================================
 		datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
@@ -239,10 +235,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				String monthMF = dateSplite2[1];
 				String yearMF = dateSplite2[0];
 
-
 				datePickerDialog.initialize(PassengerActivity.this, Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
 				datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
-
 
 			}
 		});
@@ -268,7 +262,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		//=====================================================================================================
 
-
 //change button shamsi to milady (date picker)
 		datePickerDialog.setOnCalandarChangeListener(new com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
 			@Override
@@ -292,14 +285,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 		String RengAge=txtTitleCountM.getText().toString();
-
+		Log.e("RengAge:", RengAge);
 ///////////////setmin
 		//min max tavalod solar
-		if(RengAge.contains(getString(R.string.Child))){
-
+		if(RengAge.contains(getString(R.string._childP))){
+			Log.e("RengAge:", RengAge);
 			String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 			int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-			int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
+			int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
 			int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
 			PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
 			persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -315,8 +308,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
 
 			datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
-		}else if(RengAge.contains(getString(R.string.baby))){
-
+		}else if(RengAge.contains(getString(R.string._InfantP))){
+			Log.e("RengAge:", RengAge);
 			String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 			int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
 			int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-2;
@@ -336,6 +329,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
 		}else{
+			Log.e("RengAge:", RengAge);
 			String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 			int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
 			int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-140;
@@ -348,7 +342,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 			int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-			int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
+			int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
 			int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
 			PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
 			persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
@@ -1130,11 +1124,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				String RengAge=txtTitleCountM.getText().toString();
 
 ///////////////setmin
-				if(RengAge.contains(getString(R.string.child))){
-
+				if(RengAge.contains(getString(R.string._childP))){
+					Log.e("RengAge:", RengAge);
 					String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 					int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
-					int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-14;
+					int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-12;
 					int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
 					PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
 					persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
@@ -1154,8 +1148,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					datePickerDialog.setMaxDate(persianCalendarDatePicker2);
 					datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
 
-				}else if(RengAge.contains(getString(R.string.baby))){
-
+				}else if(RengAge.contains(getString(R.string._InfantP))){
+					Log.e("RengAge:", RengAge);
 					String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 					int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
 					int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-2;
@@ -1192,7 +1186,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 					int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-					int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-14;
+					int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
 					int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
 					PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
 					persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);

@@ -2,10 +2,8 @@ package com.eligasht.service.part;
 
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.flight.request.airPort.RequestAirports;
-import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
-import com.eligasht.service.model.insurance.response.ResponsePurchaseInsurance;
+import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
 
 /**
  * Created by Ahmad.nemati on 3/26/2018.

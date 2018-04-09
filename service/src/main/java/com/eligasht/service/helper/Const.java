@@ -18,10 +18,10 @@ public class Const {
     public final static String PurchaseServiceFlightAvil="Common/StaticDataService.svc/PurchaseService";
     public final static String PurchaseFlightAvil="Flight/FlightService.svc/PurchaseFlight";
     public final static String ChangeFlightAvil="HotelFlight/HotelFlightService.svc/HotelPlusFlightChangeFlt";
+    public final static String PreFactorDetailsAvil="Common/StaticDataService.svc/GetPreFactorDetails";
     //*************insurnace*************
     public final static String PurchaseInsuranceAvil="Insurance/InsuranceService.svc/PurchaseInsurance";
-    //*************prefactor*************
-    public final static String PreFactorDetailsAvil="Common/StaticDataService.svc/GetPreFactorDetails";
+    public final static String PreFactorDetailsInsuranceAvil="Common/StaticDataService.svc/GetPreFactorDetails";
     //*************static page*************
     public final static String AboutAvil="Common/StaticDataService.svc/GetAboutUsWithCulture";
     public final static String ContactUsAvil="Common/StaticDataService.svc/GetContactUsWithCuture";

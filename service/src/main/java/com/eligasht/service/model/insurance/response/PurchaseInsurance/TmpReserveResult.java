@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.insurance.response;
+package com.eligasht.service.model.insurance.response.PurchaseInsurance;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -2386,5 +2386,7 @@
     <string name="massege">پیغام</string>
     <string name="please_enter_your_name_english">Lütfen adınızı girin (En)</string>
     <string name="please_enter_your_family_name_english">الرجاء إدخال اسم العائلة</string>
+    <string name="_InfantP">نوزاد</string>
+    <string name="_childP">کودک</string>
 </resources>
 

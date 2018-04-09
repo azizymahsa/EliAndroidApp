@@ -1,10 +1,10 @@
 
-package com.eligasht.service.model.insurance.response;
+package com.eligasht.service.model.insurance.response.ResponsePreFactorDetail;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PurchaseInsuranceResult {
+public class GetPreFactorDetailsResult {
 
     @SerializedName("Comments")
     @Expose
@@ -18,12 +18,9 @@ public class PurchaseInsuranceResult {
     @SerializedName("Warningss")
     @Expose
     private Object warningss;
-    @SerializedName("Services")
+    @SerializedName("PreFactor")
     @Expose
-    private Object services;
-    @SerializedName("TmpReserveResult")
-    @Expose
-    private TmpReserveResult tmpReserveResult;
+    private PreFactor preFactor;
 
     public Object getComments() {
         return comments;
@@ -57,20 +54,12 @@ public class PurchaseInsuranceResult {
         this.warningss = warningss;
     }
 
-    public Object getServices() {
-        return services;
+    public PreFactor getPreFactor() {
+        return preFactor;
     }
 
-    public void setServices(Object services) {
-        this.services = services;
-    }
-
-    public TmpReserveResult getTmpReserveResult() {
-        return tmpReserveResult;
-    }
-
-    public void setTmpReserveResult(TmpReserveResult tmpReserveResult) {
-        this.tmpReserveResult = tmpReserveResult;
+    public void setPreFactor(PreFactor preFactor) {
+        this.preFactor = preFactor;
     }
 
 }
