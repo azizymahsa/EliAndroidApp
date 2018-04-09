@@ -11,6 +11,7 @@ import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.PreFactorDetailFlight;
 import com.eligasht.service.part.PurchaseFlightPassenger;
 import com.eligasht.service.part.PurchaseFlightService;
+import com.eligasht.service.part.PurchaseInsurance;
 
 import javax.inject.Inject;
 
@@ -35,6 +36,7 @@ public class SingletonService {
     ContactUs contactUs;
     AboutService aboutService;
     ChangeFlight changeFlight;
+    PurchaseInsurance purchaseInsurance;
     private static final SingletonService ourInstance = new SingletonService();
 
     public static SingletonService getInstance() {
@@ -104,5 +106,10 @@ public class SingletonService {
         if (changeFlight == null)
             changeFlight = new ChangeFlight(serviceGenerator);
         return changeFlight;
+    }
+    public PurchaseInsurance getPurchaseInsurance() {
+        if (purchaseInsurance == null)
+            purchaseInsurance = new PurchaseInsurance(serviceGenerator);
+        return purchaseInsurance;
     }
 }
