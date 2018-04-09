@@ -24,6 +24,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.ticker.TickerView;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 
 import java.util.ArrayList;
 
@@ -121,8 +122,11 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 i.putExtra("DateTime", DateTime.getText().toString());
 
                 i.putExtra("type", 2);
-
-                activity.startActivity(i);
+                SwipeBackActivityHelper.activityBuilder(activity)
+                        .intent(i)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
             }
         });
 
@@ -151,16 +155,16 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
 
         }
 
-        if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")) {
+        if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")||selectHotelModelArrayList.get(position).getTypeText().toLowerCase().contains("apart")) {
             holder.txt_lable_hotel.setText(R.string.ApartmenHotel);
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
 
-        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")) {
+        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("بوتیک")||selectHotelModelArrayList.get(position).getTypeText().toLowerCase().contains("bout")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
             holder.txt_lable_hotel.setText(R.string.BoutiqueHotel);
 
 
-        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")) {
+        } else if (selectHotelModelArrayList.get(position).getTypeText().contains("ریزورت")||selectHotelModelArrayList.get(position).getTypeText().toLowerCase().contains("reso")) {
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);
             holder.txt_lable_hotel.setText(R.string.ResortHotel);
 

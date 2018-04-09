@@ -53,7 +53,7 @@ public interface ClientService {
 
     @POST("Insurance/InsuranceService.svc/ShowInsurance")
     Call<InsuranceRes> showInsurance(@Body InsuranceRequestModel insuranceRequestModel);
-
+    //"/Common/StaticDataService.svc/GetCountryAjax"GetCountryAjaxWithCulture
     @POST("Common/StaticDataService.svc/GetCountryAjax")
     Call<CountryListRes> getCountryListResult(@Body CountryRequestModel countryRequestModel);
 

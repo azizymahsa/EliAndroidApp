@@ -18,13 +18,27 @@ import com.eligasht.reservation.views.fragments.hotelDetail.RoomHotelFragment;
 public class HotelDetailViewPager extends FragmentPagerAdapter {
     private Context context;
     private CommentHotelFragment commentHotelFragment;
+    private MapHotelFragment mapHotelFragment;
+    int count;
 
 
-    public HotelDetailViewPager(Context context, FragmentManager fm) {
+    public HotelDetailViewPager(Context context, FragmentManager fm,boolean isPckage) {
         super(fm);
         this.context = context;
         commentHotelFragment=CommentHotelFragment.instance();
+        mapHotelFragment=MapHotelFragment.instance();
+        if (isPckage){
+            count=3;
+        }else{
+            count=4;
+        }
 
+
+
+    }
+
+    public MapHotelFragment getMapHotelFragment() {
+        return mapHotelFragment;
     }
 
     public CommentHotelFragment getCommentHotelFragment() {
@@ -38,7 +52,7 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
                 return commentHotelFragment;
 
             case 1:
-                return MapHotelFragment.instance();
+                return mapHotelFragment;
             case 2:
                 return HotelFacilityFragment.instance();
             case 3:
@@ -49,7 +63,7 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
     }
     @Override
     public int getCount() {
-        return 4;
+        return count;
     }
     @Override
     public CharSequence getPageTitle(int position) {

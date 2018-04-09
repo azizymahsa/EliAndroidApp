@@ -35,6 +35,7 @@ import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.Hotel
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesModels;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.ui.NonScrollGridView;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -64,11 +65,11 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
     private TextView  tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent,tvSortComment;
     private CommentAdapterRecycle commentAdapter;
     boolean isNew = false;
-    GetComment getComment;
-    private boolean isComment = true;
-    String hotelName=null;
-    String hotelId=null;
-    FancyButton btnComment,btnOneComment;
+    private GetComment getComment;
+    private boolean isComment = true,isFirst=true;
+    private String hotelName=null;
+    private String hotelId=null;
+    private FancyButton btnComment,btnOneComment,btnSortComment;
 
 
     private AVLoadingIndicatorView aviComment;
@@ -104,6 +105,11 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
     public void setDataComment(CommentModelBus hotel) {
         this.hotelName=hotel.getHotelName();
         this.hotelId=hotel.getHotelId();
+        if ((hotelName!=null||hotelId!=null)&&isFirst){
+            isFirst=false;
+            new GetCommentAsync().execute();
+
+        }
 
 
     }
@@ -111,10 +117,7 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
-        if (hotelName!=null||hotelId!=null){
-            new GetCommentAsync().execute();
 
-        }
 
     }
 
@@ -137,8 +140,14 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
         btnComment = view.findViewById(R.id.btnComment);
         btnOneComment = view.findViewById(R.id.btnOneComment);
         llCommentContent = view.findViewById(R.id.llCommentContent);
+        btnSortComment = view.findViewById(R.id.btnSortComment);
         btnComment.setOnClickListener(this);
         btnOneComment.setOnClickListener(this);
+        btnSortComment.setOnClickListener(this);
+        btnComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnOneComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        btnSortComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+
 
 
     }
@@ -270,11 +279,10 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
                 lvComments.setAdapter(commentAdapter);
                 lvComments.setFocusable(false);
 
-                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount + getString(R.string.UserRate));
-                tvCommentCount.setText(getString(R.string.CommentUser) + getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length + getString(R.string.Comment));
-                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent + getString(R.string.RecomandUser));
+                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount +" "+ getString(R.string.UserRate));
+                tvCommentCount.setText(getString(R.string.CommentUser)+" "+ getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length +" "+ getString(R.string.Comment));
+                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent +" "+ getString(R.string.RecomandUser));
                 circleView.setValueAnimated(Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore));
-                Log.e("fer", Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore) + "");
 
             if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {
 

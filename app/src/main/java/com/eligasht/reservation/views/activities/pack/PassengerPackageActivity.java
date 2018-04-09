@@ -2447,7 +2447,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
             detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
 
-            headerJson.put("PartnerInfo", detailsPartner);
+            headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", getString(R.string.culture));
             headerJson.put("WebUserID", Prefs.getString("userId","-1"));
@@ -2458,7 +2458,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             headerJson.put("Flt_IDs", Prefs.getString("Flt_IDs", "12"));
             headerJson.put("Rooms", Prefs.getString("Rooms", "12"));
            // headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//purches
-
 
 		/*	headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
 *//*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));

@@ -108,14 +108,8 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvHotelName, tvSum, tvCheckOut, tvCheckIn, tvArrow, tvNumAdult, tvRoom;
-        /**
-         * You must use the ExpandableLinearLayout in the recycler view.
-         * The ExpandableRelativeLayout doesn't work.
-         */
         public ExpandableLinearLayout expandableLayout;
-        //  public RelativeLayout tvArrow;
         RelativeLayout buttonLayout;
-
         public ViewHolder(View v) {
             super(v);
             tvHotelName = v.findViewById(R.id.tvHotelDetail);

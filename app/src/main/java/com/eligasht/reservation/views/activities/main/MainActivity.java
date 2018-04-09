@@ -78,6 +78,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
+
         Prefs.putString("raft", "null");
         Prefs.putString("raftfa", "null");
         Prefs.putString("bargasht", "null");

@@ -1888,14 +1888,14 @@
     <string name="curency">Rial</string>
     <string name="ApartmenHotel">Apartment Hotel</string>
     <string name="BoutiqueHotel">Boutique Hotel</string>
-    <string name="ResortHotel">Hotel Reservation</string>
+    <string name="ResortHotel">Resort</string>
     <string name="NonStop">no stop</string>
     <string name="OneStop">One Stop</string>
     <string name="TwoStop">Two Stop</string>
     <string name="DetailHotel">Hotel Detail</string>
     <string name="GoogleUpdateError">Your Google Play service needs to be updated.</string>
     <string name="NewComment">Latest comments</string>
-    <string name="BenefitComment">The most useful comments</string>
+    <string name="BenefitComment">Useful comments</string>
     <string name="AccessError">No access</string>
     <string name="UserRate"> users has rated</string>
     <string name="Comment">Comment)</string>
@@ -1904,7 +1904,7 @@
     <string name="Possibilities">Facilities</string>
     <string name="Around">Around</string>
     <string name="Policy">Policy</string>
-    <string name="ReservRoom">Book a room</string>
+    <string name="ReservRoom">Book</string>
     <string name="NoComment">No comments have been posted!</string>
     <string name="ConfirmComment">Comment</string>
     <string name="ErrorRoom">No room was found!</string>
@@ -1977,7 +1977,7 @@
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="contact_us">Contact us</string>
     <string name="about_us">About us</string>
-    <string name="exit">Exit</string>
+    <string name="exit">Log out</string>
     <string name="settings">Settings</string>
     <string name="please_specify_traverels_birth_date">Please enter the date of birth of your passengers.</string>
     <string name="please_select_destination_and_origin">Please select the origin and destination</string>
@@ -1996,7 +1996,7 @@
     <string name="Try">Try again</string>
     <string name="Update">Update</string>
     <string name="UpdateAlert">The software needs to be upgraded, Do you want to update the software?</string>
-    <string name="SelectFilter">Filter result</string>
+    <string name="SelectFilter">Filter</string>
     <string name="Stop">Stop</string>
     <string name="TwoStopAndMore">Two Stop &amp; More</string>
     <string name="Economi">Economy</string>
@@ -2085,7 +2085,7 @@
     <string name="YourComment">Your Comment</string>
     <string name="RecomandHotel">I suggest this hotel to others</string>
     <string name="HiddenName">I\'d rather not to show my name</string>
-    <string name="ShowPicture">Show Picture</string>
+    <string name="ShowPicture">Pictures</string>
     <string name="BackToLastPage">Back To Last Page</string>
     <string name="ChangeFlight">Change Flight</string>
     <string name="SelectDepartCity">Select destination city</string>
@@ -2379,6 +2379,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="icon_location_fontello">&#xe624;</string>
 
 
 </resources>

@@ -15,6 +15,9 @@ public class Const {
     public final static String PreFactorDetailsAvil="Common/StaticDataService.svc/GetPreFactorDetails";
     public final static String PurchaseFlightAvil="Flight/FlightService.svc/PurchaseFlight";
     public final static String ContactUsAvil="Common/StaticDataService.svc/GetContactUsWithCuture";
+    public final static String AboutAvil="Common/StaticDataService.svc/GetAboutUsWithCulture";
+    public final static String PurchaseInsuranceAvil="Insurance/InsuranceService.svc/PurchaseInsurance";
+    public final static String ChangeFlightAvil="HotelFlight/HotelFlightService.svc/HotelPlusFlightChangeFlt";
 
 
 }

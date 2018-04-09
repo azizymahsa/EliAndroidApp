@@ -3,7 +3,8 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="right">
+    android:layout_gravity="right"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"

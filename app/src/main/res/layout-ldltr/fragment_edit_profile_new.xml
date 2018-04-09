@@ -24,15 +24,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10dp"
                 android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="10sp">
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
-                    android:layout_marginLeft="@dimen/_10dp"
+                    android:layout_marginRight="@dimen/_10dp"
                     android:gravity="center"
                     android:text="@string/basic_information"
                     android:textAppearance="@style/IrsansBold"
@@ -41,81 +39,95 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/passwordWrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/edt_name_fa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_name"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                    </android.support.design.widget.TextInputLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight=".6"
-                        android:gravity="center|left"
+                        android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/name"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <EditText
-                        android:id="@+id/edt_name_fa"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center_vertical"
-                        android:hint="@string/please_enter_your_name"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e8e8e8" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/edt_last_name_fa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_family_name"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight=".6"
-                        android:gravity="center|left"
+                        android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/family_name"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-
-                    <EditText
-                        android:id="@+id/edt_last_name_fa"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center_vertical"
-                        android:hint="@string/please_enter_your_family_name"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="@dimen/_20dp"
-                    android:background="#e8e8e8" />
+
 
 
             </LinearLayout>
@@ -142,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
-                    android:layout_marginLeft="@dimen/_10dp"
+                    android:layout_marginRight="@dimen/_10dp"
                     android:gravity="center"
                     android:text="@string/other_information"
                     android:textAppearance="@style/IrsansBold"
@@ -151,124 +163,169 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/edt_email_user_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_email_address"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight=".6"
-                        android:gravity="center|left"
+                        android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/mail"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <EditText
-                        android:id="@+id/edt_email_user_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center_vertical"
-                        android:hint="@string/please_enter_your_email_address"
-                        android:imeOptions="actionNext"
-                        android:inputType="textEmailAddress"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#e8e8e8" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/edt_name_En"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_name_english"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight=".6"
-                        android:gravity="center|left"
+                        android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/name_en"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-
-                    <EditText
-                        android:id="@+id/edt_name_En"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center"
-                        android:hint="@string/please_enter_your_name"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
 
-                    android:background="#e8e8e8" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/edt_last_name_En"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_family_name_english"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight=".6"
-                        android:gravity="center|left"
+                        android:gravity="center|right"
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/family_name"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <EditText
-                        android:id="@+id/edt_last_name_En"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center"
-                        android:hint="@string/please_enter_your_family_name"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="@dimen/_20dp"
-                    android:background="#e8e8e8" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/edt_code_meli"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_national_code"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -278,37 +335,48 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/national_code"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <EditText
-                        android:id="@+id/edt_code_meli"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center"
-                        android:hint="@string/please_enter_your_national_code"
-                        android:imeOptions="actionNext"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
 
-                    android:background="#e8e8e8" />
 
                 <LinearLayout
                     android:id="@+id/edt_birthday"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/_40dp_password"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/txt_birthday_input"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/txt_birthday"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_birth_date"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize"
+                            android:editable="false"/>
+
+
+                    </android.support.design.widget.TextInputLayout>
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -318,36 +386,43 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/birth_date"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-
-                    <TextView
-                        android:id="@+id/txt_birthday"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center"
-                        android:hint="@string/please_enter_your_birth_date"
-                        android:singleLine="true"
-
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
 
-                    android:background="#e8e8e8" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/_40dp_password"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/edt_home_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_phone_number"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -357,36 +432,43 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/phone"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <EditText
-                        android:id="@+id/edt_home_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center"
-                        android:hint="@string/please_enter_your_phone_number"
-                        android:imeOptions="actionNext"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
 
-                    android:background="#e8e8e8" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/_40dp_password"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/edt_mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_mobile_number"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -396,36 +478,42 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/mobile"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-                    <EditText
-                        android:id="@+id/edt_mobile"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center"
-                        android:hint="@string/please_enter_your_mobile_number"
-                        android:imeOptions="actionNext"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
 
-                    android:background="#e8e8e8" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp_password"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight=".2">
+
+
+                        <EditText
+                            android:id="@+id/edt_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left|center_vertical"
+                            android:hint="@string/please_enter_your_address"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -435,31 +523,12 @@
                         android:paddingTop="@dimen/_10dp_padding"
                         android:text="@string/address"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/_12dp_normal_textSize" />
-
-
-                    <EditText
-                        android:id="@+id/edt_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:background="@android:color/transparent"
-                        android:gravity="left|center"
-                        android:imeOptions="actionNext"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:text="@string/please_enter_your_address"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
 
-                    android:background="#e8e8e8" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -471,70 +540,70 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+
                         android:layout_weight=".2"
                         android:background="@android:color/transparent"
+
+
                         android:gravity="center"
-                        android:orientation="horizontal">
+
+                        android:orientation="horizontal"
+
+
+                        >
+
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight=".9"
+                            android:layout_weight=".6"
                             android:gravity="center|left"
                             android:paddingTop="@dimen/_10dp_padding"
                             android:text="@string/sex"
                             android:textColor="@color/gray_dark"
                             android:textSize="@dimen/_12dp_normal_textSize" />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_weight=".6">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
+                            android:text="@string/male"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+                        <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
+                            android:id="@+id/chB_woman"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginRight="@dimen/_5dp_margin"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            app:color_checked="@color/app_base_color" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center|left"
-                                android:paddingBottom="@dimen/_10dp_padding"
-                                android:paddingTop="@dimen/_10dp_padding"
-                                android:text="@string/female"
-                                android:textColor="@color/text_color_4d"
-                                android:textSize="@dimen/_12dp_normal_textSize" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|right"
+                            android:paddingBottom="@dimen/_10dp_padding"
+                            android:paddingTop="@dimen/_10dp_padding"
+                            android:text="@string/female"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
-                            <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
-                                android:id="@+id/chB_woman"
-                                android:layout_width="@dimen/_20dp"
-                                android:layout_height="@dimen/_20dp"
-                                android:layout_gravity="center"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="@dimen/_5dp_margin"
-                                android:layout_marginTop="5dp"
-                                app:color_checked="@color/app_base_color" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center|left"
-                                android:paddingBottom="@dimen/_10dp_padding"
-                                android:paddingTop="@dimen/_10dp_padding"
-                                android:text="@string/male"
-                                android:textColor="@color/text_color_4d"
-                                android:textSize="@dimen/_12dp_normal_textSize" />
-
-                            <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
-                                android:id="@+id/chB_man"
-                                android:layout_width="@dimen/_20dp"
-                                android:layout_height="@dimen/_20dp"
-                                android:layout_gravity="center"
-                                android:layout_margin="5dp"
-                                app:color_checked="@color/app_base_color" />
-                        </LinearLayout>
-
+                        <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
+                            android:id="@+id/chB_man"
+                            android:layout_width="@dimen/_20dp"
+                            android:layout_height="@dimen/_20dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            app:color_checked="@color/app_base_color" />
 
 
                     </LinearLayout>
+
 
 
                 </LinearLayout>
@@ -543,7 +612,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginBottom="@dimen/_40dp"
-                    android:background="#e8e8e8" />
+                    android:background="#737373" />
 
 
             </LinearLayout>

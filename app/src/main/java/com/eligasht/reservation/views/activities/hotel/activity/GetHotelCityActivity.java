@@ -25,6 +25,7 @@ import com.eligasht.reservation.tools.db.main.CursorManager;
 import com.eligasht.reservation.views.adapters.GetHotelCityAdapter;
 import com.eligasht.reservation.views.components.Header;
 
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
@@ -72,10 +73,22 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_city_hotel);
+        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+
+        helper.setEdgeMode(false)
+                .setParallaxMode(true)
+                .setParallaxRatio(3)
+                .setNeedBackgroundShadow(true)
+                .init(this);
+
+
+
+
         avLoadingIndicatorView = findViewById(R.id.avi);
         btnBack = findViewById(R.id.btnBack);
         btnMic = findViewById(R.id.btnMic);

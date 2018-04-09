@@ -659,7 +659,8 @@
                 android:text="@string/exit"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_12dp_normal_textSize"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
 

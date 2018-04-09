@@ -1,73 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.eligasht.reservation.views.fragments.hotelDetail.RoomHotelFragment"
-    android:clipToPadding="false"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:fillViewport="true"
-    >
+    android:layoutDirection="ltr"
+    android:id="@+id/nestedSv">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
-        android:layout_gravity="center"
 
-        android:layout_marginTop="5dp"
-        app:cardBackgroundColor="#ffffff"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="1dp">
+        android:orientation="vertical">
 
 
-        <LinearLayout
-            android:id="@+id/llDynamic"
-
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_height="wrap_content"
+>
 
             <LinearLayout
-
-                android:id="@+id/llEmkanat"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/llFacility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvFacility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/title_background"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvFacility"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                  />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAroundHotel"
 
 
-            <LinearLayout
-                android:id="@+id/llAroundHotel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+
+                    >
 
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                    <TextView
+                        android:id="@+id/tvAroundHotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/title_background"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="sdfsdfsdf"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+                </LinearLayout>
 
-                />
-
-            <LinearLayout
-                android:id="@+id/llPolicy"
-
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-
-                />
-
-            <LinearLayout
-                android:id="@+id/llInformation"
+                <LinearLayout
+                    android:id="@+id/llPolicy"
 
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
 
-                />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+
+                    >
+
+                    <TextView
+                        android:id="@+id/tvPolicy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/title_background"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="sdfsdfsdf"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llInformation"
+
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+
+
+                    >
+
+
+                    <TextView
+                        android:id="@+id/tvInformation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/title_background"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="sdfsdfsdf"
+                        android:textSize="@dimen/_12dp_normal_textSize" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+        </android.support.v7.widget.CardView>
+
+
+
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
+
+

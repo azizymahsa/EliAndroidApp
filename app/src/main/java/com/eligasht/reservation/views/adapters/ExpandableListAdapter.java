@@ -164,7 +164,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         lblFlightArrivalTimeR.setText(item.FlightArrivalTimeR + "");
         lblDepurtureAirportR.setText(item.DepartureCityNameFa + " , " + item.DepartureAirportNameFaR);
         lblArrivalAirportR.setText(item.ArrivalCityNameFa + " , " + item.ArrivalAirportNameFaR);
-        if (item.OperatingAirlineNameEn == null) {
+        if (item.OperatingAirlineNameEn == null || item.OperatingAirlineNameEn.equals("null")) {
             String test=item.AirlineCode + item.FlightNumberR;
             lblFlightNumberR.setText(test.replace(" ",""));
             Log.e("Exp:", test.replace(" ",""));
@@ -333,8 +333,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         int mTrue=0;
         for (int i = 0; i <dataExpandingList.get(groupPosition).Header.SegmentTrueCount; i++) {
             Log.e("SegmentTrueCount:", dataExpandingList.get(groupPosition).Header.SegmentTrueCount+"" );
-            hTrue=hTrue+Integer.parseInt(item2.segmentListtrueAkhari.get(i).getFltDurationH());
-            mTrue=mTrue+Integer.parseInt(item2.segmentListtrueAkhari.get(i).getFltDurationM());
+            try{
+                hTrue=hTrue+Integer.parseInt(item2.segmentListtrueAkhari.get(i).getFltDurationH());
+                mTrue=mTrue+Integer.parseInt(item2.segmentListtrueAkhari.get(i).getFltDurationM());
+            }catch (Exception e){
+                lblFlightArrivalTimeLongR.setVisibility(View.INVISIBLE);
+                lblFlightArrivalTimeLongB.setVisibility(View.INVISIBLE);
+            }
+
 
         }
         int hour=mTrue/60;
@@ -345,8 +351,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         int mFalse=0;
         for (int i = 0; i <dataExpandingList.get(groupPosition).Header.SegmentFalseCount; i++) {
             Log.e("SegmentFalseCount:", dataExpandingList.get(groupPosition).Header.SegmentFalseCount+"" );
-            hFalse=hFalse+Integer.parseInt(item2.segmentListfalseAkhari.get(i).getFltDurationH());
-            mFalse=mFalse+Integer.parseInt(item2.segmentListfalseAkhari.get(i).getFltDurationM());
+            try{
+                hFalse=hFalse+Integer.parseInt(item2.segmentListfalseAkhari.get(i).getFltDurationH());
+                mFalse=mFalse+Integer.parseInt(item2.segmentListfalseAkhari.get(i).getFltDurationM());
+            }catch (Exception e){
+                lblFlightArrivalTimeLongR.setVisibility(View.INVISIBLE);
+                lblFlightArrivalTimeLongB.setVisibility(View.INVISIBLE);
+
+            }
+
         }
         int hourF=mFalse/60;
         int minF=mFalse % 60;

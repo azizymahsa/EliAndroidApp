@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.eligasht.reservation.tools.GlideApp;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 
 import com.eligasht.R;
@@ -34,13 +35,14 @@ public class ViewPagerAttention {
     int like;
     int currentPage = 0;
     Gson gson;
-    String list;
+    String list,name;
 
 
 
-    public ViewPagerAttention(final Activity activity, final ArrayList<ImageModel> imageModels, int layout ) {
+    public ViewPagerAttention(final Activity activity, final ArrayList<ImageModel> imageModels, int layout,String name ) {
         this.activity = activity;
         this.layout = layout;
+        this.name = name;
 
         gson= new Gson();
         this.indiactor = indiactor;
@@ -123,7 +125,12 @@ public class ViewPagerAttention {
                     Intent intent =new Intent(activity, ImageViewActivity.class);
                     intent.putExtra("pic",position);
                     intent.putExtra("list",list);
-                    activity.startActivity(intent);
+                    intent.putExtra("hotelName",name);
+                    SwipeBackActivityHelper.activityBuilder(activity)
+                            .intent(intent)
+                            .needParallax(true)
+                            .needBackgroundShadow(true)
+                            .startActivity();
                 }
             });
 

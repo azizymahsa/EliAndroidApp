@@ -124,8 +124,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     public static boolean flag;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    private Handler handler;
-    private ProgressDialog progressBar;
+
     public FancyButton btnBack;
     public ImageView txt_hom;
     public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
@@ -190,18 +189,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         PersianCalendar persianCalendar = new PersianCalendar();
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
 //=====================================================================================================
-        //_____________________________________________________________________
         datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
                 this,
                 persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay()
         );
-
-        //datePickerDialog.setMinDate(persianCalendarDatePicker);
-
-
-        //______________________________________________________________________
 
 
 //=====================================================================================================
@@ -246,7 +239,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         });
 ////////////
         datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
-        //	datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
         datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
@@ -364,9 +356,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         persianCalendar2.set(persianCalendarDatePicker.getPersianYear() + 6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
         ///////end setMin
-///////////////////////////////
+
 /////////////////////////Get date list
-        // Prefs.getInt( "BirthDateListInsuranc","");
+
         try {//[{"BirthDate":"1951-03-22","PassNo":1},{"BirthDate":"1951-04-10","PassNo":2}]
             jsonObjBDate = new JSONArray(Prefs.getString("BirthDateListInsuranc", ""));
             Log.e("testroom2", jsonObjBDate.toString());//[{"BirthDate":"1951-03-22","PassNo":1},{"BirthDate":"1951-04-10","PassNo":2}]
@@ -479,13 +471,11 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         tvPrice = findViewById(R.id.tvPrice);
         txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
         txttavalodm = findViewById(R.id.txttavalodm);
-        //txttavalodm.setOnClickListener(this);
         txtnamem = findViewById(R.id.txtnamem);
         imgCount = findViewById(R.id.imgCount);
         txtfamilym = findViewById(R.id.txtfamilym);
         txtnumber_passport = findViewById(R.id.txtnumber_passport);
         txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
-
 
         txtexp_passport = findViewById(R.id.txtexp_passport);
         txtTitle = findViewById(R.id.tvTitle);
@@ -564,7 +554,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         txt_hom.setOnClickListener(this);
         txtMore.setOnClickListener(this);
         txtSumKhadamat.setOnClickListener(this);
-        // txttavalodm.setOnClickListener(this);
+
         txtnamem.setOnClickListener(this);
         //////////////login user
         try {
@@ -640,13 +630,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
                 } catch (Exception ignored) {
                 }
-
-
                 String data = OrderToJsonGetPreFactorDetails();
 
-
                 HttpClient client = new DefaultHttpClient();
-
 
                 HttpPost post = new HttpPost();
                 post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails");
@@ -663,12 +649,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 post.setEntity(se);
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-
                 HashMap<String, String> airport = null;
                 mylist = new ArrayList<HashMap<String, String>>();
                 HttpResponse res = client.execute(post);
                 String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
 
                 return (retSrc);
 
@@ -697,13 +681,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 // Getting JSON Array node
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
 
-
                 JSONObject jArray = GetAirportsResult.getJSONObject("PreFactor");//FactorSummary
-
 
                 //FactorSummary
                 JSONObject jFact = jArray.getJSONObject("FactorSummary");
-
 
                 int RqBase_ID = jFact.getInt("RqBase_ID");
                 //////////////////////////////
@@ -714,7 +695,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     paymentUrl = jFact.getString("OnlinePaymentURL");
 
                 }
-
 
                 tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " + getString(R.string.Rial));
 
@@ -791,10 +771,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
 
                 for (int i = 0; i < jArray5.length(); i++) {
-                    /////////////////////////////////////////////
-
-
-                    ////////////////////////
                     flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
                             jArray5.getJSONObject(i).getString("DepAirPortFa"),
                             jArray5.getJSONObject(i).getString("ArrAirPortFa"),
@@ -826,177 +802,20 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
     }//end on pos excute
 
-    private class AsyncFetchPishFactor extends AsyncTask<String, String, String> {
-        HttpURLConnection conn;
-        URL url = null;
-        private ListView listAirPort;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            rlLoading.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-
-                // Enter URL address where your json file resides
-                // Even you can make call to php file which returns json data
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Insurance/InsuranceService.svc/PurchaseInsurance");
-
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
-            }
-            try {
-
-                // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                // conn.setRequestMethod("GET");
-                conn.setRequestMethod("POST");
-                // setDoOutput to true as we recieve data from json file
-                conn.setDoOutput(true);
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
-
-            try {
-
-                int response_code = conn.getResponseCode();
-
-                String serial = null;
-
-                JSONObject errorObj = new JSONObject();
-
-                try {
-                    errorObj.put("Success", false);
-
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
-                }
-
-
-                String data = OrderToJsonPishFactor();
-
-
-                HttpClient client = new DefaultHttpClient();
-
-
-                HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
-                post.setHeader("Content-Type", "application/json; charset=UTF-8");
-                post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-                StringEntity se = null;
-                try {
-                    se = new StringEntity(data, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                post.setEntity(se);
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-
-                HashMap<String, String> airport = null;
-                mylist = new ArrayList<HashMap<String, String>>();
-                HttpResponse res = client.execute(post);
-                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-                return (retSrc);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
-            }
-
-
-        }//end doin background
-
-        @Override
-        protected void onPostExecute(String resultPishfactor) {
-
-
-            rlLoading.setVisibility(View.GONE);
-            try {
-////////////////////////////
-                JSONObject jsonObj = new JSONObject(resultPishfactor);
-
-                // JSONObject jsonObj = new JSONObject(retSrc);
-
-                // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseServiceResult");
-                int successResult = GetAirportsResult.getInt("SuccessResult");
-                if (successResult == 0) {
-                    //get Errors
-                    JSONObject getError = jsonObj.getJSONObject("Errors");
-
-                    String message = getError.getString("Message");
-                    Toast.makeText(PassengerInsuranceActivity.this, message, Toast.LENGTH_LONG).show();
-                }
-
-                if (successResult > 1) {
-                    txt_shomare_factor.setText(GetAirportsResult.getString("SuccessResult"));
-
-                    tvfactorNumber.setText(GetAirportsResult.getString("SuccessResult"));
-
-                    textView4.setImageBitmap(getBitmap(GetAirportsResult.getString("SuccessResult"), 128, getResources().getInteger(R.integer._300), getResources().getInteger(R.integer._150)));
-                } else {
-                    txt_shomare_factor.setText(getString(R.string.An_error_has_occurred));
-                }
-                // sfsfs
-
-                // Setup and Handover data to recyclerview
-                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
-                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-                txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
-                // myScrollView.setOnTouchListener(null);
-
-                linear_saler.setVisibility(View.GONE);
-                linear_mosaferan.setVisibility(View.GONE);
-                linear_list_khadamat.setVisibility(View.GONE);
-                linear_pish_factor.setVisibility(View.VISIBLE);
-                FlagTab = true;
-                new AsyncFetchGetPreFactorDetails().execute();
-
-
-            } catch (JSONException e) {
-                Toast.makeText(PassengerInsuranceActivity.this, R.string.not_connection, Toast.LENGTH_LONG).show();
-            }
-
-
-        }//end on pos excute
-
-    }//end async get pish factor
 
     private class AsyncFetch extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
         URL url = null;
-        private ListView listAirPort;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             rlLoading.setVisibility(View.VISIBLE);
-
         }
 
         @Override
         protected String doInBackground(String... params) {
             try {
-
                 // Enter URL address where your json file resides
                 // Even you can make call to php file which returns json data
                 url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Insurance/InsuranceService.svc/PurchaseInsurance");
@@ -1007,8 +826,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 return e.toString();
             }
             try {
-
-                // Setup HttpURLConnection class to send and receive data from php and mysql
+               // Setup HttpURLConnection class to send and receive data from php and mysql
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(READ_TIMEOUT);
                 conn.setConnectTimeout(CONNECTION_TIMEOUT);
@@ -1086,10 +904,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             rlLoading.setVisibility(View.GONE);
             try {
-////////////////////////////
+
                 JSONObject jsonObj = new JSONObject(result);
                 JSONObject GetError = null;
-                // JSONObject jsonObj = new JSONObject(retSrc);
 
                 // Getting JSON Array node
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseInsuranceResult");//Errors
@@ -1098,23 +915,14 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 }
                 if (GetError != null) {
 
-
-                    // Toast.makeText(PassengerPackageActivity.this, "لطفا یک پرواز دیگر را چک کنید ! خطا در پرواز", Toast.LENGTH_LONG).show();
                 } else {
 
-
-
-
-         /* JSONArray jArray = GetAirportsResult.getJSONArray("Services");*/
                     JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
                     txt_shomare_factor.setText(jsonResult.getString("BookingCode"));
 
                     textView4.setImageBitmap(getBitmap(jsonResult.getString("BookingCode"), 128, 300, 150));
-
                     Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
                     tvfactorNumber.setText(jsonResult.getString("BookingCode"));
-                    //////////////////////////////
-
 
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);
@@ -1126,11 +934,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     FlagTab = true;
                     new AsyncFetchGetPreFactorDetails().execute();
                     mAdapter = new GetHotelKhadmatAdapter(PassengerInsuranceActivity.this, data, PassengerInsuranceActivity.this, 0);
-                    //mAdapter.setAdapter(mAdapter);
+
                     mAdapter.setData(data);
                     listKhadamat.setAdapter(mAdapter);
                 }
-
 
             } catch (JSONException e) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this, PassengerInsuranceActivity.this);
@@ -1144,7 +951,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     public String OrderToJsonPurchase() {
         JSONObject jsone = new JSONObject();
         JSONObject manJson = new JSONObject();
-
 
         try {
             String GUID = "";
@@ -1177,7 +983,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     detailsJson.put("PackRoomType_ID", Prefs.getInt("PackRoomType_ID", 12));
                     detailsJson.put("Room_No", Prefs.getInt("Room_No", 12));
 
-
                     detailsJson.put("RqPassenger_Address", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
                     detailsJson.put("RqPassenger_Birthdate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
                     detailsJson.put("RqPassenger_Email", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
@@ -1197,7 +1002,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                     detailJsonArray.put(detailsJson);
 
-
                 }
                 headerJson.put("PassList", detailJsonArray);
             }
@@ -1216,11 +1020,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
             detailsPartner.put("WebUser_ID ", Prefs.getString("userId", "-1"));//Purchase
 
-
-            headerJson.put("PartnerInfo", detailsPartner);
+            headerJson.put("PartnerList", detailsPartner);
 
             headerJson.put("Culture", getString(R.string.culture));
-            // headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
+
             headerJson.put("CountryCode", Prefs.getString("CountryCode", "12"));
             headerJson.put("DepartureDate", Prefs.getString("DepartureDate", "12"));
             headerJson.put("DtStart", Prefs.getString("DtStart", "12"));
@@ -1237,7 +1040,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             jsone.put("request", headerJson);
             Log.e("teeeeee", jsone.toString());
-
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -1263,7 +1065,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             identityJson.put("Password", "123qwe!@#QWE");
             identityJson.put("TermianlId", "Mobile");
             identityJson.put("UserName", "EligashtMlb");
-            // identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
+
             manJson.put("identity", identityJson);
             jsone.put("request", manJson);
 

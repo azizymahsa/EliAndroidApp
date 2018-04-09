@@ -1,29 +1,22 @@
 package com.eligasht.reservation.views.activities;
 
-import android.Manifest;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
-import com.eligasht.service.model.flight.request.searchFlight.RequestSearchFlight;
 import com.eligasht.service.model.flight.response.contactUs.GetContactUsWithCutureResult;
 import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
-import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -33,35 +26,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.ContactInfo;
-import com.eligasht.reservation.views.adapters.AboutAdapter;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -72,32 +43,22 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     private FancyButton btnBack;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    Handler handler;
-    ProgressDialog progressBar;
-    private Handler progressBarHandler = new Handler();
     ArrayList<HashMap<String, String>> mylist = null;
-    AboutAdapter mAdapter;
-    TextView txtPhone,txtAddres,txtSocialFollow,textView15;
+      TextView txtPhone,txtAddres,txtSocialFollow,textView15;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
     private GoogleMap map;
     ExpandableRelativeLayout expandableLayout;
     public ImageView txtInstagram,txtAparat,txtTweeter,txtPintrest,txtLinkdin,txtGoogleP,txtFacebook,txtTelegram;
     ProgressDialog pdLoading;
-    HttpURLConnection conn;
-    URL url = null;
-    LatLng location;
+       LatLng location;
     private ResponseContactUs responseContactUs;
 
-    // private TextView tvTitle, tvArrow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
 
-
-        //tvArrow = findViewById(R.id.tvArrow);
         expandableLayout = findViewById(R.id.expandableLayout);
-
 
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
@@ -133,13 +94,11 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         txtAparat = findViewById(R.id.txtAparat);
         txtAparat.setOnClickListener(this);
 
-
         initMap();
-       // new GetContactUsAsync().execute();
-        SendRequestContactUs();
-// add PhoneStateListener
-        findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
 
+        SendRequestContactUs();
+
+        findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
 
     }
 
@@ -189,8 +148,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.txtAparat:
 
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://www.aparat.com/eligasht")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.aparat.com/eligasht")));
                 break;
             case R.id.txtTweeter:
 
@@ -313,7 +271,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         map.getUiSettings().setTiltGesturesEnabled(false);
         map.getUiSettings().setScrollGesturesEnabled(false);
         map.getUiSettings().setZoomGesturesEnabled(false);
-map.clear();
+        map.clear();
         if (responseContactUs != null) {
             location=new LatLng(responseContactUs.getGetContactUsWithCutureResult().getLatitude(),responseContactUs.getGetContactUsWithCutureResult().getLongitude());
         }else{
