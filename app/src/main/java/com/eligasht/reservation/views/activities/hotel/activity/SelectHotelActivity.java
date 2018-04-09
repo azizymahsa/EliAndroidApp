@@ -109,16 +109,20 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         tvAlertDesc = findViewById(R.id.tvAlertDesc);
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
-        tvDate.setText(raftFa + " - " + bargashtFa);
+
         btnBack.setText(getString(R.string.search_back_right));
-        adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this, tvDate);
-        list.setAdapter(adapter);
+
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         raftFa = SingletonDate.getInstance().getStartDate().getDescription();
         bargashtFa = SingletonDate.getInstance().getEndDate().getDescription();
         rooms.add(new Room(getIntent().getExtras().getInt("Adult"), getIntent().getExtras().getInt("Child")));
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+
+
+
+
+
         btnOk.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
         Utility.init_floating(list, this);
         btnFilter.setOnClickListener(this);
@@ -132,6 +136,11 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         Utility.loadingText(tvLoading, Prefs.getString("H", ""));
         notiRecive();
         hotel_request();
+
+        tvDate.setText(raftFa + " - " + bargashtFa);
+
+        adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this, tvDate);
+        list.setAdapter(adapter);
     }
     @Override
     public void onClick(View v) {

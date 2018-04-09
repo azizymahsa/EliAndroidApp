@@ -147,12 +147,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
+
         helper.setEdgeMode(true)
                 .setParallaxMode(true)
                 .setParallaxRatio(3)
                 .setNeedBackgroundShadow(true)
                 .init(this);
-        helper.disableSwipeBack();
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.DetailHotel));
         window = getWindow();
         initView();
@@ -194,24 +194,30 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             }
         } catch (Exception e) {
         }
-        view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+        view_pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
             @Override
             public void onPageSelected(int position) {
-                if (position != 0) {
-                    helper.disableSwipeBack();
-                } else {
-                    helper.enableSwipeBack();
+                switch (position) {
+                    case 0:
+                        hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
+                        break;
+                    case 1:
+                        hotelDetailViewPager.getMapHotelFragment().setMarker(location, commentModelBus);
+                        break;
                 }
+
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
             }
         });
+
         tab_layout.setOnTabSelectedListener(onTabSelectedListener);
         ViewGroup vg = (ViewGroup) tab_layout.getChildAt(0);
         int tabsCount = vg.getChildCount();
@@ -243,7 +249,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private class GetRoomsAsync extends AsyncTask<String, Void, String> {
         protected void onPreExecute() {
             rlLoading2.setVisibility(View.VISIBLE);
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
                 window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.blue2));
             }
         }
@@ -301,8 +307,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected void onPostExecute(String result) {
             rlLoading2.setVisibility(View.GONE);
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.colorPrimaryDark));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.colorPrimaryDark));
+
             }
             ArrayList<ImageModel> imageModels = new ArrayList<>();
             try {

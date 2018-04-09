@@ -33,6 +33,7 @@ import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertRating;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.xw.repo.BubbleSeekBar;
@@ -66,6 +67,12 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
+        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+        helper.setEdgeMode(true)
+                .setParallaxMode(true)
+                .setParallaxRatio(3)
+                .setNeedBackgroundShadow(true)
+                .init(this);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.PostComment));
         init_view();
         new AlertRating(this, this,star);

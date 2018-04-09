@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.hotelflight;
+package com.eligasht.service.model.hotelflight.request;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

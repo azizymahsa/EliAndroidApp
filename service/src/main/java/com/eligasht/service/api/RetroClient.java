@@ -19,7 +19,7 @@ import com.eligasht.service.model.flight.response.purchaseServiceFlight.Response
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
-import com.eligasht.service.part.FlightSearch;
+import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -31,6 +31,16 @@ import retrofit2.http.POST;
  */
 
 public interface RetroClient {
+
+    //*************hotel flight*************
+    @POST(Const.HotelFlightSearch)
+    Observable<HotelFlightResponse> hotelFlight(
+            @Body HotelAvailReq hotelAvailReq
+    );
+
+
+    //*************hotel*************
+
     @POST(Const.HotelAvail)
     Observable<HotelAvailRes> hotelAvail(
             @Body HotelAvailReq hotelAvailReq
@@ -72,4 +82,8 @@ public interface RetroClient {
     Observable<ResponseChangeFlight> responsChangeFlight(
             @Body RequestChangeFlight requestChangeFlight
     );
+
+
+
+
 }

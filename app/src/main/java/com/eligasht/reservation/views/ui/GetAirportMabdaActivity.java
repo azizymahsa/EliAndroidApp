@@ -196,6 +196,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     }//end oncreate
 
     private void sendRequest(String searchText) {
+        avi.setVisibility(View.VISIBLE);
 
         RequestAirports requestAirports = new RequestAirports();
         Request request = new Request();
@@ -214,8 +215,10 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
     @Override
     public void onReady(ResponsAirports responsAirports) {//get Response from api
+        avi.setVisibility(View.GONE);
 
-            String GetError = "";
+
+        String GetError = "";
             List<Country> data = new ArrayList<Country>();
             ListView listAirPort;
     try{

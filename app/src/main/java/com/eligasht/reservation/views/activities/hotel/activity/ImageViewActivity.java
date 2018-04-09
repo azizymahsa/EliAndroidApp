@@ -51,7 +51,6 @@ public class ImageViewActivity extends BaseActivity {
                 .setParallaxRatio(3)
                 .setNeedBackgroundShadow(true)
                 .init(this);
-        helper.disableSwipeBack();
 
         try{
             pos = getIntent().getExtras().getInt("pic");
@@ -127,17 +126,6 @@ public class ImageViewActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if (position != 0) {
-                    /// if the current view page is not the first, make 'viewPager' receive touch event.
-                    helper.disableSwipeBack();
-
-                    /// or enable edge mode
-                } else {
-                    /// the current page return to the first one, make 'swipe back' receive touch event.
-                    helper.enableSwipeBack();
-
-                    /// or disable edge mode
-                }
 
             }
 

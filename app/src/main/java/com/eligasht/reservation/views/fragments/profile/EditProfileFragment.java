@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +53,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     private EditText edt_home_phone;
     private EditText edt_mobile;
     private EditText edt_address;
-    private TextInputLayout txt_birthday_input;
+    private RelativeLayout rlBirthday;
     public SmoothCheckBox chk_gender_man;
     public SmoothCheckBox chk_gender_woman;
     transient private boolean isChecked;
@@ -98,9 +99,9 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         chk_gender_woman = view.findViewById(R.id.chB_woman);
         birthday_date = view.findViewById(R.id.edt_birthday);
         txt_birthday = view.findViewById(R.id.txt_birthday);
-        txt_birthday_input = view.findViewById(R.id.txt_birthday_input);
-        birthday_date.setOnClickListener(this);
-        txt_birthday_input.setOnClickListener(this);
+        rlBirthday = view.findViewById(R.id.rlBirthday);
+      //  birthday_date.setOnClickListener(this);
+        rlBirthday.setOnClickListener(this);
 
         //set information of user
         birthdayDate = WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserBirthDayMiladi();

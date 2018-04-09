@@ -36,6 +36,7 @@ import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.Hotel
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.ui.NonScrollGridView;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -105,7 +106,7 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
     public void setDataComment(CommentModelBus hotel) {
         this.hotelName=hotel.getHotelName();
         this.hotelId=hotel.getHotelId();
-        if ((hotelName!=null||hotelId!=null)&&isFirst){
+        if ((hotelName!=null||hotelId!=null)&&isFirst && view != null){
             isFirst=false;
             new GetCommentAsync().execute();
 
@@ -171,7 +172,8 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
                     if (isNew) {
 
 
-                        tvSortComment.setText(R.string.NewComment);
+                        tvSortComment.setText(R.string.BenefitComment);
+
                         isNew = false;
                         Collections.sort(commentModels, new Comparator<CommentModel>() {
                             public int compare(CommentModel o1, CommentModel o2) {
@@ -188,8 +190,7 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
                         isNew = true;
 
 
-                        tvSortComment.setText(R.string.BenefitComment);
-
+                        tvSortComment.setText(R.string.NewComment);
 
                         Collections.sort(commentModels, new Comparator<CommentModel>() {
                             @Override
@@ -209,15 +210,21 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
                 Intent intent = new Intent(getActivity(), CommentActivity.class);
                 intent.putExtra("HotelName", hotelName);
                 intent.putExtra("HotelId", String.valueOf(hotelId));
-                startActivity(intent);
+                SwipeBackActivityHelper.activityBuilder(getActivity())
+                        .intent(intent)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
                 break;
             case R.id.btnOneComment:
                 Intent intent2 = new Intent(getActivity(), CommentActivity.class);
                 intent2.putExtra("HotelName", hotelName);
                 intent2.putExtra("HotelId", hotelId);
-
-
-                startActivity(intent2);
+                SwipeBackActivityHelper.activityBuilder(getActivity())
+                        .intent(intent2)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
                 break;
         }
     }

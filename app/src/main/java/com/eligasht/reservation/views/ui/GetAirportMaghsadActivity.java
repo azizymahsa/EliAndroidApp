@@ -202,6 +202,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         );
     }//end oncreate
     private void sendRequest(String searchText) {
+        avi.setVisibility(View.VISIBLE);
 
         RequestAirports requestAirports = new RequestAirports();
         Request request = new Request();
@@ -219,6 +220,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
     @Override
     public void onReady(ResponsAirports responsAirports) {
+        avi.setVisibility(View.GONE);
         String GetError = "";
         List<Country> data = new ArrayList<Country>();
         ListView listAirPort;

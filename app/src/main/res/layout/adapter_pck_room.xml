@@ -56,8 +56,8 @@
                         <com.eligasht.reservation.views.ticker.TickerView
                             android:id="@+id/txtCountAdt"
                             android:layout_width="60dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="top"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
                             android:gravity="center"
                             android:textColor="@color/pack_room_text"
                             android:textAppearance="@style/IrsansBold"
@@ -113,8 +113,8 @@
                         <com.eligasht.reservation.views.ticker.TickerView
                             android:id="@+id/txtCountCh"
                             android:layout_width="60dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="top"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
                             android:gravity="center"
                             android:text="0"
                             android:textColor="@color/pack_room_text"
