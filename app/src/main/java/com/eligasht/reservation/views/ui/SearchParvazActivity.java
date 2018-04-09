@@ -135,6 +135,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     public com.eligasht.reservation.tools.ExpandableListViewE expListViewExpanding;
     public TextView lblMoratabSazi;
     public TextView txtRuzeBad, txtRuzeGhabl, iconFilter, txtFilter, txtNoResult;
+    public FancyButton btnLastDays,btnNextDays;
     public String RaftF;
     public String BargashtF;
     public String Raft;
@@ -248,6 +249,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         txtRuzeBad = findViewById(R.id.txtRuzeBad);
         txtRuzeBad.setOnClickListener(this);
 
+        btnLastDays = findViewById(R.id.btnLastDays);
+        btnLastDays.setOnClickListener(this);
+
+        btnNextDays= findViewById(R.id.btnNextDays);
+        btnNextDays.setOnClickListener(this);
 
         btn_no_Result = findViewById(R.id.btn_no_Result);
         btn_no_Result.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
@@ -1450,6 +1456,27 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 
                 break;
+            case R.id.btnLastDays:
+
+                if (SingletonDate.getInstance().getStartDate().addOneDay()) {
+                    //tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
+                    Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+
+                    RaftF = SingletonDate.getInstance().getStartDate().getDescription();
+                    BargashtF = SingletonDate.getInstance().getEndDate().getDescription();
+
+                    txtDateOnvanB.setText(RaftF);
+                    txtDateOnvan.setText(BargashtF);
+                    callApiDateNext();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
+
+                break;
             case R.id.btn_no_Result:
                 finish();
                 break;
@@ -1473,7 +1500,26 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 
                 break;
+            case R.id.btnNextDays:
+                if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
+                    Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+                    Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
+                    RaftF = SingletonDate.getInstance().getStartDate().getDescription();
+                    BargashtF = SingletonDate.getInstance().getEndDate().getDescription();
+
+                    txtDateOnvanB.setText(RaftF);
+                    txtDateOnvan.setText(BargashtF);
+                    callApiDateNext();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
+
+
+                break;
         }
     }
 
