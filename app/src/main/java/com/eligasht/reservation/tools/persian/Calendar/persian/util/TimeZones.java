@@ -1,7 +1,6 @@
 package com.eligasht.reservation.tools.persian.Calendar.persian.util;
 
 import java.util.TimeZone;
-
 /**
  * This is simply all the available TimeZones from java.util.TimeZone as type
  * safe enum
@@ -150,7 +149,7 @@ public enum TimeZones {
 
 	private final TimeZone tz;
 
-	TimeZones(final TimeZone tz) {
+	private TimeZones(final TimeZone tz) {
 		this.tz = tz;
 	}
 

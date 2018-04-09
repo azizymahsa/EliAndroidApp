@@ -6,8 +6,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
-
-
 @SuppressWarnings("serial")
 public class JalaliCalendar extends Calendar {
 
@@ -61,7 +59,7 @@ public class JalaliCalendar extends Calendar {
                                                      20 * ONE_MINUTE };
 
     static final int          MAX_VALUES[]           = { CE, 292278994, ESFAND, 53, 6, 31, 366,
-                                                     FRIDAY, 6, PM, 11, 23, 59, 59, 999, 14 * ONE_HOUR, 2 * ONE_HOUR };
+                                                     FRIDAY, 6, PM, 11, 23, 59, 59, 999, 14 * ONE_HOUR, 2 * ONE_HOUR }; ;
 
 
     public JalaliCalendar() {
@@ -123,17 +121,7 @@ public class JalaliCalendar extends Calendar {
 
     }
 
-    public String getJalaliDateString(int year, int month, int day) {
 
-
-        YearMonthDate gMyDate = new YearMonthDate(year, month, day);
-        YearMonthDate jDate = gregorianToJalali(gMyDate);
-
-        jDay = jDate.date;
-        jMonth = jDate.month + 1;
-        jYear = jDate.year;
-        return jDay+"/"+jMonth+"/"+jYear;
-    }
     public void getJalaliDate(int year, int month, int day) {
 
         //  Calendar gCal = Calendar.getInstance();
@@ -303,7 +291,7 @@ public class JalaliCalendar extends Calendar {
         jalaliNP = (int) Math.floor(jalaliDayNo / 12053);
         jalaliDayNo = jalaliDayNo % 12053;
 
-        jalaliYear = 979 + 33 * jalaliNP + 4 * jalaliDayNo / 1461;
+        jalaliYear = 979 + 33 * jalaliNP + 4 * (int) (jalaliDayNo / 1461);
         jalaliDayNo = jalaliDayNo % 1461;
 
         if (jalaliDayNo >= 366) {
@@ -337,7 +325,7 @@ public class JalaliCalendar extends Calendar {
         jalali.setYear(jalali.getYear() - 979);
         jalali.setDate(jalali.getDate() - 1);
 
-        jalaliDayNo = 365 * jalali.getYear() + jalali.getYear() / 33
+        jalaliDayNo = 365 * jalali.getYear() + (int) (jalali.getYear() / 33)
                 * 8 + (int) Math.floor(((jalali.getYear() % 33) + 3) / 4);
         for (i = 0; i < jalali.getMonth(); ++i) {
             jalaliDayNo += jalaliDaysInMonth[i];
@@ -445,6 +433,7 @@ public class JalaliCalendar extends Calendar {
                 dayOfYear--;
                 break;
         }
+        ;
         dayOfYear = (int) Math.floor(dayOfYear / 7);
         return dayOfYear + 1;
     }
@@ -461,9 +450,12 @@ public class JalaliCalendar extends Calendar {
 
     public static boolean isLeepYear(int year) {
         // Algorithm from www.wikipedia.com
-        return (year % 33 == 1 || year % 33 == 5 || year % 33 == 9
+        if ((year % 33 == 1 || year % 33 == 5 || year % 33 == 9
                 || year % 33 == 13 || year % 33 == 17 || year % 33 == 22
-                || year % 33 == 26 || year % 33 == 30);
+                || year % 33 == 26 || year % 33 == 30)) {
+            return true;
+        } else
+            return false;
     }
 
 

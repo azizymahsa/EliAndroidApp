@@ -21,8 +21,6 @@ import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalen
 
 import java.lang.reflect.Field;
 import java.util.Date;
-
-
 public class PersianDatePicker extends LinearLayout {
 	private OnDateChangedListener mListener;
 	private NumberPicker yearNumberPicker;
@@ -47,9 +45,9 @@ public class PersianDatePicker extends LinearLayout {
 		super(context, attrs, defStyle);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.sl_persian_date_picker, this);
-		yearNumberPicker = view.findViewById(R.id.yearNumberPicker);
-		monthNumberPicker = view.findViewById(R.id.monthNumberPicker);
-		dayNumberPicker = view.findViewById(R.id.dayNumberPicker);
+		yearNumberPicker = (NumberPicker) view.findViewById(R.id.yearNumberPicker);
+		monthNumberPicker = (NumberPicker) view.findViewById(R.id.monthNumberPicker);
+		dayNumberPicker = (NumberPicker) view.findViewById(R.id.dayNumberPicker);
 		setDividerColor(yearNumberPicker);
 		setDividerColor(monthNumberPicker);
 		setDividerColor(dayNumberPicker);
@@ -57,7 +55,7 @@ public class PersianDatePicker extends LinearLayout {
 		setNumberPickerTextColor(monthNumberPicker,getResources().getColor(R.color.app_base_color));
 		setNumberPickerTextColor(dayNumberPicker,getResources().getColor(R.color.app_base_color));
 
-		descriptionTextView = view.findViewById(R.id.descriptionTextView);
+		descriptionTextView = (TextView) view.findViewById(R.id.descriptionTextView);
 		PersianCalendar pCalendar = new PersianCalendar();
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PersianDatePicker, 0, 0);
 		boolean disableSoftKeyboard = a.getBoolean(R.styleable.PersianDatePicker_disableSoftKeyboard, false);
