@@ -163,9 +163,7 @@
 
 -dontwarn org.w3c.dom.bootstrap.DOMImplementationRegistry
 
--keep class com.eligasht.reservation.models.**
--keep class com.eligasht.reservation.models.*
--keep class com.eligasht.reservation.models.**{*;}
+
 -keep class com.zplesac.connectionbuddy.**
 -keep class com.zplesac.connectionbuddy.models.**
 -keep class com.zplesac.connectionbuddy.models.*
@@ -216,3 +214,4 @@
 -keep public class com.eligasht.reservation.models.hotel.api.detail
 -keep public class com.eligasht.reservation.views.adapters.hotel.rooms{ *; }
 -keep public class com.eligasht.reservation.views.adapters.hotel.rooms.** { *; }
+-keep class com.eligasht.reservation.models.** { *; }

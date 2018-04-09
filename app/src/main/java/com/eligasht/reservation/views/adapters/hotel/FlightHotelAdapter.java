@@ -31,7 +31,7 @@ import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActiv
 import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
-
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -201,8 +201,11 @@ public class FlightHotelAdapter extends BaseAdapter {
                 i.putExtra("DateTime", DateTime.getText().toString());
 
                 i.putExtra("type", 1);
-
-                activity.startActivity(i);
+                SwipeBackActivityHelper.activityBuilder(activity)
+                        .intent(i)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
             }
         });
 

@@ -67,6 +67,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
     private boolean doubleBackToExitPressedOnce = false;
     private int TIME_INTERVAL = 2000;
+    boolean isAnimated=true;
 
     public static void setUserName(String name) {
         if (txt_name != null) {
@@ -123,6 +124,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         lottieUserMenu = findViewById(R.id.lottieUserMenu);
         lottieUserMenu.setAnimation("lottie/user.json");
         lottieUserMenu.setSpeed(1.5f);
+
         //tvTitle.setText(getString(R.string.searchFlight));
 
 
@@ -151,16 +153,20 @@ public class MainActivity extends Base implements View.OnClickListener {
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-                if (!lottieUserMenu.isAnimating()){
+              /*  if (!lottieUserMenu.isAnimating()){
                     lottieUserMenu.playAnimation();
 
-                }
+                }*/
 
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
+                if (!lottieUserMenu.isAnimating() && isAnimated){
+                    isAnimated=false;
+                    lottieUserMenu.playAnimation();
 
+                }
             }
 
             @Override

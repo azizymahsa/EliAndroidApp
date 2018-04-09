@@ -46,13 +46,14 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     public RoomPresenter roomPresenter;
     private Button btn_confirm;
     ArrayList<ModelRowCountRoom> roomArrayList;
-    SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
 
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_room);
+        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+
         helper.setEdgeMode(false)
                 .setParallaxMode(true)
                 .setParallaxRatio(3)

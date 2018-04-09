@@ -132,6 +132,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                         day
                 );
                 datePickerDialogDepart.setYearRange(1330, currentYear);
+                datePickerDialogDepart.setTitle(getActivity().getString(R.string.Brithday));
             } catch (Exception e) {
             }
         }

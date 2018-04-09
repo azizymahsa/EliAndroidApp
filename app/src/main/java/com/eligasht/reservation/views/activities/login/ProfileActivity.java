@@ -39,6 +39,7 @@ import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.fragments.profile.ProfilePagerAdapter;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -246,6 +247,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         }
 
         needShowProgressDialog();
+        Log.e("testtt", new Gson().toJson(profilePagerAdapter.getChangePasswordFragment().getChangePasswordReq()));
 
         Call<WebUserChangePasswordRes> call = service.changePasswordProfile(new ChangePasswordRequestModel(profilePagerAdapter.getChangePasswordFragment().getChangePasswordReq()));
         call.enqueue(new Callback<WebUserChangePasswordRes>() {

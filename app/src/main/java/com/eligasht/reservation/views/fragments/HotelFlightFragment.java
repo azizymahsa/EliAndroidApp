@@ -28,7 +28,7 @@ import com.eligasht.reservation.models.model.pack.ChildModel;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelFlightActivity;
-import com.eligasht.reservation.views.activities.pack.AddRoomActivity;
+import com.eligasht.reservation.views.activities.AddRoomActivity;
 import com.eligasht.reservation.views.adapters.HotelCountRoomAdapter;
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.GetAirportHotelActivity;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
@@ -38,6 +38,7 @@ import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.dialog.app.CountTimeAlert;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -235,7 +236,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                         intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
                         intent.putExtra("Geo", geo);
                         Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-                        startActivity(intent);
+                        SwipeBackActivityHelper.activityBuilder(getActivity())
+                                .intent(intent)
+                                .needParallax(true)
+                                .needBackgroundShadow(true)
+                                .startActivity();
                     }
 
 
@@ -256,7 +261,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             case R.id.llRoom:
                 Intent room = new Intent(getActivity(), AddRoomActivity.class);
                 room.putExtra("roomList", Prefs.getString("Rooms", "dd"));
-                startActivity(room);
+                SwipeBackActivityHelper.activityBuilder(getActivity())
+                        .intent(room)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
 
                 break;
             case R.id.linearLayout_maghsad:
@@ -264,6 +273,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 intent.putExtra("type", 2);
                 intent.putExtra("position", "HF");
                 startActivity(intent);
+
                 break;
             case R.id.ivImage:
                 anim();
