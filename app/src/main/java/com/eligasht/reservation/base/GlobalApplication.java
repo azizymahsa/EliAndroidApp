@@ -31,6 +31,7 @@ import com.google.firebase.crash.FirebaseCrash;
 import com.onesignal.OneSignal;
 import com.orhanobut.hawk.Hawk;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.squareup.leakcanary.LeakCanary;
 import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.ConnectionBuddyConfiguration;
 
@@ -127,6 +128,13 @@ public class GlobalApplication extends ServiceApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
+        // Normal app init code...
 
         sAnalytics = GoogleAnalytics.getInstance(this);
 
