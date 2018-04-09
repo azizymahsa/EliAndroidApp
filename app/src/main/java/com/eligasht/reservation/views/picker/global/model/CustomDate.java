@@ -4,8 +4,9 @@ package com.eligasht.reservation.views.picker.global.model;
 import android.content.SharedPreferences;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.picker.utils.utils.PersianCalendar;
 import com.eligasht.reservation.views.ui.SingletonContext;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+
 
 import org.greenrobot.eventbus.EventBus;
 
