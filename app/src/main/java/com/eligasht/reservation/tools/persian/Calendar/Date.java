@@ -2,9 +2,6 @@ package com.eligasht.reservation.tools.persian.Calendar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-
-
 /**
  * __  ____   _____ _____
  * |  \/  \ \ / /_ _|_   _|

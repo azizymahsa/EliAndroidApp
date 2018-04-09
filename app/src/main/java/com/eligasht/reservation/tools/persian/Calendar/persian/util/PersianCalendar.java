@@ -20,7 +20,6 @@ package com.eligasht.reservation.tools.persian.Calendar.persian.util;
 
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
-
 /**
  * 
  * <strong> Persian(Shamsi) calendar </strong>

@@ -1,5 +1,4 @@
 package com.eligasht.reservation.views.fragments.profile;
-
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -27,23 +26,18 @@ import com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox;
 import com.eligasht.reservation.views.dialogs.NumberPickerDialog;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
-
 /**
  * Created by elham.bonyani on 1/25/2018.
  */
-
 public class EditProfileFragment extends Fragment implements View.OnClickListener, NumberPickerDialog.NumberPickerListener,
         TimePickerDialog.OnTimeSetListener,
         com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
-
-
- //   private TextView txt_arrow1;
-  //  private TextView txt_arrow2;
-  //  private ViewGroup btn_order;
+    //   private TextView txt_arrow1;
+    //  private TextView txt_arrow2;
+    //  private ViewGroup btn_order;
 //    private ViewGroup btn_user_info;
 //    private ExpandableRelativeLayout expand_other;
- //   private ExpandableRelativeLayout expand_user_info;
-
+    //   private ExpandableRelativeLayout expand_user_info;
     private EditText edt_name_fa;
     private EditText edt_last_name_fa;
     private EditText edt_email_user_name;
@@ -53,7 +47,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     private EditText edt_home_phone;
     private EditText edt_mobile;
     private EditText edt_address;
-    private RelativeLayout rlBirthday;
+    private LinearLayout rlBirthday;
     public SmoothCheckBox chk_gender_man;
     public SmoothCheckBox chk_gender_woman;
     transient private boolean isChecked;
@@ -82,10 +76,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         return view;
     }
 
-
     private void initViews(View view) {
-
-
         edt_address = view.findViewById(R.id.edt_address);
         edt_mobile = view.findViewById(R.id.edt_mobile);
         edt_home_phone = view.findViewById(R.id.edt_home_phone);
@@ -100,8 +91,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         birthday_date = view.findViewById(R.id.edt_birthday);
         txt_birthday = view.findViewById(R.id.txt_birthday);
         rlBirthday = view.findViewById(R.id.rlBirthday);
-      //  birthday_date.setOnClickListener(this);
         rlBirthday.setOnClickListener(this);
+
+
+
 
         //set information of user
         birthdayDate = WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserBirthDayMiladi();
@@ -114,14 +107,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         edt_code_meli.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserNationalCode());
         edt_address.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserAddress());
         edt_email_user_name.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
-
-
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "dd/MM/yyyy");
-
         int currentDay = DateUtil.getDayOfMonth(currentDateTime, "dd/MM/yyyy", true);
         int currentYear = DateUtil.getYear(currentDateTime, "dd/MM/yyyy", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "dd/MM/yyyy", true) - 1;
-
         if (ValidationTools.isEmptyOrNull(birthdayDate)) {
             txt_birthday.setText(getString(R.string.please_select_one));
             datePickerDialogDepart = DatePickerDialog.newInstance(
@@ -132,7 +121,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
             );
         } else {
             try {
-                txt_birthday.setText(DateUtil.getLongStringDate(birthdayDate, "dd/MM/yyyy", true));
+                txt_birthday.setText(DateUtil.getLongStringDateInsurance(birthdayDate, "dd/MM/yyyy", true));
                 int day = DateUtil.getDayOfMonth(birthdayDate, "dd/MM/yyyy", true);
                 int year = DateUtil.getYear(birthdayDate, "dd/MM/yyyy", true);
                 int month = DateUtil.getMonth(birthdayDate, "dd/MM/yyyy", true) - 1;
@@ -143,64 +132,42 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                         day
                 );
                 datePickerDialogDepart.setYearRange(1330, currentYear);
-
             } catch (Exception e) {
             }
-
         }
-
-
-
         chk_gender_man.setOnCheckedChangeListener(null);
         chk_gender_woman.setOnCheckedChangeListener(null);
         birthday_date.setOnClickListener(this);
-        try{
-            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserGender()){
+        try {
+            if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserGender()) {
                 chk_gender_man.setChecked(true);
-            }else{
+            } else {
                 chk_gender_woman.setChecked(true);
             }
-        }catch (Exception e){}
-
-
+        } catch (Exception e) {
+        }
         chk_gender_man.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-
-
                 if (isChecked) {
                     chk_gender_woman.setChecked(false);
                 }
             }
         });
-
         chk_gender_woman.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-
-
                 if (isChecked) {
                     chk_gender_man.setChecked(false);
                 }
             }
         });
-
-
     }
-
-
-
 
     @Override
     public void onClick(View view) {
-
-
-            datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "BirthDay");
-
-
-
+        datePickerDialogDepart.show(getActivity().getSupportFragmentManager(), "BirthDay");
     }
-
 
     public boolean isValidForm() {
         // check validation and if all thigs are ok return true else return false;
@@ -250,11 +217,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
             registerListReq.setWebUserGender(false);
         }
         registerListReq.setWebUserBirthDayMiladi(birthdayDate);
-
         registerListReq.setWebUserID(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID());
-
         // set other parameter here!
-
         return registerListReq;
     }
 
@@ -264,12 +228,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onReturnValue(String type, int duration) {
-
     }
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-
     }
 
     //shamsi
@@ -278,20 +240,17 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
-
         long milis = DateUtil.getMiliSecondPersianDateTime(year, monthOfYear, dayOfMonth);
         String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
-
         if (view.getTag().equals("BirthDay")) {
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            txt_birthday.setText(DateUtil.getLongStringDate(currentDateTime, "yyyy-MM-dd", true));
+            txt_birthday.setText(DateUtil.getLongStringDateInsurance(currentDateTime, "yyyy-MM-dd", true));
             birthdayDate = currentDateTime;
             PersianCalendar persianCalendarDatePicker = new PersianCalendar();
             persianCalendarDatePicker.setPersianDate(year_Min, monthMin, dayMin);
             datePickerDialogDepart.initialize(this, year_, month, day);
-
         }
     }
 }

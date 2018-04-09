@@ -21,7 +21,6 @@ import java.util.Date;
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 /**
  * algorithms for converting Julian days to the Persian calendar, and vice versa are adopted
  * from <a href="casema.nl/couprie/calmath/persian/index.html">couprie.nl</a>

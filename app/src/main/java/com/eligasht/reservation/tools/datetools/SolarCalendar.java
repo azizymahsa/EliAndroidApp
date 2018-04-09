@@ -1,7 +1,6 @@
 package com.eligasht.reservation.tools.datetools;
 
 import java.util.Calendar;
-
 public class SolarCalendar {
 
 	private static int year;
@@ -11,12 +10,12 @@ public class SolarCalendar {
 	private static Calendar calendar;
 
 	public SolarCalendar() {
-		calendar = Calendar.getInstance();
+		this.calendar = Calendar.getInstance();
 		calSolarCalendar();
 	}
 
 	public SolarCalendar(Calendar calendar) {
-		SolarCalendar.calendar = calendar;
+		this.calendar = calendar;
 		calSolarCalendar();
 	}
 	//jorjian to persian

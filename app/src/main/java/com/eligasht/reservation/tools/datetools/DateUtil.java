@@ -9,45 +9,45 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
-
-
 /**
  * Created by hossein-ra on 1/10/2017.
  */
 
 public class DateUtil {
 
-    public static int getDayOfMonth(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static int getDayOfMonth(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return 1;
         }
-        try {
-            Date date = null;
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-            try {
-                date = simpleDateFormat.parse(dateTime);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            Calendar greCal = new GregorianCalendar();
-            greCal.setTime(date);
+         try {
+             Date date = null;
+             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+             try {
+                 date = simpleDateFormat.parse(dateTime);
+             }
+             catch (ParseException e) {
+                 e.printStackTrace();
+             }
+             Calendar greCal = new GregorianCalendar();
+             greCal.setTime(date);
 
-            if (isPersian) {
-                JalaliCalendar jalCal = new JalaliCalendar();
+             if(isPersian){
+                 JalaliCalendar jalCal = new JalaliCalendar();
                 // jalCal.setMiladiDate(greCal.get(Calendar.YEAR), greCal.get(Calendar.MONTH), greCal.get(Calendar.DAY_OF_MONTH));
-                jalCal.getJalaliDate(greCal.get(Calendar.YEAR), greCal.get(Calendar.MONTH), greCal.get(Calendar.DAY_OF_MONTH));
-                return jalCal.getJday();
-            }
-            return greCal.get(Calendar.DAY_OF_MONTH);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return 1;
-        }
+                 jalCal.getJalaliDate(greCal.get(Calendar.YEAR), greCal.get(Calendar.MONTH), greCal.get(Calendar.DAY_OF_MONTH));
+                 return  jalCal.getJday();
+             }
+             return greCal.get(Calendar.DAY_OF_MONTH);
+         }
+         catch (NullPointerException e) {
+             e.printStackTrace();
+             return 1;
+         }
     }
 
-    public static int getDayOfWeek(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static int getDayOfWeek(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return GregorianMonth.Jan.getValue();
         }
         try {
@@ -56,20 +56,22 @@ public class DateUtil {
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             try {
                 date = simpleDateFormat.parse(dateTime);
-            } catch (ParseException e) {
+            }
+            catch (ParseException e) {
                 e.printStackTrace();
             }
             Calendar greCal = new GregorianCalendar();
             greCal.setTime(date);
             return greCal.get(Calendar.DAY_OF_WEEK);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return GregorianDayOfWeek.Sun.getValue();
         }
     }
 
-    public static int getMonth(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static int getMonth(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return GregorianMonth.Jan.getValue();
         }
         try {
@@ -78,27 +80,29 @@ public class DateUtil {
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             try {
                 date = simpleDateFormat.parse(dateTime);
-            } catch (ParseException e) {
+            }
+            catch (ParseException e) {
                 e.printStackTrace();
             }
             Calendar greCal = new GregorianCalendar();
             greCal.setTime(date);
 
-            if (isPersian) {
+            if(isPersian){
                 JalaliCalendar jalCal = new JalaliCalendar();
-                //  jalCal.setMiladiDate(greCal.get(Calendar.YEAR), greCal.get(Calendar.MONTH), greCal.get(Calendar.DAY_OF_MONTH));
+              //  jalCal.setMiladiDate(greCal.get(Calendar.YEAR), greCal.get(Calendar.MONTH), greCal.get(Calendar.DAY_OF_MONTH));
                 jalCal.getJalaliDate(greCal.get(Calendar.YEAR), greCal.get(Calendar.MONTH), greCal.get(Calendar.DAY_OF_MONTH));
-                return jalCal.getJmonth();
+                return  jalCal.getJmonth() ;
             }
             return greCal.get(Calendar.MONTH);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return GregorianMonth.Jan.getValue();
         }
     }
 
-    public static int getYear(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static int getYear(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return new GregorianCalendar().getTime().getYear();
         }
         try {
@@ -107,63 +111,65 @@ public class DateUtil {
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             try {
                 date = simpleDateFormat.parse(dateTime);
-            } catch (ParseException e) {
+            }
+            catch (ParseException e) {
                 e.printStackTrace();
             }
             Calendar greCal = new GregorianCalendar();
             greCal.setTime(date);
 
-            if (isPersian) {
+            if(isPersian){
                 JalaliCalendar jalCal = new JalaliCalendar();
                 jalCal.getJalaliDate(greCal.get(Calendar.YEAR), greCal.get(Calendar.MONTH), greCal.get(Calendar.DAY_OF_MONTH));
-                return jalCal.getJyear();
+                return  jalCal.getJyear();
             }
             return greCal.get(Calendar.YEAR);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return new GregorianCalendar().getTime().getYear();
         }
     }
 
-    public static String getStringMonth(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static String getStringMonth(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return GregorianMonth.Jan.toString();
         }
         try {
-            if (isPersian) {
-                switch (PersianMonth.forValue(getMonth(dateTime, format, isPersian) - 1)) {
-                    case Farvardin:
-                        return "فروردین";
-                    case Ordibehesht:
-                        return "اردیبهشت";
-                    case Khordad:
-                        return "خرداد";
-                    case Tir:
-                        return "تیر";
-                    case Mordad:
-                        return "مرداد";
-                    case Shahrivar:
-                        return "شهریور";
-                    case Mehr:
-                        return "مهر";
-                    case Aban:
-                        return "آبان";
-                    case Azar:
-                        return "آذر";
-                    case Dey:
-                        return "دی";
-                    case Bahman:
-                        return "بهمن";
-                    case Esfand:
-                        return "اسفند";
-                    default:
-                        return "فروردین";
-                }
-            }
+           if(isPersian){
+               switch(PersianMonth.forValue(getMonth(dateTime,format,isPersian) - 1)){
+                   case Farvardin:
+                       return "فروردین";
+                   case Ordibehesht:
+                       return "اردیبهشت";
+                   case Khordad:
+                       return "خرداد";
+                   case Tir:
+                       return "تیر";
+                   case Mordad:
+                       return "مرداد";
+                   case Shahrivar:
+                       return "شهریور";
+                   case Mehr:
+                       return "مهر";
+                   case Aban:
+                       return "آبان";
+                   case Azar:
+                       return "آذر";
+                   case Dey:
+                       return "دی";
+                   case Bahman:
+                       return "بهمن";
+                   case Esfand:
+                       return "اسفند";
+                   default:
+                       return "فروردین";
+               }
+           }
 
-            switch (GregorianMonth.forValue(getMonth(dateTime, format, isPersian))) {
+            switch(GregorianMonth.forValue(getMonth(dateTime,format,isPersian))){
                 case Apr:
-                    return "َApril";
+                    return GregorianMonth.Apr.toString();
                 case Aug:
                     return GregorianMonth.Aug.toString();
                 case Dec:
@@ -179,7 +185,7 @@ public class DateUtil {
                 case May:
                     return GregorianMonth.May.toString();
                 case Mar:
-                    return "March";
+                    return GregorianMonth.Mar.toString();
                 case Nov:
                     return GregorianMonth.Nov.toString();
                 case Oct:
@@ -189,19 +195,20 @@ public class DateUtil {
                 default:
                     return GregorianMonth.Jan.toString();
             }
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return GregorianMonth.Jan.toString();
         }
     }
 
-    public static String getStringDayOfWeek(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static String getStringDayOfWeek(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return GregorianDayOfWeek.Sun.toString();
         }
         try {
-            if (isPersian) {
-                switch (GregorianDayOfWeek.forValue(getDayOfWeek(dateTime, format, isPersian) - 1)) {
+            if(isPersian){
+                switch(GregorianDayOfWeek.forValue(getDayOfWeek(dateTime,format,isPersian) - 1)) {
                     case Fri:
                         return "جمعه";
                     case Sat:
@@ -220,7 +227,7 @@ public class DateUtil {
                         return "یکشنبه";
                 }
             }
-            switch (GregorianDayOfWeek.forValue(getDayOfWeek(dateTime, format, isPersian) - 1)) {
+            switch(GregorianDayOfWeek.forValue(getDayOfWeek(dateTime,format,isPersian) - 1)) {
                 case Fri:
                     return GregorianDayOfWeek.Fri.toString();
                 case Sat:
@@ -238,119 +245,96 @@ public class DateUtil {
                 default:
                     return GregorianDayOfWeek.Sun.toString();
             }
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return GregorianDayOfWeek.Sun.toString();
         }
     }
 
-    public static String getLongStringDate(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static String getLongStringDate(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return "";
         }
         try {
-            return getStringDayOfWeek(dateTime, format, isPersian) + " " +
-                    getDayOfMonth(dateTime, format, isPersian) + " " +
-                    getStringMonth(dateTime, format, isPersian);
-        } catch (NullPointerException e) {
+            return  getStringDayOfWeek(dateTime,format,isPersian) + " " +
+                    getDayOfMonth(dateTime,format,isPersian) + " " +
+                    getStringMonth(dateTime,format,isPersian) ;
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         }
     }
-
-    public static String getLongStringDateNonYear(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
-            return "";
-        }
-        try {
-            return getStringDayOfWeek(dateTime, format, isPersian) + " " +
-                    getDayOfMonth(dateTime, format, isPersian) + " ";
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static String getLongStringDateInsurance(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static String getLongStringDateInsurance(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return "";
         }
         try {
             return
-                    getDayOfMonth(dateTime, format, isPersian) + " " +
-                            getStringMonth(dateTime, format, isPersian) + " "
-                            + " " +
-                            getYear(dateTime, format, isPersian);
-        } catch (NullPointerException e) {
+                    getDayOfMonth(dateTime,format,isPersian) + " " +
+                    getStringMonth(dateTime,format,isPersian) + " "
+                    + " " +
+                    getYear(dateTime,format,isPersian);
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public static String getLongStringDateFromMilis(String milis, String format, boolean isPersian) {
+    public static String getLongStringDateFromMilis(String milis,String format,boolean isPersian){
 
-        if (ValidationTools.isEmptyOrNull(milis)) {
+        if(ValidationTools.isEmptyOrNull(milis)){
             return "";
         }
         try {
-            String dateTime = getDateTime(milis, format);
-            return getStringDayOfWeek(dateTime, format, isPersian) + "  " +
-                    getDayOfMonth(dateTime, format, isPersian) + "  " +
-                    getStringMonth(dateTime, format, isPersian) + "  " +
-                    getYear(dateTime, format, isPersian);
-        } catch (NullPointerException e) {
+            String dateTime = getDateTime(milis,format);
+            return  getStringDayOfWeek(dateTime,format,isPersian) + "  " +
+                    getDayOfMonth(dateTime,format,isPersian) + "  " +
+                    getStringMonth(dateTime,format,isPersian) + "  " +
+                    getYear(dateTime,format,isPersian);
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public static String getShortStringDate(String dateTime, String format, boolean isPersian) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static String getShortStringDate(String dateTime,String format,boolean isPersian){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return "";
         }
         try {
-            return getStringDayOfWeek(dateTime, format, isPersian) + "  " +
-                    getDayOfMonth(dateTime, format, isPersian) + "  " +
-                    getStringMonth(dateTime, format, isPersian);
-        } catch (NullPointerException e) {
+            return  getStringDayOfWeek(dateTime,format,isPersian) + "  " +
+                    getDayOfMonth(dateTime,format,isPersian) + "  " +
+                    getStringMonth(dateTime,format,isPersian);
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public static String getShortStringDateFromMilis(String milis, String format, boolean isPersian) {
+    public static String getShortStringDateFromMilis(String milis,String format,boolean isPersian){
 
-        if (ValidationTools.isEmptyOrNull(milis)) {
+        if(ValidationTools.isEmptyOrNull(milis)){
             return "";
         }
         try {
-            String dateTime = getDateTime(milis, format);
-            return getStringDayOfWeek(dateTime, format, isPersian) + "  " +
-                    getDayOfMonth(dateTime, format, isPersian) + "  " +
-                    getStringMonth(dateTime, format, isPersian);
-        } catch (NullPointerException e) {
+            String dateTime = getDateTime(milis,format);
+            return  getStringDayOfWeek(dateTime,format,isPersian) + "  " +
+                    getDayOfMonth(dateTime,format,isPersian) + "  " +
+                    getStringMonth(dateTime,format,isPersian);
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public static String getShortStringTimeFromMilis(String milis, String format, boolean isPersian) {
-
-        if (ValidationTools.isEmptyOrNull(milis)) {
-            return "";
-        }
-        try {
-            long minute = (Long.parseLong(milis) / (1000 * 60)) % 60;
-            long hour = (Long.parseLong(milis) / (1000 * 60 * 60)) % 24;
-            return hour + " : " + minute;
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static String getDateTime(String milisecond, String format) {
-        if (ValidationTools.isEmptyOrNull(milisecond)) {
+    public static String getDateTime(String milisecond , String format){
+        if(ValidationTools.isEmptyOrNull(milisecond)){
             return "";
         }
         try {
@@ -358,14 +342,15 @@ public class DateUtil {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             return simpleDateFormat.format(date);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public static long getMiliSecondGregorianDateTime(String dateTime, String format) {
-        if (ValidationTools.isEmptyOrNull(dateTime)) {
+    public static long getMiliSecondGregorianDateTime(String dateTime,String format){
+        if(ValidationTools.isEmptyOrNull(dateTime)){
             return 0;
         }
         try {
@@ -373,28 +358,30 @@ public class DateUtil {
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date date = simpleDateFormat.parse(dateTime);
             return date.getTime();
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return 0;
-        } catch (ParseException e) {
+        }
+        catch (ParseException e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-    public static long getMiliSecondPersianDateTime(int year, int month, int day) {
+    public static long getMiliSecondPersianDateTime(int year,int month,int day){
         JalaliCalendar jalCal = new JalaliCalendar();
-        jalCal.getGregorianDate(year, month + 1, day);
-        return getMiliSecondGregorianDateTime(jalCal.getMyear() + "-" + (jalCal.getMmonth() + 1) + "-" + jalCal.getMday(), "yyyy-MM-dd");
+        jalCal.getGregorianDate(year,month + 1,day);
+        return  getMiliSecondGregorianDateTime(jalCal.getMyear() + "-" + (jalCal.getMmonth() + 1) + "-" + jalCal.getMday(),"yyyy-MM-dd");
     }
 
-    public static String getStringJSONDateTime(String milisecond) {
+    public static String getStringJSONDateTime(String milisecond){
         return "/Date(" + (milisecond) + ")/";
     }
 
-    public static long getMiliSecondFromJSONDate(String jsonDate) {
-        long time = 0;
-        long timeEx = 0;
+    public static long getMiliSecondFromJSONDate(String jsonDate){
+        long time = 0 ;
+        long timeEx = 0 ;
         jsonDate = jsonDate.replaceAll("^/Date\\(", "");
 
         if (jsonDate.contains("+")) {
@@ -409,20 +396,20 @@ public class DateUtil {
             String hour = String.valueOf(returnValue.charAt(0)) + String.valueOf(returnValue.charAt(1));
             String min = String.valueOf(returnValue.charAt(2)) + String.valueOf(returnValue.charAt(3));
             timeEx = (Integer.parseInt(hour) * 60 * 60 * 1000) + (Integer.parseInt(min) * 60 * 1000);
-        } else if (jsonDate.contains(")")) {
-            jsonDate = jsonDate.substring(0, jsonDate.length() - 1);
-            jsonDate = jsonDate.substring(0, jsonDate.length() - 1);
+        } else if(jsonDate.contains(")")) {
+            jsonDate = jsonDate.substring(0,jsonDate.length()-1);
+            jsonDate = jsonDate.substring(0,jsonDate.length()-1);
             time = Long.parseLong(jsonDate);
             timeEx = 0;
-        } else {
+        }else{
             time = Long.parseLong(jsonDate);
             timeEx = 0;
         }
-        return time + timeEx;
+        return  time + timeEx;
     }
 
-    public static TimeComponents getTimeDifference(String firstDate, String secondDate) {
-        if (ValidationTools.isEmptyOrNull(firstDate) || ValidationTools.isEmptyOrNull(secondDate)) {
+    public static TimeComponents getTimeDifference(String firstDate, String secondDate){
+        if(ValidationTools.isEmptyOrNull(firstDate) || ValidationTools.isEmptyOrNull(secondDate)){
             return new TimeComponents();
         }
         try {
@@ -447,7 +434,8 @@ public class DateUtil {
 
             timeComponents.setSecond(different / secondsInMilli);
             return timeComponents;
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         }
