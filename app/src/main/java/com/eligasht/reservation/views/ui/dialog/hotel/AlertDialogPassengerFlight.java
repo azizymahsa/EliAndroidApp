@@ -73,7 +73,7 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
-                
+
                 dialog.cancel();
 
 
