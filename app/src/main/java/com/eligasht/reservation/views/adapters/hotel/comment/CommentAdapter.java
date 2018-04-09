@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.eligasht.reservation.models.CommentModel;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.eligasht.R;
 

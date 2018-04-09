@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
@@ -22,6 +21,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.getHotelPolicy.GetHotelPolicyApi;
 import com.eligasht.reservation.api.hotel.getHotelRoom.GetHoldRoom;
+import com.eligasht.reservation.models.RoomsModel;
 import com.eligasht.reservation.models.hotel.api.holdSelectedRoom.call.HoldSelectedRoomRequest;
 import com.eligasht.reservation.models.hotel.api.holdSelectedRoom.call.RoomRequest;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
@@ -30,9 +30,7 @@ import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.RequestPoli
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
-import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
-import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerHotelActivity;
 import com.eligasht.reservation.views.ui.PassengerHotelFlightActivity;
@@ -40,7 +38,6 @@ import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPolicy;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 

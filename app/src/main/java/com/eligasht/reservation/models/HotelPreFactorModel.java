@@ -1,4 +1,4 @@
-package com.eligasht.reservation.lost.hotel;
+package com.eligasht.reservation.models;
 
 /**
  * Created by Reza.nejati on 1/22/2018.

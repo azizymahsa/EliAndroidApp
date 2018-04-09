@@ -1,32 +1,22 @@
 package com.eligasht.reservation.views.fragments.hotelDetail;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.eventbus.RoomsModelBus;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsAdapter;
-import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.ArrayList;
-
-
 public class RoomHotelFragment extends Fragment {
     private View view;
     private NonScrollListView lvRooms;

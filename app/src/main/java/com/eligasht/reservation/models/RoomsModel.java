@@ -1,4 +1,4 @@
-package com.eligasht.reservation.views.adapters.hotel.rooms;
+package com.eligasht.reservation.models;
 
 /**
  * Created by Reza.nejati on 1/6/2018.

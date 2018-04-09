@@ -1,6 +1,6 @@
 package com.eligasht.reservation.models.eventbus;
 
-import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsModel;
+import com.eligasht.reservation.models.RoomsModel;
 
 import java.util.ArrayList;
 

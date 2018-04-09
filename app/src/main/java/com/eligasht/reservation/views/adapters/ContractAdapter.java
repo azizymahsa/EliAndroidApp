@@ -1,37 +1,21 @@
 package com.eligasht.reservation.views.adapters;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.eligasht.R;
+import com.eligasht.reservation.models.ContractModels;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
-import com.eligasht.reservation.models.model.ModelCheckBox;
 import com.eligasht.reservation.models.model.login.call.EmailContractReq;
-import com.eligasht.reservation.models.model.login.call.EmailContractRequestModel;
-import com.eligasht.reservation.models.model.login.response.EmailContractRes;
-import com.eligasht.reservation.models.model.login.response.EmailContractResult;
 import com.eligasht.reservation.tools.Utility;
-import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;
-import com.eligasht.reservation.views.adapters.hotel.FilterAdapter;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
-
-import cn.refactor.library.SmoothCheckBox;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 /**
  * Created by Reza.nejati on 2/27/2018.
  */
@@ -40,10 +24,10 @@ public class ContractAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private ViewHolder holder;
     private ProfileActivity context;
-    private ArrayList<ContractModel> contractModels = new ArrayList<>();
+    private ArrayList<ContractModels> contractModels = new ArrayList<>();
 
 
-    public ContractAdapter(ProfileActivity context, ArrayList<ContractModel> contractModels) {
+    public ContractAdapter(ProfileActivity context, ArrayList<ContractModels> contractModels) {
         this.contractModels = contractModels;
         this.context = context;
         inflater = LayoutInflater.from(context);

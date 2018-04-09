@@ -1,31 +1,28 @@
-package com.eligasht.reservation.views.adapters;
-
+package com.eligasht.reservation.models;
 /**
  * Created by Reza.nejati on 2/27/2018.
  */
+public class ContractModels {
+    public String num_contract;
+    public String date;
+    public String path;
+    public String depart_date;
+    public String login_date;
+    public String sum_price;
+    public String remained_price;
+    public String follower;
+    public String email;
+    public String visaConfirm;
+    public String visaIssue;
+    public String ticketConfirm;
+    public String ticketIssue;
+    public String hotelConfirm;
+    public String hotelIssue;
+    public String documents;
+    public String id;
 
-public class ContractModel {
-    String num_contract;
-    String date;
-    String path;
-    String depart_date;
-    String login_date;
-    String sum_price;
-    String remained_price;
-    String follower;
-    String email;
-    String visaConfirm;
-    String visaIssue;
-    String ticketConfirm;
-    String ticketIssue;
-
-    String hotelConfirm;
-    String hotelIssue;
-    String documents;
-    String id;
-
-    public ContractModel(String num_contract, String date, String path, String depart_date, String login_date, String sum_price, String remained_price, String follower, String email, String visaConfirm,
-                         String visaIssue, String ticketConfirm, String ticketIssue, String hotelConfirm, String hotelIssue, String documents, String id) {
+    public ContractModels(String num_contract, String date, String path, String depart_date, String login_date, String sum_price, String remained_price, String follower, String email, String visaConfirm,
+                          String visaIssue, String ticketConfirm, String ticketIssue, String hotelConfirm, String hotelIssue, String documents, String id) {
         this.num_contract = num_contract;
         this.date = date;
         this.path = path;

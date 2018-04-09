@@ -1,40 +1,28 @@
 package com.eligasht.reservation.views.fragments.hotelDetail;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.eventbus.HotelProprtiesBus;
 import com.eligasht.reservation.models.hotel.api.detail.call.HotelProprties;
-import com.eligasht.reservation.tools.NonScrollRecyclerView;
-import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelFacilityAdapter;
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesAdapter;
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesModels;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
-import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsAdapter;
-import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsModel;
 import com.eligasht.reservation.views.ui.NonScrollGridView;
-import com.eligasht.reservation.views.ui.PassengerActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,7 +31,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 

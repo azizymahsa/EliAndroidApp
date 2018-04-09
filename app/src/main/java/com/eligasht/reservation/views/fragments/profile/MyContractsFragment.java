@@ -7,15 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.eligasht.R;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
-import com.eligasht.reservation.models.model.login.call.EmailContractReq;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;
 import com.eligasht.reservation.views.adapters.ContractAdapter;
-import com.eligasht.reservation.views.adapters.ContractModel;
+import com.eligasht.reservation.models.ContractModels;
 
 import java.util.ArrayList;
 
@@ -28,7 +25,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
     public ViewGroup view;
 
     ListView lvContract;
-    private ArrayList<ContractModel> contractModels = new ArrayList<>();
+    private ArrayList<ContractModels> contractModels = new ArrayList<>();
 
 
     public static MyContractsFragment instance() {
@@ -61,7 +58,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
         //set data of login for contracts
         try {
             for (int i = 0; i < WebUserTools.getInstance().getUser().getPreviousContracts().size(); i++) {
-                contractModels.add(new ContractModel((WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getRqBaseID() + ""),
+                contractModels.add(new ContractModels((WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getRqBaseID() + ""),
                         WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getDateFa(),
                         WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getPathNames()
                         , WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getDeparture(),

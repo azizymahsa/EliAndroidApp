@@ -21,7 +21,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class BaseActivity extends Base {
   private BroadcastReceiver sendStartTimer;
-  SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {

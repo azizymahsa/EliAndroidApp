@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eligasht.R;
-import com.eligasht.reservation.views.adapters.hotel.comment.CommentModel;
+import com.eligasht.reservation.models.CommentModel;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.util.List;
