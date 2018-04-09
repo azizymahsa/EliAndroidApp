@@ -113,6 +113,9 @@ public Activity activity;
 			holder = (ViewHolder) convertView.getTag();
 		}
 		//cursor.moveToPosition(position);
+		try {
+
+
 		final PurchaseFlightResult current=data.get(position);
 		holder.txtDescription.setText(current.getServiceDescFa()+ "");
 
@@ -248,7 +251,9 @@ public Activity activity;
 
 			}
 		});
-
+		}catch (Exception e){
+			e.getMessage();
+		}
 		return convertView;
 	}
 

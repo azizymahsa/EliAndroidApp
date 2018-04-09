@@ -10,7 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -167,7 +167,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     public TextView tvPrice;
     public ImageView textView4;
     private String Gensiyat = "";
-    private Activity activity;
     public int countB;
     public int countK;
     public int countN;
@@ -294,7 +293,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 ///////////////setmin
         //min max tavalod solar
-        if (RengAge.contains(getString(R.string.Child))) {
+        if (RengAge.contains(getString(R.string._childP))) {
 
             String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
@@ -313,7 +312,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
 
             datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
-        } else if (RengAge.contains(getString(R.string.baby))) {
+        } else if (RengAge.contains(getString(R.string._InfantP))) {
 
             String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
@@ -349,7 +348,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
 
         }
-//min max passport solar
+        //min max passport solar
         PersianCalendar persianCalendar2 = new PersianCalendar();
 
         persianCalendar2.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth() + 6, persianCalendarDatePicker.getPersianDay());
@@ -357,7 +356,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         persianCalendar2.set(persianCalendarDatePicker.getPersianYear() + 6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
         ///////end setMin
-/////////////////////////Get date list
+        /////////////////////////Get date list
         try {//[{"BirthDate":"1951-03-22","PassNo":1},{"BirthDate":"1951-04-10","PassNo":2}]
             jsonObjBDate = new JSONArray(Prefs.getString("BirthDateListInsuranc", ""));
             Log.e("testroom2", jsonObjBDate.toString());//[{"BirthDate":"1951-03-22","PassNo":1},{"BirthDate":"1951-04-10","PassNo":2}]
@@ -600,7 +599,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                 txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
                 FlagTab = true;
-               // new AsyncFetchGetPreFactorDetails().execute();
                 RequestPreFactorDetails();
                 mAdapter = new GetHotelKhadmatAdapter(PassengerInsuranceActivity.this, data, PassengerInsuranceActivity.this, 0);
 
@@ -1502,86 +1500,6 @@ private void RequestPurchaseInsurance(){
         }
     }
 
-    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-        public String RengAge;
-
-        public DatePickerFragment() {
-            //this.RengAge=RengAge;
-        }
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            DatePickerDialog dialog = null;
-            if (flag) {//tavalodm
-                Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-                if (RengAge.contains(getString(R.string.Child))) {
-                    dialog = new DatePickerDialog(getActivity(), this, year - 12, month, day);
-                } else if (RengAge.contains(getString(R.string.baby))) {
-                    dialog = new DatePickerDialog(getActivity(), this, year - 2, month, day);
-                } else if (RengAge.contains(getString(R.string.adult))) {
-                    dialog = new DatePickerDialog(getActivity(), this, year - 30, month, day);
-                }
-///////////////setmin
-                if (RengAge.contains(getString(R.string.Child))) {
-                    System.out.println("koodak");
-                    c.add(Calendar.YEAR, -12); // subtract 2 years from now
-                    dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
-                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-
-                } else if (RengAge.contains(getString(R.string.baby))) {
-                    System.out.println("Nozad");
-
-                    c.add(Calendar.YEAR, -2); // subtract 2 years from now
-                    dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    c.add(Calendar.YEAR, 2); // add 4 years to min date to have 2 years after now
-                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                } else {
-                    c.add(Calendar.YEAR, -120);
-                    dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    c.add(Calendar.YEAR, 108);
-                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                }
-                ///////end setMin
-            } else {//expPasport
-                Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                dialog = new DatePickerDialog(getActivity(), this, year, month + 6, day);//1997/12/23
-
-                c.add(Calendar.MONTH, 6);
-                dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                c.add(Calendar.YEAR, 6);
-                dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-
-            }
-
-            return dialog;
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            String sMonth = String.valueOf(month + 1);
-            String sDay = String.valueOf(day);
-            if (sMonth.length() == 1)
-                sMonth = "0" + sMonth;
-
-            if (sDay.length() == 1)
-                sDay = "0" + sDay;
-            if (flag) {
-                txttavalodm.setText(year + "/" + sMonth + "/" + sDay);
-            } else {
-
-                txtexp_passport.setText(year + "/" + sMonth + "/" + sDay);
-            }
-
-
-        }
-    }//endDatepicker
 
 
     @Override

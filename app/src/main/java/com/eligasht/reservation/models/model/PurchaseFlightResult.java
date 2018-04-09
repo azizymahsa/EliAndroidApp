@@ -125,6 +125,9 @@ public class PurchaseFlightResult {
 		ServiceInfPrice = serviceInfPrice;
 	}
 	public String getServiceNameEn() {
+		if (ServiceNameEn == null) {
+			ServiceNameEn="";
+		}
 		return ServiceNameEn;
 	}
 	public void setServiceNameEn(String serviceNameEn) {
