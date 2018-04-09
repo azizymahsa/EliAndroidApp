@@ -940,7 +940,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 }
 
             } catch (JSONException e) {
-                AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this, PassengerInsuranceActivity.this);
+                AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
                 AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 

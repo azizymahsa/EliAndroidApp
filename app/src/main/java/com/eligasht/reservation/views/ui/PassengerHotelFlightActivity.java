@@ -1009,7 +1009,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     JSONObject getError = jsonObj.getJSONObject("Errors");
                     String message = getError.getString("Message");
                     // Toast.makeText(PassengerHotelFlightActivity.this, message, Toast.LENGTH_LONG).show();
-                    AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerHotelFlightActivity.this, PassengerHotelFlightActivity.this);
+                    AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerHotelFlightActivity.this);
                     AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
                 }
 

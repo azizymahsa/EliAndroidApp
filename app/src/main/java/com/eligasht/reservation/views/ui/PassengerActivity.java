@@ -1691,7 +1691,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							GetError = jPricedItinerary.getMessage();
 						}
 						if (GetError.length()>1) {
-							AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+							AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
 							AlertDialogPassengerFlight.setText(""+"  "+GetError,getString(R.string.massege));
 
 						}else{
@@ -1772,7 +1772,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							setAnimation();
 						}
 					} catch (Exception e) {
-						AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+						AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
 						AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
 
 					}
@@ -1783,7 +1783,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("PurchesFlightError: "+message);
 					rlLoading.setVisibility(View.GONE);
 					Utility.disableEnableControls(true,rlRoot);
-					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
 					AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
 				}
 			}, requestPurchaseFlightt);
@@ -1811,7 +1811,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				//get Error
 				List<Error> getError = GetAirportsResult.getErrors();
 				String message= getError.get(0).getDetailedMessage();
-				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
 				AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
 			}
 
@@ -1823,7 +1823,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				textView4.setImageBitmap(getBitmap(GetAirportsResult.getSuccessResult()+"", 128, 300, 150));
 			}else{
 
-				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
 				AlertDialogPassengerFlight.setText(getString(R.string.An_error_has_occurred),getString(R.string.massege));
 
 				Prefs.putBoolean("BACK_HOME", true);
@@ -1847,7 +1847,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			RequestPreFactorDetails();
 
 		} catch (Exception e) {
-			AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+			AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
 			AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
 
 		}
@@ -1993,7 +1993,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 					setAnimation();
 				} catch (Exception e) {
-					AlertDialogPassengerFlight alertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this,PassengerActivity.this);
+					AlertDialogPassengerFlight alertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
 					alertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege)+"fff");
 
 				}

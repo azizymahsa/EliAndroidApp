@@ -877,7 +877,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 setAnimation();
 
             } catch (JSONException e) {
-                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
+                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this);
                 AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
 
 
@@ -1015,7 +1015,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     JSONObject getError = jsonObj.getJSONObject("Errors");
                     String message = getError.getString("Message");
                     // Toast.makeText(PassengerHotelActivity.this, message, Toast.LENGTH_LONG).show();
-                    AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
+                    AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this);
                     AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
                 }
 
@@ -1043,7 +1043,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 FlagTab=true;
                 new AsyncFetchGetPreFactorDetails().execute();
             } catch (JSONException e) {
-                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
+                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this);
                 AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
@@ -1263,7 +1263,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 setAnimation();//}
             } catch (JSONException e) {
                //  Toast.makeText(SingletonContext.getInstance().getContext(),getString(R.string.Error_getting_information_from_eli), Toast.LENGTH_LONG).show();
-                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(SingletonContext.getInstance().getContext());
+                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this);
                 AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
@@ -1325,7 +1325,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     detailsJson.put("RqPassenger_Tel", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
 
                     detailJsonArray.put(detailsJson);
-
 
                 }
                 headerJson.put("PassList", detailJsonArray);
