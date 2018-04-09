@@ -74,7 +74,21 @@ import com.eligasht.reservation.views.ui.NationalitycodeActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.flight.request.PurchaseFlight.PartnerInfo;
+import com.eligasht.service.model.flight.request.PurchaseFlight.PassList;
+import com.eligasht.service.model.flight.request.airPort.Identity;
+import com.eligasht.service.model.flight.request.airPort.Request;
+import com.eligasht.service.model.flight.request.airPort.RequestAirports;
+import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
+import com.eligasht.service.model.insurance.request.PurchaseInsurance.PartnerList;
+import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
+import com.eligasht.service.model.insurance.response.PurchaseInsuranceResult;
+import com.eligasht.service.model.insurance.response.ResponsePurchaseInsurance;
+import com.eligasht.service.model.insurance.response.TmpReserveResult;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -118,7 +132,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 //this class just me send request of insurance and set sum of passenger but there is problem of ui
 public class PassengerInsuranceActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnItemSelectedListener, View.OnFocusChangeListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,
-        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener,OnServiceStatus<ResponsePurchaseInsurance> {
 
 
     public static boolean flag;
@@ -196,7 +210,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 persianCalendarDatePicker.getPersianDay()
         );
 
-
 //=====================================================================================================
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
         datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
@@ -230,14 +243,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 String monthMF = dateSplite2[1];
                 String yearMF = dateSplite2[0];
 
-
                 datePickerDialog.initialize(PassengerInsuranceActivity.this, Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
                 datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
 
-
             }
         });
-////////////
+
         datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
         datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
             @Override
@@ -257,8 +268,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         });
 
         //=====================================================================================================
-
-
 //change button shamsi to milady (date picker)
         datePickerDialog.setOnCalandarChangeListener(new com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
             @Override
@@ -280,7 +289,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             }
         });
 
-
         txtTitleCountM = findViewById(R.id.txtTitleCountM);
         txtTitleCountM.setOnClickListener(this);
         String RengAge = txtTitleCountM.getText().toString();
@@ -297,7 +305,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
 
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
-
 
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
@@ -318,7 +325,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
             int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true);
@@ -334,17 +340,13 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
             PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
             persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
-
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
-
-
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
             int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 12;
             int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true) - 1;
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
-
             datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
 
         }
@@ -356,9 +358,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         persianCalendar2.set(persianCalendarDatePicker.getPersianYear() + 6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
         ///////end setMin
-
 /////////////////////////Get date list
-
         try {//[{"BirthDate":"1951-03-22","PassNo":1},{"BirthDate":"1951-04-10","PassNo":2}]
             jsonObjBDate = new JSONArray(Prefs.getString("BirthDateListInsuranc", ""));
             Log.e("testroom2", jsonObjBDate.toString());//[{"BirthDate":"1951-03-22","PassNo":1},{"BirthDate":"1951-04-10","PassNo":2}]
@@ -571,6 +571,57 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         //////////////
     }
 
+    @Override
+    public void onReady(ResponsePurchaseInsurance responsePurchaseInsurance) {
+        rlLoading.setVisibility(View.GONE);
+        try {
+
+            Object GetError = null;
+
+            PurchaseInsuranceResult perchusInsuranceResult = responsePurchaseInsurance.getPurchaseInsuranceResult();//.getJSONObject("PurchaseInsuranceResult");//Errors
+            if (perchusInsuranceResult.getErrors() != null){
+                GetError = perchusInsuranceResult.getErrors();//("Errors");
+            }
+            if (GetError != null) {
+
+            } else {
+
+                TmpReserveResult jsonResult = perchusInsuranceResult.getTmpReserveResult();
+                txt_shomare_factor.setText(jsonResult.getBookingCode()+"");
+
+                textView4.setImageBitmap(getBitmap(jsonResult.getBookingCode()+"", 128, 300, 150));
+                Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode()+"");
+                tvfactorNumber.setText(jsonResult.getBookingCode()+"");
+
+                linear_saler.setVisibility(View.GONE);
+                linear_mosaferan.setVisibility(View.GONE);
+                linear_list_khadamat.setVisibility(View.GONE);
+                linear_pish_factor.setVisibility(View.VISIBLE);
+                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
+                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+                txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
+                FlagTab = true;
+                new AsyncFetchGetPreFactorDetails().execute();
+                mAdapter = new GetHotelKhadmatAdapter(PassengerInsuranceActivity.this, data, PassengerInsuranceActivity.this, 0);
+
+                mAdapter.setData(data);
+                listKhadamat.setAdapter(mAdapter);
+            }
+
+        } catch (Exception e) {
+            AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
+            AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
+        }
+
+    }
+
+    @Override
+    public void onError(String message) {
+        rlLoading.setVisibility(View.GONE);
+        AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
+        AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
+    }
+
     private class AsyncFetchGetPreFactorDetails extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
         URL url = null;
@@ -679,9 +730,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 Log.e("jsonObj", jsonObj.toString());
 
                 // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
+                JSONObject perchusInsuranceResult = jsonObj.getJSONObject("GetPreFactorDetailsResult");
 
-                JSONObject jArray = GetAirportsResult.getJSONObject("PreFactor");//FactorSummary
+                JSONObject jArray = perchusInsuranceResult.getJSONObject("PreFactor");//FactorSummary
 
                 //FactorSummary
                 JSONObject jFact = jArray.getJSONObject("FactorSummary");
@@ -802,252 +853,105 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
     }//end on pos excute
 
+private void RequestPurchaseInsurance(){
+    rlLoading.setVisibility(View.VISIBLE);
+    RequestPurchaseInsurance requestPurchaseInsurance = new RequestPurchaseInsurance();
+    com.eligasht.service.model.insurance.request.PurchaseInsurance.Request request = new com.eligasht.service.model.insurance.request.PurchaseInsurance.Request();
 
-    private class AsyncFetch extends AsyncTask<String, String, String> {
-        HttpURLConnection conn;
-        URL url = null;
+    com.eligasht.service.model.insurance.request.PurchaseInsurance.Identity identity = new com.eligasht.service.model.insurance.request.PurchaseInsurance.Identity();
+    request.setIdentity(identity);
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            rlLoading.setVisibility(View.VISIBLE);
+    try {
+        String GUID = "";
+        String ResultUniqId = "";
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            GUID = extras.getString("Flight_GUID");
+            ResultUniqId = SearchParvazActivity.globalResultUniqID;
         }
 
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                // Enter URL address where your json file resides
-                // Even you can make call to php file which returns json data
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Insurance/InsuranceService.svc/PurchaseInsurance");
+        List<com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList> passLists = new ArrayList<>();
 
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
+
+        PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
+        CursorManager cursorM = items_Table.getAllMosafer();
+        if (cursorM != null) {
+            for (int i = 0; i < cursorM.getCount(); i++) {
+
+                cursorM.moveToPosition(i);
+
+                com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList passList=new com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList();
+                passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));//.put("Gender", cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
+                passList.setNationality( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
+                passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                passList.setPackRoomTypeID(Prefs.getInt("PackRoomType_ID",12));
+                passList.setRoomNo(Prefs.getInt("Room_No", 12));
+
+                passList.setRqPassengerAddress(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
+                passList.setRqPassengerBirthdate(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
+                passList.setRqPassengerEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
+
+                passList.setRqPassengerFirstNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+                passList.setRqPassengerFirstNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
+                passList.setRqPassengerLastNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
+
+                passList.setRqPassengerLastNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
+                passList.setRqPassengerMobile(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
+                passList.setRqPassengerNationalCode(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
+
+                passList.setRqPassengerPassExpDate(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
+                passList.setRqPassengerPassNo(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
+                passList.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+                passList.setRqPassengerInsPrice(Prefs.getInt("Price", 0));
+
+                passLists.add(passList);
+
             }
-            try {
-               // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                // conn.setRequestMethod("GET");
-                conn.setRequestMethod("POST");
-                // setDoOutput to true as we recieve data from json file
-                conn.setDoOutput(true);
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
-
-            try {
-
-                int response_code = conn.getResponseCode();
-
-                String serial = null;
-
-                JSONObject errorObj = new JSONObject();
-
-                try {
-                    errorObj.put("Success", false);
-
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
-                }
-
-
-                String data = OrderToJsonPurchase();//Purchase
-
-
-                HttpClient client = new DefaultHttpClient();
-
-
-                HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Insurance/InsuranceService.svc/PurchaseInsurance");
-                post.setHeader("Content-Type", "application/json; charset=UTF-8");
-                post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-                StringEntity se = null;
-                try {
-                    se = new StringEntity(data, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                post.setEntity(se);
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-
-                HashMap<String, String> airport = null;
-                mylist = new ArrayList<HashMap<String, String>>();
-                HttpResponse res = client.execute(post);
-                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-                return retSrc;
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
-            }
-
-
-        }//end doin background
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            rlLoading.setVisibility(View.GONE);
-            try {
-
-                JSONObject jsonObj = new JSONObject(result);
-                JSONObject GetError = null;
-
-                // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseInsuranceResult");//Errors
-                if (!GetAirportsResult.getString("Errors").equals("null")) {
-                    GetError = GetAirportsResult.getJSONObject("Errors");
-                }
-                if (GetError != null) {
-
-                } else {
-
-                    JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
-                    txt_shomare_factor.setText(jsonResult.getString("BookingCode"));
-
-                    textView4.setImageBitmap(getBitmap(jsonResult.getString("BookingCode"), 128, 300, 150));
-                    Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
-                    tvfactorNumber.setText(jsonResult.getString("BookingCode"));
-
-                    linear_saler.setVisibility(View.GONE);
-                    linear_mosaferan.setVisibility(View.GONE);
-                    linear_list_khadamat.setVisibility(View.GONE);
-                    linear_pish_factor.setVisibility(View.VISIBLE);
-                    ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
-                    ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-                    txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
-                    FlagTab = true;
-                    new AsyncFetchGetPreFactorDetails().execute();
-                    mAdapter = new GetHotelKhadmatAdapter(PassengerInsuranceActivity.this, data, PassengerInsuranceActivity.this, 0);
-
-                    mAdapter.setData(data);
-                    listKhadamat.setAdapter(mAdapter);
-                }
-
-            } catch (JSONException e) {
-                AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
-                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
-            }
-
-        }//end on pos excute
-
-    }//end async
-
-    public String OrderToJsonPurchase() {
-        JSONObject jsone = new JSONObject();
-        JSONObject manJson = new JSONObject();
-
-        try {
-            String GUID = "";
-            String ResultUniqId = "";
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                GUID = extras.getString("Flight_GUID");
-                ResultUniqId = SearchParvazActivity.globalResultUniqID;
-            }
-
-            JSONObject json = new JSONObject();
-            JSONObject headerJson = new JSONObject();
-            JSONArray detailJsonArray = new JSONArray();
-            JSONObject detailsJson = new JSONObject();
-            JSONObject detailsPartner = new JSONObject();
-            JSONObject identityJson = new JSONObject();
-
-            PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
-            CursorManager cursorM = items_Table.getAllMosafer();
-            if (cursorM != null) {
-                for (int i = 0; i < cursorM.getCount(); i++) {
-
-                    cursorM.moveToPosition(i);
-
-                    detailsJson = new JSONObject();
-                    detailsJson.put("Gender", cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
-                    detailsJson.put("Nationality", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-                    detailsJson.put("Nationality_ID", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-                    detailsJson.put("Nationality_ID", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-                    detailsJson.put("PackRoomType_ID", Prefs.getInt("PackRoomType_ID", 12));
-                    detailsJson.put("Room_No", Prefs.getInt("Room_No", 12));
-
-                    detailsJson.put("RqPassenger_Address", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
-                    detailsJson.put("RqPassenger_Birthdate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-                    detailsJson.put("RqPassenger_Email", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
-
-                    detailsJson.put("RqPassenger_FirstNameEn", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-                    detailsJson.put("RqPassenger_FirstNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
-                    detailsJson.put("RqPassenger_LastNameEn", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-
-                    detailsJson.put("RqPassenger_LastNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
-                    detailsJson.put("RqPassenger_Mobile", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
-                    detailsJson.put("RqPassenger_NationalCode", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
-
-                    detailsJson.put("RqPassenger_PassExpDate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-                    detailsJson.put("RqPassenger_PassNo", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-                    detailsJson.put("RqPassenger_Tel", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
-                    detailsJson.put("RqPassenger_InsPrice", Prefs.getInt("Price", 0));
-
-                    detailJsonArray.put(detailsJson);
-
-                }
-                headerJson.put("PassList", detailJsonArray);
-            }
-
-            ////kharidar
-            PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerInsuranceActivity.this);
-            CursorManager cursorManager = partnerInfo_Table.getPartner();
-            cursorManager.moveToPosition(0);
-            detailsPartner.put("RqPartner_Address", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
-            detailsPartner.put("RqPartner_Email", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
-            detailsPartner.put("RqPartner_FirstNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
-            detailsPartner.put("RqPartner_Gender", cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
-            detailsPartner.put("RqPartner_LastNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
-            detailsPartner.put("RqPartner_Mobile", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
-            detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
-            detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
-            detailsPartner.put("WebUser_ID ", Prefs.getString("userId", "-1"));//Purchase
-
-            headerJson.put("PartnerList", detailsPartner);
-
-            headerJson.put("Culture", getString(R.string.culture));
-
-            headerJson.put("CountryCode", Prefs.getString("CountryCode", "12"));
-            headerJson.put("DepartureDate", Prefs.getString("DepartureDate", "12"));
-            headerJson.put("DtStart", Prefs.getString("DtStart", "12"));
-            headerJson.put("PlanCode", Prefs.getString("Id", "12"));
-            headerJson.put("ReturnDate", Prefs.getString("ReturnDate", "12"));
-            headerJson.put("SearchKey", Prefs.getString("SearchKey", "12"));
-            headerJson.put("SearchKey", Prefs.getString("SearchKey", "12"));
-
-            identityJson.put("Password", "123qwe!@#QWE");
-            identityJson.put("TermianlId", "Mobile");
-            identityJson.put("UserName", "EligashtMlb");
-
-            headerJson.put("identity", identityJson);
-
-            jsone.put("request", headerJson);
-            Log.e("teeeeee", jsone.toString());
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            request.setPassList( passLists);
         }
 
-        return jsone.toString();
+        ////kharidar
+        PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerInsuranceActivity.this);
+        CursorManager cursorManager = partnerInfo_Table.getPartner();
+        cursorManager.moveToPosition(0);
+        PartnerList partnerList=new PartnerList();
+        partnerList.setRqPartnerAddress(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
+        partnerList.setRqPartnerEmail(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
+        partnerList.setRqPartnerFirstNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
+        partnerList.setRqPartnerGender(cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
+        partnerList.setRqPartnerLastNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
+        partnerList.setRqPartnerMobile(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
+        partnerList.setRqPartnerNationalCode(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
+        partnerList.setRqPartnerTel(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+        partnerList.setWebUserID (Prefs.getString("userId", "-1"));//Purchase
+
+        request.setPartnerList(partnerList);
+
+        request.setCulture(getString(R.string.culture));
+
+        request.setCountryCode(Prefs.getString("CountryCode", "12"));
+        request.setDepartureDate(Prefs.getString("DepartureDate", "12"));
+        request.setDtStart(Prefs.getString("DtStart", "12"));
+        request.setPlanCode(Prefs.getString("Id", "12"));
+        request.setReturnDate(Prefs.getString("ReturnDate", "12"));
+        request.setSearchKey(Prefs.getString("SearchKey", "12"));
+        request.setSearchKey(Prefs.getString("SearchKey", "12"));
+
+
+
+        request.setCulture(getString(R.string.culture));
+        requestPurchaseInsurance.setRequest(request);
+        Log.e("PurchaseInsurance:", new Gson().toJson(requestPurchaseInsurance));
+
+        SingletonService.getInstance().getPurchaseInsurance().purchaseInsuranceAvail(this, requestPurchaseInsurance);
+    } catch (Exception e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
     }
+
+}
+
 
     public String OrderToJsonGetPreFactorDetails() {
         JSONObject jsone = new JSONObject();
@@ -1128,7 +1032,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME", true);
-                //	myScrollView.setOnTouchListener(null);
                 Intent intent = new Intent("sendFinish");
 
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
@@ -1167,35 +1070,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         }
                     }
                     counter--;
-                    //xtTitleCountM.setText(getString(R.string.info_passenger) + counter);
                     imgCount.setText(counter + "");
-                    ///////////////////
                 } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
-                    ////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
-                   /* if(counter>1) {
-                        PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
-                        CursorManager cursorM=items_Table.getMosaferById(counter-1);
-                        if(cursorM != null){
-                            for (int i = 0; i < cursorM.getCount(); i++) {
 
-                                txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-                                txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-                                txtnumber_passport.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-
-                                txttavalodm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-                                txtexp_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-
-                                txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-                                txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-                                txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
-                            }
-
-                        }
-                        counter--;
-
-                        imgCount.setText(counter+"");
-                    }else{*/
-                    //////////////////////
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_saler.setVisibility(View.VISIBLE);
 
@@ -1205,10 +1082,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     // }
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
                     Prefs.putBoolean("BACK_HOME", true);
-                    //	myScrollView.setOnTouchListener(null);
-                    /*Intent intent2 = new Intent("sendFinish");
 
-                    LocalBroadcastManager.getInstance(PassengerInsuranceActivity.this).sendBroadcast(intent2);*/
                     finish();
 
                 }
@@ -1219,7 +1093,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     linear_mosaferan.setVisibility(View.VISIBLE);
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_pish_factor.setVisibility(View.GONE);
-
 
                     ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
                     ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
@@ -1236,7 +1109,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         //jadvale mosafer khali beshe
 
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
-                        //   db.openDB();
                         db.dropTable();
                         ////////////////////////Validate
                         String RqPartner_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
@@ -1248,14 +1120,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         String RqPartner_NationalCode = txtkodemeliP.getText().toString();
                         String RqPartner_Tel = "21587632";
 
-					/*String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-                    String RqPartner_Email= "mohebbi@eligasht.com";
-					String RqPartner_FirstNameFa= "مریم";
-					String RqPartner_Gender= "Female";
-					String RqPartner_LastNameFa= "محبی";
-					String RqPartner_Mobile= "0235884";
-					String RqPartner_NationalCode= "0062532148";
-					String RqPartner_Tel= "21587632";*/
+
                         String errorMessage = "";
                         String flagMosafer = "T";
                         ///Validate
@@ -1264,19 +1129,18 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-                            //((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
+
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Email_format_is_correct);
                         }
-                        //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
-                        //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
+
+
                         if (RqPartner_FirstNameFa != null) {
                             if (Locale.getDefault().getLanguage().equals("en")) {
                                 if (RqPartner_FirstNameFa.length() > 2 && ((RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))) {
                                     ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-                                    //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                                 }
@@ -1285,20 +1149,18 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                                     ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-                                    //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                                 }
                             }
                         }
-                        //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
                         if (RqPartner_LastNameFa != null) {
                             if (Locale.getDefault().getLanguage().equals("en")) {
                                 if (RqPartner_LastNameFa.length() > 2 && ((RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))) {
                                     ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-                                    //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                                 }
@@ -1307,7 +1169,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                                     ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-                                    //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
+
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                                 }
@@ -1317,18 +1179,16 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             ((EditText) findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-                            //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
+
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Enter_the_correct_mobile_format);
                         }
-					/*if(RqPartner_NationalCode != null)
-						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.matches("[0-9]+")){*/
+
                         if (RqPartner_NationalCode != null)
                             if (RqPartner_NationalCode.length() == 10 && RqPartner_NationalCode.matches("[0-9]+")) {
                                 ((EditText) findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                                 flagMosafer = flagMosafer + "T";
                             } else {
-                                //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
                                 flagMosafer = flagMosafer + "F";
                                 errorMessage = errorMessage + "\n" + "* " + getString(R.string.The_national_code_is_not_correct);
                             }
@@ -1340,8 +1200,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         }
                         //////////////////////////End Validate
                         if (flagMosafer.contains("F")) {
-                            //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
-                            //Toast.makeText(this,errorMessage,2000).show();
+
                             AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerInsuranceActivity.this);
                             alertDialogPassenger.setText("" + "  " + errorMessage,getString(R.string.EditInput));
                         } else {
@@ -1359,8 +1218,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             linear_pish_factor.setVisibility(View.GONE);
                             linear_mosaferan.setVisibility(View.VISIBLE);
                             txtTitle.setText(getString(R.string.Traveler_info));
-                            //((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
-                            //((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
+
                             Gensiyat = "";
                             ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
                             ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
@@ -1372,16 +1230,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     }
                 }
                 break;
-            /*case R.id.txttavalodm:
-                DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString()+"");
-                newFragment2.show(getFragmentManager(), "datePicker");
-                flag = true;
-                break;*//*
-            case  R.id.txtexp_passport:
-                DialogFragment newFragment3 = new DatePickerFragment("");
-                newFragment3.show(getFragmentManager(), "datePicker");
-                flag = false;
-                break;*/
+
             case R.id.txttavalodm:
 
                 String RengAge = txtTitleCountM.getText().toString();
@@ -1463,16 +1312,13 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                 if (!datePickerDialogGregorian1.isAdded())
                     datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
-				/*DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString());
-				newFragment2.show(getFragmentManager(), "datePicker");*/
+
                 flag = true;
                 break;
             case R.id.txtexp_passport:
                 if (!datePickerDialogGregorian2.isAdded())
                     datePickerDialogGregorian2.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
-				/*DialogFragment newFragment3 = new DatePickerFragment("");
-				newFragment3.show(getFragmentManager(), "datePicker");*/
-                flag = false;
+				flag = false;
                 break;
             case R.id.btn_nextm:
                 LinearLayout mainLayout;
@@ -1480,7 +1326,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
-                /////////////
                 txtexp_passport.setScroller(new Scroller(this));
                 ScrollView scrolMosafer = findViewById(R.id.scrolMosafer);
                 scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
@@ -1503,23 +1348,11 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                     String flagMosafer = "T";
                     String errorMessagePartner = "";
-                    ///Validate
 
-                       /* if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
-                            ((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
-                            flagMosafer=flagMosafer+"T";
-                        } else{
-
-                            flagMosafer=flagMosafer+"F";
-                            errorMessagePartner=errorMessagePartner+"\n"+"لطفا کد ملی را درست وارد کنید";
-                        }*/
-
-                    ///Validate
                     if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
                         ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-                        //((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
                     }
@@ -1527,7 +1360,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-                        //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
+
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_place_of_residence);
                     }
@@ -1535,7 +1368,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-                        //((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_your_nationality);
                     }
@@ -1543,23 +1375,20 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-                        //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
+
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_date_of_birth);
                     }
-                    ////////////////////////////////////
                     if (txtTitleCountM.getText().toString().contains(getString(R.string.Child))) {
 
                     } else if (txtTitleCountM.getText().toString().contains(getString(R.string.baby))) {
 
                     }
-                    /////////////////////////////////
                     if (RqPassenger_FirstNameEn != null)
                         if (RqPassenger_FirstNameEn.length() > 1 && RqPassenger_FirstNameEn.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) {
                             ((EditText) findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-                            //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
                             errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                         }
@@ -1568,7 +1397,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             ((EditText) findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-                            //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
                             errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                         }
@@ -1576,7 +1404,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-                        //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
+
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_expiration_date);
                     }
@@ -1589,19 +1417,17 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     ///endValidate
 
                     if (flagMosafer.contains("F")) {
-                        //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
+
                         AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerInsuranceActivity.this);
                         AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner,getString(R.string.EditInput));
-                        //Toast.makeText(this,errorMessagePartner,2000).show();
                     } else {
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
 
-                        //db.dropTable();
                         db.openDB();
 
                         if (sum > 0) {
                             System.out.println("gender:" + Gender);
-                            //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+
                             if (counter - 1 == 1) {
                                 db.insertData(counter - 1, getString(R.string.First_passenger_information), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 
@@ -1612,18 +1438,15 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                             if (countB >= 1) {
                                 System.out.println("countB:" + countB);
-                                //txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
-                                //imgCount.setText(counter+"");
+
                                 countB--;
                             } else if (countK >= 1) {
                                 System.out.println("countK:" + countK);
-                                //txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
-                                //imgCount.setText(counter+"");
+
                                 countK--;
                             } else if (countN >= 1) {
                                 System.out.println("countN:" + countN);
-                                //txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
-                                //imgCount.setText(counter+"");
+
                                 countN--;
                             }
                             if (countB != 0) {
@@ -1631,7 +1454,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                                 txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + " (بزرگسال) ");
                                 imgCount.setText(counter + "");
 
-                                //jsonObjBDate.getJSONObject(0).getString("BirthDate");
                             } else if (countK != 0) {
 
                                 txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.child_));
@@ -1648,7 +1470,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             sum--;
                             ///pak kardan data haye mosafere ghabli:
                             if (sum > 0) {
-                                //counter--;
+
                                 try {
                                     txttavalodm.setText(jsonObjBDate.getJSONObject(counter - 1).getString("BirthDate") + "");
                                     RqPassenger_Birthdate = jsonObjBDate.getJSONObject(counter - 1).getString("BirthDate");
@@ -1656,7 +1478,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                // txttavalodm.setText("");
                                 txtnamem.setText("");
                                 txtfamilym.setText("");
                                 txtexp_passport.setText("");
@@ -1682,7 +1503,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     if (sum == 0) {
                         System.out.println("APICALL:" + "sum:" + sum);
                         System.out.println("insert:");
-                        new AsyncFetch().execute();
+                        //new AsyncFetch().execute();
+                        RequestPurchaseInsurance();
 
                     }
                 }
@@ -1816,9 +1638,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             String nationalityCode = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYCODE);
             String nationalityName = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYNAME);
             if (countryCode != null)
-                txtmahale_eghamat.setText(countryCode + "");//txtmahale_eghamat.setText(countryCode+" "+countryName);
+                txtmahale_eghamat.setText(countryCode + "");
             if (nationalityCode != null)
-                txtmeliyatm.setText(nationalityCode + "");//txtmeliyatm.setText(nationalityCode+" "+nationalityName);
+                txtmeliyatm.setText(nationalityCode + "");
         }
     }
 
@@ -1845,11 +1667,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 } else if (RengAge.contains(getString(R.string.adult))) {
                     dialog = new DatePickerDialog(getActivity(), this, year - 30, month, day);
                 }
-                // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
 ///////////////setmin
                 if (RengAge.contains(getString(R.string.Child))) {
                     System.out.println("koodak");
-                    //c = Calendar.getInstance();
                     c.add(Calendar.YEAR, -12); // subtract 2 years from now
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                     c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
@@ -1857,7 +1677,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                 } else if (RengAge.contains(getString(R.string.baby))) {
                     System.out.println("Nozad");
-                    //c = Calendar.getInstance();
+
                     c.add(Calendar.YEAR, -2); // subtract 2 years from now
                     dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                     c.add(Calendar.YEAR, 2); // add 4 years to min date to have 2 years after now
@@ -1880,10 +1700,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 dialog.getDatePicker().setMinDate(c.getTimeInMillis());
                 c.add(Calendar.YEAR, 6);
                 dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                //dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-		 	   /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		 	    Date mDate;*/
-                // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+
             }
 
             return dialog;
@@ -1938,7 +1755,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
                     txtmeliyatm.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
                     txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
-                    //txtTitleCountM.setText(getString(R.string.info_passenger) + counter);
                     System.out.println("InsertMosaferGet:" + cursorM.getString(PassengerMosaferItems_Table.Columns.ID.value()) + " " + cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()) + " " + cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
                 }
             }
@@ -1947,41 +1763,13 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             imgCount.setText(counter + "");
             ///////////////////
         } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
-            ////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
-      /*      if(counter>1) {
-                PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
-                CursorManager cursorM=items_Table.getMosaferById(counter-1);
-                if(cursorM != null){
-                    for (int i = 0; i < cursorM.getCount(); i++) {
 
-                        txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-                        txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-                        txtnumber_passport.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-
-                        txttavalodm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-                        txtexp_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-
-                        txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-                        txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-                        txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
-                        System.out.println("InsertMosaferGet:"+cursorM.getString(PassengerMosaferItems_Table.Columns.ID.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value())+" "+cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-
-                    }
-
-                }
-                counter--;
-                //txtTitleCountM.setText(getString(R.string.info_passenger) + counter);
-                imgCount.setText(counter+"");
-            }else{*/
-            //////////////////////
             linear_mosaferan.setVisibility(View.GONE);
             linear_saler.setVisibility(View.VISIBLE);
-
 
             txtTitle.setText(getString(R.string.Buyer_Specifications));
             ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
             ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-            // }
         } else if (linear_saler.getVisibility() == View.VISIBLE) {
 
             finish();
@@ -2142,9 +1930,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     System.out.println("f");
                     if (txtmahale_eghamat.getText().toString() != null && txtmahale_eghamat.getText().toString().length() > 1) {
                         ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
-                        //flagMosafer=flagMosafer+"T";
                     } else {
-                        //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                         txtmahale_eghamat.setError(getString(R.string.Please_enter_your_residence));
                     }
                 }
@@ -2156,23 +1942,19 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     System.out.println("f");
                     if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 1) {
                         ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
-                        //flagMosafer=flagMosafer+"T";
                     } else {
-                        //((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
                         txtmeliyatm.setError(getString(R.string.Please_enter_your_nationality));
                     }
                 }
                 break;
             case R.id.txttavalodm:
-                if (hasFocus) {//txtTitleCountM
+                if (hasFocus) {
                     System.out.println("t");
                 } else {
                     System.out.println("f");
                     if (txttavalodm.getText().toString() != null && txttavalodm.getText().toString().length() > 4) {
                         ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
-                        //flagMosafer=flagMosafer+"T";
                     } else {
-                        //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
                         txttavalodm.setError(getString(R.string.Please_enter_the_date_of_birth));
                     }
                 }
@@ -2186,9 +1968,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     if (txtnamem.getText().toString() != null)
                         if (txtnamem.getText().toString().length() > 1 && txtnamem.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) {
                             ((EditText) findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
-                            //flagMosafer=flagMosafer+"T";
+
                         } else {
-                            //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
+
                             txtnamem.setError(getString(R.string.Please_enter_a_name_in_English));
                         }
                 }
@@ -2201,9 +1983,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     if (txtfamilym.getText().toString() != null)
                         if (txtfamilym.getText().toString().length() > 1 && txtfamilym.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) {
                             ((EditText) findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
-                            //flagMosafer=flagMosafer+"T";
+
                         } else {
-                            //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
+
                             txtfamilym.setError(getString(R.string.Please_enter_a_surname_in_English));
                         }
                 }
@@ -2217,7 +1999,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     } else {
-                        //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
+
                         txtexp_passport.setError(getString(R.string.Please_enter_your_passport_expiration_date));
                     }
                 }
@@ -2231,12 +2013,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     } else {
-                        //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+
                         txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
                     }
                     if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
                     } else {
-                        //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+
                         txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
                     }
                 }
@@ -2250,11 +2032,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     System.out.println("f");
                     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                     if (txtemeliP.getText().toString().matches(emailPattern) && txtemeliP.getText().toString().length() > 0) {
-                        //if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
                         ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     } else {
-                        //((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                         txtemeliP.setError(getString(R.string.Please_enter_the_email));
                     }
                 }
@@ -2305,7 +2085,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                                 ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                             } else {
-                                //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
                                 txtfamilyP.setError(getString(R.string.Please_enter_last_name_in_Persian));
                             }
                         }
@@ -2322,7 +2101,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                         ((EditText) findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     } else {
-                        //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
+
                         txtmobileP.setError(getString(R.string.Please_enter_the_mobile_number));
                     }
                 }
@@ -2337,7 +2116,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                             ((EditText) findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
 
                         } else {
-                            //((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
+
                             txtkodemeliP.setError(getString(R.string.Please_enter_the_national_code));
                         }
                 }
@@ -2363,8 +2142,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
             txttavalodm.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
             txttavalodm.setText(str_date);
-            //raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-            //	Log.e("GGGGGGG", raft);
+
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -2376,25 +2154,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     @Override
     public void onDateSet(com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
-	/*	String str_date = year + "/" + (monthOfYear + 1) + "/" + (dayOfMonth-1);//2018-01-16
-		DateFormat formatter;
-		Date date;
-		formatter = new SimpleDateFormat("yyyy/MM/dd");
-		try {
-			date = (Date) formatter.parse(str_date);
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(date);
-			datePickerDialogGregorian2.setMinDate(cal);
 
-
-			txttavalodm.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-			txttavalodm.setText(str_date);
-			//raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-			//Log.e("GGGGGGG", raft);
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}*/
     }
 
     public String date_server(int y, int m, int d) {//1396  9 25
@@ -2418,9 +2178,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         YoYo.with(Techniques.BounceInRight)
                 .duration(600)
                 .playOn(btn_mosaferan);
-       /* YoYo.with(Techniques.BounceInRight)
-                .duration(600)
-                .playOn(btn_khadamat);*/
+
         YoYo.with(Techniques.BounceInRight)
                 .duration(600)
                 .playOn(btn_pish_factor);
@@ -2444,7 +2202,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         super.onResume();
 
         final ScrollView scroll_partner = findViewById(R.id.scroll_partner);
-        //scroll_partner.fullScroll(ScrollView.FOCUS_UP);
         scroll_partner.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
@@ -2454,9 +2211,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             }
         });
         scroll_partner.clearFocus();
-        //txtemeliP.clearFocus();
-
-        // txtemeliP.setCursorVisible(false);
 
     }
 }

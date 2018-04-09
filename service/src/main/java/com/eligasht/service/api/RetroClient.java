@@ -19,6 +19,8 @@ import com.eligasht.service.model.flight.response.purchaseServiceFlight.Response
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
+import com.eligasht.service.model.insurance.response.ResponsePurchaseInsurance;
 import com.eligasht.service.part.FlightSearch;
 
 import io.reactivex.Observable;
@@ -71,5 +73,9 @@ public interface RetroClient {
     @POST(Const.ChangeFlightAvil)
     Observable<ResponseChangeFlight> responsChangeFlight(
             @Body RequestChangeFlight requestChangeFlight
+    );
+    @POST(Const.PurchaseInsuranceAvil)
+    Observable<ResponsePurchaseInsurance> RESPONSE_PURCHASE_INSURANCE_OBSERVABLE(
+            @Body RequestPurchaseInsurance requestPurchaseInsurance
     );
 }
