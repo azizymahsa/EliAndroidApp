@@ -49,7 +49,6 @@ import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.ui.PassengerActivity;
-import com.eligasht.reservation.views.ui.SingletonContext;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -2029,7 +2028,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     }
                 }
             } catch (JSONException e) {
-                AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(SingletonContext.getInstance().getContext());
+                AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerPackageActivity.this);
                 AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
             }
         }

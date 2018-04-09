@@ -7,9 +7,11 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.tools.JustifiedTextView;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -24,8 +26,7 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
-    Context activity;
-    Activity passengerActivity;
+    Activity activity;
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     String text;
@@ -35,7 +36,6 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
 
     public AlertDialogPassengerFlight(final Activity activity) {
         this.activity = activity;
-        this.passengerActivity=passengerActivity;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_passenger, null);
@@ -55,9 +55,14 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+
         try{
             dialog.show();
-        }catch (Exception e){}
+        }catch (Exception e){
+
+            Toast.makeText(activity, activity.getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -73,7 +78,7 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
-
+                activity.finish();
                 dialog.cancel();
 
 

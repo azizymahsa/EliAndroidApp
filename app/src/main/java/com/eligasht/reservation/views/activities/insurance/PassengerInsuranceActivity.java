@@ -72,7 +72,6 @@ import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.NationalitycodeActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
-import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
@@ -941,7 +940,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 }
 
             } catch (JSONException e) {
-                AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(SingletonContext.getInstance().getContext());
+                AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
                 AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
