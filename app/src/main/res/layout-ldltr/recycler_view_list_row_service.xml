@@ -183,7 +183,7 @@
                             android:textColor="#4d4d4d"
 
                             android:textSize="@dimen/_12dp_normal_textSize" />
-                        <com.eligasht.reservation.views.ticker.TickerView
+                        <TextView
                             android:id="@+id/tvPrice"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_35dp"
@@ -192,7 +192,6 @@
                             android:text="@string/birth_date"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
-app:ticker_defaultCharacterList="number"
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
 

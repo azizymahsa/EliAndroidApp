@@ -54,8 +54,6 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         holder.tvServiceFa.setText(item.getServiceNameFa());
         holder.tvCityName.setText(item.getCityFa());
         holder.tvTypeService.setText(item.getServiceType());
-        holder.tvPrice.setAnimationDelay(1000);
-        holder.tvPrice.setText("");
         holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice()));
 
         if (item.getServiceNameFa().contains("بیمه")) {
@@ -118,8 +116,7 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvArrow, tvServiceCityUi;
-        TickerView  tvPrice;
+        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvArrow, tvServiceCityUi,tvPrice;
         /**
          * You must use the ExpandableLinearLayout in the recycler view.
          * The ExpandableRelativeLayout doesn't work.

@@ -33,7 +33,7 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
     // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
 
 
-    public AlertDialogPassengerFlight(final Context activity) {
+    public AlertDialogPassengerFlight(final Activity activity) {
         this.activity = activity;
         this.passengerActivity=passengerActivity;
         builder = new android.app.AlertDialog.Builder(activity);
@@ -73,7 +73,7 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
-                passengerActivity.finish();
+                
                 dialog.cancel();
 
 
