@@ -26,8 +26,7 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
-    Context activity;
-    Activity passengerActivity;
+    Activity activity;
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     String text;
@@ -37,7 +36,6 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
 
     public AlertDialogPassengerFlight(final Activity activity) {
         this.activity = activity;
-        this.passengerActivity=passengerActivity;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_passenger, null);
@@ -80,7 +78,7 @@ public class AlertDialogPassengerFlight implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
-                passengerActivity.finish();
+                activity.finish();
                 dialog.cancel();
 
 
