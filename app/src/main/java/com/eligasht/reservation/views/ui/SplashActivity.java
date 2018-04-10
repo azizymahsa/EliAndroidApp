@@ -480,10 +480,10 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             if (getAirportsResult.getString("value").equals("1")) {
                 isConnect = true;
                 internetAlert.isCancel();
-                if (req == 1) {
+             /*   if (req == 1) {
                     new GetCommentAsync().execute();
 
-                }
+                }*/
 
             } else {
 
