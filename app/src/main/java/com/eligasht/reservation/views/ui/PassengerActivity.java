@@ -79,6 +79,7 @@ import com.eligasht.service.model.flight.response.PurchaseFlight.TmpReserveResul
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.Error;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.PurchaseServiceResult;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -149,7 +150,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public ImageView txt_hom;
 	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
 	private String Gensiyat="";
-	Activity activity;
+
 	public int countB=SearchParvazActivity.COUNT_B;
 	public int countK=SearchParvazActivity.COUNT_K;
 	public int countN=SearchParvazActivity.COUNT_N;
@@ -175,6 +176,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_flight_passenger);
+
+		SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+		helper.setEdgeMode(false)
+				.setParallaxMode(true)
+				.setParallaxRatio(3)
+				.setNeedBackgroundShadow(true)
+				.init(this);
 
 		ScrollView scroll_partner=(ScrollView)findViewById(R.id.scroll_partner);
 		scroll_partner.fullScroll(ScrollView.FOCUS_UP);
@@ -2088,7 +2096,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		});
 		scroll_partner.clearFocus();
 
-
 	}
 	public String getCounter(int i) {
 		String s="";
@@ -2153,7 +2160,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	@Override
 	public void onBackPressed() {
-
 
 		if (linear_pish_factor.getVisibility() == View.VISIBLE) {
 			linear_pish_factor.setVisibility(View.GONE);
@@ -2395,9 +2401,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	}
 
 
-
-
-
 	public static Bitmap getBitmap(String barcode, int barcodeType, int width, int height)
 	{
 		Bitmap barcodeBitmap = null;
@@ -2529,7 +2532,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	@Override
 	public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
-
 		String str_date = year + "/" + (monthOfYear + 1) + "/" + (dayOfMonth-1);//2018-01-16
 		DateFormat formatter;
 		Date date;
@@ -2540,17 +2542,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			cal.setTime(date);
 			datePickerDialogGregorian2.setMinDate(cal);
 
-
 			txttavalodm.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 			txttavalodm.setText(str_date);
-
 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
-
-
 
 	}//end dateset change
 }

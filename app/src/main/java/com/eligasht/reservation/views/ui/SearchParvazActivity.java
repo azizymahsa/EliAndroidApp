@@ -81,6 +81,7 @@ import com.eligasht.service.model.flight.response.searchFlight.SegmentList;
 import com.eligasht.service.model.flight.response.searchFlight.Taxes;
 import com.eligasht.service.model.flight.response.searchFlight.TotalFare;
 import com.eligasht.service.model.flight.response.searchFlight.TotalFareCost;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -215,6 +216,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_parvaz);
         Utility.setAnimLoading(this);
+
+        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+        helper.setEdgeMode(false)
+                .setParallaxMode(true)
+                .setParallaxRatio(3)
+                .setNeedBackgroundShadow(true)
+                .init(this);
 
         window = getWindow();
         linear_expand = findViewById(R.id.linear_expand);
@@ -1172,8 +1180,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
     }
 
-
-
     private void expandingListData() {
         linear_expand = findViewById(R.id.linear_expand);
         linear_expand.setVisibility(View.VISIBLE);
@@ -1297,12 +1303,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         //parentItem.Header.add(header);
                         parentItem.setHeader(header);
 
-
                         //fore Detail item
                         for (int j = 0; j < SegmentList.size(); j++) {
                             System.out.println("Detail j=" + j);
 
-                            //////////
                             ItemExpandingPlan item = new ItemExpandingPlan();
                             //Item
                             item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
@@ -1316,7 +1320,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                             item.AirlineCode = SegmentList.get(j).getAirlineCode();
 
                             item.flGUID = flightsList.get(i).getFlightGUID();
-
 
                             item.AdlBaseFare = flightsList.get(i).getBaseFare().getAmount();
                             item.Taxes = flightsList.get(i).getTaxes().getAmount();
@@ -1363,7 +1366,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         if (flightsList != null) {
 
-
             System.out.println("flightsList.size():" + flightsList.size());
             //dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
             for (int i = 0; i < flightsList.size(); i++) {
@@ -1372,14 +1374,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                 //	filterAirlines.add(SegmentList.get(0).getAirlineNameFa(),false);
 
-
                 airlineConstraint.add(SegmentList.get(0).getAirlineNameFa());
 
 
                 Log.e("rrrrrrrr", SegmentList.get(0).getAirlineNameFa());
             }
             List<String> al = new ArrayList<>();
-// add elements to al, including duplicates
+
             Set<String> hs = new HashSet<>();
             hs.addAll(airlineConstraint);
             airlineConstraint.clear();
@@ -1392,10 +1393,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
 
     }//end getAirLine
-
-
-
-
 
     @Override
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -1421,7 +1418,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 break;
             case R.id.btnHome:
                 Intent intent = new Intent("sendFinish");
-
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
             case R.id.llBottom:
@@ -1438,7 +1434,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             case R.id.txtRuzeBad:
 
                 if (SingletonDate.getInstance().getStartDate().addOneDay()) {
-                    //tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
                     Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
                     Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
@@ -1449,11 +1444,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     txtDateOnvan.setText(BargashtF);
                     callApiDateNext();
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
-                            Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError,Toast.LENGTH_SHORT).show();
                 }
-
 
                 break;
             case R.id.btnLastDays:
@@ -1474,7 +1466,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                             Toast.LENGTH_SHORT).show();
 
                 }
-
 
                 break;
             case R.id.btn_no_Result:
@@ -1497,8 +1488,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
                 }
 
-
-
                 break;
             case R.id.btnNextDays:
                 if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
@@ -1512,12 +1501,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     txtDateOnvan.setText(BargashtF);
                     callApiDateNext();
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,Toast.LENGTH_SHORT).show();
 
                 }
-
-
 
                 break;
         }
@@ -3134,8 +3120,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         RequestDomesticFlight requestDomesticFlight= new RequestDomesticFlight();
         com.eligasht.service.model.flight.request.DomesticFlight.Request request = new com.eligasht.service.model.flight.request.DomesticFlight.Request();
 
-
-
         try {
 
             Bundle extras = getIntent().getExtras();
@@ -3151,7 +3135,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             request.setTermianlId("Mobile");
             request.setCode(mabdaf);////inja esme forudgah mikhore
             request.setToCode(maghsadf);
-
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -3171,8 +3154,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 }
 
                 List<Country> data = new ArrayList<Country>();
-
-
 
                     String GetError = "";
                     Object jError = null;
@@ -3195,11 +3176,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                         else
                             Prefs.putBoolean("IsDemostic", false);
 
-
                     }
-
-
-
             }
 
             @Override
@@ -3208,7 +3185,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
                 // Log.e("date", result);
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-
                     window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
                 }
             }
