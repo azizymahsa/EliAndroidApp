@@ -3,7 +3,7 @@ package com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.r
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class HotelToAirport {
 
@@ -239,9 +239,6 @@ public class HotelToAirport {
         this.totalFarePrice = totalFarePrice;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("adultTotalFare", adultTotalFare).append("adultTotalFarePrice", adultTotalFarePrice).append("childTotalFare", childTotalFare).append("childTotalFarePrice", childTotalFarePrice).append("description", description).append("dropOff", dropOff).append("duration", duration).append("fromTo", fromTo).append("infantTotalFare", infantTotalFare).append("infantTotalFarePrice", infantTotalFarePrice).append("links", links).append("offerCode", offerCode).append("passengerLanguage", passengerLanguage).append("pickUp", pickUp).append("providerCompany", providerCompany).append("serviceLanguages", serviceLanguages).append("serviceType", serviceType).append("sightseeingName", sightseeingName).append("supplier", supplier).append("totalFare", totalFare).append("totalFarePrice", totalFarePrice).toString();
-    }
+
 
 }

@@ -4,7 +4,7 @@ package com.eligasht.service.model.hotel.hotelAvail.response;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class Hotel {
 
@@ -516,8 +516,6 @@ public class Hotel {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("address", address).append("availability", availability).append("bestSell", bestSell).append("checkInPolicy", checkInPolicy).append("checkOutPolicy", checkOutPolicy).append("city", city).append("cityNameEn", cityNameEn).append("cityNameFa", cityNameFa).append("countryNameEn", countryNameEn).append("description", description).append("eId", eId).append("eTheme", eTheme).append("eType", eType).append("facilities", facilities).append("fixedProfit", fixedProfit).append("hWSAccID", hWSAccID).append("hotelDetailURL", hotelDetailURL).append("hotelID", hotelID).append("hotelNameEn", hotelNameEn).append("hotelNameFa", hotelNameFa).append("id", id).append("images", images).append("isNew", isNew).append("isTop", isTop).append("languageSpoken", languageSpoken).append("lastBooking", lastBooking).append("location", location).append("mainImage", mainImage).append("mapLat", mapLat).append("mapLng", mapLng).append("mapZoom", mapZoom).append("name", name).append("profitCurrencyID", profitCurrencyID).append("profitPercent", profitPercent).append("score", score).append("scoreReviews", scoreReviews).append("scoreText", scoreText).append("starRating", starRating).append("tARating", tARating).append("tARatingReviews", tARatingReviews).append("theme", theme).append("themeText", themeText).append("type", type).append("typeText", typeText).append("website", website).append("zipCode", zipCode).toString();
-    }
+
 
 }

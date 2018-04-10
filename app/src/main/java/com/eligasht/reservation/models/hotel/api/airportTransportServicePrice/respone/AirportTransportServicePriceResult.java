@@ -6,7 +6,8 @@ import java.util.List;
 import com.eligasht.reservation.models.model.Errors;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
+
 
 public class AirportTransportServicePriceResult {
 
@@ -66,9 +67,6 @@ public class AirportTransportServicePriceResult {
         this.transferAvailabilityRoundtripResults = transferAvailabilityRoundtripResults;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("comments", comments).append("errors", errors).append("resultKey", resultKey).append("warningss", warningss).append("transferAvailabilityRoundtripResults", transferAvailabilityRoundtripResults).toString();
-    }
+
 
 }

@@ -3,7 +3,7 @@ package com.eligasht.service.model.hotel.hotelAvail.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class HotelType {
 
@@ -75,8 +75,6 @@ public class HotelType {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("count", count).append("eId", eId).append("hotelDetailURL", hotelDetailURL).append("icon", icon).append("id", id).append("title", title).toString();
-    }
+
 
 }

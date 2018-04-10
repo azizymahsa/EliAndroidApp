@@ -3,7 +3,7 @@ package com.eligasht.service.model.hotel.hotelAvail.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class Error {
 
@@ -53,8 +53,6 @@ public class Error {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("code", code).append("detailedMessage", detailedMessage).append("language", language).append("message", message).toString();
-    }
+
 
 }

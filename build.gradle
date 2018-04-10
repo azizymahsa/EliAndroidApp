@@ -1,7 +1,7 @@
 buildscript {
     repositories {
+        mavenCentral()
         google()
-
         jcenter()
         maven {
             url 'https://maven.fabric.io/public'
@@ -22,6 +22,9 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
+        google()
+        jcenter()
         maven { url 'https://maven.google.com' }
         maven { url "http://dl.bintray.com/populov/maven" }
         maven { url "https://jitpack.io" }
@@ -31,7 +34,7 @@ allprojects {
         maven {
             url 'https://maven.fabric.io/public'
         }
-        jcenter()
+
 
     }
 }

@@ -3,7 +3,7 @@ package com.eligasht.service.model.hotel.hotelAvail.request;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class Room {
 
@@ -31,9 +31,6 @@ public class Room {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("adultCount", adultCount).append("childCount", childCount).toString();
-    }
 
     public Room(int adultCount, int childCount) {
         this.adultCount = adultCount;

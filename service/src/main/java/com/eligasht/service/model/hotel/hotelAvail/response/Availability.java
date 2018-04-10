@@ -4,7 +4,7 @@ package com.eligasht.service.model.hotel.hotelAvail.response;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class Availability {
 
@@ -21,8 +21,6 @@ public class Availability {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("roomLists", roomLists).toString();
-    }
+
 
 }

@@ -3,7 +3,7 @@ package com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.r
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class OfferCode_ {
 
@@ -118,9 +118,6 @@ public class OfferCode_ {
         this.supplierSession = supplierSession;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("cityCode", cityCode).append("code", code).append("countryOfResidence", countryOfResidence).append("dropOff", dropOff).append("itemCode", itemCode).append("maxNumberOfPassengers", maxNumberOfPassengers).append("nationality", nationality).append("pickUp", pickUp).append("supplier", supplier).append("supplierSession", supplierSession).toString();
-    }
+
 
 }

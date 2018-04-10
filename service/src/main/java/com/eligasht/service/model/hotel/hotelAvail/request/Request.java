@@ -4,7 +4,7 @@ package com.eligasht.service.model.hotel.hotelAvail.request;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class Request {
 

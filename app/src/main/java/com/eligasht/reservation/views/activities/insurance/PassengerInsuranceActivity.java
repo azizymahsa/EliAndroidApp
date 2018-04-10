@@ -614,7 +614,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         requestPreFactorDetails.setRequest(request);
         Log.e("PreFactorDetailsInsurance:", new Gson().toJson(requestPreFactorDetails));
 
-        SingletonService.getInstance().getPreFactorDetailInsurance().PreFactorDetailInsuranceAvail(new OnServiceStatus<ResponsePreFactorDetails>() {
+        SingletonService.getInstance().getFlight().PreFactorDetailInsuranceAvail(new OnServiceStatus<ResponsePreFactorDetails>() {
             @Override
             public void onReady(ResponsePreFactorDetails responsePreFactorDetails) {
                 FlagMosaferan = false;
@@ -843,7 +843,7 @@ private void RequestPurchaseInsurance(){
         requestPurchaseInsurance.setRequest(request);
         Log.e("PurchaseInsurance:", new Gson().toJson(requestPurchaseInsurance));
 
-        SingletonService.getInstance().getPurchaseInsurance().purchaseInsuranceAvail(this, requestPurchaseInsurance);
+        SingletonService.getInstance().getFlight().purchaseInsuranceAvail(this, requestPurchaseInsurance);
     } catch (Exception e) {
         // TODO Auto-generated catch block
         e.printStackTrace();

@@ -4,7 +4,7 @@ package com.eligasht.service.model.hotel.hotelAvail.response;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class HotelSearchResult {
 
@@ -164,8 +164,6 @@ public class HotelSearchResult {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("cityImage", cityImage).append("counts", counts).append("facilities", facilities).append("flights", flights).append("flightsID", flightsID).append("hotelTypes", hotelTypes).append("hotels", hotels).append("loadDB", loadDB).append("locations", locations).append("maxPrice", maxPrice).append("minPrice", minPrice).append("nightCounts", nightCounts).append("stars", stars).append("webservices", webservices).toString();
-    }
+
 
 }

@@ -1664,7 +1664,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			requestPurchaseFlightt.setRequest(request);
 			Log.e("jjjssson", new Gson().toJson(requestPurchaseFlightt) );
-			SingletonService.getInstance().getPurchaseFlightPassenger().purchaseFlightAvail(new OnServiceStatus<com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight>() {
+			SingletonService.getInstance().getFlight().purchaseFlightAvail(new OnServiceStatus<com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight>() {
 				@Override
 				public void onReady(com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight responsePurchaseFlight) {
 
@@ -1864,7 +1864,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		request.setInvoiceNo(tvfactorNumber.getText().toString());//perches service
 
 		requestPreFactorDetails.setRequest(request);
-		SingletonService.getInstance().getPreFactorDetailFlight().flightPreFactorDetailAvail(new OnServiceStatus<ResponsePreFactorDetails>() {
+		SingletonService.getInstance().getFlight().flightPreFactorDetailAvail(new OnServiceStatus<ResponsePreFactorDetails>() {
 			@Override
 			public void onReady(ResponsePreFactorDetails responsePreFactorDetails) {
 
@@ -2037,7 +2037,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		request.setInsPlanCode(-1);
 
 		requestPurchaseFlight.setRequest(request);
-		SingletonService.getInstance().getPurchaseFlight().flightPurchaseAvail(PassengerActivity.this,requestPurchaseFlight);
+		SingletonService.getInstance().getFlight().flightPurchaseAvail(PassengerActivity.this,requestPurchaseFlight);
 	}
 
 	private void setAnimation() {

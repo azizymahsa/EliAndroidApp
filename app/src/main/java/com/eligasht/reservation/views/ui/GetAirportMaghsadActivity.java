@@ -215,7 +215,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         request.setCulture(getString(R.string.culture));
         requestAirports.setRequest(request);
 
-        SingletonService.getInstance().getAirPortsService().airPortsAvail(this, requestAirports);
+        SingletonService.getInstance().getFlight().airPortsAvail(this, requestAirports);
     }
 
     @Override
