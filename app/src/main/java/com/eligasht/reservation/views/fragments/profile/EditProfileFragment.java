@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eligasht.reservation.tools.Utility;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
@@ -217,7 +218,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         if (chk_gender_woman.isChecked()) {
             registerListReq.setWebUserGender(false);
         }
-        registerListReq.setWebUserBirthDayMiladi(birthdayDate);
+        registerListReq.setWebUserBirthDayMiladi(Utility.convertNumbersToEnglish(birthdayDate));
         registerListReq.setWebUserID(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID());
         // set other parameter here!
         return registerListReq;

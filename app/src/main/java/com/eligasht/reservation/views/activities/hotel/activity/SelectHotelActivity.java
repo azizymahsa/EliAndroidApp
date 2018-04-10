@@ -692,15 +692,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         list.setVisibility(View.GONE);
         rlList.setVisibility(View.GONE);
         elNotFound.setVisibility(View.VISIBLE);
+        tvAlertDesc.setVisibility(View.GONE);
+        btnOk.setVisibility(View.VISIBLE);
+        rlEr.setVisibility(View.VISIBLE);
         if (!Utility.isNetworkAvailable(SelectHotelActivity.this)) {
             tvAlert.setText(R.string.InternetError);
         } else {
             tvAlert.setText(R.string.ErrorServer);
         }
-        tvAlertDesc.setVisibility(View.GONE);
-        list.setVisibility(View.GONE);
-        btnOk.setVisibility(View.VISIBLE);
-        rlEr.setVisibility(View.VISIBLE);
+
     }
 }
 

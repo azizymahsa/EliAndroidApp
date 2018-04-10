@@ -10,7 +10,7 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_weight="100"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_40dp"
             android:src="@drawable/ic_launcher"
             android:scaleType="fitEnd"/>
 
@@ -19,7 +19,7 @@
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_weight="100"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/_40dp"
             android:layout_gravity="center"
             android:gravity="left|center"
             android:text="Demo"

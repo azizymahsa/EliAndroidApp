@@ -1456,7 +1456,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="30dp"
+                                    android:layout_height="@dimen/_30dp"
                                     android:gravity="center"
                                     android:orientation="horizontal">
 
@@ -1474,7 +1474,7 @@
                                         android:text="@string/moshakhasat_mosafer"
                                         android:textAppearance="@style/IrsansBold"
                                         android:textColor="@color/text_color_2e"
-                                        android:textSize="12dp" />
+                                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                                     <View
                                         android:layout_width="0dp"
@@ -1503,7 +1503,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="30dp"
+                                    android:layout_height="@dimen/_30dp"
                                     android:gravity="center"
                                     android:orientation="horizontal">
 
@@ -1521,7 +1521,7 @@
                                         android:text="@string/info_flight"
                                         android:textAppearance="@style/IrsansBold"
                                         android:textColor="@color/text_color_2e"
-                                        android:textSize="12dp" />
+                                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                                     <View
                                         android:layout_width="0dp"
@@ -1550,7 +1550,7 @@
                                 <LinearLayout
                                     android:id="@+id/rlTitleHotel"
                                     android:layout_width="match_parent"
-                                    android:layout_height="30dp"
+                                    android:layout_height="@dimen/_30dp"
                                     android:gravity="center"
                                     android:orientation="horizontal">
 
@@ -1568,7 +1568,7 @@
                                         android:text="@string/detail_hotel"
                                         android:textAppearance="@style/IrsansBold"
                                         android:textColor="@color/text_color_2e"
-                                        android:textSize="12dp" />
+                                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                                     <View
                                         android:layout_width="0dp"
@@ -1597,7 +1597,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="30dp"
+                                    android:layout_height="@dimen/_30dp"
                                     android:gravity="center"
                                     android:orientation="horizontal">
 
@@ -1615,7 +1615,7 @@
                                         android:text="@string/Available_services"
                                         android:textAppearance="@style/IrsansBold"
                                         android:textColor="@color/text_color_2e"
-                                        android:textSize="12dp" />
+                                        android:textSize="@dimen/_12dp_normal_textSize" />
 
                                     <View
                                         android:layout_width="0dp"
