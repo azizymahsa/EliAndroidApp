@@ -218,7 +218,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         request.setCulture(getString(R.string.culture));
         requestAirports.setRequest(request);
 
-        SingletonService.getInstance().getAirPortsService().airPortsAvail(this, requestAirports);
+        SingletonService.getInstance().getFlight().airPortsAvail(this, requestAirports);
     }
 
 

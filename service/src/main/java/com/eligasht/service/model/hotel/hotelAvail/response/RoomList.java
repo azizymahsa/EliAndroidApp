@@ -4,7 +4,7 @@ package com.eligasht.service.model.hotel.hotelAvail.response;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class RoomList {
 
@@ -274,8 +274,6 @@ public class RoomList {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("comments", comments).append("errors", errors).append("resultKey", resultKey).append("warningss", warningss).append("board", board).append("boardID", boardID).append("currencyCode", currencyCode).append("currencyPrice", currencyPrice).append("description", description).append("eHotelId", eHotelId).append("eId", eId).append("hotelId", hotelId).append("id", id).append("isSelected", isSelected).append("load", load).append("offerId", offerId).append("oldPrice", oldPrice).append("price", price).append("rooms", rooms).append("source", source).append("sourcePrice", sourcePrice).append("status", status).append("summery", summery).append("title", title).toString();
-    }
+
 
 }

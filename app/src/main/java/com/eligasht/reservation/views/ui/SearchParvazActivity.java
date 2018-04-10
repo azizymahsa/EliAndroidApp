@@ -525,7 +525,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 request.setCulture(getString(R.string.culture));
                 requestSearchFlight.setRequest(request);
 
-                SingletonService.getInstance().getFlightSearchService().flightSearchAvail(SearchParvazActivity.this,requestSearchFlight);
+                SingletonService.getInstance().getFlight().flightSearchAvail(SearchParvazActivity.this,requestSearchFlight);
                 System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
 
             } else {
@@ -549,7 +549,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 request.setCulture(getString(R.string.culture));
                 requestSearchFlight.setRequest(request);
 
-                SingletonService.getInstance().getFlightSearchService().flightSearchAvail(SearchParvazActivity.this,requestSearchFlight);
+                SingletonService.getInstance().getFlight().flightSearchAvail(SearchParvazActivity.this,requestSearchFlight);
 
                 //Global
                 COUNT_B = 1;
@@ -1811,7 +1811,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         request.setSearchKey(searchKey);
         requestChangeFlight.setRequest(request);
 
-        SingletonService.getInstance().getChangeFlight().ChangeFlightAvail(new OnServiceStatus<ResponseChangeFlight>() {
+        SingletonService.getInstance().getFlight().ChangeFlightAvail(new OnServiceStatus<ResponseChangeFlight>() {
             @Override
             public void onReady(ResponseChangeFlight responsSearchFlight) {
                 new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);
@@ -3142,7 +3142,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
         requestDomesticFlight.setRequest(request);
 
-        SingletonService.getInstance().getCheckFlight().domesticFlightAvail(new OnServiceStatus<ResponseDomesticFlight>() {
+        SingletonService.getInstance().getFlight().domesticFlightAvail(new OnServiceStatus<ResponseDomesticFlight>() {
             @Override
             public void onReady(ResponseDomesticFlight responseDomesticFlight) {
                 System.out.println("DomesticResult:"+responseDomesticFlight.getGetIsDomesticResult().getIsDomestic());

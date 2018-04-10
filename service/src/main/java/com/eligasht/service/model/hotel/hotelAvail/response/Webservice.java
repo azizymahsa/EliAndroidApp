@@ -3,7 +3,7 @@ package com.eligasht.service.model.hotel.hotelAvail.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class Webservice {
 
@@ -152,8 +152,6 @@ public class Webservice {
     }
 
     public void showLog(){ android.util.Log.e(this.getClass().getSimpleName(),toString());}
-    public String toString() {
-        return new ToStringBuilder(this).append("accountID", accountID).append("agentID", agentID).append("cityCode", cityCode).append("hWSAccID", hWSAccID).append("id", id).append("nationality", nationality).append("pasword", pasword).append("residence", residence).append("searchType", searchType).append("title", title).append("type", type).append("uRL", uRL).append("userName", userName).toString();
-    }
+
 
 }

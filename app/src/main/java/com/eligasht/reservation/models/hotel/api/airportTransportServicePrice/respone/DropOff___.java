@@ -3,7 +3,7 @@ package com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.r
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 public class DropOff___ {
 
@@ -85,9 +85,6 @@ public class DropOff___ {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("address", address).append("cityCode", cityCode).append("code", code).append("dateTime", dateTime).append("fligtNumber", fligtNumber).append("meetingPointType", meetingPointType).append("name", name).toString();
-    }
+
 
 }
