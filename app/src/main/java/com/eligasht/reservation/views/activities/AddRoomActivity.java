@@ -186,6 +186,7 @@ try {
                 Intent intent = new Intent();
                 intent.putExtra("Rooms",gson.toJson(roomPresenter.getRooms()));
                 Prefs.putString("Rooms",gson.toJson(roomPresenter.getRooms()));
+                Prefs.putString("Rooms",gson.toJson(roomPresenter.getRooms()));
 //                startActivity(intent);
                 setResult(RESULT_OK,intent);
                 finish();
