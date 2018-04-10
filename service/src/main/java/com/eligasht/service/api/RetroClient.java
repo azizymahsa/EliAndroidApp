@@ -19,7 +19,9 @@ import com.eligasht.service.model.flight.response.purchaseServiceFlight.Response
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.insurance.request.GetCountry.RequestGetCountry;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
+import com.eligasht.service.model.insurance.response.GetCountry.ResponseGetCountry;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
 import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
 
@@ -93,6 +95,9 @@ public interface RetroClient {
     Observable<com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.ResponsePreFactorDetails> responsePreFactorDetailsInsurance(
             @Body com.eligasht.service.model.insurance.request.RequestPreFactorDetail.RequestPreFactorDetails requestPreFactorDetails
     );
-
+    @POST(Const.GetCountryInsuranceAvil)
+    Observable<ResponseGetCountry> RESPONSE_GET_COUNTRY_OBSERVABLE(
+            @Body RequestGetCountry requestGetCountry
+    );
 
 }

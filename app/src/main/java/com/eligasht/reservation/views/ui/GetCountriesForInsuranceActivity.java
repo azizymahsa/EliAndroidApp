@@ -10,6 +10,7 @@ import android.speech.RecognizerIntent;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +31,15 @@ import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.views.adapters.GetAirPortMabdaAdapter;
 import com.eligasht.reservation.views.adapters.GetCountriesForInsuranceAdapter;
 import com.eligasht.reservation.views.components.Header;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.flight.request.airPort.Identity;
+import com.eligasht.service.model.flight.request.airPort.Request;
+import com.eligasht.service.model.flight.request.airPort.RequestAirports;
+import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
+import com.eligasht.service.model.insurance.request.GetCountry.RequestGetCountry;
+import com.eligasht.service.model.insurance.response.GetCountry.ResponseGetCountry;
+import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONException;
@@ -45,7 +55,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class GetCountriesForInsuranceActivity extends BaseActivity implements  OnClickListener {
+public class GetCountriesForInsuranceActivity extends BaseActivity implements  OnClickListener , OnServiceStatus<ResponseGetCountry> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     public static String searchText = "";
@@ -98,51 +108,59 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
                         if (ValidationTools.isEmptyOrNull(input)) {
                             return;
                         }
-
+                        String d = s.toString().trim();
+                        if (d.length() > 2) {
                         getCountries(input);
+                        }
 
                     }
                 });
     }
 
+    @Override
+    public void onReady(ResponseGetCountry responseGetCountry) {
+        hideLoading();
+        if (responseGetCountry == null) {
+            searchtxt.setText("");
+            needShowAlertDialog(getString(R.string.ErrorServer), true);
+            return;
+        }
+        if (responseGetCountry.getGetCountryAjaxWithCultureResult().getCountries() == null ) {
+            return;
+        }
+        try {
+            GetCountriesForInsuranceAdapter adapter = new GetCountriesForInsuranceAdapter(GetCountriesForInsuranceActivity.this, responseGetCountry.getGetCountryAjaxWithCultureResult().getCountries(), GetCountriesForInsuranceActivity.this);
+            onPostExecute(adapter);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onError(String message) {
+        Log.e("onError: " , message);
+        try {
+            searchtxt.setText("");
+            needShowAlertDialog(getString(R.string.ErrorServer), true);
+        } catch (Exception e) {
+        }
+    }
     private void getCountries(String cityCode) {
         showLoading();
-        Call<CountryListRes> call = service.getCountryListResult(new CountryRequestModel(new CountryListReq("EligashtMlb", "123qwe!@#QWE", "Mobile", cityCode)));
-        call.enqueue(new Callback<CountryListRes>() {
-            @Override
-            public void onResponse(Call<CountryListRes> call, Response<CountryListRes> response) {
-                hideLoading();
-                if (response == null || response.body() == null) {
-                    searchtxt.setText("");
-                    needShowAlertDialog(getString(R.string.ErrorServer), true);
-                    return;
-                }
 
-                if (response.body().getCountryAjaxResult() == null || ValidationTools.isEmptyOrNull(response.body().getCountryAjaxResult().getCountries())) {
-                    return;
-                }
-                try {
-                    GetCountriesForInsuranceAdapter adapter = new GetCountriesForInsuranceAdapter(GetCountriesForInsuranceActivity.this, response.body().getCountryAjaxResult().getCountries(), GetCountriesForInsuranceActivity.this);
-                    onPostExecute(adapter);
+        RequestGetCountry requestGetCountry = new RequestGetCountry();
+        com.eligasht.service.model.insurance.request.GetCountry.Request request = new com.eligasht.service.model.insurance.request.GetCountry.Request();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        com.eligasht.service.model.insurance.request.GetCountry.Identity identity = new  com.eligasht.service.model.insurance.request.GetCountry.Identity();
+        identity.setCode(cityCode);
+        request.setIdentity(identity);
 
+        request.setCulture(getString(R.string.culture));
+        requestGetCountry.setRequest(request);
+        Log.e("getCountryInsurance: " , new Gson().toJson(requestGetCountry));
+        SingletonService.getInstance().getCountryInsurance().getCountryInsuranceAvail(this, requestGetCountry);
 
-            }
-
-            @Override
-            public void onFailure(Call<CountryListRes> call, Throwable t) {
-                try {
-                    searchtxt.setText("");
-                    needShowAlertDialog(getString(R.string.ErrorServer), true);
-                } catch (Exception e) {
-                }
-
-            }
-        });
     }
 
     public void needShowAlertDialog(String message, boolean canelable) {
@@ -230,5 +248,6 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
     private void hideLoading() {
         avi.setVisibility(View.INVISIBLE);
     }
+
 
 }

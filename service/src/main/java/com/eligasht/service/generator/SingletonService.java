@@ -7,6 +7,7 @@ import com.eligasht.service.part.ChangeFlight;
 import com.eligasht.service.part.CheckFlight;
 import com.eligasht.service.part.ContactUs;
 import com.eligasht.service.part.FlightSearch;
+import com.eligasht.service.part.GetCountryInsurance;
 import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.PreFactorDetailFlight;
 import com.eligasht.service.part.PreFactorDetailInsurance;
@@ -39,6 +40,7 @@ public class SingletonService {
     ChangeFlight changeFlight;
     PurchaseInsurance purchaseInsurance;
     PreFactorDetailInsurance preFactorDetailInsurance;
+    GetCountryInsurance getCountryInsurance;
     private static final SingletonService ourInstance = new SingletonService();
 
     public static SingletonService getInstance() {
@@ -118,5 +120,10 @@ public class SingletonService {
         if (preFactorDetailInsurance == null)
             preFactorDetailInsurance = new PreFactorDetailInsurance(serviceGenerator);
         return preFactorDetailInsurance;
+    }
+    public GetCountryInsurance getCountryInsurance() {
+        if (getCountryInsurance == null)
+            getCountryInsurance = new GetCountryInsurance(serviceGenerator);
+        return getCountryInsurance;
     }
 }

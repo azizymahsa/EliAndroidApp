@@ -22,6 +22,7 @@ public class Const {
     //*************insurnace*************
     public final static String PurchaseInsuranceAvil="Insurance/InsuranceService.svc/PurchaseInsurance";
     public final static String PreFactorDetailsInsuranceAvil="Common/StaticDataService.svc/GetPreFactorDetails";
+    public final static String GetCountryInsuranceAvil="Common/StaticDataService.svc/GetCountryAjaxWithCulture";
     //*************static page*************
     public final static String AboutAvil="Common/StaticDataService.svc/GetAboutUsWithCulture";
     public final static String ContactUsAvil="Common/StaticDataService.svc/GetContactUsWithCuture";
