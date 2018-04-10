@@ -68,6 +68,7 @@
                 android:gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="@color/focusColor"
+                android:layout_marginBottom="1dp"
 
                 fancy:fb_radius="200dp"
                 fancy:fb_text=" "

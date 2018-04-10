@@ -38,7 +38,7 @@
 
                 <TextView
                     android:id="@+id/tvHotelDetail"
-                    android:layout_width="250dp"
+                    android:layout_width="@dimen/_250dp_normal"
                     android:layout_centerInParent="true"
                     android:layout_height="match_parent"
                     android:gravity="center"

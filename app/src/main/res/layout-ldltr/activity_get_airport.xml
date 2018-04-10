@@ -57,6 +57,7 @@
                 android:layout_width="@dimen/_35dp"
                 android:layout_height="@dimen/_35dp"
                 android:layout_alignParentRight="true"
+                android:layout_marginBottom="1dp"
 
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="@color/focusColor"
