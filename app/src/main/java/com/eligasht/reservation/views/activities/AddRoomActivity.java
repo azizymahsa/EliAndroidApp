@@ -182,11 +182,9 @@ try {
                     Toast.makeText(this, R.string.numbers_must_be_less_than_nine, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Gson gson = new GsonBuilder().create();
                 Intent intent = new Intent();
-                intent.putExtra("Rooms",gson.toJson(roomPresenter.getRooms()));
-                Prefs.putString("Rooms",gson.toJson(roomPresenter.getRooms()));
-                Prefs.putString("Rooms",gson.toJson(roomPresenter.getRooms()));
+                intent.putExtra("Rooms",new Gson().toJson(roomPresenter.getRooms()));
+                Prefs.putString("Rooms",new Gson().toJson(roomPresenter.getRooms()));
 //                startActivity(intent);
                 setResult(RESULT_OK,intent);
                 finish();
