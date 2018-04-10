@@ -29,6 +29,7 @@ import com.eligasht.service.model.flight.request.airPort.RequestAirports;
 import com.eligasht.service.model.flight.request.airPort.Identity;
 import com.eligasht.service.model.flight.request.airPort.Request;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
@@ -66,9 +67,14 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_airport);
         avi = findViewById(R.id.avi);
-        //searchtxt = (EditText) findViewById(R.id.searchtxt);
-        //Make call to AsyncTask
-        //new AsyncFetch().execute();
+
+        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+        helper.setEdgeMode(false)
+                .setParallaxMode(true)
+                .setParallaxRatio(3)
+                .setNeedBackgroundShadow(true)
+                .init(this);
+
         btnBack = findViewById(R.id.btnBack);
         btnMic = findViewById(R.id.btnMic);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");

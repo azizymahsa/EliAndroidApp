@@ -1660,12 +1660,9 @@ private void RequestPurchaseInsurance(){
         return null;
     }
 
-
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         switch (v.getId()) {
-
-
 //مسافر
             case R.id.txtmahale_eghamat:
                 if (hasFocus) {

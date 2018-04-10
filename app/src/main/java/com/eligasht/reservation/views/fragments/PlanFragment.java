@@ -619,7 +619,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     i3.putExtra("Value-Mabda-Airport-Code", Prefs.getString("Value-Mabda-Airport-Code", ""));//*THR
                 }
 
-                startActivityForResult(i3, 2);
+               // startActivityForResult(i3, 2);
+                SwipeBackActivityHelper.activityBuilder(getActivity())
+                        .intent(i3)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
                 break;
             case R.id.linearLayout_mabda:
 
@@ -632,7 +637,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     intent.putExtra("Value-Maghsad-Airport-Code", Prefs.getString("Value-Maghsad-Airport-Code", ""));//*
                 }
 
-                startActivityForResult(intent, 2);
+               // startActivityForResult(intent, 2);
+                SwipeBackActivityHelper.activityBuilder(getActivity())
+                        .intent(intent)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
                 break;
             case R.id.txtOption:
                 anim();
