@@ -39,7 +39,7 @@ import com.eligasht.reservation.views.ui.dialog.app.SplashDialog;
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.DateFormat;

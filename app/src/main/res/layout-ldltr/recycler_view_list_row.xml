@@ -36,7 +36,7 @@
                 android:background="#fff4ee">
 
 
-                <TextViewe
+                <TextView
                     android:id="@+id/tvHotelDetail"
                     android:layout_width="@dimen/_250dp_normal"
                     android:layout_centerInParent="true"

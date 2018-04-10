@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,6 +51,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -73,7 +75,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     String product;
     private BroadcastReceiver sendDetailFinish;
     InternetAlert internetAlert;
-    boolean isConnect;
+    boolean isConnect =true;
 
     int req = 0;
     SplashDialog splashDialog;
@@ -107,32 +109,34 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     }
 
     IUpdateCheckService service;
-    //  UpdateServiceConnection connection;
-
-
-    private enum DOWNLOAD_TYPE {
-        NONE, MAP, SOFTWARE
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.fragment_splash);
         super.onCreate(savedInstanceState);
+        try {
+            String languageToLoad = Prefs.getString("lang", "fa"); // your language
+            Locale locale = new Locale(languageToLoad);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+                config.setLocale(locale);
+            }else{
+                config.locale = locale;
+
+            }
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } catch (Exception e) {
+            Log.e("testerror", e.getMessage());
+        }
+        setContentView(R.layout.fragment_splash);
+
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
 
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
         }
-      /*  GlobalApplication application = (GlobalApplication) getApplication();
-        Tracker mTracker = application.getDefaultTracker();
-        mTracker.setScreenName("splash");
 
-        mTracker.setTitle("splash");
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
-
-        mTracker.send(new HitBuilders.AppViewBuilder().build());*/
 
         splashDialog = new SplashDialog(SplashActivity.this, this);
         final PackageInfo pInfo;
@@ -214,31 +218,12 @@ public class SplashActivity extends ConnectionBuddyActivity implements
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-    // =========================================================================
-    // ===================== DOWNLOAD SOFTWARE =================================
-    // =========================================================================
-    private void downloadSoftware() {
-/*		DLType = DOWNLOAD_TYPE.SOFTWARE;
-        UpdateFromWebService service = new UpdateFromWebService(this, null);
-		service.DownloadNewVersion(this);
-		((TextView) findViewById(R.id.progressDownloadText)).setText("در حال دریافت نسخه جدید نرم افزار");
-		findViewById(R.id.mainPassLayout).setVisibility(View.GONE);
-		progress.setVisibility(View.VISIBLE);
-		findViewById(R.id.downloadButtonsPanel).setVisibility(View.GONE);*/
     }
 
-    public static boolean hasPermissions(Context context, String... permissions) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 
 
     private class GetCommentAsync extends AsyncTask<String, Void, String> {
@@ -366,9 +351,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                         }
 
                     }
-                    Log.e("AdjustEnabled",
-                            userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.AdjustEnabled
-                                    + "");
+
                     if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.AdjustEnabled) {
                         Hawk.put("adjust", true);
                     } else {
@@ -386,7 +369,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                                 updateAlert.isForce(false);
 
                             } else {
-                                Log.e("Cal", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault);
                                 if (Prefs.getBoolean("isFirstEntrance", true)) {
                                     if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault
                                             .split("-")[0].equals(Prefs.getString("lang","fa")))
@@ -395,6 +377,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                                         Prefs.putString("lang", "fa");
                                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                         finish();
+                                        Log.e(TAG, "onPostExecute: 1111");
                                     }
                                     else
                                     {
@@ -407,6 +390,8 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                                 } else {
                                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                     finish();
+                                    Log.e(TAG, "onPostExecute: 2222");
+
                                 }
                                 Hawk.put("isFirstEntrance", false);
 
@@ -447,6 +432,21 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     @Override
     protected void onResume() {
         super.onResume();
+        try {
+            String languageToLoad = Prefs.getString("lang", "fa"); // your language
+            Locale locale = new Locale(languageToLoad);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+                config.setLocale(locale);
+            }else{
+                config.locale = locale;
+
+            }
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } catch (Exception e) {
+        }
         if (Hawk.get("adjust", true)) {
             try {
                 AdjustEvent event = new AdjustEvent("yoi24u");
@@ -480,10 +480,10 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             if (getAirportsResult.getString("value").equals("1")) {
                 isConnect = true;
                 internetAlert.isCancel();
-                if (req == 1) {
+             /*   if (req == 1) {
                     new GetCommentAsync().execute();
 
-                }
+                }*/
 
             } else {
 

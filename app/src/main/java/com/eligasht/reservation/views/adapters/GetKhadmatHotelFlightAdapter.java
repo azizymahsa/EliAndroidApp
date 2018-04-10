@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.PurchaseFlightResult;
 import com.eligasht.reservation.views.activities.transfer.TransferActivity;

@@ -139,6 +139,7 @@
     <dimen name="_30dp_passenger">40sp</dimen>
     <dimen name="_100dpflight">252dp</dimen>
     <dimen name="_100dpleftFlight">200dp</dimen>
+    <dimen name="_120dp_p">200dp</dimen>
 
 
 </resources>

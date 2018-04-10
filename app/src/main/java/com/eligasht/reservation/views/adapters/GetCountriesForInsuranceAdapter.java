@@ -14,7 +14,7 @@ import com.eligasht.reservation.models.Country;
 import com.eligasht.reservation.tools.db.local.RecentCity_Table;
 import com.eligasht.reservation.views.ui.GetCountriesForInsuranceActivity;
 import com.orhanobut.hawk.Hawk;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;

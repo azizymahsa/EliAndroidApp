@@ -13,7 +13,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.model.HotelCity;
 import com.eligasht.reservation.models.model.pack.GetPackageRoutesResult;
 import com.orhanobut.hawk.Hawk;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;

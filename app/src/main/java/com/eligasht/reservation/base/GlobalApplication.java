@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -30,7 +31,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.crash.FirebaseCrash;
 import com.onesignal.OneSignal;
 import com.orhanobut.hawk.Hawk;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.ConnectionBuddyConfiguration;
@@ -60,15 +61,19 @@ public class GlobalApplication extends ServiceApplication {
                 context.getResources().getString(R.string.mitra_ttf));
     }
 
-    public static void setLocale(Context context) {
+    public  void setLocale() {
 
         String languageToLoad = Prefs.getString("lang", "fa");
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-        config.locale = locale;
-        context.getResources().updateConfiguration(config,
-                context.getResources().getDisplayMetrics());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+            config.setLocale(locale);
+        }else{
+            config.locale = locale;
+        }
+        getResources().updateConfiguration(config,
+                getResources().getDisplayMetrics());
     }
 
     public static String getSoftwareDirectoryAddress() {
@@ -169,7 +174,9 @@ public class GlobalApplication extends ServiceApplication {
                 .setUseDefaultSharedPreference(true)
                 .build();
 
-        setLocale(this);
+
+
+        setLocale();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath(getResources().getString(R.string.iran_sans_normal_ttf))

@@ -43,7 +43,7 @@ import com.eligasht.reservation.views.fragments.insurance.InsuranceFragment;
 import com.eligasht.reservation.views.fragments.pack.PackageFragment;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
