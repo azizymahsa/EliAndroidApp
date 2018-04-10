@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -18,6 +19,7 @@ import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.SectionModel;
 import com.eligasht.reservation.tools.NonScrollRecyclerView;
 import com.eligasht.reservation.tools.Prefs;
+import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.AboutAdapter;
 import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.service.generator.SingletonService;
@@ -29,6 +31,7 @@ import com.eligasht.service.model.about.response.Section;
 import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
 import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 import com.eligasht.service.part.AboutService;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -66,17 +69,21 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
     ImageView hotel;
     private FancyButton btnBack;
     private ProgressDialog pdLoading;
+    RelativeLayout rlLoading,rlRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_new);
 
+        rlLoading = findViewById(R.id.rlLoading);
+        rlRoot = findViewById(R.id.rlRoot);
 
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
+
         v1 = findViewById(R.id.textView2);
         v2 = findViewById(R.id.textView8);
         v3 = findViewById(R.id.textView5);
@@ -89,12 +96,11 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
 
     }
     private void SendRequestAbout() {
-        pdLoading = new ProgressDialog(AboutActivity.this);
         try {
             //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+            //this method will be running on UI thread
+            rlLoading.setVisibility(View.VISIBLE);
+            Utility.disableEnableControls(false,rlRoot);
         }
         catch (Exception e)
         {
@@ -127,6 +133,9 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onReady(ResponseAbout responseAbout) {
         try {
+            rlLoading.setVisibility(View.GONE);
+            Utility.disableEnableControls(true,rlRoot);
+
              NonScrollRecyclerView nonScrollList;
             //this method will be running on UI thread
             v1.setAnimationDuration(1000);
@@ -137,7 +146,8 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
             v3.setText("20000", true);
             List<SectionModel> data = new ArrayList<SectionModel>();
 
-            pdLoading.dismiss();
+
+
 
                 GetAboutUsWithCultureResult GetAirportsResult = responseAbout.getGetAboutUsWithCultureResult();
                 List<Section> jArray = GetAirportsResult.getSections();
@@ -179,6 +189,8 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onError(String message) {
+        rlLoading.setVisibility(View.GONE);
+        Utility.disableEnableControls(true,rlRoot);
         Toast.makeText(AboutActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
 
     }
