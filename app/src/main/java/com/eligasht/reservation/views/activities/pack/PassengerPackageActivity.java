@@ -203,7 +203,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay()
         );
-        //datePickerDialog.setMinDate(persianCalendarDatePicker);
+        //datePickerDialog.setMinDate(persianCalendarDateP icker);
 //=====================================================================================================
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
         datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {

@@ -436,7 +436,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
         rlLoading = findViewById(R.id.rlLoading);
 
-
         textView4 = findViewById(R.id.textView4);
         tvfactorNumber = findViewById(R.id.tvfactorNumber);
         expandableLayout = findViewById(R.id.expandableLayout);
@@ -771,7 +770,6 @@ private void RequestPurchaseInsurance(){
 
         List<com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList> passLists = new ArrayList<>();
 
-
         PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
         CursorManager cursorM = items_Table.getAllMosafer();
         if (cursorM != null) {
@@ -836,8 +834,6 @@ private void RequestPurchaseInsurance(){
         request.setReturnDate(Prefs.getString("ReturnDate", "12"));
         request.setSearchKey(Prefs.getString("SearchKey", "12"));
         request.setSearchKey(Prefs.getString("SearchKey", "12"));
-
-
 
         request.setCulture(getString(R.string.culture));
         requestPurchaseInsurance.setRequest(request);
@@ -1476,8 +1472,6 @@ private void RequestPurchaseInsurance(){
         }
     }
 
-
-
     @Override
     public void onBackPressed() {
 
@@ -1547,7 +1541,6 @@ private void RequestPurchaseInsurance(){
         // TODO Auto-generated method stub
 
     }
-
 
     public static void updateTotalInfos(long serviceTotalPrice) {
         // TODO Auto-generated method stub
@@ -1653,8 +1646,7 @@ private void RequestPurchaseInsurance(){
             }
         }
 
-        Bitmap bitmap = Bitmap.createBitmap(width, height,
-                Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888);
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
         return bitmap;
     }

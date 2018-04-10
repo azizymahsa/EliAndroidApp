@@ -41,6 +41,7 @@ import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.text.DateFormat;
@@ -128,12 +129,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         Button btnSelect = convertView.findViewById(R.id.btnSelect);
 
 
-
-
-
-
-
-
         //nerkh
         if (item.AdlBaseFare > 0) {
             txtAdlCostP.setText(String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
@@ -213,9 +208,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
             @Override
             public void onClick(View v) {
-                /////////inja biyam Api call Konam
 
-                //////////////////////////////
                 if (isChangeFlight) {
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("searchKey", searchKey);
@@ -227,7 +220,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
                     i4.putExtra("Flight_GUID", item.flGUID + "");//current.getCityName()
 
-                    _context.startActivity(i4);
+                   // _context.startActivity(i4);
+                    SwipeBackActivityHelper.activityBuilder(_context)
+                            .intent(i4)
+                            .needParallax(true)
+                            .needBackgroundShadow(true)
+                            .startActivity();
                     System.out.println("item.flGUID:" + item.flGUID);
 
                 }
@@ -291,7 +289,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txtArrivelTrueLast = convertView.findViewById(R.id.txtArrivelTrueLast);
         TextView txtDepurtureTrueOne = convertView.findViewById(R.id.txtDepurtureTrueOne);
 
-
         TextView num_flight_r = convertView.findViewById(R.id.num_flight_r);
         TextView num_flight_b = convertView.findViewById(R.id.num_flight_b);
         final AVLoadingIndicatorView avi = convertView.findViewById(R.id.avi);
@@ -322,8 +319,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         View viewLine = convertView.findViewById(R.id.viewLine);
         LinearLayout llRaft = convertView.findViewById(R.id.llRaft);
 
-
-
         LinearLayout linearBargashtOne = convertView.findViewById(R.id.linearBargashtOne);
         LinearLayout linearBargashtTwo = convertView.findViewById(R.id.linearBargashtTwo);
         LinearLayout linearBargashtTree = convertView.findViewById(R.id.linearBargashtTree);
@@ -340,7 +335,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 lblFlightArrivalTimeLongR.setVisibility(View.INVISIBLE);
                 lblFlightArrivalTimeLongB.setVisibility(View.INVISIBLE);
             }
-
 
         }
         int hour=mTrue/60;
@@ -414,7 +408,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 PinModelDetail pinModelDetail = new PinModelDetail(item.AdlBaseFare, item.Taxes, item.TotalFare, item.FlightTimeR, item.FlightArrivalTimeR, item.DepartureCityNameFa, item.DepartureAirportNameFaR, item.ArrivalCityNameFa, item.ArrivalAirportNameFaR, item.AirlineCode, item.FlightNumberR, item.AirlineNameFaR, this.dataExpandingList.get(groupPosition).Items.size());
                 pinModelDetails.add(pinModelDetail);
             }
-            //felan barmidaram
+
             //SearchParvazActivity.updateAdapterPin(pinModelDetails,pinModelHeaders,_context);
 
         }
@@ -531,19 +525,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         //lblProductrow.setBackgroundResource(R.drawable.ir);
         String s = item2.AirlineCode;
 
-        System.out.println(s);
-				/*	try {
-						InputStream is = (InputStream) new URL("https://cdn.elicdn.com/Content/AirLine/"+s+".png").getContent();
-						System.out.println("https://cdn.elicdn.com/Content/AirLine/"+s+".png");
-						Bitmap d = BitmapFactory.decodeStream(is);
-						is.close();
-						lblProductrow.setImageBitmap(d);
-						//return d;
-					} catch (Exception e) {
-						System.out.println(e);
-						return null;
-					}*/
-
         String imageUri = "https://cdn.elicdn.com/Content/AirLine/MblSize/" + s + ".png";
 
         System.out.println("https://cdn.elicdn.com/Content/AirLine/MblSize/" + s + ".png");
@@ -564,36 +545,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     }
                 })
                 .into(lblProductrow);
-
-
-
-
-		/*lblProductrow.setImageResource();
-		/////////////store image/////////////////////
-		File filename;
-		Bitmap bitMapImg = null;
-		try {
-			bitMapImg = ((BitmapDrawable) lblProductrow.getDrawable()).getBitmap();
-			//System.out.println("bitmap"+bitMapImg);
-			String path = Environment.getExternalStorageDirectory().toString();
-
-			new File(path + "/folder/subfolder").mkdirs();
-			filename = new File(path + "/folder/subfolder/"+s+".png");
-
-			FileOutputStream out = new FileOutputStream(filename);
-
-			bitMapImg.compress(Bitmap.CompressFormat.JPEG, 90, out);
-			out.flush();
-			out.close();
-
-			//MediaStore.Images.Media.insertImage(_context, filename.getAbsolutePath(), filename.getName(), filename.getName());
-
-			Toast.makeText(_context, "File is Saved in  " + filename, 1000).show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-        ////////////////////////////////////////////
-        //}
 
         return convertView;
     }

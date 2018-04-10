@@ -38,6 +38,7 @@ import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
 import com.eligasht.reservation.views.ui.GetAirportMaghsadActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
@@ -734,7 +735,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
                     calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
 
-
                 }
 
 
@@ -743,7 +743,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 boolean ok = true;
 
                 try {
-
 
                     Intent intent1 = new Intent(getActivity(), SearchParvazActivity.class);
 
@@ -781,7 +780,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                             intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
                         } else {
 
-
                             picker_be_format = Prefs.getString("bargashtfa", "null");
                             bargasht = Prefs.getString("bargasht", "null");
                             intent1.putExtra("Value-ArrivalDate", bargasht.replace("/", "-"));//2017-11-29
@@ -804,9 +802,11 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         intent1.putExtra("Geo", Geo);//2017-11-24
                        /* if(startDate != null && endDate != null)
                              SingletonDate.getInstance().setReverseDate(startDate, endDate);*/
-
-
-                        startActivity(intent1);
+                        SwipeBackActivityHelper.activityBuilder(getActivity())
+                                .intent(intent1)
+                                .needParallax(true)
+                                .needBackgroundShadow(true)
+                                .startActivity();
                     } else {//default
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity());
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin),getString(R.string.massege));

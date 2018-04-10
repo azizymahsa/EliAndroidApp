@@ -78,15 +78,13 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_city_hotel);
-        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
 
+        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
         helper.setEdgeMode(false)
                 .setParallaxMode(true)
                 .setParallaxRatio(3)
                 .setNeedBackgroundShadow(true)
                 .init(this);
-
-
 
 
         avLoadingIndicatorView = findViewById(R.id.avi);

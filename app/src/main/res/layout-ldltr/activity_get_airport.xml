@@ -57,12 +57,10 @@
                 android:layout_width="@dimen/_35dp"
                 android:layout_height="@dimen/_35dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="1dp"
-
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="@color/focusColor"
-
                 fancy:fb_radius="200dp"
+                android:paddingBottom="1dp"
                 fancy:fb_text=" "
                 fancy:fb_textColor="@color/text_color_4d"
                 fancy:fb_textSize="@dimen/_14dp_txtSize" />
