@@ -31,7 +31,9 @@
         <activity
             android:name=".reservation.views.ui.SplashActivity"
             android:exported="true"
-            android:launchMode="singleTask"
+            android:launchMode="singleInstance"
+            android:configChanges="orientation|screenSize|locale"
+
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -153,9 +155,7 @@
         <activity
             android:name=".reservation.views.activities.login.ResetPasswordActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".reservation.views.activities.pack.AddRoomActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".reservation.views.activities.insurance.PassengerInsuranceActivity"
             android:screenOrientation="portrait"

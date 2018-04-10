@@ -83,7 +83,7 @@ import com.eligasht.service.model.flight.response.searchFlight.TotalFare;
 import com.eligasht.service.model.flight.response.searchFlight.TotalFareCost;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

@@ -43,7 +43,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;

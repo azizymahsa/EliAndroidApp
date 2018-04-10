@@ -1,8 +1,10 @@
 package com.eligasht.reservation.base;
 
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.adjust.sdk.Adjust;
 import com.eligasht.reservation.tools.Prefs;
@@ -27,6 +29,22 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try {
+            String languageToLoad = Prefs.getString("lang", "fa"); // your language
+            Locale locale = new Locale(languageToLoad);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+                config.setLocale(locale);
+            }else{
+                config.locale = locale;
+
+            }
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } catch (Exception e) {
+            Log.e("testerror", e.getMessage());
+        }
         super.onCreate(savedInstanceState);
         ConnectionBuddy.getInstance().clearNetworkCache(this, savedInstanceState);
         internetAlert = new InternetAlert(this);
@@ -41,10 +59,16 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
             Locale locale = new Locale(languageToLoad);
             Locale.setDefault(locale);
             Configuration config = new Configuration();
-            config.locale = locale;
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+                config.setLocale(locale);
+            }else{
+                config.locale = locale;
+
+            }
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
+            Log.e("testerror", e.getMessage());
         }
 
         // Register for connectivity changes
@@ -67,7 +91,12 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
             Locale locale = new Locale(languageToLoad);
             Locale.setDefault(locale);
             Configuration config = new Configuration();
-            config.locale = locale;
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+                config.setLocale(locale);
+            }else{
+                config.locale = locale;
+
+            }
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
         } catch (Exception e) {

@@ -11,7 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.models.Country;
 import com.eligasht.reservation.tools.db.local.RecentCity_Table;

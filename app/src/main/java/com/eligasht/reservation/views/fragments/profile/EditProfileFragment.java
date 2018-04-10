@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -62,6 +63,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     int monthMin;
     int year_Min;
     int dayMin;
+    ImageView imageView;
 
     public static EditProfileFragment instance() {
         EditProfileFragment fragment = new EditProfileFragment();
@@ -92,6 +94,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         birthday_date = view.findViewById(R.id.edt_birthday);
         txt_birthday = view.findViewById(R.id.txt_birthday);
         rlBirthday = view.findViewById(R.id.rlBirthday);
+        imageView = getActivity().findViewById(R.id.ivImage);
         rlBirthday.setOnClickListener(this);
 
 
@@ -143,24 +146,33 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         try {
             if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserGender()) {
                 chk_gender_man.setChecked(true);
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.man));
             } else {
                 chk_gender_woman.setChecked(true);
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.woman));
+
             }
         } catch (Exception e) {
         }
         chk_gender_man.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+
                 if (isChecked) {
                     chk_gender_woman.setChecked(false);
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.man));
+
                 }
             }
         });
         chk_gender_woman.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+
                 if (isChecked) {
                     chk_gender_man.setChecked(false);
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.woman));
+
                 }
             }
         });

@@ -13,7 +13,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.Country;
 import com.eligasht.reservation.tools.db.local.RecentCity_Table;
 import com.orhanobut.hawk.Hawk;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;

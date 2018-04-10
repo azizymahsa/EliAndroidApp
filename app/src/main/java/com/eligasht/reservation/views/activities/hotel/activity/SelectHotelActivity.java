@@ -39,7 +39,7 @@ import com.eligasht.service.model.hotel.hotelAvail.response.HotelType;
 import com.eligasht.service.model.hotel.hotelAvail.response.Location;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 
 import java.util.ArrayList;
 import java.util.Collections;

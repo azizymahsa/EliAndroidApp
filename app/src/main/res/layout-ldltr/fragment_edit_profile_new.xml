@@ -593,7 +593,7 @@
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize" />
                         <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
-                            android:id="@+id/chB_woman"
+                            android:id="@+id/chB_man"
                             android:layout_width="@dimen/_20dp"
                             android:layout_height="@dimen/_20dp"
                             android:layout_gravity="center"
@@ -614,7 +614,8 @@
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
-                            android:id="@+id/chB_man"
+                            android:id="@+id/chB_woman"
+
                             android:layout_width="@dimen/_20dp"
                             android:layout_height="@dimen/_20dp"
                             android:layout_gravity="center"

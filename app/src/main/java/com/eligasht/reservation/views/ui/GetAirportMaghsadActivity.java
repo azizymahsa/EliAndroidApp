@@ -29,7 +29,7 @@ import com.eligasht.service.model.flight.request.airPort.RequestAirports;
 import com.eligasht.service.model.flight.request.airPort.Identity;
 import com.eligasht.service.model.flight.request.airPort.Request;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.Country;

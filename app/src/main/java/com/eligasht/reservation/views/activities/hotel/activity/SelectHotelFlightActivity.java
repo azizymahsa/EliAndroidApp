@@ -49,7 +49,7 @@ import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
-import com.pixplicity.easyprefs.library.Prefs;
+import com.eligasht.reservation.tools.Prefs;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
