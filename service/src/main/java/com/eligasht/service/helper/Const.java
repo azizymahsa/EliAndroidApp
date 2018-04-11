@@ -6,6 +6,12 @@ package com.eligasht.service.helper;
 
 public class Const {
     public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
+
+    //*************start up*************
+    public final static String StartUp = "Common/StaticDataService.svc/MobileAppStartupService";
+
+
+
     //*************hotel*************
     public final static String HotelAvail = "Hotel/HotelService.svc/HotelAvail";
     //*************hotel flight*************

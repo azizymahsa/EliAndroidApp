@@ -24,6 +24,8 @@ import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPur
 import com.eligasht.service.model.insurance.response.GetCountry.ResponseGetCountry;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
 import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
+import com.eligasht.service.model.startup.request.StartupServiceRequest;
+import com.eligasht.service.model.startup.response.StartupServiceResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -35,6 +37,11 @@ import retrofit2.http.POST;
  */
 
 public interface RetroClient {
+    //*************start up*************
+    @POST(Const.StartUp)
+    Observable<StartupServiceResponse> startUp(
+            @Body StartupServiceRequest startupServiceRequest
+    );
 
     //*************hotel flight*************
     @POST(Const.HotelFlightSearch)
@@ -44,7 +51,6 @@ public interface RetroClient {
 
 
     //*************hotel*************
-
     @POST(Const.HotelAvail)
     Observable<HotelAvailRes> hotelAvail(
             @Body HotelAvailReq hotelAvailReq

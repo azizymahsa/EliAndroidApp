@@ -31,7 +31,6 @@ import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.GetCountriesForInsuranceActivity;
-import com.eligasht.service.part.GetCountryInsurance;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -57,7 +56,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     LinearLayout layout_duringTrip;
     TextView txt_during_trip;
     TextView txt_count_passenger;
-    com.eligasht.service.model.insurance.response.GetCountry.Country country;
+    Country country;
     private ArrayList<BirthDateList> passengers;
     private Gson gson;
     private String departureDate;
@@ -79,7 +78,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         super.onResume();
         country = Hawk.get("Value-Insurance-Country", null);
         if (country != null && txtCity != null)
-            txtCity.setText(country.getCountryName()+"");
+            txtCity.setText(country.getCountryNameFa());
     }
 
     @Override

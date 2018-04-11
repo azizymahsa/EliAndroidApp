@@ -30,8 +30,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
 
                     <mehdi.sakout.fancybuttons.FancyButton
@@ -42,8 +41,7 @@
                         android:layout_gravity="left"
                         android:visibility="visible"
                         fancy:fb_radius="200dp"
-                        fancy:fb_textSize="@dimen/_20dp_normal_textSize"
-                        android:focusable="false"/>
+                        fancy:fb_textSize="@dimen/_20dp_normal_textSize" />
 
                 </LinearLayout>
             </RelativeLayout>
@@ -54,8 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relative"
                 android:layout_marginTop="@dimen/_12dp"
-                android:orientation="horizontal"
-                android:focusable="false">
+                android:orientation="horizontal">
 
 
                 <android.support.v7.widget.CardView
@@ -69,15 +66,13 @@
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
                     android:background="@color/hotel_detail_background"
-                    android:orientation="vertical"
-                    android:focusable="false">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:gravity="center"
-                        android:focusable="false">
+                        android:gravity="center">
 
                         <com.eligasht.reservation.views.ticker.TickerView
                             android:id="@+id/textView2"
@@ -87,8 +82,7 @@
                             android:textColor="#2e3192"
                             android:textSize="@dimen/text_size"
                             fancy:ticker_animationDuration="1000"
-                            fancy:ticker_defaultCharacterList="number"
-                            android:focusable="false"/>
+                            fancy:ticker_defaultCharacterList="number" />
 
                         <com.airbnb.lottie.LottieAnimationView
                             android:layout_width="@dimen/toolbar_height_70dp"
@@ -98,7 +92,7 @@
                             app:lottie_loop="true"
                             app:lottie_fileName="lottie/earth.json"
                             android:gravity="center"
-android:focusable="false"
+
 
                             />
 
@@ -110,8 +104,7 @@ android:focusable="false"
                             android:gravity="center"
                             android:text="@string/cities_all_over_the_world"
                             android:textColor="#2e3192"
-                            android:textSize="@dimen/_aboutdp"
-                            android:focusable="false"/>
+                            android:textSize="@dimen/_aboutdp" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <!-- /////////////////////////////// -->
@@ -287,7 +280,7 @@ android:focusable="false"
 
 
     </ScrollView>
-   <RelativeLayout
+    <RelativeLayout
         android:id="@+id/rlLoading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

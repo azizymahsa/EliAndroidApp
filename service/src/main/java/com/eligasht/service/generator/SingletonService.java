@@ -1,31 +1,24 @@
 package com.eligasht.service.generator;
-
 import com.eligasht.service.di.component.NetComponent;
-
 import com.eligasht.service.part.AboutService;
+import com.eligasht.service.part.AppService;
 import com.eligasht.service.part.ContactUs;
 import com.eligasht.service.part.Flight;
 import com.eligasht.service.part.Hotel;
 
 import javax.inject.Inject;
-
 /**
  * Created by Ahmad.nemati on 3/26/2018.
  */
-
 public class SingletonService {
     private NetComponent netComponent;
-
     @Inject
     ServiceGenerator serviceGenerator;
-
-
     Hotel hotel;
     ContactUs contactUs;
     AboutService aboutService;
+    AppService appService;
     private Flight flight;
-
-
     private static final SingletonService ourInstance = new SingletonService();
 
     public static SingletonService getInstance() {
@@ -66,5 +59,13 @@ public class SingletonService {
             aboutService = new AboutService(serviceGenerator);
         return aboutService;
     }
+
+    public AppService getAppService() {
+        if (appService == null)
+            appService = new AppService(serviceGenerator);
+        return appService;
+
+}
+
 
 }

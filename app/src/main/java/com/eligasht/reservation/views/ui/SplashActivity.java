@@ -13,15 +13,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustEvent;
@@ -31,14 +28,18 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.hotel.api.userEntranceRequest.request.UserEntranceRequest;
 import com.eligasht.reservation.models.hotel.api.userEntranceRequest.request.UserRequest;
-import com.eligasht.reservation.models.hotel.api.userEntranceRequest.response.SearchNotes;
+import com.eligasht.service.model.startup.response.SearchNote;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.dialog.app.InternetAlert;
 import com.eligasht.reservation.views.ui.dialog.app.SplashDialog;
 import com.eligasht.reservation.views.ui.dialog.app.UpdateAlert;
-import com.farsitel.bazaar.IUpdateCheckService;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.startup.request.Request;
+import com.eligasht.service.model.startup.request.StartupServiceRequest;
+import com.eligasht.service.model.startup.response.StartupServiceResponse;
 import com.google.gson.Gson;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -55,7 +56,7 @@ import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class SplashActivity extends ConnectionBuddyActivity implements
-        SplashDialog.TryDialogListener {
+        SplashDialog.TryDialogListener, OnServiceStatus<StartupServiceResponse>, PermissionListener {
     boolean isShow = true;
     private Runnable runnable, runnable2;
     private Handler handler, handler2;
@@ -83,13 +84,12 @@ public class SplashActivity extends ConnectionBuddyActivity implements
 
     @Override
     public void onReturnValue() {
-        new GetCommentAsync().execute();
+        //  new GetCommentAsync().execute();
     }
 
     @Override
     public void returnRestartAppValue() {
         Log.e("runrun1111", "run: ");
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -104,7 +104,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             }
         }, 100);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,10 +121,9 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
-            Log.e("testerror", e.getMessage());
         }
         setContentView(R.layout.fragment_splash);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
         }
@@ -152,33 +150,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                Log.d(TAG, "onAnimationEnd: ");
-                try {
-                    TedPermission.with(SplashActivity.this)
-                            .setPermissionListener(new PermissionListener() {
-                                @Override
-                                public void onPermissionGranted() {
-                                    Log.d(TAG, "onPermissionGranted: 1");
-                                    req++;
-                                    if (isConnect) {
-                                        Log.d(TAG, "onPermissionGranted: ");
-                                        new GetCommentAsync().execute();
-                                    } else {
-                                        internetAlert.isShow();
-                                    }
-                                }
-
-                                @Override
-                                public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                                }
-                            })
-                            .setDeniedMessage(
-                                    "If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
-                            .setPermissions(Manifest.permission.READ_PHONE_STATE)
-                            .check();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                permision();
             }
 
             @Override
@@ -196,166 +168,169 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         super.onStart();
     }
 
-    private class GetCommentAsync extends AsyncTask<String, Void, String> {
-        protected void onPreExecute() {
-            internetAlert.isCancel();
-            Log.d(TAG, "onPreExecute: ");
-            avi.setVisibility(View.VISIBLE);
-            try{
-                if (!Prefs.getString("loginId", "null").equals("null")) {
-                    deviceId = null;
-                    deviceSubscriberID = null;
-                    operator = null;
-                    sdkVersion = null;
-                    model = null;
-                    brand = null;
-                    product = null;
-                    DeviceOSType = null;
-                } else {
-                    deviceId = Utility.getDeviceID(SplashActivity.this);
-                    deviceSubscriberID = Utility.getSubscriberID(SplashActivity.this);
-                    operator = Utility.getMyOperator(SplashActivity.this);
-                    sdkVersion = android.os.Build.VERSION.SDK_INT + "";
-                    model = android.os.Build.MODEL;
-                    brand = Build.BRAND;
-                    product = Build.PRODUCT;
-                    DeviceOSType = "2";
+    public void startUpRequest() {
+        internetAlert.isCancel();
+        avi.setVisibility(View.VISIBLE);
+        if (!Prefs.getString("loginId", "null").equals("null")) {
+            deviceId = null;
+            deviceSubscriberID = null;
+            operator = null;
+            sdkVersion = null;
+            model = null;
+            brand = null;
+            product = null;
+            DeviceOSType = null;
+        } else {
+            deviceId = Utility.getDeviceID(SplashActivity.this);
+            deviceSubscriberID = Utility.getSubscriberID(SplashActivity.this);
+            operator = Utility.getMyOperator(SplashActivity.this);
+            sdkVersion = android.os.Build.VERSION.SDK_INT + "";
+            model = android.os.Build.MODEL;
+            brand = Build.BRAND;
+            product = Build.PRODUCT;
+            DeviceOSType = "2";
+        }
+        StartupServiceRequest startupServiceRequest = new StartupServiceRequest();
+        Request request = new Request();
+        request.setAppVersion(BuildConfig.VERSION_NAME);
+        request.setBrand(brand);
+        request.setCulture(getString(R.string.culture));
+        request.setDeviceName(model);
+        request.setDeviceOSType(DeviceOSType);
+        request.setDeviceProduct(product);
+        request.setIMEI(deviceId);
+        request.setIMSI(deviceSubscriberID);
+        request.setOperatorName(operator);
+        request.setSDKVersion(sdkVersion);
+        com.eligasht.service.model.startup.request.Identity identity = new com.eligasht.service.model.startup.request.Identity();
+        identity.setPassword("123qwe!@#QWE");
+        identity.setTermianlId("Mobile");
+        identity.setUserName("EligashtMlb");
+        request.setIdentity(identity);
+        startupServiceRequest.setRequest(request);
+        SingletonService.getInstance().getAppService().startUp(this, startupServiceRequest);
+        Log.e("startUpRequest", new Gson().toJson(startupServiceRequest));
+    }
+
+    @Override
+    public void onReady(StartupServiceResponse startupServiceResponse) {
+        avi.setVisibility(View.GONE);
+
+
+        try {
+            if (startupServiceResponse.getMobileAppStartupServiceResult().getErrors() != null) {
+                splashDialog.seeText(
+                        startupServiceResponse.getMobileAppStartupServiceResult().getErrors().get(0)
+                                .getDetailedMessage());
+                splashDialog.showAlert();
+            } else {
+                Utility.sendTag("Splash", true, true);
+
+                Prefs.putString("loginId", startupServiceResponse.getMobileAppStartupServiceResult().getID()+"");
+
+                for (SearchNote searchNotes : startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getSearchNotes()) {
+                    if (searchNotes.getSection().equals("H")) {
+                        ArrayList<String> strings = new ArrayList<>();
+                        for (int i = 0; i < 8; i++) {
+                            for (String s : searchNotes.getNotes()) {
+                                strings.add(new String(s));
+                            }
+                        }
+                        Prefs.putString("H", new Gson().toJson(strings));
+                    }
+                    if (searchNotes.getSection().equals("F")) {
+                        ArrayList<String> strings = new ArrayList<>();
+                        for (int i = 0; i < 8; i++) {
+                            for (String s : searchNotes.getNotes()) {
+                                strings.add(new String(s));
+                            }
+                        }
+                        Prefs.putString("F", new Gson().toJson(strings));
+                    }
+                    if (searchNotes.getSection().equals("FH")) {
+                        ArrayList<String> strings = new ArrayList<>();
+                        for (int i = 0; i < 8; i++) {
+                            for (String s : searchNotes.getNotes()) {
+                                strings.add(new String(s));
+                            }
+                        }
+                        Prefs.putString("FH", new Gson().toJson(strings));
+                    }
+                    if (searchNotes.getSection().equals("P")) {
+                        ArrayList<String> strings = new ArrayList<>();
+                        for (int i = 0; i < 8; i++) {
+                            for (String s : searchNotes.getNotes()) {
+                                strings.add(new String(s));
+                            }
+                        }
+                        Prefs.putString("P", new Gson().toJson(strings));
+                    }
                 }
-
-            }catch (Exception e){
-                Toast.makeText(SplashActivity.this, "خطایی رخ داده است لطفا مجددا تلاش نمایید!", Toast.LENGTH_SHORT).show();
-                deviceId = null;
-                deviceSubscriberID = null;
-                operator = null;
-                sdkVersion = null;
-                model = null;
-                brand = null;
-                product = null;
-                DeviceOSType = null;
-            }
-
-
-
-
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                userEntranceRequest = new com.eligasht.reservation.api.app.UserEntranceRequest(
-                        new UserRequest
-                                (new UserEntranceRequest(deviceId, Prefs.getString("loginId", null),
-                                        deviceSubscriberID, sdkVersion, model, product, BuildConfig.VERSION_NAME,
-                                        DeviceOSType, operator, brand, getString(R.string.culture),
-                                        new Identity("EligashtMlb",
-                                                "123qwe!@#QWE", "Mobile"))));
-
-            } catch (Exception e) {
-            }
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            //  new InitUi().Loading(rlLoading,rlRoot,false);
-            avi.setVisibility(View.GONE);
-            try {
-                if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors != null) {
-                    splashDialog.seeText(
-                            userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.errors.get(0)
-                                    .getDetailedMessage());
-                    splashDialog.showAlert();
+                if (startupServiceResponse.getMobileAppStartupServiceResult().getAdjustEnabled()) {
+                    Hawk.put("adjust", true);
                 } else {
-                    Utility.sendTag("Splash", true, true);
-                    Log.e("loginId",
-                            userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID + "");
-                    Prefs.putString("loginId",
-                            userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.ID);
-                    for (SearchNotes searchNotes : userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.SearchNotes) {
-                        if (searchNotes.Section.equals("H")) {
-                            ArrayList<String> strings = new ArrayList<>();
-                            for (int i = 0; i < 8; i++) {
-                                for (String s : searchNotes.Notes) {
-                                    strings.add(new String(s));
-                                }
-                            }
-                            Prefs.putString("H", new Gson().toJson(strings));
-                        }
-                        if (searchNotes.Section.equals("F")) {
-                            ArrayList<String> strings = new ArrayList<>();
-                            for (int i = 0; i < 8; i++) {
-                                for (String s : searchNotes.Notes) {
-                                    strings.add(new String(s));
-                                }
-                            }
-                            Prefs.putString("F", new Gson().toJson(strings));
-                        }
-                        if (searchNotes.Section.equals("FH")) {
-                            ArrayList<String> strings = new ArrayList<>();
-                            for (int i = 0; i < 8; i++) {
-                                for (String s : searchNotes.Notes) {
-                                    strings.add(new String(s));
-                                }
-                            }
-                            Prefs.putString("FH", new Gson().toJson(strings));
-                        }
-                        if (searchNotes.Section.equals("P")) {
-                            ArrayList<String> strings = new ArrayList<>();
-                            for (int i = 0; i < 8; i++) {
-                                for (String s : searchNotes.Notes) {
-                                    strings.add(new String(s));
-                                }
-                            }
-                            Prefs.putString("P", new Gson().toJson(strings));
-                        }
-                    }
-                    if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.AdjustEnabled) {
-                        Hawk.put("adjust", true);
-                    } else {
-                        Hawk.put("adjust", false);
-                    }
-                    if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.CanEnter) {
-                        try {
-                            String app = BuildConfig.VERSION_NAME;
-                            String server = userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.UserEntranceResponse.MinAppVersion;
-                            if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))) {
-                                updateAlert.show();
-                                updateAlert.isForce(false);
-                            } else {
-                                if (Prefs.getBoolean("isFirstEntrance", true)) {
-                                    if (userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault
-                                            .split("-")[0].equals(Prefs.getString("lang", "fa"))) {
-                                        Prefs.putBoolean("isFirstEntrance", false);
-                                        Prefs.putString("lang", "fa");
-                                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                                        finish();
-                                    } else {
-                                        Prefs.putBoolean("isFirstEntrance", false);
-                                        Prefs.putString("lang", userEntranceRequest.entranceResponse.MobileAppStartupServiceResult.CultureDefault.split("-")[0]);
-                                        showRestartDialog();
-                                    }
-                                } else {
+                    Hawk.put("adjust", false);
+                }
+                if (startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getCanEnter()) {
+                    try {
+                        String app = BuildConfig.VERSION_NAME;
+                        String server = startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getMinAppVersion();
+                        if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))) {
+                            updateAlert.show();
+                            updateAlert.isForce(false);
+                        } else {
+                            if (Prefs.getBoolean("isFirstEntrance", true)) {
+                                if (startupServiceResponse.getMobileAppStartupServiceResult().getCultureDefault()
+                                        .split("-")[0].equals(Prefs.getString("lang", "fa"))) {
+                                    Prefs.putBoolean("isFirstEntrance", false);
+                                    Prefs.putString("lang", "fa");
                                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                     finish();
+                                } else {
+                                    Prefs.putBoolean("isFirstEntrance", false);
+                                    Prefs.putString("lang", startupServiceResponse.getMobileAppStartupServiceResult().getCultureDefault().split("-")[0]);
+                                    showRestartDialog();
                                 }
-                                Prefs.putBoolean("isFirstEntrance", false);
+                            } else {
+                                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                                finish();
                             }
-                        } catch (Exception e) {
-                            splashDialog.showAlert();
-                            e.printStackTrace();
+                            Prefs.putBoolean("isFirstEntrance", false);
                         }
-                    } else {
-                        updateAlert.show();
-                        updateAlert.isForce(true);
+                    } catch (Exception e) {
+                        splashDialog.showAlert();
+                        e.printStackTrace();
                     }
+                } else {
+                    updateAlert.show();
+                    updateAlert.isForce(true);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-                splashDialog.showAlert();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            splashDialog.showAlert();
         }
+
+
+
+
+
+
     }
+
+    @Override
+    public void onError(String message) {
+    }
+
+    @Override
+    public void onPermissionGranted() {
+        startUpRequest();
+    }
+
+    @Override
+    public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+    }
+
 
     private void showRestartDialog() {
         SplashDialog dialog = new SplashDialog(this, this, true);
@@ -405,8 +380,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 isConnect = true;
                 internetAlert.isCancel();
                 if (req == 1) {
-                 //   new GetCommentAsync().execute();
-
+                    //  new GetCommentAsync().execute();
                 }
             } else {
                 isConnect = false;
@@ -422,6 +396,19 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public void permision() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            TedPermission.with(SplashActivity.this)
+                    .setPermissionListener(this)
+                    .setDeniedMessage(
+                            "If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
+                    .setPermissions(Manifest.permission.READ_PHONE_STATE)
+                    .check();
+        } else {
+            startUpRequest();
+        }
     }
 }
 
