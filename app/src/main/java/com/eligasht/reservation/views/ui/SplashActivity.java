@@ -239,7 +239,19 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                     }
                 }
                 if (startupServiceResponse.getMobileAppStartupServiceResult().getAdjustEnabled()) {
-                    Hawk.put("adjust", true);
+                    if (Prefs.getBoolean("isAdjustSend", true)) {
+                        Prefs.putBoolean("isAdjustSend", false);
+                        Hawk.put("adjust", true);
+                            try {
+                                AdjustEvent event = new AdjustEvent("yoi24u");
+                                Adjust.trackEvent(event);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+
+                    }
+
                 } else {
                     Hawk.put("adjust", false);
                 }
@@ -326,14 +338,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                     getBaseContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
         }
-        if (Hawk.get("adjust", true)) {
-            try {
-                AdjustEvent event = new AdjustEvent("yoi24u");
-                Adjust.trackEvent(event);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
 
     }
 

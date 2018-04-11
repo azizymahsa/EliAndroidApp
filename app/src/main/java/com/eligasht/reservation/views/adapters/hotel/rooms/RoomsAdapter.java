@@ -280,9 +280,7 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<HotelPo
                     context.startActivity(intent);
                     context.finish();
                 }
-            /*    }else{
-                    sendDetailFinish();
-                }*/
+
             } catch (Exception e) {
                 Toast.makeText(context, context.getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                 String flightId;
