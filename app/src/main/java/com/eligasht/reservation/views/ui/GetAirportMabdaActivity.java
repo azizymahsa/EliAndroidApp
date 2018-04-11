@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
@@ -29,6 +30,7 @@ import com.eligasht.service.model.flight.request.airPort.Request;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.reservation.tools.Prefs;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
+
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.Country;
