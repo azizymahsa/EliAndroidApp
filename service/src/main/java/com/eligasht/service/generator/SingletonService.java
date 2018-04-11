@@ -6,6 +6,7 @@ import com.eligasht.service.part.AboutService;
 import com.eligasht.service.part.ContactUs;
 import com.eligasht.service.part.Flight;
 import com.eligasht.service.part.Hotel;
+import com.eligasht.service.part.Insurance;
 
 import javax.inject.Inject;
 
@@ -23,7 +24,6 @@ public class SingletonService {
     Hotel hotel;
     ContactUs contactUs;
     AboutService aboutService;
-    private Flight flight;
 
 
     private static final SingletonService ourInstance = new SingletonService();
@@ -46,7 +46,11 @@ public class SingletonService {
     }
 
     public Flight getFlight() {
-        return flight;
+        return new Flight(serviceGenerator);
+    }
+
+    public Insurance getInsurance() {
+        return new Insurance(serviceGenerator);
     }
 
     public Hotel getHotelService() {
