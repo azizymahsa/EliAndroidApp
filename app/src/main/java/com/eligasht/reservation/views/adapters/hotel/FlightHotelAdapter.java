@@ -376,19 +376,19 @@ public class FlightHotelAdapter extends BaseAdapter {
 
 
 //selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime+"-"+
-        String text = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(0).FlightTime + "</font> " +
-                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber + "</font>";
+        String text = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(0).getFlightTime() + "</font> " +
+                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(0).getFlightNumber() + "</font>";
         holder.tvRaftTime.setText(Html.fromHtml(text));
 
-        String texttvBargashtTime = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime + "</font> " +
-                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(1).FlightNumber + "</font>";
+        String texttvBargashtTime = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(1).getFlightTime() + "</font> " +
+                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(1).getFlightNumber() + "</font>";
         holder.tvBargashtTime.setText(Html.fromHtml(texttvBargashtTime));
 
-        String texttvBargashtTime1 = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(0).FlightArrivalTime + "</font> " +
-                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber + "</font>";
+        String texttvBargashtTime1 = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(0).getFlightArrivalTime() + "</font> " +
+                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(0).getFlightNumber() + "</font>";
         holder.tvBargashtTime1.setText(Html.fromHtml(texttvBargashtTime1));
-        String texttvBargashtTime2 = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime + "</font> " +
-                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(1).FlightNumber + "</font>";
+        String texttvBargashtTime2 = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(1).getFlightArrivalTime() + "</font> " +
+                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(1).getFlightNumber() + "</font>";
         holder.tvBargashtTime2.setText(Html.fromHtml(texttvBargashtTime2));
 
        /* String texttvRaftTimeWait = "<font color=##2e3192>"  +selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime + "</font> " +
@@ -408,9 +408,9 @@ public class FlightHotelAdapter extends BaseAdapter {
 //        holder.tvBargashtTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationM + "دقیقه");
 
 
-        holder.tvAirLines.setText(selectHotelModelArrayList.get(position).getFlights().get(0).AirlineNameFa);
+        holder.tvAirLines.setText(selectHotelModelArrayList.get(position).getFlights().get(0).getAirlineNameFa());
 
-        String imageUri2 = "https://cdn.elicdn.com/Content/AirLine/MblSize/" + selectHotelModelArrayList.get(position).getFlights().get(0).AirlineCode + ".png";
+        String imageUri2 = "https://cdn.elicdn.com/Content/AirLine/MblSize/" + selectHotelModelArrayList.get(position).getFlights().get(0).getAirlineCode() + ".png";
 
 
         GlideApp

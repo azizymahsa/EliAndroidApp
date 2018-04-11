@@ -124,7 +124,7 @@ public class Request {
 
     @Override
     public String toString() {
-        return "Request{" +
+        return "HotelFlightSubRequest{" +
                 "checkinString='" + checkinString + '\'' +
                 ", checkoutString='" + checkoutString + '\'' +
                 ", culture='" + culture + '\'' +

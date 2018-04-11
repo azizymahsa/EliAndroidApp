@@ -1,16 +1,14 @@
 package com.eligasht.reservation.models.hotel.adapter;
-
-import com.eligasht.reservation.models.hotel.api.flightHotelRequest.FltList;
+import com.eligasht.service.model.hotelflight.response.FltList;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations;
+import com.eligasht.service.model.hotelflight.response.Location;
+import com.eligasht.service.model.hotelflight.response.Facility_;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by Reza.nejati on 1/4/2018.
  */
-
 public class SelectFlightHotelModel {
     private String name;
     private String city;
@@ -19,27 +17,25 @@ public class SelectFlightHotelModel {
     private String price;
     private String imageUrl;
     private String location;
-    private List<Boolean> booleans=new ArrayList<>();
-
-
-    int oldPrice;
-    int star;
+    private List<Boolean> booleans = new ArrayList<>();
+    private int oldPrice;
+    private int star;
     private int eHotelId;
     private String ResultUniqID;
-    boolean bestSell;
-    boolean isOff;
-    String off;
-    String TypeText;
-    ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> Facilities;
-    int diff;
-     ArrayList<FltList> Flights;
-     String ArrRout;
-     String DepRout;
-     String Amount;
-    ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> Locations;
-    String FlightId;
+    private boolean bestSell;
+    private boolean isOff;
+    private String off;
+    private String TypeText;
+    private List<Facility_> Facilities;
+    private int diff;
+    private List<FltList> Flights;
+    private String ArrRout;
+    private String DepRout;
+    private String Amount;
+    private List<Location> Locations;
+    private String FlightId;
 
-    public SelectFlightHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> facilities, int diff, ArrayList<FltList> flights, String arrRout, String depRout, String amount, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> locations, String flightId) {
+    public SelectFlightHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility_> facilities, int diff, List<FltList> flights, String arrRout, String depRout, String amount, List<Location> locations, String flightId) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -66,7 +62,6 @@ public class SelectFlightHotelModel {
         booleans.add(false);
         booleans.add(false);
     }
-
 
     public List<Boolean> getBooleans() {
         return booleans;
@@ -196,11 +191,11 @@ public class SelectFlightHotelModel {
         TypeText = typeText;
     }
 
-    public ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> getFacilities() {
+    public List<Facility_> getFacilities() {
         return Facilities;
     }
 
-    public void setFacilities(ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> facilities) {
+    public void setFacilities(List<Facility_> facilities) {
         Facilities = facilities;
     }
 
@@ -212,7 +207,7 @@ public class SelectFlightHotelModel {
         this.diff = diff;
     }
 
-    public ArrayList<FltList> getFlights() {
+    public List<FltList> getFlights() {
         return Flights;
     }
 
@@ -244,11 +239,11 @@ public class SelectFlightHotelModel {
         Amount = amount;
     }
 
-    public ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> getLocations() {
+    public List<Location> getLocations() {
         return Locations;
     }
 
-    public void setLocations(ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> locations) {
+    public void setLocations(List<Location> locations) {
         Locations = locations;
     }
 

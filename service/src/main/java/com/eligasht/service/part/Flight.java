@@ -2,7 +2,6 @@ package com.eligasht.service.part;
 
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.mock.Mock;
 import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
 import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -26,7 +25,6 @@ public class Flight extends BasePart {
         start(getServiceGenerator().createService().responsAirports(req), listener);
     }
 
-    @Mock(10)
     public void flightSearchAvail(OnServiceStatus<ResponsSearchFlight> listener, RequestSearchFlight req) {
         start(getServiceGenerator().createService().responsSearchFlight(req), listener);
     }

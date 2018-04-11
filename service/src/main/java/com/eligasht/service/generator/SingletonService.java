@@ -19,7 +19,6 @@ public class SingletonService {
     ContactUs contactUs;
     AboutService aboutService;
     AppService appService;
-    private Flight flight;
 
 
     private static final SingletonService ourInstance = new SingletonService();
@@ -68,9 +67,8 @@ public class SingletonService {
     }
 
     public AppService getAppService() {
-        if (appService == null)
-            appService = new AppService(serviceGenerator);
-        return appService;
+
+        return new AppService(serviceGenerator);
 
 }
 

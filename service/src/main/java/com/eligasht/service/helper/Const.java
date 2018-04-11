@@ -16,6 +16,8 @@ public class Const {
     public final static String HotelAvail = "Hotel/HotelService.svc/HotelAvail";
     //*************hotel flight*************
     public final static String HotelFlightSearch = "HotelFlight/HotelFlightService.svc/HotelFlightSearch";
+    public final static String LoadFlight = "HotelFlight/HotelFlightService.svc/LoadFlight";
+
 
     //*************flight*************
     public final static String AirportAvail = "Common/StaticDataService.svc/GetAirportWithParentsWithCulture";

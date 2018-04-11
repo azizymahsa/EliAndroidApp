@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -13,6 +14,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -25,9 +27,7 @@ import com.adjust.sdk.AdjustEvent;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.BuildConfig;
 import com.eligasht.R;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
-import com.eligasht.reservation.models.hotel.api.userEntranceRequest.request.UserEntranceRequest;
-import com.eligasht.reservation.models.hotel.api.userEntranceRequest.request.UserRequest;
+import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
 import com.eligasht.service.model.startup.response.SearchNote;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
@@ -56,14 +56,9 @@ import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class SplashActivity extends ConnectionBuddyActivity implements
-        SplashDialog.TryDialogListener, OnServiceStatus<StartupServiceResponse>, PermissionListener {
-    boolean isShow = true;
-    private Runnable runnable, runnable2;
-    private Handler handler, handler2;
-    private ImageView ivSplash, ivLoading;
+        SplashDialog.TryDialogListener, OnServiceStatus<StartupServiceResponse>, PermissionListener, Animator.AnimatorListener ,DialogInterface.OnCancelListener{
     AVLoadingIndicatorView avi;
     LottieAnimationView lottieAnimationView;
-    com.eligasht.reservation.api.app.UserEntranceRequest userEntranceRequest;
     String deviceId;
     String deviceSubscriberID;
     String operator;
@@ -71,20 +66,16 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     String model;
     String brand;
     String product;
-    private BroadcastReceiver sendDetailFinish;
     InternetAlert internetAlert;
-    boolean isConnect = true;
-    int req = 0;
     SplashDialog splashDialog;
-    private static final String TAG = "UpdateCheck";
-    String packageName;
     UpdateAlert updateAlert;
     String DeviceOSType;
     TextView tvVer;
+    boolean requset = true;
 
     @Override
     public void onReturnValue() {
-        //  new GetCommentAsync().execute();
+        startUpRequest();
     }
 
     @Override
@@ -136,31 +127,13 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             e.printStackTrace();
         }
         internetAlert = new InternetAlert(SplashActivity.this);
-        ivSplash = findViewById(R.id.ivSplash);
-        ivLoading = findViewById(R.id.ivLoading);
+        internetAlert.alertDialog().setOnCancelListener(this);
+
         tvVer = findViewById(R.id.tvVer);
         avi = findViewById(R.id.avi);
         lottieAnimationView = findViewById(R.id.animation_view);
         tvVer.setText(BuildConfig.VERSION_NAME);
-        Log.d(TAG, "onCreate: ");
-        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                permision();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-            }
-        });
+        lottieAnimationView.addAnimatorListener(this);
     }
 
     @Override
@@ -169,8 +142,8 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     }
 
     public void startUpRequest() {
-        internetAlert.isCancel();
-        avi.setVisibility(View.VISIBLE);
+        Log.e("reeeeeeeeeeeeeeeqqqqqqq", "startUpRequest:1 " );
+
         if (!Prefs.getString("loginId", "null").equals("null")) {
             deviceId = null;
             deviceSubscriberID = null;
@@ -181,9 +154,10 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             product = null;
             DeviceOSType = null;
         } else {
-            deviceId = Utility.getDeviceID(SplashActivity.this);
-            deviceSubscriberID = Utility.getSubscriberID(SplashActivity.this);
-            operator = Utility.getMyOperator(SplashActivity.this);
+            deviceId = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
+         //   deviceId = Utility.getDeviceID(SplashActivity.this);
+            //deviceSubscriberID = Utility.getSubscriberID(SplashActivity.this);
+          //  operator = Utility.getMyOperator(SplashActivity.this);
             sdkVersion = android.os.Build.VERSION.SDK_INT + "";
             model = android.os.Build.MODEL;
             brand = Build.BRAND;
@@ -208,15 +182,15 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         identity.setUserName("EligashtMlb");
         request.setIdentity(identity);
         startupServiceRequest.setRequest(request);
+        avi.setVisibility(View.VISIBLE);
+
         SingletonService.getInstance().getAppService().startUp(this, startupServiceRequest);
-        Log.e("startUpRequest", new Gson().toJson(startupServiceRequest));
+        Log.e("reeeeeeeeeeeeeeeqqqqqqq", "startUpRequest:2 " );
     }
 
     @Override
     public void onReady(StartupServiceResponse startupServiceResponse) {
         avi.setVisibility(View.GONE);
-
-
         try {
             if (startupServiceResponse.getMobileAppStartupServiceResult().getErrors() != null) {
                 splashDialog.seeText(
@@ -225,9 +199,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 splashDialog.showAlert();
             } else {
                 Utility.sendTag("Splash", true, true);
-
-                Prefs.putString("loginId", startupServiceResponse.getMobileAppStartupServiceResult().getID()+"");
-
+                Prefs.putString("loginId", startupServiceResponse.getMobileAppStartupServiceResult().getID() + "");
                 for (SearchNote searchNotes : startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getSearchNotes()) {
                     if (searchNotes.getSection().equals("H")) {
                         ArrayList<String> strings = new ArrayList<>();
@@ -310,16 +282,16 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             e.printStackTrace();
             splashDialog.showAlert();
         }
-
-
-
-
-
-
     }
 
     @Override
     public void onError(String message) {
+        avi.setVisibility(View.GONE);
+        if (!Utility.isNetworkAvailable(SplashActivity.this)) {
+            internetAlert.isShow();
+        } else {
+            splashDialog.showAlert();
+        }
     }
 
     @Override
@@ -330,7 +302,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     @Override
     public void onPermissionDenied(ArrayList<String> deniedPermissions) {
     }
-
 
     private void showRestartDialog() {
         SplashDialog dialog = new SplashDialog(this, this, true);
@@ -363,6 +334,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 e.printStackTrace();
             }
         }
+
     }
 
     @Override
@@ -371,44 +343,58 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    public void permision() {
+        startUpRequest();
+    }
+
+
+    @Override
     public void onConnectionChange(ConnectivityEvent event) {
-        // device has active internet connection
         try {
             JSONObject jsonObj = new JSONObject(new Gson().toJson(event));
             JSONObject getAirportsResult = jsonObj.getJSONObject("state");
             if (getAirportsResult.getString("value").equals("1")) {
-                isConnect = true;
-                internetAlert.isCancel();
-                if (req == 1) {
-                    //  new GetCommentAsync().execute();
+                if (internetAlert.alertDialog().isShowing()){
+                    internetAlert.isCancel();
+
                 }
-            } else {
-                isConnect = false;
+            }else{
+                internetAlert.isShow();
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * This is our function to un-binds this activity from our service.
-     */
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onAnimationStart(Animator animation) {
     }
 
-    public void permision() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            TedPermission.with(SplashActivity.this)
-                    .setPermissionListener(this)
-                    .setDeniedMessage(
-                            "If you reject permission,you can not use this application, Please turn on permissions at [Setting] > [Permission]")
-                    .setPermissions(Manifest.permission.READ_PHONE_STATE)
-                    .check();
-        } else {
-            startUpRequest();
+    @Override
+    public void onAnimationEnd(Animator animation) {
+        if (Utility.isNetworkAvailable(SplashActivity.this)) {
+            permision();
         }
+
+
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animation) {
+    }
+
+    @Override
+    public void onAnimationRepeat(Animator animation) {
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        permision();
+
     }
 }
 

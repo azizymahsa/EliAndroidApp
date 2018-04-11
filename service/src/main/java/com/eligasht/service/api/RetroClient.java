@@ -19,11 +19,14 @@ import com.eligasht.service.model.flight.response.purchaseServiceFlight.Response
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.hotelflight.request.HotelFlightRequest;
 import com.eligasht.service.model.insurance.request.GetCountry.RequestGetCountry;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
 import com.eligasht.service.model.insurance.response.GetCountry.ResponseGetCountry;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
 import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
+import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
+import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
 
@@ -46,10 +49,13 @@ public interface RetroClient {
     //*************hotel flight*************
     @POST(Const.HotelFlightSearch)
     Observable<HotelFlightResponse> hotelFlight(
-            @Body HotelAvailReq hotelAvailReq
+            @Body HotelFlightRequest hotelFlightRequest
     );
 
-
+    @POST(Const.HotelFlightSearch)
+    Observable<LoadFlightResponse> loadFlight(
+            @Body LoadFlightRequest loadFlightRequest
+    );
     //*************hotel*************
     @POST(Const.HotelAvail)
     Observable<HotelAvailRes> hotelAvail(

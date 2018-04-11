@@ -411,7 +411,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
     private void sendRequest() {
         ///////////////////////////////////////////////////////////
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
         }
         new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);

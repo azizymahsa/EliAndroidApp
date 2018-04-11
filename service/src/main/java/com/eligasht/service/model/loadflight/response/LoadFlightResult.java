@@ -1,12 +1,12 @@
 
-package com.eligasht.service.model.hotelflight.response;
+package com.eligasht.service.model.loadflight.response;
 
 import com.eligasht.service.model.hotel.hotelAvail.response.Error;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-public class HotelFlightSearchResult {
+public class LoadFlightResult {
 
     @SerializedName("Comments")
     @Expose
@@ -20,12 +20,9 @@ public class HotelFlightSearchResult {
     @SerializedName("Warningss")
     @Expose
     private Object warningss;
-    @SerializedName("HotelSearchResult")
+    @SerializedName("HFlight")
     @Expose
-    private HotelSearchResult hotelSearchResult;
-    @SerializedName("ResultUniqID")
-    @Expose
-    private String resultUniqID;
+    private HFlight hFlight;
 
     public Object getComments() {
         return comments;
@@ -59,20 +56,12 @@ public class HotelFlightSearchResult {
         this.warningss = warningss;
     }
 
-    public HotelSearchResult getHotelSearchResult() {
-        return hotelSearchResult;
+    public HFlight getHFlight() {
+        return hFlight;
     }
 
-    public void setHotelSearchResult(HotelSearchResult hotelSearchResult) {
-        this.hotelSearchResult = hotelSearchResult;
-    }
-
-    public String getResultUniqID() {
-        return resultUniqID;
-    }
-
-    public void setResultUniqID(String resultUniqID) {
-        this.resultUniqID = resultUniqID;
+    public void setHFlight(HFlight hFlight) {
+        this.hFlight = hFlight;
     }
 
 }

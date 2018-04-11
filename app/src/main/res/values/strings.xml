@@ -2265,11 +2265,11 @@
     <string name="mitra.ttf">fonts/times.ttf</string>
     <string name="select">choose</string>
     <string name="my_profile">My Profile</string>
-    <string name="text20">It is not currently possible to respond to your request</string>
-    <string name="text21">It is not currently possible to respond to your request</string>
+    <string name="text20">It is not currently possible to respond to your hotelFlightSubRequest</string>
+    <string name="text21">It is not currently possible to respond to your hotelFlightSubRequest</string>
     <string name="text22">The imported email is already in the system.</string>
     <string name="text24">Activation link has been sent to your email.</string>
-    <string name="text25">It is not currently possible to respond to your request</string>
+    <string name="text25">It is not currently possible to respond to your hotelFlightSubRequest</string>
     <string name="text26">please enter your Email</string>
     <string name="text27">The entered email is not correct</string>
     <string name="text28">Please enter your password</string>
@@ -2337,7 +2337,7 @@
     <string name="activation_link_has_been_sent_to_your_email"> The activation link has been sent to your email. </string>
     <string name="mail_or_pass_is_wrong"> Your email or password is incorrect. </string>
     <string name="email_address_is_not_valid"> The email entered is not valid </string>
-    <string name="success"> Your request has been successfully completed. </string>
+    <string name="success"> Your hotelFlightSubRequest has been successfully completed. </string>
     <string name="select_dep">Select departure date</string>
     <string name="select_che_in">Select checkin date</string>
     <string name="select_start_date">Select Start Date</string>

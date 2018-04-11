@@ -28,8 +28,6 @@ public class InternetAlert implements View.OnClickListener {
     android.app.AlertDialog.Builder builder;
     Activity activity;
     FancyButton btnMobileData, btnWifi;
-    // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
-    SmoothCheckBox bestSeler, bestOff, Remove, star2, star3, star4, star5, star1, hotel, boutique, apartment, resort;
 
 
     public InternetAlert(final Activity activity) {
@@ -52,6 +50,16 @@ public class InternetAlert implements View.OnClickListener {
         lottieAnimationView.setAnimation("lottie/no_connection.json");
         lottieAnimationView.playAnimation();
     }
+
+
+
+
+
+
+
+
+
+
     public void isCancel(){
         try{
             dialog.cancel();
@@ -68,6 +76,9 @@ public class InternetAlert implements View.OnClickListener {
         }catch (Exception e){}
 
     }
+    public android.app.AlertDialog alertDialog(){
+        return dialog;
+    };
 
     @Override
     public void onClick(View v) {
