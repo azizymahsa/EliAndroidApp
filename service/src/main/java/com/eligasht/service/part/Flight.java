@@ -2,6 +2,7 @@ package com.eligasht.service.part;
 
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.mock.Mock;
 import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
 import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -14,8 +15,7 @@ import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFa
 import com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
-import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
-import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
+
 
 public class Flight extends BasePart {
     public Flight(ServiceGenerator serviceGenerator) {
@@ -26,6 +26,7 @@ public class Flight extends BasePart {
         start(getServiceGenerator().createService().responsAirports(req), listener);
     }
 
+    @Mock(10)
     public void flightSearchAvail(OnServiceStatus<ResponsSearchFlight> listener, RequestSearchFlight req) {
         start(getServiceGenerator().createService().responsSearchFlight(req), listener);
     }
@@ -34,9 +35,6 @@ public class Flight extends BasePart {
         start(getServiceGenerator().createService().responsePreFactorDetails(req), listener);
     }
 
-    public void PreFactorDetailInsuranceAvail(OnServiceStatus<com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.ResponsePreFactorDetails> listener, com.eligasht.service.model.insurance.request.RequestPreFactorDetail.RequestPreFactorDetails req) {
-        start(getServiceGenerator().createService().responsePreFactorDetailsInsurance(req), listener);
-    }
 
     public void purchaseFlightAvail(OnServiceStatus<ResponsePurchaseFlight> listener, RequestPurchaseFlight req) {
         start(getServiceGenerator().createService().responsePurchaseFlightObservable(req), listener);
@@ -46,9 +44,6 @@ public class Flight extends BasePart {
         start(getServiceGenerator().createService().responsePurchaseFlight(req), listener);
     }
 
-    public void purchaseInsuranceAvail(OnServiceStatus<ResponsePurchaseInsurance> listener, RequestPurchaseInsurance req) {
-        start(getServiceGenerator().createService().RESPONSE_PURCHASE_INSURANCE_OBSERVABLE(req), listener);
-    }
 
     public void ChangeFlightAvail(OnServiceStatus<ResponseChangeFlight> listener, RequestChangeFlight req) {
         start(getServiceGenerator().createService().responsChangeFlight(req), listener);

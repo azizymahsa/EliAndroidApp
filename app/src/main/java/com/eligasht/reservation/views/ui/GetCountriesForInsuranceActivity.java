@@ -159,7 +159,7 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
         request.setCulture(getString(R.string.culture));
         requestGetCountry.setRequest(request);
         Log.e("getCountryInsurance: " , new Gson().toJson(requestGetCountry));
-   //     SingletonService.getInstance().getCountryInsuranceAvail(this, requestGetCountry);
+        SingletonService.getInstance().getInsurance().getCountryInsuranceAvail(this, requestGetCountry);
 
     }
 
