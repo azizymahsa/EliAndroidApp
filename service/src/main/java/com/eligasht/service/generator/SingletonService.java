@@ -67,8 +67,9 @@ public class SingletonService {
     }
 
     public AppService getAppService() {
-
-        return new AppService(serviceGenerator);
+        if (appService == null)
+            appService = new AppService(serviceGenerator);
+        return appService;
 
 }
 
