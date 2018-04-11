@@ -1,5 +1,7 @@
 package com.eligasht.service.generator;
 
+import android.content.Context;
+
 import com.eligasht.service.di.component.NetComponent;
 
 import com.eligasht.service.part.AboutService;
@@ -24,7 +26,8 @@ public class SingletonService {
     Hotel hotel;
     ContactUs contactUs;
     AboutService aboutService;
-
+    private Context context;
+    private Boolean mock=true;
 
     private static final SingletonService ourInstance = new SingletonService();
 
@@ -43,6 +46,23 @@ public class SingletonService {
     }
 
     private SingletonService() {
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+
+    public Boolean isMock() {
+        return mock;
+    }
+
+    public void setMock(Boolean mock) {
+        this.mock = mock;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     public Flight getFlight() {

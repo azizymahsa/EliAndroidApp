@@ -15,6 +15,7 @@ import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFa
 import com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
+import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 
 
 public class Flight extends BasePart {
@@ -22,11 +23,16 @@ public class Flight extends BasePart {
         super(serviceGenerator);
     }
 
+    @Override
+    protected BasePart getPart() {
+        return this;
+    }
+
     public void airPortsAvail(OnServiceStatus<ResponsAirports> listener, RequestAirports req) {
         start(getServiceGenerator().createService().responsAirports(req), listener);
     }
 
-    @Mock(10)
+    @Mock(jsonName = "search_flights", response = ResponsSearchFlight.class)
     public void flightSearchAvail(OnServiceStatus<ResponsSearchFlight> listener, RequestSearchFlight req) {
         start(getServiceGenerator().createService().responsSearchFlight(req), listener);
     }

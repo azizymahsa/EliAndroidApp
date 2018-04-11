@@ -7,6 +7,8 @@ import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 
+import java.util.List;
+
 /**
  * Created by Ahmad.nemati on 3/26/2018.
  */
@@ -16,9 +18,16 @@ public class ContactUs extends BasePart {
         super(serviceGenerator);
     }
 
+    @Override
+    protected BasePart getPart() {
+        return this;
+    }
+
 
     public void contactUsAvail(OnServiceStatus<ResponseContactUs> listener, RequestContactUs req) {
         start(getServiceGenerator().createService().responsContactUs(req), listener);
     }
+
+
 
 }

@@ -12,6 +12,11 @@ public class Insurance extends BasePart{
         super(serviceGenerator);
     }
 
+    @Override
+    protected BasePart getPart() {
+        return this;
+    }
+
     public void purchaseInsuranceAvail(OnServiceStatus<ResponsePurchaseInsurance> listener, RequestPurchaseInsurance req) {
         start(getServiceGenerator().createService().RESPONSE_PURCHASE_INSURANCE_OBSERVABLE(req), listener);
     }

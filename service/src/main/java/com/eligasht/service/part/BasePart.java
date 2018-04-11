@@ -1,7 +1,20 @@
 package com.eligasht.service.part;
 
+import android.support.annotation.IdRes;
+import android.support.annotation.RawRes;
+import android.util.Log;
+
+import com.eligasht.service.BuildConfig;
 import com.eligasht.service.generator.ServiceGenerator;
+import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.mock.Mock;
+import com.eligasht.service.mock.MockProcessor;
+import com.example.type.TypeResolver;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -22,11 +35,29 @@ public abstract class BasePart {
         this.serviceGenerator = serviceGenerator;
     }
 
+    protected abstract BasePart getPart();
+
     public ServiceGenerator getServiceGenerator() {
         return serviceGenerator;
     }
 
+
     public <T> void start(Observable<T> observable, OnServiceStatus<T> listener) {
+        MockProcessor<T> mockProcessor = new MockProcessor<>(listener, getPart());
+        if (BuildConfig.DEBUG && SingletonService.getInstance().isMock() && mockProcessor.getRawRes() != null) {
+            T model = mockProcessor.getMockModel();
+            if (model == null) {
+                call(observable, listener);
+                return;
+            }
+            listener.onReady(model);
+            return;
+        }
+        call(observable, listener);
+    }
+
+
+    private <T> void call(Observable<T> observable, OnServiceStatus<T> listener) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
@@ -51,7 +82,7 @@ public abstract class BasePart {
 
                     }
                 });
-
     }
+
 
 }
