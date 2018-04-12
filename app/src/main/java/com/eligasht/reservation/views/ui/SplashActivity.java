@@ -53,10 +53,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.UUID;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class SplashActivity extends ConnectionBuddyActivity implements
-        SplashDialog.TryDialogListener, OnServiceStatus<StartupServiceResponse>, PermissionListener, Animator.AnimatorListener ,DialogInterface.OnCancelListener{
+        SplashDialog.TryDialogListener, OnServiceStatus<StartupServiceResponse>, PermissionListener, Animator.AnimatorListener, DialogInterface.OnCancelListener {
     AVLoadingIndicatorView avi;
     LottieAnimationView lottieAnimationView;
     String deviceId;
@@ -128,7 +129,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         }
         internetAlert = new InternetAlert(SplashActivity.this);
         internetAlert.alertDialog().setOnCancelListener(this);
-
         tvVer = findViewById(R.id.tvVer);
         avi = findViewById(R.id.avi);
         lottieAnimationView = findViewById(R.id.animation_view);
@@ -142,8 +142,8 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     }
 
     public void startUpRequest() {
-        Log.e("reeeeeeeeeeeeeeeqqqqqqq", "startUpRequest:1 " );
-
+        StartupServiceRequest startupServiceRequest = new StartupServiceRequest();
+        Request request = new Request();
         if (!Prefs.getString("loginId", "null").equals("null")) {
             deviceId = null;
             deviceSubscriberID = null;
@@ -153,20 +153,17 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             brand = null;
             product = null;
             DeviceOSType = null;
+            // request.setID("");
+            request.setID(Prefs.getString("loginId", "null"));
         } else {
-        //    deviceId = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
-         //   deviceId = Utility.getDeviceID(SplashActivity.this);
-            //deviceSubscriberID = Utility.getSubscriberID(SplashActivity.this);
-          //  operator = Utility.getMyOperator(SplashActivity.this);
+            String uniqueID = UUID.randomUUID().toString();
+            deviceId = uniqueID;
             sdkVersion = android.os.Build.VERSION.SDK_INT + "";
             model = android.os.Build.MODEL;
             brand = Build.BRAND;
             product = Build.PRODUCT;
             DeviceOSType = "2";
         }
-
-        StartupServiceRequest startupServiceRequest = new StartupServiceRequest();
-        Request request = new Request();
         request.setAppVersion(BuildConfig.VERSION_NAME);
         request.setBrand(brand);
         request.setCulture(getString(R.string.culture));
@@ -184,9 +181,8 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         request.setIdentity(identity);
         startupServiceRequest.setRequest(request);
         avi.setVisibility(View.VISIBLE);
-
         SingletonService.getInstance().getAppService().startUp(this, startupServiceRequest);
-        Log.e("reeeeeeeeeeeeeeeqqqqqqq", "startUpRequest:2 " );
+        Log.e("reeeeeeeeeeeeeeeqqqqqqq", new Gson().toJson(startupServiceRequest));
     }
 
     @Override
@@ -243,16 +239,13 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                     if (Prefs.getBoolean("isAdjustSend", true)) {
                         Prefs.putBoolean("isAdjustSend", false);
                         Hawk.put("adjust", true);
-                            try {
-                                AdjustEvent event = new AdjustEvent("yoi24u");
-                                Adjust.trackEvent(event);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-
+                        try {
+                            AdjustEvent event = new AdjustEvent("yoi24u");
+                            Adjust.trackEvent(event);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-
                 } else {
                     Hawk.put("adjust", false);
                 }
@@ -339,8 +332,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                     getBaseContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
         }
-
-
     }
 
     @Override
@@ -353,19 +344,16 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         super.onDestroy();
     }
 
-
-
     @Override
     public void onConnectionChange(ConnectivityEvent event) {
         try {
             JSONObject jsonObj = new JSONObject(new Gson().toJson(event));
             JSONObject getAirportsResult = jsonObj.getJSONObject("state");
             if (getAirportsResult.getString("value").equals("1")) {
-                if (internetAlert.alertDialog().isShowing()){
+                if (internetAlert.alertDialog().isShowing()) {
                     internetAlert.isCancel();
-
                 }
-            }else{
+            } else {
                 internetAlert.isShow();
             }
         } catch (JSONException e) {
@@ -382,8 +370,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         if (Utility.isNetworkAvailable(SplashActivity.this)) {
             startUpRequest();
         }
-
-
     }
 
     @Override
@@ -397,7 +383,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     @Override
     public void onCancel(DialogInterface dialog) {
         startUpRequest();
-
     }
 }
 
