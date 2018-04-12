@@ -71,7 +71,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     UpdateAlert updateAlert;
     String DeviceOSType;
     TextView tvVer;
-    boolean requset = true;
 
     @Override
     public void onReturnValue() {
@@ -99,6 +98,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Prefs.putString("Rooms", "[{\"CountB\":1,\"CountK\":0,\"CountN\":0,\"childModels\":[]}]");
         try {
             String languageToLoad = Prefs.getString("lang", "fa"); // your language
             Locale locale = new Locale(languageToLoad);
@@ -154,7 +154,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             product = null;
             DeviceOSType = null;
         } else {
-            deviceId = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
+        //    deviceId = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
          //   deviceId = Utility.getDeviceID(SplashActivity.this);
             //deviceSubscriberID = Utility.getSubscriberID(SplashActivity.this);
           //  operator = Utility.getMyOperator(SplashActivity.this);
@@ -164,6 +164,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
             product = Build.PRODUCT;
             DeviceOSType = "2";
         }
+
         StartupServiceRequest startupServiceRequest = new StartupServiceRequest();
         Request request = new Request();
         request.setAppVersion(BuildConfig.VERSION_NAME);
@@ -352,9 +353,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         super.onDestroy();
     }
 
-    public void permision() {
-        startUpRequest();
-    }
 
 
     @Override
@@ -382,7 +380,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     @Override
     public void onAnimationEnd(Animator animation) {
         if (Utility.isNetworkAvailable(SplashActivity.this)) {
-            permision();
+            startUpRequest();
         }
 
 
@@ -398,7 +396,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
 
     @Override
     public void onCancel(DialogInterface dialog) {
-        permision();
+        startUpRequest();
 
     }
 }

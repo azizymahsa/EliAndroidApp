@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,25 +96,13 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
             holder.txtSectionNameEn.setText(item.getSectionName()+"");
         }
 
-
-
-
-
-
-
-
-
-
         holder.txtDescription.setText(item.getDescription()+ "");
         String youtContentStr = String.valueOf(Html
                 .fromHtml("<![CDATA[<body style=\"text-align:justify;color:#222222; \">"
                         + item.getDescription()
                         + "</body>]]>"));
        holder.txtDescriptionEn.loadData(youtContentStr, "text/html", "utf-8");
-
-
-        if(item.getImageAddress() != "null"){
-
+        if(item.getImageAddress()!=null || !TextUtils.isEmpty(item.getImageAddress())){
             holder.iv_imageAddress.setVisibility(View.VISIBLE);
             Glide.with(context).load(item.getImageAddress()).into(holder.iv_imageAddress);
         }else{
