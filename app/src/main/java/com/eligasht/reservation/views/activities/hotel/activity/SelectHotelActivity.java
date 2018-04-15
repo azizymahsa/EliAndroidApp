@@ -29,7 +29,7 @@ import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
-import com.eligasht.service.model.hotel.hotelAvail.request.Identity;
+import com.eligasht.service.model.identity.Identity;
 import com.eligasht.service.model.hotel.hotelAvail.request.Request;
 import com.eligasht.service.model.hotel.hotelAvail.request.Room;
 import com.eligasht.service.model.hotel.hotelAvail.response.Facility;
@@ -547,6 +547,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         request.setDepart(Prefs.getString("Value-Hotel-City-Code", "c25972"));
         request.setRoomsString(getIntent().getExtras().getString("Rooms"));
         Identity identity = new Identity();
+        identity.setPassword("123qwe!@#QWE");
+        identity.setTermianlId("Mobile");
+        identity.setUserName("EligashtMlb");
         request.setIdentity(identity);
         request.setRooms(rooms);
         request.setSource("");

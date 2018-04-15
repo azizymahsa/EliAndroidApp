@@ -2,6 +2,8 @@
 package com.eligasht.service.model.hotel.hotelAvail.request;
 
 import java.util.List;
+
+import com.eligasht.service.model.identity.Identity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

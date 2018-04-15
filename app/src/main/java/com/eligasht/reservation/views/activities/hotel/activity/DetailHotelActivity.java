@@ -37,7 +37,8 @@ import com.eligasht.reservation.models.hotel.api.detail.call.GetHotelDetailReque
 import com.eligasht.reservation.models.hotel.api.rooms.call.GetRoomsHotelRequest;
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
 import com.eligasht.reservation.models.hotel.api.rooms.call.RoomRequest;
-import com.eligasht.reservation.models.hotel.api.rooms.response.RoomList;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.model.hotel.room.response.RoomList;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.hotel.hotelDetail.HotelDetailViewPager;
 import com.eligasht.reservation.views.adapters.hotel.rooms.ImageModel;
@@ -45,6 +46,12 @@ import com.eligasht.reservation.models.RoomsModel;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.ViewPagerAttention;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.hotel.room.request.GetRoomReq;
+import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
+import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
+import com.eligasht.service.model.identity.Identity;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
@@ -53,12 +60,11 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Collections;
-public class DetailHotelActivity extends BaseActivity implements View.OnClickListener {
+public class DetailHotelActivity extends BaseActivity implements View.OnClickListener ,OnServiceStatus<GetRoomResponse> {
     private TextView tvTitle;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private RelativeLayout rlLoading2;
     private CoordinatorLayout rlRoot;
-    private GetRoomsList getRoomsList;
     private Window window;
     private HotelDetailViewPager hotelDetailViewPager;
     private ViewPager view_pager;
@@ -187,7 +193,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         rlLoading2.setOnClickListener(this);
         Utility.setAnimLoading(this);
         initToolbar(toolbar);
-        new GetRoomsAsync().execute();
+        getRoomRequest();
     }
 
     @Override
@@ -198,51 +204,58 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 break;
         }
     }
-
-    private class GetRoomsAsync extends AsyncTask<String, Void, String> {
-        protected void onPreExecute() {
-            rlLoading2.setVisibility(View.VISIBLE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-                window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.blue2));
-            }
+    public void getRoomRequest(){
+        rlLoading2.setVisibility(View.VISIBLE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.blue2));
         }
+        GetRoomRequest getRoomRequest =new GetRoomRequest();
+        GetRoomReq getRoomReq = new GetRoomReq();
+        getRoomReq.setCulture(getString(R.string.culture));
+        getRoomReq.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
+        getRoomReq.setFltGUID("");
+        getRoomReq.setFltId("");
+        Identity identity = new Identity();
+        identity.setPassword("123qwe!@#QWE");
+        identity.setTermianlId("Mobile");
+        identity.setUserName("EligashtMlb");
+        getRoomReq.setIdentity(identity);
+        getRoomReq.setResultUniqID(getIntent().getExtras().getString("ResultUniqID"));
 
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                getRoomsList = new GetRoomsList(new GetRoomsHotelRequest(new RoomRequest(new IdentityRooms("EligashtMlb", "123qwe!@#QWE"
-                        , "Mobile"), "",
-                        String.valueOf(getIntent().getExtras().getInt("HotelId")),
-                        "", "", getIntent().getExtras().getString("ResultUniqID"),
-                        getString(R.string.culture))));
-            } catch (Exception e) {
-            }
-            return "Executed";
-        }
 
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                if (getRoomsList.getRoomsListResponse.GetRoomsListResult.errors != null) {
-                    elNotFound.setVisibility(View.VISIBLE);
-                    tvAlertError.setText(getRoomsList.getRoomsListResponse.GetRoomsListResult.errors.get(0).getMessage());
-                } else {
-                    int i = 0;
-                    for (RoomList roomList : getRoomsList.getRoomsListResponse.GetRoomsListResult.roomList) {
-                        Log.e("testtest", roomList.Description);
-                        roomsModels.add(new RoomsModel(roomList.Board, roomList.Title, roomList.Description, roomList.Price,
-                                roomList.OfferId, roomList.EHotelId, getRoomsList.getRoomsListResponse.GetRoomsListResult.SearchKey));
-                    }
-                    EventBus.getDefault().post(new RoomsModelBus(roomsModels));
-                    new GetHoldDetailAsync().execute();
-                }
-            } catch (Exception e) {
+        getRoomRequest.setRequest(getRoomReq);
+        SingletonService.getInstance().getHotelService().getRoom(this, getRoomRequest);
+
+    }
+
+    @Override
+    public void onReady(GetRoomResponse getRoomResponse) {
+        try {
+            if (getRoomResponse.getGetRoomsListResult().getErrors()!= null) {
                 elNotFound.setVisibility(View.VISIBLE);
-                rlLoading2.setVisibility(View.GONE);
-                tvAlertError.setText(R.string.ErrorServer);
+                tvAlertError.setText(getRoomResponse.getGetRoomsListResult().getErrors().get(0).getMessage());
+            } else {
+                for (RoomList roomList : getRoomResponse.getGetRoomsListResult().getRoomList()) {
+                    roomsModels.add(new RoomsModel(roomList.getBoard(), roomList.getTitle(), roomList.getDescription(), roomList.getPrice().toString(),
+                            roomList.getOfferId(), roomList.getHotelId(), getRoomResponse.getGetRoomsListResult().getSearchKey()));
+                }
+                EventBus.getDefault().post(new RoomsModelBus(roomsModels));
+                new GetHoldDetailAsync().execute();
             }
+        } catch (Exception e) {
+            elNotFound.setVisibility(View.VISIBLE);
+            rlLoading2.setVisibility(View.GONE);
+            tvAlertError.setText(R.string.ErrorServer);
         }
     }
+
+    @Override
+    public void onError(String message) {
+        elNotFound.setVisibility(View.VISIBLE);
+        rlLoading2.setVisibility(View.GONE);
+        tvAlertError.setText(R.string.ErrorServer);
+    }
+
     private class GetHoldDetailAsync extends AsyncTask<String, Void, String> {
         protected void onPreExecute() {
         }

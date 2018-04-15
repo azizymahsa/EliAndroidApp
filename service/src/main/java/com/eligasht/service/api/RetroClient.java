@@ -17,8 +17,13 @@ import com.eligasht.service.helper.Const;
 import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
+import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
+import com.eligasht.service.model.hotel.detail.response.GetHotelDetailResult;
+import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
+import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
 import com.eligasht.service.model.hotelflight.request.HotelFlightRequest;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
@@ -69,7 +74,15 @@ public interface RetroClient {
             @Body HotelPolicyRequest hotelPolicyRequest
     );
 
+    @POST(Const.GetRoomsList)
+    Observable<GetRoomResponse> getRoomsList(
+            @Body GetRoomRequest getRoomRequest
+    );
 
+    @POST(Const.GetHotelDetail)
+    Observable<HotelDetailResponse> getHotelDetail(
+            @Body HotelDetailRequest hotelDetailRequest
+    );
     //*************flight*************
 
 

@@ -1,22 +1,19 @@
 
-package com.eligasht.service.model.hotel.hotelAvail.request;
+package com.eligasht.service.model.identity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-
-
 public class Identity {
 
     @SerializedName("Password")
     @Expose
-    private String password="123qwe!@#QWE";
+    private String password;
     @SerializedName("TermianlId")
     @Expose
-    private String termianlId="Mobile";
+    private String termianlId;
     @SerializedName("UserName")
     @Expose
-    private String userName="EligashtMlb";
+    private String userName;
 
     public String getPassword() {
         return password;
@@ -41,11 +38,5 @@ public class Identity {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    public void showLog() {
-        android.util.Log.e(this.getClass().getSimpleName(), toString());
-    }
-
-
 
 }

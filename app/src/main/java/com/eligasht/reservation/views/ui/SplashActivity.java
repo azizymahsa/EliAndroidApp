@@ -90,7 +90,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 AlarmManager mgr = (AlarmManager) SplashActivity.this.getSystemService(Context.ALARM_SERVICE);
                 mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
                 System.exit(0);
-                Log.e("runrun", "run: ");
             }
         }, 100);
     }

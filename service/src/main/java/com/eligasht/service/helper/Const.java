@@ -12,6 +12,8 @@ public class Const {
 
     //*************hotel*************
     public final static String HotelAvail = "Hotel/HotelService.svc/HotelAvail";
+    public final static String GetRoomsList = "Hotel/HotelService.svc/GetRoomsList";
+    public final static String GetHotelDetail = "Hotel/HotelService.svc/GetHotelDetail";
 
     //*************hotel flight*************
     public final static String HotelFlightSearch = "HotelFlight/HotelFlightService.svc/HotelFlightSearch";
