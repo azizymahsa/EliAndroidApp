@@ -38,6 +38,9 @@ import com.eligasht.reservation.models.hotel.api.rooms.call.GetRoomsHotelRequest
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
 import com.eligasht.reservation.models.hotel.api.rooms.call.RoomRequest;
 import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.model.hotel.detail.request.HotelDetailReq;
+import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
+import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
 import com.eligasht.service.model.hotel.room.response.RoomList;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.hotel.hotelDetail.HotelDetailViewPager;
@@ -70,7 +73,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private ViewPager view_pager;
     private Toolbar toolbar;
     private LatLng location;
-    private GetHotelDetail getHotelDetail;
     private TextView tvHotelName, tvCityName, tvAdress, tvAlertError;
     private ImageView ivImage;
     private TextView tvDateDetail;
@@ -256,6 +258,117 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvAlertError.setText(R.string.ErrorServer);
     }
 
+
+
+
+/*    public void getHotelDetailRequest(){
+        HotelDetailRequest hotelDetailRequest = new HotelDetailRequest();
+        HotelDetailReq getRoomRequest = new HotelDetailReq();
+        getRoomRequest.setCulture(getString(R.string.culture));
+        getRoomRequest.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
+        hotelDetailRequest.setRequest(getRoomRequest);
+
+        SingletonService.getInstance().getHotelService().getHotelDetail(new OnServiceStatus<HotelDetailResponse>() {
+            @Override
+            public void onReady(HotelDetailResponse hotelDetailResponse) {
+
+
+                rlLoading2.setVisibility(View.GONE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.colorPrimaryDark));
+
+                }
+                ArrayList<ImageModel> imageModels = new ArrayList<>();
+                try {
+                    cvHotel.setVisibility(View.VISIBLE);
+                    YoYo.with(Techniques.FadeIn)
+                            .duration(400)
+                            .playOn(cvHotel);
+                    tvHotelName.setText(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName());
+                    tvHotelName.setVisibility(View.GONE);
+                    tvTitle.setText(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName());
+                    tvAdress.setText(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getAddress());
+                    try {
+                        location = new LatLng(Double.valueOf(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getLatitude()),
+                                Double.valueOf(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getLongitude()));
+                    } catch (Exception e) {
+                    }
+                    for (ImageHotel imageHotel : hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelImages()) {
+                        imageModels.add(new ImageModel(imageHotel.HotelImagesURL));
+                    }
+                    EventBus.getDefault().post(new HotelProprtiesBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties));
+                    commentModelBus = new CommentModelBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName, String.valueOf(getIntent().getExtras().getInt("HotelId")));
+                    EventBus.getDefault().post(new CommentModelBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName, String.valueOf(getIntent().getExtras().getInt("HotelId"))));
+                    YoYo.with(Techniques.FadeIn)
+                            .duration(400)
+                            .playOn(flViewPager);
+                    Collections.reverse(imageModels);
+                    new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager, getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
+                    tvCityName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CityName + " " + getString(R.string.comma) + " " + getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CountryName);
+                    Log.e("star", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating + "");
+                    switch (getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating) {
+                        case 1:
+                            //todo change this
+                            ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._1star));
+                            break;
+                        case 2:
+                            ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._2star));
+                            break;
+                        case 3:
+                            ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._3star));
+                            break;
+                        case 4:
+                            ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._4star));
+                            break;
+                        case 5:
+                            ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._5star));
+                            break;
+                        case -1:
+                            ivImage.setVisibility(View.GONE);
+                            break;
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(DetailHotelActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+
+
+
+
+            }
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(DetailHotelActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }, hotelDetailRequest);
+
+
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private class GetHoldDetailAsync extends AsyncTask<String, Void, String> {
         protected void onPreExecute() {
         }
@@ -263,7 +376,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected String doInBackground(String... params) {
             try {
-                getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId")))));
+            //    getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId")))));
                 Log.e("j2j2j2", new Gson().toJson(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId"))))));
             } catch (Exception e) {
             }
@@ -272,65 +385,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
         @Override
         protected void onPostExecute(String result) {
-            rlLoading2.setVisibility(View.GONE);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.colorPrimaryDark));
 
-            }
-            ArrayList<ImageModel> imageModels = new ArrayList<>();
-            try {
-                cvHotel.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(400)
-                        .playOn(cvHotel);
-                tvHotelName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
-                tvHotelName.setVisibility(View.GONE);
-                tvTitle.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
-                tvAdress.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
-                Log.e("test", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Address);
-                try {
-                    location = new LatLng(Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Latitude),
-                            Double.valueOf(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.Longitude));
-                } catch (Exception e) {
-                }
-                for (ImageHotel imageHotel : getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelImages) {
-                    imageModels.add(new ImageModel(imageHotel.HotelImagesURL));
-                }
-                EventBus.getDefault().post(new HotelProprtiesBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties));
-                commentModelBus = new CommentModelBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName, String.valueOf(getIntent().getExtras().getInt("HotelId")));
-                EventBus.getDefault().post(new CommentModelBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName, String.valueOf(getIntent().getExtras().getInt("HotelId"))));
-                YoYo.with(Techniques.FadeIn)
-                        .duration(400)
-                        .playOn(flViewPager);
-                Collections.reverse(imageModels);
-                new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager, getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
-                tvCityName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CityName + " " + getString(R.string.comma) + " " + getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CountryName);
-                Log.e("star", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating + "");
-                switch (getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating) {
-                    case 1:
-                        //todo change this
-                        ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._1star));
-                        break;
-                    case 2:
-                        ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._2star));
-                        break;
-                    case 3:
-                        ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._3star));
-                        break;
-                    case 4:
-                        ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._4star));
-                        break;
-                    case 5:
-                        ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._5star));
-                        break;
-                    case -1:
-                        ivImage.setVisibility(View.GONE);
-                        break;
-                }
-            } catch (Exception e) {
-                Toast.makeText(DetailHotelActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
-                finish();
-            }
         }
     }
 

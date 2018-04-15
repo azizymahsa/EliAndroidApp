@@ -4,6 +4,8 @@ import com.eligasht.service.R;
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.mock.Mock;
+import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
+import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
@@ -45,5 +47,8 @@ public class Hotel extends BasePart {
     }
     public void getRoom(OnServiceStatus<GetRoomResponse> listener, GetRoomRequest req) {
         start(getServiceGenerator().createService().getRoomsList(req), listener);
+    }
+    public void getHotelDetail(OnServiceStatus<HotelDetailResponse> listener, HotelDetailRequest req) {
+        start(getServiceGenerator().createService().getHotelDetail(req), listener);
     }
 }
