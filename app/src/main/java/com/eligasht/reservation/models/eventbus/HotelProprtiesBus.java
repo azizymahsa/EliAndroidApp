@@ -1,6 +1,6 @@
 package com.eligasht.reservation.models.eventbus;
 
-import com.eligasht.reservation.models.hotel.api.detail.call.HotelProprties;
+import com.eligasht.service.model.hotel.detail.response.HotelProprty;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import java.util.List;
  */
 
 public class HotelProprtiesBus {
-    private List<HotelProprties> hotel;
+    private List<HotelProprty> hotel;
 
-    public HotelProprtiesBus(List<HotelProprties> hotel) {
+    public HotelProprtiesBus(List<HotelProprty> hotel) {
         this.hotel = hotel;
     }
 
-    public List<HotelProprties> getHotel() {
+    public List<HotelProprty> getHotel() {
         return hotel;
     }
 }
